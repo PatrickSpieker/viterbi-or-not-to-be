@@ -11,21 +11,25 @@ def calculate_features(threads):
     tf_idf = vectorizer.fit_transform(documents)
 
     # Should result in a vector of shape (threads)
-    tf_idf_features = numpy.mean(tf_idf, axis=0)
+    tf_idf_features = numpy.squeeze(numpy.asarray(numpy.mean(tf_idf, axis=1)))
 
     # Generate sentence features
-    num_of_sentences = functools.reduce(lambda s, thread: s + len(thread))
-    sentence_index = 0
+    num_of_sentences = functools.reduce(lambda s, thread: s + len(thread), threads, 0)
+    global_sentence_index = 0
 
     sentence_features = numpy.ndarray(shape=(num_of_sentences, 3))
 
     for thread_index, thread in enumerate(threads):
-        for sentence in thread:
+        for sentence_index, sentence in enumerate(thread):
+
             # TF-IDF
-            sentence_features[sentence_index][0] = tf_idf_features[thread_index]
+            sentence_features[global_sentence_index, 0] = tf_idf_features[thread_index]
             # Sentence Length
-            sentence_features[sentence_index][1] = len(sentence)
-            sentence_index += 1
+            sentence_features[global_sentence_index][1] = len(sentence)
+            # Sentence Position
+            sentence_features[global_sentence_index][2] = sentence_index
+
+            global_sentence_index += 1
 
     return sentence_features
 
@@ -54,8 +58,9 @@ def parseXML(xmlfile):
         print('\n')
 
     sentence_vectors = calculate_features(threads)
+    print(sentence_vectors)
 
-xmlfile = open('data/corpus-tiny.xml', 'r')
+xmlfile = open('baseline/data/corpus-tiny.xml', 'r')
 parseXML(xmlfile)
 
 xmlfile.close()

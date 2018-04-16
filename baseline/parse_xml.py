@@ -5,7 +5,7 @@ import xml.etree.ElementTree as ET
 from sklearn.feature_extraction.text import TfidfVectorizer
 from functools import reduce
 
-DEBUG = False
+DEBUG = True
 
 def main():
     with open('baseline/data/corpus-tiny.xml', 'r') as xml_file:
@@ -18,10 +18,10 @@ def debug(output):
 
 def calculate_features(threads):
     documents = [' '.join(x) for x in threads]
-    vectorizer = TfidfVectorizer()
-    tf_idf = vectorizer.fit_transform(documents)
 
-    # Should result in a vector of shape (threads)
+    # Compute TF-IDF
+    tf_idf_vectorizer = TfidfVectorizer()
+    tf_idf = tf_idf_vectorizer.fit_transform(documents)
     tf_idf_features = np.squeeze(np.asarray(np.mean(tf_idf, axis=1)))
 
     # Generate sentence features

@@ -1,4 +1,4 @@
-# Parses bc3 corpus
+# Baseline Naive Bayes model using the BC3 corpus
 
 import numpy as np
 import xml.etree.ElementTree as ET
@@ -7,8 +7,8 @@ from sklearn.naive_bayes import GaussianNB
 from functools import reduce
 
 DEBUG = True
-CORPUS = 'baseline/data/corpus-tiny.xml'
-ANNOTATIONS = 'baseline/data/annotations-tiny.xml'
+CORPUS = 'data/corpus-tiny.xml'
+ANNOTATIONS = 'data/annotations-tiny.xml'
 
 def main():
     with open(CORPUS, 'r') as corpus_file, open(ANNOTATIONS, 'r') as annotations_file:
@@ -43,30 +43,32 @@ def parse_annotations(xml_file):
     return annotations
 
 def parse_corpus(xml_file, annotations):
+    # Parse xml data into tree
     tree = ET.parse(xml_file)
     root = tree.getroot()
 
     threads = []
     thread_labels = []
 
+    # Fetch 
     for thread in root:
         thread_text = []
         sentence_labels = []
-        listno = thread[1].text # TODO: use find syntax
-        debug('---------- Thread with name "' + thread[0].text + '" and listno ' + thread[1].text + ' ----------')
+        name = thread.find('name').text
+        listno = thread.find('listno').text
+        debug('---------- Thread with name "' + name + '" and listno ' + listno + ' ----------')
         
-        for docnum in range(2, len(thread.getchildren())):
-            # { Received, From, To, (Cc), Subject, Text }
-            for item in thread[docnum]:
-                if item.tag == 'Subject':
-                    debug('\n    Email subject: "' + thread[docnum][3].text + '"')
-                if item.tag == 'Text':
-                    for sent in item:
-                        debug('        Sentence id: ' + sent.attrib['id'])
-                        sentence_id = sent.attrib['id']
-                        sentence_labels.append(1 if sentence_id in annotations[listno] else 0)
-                        debug('        Sentence: "' + sent.text + '"')
-                        thread_text.append(sent.text)
+        for doc in thread.findall('DOC'):
+            # Email doc contents typically contain { Received, From, To, (Cc), Subject, Text }
+            subject = doc.find('Subject').text
+            text = doc.find('Text')
+            debug('\n    Email subject: "' + subject + '"')
+            for sent in text:
+                debug('        Sentence id: ' + sent.attrib['id'])
+                sentence_id = sent.attrib['id']
+                sentence_labels.append(1 if sentence_id in annotations[listno] else 0)
+                debug('        Sentence: "' + sent.text + '"')
+                thread_text.append(sent.text)
 
         debug('\n')
         threads.append(thread_text)

@@ -88,17 +88,25 @@ def calculate_features(threads):
     num_of_sentences = reduce(lambda s, thread: s + len(thread), threads, 0)
     global_sentence_index = 0
 
-    sentence_features = np.ndarray(shape=(num_of_sentences, 3))
+    sentence_features = np.ndarray(shape=(num_of_sentences, 4))
 
     for thread_index, thread in enumerate(threads):
+
+        # Compute TF-ISF
+        tf_isf_vectorizer = TfidfVectorizer()
+        tf_isf = tf_isf_vectorizer.fit_transform(thread)
+        tf_isf_features = np.squeeze(np.asarray(np.mean(tf_isf, axis=1)))
+
         for sentence_index, sentence in enumerate(thread):
 
             # TF-IDF
             sentence_features[global_sentence_index, 0] = tf_idf_features[thread_index]
+            # TF-ISF
+            sentence_features[global_sentence_index][1] = tf_isf_features[sentence_index]
             # Sentence Length
-            sentence_features[global_sentence_index][1] = len(sentence)
+            sentence_features[global_sentence_index][2] = len(sentence)
             # Sentence Position
-            sentence_features[global_sentence_index][2] = sentence_index
+            sentence_features[global_sentence_index][3] = sentence_index
 
             global_sentence_index += 1
 

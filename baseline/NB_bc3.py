@@ -4,7 +4,9 @@ import numpy as np
 import xml.etree.ElementTree as ET
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import GaussianNB
+from sklearn.metrics.pairwise import linear_kernel
 from functools import reduce
+from scipy import spatial
 
 DEBUG = True
 CORPUS = 'data/corpus-tiny.xml'
@@ -13,8 +15,8 @@ ANNOTATIONS = 'data/annotations-tiny.xml'
 def main():
     with open(CORPUS, 'r') as corpus_file, open(ANNOTATIONS, 'r') as annotations_file:
         annotations = parse_annotations(annotations_file)
-        threads, thread_labels = parse_corpus(corpus_file, annotations)
-        sentence_features = calculate_features(threads)
+        threads, thread_labels, thread_names = parse_corpus(corpus_file, annotations)
+        sentence_features = calculate_features(threads, thread_names)
         model = train_model(sentence_features, thread_labels)
 
 def debug(output):
@@ -49,8 +51,8 @@ def parse_corpus(xml_file, annotations):
 
     threads = []
     thread_labels = []
+    thread_names = []
 
-    # Fetch 
     for thread in root:
         thread_text = []
         sentence_labels = []
@@ -73,10 +75,11 @@ def parse_corpus(xml_file, annotations):
         debug('\n')
         threads.append(thread_text)
         thread_labels.append(sentence_labels)
+        thread_names.append(name)
 
-    return threads, thread_labels
+    return threads, thread_labels, thread_names
 
-def calculate_features(threads):
+def calculate_features(threads, thread_names):
     documents = [' '.join(x) for x in threads]
 
     # Compute TF-IDF
@@ -88,16 +91,18 @@ def calculate_features(threads):
     num_of_sentences = reduce(lambda s, thread: s + len(thread), threads, 0)
     global_sentence_index = 0
 
-    sentence_features = np.ndarray(shape=(num_of_sentences, 4))
+    sentence_features = np.ndarray(shape=(num_of_sentences, 5))
 
     for thread_index, thread in enumerate(threads):
 
-        # Compute TF-ISF
+        # Compute TF-ISF for thread name (index 0) and thread content
+        thread.append(thread_names[thread_index])
         tf_isf_vectorizer = TfidfVectorizer()
         tf_isf = tf_isf_vectorizer.fit_transform(thread)
         tf_isf_features = np.squeeze(np.asarray(np.mean(tf_isf, axis=1)))
+        title_vector = tf_isf[len(thread) - 1]
 
-        for sentence_index, sentence in enumerate(thread):
+        for sentence_index, sentence in enumerate(thread[:len(thread)-1]):
 
             # TF-IDF
             sentence_features[global_sentence_index, 0] = tf_idf_features[thread_index]
@@ -107,6 +112,9 @@ def calculate_features(threads):
             sentence_features[global_sentence_index][2] = len(sentence)
             # Sentence Position
             sentence_features[global_sentence_index][3] = sentence_index
+            # Similarity to Title
+            sentence_vector = tf_isf[sentence_index]
+            sentence_features[global_sentence_index][4] = linear_kernel(title_vector, sentence_vector).flatten()
 
             global_sentence_index += 1
 

@@ -98,18 +98,19 @@ def calculate_features(threads, thread_names):
     num_of_sentences = reduce(lambda s, thread: s + len(thread), threads, 0)
     global_sentence_index = 0
 
-    sentence_features = np.ndarray(shape=(num_of_sentences, 5))
+    sentence_features = np.ndarray(shape=(num_of_sentences, 7))
 
     for thread_index, thread in enumerate(threads):
 
         # Compute TF-ISF for thread name (index 0) and thread content
-        thread.append(thread_names[thread_index])
+        thread_with_name = thread.copy()
+        thread_with_name.append(thread_names[thread_index])
         tf_isf_vectorizer = TfidfVectorizer()
-        tf_isf = tf_isf_vectorizer.fit_transform(thread)
+        tf_isf = tf_isf_vectorizer.fit_transform(thread_with_name)
         tf_isf_features = np.squeeze(np.asarray(np.mean(tf_isf, axis=1)))
-        title_vector = tf_isf[len(thread) - 1]
+        title_vector = tf_isf[len(thread_with_name) - 1]
 
-        for sentence_index, sentence in enumerate(thread[:len(thread)-1]):
+        for sentence_index, sentence in enumerate(thread):
 
             # TF-IDF
             sentence_features[global_sentence_index, 0] = tf_idf_features[thread_index]
@@ -122,6 +123,11 @@ def calculate_features(threads, thread_names):
             # Similarity to Title
             sentence_vector = tf_isf[sentence_index]
             sentence_features[global_sentence_index, 4] = linear_kernel(title_vector, sentence_vector).flatten()
+            # Centroid Coherence
+            tf_isf_mean = np.mean(tf_isf, axis=0)
+            sentence_features[global_sentence_index, 5] = linear_kernel(tf_isf_mean, sentence_vector).flatten()
+            # Special Character: Starts with '>'
+            sentence_features[global_sentence_index, 6] = 0 if sentence.startswith('>') else 1
 
             global_sentence_index += 1
 

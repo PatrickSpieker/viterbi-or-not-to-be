@@ -1,6 +1,7 @@
 
 import numpy as np
 import xml.etree.ElementTree as ET
+import os
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics.pairwise import linear_kernel
@@ -62,6 +63,7 @@ def output_summaries(corpus_file, annotations):
                         summary.append(sent.text)
 
             filename = OUTPUT + 'thread{}_reference{}.txt'.format(thread_index, annotation_index)
+            os.makedirs(os.path.dirname(OUTPUT), exist_ok=True)
             with open(filename, 'w+') as output_file:
                 output_file.write(' '.join(summary))
 

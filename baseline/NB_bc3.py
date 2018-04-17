@@ -3,6 +3,7 @@
 import numpy as np
 import xml.etree.ElementTree as ET
 import os
+import re
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics.pairwise import linear_kernel
@@ -102,7 +103,7 @@ def calculate_features(threads, thread_names):
     num_of_sentences = reduce(lambda s, thread: s + len(thread), threads, 0)
     global_sentence_index = 0
 
-    sentence_features = np.ndarray(shape=(num_of_sentences, 7))
+    sentence_features = np.ndarray(shape=(num_of_sentences, 8))
 
     for thread_index, thread in enumerate(threads):
 
@@ -129,8 +130,10 @@ def calculate_features(threads, thread_names):
             # Centroid Coherence
             tf_isf_mean = np.mean(tf_isf, axis=0)
             sentence_features[global_sentence_index, 5] = linear_kernel(tf_isf_mean, sentence_vector).flatten()
-            # Special Character: Starts with '>'
+            # Special Case: Starts with '>'
             sentence_features[global_sentence_index, 6] = 0 if sentence.startswith('>') else 1
+            # Position from the end of the email
+            sentence_features[global_sentence_index, 7] = len(thread) - sentence_index
 
             global_sentence_index += 1
 

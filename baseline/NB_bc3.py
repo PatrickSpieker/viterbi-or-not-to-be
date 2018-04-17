@@ -1,5 +1,6 @@
 # Baseline Naive Bayes model using the BC3 corpus
 
+import configuration as config
 import numpy as np
 import xml.etree.ElementTree as ET
 import os
@@ -11,20 +12,8 @@ from sklearn.metrics.pairwise import linear_kernel
 from functools import reduce
 from scipy import spatial
 
-DEBUG = False
-DATA_DIR = 'data/'
-
-CORPUS = 'corpus'
-ANNOTATIONS = 'annotation'
-
-TRAIN = '.train.xml'
-VALIDATION = '.val.xml'
-TEST = '.test.xml'
-
-OUTPUT = 'output/system/'
-
 def main():
-    with open(DATA_DIR + CORPUS + TRAIN, 'r') as corpus_file, open(DATA_DIR + ANNOTATIONS + TRAIN, 'r') as annotations_file:
+    with open(config.DATA_DIR + config.CORPUS + config.TRAIN, 'r') as corpus_file, open(config.DATA_DIR + config.ANNOTATIONS + config.TRAIN, 'r') as annotations_file:
         annotations = parse_annotations(annotations_file)
         threads, thread_labels, thread_names = parse_corpus(corpus_file, annotations)
         sentence_features = calculate_features(threads, thread_names)
@@ -32,7 +21,7 @@ def main():
         evaluate_model(model)
 
 def debug(output):
-    if DEBUG:
+    if config.DEBUG:
         print(output)
 
 def parse_annotations(xml_file):
@@ -161,7 +150,7 @@ def evaluate_model(model):
     else:
         os.makedirs('output/system')
 
-    with open(DATA_DIR + CORPUS + VALIDATION, 'r') as corpus_file, open(DATA_DIR + ANNOTATIONS + VALIDATION, 'r') as annotations_file:
+    with open(config.DATA_DIR + config.CORPUS + config.VALIDATION, 'r') as corpus_file, open(config.DATA_DIR + config.ANNOTATIONS + config.VALIDATION, 'r') as annotations_file:
         annotations = parse_annotations(annotations_file)
         threads, thread_labels, thread_names = parse_corpus(corpus_file, annotations)
         sentence_features = calculate_features(threads, thread_names)
@@ -177,8 +166,7 @@ def evaluate_model(model):
                     thread_summary.append(sentences[sentence])
                 sentence += 1
             
-            filename = OUTPUT + 'thread{}_system1.txt'.format(thread_index)
-            os.makedirs(os.path.dirname(OUTPUT), exist_ok=True)
+            filename = config.OUTPUT + 'thread{}_system1.txt'.format(thread_index)
             with open(filename, 'w+') as output_file:
                 output_file.write(''.join(thread_summary))
 

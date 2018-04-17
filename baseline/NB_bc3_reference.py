@@ -1,5 +1,6 @@
+# Generate reference summaries from annotated data for evaluation
 
-import os
+import configuration as config
 import glob
 import numpy as np
 import xml.etree.ElementTree as ET
@@ -10,18 +11,8 @@ from sklearn.metrics.pairwise import linear_kernel
 from functools import reduce
 from scipy import spatial
 
-DATA_DIR = 'data/'
-
-CORPUS = 'corpus'
-ANNOTATIONS = 'annotation'
-TRAIN = '.train.xml'
-VALIDATION = '.val.xml'
-TEST = '.test.xml'
-
-OUTPUT = 'output/reference/'
-
 def main():
-    with open(DATA_DIR + CORPUS + VALIDATION, 'r') as corpus_file, open(DATA_DIR + ANNOTATIONS + VALIDATION, 'r') as annotations_file: 
+    with open(config.DATA_DIR + config.CORPUS + config.VALIDATION, 'r') as corpus_file, open(config.DATA_DIR + config.ANNOTATIONS + config.VALIDATION, 'r') as annotations_file: 
         annotations = parse_annotations(annotations_file)
         output_summaries(corpus_file, annotations)
                 
@@ -70,7 +61,7 @@ def output_summaries(corpus_file, annotations):
                     if sentence_id in annotation:
                         summary.append(sent.text)
 
-            filename = OUTPUT + 'thread{}_reference{}.txt'.format(thread_index, annotation_index)
+            filename = config.OUTPUT + 'thread{}_reference{}.txt'.format(thread_index, annotation_index)
             with open(filename, 'w') as output_file:
                 output_file.write(''.join(summary))
 

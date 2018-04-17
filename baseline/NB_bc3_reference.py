@@ -37,12 +37,13 @@ def parse_annotations(xml_file):
     return annotation_map
 
 def output_summaries(corpus_file, annotations):
+    output_dir = config.OUTPUT + config.REFERENCE
 
-    if os.path.exists('output/reference'):
-        for f in glob.glob('output/reference/*.txt'):
+    if os.path.exists(output_dir):
+        for f in glob.glob(output_dir + '*.txt'):
             os.remove(f)
     else:
-        os.makedirs('output/reference')
+        os.makedirs(output_dir)
 
     tree = ET.parse(corpus_file)
     root = tree.getroot()
@@ -61,7 +62,7 @@ def output_summaries(corpus_file, annotations):
                     if sentence_id in annotation:
                         summary.append(sent.text)
 
-            filename = config.OUTPUT + 'thread{}_reference{}.txt'.format(thread_index, annotation_index)
+            filename = output_dir + 'thread{}_reference{}.txt'.format(thread_index, annotation_index)
             with open(filename, 'w') as output_file:
                 output_file.write(''.join(summary))
 

@@ -2,7 +2,7 @@
 DATA_DIR = 'data/full/'
 
 # The directory where results should be output
-OUTPUT = 'output/reference/'
+OUTPUT = 'output/'
 
 # Whether the scripts should produce debug output while running
 DEBUG = False
@@ -13,3 +13,5 @@ ANNOTATIONS = 'annotation'
 TRAIN = '.train.xml'
 VALIDATION = '.val.xml'
 TEST = '.test.xml'
+REFERENCE = 'reference/'
+SYSTEM = 'system/'

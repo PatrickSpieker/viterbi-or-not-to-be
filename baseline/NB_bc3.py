@@ -144,11 +144,12 @@ def train_model(sentence_features, thread_labels):
 
 def evaluate_model(model):
 
-    if os.path.exists('output/system'):
-        for f in glob.glob('output/system/*.txt'):
+    output_dir = config.OUTPUT + config.SYSTEM
+    if os.path.exists(output_dir):
+        for f in glob.glob(output_dir + '*.txt'):
             os.remove(f)
     else:
-        os.makedirs('output/system')
+        os.makedirs(output_dir)
 
     with open(config.DATA_DIR + config.CORPUS + config.VALIDATION, 'r') as corpus_file, open(config.DATA_DIR + config.ANNOTATIONS + config.VALIDATION, 'r') as annotations_file:
         annotations = parse_annotations(annotations_file)
@@ -166,7 +167,7 @@ def evaluate_model(model):
                     thread_summary.append(sentences[sentence])
                 sentence += 1
             
-            filename = config.OUTPUT + 'thread{}_system1.txt'.format(thread_index)
+            filename = output_dir + 'thread{}_system1.txt'.format(thread_index)
             with open(filename, 'w+') as output_file:
                 output_file.write(''.join(thread_summary))
 

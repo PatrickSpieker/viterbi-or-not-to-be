@@ -74,17 +74,12 @@ def output_summaries(corpus_file, annotations):
                 text = doc.find('Text')
                 for sent in text:
                     sentence_id = sent.attrib['id']
-                    if sentence_id in annotations[listno]:
+                    if sentence_id in annotation:
                         summary.append(sent.text)
 
             filename = OUTPUT + 'thread{}_reference{}.txt'.format(thread_index, annotation_index)
-<<<<<<< HEAD
             with open(filename, 'w') as output_file:
-=======
-            os.makedirs(os.path.dirname(OUTPUT), exist_ok=True)
-            with open(filename, 'w+') as output_file:
->>>>>>> 6a93f450e29b7402770b19364bddda4edc720eca
-                output_file.write(' '.join(summary))
+                output_file.write(''.join(summary))
 
 if __name__ == '__main__':
     main()

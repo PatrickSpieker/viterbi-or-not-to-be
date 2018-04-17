@@ -3,6 +3,7 @@
 import numpy as np
 import xml.etree.ElementTree as ET
 import os
+import glob
 import re
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import GaussianNB
@@ -153,6 +154,19 @@ def train_model(sentence_features, thread_labels):
     return model
 
 def evaluate_model(model):
+
+    if os.path.exists('output/reference'):
+        for f in glob.glob('output/reference/*.txt'):
+            os.remove(f)
+    else:
+        os.makedirs('output/reference')
+
+    if os.path.exists('output/system'):
+        for f in glob.glob('output/system/*.txt'):
+            os.remove(f)
+    else:
+        os.makedirs('output/system')
+
     with open(DATA_DIR + CORPUS + VALIDATION, 'r') as corpus_file, open(DATA_DIR + ANNOTATIONS + VALIDATION, 'r') as annotations_file:
         annotations = parse_annotations(annotations_file)
         threads, thread_labels, thread_names = parse_corpus(corpus_file, annotations)
@@ -172,7 +186,7 @@ def evaluate_model(model):
             filename = OUTPUT + 'thread{}_system1.txt'.format(thread_index)
             os.makedirs(os.path.dirname(OUTPUT), exist_ok=True)
             with open(filename, 'w+') as output_file:
-                output_file.write(' '.join(thread_summary))
+                output_file.write(''.join(thread_summary))
 
 def flatten(nested_list):
     return [label for thread in nested_list for label in thread]

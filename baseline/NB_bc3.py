@@ -18,13 +18,15 @@ TRAIN = '.train.xml'
 VALIDATION = '.val.xml'
 TEST = '.test.xml'
 
+OUTPUT = 'output/system/'
+
 def main():
     with open(DATA_DIR + CORPUS + TRAIN, 'r') as corpus_file, open(DATA_DIR + ANNOTATIONS + TRAIN, 'r') as annotations_file:
         annotations = parse_annotations(annotations_file)
         threads, thread_labels, thread_names = parse_corpus(corpus_file, annotations)
         sentence_features = calculate_features(threads, thread_names)
         model = train_model(sentence_features, thread_labels)
-        model_score = evaluate_model(model)
+        evaluate_model(model)
 
 def debug(output):
     if DEBUG:
@@ -39,8 +41,9 @@ def parse_annotations(xml_file):
     for thread in root:
         listno = thread.find('listno').text
 
-        # Note: only using the first annotation for now. There are multiple
-        # annotations available for each email thread.
+        # Note: only using the first annotation for TRAINING now. There are multiple
+        # annotations available for each email thread. We are using all available
+        # annotations for evaluation.
         annotation = thread.find('annotation')
         sentence_ids = []
         for item in annotation.find('sentences'):
@@ -111,7 +114,6 @@ def calculate_features(threads, thread_names):
         title_vector = tf_isf[len(thread_with_name) - 1]
 
         for sentence_index, sentence in enumerate(thread):
-
             # TF-IDF
             sentence_features[global_sentence_index, 0] = tf_idf_features[thread_index]
             # TF-ISF
@@ -153,24 +155,19 @@ def evaluate_model(model):
         sentence_features = calculate_features(threads, thread_names)
 
         predicted_annotations = model.predict(sentence_features)
-        # Flatten the thread_labels to produce sentence labels
-        actual_annotations = flatten(thread_labels)
-
         sentences = flatten(threads)
 
-        print('Sentences: ')
-        for sentence in sentences:
-            print(sentence)
-        print('Predicted summary: ')
-        for index, sentence in enumerate(sentences):
-            if (predicted_annotations[index] == 1):
-                print(sentence)
-        print('Actual summary: ')
-        for index, sentence in enumerate(sentences):
-            if (actual_annotations[index] == 1):
-                print(sentence)
-
-    return 0 # TODO: use proper accuracy metric
+        sentence = 0
+        for thread_index, thread in enumerate(threads):
+            thread_summary = []
+            for _ in range(len(thread)):
+                if predicted_annotations[sentence] == 1:
+                    thread_summary.append(sentences[sentence])
+                sentence += 1
+            
+            filename = OUTPUT + 'thread{}_system1.txt'.format(thread_index)
+            with open(filename, 'w+') as output_file:
+                output_file.write(' '.join(thread_summary))
 
 def flatten(nested_list):
     return [label for thread in nested_list for label in thread]

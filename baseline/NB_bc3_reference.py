@@ -12,9 +12,8 @@ from scipy import spatial
 
 DATA_DIR = 'data/'
 
-CORPUS = 'corpus-tiny'
-ANNOTATIONS = 'annotations-tiny'
-
+CORPUS = 'corpus'
+ANNOTATIONS = 'annotation'
 TRAIN = '.train.xml'
 VALIDATION = '.val.xml'
 TEST = '.test.xml'
@@ -53,12 +52,6 @@ def output_summaries(corpus_file, annotations):
             os.remove(f)
     else:
         os.makedirs('output/reference')
-
-    if os.path.exists('output/system'):
-        for f in glob.glob('output/system/*.txt'):
-            os.remove(f)
-    else:
-        os.makedirs('output/system')
 
     tree = ET.parse(corpus_file)
     root = tree.getroot()

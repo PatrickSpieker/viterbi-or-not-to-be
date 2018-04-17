@@ -11,11 +11,11 @@ from sklearn.metrics.pairwise import linear_kernel
 from functools import reduce
 from scipy import spatial
 
-DEBUG = True
+DEBUG = False
 DATA_DIR = 'data/'
 
-CORPUS = 'corpus-tiny'
-ANNOTATIONS = 'annotations-tiny'
+CORPUS = 'corpus'
+ANNOTATIONS = 'annotation'
 
 TRAIN = '.train.xml'
 VALIDATION = '.val.xml'
@@ -154,12 +154,6 @@ def train_model(sentence_features, thread_labels):
     return model
 
 def evaluate_model(model):
-
-    if os.path.exists('output/reference'):
-        for f in glob.glob('output/reference/*.txt'):
-            os.remove(f)
-    else:
-        os.makedirs('output/reference')
 
     if os.path.exists('output/system'):
         for f in glob.glob('output/system/*.txt'):

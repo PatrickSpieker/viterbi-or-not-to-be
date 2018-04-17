@@ -9,15 +9,22 @@ from functools import reduce
 from scipy import spatial
 
 DEBUG = True
-CORPUS = 'data/corpus-tiny.xml'
-ANNOTATIONS = 'data/annotations-tiny.xml'
+DATA_DIR = 'data/'
+
+CORPUS = 'corpus-tiny'
+ANNOTATIONS = 'annotations-tiny'
+
+TRAIN = '.train'
+VALIDATION = '.val'
+TEST = '.test'
 
 def main():
-    with open(CORPUS, 'r') as corpus_file, open(ANNOTATIONS, 'r') as annotations_file:
+    with open(DATA_DIR + CORPUS + TRAIN, 'r') as corpus_file, open(DATA_DIR + ANNOTATIONS + TRAIN, 'r') as annotations_file:
         annotations = parse_annotations(annotations_file)
         threads, thread_labels, thread_names = parse_corpus(corpus_file, annotations)
         sentence_features = calculate_features(threads, thread_names)
         model = train_model(sentence_features, thread_labels)
+        model_score = evaluate_model(model)
 
 def debug(output):
     if DEBUG:
@@ -123,7 +130,7 @@ def calculate_features(threads, thread_names):
 
 def train_model(sentence_features, thread_labels):
     # Flatten the thread_labels to produce sentence labels
-    sentence_labels = [label for thread in thread_labels for label in thread]
+    sentence_labels = flatten(thread_labels)
 
     debug(sentence_labels)
 
@@ -132,6 +139,35 @@ def train_model(sentence_features, thread_labels):
     model.fit(sentence_features, sentence_labels)
 
     return model
+
+def evaluate_model(model):
+    with open(DATA_DIR + CORPUS + VALIDATION, 'r') as corpus_file, open(DATA_DIR + ANNOTATIONS + VALIDATION, 'r') as annotations_file:
+        annotations = parse_annotations(annotations_file)
+        threads, thread_labels, thread_names = parse_corpus(corpus_file, annotations)
+        sentence_features = calculate_features(threads, thread_names)
+
+        predicted_annotations = model.predict(sentence_features)
+        # Flatten the thread_labels to produce sentence labels
+        actual_annotations = flatten(thread_labels)
+
+        sentences = flatten(threads)
+
+        print('Sentences: ')
+        for sentence in sentences:
+            print(sentence)
+        print('Predicted summary: ')
+        for index, sentence in enumerate(sentences):
+            if (predicted_annotations[index] == 1):
+                print(sentence)
+        print('Actual summary: ')
+        for index, sentence in enumerate(sentences):
+            if (actual_annotations[index] == 1):
+                print(sentence)
+
+    return 0 # TODO: use proper accuracy metric
+
+def flatten(nested_list):
+    return [label for thread in nested_list for label in thread]
 
 if __name__ == '__main__':
     main()

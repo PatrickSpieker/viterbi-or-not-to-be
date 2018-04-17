@@ -14,9 +14,9 @@ DATA_DIR = 'data/'
 CORPUS = 'corpus-tiny'
 ANNOTATIONS = 'annotations-tiny'
 
-TRAIN = '.train'
-VALIDATION = '.val'
-TEST = '.test'
+TRAIN = '.train.xml'
+VALIDATION = '.val.xml'
+TEST = '.test.xml'
 
 def main():
     with open(DATA_DIR + CORPUS + TRAIN, 'r') as corpus_file, open(DATA_DIR + ANNOTATIONS + TRAIN, 'r') as annotations_file:

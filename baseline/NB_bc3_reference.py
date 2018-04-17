@@ -1,4 +1,6 @@
 
+import os
+import glob
 import numpy as np
 import xml.etree.ElementTree as ET
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -44,6 +46,19 @@ def parse_annotations(xml_file):
     return annotation_map
 
 def output_summaries(corpus_file, annotations):
+
+    if os.path.exists('output/reference'):
+        for f in glob.glob('output/reference/*.txt'):
+            os.remove(f)
+    else:
+        os.makedirs('output/reference')
+
+    if os.path.exists('output/system'):
+        for f in glob.glob('output/system/*.txt'):
+            os.remove(f)
+    else:
+        os.makedirs('output/system')
+
     tree = ET.parse(corpus_file)
     root = tree.getroot()
 
@@ -62,7 +77,7 @@ def output_summaries(corpus_file, annotations):
                         summary.append(sent.text)
 
             filename = OUTPUT + 'thread{}_reference{}.txt'.format(thread_index, annotation_index)
-            with open(filename, 'w+') as output_file:
+            with open(filename, 'w') as output_file:
                 output_file.write(' '.join(summary))
 
 if __name__ == '__main__':

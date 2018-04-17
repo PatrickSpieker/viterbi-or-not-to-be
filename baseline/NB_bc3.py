@@ -92,7 +92,7 @@ def calculate_features(threads, thread_names):
     # Compute TF-IDF
     tf_idf_vectorizer = TfidfVectorizer()
     tf_idf = tf_idf_vectorizer.fit_transform(documents)
-    tf_idf_features = np.squeeze(np.asarray(np.mean(tf_idf, axis=1)))
+    tf_idf_features = np.squeeze(np.asarray(np.mean(tf_idf, axis=1)), axis=1)
 
     # Generate sentence features
     num_of_sentences = reduce(lambda s, thread: s + len(thread), threads, 0)
@@ -114,14 +114,14 @@ def calculate_features(threads, thread_names):
             # TF-IDF
             sentence_features[global_sentence_index, 0] = tf_idf_features[thread_index]
             # TF-ISF
-            sentence_features[global_sentence_index][1] = tf_isf_features[sentence_index]
+            sentence_features[global_sentence_index, 1] = tf_isf_features[sentence_index]
             # Sentence Length
-            sentence_features[global_sentence_index][2] = len(sentence)
+            sentence_features[global_sentence_index, 2] = len(sentence)
             # Sentence Position
-            sentence_features[global_sentence_index][3] = sentence_index
+            sentence_features[global_sentence_index, 3] = sentence_index
             # Similarity to Title
             sentence_vector = tf_isf[sentence_index]
-            sentence_features[global_sentence_index][4] = linear_kernel(title_vector, sentence_vector).flatten()
+            sentence_features[global_sentence_index, 4] = linear_kernel(title_vector, sentence_vector).flatten()
 
             global_sentence_index += 1
 

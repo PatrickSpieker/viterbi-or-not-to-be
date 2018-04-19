@@ -7,7 +7,7 @@ Our implementation of a baseline model against which to compare our results.
 
    Then, download the necessary NLTK libraries by running our provided script:
 
-   `python nltk-setup.py`
+   `python nltk_setup.py`
 
 2. Providing Data: Add the dataset to train and evaluation the model on in the
    `/data` directory under a subfolder name of your choice. Within

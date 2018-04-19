@@ -30,23 +30,22 @@ def parse_annotations(xml_file):
     tree = ET.parse(xml_file)
     root = tree.getroot()
 
-    annotations = {}
+    annotation_map = {}
 
     for thread in root:
         listno = thread.find('listno').text
+        annotation_map[listno] = []
 
-        # Note: only using the first annotation for TRAINING now. There are multiple
-        # annotations available for each email thread. We are using all available
-        # annotations for evaluation.
-        annotation = thread.find('annotation')
-        sentence_ids = []
-        for item in annotation.find('sentences'):
-            sentence_ids.append(item.attrib['id'])
-        
-        # Associate the listno with the list of extractive summary sentences
-        annotations[listno] = sentence_ids
+        annotations = thread.findall('annotation')
 
-    return annotations
+        for annotation in annotations:
+            sentence_ids = []
+            for item in annotation.find('sentences'):
+                sentence_ids.append(item.attrib['id'])
+            # Associate the listno with the list of extractive summary sentences
+            annotation_map[listno].append(sentence_ids)
+
+    return annotation_map
 
 def parse_corpus(xml_file, annotations):
     # Parse xml data into tree
@@ -59,7 +58,7 @@ def parse_corpus(xml_file, annotations):
 
     for thread in root:
         thread_text = []
-        sentence_labels = []
+        doc_labels = []
         name = thread.find('name').text
         listno = thread.find('listno').text
         debug('---------- Thread with name "' + name + '" and listno ' + listno + ' ----------')
@@ -69,16 +68,20 @@ def parse_corpus(xml_file, annotations):
             subject = doc.find('Subject').text
             text = doc.find('Text')
             debug('\n    Email subject: "' + subject + '"')
+            sentence_labels = []
+
             for sent in text:
-                debug('        Sentence id: ' + sent.attrib['id'])
-                sentence_id = sent.attrib['id']
-                sentence_labels.append(1 if sentence_id in annotations[listno] else 0)
-                debug('        Sentence: "' + sent.text + '"')
-                thread_text.append(sent.text)
+                for annotation in annotations[listno]:
+                    debug('        Sentence id: ' + sent.attrib['id'])
+                    sentence_id = sent.attrib['id']
+                    sentence_labels.append(1 if sentence_id in annotation else 0)
+                    debug('        Sentence: "' + sent.text + '"')
+                    thread_text.append(sent.text)
+            doc_labels.append(sentence_labels)
 
         debug('\n')
         threads.append(thread_text)
-        thread_labels.append(sentence_labels)
+        thread_labels.append(doc_labels)
         thread_names.append(name)
 
     return threads, thread_labels, thread_names
@@ -147,9 +150,9 @@ def calculate_features(threads, thread_names):
             # Special Terms
             sentence_features[global_sentence_index, 6] = special_counts[sentence_index] / total_special_count
             # Special Case: Starts with '>'
-            sentence_features[global_sentence_index, 7] = 0 if sentence.startswith('>') else 1
+            sentence_features[global_sentence_index, 7] = 1 #0 if sentence.startswith('>') else 1
             # Position from the end of the email
-            sentence_features[global_sentence_index, 8] = len(thread) - sentence_index
+            sentence_features[global_sentence_index, 8] = 1 #len(thread) - sentence_index
 
             global_sentence_index += 1
 
@@ -158,9 +161,11 @@ def calculate_features(threads, thread_names):
 
 def train_model(sentence_features, thread_labels):
     # Flatten the thread_labels to produce sentence labels
-    sentence_labels = flatten(thread_labels)
+    doc_labels = flatten(thread_labels)
+    sentence_labels = flatten(doc_labels)
 
-    debug(sentence_labels)
+    debug(sentence_features.shape)
+    debug(len(sentence_labels))
 
     # Train the Naive Bayes model
     model = GaussianNB()

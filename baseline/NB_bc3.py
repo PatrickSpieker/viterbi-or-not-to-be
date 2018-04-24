@@ -10,6 +10,8 @@ import re
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics.pairwise import linear_kernel
+from sklearn import tree
+from sklearn.neural_network import MLPClassifier
 from functools import reduce
 from scipy import spatial
 from nltk import tokenize
@@ -161,7 +163,7 @@ def calculate_features(threads, thread_names):
             special_terms = special_counts[sentence_index] / total_special_count if total_special_count != 0 else 0
             sentence_features[global_sentence_index, 6] = special_terms
             # Special Case: Starts with '>'
-            sentence_features[global_sentence_index, 7] = 1 #0 if sentence.startswith('>') else 1
+            sentence_features[global_sentence_index, 7] = 0 if sentence.startswith('>') else 1
             # Position from the end of the email
             sentence_features[global_sentence_index, 8] = 1 #len(thread) - sentence_index
 
@@ -179,7 +181,9 @@ def train_model(sentence_features, thread_labels):
     debug(len(sentence_labels))
 
     # Train the Naive Bayes model
-    model = GaussianNB()
+    #model = GaussianNB()
+    #model = tree.DecisionTreeClassifier()
+    model = MLPClassifier()
     model.fit(sentence_features, sentence_labels)
 
     return model

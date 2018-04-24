@@ -5,6 +5,7 @@ import numpy as np
 import xml.etree.ElementTree as ET
 import os
 import glob
+import pdb
 import re
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import GaussianNB
@@ -102,10 +103,14 @@ def calculate_features(threads, thread_names):
     sentence_features = np.ndarray(shape=(num_of_sentences, 9))
 
     threads_no_stop = threads.copy()
+    stopwords_set = set(stopwords.words('english'))
     for thread_index, thread in enumerate(threads_no_stop):
-        stopwords_set = set(stopwords.words('english'))
+
+        thread_copy = []
         for sentence in thread:
-            sentence = ' '.join([word for word in sentence.split() if word not in stopwords_set])
+            new_sentence = ' '.join([word for word in sentence.split() if word not in stopwords_set])
+            thread_copy.append(new_sentence)
+        thread = thread_copy
 
         # Compute TF-ISF for thread name and thread content
         thread_with_name = thread.copy()
@@ -153,7 +158,8 @@ def calculate_features(threads, thread_names):
             tf_isf_mean = np.mean(tf_isf, axis=0)
             sentence_features[global_sentence_index, 5] = linear_kernel(tf_isf_mean, sentence_vector).flatten()
             # Special Terms
-            sentence_features[global_sentence_index, 6] = special_counts[sentence_index] / total_special_count
+            special_terms = special_counts[sentence_index] / total_special_count if total_special_count != 0 else 0
+            sentence_features[global_sentence_index, 6] = special_terms
             # Special Case: Starts with '>'
             sentence_features[global_sentence_index, 7] = 1 #0 if sentence.startswith('>') else 1
             # Position from the end of the email
@@ -198,10 +204,10 @@ def evaluate_model(model):
         sentence = 0
         for thread_index, thread in enumerate(threads):
             thread_summary = []
-            for _ in range(len(thread)):
+            for _ in range(0, len(thread), 3):
                 if predicted_annotations[sentence] == 1:
-                    thread_summary.append(sentences[sentence])
-                sentence += 1
+                    thread_summary.append(sentences[sentence] + ' ')
+                sentence += 3
             
             filename = output_dir + 'thread{}_system1.txt'.format(thread_index)
             with open(filename, 'w+') as output_file:

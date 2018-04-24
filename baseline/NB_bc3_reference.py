@@ -60,7 +60,7 @@ def output_summaries(corpus_file, annotations):
                 for sent in text:
                     sentence_id = sent.attrib['id']
                     if sentence_id in annotation:
-                        summary.append(sent.text)
+                        summary.append(sent.text + ' ')
 
             filename = output_dir + 'thread{}_reference{}.txt'.format(thread_index, annotation_index)
             with open(filename, 'w') as output_file:

@@ -13,6 +13,7 @@ from functools import reduce
 from scipy import spatial
 from nltk import tokenize
 from nltk import tag
+from nltk.corpus import stopwords
 
 def main():
     with open(config.DATA_DIR + config.CORPUS + config.TRAIN, 'r') as corpus_file, open(config.DATA_DIR + config.ANNOTATIONS + config.TRAIN, 'r') as annotations_file:
@@ -100,9 +101,13 @@ def calculate_features(threads, thread_names):
 
     sentence_features = np.ndarray(shape=(num_of_sentences, 9))
 
-    for thread_index, thread in enumerate(threads):
+    threads_no_stop = threads.copy()
+    for thread_index, thread in enumerate(threads_no_stop):
+        stopwords_set = set(stopwords.words('english'))
+        for sentence in thread:
+            sentence = ' '.join([word for word in sentence.split() if word not in stopwords_set])
 
-        # Compute TF-ISF for thread name (index 0) and thread content
+        # Compute TF-ISF for thread name and thread content
         thread_with_name = thread.copy()
         thread_with_name.append(thread_names[thread_index])
         tf_isf_vectorizer = TfidfVectorizer()

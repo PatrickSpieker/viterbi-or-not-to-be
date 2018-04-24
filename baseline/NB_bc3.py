@@ -108,11 +108,11 @@ def calculate_features(threads, thread_names):
     stopwords_set = set(stopwords.words('english'))
     for thread_index, thread in enumerate(threads_no_stop):
 
-        thread_copy = []
+        """thread_copy = []
         for sentence in thread:
             new_sentence = ' '.join([word for word in sentence.split() if word not in stopwords_set])
             thread_copy.append(new_sentence)
-        thread = thread_copy
+        thread = thread_copy"""
 
         # Compute TF-ISF for thread name and thread content
         thread_with_name = thread.copy()
@@ -182,8 +182,8 @@ def train_model(sentence_features, thread_labels):
 
     # Train the Naive Bayes model
     #model = GaussianNB()
-    #model = tree.DecisionTreeClassifier()
-    model = MLPClassifier()
+    model = tree.DecisionTreeClassifier()
+    #model = MLPClassifier()
     model.fit(sentence_features, sentence_labels)
 
     return model

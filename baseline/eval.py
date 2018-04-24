@@ -1,19 +1,19 @@
-# import NB_bc3
+import NB_bc3
 import NB_bc3_reference
 import subprocess
 import re
 
 # Generate reference summaries
-# NB_bc3_reference.main()
+NB_bc3_reference.main()
 
 # Generate model summaries
-# NB_bc3.main()
+NB_bc3.main()
 
 # Run ROUGE evaluation
 rouge_result = subprocess.run(['java', '-jar', 'rouge2-1.2.1.jar'], stdout=subprocess.PIPE)
 rouge = rouge_result.stdout.decode('utf-8')
 
-# Decode ROUGE to produce averages
+# Decode ROUGE output to produce averages
 results = {
     'L': [],
     '1': [],
@@ -26,6 +26,7 @@ for line in rouge.splitlines():
     if metric_match:
         results[metric_match.group(1)].append(average_match.group(1))
 
+# Print averages
 for metric, data in results.items():
     total = 0
     for point in data:

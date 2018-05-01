@@ -22,9 +22,9 @@ Our implementation of a baseline model against which to compare our results.
 3. Producing Summaries: Run the following commands to generate the
    reference and system summaries (respectively) from the provided dataset:
 
-   `python NB_bc3_reference.py`
+   `python baseline_bc3_reference.py`
 
-   `python NB_bc3.py`
+   `python baseline_bc3.py`
 
 4. Evaluation: Run the following command to use the ROUGE system for evaluation:
 

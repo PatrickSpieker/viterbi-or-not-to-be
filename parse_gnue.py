@@ -43,8 +43,25 @@ def parse_gnue(corpus_dir, annotations_dir):
                             if date_str not in date_to_quotes:
                                 date_to_quotes[date_str] = set()
                             for quote in summ.findall('quote'):
-                                date_to_quotes[date_str].add(quote.text.replace('\n',''))
-    print(date_to_quotes)
+                                date_to_quotes[date_str].add(quote.text.replace('\n', ''))
+    
+    for filename in os.listdir(corpus_dir):
+        date_convo = []
+        date_convo_labels = []
+        corpus_file = open(os.path.join(corpus_dir, filename), 'r')
+        quotes = date_to_quotes[filename]
+        for line in corpus_file.readlines():
+            line = line.replace('\n', '')
+            date_convo.append(line)
+            for q in quotes:
+                if q.replace(',', '') in line.replace(',', ''):
+                    date_convo_labels.append(1)
+                else:
+                    date_convo_labels.append(0)
+        convos.append(date_convo)
+        convo_labels.append(date_convo_labels)
+    
+    return convos, convo_labels
 
 def monthToNum(month):
     return {

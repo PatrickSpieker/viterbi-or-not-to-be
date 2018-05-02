@@ -19,8 +19,8 @@ def parse_gnue(corpus_dir, annotations_dir):
             
             start_day = int(startdate[0])
             end_day = int(enddate[0])
-            start_mo = monthToNum(startdate[1])
-            end_mo = monthToNum(enddate[1])
+            start_mo = month_to_num(startdate[1])
+            end_mo = month_to_num(enddate[1])
             start_year = int(startdate[2])
             end_year = int(enddate[2])
             
@@ -63,7 +63,7 @@ def parse_gnue(corpus_dir, annotations_dir):
     
     return convos, convo_labels
 
-def monthToNum(month):
+def month_to_num(month):
     return {
         'Jan' : 1,
         'Feb' : 2,

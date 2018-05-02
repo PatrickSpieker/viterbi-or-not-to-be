@@ -1,13 +1,13 @@
-import NB_bc3
-import NB_bc3_reference
+import baseline_bc3
+import baseline_bc3_reference
 import subprocess
 import re
 
 # Generate reference summaries
-NB_bc3_reference.main()
+baseline_bc3_reference.main()
 
 # Generate model summaries
-NB_bc3.main()
+baseline_bc3.main()
 
 # Run ROUGE evaluation
 rouge_result = subprocess.run(['java', '-jar', 'rouge2-1.2.1.jar'], stdout=subprocess.PIPE)

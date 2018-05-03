@@ -125,6 +125,8 @@ def calculate_features(threads, thread_names):
 
         # Count number of special terms in thread
         special_counts = []
+        number_counts = []
+        url_counts = []
         total_special_count = 0.0
         for sentence in thread:
             sent_tokens = tokenize.word_tokenize(sentence)
@@ -132,6 +134,8 @@ def calculate_features(threads, thread_names):
 
             prev_proper_index = 1
             sent_special_count = 0.0
+            sent_number_count = 0.0
+            sent_url_count = len(re.findall('https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+', url))
 
             for word_index, tagged_word in enumerate(tagged_sent):
                 pos = tagged_word[1]
@@ -141,8 +145,11 @@ def calculate_features(threads, thread_names):
                     prev_proper_index = word_index
                 elif pos == 'CD':
                     sent_special_count = sent_special_count + 1.0
+                    sent_number_count += 1.0
             
             special_counts.append(sent_special_count)
+            number_counts.append(sent_number_count)
+            url_counts.append(sent_url_count)
             total_special_count = total_special_count + sent_special_count
 
         for sentence_index, sentence in enumerate(thread):
@@ -186,6 +193,12 @@ def calculate_features(threads, thread_names):
                     except:
                         pass
             sentence_features[global_sentence_index, 10] = 1 #total_score / len(tagged_sent)
+
+            # Number of number tokens
+            sentence_features[global_sentence_index, 11] = number_counts[sentence_index]
+
+            # Number of URLs
+            sentence_features[global_sentence_index, 12] = url_counts[sentence_index]
 
             global_sentence_index += 1
 

@@ -15,8 +15,9 @@ from sklearn.neural_network import MLPClassifier
 from functools import reduce
 from scipy import spatial
 from nltk import tokenize
-from nltk import tag
+from nltk import tag as tagger
 from nltk.corpus import stopwords
+from nltk.corpus import sentiwordnet as swn
 
 def main():
     with open(config.DATA_DIR + config.CORPUS + config.TRAIN, 'r') as corpus_file, open(config.DATA_DIR + config.ANNOTATIONS + config.TRAIN, 'r') as annotations_file:
@@ -102,7 +103,7 @@ def calculate_features(threads, thread_names):
     num_of_sentences = reduce(lambda s, thread: s + len(thread), threads, 0)
     global_sentence_index = 0
 
-    sentence_features = np.ndarray(shape=(num_of_sentences, 9))
+    sentence_features = np.ndarray(shape=(num_of_sentences, 11))
 
     threads_no_stop = threads.copy()
     stopwords_set = set(stopwords.words('english'))
@@ -127,7 +128,7 @@ def calculate_features(threads, thread_names):
         total_special_count = 0.0
         for sentence in thread:
             sent_tokens = tokenize.word_tokenize(sentence)
-            tagged_sent = tag.pos_tag(sent_tokens)
+            tagged_sent = tagger.pos_tag(sent_tokens)
 
             prev_proper_index = 1
             sent_special_count = 0.0
@@ -163,9 +164,28 @@ def calculate_features(threads, thread_names):
             special_terms = special_counts[sentence_index] / total_special_count if total_special_count != 0 else 0
             sentence_features[global_sentence_index, 6] = special_terms
             # Special Case: Starts with '>'
-            sentence_features[global_sentence_index, 7] = 1 #if sentence.startswith('>') else 1
+            sentence_features[global_sentence_index, 7] = 1 #if sentence.startswith('>') else 0
             # Position from the end of the email
             sentence_features[global_sentence_index, 8] = 1 #len(thread) - sentence_index
+
+            # Is Question
+            sentence_features[global_sentence_index, 9] = 1 #if sentence.endswith('?') else 0
+            # Sentiment Score
+            tag_set = {'NN', 'NNS', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ', 'JJ', 'JJR', 'JJS', 'RB', 'RBR', 'RBS'}
+            total_score = 0.0
+            tagged_sent = tagger.pos_tag(sent_tokens)
+            for word_index, tagged_word in enumerate(tagged_sent):
+                tag = tagged_word[1]
+                if tag in tag_set:
+                    pos = tag_to_senti_pos(tag)
+                    senti_str = tagged_word[0].lower() + '.' + pos + '.01'
+                    try:
+                        senti_set = swn.senti_synset(senti_str)
+                        senti_score = senti_set.pos_score() - senti_set.neg_score()
+                        total_score += senti_score
+                    except:
+                        pass
+            sentence_features[global_sentence_index, 10] = 1 #total_score / len(tagged_sent)
 
             global_sentence_index += 1
 
@@ -219,6 +239,24 @@ def evaluate_model(model):
 
 def flatten(nested_list):
     return [label for thread in nested_list for label in thread]
+
+def tag_to_senti_pos(tag):
+    return {
+        'NN' : 'n',
+        'NNS' : 'n',
+        'VB' : 'v',
+        'VBD' : 'v',
+        'VBG' : 'v',
+        'VBN' : 'v',
+        'VBP' : 'v',
+        'VBZ' : 'v',
+        'JJ' : 'a',
+        'JJR' : 'a',
+        'JJS' : 'a',
+        'RB' : 'r',
+        'RBR' : 'r',
+        'RBS' : 'r'
+    }[tag]
 
 if __name__ == '__main__':
     main()

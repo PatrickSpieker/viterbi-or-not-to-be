@@ -164,7 +164,7 @@ def calculate_features(threads, thread_names):
             special_terms = special_counts[sentence_index] / total_special_count if total_special_count != 0 else 0
             sentence_features[global_sentence_index, 6] = special_terms
             # Special Case: Starts with '>'
-            sentence_features[global_sentence_index, 7] = 1 #if sentence.startswith('>') else 0
+            sentence_features[global_sentence_index, 7] = 1 if sentence.startswith('>') else 0
             # Position from the end of the email
             sentence_features[global_sentence_index, 8] = 1 #len(thread) - sentence_index
 

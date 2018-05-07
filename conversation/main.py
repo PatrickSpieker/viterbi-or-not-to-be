@@ -50,13 +50,12 @@ def main():
 
     # Parse training data
     training_data = parser.parse('train')
-    pdb.set_trace()
 
     # Produce sentence features
     training_sentence_features = feature_vectorizer.vectorize(training_data)
 
     # Train model using training data
-    model = train_model(model_type, training_sentence_features)
+    model = train_model(model_type, training_data, training_sentence_features)
 
     # Parse val data
     val_data = parser.parse('val')
@@ -73,8 +72,8 @@ def main():
     # Evaluate the model's performance using the preferred metrics
     evaluation.rouge_evaluation()
 
-def train_model(model_type, sentence_features):
-    thread_labels = sentence_features['labels']
+def train_model(model_type, training_data, sentence_features):
+    thread_labels = training_data['labels']
 
     # Flatten the thread_labels to produce sentence labels
     doc_labels = flatten(thread_labels)

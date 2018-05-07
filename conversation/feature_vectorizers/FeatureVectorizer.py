@@ -23,14 +23,16 @@ class FeatureVectorizer:
         Returns an n-dimensional array of shape (NUM_SENTENCES, NUM_FEATURES).
         """
 
+        threads = input['data']
+
         # Determine the number of sentences using the specific input format
         # for this data type
-        num_sentences = self.count_sentences(input)
+        num_sentences = 0
+        for thread in threads:
+            num_sentences += len(thread)
 
         # Create an appropriately shaped array to hold the feature vectors
         sentence_features = np.ndarray(shape=(num_sentences, self.NUM_FEATURES))
-
-        threads = input['data']
 
         # Populate the feature vector
         global_sentence_index = 0
@@ -45,9 +47,6 @@ class FeatureVectorizer:
 
     # --- For subclasses, override these methods: ---
 
-    def count_sentences(self, input):
-        return 0
-        
     def tf_idf(self, input, thread_index, thread, sentence_index, sentence):
         return 0
 

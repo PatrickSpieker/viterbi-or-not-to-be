@@ -10,6 +10,8 @@ class Evaluation:
         rouge_result = subprocess.run(['java', '-jar', 'rouge2-1.2.1.jar'], stdout=subprocess.PIPE)
         rouge = rouge_result.stdout.decode('utf-8')
 
+        print(rouge)
+
         # Decode ROUGE output to produce averages
         # TODO: use metrics field as filter
         results = {

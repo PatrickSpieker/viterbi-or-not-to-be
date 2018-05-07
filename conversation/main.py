@@ -20,10 +20,10 @@ from evaluation.Evaluation import Evaluation
 from scipy import spatial
 
 def main():
-    parser = argparse.ArgumentParser(description='Run the conversation-specific summarization model.')
-    parser.add_argument('dataset', help='the path of the dataset to use, specified as a path relative to the data/ directory')
-    parser.add_argument('--type', choices=['email', 'chat'], default='email', help='the type of data to use')
-    parser.add_argument('--model', choices=['naivebayes', 'decisiontree', 'perceptron'], default='naivebayes', help='the type of model to use')
+    parser = argparse.ArgumentParser(description='Run the conversation-specific summarization model.', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser.add_argument('dataset', help='the path of the dataset to use, specified as a path relative to the data/ directory, i.e. to use the full bc3 dataset: \'bc3/full\'')
+    parser.add_argument('--type', choices=['email', 'chat'], default='email', help='the format of the dataset being used')
+    parser.add_argument('--model', choices=['naivebayes', 'decisiontree', 'perceptron'], default='naivebayes', help='the type of model to train and test')
     parser.add_argument('--metric', choices=['L', '1', '2', 'all'], default='all', help='which metric(s) to report when evaluating the model')
     parser.add_argument('--debug', action='store_true', help='if set, outputs various debugging information during execution')
     parser.add_argument('--examples', action='store_true', help='if set, displays the system-generated summaries during evaluation')

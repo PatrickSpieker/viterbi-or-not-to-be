@@ -132,7 +132,7 @@ def calculate_features(threads, thread_names):
             sent_tokens = tokenize.word_tokenize(sentence)
             tagged_sent = tagger.pos_tag(sent_tokens)
 
-            prev_proper_index = 1
+            prev_proper_index = -10
             sent_special_count = 0.0
             sent_number_count = 0.0
             sent_url_count = len(re.findall('https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+', url))
@@ -171,7 +171,7 @@ def calculate_features(threads, thread_names):
             special_terms = special_counts[sentence_index] / total_special_count if total_special_count != 0 else 0
             sentence_features[global_sentence_index, 6] = special_terms
             # Special Case: Starts with '>'
-            sentence_features[global_sentence_index, 7] = 1 if sentence.startswith('>') else 0
+            sentence_features[global_sentence_index, 7] = 1 #if sentence.startswith('>') else 0
             # Position from the end of the email
             sentence_features[global_sentence_index, 8] = 1 #len(thread) - sentence_index
 
@@ -193,10 +193,8 @@ def calculate_features(threads, thread_names):
                     except:
                         pass
             sentence_features[global_sentence_index, 10] = 1 #total_score / len(tagged_sent)
-
             # Number of number tokens
             sentence_features[global_sentence_index, 11] = number_counts[sentence_index]
-
             # Number of URLs
             sentence_features[global_sentence_index, 12] = url_counts[sentence_index]
 

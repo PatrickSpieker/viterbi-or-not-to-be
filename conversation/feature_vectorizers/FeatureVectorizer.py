@@ -1,8 +1,9 @@
 import numpy as np
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 class FeatureVectorizer:
 
-    NUM_FEATURES = 9
+    NUM_FEATURES = 7
     FEATURES = [
         'tf_idf',
         'tf_isf',
@@ -10,10 +11,9 @@ class FeatureVectorizer:
         'sentence_position',
         'title_similarity',
         'centroid_coherence',
-        'special_terms',
-        'quoted_text',
-        'position_from_end'
+        'special_terms'
     ]
+    TF_IDF_FEATURES = []
 
     def vectorize(self, input):
         """
@@ -24,6 +24,7 @@ class FeatureVectorizer:
         """
 
         threads = input['data']
+        documents = [' '.join(x) for x in threads]
 
         # Determine the number of sentences using the specific input format
         # for this data type
@@ -33,6 +34,11 @@ class FeatureVectorizer:
 
         # Create an appropriately shaped array to hold the feature vectors
         sentence_features = np.ndarray(shape=(num_sentences, self.NUM_FEATURES))
+
+        # Compute TF_IDF_FEATURES
+        tf_idf_vectorizer = TfidfVectorizer()
+        tf_idf = tf_idf_vectorizer.fit_transform(documents)
+        self.TF_IDF_FEATURES = np.squeeze(np.asarray(np.mean(tf_idf, axis=1)), axis=1)
 
         # Populate the feature vector
         global_sentence_index = 0
@@ -66,10 +72,4 @@ class FeatureVectorizer:
         return 0
 
     def special_terms(self, input, thread_index, thread, sentence_index, sentence):
-        return 0
-
-    def quoted_text(self, input, thread_index, thread, sentence_index, sentence):
-        return 0
-    
-    def position_from_end(self, input, thread_index, thread, sentence_index, sentence):
         return 0

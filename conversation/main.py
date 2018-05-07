@@ -25,6 +25,8 @@ def main():
     parser.add_argument('--type', choices=['email', 'chat'], default='email')
     parser.add_argument('--model', choices=['naivebayes', 'decisiontree', 'perceptron'], default='naivebayes')
     parser.add_argument('--metric', choices=['L', '1', '2', 'all'], default='all')
+    parser.add_argument('--debug', action='store_true')
+    parser.add_argument('--examples', action='store_true')
     args = parser.parse_args()
 
     # Use the appropriate parser and feature vectorizer for the desired data type
@@ -44,9 +46,10 @@ def main():
 
     # Use the appropriate evaluation metrics
     if args.metric == 'all':
-        evaluation = Evaluation(['L', '1', '2'])
+        metrics = ['L', '1', '2']
     else:
-        evaluation = Evaluation(args.metric)
+        metrics = [args.metric]
+    evaluation = Evaluation(metrics, debug=args.debug, examples=args.examples)
 
     # Parse training data
     training_data = parser.parse('train')

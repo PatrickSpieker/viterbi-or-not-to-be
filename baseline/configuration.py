@@ -1,5 +1,5 @@
 # The directory where data should be read
-DATA_DIR = 'data/micro/'
+DATA_DIR = 'data/full/'
 
 # The directory where results should be output
 OUTPUT = 'output/'

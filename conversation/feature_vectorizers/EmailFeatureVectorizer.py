@@ -18,10 +18,15 @@ class EmailFeatureVectorizer(FeatureVectorizer):
         return self.TF_IDF_FEATURES[thread_index]
 
     def tf_isf(self, input, thread_index, thread, sentence_index, sentence):
-        thread_with_name = thread.copy()
-        thread_with_name.append(input['names'][thread_index])
-        tf_isf_vectorizer = TfidfVectorizer()
-        tf_isf = tf_isf_vectorizer.fit_transform(thread_with_name)
+        if sentence_index in self.TF_ISF_CACHE:
+            tf_isf = self.TF_ISF_CACHE[sentence_index]
+        else:
+            thread_with_name = thread.copy()
+            thread_with_name.append(input['names'][thread_index])
+            tf_isf_vectorizer = TfidfVectorizer()
+            tf_isf = tf_isf_vectorizer.fit_transform(thread_with_name)
+            self.TF_ISF_CACHE[sentence_index] = tf_isf
+
         tf_isf_features = np.squeeze(np.asarray(np.mean(tf_isf, axis=1)))
         return tf_isf_features[sentence_index]
 
@@ -32,20 +37,28 @@ class EmailFeatureVectorizer(FeatureVectorizer):
         return sentence_index
     
     def similarity_to_title(self, input, thread_index, thread, sentence_index, sentence):
-        thread_with_name = thread.copy()
-        thread_with_name.append(input['names'][thread_index])
-        tf_isf_vectorizer = TfidfVectorizer()
-        tf_isf = tf_isf_vectorizer.fit_transform(thread_with_name)
+        if sentence_index in self.TF_ISF_CACHE:
+            tf_isf = self.TF_ISF_CACHE[sentence_index]
+        else:
+            thread_with_name = thread.copy()
+            thread_with_name.append(input['names'][thread_index])
+            tf_isf_vectorizer = TfidfVectorizer()
+            tf_isf = tf_isf_vectorizer.fit_transform(thread_with_name)
+            self.TF_ISF_CACHE[sentence_index] = tf_isf
 
         title_vector = tf_isf[len(thread_with_name) - 1]
         sentence_vector = tf_isf[sentence_index]
         return linear_kernel(title_vector, sentence_vector).flatten()
 
     def centroid_coherence(self, input, thread_index, thread, sentence_index, sentence):
-        thread_with_name = thread.copy()
-        thread_with_name.append(input['names'][thread_index])
-        tf_isf_vectorizer = TfidfVectorizer()
-        tf_isf = tf_isf_vectorizer.fit_transform(thread_with_name)
+        if sentence_index in self.TF_ISF_CACHE:
+            tf_isf = self.TF_ISF_CACHE[sentence_index]
+        else:
+            thread_with_name = thread.copy()
+            thread_with_name.append(input['names'][thread_index])
+            tf_isf_vectorizer = TfidfVectorizer()
+            tf_isf = tf_isf_vectorizer.fit_transform(thread_with_name)
+            self.TF_ISF_CACHE[sentence_index] = tf_isf
 
         tf_isf_mean = np.mean(tf_isf, axis=0)
         sentence_vector = tf_isf[sentence_index]

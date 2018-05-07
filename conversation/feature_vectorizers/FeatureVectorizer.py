@@ -14,6 +14,7 @@ class FeatureVectorizer:
         'special_terms'
     ]
     TF_IDF_FEATURES = []
+    TF_ISF_CACHE = {}
 
     def vectorize(self, input):
         """

@@ -21,17 +21,20 @@ from scipy import spatial
 
 def main():
     parser = argparse.ArgumentParser(description='Run the conversation-specific summarization model.')
-    parser.add_argument('dataset')
-    parser.add_argument('--type', choices=['email', 'chat'], default='email')
-    parser.add_argument('--model', choices=['naivebayes', 'decisiontree', 'perceptron'], default='naivebayes')
-    parser.add_argument('--metric', choices=['L', '1', '2', 'all'], default='all')
-    parser.add_argument('--debug', action='store_true')
-    parser.add_argument('--examples', action='store_true')
+    parser.add_argument('dataset', help='the path of the dataset to use, specified as a path relative to the data/ directory')
+    parser.add_argument('--type', choices=['email', 'chat'], default='email', help='the type of data to use')
+    parser.add_argument('--model', choices=['naivebayes', 'decisiontree', 'perceptron'], default='naivebayes', help='the type of model to use')
+    parser.add_argument('--metric', choices=['L', '1', '2', 'all'], default='all', help='which metric(s) to report when evaluating the model')
+    parser.add_argument('--debug', action='store_true', help='if set, outputs various debugging information during execution')
+    parser.add_argument('--examples', action='store_true', help='if set, displays the system-generated summaries during evaluation')
     args = parser.parse_args()
+
+    # Make the dataset relative to the data folder
+    dataset = '../data/' + args.dataset
 
     # Use the appropriate parser and feature vectorizer for the desired data type
     if args.type == 'email':
-        parser = EmailParser(args.dataset)        
+        parser = EmailParser(dataset)        
         feature_vectorizer = EmailFeatureVectorizer()
     elif args.type == 'chat':
         pass

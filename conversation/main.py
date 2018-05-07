@@ -16,7 +16,7 @@ import configuration as config
 from feature_vectorizers.EmailFeatureVectorizer import \
     EmailFeatureVectorizer
 from parsers.EmailParser import EmailParser
-from Evaluation import Evaluation
+from evaluation.Evaluation import Evaluation
 from scipy import spatial
 
 def main():

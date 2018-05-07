@@ -7,18 +7,15 @@ class Evaluation:
 
     def rouge_evaluation(self):
         # Run ROUGE evaluation
-        rouge_result = subprocess.run(['java', '-jar', 'rouge2-1.2.1.jar'], stdout=subprocess.PIPE)
+        rouge_result = subprocess.run(['java', '-jar', 'rouge2-1.2.1.jar'], cwd='evaluation', stdout=subprocess.PIPE)
         rouge = rouge_result.stdout.decode('utf-8')
 
         print(rouge)
 
-        # Decode ROUGE output to produce averages
-        # TODO: use metrics field as filter
-        results = {
-            'L': [],
-            '1': [],
-            '2': []
-        }
+        results = {}
+
+        for metric in self.metrics:
+            results[metric] = []
 
         for line in rouge.splitlines():
             metric_match = re.search('^ROUGE-(.).*', line)
@@ -32,6 +29,6 @@ class Evaluation:
             total = 0
             for point in data:
                 total += float(point)
-            result += '{}: {}'.format(metric, total / len(data))
+            result += '{}: {}\n'.format(metric, total / len(data))
 
         print(result)

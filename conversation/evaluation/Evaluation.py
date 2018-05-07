@@ -1,16 +1,26 @@
 import subprocess
 import re
+import glob
 
 class Evaluation:
-    def __init__(self, metrics):
+    def __init__(self, metrics, debug, examples):
         self.metrics = metrics
+        self.debug = debug
+        self.examples = examples
 
     def rouge_evaluation(self):
         # Run ROUGE evaluation
         rouge_result = subprocess.run(['java', '-jar', 'rouge2-1.2.1.jar'], cwd='evaluation', stdout=subprocess.PIPE)
         rouge = rouge_result.stdout.decode('utf-8')
 
-        print(rouge)
+        if self.debug:
+            print(rouge)
+
+        if self.examples:
+            for f in glob.glob('output/system/*.txt'):
+                print('=== SYSTEM-GENERATED EXAMPLE LOCATED AT {} =='.format(f))
+                with open(f, 'r') as system_file:
+                    print(system_file.read())
 
         results = {}
 

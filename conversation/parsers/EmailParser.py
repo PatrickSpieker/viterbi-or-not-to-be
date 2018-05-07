@@ -1,7 +1,11 @@
 import xml.etree.ElementTree as ET
 import os
+import glob
 
 DEBUG = False
+
+OUTPUT = 'output/'
+REFERENCE = 'reference/'
 
 class EmailParser:
     def __init__(self, overall_dir):
@@ -92,6 +96,40 @@ class EmailParser:
 
     def preprocess(self, threads, thread_labels, thread_names):
         return threads, thread_labels, thread_names
+
+    def compile_reference_summaries(self):
+        with open(self.corpus('val')) as corpus_file, open(self.annotation('val')) as annotations_file:
+            annotations = self.parse_annotations(annotations_file)
+
+
+            output_dir = OUTPUT + REFERENCE
+
+            if os.path.exists(output_dir):
+                for f in glob.glob(output_dir + '*.txt'):
+                    os.remove(f)
+            else:
+                os.makedirs(output_dir)
+
+            tree = ET.parse(corpus_file)
+            root = tree.getroot()
+
+            for thread_index, thread in enumerate(root):
+                listno = thread.find('listno').text
+                annotations_list = annotations[listno]
+                
+                for annotation_index, annotation in enumerate(annotations_list):
+                    summary = []
+                    
+                    for doc in thread.findall('DOC'):
+                        text = doc.find('Text')
+                        for sent in text:
+                            sentence_id = sent.attrib['id']
+                            if sentence_id in annotation:
+                                summary.append(sent.text + ' ')
+
+                    filename = output_dir + 'thread{}_reference{}.txt'.format(thread_index, annotation_index)
+                    with open(filename, 'w') as output_file:
+                        output_file.write(''.join(summary))
 
 def flatten(nested_list):
     return [label for thread in nested_list for label in thread]

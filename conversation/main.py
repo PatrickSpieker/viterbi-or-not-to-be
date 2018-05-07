@@ -67,6 +67,9 @@ def main():
     # Generate the model's predicted summaries on the val data
     test_model(model, val_data, val_sentence_features)
 
+    # Compile the reference summaries
+    parser.compile_reference_summaries()
+
     # Evaluate the model's performance using the preferred metrics
     evaluation.rouge_evaluation()
 

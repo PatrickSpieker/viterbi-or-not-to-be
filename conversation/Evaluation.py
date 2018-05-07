@@ -2,12 +2,16 @@ import subprocess
 import re
 
 class Evaluation:
+    def __init__(self, metrics):
+        self.metrics = metrics
+
     def rouge_evaluation(self):
         # Run ROUGE evaluation
         rouge_result = subprocess.run(['java', '-jar', 'rouge2-1.2.1.jar'], stdout=subprocess.PIPE)
         rouge = rouge_result.stdout.decode('utf-8')
 
         # Decode ROUGE output to produce averages
+        # TODO: use metrics field as filter
         results = {
             'L': [],
             '1': [],

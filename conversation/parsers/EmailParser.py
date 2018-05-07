@@ -101,7 +101,6 @@ class EmailParser:
         with open(self.corpus('val')) as corpus_file, open(self.annotation('val')) as annotations_file:
             annotations = self.parse_annotations(annotations_file)
 
-
             output_dir = OUTPUT + REFERENCE
 
             if os.path.exists(output_dir):

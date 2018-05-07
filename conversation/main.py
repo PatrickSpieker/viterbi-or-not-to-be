@@ -13,40 +13,40 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.tree import DecisionTreeClassifier
 
 import configuration as config
-from conversation.feature_vectorizers.EmailFeatureVectorizer import \
+from feature_vectorizers.EmailFeatureVectorizer import \
     EmailFeatureVectorizer
-from conversation.parsers.EmailParser import EmailParser
+from parsers.EmailParser import EmailParser
 from Evaluation import Evaluation
 from scipy import spatial
 
 def main():
     parser = argparse.ArgumentParser(description='Run the conversation-specific summarization model.')
     parser.add_argument('dataset')
-    parser.add_argument('--type', options=['email', 'chat'], default='email')
-    parser.add_argument('--model', options=['naivebayes', 'decisiontree', 'perceptron'], default='naivebayes')
-    parser.add_argument('--metric', options=['L', '1', '2', 'all'], default='all')
+    parser.add_argument('--type', choices=['email', 'chat'], default='email')
+    parser.add_argument('--model', choices=['naivebayes', 'decisiontree', 'perceptron'], default='naivebayes')
+    parser.add_argument('--metric', choices=['L', '1', '2', 'all'], default='all')
     args = parser.parse_args()
 
     # Use the appropriate parser and feature vectorizer for the desired data type
-    if args['type'] == 'email':
-        parser = EmailParser(args['dataset'])        
+    if args.type == 'email':
+        parser = EmailParser(args.dataset)        
         feature_vectorizer = EmailFeatureVectorizer()
-    elif args['type'] == 'chat':
+    elif args.type == 'chat':
         pass
 
     # Use the appropriate model type
-    if args['model'] == 'naivebayes':
+    if args.model == 'naivebayes':
         model_type = GaussianNB
-    elif args['model'] == 'decisiontree':
+    elif args.model == 'decisiontree':
         model_type = DecisionTreeClassifier
-    elif args['model'] == 'perceptron':
+    elif args.model == 'perceptron':
         model_type = MLPClassifier
 
     # Use the appropriate evaluation metrics
-    if args['metric'] == 'all':
+    if args.metric == 'all':
         evaluation = Evaluation(['L', '1', '2'])
     else:
-        evaluation = Evaluation(args['metric'])
+        evaluation = Evaluation(args.metric)
 
     # Parse training data
     training_data = parser.parse('train')

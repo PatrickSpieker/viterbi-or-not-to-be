@@ -4,19 +4,27 @@ import os
 DEBUG = False
 
 class EmailParser:
-    def __init__(self, overall_dir, partition):
-        self.corpus_file = '{}/{}/corpus.xml'.format(overall_dir, partition)
-        self.annotations_file = '{}/{}/annotation.xml'.format(overall_dir, partition)
+    def __init__(self, overall_dir):
+        self.overall_dir = overall_dir
 
-    # TODO: emails should be in their own partitions in the list
-    def parse(self):
-        """
-        Should have consistent API
-        """
-        threads, thread_labels, thread_names = self.load_data(self.corpus_file, self.annotations_file)
-        preprocessed_data = self.preprocess(threads, thread_labels, thread_names)
-        return preprocessed_data
-    
+    def corpus(self, partition):
+        return '{}/{}/corpus.xml'.format(self.overall_dir, partition)
+
+    def annotation(self, partition):
+        return '{}/{}/annotation.xml'.format(self.overall_dir, partition)
+
+    def parse(self, partition):
+        threads, thread_labels, thread_names = self.load_data(self.corpus(partition), self.annotation(partition))
+        threads, thread_labels, thread_names = self.preprocess(threads, thread_labels, thread_names)
+
+        data = {
+            'data': threads,
+            'labels': thread_labels,
+            'names': thread_names
+        }
+
+        return data
+        
     def load_data(self, corpus_file, annotations_file):
         annotations = self.parse_annotations(annotations_file)
         threads, thread_labels, thread_names = self.parse_corpus(corpus_file, annotations)

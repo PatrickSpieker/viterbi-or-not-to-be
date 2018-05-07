@@ -15,7 +15,7 @@ class FeatureVectorizer:
         'position_from_end'
     ]
 
-    def vectorize(self, *input):
+    def vectorize(self, input):
         """Returns a (FEATURES) shape feature vector"""
         feature_vector = map(lambda x : getattr(self, x)(input), self.FEATURES)
         return feature_vector

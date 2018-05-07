@@ -34,7 +34,7 @@ def main():
 
     parsed_training_data, parsed_training_labels, parsed_training_names = parser.parse()
     sentence_features = feature_vectorizer.vectorize(parsed_training_data, parsed_training_labels, parsed_training_names)
-    model = train_model(sentence_features, parsed_labels)
+    model = train_model(sentence_features, parsed_training_labels)
 
     test_model(model, parsed_testing_data, parsed_testing_labels)
 

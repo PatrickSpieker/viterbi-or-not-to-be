@@ -37,11 +37,11 @@ class ChatParser:
         thread_labels = []
         thread_names = []
 
-        for anno_filename in glob.glob('*.txt'):
+        for anno_filename in glob.glob('{}/*.txt'.format(annotation_dir)):
             curr_thread = []
             curr_thread_labels = []
             quotes = set()
-            anno_file = os.path.join(annotation_dir, anno_filename)
+            anno_file = anno_filename # os.path.join(annotation_dir, anno_filename)
             thread_index = anno_filename.split('-')[1].split('.')[0]
             tree = ET.parse(anno_file)
             root = tree.getroot()

@@ -85,6 +85,8 @@ def main():
     # Parse training data
     training_data = parser.parse('train')
 
+    pdb.set_trace()
+
     # Preprocess training data
     if (not args.nopreprocessing):
         training_data = preprocessor.preprocess(training_data)

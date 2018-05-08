@@ -27,7 +27,7 @@ REFERENCE = 'reference/'
 SYSTEM = 'system/'
 
 def main():
-    parser = argparse.ArgumentParser(description='Run the conversation-specific summarization model.', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser = argparse.ArgumentParser(description='Train and evaluate the conversation-specific model for automatic conversation summarization. Allows selection between several different types of models and datasets, as well as customization of the metrics to be used in evaluation and various options for debugging. After evaluation, system-generated summaries can be found in the output/system directory', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('dataset', help='the path of the dataset to use, specified as a path relative to the data/ directory, i.e. to use the full bc3 dataset: \'bc3/full\'')
     parser.add_argument('--type', choices=['email', 'chat'], default='email', help='the format of the dataset being used')
     parser.add_argument('--model', choices=['naivebayes', 'decisiontree', 'perceptron'], default='naivebayes', help='the type of model to train and test')
@@ -37,7 +37,7 @@ def main():
     parser.add_argument('--nopreprocessing', action='store_true', help='if set, disables preprocessing for the training and validation data')
     args = parser.parse_args()
 
-    # Make the dataset relative to the data folder
+    # Interpret the dataset relative to the data folder
     dataset = '../data/' + args.dataset
 
     # Use the appropriate parser, preprocessor, and feature vectorizer for the desired data type

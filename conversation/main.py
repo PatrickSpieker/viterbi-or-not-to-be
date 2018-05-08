@@ -132,7 +132,7 @@ def main():
     val_sentence_features = feature_vectorizer.vectorize(val_data)
 
     # Generate the model's predicted summaries on the val data
-    test_model(model, val_data, val_sentence_features)
+    test_model(model, val_data, val_sentence_features, 3 if args.type == 'email' else 1)
 
     # Compile the reference summaries
     parser.compile_reference_summaries()
@@ -148,7 +148,7 @@ def train_model(model_type, sentence_labels, sentence_features):
 
     return model
         
-def test_model(model, val_data, sentence_features):
+def test_model(model, val_data, sentence_features, step):
     output_dir = OUTPUT + SYSTEM
     if os.path.exists(output_dir):
         for f in glob.glob(output_dir + '*.txt'):
@@ -164,10 +164,10 @@ def test_model(model, val_data, sentence_features):
     sentence = 0
     for thread_index, thread in enumerate(threads):
         thread_summary = []
-        for _ in range(0, len(thread), 3):
+        for _ in range(0, len(thread), step):
             if predicted_annotations[sentence] == 1:
                 thread_summary.append(sentences[sentence] + ' ')
-            sentence += 3
+            sentence += step
         
         filename = output_dir + 'thread{}_system1.txt'.format(thread_index)
         with open(filename, 'w+') as output_file:

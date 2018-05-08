@@ -37,7 +37,7 @@ class EmailFeatureVectorizer(FeatureVectorizer):
     def sentence_position(self, input, thread_index, thread, sentence_index, sentence):
         return sentence_index
     
-    def similarity_to_title(self, input, thread_index, thread, sentence_index, sentence):
+    def title_similarity(self, input, thread_index, thread, sentence_index, sentence):
         if sentence_index in self.TF_ISF_CACHE:
             tf_isf = self.TF_ISF_CACHE[sentence_index]
         else:
@@ -46,8 +46,8 @@ class EmailFeatureVectorizer(FeatureVectorizer):
             tf_isf_vectorizer = TfidfVectorizer()
             tf_isf = tf_isf_vectorizer.fit_transform(thread_with_name)
             self.TF_ISF_CACHE[sentence_index] = tf_isf
-
-        title_vector = tf_isf[len(thread_with_name) - 1]
+        
+        title_vector = tf_isf[tf_isf.shape[0] - 1]
         sentence_vector = tf_isf[sentence_index]
         return linear_kernel(title_vector, sentence_vector).flatten()
 
@@ -68,7 +68,7 @@ class EmailFeatureVectorizer(FeatureVectorizer):
     def special_terms(self, input, thread_index, thread, sentence_index, sentence):
         return self.SENT_SPECIAL_COUNTS[thread_index][sentence_index] / self.THREAD_SPECIAL_COUNTS[thread_index] if self.THREAD_SPECIAL_COUNTS[thread_index] != 0 else 0
 
-    """def is_question(self, input, thread_index, thread, sentence_index, sentence):
+    def is_question(self, input, thread_index, thread, sentence_index, sentence):
         return 1 if sentence.endswith('?') else 0
 
     def sentiment_score(self, input, thread_index, thread, sentence_index, sentence):
@@ -105,14 +105,15 @@ class EmailFeatureVectorizer(FeatureVectorizer):
         return total_score / len(tagged_sent)
 
     def number_count(self, input, thread_index, thread, sentence_index, sentence):
-        number_count = 0
+        """number_count = 0
         sent_tokens = tokenize.word_tokenize(sentence)
         tagged_sent = tagger.pos_tag(sent_tokens)
         for word_index, tagged_word in enumerate(tagged_sent):
             pos = tagged_word[1]
             if pos == 'CD':
                 number_count += 1
-        return number_count
+        return number_count"""
+        return len(re.findall('\d', sentence))
 
     def url_count(self, input, thread_index, thread, sentence_index, sentence):
-        return len(re.findall('https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+', sentence))"""
+        return len(re.findall('https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+', sentence))

@@ -2,10 +2,10 @@ import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from nltk import tokenize
 from nltk import tag as tagger
+np.set_printoptions(threshold=np.inf)
 
 class FeatureVectorizer:
 
-    NUM_FEATURES = 11
     FEATURES = [
         'tf_idf',
         'tf_isf',
@@ -19,6 +19,7 @@ class FeatureVectorizer:
         'number_count',
         'url_count'
     ]
+    NUM_FEATURES = len(FEATURES)
     TF_IDF_FEATURES = []
     TF_ISF_CACHE = {}
     THREAD_SPECIAL_COUNTS = []

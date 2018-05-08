@@ -54,11 +54,16 @@ class ChatParser:
             for line in corpus_file.readlines():
                 line = line.replace('\n', '')
                 curr_thread.append(line)
+                quoted = 0
                 for q in quotes:
                     if q.replace(',', '') in line.replace(',', ''):
                         curr_thread_labels.append(1)
-                    else:
-                        curr_thread_labels.append(0)
+                        quoted = 1
+                        break
+                if not quoted:
+                    curr_thread_labels.append(1)
+                    quoted = 0
+            
             nested_thread = []
             nested_labels = []
             nested_thread.append(curr_thread)

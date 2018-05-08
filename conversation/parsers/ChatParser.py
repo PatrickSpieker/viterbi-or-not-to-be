@@ -41,15 +41,15 @@ class EmailParser:
             curr_thread = []
             curr_thread_labels = []
             quotes = set()
-            number = anno_filename.split('-').[1].split('.')[0]
             anno_file = os.path.join(annotations_dir, anno_filename)
+            thread_index = anno_filename.split('-').[1].split('.')[0]
             tree = ET.parse(anno_file)
             root = tree.getroot()
             for p in root.findall('p'):
                 for q in p.findall('quote'):
                     quotes.add(q.text.replace('\n', ''))
 
-            corpus_filename = 'corpus-' + number + '.txt'
+            corpus_filename = 'corpus-' + thread_index + '.txt'
             corpus_file = os.path.join(corpus_dir, corpus_filename)
             for line in corpus_file.readlines():
                 line = line.replace('\n', '')
@@ -61,11 +61,12 @@ class EmailParser:
                         curr_thread_labels.append(0)
             threads.append(curr_thread)
             thread_labels.append(curr_thread_labels)
+        return threads, thread_labels, thread_names
 
     def compile_reference_summaries(self):
-        with open(self.corpus('val')) as corpus_file, open(self.annotation('val')) as annotations_file:
-            annotations = self.parse_annotations(annotations_file)
-
+        for anno_filename in os.listdir(self.annotation('val')):
+            anno_file = os.path.join(annotations_dir, anno_filename)
+            thread_index = anno_filename.split('-').[1].split('.')[0]
             output_dir = OUTPUT + REFERENCE
 
             if os.path.exists(output_dir):
@@ -74,26 +75,12 @@ class EmailParser:
             else:
                 os.makedirs(output_dir)
 
-            tree = ET.parse(corpus_file)
+            tree = ET.parse(anno_file)
             root = tree.getroot()
 
-            for thread_index, thread in enumerate(root):
-                listno = thread.find('listno').text
-                annotations_list = annotations[listno]
-                
-                for annotation_index, annotation in enumerate(annotations_list):
-                    summary = []
-                    
-                    for doc in thread.findall('DOC'):
-                        text = doc.find('Text')
-                        for sent in text:
-                            sentence_id = sent.attrib['id']
-                            if sentence_id in annotation:
-                                summary.append(sent.text + ' ')
-
-                    filename = output_dir + 'thread{}_reference{}.txt'.format(thread_index, annotation_index)
-                    with open(filename, 'w') as output_file:
-                        output_file.write(''.join(summary))
+            filename = output_dir + 'thread{}.txt'.format(thread_index)
+                with open(filename, 'w') as output_file:
+                    output_file.write(''.join(summary))
 
     def debug(self, output):
         if self.debug_flag:

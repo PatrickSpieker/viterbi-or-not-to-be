@@ -46,9 +46,9 @@ class FeatureVectorizer:
         sentence_features = np.ndarray(shape=(num_sentences, self.NUM_FEATURES))
 
         # Compute TF_IDF_FEATURES
-        tf_idf_vectorizer = TfidfVectorizer()
-        tf_idf = tf_idf_vectorizer.fit_transform(documents)
-        self.TF_IDF_FEATURES = np.squeeze(np.asarray(np.mean(tf_idf, axis=1)), axis=1)
+        # tf_idf_vectorizer = TfidfVectorizer()
+        # tf_idf = tf_idf_vectorizer.fit_transform(documents)
+        # self.TF_IDF_FEATURES = np.squeeze(np.asarray(np.mean(tf_idf, axis=1)), axis=1)
 
         # Count special terms per sentence, thread
         for thread_index, thread in enumerate(threads):

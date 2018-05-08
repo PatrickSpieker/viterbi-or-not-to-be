@@ -16,7 +16,7 @@ from nltk.corpus import sentiwordnet as swn
 class ChatFeatureVectorizer(FeatureVectorizer):
 
     def tf_idf(self, input, thread_index, thread, sentence_index, sentence):
-        return self.TF_IDF_FEATURES[thread_index]
+        return 0 #self.TF_IDF_FEATURES[thread_index]
 
     def tf_isf(self, input, thread_index, thread, sentence_index, sentence):
         return 0

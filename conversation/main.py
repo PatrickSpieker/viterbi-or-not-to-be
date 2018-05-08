@@ -11,6 +11,7 @@ from sklearn.metrics.pairwise import linear_kernel
 from sklearn.naive_bayes import GaussianNB
 from sklearn.neural_network import MLPClassifier
 from sklearn.tree import DecisionTreeClassifier
+import numpy as np
 
 from feature_vectorizers.EmailFeatureVectorizer import \
     EmailFeatureVectorizer
@@ -96,6 +97,9 @@ def main():
     # Produce sentence features
     training_sentence_features = feature_vectorizer.vectorize(training_data)
 
+    # Flatten thread labels to match the feature shape
+    thread_labels = flatten(training_data['labels'])
+
     # If crosstraining is enabled, use the second round of training data
     if args.crosstrain is not None:
         cross_training_data = cross_parser.parse('train')
@@ -105,8 +109,12 @@ def main():
         cross_training_data['labels'] = collapse_threads(cross_training_data['labels'])
         cross_training_sentence_features = cross_feature_vectorizer.vectorize(cross_training_data)
 
+        # Concatenate so as to train on all available data
+        training_sentence_features = np.concatenate(training_sentence_features, cross_training_sentence_features)
+        thread_labels = thread_labels.extend(flatten(cross_training_data['labels']))
+
     # Train model using training data
-    model = train_model(model_type, training_data, training_sentence_features)
+    model = train_model(model_type, thread_labels, training_sentence_features)
 
     # Parse val data
     val_data = parser.parse('val')
@@ -132,11 +140,7 @@ def main():
     # Evaluate the model's performance using the preferred metrics
     evaluation.rouge_evaluation()
 
-def train_model(model_type, training_data, sentence_features):
-    thread_labels = training_data['labels']
-
-    # Flatten the thread_labels to produce sentence labels
-    sentence_labels = flatten(thread_labels)
+def train_model(model_type, sentence_labels, sentence_features):
 
     # Train the model
     model = model_type()

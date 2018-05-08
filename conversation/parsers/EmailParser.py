@@ -59,13 +59,13 @@ class EmailParser:
         tree = ET.parse(xml_file)
         root = tree.getroot()
 
-        threads = []
-        thread_labels = []
-        thread_names = []
+        all_threads_text = []
+        all_threads_labels = []
+        all_threads_names = []
 
         for thread in root:
             thread_text = []
-            doc_labels = []
+            thread_labels = []
             name = thread.find('name').text
             listno = thread.find('listno').text
             debug('---------- Thread with name "' + name + '" and listno ' + listno + ' ----------')
@@ -75,24 +75,26 @@ class EmailParser:
                 subject = doc.find('Subject').text
                 text = doc.find('Text')
                 debug('\n    Email subject: "' + subject + '"')
-                sentence_labels = []
-
-                # TODO: triple-nesting threads and labels could allow more features
+                email_text = []
+                email_labels = []
 
                 for sent in text:
                     for annotation in annotations[listno]:
                         debug('        Sentence id: ' + sent.attrib['id'])
+                        email_text.append(sent.text)
                         sentence_id = sent.attrib['id']
-                        doc_labels.append(1 if sentence_id in annotation else 0)
+                        email_labels.append(1 if sentence_id in annotation else 0)
                         debug('        Sentence: "' + sent.text + '"')
-                        thread_text.append(sent.text)
+
+                thread_text.append(email_text)
+                thread_labels.append(email_labels)
 
             debug('\n')
-            threads.append(thread_text)
-            thread_labels.append(doc_labels)
-            thread_names.append(name)
+            all_threads_text.append(thread_text)
+            all_threads_labels.append(thread_labels)
+            all_threads_names.append(name)
 
-        return threads, thread_labels, thread_names
+        return all_threads_text, all_threads_labels, all_threads_names
 
     def compile_reference_summaries(self):
         with open(self.corpus('val')) as corpus_file, open(self.annotation('val')) as annotations_file:

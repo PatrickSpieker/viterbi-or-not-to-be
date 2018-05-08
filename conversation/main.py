@@ -28,6 +28,7 @@ def main():
     parser.add_argument('--metric', choices=['L', '1', '2', 'all'], default='all', help='which metric(s) to report when evaluating the model')
     parser.add_argument('--debug', action='store_true', help='if set, outputs various debugging information during execution')
     parser.add_argument('--examples', action='store_true', help='if set, displays the system-generated summaries during evaluation')
+    parser.add_argument('--nopreprocessing', action='store_true', help='if set, disables preprocessing for the training and validation data')
     args = parser.parse_args()
 
     # Make the dataset relative to the data folder
@@ -60,7 +61,13 @@ def main():
     training_data = parser.parse('train')
 
     # Preprocess training data
-    training_data = preprocessor.preprocess(training_data)
+    if (not args.nopreprocessing):
+        training_data = preprocessor.preprocess(training_data)
+
+    # TODO: ideally, remove this in the future
+    # Collapse emails into threads
+    training_data['data'] = collapse_threads(training_data['data'])
+    training_data['labels'] = collapse_threads(training_data['labels'])
 
     # Produce sentence features
     training_sentence_features = feature_vectorizer.vectorize(training_data)
@@ -72,7 +79,13 @@ def main():
     val_data = parser.parse('val')
 
     # Preprocess val data
-    val_data = preprocessor.preprocess(val_data)
+    if (not args.nopreprocessing):
+        val_data = preprocessor.preprocess(val_data)
+
+    # TODO: ideally, remove this in the future
+    # Collapse emails into threads
+    val_data['data'] = collapse_threads(val_data['data'])
+    val_data['labels'] = collapse_threads(val_data['labels'])
 
     # Produce sentence features
     val_sentence_features = feature_vectorizer.vectorize(val_data)
@@ -125,6 +138,12 @@ def test_model(model, val_data, sentence_features):
 
 def flatten(nested_list):
     return [label for thread in nested_list for label in thread]
+
+def collapse_threads(threads):
+    collapsed_threads = []
+    for thread in threads:
+        collapsed_threads.append(flatten(thread))
+    return collapsed_threads
 
 if __name__ == '__main__':
     main()

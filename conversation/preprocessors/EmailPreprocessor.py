@@ -7,23 +7,31 @@ class EmailPreprocessor:
             'names': input['names'],
         }
 
-        processed_threads = []
-        processed_labels = []
+        # Remove quoted text and any "sentences" that are composed of solely
+        # symbols.
+        processed_threads_text = []
+        processed_threads_labels = []
         for thread_index, thread in enumerate(input['data']):
-            processed_thread = []
-            processed_label = []
-            for sentence_index, sentence in enumerate(thread):
-                if not (self.quoted_text(sentence) or self.only_symbols(sentence)):
-                    print('PERSIST {}'.format(sentence))
-                    processed_thread.append(sentence)
-                    processed_label.append(input['labels'][thread_index][sentence_index])
-                else:
-                    print('REMOVE {}'.format(sentence))
-            processed_threads.append(processed_thread)
-            processed_labels.append(processed_label)
+            processed_thread_text = []
+            processed_thread_labels = []
+            for email_index, email in enumerate(thread):
+                processed_email_text = []
+                processed_email_labels = []
+                for sentence_index, sentence in enumerate(email):
+                    if not (self.quoted_text(sentence) or self.only_symbols(sentence)):
+                        processed_email_text.append(sentence)
+                        processed_email_labels.append(input['labels'][thread_index][email_index][sentence_index])
+                processed_thread_text.append(processed_email_text)
+                processed_thread_labels.append(processed_email_labels)
+            processed_threads_text.append(processed_thread_text)
+            processed_threads_labels.append(processed_thread_labels)
+
+        # Try to determine the boundary of an email
+        dog = 'lol no'
                     
-        processed_input['data'] = processed_threads
-        processed_input['labels'] = processed_labels
+        # Return the preprocesed input
+        processed_input['data'] = processed_threads_text
+        processed_input['labels'] = processed_threads_labels
 
         return processed_input
 

@@ -6,7 +6,7 @@ import glob
 OUTPUT = 'output/'
 REFERENCE = 'reference/'
 
-class EmailParser:
+class ChatParser:
     def __init__(self, overall_dir, debug):
         self.overall_dir = overall_dir
         self.debug_flag = debug
@@ -41,8 +41,8 @@ class EmailParser:
             curr_thread = []
             curr_thread_labels = []
             quotes = set()
-            anno_file = os.path.join(annotations_dir, anno_filename)
-            thread_index = anno_filename.split('-').[1].split('.')[0]
+            anno_file = os.path.join(annotation_dir, anno_filename)
+            thread_index = anno_filename.split('-')[1].split('.')[0]
             tree = ET.parse(anno_file)
             root = tree.getroot()
             for p in root.findall('p'):
@@ -50,7 +50,7 @@ class EmailParser:
                     quotes.add(q.text.replace('\n', ''))
 
             corpus_filename = 'corpus-' + thread_index + '.txt'
-            corpus_file = os.path.join(corpus_dir, corpus_filename)
+            corpus_file = open(os.path.join(corpus_dir, corpus_filename), 'r', errors='ignore')
             for line in corpus_file.readlines():
                 line = line.replace('\n', '')
                 curr_thread.append(line)
@@ -59,14 +59,18 @@ class EmailParser:
                         curr_thread_labels.append(1)
                     else:
                         curr_thread_labels.append(0)
-            threads.append(curr_thread)
-            thread_labels.append(curr_thread_labels)
+            nested_thread = []
+            nested_labels = []
+            nested_thread.append(curr_thread)
+            nested_labels.append(curr_thread_labels)
+            threads.append(nested_thread)
+            thread_labels.append(nested_labels)
         return threads, thread_labels, thread_names
 
     def compile_reference_summaries(self):
         for anno_filename in os.listdir(self.annotation('val')):
-            anno_file = os.path.join(annotations_dir, anno_filename)
-            thread_index = anno_filename.split('-').[1].split('.')[0]
+            anno_file = os.path.join(self.annotation('val'), anno_filename)
+            thread_index = anno_filename.split('-')[1].split('.')[0]
             output_dir = OUTPUT + REFERENCE
 
             if os.path.exists(output_dir):
@@ -79,9 +83,9 @@ class EmailParser:
             root = tree.getroot()
 
             filename = output_dir + 'thread{}.txt'.format(thread_index)
-                with open(filename, 'w') as output_file:
-                    for p in root.findall('p'):
-                        output_file.write(p.text)
+            with open(filename, 'w') as output_file:
+                for p in root.findall('p'):
+                    output_file.write(p.text)
 
     def debug(self, output):
         if self.debug_flag:

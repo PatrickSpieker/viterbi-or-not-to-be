@@ -62,7 +62,7 @@ class ChatParser:
                         quoted = 1
                         break
                 if not quoted:
-                    curr_thread_labels.append(1)
+                    curr_thread_labels.append(0)
                     quoted = 0
             
             nested_thread = []

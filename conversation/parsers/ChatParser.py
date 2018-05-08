@@ -80,7 +80,8 @@ class EmailParser:
 
             filename = output_dir + 'thread{}.txt'.format(thread_index)
                 with open(filename, 'w') as output_file:
-                    output_file.write(''.join(summary))
+                    for p in root.findall('p'):
+                        output_file.write(p.text)
 
     def debug(self, output):
         if self.debug_flag:

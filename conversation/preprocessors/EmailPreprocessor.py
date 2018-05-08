@@ -14,8 +14,11 @@ class EmailPreprocessor:
             processed_label = []
             for sentence_index, sentence in enumerate(thread):
                 if not (self.quoted_text(sentence) or self.only_symbols(sentence)):
+                    print('PERSIST {}'.format(sentence))
                     processed_thread.append(sentence)
                     processed_label.append(input['labels'][thread_index][sentence_index])
+                else:
+                    print('REMOVE {}'.format(sentence))
             processed_threads.append(processed_thread)
             processed_labels.append(processed_label)
                     
@@ -25,7 +28,7 @@ class EmailPreprocessor:
         return processed_input
 
     def quoted_text(self, sentence):
-        return sentence.strip()[0] == '>'
+        return sentence.strip()[0] == '>' or sentence.strip()[:4] == '&gt;'
 
     def only_symbols(self, sentence):
-        return re.search('[a-zA-Z0-9]', sentence)
+        return not re.search('[a-zA-Z0-9]', sentence)

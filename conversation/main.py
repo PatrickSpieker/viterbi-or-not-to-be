@@ -12,13 +12,19 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.neural_network import MLPClassifier
 from sklearn.tree import DecisionTreeClassifier
 
-import configuration as config
 from feature_vectorizers.EmailFeatureVectorizer import \
     EmailFeatureVectorizer
 from preprocessors.EmailPreprocessor import EmailPreprocessor
 from parsers.EmailParser import EmailParser
 from evaluation.Evaluation import Evaluation
 from scipy import spatial
+
+# The directory where results should be output
+OUTPUT = 'output/'
+
+# The subdirectories under which ROUGE-compatible summaries should be output
+REFERENCE = 'reference/'
+SYSTEM = 'system/'
 
 def main():
     parser = argparse.ArgumentParser(description='Run the conversation-specific summarization model.', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
@@ -36,10 +42,11 @@ def main():
 
     # Use the appropriate parser, preprocessor, and feature vectorizer for the desired data type
     if args.type == 'email':
-        parser = EmailParser(dataset)        
+        parser = EmailParser(dataset, args.debug)
         preprocessor = EmailPreprocessor()
         feature_vectorizer = EmailFeatureVectorizer()
     elif args.type == 'chat':
+        # TODO: ... implement this
         pass
 
     # Use the appropriate model type
@@ -112,7 +119,7 @@ def train_model(model_type, training_data, sentence_features):
     return model
         
 def test_model(model, val_data, sentence_features):
-    output_dir = config.OUTPUT + config.SYSTEM
+    output_dir = OUTPUT + SYSTEM
     if os.path.exists(output_dir):
         for f in glob.glob(output_dir + '*.txt'):
             os.remove(f)

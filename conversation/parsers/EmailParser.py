@@ -2,14 +2,14 @@ import xml.etree.ElementTree as ET
 import os
 import glob
 
-DEBUG = False
-
+# The subdirectories under which ROUGE-compatible summaries should be output
 OUTPUT = 'output/'
 REFERENCE = 'reference/'
 
 class EmailParser:
-    def __init__(self, overall_dir):
+    def __init__(self, overall_dir, debug):
         self.overall_dir = overall_dir
+        self.debug_flag = debug
 
     def corpus(self, partition):
         return '{}/{}/corpus.xml'.format(self.overall_dir, partition)
@@ -68,28 +68,28 @@ class EmailParser:
             thread_labels = []
             name = thread.find('name').text
             listno = thread.find('listno').text
-            debug('---------- Thread with name "' + name + '" and listno ' + listno + ' ----------')
+            self.debug('---------- Thread with name "' + name + '" and listno ' + listno + ' ----------')
             
             for doc in thread.findall('DOC'):
                 # Email doc contents typically contain { Received, From, To, (Cc), Subject, Text }
                 subject = doc.find('Subject').text
                 text = doc.find('Text')
-                debug('\n    Email subject: "' + subject + '"')
+                self.debug('\n    Email subject: "' + subject + '"')
                 email_text = []
                 email_labels = []
 
                 for sent in text:
                     for annotation in annotations[listno]:
-                        debug('        Sentence id: ' + sent.attrib['id'])
+                        self.debug('        Sentence id: ' + sent.attrib['id'])
                         email_text.append(sent.text)
                         sentence_id = sent.attrib['id']
                         email_labels.append(1 if sentence_id in annotation else 0)
-                        debug('        Sentence: "' + sent.text + '"')
+                        self.debug('        Sentence: "' + sent.text + '"')
 
                 thread_text.append(email_text)
                 thread_labels.append(email_labels)
 
-            debug('\n')
+            self.debug('\n')
             all_threads_text.append(thread_text)
             all_threads_labels.append(thread_labels)
             all_threads_names.append(name)
@@ -128,10 +128,10 @@ class EmailParser:
                     filename = output_dir + 'thread{}_reference{}.txt'.format(thread_index, annotation_index)
                     with open(filename, 'w') as output_file:
                         output_file.write(''.join(summary))
+    def debug(self, output):
+        if self.debug_flag:
+            print(output)
 
 def flatten(nested_list):
     return [label for thread in nested_list for label in thread]
         
-def debug(output):
-    if DEBUG:
-        print(output)

@@ -103,7 +103,7 @@ def calculate_features(threads, thread_names):
     num_of_sentences = reduce(lambda s, thread: s + len(thread), threads, 0)
     global_sentence_index = 0
 
-    sentence_features = np.ndarray(shape=(num_of_sentences, 11))
+    sentence_features = np.ndarray(shape=(num_of_sentences, 8))
 
     threads_no_stop = threads.copy()
     stopwords_set = set(stopwords.words('english'))
@@ -134,8 +134,6 @@ def calculate_features(threads, thread_names):
 
             prev_proper_index = -10
             sent_special_count = 0.0
-            sent_number_count = 0.0
-            sent_url_count = len(re.findall('https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+', url))
 
             for word_index, tagged_word in enumerate(tagged_sent):
                 pos = tagged_word[1]
@@ -145,11 +143,8 @@ def calculate_features(threads, thread_names):
                     prev_proper_index = word_index
                 elif pos == 'CD':
                     sent_special_count = sent_special_count + 1.0
-                    sent_number_count += 1.0
             
             special_counts.append(sent_special_count)
-            number_counts.append(sent_number_count)
-            url_counts.append(sent_url_count)
             total_special_count = total_special_count + sent_special_count
 
         for sentence_index, sentence in enumerate(thread):
@@ -172,31 +167,6 @@ def calculate_features(threads, thread_names):
             sentence_features[global_sentence_index, 6] = special_terms
             # Special Case: Starts with '>'
             sentence_features[global_sentence_index, 7] = 1 #if sentence.startswith('>') else 0
-            # Position from the end of the email
-            sentence_features[global_sentence_index, 8] = 1 #len(thread) - sentence_index
-
-            # Is Question
-            sentence_features[global_sentence_index, 9] = 1 #if sentence.endswith('?') else 0
-            # Sentiment Score
-            tag_set = {'NN', 'NNS', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ', 'JJ', 'JJR', 'JJS', 'RB', 'RBR', 'RBS'}
-            total_score = 0.0
-            tagged_sent = tagger.pos_tag(sent_tokens)
-            for word_index, tagged_word in enumerate(tagged_sent):
-                tag = tagged_word[1]
-                if tag in tag_set:
-                    pos = tag_to_senti_pos(tag)
-                    senti_str = tagged_word[0].lower() + '.' + pos + '.01'
-                    try:
-                        senti_set = swn.senti_synset(senti_str)
-                        senti_score = senti_set.pos_score() - senti_set.neg_score()
-                        total_score += senti_score
-                    except:
-                        pass
-            sentence_features[global_sentence_index, 10] = 1 #total_score / len(tagged_sent)
-            # Number of number tokens
-            sentence_features[global_sentence_index, 11] = number_counts[sentence_index]
-            # Number of URLs
-            sentence_features[global_sentence_index, 12] = url_counts[sentence_index]
 
             global_sentence_index += 1
 

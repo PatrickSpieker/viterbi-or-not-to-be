@@ -14,8 +14,12 @@ from sklearn.tree import DecisionTreeClassifier
 
 from feature_vectorizers.EmailFeatureVectorizer import \
     EmailFeatureVectorizer
+from feature_vectorizers.ChatFeatureVectorizer import \
+    ChatFeatureVectorizer
 from preprocessors.EmailPreprocessor import EmailPreprocessor
+from preprocessors.ChatPreprocessor import ChatPreprocessor
 from parsers.EmailParser import EmailParser
+from parsers.ChatParser import ChatParser
 from evaluation.Evaluation import Evaluation
 from scipy import spatial
 
@@ -32,6 +36,7 @@ def main():
     parser.add_argument('--type', choices=['email', 'chat'], default='email', help='the format of the dataset being used')
     parser.add_argument('--model', choices=['naivebayes', 'decisiontree', 'perceptron'], default='naivebayes', help='the type of model to train and test')
     parser.add_argument('--metric', choices=['L', '1', '2', 'all'], default='all', help='which metric(s) to report when evaluating the model')
+    parser.add_argument('--crosstrain', help='an optional second dataset to cross train the model on prior to evaluation, assumed to use the other type of data')
     parser.add_argument('--debug', action='store_true', help='if set, outputs various debugging information during execution')
     parser.add_argument('--examples', action='store_true', help='if set, displays the system-generated summaries during evaluation')
     parser.add_argument('--nopreprocessing', action='store_true', help='if set, disables preprocessing for the training and validation data')
@@ -46,8 +51,20 @@ def main():
         preprocessor = EmailPreprocessor()
         feature_vectorizer = EmailFeatureVectorizer()
     elif args.type == 'chat':
-        # TODO: ... implement this
-        pass
+        parser = ChatParser(dataset, args.debug)
+        preprocessor = ChatPreprocessor()
+        feature_vectorizer = ChatFeatureVectorizer()
+
+    # If cross-training is enabled, create the second set of training input processors
+    if args.crosstrain is not None:
+        if args.type == 'chat':
+            cross_parser = EmailParser(dataset, args.debug)
+            cross_preprocessor = EmailPreprocessor()
+            cross_feature_vectorizer = EmailFeatureVectorizer()
+        elif args.type == 'email':
+            cross_parser = ChatParser(dataset, args.debug)
+            cross_preprocessor = ChatPreprocessor()
+            cross_feature_vectorizer = ChatFeatureVectorizer()
 
     # Use the appropriate model type
     if args.model == 'naivebayes':
@@ -78,6 +95,15 @@ def main():
 
     # Produce sentence features
     training_sentence_features = feature_vectorizer.vectorize(training_data)
+
+    # If crosstraining is enabled, use the second round of training data
+    if args.crosstrain is not None:
+        cross_training_data = cross_parser.parse('train')
+        if (not args.nopreprocessing):
+            cross_training_data = cross_preprocessor.preprocess(cross_training_data)
+        cross_training_data['data'] = collapse_threads(cross_training_data['data'])
+        cross_training_data['labels'] = collapse_threads(cross_training_data['labels'])
+        cross_training_sentence_features = cross_feature_vectorizer.vectorize(cross_training_data)
 
     # Train model using training data
     model = train_model(model_type, training_data, training_sentence_features)
@@ -141,7 +167,7 @@ def test_model(model, val_data, sentence_features):
         
         filename = output_dir + 'thread{}_system1.txt'.format(thread_index)
         with open(filename, 'w+') as output_file:
-            output_file.write(''.join(thread_summary))
+            output_file.write('\n'.join(thread_summary))
 
 def flatten(nested_list):
     return [label for thread in nested_list for label in thread]

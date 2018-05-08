@@ -127,7 +127,8 @@ class EmailParser:
 
                     filename = output_dir + 'thread{}_reference{}.txt'.format(thread_index, annotation_index)
                     with open(filename, 'w') as output_file:
-                        output_file.write(''.join(summary))
+                        output_file.write('\n'.join(summary))
+
     def debug(self, output):
         if self.debug_flag:
             print(output)

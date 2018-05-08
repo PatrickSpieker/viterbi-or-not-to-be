@@ -1,5 +1,7 @@
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
+from nltk import tokenize
+from nltk import tag as tagger
 
 class FeatureVectorizer:
 
@@ -19,6 +21,8 @@ class FeatureVectorizer:
     ]
     TF_IDF_FEATURES = []
     TF_ISF_CACHE = {}
+    THREAD_SPECIAL_COUNTS = []
+    SENT_SPECIAL_COUNTS = {}
 
     def vectorize(self, input):
         """
@@ -44,6 +48,29 @@ class FeatureVectorizer:
         tf_idf_vectorizer = TfidfVectorizer()
         tf_idf = tf_idf_vectorizer.fit_transform(documents)
         self.TF_IDF_FEATURES = np.squeeze(np.asarray(np.mean(tf_idf, axis=1)), axis=1)
+
+        # Count special terms per sentence, thread
+        for thread_index, thread in enumerate(threads):
+            thread_special_count = 0
+            self.SENT_SPECIAL_COUNTS[thread_index] = []
+            for sentence_index, sentence in enumerate(thread):
+                sent_tokens = tokenize.word_tokenize(sentence)
+                tagged_sent = tagger.pos_tag(sent_tokens)
+                prev_proper_index = -10
+                sent_special_count = 0.0
+
+                for word_index, tagged_word in enumerate(tagged_sent):
+                    pos = tagged_word[1]
+                    if pos == 'NNP':
+                        if prev_proper_index != word_index - 1:
+                            sent_special_count += 1.0
+                        prev_proper_index = word_index
+                    elif pos == 'CD':
+                        sent_special_count += 1.0
+                
+                self.SENT_SPECIAL_COUNTS[thread_index].append(sent_special_count)
+                thread_special_count += sent_special_count
+            self.THREAD_SPECIAL_COUNTS.append(thread_special_count)
 
         # Populate the feature vector
         global_sentence_index = 0

@@ -65,31 +65,10 @@ class EmailFeatureVectorizer(FeatureVectorizer):
         sentence_vector = tf_isf[sentence_index]
         return linear_kernel(tf_isf_mean, sentence_vector).flatten()
 
-    """def special_terms(self, input, thread_index, thread, sentence_index, sentence):
-        special_counts = []
-        total_special_count = 0.0
-        for sentence in thread:
-            sent_tokens = tokenize.word_tokenize(sentence)
-            tagged_sent = tagger.pos_tag(sent_tokens)
+    def special_terms(self, input, thread_index, thread, sentence_index, sentence):
+        return self.SENT_SPECIAL_COUNTS[thread_index][sentence_index] / self.THREAD_SPECIAL_COUNTS[thread_index] if self.THREAD_SPECIAL_COUNTS[thread_index] != 0 else 0
 
-            prev_proper_index = -10
-            sent_special_count = 0.0
-
-            for word_index, tagged_word in enumerate(tagged_sent):
-                pos = tagged_word[1]
-                if pos == 'NNP':
-                    if prev_proper_index != word_index - 1:
-                        sent_special_count += 1.0
-                    prev_proper_index = word_index
-                elif pos == 'CD':
-                    sent_special_count += 1.0
-            
-            special_counts.append(sent_special_count)
-            total_special_count = total_special_count + sent_special_count
-
-        return special_counts[sentence_index] / total_special_count if total_special_count != 0 else 0"""
-
-    def is_question(self, input, thread_index, thread, sentence_index, sentence):
+    """def is_question(self, input, thread_index, thread, sentence_index, sentence):
         return 1 if sentence.endswith('?') else 0
 
     def sentiment_score(self, input, thread_index, thread, sentence_index, sentence):
@@ -125,7 +104,7 @@ class EmailFeatureVectorizer(FeatureVectorizer):
                     pass
         return total_score / len(tagged_sent)
 
-    """def number_count(self, input, thread_index, thread, sentence_index, sentence):
+    def number_count(self, input, thread_index, thread, sentence_index, sentence):
         number_count = 0
         sent_tokens = tokenize.word_tokenize(sentence)
         tagged_sent = tagger.pos_tag(sent_tokens)
@@ -133,7 +112,7 @@ class EmailFeatureVectorizer(FeatureVectorizer):
             pos = tagged_word[1]
             if pos == 'CD':
                 number_count += 1
-        return number_count"""
+        return number_count
 
     def url_count(self, input, thread_index, thread, sentence_index, sentence):
-        return len(re.findall('https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+', sentence))
+        return len(re.findall('https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+', sentence))"""

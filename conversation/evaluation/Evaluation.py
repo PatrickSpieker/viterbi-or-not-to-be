@@ -1,6 +1,7 @@
 import subprocess
 import re
 import glob
+import os
 
 class Evaluation:
     def __init__(self, metrics, debug, examples):

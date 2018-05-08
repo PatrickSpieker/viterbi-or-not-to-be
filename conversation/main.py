@@ -15,6 +15,7 @@ from sklearn.tree import DecisionTreeClassifier
 import configuration as config
 from feature_vectorizers.EmailFeatureVectorizer import \
     EmailFeatureVectorizer
+from preprocessors.EmailPreprocessor import EmailPreprocessor
 from parsers.EmailParser import EmailParser
 from evaluation.Evaluation import Evaluation
 from scipy import spatial
@@ -32,9 +33,10 @@ def main():
     # Make the dataset relative to the data folder
     dataset = '../data/' + args.dataset
 
-    # Use the appropriate parser and feature vectorizer for the desired data type
+    # Use the appropriate parser, preprocessor, and feature vectorizer for the desired data type
     if args.type == 'email':
         parser = EmailParser(dataset)        
+        preprocessor = EmailPreprocessor()
         feature_vectorizer = EmailFeatureVectorizer()
     elif args.type == 'chat':
         pass
@@ -57,6 +59,9 @@ def main():
     # Parse training data
     training_data = parser.parse('train')
 
+    # Preprocess training data
+    training_data = preprocessor.preprocess(training_data)
+
     # Produce sentence features
     training_sentence_features = feature_vectorizer.vectorize(training_data)
 
@@ -65,6 +70,9 @@ def main():
 
     # Parse val data
     val_data = parser.parse('val')
+
+    # Preprocess val data
+    val_data = preprocessor.preprocess(val_data)
 
     # Produce sentence features
     val_sentence_features = feature_vectorizer.vectorize(val_data)
@@ -82,8 +90,7 @@ def train_model(model_type, training_data, sentence_features):
     thread_labels = training_data['labels']
 
     # Flatten the thread_labels to produce sentence labels
-    doc_labels = flatten(thread_labels)
-    sentence_labels = flatten(doc_labels)
+    sentence_labels = flatten(thread_labels)
 
     # Train the model
     model = model_type()

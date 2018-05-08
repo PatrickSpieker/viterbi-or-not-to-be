@@ -40,7 +40,7 @@ def output_summaries(corpus_file, annotations):
     output_dir = config.OUTPUT + config.REFERENCE
 
     if os.path.exists(output_dir):
-        for f in glob.glob(output_dir + '*.txt'):
+        for f in glob.glob(output_dir + '*'):
             os.remove(f)
     else:
         os.makedirs(output_dir)

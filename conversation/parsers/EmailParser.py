@@ -19,7 +19,6 @@ class EmailParser:
 
     def parse(self, partition):
         threads, thread_labels, thread_names = self.load_data(self.corpus(partition), self.annotation(partition))
-        threads, thread_labels, thread_names = self.preprocess(threads, thread_labels, thread_names)
 
         data = {
             'data': threads,
@@ -78,23 +77,21 @@ class EmailParser:
                 debug('\n    Email subject: "' + subject + '"')
                 sentence_labels = []
 
+                # TODO: triple-nesting threads and labels could allow more features
+
                 for sent in text:
                     for annotation in annotations[listno]:
                         debug('        Sentence id: ' + sent.attrib['id'])
                         sentence_id = sent.attrib['id']
-                        sentence_labels.append(1 if sentence_id in annotation else 0)
+                        doc_labels.append(1 if sentence_id in annotation else 0)
                         debug('        Sentence: "' + sent.text + '"')
                         thread_text.append(sent.text)
-                doc_labels.append(sentence_labels)
 
             debug('\n')
             threads.append(thread_text)
             thread_labels.append(doc_labels)
             thread_names.append(name)
 
-        return threads, thread_labels, thread_names
-
-    def preprocess(self, threads, thread_labels, thread_names):
         return threads, thread_labels, thread_names
 
     def compile_reference_summaries(self):
@@ -104,7 +101,7 @@ class EmailParser:
             output_dir = OUTPUT + REFERENCE
 
             if os.path.exists(output_dir):
-                for f in glob.glob(output_dir + '*.txt'):
+                for f in glob.glob(output_dir + '*'):
                     os.remove(f)
             else:
                 os.makedirs(output_dir)

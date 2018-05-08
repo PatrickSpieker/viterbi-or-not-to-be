@@ -37,7 +37,7 @@ class ChatParser:
         thread_labels = []
         thread_names = []
 
-        for anno_filename in os.listdir(annotation_dir):
+        for anno_filename in glob.glob('*.txt'):
             curr_thread = []
             curr_thread_labels = []
             quotes = set()
@@ -47,7 +47,8 @@ class ChatParser:
             root = tree.getroot()
             for p in root.findall('p'):
                 for q in p.findall('quote'):
-                    quotes.add(q.text.replace('\n', ''))
+                    if q.text is not None:
+                        quotes.add(q.text.replace('\n', ''))
 
             corpus_filename = 'corpus-' + thread_index + '.txt'
             corpus_file = open(os.path.join(corpus_dir, corpus_filename), 'r', errors='ignore')

@@ -3,7 +3,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 
 class FeatureVectorizer:
 
-    NUM_FEATURES = 7
+    NUM_FEATURES = 11
     FEATURES = [
         'tf_idf',
         'tf_isf',
@@ -11,7 +11,11 @@ class FeatureVectorizer:
         'sentence_position',
         'title_similarity',
         'centroid_coherence',
-        'special_terms'
+        'special_terms',
+        'is_question',
+        'sentiment_score',
+        'number_count',
+        'url_count'
     ]
     TF_IDF_FEATURES = []
     TF_ISF_CACHE = {}
@@ -73,4 +77,16 @@ class FeatureVectorizer:
         return 0
 
     def special_terms(self, input, thread_index, thread, sentence_index, sentence):
+        return 0
+
+    def is_question(self, input, thread_index, thread, sentence_index, sentence):
+        return 0
+
+    def sentiment_score(self, input, thread_index, thread, sentence_index, sentence):
+        return 0
+
+    def number_count(self, input, thread_index, thread, sentence_index, sentence):
+        return 0
+
+    def url_count(self, input, thread_index, thread, sentence_index, sentence):
         return 0

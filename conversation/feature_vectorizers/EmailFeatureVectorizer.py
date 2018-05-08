@@ -1,5 +1,6 @@
 from feature_vectorizers.FeatureVectorizer import FeatureVectorizer
 import numpy as np
+import re
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics.pairwise import linear_kernel
@@ -64,7 +65,7 @@ class EmailFeatureVectorizer(FeatureVectorizer):
         sentence_vector = tf_isf[sentence_index]
         return linear_kernel(tf_isf_mean, sentence_vector).flatten()
 
-    def special_terms(self, input, thread_index, thread, sentence_index, sentence):
+    """def special_terms(self, input, thread_index, thread, sentence_index, sentence):
         special_counts = []
         total_special_count = 0.0
         for sentence in thread:
@@ -86,4 +87,53 @@ class EmailFeatureVectorizer(FeatureVectorizer):
             special_counts.append(sent_special_count)
             total_special_count = total_special_count + sent_special_count
 
-        return special_counts[sentence_index] / total_special_count if total_special_count != 0 else 0
+        return special_counts[sentence_index] / total_special_count if total_special_count != 0 else 0"""
+
+    def is_question(self, input, thread_index, thread, sentence_index, sentence):
+        return 1 if sentence.endswith('?') else 0
+
+    def sentiment_score(self, input, thread_index, thread, sentence_index, sentence):
+        tag_set = {'NN', 'NNS', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ', 'JJ', 'JJR', 'JJS', 'RB', 'RBR', 'RBS'}
+        total_score = 0.0
+        sent_tokens = tokenize.word_tokenize(sentence)
+        tagged_sent = tagger.pos_tag(sent_tokens)
+        for word_index, tagged_word in enumerate(tagged_sent):
+            tag = tagged_word[1]
+            if tag in tag_set:
+                pos = {
+                    'NN' : 'n',
+                    'NNS' : 'n',
+                    'VB' : 'v',
+                    'VBD' : 'v',
+                    'VBG' : 'v',
+                    'VBN' : 'v',
+                    'VBP' : 'v',
+                    'VBZ' : 'v',
+                    'JJ' : 'a',
+                    'JJR' : 'a',
+                    'JJS' : 'a',
+                    'RB' : 'r',
+                    'RBR' : 'r',
+                    'RBS' : 'r'
+                }[tag]
+                senti_str = tagged_word[0].lower() + '.' + pos + '.01'
+                try:
+                    senti_set = swn.senti_synset(senti_str)
+                    senti_score = senti_set.pos_score() - senti_set.neg_score()
+                    total_score += senti_score
+                except:
+                    pass
+        return total_score / len(tagged_sent)
+
+    """def number_count(self, input, thread_index, thread, sentence_index, sentence):
+        number_count = 0
+        sent_tokens = tokenize.word_tokenize(sentence)
+        tagged_sent = tagger.pos_tag(sent_tokens)
+        for word_index, tagged_word in enumerate(tagged_sent):
+            pos = tagged_word[1]
+            if pos == 'CD':
+                number_count += 1
+        return number_count"""
+
+    def url_count(self, input, thread_index, thread, sentence_index, sentence):
+        return len(re.findall('https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+', sentence))

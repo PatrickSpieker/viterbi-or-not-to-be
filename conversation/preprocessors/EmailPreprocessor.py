@@ -26,14 +26,31 @@ class EmailPreprocessor:
             processed_threads_text.append(processed_thread_text)
             processed_threads_labels.append(processed_thread_labels)
 
-        # Try to determine the boundary of an email
-        dog = 'lol no'
-                    
+        # Try to determine the boundary of an email signature and remove it
+        for thread_index, thread in enumerate(processed_threads_text):
+            for email_index, email in enumerate(thread):
+                last_content = len(email) - 1
+
+                # Iterate backwards through the email, searching for the last line likely to contain content
+                while self.signature(email, last_content):
+                    last_content -= 1
+
+                thread[email_index] = email[:last_content + 1]
+                processed_threads_labels[thread_index][email_index] = processed_threads_labels[thread_index][email_index][:last_content + 1]
+
         # Return the preprocesed input
         processed_input['data'] = processed_threads_text
         processed_input['labels'] = processed_threads_labels
 
         return processed_input
+
+    def signature(self, email, line_index):
+        if line_index <= 0:
+            return False
+        line = email[line_index].strip()
+        return len(line) > 0 and \
+               (line[-1] not in ['!', '?', '.', '-', '\'', '"', ')', ':', ']', '>', '}', '/']) and \
+               (not re.match(r'https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+', line))
 
     def quoted_text(self, sentence):
         return sentence.strip()[0] == '>' or sentence.strip()[:4] == '&gt;'

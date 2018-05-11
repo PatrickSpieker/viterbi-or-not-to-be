@@ -1,0 +1,116 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.11Mar2006" author="Peter Sullivan" contact="mailto:psu@burdonvale.co.uk" enddate="13 Mar 2003 12:00:00 -0800" startdate="11 Mar 2006 12:00:00 -0800" subject="[IRC] 11 Mar 2006" title="Test/Sample database for GNUe">
+
+<topic>Forms</topic>
+<topic>Application Server</topic>
+<topic>Reports</topic>
+
+<p>James Thompson (jamest) asked <quote who="James Thompson">do we have 
+a real test schema for gnue?</quote>, clarifying 
+<quote who="James Thompson">i mean db structures</quote>. Reinhard 
+M&#252;ller (reinhard) said <quote who="Reinhard M&#252;ller">I always use 
+zipcode and the appserver sample</quote>. James said he had a very 
+simple two-table database he often used, but this was not much of 
+a test - <quote who="James Thompson">i was hoping maybe we had 
+something like MS's 
+<a href="http://www.pwsdb.com/pgm/tutorial-view.php?topic=18">northwind</a> 
+db setup - it's a complete schema for a business as a sample</quote>.</p>
+
+<p>Reinhard felt that <quote who="Reinhard M&#252;ller">we need to 
+consolidate our samples and test forms - most of them are not maintained 
+and not kept up to date</quote>. James confided that he might have some 
+time to do some <quote who="James Thompson">cleanup of samples - so I 
+can start some unit tests</quote>. Reinhard suggested building a sample 
+database <quote who="Reinhard M&#252;ller">in the gnue-samples dir - 
+as it will be gpd, gfd, grd and everything</quote>. They discussed some 
+of the details. Reinhard would <quote who="Reinhard M&#252;ller">prefer a 
+*single* well-maintained sample</quote>, or at any rate 
+<quote who="Reinhard M&#252;ller">one 2-tier and one appserver</quote> - 
+<quote who="Reinhard M&#252;ller">where they could even be the same in 
+principle - just ported to appserver - and the sample would not only 
+contain the schema but also some data - that would really be great to 
+have</quote>.</p>
+
+<p>James asked whether it was better to have one GNUe Schema 
+Definition (.gsd) file as the sample or <quote who="James Thompsonm">can 
+you easily load a whole dir of them?</quote> Johannes Vetter (joannesV) 
+explained <quote who="Johannes Vetter">you could pass in a bunch of gsd's 
+into a single call of gnue-schema - all that tables are then sorted to 
+fulllfill all dependecies</quote>.</p>
+
+<p>James looked at a simple address book sample he already had and 
+asked <quote who="James Thompson">is there a proper way to deal with 
+postal codes internationally</quote>, as he was 
+<quote who="James Thompson">starting with the zipcode sample - 
+and so I have zipcode and state - which are kinda americanized 
+:)</quote>. Reinhard explained <quote who="Reinhard M&#252;ller">it's usually 
+postal code in british english - and for most of europe, the order is "zip 
+city" - and as most countries in europe are a little bit smaller than 
+the US, there is no need for a state</quote>.</p>
+
+<p>Later, James confirmed <quote who="James Thompson">i'm creating a 
+testkit starting w/ an invoice - it's not suited for real world invoicing 
+but it hits quite a few gotchas in tables (at least I think)</quote> and 
+was uncovering some bugs in the code. He discussed the directory structure
+to store this in with Reinhard. He also said <quote who="James Thompson">i'm 
+working from the assumption that unit tests are going to expect - a fresh 
+gnue db</quote> for each run. Reinhard confirmed 
+<quote who="Reinhard M&#252;ller">that's what we have always done with our tests 
+in appserver</quote>. James wished <quote who="James Thompson">gnue-schema 
+could deal with changes in the structure better - or an option to overwrite 
+the existing db structures if passed a flag</quote> but Reinhard made the 
+point that <quote who="Reinhard M&#252;ller">so far, we deliberately didn't make 
+gnue-schema delete anything that is already there - just to not have the 
+risk of accidentally deleting things</quote>, which James agreed with. 
+Reinhard noted that <quote who="Reinhard M&#252;ller">it should work with adding 
+columns - changing the type of an existing column is probably not possible 
+for most</quote> databases that GNUe had drivers for, 
+<quote who="Reinhard M&#252;ller">except with dropping and creating it again - 
+which will lose all data</quote>.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.12Mar2006">The
+next day</a>, Bajusz Tam&#225;s (btami) asked whether James had 
+<quote who="Bajusz Tam&#225;s">seen the gnue-invoice sample app in the 
+gnue-contrib</quote> repository, but noted that this had dependancies 
+<quote who="Bajusz Tam&#225;s">on gnue-packages a bit</quote>. James 
+explained <quote who="James Thompson">all i'm after is a testkit for gnue
+- not really something fleshed out completely - but something we can all 
+use in unit tests, samples, etc</quote>.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.13Mar2006">The
+next day</a>, James asked whether 
+<quote who="James Thompson">the sample gsd files I put into gnue-samples</quote>
+could be expanded, and all applications and unit testing use these samples. 
+Reinhard said <quote who="Reinhard M&#252;ller">we already did that in appserver, 
+actually - gnue-appserver/tests/data.py</quote>. This was just data - the schema 
+was in a different file.</p>
+
+<p>Reinhard said that the sample data needed to include all possible field 
+types - <quote who="Reinhard M&#252;ller">date, time, datetime, boolean, 
+test, number with and without fractions</quote> - also an example of
+<quote who="Reinhard M&#252;ller">a fishhook</quote> where a table references 
+itself for a foreign key. For instance, a part/item record could have a 
+field defining a possible replacement/substitute part (which would be 
+another item in the same table), or an employee record could have a field 
+defining their boss (who would be another employee in the same table).</p>
+
+<p>Later, Jason Cater (jcater) said he would <quote who="Jason Cater">just 
+like to use something common for some of my stuff too</quote>. James said 
+<quote who="James Thompson">i think we're talking about revamping all the 
+various samples in gnue - as so many are broken - and make a single, consistant 
+sample system - nothing complex - that's what I started in gnue-samples</quote>.
+Jason had been using sample data sets with about 300 records, but the consensus 
+was that a smaller data set was needed for the GNUe samples - Reinhard felt 
+that 300 records <quote who="Reinhard M&#252;ller">is too little anyway to do 
+performance tests - and OTOH it's too much as that you could easily predict 
+what should come out of a specific operation</quote>. Jason agreed, saying 
+that his <quote who="Jason Cater">sample set was mainly used for reporting 
+tests - which explains the size</quote>. Reinhard noted 
+<quote who="Reinhard M&#252;ller">in the appserver sample I think we had 5 
+records - I think something between 5 and 10 might be enough</quote>.
+Jason felt that this was about right for sample standing data tables, but 
+that sample fact data tables needed to be larger <quote who="Jason Cater">for 
+reporting or other aggregate-type things</quote>.</p>
+
+</section>
+
+

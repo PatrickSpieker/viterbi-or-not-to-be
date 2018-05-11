@@ -1,0 +1,109 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.04Apr2002" enddate="06 Apr 2002 23:00:00 -0800" startdate="03 Apr 2002 23:00:00 -0800" subject="[IRC] 04 Apr 2002" title="Using pysablot as an XML transformation tool with GNUe Reports">
+<topic>Reports</topic>
+
+
+<p>Derek Neighbors (dneighbo) said he had a real need for a
+<quote who="Derek Neighbors">reporting solution here</quote> at work, 
+and asked how GNUe Reports was progressing after 
+<kcref startdate="19 Mar 2002 18:38:20 -0800" subject="[Gnue-dev] GNUe Reports and xmlns, oh my!" /> 
+- <quote who="Derek Neighors">have 
+you formalized the 'tags' yet for NORMAL reporting? if so im ready to 
+beta test</quote>. Jason Cater (jcater) said 
+<quote who="Jason Cater">that's what I've been working on last 2 days - 
+I wanna release reports 0.0.1 when we do forms/designer</quote>. He 
+said <quote who="Jason Cater">fwiw, I'm doing a "generic" 
+tag format that doesn't have to be the "formal" format
+[...] that will demo what it will do</quote>. 
+Derek said <quote who="Derek Neighbors">i will write an xsl for the 
+output to excel -  as im hurting here - the report tool sucks so bad 
+here ive dumped the data out to access (from olap) and am using access 
+to write a report and its SHIT. I would rather dump to postgres 
+then use gnue reports</quote>.</p>
+
+<p>Jason <quote who="Jason Cater">really wants to see an XML to XSLT 
+converter :)</quote>. Derek said <quote who="Derek Neighbors">i might 
+try a convertor tonight to html</quote>, using 
+<quote who="Derek Neighors">pysablot</quote>, although he wished 
+there were Debian packages for this. Jason asked 
+<quote who="Jason Cater">nickr: yes, could you package 
+<a href="http://pysablot.sf.net">pysablot.sf.net</a>?? - /me would 
+be your best friend - or at least nicer to you than I am to 
+chillywilly ;)</quote> Nick Rusnov (nickr) suggested using 
+<quote who="Nick Rusnov">4front instead - which is already 
+packaged</quote>. Jason noted that <quote who="Jason Cater">sablotron 
+plus the perl and php bindings are already in woody - just no python 
+bindings</quote>. Derek said he had mainly used sablotron, 
+<quote who="Derek Neighbors">as its what mdean and i found to have 
+best docs :) - both beign new to xslt this was important :) - 
+we got it working for DCL - and it seems very easy and simple to 
+use - and has a plethora of bindings</quote>. Nick said 
+<quote who="Nick Rusnov">I was going to use sablotron at one time 
+but then I found 4front which did everything I needed</quote>. 
+Christian Selig (sledge_) recommended 
+<a href="http://www.dpawson.co.uk">the XSLT FAQ</a> - 
+<quote who="Christian Selig">it's a faq for those who already use 
+xslt - it gives some good advice on the more tricky issues 
+:-)</quote>.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.06Apr2002">
+Two days later</a>, Jason asked <quote who="Jason Cater">nickr: 
+did we ever volunteer you to package pysablot for us?</quote>
+Nick replied <quote who="Nick Rusnov">you tried to convince me 
+- but I'm whiley</quote>. Jason explained that psyablot was 
+a <quote who="Jason Cater">a wrapper to sablotron</quote>, 
+which was <quote who="Jason Cater">an XSL processor fully 
+implemented in C++</quote>. Nick pointed out that 
+<quote who="Nick Rusnov">you guys do know that pysablot was 
+last released in nov 2000? and that its still alpha?</quote>
+He said he would <quote who="Nick Rusnov">make a deb of it, but 
+I don't think I should put it in the debian archive if</quote> 
+it wasn't being actively maintained. Derek said that there 
+was a freeze on new packages until the May 1st release of 
+Debian woody (as the new stable distribution) anyway. He didn't 
+think that it was a problem that there had been no more recent 
+releases of psyablot - <quote who="Derek Neighbors">i mean all 
+it is a wrapper to sablotron - and from what i have used it 
+works w/o issue - and seemed to have all functionality - 
+so unless sablotron changes i wouldnt expect a lot from pysablot 
+to change - i am willing to contact the maintainer of pysablot to 
+see if they have abandoned it or not</quote>. If so, 
+<quote who="Derek Neighbors">i will probably see if he is willing 
+to turn it over - call me sick but i like it :)</quote>. He 
+thought it was important, as <quote who="Derek Neighbors">iirc 
+there were only like 2 or 3 xslt packages for python - 
+sablotron and pysablot were the only combo that were BOTH GPL - 
+i also liked that sablotron is maintained by a commercial 
+company that puts money into the development</quote>. Nick 
+pointed out that <quote who="Nick Rusnov">python 4suite is free - 
+and maintained</quote>. Derek said <quote who="Derek Neighbors">fwiw 
+i suppose in reports and such we could treat it like db drivers - 
+where you can use your 'favorite' xslt engine. To me i think one 
+issue with 4suite - is it is a REAL suite - i.e. its a LOT of 
+junk we dont use</quote>, although it did have support for
+<quote who="Derek Neighbors">a Python implementation of the 
+ODMG 3.0 object database standard</quote> which Daniel Baumann 
+(chillywilly) had been championing. Later, Nick reported 
+<quote who="Nick Rusnov">I appear to have successfully created 
+pysablot packages</quote>, in versions for both python 2.1 
+and 2.2, which were now 
+<a href="http://nick.industrialmeats.com/proj/gnue/pysablot/">
+available</a> for testing. There was much gratitude from 
+various people.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.07Apr2002">
+The next day</a>, Jason declared that Nick 
+<quote who="Jason Cater">rocks because he created a pysablot 
+deb for us :)</quote> He had done some testing and 
+<quote who="Jason Cater">it appears to</quote> work. Nick 
+said <quote who="Nick Rusnov">if you guys take on maintainership 
+and clarify the license I'll upload itto debian</quote>. It 
+would also need <quote who="Nick Rusnov">some documentation - 
+there isn't so much as a readme in the tarball</quote>. 
+Jason suggested <quote who="Jason Cater">who knows by the time 
+we're done we might end up "adopting" a lot of small 
+python projects</quote>, as a <quote who="Jason Cater">GNUe 
+Python Orphanage</quote>. Daniel suggested 
+<quote who="Daniel Baumann">GNUe Rehabilitation Center</quote>.</p>
+
+</section>
+

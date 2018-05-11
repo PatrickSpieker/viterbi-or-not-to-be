@@ -1,0 +1,784 @@
+*** ibr has joined #gnuenterprise
+<ibr> Hello all!
+<ibr> I'm still trying to build "Hello, world".
+<ibr> I've installed postgres and gnue-* packages.
+<ibr> I don't understand how I should proceed.
+<ibr> Could anyone please help?
+<ibr> Installed pkgs (debian): postgresql-8.0 python2.3-pygresql gnue-appserver gnue-common gnue-designer gnue-forms gnue-reports
+<ibr>  /etc/gnue/connections.conf:
+<ibr> [gnue]
+<ibr> provider = pygresql
+<ibr> host = localhost
+<ibr> dbname = gnue
+<ibr> template1=# \l
+<ibr>         List of databases
+<ibr>    Name    |  Owner   | Encoding
+<ibr> -----------+----------+-----------
+<ibr>  gnue      | gnue     | UNICODE
+<ibr>  template0 | postgres | SQL_ASCII
+<ibr>  template1 | postgres | SQL_ASCII
+<ibr> (3 rows)
+<dimas> hello ibr
+<dimas> you should start gnue-appserver somehow
+<dimas> and then use gnue-forms to access data in there
+<ibr> Aha, let me see... No processes named *gnue*.
+<ibr>  /etc/init.d/gnue-appserver start
+<ibr> Starting gnue-appserver: gnue-appserver
+<ibr> Exporting our services via xmlrpc (port 8765) ...
+<ibr> Reloading class repository ...
+<ibr> gnue-appserver: Unable to log in after 4 attempts.
+<ibr> Error: fe_sendauth: no password supplied
+<ibr> dimas: How should I specify the username and password in connections.conf?
+<dimas> I do not have them set in mine
+<dimas> does postgres allow you to connect from the current user?
+*** yure has joined #gnuenterprise
+<ibr> dimas: Yes, but gnue-appserver works as root.
+<ibr> dimas: I can set that for testing in the postgres config.
+<ibr> dimas: Are there any docs on connections.conf?
+<ibr> dimas: Hmm, I have "local all all trust" in /etc/postgresql/8.0/main/pg_hba.conf :/ .
+<dimas> try to run
+<dimas> psql gnue
+<dimas> from the user you start appserver from
+<dimas> what it gives?
+<dimas> or better:
+<dimas> psql -h <ip-address> gnue
+<ibr> dimas: psql: FATAL:  password authentication failed for user "root"
+<dimas> can you start appserver from non-root user?
+<dimas> otherwise you need to create user root in postgres
+<ibr> Hmm, never tried.
+*** johannesV has joined #gnuenterprise
+<johannesV> good morning
+<ibr> good morning
+<dimas> good morning
+<ibr> DB000:    File "/usr/lib/gnue/python/gnue/common/apps/GServerApp.py", line 184, in __createPidFile
+<ibr> DB000:     pidfile = open (self.OPTIONS ['pidfile'], 'w')
+<ibr> DB000:  IOError: [Errno 13] Permission denied: '/var/run/gnue/appserver.pid'
+<dimas> ah
+<ibr> If there are no docs on connections.conf, how can I trace python execution?
+<dimas> johannesV: how is better to set it for ibr for full install ?
+<dimas> appserver is run from root
+<dimas> does he need to createuser root in postgres?
+<dimas> have not used full install for a long time
+<ibr> dimas: I could, but I'd rather give user gnue in connections.conf.
+<ibr> dimas: You mean, there is also not full install? W/o app server?
+<dimas> ibr: gnue-appserver --help for debug options
+<dimas> ibr: there is cvs install when all run from current user/dir
+<ibr> dimas: I guess this is logging built into the app-server. Is there a python debugging facility?
+<ibr> dimas: Ah, I see.
+<dimas> may be not available if you installed from release packages
+<ibr> dimas: If it is easier with cvs install, let's try that.
+<dimas> ibr: postgres has createuser command to create new user
+<ibr> dimas: Yes, do you mean I should create user root?
+<ibr> user  = self.OPTIONS ['username'] or 'gnue'
+<dimas> may be, try to do
+<ibr> dimas: The above line from geasRpcServer.py makes me unsure about that.
+<ibr> dimas: How can I see which user it is connected with?
+<dimas> hm
+<dimas> have not reinstalled gnue and postgres for ages, may be johannes can help
+<dimas> ibr: try to add debug-level
+<dimas> ibr: and i do have gnue user in postgres
+<ibr> Aha. Let me see...
+<johannesV> ibr, appserver is usually run by a privileged useraccount which has access to /var/run/gnue*. usually this directory should be created by the package-management used for installation having the proper access privileges
+<johannesV> so if you start appserver as 'normal' user make sure to have enough permission to write to /var/run/gnue/*
+<ibr> dimas: psql -U gnue gnue works.
+<ibr> johannesV: Yes, I'm starting it with root, but postgres connection fails.
+<dimas> check also with -h option
+<ibr> dimas: Ah, this asks for password.
+<johannesV> connecting from appserver or from forms
+<ibr> johannesV: gnue-appserver: Unable to log in after 4 attempts.
+<johannesV> ah, ok
+<ibr> johannesV: Error: fe_sendauth: no password supplied
+<johannesV> you have a password set in your connections.conf ?
+<ibr> johannesV: No.
+<ibr> password = xxx
+<ibr> The syntax is like above?
+<johannesV> yes
+<johannesV> correct
+<johannesV> for the logs: btami, the dropdown-problem is a known issue and Vadim Zeitlin is trying to look at it this weekend (thread: http://lists.wxwidgets.org/cgi-bin/ezmlm-cgi?5:sss:69454:200601:angkeknejgglpdmmjaod#b) - meanwhile i'd prefer using wx 2.6.1.0 as it is working perfectly with that version
+<ibr> psql -U gnue -h localhost gnue succeeds with a password.
+<ibr> gnue-appserver doesn't start with the same error messages.
+<ibr> postres log says:
+<ibr> LOG:  could not receive data from client: Connection reset by peer
+<ibr> Aha, setting username = gnue in connections.conf helped.
+<ibr> gnue-appserver: error 'ERROR:  relation "gnue_module" does not exist
+<ibr> ' in 'SELECT gnue_name, gnue_id FROM gnue_module  ORDER BY gnue_id'
+<ibr> I suppose it's time to import the schema.
+<johannesV> ibr, great . that's right. you can run gnue-schema with the gnue.gsd (located in the share-directory)
+*** Morphous has joined #gnuenterprise
+<ibr> It said the following: http://www.radix50.net/~ibr/setup-db.sh.log :( .
+<ibr> gnue=> \dt
+<ibr> No relations found.
+<johannesV> ibr, you've to use "gnue-schema" to install the schema defined in gnue.gsd
+<johannesV> change to the folder where you have the gnue.gsd file
+*** Amorphous has quit IRC
+<johannesV> then call something like gnue-schema gnue.gsd
+<ibr> Ah, yes.
+<johannesV> it seems as if you've tried to import sample.gsd ... didn't you ?
+<ibr> Yes :) .
+<johannesV> sample.gsd provides sample-data for the sample-classes
+<johannesV> while gnue.gsd contains the database-schema for appserver's class repository
+<ibr> Ok, seven tables in the gnue DB.
+<johannesV> great, now you can import the sample-classes
+<johannesV> do that with "gnue-readgcd sample.gcd"
+<ibr> johannesV: What do I need them for?
+<johannesV> oh, you don't need them
+<johannesV> i thought you'd like to try it out a bit ...
+<ibr> Yes, I want to run a Hello, World app. But I don't understand which sample app these data belong to.
+<johannesV> there is a form called sample.gfd (form definition) which uses that sample-classes (address_country and address_person)
+<johannesV> (from sample.gcd)
+<ibr> Aha, great.
+<ibr> Do I need to restart the appserver after I import the data for sample?
+<johannesV> no, not after importing data; after importing new classes either restart appserver, or send a SIGHUP to the appserver process
+<johannesV> (as this will reload the classrepository)
+<johannesV> you might want to read the developers guide for appserver
+<ibr> Will do.
+<johannesV> there are most of the concepts explained quite easily
+<johannesV> how to create classes, properties, triggers and much more
+<ibr> But I'd like to see *anything* running first :) .
+<ibr> GNUe Application Server up and running
+<ibr> How can I build and run the sample application?
+<johannesV> well, have you imported the sample.gcd ?
+<ibr> Yes.
+<johannesV> ok, and sample.gld ?
+<ibr> No. gnue-readgld?
+<ibr> C or de?
+<johannesV> yeah, but it is quite optional (as it provides translations only)
+<ibr> So, if I don't import sample.gld, the app will be in English?
+<johannesV> doesn't matter
+<johannesV> yes and no; the provided gld contains translations for the sample classes - but these translations will be used only, if you use appserver's generated forms
+<johannesV> so if you plan to just quickly check sample.gfd
+<johannesV> the *.gld are of no use to you
+<ibr> Ok, what should I do now?
+<johannesV> ok, said that, after import sample.gsd (using gnue-schema again) you can just fire up sample.gfd (using something like "gnue-forms sample.gfd")
+<ibr> readgsd: error 'do not know how to handle type <type 'DateTimeDelta'>' in 'INIT'
+<johannesV> what ?
+<johannesV> you're using a postgres, right ?
+<ibr> Yes.
+<johannesV> which driver are you using ?
+<johannesV> psycopg, pypgsql, pygresql ?
+<ibr> provider = pygresql
+<johannesV> is this the only one you've installed ?
+<johannesV> (or do you have psycopg available)
+<ibr> I should.
+<johannesV> hm, but it works fine for me using the pygresql
+<ibr> That's python2.3-pygresql.
+<ibr> Hmm, worked with psycopg. What's the difference, why three drivers for the same thing?
+<johannesV> ok, ibr, i can reproduce this problem if i create the classes using the pygresql driver
+<ibr> gnue-forms sample.gfd gave a traceback
+<ibr> http://www.radix50.net/~ibr/mc77.png
+<johannesV> this looks like you've not restarted (or sighuped) your appserver ?
+<johannesV> btw, are you using KDE ?
+<johannesV> wrt to the datetimedelta-problem, it looks like pygresql creates a mx.DateTimeDelta object for time values, but finally isn't able to handle them ... (will investigate it)
+<johannesV> yeah, that's obviously a bug in pgdb.py
+<johannesV> the _quote () function only handles mx.DateTime types but not mx.DateTimeDelta's which it creates itself in the typecast function ...
+<johannesV> hm, bad bad ... anyway it's better to use the psycopg driver as it is the one known to work best ...
+<ibr> Hmm, seems debian's init.d script is buggy, restarted by hand, it worked.
+<ibr> I'm not using KDE.
+<ibr> Aha, good to know.
+<ibr> Ok, I see the forms. How should I build and run the app?
+<johannesV> you've got your form shown ?
+<johannesV> that is the app :)
+<johannesV> you should now be able to add/modify person- and country-records
+*** btami has joined #gnuenterprise
+<btami> hi all
+<btami> johannesV: tried it with 2.6.1.0, and it's ok
+<btami> thx
+<johannesV> btami, no problem. i was quite shocked after seeing that the newer version breaks such basic things
+<btami> yes, annoying...
+<johannesV> wrt the page-switching problem, I've not found the pb right now ...
+<johannesV> as it works fine with changes done by keyboard
+<johannesV> since the ui-widget get's a SetFocus () command ... which seems to be just ignored by wx
+<johannesV> but it looks like my last post yesterday has initiated a fix of the dropdown-problem
+<johannesV> ok, have to run now ...
+<johannesV> i'm back in a while
+*** btami has quit IRC
+<johannesV> back
+*** Morphous is now known as Amorphous
+*** reinhard has joined #gnuenterprise
+*** sacha has quit IRC
+*** johannesV_ has joined #gnuenterprise
+*** johannesV has quit IRC
+*** johannesV_ has quit IRC
+*** johannesV has joined #gnuenterprise
+*** jamest has joined #gnuenterprise
+*** sjc has joined #gnuenterprise
+<jamest> do we have a real test schema for gnue?
+<reinhard> you mean we should test our code?
+<jamest> er, no, of course not
+<reinhard> seriously, I think we have some do-all-tests scripts or something IIRC
+<reinhard> at least in common
+<jamest> i mean db structures
+<reinhard> ah
+<reinhard> I always use zipcode and the appserver sample
+<jamest> i've got that object wrapper thing I've talked about implemented at ajrs
+<jamest> and want to put in gnue-common
+<jamest> at work i've got two talbes
+<reinhard> not trying to hold you back, but didn't you want to put it in gnue-contrib?
+<jamest> i menat contrib
+<jamest> sorry
+<jamest> it's in my ajrs common :)
+<jamest> but my unit tests for it bang on 2 tables
+<jamest> prodepm=> select * from test_master_table
+<jamest> prodepm-> ;
+<jamest>  master_id | decimal_field | txt_field | bool_field
+<jamest> -----------+---------------+-----------+------------
+<jamest>          2 |          0.02 | Master 2  | f
+<jamest>          1 |          0.01 | Master 1  | t
+<jamest> and
+<jamest> prodepm=> select * from test_detail_table ;
+<jamest>  detail_id |  value
+<jamest> -----------+----------
+<jamest>          1 | OneTwo
+<jamest>          1 | OneThree
+<jamest>          1 | OneFour
+<jamest>          1 | OneFive
+<jamest>          2 | TwoOne
+<jamest>          2 | TwoTwo
+<jamest>          1 | OneOne
+<jamest> (7 rows)
+<jamest> not exactly robust :)
+<jamest> i was hoping maybe we had something like MS's northwind db setup
+<reinhard> what is that?
+<jamest> it's a complete schema for a business
+<jamest> as a sample
+<reinhard> ah
+<jamest> http://www.pwsdb.com/pgm/tutorial-view.php?topic=18
+<reinhard> the 2 tier variant of the appserver sample might be a start for that
+<jamest> where is that at?
+<reinhard> I can't find it :(
+<reinhard> sigh
+<jamest> well, i've actuall
+<jamest> y
+<reinhard> we need to consolidate our samples and test forms
+* jamest looks around
+<jamest> reinhard: lean over here
+* jamest whispers
+<reinhard> most of them are not maintained and not kept up to date
+<jamest> I've got time to GNUe some
+<reinhard> and shipping a sample with the code that doesn't work is bad
+<reinhard> great to hear that
+<jamest> i was thinking about doing that
+<jamest> cleanup of samples
+<jamest> so I can start some unit tests
+<jamest> i've fallen in love with them at work
+<reinhard> ask kilo/btami for the 2 tier appserver sample
+<jamest> have > 100 tests
+<reinhard> IIRC they have done it
+<jamest> how would you want the samples done?
+<jamest> in gnue-samples
+<jamest> or in the per app samples dir
+<reinhard> if we will build a southwind sample or something like that
+<reinhard> I'd prefer to have it in the gnue-samples dir
+<reinhard> as it will be gpd, gfd, grd and everything
+<jamest> i was thinking about a gnue-testkit
+<jamest> which is really just gnue-samples I guess
+<reinhard> as for unittests
+<reinhard> I would think they should be per package
+<jamest> oh yes
+<jamest> they overwhelm otherwise
+<reinhard> but all of them might rely on the data from the testkit
+<jamest> yes
+<jamest> that is how I do it at work
+<jamest> but for gnue i could see a
+<jamest> testkit that builds the "gnue" database we default to
+<jamest> then all app samples could reference that structure
+<reinhard> erm
+<jamest> and all unittests would expect that to exist
+<reinhard> yes that's actually what I meant
+<reinhard> :)
+<jamest> so would this be the same as gnue-samples?
+<reinhard> yes
+<jamest> and we just cleanup what's there?
+<reinhard> but again I would prefer a *single* well-maintained sample
+<jamest> i agree
+<jamest> well, 2
+<reinhard> yes
+<reinhard> right
+<reinhard> one 2-tier and one appserver
+<jamest> as the test schema would work in 2tier
+<jamest> yeah, that
+<reinhard> where they could even be the same in principle
+<reinhard> just ported to appserver
+<reinhard> and the sample would not only contain the schema but also some data
+<reinhard> that would really be great to have
+<jamest> reinhard: will you be here today?
+<jamest> for a while?
+<jamest> as I figure this all needs to be in gnue-schema
+<reinhard> not sure
+<reinhard> but could well be
+<jamest> wow
+<jamest> we have quite a few gsd
+<jamest> babyerp
+<jamest> gnue-sb
+<jamest> gnue-samples/testcases/appserver/appservertest.gsd
+<jamest> is that the sample?
+<reinhard> no, that's a very old test form/gsd for appserver which should be deleted immediately
+<reinhard> FWIW
+<reinhard> I just thought about using xnee for UI testing
+<reinhard> but I haven't looked at it at all
+<reinhard> it's just a means to record things in X
+<reinhard> hmmm.....
+<reinhard> another idea could be to create a scriptable pseudo-uidriver
+<reinhard> which takes its events from a file instead of mouseclicks
+<reinhard> brb, off to watch news on tv
+<jamest> ok
+<reinhard> back
+<jamest> reinhard: is it better to have one gsd
+<jamest> or can you easily load a whole dir of them?
+<johannesV> jamest, you could pass in a bunch of gsd's into a single call of gnue-schema
+<johannesV> all that tables are then sorted to fulllfill all dependecies
+<jamest> ok
+<jamest> I can't find the appserver sample
+<johannesV> gnue-appserver/samples/*
+<jamest> the 2tier?
+<johannesV> ah, that i don't know ...
+<jamest> what's in the appserver sample?
+<jamest> i was thinking it was country and something last I loked
+<johannesV> address_country and address_person
+<jamest> i was hoping to do something a little bigger
+<jamest> say a customer/invoice thing
+<jamest> is there a proper way to deal with postal codes internationally
+* jamest is starting with the zipcode sample
+<jamest> and so I have zipcode and state
+<jamest> which are kinda americanized :)
+<johannesV> what do you mean with 'proper way to deal' ?
+<jamest> well
+<jamest> if I do a customer db
+<jamest> I'm going to have
+<jamest> attention1, attention2, address1, address2, city, state, zip
+<jamest> i'm pretty sure you'd have something different for city, state, zip
+<jamest> so if there are more international names for those things I'd prefer to use them
+<jamest> like maybe
+<jamest> locality, district, postal code
+<johannesV> i don't know how this would be called 'internationally', but we call it country, city, zip here ...
+<jamest> why does gnue-schema want to create a gnue user even if I pass in a -u option?
+<jamest> is that by design?
+<reinhard> it's usually postal code in british english
+<reinhard> and for most of europe, the order is "zip city"
+<reinhard> and as most countries in europe are a little bit smaller than the US, there is no need for a state
+<jamest> ok
+<jamest> does appserver use gnue-schema directly or just as a lib
+<jamest> as it's really acting wack
+<reinhard> appserver does use gnue-schema to bootstrap the db
+<jamest> odd
+<reinhard> johannesV: you still here?
+<jamest> as it's ignoring -u
+<johannesV> yeah
+<reinhard> hmmm
+<jamest> and sometimes it prompts for passwd and sometimes not
+<jamest> or it'll prompt for passwd
+<reinhard> johannesV: can you help jamest on this?
+<jamest> i'll enter it
+<johannesV> ah, you mean that random-generator integrated into gnue-schema ?
+<jamest> prompt again
+<jamest> i'll enter it
+<jamest> tell me databse created
+<jamest> prompt again
+<johannesV> gnue-schema uses common's connection for authentication ...
+<jamest> and now it's asking for a differnet user
+<reinhard> must run, bbl
+<johannesV> jamest, what kind of db are you using ?
+<jamest> postgresql
+<johannesV> hm
+<jamest> i'm updating to 8.1.3 now
+<johannesV> oh
+<johannesV> haven't tried with an 8.*
+<johannesV> well, let me have a look at this
+<johannesV> which driver are you using ?
+<jamest> gsscvs -c gnue -d -u dbadmin *.gsd
+<jamest> [gnue]
+<jamest> comment = Production DB(G)
+<jamest> provider = psycopg
+<jamest> host = gnue
+<jamest> dbname = gnue
+<johannesV> ok, so it should actually use the username 'dbadmin' for connecting to db gnue on host gnue
+<jamest> that was what I was trying
+<jamest> but
+<johannesV>     username = self.connection.parameters.get ('username', 'gnue')
+<johannesV>     password = self.connection.parameters.get ('password', 'gnue')
+<johannesV>     if self.OPTIONS ['username'] is not None:
+<johannesV>       username = self.OPTIONS ['username']
+<johannesV>     if self.OPTIONS ['password'] is not None:
+<johannesV>       password = self.OPTIONS ['password']
+<johannesV>     self.connection.parameters ['_username'] = username
+<johannesV>     self.connection.parameters ['_password'] = password
+<johannesV> so, the connection should use the username/password provided on the commandline
+<jamest> amest@calvin:~/svn/gnue/gnue-samples/schema$ gsscvs -c gnue -d -u dbadmin *.gsd
+<jamest> You are about to create the new database 'gnue'. Continue [y,N]: y
+<jamest> Password:
+<jamest> Password:
+<jamest> createuser: could not connect to database template1: FATAL:  password authentication failed for user "jamest"
+<johannesV> ah, got the first bug then
+<johannesV> in _createDatabase_ of sql.postgresql.Behvior
+<johannesV> i do a query of the connection.parameter ['username']
+<johannesV> instead of _username
+<johannesV> same applies to password
+<johannesV> have to double-check wether it's better to change _username into username or vice versa
+<johannesV> jamest, could you give it another try ?
+<jamest> sure
+<jamest> i need to finish the upgrade to 8.1.3,just a sec
+<jamest> is this line ok?
+<jamest> gsscvs -c gnue -d -u dbadmin *.gsd
+<johannesV> yes, should be
+<jamest> i would think i'm telling it create 'gnue' via user dbadmin
+<jamest> jamest@calvin:~/svn/gnue/gnue-samples/schema$ gsscvs -c gnue -d -u dbadmin *.gsd
+<jamest> You are about to create the new database 'gnue'. Continue [y,N]: y
+<jamest> Password:
+<jamest> Password:
+<jamest> createuser: could not connect to database template1: FATAL:  password authentication failed for user "jamest"
+<johannesV> self.addCommandOption ('username', 'u', argument="user",
+<johannesV>         help = _("Set the username for the database. If the database is to be "
+<johannesV>                  "created, this username will be it's owner."))
+<jamest> so it's not the name used to do the creation?
+<jamest> as in my case I have a master user 'dbadmin' which owns all production tables
+<johannesV> no, have a look at datasources.drivers.postgresql.Behavior
+<johannesV> the user given on the commandline (or the config-file) will be created first, in order to become the owner of the newly created db
+<jamest> i don't have that module
+<johannesV> ah, sorry, wrong path
+<johannesV> "drivers/sql/postgresql/Behavior.py"
+<jamest> ok
+<jamest> so in my case I'm in trouble
+<jamest> as I don't have a real dbadmin account on the system
+<johannesV> maybe we should consider adding another argument to gnue-schema, specifying a user used for issuing the createdb-command
+<jamest> only in postgresql
+<jamest> i would think
+<jamest> -u username to login as
+<jamest> --username
+<jamest> and
+<johannesV> --owner
+<jamest> --owner username to own
+<johannesV> would be better right
+<jamest> where --owner defaults to --username
+<jamest> if not given
+<jamest> yes
+<johannesV> i think i'll add this tomorrow
+<jamest> ok, for today i'll manually create the db
+<johannesV> or you could do it if you like (or need it) right now
+<jamest> i'll hold off unless I hit another issue
+<jamest> i really want to get something done with a test setup
+<jamest> and digging thru datasources will suck a bit of time
+<johannesV> ok, no problem --- I'll go and fix that tomorrow
+<jamest> thanks
+<johannesV> will read the logs anyway, so don't hesitate on dropping other reports in here ...
+<johannesV> have to run now ...
+<johannesV> happy coding !
+<jamest> thanks
+*** johannesV has quit IRC
+*** sacha has joined #gnuenterprise
+<jamest> johannesV*********************************
+<jamest> a few things
+<jamest> the technote references a type='key' that doesn't seem to exist in the drivers anymore
+<jamest> would there be some advantage to having it drop and recreate tables if a flag is set
+<jamest> as if I change the schema then i have to drop the altered tables/sequences automatically
+<jamest> if I don't drop the sequence it aborts
+*** kilo has joined #gnuenterprise
+<jamest> reinhard: wb
+<jamest> i've been breaking gnue-schema
+<reinhard> nice ;-)
+<reinhard> seems like it's been some time since it has been used extensively
+<jamest> well
+<jamest> i'm creating a testkit starting w/ an invoice
+<jamest> it's not suited for real world invoicing but it hits quite a few gotchas in tables (at least I think)
+<jamest> and gsscvs hates it :)
+<jamest> in gnue-samples
+<jamest> how should we lay this out
+<jamest> i have a gnue-samples/schema directory
+<jamest> but i'm not sure how/where the appserver stuff should go
+<jamest> would we be better served by something like
+<reinhard> maybe have a gnue-samples/2tier/schema
+<jamest> er, close to what I was thinking
+<jamest> i was thinking
+<jamest> data/2tier data/appserver
+<jamest> or were you thinking of
+<jamest> 2tier/tests
+<jamest> appserver/tests
+<jamest> wait, those wouldn't go in there
+<reinhard> right
+<reinhard> 2tier/schema
+<reinhard> 2tier/forms
+<reinhard> 2tier/reports
+<reinhard> appserver/objects
+<reinhard> appserver/forms
+<reinhard> appserver/reports
+<reinhard> but I'm not sold on that :)
+<jamest> it's easy enough to change
+<jamest> i'm assuming I can ditch the tutorials and testcases dirs and move the stuff to where it fits better
+<jamest> also
+<reinhard> I think so
+<jamest> i'm working from the assumption that unit tests are going to expect
+<jamest> /usr/local/pgsql/bin/dropdb gnue
+<reinhard> (I have never done anything in gnue-samples, so I'm not the one to decide that)
+<jamest> a fresh gnue db
+<reinhard> yes, that's what we have always done with our tests in appserver
+<reinhard> and it sounds reasonable
+<jamest> i wish gnue-schema could deal with changes in the structure better
+<jamest> or an option to overwrite the existing db structures if passed a flag
+<jamest> --reset-db
+<jamest> or something to that effect
+<reinhard> so far, we deliberately didn't make gnue-schema delete anything that is already there
+<jamest> i can understand taht
+<reinhard> just to not have the risk of accidentally deleting things
+<jamest> but how do you deal with schema changes
+<jamest> as it seems to ignore them
+<reinhard> it should work with adding columns
+<jamest> maybe I only changed column types
+<reinhard> changing the type of an existing column is probably not possible for most backends
+<reinhard> except with dropping and creating it again
+<reinhard> which will lose all data
+<jamest> while I'm thinking of it
+<reinhard> and if you have no data anway, you can easily drop the whole table and generate it again from scratch
+<jamest> it'd be nice to be able to define comments on tables fields
+<jamest> as at work I use postgresql's comment on to comment everything
+<reinhard> good idea
+<jamest> i may take a look at that
+<reinhard> great
+<jamest> as I think i've hit something I can't get around without debugging
+<jamest> DB000:  MissingKeyFieldError: Key field(s) 'invoice_address_id' missing in row '2' of table 'invoice_address'
+<jamest> my row 2 is
+<jamest>         <row>
+<jamest>           <value field="invoice_address_id">1</value>
+<jamest> also, is there a way to set starting sequence values
+<jamest> as if I setup a field with a serial
+<jamest> and it's the pk
+<reinhard> not that I know of
+<reinhard> it's probably something that works completely differently for all backends
+<reinhard> btw
+<reinhard> if you change stuff in the postgres provider
+<reinhard> please write a short summary so johannes can look into adapting the other drivers as well
+<jamest> then i have to provide a value for that field in the data section
+<jamest> where as if it's not the pk then it'll let it by and default
+<jamest> which means on a pk field populated in the gsd your sequence is going to contain values you've already used
+<jamest> a starting sequence value option would let me set the starting invoice number at say 1000 and let me insert test invoices starting at 0
+<reinhard> i see
+* jamest pictures reinhard setting in front of his computer
+<jamest> why god? why?
+<jamest> <reinhard>we didn't want him mucking about in here anymore.  not now that it's clean
+<reinhard> jamest: I really appreciate your input, seriously! :-)
+<reinhard> and even more your upcoming code ;-)
+<jamest> i'll try
+<jamest> i really want to get back in
+<jamest> but by the time i leave work I'm shot
+<jamest> and though work is ok with me GNUe'n
+<jamest> i've got a lot to get done there just on the basics
+<jamest> here is the current gnue-schema issue
+<jamest> gsscvs -c gnue -u dbadmin -p <snip> *.gsd
+<jamest> readgsd: ERROR:  there is no unique constraint matching given keys for referenced table "items"
+<jamest> ALTER TABLE invoice_item ADD CONSTRAINT fk_invoice_item_sku FOREIGN KEY (sku) REFERENCES items (sku)
+<jamest> gsscvs -c gnue -u dbadmin -p <snip> items.gsd
+<jamest> <completes successfully>
+<jamest> gsscvs -c gnue -u dbadmin -p <snip> *.gsd
+<jamest> <completes successfully>
+<jamest> time for a pizza run
+<reinhard> bedtime
+<reinhard> actually past bedtime :)
+<reinhard> good night all
+*** reinhard has quit IRC
+*** ibr has quit IRC
+*** jamest has left #gnuenterprise
+*** yure has quit IRC
+*** kilo has left #gnuenterprise
+*** derek has quit IRC
+*** derek has joined #gnuenterprise
+*** sjc has quit IRC
+*** ibr has joined #gnuenterprise
+*** gerold has joined #gnuenterprise
+*** krizz has joined #gnuenterprise
+*** krizz has quit IRC
+*** johannesV has joined #gnuenterprise
+*** yure has joined #gnuenterprise
+<johannesV> for the logs: jamest, looks like i've finally managed to create a postgresdb without using createdb/createuser but with our common-based driver; this means using two different sets of credentials for owner and connecting user is no longer a problem ...
+<johannesV> i'll finish this work on Behavior.py today in the evening or at least tomorrow ... sorry for any inconveniences this might has caused ...
+<johannesV> bbl
+*** jamest has joined #gnuenterprise
+*** jamest has quit IRC
+*** johannesV has quit IRC
+*** jamest has joined #gnuenterprise
+*** johannesV has joined #gnuenterprise
+<jamest> hmmm
+<jamest> jamest@calvin:~/svn/gnue/gnue-common$ gfdes
+<jamest> DB000:    File "/home/jamest/svn/gnue/.cvsdevelbase/gnue/common/external/plex/Machines.py", line 14, in ?
+<jamest> DB000:     from Transitions import TransitionMap
+<jamest> DB000:  SyntaxError: Invalid syntax.  Assignment to None. (Transitions.py, line 85)
+<jamest> is anyone running gnue under ubuntu dapper?
+<jamest> i guess no one is running GNUe under python 2.4?
+*** btami has joined #gnuenterprise
+<jamest> hi btami
+*** gerold has quit IRC
+<btami> hi jamest
+<btami> have you seen the gnue-invoice sample app in the gnue-contrib repo ?
+<jamest> no
+<jamest> sigh
+<jamest> that would have been nice :)
+<btami> seems it's an appserver like part of your new sample app in gnue-samples
+<btami> but it depends on gnue-packages a bit, as i know
+<btami> developed by kilo
+<btami> but it's stalled....
+<jamest> all i'm after is a testkit for gnue
+<jamest> not really something fleshed out completely
+<jamest> but something we can all use in unit tests, samples, etc
+<btami> i see
+<jamest> reinhard and I talked a bit about cleaning up the samples
+<jamest> and making something standardized
+<jamest> i see your name in authors
+<jamest> how far along is this?
+<jamest> as i wanted to create an appserver class def to match the two-tier stuff
+<btami> i just tried to apply my char based report filter
+<btami> and wrote a .grd
+<jamest> do you use gnue-reports?
+<btami> just want to...
+<btami> but i'ts a bit behind other gnue tools
+<btami> no designer support is the most wanted feature for me
+<btami> s/no/
+<btami> but i'm not good enough to code that in wx
+<btami> and had 0 time in the last 2-3 moths for gnueing :(
+<jamest> i think I know the feeling
+<jamest> :)
+<btami> but seeing jcater, jan,lekma,psu and you again is a raising sun feeling :)
+<jamest> :)
+<jamest> you full timer gnue'rs aren't nervous about us messing things up after reinhard and johannesV and the rest of you just got things cleaned up?
+<btami> it was only johannesV and reinhard (cleaning up  things)
+<jamest> and adding lots of features
+<btami> yep
+<jamest> we standardize on python 2.3 right?
+<btami> yes
+*** lupo__ has joined #gnuenterprise
+*** yure has quit IRC
+*** btami has quit IRC
+<johannesV> jamest, i'm running gnue using python2.4
+<jamest> really?
+<jamest> nothing worked until I changed our plex library
+<jamest> is was generating a warning in 2.3 and a full traceback in 2.4.2
+<johannesV> hm, strange ... where do we use that plex library ?
+<jamest> in the currently unused input masks
+<jamest> at a minimum
+<johannesV> ah, i see
+<johannesV> so i had no situation where i've been using an input-mask then ...
+<jamest> it was in gfdes
+<johannesV> which one ?
+<jamest> i couldn't run gfcvs or gfdes at all
+<johannesV> hm, that's strange as i can do it quite perfectly :)
+<jamest> which python?
+<jamest> go to gnue-common/src/external/plex
+<jamest> fire up python
+<jamest> then import Transitions
+<jamest> line 85 should at least give a warning if you haven't svn up
+<johannesV> SyntaxError: Invalid syntax.  Assignment to None.
+<johannesV> Python 2.4.2 (#2, Sep 30 2005, 21:19:01)
+<jamest> that was the error I got when running gfdes or gfcvs
+<jamest> even w/o a file name
+<jamest> it's fixed in head
+<johannesV> haven't updated svn till now
+<johannesV> but i'm able to start both, designer and forms
+<jamest> that is wack :)
+<jamest> i migrated from debian to kubuntu at home last night
+<jamest> as I was sick of fighting debian dual head setup
+<jamest> and kubuntu (almost) just works
+<jamest> and hit that bug with a fresh checkout of gnue
+<johannesV> hm, that's strange
+<johannesV> i can't see where that masks-stuff is used in forms ... ?
+<jamest> because it's only in the unit tests in common
+<jamest> i never commited the forms stuff as it is wack
+<johannesV> so how does this affect gnue-forms then ?
+<jamest> it doesn't
+<jamest> ooooo
+<jamest> my forms still has uncommited input mask stuff
+<jamest> which would make plex import even in designer as it uses forms ui dirvers
+<jamest> so no one would have seen this :)
+<jamest> do you know where the table create/alter statements are sorted for depedencies
+<johannesV> you mean in gnue-schema ?
+<jamest> i've found data in readgsd and i'm in DBSIG2.Behaviour now looking
+<jamest> yes
+<jamest> the two-tier sample I commited breaks gnue-schema
+<jamest> it creates the PK FK alter table statements in incorrect order
+<jamest> so I'm trying to find where those are ordered properly
+<johannesV> it should be sorted in readgsd.py (line 760)
+<jamest> um
+<jamest> my readgsd.py only goes to 759
+<johannesV> it's quite complicated and it took me several hours to do that
+<jamest> line 759 is
+<johannesV> oh, sorry
+<jamest>   gsdClient ().run ()
+<johannesV> 370
+<jamest> that's for inportDate
+<jamest> importData
+<jamest> this is an importSchema error I'm fairly certain
+<jamest> if you go into samples/two-tier/schema
+<jamest> and do a gsscvs -c gnue *.gsd
+<johannesV> ah, hm, man .... one could think i'm a bit dumb ...
+<jamest> it'll try to create the FK reference from invoice_items.sku to items.sku
+<jamest> but it hasn't created the items.sku unique constraint yet
+<jamest> so postgresql pukes
+<jamest> i *think* all I'd need to do it make sure unique constrains are done prior to other alter tables
+<jamest> but I can't find where that's sorted
+<jamest>  .... one could think I'M a bit dumb ...
+<jamest> :)
+<johannesV> hm, that key being referenced is (city, state, zip) right ?
+<johannesV> a key having that order does not exist in zipcode table, does it ?
+<jamest> that's fine
+<johannesV> if that order doesn't matter that reference should match the pk then
+<jamest> gsscvs -c gnue -u dbadmin -p <snip> -o out.sql *.gsd
+<jamest> readgsd: ERROR:  there is no unique constraint matching given keys for referenced table "items"
+<jamest> ALTER TABLE invoice_item ADD CONSTRAINT fk_invoice_item_sku FOREIGN KEY (sku) REFERENCES items (sku)
+<jamest> if I --file-only -o out.sql
+<johannesV> ah, maybe i've got an old zipcode table installed ...
+<johannesV> ok, got it reproduce
+<johannesV> s/reproduce/reproduced
+<jamest> line 20 is
+<jamest> ALTER TABLE invoice_item ADD CONSTRAINT fk_invoice_item_sku FOREIGN KEY (sku) REFERENCES items (sku)
+<johannesV> yes
+<jamest> line 21 is
+<jamest> ALTER TABLE items ADD CONSTRAINT unique_sku UNIQUE (sku)
+<johannesV> no no no ...
+<johannesV> don't use unique
+<johannesV> but do something like this:
+<johannesV> just a sec ...
+<jamest> but, but, but!
+* johannesV searching dtd
+<jamest> i read the docs!
+<jamest> well, the files ending in .py
+<jamest> and unique seemed right! :)
+<jamest> that does remind me that technote 00012.txt mentions a type="key" which doesn't work at all
+<johannesV> we need indexes
+<johannesV> damn, where's that dtd
+<johannesV> yep
+<johannesV> that works
+<jamest> i've been using the xmlElements in GSchema.py
+<johannesV> <indexes>
+<johannesV>         <index name="unique_sku" unique="True">
+<johannesV>           <indexfield name="sku"/>
+<johannesV>         </index>
+<johannesV>       </indexes>
+<jamest> as my docs
+<johannesV> instead of that <constraint>
+<johannesV> brb
+<jamest> if you changed that .gsd file can you commit it
+<johannesV> please run gnue-dtd and build it for schema (or gsd ... ) (not sure right now)
+<johannesV> ok
+<jamest> perfect, thanks
+<johannesV> no problem
+<johannesV> btw. i've changed postgres.Behavior to no longer use createdb and createuser scripts
+<johannesV> but to do things directly using template1
+<johannesV> as there was no chance to specify a password while using createdb or createuser
+<johannesV> ok, have to run now
+<johannesV> have a nice day/evening
+*** johannesV has quit IRC
+<ibr> dimas: Thanks much!
+<ibr> Bye!
+*** ibr has quit IRC
+*** chillywilly has quit IRC
+*** SachaS has quit IRC
+*** SachaS has joined #gnuenterprise
+*** chillywilly has joined #gnuenterprise
+*** yure has joined #gnuenterprise
+*** yure has quit IRC
+*** yure has joined #gnuenterprise
+*** kilo has joined #gnuenterprise
+*** yure has quit IRC
+*** lupo__ has quit IRC
+*** kilo has left #gnuenterprise
+<jamest> i've added a thing called objectWrapper to gnue-contrib
+<jamest> it's a port of something I wrote for work that is in the spirit of SQL*Objects
+<jamest> but uses GNUe datasources for persistance
+*** jamest has left #gnuenterprise
+*** chillywilly has quit IRC
+*** jcater has left #gnuenterprise

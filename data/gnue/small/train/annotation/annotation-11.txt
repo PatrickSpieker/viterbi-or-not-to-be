@@ -1,0 +1,229 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.08Apr2002" enddate="09 Apr 2002 23:00:00 -0800" startdate="07 Apr 2002 23:00:00 -0800" subject="[IRC] 08 Apr 2002" title="Working on GNUe Reports">
+<topic>Reports</topic>
+
+
+<p>Derek Neighbors (derek) said he would use a sample GNUe 
+Reports Definition (.gfd), and do <quote who="Derek Neighbors">an 
+html.xsl sheet as it should be easy - then i think i might make a 
+gnumeric one - if i get VERY brave i will look at a formatted 
+objects one which will segway into ps, pdf etc</quote>. Jason Cater 
+(jcater) <quote who="Jason Cater">wants a text one, too</quote>. He 
+asked <quote who="Jason Cater">how does everyone feel about 
+standardizing on SVG for dynamically generated graphics
+(i.e., charts, etc)</quote>. Derek said 
+<quote who="Derek Neighbors">i feel good about svg but i claim 
+to know little :)</quote></p>
+
+<p>Jason confirmed that the output parameter for GNUe Reports 
+was <quote who="Jason Cater">-p or --destination</quote>. Derek 
+thought this <quote who="Derek Neighbors">seems like an odd choice 
+:)</quote>. Jason said <quote who="Jason Cater">-d is taken for 
+"debug"</quote> but he was going to see if that could 
+be changed. Nick Rusnov (nickr) suggested 
+<quote who="Nick Rusnov">why not -o</quote> for output?</p>
+
+<p>Derek asked what the &lt;GNUe-report&gt; and &lt;GNUe-request&gt; 
+tags in the output were for. Jason said <quote who="Jason Cater">you 
+can ignore the GNUe-report-* stuff</quote>, whilst 
+<quote who="Jason Cater">the GNUe-request are the options the report 
+was run with - in case the raw xml was written to a file and later 
+transformed</quote>. He didn't really want to remove either of 
+these <quote who="Jason Cater">unless it really causes you a 
+problem</quote> - <quote who="Jason Cater">nothing is 
+permanent at this stage :) but my intent is to keep them</quote>.</p>
+
+<p>Later, Derek confirmed <quote who="Derek Neighbors">basic 
+transformatoin for title is done :)</quote> He suggested 
+<quote who="Derek Neighbors">for now i want to be 'simple'
+so im going to ignore 'page breaks' in html - and instead insert 
+&lt;hr&gt;</quote>. Jason confirmed that section titles would 
+be marked up as <quote who="Jason Cater">&lt;sectionTitle&gt;
+foo &lt;/sectionTitle&gt;</quote> in the source XML. Derek was 
+<quote who="Derek Neighbors">just curious if we are avoiding 
+&lt;section title="something"&gt; for a reason - 
+i think its easier in xslt to do the way we are doing it :)</quote>. 
+He confirmed he had <quote who="Derek Neighbors">subtitles and 
+sectdions</quote> working.</p>
+
+<p>On formatting the tables, Derek thought 
+<quote who="Derek Neighbors">width, alignment etc should possibly 
+not be in the [...] source file - this is where im torn - 
+if we leave it out we are better off - BUT people will whine if 
+we dont - i think the right way to do it is allow custom .xsl files 
+to apply ontop of standard - but that another debate</quote>. 
+Jason said <quote who="Jason Cater">I have ONLY one reason for doing 
+that - I don't like it - BUT - this is a demo in which I need PS and 
+Text demos - and at the moment, I can't figure out tables :) - 
+so if you have a "width" we can fudge it for the moment. 
+Now, if you know how to draw tables w/o that information - I'm game - 
+long run, that's what I'd like - and remember, this is a proof of 
+concept markup, not necessarily "official gnue"</quote>.
+Derek suggested hard-coding a 
+<quote who="Derek Neighbors">&lt;table 
+width="100%"&gt;</quote> in the HTML output for the moment. 
+Nick Rusnov (nickr) suggested <quote who="Nick Rusnov">use CSS, it 
+makes size and formatting much easier</quote>, but admitted this 
+would only help with HTML output.</p>
+
+<p>After some more work, Derek was 
+<quote who="Derek Neighbors">getting closer</quote> with the HTML 
+output, and posted <quote who="Derek Neighbors">a 
+<a href="http://gnuenterprise.org/~dneighbo/monthly.html">sample</a></quote>. 
+Jason got all emotional - <quote who="Jason Cater">my baby - she's 
+becoming a girl</quote>. Derek said <quote who="Derek Neighbors">let 
+me knock out subtotaling - and then i will look at respecting the 
+attributes</quote>. He did not <quote who="Derek Neighbors">like how 
+you ahve done subtotals :) it will make me work</quote>. Jason asked 
+<quote who="Jason Cater">how would you like it? we can change</quote>. 
+Derek suggested XML source mark-up like 
+<quote who="Derek Neighbors">&lt;subtotalRow 
+level="2"&gt;</quote>. Jason said 
+<quote who="Jason Cater">actually, I think I prefer that</quote>.</p>
+
+<p>Derek did some more research on <quote who="Derek Neighbors">some 
+xslt stuff - like attribute processing</quote>. He noted 
+<quote who="Derek Neighbors">you can combine documents</quote> using 
+attribute values to contain filenames, and 
+<quote who="Derek Neighbors">we can do formulas in xslt if we so 
+desire - hmm it can do sorting and the likes too</quote>. He 
+reported <quote who="Derek Neighbors">well i have it respecting 
+attributes :) - but its not pretty</quote>, as the table width 
+<quote who="Derek Neighbors">of 100% makes it ugly</quote>. Jason 
+suggested removing this - <quote who="Jason Cater">the table column 
+widths are actual max character widths - which may or may not be 
+relative in html output - but was mainly for text/ps</quote>.</p>
+
+<p>Nick reformatted the output using a Cascading Style Sheet (CSS) 
+to show how this would work. Derek <quote who="Derek Neighbors">looked 
+at the version you made but struggling to implement it</quote>, but 
+noted <quote who="Derek Neighbors">if i remove that 
+text="css/text" works fine - prolly will choke the snot 
+out of old browsers though</quote>. Nick said the stylesheet would 
+normally be a seperate file. Derek suggested 
+<quote who="Derek Neighbors">if you want want to pretty this up 
+some</quote>, he might be able to get <quote who="Derek Neighbors">the 
+xslt sheet</quote> to apply the formatting rather than have to use 
+CSS. Nick noted <quote who="Nick Rusnov">you are getting logical 
+information about the rows aren't you? [...] if you're getting that 
+information, you can put it in class names - if its in class names 
+you can mark up based on it</quote>. Jason agreed, 
+<quote who="Jason Cater">as I don't wanna put css in</quote> the 
+GNUe Report Definition (.grd) format.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.09Apr2002">
+After midnight</a>, Nick suggested XML tagging like 
+<quote who="Nick Rusnov">class="total"</quote>. 
+However, <quote who="Nick Rusnov">it doesn't matter what 
+you call it on tehe grd side, as long as we can guess 
+logical information about the data and convert it to CSS 
+classes</quote>. For number formatting, 
+<quote who="Nick Rusnov">what you should do is do like 
+spreadsheets do it - and say 'this item should be numeric' 
+etc - and then we can say at the HTML level 'numeric classed 
+things are right aligned'</quote> Jason said he had been 
+planning to <quote who="Jason Cater">have something like 
+&lt;field type="date" 
+format="y-m-d h:m:s.i"&gt;2002-04-01 
+00:00:00.00&lt;/field&gt; -  and the XSLT could take it as 
+provided - or if the locale preferred, could convert the 
+format</quote>.</p>
+
+<p>Derek said <quote who="Derek Neighbors">technically
+it might be preferred to make xslt do formatting</quote>. Nick 
+agreed - <quote who="Nick Rusnov">I say remove all physical 
+formatting from grd - only provide logical information for the 
+formatting side to use as hints</quote>. But Derek did not 
+<quote who="Derek Neighbors">want to lock us into xslt - 
+so i woudl rather put the tag in grd and have our engine do 
+it - though it think when we get cooking we probably wont have 
+anything but xslt</quote>. Jason said <quote who="Jason Cater">fwiw, 
+I don't want to put TOOO much processing off into the XSLT - as 
+it isn't exactly known for its speed - i.e., transforms is one 
+thing, sorting and format masks are another</quote>. Nick 
+thought <quote who="Nick Rusnov">definitely do sorting and char 
+level formatting on the grd side. but leave alignments and stuff 
+up to the xslt based on type/class hints</quote>. Jason said 
+<quote who="Jason Cater">there's several instances where I've 
+needed right-aligned text- or left-aligned numbers - however, 
+I do agree that the "default" could vary based on 
+type</quote>.</p>
+
+<p>Jason went to bed, and Derek and Nick discussed using 
+italics or sans-serif fonts, making more changes as they 
+went. As more people joined the channel, Derek gave a quick 
+summary of progress to date - <quote who="Derek Neighbors">the 
+report is certainly lame but its really living and breathing
+i.e. it actually gets its database from a database - 
+you have an .grd which is xml that is like a form to define 
+what db and such to connect too - then it goes out gets the 
+data and makes an outputted xml file - and we do an xslt 
+translation to turn it into html</quote>. He felt it was 
+<quote who="Derek Neighbors">a pretty solid start</quote>.</p>
+
+<p>Derek and Nick continued to adjust the format to see 
+what looked best. Derek explained 
+<quote who="Derek Neighbors">subtotalling is not fully 
+functional</quote> yet - <quote who="Derek Neighbors">jcater 
+will probably have them workign tomorrow</quote>. He started 
+to experiment with outputting newlines and tabs for plain 
+ASCII output, and posted <quote who="Derek Neighbors">the 
+start of a text version</quote> before going to bed - 
+<quote who="Derek Neighbors">i just think jcater needs 
+ascii output for some dot matrix forms at work - 
+so wanted to encourage that it might be doable pretty 
+quick</quote>, although he admitted 
+<quote who="Derek Neighbors">it was easier to try txt 
+as a second transformation</quote> than formatted 
+objects for Postscript or PDF.</p>
+
+<p>After some sleep, Derek started on the Gnumeric 
+format as well. He asked <quote who="Derek Neighbors">i 
+thought that gnumeric saved in xml? [...] but default 
+is some binary</quote>. Reinhard M&#252;ller (reinhard) 
+said that the default was just 
+<quote who="Reinhard M&#252;ller">compressed xml - via 
+gzip</quote>. Derek decompressed it and exclaimed 
+<quote who="Derek Neighbors">man is it 'verbose' - 
+will have to do for loops with variables in xslt
+get it to output</quote>.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.10Apr2002">
+The next day</a>, Jason asked about progress on the text XSL. 
+Derek said he <quote who="Derek Neighbors">was going to write some 
+'functions' so col width="" is respected - and would 
+justify off that</quote>. Jason asked <quote who="Jason Cater">can 
+I send you a sample of what I'd like to see?</quote>. Derek asked 
+<quote who="Derek Neighbors">what do you want for 'pages' in the 
+.txt version - will a 'form feed' char work?</quote>. Jason said
+that <quote who="Jason Cater">will work</quote>. Jason said 
+<quote who="Jason Cater">if you can get the text.xsl up to speed
+then that'll free me up to make the datasources respect those 
+passed parameters - this is gonna be one helluva 0.0.1 
+release</quote>. Derek said <quote who="Derek Neighbors">we really 
+need all the items released - forms, designer, reports etc - 
+its been a while on all of them</quote>. Jason said 
+<quote who="Jason Cater">hopefully this weekend or next 
+week</quote>.</p>
+
+<p>Derek said that one of the <quote who="Derek Neighbors">downsides 
+to GNUe - every time you need info you are your own best reference 
+(according to google)</quote>. Jason agreed - 
+<quote who="Jason Cater">no kidding - I searched for xslt postscript 
+yesterday - and guess what was at the top spot? gnue reports :) -
+which blew me away</quote>.</p>
+
+<p>Jason posted a sample 
+<a href="http://www.gnuenterprise.org/~jcater/foobulations.txt">text</a>
+report, and asked <quote who="Jason Cater">btw, is there any way in 
+XSLT to store arrays?</quote>. Derek said <quote who="Derek Neighbors">um
+ not really - its morelike a functional language than a procedurual 
+one</quote>. Jason recognised that, but <quote who="Jason Cater">was 
+wondering if it'd be possible to remember the "width" settings 
+for the &lt;col&gt;</quote> headings. He <quote who="Jason Cater">only 
+had those in the &lt;heading&gt; section - it seems SO wasteful to have 
+to repeat those for each row - but if that's all we can do, then that's 
+all we can do :)</quote>. Derek said <quote who="Derek Neighbors">you 
+can have it persist</quote>.</p>
+
+</section>
+

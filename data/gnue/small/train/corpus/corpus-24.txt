@@ -1,0 +1,2208 @@
+jamest (~jamest@adsl-208-191-39-241.dsl.tpkaks.swbell.net) left #gnuenterprise.
+ToyMan (~stuq@glvv-dsl2-229.citlink.net) left irc: ": I'm off to make more toys..."
+jbailey (~jbailey@65.48.140.35) joined #gnuenterprise.
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+<ajmitch> hi psu
+<psu> hi aj
+<jbailey> psu: Isn't it the middle of the night for you?
+<psu> 06:35 == normal getting-up time
+<psu> for Mon-Fri
+<psu> and unable to kick the habit come weekends
+<ajmitch> poor psu :(
+<ajmitch> to be tormented so...
+<jbailey> ajmitch: The unable to kick the habit part or the usual getting up time?
+<psu> I remember being a student, y'know
+<ajmitch> the getting up time
+<psu> getting up at 8.30, down to breakfast in halls for 8.45, then a lazy read thru' the papers before 
+<psu> 1st lecture at 10
+<psu> halcyon days
+<ajmitch> hehe
+<psu> NB Since I was majoring in Politics, reading the papers counted as study
+Action: psu is increasingly convinced that youth is wasted on the young
+<ajmitch> :)
+Action: psu is turning into his parents
+Action: ajmitch wonders when the next KC will be up....
+<ajmitch> 1st anniversary edition, right? :)
+<ajmitch> you've done an impressive job on them
+<psu> heh
+<psu> I've sent it to Zack
+<psu> all 110k of it
+<ajmitch> big
+<psu> once his mailbox has recovered, it should be up
+<psu> <-                                               this big                                                ->
+<psu> and then some
+<ajmitch> we sure do some yapping
+<psu> actually, it's the mail lists that have really pushed it over this week
+<psu> It's been a quiet week in #gnuenterprise
+<psu> well, average, not quiet
+Action: ajmitch has noticed he's been in the last 20 KCs or so
+<psu> ISTR it's usually something like 
+<ajmitch> heh, a channel topic: "Microsoft tickled on wrist with a feather; Gates told to resume the sodomy in earnest"
+<psu> "ajmitch asked innocently if foo was bar. jcater said yes. jamest agreed. derek said something else."
+<ajmitch> heheh
+<ajmitch> am i in #53? :)
+<psu> oh yes
+<ajmitch> thought so
+<ajmitch> and this is meant to be my exam week...
+<psu> <psu> NB Since I was majoring in Politics, reading the papers counted as study
+<psu> ^ basis for possible excuse, oh Comp Sci major?
+<ajmitch> ah yes!
+<ajmitch> i've got my networking exam next week ;)
+<psu> "Just doing some practical revision on TCP/IP in distributed application frameworks" - yeah...
+<jbailey> Hmm.
+<jbailey> Do I need to adopt geas as well?
+<jbailey> (In Debian)
+<ajmitch> yeah, then replace it with gnue-appserver
+<jbailey> Thanks, andrew
+<ajmitch> as geas is dead, long live appserver
+<jbailey> *sigh* someone is bitching that 'unexec' stops working when you upgrade to a new version of glibc.
+<jbailey> Why would you think that replacing your C library would leave any internal structures in a sane state?
+<ajmitch> hehe
+pattieja (~pattieja@www.pcxperience.com) left irc: Read error: 110 (Connection timed out)
+<ajmitch> they expect everything to just work :)
+<psu> jbailey: methinks they are expecting Debian packaging to be as miraculous as people in this channel say it is ;-)
+<jbailey> ROFL
+<ajmitch> psu: yes, derek has never had issues with debian, right? :)
+<jbailey> I'm always a little frightened when I appear in a KC.
+<ajmitch> usually on the side of evil...
+<jbailey> Normally I find out because other people mention it to me.  I breaks my illusion that the world doesn't exist when I'm not looking at it. =)
+<jbailey> s/I/It/
+<jbailey> wow, bad regexp.
+<jbailey> s/ I b/ It b/
+<psu> ajmitch: derek would have issues with those cardboard cut-out computers they have at office furniture  stores...
+Action: psu thinks derek's computers have co-dependancy problems
+<psu> they get jealous of laurie so go wrong deliberately to force him to spend more time with them
+<psu> yeah
+<psu> sounds vaguely plausible
+<psu> ;-)
+<ajmitch> yeah right
+<ajmitch> that's just an excuse
+<esands> psu: sorry had to run off and drive my mother around town.  I want to ask some specific questions but I might pose them in an email.  I just trying to understand what the best mechanism is to deal with multiple currencies, particularly since I have to do it manually in a single currency GL.  Might be useful to gnue to have a discussion on record about it as well.
+<ajmitch> esands!
+<esands> hey
+<esands> exam week, huh?  Studying going well? ;)
+<ajmitch> umm... sure...
+<esands> The last exams for my MPhil where hell. 7 in a week. 
+<ajmitch> ouch
+<esands> Not sure I'm that keen on exams anymore. 
+<ajmitch> Phil? philosophy? :)
+<esands> MPhil sort of like a MSc.
+<esands> MPhil in Stats
+<ajmitch> ah
+<ajmitch> scary
+<psu> esands: np
+<ajmitch> stats is evil voodoo
+<esands> heh
+<esands> Actually I'm more of maths guy.  ;)
+<esands> Wish I could remeber the Maths, Stats, CompSci jokes. 
+<esands> Something about Special Cases, Averages and Definations. ;)
+<esands> psu: two quickies, For reconcilations I assume most multi-currency GLs keep a seperate ledger of (rate, amount) figures. What's the general practice for pricing a currency account on a given balance date? given that the base currency figure in that account represents and average of the prior exchanges, but the rate to realise the monies on a balance rate might result in a fx loss or gain.
+<psu> hmm
+jbailey (~jbailey@65.48.140.35) left irc: Read error: 110 (Connection timed out)
+<psu> To me, the key principle is that you define a base currency
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) joined #gnuenterprise.
+<psu> and then all transactions in GL store amount in base currency, amount in foreign currency, name of foreign currency
+<psu> To get "true" trial balance you do select sum (base_amt) from balances ;
+<esands> That's need for tax purposes and need for in order to rationalise transactions within the GL.  From a business management point of view though you need reconcile transactions and deal with making profit over multiple currencies
+<psu> only if that's useful management information to you
+<psu> I could imagine a biz not caring how much profit they made in Aussie dollars,
+<psu> just how much they made on product category X
+<esands> Ok, so the triple (amount, amount_f, f_curr) is used for all GL accounts. So that answers (1) above.  What's the general rule of thumb in the UK regarding balance date base currency valutions of a foreign bank account?
+<ajmitch> like dating at time of transaction, or otherwise?
+<psu> I'm not an expert on forex, but I believe this is where unrealised gain/loss on forex comes in
+<esands> True enough, but if the lose money on product X and all the loss in the Ozzie, then they will care.
+<psu> i.e. select sum(foreign_amt) from balances where currency_code = "USD" ;
+<psu> will tell you what your USD balance ought to be 
+<psu> s/ought to/will
+<esands> I see.
+<psu> which, for balance sheet purposes you convert at prevailing exchnage rate
+<psu> at 31st Decembefr
+<psu> The difference between this and what 
+<esands> In a sense, the GL records naturally both the base and foreign currency when using the triple.
+<psu> the amount in your books is constitues (IIRC) the unrelised gain or loss
+<psu> yep
+<psu> Simple example : I have 1 and only USD transaction in the year
+<psu> in April 
+<psu> I get $100 dollars income into my USD bank account
+<psu> which I enter into books as 
+<psu> insert ( base_amt, foreign_amt, currency_code) ( 64, 100, USD )
+<psu> when I come to year end, exchange rate is such that USD 100 is now worth 65
+<psu> so to balance off, I post an extra GBP 1 to the unrealised forex gain account
+<psu> or, of course,
+<esands> So credit account ( 1, 1, GBP) debit fx variance (1, 1, GBP)
+Action: ajmitch is just talking to someone who believed that new zealand was in northwest europe... :)
+<psu> yep
+<psu> main issue (i am not a lawyer, especially a tax lawyer) is how taxman wants you to treat this 
+<psu> notional 1 GBP extra profit
+<psu> If you are using forex all the time, I would make the for_amt and cur_code fields mandatory (not null)
+<esands> Nice.  So that means the account's GBP realise value is 64 + 1, and the USD value is 100.  Simple way of recording the transactions. It was the (1,1,GBP) I was trying to figure out in the system thats being going around in my head. This is much easier to manage, system-wise.
+<psu> and fill them in as you say - if forex is rare, I would allow them to be blank for non-forex trans
+<psu> that's Forex Accounting 101 - which is pretty much as far as I ever got
+<esands> I guess, say, for USD to USD payments you have to generate a triple (GBP#, USD#, USD) on the basis of the given rate on that day? or by the internal rate of sumif(GBP)/sumif(USD)
+<psu> I would always go far a "daily" rate in this day and age
+<esands> ignoring the costing variance on an invoice. 
+<psu> with computers to do the work for us
+<esands> ic
+<psu> monthly rates are less accurate
+<psu> taxman might have a view too
+<esands> I'll have to think how to use that in the context of hedging your transactions.
+<esands> taxman always has a view. 8)
+<psu> hedging if used properly is just a way of realising the potential gain/loss
+<esands> 3 months ago the dollar here rose 25% in three weeks against the USD.
+<psu> i.e. take a forward position for when you expect the transaction to settle
+<psu> (for an invoice, typically 30 days)
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+<esands> Depends on if you think like the accountant or the businessman importer/exporter. ;)
+<esands> Depends on the terms, for instance many of our transactions are 90 day 
+<esands> foreign exchanges ones that is
+<esands> In the AR/AP ledger I assume a form of that triple is used.
+<psu> yep
+<psu> once the transaction is settled (i.e. paid)
+<psu> you'd have a trigger to work out the *realised* gain/loss
+<psu> and post that right away
+<esands> Actually the commerical system we use, generates the variances both on posting (month end) and payment
+<esands> ie. post invoice (1#,2#,FC) and variance (3#,3#,BC) 
+<esands> then the same for the payment. Saves having the trigger I suppose
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) left irc: Read error: 104 (Connection reset by peer)
+<esands> OpenMFG demo seems to require:
+<esands> nic@inktiger:/tmp/OpenMFG_Demo$ ldd libpq.so.2 | grep not
+<esands>         libcom_err.so.3 => not found
+<esands> apt in debian-bots can't 'find' it. Ideas?
+<esands> I'll probably email them and ask for a static version.
+<esands> Actually rm libpq.so.2* (also provided by libpgsql2: /usr/lib/libpq.so.2
+<esands> ) seems like to might do the job
+<esands> The libpq.so.2 provided with the demo.
+<psu> sorry, was away 
+<psu> will be back later
+Action: psu is away: bbl
+<reinhard> um tiny remark on the forex thing
+<reinhard> at least from austrian / probably german point of view
+<reinhard> (maybe most of europe)
+<reinhard> for the balance, you may not consider unrealized forex gains
+<reinhard> and you _have_to_ consider unrealized forex losses
+<reinhard> so you always have to use the "worst case" in the balance
+<esands> You'd want to consider losses. Less tax, I'd surprised they don't try get more tax by requiring realisation of gains though.
+<esands> Must be nicer now you have the euro.
+<reinhard> the reason is not the taxes
+<reinhard> but rahter the fact that the balance shouldn't look better than it really should be
+<esands> What do you mean by 'should'?  Doesn't that depend on your point of view?  Although the balance in both currencies in the balance sheet is an average of past transactions.  At given moment it can be realised into the base currency.  All past rates are in the past and all future rates unknown.  Thus there is no true better or worse.
+<esands> Still I agree its better just realising fx losses. Otherwise it could cause undue hardship on a businesses cashflow.
+<reinhard> esands: yes i agree there is no true better or worse
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise ("bbl").
+<reinhard> however with the worst case view it's shure the balance doesn't look better than the real future outcome will be
+<reinhard> it might probably look worse
+<reinhard> but that's actually the point of a worst case view :)
+<esands> Its unknown. Ah, the complications of exchange rates.  Still I doubt a single currency would work.  I recall once (10 years ago) when I was in Frankfurt.  A small 200ml coke costed 7DM, about 8NZD back then.  When back in NZ (then) you'd never pay more than 2NZD.  Even in most expensive hotel.  
+zhouzhen (~zhouzhen@210.83.94.61) left irc: Operation timed out
+ra3vat_ (~ds@ics.elcom.ru) left irc: Read error: 110 (Connection timed out)
+ra3vat_ (~ds@ics.elcom.ru) joined #gnuenterprise.
+reinhard_ (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) left irc: Read error: 104 (Connection reset by peer)
+Nick change: reinhard_ -> reinhard
+Action: chillywilly is back (gone 13:30:48)
+ToyMan (~stuq@glvv-dsl2-229.citlink.net) joined #gnuenterprise.
+<dtm> herro
+dragon (~dragon@pcd350230.netvigator.com) joined #gnuenterprise.
+<chillywilly> hi dtm
+<dtm> chillywilly: hey dewd  whatchoo doin up already
+<dtm> i slept almost all day yesterday and woke up at 1am
+<chillywilly> caroline had to go to work at 6
+<chillywilly> I dropped her off
+<chillywilly> scotty wnt back to bed though ;)
+<chillywilly> he's a smart lad
+<dtm> cool
+<chillywilly> ;)
+<dtm> hehe
+<chillywilly> unlike me
+<dtm> yeah i've been having a HARD time sleeping lately
+<dtm> for the last month or so
+<chillywilly> why's that?
+<dtm> stress  :)
+<chillywilly> ick
+<dtm> i could stay up for one day solid and then wake up after 2-5 hrs
+<chillywilly> yuck
+<dtm> and be alert but exhausted
+<dtm> :\
+<chillywilly> it's not worth it ;)
+<dtm> ok so i wonder what's gonna happen from the M$ ruling
+<dtm> i'm still reading the slashdot comments
+<dtm> they make good summaries
+<dtm> and then lots of people to tear apart the summaries and make better summaries :)
+<dtm> i'd say the most obvious thing is that it's easier to sell a peesea with heavily modified Windows or no Windows
+<chillywilly> the M$ ruling on what?
+<dtm> they got the smackdown from the antitrust court finally
+<dtm> see slashdot
+<chillywilly> oh
+<chillywilly> slashdot is not good for my mental health
+<chillywilly> ;)
+<chillywilly> http://linuxtoday.com/news_story.php3?ltsn=2002-11-01-017-26-OS-BZ-SW
+<chillywilly> that seems interesting for us
+<dtm> http://slashdot.org/comments.pl?sid=43989&cid=4581269
+<chillywilly> doesn't seem to be as cool as GNUe though
+<chillywilly> they tie themselves to QT
+<chillywilly> doesn't seem to be Free software though
+<chillywilly> just USES some
+<chillywilly> eh...
+<dtm> what i posted above was a great assessment of the global impact of this M$ ruling and M$'s anticipated future behavior
+<dtm> http://slashdot.org/comments.pl?sid=43989&cid=4581425  <-- this is the analysis by antitrust experts
+<chillywilly> well, I am deeply disappointed in the Bush administration for this very reason
+<chillywilly> they are letting M$ off the hook
+<chillywilly> not sure if Gore would've done anything differently either, the republocrats are BOUGHT
+<dtm> http://z.iwethey.org/forums/render/content/show?contentid=38978
+<dtm> "as expressed in the revenue projections issued by Microsoft Great Plains, to own the accounting,CRM (Customer Relationship Management)and Supply Chain markets as thoroughly as they now own the desktop office suite market. "
+<dtm> "They intend to squeeze competitors out of Windows based accouning by leveraging integration with Microsoft Office and though the transition to Web Services. Both tactics are already being deployed by Microsoft Great Plains with great intensity."
+<dtm> so this is relevant to GNUe.
+<chillywilly> when is M$'s intent ever NOT to dominate?
+<dtm> never! :)
+<chillywilly> therefore we seek to liberate :)
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) left irc: Remote closed the connection
+<slpl> All: I'm seeking a good project that I can donate some code to, can someone advise?
+<chillywilly> gnue? ;)
+slpl (~a@adsl-143-221.barak.net.il) left irc: Read error: 110 (Connection timed out)
+jamest (~jamest@adsl-208-191-39-241.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+<derek> chillywilly: guess he didnt like your suggestion
+<derek> psu your evaluation of my computers dependency problems might very well be on target
+<derek> the computer i gave to wife and kids NEVER seems to have issues when i use it
+<derek> if im gone for a day or two the wife screams its not working right
+<derek> i sit at it and its just fine
+Action: derek notes usually the opposite is true for him (works for everyone else and breaks for me)
+Action: derek is back (gone 11:00:34)
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+IsoosI (dahoose@port-219-88-247-191.jet.net.nz) joined #gnuenterprise.
+<derek> so the war begins
+Action: derek is away: futbol
+Remosi (dahoose@port-219-88-246-104.jet.net.nz) left irc: Read error: 60 (Operation timed out)
+Remosi (dahoose@port-219-88-247-71.jet.net.nz) joined #gnuenterprise.
+IsoosI (dahoose@port-219-88-247-191.jet.net.nz) left irc: Read error: 104 (Connection reset by peer)
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+heikoV (~heiko@D5763F14.kabel.telenet.be) joined #gnuenterprise.
+dsmith (dsmith@oh-strongsvillecadent1-1c-20.clvhoh.adelphia.net) joined #gnuenterprise.
+<heikoV> cool: i have just found a piece of software to use xml-rpc in a very popular office suite
+<heikoV> and it is LGPL
+<heikoV> http://www.fongueusemare.com/vbblog/vbXMLRPC
+Nick change: reinhard -> rm-away
+<heikoV> This means that one could make a template invoice in a wordprocessor, but retrieve the data from gnue with a little macro
+<jamest> cool
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise ("TODO: insert witty signoff").
+paqan (~paqan@202.155.120.221) left irc: Read error: 54 (Connection reset by peer)
+paqan (~paqan@202.155.120.221) joined #gnuenterprise.
+dsmith (dsmith@oh-strongsvillecadent1-1c-20.clvhoh.adelphia.net) left irc: "later.."
+<derek> heikoV: too bad gnue reports already does this :)
+<derek> and does it VERY well
+<derek> i.e. i have more than one m$ word document that is a 'template'
+<derek> and gnue reports fills out the template for me with data
+<derek> specifically with DCL even ;)
+Action: derek is back (gone 02:41:43)
+<drochaid> lo derek
+<derek> lo
+<derek> get your connectivity issues fixed?
+<drochaid> for the moment
+<drochaid> I was being dos'd for a while
+<heikoV> derek: your solution is even cooler
+<heikoV> derek: If you want I can help you with the financial package
+IsoosI (dahoose@port-219-88-247-186.jet.net.nz) joined #gnuenterprise.
+Remosi (dahoose@port-219-88-247-71.jet.net.nz) left irc: Read error: 113 (No route to host)
+rm-away (~reinhard@M693P020.adsl.highway.telekom.at) left irc: Read error: 104 (Connection reset by peer)
+ToyMan (~stuq@glvv-dsl2-229.citlink.net) left irc: Read error: 60 (Operation timed out)
+rm-away (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+crazymike (~crazymike@mke-65-29-140-82.wi.rr.com) joined #gnuenterprise.
+crazymike (~crazymike@mke-65-29-140-82.wi.rr.com) left irc: Client Quit
+ToyMan (~stuq@glvv-dsl1-116.citlink.net) joined #gnuenterprise.
+lupo (~lupo@B2cd2.pppool.de) joined #gnuenterprise.
+<lupo> hi
+<Mr_You> hi
+lupo (~lupo@B2cd2.pppool.de) left irc: "using sirc version 2.211+KSIRC/1.1"
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) joined #gnuenterprise.
+<derek> heikoV: works for me
+<derek> we have the project page started i think
+<derek> and will get it rolling very soon
+<derek> i have code to actually already check into cvs
+<derek> just getting cvs ready
+<derek> hopefully by monday it will be 'official'
+<derek> and you can checkout code and everything
+<derek> for contacts and product management
+<Mr_You> what is this? DCL or Forms?
+<derek> gnue small business
+<Mr_You> what is that about?
+<derek> https://savannah.nongnu.org/projects/gnue-sb/ this url wont be good for long
+<derek> as it should be gnu not nongnu
+<Mr_You> I don't get it.  This is a branch of GNUe?
+<derek> no
+<derek> its applications
+<derek> its a SUB project of GNUe
+<Mr_You> oh ok
+<derek> the 'official' gnue applications
+<derek> will be made using the appserver 
+<Mr_You> this is coming out soon?
+<derek> and will be much more intensive
+<derek> the 'small business' applications are 'official', but more a side addition
+<derek> they will be released much sooner
+<derek> but will not use appserver
+<Mr_You> when?
+<derek> as stated product management and contacts should hopefully be in cvs by monday (knock on wood)
+<derek> we are starting the legal battles to get fedex and ups api for shipping management as free software
+<derek> but regardless of how we release it that is being worked on as well
+<Mr_You> hmm
+<derek> sales order, invoicing, shipping management, contact management, inventory/product management should be within next 30 - 60 days
+<Mr_You> how are other free solutions connecting to UPS/Fex?
+<derek> Mr_You: they arent or they are doing so illegally
+<Mr_You> well sounds good
+<derek> the way it looks right now (at least for fedex) is that if you write a solution you can not distribute it
+<derek> whether its 'free software' or 'propreitary' software
+<Mr_You> pretty redhat interchange connects with UPS, but I dunno.
+<derek> we have some issues to resolve legally 
+<Mr_You> but, you'll also want fixed shipping rates
+<derek> we are going by the letter of the fedex contract (not us, but real lawyers reviewing)
+<derek> we will likely try to communicate with them to get written consent to develop free software using the api's in some form or another
+<Mr_You> nod
+<derek> as the other alternative is to 'reverse engineer' and play samba like api madness
+<derek> which we certainly could do if necessary
+<Mr_You> yeah I think thats what the others have done
+<derek> Mr_You: honestly i think others just break the law with NO regard
+<derek> i.e. we could download the api and write something and distribute under gpl
+<derek> and hundreds would download and use it
+<Mr_You> well yeah.. reverse engineering could be consider that too I imagine.
+<derek> never questioning
+<derek> but if fedex found out and got pissed off, they could kill the project dead
+<Mr_You> yeah 
+<derek> at this point we need a solution
+<derek> if we can get it to be prop software that interfaces with gnue so be it
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) left irc: Read error: 104 (Connection reset by peer)
+<Mr_You> looking forward to checking out the cvs code
+<derek> we would MUCH rather it be free software 
+<derek> Mr_You: its pretty much all schema's and xml files
+<Mr_You> it uses python triggers?
+<derek> which is what is great
+<derek> entire applications beeing xml and db schema
+<derek> Mr_You: actually i think in the product management stuff for right now i only have 1 trigger :)
+<Mr_You> darn heh
+<derek> and that is to over come an oddity in my ui refreshing :)
+<derek> at it is something like
+<Mr_You> well
+<derek> entryname.refreshForeignKey()
+<derek> that literally is the ONLY line of python i had to write :)
+<Mr_You> how can you do secure db connections?
+<derek> explain
+<derek> we have full security wrapper now
+<Mr_You> ie. I wanna connect to a db over the net.
+<derek> i.e. plugin
+<Mr_You> encryption
+<derek> that you can use kerberos, pam, etc
+<Mr_You> an encrypted db connection
+<Mr_You> thats the only way you'll get me to use GNUe Forms client over the internet ;-)
+<derek> who said anything about over the internet?
+<Mr_You> me
+<derek> btw: currently we use ssh
+<derek> i.e. we make ssh tunnels
+<Mr_You> oh well
+<derek> so the client is on my machine i ssh tunnel port 5342 to the internet machine
+<derek> postgres is on
+<Mr_You> that doesn't work for wincrap
+<derek> um
+<derek> it sure does
+<Mr_You> with who's ssh?
+<derek> putty
+<Mr_You> its free?
+<derek> iirc
+<drochaid> or cygwin
+<derek> yip
+<derek> no native win32
+<derek> free
+<Mr_You> ok
+<derek> we will likely add this as a plugin to the framework
+<Mr_You> what plugin?
+<derek> so it will create tunnels everything on fly for you
+<derek> currently we ahve a script
+<derek> make-ssh-tunnel
+<Mr_You> well
+<Mr_You> personally I'd rather use a VPN.
+<Mr_You> but thats a PITA too..
+<Mr_You> so web page is best.
+<Mr_You> actually VPN wouldn't work for me
+<Mr_You> not yet anyways
+<derek> you run one time and it makes a script
+<derek> to connect for you in the future
+<Mr_You> see..
+<derek> the idea would be to have this wizard be in the framework
+<derek> and then execute the script on demand
+<derek> instead of have to run externally
+<derek> but anyhow
+<derek> i hope that answers your question
+<Mr_You> you guys run GNUe locally.. but there are TONS of small business people that would rather run their small biz software remotely and not worry about a server or anything..
+<Mr_You> its harder to sell a "hacked" solution like ssh tunnel until its seamlessly integrated...
+<Mr_You> ie. it creates a more cumbersom install for the end user
+<Mr_You> so I'll just wait and see before I can offer it for remote solution
+<drochaid> err, how is an ssh tunnel "hacked" in any sense?
+<Mr_You> hacked in quotes
+<drochaid> it's a fairly standard security consideration
+<Mr_You> correct
+<drochaid> the problem being?
+<Mr_You> my definition of "hacked" in this case means.. to the end user (newbie).. it may seem "hacked together" for them.. if they have to install more than one package and configure this and that.. rather than just configuring a GNUe Forms client.
+<Mr_You> ie. if you could say: install putty, install GNUe, click such and such to configure remote server.. done.
+<Mr_You> thats not so much of a "hack" to the end-user.
+<Mr_You> but if they need to configure an ssh tunnel etc, thats a turn off.
+<drochaid> well I'd say that's very much down to how you sell it to them, I've never had any problems on that regard
+<Mr_You> it works, its not just mass deployable until you ease the install/config process.
+<Mr_You> believe me, I can imagine the support emails now.
+<drochaid> for which you can write docs and educate the users as required
+<Mr_You> most of the answers being "RTFM" ;-)
+<derek> Mr_You: im not sure what you mean
+<derek> im saying the ssh stuff would be IN the client
+<derek> i.e. to a lay person
+<derek> it woudl be click button enter username and passowrd
+<derek> nothing more nothing less
+<Mr_You> derek:yeah.. you were saying it will be eventually. thats great.
+<Mr_You> I said I'd have to wait.
+<Mr_You> I was explaining why I will be waiting.
+Action: Mr_You has a cold.
+Action: drochaid passes Mr_You a hot chocolate
+<derek> Mr_You: right now it is install gnue install putty and click such and such to configure remote server done
+<Mr_You> mmm..
+<derek> make-ssh-tunnel is a wizard that configures the server
+<Mr_You> derek: yeah.. but users want the warm fuzzy feeling ASAP ;-)
+<derek> if you were 'deploying' you could actually precreate the script
+<derek> and they wouldnt do anything but connect
+<Mr_You> derek: I'm talking about users who have no idea what GNUe is, GNUcash, probably never used quickbooks, etc.
+<Mr_You> derek: yeah thats about all that would need to be done.
+<derek> as all the make-ssh-tunnel does is ask user name, and servername and create a script for you to always conect
+<derek> you could just prerun this for the user
+<Mr_You> yeah, maybe I'll end up doing that. who knows.
+dsmith (dsmith@oh-strongsvillecadent1-1c-20.clvhoh.adelphia.net) joined #gnuenterprise.
+dsmith (dsmith@oh-strongsvillecadent1-1c-20.clvhoh.adelphia.net) left irc: Client Quit
+<drochaid> derek: slight change of topic ...
+<drochaid> what's the documentation side of GNUe doing recently?
+<Mr_You> jason has a nice developer doc
+Action: Mr_You is not derek he knows. ;-)
+<drochaid> erm ... end user docs to be more precise ;)
+<Mr_You> its a doc for wannabe GNUe Application Developers ;-)
+<Mr_You> like me ;-)
+<drochaid> lol
+<Mr_You> not python coders.
+<drochaid> do you mean developer docs as in developing gnue or developing apps USING gnue?
+Action: drochaid is slow tonight
+<heikoV> derek: are there specific task that need to be done?
+<Mr_You> ok.. well the end-user for GNUe is a GNUe Application Developer (using GNUe).
+<Mr_You> way I see it.
+<drochaid> cool
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) left irc: Remote closed the connection
+<Mr_You> its named "Developers-Guide.pdf"
+<Mr_You> I ferget the url.
+<Mr_You> in jcater home dir
+<derek> heikoV: there will be
+<derek> many installing testing
+<derek> and adding feedback :)
+<heikoV> feedback?
+<derek> yeah like what about feature X
+<derek> or move this widget here
+<derek> etc etc
+Action: drochaid just found the DevelopersIntroduction.pdf .. now looking for the DevelopersGuide.pdf
+<heikoV> I get it
+<derek> its in jasons home directory
+<derek> i think
+<derek> as its a work in progress
+<drochaid> ahh
+<drochaid> is that home dir as in goats.xxx or personal I can't access?
+<derek> http://gnuenterprise.org/~jcater/
+<derek> http://gnuenterprise.org/~jcater/Developers-Guide.pdf
+<Mr_You> I think I'll check out this knoppix
+<derek> knoppix is nice
+<drochaid> thanks derek
+<Mr_You> you checked the latest?
+heikoV (~heiko@D5763F14.kabel.telenet.be) left #gnuenterprise.
+<chillywilly> Barbicane was giving out knoppix CDs w/ Debian Junior to the kids that were trick-or-treating during his Halloween show...with candy too of course ;)
+<Mr_You> sweet
+<derek> rofl
+<Mr_You> what a way to propogate a virus too ;-) heh
+<Mr_You> thanks tho.. I like that idea.
+<chillywilly> who the heck gets virii under GNU/Linux?
+<chillywilly> ;)
+Action: drochaid knows someone who did
+<chillywilly> only real way to get anything is via email most of the time and spamassassin will help filter out crap ;)
+<Mr_You> I just meant someone could distribute a virus (windows more than likely) via free CD.
+<drochaid> lol
+<Mr_You> I was listening to metnik (sp?) on a radio program..and he mentioned someone leaving a floppy in an elevator in a business.. the label reading "Executive and Management Payroll" or such.. 
+<Mr_You> the luser finds it, puts it in his drive and clicks on what appears to be an excel file.. but nothing happens.. so he proceeds to take it to HR..
+<Mr_You> HR puts it in clicks on the excel file, but nothing happens. hehe ;-)
+<Mr_You> diskless PCs are good ;-)
+<chillywilly> har har
+<Mr_You> and iSCSI is gonna be cool
+<Mr_You> SCSI over IP with near FC performance ;-)
+<derek> mitnick?
+<derek> as in kevin mitnick 'convicted hacker' (sic)
+<Mr_You> yeah
+<Mr_You> debian capable of using a usb CDRW?
+<chillywilly> wow, spamassassin is eating up all the memory on my server
+<chillywilly> and it is swapping incessantly
+<jamest> chillywilly: if you figure out why it does that let me know
+<chillywilly> case perl is a big fat hog?
+<chillywilly> cause
+<jamest> i had to shut it down until at work until I find time to fix it
+<jamest> dude it chewed up most of 2GB of ram on my system
+<jamest> perl ain't that big
+<Mr_You> sounds like a memory leak
+<chillywilly> yeek, I only have 80MB in there
+<Mr_You> ewww ;-)
+<chillywilly> it's and old P166
+<jamest> for me it was spawning lots of processes
+<ajmitch> hmm, i see the knoppix story on slashdot
+<jamest> each huge
+<chillywilly> I can't even ssh in
+<jamest> yip
+<chillywilly> I trned the monitor on I have hooked up
+<jamest> same behaviour here 
+<Mr_You> you need the BOFH Daemon (only $40) ;-)
+<ajmitch> ah, spamassassin, great program :)
+<chillywilly> and I see an Out of Memory: Kill process 8742 (spamassassin) message
+<chillywilly> er, Killed
+<jamest> the 1 other thing I noticed at the time was tons of blocked traffic at my firewall
+<ajmitch> chillywilly: you're screwed
+<Mr_You> you might have to wait and see if it recovers 
+<jamest> i think spamassassin was having issues connecting to a RBL 
+<jamest> but I have had 0 time to look into it
+<chillywilly> my firewall and NATing is still working though ;)
+<Mr_You> I'm not familiar with spamassassin, but I use the RBL in sendmail.
+<Mr_You> s/the/a/
+Action: chillywilly hears the HD crunching away
+<chillywilly> ooh, I got a login prompt now
+Action: chillywilly waits a year for the password prompt
+<ajmitch> it worries me when 3 of the current slashdot stories are by people i know online :(
+<chillywilly> heh
+<ajmitch> tjansen & zeenix from gstreamer, david mcnab with that knoppix story
+<chillywilly> must've missed a crap load of email since I last rebooted that box cause there are boat loads of exim and spamassassin prcesses
+<ajmitch> hehe
+<IsoosI> Nick Rusnov (nickr) noted "hmm, all the official gnue packages in debian" , dating back to BROKEN KCREF
+<IsoosI> hmm
+<ajmitch> hi IsoosI
+<IsoosI> howdy
+Nick change: IsoosI -> Isomer
+<ajmitch> you still hanging around gnue? ;)
+dragon (~dragon@pcd350230.netvigator.com) left irc: Read error: 110 (Connection timed out)
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) joined #gnuenterprise.
+<derek> oy yeah of little faith
+<Isomer> ajmitch: yep :)
+<derek> spamassain is doing its job
+<ajmitch> hi derek
+<derek> if it takes ALL resources aint NO spam taht will get through ;)
+<derek> hi ajmitch
+<ajmitch> KC #53 is big
+<ajmitch> still trying to get to the bottom of it
+<ajmitch> when is that europe meeting? i keep hearing about it :)
+<derek> two days ago ;)
+<ajmitch> ah
+<derek> reinhard setn something to the list
+<ajmitch> cool, i wonder how it went
+<derek> sounded like it went ok
+<ajmitch> hopefully some progress was made on appserver design :)
+<ajmitch> derek: to which list did reinhard send the mail?
+<derek> um dont recall
+<derek> the good one?
+<ajmitch> nope, not gnue@gnu.org
+<ajmitch> seems to have been sent to gnue-dev@gnu.org
+<derek> gnue-dev@gnu.org likely
+<ajmitch> which i'm not yet subscribed to
+Action: derek gasps
+<derek> not subscribed?
+<derek> heathen
+<derek> troll
+<derek> subhuman
+<ajmitch> i didn't know that i wasn't subscribed!
+<ajmitch> it's a conspiracy!
+<derek> thats ok jamest wasnt subscribed for a bit to either list and he is project maintainer ;)
+<ajmitch> hehe
+Action: ajmitch downloads the mbox archive & runs it thru procmail
+Action: derek clarifies that a server move caused that
+<ajmitch> i'm sure i was subscribed
+<ajmitch> this will hurt - procmail will run spamassassin for each message
+ToyMan (~stuq@glvv-dsl1-116.citlink.net) left irc: ": I'm off to make more toys..."
+Action: derek laughs every time he does apt-get update
+<derek> and see ajmitch.dhis.org in there
+<ajmitch> heh
+<ajmitch> my poor connection...
+Remosi (dahoose@port-219-88-246-46.jet.net.nz) joined #gnuenterprise.
+<ajmitch> Remosi! :)
+rm-away (~reinhard@M693P020.adsl.highway.telekom.at) left irc: "Real programmers don't comment their code. If it was hard to write, it should be hard to understand"
+Isomer (dahoose@port-219-88-247-186.jet.net.nz) left irc: Read error: 54 (Connection reset by peer)
+<Remosi> :)
+IsoosI (dahoose@port-219-88-247-119.jet.net.nz) joined #gnuenterprise.
+Remosi (dahoose@port-219-88-246-46.jet.net.nz) left irc: Read error: 60 (Operation timed out)
+jamest (~jamest@adsl-208-191-39-241.dsl.tpkaks.swbell.net) left #gnuenterprise.
+ToyMan (~stuq@glvv-dsl1-116.citlink.net) joined #gnuenterprise.
+dsmith (dsmith@oh-strongsvillecadent1-1c-20.clvhoh.adelphia.net) joined #gnuenterprise.
+dsmith (dsmith@oh-strongsvillecadent1-1c-20.clvhoh.adelphia.net) left irc: "later.."
+Nick change: derek -> satan
+Nick change: satan -> derek
+<derek> anyone home
+<dtm> hallo, derek
+<dtm> what is your status sir?
+<derek> ready to hack
+<dtm> i am but minutes away from crashitude
+<derek> that is my status
+<dtm> omg
+Action: dtm stands back
+<derek> its only fun to hack if people are around to swear at though
+<dtm> :-I
+<dtm> whoa
+<dtm> hey i can dig that
+<dtm> sounds really good.
+Action: derek cranks up his oldies 80's tunes
+<dtm> so what is the victim of this hackage?
+<derek> shuts the office door and fires up emacs
+<dtm> oh, which tunes?
+<derek> dtm gnue-sb is the victim
+--- Sun Nov  3 2002
+<derek> right now john cougar - jack and diane
+Action: derek embarassedly admits Culture Club - I'll Tumble For You is next in the cue
+<dtm> HEH
+<dtm> whoa.
+<dtm> we had that crap on 8track
+Action: derek has a WIDE variety in taste
+<derek> most modern christian music though
+<derek> with oldies rock and 80s pop mixed in
+<derek> dtm: you might get a kick out of this one
+<derek> daughter is having a slumber party and the wife took them out to Toilet Paper some houses for a prank
+<dtm> omg
+<dtm> hehehe
+<dtm> that's insane
+<derek> being an upstanding youth pastor of course i suggested they start with the senior pastors house ;)
+ToyMan (~stuq@glvv-dsl1-116.citlink.net) left irc: ": I'm off to make more toys..."
+dyfet (~dyfet@dsl-65-188-113-57.telocity.com) joined #gnuenterprise.
+<derek> sup dave
+<dyfet> oh just working late
+<dyfet> quiet night it seems :)
+<derek> yeah
+<derek> but you and i are here now, so LETS PARTY
+<dyfet> we are close to a 1.1 release in bayonne....
+Action: derek turns on the disco ball and throws in the BeeGees Staying Alive soundtrack
+<derek> opps sorry wrong decade
+<dyfet> lol
+<derek> cool on release
+<dyfet> well, i thought i would exercise my fair use rights over my doors collection actually
+<derek> as chillywilly would say
+<derek> i need to get a frelling copy of bayonne working
+<derek> i just got a new phone that does AOL IM and im enamored
+Action: derek is drooling over possibilities
+<dyfet> actually I have considered adding im support to Bayonne....so it can send sms messages and popups with incoming call info
+<derek> hmm it does sms
+<derek> grr i REALLY need to get a hold of it
+<derek> the biggest hold up (i know you guys hate hearing this) is it needs to support normal modems
+<dyfet> well, it could though something like jabber, i suppose, where there are appropriate im/sms gateways.  thats why i want to build an im module in bayonne
+<derek> currently the hardware cost is way too high barrier to entry for 'free software' developers
+<dyfet> derek, free is not free as in price :)
+<derek> i know freedom is expensive
+<derek> just free software developers unless commissioned directly to install phone software can not afford 500+ for a professional phone card
+<derek> i think if it ran on modems you would have a huge user base
+<dyfet> it is often the most expensive and valuable commodity...(freedom that is)
+<derek> i know for myself i would be running at home
+<dyfet> I would like to get a modem version running
+<derek> but cant afford the card
+<derek> i have 3 clients that are considering buying hardware
+<dyfet> there even is a start of a voicemodem driver, but nobody has been working on it
+<derek> but its hard for me to give strong recommendation
+<derek> when i havent driven it myself
+<derek> i have been trying to work with rich on a client
+<derek> so that i can get a bayonne install and get an idea for capabilities
+<derek> and MOST importantly start writing applications to it :)
+<dyfet> and most important, I think, writing applications that integrate into/relate to gnue apps....
+<dtm> david!
+<dtm> whaddap
+<dtm> dyfet: bayonne 1.1 already?!
+<dyfet> getting close to that, yes
+<dyfet> probably would have been out last week but for my pbx card getting busted
+<dtm> dyfet: derek wants normal modem support.... maybe we should give him the friends & family discount on an Openline4 instead ;>
+<dtm> dyfet: oh no
+<dyfet> yep, right after the free software business expo
+<dtm> hahahah "free is not free as in price"
+<dtm> Words of wisdom, Lloyd!
+<dyfet> so i am waiting for the replacement to arrive so i can do a final unittest before the release
+<dtm> well was it insured?  :)
+<dyfet> yes, the replacement is already on it's way here
+<dyfet> when it arrives, i will do the release :)
+<derek> jcater: if you are around speak up i need to ask you questions!
+<dtm> derek: you should email him then!
+<dyfet> the pbx exhibition went well though
+dyfet (~dyfet@dsl-65-188-113-57.telocity.com) left irc: "Client Exiting"
+<derek> CVS: Committing in .
+<derek> CVS: 
+<derek> CVS: Added Files:
+<derek> CVS: 	AUTHORS COPYING INSTALL README TODO contacts/contacts.gpd 
+<derek> CVS: 	contacts/forms/contact_manager.gfd 
+<derek> CVS: 	contacts/forms/lu_address_type.gfd 
+<derek> CVS: 	contacts/forms/lu_email_type.gfd 
+<derek> CVS: 	contacts/forms/lu_phone_type.gfd schema/README 
+<derek> CVS: 	schema/account.gsd schema/account_addr.gsd 
+<derek> CVS: 	schema/account_alias.gsd schema/account_contact.gsd 
+<derek> CVS: 	schema/account_email.gsd schema/account_note.gsd 
+<derek> CVS: 	schema/account_phone.gsd schema/account_url.gsd 
+<derek> CVS: 	schema/addr_type.gsd schema/contact_addr.gsd 
+<derek> CVS: 	schema/contact_email.gsd schema/contact_note.gsd 
+<derek> CVS: 	schema/contact_phone.gsd schema/contact_url.gsd 
+<derek> CVS: 	schema/department.gsd schema/email_type.gsd schema/item.gsd 
+<derek> CVS: 	schema/item_category.gsd schema/item_source.gsd 
+<derek> CVS: 	schema/item_status.gsd schema/note_type.gsd 
+<derek> CVS: 	schema/order_item.gsd schema/personnel.gsd 
+<derek> CVS: 	schema/phone_type.gsd schema/sales_order.gsd schema/store.gsd 
+<derek> CVS: 	schema/url_type.gsd 
+<derek> CVS: ----------------------------------------------------------------------
+<derek> yumminess!
+<derek> gack all the item stuff isnt there
+<derek> whew now added and committed
+<derek> watch out foolz here comes gnue-sb
+<esands> heh
+<esands> nice.
+<esands> I assume designer reads gsd files and outputs sql?
+<derek> kind of
+<esands> how you import the schema into a db then?
+Remosi (dahoose@port-219-88-247-243.jet.net.nz) joined #gnuenterprise.
+IsoosI (dahoose@port-219-88-247-119.jet.net.nz) left irc: Read error: 113 (No route to host)
+<derek> website for it committed too wee
+<derek> esands: gsd is an xml file
+<derek> currently you use xslt and an xsl (style sheet)
+<derek> and it makes a sql file
+Action: derek thinks designer might do this
+<nickr> I sohuld be committed
+<derek> currently i do it via command line
+<derek> eventually it will do it
+<derek> designer that is
+<ajmitch> evening lads
+<derek> designer will take database tables and create gsd's :)
+<derek> which should make it easier for others to adopt
+<derek> night ajmitch
+<esands> Got the details, so I can have a fiddle with gnue-sb. 
+<derek> turning in early?
+<derek> must be feeling sick
+<esands> He must have an exam tomorrow
+<derek> esands: yes but its broken
+<esands> Its like only 8:40pm here.
+<derek> the gsd stuff in gnue cvs is broked
+<derek> unless jcater fixed it today
+<derek> i have local cache of some things that work
+Action: derek is consolidating many things
+<esands> You have the xslt/xsl method writing up?
+<derek> DCL, Acclite and custom stuff I have
+<esands> Which is of course your job
+<derek> so expect gnue-sb to be a bit broked for a few days until i get all schemas talking the same
+<esands> Will it (gnue-sb) work against acclite's schema?
+<derek> and revisit all my forms
+<ajmitch> i said evening! not goodnight!
+<esands> heh
+<derek> for now just wanted to get consolidated and into cvs
+<ajmitch> although esands is right about having exam tomorrow :)
+<derek> ajmitch: whew i was worried
+<esands> Why you here? ;)
+<derek> esands: re: xslt its all in gnue-common iirc
+<derek> should be build.py or something that lets you do things
+<ajmitch> esands: exam's at 2:30 :)
+<esands> So, shouldn't you be studying? 
+<derek> pyxslt i think is the name of the binary
+<esands> heh
+<derek> in gnue/common/scripts/
+<derek> or something
+<ajmitch> ah yes, study...
+<esands> You mean ../gnue/common/scripts/pyxslt ??
+<derek> gnue/common/utils/xml2sql/ i think has the stylesheets
+<derek> esands: yeah that would be it
+<esands> what deb is PySablot?
+<derek> there should be a readme in the xml2sql dir
+<derek> debs arent in sid yet :(
+<derek> working on it
+<derek> they are on our website though :)
+<esands> Nice. Oh. Yes. what was that source.list line again? 
+<derek> let me find
+<derek> http://gnuenterprise.org/~jcater/debian/
+<derek> is where you can find the .deb file
+Action: derek has no clue as to the 'sources.list'
+<derek> i forgot to add to mine
+Action: derek is hoping to get stuff in sid ASAP
+<esands>  /etc/apt/sources.list ?
+<derek> jbailey hopefully adopted gnue and is working on it
+<derek> esands: i know what sources.list is, i meant no clue as to what gnues is
+<derek> nickr can do pysablot just waiting on its maintainer to apply some patches
+<esands> That sources line was: deb http://www.gnuenterprise.org/debian woody main
+<esands> pysablot's not in the repository though. Only on that jcarter link
+<nickr> yea
+<nickr> you can get it from my site too
+<derek> try  deb http://www.gnuenterprise.org/debian woody main
+<derek> oops you found it never mind
+Action: derek was grepping log in another channel
+Action: derek wants to know how they consider it woody :)
+Action: derek was looking for sid or unstable
+<esands> Maybe it was built on a woody machine
+<ajmitch> they were probably compiled on woody
+<esands> Hmm.' [nic@thunder:~/devel/gnue/gnue-sb]  ../gnue/common/scripts/pyxslt -i schema/item.gsd -x ../gnue/common/utils/xml2sql/pgsql_2.xsl -o t' doesn't work to well
+<esands> Neither does sabscmd
+<esands> er, sabcmd
+<derek> sabscmd?
+Action: derek warned that likely the stuff in gnue/common was borked
+Action: derek loves that within minutes of cvs checkin there is checkout + bug reports ;)
+<esands> From the xml2sql readme
+<derek> and who says free software dont work ;)
+<esands> heh, fs/oss development. 8)
+<esands> All I'm getting as output is:
+<esands> Excuse the flood
+<esands> [nic@thunder:~/devel/gnue/gnue-sb] sabcmd ../gnue/common/utils/xml2sql/pgsql_2.xsl schema/item_source.gsd
+<derek> sigh you mean i will have to test this crap now :)
+<esands> <?xml version="1.0" encoding="UTF-8"?>
+<esands>       id
+<esands>         id
+<esands>         description
+<esands> [nic@thunder:~/devel/gnue/gnue-sb]
+<esands> Lots of empty lines there as well
+<esands> [nic@thunder:~/devel/gnue/gnue-sb] sabcmd ../gnue/common/utils/xml2sql/pgsql_2.xsl schema/item_source.gsd | wc -l
+<esands>      19
+<esands> Heh. No matter, I can sleep on it and I'm sure someone will have sorted it out by the morning. ;)
+<derek> esands: well you are doing it wrong
+<derek> ;)
+<derek> if you give me a minute i will tell you how
+Action: derek has to get pysablot :)
+<esands> sure thing. 8)
+Action: derek forgot i dont have on my laptop
+<derek> piss
+<derek> latitude:/home/dneighbo/cvs/gnue-sb/schema# apt-cache search pysablot
+<derek> pysablot2.1 - Python bindings to the Sablotron XSLT engine
+<derek> latitude:/home/dneighbo/cvs/gnue-sb/schema# python      
+<derek> i think python2.2 is my default
+<esands> np, I can wait until tomorrow. 
+Action: derek tries unstable
+<derek> give me a minute
+<derek> minor road block
+<esands> You could run python2.1
+Action: ajmitch just reading gnue-dev archives, how's things going with Via Libre & PAPO people?
+<derek> ok you should have to do something like this
+<derek> dneighbo@latitude:~/cvs/gnue-sb/schema$ ~/cvs/gnue/common/scripts/pyxslt -i account.gsd -x ~/cvs/gnue/common/utils/xml2sql/pgsql.xsl -o pgsql.cmd.xml
+<derek> dneighbo@latitude:~/cvs/gnue-sb/schema$ ~/cvs/gnue/common/scripts/pyxslt -i pgsql.cmd.xml -x ~/cvs/gnue/common/utils/xml2sql/strip.command.xsl -o pgsql.sql
+<derek> Error [code:2] [URI:file:/home/dneighbo/cvs/gnue-sb/schema/pgsql.cmd.xml] [line:13] 
+<derek>   XML parser error 2: syntax error
+<derek> dneighbo@latitude:~/cvs/gnue-sb/schema$ 
+<esands> Yep
+<derek> again as iterated the stylesheets/pyxslt in common is probably broked
+<derek> i built all my schemas on a GOOD copy
+<derek> and jan was playing aroudn as was jcater with the gnue ones
+Action: derek warned VERY strongly that this would screw me
+<derek> and now as you see it has :)
+<esands> I assume you are getting good sql out, while I'm just getting strangest. I guess I'll be waiting for jcarter to fix things
+<derek> dneighbo@latitude:~/cvs/gnue-sb/schema$ ~/cvs/ue/sql/pyxslt -i account.gsd -x ~/cvs/ue/sql/pgsql.xsl -o pgsql.cmd.xml
+<derek> dneighbo@latitude:~/cvs/gnue-sb/schema$ ~/cvs/ue/sql/pyxslt -i pgsql.cmd.xml -x ~/cvs/ue/sql/strip.command.xsl -o pgsql.sql
+<derek> works perfectly
+<derek> i can send you pgsql.sql and strip.command.xsl im using if you like
+<derek> just give me an email address
+<derek> i would replace what is in gnue cvs and tell you to update
+<derek> but i wnat to talk to jcater first
+<derek> thus my earlier question (where is jcater?) ;)
+<esands> nic@plumtree.co.nz
+<derek> dneighbo@latitude:~/cvs/gnue-sb/schema$ less pgsql.sql   
+<derek> Create Sequence seq_account;
+<derek> Create Table account (account_id int4 NOT NULL default nextval('seq_account'), name varchar(80) NOT NULL, active varchar(1) NULL default 'Y', parent int4 NULL, created_on timestamp NOT NULL default now(), created_by int4 NOT NULL, modified_on timestamp NOT NULL default now(), modified_by int4 NOT NULL);
+<derek> Create Unique Index pk_account On account(account_id);
+<derek> pgsql.sql (END) 
+<derek> is the output fwiw
+<esands> definitely not what I get. 
+<derek> ok on its way to you
+<derek> note the contact stuff is severely broken
+<derek> as i changed table names before checking in but never touched the forms
+<derek> the item stuff should work
+<derek> i suppose since i have church in the morning i should go to bed
+<derek> i plan to continue tomorrow
+<derek> esands: i have real world deadlines and others have needs that are watiing on us
+<derek> so expect gnue-sb to move at fairly steady pace compared to how gnue apps have gone in the past
+<esands> excellent. Hopefully I can help things along as well. 
+Action: derek is away: sleepy pooh
+<esands> Works now. Thanks derek. I'm pretty busy tomorrow as well, got some new windows and french doors turning up. 
+<esands> ajmitch: good luck if I dont see you before your exam
+<esands> Hmm.
+<esands>        ERROR:  Attribute 'source_id' not found
+<esands> [nic@thunder:~/devel/gnue/gnue-sb/item] grep -s source_id ../schema/*
+<esands> ../schema/item_source.gsd:    <primarykey name="pk_source_id">
+<esands> ../schema/item_source.sql:Create Unique Index pk_source_id On source_lookup(id);
+<esands> Takes for forms/item_maint.gfd
+<esands> s/takes/thats/
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+Action: drochaid prods derek
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) left irc: Read error: 104 (Connection reset by peer)
+reinhard_ (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+Nick change: reinhard_ -> reinhard
+neilt (~neilt@ip68-100-144-59.nv.nv.cox.net) joined #gnuenterprise.
+#gnuenterprise: mode change '+o neilt' by ChanServ!ChanServ@services.
+ToyMan (~stuq@glvv-dsl1-116.citlink.net) joined #gnuenterprise.
+<reinhard> hello neilt
+<reinhard> i guess you are reading my halloween mails ?
+<neilt> yes i am
+<neilt> how did the meeting go
+<chillywilly> ello
+<neilt> chillywilly: hello
+<chillywilly> which list are the mails on?
+<neilt> gnue-dev@gnu.org
+<chillywilly> hmmm
+<chillywilly> wonder if I got unsubscribed again somehow
+<chillywilly> this is pissing me off
+<neilt> not sure when they were sent, but they were the last 3 email ireceived
+<chillywilly> http://mail.gnu.org/pipermail/gnue-dev/2002-October/thread.html
+<neilt> http://mail.gnu.org/pipermail/gnue-dev/2002-November/thread.html
+<chillywilly> is that accurate?
+<neilt> has them all
+<chillywilly> oh
+<chillywilly> I might've read them then
+<chillywilly> nope, I never got those
+<chillywilly> man, I dnno why I keep getting unsubscribed
+<chillywilly> it is annoying
+dragon (~dragon@pcd252010.netvigator.com) joined #gnuenterprise.
+<neilt> chillywilly: gnue-dev has been pretty low volume lately
+<neilt> most of the email are on the other list
+<chillywilly> yes
+<chillywilly> I have been getting gnue@gnu.org mails
+<chillywilly> but gnue-dev I have not
+<neilt> :)
+Action: chillywilly fails to see the humor
+reinhard_ (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+<reinhard_> neilt: any comments yet?
+<neilt> happy to see the work progressing
+<neilt> i think it is a good start
+<reinhard_> with emphasis on "good" or on "start"?
+<reinhard_> :)
+<neilt> actually both
+<reinhard_> well seriously i agree
+<neilt> I want to build buniness objects
+<neilt> and as long as we have a agreed aproach that works
+<chillywilly> well I have a parser commited for ODL that uses PLY in case no one noticed, but I need to make it parse into something like perhaps an AST
+<neilt> I am happy
+<reinhard_> i hope we have finally agreed on storing the class definitions in the database
+<neilt> I also like the idea that we have several people working on appserver and agreed to priorities
+<reinhard_> or to be more precise in "system business objects"
+<reinhard_> yes
+<chillywilly> what did jan say?
+<reinhard_> chillywilly: we also talked about your parser
+<chillywilly> I don't really care, but I'm not sure I see a point if you se meta objects (like system tables) then those should go int he db
+<reinhard_> as well as about comparable things that only exist more or less as an idea
+<chillywilly> well I'll try and get through some mails
+<reinhard_> and we agreed that it is a good thing to have parsers for other formats
+<chillywilly> ;)
+<reinhard_> that can read "external" defined objects and "merge" that into the "main" repository
+<chillywilly> have to go to church in 30 mins or so :)
+<reinhard_> as a separate command line tool
+<chillywilly> k
+<neilt> reinhard_: the back end for 
+<neilt> storing business objects
+<neilt> should be plugable just in case
+<reinhard_> chillywilly: ok i don't want to hold you back then :)
+<neilt> we want to change it
+<chillywilly> I figured using an xml markup as an exchange format between designer and appserver would be nice too
+<reinhard_> neilt: yes that's why made it a separate "module"
+<chillywilly> since designer probably wants xml
+<neilt> reinhard_: excellent
+<reinhard_> chillywilly: i'm not even sure if designer will be the tool of choice to define business objects
+<chillywilly> well it is supposed to be our IDE isn't it?
+<reinhard_> because an object definition is like a normal business object
+<chillywilly> jcater made it so you could write plugins
+<reinhard_> we could even have some "normal" form that accesses these metaobjects
+<chillywilly> yea
+<chillywilly> that we could do too
+<neilt> reinhard_: can business objects be aggregates of other business objects?
+<chillywilly> they have the cncept of relationships in ODL
+<chillywilly> which is like having a ref to an object or cllection of objects
+<reinhard_> neilt: can you give an example please?
+<neilt> for example
+<neilt> sales order
+<chillywilly> you can have 1 to 1, 1 to n, and n to m relationships between the objects
+<neilt> is the object presented to the gui a sales order
+<neilt> or a sales order header and sales order detail objects
+<neilt> so the GUI has to manage both objects
+<neilt> or can the GUI just deal with one sales order objects
+<reinhard_> the GUI will have to deal with two different objects
+<neilt> Ugh
+<reinhard_> however the details will be connected to the master
+<reinhard_> not sure how one object could work
+<neilt> so the GUI can just request the sale order and get all the header and items on the sales order
+<neilt> s/can/can not/
+<reinhard_> ah ok
+<reinhard_> i think i see what you are after
+<reinhard_> the gui will request a specific sales order
+<reinhard_> will get the requested header data
+<reinhard_> then the gui will request a list of details to the order
+<reinhard_> and fetch the first few items
+<chillywilly> master-detail?
+<reinhard_> because the sales order might have 1000 items on it
+<reinhard_> and the gui doesn't want to load all 1000 at once
+Action: chillywilly finishes the "Halloween Documents" ;)
+<neilt> the systems that I have been working with are doing it slightly different
+<neilt> that does not make it right
+<reinhard_> however the author of the form definition woudln't have to know how this works
+<reinhard_> neilt: please explain
+<chillywilly> reinhard_: these should've been about how we can defeat SAP, PeopleSoft, etc. ;)
+<neilt> the systems I've been working with
+Action: chillywilly hopes everyone gets his reference
+<neilt> make one business object that cooresponds to the form
+<neilt> this business object can be a real object or a proxy object for several real business objects
+<neilt> but this means that some of the complexity of the GUI is moved to the business object
+<chillywilly> why aren't we sing the scope resolution operator instead of an '_'
+<reinhard_> neilt: exactly
+<chillywilly> nevermind
+<reinhard_> this is the point i'm not sure if we want it
+<neilt> because the GUI does not need to know how many (potentially loosely related ) business objects are displayed on the form)
+<neilt> it just gets the data
+<reinhard_> OTOH
+<chillywilly> I prefer the scope resolition operator and methods to resolve names, etc.
+<reinhard_> the form definition is in the appserver
+<chillywilly> module::name
+<neilt> reinhard_: i thought the form def was XML text file
+<chillywilly> can be transformed in one line of python
+<reinhard_> my point of view is rather that the appserver shouldn't deal with visualisation of data
+<reinhard_> neilt: i meant
+<reinhard_> if we define those "form-bound" business objects
+<neilt> reinhard_: i agree that appserver should deal with visualation
+<neilt> s/should/should not/
+<reinhard_> we move parts of the form definitions into appserver
+<reinhard_> that means
+<reinhard_> well
+<neilt> but if we dont we move linking all of the data to the form?
+<reinhard_> i for example think that the business objects shouldn't define
+<reinhard_> whether i want to see header information and detail information
+<reinhard_> on the same form or not
+<neilt> reinhard_: exactly I agree with that
+<reinhard_> appserver would define relations between objects
+<neilt> ahh that is the problem
+<reinhard_> like sales_head has a list of sales_items
+<reinhard_> and sales_item defines a reference to the sales_head
+<neilt> they also have to be defined by the form so the work to maintain it will be double
+<reinhard_> but a form would have to define that it wants to _use_ that link
+<neilt> and the forms or appserver will be fragile to breaking
+<neilt> if one is changed but not the other
+<neilt> reinhard_: that is the essence of the issue
+<reinhard_> i see your point
+<neilt> if the form just retrieves the data without know about the link
+<reinhard_> it is IMHO actually independent of the master-detail problem
+<neilt> then the form can use all of the data or just part of it
+<neilt> or none of it
+<reinhard_> we will always have this issue as long as form definitions (XML) and object definitions (database) are maintained seperately
+<reinhard_> that a form definition doesn't match the underlying object
+<neilt> not necessarily
+<neilt> let me explain
+<neilt> lets say i define a simple object with 3 properties (A B C)
+<neilt> the form can referrence to object obj1 and the 3 properties ( A B C)
+<neilt> lets say that I take property C out of obj1
+<neilt> and create obj2 with property C and link that to obj1
+<neilt> since obj1 can be proxy object the form can still think it is getting property C from obj1
+<neilt> but it is really stored in obj2 now
+<reinhard_> ok
+<reinhard_> i understand that
+<chillywilly> even in MVC achritectures the view is separate from the model and any changes in one may have to be changed in the other
+<reinhard_> however i don't understand how this could work with 1:n
+<reinhard_> instead of 1:1
+<neilt> thats is the downside
+<neilt> in that you hide the relationships in the proxy objects
+<neilt> and the forms just deal with data
+<chillywilly> the relationshipd should be refernceable in a form and/or trigger
+<neilt> but the upside is that i can add a complex stored procedures to retreive data into andobject and the form does not need to know the relationship
+<chillywilly> hmmm
+<neilt> only that it should display the data
+<reinhard_> but the form has to know that it's master detail
+<reinhard_> doesn
+<reinhard_> 't it?
+<neilt> no I dont think it does
+<reinhard_> then
+<chillywilly> why wouldn't you just use the objects interface to change anything ans just worry about updating the form?
+<chillywilly> (view)
+<neilt> it needs to know that this object has a list of data to display
+<reinhard_> how does the form know that it can insert a new item into the order?
+<neilt> the list is either read only or read write
+<neilt> if the list is added to then the business object maintains referrential integrity when it updates the db
+<reinhard_> hmmm
+<reinhard_> how does the form know that i can add another item to the order
+<reinhard_> but i can not add another customer?
+<chillywilly> it shouldn't display stuff to add a customer then ;)
+<chillywilly> or the gui should be 'disabled'
+<neilt> in the business object with is (1:1) with the form the properties are read only
+<chillywilly> forms has read-only widgets
+<neilt> s/with/which/
+<reinhard_> well i can _change_ the customer
+<chillywilly> could someone be so kind as to forward me the Halloween mails?
+<neilt> what email
+<chillywilly> all 5 of them
+<neilt> addr
+<chillywilly> the ones on gnue-dev
+<chillywilly> danielb@libertyetech.com
+<neilt> to what email addr
+<reinhard_> neilt: let my try if i understand you basically
+<reinhard_> what you are talking about means that we have some "array" type of property
+<reinhard_> would this be correct?
+<neilt> reinhard_: essentially
+<chillywilly> which in ODL would be a ref to a collection ;)
+<neilt> reinhard_: but let me also say I did not plan to have this conversation this morning and so I am just reponsding with first thoughts
+<reinhard_> ok :)
+<chillywilly> cause relationships and attributes are the object "properties"
+<neilt> not necessarily having thought through all of this
+<neilt> but this is how some weel know system I am working with operate
+<reinhard_> neilt: one of the side results of the meeting was
+<neilt> s/weel/well/
+<reinhard_> we agreed that there has been much much talk about appserver
+<reinhard_> and not so much implementation
+<reinhard_> and that we have to start getting something done
+<reinhard_> look where we will have the _real_ problems
+<neilt> exactly and i dont want to get in the way of progress
+<reinhard_> and improve that
+<reinhard_> rather than for more months talking about problems that could theoretically arise
+<reinhard_> very good example
+<reinhard_> we just implemented that first draft api
+<reinhard_> with jforms siesel found out we have to change it to make performance better
+<reinhard_> so we changed it
+<reinhard_> but if we hadn't done that prototype implementation
+<neilt> unfortunately the fact that the forms architecture is relational based may well hinder the appserver design in the long run and I have accepted that
+<reinhard_> we would never ever have seen the real problem
+<neilt> except that I have see these problems
+<neilt> but I will keep it to myself
+<reinhard_> part of the problem relates to XMLRPC which is what you are refering to now
+<reinhard_> and you are certainly right in that respect
+<reinhard_> and part of the problem relates to bad design of the API
+<reinhard_> which IIRC nobody saw before
+<reinhard_> (at least I was not aware of it)
+<neilt> I did, but people just want to see work done
+<neilt> and everyone wanted this
+<neilt> so i shut up and will do so again
+<reinhard_> so then i would be thankful for a comment to the new api
+<reinhard_> just a sec
+<reinhard_> returning to my other ego
+reinhard_ (~reinhard@M693P020.adsl.highway.telekom.at) left irc: "There's always one more imbecile than you expect"
+<reinhard> back here
+<neilt> :)
+Action: chillywilly is away: church
+ariel_ (~ariel@ppp-217-133-242-239.dialup.tiscali.it) joined #gnuenterprise.
+<reinhard> hello ariel_!
+<ariel_> hi! did i lost something in the last hour?
+<reinhard> possibly
+<reinhard> neilt explained a system that lets you include several related business objects into a single "proxy" object
+<reinhard> however i felt that i partly failed to understand :(
+<neilt> and sorry about the rant
+<neilt> but i think there is a big difference between  discussions that hold up progress and discussions that prevent further problems
+<reinhard> there _is_ a big difference
+<reinhard> the problem is that it's not always possible to tell in advance which category a discussion will end in ;-)
+<neilt> exactly and that means that if you dont agree then continue on, never stop
+<reinhard> whether i agree or not - input is always valuable
+<reinhard> even whether i completely understand or not
+<neilt> discussions should not mean that the idea has to adopted or dropped
+<reinhard> its always better to have additional input
+<reinhard> yes
+<reinhard> it's not only black or white
+<neilt> the other item is that my view is for implementing large systems
+<neilt> anyway i won't go there, sorry
+<neilt> i better go nonw
+<neilt> now
+<neilt> later all
+<reinhard> later neilt
+<reinhard> thanks again
+neilt (~neilt@ip68-100-144-59.nv.nv.cox.net) left #gnuenterprise.
+<reinhard> for your input
+jamest (~jamest@adsl-208-191-39-241.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+<reinhard> hello jamest
+<jamest> hi
+<ariel_> i meant last hour of meeting
+<reinhard> ah ok
+<reinhard> actually not
+<reinhard> you should probably read the halloween mail no. 5
+<reinhard> which contains the stuff we discussed after you left
+dragon (~dragon@pcd252010.netvigator.com) left irc: "[x]chat"
+Action: derek is away: church
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: Remote closed the connection
+<reinhard> bbl
+Nick change: reinhard -> rm-away
+ariel_ (~ariel@ppp-217-133-242-239.dialup.tiscali.it) left irc: "Uscita dal client"
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+<jcater> omg!
+<jcater> someone who uses the debian packages
+<jcater> has sent in a patch which fixes the Property Inspector issue
+<jcater> :) :) :)
+<jcater> the one we've been trying to figure out for a year now
+<psu> yay!
+<jcater> and it's a one-liner
+<jcater> whoop!
+<drochaid> is that the "can't edit field with scroll bars present" one?
+<psu> this is the great thing about free software
+<psu> users who fix their own bugs
+<psu> gotta love 'em
+<jcater> drochaid: yeah
+<drochaid> :)
+<jcater> psu: for the KC, that was from Monte Lin
+<jcater> :)
+<jcater> hint, hint
+<psu> All hail!
+Action: psu will have to cross-ref this to all the previous KC threads mentioning the bug
+<psu> must be a good dozen of them
+<jcater> You mean the one's where I said it was a WX bug, and not a GNUe bug?
+Action: jcater hides his head in shame
+<psu> first line of defence "the wx docs weren;t clear"
+<drochaid> lol
+<psu> second line of defence "no-one else noticed it either"
+<psu> third line "derek told me to do it that way"
+<psu> ;-)
+<jcater> lol
+Action: drochaid swaps first and third round
+<psu> Can people please check 
+<psu> http://www.gnuenterprise.org/community/contrib.php
+<psu> in their favourite browser
+<psu> The e-mail addresses should be just about readable, but not too clear
+<psu> to foil spambots
+<psu> (probably futile, but I feel a need to make an effort)
+<drochaid> looks good in Opera v6.04 on Win2k
+<jcater> looks good in Konqueror 3
+<psu> and I guess even if anyone can test in MSIE, they are hardly likely to "out" themselves in this channel...
+<drochaid> lol
+Action: drochaid doesn't want to test it in IE
+Action: drochaid doesn't want to have to reboot his machine
+Action: jcater cranks up his win4lin instance
+<jcater> well, for the most part, looks good
+<jcater> the email addresses look like they're in superscript on IE 6 :)
+<jcater> ah cool
+<jcater> those are images
+<jcater> isn't that spiffy
+<drochaid> well spotted ;)
+<psu> I'm assuming that most of the people on the end of info@gnue.org have spamassasin 
+<jcater> I do
+<psu> but for some of the others, an ounce of prevention
+<psu> Of course, it stuffs lynx users right royally
+<psu> but I'm afraid the needs of the many outweigh the needs of the few
+<psu> (in this case - I am normally a "sites unreadable in lynx are broken sites" zealot)
+<jamest> man
+<jcater> What manual page do you want?
+<jamest> that many people are willing to associate their name w/ gnue
+<jamest> the net is just full of sick people
+<psu> jamest: well, some of the "gone but not forgotten"s might be trying to live it down ;-)
+<jamest> they were young and didn't know better eh?
+<psu> i think some of them are people we acquired in mergers
+<jcater>  hehe
+<jcater> spoken by a true accountant
+<psu> back wehn you & derek were in "embrace and extend" mode
+<jcater> "we acquired in mergers"
+<psu> well, we have to leverage our brand identity and focus on our core vision
+Action: psu is obviously sick, being able to come up w/this sort of stuff on a Sun
+Action: psu is away: gone to recover
+<jamest> me in embrace and extend
+<jamest> what was I thinking
+<jamest> more users = more issues
+<jamest> more coders = more solutions to those issues
+<drochaid> ok, who's got my NAV cd?
+<drochaid> own up, I know one of you do
+Action: jcater hides
+Action: drochaid stares
+Action: drochaid starts to cry
+<drochaid> this is ridiculous
+<drochaid> I'm a firkin Symantec authorised software partner
+<drochaid> and I don't have a NAV vd to hand :)
+<drochaid> s/vd/cd
+<drochaid> erm
+Nick change: rm-away -> reinhard
+<reinhard> back for a bit
+<drochaid> lo reinhard
+<jcater> ok, I fess up
+<jcater> http://www.newegg.com/app/specification.asp?item=32-108-112
+<jcater> there ya go
+<reinhard> psu: the email adresses are not very readable in galeon
+<reinhard> for example billh looks like biiih
+Action: drochaid stares in disbelief at the .asp part of the url
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) left irc: "Don't contradict a woman -- wait until she does herself"
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+grib (~grib@grib.customer.jump.net) left irc: "I'm too lame to make a quit message"
+IsoosI (dahoose@port-219-88-246-28.jet.net.nz) joined #gnuenterprise.
+jamest (~jamest@adsl-208-191-39-241.dsl.tpkaks.swbell.net) left irc: Read error: 104 (Connection reset by peer)
+Action: chillywilly is back (gone 04:28:11)
+<chillywilly> newegg.com has nice prices
+<chillywilly> someone posted it on our LUG list a while ago
+<chillywilly> er, a link to it anyway
+<jcater> it's my personal vendor of choice
+<jcater> and jamest's
+<jcater> (he tuned me into them)
+<chillywilly> groovy
+<chillywilly> btw, I don't think chillywilly@gnue.org works anymore
+Action: chillywilly was looking at the contrib page
+<jcater> I don't have access to freeloader (gnue.org) to fix
+<chillywilly> heheh, is that the box name?
+<jcater> that's gnue.org, not gnuenterprise.org
+<jcater> the latter is ash
+<chillywilly> yea
+Remosi (dahoose@port-219-88-247-243.jet.net.nz) left irc: Read error: 113 (No route to host)
+<chillywilly> the one in sunny AZ
+<jcater> yeah 
+<jcater> freeloader
+<jcater> as in, freeloading off of someone's T1
+<chillywilly> ;)P
+<jcater> woot!
+<chillywilly> who has access?
+<chillywilly> derek?
+<jcater> jade
+<chillywilly> yea
+<chillywilly> or that dewd
+<jcater> derek might have root, I dunno
+<chillywilly> come on now, would you give derek root access knowing his luck? ;)
+<chillywilly> ajmitch has root access to my server...
+<chillywilly> hrrm, I tried to sbscribe to gnue-dev again and I nevr got the little confirmation email
+<chillywilly> I did however get the forwarded mails form neilt
+<chillywilly> so I know my mail is working ;)
+<chillywilly> woops, spolke to soon
+<chillywilly> got filtered to my mailman folder
+Phython (~jim@24.43.163.229) joined #gnuenterprise.
+<chillywilly> hey jim
+<Phython> what's up?
+<chillywilly> lunch soon ;)
+<chillywilly> er, well it will be ready anyway
+Action: chillywilly doesn't want his lunch coming "up" though
+<Phython> ahh, the Small business image is broken on http://www.nongnu.org/gnue-sb/
+<chillywilly> hmmm
+Action: chillywilly blames psu
+<jcater> that was, um, created late yesterday
+<jcater> we haven't uploaded anything yet
+<jcater> and they have our GNU status wrong
+<jcater> :(
+<jcater> we are trying to get that fixed 
+jamest (~jamest@adsl-65-64-191-7.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+jamest_ (~jamest@adsl-64-216-107-182.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) left irc: Read error: 54 (Connection reset by peer)
+jamest (~jamest@adsl-65-64-191-7.dsl.tpkaks.swbell.net) left irc: Read error: 54 (Connection reset by peer)
+<ajmitch> morning you lot
+<jcater> afternoon, senior aj
+<jcater> psu: have you given any thought on how to handle our new GNUe/Small Business Edition?
+<jcater> I think derek and I were leaning towards keeping it as GNUe
+<jcater> (and so having it be a part of GNUe's website, somehow)
+<jcater> we just wanted a separate CVS tree
+<ajmitch> jcater: they been approved by savannah yet? :)
+<jcater> ajmitch: I got root + savannah admin acces
+<jcater> s
+<jcater> so, yes :)
+<ajmitch> hehe
+<jcater> I signed up for savannah-hackers 2 days ago
+<jcater> I got a confirmation email
+<jcater> but no mail yet
+<jcater> is it usually quiet on the weekends?
+<ajmitch> surprising
+<ajmitch> there's been mail
+<jcater> hmm
+<ajmitch> i saw rudy mailing maintainers@gnu.org asking about rentfree & gnue-sb
+Action: jcater is thinking about doing a webpage for gnue-sb (on savannah) that simply does a redirect to our main gnue site
+<jcater> where's derek
+<jcater> ?
+<ajmitch> ran away 
+<jcater> it's past 1:00 pm his time
+<jcater> surely he's out of church by now
+<ajmitch> went to church, last i saw
+<ajmitch> hmm
+<jcater> sheesh!
+<jcater> we need to work on his priorities
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+<ajmitch> hi reinhard
+psu (psu@manorcon.demon.co.uk) got netsplit.
+Phython (~jim@24.43.163.229) got netsplit.
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) got netsplit.
+paqan (~paqan@202.155.120.221) got netsplit.
+ra3vat_ (~ds@ics.elcom.ru) got netsplit.
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) got netsplit.
+sfb- (mattr@chew.exelus.net) got netsplit.
+gnuebot (~eggdrop@65.101.4.211) got netsplit.
+ajmitch (~me@wlg1-port47.jetstart.maxnet.co.nz) got netsplit.
+gnuebot (~eggdrop@65.101.4.211) returned to #gnuenterprise.
+Phython (~jim@24.43.163.229) returned to #gnuenterprise.
+psu (psu@manorcon.demon.co.uk) returned to #gnuenterprise.
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) returned to #gnuenterprise.
+paqan (~paqan@202.155.120.221) returned to #gnuenterprise.
+ra3vat_ (~ds@ics.elcom.ru) returned to #gnuenterprise.
+ajmitch (~me@wlg1-port47.jetstart.maxnet.co.nz) returned to #gnuenterprise.
+sfb- (mattr@chew.exelus.net) returned to #gnuenterprise.
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) returned to #gnuenterprise.
+#gnuenterprise: mode change '+o gnuebot' by calvino.freenode.net
+<psu> wb jcater
+<jcater> and to you
+<psu> \away
+Action: psu is back (gone 02:22:47)
+<psu> jcater: Is the rationale for gnue-sb as seperate simply that
+<psu> we want the "official" apps to use appserver
+<psu> and this is therefore almost a self-fork?
+<psu> If so, then I think I would just add gnue-sb to the "Applications" section of the site
+<psu> once we have the gnu/non-gnu resolved, 
+<psu> the gnue-sb web page will automagically live at 
+<psu> www.gnu.org/software/gnue-sb
+<psu> www.gnu.org/software/gnue
+<psu> being the main web page
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) got netsplit.
+Mr_You (~car@gso56-184-113.triad.rr.com) got netsplit.
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) got netsplit.
+wayneg (~merlinx@ppp1087.qld.padsl.internode.on.net) got netsplit.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) got netsplit.
+<psu> heavy cross-linking (and probably a common look and feel) to both
+<jcater> hang on
+<jcater> I'm on calvino
+<jcater> I might be going.....
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) returned to #gnuenterprise.
+Mr_You (~car@gso56-184-113.triad.rr.com) returned to #gnuenterprise.
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) returned to #gnuenterprise.
+wayneg (~merlinx@ppp1087.qld.padsl.internode.on.net) returned to #gnuenterprise.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) returned to #gnuenterprise.
+<jcater> am I still here?
+<psu> I'm on brunner, but seem to be immune so far...
+<drochaid> wheeeeee
+<jcater> psu: I wish derek were here
+Action: drochaid on saberhagen
+<psu> yep
+<jcater> I think the final verdict is
+<jcater> this is not really a self-fork
+<jcater> this is a smaller, scaled down version
+<jcater> incidentally
+<jcater> we are **strongly** considering going to this gnue-??? model
+<jcater> for all our gnue stuff
+<jcater> gnue-forms
+<jcater> gnue-reports
+<jcater> etc
+Action: psu likes
+<psu> gives us an auto structure for the web site too
+<psu> as each gnue-foo will have its own mini site on www.gnu.org
+<jcater> I hadn't considered the website structure implications
+<jcater> actually, that is one of our hangups
+<psu> with /software/gnue/ as the official entry point
+<jcater> as we were expecting it to be harder to do the websight :)
+<psu> and the whole thing mirrored onto ash
+<jcater> website, even
+<jcater> well
+<jcater> another thing
+<jcater> this would let gnue.org be more of a community site like derek's always clamoring for
+<jcater> as we would always have easily accessible tool sites
+<jcater> I dunno... I'll let our webmaster figure all that out
+<jcater> <cough>psu
+<psu> well, www.gnuenterprise.org already has things that we wouldn't ever put on www.gnu.org
+<psu> e.g. the irc logs
+<jcater> one of the big concerns is that our gnue/ cvs is getting way too big :)
+Action: psu nods
+<drochaid> psu: are you the website maintainer?
+<psu> drochaid: for my sins ;-)
+<drochaid> psu: could you do me a favour on it please? :)
+<psu> bugs to www-support@gnuenterprise.org
+<psu> drochaid: no nekkid goat porn
+<psu> derek said
+<psu> ;-)
+<drochaid> give documentation a much more prominent position?
+<drochaid> ah boo to the nekkid goat porn ban :'(
+<psu> Documentation is a funny one
+<psu> as we only have 1 docs page at the moment 
+<psu> but there are at least 3 levels
+<psu> a) end user docs
+<psu> b) application developer docs (people designing apps with gnue)
+<drochaid> I always find it's one of the most important link .. and just now it's the 2nd last item on the menu, or into community and the 2nd last item, there
+<psu> c) GNUe developer docs 
+<jcater> drochaid: I think psu is waiting on us to give him better docs ;)
+<drochaid> I'd like to see "GNUe Docs" beside "GNUe Community" in the top header
+<psu> Short term, I may as well go back to the old "fudge"
+<drochaid> jcater: LOL
+<psu> which is to have Docs listed in both Project
+<psu> (loghically just under "Downloads"
+<psu> ) 
+<psu> and also in Community as well
+<drochaid> jcater: I can't comment on that, I promised to write some back in June .. haven't had time yet :)
+<drochaid> psu: or just see my suggestion above maybe?
+<psu> The main sections (other than Project) link to the three bullet points on the home page
+<psu> at the moment
+<psu> So I guess I'd have to say that GNue was 4 things, one of which is a repository of docs 
+<psu> and add another tab along the top
+<psu> Actually, that might not be a bad idea
+Action: drochaid spies psu trying to work drochaids suggestion round to his own way of thinking ;)
+<psu> but of course
+<psu> I used to be a consultant 
+<jcater> can I chime in?
+<psu> and all consultants know the art of modifying the customer's ideas
+<psu> to fit the pre-packeged solution
+<psu> jcater: ?
+<jcater> I'd hate to see another tab across the top
+<jcater> I think we have about as many tabs as we can realistically put there
+Action: psu agrees, esp. at 800 x 600
+<drochaid> psu: what I think you'll find the real situation is, is that consultants take customer ideas and make them fit a pre-packaged solution
+<drochaid> :)
+Action: drochaid spits at jcater for dashing his new tab idea
+Action: jcater ignores drochaid... is used to being spit on
+<drochaid> lol
+<jcater> I think each tab deserve's its own doc menu
+<jcater> menu=page
+<drochaid> :o
+<drochaid> jcater: really really bad idea IMHO
+<jcater> GNUe Community --> Developer Docs
+<jcater> err
+<jcater> crickey
+<jcater> I dunno
+<jcater> but if we have a centralized doc page
+<jcater> I think it's going to be so confusing
+<drochaid> just thinking on basic knowledge management philophies
+<drochaid> if someone isn't sure which category a doc is likely to be in, could piss them off trying to find it
+Action: jcater is thinking on basic "Designing around tasks"
+<jcater> mentality
+<jcater> i.e., "What task is this web visitor doing?"
+<jcater> Studying/writing with GNUe Tools?
+<drochaid> if they're centralised, there's nothing to stop you linking to docs within other sections as required
+<jcater> Looking for Downloadable solutions?
+<jcater> looking for goat pr0n?
+<jcater> drochaid: well, that is true
+<jcater> I'm still not sure I agree though :)
+<jcater> my $0.02 (USD)
+<jcater> :
+<drochaid> my suggestion would also allow the docs to be linked from within the sections at a location that is appropriate to the doc rather than a "docs" section in each main section
+<jcater> Each module/tool/package needs a documentation section on its page
+<jcater> but then each tab should have a documentation page
+<jcater> linking to all relevant documentation
+<jcater> e.g., GNUe-Forms has a doc section
+<jcater> but GNUe Tools section
+<jcater> has a doc page of all GNue Tools docs
+<jcater> and on the right hand side
+<jcater> the last (or first, whatever)
+<jcater> option under GNUe Tools
+<jcater> is 
+<jcater> Documentation
+<jcater> So, you end up with
+<jcater> GNUe Tools
+<jcater>   Forms
+<jcater>   Designer
+<jcater>   ....
+<jcater>   Document Store
+<jcater>   Documenation
+<jcater> Gnue Packages
+<jcater>   Financials
+<jcater>   ....
+<jcater>   DCL
+<jcater>   Documentation
+<jcater> or maybe having Docs as first option makes more sense
+<jcater> either way
+<jcater> am I making sense?
+<drochaid> yes
+<jcater> the Forms/ page would still list all the form-related docs
+<jcater> but from the main menu, you could quickly get to all tool-related docs too
+<drochaid> but I still disagree with the positioning/logic behind it
+<jcater> that's ok, because I disagree with yours :)
+<jcater> grrrr
+<drochaid> I noticed :)
+Action: jcater runs off to get his duel weapons
+<jcater> drochaid: I challenge you to a duel
+<drochaid> LOL
+<drochaid> ok
+<drochaid> I've got a claymore
+Action: jcater takes off his gloves
+<drochaid> which arm would you like to loose first? :)
+Action: jcater puts his gloves back on and slowly walks away
+<drochaid> bwhahaHAHAHAHAHAHAHHHAHAHAA
+<jcater> one of the things we've been emphasizing over the last month or so
+<jcater> is that the tools get lost in the apps
+<jcater> so we're trying to point out that GNue is 3 projects in one
+<jcater> I just think the documentation should follow in that focus as well
+<jcater> and I'm talking at a minimum here
+<drochaid> whereas I would always classify documention as a separate project, as without really good docs, the tools/apps are useless to the less than technical users
+<jcater> as far as I'm concerned, we could do: 
+<drochaid> ie, me
+<jcater> gnue.org/docs <-- all docs, categorized
+<jcater> gnue.org/tools/docs <-- all tool-related docs
+<jcater> gnue.org/tools/forms/docs <-- all form-related docs
+<jcater> after all, I don't think psu has anything better to do
+<drochaid> LOL
+<drochaid> I would REALLY just rather see gnue.org/docs
+<drochaid> sub cats as required in that
+<jcater> we already have that
+<drochaid> and links to individual docs as required from the relevant sections of the rest
+<drochaid> yeah, you have that logically .. but not obviously from a UI pov
+<jcater> I don't like it from either standpoint, but we've already established that :)_
+<drochaid> lol
+<drochaid> oh well, I'm not even a pretend member of the community, so I'll just bow out gracefully now ;)
+Action: jcater was hoping others would chime in
+<drochaid> I think psu is hiding
+<jcater> as if I'm in the minority, I'll certainly bow out
+<jcater> I really don't know what others think
+Action: psu isn't really fussed
+<drochaid> hey, even if you're in the majority ... you're still wrong jcater
+Action: drochaid runs away
+<jcater> depends on the perspective
+Action: psu notes we need a lot more docs before any of this matters
+<jcater> I still believe in task-oriented websites
+<psu> but that willcome
+<jcater> psu: true dat
+<psu> anyway
+<drochaid> jcater: yeah, but as I've mentioned, I believe the docs are as important a task as the tools
+Action: psu is away: assisting wife's essay crisis - still logging
+<jcater> drochaid: by task, I mean visitor task
+<drochaid> damn, that means we can't insult psu :'(
+<jcater> :(
+<jcater> of course
+<drochaid> jcater: I mean it in both development and visitor tasks
+<jcater> I'll say this, as I have many times before
+<jcater> ...as long as someone else is doing the website maintenance
+<jcater> I am happy with whatever
+<jcater> :)
+<drochaid> personally, I go to a site to find out about something, I want to see a prominant about/downloads/docs arrangement so I can scan quicjly and easily
+<drochaid> I don't want to have to go into one section and scan, then move to another and scan etc
+<jcater> odds are, though
+<jcater> you care about one section or another
+<jcater> i.e., you are here to develop with the tools
+<jcater> or you are here for the packages
+<drochaid> most will be, some won't
+<drochaid> even tho I'm nowhere near technical enough to think about developing .. I may still want to scan the docs as I find an understanding of the architecture and coding can help me design with a tool
+<drochaid> so I still use both
+<drochaid> anyways, I doubt either of us are going to change opinion since BOTH our opinions are valid from a different perspective ..
+<drochaid> so a small change of topic instead [and just SLIGHTLY OT :)]
+<drochaid> can anyone think of a decent domain to use for "Andrew Robertson Studios"??
+Dema (rtyu@n100.ryd.student.liu.se) joined #gnuenterprise.
+dres (~dres@mail.lewismoss.org) joined #gnuenterprise.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<ajmitch> deke!
+Action: psu is back (gone 00:25:54)
+<jcater> ack!
+<derek> jcater: you around?
+<psu> drochaid: I assume the obvious 3-letter abbreviation is taken?
+Action: derek hasnt read back logs and i have nasty well ...
+<derek> im pissing out my arse ;)
+<derek> i will respond to your mail ASAP (between runs to the border)
+<drochaid> psu: it is :'(
+<jcater> otay
+<jcater> no hurry
+<derek> all points are very valid and was hoping to resolve before i committed anything last night
+<derek> but got impatient :)
+<jcater> not like we're releasing tomorrow anyway :)
+<jcater> I just wanted to put all my thoughts down in writing
+<jcater> while they were fresh
+<drochaid> psu: as are all the most likely contenders I've thought of except the full name which I think is just too much
+<drochaid> allo de
+<drochaid> rek
+<derek> jcater: well actually...
+<derek> we will be releasing VERY soon possibly even tomorrow
+<derek> likely no later than wednesday
+<derek> at least for item stuff
+<psu> drochaid: try a .biz or other bijou domain?
+<derek> so it is 'critical' for me :)
+<drochaid> psu: erk, no ta
+<jcater> ah
+Action: derek is very upset that gsd stuff in common is grossly broked
+Action: derek understands why and how and stuff happens 
+<psu> drochaid: domain name registration is so critical these days 
+Action: psu is registering a domain for a business I have no intention of starting for at least 2 years
+<drochaid> lol
+<drochaid> very wise
+<drochaid> I launched ARS on the 1st July 2001
+<drochaid> been thinking about a domain since may 2001
+<drochaid> got 2 photographers [inc me] and 2 artists involved just now
+<drochaid> and STILL no domain :'(
+Action: psu is away: bbl
+<drochaid> oh dear, I frightened him off :)
+<dtm> drochaid: hey there1
+<dtm> !
+<drochaid> hey dtm :)
+<dtm> derek: so did you code stuff last night?
+<dtm> drochaid: howya doin?
+<drochaid> erm .. no, but I designed a fairly complex site structure
+Action: drochaid notes he isn't derek and shuts up
+<dtm> hehe well that's cool anyway!
+<dtm> we all want to be derek, but alas there can be only one.
+<drochaid> LOL
+<jcater> thank gawd!
+<jcater> I don't think I could ever get any rest
+<drochaid> we don't want to be derek right now ;)
+<jcater> with multiple dereks
+<derek> you dont want to be derek right now
+<derek> unless you like well severe stomach cramping
+<dtm> no i dont!
+<dtm> so i hereby reiterate my committment to delegating all derek-like duties to derek.
+Action: dtm is not derek
+<ajmitch> who wants to be ajmitch for the day?
+<jcater> ajmitch: not I, unless you are a well-figured 19 year old blonde chick
+<ajmitch> sorry
+<dtm> well he might be, for all we know!
+<jcater> true dat
+<dtm> has anyone ever met the REAL ajmitch?
+Action: ajmitch checks
+<dtm> and how would you know?
+Action: chillywilly has seen pictures f ajmitch
+<dtm> if you did?
+<ajmitch> nope, i'm not well-figured, 19, blonde, or a chick
+<dtm> chillywilly: how can you be sure?
+<chillywilly> dtm: how can I be sure that you are who you say you are?
+<ajmitch> come on, all i need is someone to sit the exam for me this afternoon! :)
+<jcater> I'd be happy to sit in
+<jcater> I couldn't promise a good grade though
+<ajmitch> neither can i :)
+<chillywilly> blah, I have more cleaning to do
+<jcater> anyone know of some good, non-permanent glue?
+<jcater> I want to turn some paper into, basically, sticky notes
+<ajmitch> most glue will break down after you try to restick the notes 
+<chillywilly> by some frelling sticky notes ;)
+<jcater> I don't need to restick them
+<ajmitch> anyway, bbiab
+<jcater> just one time use
+<jcater> but when I take it down
+<jcater> I don't want any glue to remaind
+<jcater> remain
+<chillywilly> I gess this goes to show just how cheap VPs are ;)
+Action: chillywilly is away: clean the house
+<derek> jcater: dont use jet glue then ;)
+<derek> you want 'rubber cement' based stuff likely
+<derek> as it is more like 'stickem' than glue
+<jcater> ok
+<jcater> I'm using christmas wrapping paper as a faux wallpaper
+<jcater> in a display in the bookstore
+<jcater> so, come December 26, I want it to peel off :)
+<Mr_You> hi
+<derek> http://www.officedepot.com/shop/search/skuResults.asp?type=3&DIV%5FID=11&CATG%5FID=1101&SUB%5FCATG%5FID=1101001&FAM%5FID=322&ANDOR=&WILDCARDS=&STEMMING=&advancedqu=glue&SID=CBUBV165UM1C9G7MLULEXJF7NPK59JM6&PP=0
+Action: psu is back (gone 00:31:13)
+<derek> or
+<derek> http://www.officedepot.com/shop/search/skuResults.asp?type=3&DIV%5FID=11&CATG%5FID=1101&SUB%5FCATG%5FID=1101001&FAM%5FID=321&ANDOR=&WILDCARDS=&STEMMING=&advancedqu=glue&SID=CBUBV165UM1C9G7MLULEXJF7NPK59JM6&PP=0
+Action: psu thinks we should have a contest for the longest, most unbelievable URL
+<psu> but I think derek just won anyway
+<jcater> woot!
+<jcater> I think that's what I want
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise ("#gnuenterprise - for people not ashamed of the length of their URLs...").
+<derek> oh so rock that resize of property inspector has been debugged!!!!
+<chillywilly> what;'s that page to use that lets you shorten obscenely long urls?
+<chillywilly> derek needs to find it quick
+<Mr_You> hehe, didn't know such a thing existed ;-)
+<jcater> www.google.com
+<jcater> works for me
+<chillywilly> someone pasted the url fr the page into this channel a while back, iirc
+Action: chillywilly is back (gone 00:12:06)
+<jcater> yeah, I know what you're talking about
+<jcater> but I don't know the url
+<ajmitch> makeashorterlink.com?
+<ajmitch> or something like that
+<derek> interesting site
+<jcater> yeah
+<jcater> but they could've used a shorter domain :)
+<chillywilly> masl.com
+<jcater> http://www.maltaisgeomatics.com/ 
+<jcater> ??
+<jcater> :)
+<reinhard> night all
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) left irc: "There are two types of people: those who divide people into two types, and those who don't"
+Action: jcater is off to buy some poster tape at wal-mart
+<Dema> I sent an email to www-supPort@gnuenterprise.org some time ago (retried today also) which gives an error-message. Then i tried with a guess: dneighbo gnue.org but I didn't get any reply on that.
+<Dema> Can someone tell me this is alright, I can forget it and go to sleep? Or should I resend the mail (correction for webpages) to another email?
+<derek> email to info@gnue.org for now
+<derek> if you can email the error you get when sending to www-support@gnuenterprise.org as well that would be good
+<derek> as we can fix it
+<Dema> will info@gnue spam lot's of ppl?
+<derek> nope
+<derek> like 5 or so
+<derek> you can send directly to derek@gnue.org if you are worried
+<Dema> Ok, it's running through the net.
+<derek> if your name is simon i received it
+<Dema> ok :)
+<Dema> Then I'll go to sleep. Bye!
+Dema (rtyu@n100.ryd.student.liu.se) left irc: "zzZZz"
+dsmith (dsmith@oh-strongsvillecadent1-1c-20.clvhoh.adelphia.net) joined #gnuenterprise.
+<jamest_> q
+dsmith (dsmith@oh-strongsvillecadent1-1c-20.clvhoh.adelphia.net) left irc: "later.."
+Action: chillywilly is away: clean the house some more
+siesel (jan@dial-213-168-72-219.netcologne.de) joined #gnuenterprise.
+<siesel> hi
+<chillywilly> hiya
+Action: chillywilly is back (gone 00:29:18)
+<drochaid> hey chillywilly
+<chillywilly> hey
+siesel_ (jan@dial-213-168-72-61.netcologne.de) joined #gnuenterprise.
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) joined #gnuenterprise.
+siesel_ (jan@dial-213-168-72-61.netcologne.de) left irc: "night all"
+siesel (jan@dial-213-168-72-219.netcologne.de) left irc: Read error: 110 (Connection timed out)
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) left irc: Read error: 104 (Connection reset by peer)
+dragon (~dragon@pcd252010.netvigator.com) joined #gnuenterprise.
+dragon (~dragon@pcd252010.netvigator.com) left irc: "[x]chat"
+KeithJagrs (trilluser@63.74.24.9) joined #gnuenterprise.
+dres (~dres@mail.lewismoss.org) got netsplit.
+wayneg (~merlinx@ppp1087.qld.padsl.internode.on.net) got netsplit.
+Mr_You (~car@gso56-184-113.triad.rr.com) got netsplit.
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) got netsplit.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) got netsplit.
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) got netsplit.
+sfb- (mattr@chew.exelus.net) got netsplit.
+gnuebot (~eggdrop@65.101.4.211) got netsplit.
+ajmitch (~me@wlg1-port47.jetstart.maxnet.co.nz) got netsplit.
+ra3vat_ (~ds@ics.elcom.ru) got netsplit.
+paqan (~paqan@202.155.120.221) got netsplit.
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) got netsplit.
+Phython (~jim@24.43.163.229) got netsplit.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) got netsplit.
+dtm ([YdUiiN5Ft@ip66.promontory.sfo.interquest.net) got netsplit.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) returned to #gnuenterprise.
+wayneg (~merlinx@ppp1087.qld.padsl.internode.on.net) returned to #gnuenterprise.
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) returned to #gnuenterprise.
+Mr_You (~car@gso56-184-113.triad.rr.com) returned to #gnuenterprise.
+dres (~dres@mail.lewismoss.org) returned to #gnuenterprise.
+gnuebot (~eggdrop@65.101.4.211) returned to #gnuenterprise.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) returned to #gnuenterprise.
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) returned to #gnuenterprise.
+sfb- (mattr@chew.exelus.net) returned to #gnuenterprise.
+ajmitch (~me@wlg1-port47.jetstart.maxnet.co.nz) returned to #gnuenterprise.
+ra3vat_ (~ds@ics.elcom.ru) returned to #gnuenterprise.
+paqan (~paqan@202.155.120.221) returned to #gnuenterprise.
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) returned to #gnuenterprise.
+Phython (~jim@24.43.163.229) returned to #gnuenterprise.
+dtm ([YdUiiN5Ft@ip66.promontory.sfo.interquest.net) returned to #gnuenterprise.
+#gnuenterprise: mode change '+o gnuebot' by calvino.freenode.net
+dsmith (dsmith@oh-strongsvillecadent1-1c-20.clvhoh.adelphia.net) joined #gnuenterprise.
+dsmith (dsmith@oh-strongsvillecadent1-1c-20.clvhoh.adelphia.net) left irc: Client Quit
+rdean (~rdean@12-221-229-247.client.insightBB.com) joined #gnuenterprise.
+Action: rdean is away: stuff to do
+dres (~dres@mail.lewismoss.org) got netsplit.
+Mr_You (~car@gso56-184-113.triad.rr.com) got netsplit.
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) got netsplit.
+wayneg (~merlinx@ppp1087.qld.padsl.internode.on.net) got netsplit.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) got netsplit.
+rdean (~rdean@12-221-229-247.client.insightBB.com) got netsplit.
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) got netsplit.
+sfb- (mattr@chew.exelus.net) got netsplit.
+paqan (~paqan@202.155.120.221) got netsplit.
+ra3vat_ (~ds@ics.elcom.ru) got netsplit.
+gnuebot (~eggdrop@65.101.4.211) got netsplit.
+ajmitch (~me@wlg1-port47.jetstart.maxnet.co.nz) got netsplit.
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) got netsplit.
+Phython (~jim@24.43.163.229) got netsplit.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) got netsplit.
+dtm ([YdUiiN5Ft@ip66.promontory.sfo.interquest.net) got netsplit.
+KeithJagrs (trilluser@63.74.24.9) left #gnuenterprise.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) returned to #gnuenterprise.
+wayneg (~merlinx@ppp1087.qld.padsl.internode.on.net) returned to #gnuenterprise.
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) returned to #gnuenterprise.
+Mr_You (~car@gso56-184-113.triad.rr.com) returned to #gnuenterprise.
+dres (~dres@mail.lewismoss.org) returned to #gnuenterprise.
+gnuebot (~eggdrop@65.101.4.211) returned to #gnuenterprise.
+rdean (~rdean@12-221-229-247.client.insightBB.com) returned to #gnuenterprise.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) returned to #gnuenterprise.
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) returned to #gnuenterprise.
+sfb- (mattr@chew.exelus.net) returned to #gnuenterprise.
+ajmitch (~me@wlg1-port47.jetstart.maxnet.co.nz) returned to #gnuenterprise.
+ra3vat_ (~ds@ics.elcom.ru) returned to #gnuenterprise.
+paqan (~paqan@202.155.120.221) returned to #gnuenterprise.
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) returned to #gnuenterprise.
+dtm ([YdUiiN5Ft@ip66.promontory.sfo.interquest.net) returned to #gnuenterprise.
+#gnuenterprise: mode change '+o gnuebot' by calvino.freenode.net
+Phython (~jim@24.43.163.229) got lost in the net-split.
+dres (~dres@mail.lewismoss.org) got netsplit.
+Mr_You (~car@gso56-184-113.triad.rr.com) got netsplit.
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) got netsplit.
+wayneg (~merlinx@ppp1087.qld.padsl.internode.on.net) got netsplit.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) got netsplit.
+rdean (~rdean@12-221-229-247.client.insightBB.com) got netsplit.
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) got netsplit.
+sfb- (mattr@chew.exelus.net) got netsplit.
+paqan (~paqan@202.155.120.221) got netsplit.
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) got netsplit.
+gnuebot (~eggdrop@65.101.4.211) got netsplit.
+ajmitch (~me@wlg1-port47.jetstart.maxnet.co.nz) got netsplit.
+ra3vat_ (~ds@ics.elcom.ru) got netsplit.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) got netsplit.
+dtm ([YdUiiN5Ft@ip66.promontory.sfo.interquest.net) got netsplit.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) returned to #gnuenterprise.
+wayneg (~merlinx@ppp1087.qld.padsl.internode.on.net) returned to #gnuenterprise.
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) returned to #gnuenterprise.
+Mr_You (~car@gso56-184-113.triad.rr.com) returned to #gnuenterprise.
+dres (~dres@mail.lewismoss.org) returned to #gnuenterprise.
+gnuebot (~eggdrop@65.101.4.211) returned to #gnuenterprise.
+rdean (~rdean@12-221-229-247.client.insightBB.com) returned to #gnuenterprise.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) returned to #gnuenterprise.
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) returned to #gnuenterprise.
+sfb- (mattr@chew.exelus.net) returned to #gnuenterprise.
+ajmitch (~me@wlg1-port47.jetstart.maxnet.co.nz) returned to #gnuenterprise.
+ra3vat_ (~ds@ics.elcom.ru) returned to #gnuenterprise.
+paqan (~paqan@202.155.120.221) returned to #gnuenterprise.
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) returned to #gnuenterprise.
+dtm ([YdUiiN5Ft@ip66.promontory.sfo.interquest.net) returned to #gnuenterprise.
+#gnuenterprise: mode change '+o gnuebot' by calvino.freenode.net
+<jcater> ok, y'all
+<jcater> cut that out
+<derek> jcater: you and the other children just cant learn to play nice now can you
+<drochaid> jcater: they're trying to tell you they agree with me on the docs issue
+Action: drochaid ducks and runs
+<dtm> it's like he just keeps driving them away, out of the channel altogether
+rdean (~rdean@12-221-229-247.client.insightBB.com) got netsplit.
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) got netsplit.
+sfb- (mattr@chew.exelus.net) got netsplit.
+paqan (~paqan@202.155.120.221) got netsplit.
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) got netsplit.
+gnuebot (~eggdrop@65.101.4.211) got netsplit.
+ajmitch (~me@wlg1-port47.jetstart.maxnet.co.nz) got netsplit.
+ra3vat_ (~ds@ics.elcom.ru) got netsplit.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) got netsplit.
+dtm ([YdUiiN5Ft@ip66.promontory.sfo.interquest.net) got netsplit.
+gnuebot (~eggdrop@65.101.4.211) returned to #gnuenterprise.
+rdean (~rdean@12-221-229-247.client.insightBB.com) returned to #gnuenterprise.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) returned to #gnuenterprise.
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) returned to #gnuenterprise.
+sfb- (mattr@chew.exelus.net) returned to #gnuenterprise.
+ajmitch (~me@wlg1-port47.jetstart.maxnet.co.nz) returned to #gnuenterprise.
+ra3vat_ (~ds@ics.elcom.ru) returned to #gnuenterprise.
+paqan (~paqan@202.155.120.221) returned to #gnuenterprise.
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) returned to #gnuenterprise.
+dtm ([YdUiiN5Ft@ip66.promontory.sfo.interquest.net) returned to #gnuenterprise.
+#gnuenterprise: mode change '+o gnuebot' by calvino.freenode.net
+jamest_ (~jamest@adsl-64-216-107-182.dsl.tpkaks.swbell.net) left #gnuenterprise.
+esands_ (~nic@mdr1-port10.jetstart.maxnet.co.nz) joined #gnuenterprise.
+esands (~nic@mdr1-port10.jetstart.maxnet.co.nz) left irc: Read error: 110 (Connection timed out)
+aliguori (~anthony@cs24317-130.austin.rr.com) joined #gnuenterprise.
+<aliguori> hello all
+<aliguori> i was browsing the gnue website and saw the app server diagram
+<aliguori> had a quick question about the security adapter layer...
+<aliguori> noticed that ldap and active directory were connected to it (presumably, example security plugins)
+<aliguori> ldap doesn't seem like nearly enough for enterprise security though (and security is a huge part of the app server) so i was wondering if this project is going to have a huge dependecy on active directory?
+<aliguori> or are there plans to work on an enterprise security layer?
+<ajmitch> probably plans to work on something - i very much doubt that there'd be an AD dependency :)
+<aliguori> it seems like a big portion...
+<ajmitch> there's possibly more details in the mailing list archives - that's just an early diagram
+<aliguori> is this the same app server that the dotGNU project refers too?
+<ajmitch> most likely :)
+<aliguori> :)
+<ajmitch> especially as i'm the one who talks about dotgnu & gnue the most :)
+<aliguori> lol
+<aliguori> so this is the one that supposed to support both j2ee and clr ;-)
+<aliguori> a mighty big task...
+<ajmitch> say what?
+<ajmitch> not the GNUe appserver..
+<aliguori> what's it based on?
+<ajmitch> the GNUe appserver is written in python
+<aliguori> hmmm, that's quite different :)
+<ajmitch> yes
+<aliguori> i guess i don't know enough about python to know whether it would lend itself to this kind of model
+<aliguori> does it have an architecture similiar to j2ee or .net?
+<ajmitch> it's a programming language - we build the architecture :)
+<aliguori> :)
+<jcater> I think you are describing a completely different type of appserver than GNUe is building
+<ajmitch> probably
+<jcater> this must be dotGNU's stuff, I take it?
+<aliguori> when i think of app server, i think WebLogic, WebSphere, or the MS App server...
+<aliguori> how does the GNUe app server differ?
+<jcater> well,take away all those "web" references, for starters
+<aliguori> btw: i'm terribly interested in this area as i've been doing a lot of active directory interoperability work, so sorry if this comes off as grilling ;-)
+<aliguori> so its not based on a web client model, that's a good start IMHO
+<jcater> but I'm not really a good one to be asking about appserver
+<jcater> our main goal with gnue appserver is centralizing business application rules
+<jcater> business logic, if you will
+<jcater> there were a host of "Halloween" messages posted to our gnue-dev mailing list yesterday
+<jcater> from the October 31 meeting of the appserver guys
+Action: ajmitch only saw one :(
+<jcater> note that we aren't building a generic, all purpose application server
+<jcater> ajmitch: ??
+<aliguori> doh, i see that now :)
+<ajmitch> only saw one halloween message
+<ajmitch> hmm, i subscribed to that list yesterday
+<ajmitch> or was it day before
+<ajmitch> i should have got those messages anyway :)
+<derek> http://www.gnue.org/~dneighbo/gnue/geas_notes.txt
+<derek> from a meeting a while back
+<derek> you will notice goal number one precludes use of j2ee and/or .NET
+<aliguori> i thought that was what dotGNU was though... a web services server (which is an app server) with a GPL CLR implementation
+<aliguori> my confusion i guess is the relationship between GNUe and dotGNU.  dotGNU is implementing an open version of .NET and .NET app server and business logic server
+<ajmitch> no
+<ajmitch> DotGNU is building a framework with things like DGEE, which maybe what you're thinking of
+<ajmitch> it's not going for just a .NET clone
+<aliguori> yes, i realize its not just trying to be a clone, but its implementing similiar functionality, or at least, this was my impression
+<ajmitch> yeah
+wayneg (~merlinx@ppp1087.qld.padsl.internode.on.net) left irc: "You ain't got debian you ain't got shit!"
+<jcater> nice /quit message
+<aliguori> so, it seems that the GNUe app server is based on RPC, LDAP, and Python.  Seems a bit like Active Directory...
+<jcater> so is my email program
+Action: jcater isn't familiar w/active directory
+<ajmitch> jcater: MS' spawn
+<rdean> AD = MS's answer to Novell NDS (at least it was NDS at the time...think it's Novell OpenDirectory now)
+<jcater> that's what I was thinking
+Action: jcater is curious what that has to do with our business rules server
+<aliguori> so, my understanding of an app server is that its composed of a transport protocol (j2ee for WL & WS, LDAP+RPC for AD, and SOAP for .NET), a big server-library, and a database/transaction server
+<derek> aliguori: huh?
+<rdean> from a web services perspective, I think you could have the business rules registered in the directory, and then clients would look it up in the directory when needed
+<derek> appserver can run fine w/o ldap
+<derek> it uses rpc but virtually any
+<derek> SOAP, CORBA, DCOM what ever melts your butter
+<aliguori> yes, ad uses both, but you could use anything
+Action: derek doesnt see it as anything REMOTELY like AD
+<derek> at ALL
+<derek> i would see it more like
+<derek> MTS
+<derek> than AD
+<aliguori> MTS?
+<rdean> MS Transaction Server
+<aliguori> ok
+<derek> and even there its a bad analogy
+<derek> but better than active directory
+<aliguori> active directory isn't an app server
+<aliguori> it was a step towards one i imagine...
+<derek> nah
+<derek> active directory 
+<derek> imho is 3 things
+<derek> 1. replacement to ldap (m$ doesnt want open standards)
+<aliguori> so ms's extensions to ldap actually were quite logically... but they did break the standards a bit superfluously ;-)
+<derek> 2. a penis measuring contest with Novells NDS (i.e. they have gotten their arses kicked so bad in this area bill problably told people their job was gone if they didnt trump novell in directory services)
+<derek> 3. a way to lockout non microsoft platforms from directory services
+<derek> best i can tell they are being successfull at 1 and 3
+<derek> but still falling short on 2
+<aliguori> the interesting thing about ad, is that they were able to integrate more of the platform into directory
+<rdean> it's just the logical extension of MS Registry
+<derek> rdean: yes i think thats where they are going
+<derek> basically network registry services
+<derek> NDS was there to make admin life easy
+<derek> ADS is there to chain your ass to mickey soft
+Action: jcater stopped caring about MS plans long, long ago
+<derek> that is of course my opinion
+<jcater> boy, do I sleep better at night
+<jcater> well, at least, until I hooked up with GNUe
+<aliguori> so, my interest in the MS stuff is merely in overlap between dotGNU and GNUe of course :)
+<jcater> now I have nightmares about shackles and dots and Mt Dew
+<rdean> don't stop caring...stop worrying, but don't stop caring.....MS can lock up things with patents that will give open/free software developers fits
+<aliguori> i am not one of those keep up with ms people :)
+<aliguori> just trying to understand the two projects better :)
+<jcater> aliguori: we are two very independent projects
+<jcater> rdean: ok, I give you that
+<derek> crap i have a box of dots hidden away
+Action: derek forgot
+Action: derek thanks jcater
+<aliguori> jcater: yes, and i still don't understand the difference--that could be my ignorance ;-)
+<derek> aliguori: at this point there is no ties to dotgnu with gnue
+<aliguori> simply because an app server isn't a small task, at least, if scalability and mass acceptance is desired
+<derek> except perhaps observers that observe both projects
+<derek> there have been talks on two items
+<derek> one is using gnu-rpc
+<ajmitch> derek: yes
+<aliguori> gnu-rpc?
+<derek> which at some point if a CLR was available could be converted into that
+<ajmitch> derek: that's what i'm working on
+<derek> also there was talk by dotGNU folks to look at appserver as something they are interested in
+<derek> i couldnt tell you the status of either of these from dotGNU
+<derek> GNUe has working gnu-rpc in our cvs
+<derek> which was our end of the bargain :)
+<ajmitch> i'm probably the main person who has feet in both projects (not so much in GNUe)
+<ajmitch> the gnu-rpc implementation will be getting worked on next week after i finish exams, and appserver will be used where it suits 
+<ajmitch> if appserver is not suitable for more generic tasks, then we'll sort something else out :)
+<aliguori> whats gnu-rpc based on? dce-rpc
+<aliguori> ?
+<ajmitch> no
+<aliguori> any particular reason not to base it on dce-rpc?
+<ajmitch> gnu-rpc is an abstraction layer to allow multiple transports to be used
+<derek> think perl-dbi only for rpc mechanisms
+<derek> again its written in python
+<ajmitch> well, the GNUe implementation is done in python :)
+<aliguori> how so?
+<ajmitch> my one is being done in C#
+<aliguori> is it an object model?
+<ajmitch> in a way - it's like System.Runtime.Remoting on .NET
+<ajmitch> where remote objects can be manipulated in ways like local ones (at least that's the plan)
+<aliguori> not familiar with C# i'm afraid...
+<derek> i still think programmers should be more creative
+<aliguori> so its just like COM
+Action: Mr_You makes note.
+<derek> object.sniff.butt
+<derek> and such
+<Mr_You> dol, scrollback syndrome.
+<Mr_You> doh
+<ajmitch> heh
+<jcater> derek: what, you haven't looked at our dbdriver system?
+<ajmitch> no, COM is less than ideal, it's one reason why .NET exists, to fix up some of MS' screwups & crappy COM API
+<derek> gack... oo creates ugly html
+<derek> http://www.gnue.org/~dneighbo/gnue/schema.html
+<derek> new gsd info
+<aliguori> .NET is much more than that...
+<derek> mainly the bottom part is relevant
+<ajmitch> aliguori: i realise that
+<ajmitch> aliguori: and DotGNU is far more than the gnu-rpc implementation :)
+<aliguori> lol
+<ajmitch> jcater: you into compiler sado-masochism?
+<jcater> ajmitch: I am into all forms of S&M
+<derek> .NET to date is nothing
+<derek> cept vapor
+<derek> i got to sit through 5 days of smoke and mirrors to prove it ;)
+<jcater> compiler, tail recursion, self-modifying python code
+<ajmitch> derek: and the framework which people are using & have been writing apps on for awhile :)
+<jcater> you name it
+<derek> it actually has code so its not vapor i guess
+<derek> but it was FAR from complete
+<derek> i felt like i was in a GNUe demo :)
+<ajmitch> jcater: cool, i'm going to add python code generation support to treecc :)
+<aliguori> derek: MS has released a .NET server beta...
+<Mr_You> how did the bayonne demo go?
+<ajmitch> so if you want ultimate bloat, GNUe could get a compiler! ;)
+<jcater> lol
+<jcater> cool
+<jcater> I guess
+<jcater> actually
+<jcater> I've been looking into supporting
+<jcater> pyco
+<jcater> sorry, psyco
+<ajmitch> real?
+<chillywilly> tail recursion?
+<jcater> http://psyco.sourceforge.net/
+<derek> aliguori / ajmitch not to burst your bubble, but m$ releases BETAS nearly 2 years before final product ships.  Most customers consider the shipping product not USABLE until Service Pack 1 at a minimum
+<chillywilly> self-modifying code?!?
+<jcater> ajmitch: completely optional, of course
+<derek> currently that puts .NET about 18 mos out from even being usable
+<ajmitch> derek: gives others time to catch up then :)
+<ajmitch> chillywilly: python is suited for it
+<aliguori> besides, .NET has moved away from rpc.. rpc has many problems...
+<derek> wtf?
+<jcater> rpc is a generic term
+<derek> all they do is preach SOAP
+<derek> whtf is SOAP?
+<jcater> just like "app server" is :)
+<derek> smells like RPC to me
+<ajmitch> rpc plus a dash or 10 of hype :)
+<chillywilly> derek: sime object access protocol
+Action: jcater breaks out into tune of "Smells like Teen Spirit"
+<derek> no when i say SOAP i mean gnu-rpc SUPPORTS SOAP
+<chillywilly> yep, her rpc means nthing but remote invocation
+<chillywilly> er, here
+<aliguori> ah, i see
+Action: derek thinks its impossible ot have these hyped up buzzwords like 'web services'
+<derek> w/o RPC
+<derek> as without RPC you done have thick clients
+<chillywilly> yuuuuuup
+<derek> RPC = Remote Procedure Call
+<derek> could be CORBA, DCOM, RMI, SOAP, XML-RPC, FOOMAGIC you name it
+<derek> i.e. its generic like the term SQL
+<chillywilly> GOATSPEAK?
+<derek> hmm i almost have that ready for release
+<chillywilly> that's what we should call the tcp/ip mechanism
+<derek> oh wait thats COWSPEAK
+<chillywilly> GOATSPEAK
+<derek> mooooooooooooooooooooooooooooo.
+<Mr_You> the vinum author says you should be able to do remote mirrors using software RAID and iSCSI ;-)
+<derek> iSCSI just sounds like a BAAAAAD idea to me
+<chillywilly> sime, effective, and painful ;)
+<Mr_You> no way
+<derek> certainly it could have its uses
+<chillywilly> GOATSPEAK
+<chillywilly> er, simple
+<derek> but overall it seems like more hype less substance
+<chillywilly> well, to make a tre analogy
+<chillywilly> grpc format is more like WSDL than anything, imho
+<Mr_You> atleast with cisco they are providing stats showing near fiber channel capability... like REALLY close..
+<Mr_You> or even in other aspects
+<chillywilly> we suport multiple transports like WSDL
+<chillywilly> etc.
+<ajmitch> chillywilly: yup
+<ajmitch> siesel & i have talked a little about gnu-rpc stuff
+<Mr_You> derek: it will be excellent for synchronous file system replication.
+<Mr_You> over long distances
+<Mr_You> or even locally
+<chillywilly> having looke dat both mysefl
+<chillywilly> looked at
+<chillywilly> WSDL is more crack-laden ;)
+Action: jcater will stick with my carrier pidgeon redundency system
+<Mr_You> siesel is not here ;-)
+<chillywilly> grpc is KISS all the way
+<Mr_You> oh duh
+<ajmitch> of course
+<Mr_You> I read that wrong.
+<ajmitch> we don't need to hype it
+<derek> Mr_You: why would siesel need to be here
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) joined #gnuenterprise.
+<derek> jcater is one that wrote gnu rpc
+<Mr_You> I thought andrew directed a message to siesel
+<derek> true siesel has fine tuned parts but really most of the code base was commited by jcater certainly he could answer the questions as well as jan :)
+<Mr_You> nothing more ;-)
+<derek> he might not like to admit it, but that beast was his work :)
+<jcater> sigh
+<jcater> you outted me
+<jcater> now, how can I face my 2-tier friends?
+<ajmitch> i talked to siesel cos jcater is scary
+<jcater> mwahaha
+<jcater> boo!
+Action: ajmitch is scarier, especially when using the nick andrewm
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: Read error: 60 (Operation timed out)
+<jcater> sigh
+<jcater> just the meer mention of it
+<jcater> and you scared chilly away
+<ajmitch> hehe
+rdean (~rdean@12-221-229-247.client.insightBB.com) left irc: "Client Exiting"
+<ajmitch> well, bbl
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+<chillywilly> doh, I unplugged my cable modem by accident ;)
+<derek> good think you werent using iSCSI
+<derek> ;)
+<chillywilly> lol
+<Mr_You> :-P
+aliguori (~anthony@cs24317-130.austin.rr.com) left irc: "Client Exiting"
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) left irc: Read error: 104 (Connection reset by peer)
+--- Mon Nov  4 2002

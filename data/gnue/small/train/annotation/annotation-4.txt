@@ -1,0 +1,45 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.05Apr2002" enddate="04 Apr 2002 23:00:00 -0800" startdate="04 Apr 2002 23:00:00 -0800" subject="[IRC] 05 Apr 2002" title="Patching and profiling GNUe Forms">
+<topic>Forms</topic>
+
+
+<p>James Thompson (jamest) said that <quote who="James Thompson">one issue 
+with the win32 patch on multilines that jcater pointed out in his (and 
+my environments) we have both win32 and unix clients - if a win32 client 
+saves cr/lf to the db and a unix client reads it and modifies it then we 
+have a problem :)</quote> Harald Meyer (Harald1) said 
+<quote who="Harald Meyer">one just has to make a workaround, when things 
+get saved into the database</quote>. He <quote who="Harald Meyer">might 
+take a look, but I'm not sure if I understand enough of forms. How is the 
+transfer from GFObjects into the database done?</quote>. James said 
+<quote who="James Thompson">i'll try and find some time over the next few 
+days as this is going to be  a pain in the rear - GFObjects never really 
+hold anything - they pass it all to the data system -  even forms not 
+connected to a database create dummy datasources to store their info - so 
+the edits would probably need to go into common</quote>. He explained 
+that the FieldDisplayHandler was <quote who="James Thompson">new - 
+while an edit is taking place the value of the field is passing into 
+the handler - once the edit is completed then value is passed back to the 
+entry which store it in the datasource</quote>. He had 
+<quote who="James Thompson">removed internal event name translation into 
+lower case today and make a cool error - where the event handler events 
+were not being seen -  so you go to a field , try and edit it (it'd go 
+blank), then the old value would return on exit :)</quote> It hadn't 
+taken very long to spot this error!</p>
+
+<p>He added <quote who="James Thompson">my 
+test case was calling lower something like 11700 times - removing it from 
+the event system saved a few calls - however</quote> by writing the 
+'force to lower-case' as an exception rather than the norm
+<quote who="James Thompson">in one function dropped that to about 1200 - 
+profiling is good :)</quote>. Daniel Baumann (chillywilly) asked whether 
+James had used <quote who="Daniel Baumann">gprof</quote> for profiling. 
+James said <quote who="James Thompson">no - it's built into common's 
+GBaseApp - forms, designer, reports, nav all based upon it</quote> 
+and accepted a --profile option flag from the command line. He explained 
+<quote who="James Thompson">python has an internal profiler module</quote>. 
+He didn't think it used gprof, as <quote who="James Thompson">the profiler 
+is written in python - and uses the way python works to hook into it - 
+read the module manual profile section</quote>. Daniel wasn't so sure.</p>
+
+</section> 
+

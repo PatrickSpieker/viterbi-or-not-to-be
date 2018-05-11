@@ -1,0 +1,1481 @@
+jcater (~jcater@cpe-066-061-083-220.midsouth.rr.com) left irc: "nite"
+wayneg (~merlinx@ppp1374.qld.padsl.internode.on.net) left irc: "You ain't got debian you ain't got shit!"
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) left irc: Read error: 113 (No route to host)
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) joined #gnuenterprise.
+Nick change: Remosi -> Isomer
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+<ajmitch> hi reinhard
+SachaS (~Sacha@dialup-196-198.wasp.net.au) left irc: Read error: 113 (No route to host)
+<reinhard> hello ajmitch
+Arturas (~arturas@fmgs-03.vtu.lt) joined #gnuenterprise.
+<Arturas> Hello
+btami (~tamas@ip102-205.ktv.tiszanet.hu) joined #gnuenterprise.
+Arturas (~arturas@fmgs-03.vtu.lt) left irc: Killed (NickServ (Ghost: Arturas_!~arturas@fmgs-03.vtu.lt))
+Arturas (~arturas@fmgs-03.vtu.lt) joined #gnuenterprise.
+<ajmitch> wb Arturas
+<Arturas> :)
+SachaS (~Sacha@dialup-196-196.wasp.net.au) joined #gnuenterprise.
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) left irc: "Don't contradict a woman -- wait until she does herself"
+grib (~grib@grib.customer.jump.net) left irc: Read error: 54 (Connection reset by peer)
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+Arturas (~arturas@fmgs-03.vtu.lt) left irc: Read error: 110 (Connection timed out)
+ariel_ (~ariel@ppp-217-133-243-247.dialup.tiscali.it) joined #gnuenterprise.
+<ariel_> hi reinhard
+SachaS (~Sacha@dialup-196-196.wasp.net.au) left irc: Read error: 60 (Operation timed out)
+johannes (~johannes@M701P023.adsl.highway.telekom.at) joined #gnuenterprise.
+<ariel_> hi johannes
+<johannes> hi ariel, everything ok?
+<johannes> I'm leaving for lunch now --- bye !
+dsmith (~dsmith@p238.n-chpop04.stsn.com) joined #gnuenterprise.
+grib (~grib@grib.customer.jump.net) joined #gnuenterprise.
+ToyMan (~stuq@smtp.dstoys.com) joined #gnuenterprise.
+<ariel_> reinhard: are you there?
+<reinhard> sorta
+<reinhard> hi ariel_
+jamest (~jamest@leibniz.math.ksu.edu) joined #gnuenterprise.
+<ariel_> reinhard: did you succeded to read my note?
+<ariel_> i tried to export to both txt and rtf, but there is a loss of tables formatting, that makes it unreadable
+<reinhard> ariel_: i could read it
+<reinhard> i just mailed the document to another computer where openoffice is installed and printed it out
+<grib> hey gnue peoples.  what's the skinny on gtk2/libglade on win32?  is it a no-brainer yet, or even a half-brainer?  
+Action: grib doesn't have too much to spare
+<jamest> grib: has anyone even tried it?
+<jamest> i haven't heard of anyone trying it
+<ariel_> reinhard: are you still working on proposal or can i add more stuff?
+<btami> jamest: i'v tried before 
+<jamest> btami: really?  did it work or bomb?
+<btami> work
+<jamest> ooooo
+<jamest> did it work better than the wx driver?
+<jamest> the wx driver on windows sucks
+<jamest> read (our code not the wx code :)
+<btami> gtk2 driver isn't full featured IIRC
+<btami> but hasn't got that ugly bugs like
+<btami> "focus nightmare" and "tabbed pages" problems
+<jamest> btami: how hard is it to get the gtk2 driver running on any platform?
+<jamest> i thought it required custom patches to gtk or something
+<jamest> so avoided it for now
+<btami> i'v tried it only on winXP
+<jamest> what was involved?
+<btami> just downloaded the necessary stuff from sourceforge
+<reinhard> ariel_: i would like to talk a few points to you
+<btami> and it worked
+<jamest> oooooo, does it require cygwin?
+<btami> no
+<jamest> do you have a url
+<jamest> the only thing I'm finding is gtk 2.0.6 source for windows
+<jamest> and talk of using cygwin
+<btami> i'm trying to find...
+<btami> wait
+<btami> sorry, i can't find here, but
+<btami> i have all stuff at home
+StyXman (~mdione@ADSL-200-59-86-17.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<btami> and i saved that readme too
+<ariel_> reinhard: go on
+<btami> so first i pick-up kids, go home and after that i will tell the truth :)
+<StyXman> so, geas, jforms and forms.test dissapeared from cvs?
+<StyXman> (hi all)_
+<btami> jamest: btw. i have a problem with pages and blocks
+dsmith (~dsmith@p238.n-chpop04.stsn.com) left irc: Read error: 110 (Connection timed out)
+<btami> StyXman: hi
+<btami> i have 1 table with many fields, and
+<btami> want use tabbed pages, but with only one datasource and one block
+<reinhard> ariel_: sorry my telephone has decided to trout slap me today
+<btami> but i failed
+<StyXman> can someone confirm that?
+<StyXman> btami: I have no similar problems
+<btami> wait, i try it again...
+<jamest> btami: I don't think it can run with a block spread across pages
+<jamest> i can think of at least one point in the code where this would puke (unless someone altered the way navigation worked in my absence)
+<btami> huh, i'v tried it now and failed :(
+<jamest> StyXman: lemme look
+Action: ariel_ is away: busy
+<jamest> there was talk about moving projects not being worked on into an archive
+<jamest> maybe someone did that over the weekend
+<btami> jamest: so what pages are for ?
+<jamest> pages are just that pages
+<jamest> however they were designed with a block setting inside a page
+<jamest> not spread across them
+<btami> why ?
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: "Client Exiting"
+<jamest> when I set them up i was following what I remembered about Oracles SQL*Forms
+<jamest> this is the way it worked
+<jamest> we're talking about doing away with that restriction
+<jamest> in fact
+<btami> i think pages are to split info , not for "blocks"
+<jamest> back
+<jamest> have fields display across pages is in the forms TODO
+<jamest> the blocks nested inside pages have been around since the start
+<jamest> I'm not saying were tied to that idea only that is was the 1st implementation and we've never adjusted it :)
+<jamest> what we want to provide is a way to say
+<jamest> this field belongs on all pages, or on pages 1, 3 and 5, or on page 1
+<jamest> however I wouldn't expect this feature until after 0.5.x series is complete
+<jamest> btami: have you seen the feature plans?
+<btami> i think we talking diffrerent things
+<btami> my problem is:
+<btami> jamest: yes
+<btami> what to do if i have 1 table with 100 fields
+<btami> and want tu use 1 form
+<jamest> right now you're going to suffer
+<jamest> :)
+<jamest> i see the problem
+<jamest> honestly
+<btami> ok
+<btami> :)
+<jamest> however i never thought about that size table when I did the page inside block thing
+<jamest> a very nasty workaround
+<jamest> make a master/detail/detail/detail setup
+<jamest> all using the same table
+<jamest> it would be ugly to setup, editing would be a major pita
+<jamest> is this page limitation going to be a showstopper for you?
+<jamest> StyXman: they are definately missing
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+btami (~tamas@ip102-205.ktv.tiszanet.hu) left irc: Read error: 104 (Connection reset by peer)
+<StyXman> jamest: ok, zanx
+dsmith (firewall-u@cherry7.comerica.com) joined #gnuenterprise.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+paqan (~paqan@202.155.120.221) joined #gnuenterprise.
+Arturas (~arturas@fmgs-03.vtu.lt) joined #gnuenterprise.
+<Arturas> Hello
+Action: ariel_ is back (gone 02:13:25)
+<ariel_> reinhard: do you have spare time now?
+paqan (~paqan@202.155.120.221) left irc: Remote closed the connection
+paqan (~paqan@202.155.120.221) joined #gnuenterprise.
+btami (~btami@3e70d72f.dialin.enternet.hu) joined #gnuenterprise.
+<btami> hi all
+<btami> jamest: re: GTK2 on win32
+<btami> see "addition to GTK2 UI install README" in gnue-dev archiv 2002.08.29
+<btami> bye
+btami (~btami@3e70d72f.dialin.enternet.hu) left irc: Client Quit
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) left irc: Read error: 60 (Operation timed out)
+Remosi (dahoose@port-219-88-247-169.jet.net.nz) joined #gnuenterprise.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<derek> hey anyone here use digital camera under linux?
+<derek> and have suggestions or know where a 'compatiability list' is
+<nickr> yep
+<nickr> any camera with removable media would be preferred
+<derek> ooo ooo where where
+<nickr> most cameras have remavble media
+<derek> yeah i think i want removable media
+<nickr> otherwise, you can look at the usb compat list
+<nickr> http://www.qbik.ch/usb/devices/
+<derek> well how do i know the removable media is supported?
+<nickr> you look at the specs
+<nickr> if it supports SmartMedia, SD, MMC, Memory Stick or Compact Flash you're good
+ariel_ (~ariel@ppp-217-133-243-247.dialup.tiscali.it) left irc: "Uscita dal client"
+<nickr> any you're looking at in particular?
+<derek> well im a camera idiot
+<nickr> ah
+<derek> i have 10% off at best buy and they have 12mos no interest on any 299.99 or more
+<derek> i know i want something 2mega pixel or more
+<derek> 3 megapixel preferred
+<derek> the one that seems to fit that bill in the add
+<nickr> so you're looking at a finepix or a midrange cannon
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) joined #gnuenterprise.
+<derek> Sony Cyber-Shot 3.2 Megapixel Digital Camera w/ 3X Optical/2X Digital Zoom (DSC-P71)
+<derek> or
+<derek> Olympus Camedia 3 Megapixel Camera with 8X Optical/3x digital C720
+<derek> or
+<derek> Canon Powershot 2Megapixel Digital Camera with 3x optical/2.5x digital zoom (A40)
+<nickr> what the price on that olympus?
+jbailey (~jbailey@atlas.fundserv.com) joined #gnuenterprise.
+<derek> 349.99, 499.99 and 249.99 perspectively
+<nickr> I'm not a huge fan of the cybershot
+<nickr> my friend has one and its very limiting
+<derek> does it work under linux ?
+<derek> that is most important to me :)
+<nickr> I don't think its a huge issue, but yea, you just need a usb memorystick reader
+<derek> the olympus looks sweet but its a bit more than i want to spend
+<derek> i would like to be under 400.00
+<derek> oh wait this look like one i want
+Isomer (dahoose@port-219-88-246-7.jet.net.nz) left irc: Read error: 113 (No route to host)
+<derek> Olympus Camedia 3 Megapixel Digital Camera with 2.8x optical/3.6 digital zoom (D550)
+<derek> 349.99
+Action: derek realizes online i could probably save some money but the no interest is the important issue here :)
+<jbailey> Any idea how many functions will just Not Work in designer if I use MySQL instead of pgsql?
+<nickr> what about the fukji finepix a303?
+<nickr> $299
+<nickr> http://www.bestbuy.com/detail.asp?e=11177736&m=82&cat=83&scat=0
+<nickr> hmm, it takes xD Picture Card..
+<nickr> I'm not sure what that is
+<derek> would you recommend it over the olympus and sony?
+<nickr> its cheaper
+<jamest> or
+<jamest> grab a halfway nice  SRL
+<jamest> regular camera and a scanner
+<nickr> jamest: traitor
+<derek> jamest: scanners under linux suck and its too much work for wife
+<derek> jamest: i planned on getting both SRL and Digital
+<jamest> you'll save money and the digital images are probably as good
+<jbailey> derek: My scanner's been fine and Angies coping with it well.
+<jbailey> It integrated very nicely into the Gimp.
+<derek> but found that walmart has upload digital to them and they print on paper for .28 a print
+<derek> our friend does it and they come out as nice as SRL
+<nickr> http://www.bestbuy.com/detail.asp?e=11075241&m=82&cat=83&scat=84 this is the one I have
+<derek> so we are going digital only
+<derek> as it will be cheaper than buying film and only printing shots we really need in print will save a fortune in processing
+StyXman (~mdione@ADSL-200-59-86-17.cordoba.sinectis.com.ar) left irc: "ircII EPIC4-1.1.2 -- Are we there yet?"
+<derek> if i were a photo enthusiast i would still buy a SRL
+<derek> nickr: at that works under linux right. ;)
+<nickr> derek: yep!
+<jcater> derek: never ask a hacker if something works under linux! 
+<jcater> :)
+<nickr> either directly with a slight kernel modification or with a CF reader
+<nickr> I like CF a lot.
+<nickr> slight = adding 1 line to a file and recompiling
+<derek> jcater you have a digital
+<derek> nickr: i woudl go CF i think
+<derek> i assume thats a card reader of sorts
+<nickr> CF or SmartMedia are good
+<nickr> they are formats
+<nickr> readers exist for them
+<derek> think looks sweet BUT about twice what i want to spend
+<derek> well not want to, can :)
+<nickr> hehe
+<nickr> its pretty good
+<nickr> I have some gripes about image quality in certain conditions
+<nickr> I'd rather have a Nikon D100 or Fuji S2
+<nickr> someday. :Q)
+<derek> http://www.bestbuy.com/detail.asp?e=11102083&m=82&cat=83&scat=84
+<nickr> Yea
+<nickr> like
+<nickr> it probably takes godo pictures and all
+<derek> is SD Secure Digital
+<nickr> but the UI on the kodak's I've used is TEH SUCH
+<nickr> yea
+<nickr> * 16MB removable CompactFlash memory card included
+<derek> you said xD isnt supported or is questionable
+<nickr> I think its somewhat questionable
+<derek> ok now to clarify jcaters point
+<derek> how hard is it to get SmartMedia/SD/MMC/MemoryStick/CompactFlash to work?
+<derek> i.e. i buy the reader 
+<derek> and under debian what must i 'really' do
+<nickr> modprobe usb-storage
+<nickr> plug it in
+<nickr> er
+<nickr> modprobe scsi-mod and other things.I think in recent installations its already installed
+<nickr> plug it in
+<nickr> mount /dev/sda1 /mnt
+<nickr> wow, hard!
+<nickr> pretty much the same for the camera
+<nickr> except some require kernel tweaking
+<derek> well i might be bugging you later :)
+<derek> i have like 2 or 3 scsi devices already in CD's
+<derek> what program do you use to download?
+<derek> gphoto?
+<nickr> they'll just be enumerated higher
+<nickr> No
+<nickr> because its just a storage device I use cp
+<derek> ok so nautilus
+<nickr> yea
+Action: derek has to get this workign for my wife
+<derek> so cp isnt an option :)
+<derek> i will use cp :)
+<jbailey> derek: I tell you that scanners under linux are fine for non-techies now.
+<jbailey> As long as they don't have to set them up at first.
+<nickr> scanners are no problem
+<nickr> digital photography is easier faster at the cost of quality
+<derek> well great i will ask you guys later to help me get my scanner working :)
+<derek> but i still will be getting a digital camera
+<jbailey> nickr: Concur, but a scanner's nice for other things too.
+Action: derek has other uses for scanner
+<jbailey> derek: Sure.
+<derek> like getting old photos digitalized
+<derek> and as a 'copier' for things
+Action: derek is away: store
+<Arturas> who created .exe's for windows?
+<jamest> Bajusz
+<jamest> it's one the front page of the site 
+<jamest> s/one/on
+<Arturas> thank you
+<ra3vat> hello all
+<Arturas> hi Dmitry :)
+<ra3vat> hello Arturas
+<jamest> Arturas: are those files from an XP install disk?
+<ajmitch> hi all
+<nickr> hey ajmitch 
+Action: reinhard notes that we now have non-free software in our CVS...
+<ajmitch> where??
+<nickr> :O
+<jbailey> Stupid pgsql question.  Does gnue cope well if I set my default encoding to utf-8?
+Arturas (~arturas@fmgs-03.vtu.lt) left irc: Read error: 110 (Connection timed out)
+ToyMan (~stuq@smtp.dstoys.com) left irc: ": I'm off to make more toys..."
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) left irc: "Reality is for people that lack imagination"
+<jbailey> Ah, interesting bug:
+<ajmitch> hmm?
+<ajmitch> gnue doesn't have bugs
+<ajmitch> it has unplanned features
+<jbailey> "No database drive found for provider type 'psycopg' - It should probably actually give an error message to the screen instead of silently spewing crap to the console.
+<jbailey> Is that sort of like unplanned pregnancies?
+<ajmitch> nah :)
+<jbailey> So now that I'm sitting in designer...
+<jbailey> How do I make it work? =)  I've logged into the database this time, but when I right click on the textbox to do a new datasource, nothing happens.
+<jamest> easiest way
+<jamest> file->new->from wizard
+<ajmitch> or emacs file.gfd ;)
+<ajmitch> is right-click on form widgets meant to work?
+<jamest> i don't think we have right click menus
+<jamest> you can dbl click on a widget
+<jamest> to get properties box
+<jbailey> Hmm.  Can you recommend which wizard for a simple one page form? =)
+<jamest> how many tables?
+<jbailey> Two, unless postgres supports infinitely long varchars, in which case one. =)
+<jamest> it does
+<jamest> well
+<jamest> type text is limited to 2gb
+<jamest> er
+<jamest> 2tb
+<jbailey> That's fine. =)
+<jbailey> Even better!
+<jamest> if it's 1 then do simple wizard
+<jamest> as it does 1 table
+<jbailey> Then one page should be fine.  The database shows no sign of normalization in its source form, so I'm trying to make the conversion easy.
+Action: ajmitch thinks designer is looking sexy
+<jamest> the simpleDetail will do a single master/detail
+<jamest> the formBuilder will do as many tables and pages as you like
+<jbailey> Woohoo!  Backtrace!
+<jamest> now, you are working from an existing table structure right?
+<ajmitch> jamest: think there'd be any chance of a multi-column dropdown?
+<jcater> ajmitch: already there
+<jbailey> I just created it a few minutes ago in phppgadmin
+<ajmitch> jcater: great :)
+yogurt2unge (~charlie@ADSL-200-59-86-17.cordoba.sinectis.com.ar) joined #gnuenterprise.
+Action: ajmitch is just trying to throw together a quick timesheet form
+Action: jcater thinks you do fk_description="col1,col2,col3"
+<jamest> jbailey: backtrace?
+<jbailey> What is a psycog.Error: no results to fetch error?
+<jbailey> I got this when I clicked "continue" after giving my form title and picking my connection.
+<jamest> it's saying that a query resulting in nothing returned
+<jamest> which is wacked in the wizard as it uses pgsql system tables
+<jbailey> Lemme exit and start again in case I did something earlier that screwed it up.
+<jamest> ok
+<jbailey> Into gnue-designer we go. =)
+<jbailey> file, new from wizard
+<jbailey> simple form.
+<jcater> jbailey: oooooo
+<jcater> check your psycopg version
+<jbailey> Oh, this time it popped up the login box for the database.
+<jcater> if it's 1.0.13
+<jcater> we have an issue
+<jamest> s/we/you
+<jamest> :)
+<jcater> yeah
+<jbailey> 1.0.13-1
+<jcater> boing!
+<jbailey> Too old, too new?
+<jcater> too new
+<jbailey> Joy.
+<jcater> either they changed the API
+<jcater> or have a serious bug
+<jamest> one thing that rocks about having 4 different pgsql drivers
+<jcater> given the 1.0.12 -> 1.0.13 change
+<jamest> is you have 4 different interpretations of the python db api
+<jcater> I couldn't imagine them doing a major API chang
+<jbailey> (rocks like good rock and roll, or rocks like sucks rocks soaked in cow piss?)
+<jcater> jamest: yeah, but now 5 :)
+<jcater> as apparently they changed their interpretation
+<jcater> jbailey: I have the 1.0.12-1 debs at http://www.gnuenterprise.org/~jcater/debian/
+<jcater> this sucks though
+<jcater> it sucks the rocks socked in cow piss
+<jamest> ooooo
+<jamest> this is newer than woody
+<jbailey> Try three, coming up.
+<nickr> piss
+<jamest> you using testing/sid in production?
+<jbailey> this is my workstation.
+<jamest> ah
+<jbailey> The database is on another computer.
+<jbailey> Be and the other guy running Linux here use sid on our desks, though.
+<jbailey> EVeryone else will use win32 client or phpforms.
+<jbailey> Hot damn this does work better.
+<jbailey> And the whole apps isn't as painfully slow, too.
+<jbailey> "Incubator import failed" on the desktop window.
+<jbailey> The rest of the app appears to be hung.
+<jamest> sigh
+<jbailey> Oh, it came back.
+<jbailey> Is there a good way to make the input boxes more than 0 pixels wide?
+Action: derek is back (gone 02:01:18)
+<derek> nickr: i went with the kodak.... 
+<nickr> derek: GAH
+<nickr> derek: after my dire warnings?
+<derek> the olympus had sucky interface and felt 'cheap' (with kids thats important issue)
+<derek> the sony was very nice
+<derek> nice interface
+<derek> wife liked it better than kodak interface (though she didnt mind kodak ui)
+<derek> kodak was 50 more
+<derek> BUT
+<derek> it was 4.0 instead of 3.0 megapixels
+<nickr> ja
+<derek> and it took compact flash insetead of memorystick
+<nickr> yea
+<derek> and the compact flash was WAY cheaper
+<nickr> not really much diff
+<nickr> really depends on where you buy it
+<derek> i.e. i got the reader and 256mb of flash for cheaper than a 128mb stick
+<derek> nickr: yes long term i agree
+<derek> but again no interest was a factor
+<nickr> they have 128mb sticks for $60 at costco here
+<derek> all in all it was up to wife
+<ajmitch> hey derek
+<derek> she liked both the kodak and the sony
+<derek> oh other factor
+<ajmitch> jbailey: they're 0 wide in forms or designer, or both? :)
+<derek> kodak had builtin batteries (with charger)
+<jbailey> DEsigner.
+<ajmitch> jbailey: object navigator
+<jbailey> But I can't imagine how I am supposed to grab them and drag them around like this. =)
+Action: derek also didnt hear your dire warnings
+<derek> you said something about good quality but not great interface
+<ajmitch> jbailey: object nav is in the tools window
+Action: derek hopes that was only yuck
+<jbailey> The default width is -5 for these?
+<jbailey> woo.
+<ajmitch> jbailey: uhh, shouldn't be :)
+<ajmitch> you acn right click on things in tree & edit properties
+<nickr> derek: it uses AAs no?
+<derek> nope CRV3 lithium
+<nickr> GAH
+<nickr> suck
+<derek> gah?
+<derek> suck?
+<jbailey> There's no 'save' button on the property inspector.
+<jbailey> Is that expected?
+<derek> jbailey: why woudl there be?
+<derek> if you save the form the property selection you have made will be saved
+<nickr> getting something that runs on NiMH AAs is great. You get a gew sets on the cheap
+<nickr> and a couple chargers
+<jbailey> derek: Because when I change the length from -5 to 10 and close the window it doesn't change.
+<jbailey> So I can only assume there's a missing 'apply' or 'save' button or something.
+<jbailey> Oh, I see.  I had to change 'lenght' & maximum length from -5.
+<ajmitch> jcater: i thought that bug where property navigator didn't work with scrollbars on screen was fixed? :)
+<jcater> is it not?
+<jcater> worked for me
+<jcater> (tm)
+<ajmitch> jcater: doesn't seem to work here (ran setup-cvs.py a few min ago)
+<ajmitch> what is appropriate input mask for date entry? :)
+<jbailey> Which element contains the gray box width in the background.
+<jcater> BUGGER
+<jbailey> It doesn't seem to support a right-click option.
+<jbailey> In fact right clicking on the background hangs designer for 10 to 15 seconds.
+Action: jcater runs screaming into the street!
+Action: ajmitch feels sorry for bringing up that bug
+<ajmitch> jcater: when did you commit the fix?
+<jcater> it's been a few weeks
+<jamest> 0 wide?
+<jamest> wtf?
+<jbailey> Hmm, at this speed It hink it will take me 2 hours to correct all of the -5 entries to being a reasoable length.  I'll have to do this another time.  Oh well.
+<jcater> how did you get -5 sizes?
+<jbailey> That's what the wizard did by default.
+<jamest> jbailey: the default size is based upon the size reported by the database
+<jcater> how fscking bizarre
+<jamest> I'm running the 1.0.8 pyscopg from debian
+<jamest> woody
+<jcater> I use 1.0.12
+<jamest> and it's fine
+<jamest> hang on
+<jamest> jbailey: you have a working mysql setup too?
+<ajmitch> so sid's psycopg could be more broken than you think :)
+<jamest> as this is not a positive note to end on 
+<jbailey> jamest: No, I was concerned that someone said that some queries would silently break without subselects being available.
+<jamest> no, query by detail would break
+<jamest> that feature is < 1 week old :)
+<jbailey> Ah, nice. =)
+<jamest> std forms should work fine
+<jbailey> Perhaps I'll try it with mysql then in a bit.
+<jbailey> I need to do some paperwork and take lunch soon, though.
+<jamest> you can also try other postgresql drivers
+<jamest> popy, pgsql (postgresql in our connections.conf)
+<jamest> they seem to be in the newer debians
+Chipaca (~john@ADSL-200-59-86-17.cordoba.sinectis.com.ar) joined #gnuenterprise.
+Action: Chipaca waltzes in
+<ajmitch> ah, found what i need (block with multiple rows
+<Chipaca> is there any way currently implemented or currently dreamed up for specifying "total" columns in the datasource?
+<jamest> yeah
+<derek> nickr: ok scsi-mod and usb-storage loaded
+<ajmitch> like a psuedo-field? :)
+<derek> card inserted and such
+<derek> but
+<jamest> a field not tied to a datasource with a named trigger tied to the fields that effect the total
+<derek> latitude:/# mount /dev/sda1 /mnt/camera/
+<derek> mount: you must specify the filesystem type
+<derek> latitude:/# 
+<derek> am i missing something?
+<derek> jcater / jamest / ajmitch any suggestions?
+<jamest> an entry in /etc/fstab
+<jbailey> bbiab
+jbailey (~jbailey@atlas.fundserv.com) left irc: "Client Exiting"
+<derek> what is steh file type?
+<ajmitch> umm
+<Chipaca> jamest: but wouldn't that still bring all the fields?
+<ajmitch> gar, adding a dropdown brokew
+<jcater> jamest: I think he's asking for the equiv of select field, sum(total) from table group by field
+<ajmitch> DB000:     self.__getExistingDatasources()
+<ajmitch> DB000:   File "/opt/src/cvs/gnue/.cvsdevelbase/gnue/designer/forms/wizards/AddDropDown.py", line 315, in __getExistingDatasources
+<ajmitch> DB000:     self.__datasourceMap[child.name] = child
+<ajmitch> DB000: TypeError: sequence index must be integer
+<Chipaca> derek: dd if=/dev/sda1 of=/tmp/q bs=1m count=1 ; file /tmp/q
+<derek> Chipaca: ?
+<jcater> gack
+<jcater> ajmitch: what form is that on?
+<ajmitch> jcater: one i'm putting together
+<Chipaca> derek: so you find out the filesystem type
+Action: derek doesnt know what that does so im nervous to do it
+<ajmitch> that occured when i trying adding a dropdown
+<Chipaca> derek: reads the first megabyte (overkill, make it 1k) from the disk and looks at it
+<derek> latitude:/mnt# dd if=/dev/sda1 of=/tmp/q bs=1m count=1 ; file /tmp/q
+<derek> dd: invalid number `1m'
+<derek> /tmp/q: can't stat `/tmp/q' (No such file or directory).
+<derek> latitude:/mnt# 
+<Chipaca> derek: sorry, make it 1k
+<derek> latitude:/mnt# dd if=/dev/sda1 of=/tmp/q bs=1k count=1 ; file /tmp/q
+<derek> dd: opening `/dev/sda1': No such device or address
+<derek> /tmp/q: can't stat `/tmp/q' (No such file or directory).
+<derek> latitude:/mnt# 
+<Chipaca> (should've been "1M" to be 1megabyte, but that's overkill)
+<Chipaca> ENXIO!
+<Chipaca> loveley
+<Chipaca> derek: what's supposed to be there?
+<derek> um
+<derek> a compactflash card on usb
+Action: derek is thinking nickr left out some magic step to make usb-storage actually use scsi
+<Chipaca> derek: cfdisk /dev/sda
+<Chipaca> derek: see if there are partitions there
+<derek> gak
+<derek> Module                  Size  Used by    Not tainted
+<derek> sd_mod                 10556   0  (autoclean) (unused)
+<derek> usb-storage            48000   0  (unused)
+<derek> usbcore                48192   0  [usb-storage]
+<derek> scsi_mod               84984   1  [sd_mod usb-storage]
+<derek> why is it saying usb-storage is unused
+Action: ajmitch plays with forms
+<Chipaca> derek: unplug and replug the thing, see the logs to check it's not still 'unclaimed'
+<derek> plug and replug still says unused
+<Chipaca> jamest, jcater: similar to sum() thing, but I don't want to bring in the whole thing from the db, I'd really like the dbdriver to be smart enough to pass the sum on to the db :)
+<derek> Module                  Size  Used by    Not tainted
+<derek> sd_mod                 10556   0  (autoclean) (unused)
+<derek> usb-storage            48000   0  (unused)
+<derek> usbcore                48192   0  [usb-storage]
+<derek> scsi_mod               84984   1  [sd_mod usb-storage]
+<Chipaca> jamest, jcater: (if you meant sum from report)
+<ajmitch> gah, need to build database table before trying to use form :)
+<Chipaca> derek: what did the logs say?
+<jcater> Chipaca: pass the sum TO the db?
+<Chipaca> derek: is that all of usb? you're missing usb-uci
+<Chipaca> jcater: if at all possible, yes
+<derek> what is usb-uci
+<Chipaca> derek: uhci
+<derek> i didnt see that as an option
+<jcater> Chipaca: oh, I didn't mean Report's <summ> thing
+<jcater> I meant, something like <entry field="sum(myfield)"> kind of thing
+<Chipaca> jcater: oh. I mean something like select sum(foo) from bar where baz=3;
+<jcater> (only that doesn't work)
+<Chipaca> jcater: I thought maybe you had something like <datasource><field name="foo_sum" procedure="sum(foo)"/></> :)
+<jcater> not yet
+<derek> Chipaca: i loaded uhci and still no dice (after unplug/replug)
+<derek> Module                  Size  Used by    Not tainted
+<derek> usb-uhci               21028   0  (unused)
+<derek> sd_mod                 10556   0  (autoclean) (unused)
+<derek> usb-storage            48000   0  (unused)
+<derek> usbcore                48192   0  [usb-uhci usb-storage]
+<derek> scsi_mod               84984   2  [sd_mod usb-storage]
+<Chipaca> derek: remove all usb-related modules first
+<derek> Chipaca: ?
+<derek> can you provide the logic?
+lupo (~lupo@pD95423A1.dip.t-dialin.net) joined #gnuenterprise.
+<lupo> hi
+<derek> so i can understand as i will need to do this on more than one box
+<Chipaca> derek: hold on, let me get the names straight
+<lupo> anyone of you who also has submitted projects to savannah and got them rejected despite correct copyrights?
+<jcater> lupo: yes
+<derek> i have rejected projects on savannah despice correct copyrights
+<lupo> i ask myself whether this is new savannah policy
+<derek> as its more than copyright, license
+<lupo> "reject everything"
+<ajmitch> heh
+<Chipaca> derek: question, are these debian machines?
+<lupo> derek: let's assume correct license
+<derek> well let me rephrase that, i have rejected 'gnu project applications' even with propery copyright
+<ajmitch> complain to savannah-hackers@gnu.org if you feel it's not right :)
+<derek> Chipaca: yes
+<Chipaca> derek: maybe just installing hotplug will get you rolling
+<lupo> savannah-hackers@gnu.org seems to be the problem
+<ajmitch> lupo: yes, the volunteers that do the project approval might be overly strict
+<derek> Chipaca: removed all usb
+<Chipaca> derek: anyhow, you need USB support (usbcore), support for your host controller (usb-uhci, uhci, or usb-ohci), the device type driver (scsi-whatever), the driver for the usb-to-device-type (usb-storage), and possibly the driver for the particular usb device you have if it's not "standard"
+<derek> now give me step by step
+<Chipaca> derek: apt-get install hotplug
+<Chipaca> derek: uninstall the thing before hotplug gets up and running
+<Chipaca> derek: plug it back in once it is
+<derek> ok so load all modules
+<derek> then unplug
+<lupo> i have recently submitted an XML-to-Videotext converter and got it rejected despite correct copyright notices
+<lupo> and COPYRIGHT file
+<derek> then install hotplug
+<derek> then plug it back in
+Action: ajmitch cries
+<Chipaca> derek: no, hotplug should take care of the modules part on its own :)
+Action: ajmitch reminds himself not to learn without wizards in the future ;)
+Action: Chipaca consoles ajmitch
+<derek> oh crap i installed them and am apt-getting hotplu
+<derek> will that be a problem
+Action: ajmitch swears profusely
+<Chipaca> derek: heh, probably not, but you could remove them again just in case :)
+Action: Chipaca hands ajmitch a 6-pack
+<ajmitch> this probably would have taken 2 minutes with the wizard ;)
+<ajmitch> at least i'm learning...
+<ajmitch> hah! it worked
+<derek> Chipaca: now things are terminally fscked
+<derek> it wont let me uninstall usbcore
+<derek> Module                  Size  Used by    Not tainted
+<derek> usbcore                48192   1 
+<derek> sd_mod                 10556   0  (autoclean) (unused)
+<derek> scsi_mod               84984   1  [sd_mod]
+<derek> af_packet              11432   4  (autoclean)
+<derek> apm                     8892   2  (autoclean)
+<derek> ds                      6464   2 
+<derek> yenta_socket            8384   2 
+<derek> pcmcia_core            38656   0  [ds yenta_socket]
+<derek> xircom_cb               5728   1 
+<derek> maestro                25664   0  (unused)
+<derek> soundcore               3556   2  [maestro]
+<derek> rtc                     5368   0  (autoclean)
+<derek> unix                   13316  46  (autoclean)
+<derek> ide-disk                6592   2  (autoclean)
+<derek> ide-probe-mod           7968   0  (autoclean)
+<derek> ide-mod               129420   2  (autoclean) [ide-disk ide-probe-mod]
+<derek> ext3                   56544   1  (autoclean)
+<ajmitch> gah
+Action: ajmitch endures a flood from derek
+<derek> jbd                    34968   1  (autoclean) [ext3]
+<derek> wtf is keeping me from removing soundcore?
+<derek> er usbcore
+<ajmitch> you have some usb device in use
+<ajmitch> i presume :)
+Action: Chipaca loves his laggy link at times
+<Chipaca> derek: did you plug the usb thing in?
+<derek> sigh
+<derek> latitude:/mnt# /etc/init.d/hotplug start
+<derek> Starting hotplug subsystem: usb.
+<derek> latitude:/mnt# lsmod
+<derek> Module                  Size  Used by    Not tainted
+<derek> usb-storage            48000   0  (unused)
+<derek> usb-uhci               21028   0  (unused)
+<derek> usbcore                48192   1  [usb-storage usb-uhci]
+<derek> sd_mod                 10556   0  (autoclean) (unused)
+<derek> scsi_mod               84984   2  [usb-storage sd_mod]
+<derek> still comes back unused
+<derek> i started hotplug w/o device plugged in
+<derek> then plugged in device
+Action: derek suspect i will be told i got the ONE compact flasher reader on the market that doesnt work on linux
+<ajmitch> hehe
+Action: Chipaca scratches an ich
+<Chipaca> derek: ok, lets just do it by hand?
+<Chipaca> derek: *sigh* just stop hotplug
+<Chipaca> derek: unplug the usb thing
+<Chipaca> rmmod everything, from top to bottom
+<ajmitch> the dual life of #gnuenterprise - on one hand, people work on GNUe.
+<ajmitch> on the other, people help derek fix his computer :)
+<derek> ok hotplug was what kept usbcore upu
+<Chipaca> ajmitch: heh
+<derek> ok everything rmmod'd
+<derek> no usb plugged in
+<derek> Chipaca: ok im ready
+<Chipaca> derek: ok, modprobe uhci
+<Chipaca> derek: tail -f /var/log/syslog
+<Chipaca> derek: plug da thing in
+<Chipaca> derek: paste away
+<ajmitch> warn us first
+<ajmitch> so we can avoid the flood
+<Chipaca> derek: and paste away v2 
+<lupo> btw, can someone tell me what the fix for the property inspector bug was? (_the_ one line)
+Action: lupo is reading an overly long KC... poor psu :)
+<ajmitch> lupo: i was wondering too :)
+<jcater> lupo / ajmitch: http://savannah.gnu.org/cgi-bin/viewcvs/gnue/gnue/designer/src/PropertyEditor.py.diff?r1=1.27&r2=1.28&diff_format=h
+<lupo> jcater: wait
+<lupo> jcater: AAARRRRGGGHHHHLLLLSSSS!
+<jcater> um
+<jcater> ok
+<ajmitch> impressive
+<ajmitch> so that resizes the dialog to match?
+<jcater> it resized the grid to match the notebook control
+<jcater> only we were grabbing the outer dimensions of the notebook
+<ajmitch> ok
+<jcater> not the inner
+<ajmitch> hmm
+<derek> jcater: my 3 year old was with her aunt last night
+<derek> they were going to in and out burger (a burger joint) at like 11pm
+<derek> uncle asked her what she wanted from there
+<derek> her response
+<derek> "a donut"
+<derek> when told they didnt have donuts she said
+<derek> "well if they dont have donuts I GUESS i will just have a hamburger and french fries"
+<ajmitch> haha
+<jcater> rofl
+<jamest> how long has jcater been w/ us now?
+<jcater> 2 yrs come the new year
+<jamest> ok, i'd be worried if it was over 3 years
+<Chipaca> derek: that's the problem
+<jcater> what?
+<jcater> the 3 year old daughter?
+<Chipaca> jcater: sorry, that was private :)
+<Chipaca> jcater: /me is trying to get derek's usb thing working
+<jcater> ah
+Action: Chipaca considers the futility
+<jcater> well "that's the problem"
+<jcater> after the daughter comment
+<jcater> made me wonder if you'd traced it
+<jcater> to peanut butter in the USB port
+<Chipaca> jcater: ROTFL
+<lupo> lol
+<Chipaca> jcater: peanut butter is nothing
+<Chipaca> jcater: you should see dulce de leche in usb slots
+<Chipaca> jcater: imagine a runny peanut butter
+<derek> its that darn tit shaped bread that is clogging the usb port
+<Chipaca> umm
+<lupo> jamest: reg testing framework, what are your requirements? how should something look like?
+<lupo> is it possible that debian 3 has ruled out python2.1 wxgtk libs?
+<lupo> do current gnue tools now work with python2.2 from woody?
+<lupo> (or do they still mess with unicode?)
+laurie (~laurie@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<lupo> the guys in 
+<lupo> #debian are so unfriendly
+<Chipaca> lupo: that happens in overpopulated areas like ny
+btami (~btami@3e70d731.dialin.enternet.hu) joined #gnuenterprise.
+<btami> hi all
+<lupo> Chipaca: NY?
+Nick change: laurie -> dneighbo
+<Chipaca> lupo: or ba, for that matter
+<lupo> well
+<lupo> that's one of the risks you take
+<btami> huhuuu, finally i can stick attachments into DCL tickets (you can see in #159 and #162)
+<dsmith> dneighbo: What are you trying to do with usb? (over in #debian)
+<dneighbo> kick its fscking teeth in
+<dneighbo> thats what im wanting to do with usb :0
+<dneighbo> dsmith: basically i have new digital camera
+<dneighbo> i was told if i got compact flash i should be pretty good with a reader regardless of camera
+<dneighbo> unfortunately the 'reader' isnt working AT ALL
+<dneighbo> im game to getting camera or reader to work
+<dneighbo> at this point it seems to find the device just istn making it scsi
+<dsmith> Hmm. I receently plugged in a usb cdrom burner into my laptop.
+<nickr> dneighbo: what device is it?
+<nickr> what camera too
+<dneighbo> camera Kodak EasyShare DX4900 
+<dsmith> dneighbo: You do need scsi enabled in your kernel, and some other stuff too. Not needed are any scsi contollers
+<dneighbo> reader: PNY CompactFlash USB card reader
+<nickr> ah
+<nickr> CF Meudia Shuttle?
+<nickr> or Compactflash Reader
+<nickr> http://www.qbik.ch/usb/devices/showdev.php?id=576 
+<nickr> hm
+<dsmith> dneighbo: You will need CONFIG_USB_STORAGE_* and CONFIG_USB_DEVICEFS
+<dneighbo> dsmith: with debian?
+<dsmith> dneighbo: Yep.
+<nickr> dsmith: quiet you
+<nickr> http://www.qbik.ch/usb/devices/showdev.php?id=1318
+<nickr> weird
+<dneighbo> nickr: so you telling me this reader wont work?
+<nickr> dneighbo: Looks that way.
+<dneighbo> what about camera
+<dsmith> dneighbo: Sorry.
+<nickr> dneighbo: see second link
+<nickr> says 'supported by gphoto2'
+<nickr> which is odd
+<dneighbo> why is that odd?
+<nickr> gphoto2 IS in unstable though
+Action: dneighbo suspects (100 dollar bet) that its supported under gphoto2 only ifyou have the 80 base i refused to buy
+<dneighbo> sucky thing is that the reader i got was free
+<dneighbo> and part of why i went with this camera over one that took memorystick memory
+<dneighbo> i will try gphoto2 directly with camera
+<nickr> what the fuck
+<nickr> dneighbo: yea, some readers are good (eg usb-storage devices) and some just suck
+<dneighbo> OUCH
+<Chipaca> this one is an usb-storage, shows up in /proc/scsi/usb-storage, but not in /proc/scsi/scsi
+<dneighbo> word to the wise
+<dneighbo> if you have a LONG goatee do not get it near the exhuast fan of a pc
+<Chipaca> "never plug an usb device into the mains"?
+<dneighbo> getting it caught hurts
+<Chipaca> oh, THAT
+<Chipaca> :)
+<dsmith> Ouch!
+<nickr> dneighbo: so you don't have a usb cable for the camera itself?
+<dneighbo> yeah
+<dneighbo> im downloading gphoto2 now
+<nickr> yea you don't or yes you do?
+<nickr> you need gtkam also
+jamest (~jamest@leibniz.math.ksu.edu) left #gnuenterprise.
+<nickr> gphoto2 doesn't have a graphical interface
+<dneighbo> yeah i do
+<dneighbo> no gui, ouchie
+<dneighbo> gtkam
+<dneighbo> ok getting that too
+Action: dneighbo REALLY hopes i can get something easy for wife to use
+<dneighbo> or im having to install windows :(
+<jcater> rofl
+Action: jcater thinks its funny
+<dneighbo> i dont
+<jcater> you think it'll work under windows
+<dneighbo> jcater: thats the problem
+Action: jcater HATES setting up digital cameras for friends
+<dneighbo> its an illusion
+<nickr> gtkam has a gimp plugin too
+<dneighbo> it will install and work
+<jcater> on their win32 machines
+<dneighbo> but then will stop in 2 days
+<jcater> dude
+<dneighbo> and be irrevocably fixable
+<jcater> you'll smack me for this
+<jcater> but you need to get your wife a mac
+<jcater> and be done with it
+Action: jcater hides
+Action: Chipaca smacks jcater
+<lupo> ?
+<dsmith> os X mac
+<dsmith> good
+<dneighbo> libgtk2.0-0 l
+<dneighbo> jcater: if i had money i would consider it
+<dneighbo> she has habits of a mac user
+<dneighbo> i.e. artsy stuff
+<Chipaca> jcater: would the mac be for when you push her out in the rain due to her ridiculous demands wrt computers?
+<dneighbo> wants to print cards and photos and stuff
+<dsmith> mac, definitly
+<dneighbo> guess im getting gtk2 :)
+<jcater> I can see the switch commercial now
+<dsmith> It's all FreeBSD now
+<jcater> "My husband used to make me us Linux"
+<dsmith> Sort of.
+<jcater> "But now I just plug my digital camera in"
+<jcater> "And it just works"
+<jcater> "Sort of"
+<nickr> hah I was wondering why gtkam was running so slow
+<jcater> "Well, 90% of the time"
+<jcater> "But it's much cooler"
+<nickr> and It turns out that I'm running it remoteely over the cable modem
+<nickr> from my home machine
+<nickr> the wonders of remote desktop.
+<jcater> "I'm Laurie.... and I switched"
+<jcater> then there's derek's switch
+<jcater> "My name is Derek"
+<nickr> and I broke it.
+<jcater> "I used to put my wife on a linux computer"
+<jcater> "But the couch got too uncomfortable at night"
+<jcater> "Now my back doesn't hurt in the morning"
+<jcater> "And I get nookie again"
+<dneighbo> ok gtkam and gphoto2 installed
+<dneighbo> any tips
+<jcater> "That's why I switched"
+<nickr> dneighbo: gtkam, add camera
+<nickr> dneighbo: select camera model from list
+<nickr> er, you should probably make sure its plugged into the usb
+<nickr> before
+<dneighbo> hmm its plugged in but its not finding it
+<dneighbo> is there way to view usb devices
+<Chipaca> dneighbo: mount usbdevfs /proc/bus/usb -t usbdevfs
+<dneighbo> hot damn it shows in usbview!
+<dneighbo> snot
+<nickr> dneighbo: detect in add camera doesn't find it?
+<dneighbo> it autodected it
+<dneighbo> nickr: it does now
+<dneighbo> i started hotplug
+<nickr> sweet
+<dneighbo> unplugged and replugged
+<dneighbo> and it seems to be working
+<dneighbo> now to try to get images :)
+<dneighbo> ok 
+<dneighbo> this is EASIER than windows
+<dneighbo> gtkam + hotplug
+<nickr> yea
+<dneighbo> is a 30 second setup
+<nickr> incredible.
+Action: dneighbo kicks all small children and dogs in sight
+<Chipaca> dneighbo: usbdevfs mounted? or without that?
+<nickr> hotplug automatically mounts that I think.
+<dneighbo> Chipaca: not mounted
+<ajmitch> lol
+<Chipaca> nickr: not for dneighbo, it doesn't :)
+<dneighbo> well at least not manually
+<ajmitch> so now it's working? :)
+<dneighbo> yip
+<dneighbo> direct from camera
+<nickr> sweet
+<dsmith> When I plugged in that usb cdrom burner, it just worked.  cdrecord found it with no problems whatever.
+<dneighbo> the kodak dx4900 is supported on debian :)
+Action: ajmitch only has one usb device he relies on absolutely
+<dneighbo> nickr: you mentioned a gimp something
+<dsmith> But it took hours and hours to get it to work under windows.
+<ajmitch> i _have_ to have usb for my internet connection :)
+<nickr> dneighbo: gtkam-gimp
+<ajmitch> so the free reader thing is no good? :)
+<nickr> I'll sell you my extar one, all you have to do is bend the little pins back into place
+<nickr> :O
+<dneighbo> must one be root?
+<nickr> you can adjust something or other and not have to be
+<nickr> or you can make a launcher that uses sudo with no password
+<nickr> teehee
+<dneighbo> hmm second option sounds good
+<dneighbo> i need to look into sudo
+<nickr> its probably better to fix the perms
+<nickr> because then the gimp plugin will work right
+<nickr> and you won't have random files owned by root
+btami (~btami@3e70d731.dialin.enternet.hu) left irc: "l8r"
+<jcater> http://www.kurthanson.com/archive/news/102902/index.asp
+<jcater> (the last article on that page)
+<dneighbo> how do you get the gimp plugin to work?
+<Chipaca> what's a generic name for IOU-type documents?
+<Chipaca> dneighbo: apt-get install task-universe
+<ajmitch> an excuse to visit people & demand money?
+<Chipaca> in spanish they'd probably be 'obligations'
+<ajmitch> be sure to take along a baseball bat :)
+<nickr> dneighbo: dunno.
+<Chipaca> I mean the legal IOUs that you sign and are upholdable in court
+<nickr> dneighbo: ah, its only for gimp1.3
+Action: ajmitch does not know
+<nickr> dneighbo: so it'll be in gimp if you run gimp1.3
+<nickr> gimp1.3 has certain ... instabilities though.
+<jcater> Chipaca: contract? loan?
+<Chipaca> jcater: it's less than those
+<dneighbo> well i have 1.3
+<dneighbo> how do i use it :)
+<nickr> are you running gimp-1.3
+<dneighbo> head in ass
+<dneighbo> no
+<dneighbo> i installed it
+<dneighbo> but gimp runs 1.2 not 1.3
+<nickr> yea, run gimp-1.3
+<ajmitch> gimp-1.3
+<dneighbo> yah starting now
+<nickr> wow, this is slow over a remote connection
+<dneighbo> btw: battery TYPE 
+<dneighbo> 1.2 AA Ni-MH batteries 
+<dneighbo> isnt that what you suggested?
+<nickr> yea
+<dneighbo> cool
+<dneighbo> it can use that or CRV3
+<dneighbo> ok gimp 1.3 up but not seeing readily how to get to gtkam
+<nickr> you'd think it'd be under Acquire
+<dneighbo> thats what i thought
+<dneighbo> but dont see it tere
+<nickr> I don't see it anywhere, hmm
+<nickr> maybe you neude to run gtkam first and save the settings under the user that runs gimp also
+lupo (~lupo@pD95423A1.dip.t-dialin.net) left irc: "using sirc version 2.211+KSIRC/1.1"
+<dneighbo> hmmmm
+<dneighbo> i ran gtkam and gimp both as root
+<dneighbo> its ok gtkam should be enough
+<nickr> hmm
+<nickr> okay
+<dneighbo> although my camera saves images at like 2644x something huge
+<dneighbo> almost crashed X viewing them
+<nickr> yea, they are big
+<nickr> unless you're doing something exquisitly silly, it shouldn't crash X though.
+<nickr> but look who I'm talking to
+<ajmitch> heh
+<Chipaca> "obligation" it is! (webster 1913, # 5)
+<nickr> In Other News, I want to make a list of requirements for my revised docustore design. Any help?
+<dneighbo> yeha
+<Chipaca> dneighbo: apt-get install feh
+<nickr> dneighbo: hm?
+<nickr> I prefer gqview
+<Chipaca> nickr: feh blew me away with it's speed
+<Chipaca> nickr: especially when compared with imagemagick :)
+<dsmith> Well, yeah.
+<nickr> everything is fast compared to imagemagick
+<dsmith> The onlything slower than imagemagick is staroffice.
+<dsmith> ;^)
+<Chipaca> but actually feh is fast on its own right
+<Chipaca> as in I look at a 14000x14800 pic in under 10 secs
+<nickr> thats a big picture
+<Chipaca> http://200.59.86.175/~john/map.png
+<Chipaca> or .jpg for a smaller one (only 4MB)
+<nickr> this one of those pictures that'll crash galeon
+<nickr> I ask as the galeon error dialog pops up
+<dsmith> How does feh compare to xv ?
+<ajmitch> mmmm, openoffice.org running on an old pentium, with 16MB of ram ;)
+Action: dsmith weeps for ajmitch
+<ajmitch> Chipaca: how much ram do you have, too?
+<Chipaca> ajmitch: 640MB
+<Chipaca> dsmith: feh is free
+<dsmith> Chipaca: True
+<dneighbo> http://gnuenterprise.org/~dneighbo/ximian_barbie.jpg to prove its true there is a ximian ken doll
+<nickr> sick
+<dneighbo> and twisted
+<dneighbo> might i add
+<dneighbo> btw: my children did this
+<dneighbo> they took a rupert doll (ximian monkey)
+<dneighbo> and a few days later i went in and ken was wearing ruperts shirt
+<Chipaca> dneighbo: the "sick and twisted" fits in just fine
+<dneighbo> ok enough playing time for real work
+<nickr> so ken and rupert were ... uhh
+<nickr> y'know
+<ajmitch> that scares me
+<dsmith> Chipaca: http://200.59.86.175/~john/map.png crashed dillo
+<nickr> crashes galeon too
+Action: nickr wgetting
+<Chipaca> dsmith: I think your kernel crashed dillo (as in OOM: kill the sucker)
+<ajmitch> wouldn't surprise me
+<ajmitch> i have a 9.3Kx9.3K image here that uses a lot of ram to open
+<nickr> might crash galeon because of my display situation
+<ajmitch> remote?
+<Chipaca> nickr: galeon is very sucky wrt images, that's a mozilla thing
+<nickr> yea
+<nickr> true
+<Chipaca> nickr: even the jpg will crash galeon
+<ajmitch> gqview up to 570MB...
+<dsmith> What the heck is that thing?
+<ajmitch> > 700MB...
+<Chipaca> dsmith: a map
+<Chipaca> dsmith: of america
+<Chipaca> dsmith: compelte with sea monsters and land giants
+<Chipaca> dsmith: circa 1500
+<ajmitch> lol
+<dsmith> It wouldn't have Ohio on it then. :(
+<ajmitch> gqview has peaked at 710MB for this image i have :)
+<Chipaca> dsmith: probably not, as the names of the places are still mostly spanish
+Action: ajmitch ctrl-c's it :)
+<Chipaca> ajmitch: now try feh
+<ajmitch> pity i only have 512MB of RAM at the moment
+<ajmitch> not bad, feh only uses 336MB for the same image
+<dsmith> What kind of connection is 200.59.86.175 ?
+<ajmitch> better at scrolling too
+<nickr> the jpeg loaded instantly for me in gqview
+<dsmith> feh is just a thin wrapper around imlib, iirc.
+<nickr> zoom and scroll instantly
+<nickr> tha map is way cool
+<Chipaca> dsmith: 256/128 ADSL
+<dsmith> I'm only getting it at 6 kB a sec. and I'm on dual ds3's.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: "Client Exiting"
+<Chipaca> dsmith: makes sense, as there's probably 4 people pulling stuff right now (all in this channel :)
+<dsmith> Chipaca: Not me anymore.
+<Chipaca> dsmith: :)
+<Chipaca> dsmith: imlib2
+<ajmitch> the .png is a little big to download ;)
+<Chipaca> ajmitch: you can get it from the library of congress, but only in chunks
+<ajmitch> bbl
+<dsmith> Chipaca: Did you glue it together with imagemagick ?
+<Chipaca> dsmith: yes
+<dsmith> It might be slow, but it sure can do a *lot* of stuff.
+<Chipaca> dsmith: slow and memory hungry, but it's the kind of project I'd pitch in to. Does lots of stuff, reads and writs nearly anything, etc etc
+<Chipaca> dsmith: I needed 2GB of swap to build that image :)
+<Chipaca> dsmith: it was    s  l  o  w
+<dsmith> Chipaca: yep.  I used it to cut out the images in wmMoonClock to make the images in gkrellmoon. Very scriptable.
+<Chipaca> dsmith: so we agree it sucks in a cool way :)
+<dsmith> Yes.
+dsmith (firewall-u@cherry7.comerica.com) left irc: "later.."
+jamest (~jamest@adsl-64-216-107-182.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: Read error: 104 (Connection reset by peer)
+drochaid_ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+drochaid_ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: Read error: 104 (Connection reset by peer)
+drochaid_ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+Action: dneighbo is away: picking up kids
+<chillywilly> beats dropping them off at the pool... ;)
+<chillywilly> er, then again why would you want to pick them up?!?
+<chillywilly> ew
+drochaid_ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: Read error: 104 (Connection reset by peer)
+drochaid_ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+yogurt2unge (~charlie@ADSL-200-59-86-17.cordoba.sinectis.com.ar) left irc: "Client Exiting"
+Chipaca (~john@ADSL-200-59-86-17.cordoba.sinectis.com.ar) left irc: "ircII EPIC4-1.1.5 -- Are we there yet?"
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) left irc: Remote closed the connection
+drochaid_ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: Read error: 104 (Connection reset by peer)
+drochaid__ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+drochaid__ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: Read error: 104 (Connection reset by peer)
+drochaid_ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+<nickr> what is that thing you check for in a python script to see if you're being imported or run directly?
+<jcater> if __name__ == '__main__':
+<jcater>   blah
+<nickr> excellent, thanks
+<nickr> python, oh how I love thee
+drochaid_ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: Read error: 104 (Connection reset by peer)
+drochaid__ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+drochaid__ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: Client Quit
+drochaid_ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+Nick change: drochaid_ -> drochaid
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "home"
+<nickr> gah!
+<nickr> good lesson not to use try's unless you're catching a specific exception
+<nickr> I just spent 40 minutes debugging variable name typos
+<nickr> it took using pdb to actually find the orrors because I had forgotton that I wrapped the call in a try further up the object chain
+<nickr> DOH
+<jamest> nickr: you can also have an open try always dump the err mesg too
+<nickr> that would've been helpful
+<nickr> the 
+<nickr> pdb is nice though
+<nickr> tracing into it its clear where the error was.
+<chillywilly> having fun nickr :)?
+Action: chillywilly is writing evil c++ ;)
+<ajmitch> eeeeevil
+IsoosI (dahoose@port-219-88-247-214.jet.net.nz) joined #gnuenterprise.
+Action: chillywilly hisss
+<ajmitch> if C is a dog, then C++ is the result of nailing another 4 legs onto that dog
+Remosi (dahoose@port-219-88-247-169.jet.net.nz) left irc: Read error: 104 (Connection reset by peer)
+<chillywilly> ajmitch: c++ is groovy
+<chillywilly> if python is a snake...
+<ajmitch> c++ is perverse
+<chillywilly> oh wait...
+<chillywilly> yea and how much of it have you written?
+<ajmitch> ~100 lines ;)
+Action: ajmitch just likes to diss it cos you're using it
+<chillywilly> that figures
+<jamest> ajmitch: 100 lines......isn't that like 10 fully featured  python apps?
+<jamest> oooo c++
+<jamest> that's like a header file right?
+<chillywilly> uh, no
+<chillywilly> slap yourself
+<jamest> <slap>
+<jamest> my bad....that's the start of the autoconf setup 
+<chillywilly> you're going to rip on autoconf? what do you have that is better disutils?
+<jamest> lol, no
+<jamest> i can't even claim autoconf sucks less
+<jamest> as it doesn't
+dsmith (~dsmith@p165.n-chpop06.stsn.com) joined #gnuenterprise.
+<chillywilly> autoconf is easy, all it consists of is a macro langauge and shell scripts
+<jamest> which changes at random during it's development
+<jamest> oh AM_FOOBATE_DA_BAR?  That's a version #.#.1 setting
+<chillywilly> I don't think so
+<dsmith> autoconf is a maze of twisty little config files, all different
+<jamest> you need AC_FOOBATE_DA_BAR?  Introdced in #.#.2
+<jamest> dude, those changes were eating my lunch when I used C exclusively
+<jamest> maybe I just got unluck but it was one of my #1 gripes about it
+<jamest> that and it's is a maze of twisty little config files, all different
+<jamest> thanks dsmith :)
+<chillywilly> that's developer's fault
+drochaid_ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: Read error: 104 (Connection reset by peer)
+<jamest> but distutils is no better
+<jamest> it's my fault they changed the config files?
+<chillywilly> no they libs you depended on the autoconf macros don't change much between releases
+<jamest> ah, ok
+<chillywilly> and when they do it is a pretty major revision
+<jamest> all I know is it was driving me nuts
+<jamest> but now that's distutils job
+<chillywilly> I had to change once when I started sing commoncpp from cvs
+<chillywilly> using
+<dsmith> jamest: What's distutils?
+<chillywilly> heheh
+<chillywilly> it's the python building shtuff
+<ajmitch> it's beautiful
+<chillywilly> ./setup.py build
+<chillywilly> ./setup.py install
+<dsmith> Oh, ok.
+<chillywilly> uh, it's not that great
+<jamest> distutils is bad
+<jamest> it's original goal was to provide an equiv to autoconf
+Nick change: drochaid_ -> drochaid
+<jamest> but lurking on the lists it was very aparent that  that was no longer a goal
+<jamest> they made something ok for installing python modules
+<jamest> but not apps
+<dsmith> the IDEA's are great, but auto* is an ugly wart that keeps getting ulier.
+<chillywilly> all build systems suck
+<jamest> and even python modules are iffy
+<chillywilly> dsmith: I find it rather easy to write my own macros when I need to
+<chillywilly> cause there are plenty out there to look at fr inspriation ;)
+<chillywilly> mwahaha
+<dsmith> They plan to re-write all the auto* tools in Guile Scheme.  Then life will be happy.
+Action: dsmith ducks
+<chillywilly> that would be col
+<chillywilly> cool
+<chillywilly> they should write it all in elisp and require emacs to be installed ;)
+<dsmith> chillywilly: Actually, I agree with you.  Copyying and tweaking isn;t so bad, but starting from scratch is nasty.
+<chillywilly> muuuuwaahahahahaa
+<chillywilly> dsmith: it's just shell scripting for the most part
+<chillywilly> if you can't shell script you should shoot yourself ;)
+<dsmith> What's whacky, is you use configure to generate the Makefile from Makefile.in, but it's too diffucult to write that, so you write Makefile.am and use automake to make Makefile.in.
+<chillywilly> no, it's that Makefiles all are pretty generic
+<jamest> then you put on the goat head, sacrafice a squirel to the build tool gods, run the autotools and prey the moons are in proper alignment
+<dsmith> chillywilly: Yes, shell is pretty easy, and m4 is too once you understand it.
+<chillywilly> with similar targets that you don't feel like rewriting every time
+<jamest> distutils required you use the head of a yak
+<chillywilly> eeek
+<chillywilly> no goat?
+<chillywilly> real men use goats, imho ;)
+<jamest> no, but in NZ i think you can use a sheep for any or all of the above animals
+<chillywilly> like you have a choice?
+<jamest> the surplus and all
+<chillywilly> ;P
+Action: dsmith goes back to reverse engineering TimeReporter .pdb files.
+<chillywilly> k...
+Mr_You (~car@gso167-138-145.triad.rr.com) left irc: Read error: 104 (Connection reset by peer)
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: Read error: 104 (Connection reset by peer)
+drochaid_ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+Nick change: drochaid_ -> drochaid
+jbailey (~jbailey@65.48.140.35) joined #gnuenterprise.
+<dneighbo> hey in xvncviewer is there a way to send 'shift' clicks across the net?
+jcater (~jcater@cpe-066-061-083-220.midsouth.rr.com) joined #gnuenterprise.
+<dneighbo> hey in xvncviewer is there a way to send 'shift' clicks across the net?
+<dneighbo> no xvncviewer users?
+<jcater> ya
+Action: dneighbo is thinking this is a MAJOR bug if you cant do this
+<jcater> but I didn;t know it didn't send shift+clicks
+<dneighbo> as it screws everything i do at work :(
+<jcater> ah
+<dneighbo> well how would you say send ctrl-alt-del
+<jcater> the pr0n viewer maps shift+rclick?
+<jcater> that I don't know
+<jamest> the break tracker too?
+Action: dneighbo unfortunately moves alot of objects via highlight object
+<dneighbo> then select libraries to copy it to (shift-click/ctrl-click) press button (as there is no Keyboard way to do this
+<dneighbo> smokey no way
+<dneighbo> you cna run vnc on an ipaq
+<dneighbo> how sweet
+<chillywilly> way
+<dneighbo> anyone have vnc tips on this?
+<dneighbo> i found something on keymaps
+<dneighbo> but it left me more confused than anything
+<dneighbo> this sucks
+<jcater> dneighbo: what window manager are you using
+Action: jcater guesses it's the window manager capturing that, not vnc
+<jcater> as vnc will pass anything it actually receives
+<jcater> e.g., I can't use Alt-Tab or Alt-F4 in KDE
+<dneighbo> fluxbox
+<jcater> because KDE interprets those
+<dneighbo> but wont about any window manager grab a ctrl
+<dneighbo> there must be some way to force it to client
+<jcater> for the purpose of testing, why don't you start up a raw X session on another terminal with only an xterm
+<dneighbo> i can hit F8 and get a popupp to send ctrl-alt-del
+<jcater> thus no window manager
+<jcater> and see if it works
+<dneighbo> jcater: if i knew how to do that i would be glad :)
+<jcater> hmm
+<jcater> kdm gives that as an option :)
+<dneighbo> gdm might too
+<dneighbo> but im a bit afraid to drpo my connection
+Action: jcater is thinking
+<dneighbo> as getting back on can be a bitch
+<dneighbo> i have found way to do keymaps and such but its horridly ugly
+<dneighbo> http://www.uk.research.att.com/vnc/xvncviewer.html
+<dneighbo> i guess at this point i dont have much choice as to do work i have to have this
+<jcater> dneighbo: 
+<jcater> Ctrl+alt+F1 to a console login
+<jcater> then login
+<jcater> then
+<jcater> xinit -- :1
+<jcater> should bring up a window-managerless session
+<jcater> then try xvncviewer
+<jcater> btw, if this works, then this tells us the problem
+<jbailey> That's a frightening amount of work. =)
+<jcater> and we can find a cleaner solution :)
+<jcater> jbailey: I'm just trying to verify the problem
+<jcater> feel free to correct me if you already know the answer :)
+<jbailey> At no time did I suggest it was the wrong way to troubleshoot it.
+<jbailey> It's just frightening. =)
+<jcater> lol
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) joined #gnuenterprise.
+<jbailey> that's like me trying to show someone today how to add a scsi driver to an initrd when you're installing a system.
+<jcater> ouch
+<jcater> hmmm
+<jcater> I wonder if I should've told him how to close this window-managerless session?
+<dneighbo> no xterem in PATH
+<jcater> bah
+<dneighbo> speicfy a program on the command line or make sure that /usr/X11R6/bin is in your path
+<jcater> try xinit gterm -- :1
+<jcater> is that right?
+<chillywilly> gnome-terminal
+<jcater> everyone should have xterm installed :)
+<jcater> dneighbo: you catch that
+<jcater> not gterm
+jamest (~jamest@adsl-64-216-107-182.dsl.tpkaks.swbell.net) left #gnuenterprise.
+<jcater> but gnome-terminal
+<jcater> dude'
+<dneighbo> apt-get install xterm
+<jcater> you are a very high maintenance friend
+Action: dneighbo wishes to please jcater ;)
+<chillywilly> lol
+<jcater> :)
+<dneighbo> fsck
+<dneighbo> sorry cant do that
+<jcater> ah, I thought this machine wasn't connected to net
+<dneighbo> no net when dialed up
+<dneighbo> and passing gnome-terminal yells at me still no xterm installed :)
+<jcater> bugger
+<jcater> not net at all
+<dneighbo> im going to disconnect and install xterm i guess
+<jcater> or just no internet?
+<dneighbo> hmmm
+<dneighbo> if you tell me how to 'route' i can get net
+<dneighbo> as it looks as though i have internal network
+Action: dneighbo gets deb and scps
+<jcater> hmmm
+<jcater> maybe the .deb will fit on a floppy
+<dneighbo> figures this box has xterm already :)
+<jcater> I don't have the energy to route for you
+<dneighbo> crap cleaned cache here
+<jcater> of course, real men use konsole
+<dneighbo> wil have to remove and reinstall 
+<jcater> can't you do a -d
+jbailey (~jbailey@65.48.140.35) left irc: "Client Exiting"
+<dneighbo> ?
+<dneighbo> maybe i dont know what a -d does :)
+<jcater> -d == --download-only
+<jcater> I dunno
+<jcater> you know more about apt than I 
+<jcater> if this doesn't work, you might wanna try svncviewer instead of xvncviewer
+<jcater> I've personally never used it
+<jcater> sigh
+<jcater> I'd rather be GNUe'n
+<jcater> oooo
+<jcater> that
+<jcater> that'd be a good bumper sticker
+Action: drochaid is away: mar sin leibh an drasda
+<jcater> ooooo
+<jcater> how about
+<jcater> "My PC is a piece of junk too"
+<dneighbo> works fine in xinit
+<jcater> that would be an excellect bumpersticker
+<dneighbo> jcater this may sound demented but that might work for me
+<drochaid> oidche mhath doods
+<dneighbo> i.e. generally the computer is about useless w/o net :)
+<jcater> drochaid: um, ok
+<dneighbo> so when connected to work not having a windows manager doesnt kill me
+Action: dneighbo would love a real solution, but for tongiht this might fly
+<jcater> ok
+<drochaid> dneighbo: vnc on an ipaq? oh .. that's fun
+<jcater> dneighbo: good, because I don't yet have a real solution
+<dneighbo> jcater: i want to be gnue'ing so bad it hurts
+rdean (~rdean@12-221-229-247.client.insightBB.com) joined #gnuenterprise.
+<dneighbo> but i have to get this done first, so you saved my butt :)
+<mdean> dneighbo: d00d!  you get my email aboot 0.9?
+<dneighbo> um havent gotten email today
+<mdean> oh - oops
+<dneighbo> im afraid to use this machine for email as its sylpheed which stunk for imap
+<dneighbo> until i get all my goodies moved over
+<jcater> really?
+<dneighbo> i will go check squirrel mail
+<jcater> that's all I use with sylpheed
+Mr_You (~car@gso167-138-145.triad.rr.com) joined #gnuenterprise.
+<dneighbo> jcater: it was horrid for moving mail
+<dneighbo> very slow and buggy
+<dneighbo> :(
+<dneighbo> i LOVED it for popmail
+Maniac (~User@h24-82-132-209.wp.shawcable.net) joined #gnuenterprise.
+<dneighbo> knock on wood, evolution has been amazingly solid
+<jcater> I guess I've just gotten used to the slowness
+<jcater> what do you use?
+<dneighbo> 6 months ago i would have kicked someone that suggested using evolution
+<dneighbo> but it actually is pretty responsive
+<dneighbo> and solid
+Action: jcater may try it
+<dneighbo> noting liek the pre 1.0 stuff
+<jcater> as my users are bitching about "generic" software now
+<jcater> s/now/again
+<jcater> with the next release of OpenOffice
+<dneighbo> jcater: definitely try it
+<dneighbo> my wife hated everything
+<jcater> prior to installing
+<dneighbo> email wise
+<dneighbo> and wanted outlook
+<jcater> I'm going to grab sources for openoffice
+<dneighbo> thats what made me install evolution
+<jcater> and change the window title and the splash
+<dneighbo> and she never called for support
+<jcater> to read :OpenOffice Professional/Corporate Edition"
+<dneighbo> so i figured it was worth me trying again :)
+<dneighbo> jcater: silly rabbit
+<jcater> I'm dead serious
+<jcater> I couldn't get them to use OpenOffice
+<jcater> until I changed the icon names
+<dneighbo> :Microsoft Windows Longlorn/Special Corporate Beta 4
+<jcater> to "Word" and "Excel"
+<jcater> then they started using it
+<jcater> but complained that it was the generic version
+<jcater> and "kmail" is the generic version of outlook express
+Action: jcater has never before heard software described as "generic"
+<jcater> what kind of resources does evolution pull?
+<jcater> as we're talking more than one user :)
+Action: jcater wishes the kompany was still working on aethera
+<chillywilly> evolution is a fat pig
+<jcater> as it has the same interface as evolution
+<jcater> but with the KDE widget set
+<chillywilly> jcater: the kompany is evil
+<jcater> maybe
+<jcater> I suppose they are KDE's version of Ximian
+<chillywilly> hmm, wrose I would say
+<jcater> although I like the kompany better than ximian
+<jcater> I don't think so
+<chillywilly> cause they develop a LOT of prop. stuff
+<jcater> at least they are always honest about what they're doing
+<chillywilly> I dunno evil is evil ;)
+<chillywilly> anyway, even the KDE developers can't stand the kompanyt
+<dneighbo> jcater: im with chilly on this onnly because to me KDE is like Caldera
+<dneighbo> its not that they are doing prop development its the attitude
+Action: dneighbo speaks only CEO to CEO
+<dneighbo> not the developers working for Kompany
+<chillywilly> you mean the Kompany is like Caldera ;)
+Action: dneighbo isnt thrilled always with Ximian and what it does, but the leaders there arent quiet as nose up turned to the community
+<dneighbo> it sucks as they actually do some cool stuff
+<chillywilly> agreed
+<dneighbo> if the attitude were better they would likely do better (even with prop stuff)
+<chillywilly> Ransom Love and Shawn Gordon could be best buddies ;)
+<dneighbo> maybe they are same person?
+Action: chillywilly hears the x-files theme
+<chillywilly> a conspiracy?!?
+<dneighbo> fsck csi miami
+<dneighbo> thanks chilly
+<chillywilly> for what?
+<jcater> hmmm
+<jcater> I may put my users on evolution
+<chillywilly> ;)
+<chillywilly> ugh
+<jcater> but I've gotten so used to the slimmed down sylpheed
+<jcater> I don't know if I can deal with evolution myself
+<chillywilly> you can't
+<chillywilly> it SUCKS
+<chillywilly> it is almost as bad as outlook
+<jcater> that's a good reason to put my users on it
+<chillywilly> in fact i think they were trying to emulate outlook's bloatedness
+<jcater> as I've had them cry over losing outlook
+<jcater> and that's not an exageration
+<chillywilly> how does anyone tolerate it?
+<chillywilly> hell I've seen my buddy have it lock up a thousand times ona  1GHz laptop
+<dneighbo> i kind of like it
+<jcater> I had withdrawal when dropping Outlook
+<jcater> but I've grown to like slimmed down email
+<jcater> (btw, this is Outlook, not Express)
+Action: chillywilly uses mutt
+<jcater> does evolution support LDAP?
+<jcater> if so, that's probably the selling point
+<chillywilly> dunno
+<chillywilly> I tried using evolution for a while about a few weeks ago
+<chillywilly> I hate it
+<jcater> hmmm
+<jcater> dneighbo: you use the calendar stuff?
+<dneighbo> i looked into it
+<dneighbo> im about to try at home i think
+<dneighbo> though i need something i can use when im at work too
+Action: dneighbo might have to use phpgw
+<dneighbo> wife and i need way to be in sync
+<jcater> hmmm
+<jcater> if you slow down, it might help
+<jcater> or try other positions
+<chillywilly> rofl
+<jcater> oh, with calendars
+<jcater> doh!
+<chillywilly> what about GNUe Groupware eh? ;)
+dsmith (~dsmith@p165.n-chpop06.stsn.com) left irc: Read error: 110 (Connection timed out)
+SachaS (~Sacha@dialup-196-113.wasp.net.au) joined #gnuenterprise.
+Yurik[birthday] (~yrashk@as5300.kharkov.ukrtel.net) joined #gnuenterprise.
+<jcater> woohoo!
+<jcater> KDE 3.1 RC3 out today
+<jcater> Yurik[birthday]: happy birthday
+<Yurik[birthday]> jcater: thanks!
+rdean (~rdean@12-221-229-247.client.insightBB.com) left irc: Read error: 110 (Connection timed out)
+rdean (~rdean@12-221-229-247.client.insightBB.com) joined #gnuenterprise.
+SachaS (~Sacha@dialup-196-113.wasp.net.au) left #gnuenterprise ("Client Exiting").
+SachaS (~Sacha@dialup-196-113.wasp.net.au) joined #gnuenterprise.
+Yurik[birthday] (~yrashk@as5300.kharkov.ukrtel.net) left irc: Read error: 110 (Connection timed out)
+Nick change: SachaS -> SachaS_uni
+<chillywilly> you guys missed it
+<chillywilly> I send in my moo and they played it on WOPN
+<dneighbo> moo
+<chillywilly> http://www.libertyetech.com/moo.ogg
+<jcater> moo
+<chillywilly> and for next week
+<chillywilly> http://www.libertyetech.com/chicken.ogg ;P
+<dneighbo> webmail is painful
+<chillywilly> dneighbo: you listen to my moo?
+Action: dneighbo still is amazed that web applications are so in demand
+<chillywilly> freak
+<dneighbo> chillywilly: no moo yet
+<dneighbo> busy fighting other issues
+<chillywilly> eh, whatever
+<dneighbo> mainly weeding through mail mountain to respond to mdean :)
+<ra3vat> hello all
+<ra3vat> how to add % to all my search input?
+--- Tue Nov 12 2002

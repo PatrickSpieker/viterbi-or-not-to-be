@@ -1,0 +1,1102 @@
+[00:00] Last message repeated 1 time(s).
+<nickr> you just pass on some hints about the what *kind* of information it is
+<derek> td.total
+<derek> td.item
+<derek> i could make xslt
+<derek> that by type
+<nickr> yea, although its better to say class="total"
+<derek> deteremines what class to use
+<derek> if type=subtotal
+<derek>   <td class="total">
+<derek> or whatever
+<derek> is that what you meant nickr?
+<jcater> I don't think "class" makes sense in the grd, so can y'all use "type" ?
+<chillywilly> does python have along double type?
+<chillywilly> a, 'long double'
+<jcater> chillywilly: python has floats and ints
+<jcater> derek: I just committed everything I have
+<jcater> and I'm calling it a nite
+<jcater> y'all enjoy
+<jcater> (the only change I made to the GRD was added align="right" to that last subtotal)
+Action: jcater is excited!
+<nickr> jcater: it doesn't matter what you call it on tehe grd side, as long as we can guess logical information about the data
+<nickr> and convert it to CSS classes
+<jcater> yeah, I'd think type= would be the place to infer then
+<chillywilly> the python IDl binding defines some interface
+<chillywilly> for long double support
+<jcater> derek: any more questions before I go?
+<chillywilly> for some reason xpdf doesn't want to let me copy shit
+<derek> nickr: refresh that page
+<derek> shifted some columns on the grd to make it nicer
+<derek> still needs html pretties though :)
+<nickr> nice
+<chillywilly> wtf
+<derek> um
+<nickr> what you should do is do like spreadsheets do it
+<chillywilly> it used to work
+<derek> i made slight grd changes
+<nickr> and say 'this item should be numeric' etc
+<derek> i made the total in the middle column
+<nickr> and then we can say at the HTML level 'numeric classed things are left aligned'
+<derek> and right aligned it
+<nickr> right alignd
+<derek> nickr: good point and we could do number formatting in xslt if we so desired as well, though imagine that will happen in grd
+<nickr> yea
+<derek> jcater: scary thing
+<jcater> derek: my plans on that were to
+<derek> w/ nickrs html pretties
+<chillywilly> For the long double type, the following 
+<chillywilly> interface must be provided:
+<nickr> well what you do is minimize or remove physical markup from grd, add all of that to after the grd
+<derek> this report is nicer than what access makes
+<nickr> the xslt, html, FO
+<chillywilly> The function CORBA.long_double creates a new long double number from 
+<chillywilly> a floating point number.
+<chillywilly> The operation to_float of a long double number converts it into a 
+<chillywilly> floating point number. For each floating point number f, 
+<chillywilly> CORBA.long_double(f).to_float==f.
+<nickr> hav the grd contain logical information about the stuff so you can use that as a hint as to how to format it
+<chillywilly> The long double number has an internal representation that is capable of storing 
+<chillywilly> IEEE-754 compliant values, with sign, 31 bits of mantissa (offset 16383), and 112 
+<chillywilly> bits of fractional mantissa. If numeric operations are provided, they offer the 
+<chillywilly> precision resulting from this specification.
+<chillywilly> sorry, done
+<jcater> have something like <field type="date" format="y-m-d h:m:s.i">2002-04-01 00:00:00.00</field>
+<jcater> and the XSLT could take it as provided
+<jcater> or if the locale preferred, could convert the format
+<jcater> but the format="..." identified how the GRD has outputted it
+<derek> btw: fire sandy that wench has negative foobulations :)
+<derek> ?
+<derek> im not too worried about that part yet
+<jcater> but that's for a later "official" discussion
+<jcater> :)
+<derek> technically it might be preferred to make xslt do formatting
+<nickr> I say remove all physical formatting from grd
+<derek> but idealistically i dont want to lock us into xslt
+<derek> so i woudl rather put the tag in grd and have our engine do it
+<nickr> only provide logical information for the formatting side to use as hints
+<derek> though it think when we get cooking we probably wont have anything but xslt
+<jcater> nickr: to a certain extent, I agree
+<jcater> but like I showed with my example, we'll actually
+<jcater> output a format, but actually provide the mask used to create the format
+<jcater> so the layout formatter can reformat the value if need be
+<nickr> well thats different
+<derek> ok one question jcater
+<jcater> but that's for later
+<nickr> thats char level formatting
+<derek> currently how im doing transformations is
+<nickr> I mean page level
+<derek> with html.xsl
+<jcater> nickr: so do I
+<derek> and with pyxslt (a small program from DCL) :)
+ra3vat (ds@ics.elcom.ru) joined #gnuenterprise.
+<derek> i think pyxslt belongs in the gnue tree as its useful :)
+<derek> where should i put these two files?
+Action: jcater thinks common/scripts
+<jcater> or create a subdir under utils/
+Action: jcater thinks scripts, tho
+<jcater> fwiw, I don't want to put TOOO much processing off into the XSLT
+<ra3vat> hello all
+<jcater> as it isn't exactly known for its speed
+<jcater> i.e., transforms is one thing
+<jcater> sorting and format masks are another
+<jcater> ra3vat: howdy
+<nickr> jcater: Yes, definitely do sorting and char level formatting on the grd side.
+<nickr> but leave alignments and stuff up to the xslt based on type/class hints
+<ra3vat> jcater: hello
+<jcater> I don't fully agree w/that
+<jcater> in principle, I do
+<jcater> in practice, I don't
+<nickr> why?
+<jcater> well, at the moment we are looking at VERY simple tabulation reports
+<jcater> in this case, sure, I agree
+<nickr> Yes.
+<jcater> but that's only a small piece of the pie
+<nickr> Well.
+<nickr> I'd say its possible to extend the conept to every level.
+<jcater> there's several instances where I've needed right-aligned text
+<jcater> or left-aligned numbers
+<nickr> and I'll do my best to influence things that way. :)
+<nickr> okay
+<nickr> at least for most cases you should try to define a set of useful classes
+<derek> jcater putting in scripts/
+<jcater> however, I do agree that the "default" could vary based on type
+<nickr> such as lineitem, total, etc
+<derek> but i think html.xsl is a reports only thing
+<jcater> i.e., the "default" for numeric might be right allign
+<derek> is there a dir under reports that woujld be better
+<derek> jcater: i agree
+<nickr> jcater: Yes, I can agree that allowing the report to override the default behavior would be useful.
+<jcater> there was
+<jcater> hang on
+<derek> type="numeric" align="right|left|center"
+<derek> and if type="numberic" and no alight defined it right aligns or such
+<jcater> derek: add that to samples/foobulations for now
+<jcater> I may have it moved later on
+<chillywilly> jcater: you should go to bed
+<jcater> I could've sworn I had a directory for transforms
+<chillywilly> so should I
+<jcater> chillywilly: yes, you are right
+<jcater> derek: anything else?
+<jcater> I need to go to bed
+<chillywilly> me too
+<derek> um i think im good
+<derek> i will put in foobulations
+<derek> but it should at somepoint be moved to a transforms or something similar
+<jcater> yeah
+<jcater> I had a directory structure for that
+<jcater> but it isn't in cvs
+<jcater> I may have forgotten to cvs add it
+<chillywilly> I'm outty 2000
+<jcater> night all
+<chillywilly> g'night ppl
+jcater (jason@HubA-mcr-24-165-193-24.midsouth.rr.com) left irc: "sleep-deprivation therapy"
+<derek> ok pyxslt commited
+<derek> er committed
+chillywilly (danielb@d169.as4.nwbl0.wi.voyager.net) left irc: "Philosophers and plow men, each must know his part, to sow a new mentality closer to the heart..."
+<nickr> I always used xsltproc
+<derek> nickr: technically the stylesheet should be compliant and you should be able to use any compliant processor you like
+<nickr> Indeed
+Maniac (somebody@h24-82-132-209.wp.shawcable.net) left irc: "Client Exiting"
+<derek> how is that new purdy style sheet for totals coming?
+Action: derek is kind of having fun
+<nickr> oh, you want totals marked up?
+<nickr> the current structure counterindicates that
+<nickr> the fact that there are align="" in there will prevent IE from rendering the class
+<derek> ?
+<nickr> you have like <td align="">
+<nickr> if you were to make that <td align="" class="numeric">
+<nickr> IE wouldn't pick up the class.
+<derek> well i.e. sucks nuts
+<derek> actually cant i do combo?
+<derek> if switch to css inline
+Action: derek doesnt remember syntax
+<derek> <td {align:center}>
+<derek> or whatever
+alexey (~alexey@195.151.214.34) joined #gnuenterprise.
+<nickr> No.
+<nickr> don't do that.
+<nickr> style="blah"
+<nickr> bad.
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+<psu> good mooooooooooooooooring #gnuenterprise
+<psu> </robin_williams>
+Action: nickr throws eggs
+Action: psu ducks
+<psu> duck eggs - hmmm...
+<nickr> hehe
+<psu> we are obviously both over-tired if we find that funny ;-)
+<nickr> :)
+ajmitch (~me@p6-max4.dun.ihug.co.nz) joined #gnuenterprise.
+<psu> da mitchstah
+<derek> nickr: have it working so
+<derek> it outputs like this
+<derek>       <tr class="item">
+<derek>         <td align=""></td>
+<derek>         <td align="center">2002-04-03 00:00:00.00</td>
+<derek>         <td align="right">63</td>
+<derek>       </tr>
+<derek>       <tr class="subtotal">
+<derek>         <td align=""></td>
+<derek>         <td align="right">Total for Candy</td>
+<derek>         <td align="right">12</td>
+<derek>       </tr>
+<derek> if you can whip me up some style sheet magic
+<nickr> hm, that'd work I guess.
+<ajmitch> hey
+<nickr> derek: add tr.subtotal { background: black; color: white } to the stylesheet
+<ajmitch> what's up all?
+<derek> gack
+<derek> that made the text disappear
+<derek> for the subtotal rows
+<derek> cause my type
+<derek> er typo
+<derek> http://gnuenterprise.org/~dneighbo/monthly.html
+<nickr> hows that suit you?
+<derek> not my taste
+<nickr> hm
+<derek> but at least i can tell what is what :)
+Action: ajmitch pokes #gnuenterprise
+<nickr> you might make the th's inverted like that
+<derek> hey bitch that hurt
+<nickr> and make the totals boldface
+<nickr> font-weight: bold;
+<nickr> see how that suits you
+Action: ajmitch wonders who's trying to fiddle the books
+<derek> spiffy
+<derek> how do i make italic
+<nickr> put it up?
+<nickr> font-variant: italic; I think
+<nickr> hrm
+<nickr> I don't think thats right actually
+<derek> http://gnuenterprise.org/~dneighbo/monthly.html
+<nickr> ahh a little better :)
+<derek> gack my section header is gone
+<nickr> I'd make all the fonts sans serif myself
+Action: ajmitch wonders where everyone is 
+<derek> whew no worries, jason had different grd :)
+<derek> um oh html master show me the way to sans serif and im there
+reinhard (~rm@62.47.44.208) joined #gnuenterprise.
+<nickr> body { font-face: sans-serif; }
+<nickr> I think will do ya
+<psu> nickr: sans serif fonts are for "easy reader" learing books
+<psu> oh, and US academic texts ;-)
+<nickr> indeed
+<derek> hey reinhard what you think of the first gnue reports report 
+<derek> http://gnuenterprise.org/~dneighbo/monthly.html
+<reinhard> looks like a good starting point
+<reinhard> i think dandy is missing
+<reinhard> ;-)
+<ajmitch> hi reinhard
+<nickr> derek: maybe a slight mod to the borders to make them more liney, and box in the totals
+<derek>         body {
+<derek>           font-face: sans-serif;
+<derek>         }
+<derek> seems to have little effect
+<nickr> indeed.
+<derek> tell me what to change and i will
+<derek> for the borders
+<nickr> hrm
+<psu> reinhard: what about randy?
+<psu> that's always a good name to wind americans up with
+<psu> (in English english, randy = horny
+<psu> so US tourists called randy are always a source of innocent amusement)
+<ajmitch> hehe
+<derek> btw: reinhard the report is certainly lame but its really living and breathing
+<derek> i.e. it actually gets its database from a database
+<ajmitch> impressive
+<derek> you have an .grd which is xml that is like a form to define what db and such to connect too
+<derek> then it goes out gets the data and makes an outputted xml file
+<derek> and we do an xslt translation to turn it into html
+<derek> which is what the url is for
+<derek> so while it might look lame and unimpressive it really is a pretty solid start
+<derek> nickr: can probably attest to just in a few hours tonight it has made pretty decent progress
+<reinhard> derek: yeah that's what i said
+<nickr> derek: I'm toying it
+<nickr> yes
+<nickr> hrm
+<nickr> nick.imeats/proj/gnue/monthly.html
+<nickr> see how that strikes you
+<ra3vat> http://nick.imeats.net
+<ra3vat> ?
+<nickr> nick.industrialmeats.com
+<nickr> sorry
+<ra3vat> seems http://nick.imeats.net is also related as it is something about food :)
+<derek> hmm i was thinking thats what would look good
+<derek> but now seeing it im not so sure
+<nickr> it looks interesting
+<nickr> but not great.
+<nickr> looks better as is now
+<derek> im thinking what if we killed all lines
+<nickr> uh
+<nickr> it'd look narsty
+<derek> except for the one's above Total For XXX
+<nickr> they eye would have nothing to follow
+<nickr> Well see thats the problem
+<derek> and bolded the NAME
+<nickr> since you chose to put the class at the row level, theres no way to put a line there
+<reinhard> derek: and below Total For XXX
+<derek> reinhard: yes
+<derek> i didnt choose jcater did :)
+Action: derek knew he need to let him check that in :)
+<derek> you cant do borders at tr level?
+<nickr> No
+<nickr> Unforutanely
+<nickr> I don't think it considers trs block level
+<nickr> which sucks.
+<derek> and if i move things down to td level
+<derek> we have issue of alignment
+<nickr> Not really 
+<nickr> what you do is generate classes
+<derek> in about 2 seconds i just generated classes
+<nickr> so you say 'this cell is a numeric right aligned' o you generate a new class taht has everything in a numeric except the alignment
+<derek>       <tr class="item">
+<derek>         <td align="" class="item">Sandy</td>
+<derek>         <td align="center" class="item">2002-04-03 00:00:00.00</td>
+<derek>         <td align="right" class="item">-203</td>
+<derek>       </tr>
+<derek>       <tr class="subtotal">
+<derek>         <td align="" class="subtotal"></td>
+<derek>         <td align="right" class="subtotal">Total for Sandy</td>
+<derek>         <td align="right" class="subtotal">12</td>
+<derek>       </tr>
+<nickr> bah
+<nickr> It won't render correctly like taht.
+<derek> obviously would have to remove the align=
+<nickr> Ahh I know how to do
+<nickr> use a <span>
+<derek> jsut show that the row type at td level now as wel las tr level
+<nickr> derek: if theres an alignment value, put a <span align=""> around the data
+<nickr> if not don'tt put anything
+<nickr> that'd really be a better solution anyway
+<nickr> more consistant with the background
+<nickr> because whan you're doing with the span is *locally* overriding the hiting
+<nickr> hinting
+<derek>       <tr class="item">
+<derek>         <td class="item">
+<derek>           <span align=""></span>
+<derek>         </td>
+<derek>         <td class="item">
+<derek>           <span align="center">2002-04-03 00:00:00.00</span>
+<derek>         </td>
+<derek>         <td class="item">
+<derek>           <span align="right">63</span>
+<derek>         </td>
+<derek>       </tr>
+<derek>       <tr class="subtotal">
+<derek>         <td class="subtotal">
+<derek>           <span align=""></span>
+<derek>         </td>
+<derek>         <td class="subtotal">
+<nickr> yes, but leave the span out if theres no item or no align
+<derek>           <span align="right">Total for Candy</span>
+<derek>         </td>
+<derek>         <td class="subtotal">
+<derek>           <span align="right">12</span>
+<derek>         </td>
+<derek>       </tr>
+Action: derek hasnt yet ventured into the if its blank thing
+<nickr> leave the span out if theres no item or no align
+<nickr> its a very simple <xslt:if thing
+<derek>       <tr class="item">
+<derek>         <td class="item"></td>
+<derek>         <td class="item">
+<derek>           <span align="center">2002-04-03 00:00:00.00</span>
+<derek>         </td>
+<derek>         <td class="item">
+<derek>           <span align="right">63</span>
+<derek>         </td>
+<derek>       </tr>
+<derek>       <tr class="subtotal">
+<nickr> sweet!
+<derek>         <td class="subtotal"></td>
+<derek>         <td class="subtotal">
+<nickr> how does it render?
+<derek>           <span align="right">Total for Candy</span>
+<derek>         </td>
+<derek>         <td class="subtotal">
+<derek>           <span align="right">12</span>
+<derek>         </td>
+<derek>       </tr>
+<derek> better?
+<derek> dont know havent tried :)
+<nickr> lets see it
+<derek> grr everything left aligned
+<nickr> ah, change the span to div
+<nickr> div is block level
+<nickr> and relook
+<derek> after all this xslt i think i might some of my website stuff xml
+<derek> and use xslt for it
+<derek> http://gnuenterprise.org/~dneighbo/monthly.html
+<nickr> heh
+<derek> div worked!
+<derek> so now can we play cool stylesheets
+<nickr> okey dokey
+<derek> anyone know the entity for a newline char 
+<derek> and for a tab
+<nickr> you don't need those.
+<nickr> oh
+<nickr> for generating text output
+<nickr> eh
+<nickr> just put the leteral char in there?
+<derek> ?
+<nickr> I dunno. ;)
+<nickr> Hrm
+<nickr> check out my copy
+<derek> getting close :)
+<derek> hmmm i was able to core dump trying to do ascii :)
+psu (psu@manorcon.demon.co.uk) left irc: Read error: 113 (No route to host)
+<derek> ahh its text not ascii
+<derek> my copy should match yours now
+<nickr> except that I put a cellpsacing="0" in the <table>
+<nickr> which makes it look right, but I'm trying to find if theres a css property to do that
+<reinhard> silly question
+<reinhard> is it on purpose that the total values aren't correct?
+<nickr> ha hah!
+<nickr> I am a mad html hax0
+<nickr> check it out
+<derek> jcater used to work for arthur andersen
+<derek> dont blame him
+<derek> he was trained to 'fudge' numbers
+<nickr> all is revealed. :)
+<derek> reinhard: subtotalling is not fully functional
+<derek> we put in hard numbers for them so we could play with transformations
+<derek> jcater will probably have them workign tomorrow
+<derek> http://www.jovino.com/stuff/entities.html
+<derek> seems to show
+<derek> &#010; or &#013; as newline
+<derek> i tried both separate and togehter with now luck :(
+<nickr> thats the ascii yes
+<nickr> you can just put literal new lines in with <xslt:text> can't you?
+<nickr> <xsl:text> rather
+<nickr> yes you can
+<nickr> and you have to tell it that you're producing text output
+<nickr> <xsl:output method="text" indent="no"/>
+<nickr> then you can do like
+<nickr> <xsl:text>
+<nickr>   foo!
+<nickr> </xsl:text>
+<nickr> and it'll be \n  foo\n
+<derek> can you check my page to make sure it looks like yours :)
+<derek> i think i have it
+<nickr> yep
+<nickr> :)
+<derek> smoking......................!
+<nickr> looks better than crystal reports
+<nickr> hah
+<derek> but how do i do 'tabs'
+<nickr> tabs yes
+<nickr> hm
+<derek> will they be preserved in xsl:text?
+<nickr> I believe so
+<nickr> its supposed to output literally whats in there
+<nickr> you could probably put the entity for tab in a <text> ..
+<nickr> &#09;
+<nickr> or maybe
+<nickr> &#009;
+Action: nickr checks on that
+<nickr> parsing dia files is fun :P
+<nickr> xsl:value-of select="substring-before(substring-after(dia:attribute[@name='name']/dia:string,'#\'),'#')" />
+<nickr> ah
+<nickr> derek: you can put a tab char ($#009;) right into a <xsl:text>
+<derek> so
+<derek> <xsl:text>&#009;</xsl:text>
+<nickr> yea
+<nickr> at least it worked for me
+<derek> didnt work here
+<nickr> hm
+<nickr> hmm
+<nickr> lemme see
+<derek> it does
+<derek> damn variable names :)
+<nickr> oh.
+<nickr> heh.
+<nickr> show us the money!
+<derek> the start of a text version
+<derek>         =====================================================
+<derek>                 Monthly Accounting Foobulation Report
+<derek>         =====================================================
+<derek> Name    Date    Foobulations    
+<derek> Mandy   2002-04-01 00:00:00.00  300     
+<derek>         2002-04-02 00:00:00.00  402     
+<derek>         2002-04-03 00:00:00.00  1000    
+<derek>         2002-04-04 00:00:00.00  3301    
+<derek>         Total for Mandy 12      
+<derek> Candy   2002-04-01 00:00:00.00  35      
+<derek>         2002-04-02 00:00:00.00  43      
+<derek>         2002-04-03 00:00:00.00  63      
+<derek>         Total for Candy 12      
+<derek> Sandy   2002-04-03 00:00:00.00  -203    
+<derek>         Total for Sandy 12      
+<derek>         Grand Total     36      
+<nickr> hmm, getting there
+<nickr> you should put a single line under the table header
+<nickr> maybe match the lining of the html version?
+<derek> well im just happy to get it this far i need to go to bed
+<derek> it needs lots of work :)
+<nickr> hehe
+<nickr> yea
+<nickr> bed is calling
+Action: nickr to bed "shut up already"
+<derek> i just think jcater needs ascii output for some dot matrix forms at work
+<derek> so wanted to encourage that it might be doable pretty quick
+<nickr> ah
+Action: derek admits also it was easier to try txt as a second transformation that FO ;)
+alexey (alexey@195.151.214.34) left irc: "Client Exiting"
+Action: derek wants to know what happened to chilly gnue'ing tonight
+Action: derek wanders off into the ether
+Action: derek is away: sleeping
+SirK (SirK@203.149.68.226) left irc: "Terminated with extreme prejudice - dircproxy 1.0.2"
+alexey (~alexey@195.151.214.34) joined #gnuenterprise.
+ajmitch (me@p6-max4.dun.ihug.co.nz) left irc: "http://www.freedevelopers.net"
+SachaS (~sacha@203.190.196.78) joined #gnuenterprise.
+Yurik (~yrashk@gw.telcos.net.ua) joined #gnuenterprise.
+alexey (alexey@195.151.214.34) left irc: "Client Exiting"
+Yurik (yrashk@gw.telcos.net.ua) left irc: Read error: 104 (Connection reset by peer)
+Yurik (~yrashk@gw.telcos.net.ua) joined #gnuenterprise.
+Yurik (yrashk@gw.telcos.net.ua) left irc: Client Quit
+crazymike (~crazymike@mke-65-31-133-230.wi.rr.com) joined #gnuenterprise.
+crazymike (crazymike@mke-65-31-133-230.wi.rr.com) left irc: Remote closed the connection
+jbailey (~jbailey@HSE-Toronto-ppp317491.sympatico.ca) joined #gnuenterprise.
+ToyMan (~stuq@65.167.123.51) joined #gnuenterprise.
+alexey (~alexey@195.151.214.34) joined #gnuenterprise.
+jamest (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+dsmith (~dsmith@cherry7.comerica.com) joined #gnuenterprise.
+alexey (alexey@195.151.214.34) left irc: "Client Exiting"
+SachaS_ (~sacha@203.190.196.20) joined #gnuenterprise.
+SachaS (sacha@203.190.196.78) left irc: Read error: 110 (Connection timed out)
+jbailey (jbailey@HSE-Toronto-ppp317491.sympatico.ca) left irc: "Client Exiting"
+markoi (marko@h126n2fls21o825.telia.com) joined #gnuenterprise.
+alexey (~alexey@195.151.214.34) joined #gnuenterprise.
+Arturas (~arturas@gsk.vtu.lt) joined #gnuenterprise.
+<Arturas> Hello :)
+<Arturas> ra3vat: try now
+<dneighbo> hi Arturas
+<Arturas> Good morning Derek :)
+Yurik (~yrashk@gw.telcos.net.ua) joined #gnuenterprise.
+Yurik (yrashk@gw.telcos.net.ua) left irc: Read error: 104 (Connection reset by peer)
+Nick change: SachaS_ -> Sacha_away
+alexey (alexey@195.151.214.34) left irc: "Client Exiting"
+windycn (windycn@210.83.113.70) left irc: Remote closed the connection
+Yurik (~yrashk@gw.telcos.net.ua) joined #gnuenterprise.
+Action: derek is back (gone 07:07:35)
+Yurik (yrashk@gw.telcos.net.ua) left irc: Read error: 104 (Connection reset by peer)
+Action: dneighbo slaps gnome develpers
+<dneighbo> i thought that gnumeric saved in xml?
+<dneighbo> seems you CAN save it that way
+<dneighbo> but default is some binary
+<reinhard> dneighbo: it's compressed xml
+<reinhard> via gzip
+<reinhard> zcat filename
+<reinhard> :)
+<derek> man is it 'verbose'
+<derek> will have to do for loops with variables in xslt get it to output
+Action: derek hopes i get to take a stab at it tonight
+<derek> bbl
+Nick change: derek -> dnWork
+dneighbo (dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: "Client Exiting"
+Arturas (arturas@gsk.vtu.lt) left irc: ""reboot....will be here in a minute or so""
+Arturas (~arturas@gsk.vtu.lt) joined #gnuenterprise.
+jan (jan@dial-213-168-92-141.netcologne.de) joined #gnuenterprise.
+jan (jan@dial-213-168-92-141.netcologne.de) left irc: Client Quit
+Yurik (~yrashk@gw.telcos.net.ua) joined #gnuenterprise.
+Yurik (yrashk@gw.telcos.net.ua) left irc: "Client Exiting"
+Sacha_away (sacha@203.190.196.20) left irc: Read error: 113 (No route to host)
+dres (dres@4.18.171.42) left irc: Remote closed the connection
+dres (~dres@4.18.171.42) joined #gnuenterprise.
+dres (dres@4.18.171.42) left irc: Read error: 104 (Connection reset by peer)
+alexey (~alexey@195.151.214.34) joined #gnuenterprise.
+dneighbo (~dneighbo@tmp-200253.flinthills.com) joined #gnuenterprise.
+<dneighbo> jcater were you able to get the text transformation to work?
+<dneighbo> if not here is a sample
+<dneighbo> http://gnuenterprise.org/~dneighbo/hold/monthly.txt
+<dneighbo> for 'text' reporting we probably will need to keep that width="" value for columns and for table
+<dneighbo> to do positioning properly
+markoi (marko@h126n2fls21o825.telia.com) left irc: Remote closed the connection
+markoi (marko@h126n2fls21o825.telia.com) joined #gnuenterprise.
+<jcater> cool start
+<ra3vat> hello all
+<Arturas> hi Dmitry
+<ra3vat> hello Arturas
+<Arturas> everything should work now
+<Arturas> and it should be possible for you to login
+yogurt2unge (~charlie@modem224-adsl1.cordoba.sinectis.com.ar) joined #gnuenterprise.
+alexey (alexey@195.151.214.34) left irc: "Client Exiting"
+drochaid_ (~drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) joined #gnuenterprise.
+drochaid (drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) left irc: Read error: 104 (Connection reset by peer)
+<Arturas> bye :)
+Arturas (arturas@gsk.vtu.lt) left irc: "ircII/tkirc"
+<dneighbo> http://slashdot.org/articles/02/04/09/124226.shtml?tid=95
+<dneighbo> you might find that interesting jcater
+<dneighbo> reinhard: our co-op idea for bandwidth
+<dneighbo> er re :
+<Mr_You> I like the idea of public bandwidth, but seems spensive unless you are using super extended reach wireless
+<Mr_You> then again, DSL equipment can probably be found cheap
+<Mr_You> I would bitch locally if broadband wasn't available to me.
+<dneighbo> jcater: the locals here are raving about gentoo linux
+<dneighbo> which uses BSD like ports called portage
+<dneighbo> i just found out its written in python :)
+<jcater> yip
+<dneighbo> could be interesting for gnue package management :)
+<dneighbo> personally im not seeing the advantage over debian
+<dneighbo> while compiling rather than usign binaries might give a minor advantage
+<jcater> well, all the packages would be compiled optimized for your machine
+<dneighbo> on some machines the compile times would kick your ass
+<jcater> and honestly I had less issues w/FreeBSD ports than I have w/apt
+<dneighbo> like ToyMan on bsd was saying that gnumeric took like over 4 hours to compile
+<jcater> even though apt works the vast majority of the time
+<dneighbo> as to optimization
+<jcater> yeah, that was my big issue
+<dneighbo> unless you are just a raw metal geeks im not seeing the huge difference
+<jcater> ... compile time
+<jcater> my understanding is its not uncommon to see a 10% gain
+<dneighbo> i.e. kernels you can get optimized for you processor
+<ToyMan> dneighbo: you don't have to compile, you can use pkg_add and get the binaries..
+<dneighbo> ToyMan at which point its same as debian :)
+<jcater> but i loved the FreeBSD ports
+<dneighbo> im not saying ports is dumb
+<dneighbo> i think its pretty cool
+<dneighbo> im just saying if im a sysadmin
+<ToyMan> except, that if you compile, it never breaks your system
+<jcater> dneighbo: once there's Debian/BSD then you can argue "why not debian"
+<ToyMan> which apt *will* do
+<jcater> as a person who wants BSD wants BSD
+<jcater> :)
+<dneighbo> and my choice is slightly faster apps
+<dneighbo> or a well supported platform
+<dneighbo> its a no brainer
+<dneighbo> i.e. i would have reservations putting gentoo on a production box
+<dneighbo> as to BSD
+<Mr_You> source packages are ok, but I don't see them as a requirement.. just untar heh
+<dneighbo> i really prefer GPL licensing :)
+<jcater> dneighbo: sure
+<jcater> that's why debian makes sense for you :)
+<dneighbo> i.e. as a sysadmin (which im not)
+<dneighbo> i would use debian (or someother well supported distro)
+<dneighbo> and if i had applications that needed 'performance' boosts i would compile them
+<dneighbo> if i wasnt anti-BSD i would simply say install BSD :)
+<dneighbo> jcater : i guess my gripe is one of practicality
+<dneighbo> to me this kind of environment is like CS jerking off (as nickr would put it)
+<jcater> dneighbo: I don't necessarily agree
+<dneighbo> its good to see choices
+<jcater> have you ever used a ports system?
+<dneighbo> yes
+<jcater> other than compile times, BSD ports was as good as apt
+<dneighbo> not gentoo but bsd
+<dneighbo> i didnt say it wasnt as good as apt
+<dneighbo> my point is long compile time for minor performance
+<dneighbo> makes little practical sense
+<jcater> well, that was *one* point :)
+<jcater> it really shines when you don't have packages for everything
+<ToyMan> ports is quite a bit better than apt, apt breaks things, ports doesn't, that's a *big* diff.
+<jcater> and you needed to install something else for source
+<jcater> s/for/from
+<jcater> then the ports shined over apt
+<jcater> as they often worked with the custom installed thingy
+<dneighbo> you dont want my answer there (remember im borderline socialist)
+<dneighbo> if you dont have packages for what you want
+<dneighbo> be a good debian citizen and make them :)
+<ToyMan> with apt, I still ended up chasing dependancies, though not near as bad as with the rpm nightmare
+<jcater> now, see you are then restricting usage to technically elite
+<dneighbo> ToyMan i think you had some odd experience
+<jcater> I can install something from source w/o a hitch
+<dneighbo> in about a year with debian
+<jcater> but I wouldn't begin to know how to package something for debian
+<dneighbo> i think that apt has truly only broken something 1 or 2 times
+<dneighbo> and have really never had a dependency issue
+<ToyMan> dneighbo: I don't think so, the mail lists are full of people trying to fix apt-broken systems
+<dneighbo> not that apt is flawless, it simple sucks less
+<dneighbo> ToyMan : well i thought the same thing till lived in #gnuenterprise
+<ToyMan> as i said *way* better than rpm
+<dneighbo> nickr and jbailey showed me the way
+<jcater> of course, I'm now an apt and debian fanatic (an ex-FreeBSD dude)
+<dneighbo> i.e. generally if apt gets into any issues its just a matter of knowing more commands than apt-get to play
+<jcater> but I still do miss some things :)
+<dneighbo> maybe its a personality thing
+<dneighbo> just almost everyone i know that uses BSD and now gentoo
+<dneighbo> are know it all grab ass wannabe's
+<ToyMan> hehe, that's me to the n'th
+<dneighbo> who's number one cool factor is that they have a CUSTOM install
+<dneighbo> ToyMan : you have been only exception to this :)
+<dneighbo> i.e. i wont mention names
+<ToyMan> how little you know...
+<jcater> I might agree w/that on gentoo front
+<dneighbo> but generally they are of the ilk that if you dont recompile your kernel daily
+<jcater> but freebsd has one helluva user base
+<dneighbo> and you arent running the most unstable of file systems
+<ToyMan> oh, there's shitheads in every camp...
+<dneighbo> you just dont know what you are doing :)
+<dneighbo> ToyMan : agree
+<dneighbo> actually the BSD's arent really like that
+<dneighbo> im talking mostly gentoo crows
+<dneighbo> er crowd
+<jcater> dneighbo: to elaborate on your stereotypes
+<dneighbo> and to a large degree the slack crowd had this mentality
+<jcater> let me provide mine
+<jcater> until I hooked up w/gnue
+<ToyMan> heh, there's people over at #freebsd who would rip your head off if you came in talkin debian shit...
+<ToyMan> but plenty of nice folks too
+<jcater> I was a firm believer in the statement "Those who love unix, use BSD... those who hate microsoft use Linux"
+<dneighbo> :)
+<jcater> I strongly believed that based on many many observation
+<jcater> s
+Action: Mr_You reboots &
+<jcater> but then jamest prooved me wrong :)
+<dneighbo> linux users are generally the worst
+<dneighbo> and debian developers are probably the rudest :)
+<dneighbo> except the ones that seem to have found this channel
+<dneighbo> but if my first experience with debian woudl ahve been #debian or a debian mailing list i wouldnt be using debian :)
+<dneighbo> only thing that prevented me from being a BSD user was license
+<dneighbo> i still plan on installing netBSD on my toaster this year ;)
+<ToyMan> dneighbo: for me the proof is in the pudding, either there's a good community or there isn't... the license affects that, but it's only one factor
+<jcater> I bought a DreamWeaver when they went to $50
+<jcater> for the explicit reason of installing NetBSD on it
+<dneighbo> rofl
+<jcater> I'm not joking
+<dneighbo> ToyMan : i think community is important
+<dneighbo> but here is my take, for the most part i dont like the linux community
+<jcater> err, I meant DreamCast
+<jcater> not DreamWeaver :)
+<dneighbo> but license is more important than community to me
+Action: jcater doesn't think NetBSD even runs in an HTML editor
+<ToyMan> community is the *real* thing (coke commecial music wells up in the background)
+<ToyMan> for me just reducing it to the license is too theoretical and 'clean'
+<ToyMan> reality is messy
+<ToyMan> and things have unintended consequences
+<dneighbo> :)
+<ToyMan> and if there's a real living community, that's the best way to judge that all of the combined effects worked out for the good
+<dneighbo> all things said, BSD is FREE
+<dneighbo> so its definteily usable
+<ToyMan> and their community and license has led to many good things in the world
+<dneighbo> i just hate seeing good fruit put on the table for m$ or sun or whomever to take as their own and abuse their users with
+<jamest> i proved you wrong?
+<ToyMan> there will always be shitheads, it's an illusion to think a license will keep them from being shitheads
+<jamest> little ol' me?
+<jcater> jamest: yes
+<ToyMan> it can help, though
+<jamest> how so?
+<jcater> I thought all linux ppl hated windows (and not that they loved unix)
+<jcater> you proved to me that some linux admins simply hate users
+<jcater> and could care less about windows
+<ToyMan> heh
+<jamest> ooooo
+<jamest> i hate it too
+<jamest> users, windows, people in the fast lane driving slow
+<jamest> it's all the same thing
+<jamest> a target for my aggression
+<dneighbo> i fall into the love unix category
+<dneighbo> as i have writings from just a few years ago
+<dneighbo> where i said i still preferred windows on the desktop
+<dneighbo> i.e. i was 'curious' to unix
+<dneighbo> but still preferred windows
+<dneighbo> slowly over time i came to love unix
+<dneighbo> and now since i still on occassion have to use windows i hate it because its not unix :)
+Action: dneighbo really loathes fact that command prompt does not support tab autocomplete
+<jamest> <derek>Windows is to die for.  Linux seems like a toy.  However with my guidence I'm sure I can make you losers produce something as truely great as myself.
+<jamest> ....from my logs
+<dneighbo> rofl
+<dneighbo> everything is spelled right, im worried that really did come from a log
+<dneighbo> oh wait guidence is wrong
+<dneighbo> whew... scared me for a minute
+<jcater> you forgot the next line
+<jamest> that was right below the line
+<jcater> <derek> until linux gets delphi, it's useless
+<dneighbo> its has delphi
+<jamest> <derek> Someone said you might be able to hook me up with some goat porn.
+<dneighbo> jamest: thats the REAL reason im here
+<jamest> i know
+<dneighbo> you have no idea how hard it is to get goat porn on the net now that they have started cracking down
+<jamest> that's another one for my scrapbook
+<nickr> la
+<nickr> free goat porn?
+<jcater> nickr: yeah
+<jcater> try http://hoatse.cx
+<jcater> ;)
+<jcater> err, mispelled
+<jcater> but you get the idea
+<jcater> nothing like a fowled attempt at a joke
+<nickr> heh
+<nickr> yea
+<nickr> see it woula been funny if I were a neophyte
+<nickr> and had never heard of this
+<nickr> and then I go there and go OD!
+<nickr> er OG!!
+<nickr> and claw my eyes out
+<nickr> incidently
+<nickr> I was considering registering hotse.cx
+<jcater> hotgnuese.cx
+<jcater> and have it point to a nunnery homepage
+<nickr> Haha
+<nickr> irony.
+<nickr> althougch I'm sure that hotsex occurs in nunneries
+zwiskle (~zwiskle@194-208-138-086.TELE.NET) joined #gnuenterprise.
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+<nickr> zoot!
+ToyMan (stuq@65.167.123.51) left irc: "Client Exiting"
+dsmith (dsmith@cherry7.comerica.com) left irc: "later.."
+<psu> ok, embaressing newbie question
+<psu> how do I change the extension of all the .foo files to .bar
+<psu> I tried mv *.foo *.bar but no dice
+<nickr> hah
+dsmith (~dsmith@cherry7.comerica.com) joined #gnuenterprise.
+<psu> I suppose I can always do an ls > file.lst, edit it & sh 
+<nickr> it is possible I think
+<nickr> like for i in `ls *.foo`; do mv $i ${i/.foo$/}.bar; done
+<nickr> ify ou're using bash
+<nickr> but I always use a perl script taht lets me apply an arbitary perl funcion to each filename
+<psu> thanks 
+<psu> I'll play around when I get back
+Action: nickr busts out mad shell
+Action: psu is away: gone for petrol
+ra3vat (ds@ics.elcom.ru) left irc: "Client Exiting"
+zwiskle (zwiskle@194-208-138-086.TELE.NET) left irc: "Changing Servers"
+zwiskle (~zwiskle@194-208-138-086.TELE.NET) joined #gnuenterprise.
+reinhard (rm@62.47.44.208) left irc: "There's always one more imbecile than you expect"
+Action: psu is back
+Action: psu is away: wife wants to play same-gnome
+<nickr> haha
+<nickr> psu: download frozen bubble for her..
+<dneighbo> psu please dont
+<dneighbo> you wont get your computer back for some time
+<jcater> frozen bubble rocks
+Action: nickr is a pusher
+Action: psu is back
+<psu> gah
+<drochaid_> hag
+Nick change: drochaid_ -> drochaid
+<psu> found some screenshots in this month's Linux Format mag
+<psu> wife officially thanks nickr for the suggestion
+<nickr> uh oh
+<nickr> hehe
+<psu> I may end up on the old 466 at this rate
+<psu> s/466/486-66
+<drochaid> would that really be so bad?
+<psu> drochaid: no X
+<drochaid> uh, sorry, can't believe I said that
+<psu> nickr: you have also just been invited round to tea
+<psu> any time you happen to be passing by ;-)
+<drochaid> he'll get his feet wet you know
+<psu> drochaid: ah, so you're that mystery person who actually enjoys lynx, are you?
+<drochaid> LOL
+<dneighbo> you know what you go two months with out 'upgrading' sid
+<dneighbo> and it takes some time :)
+<nickr> hehe
+<drochaid> that's right ... I rn lynx in cygin on win2k ;)
+<dneighbo> like 270 packages
+<nickr> dneighbo: yes
+drochaid_ (~drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) joined #gnuenterprise.
+drochaid (drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) left irc: Read error: 104 (Connection reset by peer)
+drochaid_ (drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) left irc: Client Quit
+zwiskle (~zwiskle@194-208-138-086.TELE.NET) left #gnuenterprise.
+drochaid (~drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) joined #gnuenterprise.
+Action: psu -> sleep mode
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise ("before the good lady wife discovers xBill...").
+<drochaid> sleep?
+<drochaid> need more info
+<Mr_You> hmm.. 
+<Mr_You> wondering if there is a tool already made that would startup X and display some animation then exit..
+<dneighbo> nickr you here?
+<dneighbo> or jamest or jcater
+<dneighbo> have old machine not lots of disk space
+<dneighbo> how do i remove .debs after installed
+<dneighbo> i.e. not the package
+<dneighbo> just the file
+<Mr_You> guess I'd hafta create some scripts and find/create a program to spit out the stuff
+<Mr_You> dpkg --purge <packagename>
+<Mr_You> oh
+<Mr_You> rm (don't do -r)... rm /var/cache/apt/archives/*
+<dneighbo> Mr_You there is easier way
+<dneighbo> that gets them all in one command
+<Mr_You> that removes downloaded debs
+<Mr_You> hehe, I've always done rm ;-)
+<Mr_You> can't get much easier ;-)
+<Mr_You> doesn't break anything AFAIK
+<dneighbo>        clean  clean clears out the local repository of  retrieved
+<dneighbo>               package  files.  It removes everything but the lock
+<dneighbo>               file     from     /var/cache/apt/archives/      and
+<dneighbo>               /var/cache/apt/archive/partial/.  When  APT is used
+<dneighbo>               as a dselect(8) method, clean is run automatically.
+<dneighbo>               Those  who  do  not use dselect will likely want to
+<dneighbo>               run apt-get clean from time to time to free up disk
+<dneighbo>               space.
+<dneighbo> apt-get clean 
+<Mr_You> ahh, good to know.. 
+<Mr_You> I'm use to netscape caches which don't work properly, so I rm ;-)
+<dneighbo> an apt-get clean just got me back 300mb :)
+<Mr_You> yeah, I have to do it regularly.. down to around 130MB
+ajmitch (~me@p16-max6.dun.ihug.co.nz) joined #gnuenterprise.
+<nickr> yea
+Action: Mr_You is using progreny graphical installer to create his debian distro.
+<Mr_You> http://hackers.progeny.com/pgi/
+<Mr_You> progeny
+<Mr_You> times like these I wish I had dual proc and RAID.
+<Mr_You> hope to have a beta soon
+<drochaid> heya ajmitch :)
+<ajmitch> hi
+<nickr> jooo hax
+<jamest> start x, display a graphic, then exit?
+<jamest> from the command line or from a display manager?
+Action: nickr blinks
+chillywilly (~danielb@d131.as1.nwbl0.wi.voyager.net) joined #gnuenterprise.
+<chillywilly> ello people
+<nickr> hey chill
+<chillywilly> sup dawg
+<chillywilly> whatcha up to?
+<nickr> just chillin and thrillin
+dsmith (dsmith@cherry7.comerica.com) left irc: "later.."
+<chillywilly> whiiiirrrred
+<dneighbo> so nick when you gonna bang on gnue debs?
+<dneighbo> we need them bdly
+<dneighbo> er badly even
+<chillywilly> baldly too
+<chillywilly> er....
+<nickr> dneighbo: Yes, with sufficient bribery
+<chillywilly> a kick to the head is not incentive enough?
+<dneighbo> captain morgans parrot bay rum work?
+<chillywilly> I think donuts may work
+<chillywilly> kirpsy kremes nickr?
+<nickr> Hehe.
+<nickr> Hmm.
+<dneighbo> nickr doesnt strike me as a donut guy
+<chillywilly> little do you know
+<chillywilly> GNUe - Bribery with Donuts one Hacker at a Time
+<nickr> I like donuts but they don't excite me to the degree that they do others :)
+<chillywilly> we'll get you some action then
+<chillywilly> dneighbo: how far is it from Phoenix to say Vegas or Reno?
+<chillywilly> ;)
+<nickr> haha
+<nickr> so anyway
+<nickr> dneighbo: My plan was to work on the CVS version and then give the debian/ to you to keep in the cvs so that your source is 'debian ready'
+jamest (jamest@hobbes.math.ksu.edu) left irc: "[x]chat"
+<drochaid> PIZZA PIZZA PIZZA
+<chillywilly> don't say that too lound in here, you'll get dneighbo all excited
+<nickr> yes, pizza would probably motivate me. But i'll be kinda nd do it without any physical reward
+<chillywilly> isn't our love and gratitude enough reward?
+<nickr> Actually its pretty close :)
+yogurt2unge (~charlie@modem224-adsl1.cordoba.sinectis.com.ar) left #gnuenterprise ("Client Exiting").
+dsmith (~dsmith@cherry7.comerica.com) joined #gnuenterprise.
+<dneighbo> cool
+<dneighbo> chillywilly we are about 6 hours from vegas doing the speedlimit
+<chillywilly> heheh
+<dneighbo> the LAN admin here in his mustang COBRA 'pushing' it made it in about 3 hours
+<chillywilly> ok
+Action: dsmith ponders a mustang with CORBA bindings
+<nickr> mustang CORBA
+jcater (jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "Client Exiting"
+<dneighbo> oh sys admin bash gods
+<dneighbo> if i have say
+<dneighbo> 50 tar.gz files in a directory
+<dneighbo> how can i unzip them all at one time?
+<dneighbo> tar xzvf *.tar.gz doesnt work
+<dneighbo> i KNOW there has to be an easy way to do this, im just thinking like a luser
+<nickr> for i in `ls *.tar.gz`; do tar -xvzf $i; done
+<dneighbo> your a bad ass
+Action: dneighbo wants to know why he was too dumb to ask this before  :)
+<nickr> you might've been abel to do for i in *.tar.gz; ...
+<nickr> yea
+<nickr> you coul've
+<nickr> or better
+<nickr> for i in "*.tar.gz";
+<nickr> if theres spaces
+<nickr> thats what you get when you confuse your stomach with your heart
+ToyMan_home (CaryKittne@c5300-4-ip149.albany.thebiz.net) joined #gnuenterprise.
+ToyMan_home (CaryKittne@c5300-4-ip149.albany.thebiz.net) left irc: Client Quit
+jbailey (~jbailey@HSE-Toronto-ppp317491.sympatico.ca) joined #gnuenterprise.
+<dnWork> deke call me please
+jcater (~jason@HubA-mcr-24-165-193-24.midsouth.rr.com) joined #gnuenterprise.
+<nickr> man frank zappa is messed.
+dneighbo (dneighbo@tmp-200253.flinthills.com) left irc: "BitchX FTP Site -- ftp://sunsite.unc.edu/pub/Linux/system/network/chat/irc"
+<dsmith> nickr: But "*.tar.gz" will be *exactly* "*.tar.gz". The '*' won't be expanded.
+<nickr> um
+<nickr> dsmith: you mix up '' and ""
+<nickr> "" expands variables and globs.
+<dsmith> Hmm.
+<dsmith> I don't believe you.
+<nickr> I just tested it.
+<nickr>  for i in "*.mp3"; do echo $i; done
+<nickr> 01_ Marmion - Schoneberg (Man With No Name Mix).mp3 09_ Karmachanics [Silver Mix].mp3 10_ Smaring Black Marble.mp3 11_ Neuro Tunnel.mp3 12_ Tatra.mp3 13_ Rotorblade.mp3 astral_projection-people_can_fly.mp3 endora-joy.mp3 neuro-tunnel.mp3 slinky_wizard-funkus_munkus.mp3 smaring-black_marble.mp3 technossomy-androids.mp3 total_eclipse-free_lemonade__psychaos__.mp3 transwave-land_of_freedom.mp3 ulysse-voyage_2.mp3 xdream-zebra.mp3
+<nickr> etc.
+<dsmith> "" does NOT expand globs.  In bash anyway.
+<dsmith> Try an echo "*.mp3"
+drochaid (drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) left irc: "Client Exiting"
+<nickr> thats in echo
+<nickr> this is in for
+<dsmith> Hmmm. Must be another level or someting in for
+<dsmith> I think the for is expanding it.
+jbailey (~jbailey@HSE-Toronto-ppp317491.sympatico.ca) left #gnuenterprise ("Client Exiting").
+<nickr> most likely
+<dsmith>        for name [ in word ] ; do list ; done
+<dsmith>               The  list of words following in is expanded, gener­
+<dsmith>               ating a list of items.  The variable name is set to
+<dsmith> Yep. Learn something every day.
+<dsmith> I still say that "" doen't expand globs.
+drochaid (~drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) joined #gnuenterprise.
+<drochaid> don't you just hate it when that happens?
+<nickr> yes
+<dsmith> for f in '*.whatever'; do something; done    works also. Cool.
+<dsmith> for f in '*.ogg'; do ls $f; done
+<dsmith> 01_So What.ogg             03_Blue In Green.ogg  05_Flamenco Sketches.ogg
+<dsmith> 02_Freddie Freeloader.ogg  04_All Blues.ogg      06_Flamenco Sketches (alternate take).ogg
+<dsmith> No it doesn't
+<dsmith> for f in "*.ogg"; do echo [$f]; done
+<dsmith> [*.ogg]
+<dsmith> for f in '*.ogg'; do echo [$f]; done
+<dsmith> [*.ogg]
+<dsmith> for f in *.ogg; do echo [$f]; done
+<dsmith> [01_So What.ogg]
+<dsmith> [02_Freddie Freeloader.ogg]
+<dsmith> [03_Blue In Green.ogg]
+<dsmith> [04_All Blues.ogg]
+<dsmith> [05_Flamenco Sketches.ogg]
+<dsmith> [06_Flamenco Sketches (alternate take).ogg]
+<nickr> weirdo
+<dsmith> Only works with ls
+<nickr> what does?
+<dsmith> No. I'm broke again
+<dsmith> for f in "*.ogg"; do echo "$f"; done
+<dsmith> *.ogg
+<dsmith> for f in "*.ogg"; do echo $f; done
+<dsmith> 01_So What.ogg 02_Freddie Freeloader.ogg 03_Blue In Green.ogg 04_All Blues.ogg 05_Flamenco Sketches.ogg 06_Flamenco Sketches (alternate take).ogg
+<nickr> hah
+<nickr> weird
+<dsmith> It's re-expanded on each do.
+<dsmith> When you quote it, you see what it really is.
+<nickr> thats sort of odd.
+<dsmith> When I used [$f] the shell tried to expand [*.ogg] .  But it CAN expand *.ogg .
+Cherukan (Cherukan@242846hfc175.tampabay.rr.com) joined #gnuenterprise.
+ajmitch_ (~me@p47-max4.dun.ihug.co.nz) joined #gnuenterprise.
+ajmitch (me@p16-max6.dun.ihug.co.nz) left irc: Read error: 113 (No route to host)
+rdean (rdean@chcgil2-ar2-052-050.chcgil2.dsl.gtei.net) joined #gnuenterprise.
+ajmitch__ (~me@wlg1-port44.jetstart.win.co.nz) joined #gnuenterprise.
+Nick change: ajmitch__ -> ajmitch
+dsmith (dsmith@cherry7.comerica.com) left irc: Remote closed the connection
+<drochaid> all the trees in the house say YOOooo
+<rdean> I'm not a tree.  I'm a human BEING, dammit!
+<jcater> a human being what? being a tree?
+Action: nickr makes soylent green out of rdean 
+Action: rdean is apparently uncultured...has heard the term "soylent green" before, but never what it meant.
+<nickr> uh
+<nickr> whoa
+<nickr> you are uncultured
+Action: rdean is open to enlightenment, providing it doesn't take longer than 5 minutes (got a meeting to get to) :-)
+<nickr> well there was a movie with Charlton Heston called Soylent Green
+<nickr> one of those weird future movies he did during the 70s, (along with Planet of the Apes and Omega Man and probably others)
+<nickr> oh that one where he's a racecar driver
+<nickr> hrm
+<rdean> okay...I'll look it up...doubt I'll ever find time to watch it, because by the time I get my kids in bed, I'm ready for bed (or am too engrossed in Jedi Knight...although I'm getting to the end of that)
+<rdean> okay, gotta go....i'm getting paged.
+rdean (rdean@chcgil2-ar2-052-050.chcgil2.dsl.gtei.net) left irc: "Client Exiting"
+ajmitch_ (me@p47-max4.dun.ihug.co.nz) left irc: No route to host
+jcater (jason@HubA-mcr-24-165-193-24.midsouth.rr.com) left irc: "Client Exiting"
+ToyMan_home (CaryKittne@c5300-3-ip253.albany.thebiz.net) joined #gnuenterprise.
+ToyMan_home (CaryKittne@c5300-3-ip253.albany.thebiz.net) left irc: "Client Exiting"
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+Nick change: dnWork -> derek
+Action: derek is away: Reloading Crack Pipe
+Action: derek is back (gone 00:00:01)
+<derek> man two dogs to work wears me out
+<derek> jcater: you gnue'ing tonight?
+<jcater> somewhat
+<derek> can you define somewhat/
+Action: derek is wondering what you want me to do next
+<jcater> well
+<derek> im thinking either play more with the xslt
+<jcater> pay my bills?
+<jcater> that'll free up some time for me
+<derek> and get text working and gnumeric working
+<derek> or test out all the new block/datasource triggers
+<derek> if you are around and gnue'ing the later is probably better as it needs to be done and i will probably have lots of questions
+<derek> if you arent really around i can probably play with transformations w/o much babysitting
+<jcater> hmm
+<jcater> I'd go w/transforms then
+<derek> as to bills, if i could pay my own, i would consider getting yours paid :)
+<jcater> as I'm not sure at this point
+<derek> not sure if you are gnue'ing? or not sure about the triggers ;)
+<jcater> gnue'n
+Action: jcater is excited
+<jcater> Earthlink Cable Modem is coming to memphis in 2 months
+<jcater> will be ~25/mo cheaper for me
+Action: derek slaps jcater with a smelly old crappie
+<derek> you suck
+Action: derek runs off
+<jcater> eh?
+<jcater> derek: you read the comments on the reports poll?
+<jcater> maybe it wasn't a good poll :)
+<jcater> ppl seemed to take it too seriously
+ajmitch (me@wlg1-port44.jetstart.win.co.nz) left irc: Read error: 110 (Connection timed out)
+Maniac (~somebody@h24-82-132-209.wp.shawcable.net) joined #gnuenterprise.
+<Maniac> derek you around?
+Cherukan (Cherukan@242846hfc175.tampabay.rr.com) left irc: "Client Exiting"
+jcater (jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "nite"
+dsmith (~dsmith@p254.usnyc7.stsn.com) joined #gnuenterprise.
+dsmith (dsmith@p254.usnyc7.stsn.com) left irc: Read error: 113 (No route to host)
+jcater (~jason@24.165.193.24) joined #gnuenterprise.
+dsmith (~dsmith@p22.usnyc7.stsn.com) joined #gnuenterprise.
+Maniac (somebody@h24-82-132-209.wp.shawcable.net) left irc: "Client Exiting"
+jcater (jason@24.165.193.24) left irc: "Client Exiting"
+Sacha_away (~sacha@203.190.196.95) joined #gnuenterprise.
+alexey (~alexey@195.151.214.34) joined #gnuenterprise.
+Action: derek didnt read it
+alexey (alexey@195.151.214.34) left irc: "Client Exiting"
+--- Wed Apr 10 2002

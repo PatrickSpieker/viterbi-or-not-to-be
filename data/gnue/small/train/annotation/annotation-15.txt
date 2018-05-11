@@ -1,0 +1,135 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.07Mar2006" author="Peter Sullivan" contact="mailto:psu@burdonvale.co.uk" enddate="11 Mar 2003 12:00:00 -0800" startdate="07 Mar 2006 12:00:00 -0800" subject="[IRC] 07 Mar 2006" title="Consistant keybindings in GNUe">
+
+<topic>Application Server</topic>
+<topic>Forms</topic>
+
+<p>Johannes Vetter (johannesV) announced <quote who="Johannes Vetter">ok, that's 
+another bug removed from the new wx26 driver</quote> which allowed GNUe Application 
+Server to work with version 2.6 of the wx user interface libraries, adding 
+<quote who="Johannes Vetter">if anybody finds another one, please let me know</quote>. 
+Bajusz Tam&#225;s (btami) pointed out that <quote who="Bajusz Tam&#225;s">if you 
+click on a tab in a multi-page form, it loses the focus - and selection with up/down 
+keys from a dropdown doesn't work yet - just with Shift+up/down - but it's not intuitive, 
+imho</quote>. Johannes said that, to check this, he'd created a sample application 
+just using the base wx driver, and <quote who="Johannes Vetter">i could use the 
+up/down keys without shift-key to navigate within the popup</quote>. Reinhard M&#252;ller 
+(reinhard) wondered if <quote who="Reinhard M&#252;ller">it's the form catching the 
+keypress before the UI gets it</quote> but this was not the case - Johannes 
+<quote who="Johannes Vetter">just added a debug-print to the __keypress signal 
+handler</quote> and found that <quote who="Johannes Vetter">it does not get 
+anything</quote>. In any case, this <quote who="Johannes Vetter">works fine for 
+gtk and osx</quote>.</p>
+
+<p>Jason Cater (jcater) said that these sorts of issues were 
+<quote who="Jason Cater">the main reason we split away from using wx into all the 
+more-targeted UI libraries</quote> for GNUe Forms. Using the wx libraries to 
+abstract the GNUe Forms code away from specific user interfaces had been a quick 
+way of being able to support many different user interfaces and operating systems 
+all at once (as described in 
+<kcref subject="[IRC] 12 Feb 2003" title="How User Interface drivers interact with Forms" />), 
+but having a "native" driver for each user interface library was the better 
+long-term option in terms of being able to fully support different UI drivers. 
+James Thompson (jamest) cheerfully added <quote who="James Thompson">welcome to our 
+(wx) hell - we hope you like it here</quote>.</p>
+
+<p>Johannes reported back that <quote who="Johannes Vetter">i've found out why 
+up/down does not work for dropdowns on wx.MSW - it is the menu-item for "next 
+record" and "previous record" which are bound to up and down keys - 
+on wx.MSW the menu seems to have a higher priority than the current control - 
+so the keypress is eaten by the menu !!</quote> He developed a work-around for 
+this by changing <quote who="Johannes Vetter">the "key_PrevRecord" and 
+"key_NextRecord" in gnue.conf (as an intermediate solution)</quote>. 
+But he would send an e-mail to the wx developers to see if this could be fixed 
+properly within wx, however.</p>
+
+<p>Reinhard was reminded <quote who="Reinhard M&#252;ller">that I have never liked 
+the cursor keys being bound to record navigation - I feel it's plain wrong to 
+have the cursor keys bound to a menu item as a hotkey</quote>. Johannes noted 
+that <quote who="Johannes Vetter">it's very problematic in this case</quote>. 
+Reinhard noted that <quote who="Reinhard M&#252;ller">there are quite a lot of 
+controls that use cursor keys natively - multi line edits, dropdowns, radio 
+buttons (that we don't have anyway) - and we will either break that native behavoiur 
+(like it is now with the dropdowns) - or it will be impossible to go next/prev 
+record when the focus is on such a control, because the control will eat the 
+keypress</quote>. James said this had been done in GNUe Forms originally to 
+emulate Oracle Forms, but asked <quote who="James Thompson">what would you 
+replace those keys with?</quote> Reinhard was <quote who="Reinhard M&#252;ller">not 
+sure</quote> but suggested setting aside four function keys 
+<quote who="Reinhard M&#252;ller">matching first, prev, next, last might be an option, 
+but that would mean to redefine other f-keys, too - alt cursor keys might be 
+another option</quote>. James wasn't keen on using the function keys, but 
+<quote who="James Thompson">i could live with the alt-curs-up|down setup i 
+imagine as it would require little new learning for the people here - 
+and alt left right could work same as shift-tab/tab i imagine</quote>. 
+However, Reinhard believed that <quote who="Reinhard M&#252;ller">alt cursor keys 
+are not available on curses</quote>, the text-only user interface which 
+GNUe needed to support, along with the graphical user interfaces (as 
+previously discussed in 
+<kcref subject="[IRC] 05 Aug 2003" title="Character-only (curses) User Interface for Forms" />) 
+- and in any case, <quote who="Reinhard M&#252;ller">alt left right might be useful 
+to change tabs</quote>. Johannes noted that this currently used 
+<quote who="Johannes Vetter">ctrl-page-up/down</quote>.</p>
+
+<p>James noted that some of the current key mappings were not ideal - 
+<quote who="James Thompson">F12 == new record - F11 = rollback - two functions 
+that shouldn't be anywhere near each other on the keyboard</quote>. In any 
+case, Johannes pointed out that F11 was <quote who="Johannes Vetter">used 
+by the window-manager on os x</quote> and so was unusable on Apple Macs. 
+Other potentially usuable function keys were also already mapped in different 
+operating systems. James wondered <quote who="James Thompson">if we'll need 
+environment specific mappings</quote>. Nobody was that keen on this, especially 
+since they could see themselves using GNUe on different operating systems 
+at the same time, but felt that it might be unavoidable - James just did not 
+<quote who="James Thompson">see us finding one magic keybinding set that works 
+everywhere</quote>.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.10Mar2006">Some 
+days later</a>, Tam&#225;s asked that keypresses should be configurable - 
+<quote who="Bajusz Tam&#225;s">i have more than 100 old customers 
+using my old foxpro based app from 1992 -  using up/down arrows 
+to change next/prev record - they will kill me, if i ever chage 
+it to shift/ctrl/alt +up/down - we (kilo and me) started to 
+rewrite it in gnue - fortunately we have no deadlines in 
+stone</quote>. At first, Johannes did not think he could 
+<quote who="Johannes Vetter">do very much about that, as i don't 
+get that event at all (at control-level)</quote> Reinhard suggested 
+<quote who="Reinhard M&#252;ller">maybe it would be an idea to *not* 
+assign cursor up/down as a menu hotkey</quote> as well. Johannes 
+said that would help, and <quote who="Johannes Vetter">if we 
+skipp up/down in the keymappers getEventKeyStroke .. it still 
+works (as the keymapper can still associate the event) - 
+but it is not bound in the menu</quote>. Later, he reported 
+that he had <quote who="Johannes Vetter">got it working</quote> 
+so that users could still use the up/down keys for next/previous 
+record generally, but that whilst in a dropdown these keys would 
+navigate between drop-down entries instead.</p>
+
+<p>Tam&#225;s downloaded the changes, and was happy with the up/down 
+behaviour, but noted that <quote who="Bajusz Tam&#225;s">enter doesn't 
+select from the dropdown</quote> as expected. Johannes 
+investigated and reported that <quote who="Johannes Vetter">it 
+jumps to the next entry on win, but it does not on gtk2 ...</quote>. 
+He found the bug and fixed it.</p>
+
+<p>Tam&#225;s then reported that <quote who="Bajusz Tam&#225;s">after pressing 
+the enter key the focus is going to the next entry now, but
+the selected value from the dropdown is not ok</quote>. After 
+some digging, Johannes discovered that this was a bug in the 
+underlying wx 2.6.2.1 driver - <quote who="Johannes Vetter">according 
+to the mailinglist this bug should be fixed with 2.7</quote>.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.11Mar2006">The 
+next day</a>, Johannes reported back <quote who="Johannes Vetter">the 
+dropdown-problem is a known issue</quote> and the wx developers 
+would be <quote who="Johannes Vetter">trying to look at it this 
+weekend</quote> according to an e-mail he had received - 
+<quote who="Johannes Vetter">meanwhile i'd prefer using wx 2.6.1.0 
+as it is working perfectly with that version</quote>.
+Tam&#225;s confirmed he had <quote who="Bajusz Tam&#225;s">tried it with 
+2.6.1.0, and it's ok</quote>. Johannes confirmed he was still 
+looking at <quote who="Johannes Vetter">the page-switching problem, 
+I've not found the pb right now ...</quote>.</p>
+
+</section>
+
+

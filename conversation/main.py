@@ -37,7 +37,8 @@ def main():
     parser.add_argument('--type', choices=['email', 'chat'], default='email', help='the format of the dataset being used')
     parser.add_argument('--model', choices=['naivebayes', 'decisiontree', 'perceptron'], default='naivebayes', help='the type of model to train and test')
     parser.add_argument('--metric', choices=['L', '1', '2', 'all'], default='all', help='which metric(s) to report when evaluating the model')
-    parser.add_argument('--crosstrain', help='an optional second dataset to cross train the model on prior to evaluation, assumed to use the other type of data')
+    parser.add_argument('--evaldataset', help='the path of the dataset to use for evaluation')
+    parser.add_argument('--evaltype', choices=['email', 'chat'], help='the format of the evaluation dataset being used')
     parser.add_argument('--debug', action='store_true', help='if set, outputs various debugging information during execution')
     parser.add_argument('--examples', action='store_true', help='if set, displays the system-generated summaries during evaluation')
     parser.add_argument('--nopreprocessing', action='store_true', help='if set, disables preprocessing for the training and validation data')
@@ -56,16 +57,33 @@ def main():
         preprocessor = ChatPreprocessor()
         feature_vectorizer = ChatFeatureVectorizer()
 
-    # If cross-training is enabled, create the second set of training input processors
-    if args.crosstrain is not None:
-        if args.type == 'chat':
-            cross_parser = EmailParser(dataset, args.debug)
-            cross_preprocessor = EmailPreprocessor()
-            cross_feature_vectorizer = EmailFeatureVectorizer()
-        elif args.type == 'email':
-            cross_parser = ChatParser(dataset, args.debug)
-            cross_preprocessor = ChatPreprocessor()
-            cross_feature_vectorizer = ChatFeatureVectorizer()
+    # If specified, use alternate evaluation
+    if args.evaldataset is not None and args.evaltype is not None:
+        eval_dataset = '../data/' + args.evaldataset
+
+        if args.evaltype == 'email':
+            eval_parser = EmailParser(eval_dataset, args.debug)
+            eval_preprocessor = EmailPreprocessor()
+            eval_feature_vectorizer = EmailFeatureVectorizer()
+        elif args.evaltype == 'chat':
+            eval_parser = ChatParser(eval_dataset, args.debug)
+            eval_preprocessor = ChatPreprocessor()
+            eval_feature_vectorizer = ChatFeatureVectorizer()
+    else:
+        eval_parser = parser
+        eval_preprocessor = preprocessor
+        eval_feature_vectorizer = feature_vectorizer
+
+    # # If cross-training is enabled, create the second set of training input processors
+    # if args.crosstrain is not None:
+    #     if args.type == 'chat':
+    #         cross_parser = EmailParser(dataset, args.debug)
+    #         cross_preprocessor = EmailPreprocessor()
+    #         cross_feature_vectorizer = EmailFeatureVectorizer()
+    #     elif args.type == 'email':
+    #         cross_parser = ChatParser(dataset, args.debug)
+    #         cross_preprocessor = ChatPreprocessor()
+    #         cross_feature_vectorizer = ChatFeatureVectorizer()
 
     # Use the appropriate model type
     if args.model == 'naivebayes':
@@ -100,28 +118,30 @@ def main():
     # Flatten thread labels to match the feature shape
     thread_labels = flatten(training_data['labels'])
 
-    # If crosstraining is enabled, use the second round of training data
-    if args.crosstrain is not None:
-        cross_training_data = cross_parser.parse('train')
-        if (not args.nopreprocessing):
-            cross_training_data = cross_preprocessor.preprocess(cross_training_data)
-        cross_training_data['data'] = collapse_threads(cross_training_data['data'])
-        cross_training_data['labels'] = collapse_threads(cross_training_data['labels'])
-        cross_training_sentence_features = cross_feature_vectorizer.vectorize(cross_training_data)
+    # # If crosstraining is enabled, use the second round of training data
+    # if args.crosstrain is not None:
+    #     cross_training_data = cross_parser.parse('train')
+    #     if (not args.nopreprocessing):
+    #         cross_training_data = cross_preprocessor.preprocess(cross_training_data)
+    #     cross_training_data['data'] = collapse_threads(cross_training_data['data'])
+    #     cross_training_data['labels'] = collapse_threads(cross_training_data['labels'])
+    #     cross_training_sentence_features = cross_feature_vectorizer.vectorize(cross_training_data)
 
-        # Concatenate so as to train on all available data
-        training_sentence_features = np.concatenate(training_sentence_features, cross_training_sentence_features)
-        thread_labels = thread_labels.extend(flatten(cross_training_data['labels']))
+    #     # Concatenate so as to train on all available data
+    #     training_sentence_features = np.concatenate(training_sentence_features, cross_training_sentence_features)
+    #     thread_labels = thread_labels.extend(flatten(cross_training_data['labels']))
 
     # Train model using training data
     model = train_model(model_type, thread_labels, training_sentence_features)
 
+    pdb.set_trace()
+
     # Parse val data
-    val_data = parser.parse('val')
+    val_data = eval_parser.parse('val')
 
     # Preprocess val data
     if (not args.nopreprocessing):
-        val_data = preprocessor.preprocess(val_data)
+        val_data = eval_preprocessor.preprocess(val_data)
 
     # TODO: ideally, remove this in the future
     # Collapse emails into threads
@@ -129,13 +149,13 @@ def main():
     val_data['labels'] = collapse_threads(val_data['labels'])
 
     # Produce sentence features
-    val_sentence_features = feature_vectorizer.vectorize(val_data)
+    val_sentence_features = eval_feature_vectorizer.vectorize(val_data)
 
     # Generate the model's predicted summaries on the val data
     test_model(model, val_data, val_sentence_features, 3 if args.type == 'email' else 1)
 
     # Compile the reference summaries
-    parser.compile_reference_summaries()
+    eval_parser.compile_reference_summaries()
 
     # Evaluate the model's performance using the preferred metrics
     evaluation.rouge_evaluation()

@@ -1,0 +1,544 @@
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) joined #gnuenterprise.
+<Varadhan> jcater: what should i do so as to get my sql commands work???
+<Varadhan> Mr_You: try increasing the fps rate... lol...
+<KeithJagrs> nite all!
+KeithJagrs (trilluser@63.74.24.9) left irc: "later"
+Action: derek is away: I'm busy
+<derek> oops
+<derek> im back but bed time now
+<derek> this day got lost grrrr
+<derek> probably will lose some of tomorrow too
+<derek> double grrr
+<derek> until then chow
+<nickr> ciao
+<Varadhan> derek: one small help!!!!
+<Varadhan> MEIDEE!!! MEIDEE!!! if i call form.runForm(), it is saying "Attribute Error: runForm".. i am using the latest CVS version...
+<Varadhan> jcater: MEIDEE!!! MEIDEE!!! if i call form.runForm(), it is saying "Attribute Error: runForm".. i am using the latest CVS version...
+<Varadhan> derek: MEIDEE!!! MEIDEE!!! if i call form.runForm(), it is saying "Attribute Error: runForm".. i am using the latest CVS version...
+<Varadhan> ra3vat: MEIDEE!!! MEIDEE!!! if i call form.runForm(), it is saying "Attribute Error: runForm".. i am using the latest CVS version...
+<Varadhan> is any1 there in the channel?????????????????????
+<ajmitch> evening all
+<IsoosI> G'evenin' aj :)
+<ajmitch> hey IsoosI
+<ajmitch> what's up?
+Nick change: IsoosI -> Isomer
+<Isomer> oh, shrug
+<Isomer> I was reading the KC last night
+<ajmitch> heh
+<Isomer> someone was saying that LDAP was insecure and ActiveDirectory is a much better solution
+<ajmitch> very very very silly
+<ajmitch> seems like i've been quoted in about the last 30 KC's ;)
+<Isomer> well, they're obviously missing the point that ActiveDirectory is an implementation LDAP :)
+<Isomer> er
+<Isomer> of LDAP
+<ajmitch> heh
+<ajmitch> decided to use GNUe anywhere yet? :)
+<Isomer> Not yet
+<Isomer> but I'm watching the Small Business stuff closely
+<Varadhan>  if i call form.runForm(), it is saying "Attribute Error: runForm".. i am using the latest CVS version... can any1 help me???
+<ajmitch> we saw your question before, noone that knows anything seems to be awake
+<ajmitch> the lazy beggars are all probably in bed
+<Varadhan> ufff....
+<Varadhan> do you use gnue tools???
+<Isomer> ajmitch: they appear to have some fascination with this whole sleeping thing :)
+<ajmitch> yes
+<ajmitch> i use GNUe stuff
+<ajmitch> 'form' might not be a GFClient instance or derivative thereof
+<Varadhan> yes.. but in D-G.pdf, it has been mentioned that if i want to invoke another form within a form, i can use form.runForm...
+<ajmitch> try runForm("form-file-name", params) without the 'form.' prefix
+<ajmitch> i haven't done much with forms lately
+<ajmitch> Isomer: what small biz stuff are you interested in?
+<ajmitch> i think most NZ businesses are small :)
+<Varadhan> yeah... thanks ajmitch... its working...
+<Varadhan> thanx a lot...
+<ajmitch> cool
+<Varadhan> btw, how can i trap the selection change event of a drop-down box????
+<ajmitch> hmm
+Action: ajmitch doesn't know
+<Isomer> ajmitch: Customer contact, stock management are both kinda important I think
+<ajmitch> Isomer: small biz accounting is what i want to work on this summer :)
+<Isomer> Neat!
+<ajmitch> yeah, in past KCs you might have seen FTBA mentioned
+<Isomer> yeah a li'l :)
+Action: ajmitch has been quoted in KC 1,2,4,10,13-16,23-30,32-34,36-54 ;)
+<ajmitch> i must spend far too much time here
+<Isomer> heh
+<ra3vat> hi all
+<ajmitch> hi ra3vat
+<ra3vat> Varadhan: why do you need to trap it? is not master/detail do the work?
+<ra3vat> hi ajmitch
+<ajmitch> ra3vat: depends, you might want to do extra stuff on selection
+<ajmitch> i think esands was asking about opening forms from a combo box selection
+<ajmitch> oh beautiful, someone fixed the property dialog bug :)
+Action: ajmitch is reading the KC
+<ra3vat> ajmitch: that's why i asking. i was taught yesterday not to be that trigger nazi and master/detail solved most of the thing for me :)
+<ajmitch> hehe
+<Varadhan> ra3vat: i need to fetch other values of the record on selecting the drop-down value..
+<Varadhan> ra3vat: something like, i have a list of "ids"... on-selection of a 'id' i have to fetch values for other columns...
+<Varadhan> ra3vat: can you give me an example for Datasource.simpleQuery???
+<ra3vat> i did not use it yet
+<Varadhan> ra3vat: is that "sql" stuff working???
+<Varadhan> ra3vat: can i get some time of yours to look into my problem???
+<ra3vat> i did not use it. my demo has a few related tables that use master/detail and it work well 
+<Varadhan> by defining foreign keys in table definitions???
+<ra3vat> Varadhan: miost probably not now as i'll be out of computer, i'm in a hurry already
+<Varadhan> ra3vat: can you do me a favour???
+<Varadhan> ra3vat: can you mail me your demo source, so that i can use it as a sample program to code my demo program????
+<ra3vat> Varadhan: it is enough that it has unique value and logic relationship
+<Varadhan> i have got a primary_key in my table.. and has 3 tables for my demo purpose...
+<Varadhan> how do i define logic relationship between them ( i have a common key field in all the three tables...)...
+<ra3vat> i can post it but it'd better be cleaned up first for your sake
+<ajmitch> for your sanity ;)
+<ajmitch> sigh, one problem with the KCs is that my volunteering to write code is on public record '_
+esands (~nic@mdr1-port10.jetstart.maxnet.co.nz) left irc: Remote closed the connection
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) left irc: Client Quit
+siesel (~chatzilla@port232.waldbroel.ndh.net) joined #gnuenterprise.
+<siesel> morning
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+<siesel> morning reinhard
+<ajmitch> hi siesel
+<siesel> its really rare that I'm earlier in IRC than reinhard ;)
+<ajmitch> hehe
+<siesel> hi ajmitch
+<ajmitch> by a minute :)
+<reinhard> good morning
+dres (~dres@mail.lewismoss.org) got netsplit.
+gnuebot (~eggdrop@65.101.4.211) got netsplit.
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) got netsplit.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) got netsplit.
+dtm ([YdUiiN5Ft@ip66.promontory.sfo.interquest.net) got netsplit.
+gnuebot (~eggdrop@65.101.4.211) got lost in the net-split.
+dtm ([YdUiiN5Ft@ip66.promontory.sfo.interquest.net) got lost in the net-split.
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) got lost in the net-split.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) got lost in the net-split.
+dres (~dres@mail.lewismoss.org) got lost in the net-split.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+dres (~dres@mail.lewismoss.org) joined #gnuenterprise.
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) joined #gnuenterprise.
+gnuebot (~eggdrop@65.101.4.211) joined #gnuenterprise.
+#gnuenterprise: mode change '+oo derek gnuebot' by calvino.freenode.net
+dtm ([YdUiiN5Ft@ip66.promontory.sfo.interquest.net) joined #gnuenterprise.
+ariel_ (~ariel@ppp-217-133-244-56.dialup.tiscali.it) joined #gnuenterprise.
+<siesel> morning ariel_
+siesel (~chatzilla@port232.waldbroel.ndh.net) left irc: "later"
+<ra3vat> side effect of that communist holidays - i should work today
+ariel_ (~ariel@ppp-217-133-244-56.dialup.tiscali.it) left irc: "Uscita dal client"
+<Varadhan> i am back buddies... :)
+lupo_ (~lupo@p5085FC07.dip.t-dialin.net) joined #gnuenterprise.
+<lupo_> hi
+<reinhard> greetings lupo_
+<lupo_> hi reinhard
+<Varadhan> has anyone tried using datasource.extension.sql()???
+lupo_ (~lupo@p5085FC07.dip.t-dialin.net) left irc: "using sirc version 2.211+KSIRC/1.1"
+<Varadhan> i am getting "Attribute Error: extensions".... could anyone guide me???
+<reinhard> Varadhan: you might want to try later today
+<reinhard> when our friends from the U.S. are up
+<reinhard> sorry i don't think i can help you
+<ra3vat> Varadhan: it was quick fix upon your's yesterday request 
+<Varadhan> ra3vat: ok.. anyway.. the existing datasource.extensions.gettimestamp() should work... isn't it???
+<Varadhan> ra3vat: even that is not working... :(
+<Varadhan> ra3vat: anyway... can you pls explain about static data sources???
+<ra3vat> your demo is too complicated for me, i do not use that functions. 
+<ra3vat> you can fetch that data you need and get/change any values in the entries and that save, why each time you need to address datasource directly?
+<Varadhan> ra3vat:  yeah.. you are right, actually i need to fetch *one particular record* based upon a condition... how to do this??
+<Varadhan> ra3vat: i have suppressed the *MENUBAR* and *TOOLBAR*.. :)
+Action: drochaid is back (gone 10:28:42)
+<ra3vat> Varadhan: are you able to fetch all data? 
+<ra3vat> forms done for user interaction, will it be user who decide what should be fetched?
+<Varadhan> ra3vat: if i put "pre-query"="y", i am able to fetch all the data...
+<Varadhan> ra3vat: yes.. user decides what to fetch...
+<Varadhan> ra3vat: do you have time... if so, i will mail you the tar of my demo... just help out.. pls..
+<ra3vat> if so unsuppress menubar :) and you will find that hit f8 let you start query, then you input what you want to find, then hit f9
+<ra3vat> and all is done
+<Varadhan> ra3vat: hmmm...
+<ra3vat> Varadhan: i'll be out for about 2 hours your first mail did not even come
+<Varadhan> ra3vat: yeah.. it returned back to me saying "unable to deliver"... :(
+<Varadhan> ra3vat: could you tell me how "f8" and "f9" are working???
+<Varadhan> ra3vat: is it possible to simulate "f8" and "f9" programatically, without actually asking the user to do so!!!
+dsmith (firewall-u@cherry7.comerica.com) joined #gnuenterprise.
+<Varadhan> is it possible to specify a *runtime* value in a <condition> tag???
+dsmith_ (firewall-u@12.15.7.94) joined #gnuenterprise.
+dsmith (firewall-u@cherry7.comerica.com) left irc: Read error: 110 (Connection timed out)
+Nick change: dsmith_ -> dsmith
+<ra3vat> back
+<Varadhan> ra3vat: wb...
+<Varadhan> ra3vat: yeah my things started working!!!!
+<Varadhan> ra3vat: i have a doubt...
+<Varadhan> brb...
+<Varadhan> ra3vat: there???
+<Varadhan> if i use typecast="date", i am not able to insert the record in the table!!! (i am using oracle...)
+<Varadhan> is any1 there???
+<Varadhan> is anyone there to help me???
+<ra3vat> Varadhan: works for me with postgres
+<Varadhan> ra3vat: is there anything that can be done to make it work with ORACLE???
+<Varadhan> ra3vat: is it possible to control the way the *typecaster* uses to convert the value???
+<ra3vat> form page 19 of D-G.pdf  Formatting Fields with Masks
+ColeMarcus (ColeMarcus@pD9E4E76C.dip.t-dialin.net) joined #gnuenterprise.
+<Varadhan> what would be the effect of *inputmask* for a date field???
+<ra3vat> try yourself and report here :)
+<Varadhan> sure...
+dsmith (firewall-u@12.15.7.94) left irc: Remote closed the connection
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: Remote closed the connection
+<Varadhan>  SELECT creation_date,name,acctype,curr_bal FROM gnub_acc_details WHERE ((1 = 0)) -> returned 0 rows, where has i have two rows in that table...
+<Varadhan> can any one explain this???
+<ra3vat> Varadhan: this select returns 0 rows and only needed to initialize datasource with empty record, jamest explained me that yesterday, you can use backlog to find exact wording
+<Varadhan> from where i get the backlog???
+<ra3vat> http://www.gnuenterprise.org/irc-logs/
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) left irc: Read error: 60 (Operation timed out)
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) joined #gnuenterprise.
+Remosi (dahoose@port-219-88-247-137.jet.net.nz) joined #gnuenterprise.
+Isomer (dahoose@port-219-88-247-231.jet.net.nz) left irc: Read error: 113 (No route to host)
+dsmith (firewall-u@cherry7.comerica.com) joined #gnuenterprise.
+ColeMarcus (ColeMarcus@pD9E4E76C.dip.t-dialin.net) left irc: 
+Zeni (~erik@12-251-112-4.client.attbi.com) joined #gnuenterprise.
+dsmith (firewall-u@cherry7.comerica.com) left irc: Remote closed the connection
+Zeni (~erik@12-251-112-4.client.attbi.com) left irc: "Client Exiting"
+Zeni (~erik@12-251-112-4.client.attbi.com) joined #gnuenterprise.
+<Zeni> hello
+<Zeni> Is there a place to upload files? ... I made a bunch of rpms for GNUe
+jbailey (~jbailey@atlas.fundserv.com) joined #gnuenterprise.
+<jbailey> jcater, jamest: Ping
+dsmith (firewall-u@cherry7.comerica.com) joined #gnuenterprise.
+<jbailey> When you guys show up, let me know - I want to know if I should do another CVS update before an upload today.
+<reinhard> have you heard
+<reinhard> culture club has issued another single
+<jbailey> You're kidding?
+<reinhard> actually a remake of an old hit of them
+<reinhard> "GNU you really want to Hurd me?"
+<reinhard> ;-)
+<jbailey> I had to listen to over an hour of "Do you really want to hurt me?" last night.
+<jbailey> oh dear.
+<reinhard> jbailey: j/k
+<jbailey> That's what we need...  A hurd tribute album. =)
+<jbailey> But it was frightnening.  I was eating dinner on a patio, and the restaurant next door has a CD on culture club on that was skipping.
+<reinhard> lol
+<dsmith> Has anyone ever heard those OpenBSD realse songs?
+<dsmith> They are a hoot!
+dsmith (firewall-u@cherry7.comerica.com) left irc: Remote closed the connection
+lupo (~lupo@p5085FC07.dip.t-dialin.net) joined #gnuenterprise.
+Zeni (~erik@12-251-112-4.client.attbi.com) left irc: "Client Exiting"
+<dtm> jbailey: why did you listen to that?
+ToyMan (~stuq@glvv-dsl1-116.citlink.net) joined #gnuenterprise.
+<jbailey> dtm: The restaurant playing the CD was closed.  I could go over and ask them to turn it off.
+<lupo> pissed of by neighbors?
+dsmith (firewall-u@cherry7.comerica.com) joined #gnuenterprise.
+<jbailey> s/could/couldn't/
+<jbailey> No - just culture club cd with a skip in it that went on for an hour.
+<lupo> poor jbailey
+<dtm> geez.
+<ajmitch> morning
+<lupo> morning ajmitch. it's 21:30 here
+<ajmitch> it's monday morning here :(
+<lupo> haha
+siesel (jan@dial-194-8-195-60.netcologne.de) joined #gnuenterprise.
+<jbailey> I'm glad it's not monday morning.
+<jbailey> More time to get over the slight hangover.
+<ajmitch> lol
+<ajmitch> hi siesel
+<siesel> morning ajmitch
+<Varadhan> GM!! siesel...
+<lupo> hi siesel
+<Varadhan> ajmitch: you belong to Aus or Nz or nearby that???
+<ajmitch> new zealand
+<jbailey> What's the right python operator to compare two strings and determine equality?
+<lupo> aka "next to down under"
+<lupo> jbailey: "=" i thought, why?
+<jbailey> "down next to it"?
+<jbailey> lupo: I just don't understand this SyntaxError: while password != input_password
+<jbailey> !@#$
+<jbailey> I forgot the :
+<lupo> muhaha
+<ajmitch> :)
+<ra3vat> hi all
+<ra3vat> siesel: can you test static.gfd from testcases?
+<siesel> ra3vat: ok, just a second
+<siesel> hi Christian
+dsmith (firewall-u@cherry7.comerica.com) left irc: Read error: 110 (Connection timed out)
+<lupo> siesel: i'm very sorry that i missed you on oct 31st
+<siesel> yes, its echt schade.
+<siesel> you've looked at the Halloween documents?
+<lupo> yep
+<lupo> something specific to free erp software?
+<lupo> btw, eric raymond has smashed the FSF in that paper
+<siesel> lupo: sorry I meant the Halloween "MAIL"s on the gnue-dev list
+<lupo> ah
+<lupo> :)
+<lupo> yep
+<lupo> i like number 5
+Action: siesel hasn't decided yet, which one is the best :)
+<siesel> btw. do you have any ideas about stuff missing?
+<lupo> nope
+<lupo> i'm quite overworked with the load of information
+<siesel> hehe
+<lupo> do you see a chance for an easy-to-use editor for mappings?
+<siesel> ra3vat: static datasource fixed.
+<siesel> you mean integrator file format?
+<siesel> if you speak of integrator, yes
+<lupo> siesel: this is integrator stuff?
+<siesel> which mappings are you refering to?
+<lupo> http://mail.gnu.org/pipermail/gnue-dev/2002-November/000322.html
+<siesel> Varadhan: the date time format send to the database is defined in: common/src/dbdrivers/_dbsig/DBdriver.py L 238
+<siesel> Varadhan: it would be the best if you add a line " self._dateTimeFormat="'%c'"   to the file common/src/dbdrivers/oracle/DBdriver.py for your early testing.
+<siesel> Varadhan: the next step would be to add an option for that in a configfile 
+<siesel> lupo: thats integrator stuff. mapping 1+ datasource/s into 1+ datasource/s
+<siesel> I thought of an editor with a view on a gsd file (or a real database schema) on the left side, and the same for the right side, and then you can draw lines between them 
+IsoosI (dahoose@port-219-88-246-79.jet.net.nz) joined #gnuenterprise.
+<ajmitch> ello mr IsoosI :)
+Action: ajmitch waits for Remosi to leave
+dsmith (firewall-u@cherry7.comerica.com) joined #gnuenterprise.
+dsmith (firewall-u@cherry7.comerica.com) left irc: Client Quit
+<lupo> fuck vordiplom
+<siesel> you're right
+<lupo> i don't want to do physics
+<lupo> and chemistry sucks as well
+<jcater> lupo: how about biology?
+<jcater> does that do it for you?
+<siesel> yes, its quite time for biology now. (22:37)
+<siesel> ;)
+Remosi (dahoose@port-219-88-247-137.jet.net.nz) left irc: Read error: 113 (No route to host)
+<nickr> ls
+<nickr> woop
+<lupo> biology is fine
+<lupo> molecular biology is real fun
+<nickr> yes
+<nickr> the nano machines of tomarrow ... today!
+<lupo> as well as the exercises in zoology :)
+<lupo> i still prefer practical examination of female homo sapiens sapiens var. bellae
+<nickr> practical examinations yes
+<lupo> studying biology has the advantage of 65% female population in your environment ;)
+<lupo> siesel: http://www.biozentrum.uni-wuerzburg.de
+<lupo> bye then
+lupo (~lupo@p5085FC07.dip.t-dialin.net) left #gnuenterprise.
+jamest (~jamest@adsl-64-216-107-182.dsl.tpkaks.swbell.net) left irc: "[x]chat"
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) left irc: Remote closed the connection
+siesel (jan@dial-194-8-195-60.netcologne.de) left irc: "Real IRC clients know "to" is a preposition, not an adverb"
+dsmith (firewall-u@cherry7.comerica.com) joined #gnuenterprise.
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) left irc: "Reality is for people that lack imagination"
+dsmith (firewall-u@cherry7.comerica.com) left irc: "later.."
+Remosi (dahoose@port-219-88-246-7.jet.net.nz) joined #gnuenterprise.
+jbailey (~jbailey@atlas.fundserv.com) left #gnuenterprise ("Client Exiting").
+IsoosI (dahoose@port-219-88-246-79.jet.net.nz) left irc: Read error: 113 (No route to host)
+<nickr> hmm
+<nickr> I want to rework docustore, and I'm curious at which features are required, and how y'all think it should work
+ToyMan (~stuq@glvv-dsl1-116.citlink.net) left irc: ": I'm off to make more toys..."
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) joined #gnuenterprise.
+SachaS (~Sacha@dialup-196-198.wasp.net.au) joined #gnuenterprise.
+paqan (~paqan@202.155.120.221) left irc: Read error: 60 (Operation timed out)
+wayneg (~merlinx@ppp1374.qld.padsl.internode.on.net) joined #gnuenterprise.
+<ajmitch> greetings ladies & gentlemen!
+<nickr> ahoy ajmitch!
+<ajmitch> nickr!
+<ajmitch> howsit going?
+<nickr> Excelently!
+<nickr> well pretty good
+<nickr> hee
+<ajmitch> great
+<nickr> et toi?
+<ajmitch> i myself am doing quite well
+<nickr> excellent
+<ajmitch> now that i have returned from work, it is about time i do GNUe hackering
+Action: ajmitch opens the venerable emacs
+<nickr> Yes, gnue hackering
+<SachaS> hi ajmitch, still not coming to Perth for the Australian Linux Conference in January 2003?
+<ajmitch> nope
+<ajmitch> costs to much to go to perth
+<SachaS> free accomodation in my house!
+<ajmitch> :)
+<ajmitch> would be nice, especially as rhys from dotgnu is talking
+<wayneg> dont virgin fly from nz ??? should get one pretty cheap if you book it now 
+<ajmitch> the problem is that i can't afford to have the time off work
+<wayneg> arrr
+Action: ajmitch is approximately broke at the moment :)
+<SachaS> what a shame
+Action: jcater is exactly broke at the moment
+Action: wayneg is a student ... so i know how that feels ... i'm in a permanent state of broke
+Action: ajmitch is also a student
+<jcater> hmm
+<ajmitch> i'm approximately broke, in that i have available money, but that's just credit card ;)
+Action: jcater misses such simple excuses for being broke
+<wayneg> haha
+<jcater> now, with a family, several mortgages, etc
+<jcater> my reason is much more complicated
+<jcater> just the outcome is the same
+<ajmitch> hehe yeah
+<ajmitch> how's the bookstore going?
+<jcater> oh, just another part of the complication
+<ajmitch> that's the wife's, right?
+<jcater> it's cool
+<jcater> it's taking a while to get "in" with the area
+<jcater> each week is better than the previous
+<jcater> but still not covering expenses
+<ajmitch> was thinking today about a simple form - a timesheet form, that can be linked in with payroll & invoicing
+<ajmitch> ok
+<ajmitch> simple timesheets just have hours worked, and on what jobs - should be simple enough to link these with invoices & payroll
+<ajmitch> for gnue-sb
+<jcater> cool
+<jcater> that's derek's area
+<jcater> or I would offer advice, praise, etc :)
+<jcater> anyone have a win32 machine handy?
+<jcater> with python
+<jcater> ?
+<ajmitch> nope
+<ajmitch> got a win32 forms driver to test or something? :)
+<jcater> actually
+<jcater> I'd like someone to open a console session
+<jcater> startup python
+<jcater> and do an "import curses"
+Action: jcater is curious if that'll work
+<ajmitch> on win32?
+<jcater> yeah
+Action: ajmitch doesn't have his sole win32 box running
+<jcater> I assumed it wouldn't
+<jcater> but the more I think about it
+<jcater> maybe I shouldn't assume
+<ajmitch> besides, it's a 486 with win95 ;)
+<jcater> as it's not listed under "Posix-related modules"
+<jcater> on the python doc page
+<jcater> and I do fondly remember the ansi.sys stuff in DOS :)
+<jcater> so you never know :)
+<jcater> ouch
+<jcater> 486 w/win95
+<ajmitch> 8mb ram
+<jcater> S&M freak, eh?
+<ajmitch> i was given it
+<ajmitch> and never use it
+<jcater> grrrr
+<jcater> I'm glad we're one of the top python projects
+<jcater> but it gets SOOO frustrating
+<ajmitch> how so?
+<jcater> when I'm googling for help
+<jcater> and links to our discussions come up
+<ajmitch> hehe
+<jcater> it almost always happens w/wx-related stuff
+<jcater> and now it's happening with python + curses
+<ajmitch> yep
+<ajmitch> i've seen it happen a few times
+<ajmitch> reminds me, i need to try & get this CSV driver working
+jbailey (~jbailey@65.48.140.35) joined #gnuenterprise.
+<ajmitch> if i can understand the db driver stuff, i'll be right :)
+<ajmitch> hey jeff
+<nickr> zeep
+<jbailey> Heya Andrew
+<ajmitch> what's not packaged for debian now, of gnue?
+SachaS (~Sacha@dialup-196-198.wasp.net.au) left #gnuenterprise ("Client Exiting").
+<jcater> reports + appserver + navigator
+<ajmitch> ok
+<jcater> oh, were you asking jbailey?
+<ajmitch> yup
+<ajmitch> looks like some interesting stuff going into cvs for forms & designer?
+<ajmitch> hmm, more stuff being put in common, actually :)
+<jcater> stuff for gnue-sb
+<jcater> err
+<jcater> stuff missing for gnue-sb :)
+Action: jcater is back in curses mode for the rest of the night though
+<jcater> unless derek comes back in
+<nickr> curses!
+<jcater> if so, I never said that
+<jcater> mdean!
+<ajmitch> anything been put into gnue-sb cvs yet?
+<jcater> you kick ass!
+<ajmitch> huh?
+<jbailey> jcater: I was at work and wanting to know if I should do a new CVS pull for Gnue packages.
+<jbailey> I'll fix them on Thursday or so when I'm thinking about it again.
+<jcater> he fixed an annoyance I had w/DCL :)
+<ajmitch> ah :)
+<jcater> jbailey: hmmm
+<jcater> the funny thing about being deep in programming wrt gnue
+Action: ajmitch pulls up the KC to see what people wanted from CSV
+<jcater> is I'm not sure what's happened with it since your last package
+<ajmitch> hehe
+<jbailey> You guys don't seem to maintain ChangeLogs =)
+<jcater> we run cvs2cl prior to a release
+<ajmitch> cvs2cl ;)
+<jbailey> Does sdist do that automatically?
+<jcater> no
+<jcater> but that's not a bad idea
+<jcater> we could add it
+<jbailey> That and the man page generation. =)
+<jcater> that is a little tougher
+<jcater> but needs to be done too :)
+<jbailey> But I think jamest promised me that one. =)
+Nick change: jcater -> jamest
+<jamest> I'll handle that cvs2cl thing too
+Nick change: jamest -> jcater
+<jcater> jamest: thanks dude!
+<jbailey> Sweet!
+<jbailey> (Psu, did you catch that?)
+<jbailey> "Jamest volunteered for a bunch of stuff..."
+<ajmitch> lol
+<jbailey> "I saw it on IRC mommy, it MUST be true!"
+<ajmitch> jbailey: that's one thing i don't like about the KCs
+<ajmitch> psu records when i volunteer for something & publishs it for the world to see :)
+<jcater> ajmitch: how do you think I feel!
+<ajmitch> heh
+<jcater> sometimes I feel like I need to change my nick
+<ajmitch> has anyone thought of producing a visual class hierachy for gnue?
+Nick change: jcater -> OffTheRecord
+<OffTheRecord> like this
+<ajmitch> to see how classes are related?
+Nick change: OffTheRecord -> jcater
+<jbailey> The next kc will be code named "you can run but you cannot hide"
+<jcater> I think ra3vat has to get the headquote this week
+<jcater> with his
+<jcater> "cvs update is my favorite editor"
+<jcater> or something like that
+<ajmitch> :)
+<jcater> although the KCs aren't done in a democratic process
+<jcater> those darn brits
+<ajmitch> hmm, there is a lot of useless cruft that i don't need in a csv driver
+<ajmitch>   def _beginTransaction(self):
+<ajmitch>     try:
+<ajmitch>       self._dataConnection.begin()
+<jcater> lol
+<ajmitch> that's pretty useless when self._dataConnection is just a simple object
+<jcater> I'd expect to see
+<jbailey> Hmm.  That reminds me that I'm supposed to demo forms tommorow. 
+<jcater> $ grep -c pass  csv/DBdriver.py 
+<jcater> 55
+<ajmitch> hehe
+<ajmitch> how'd you guess i was doing that? ;)
+<ajmitch>   def getSchemaTypes(self):
+<ajmitch>     return [('view','View',1), ('table','Table',1)]
+<ajmitch> what types should i have?
+<ajmitch> present a single table?
+<jcater> hmmm
+<jcater> yeah
+<jcater> that'd be best I imagine
+<ajmitch> k
+<ajmitch> in connections.conf, i have dbname, for the filename, and directory
+<ajmitch> might as well just let dbname be filename, and drop the directory part
+<jcater> probably
+<jcater> oooo
+<ajmitch> ooo?
+<jcater> be sure to use common's FileUtils.openResource()
+<jcater> well
+<ajmitch> ah that'd be good
+<jcater> shiit
+<jcater> err
+<jcater> shoot
+<jcater> that won't work if you plan to have writable csv files
+<ajmitch> ok
+Action: ajmitch doesn't know the limitations of common's stuff
+<ajmitch> does common have decent docstrings in each class?
+<jcater> define decent
+<jcater> nevermind
+<jcater> doesn't matter how you define it
+<jcater> the answer is "probably not"
+<ajmitch> ok
+<ajmitch> i imagine that GNUe's docs are lacking in some areas for people like me
+<ajmitch> your developers guide is good, but i want to know about what common offers :)
+<ajmitch> how to write db drivers, etc
+<jcater> we have a few technotes
+<jcater> now
+<jcater> I'm not sure if any are relevant to that or not
+<jcater> but those are in doc/technotes/
+<ajmitch> yup
+<ajmitch> technotes are good, i might look at writing up some other stuff if i get time & motivation :)
+Action: ajmitch looks at importing webware's doc mess :)
+SachaS (~Sacha@dialup-196-198.wasp.net.au) joined #gnuenterprise.
+<ajmitch> wb SachaS
+<SachaS> ta ajmitch.
+<ajmitch> bbiab
+jbailey (~jbailey@65.48.140.35) left irc: "Client Exiting"
+--- Mon Nov 11 2002

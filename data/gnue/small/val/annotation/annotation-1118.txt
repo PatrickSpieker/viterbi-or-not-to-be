@@ -1,0 +1,70 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.2006-09-13" author="Peter Sullivan" contact="mailto:psu@burdonvale.co.uk" enddate="13 Sep 2006 12:00:00 -0800" startdate="13 Sep 2006 12:00:00 -0800" subject="[IRC] 13 Sep 2006" title="Understanding focus trigger types and levels">
+
+<topic>Forms</topic>
+
+<p>Reinhard M&#252;ller (reinhard) asked about focus triggers in GNUe Forms - 
+<quote who="Reinhard M&#252;ller">it seems like navigating from one record to another 
+(like scrolling to the next record) fires the FOCUS-OUT triggers for the block 
+with the old record loaded - and the FOCUS-IN triggers for the block with the new 
+record loaded.</quote> He understood the reasoning for having both focus-in 
+and focus-out - <quote who="Reinhard M&#252;ller">you can do consistency 
+checks in the focus-out trigger and the user can never navigate out of an 
+"incomplete" block</quote>. James Thompson (jamest) confirmed this, and noted 
+that each type of focus trigger could be set at form, block or field level 
+depending on the type of validation required. Reinhard 
+understood this, but was more interested in <quote who="Reinhard M&#252;ller">the 
+case when you don't move the cursor at all - but you just navigate to the next 
+record - i.e. you *stay* in the same field, entry, and block - but the current 
+record of the block changes</quote>. James thought that this should still fire 
+the focus triggers. Reinhard agreed, <quote who="Reinhard M&#252;ller">however I found 
+it does *only* fire the block level triggers</quote> not the entry-level or 
+page-level triggers.</p>
+
+<p>James had not been aware that entry-level triggers and page-level triggers 
+had been added - he was struggling to <quote who="James Thompson">think of 
+example off top of head where I'd need them vs a block or field level 
+trigger</quote>. Reinhard wondered <quote who="Reinhard M&#252;ller">maybe they 
+were done "just to play safe" when the</quote> distinction between a 
+field and an entry was introduced. James agreed - it allowed developers, 
+for instance, to have an entry-level trigger that would work on all instances 
+of the same entry, even if they were in multiple fields on different pages of 
+a multi-page form.</p>
+
+<p>Reinhard said that he would change the code to check focus-in and 
+focus-out type triggers at all appropriate levels whenever the focus changed. 
+He queried the order that the various types of trigger should be checked - he felt 
+that it should be <quote who="Reinhard M&#252;ller">pre-focusout - pre-focusin - change 
+focus - post-focusout - post-focusin</quote>. James agreed.</p>
+
+<p>Later, Reinhard noted that the order of triggers he had proposed 
+<quote who="Reinhard M&#252;ller">turns out to be a lot trickier as it seems 
+at first sight</quote>. The logic did not necessarily work, for 
+instance, when inserting a new record. He could also foresee triggers 
+conflicting with each other - for example <quote who="Reinhard M&#252;ller">if 
+post-focusout says it's ok to lose focus but pre-focusin says "i 
+don't want it"</quote>. He wondered if it would be simpler to 
+have fewer types of triggers - just a single 
+<quote who="Reinhard M&#252;ller">on-focusout</quote> before creating or 
+moving record, and <quote who="Reinhard M&#252;ller">on-focusin 
+(which can not block)</quote> afterwards. Jason Cater (jcater) explained 
+that the original rationale had been that <quote who="Jason Cater">pre-focusout 
+could block</quote> - in fact, <quote who="Jason Cater">that would be its main 
+purpose</quote> - but that <quote who="Jason Cater">then the others were called 
+knowing that the focus was changing</quote>. In theory, any of the pre-focusout 
+triggers at event, block or page level could refuse to allow the focus-out to 
+happen (e.g. for data validation) - only if all the pre-focusout triggers at 
+each level succeded were the post-focusout triggers at each level then checked. 
+Reinhard noted that this meant <quote who="Reinhard M&#252;ller">running the 
+post-focusout *before* the focus *really* leaves the entry/block 
+doesn't hurt at all</quote>. Jason agreed - <quote who="Jason Cater">as we know 
+that it will in fact leave the focus</quote> - only the pre-focusout 
+triggers could actually block changing the focus.</p>
+
+<p>Reinhard noted that this actually meant keeping to the current order of trigger 
+types - <quote who="Reinhard M&#252;ller">1. pre-focusout - 2. post-focusout - 3. 
+actually move around - 4. pre-focusin - 5. post-focusin - where only 1. can 
+block</quote>. But at least he now understood the rationale behind this.</p>
+
+</section>
+
+

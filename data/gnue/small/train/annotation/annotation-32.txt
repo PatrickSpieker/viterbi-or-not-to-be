@@ -1,0 +1,67 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.08Nov2002" enddate="07 Nov 2002 16:00:00 -0800" startdate="07 Nov 2002 16:00:00 -0800" subject="[IRC] 08 Nov 2002" title="Data browser and Dynamic Forms">
+
+<topic>Forms</topic>
+<topic>Designer</topic>
+<topic>Application Server</topic>
+<topic>Common</topic>
+
+<mention>Reinhard M&#252;ller</mention>
+
+<p>Jan Ischebeck (siesel) said he and Reinhard M&#252;ller 
+(reinhard) had <quote who="Jan Ischebeck">talked about 
+autocreated forms out of database metadata.</quote>. Jason Cater 
+(jcater) said <quote who="Jason Cater">you could almost take the 
+Designer wizard examples and use them as is to do that (well, and 
+make them non-interactive)</quote>. He was not sure whether this 
+belonged in Forms or AppServer. James said 
+<quote who="James Thompson">i think they want a data browser - 
+point forms at a database and it opens a tree - click on a table 
+and it opens a grid</quote>. This would enable him to stop using 
+pgaccess, which he was not keen on. Neither Derek Neighbors 
+(revDeke) nor Jason were really sure this functionality belonged 
+in Forms, and Jason pointed out that you could pretty much do 
+this from Designer anyway, by running the Simple Form Wizard and 
+then using the Debug-Run menu option.</p>
+
+<p>Derek thought <quote who="Derek Neighbors">maybe what people 
+are wanting is dynamic forms - i know thats what the</quote> 
+Application Server developers wanted. He personally would 
+probably use static (flat file XML) form defintions mostly, 
+but he could see the need for something more. James suggested 
+<quote who="James Thompson">wouldnt this data browser be fairly 
+simple standalone app</quote> using GNUe Common and wx, rather 
+than part of either Forms or Designer. Derek said 
+<quote who="Derek Neighbors">im thinking maybe its a 'plugin' 
+to designer - that could be called indpendently. I see many of 
+things in designer being like that - where you can access them 
+from within designer or launch on their own</quote>.</p>
+
+<p>Jan said <quote who="Jan Ischebeck">reinhards idea was NOT 
+to have a data browser, but to use dynamic forms for 80% of all 
+cases.</quote> Jason asked <quote who="Jason Cater">wouldn't 
+that be something appserver serves up?</quote> Reinhard 
+said that Forms would be better at doing dynamic forms, as it 
+would be aware of what font sizes and screen size it was 
+working to. Jason said <quote who="Jason Cater">actually, no 
+forms definitions ever mention point sizes or anything like 
+that</quote> - that was up to the UI (user interface) driver.</p>
+
+<p>Derek said this might be as simple as just tweaking the 
+current Simple Form Wizard in Designer to produce its GNUe Forms 
+Definition (.gfd) as an XML stream instead of a file, and passing 
+this to Forms - <quote who="Derek Neighbors">i think thats a plus 
+of dealing with xml in this case is forms shoudnt care if the 
+definition is coming from a file or directly from a stream</quote>.
+Jason pointed out that <quote who="Jason Cater">it doesn't fit 
+in with any model of forms client we have... the client is always 
+given a definition</quote>. Derek said that, in practice, he 
+would probably expect some other tool (possibly GNUe Common) to 
+<quote who="Derek Neighbors">prebuild streams and hand it to 
+forms</quote>. By putting the dynamic form generator in Common, 
+any GNUe tool could use it - <quote who="Derek Neighbors">you 
+coudl have a form that called a trigger to make a dynamic 
+form - rofl that would be funny</quote>.</p>
+
+</section>
+
+

@@ -1,0 +1,48 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.13Nov2002" enddate="12 Nov 2002 16:00:00 -0800" startdate="12 Nov 2002 16:00:00 -0800" subject="[IRC] 13 Nov 2002" title="i18n issues with Reports">
+
+<topic>Reports</topic>
+
+<mention>Arturas Kriukovas</mention>
+<mention>ra3vat</mention>
+
+<p>Dmitry Sorokin (ra3vat) was having problems using GNUe 
+Reports with i18n (internationalisation) Bajusz Tam&#225;s (btami) 
+said <quote who="Bajusz Tam&#225;s">it seems something puts 
+charset=UTF-8 into html header</quote>. Jason Cater (jcater) 
+volunteered <quote who="Jason Cater">if someone can whip me 
+up a simple report that fails with i18n, I can debug</quote>. 
+Bajusz said it seemed to <quote who="Bajusz Tam&#225;s">be any 
+report that pulls db data not in ascii, i suppose - you use 
+dest.write ('&lt;?xml version="1.0" encoding="ISO-8859-1"?&gt;\n') 
+in GRReport.py</quote>. Jason thought 
+<quote who="Jason Cater">there's more to it than just changing 
+that header, though - I think I have to open a codec - which I 
+learned to do this past weekend by accident</quote>. Bajusz 
+said <quote who="Bajusz Tam&#225;s">you don't have to deal with 
+codecs, if sitecustomize.py</quote> was set up to set all 
+locales. Dmitry Sorokin (ra3vat) believed that Arturas Kriukovas
+(Arturas) had got it working without having to do this, but 
+he was not sure of the details. Later, he found Arturas' commit 
+message - <quote who="Dmitry Sorokin">Corrected problem of i18n 
+characters in .gfd file - in case of not only ascii characters, 
+sax returned unicode string, which caused further errors in 
+python. Earlier this was solved by changing system-wide site.py 
+file option defaultencoding from 'ascii' to other value. Now
+encoding is read from gnue.conf file option formFontEncoding and 
+is used to enforce sax returned unicode string recode to given 
+encoding.</quote> Bajusz said that this 
+<quote who="Bajusz Tam&#225;s">solves the gfd's problem, but what 
+about data (from DBMS) ?</quote> Dmitry said that his 
+<quote who="Dmitry Sorokin">problem was that xml processing 
+enforces internal representation in unicode - it is not with db 
+data - you know db encoding and can convert to other encoding if 
+you wish</quote>. Bajusz said he was 
+<quote who="Bajusz Tam&#225;s">thinking about reports - it makes an 
+intermadiate xml file with dest.write() calls - and then a 
+sablotron process comes. I don't know/when how UTF-8 comes</quote> 
+into the process. Dmitry said that <quote who="Dmitry Sorokin">UTF 
+comes as far as you use xml processing libs (parsers)</quote>.</p>
+
+</section>
+
+

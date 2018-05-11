@@ -1,0 +1,70 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.10Apr2002" enddate="09 Apr 2002 23:00:00 -0800" startdate="09 Apr 2002 23:00:00 -0800" subject="[IRC] 10 Apr 2002" title="i18n and translating error messages">
+<topic>Common</topic>
+
+
+<p>Arturas Kriukovas (Arturas) suggested 
+<quote who="Arturas Kriukovas">maybe it would be better to 
+assign for i18n one directory - put there translations 
+(maybe in subdirectories), some kind of readme what i18n is, 
+in what ways it's going to be realised and etc.) - and that 
+everyone could put his ideas/corrections there</quote>. 
+Jason Cater (jcater) suggested the translations could go 
+into <quote who="Jason Cater">/usr/local/gnue/etc/lang/</quote> - 
+or possibly <quote who="Jason Cater">etc/locale</quote>, to 
+allow for localisations like time format as well - 
+<quote who="Jason Cater">and maybe have subdirectories under 
+that for each supported locale</quote>.</p>
+
+<p>Further to 
+<kcref startdate="27 Mar 2002 13:02:33 -0800" subject="[Gnue-dev] customized (non-ascii) forms" />,
+Arturas reported <quote who="Arturas Kriukovas">some good 
+news from i18n world - i &amp; Dmitry (ok, it was Dmitry on the 
+whole :) managed to get i18n (=&gt; Russian) symbols in wxForm
+under win - source still looks awfully, but it 
+works</quote>.</p>
+
+<p>Derek Neighbors (dneighbo) felt that 
+<quote who="Derek Neighbors">documentation of what we are doing 
+for all of i18n probably belongs in docbook/ -  with proposals 
+and other docs</quote>. Derek felt there probably wouldn't be 
+any tool-specific i18n files, so Jason suggested 
+<quote who="Jason Cater">to continue w/our current model, they 
+should all go into common/etc</quote>. This might not be ideal, 
+but they could <quote who="Jason Cater">worry about cleaning up 
+when we clean it ALL up :)</quote> Derek said 
+<quote who="Derek Neighbors">let Arturas check it in so we can 
+blame him later when people complain ;)</quote>. Arturas didn't 
+like the sound of that, but Jason reassured him 
+<quote who="Jason Cater">don't worry.. we do that to derek ALL 
+the time :)</quote>.</p>
+
+<p>Arturas asked <quote who="Arturas Kriukovas">do we transalate 
+error, debug messages?</quote> Jason thought error messages 
+needed translating, but <quote who="Jason Cater">I wouldn't worry 
+about debug messages at this point</quote>. James Thompson 
+(jamest) thought <quote who="James Thompson">i think the msg_blah 
+stuff in gnue.conf needs to come out of there</quote>. Arturas 
+agreed, as then <quote who="Arturas Kriukovas">there is no need 
+to translate gnue.conf :)</quote> Nick Rusnov (nickr) asked 
+<quote who="Nick Rusnov">does python support gettext?</quote>. 
+Jason said it did, but <quote who="Jason Cater">unfortunately, 
+we have to be careful in implementing that - as that adds a lot 
+of overhead</quote> as it <quote who="Jason Cater">causes a python 
+method call</quote>. James asked whether they could be 
+cached once on startup and <quote who="James Thompson">then the 
+apps only reference the var that holds the output of the 
+original _() call</quote>.</p>
+
+<p>Derek suggested that <quote who="Derek Neighbors">if its a 
+message that is useful to teh END USER it shoudl be translated - 
+if its more a 'developer' message - it should be in english 
+only - as we already are assuming all 'developers' will speak 
+english at least enough to code in english :)</quote>. He said 
+<quote who="Derek Neighbors">the problem i think lies in that 
+our lower level debug statements - some of the stuff is actuall
+'user messages' - but not all of it</quote>. Arturas agreed - 
+<quote who="Arturas Kriukovas">all other strings (that end user 
+can see) will be translated</quote>.</p>
+
+</section>
+

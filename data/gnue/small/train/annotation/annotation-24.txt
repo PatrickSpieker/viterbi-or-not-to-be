@@ -1,0 +1,152 @@
+<section archive="http://mail.gnu.org/pipermail/gnue-dev/2002-November/000304.html" enddate="03 Nov 2002 16:09:41 -0800" posts="10" startdate="02 Nov 2002 09:17:42 -0800" subject="[Gnue-dev] Halloween 1: Terminology" title="Halloween e-mails on AppServer functionality">
+
+<topic>Application Server</topic>
+<topic>Common</topic>
+
+<p>Reinhard M&#252;ller posted <quote who="Reinhard M&#252;ller">a series 
+of mails that sum up the results of the GNUe Hackers meeting 
+in Frankfurt that took place at Oct 31, 2002</quote>, as 
+heavily trailed in 
+<kcref subject="[IRC] 22 Oct 2002" title="GNUe Developers meeting in Germany" /> 
+and other threads. They had started by discussing terminlogy - 
+databases had things like tables and rows, fields, triggers 
+and stored procedures. Object-orientated programming 
+languages like Python, however, had classes and instances, 
+attributes and methods. For business objects in an application 
+server, more appropriate terminology was things like 
+class, object, property and procedure.</p>
+
+<p>They then discussed 
+Application Server's jobs, split into high priority (some of 
+which were already mostly or partly done), medium priority and 
+lower priority. There were other things that Application 
+Server would never do, as these were better done in other 
+tools such as the Javascript Forms client, Designer, the 
+GNUe Reports server, or GNUe Integrator. The next steps to 
+implement were:
+<quote who="Reinhard M&#252;ller">
+<ol>
+<li>the strategy how to merge object definitions from different 
+modules</li>
+<li>finish the process calling system</li>
+<li>create a language interface that makes business objects 
+look like python objects to process code</li>
+<li>provide a way to define business objects</li>
+</ol>
+</quote>
+Pre-requisites for this were to:
+<quote who="Reinhard M&#252;ller">
+<ol>
+<li>Redefine the API between Appserver and Forms/Reports, as the 
+current API has performance issues</li>
+<li>Define the core modules of Appserver, (slightly) update the 
+Appserver Diagram and define the APIs between the modules.</li>
+</ol>
+</quote></p>
+
+<p>He noted <quote who="Reinhard M&#252;ller">A major point of 
+Appserver is to manage business modules.</quote> A module was 
+simply <quote who="Reinhard M&#252;ller">a group of class definitions 
+that logically belong together</quote>. Class definitions could 
+be linked or extended between modules, creating dependencies. 
+<quote who="Reinhard M&#252;ller">Every identifier (class name, 
+property name, procedure name) can be prefixed by the module name 
+to fully qualify it.</quote> This would help avoid clashes with 
+different modules using the same names. Underscores would be 
+used to split module and name, for Python compatability.</p>
+
+<p>He went on to propose the <quote who="Reinhard M&#252;ller">new 
+API of Appserver against Forms, Reports, and the Language 
+Interface</quote>, emphasising <quote who="Reinhard M&#252;ller">Someone 
+writing business rules will _not_ have to deal with this 
+API.</quote> They would <quote who="Reinhard M&#252;ller">be passed 
+over the choosen RPC interface, which means that the actual 
+definition syntax will depend on which interface is used.</quote> 
+API commands would include opening and closing sessions, 
+committing and rolling back data, requesting, counting and 
+fetching lists, loading and storing objects, and calling 
+methods.</p>
+
+<p>Finally, he gave an ASCII diagram of 
+<quote who="Reinhard M&#252;ller">the planned internal architecture 
+of Appserver</quote>, including the Object Server, which 
+provided the above API. The <quote who="Reinhard M&#252;ller">Language 
+Interface translates this API into native language (e.g.
+Python) constructs. That means that code using the Python 
+Language Interface will see business objects as if they were 
+Python objects.</quote> There was also a Code Interface 
+manager, to allow procedures to be written in different 
+languages and select the appropriate interpreter as 
+required.</p>
+
+<p>Derek Neighbors said <quote who="Derek Neighbors">What I 
+am not seeing here is that really method code should be the 
+same as 2 tier trigger code.</quote> Reinhard said this 
+had been agreed - however, the trigger code in Common 
+might need some changes to handle AppServer as well. 
+Jan Ischebeck noted that <quote who="Jan Ischebeck">the code 
+in appserver to make methods work and the code in common for 
+the trigger system have different design criteria</quote>, 
+but he would try to combine them if possible.</p>
+
+<p>Derek agreed that classes needed to be storable in a 
+database, but said he would like to be able to store them 
+in flat files as well. Reinhard said 
+<quote who="Reinhard M&#252;ller">It will be possible to export 
+the class definitions to flat files and import them from 
+flat files respectively. This will be necessary (for
+example) for putting our class definitions into CVS. You 
+can't commit a database table to CVS :-)</quote>.</p>
+
+<p>For authentication, Derek would like AppServer to use 
+the same authentication "plug-in" as Forms - or alternatively, 
+moved to Common so that both could use it. The same applied 
+to Role Based Access Control (RBAC). Reinhard emphasised that 
+the intention was to link AppServer to existing GNUe 
+functionality/code wherever possible. Jan said 
+<quote who="Jan Ischebeck">The "job" of 
+both "plugins" are quite different. The authentification 
+plugin in common FETCHES (f.e. from the user) authentification 
+information to provide it to databases/middleware etc. for
+authentification. The auth. plugin of appserver gets some information
+(f.e. information, which was collected by the first plugin used by
+forms, reports etc.) and validates it. 
+I really like the idea of having common, but I don't think that
+everything has to be moved into common at once. I would prefer to first
+implement the appserver auth plugin in appserver and wait till any other
+application needs stuff like that before moving it into 
+common.</quote> Likewise, with RBAC, the 
+<quote who="Jan Ischebeck">First priority is to implement it, so 
+that appserver can use it. If forms, reports etc. can use it too, 
+its a nice side effect. But forms, reports needs a much different 
+and more advanced security structure, so IMHO it isn't
+worth the effort. It could even make common work slower.
+(I don't think that the user of reports would like that)</quote>. 
+In general, he wanted to give AppServer room to develop without 
+having to port everything to Forms or Reports via Common.</p>
+
+<p>Derek said <quote who="Derek Neighbors">This is the view that I 
+feared, that supporting things in the other tools would be an after 
+thought instead of a forethought.  Again I think the developers of the 
+tools need to discuss some before implementation and they can as a 
+collective decide what to implement where.</quote> 
+<quote who="Derek Neighbors">My fear is that to use anything in 
+GNUe you will need appserver.  Putting things like security and 
+triggers in appserver only means that you woudl have to use appserver 
+to get at those features.  This is not acceptable according to our 
+mission of 'all tools can be used independently or together'.</quote> 
+He did not want to force developers to use n-tier rather than 2-tier 
+just to access specific functionality. <quote who="Derek Neighbors">I 
+think anything that more than one tool needs, should be in 
+common</quote>.</p>
+
+<p>However, after further discussion, he was more comfortable. 
+<quote who="Derek Neighbors">The mission statement I
+thought we might have been violating was "All the tools shall be able to
+run independent as well as together."  From the response here, it sounds
+like that is not an issue and that it is on the fore fronts of those
+doing the appserver work.  Which is very reassurring.</quote></p>
+
+</section>
+
+

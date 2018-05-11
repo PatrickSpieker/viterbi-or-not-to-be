@@ -1,0 +1,1040 @@
+[00:11] Last message repeated 1 time(s).
+ra3vat (ds@ics.elcom.ru) joined #gnuenterprise.
+jcater (jason@HubA-mcr-24-165-193-24.midsouth.rr.com) left irc: "nite"
+SachaS (~sacha@203.190.196.234) joined #gnuenterprise.
+Nick change: deke -> dnSleep
+<jamest> nite
+jamest (jamest@fh-dialup-201002.flinthills.com) left irc: "[x]chat"
+SachaS (~sacha@203.190.196.234) left #gnuenterprise ("Client Exiting").
+capybara (capybara@24-205-71-18.glen-dyn.charterpipeline.net) left irc: "Geronimo!!!"
+ajmitch (me@p34-max7.dun.ihug.co.nz) left irc: Read error: 113 (No route to host)
+Nick change: sama|afk -> sama
+ajmitch (~me@p4-max3.dun.ihug.co.nz) joined #gnuenterprise.
+sama (sama@frankye-194.micanet.it) left irc: Remote closed the connection
+sama (sama@frankye-194.micanet.it) joined #gnuenterprise.
+sachas__ (~sacha@203.190.196.228) joined #gnuenterprise.
+Harald1 (Peter1234@pD9EB1377.dip.t-dialin.net) joined #gnuenterprise.
+<Harald1> hi
+<ra3vat> hi
+Nick change: sachas__ -> SachaS_away
+Linux (V-e-G-a-s@62.150.2.121) joined #gnuenterprise.
+Harald1 (Peter1234@pD9EB1377.dip.t-dialin.net) left irc: Read error: 104 (Connection reset by peer)
+Linux (V-e-G-a-s@62.150.2.121) left irc: "The Linux System ..."
+alexey (Alexey@techkran.vladimir.ru) left irc: Read error: 104 (Connection reset by peer)
+alexey (~Alexey@195.151.214.33) joined #gnuenterprise.
+Harald1 (Peter1234@pD9EB1377.dip.t-dialin.net) joined #gnuenterprise.
+irc (~arturas@gsk.vtu.lt) joined #gnuenterprise.
+Harald1 (Peter1234@pD9EB1377.dip.t-dialin.net) left irc: Read error: 104 (Connection reset by peer)
+Nick change: irc -> Arturas
+drochaid_ (drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) left irc: Read error: 104 (Connection reset by peer)
+drochaid_ (~drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) joined #gnuenterprise.
+Arturas (arturas@gsk.vtu.lt) left irc: Client Quit
+irc (~arturas@gsk.vtu.lt) joined #gnuenterprise.
+Nick change: irc -> Arturas
+<ra3vat> Arturas: hello
+Arturas (~arturas@gsk.vtu.lt) left #gnuenterprise.
+Arturas (~arturas@gsk.vtu.lt) joined #gnuenterprise.
+<Arturas> Hello guys :)
+<Arturas> i have one idea about i18n (internationalization) - why i doesn't work in forms
+<Arturas> now we create all data (labels & etc.) as strings, encoded in UTF-8
+<Arturas> UTF-8 is unicode variable-width encoding
+<Arturas> the problem was that standart ASCII characters (ASCII code < 128)
+<Arturas> were displayed correctly
+<Arturas> and other characters (national characters)
+<Arturas> were displayed incorrectly
+<Arturas> and there was no idea
+<Arturas> why were displayed incorrect symbols
+<Arturas> there is possibility
+<Arturas> UTF-8 is variable-width encoding
+<Arturas> that means that all characters that fall in standard ASCII range (ASCII code < 128)
+<Arturas> have "one-to-one"
+<Arturas> [i don't know the word in English]
+SachaS_away (sacha@203.190.196.228) left irc: Read error: 113 (No route to host)
+<Arturas> "[A] in UTF-8 is [A] in ASCII"
+<Arturas> and so for all characters what code are <128
+<Arturas> theoretically this was thought
+<Arturas> to enable read at least basic text without any i18n characters if you have no UTF-8 support
+<Arturas> in forms
+<Arturas> when we have i18n character
+<Arturas> that's width is 2 bytes
+<Arturas> (if it's width would be 1 byte, that would be "synonim" for ASCII)
+<Arturas> (and it's code would be both in ASCII and UTF-8 < 128)
+<Arturas> it is displayed incorrectly
+<Arturas> i think it is possible
+<Arturas> that 2 byte width i18n character in form
+<Arturas> is considered as two one-byte width ASCII characters
+<Arturas> that's why we get so strange results and constant results
+<Arturas> forms work perfectly with one-byte width characters
+<Arturas> if we go in localization
+<Arturas> we can have forms display
+<Arturas> local characters (real i18n characters; correctly)
+<Arturas> but these would be encoded not in UTF-8
+<Arturas> but in, for example, koi8
+<Arturas> iso-8859-13
+<Arturas> or even iso-8859-1
+<Arturas> but this is one-byte encoding, not unicode
+alexey (Alexey@195.151.214.33) left irc: "[x]chat"
+<Arturas> i'm not sure about this, but i guess that Aditya has not made support for UTF-8
+<Arturas> but only support for his local one-byte width fonts
+<Arturas> hope i expressed myself clearly enough
+<Arturas> comments?
+<ra3vat> may be his fonts are not one-byte width as he did much more then me
+<ra3vat> with one-byte encoding there are not much problem just setting everithing up properly
+<ra3vat> agreed with above how it is interpreted now
+<Arturas> his fonts had to be one-byte width
+<Arturas> lower part of font
+<Arturas> (<128)
+<Arturas> was basic ASCII
+<Arturas> and upper part (>128)
+<Arturas> his countries charset
+<Arturas> his country's charset
+<Arturas> he had had the same problems as we
+<Arturas> if his fonts were real unicode
+<Arturas> (although i might make a mistake here :)
+<ra3vat> i think forms works properly with utf or unicode strings right now
+<ra3vat> we should look closely on wxpython and system level
+<Arturas> somewhere in their docs found short and interesting string that
+<ra3vat> properly in internal representation
+<Arturas> 'unicode is not yet fully supported' :(
+<ra3vat> can give a link?
+<Arturas> hm
+<Arturas> wxwindows
+<Arturas> sory
+<Arturas> www.wxwindows.org
+<Arturas> and then they
+<Arturas> offer to download documentation
+<Arturas> in different formats
+<Arturas> :/
+<ra3vat> ok and there is differences between linux and w32 status of that support i think (derek gave an reference to this also) 
+<Arturas> may be no
+<Arturas> may be not
+<Arturas> linux as well as w2k support unicode
+<Arturas> i think it might be their wxwindows problem
+<Arturas> not of the base-system
+<ra3vat> the reference was to wxpython problem that encoding=wxFONTENCODING_UTF8 is not supported yet under linux
+<ra3vat> that's why i'm trying to test it under w32
+Harald1 (Peter1234@pD9EB1377.dip.t-dialin.net) joined #gnuenterprise.
+ToyMan (~stuq@65.167.123.51) joined #gnuenterprise.
+jamest (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+<Arturas> ra3vat: is active python required for GNUe in w32? it refuses to install on W2K AS
+<jamest> i use regular python
+<jamest> 2.1
+alexey (~alexey@195.151.214.34) joined #gnuenterprise.
+<ra3vat> Arturas: not required of course
+^chewie (~chewie@flemingi.dsl.visi.com) joined #gnuenterprise.
+sama (sama@frankye-194.micanet.it) left irc: Excess Flood
+sama (sama@frankye-194.micanet.it) joined #gnuenterprise.
+<Arturas> what is msg_first?
+<Arturas> KeyError: msg_first
+<Arturas> trying to run client
+<Arturas> on any form
+<jamest> you need to add a msg_first and msg_last to your gnue.conf
+<Arturas> :)
+<Arturas> thanks
+<jamest> derek added jump to first/last record in the system and those are the tip lines
+<jamest> you trying i18n on windows?
+<Arturas> yes - downloading python for win32 now
+<Arturas> half an hour left :\
+<jamest> i know the feeling there
+<jamest> modems suck
+<jamest> :)
+Nick change: drochaid_ -> drochaid
+<Arturas> :)
+<Arturas> small problem - now i sit on university lan :) :)
+<jamest> ouch
+<Arturas> (maybe all my university is on modem? ;)
+<jamest> lol
+<drochaid> that would certainly explain the speed problem :)
+<drochaid> hey jamest, Arturas
+<jamest> hey
+<Arturas> jamest: wanted to double check: when i choose Debug=>Run in designer, i have to be asked in what level i would like to debug?
+<Arturas> drochaid: Hi :)
+<Arturas> you guys created a very nice installator for win :)
+<derek> Arturas: i think i asked jamest to put that on your list of todos :)
+<derek> make debug runlevel an option in designer->debug ;)
+<derek> as to your msg_first thing, simply copy sample.gnue.conf over to gnue.conf and it should go away
+<Arturas> Hello Derek :)
+<Arturas> already fixed that msg...
+dres (~dres@4.18.171.42) joined #gnuenterprise.
+<derek> must run ttfn
+derek (dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: "Client Exiting"
+<Arturas> w32 while trying to open UTF-8 encoded form dies with error:
+<Arturas> _GSocket_Internal_Window_Name: GFCLIENT.EXE
+<Arturas> The instruction at ..... referenced memory at ........ . The memory could not be "read".
+<Arturas> going to dinner-hunt and a bit to think
+<Arturas> will be back in ~20min.
+SachaS_away (~sacha@203.190.196.84) joined #gnuenterprise.
+<jamest> lol
+<jamest> note: I'm not making fun of anyones sexual orientation
+<jamest> on the majordomo2 mailing list they are talking about a name change
+<jamest> one of the people on there said
+<jamest> At QueerNet, as I may have mentioned, we used to use "majorhomo" as an alias...
+<jamest> this guys mail addess is from queernet.org
+<jamest> so I think it legit and a cool play on words :)
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+SachaS_away (sacha@203.190.196.84) left irc: Excess Flood
+SachaS_away (~sacha@203.190.196.84) joined #gnuenterprise.
+dsmith (~dsmith@cherry7.comerica.com) joined #gnuenterprise.
+<^chewie> hmm...
+<^chewie> I don't remember if it's been hashed over before, or if there are listserver threads on the subject, but what prompted the use of CORBA over something like SOAP?
+<jamest> CORBA is very close to COBRA and snakes are cool.  SOAP implies bathing and no one in here does that.
+<jamest> actually CORBA was mature at the time that was decided...we really want to be transport independent
+<drochaid> lol
+alexey (alexey@195.151.214.34) left irc: "Client Exiting"
+<^chewie> jamest: gotcha
+Action: ^chewie found some info in the kernel cousins
+jpalardy (~gfd@modemcable221.190-202-24.mtl.mc.videotron.ca) joined #gnuenterprise.
+<nickr> is it possible to have an index with non-unique keys?
+<nickr> er, in postgres
+<jcater> yes
+<jcater> an index by default is not "unique"
+<nickr> let me make sure we're talking about the same thing
+<nickr> an index is a fast searching list associated with a particular column of a particular table?
+<jcater> ja
+<nickr> great
+<nickr> cool
+Yurik (yrashk@gw.telcos.net.ua) left irc: "reboot"
+<dneighbo> ^chewie the most important thing is that with gnurpc
+<dneighbo> in common soon we can support any RPC you want
+<dneighbo> XML-RPC will be teh first to be heavily tested
+<dneighbo> as its the protocol the FSF has decided to make its standard for interoperation for now
+<dneighbo> when we chose CORBA it and MS DCOM were the only VALID choices (read that worked (this was nearly 3 years ago)
+<dneighbo> well there was Java RMI too but since dont java that wasnt valid either
+Yurik (~yrashk@gw.telcos.net.ua) joined #gnuenterprise.
+<dneighbo> jcater / jamest you know of any libraries or such that exist to do file handling..
+<dneighbo> er wrong word
+<dneighbo> i want to be able to do
+<dneighbo> myprogram *.txt
+<dneighbo> and have it loop through directory and read all .txt file
+<dneighbo> or do myprogram prefix*.txt
+<jamest> cat *.txt
+<jamest> :)
+<dneighbo> ?
+<jamest> you just wanting to see whats in the files?
+<dneighbo> no
+<dneighbo> i have a python program
+<dneighbo> that manipulates the files
+<dneighbo> i basically looking for somethign in python that given prefix*.txt for a dir
+<dneighbo> can give me back a list or dictionary of files matching that patter
+<dneighbo> n
+<jamest> in unix the *.txt is expanded prior to being passed to the program
+<jamest> so 
+<dneighbo> of course i brought my backpack today but my python book isnt in it :(
+<jamest> myfoo *.txt
+<dneighbo> jamest: not on unix
+<jamest> is passed as 
+<jamest> myfoo bar.txt grip.txt goat.txt
+<jamest> to pass the * to the program you have to put inside quotes IIRC
+<jamest> oooo
+<jamest> you're on windows?
+<dneighbo> um i didnt want to tell the world
+<jamest> you sick freak
+<dneighbo> but yeah my USERS are on windows
+<dneighbo> not me :)
+Action: nickr starts building the witch burning pyre
+<dneighbo> "The Scarlet Letter"
+<dneighbo> Starring Derek Neighbors as Hector Prine
+Action: nickr stamps a big red W on dneighbo
+<nickr> dneighbo is shunned by the townspeople
+<dneighbo> Windows OS User in small community is forced to where the scarlett W to be shamed and shunned for such deviant behavior.
+<jamest> i don't know which lib to use in python to handle windows shortcommings
+<jamest> maybe import makeOSActLikeItHasaPair
+<nickr> import sys.balls
+<jamest> error: not supported on this platform
+<nickr> except any import sys.nuticles
+<dneighbo> hmmm
+<dneighbo> i tried
+<dneighbo> import sys
+<dneighbo> import os
+<dneighbo> print os.listdir("c:\")
+<dneighbo> but i get following error
+dneighbo_ (dneighbo@mail.libertydistribution.com) joined #gnuenterprise.
+<dneighbo_> >>> print os.listdir("C:\")
+<dneighbo_>   File "<stdin>", line 1
+<dneighbo_>     print os.listdir("C:\")
+<dneighbo_>                           ^
+<dneighbo_> SyntaxError: invalid token
+<dneighbo_> i tried with single quotes as well
+<jcater> print os.listdir("C:\\")
+<dneighbo_> doh
+<dneighbo_> that bites me all the time on winders
+<Arturas> Derek: can you execute win command from python?
+<dneighbo_> yip
+<Arturas> then try something like:
+<Arturas> cmd dir c:
+<dneighbo_> i think this will work
+<Arturas> or command dir c:
+<dneighbo_> as listdir gets me dir listing
+<dneighbo_> then i can walk through that list
+<dneighbo_> and use regex or something to find the matches
+<dneighbo_> i.e. write my own library to do this
+Action: dneighbo_ was hoping something existed, maybe i will try starship 
+<dneighbo_> unless you guys know of other place to look
+<jcater> yip
+<jcater> hang on
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+<jcater> http://www.python.org/doc/2.0/lib/module-glob.html\
+<dneighbo_>  http://www.python.org/doc/2.0/lib/module-glob.html\
+<jcater> err
+<jcater> http://www.python.org/doc/2.0/lib/module-glob.html
+<dneighbo_> now that just kicks ass
+<dneighbo_> jamest: it appears there are SEVERAL libraries to make up for windows inaccuracies in python :)
+<Arturas> Derek: wouldn't it be better to execute win dos command to type all *.txt files in C:\ and take result from it - contens of the files
+<Arturas> something like "cmd dir C:\*.txt|type"
+<nickr> that'd be pretty unportable
+<Arturas> unportable to what?
+<nickr> anything other than windows
+<Arturas> => to linux?
+<nickr> anything other than windows
+<jcater> that's pretty portable imho
+<jcater> it's just overkill for unix
+<Arturas> ok, how many OSes do you know exept for win and nix to support GNUe?
+<Arturas> and for nix
+<jcater> but overkill isn't the same as unportable
+<Arturas> we could use
+<Arturas> cat
+<psu> neilt uses MacOS
+<Arturas> borland has done the same way with kylix
+<nickr> they provide abstractions to system services in python that are compatable across osen for a reason
+<Arturas> psu: you're right - my mistake
+<psu> no BSD weenies that I know about 
+<psu> other than that guy who keeps bugging chillywilly's local LUG ;-)
+<nickr> I'd be a bsd weenie if it weren't a pain in the ass to manage
+<psu> nickr: you need Debian GNU/BSD ;-)
+<nickr> exactly
+<nickr> or even Debian BSD
+<psu> apt-get sneering_remarks_about_linux_9.9.9.deb
+<psu> ;-)
+<nickr> http://www.twentybelow.com/images/ebaynotice.jpg
+<nickr> although the project is moving very slow :\
+<dsmith> Debian BSD/Linux
+Action: jcater is away: lunch
+<nickr> hrm, actually it looks like its making real progress
+<nickr> neat
+<dneighbo> how to install debian from network?
+<dneighbo> nickr how do you install debian over network?
+<jamest> download the rescue and root floppy images
+<jamest> boot from resuce
+<jamest> put root in when prompted
+<jamest> configure network and select it as the source for your files
+<dneighbo> will it do apt via network?
+<dneighbo> so this is all via conf files
+<nickr> dneighbo: get the netinst CD
+<dneighbo> netinst CD?
+<nickr> dneighbo: search for woody netinst CD, hownload the image (30 megs), burn it, boot it
+<jamest> yes apt over network
+<jamest> if you can do that why not grab the real deal?
+<jamest> the 2 floppy approach is 1.44*2 MB :)
+<nickr> the real deal is 8 x 600 megs
+<jamest> lol
+<jamest> true
+<nickr> actually to netinst woody you need 6 disks
+<nickr> well, I guess the have a 4 disk one
+<dneighbo> you have a url
+<nickr> floppies
+<nickr> dneighbo: don't you know how to use google? you are such a baby. Just a sec.
+<dneighbo> dont worry not for me having to tell someone :)
+<nickr> http://people.debian.org/~ieure/netinst/
+<nickr> don't worry about the nasty warnings, the people I've suggested this method to have had good luck with it
+<Arturas> :) funny problem - how do i cat all files in the folder and in all subfolders?
+<nickr> yep
+<nickr> find . -print |xargs cat
+<Arturas> and if i want find some string in the files, so i have to add "|grep strin"?
+<Arturas> and if i want find some string in the files, so i have to add "|grep string"?
+<nickr> er
+<nickr> yea
+<nickr> Unless you only want to cat files with specific strings
+<Arturas> ? what do you mean by 'specific string'?
+<Arturas> i'd like to fing one string
+<Arturas> somewhere in files
+<Arturas> so i do cat
+<Arturas> for all files
+<Arturas> and grep for the cat
+<nickr> probably
+<nickr> it'd be better to do find . -print | xargs grep "string"
+<nickr> because that will print out tnhe file name also
+<nickr> what is your obsession wil catting files?
+<Arturas> that's one nix command for viewing contents of file that i know
+<Arturas> so
+<Arturas> i'm using what i know :)
+<Arturas> thank you :)
+<jamest> Arturas: you may want to look at glimpse
+<nickr> sure
+<jamest> very nice file scanner
+<nickr> bah glimpse is for pussies
+<jamest> yip
+<jamest> but I use it daily
+SachaS_away (sacha@203.190.196.84) left irc: "Client Exiting"
+Yurik (yrashk@gw.telcos.net.ua) left irc: "Client Exiting"
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise ("bbl").
+dsmith (dsmith@cherry7.comerica.com) left irc: Remote closed the connection
+Action: jcater is back (gone 01:13:05)
+<dneighbo_> jcater you give me 3 min tutorial on scope in python
+<dneighbo_> if i have a class with function a
+<dneighbo_> and function a defines a variable
+<dneighbo_> and then calls function b in that class
+<dneighbo_> i assume i cant see the variable from function a
+<jcater> correct
+<jcater> unless it's self.a
+<dneighbo_> is there a way to make that variable global
+<dneighbo_> ah
+<dneighbo_> thats i think what i was looking for :)
+<jcater> yeah
+<jcater> probably so
+<jcater> btw, the generally accepted format for that would be
+<jcater> self._a
+<jcater> the _ denotes that it's for use within the class
+<jcater> not by others looking into the class
+<jcater> but that's just a convention
+<jcater> :)
+<dneighbo_> hmm i defined them as self
+<dneighbo_> so i must have somethign else mucked up
+<dneighbo_> if i have....
+<dneighbo_> in main
+<dneighbo_> ConvertPosition().run()
+<dneighbo_> where run is
+<dneighbo_>   def run(self):
+<dneighbo_> then in run i stet
+<dneighbo_> self.file_input = some file
+<dneighbo_> then call
+<dneighbo_> self.CheckNegative()
+<dneighbo_> where checknegative is
+<dneighbo_>   def CheckNegative(self):
+<dneighbo_> what is proper way to reference file_input
+<dneighbo_> inside checknegative
+<dneighbo_> or am i defining checknegative incorrectly or calling it incorrectly
+Action: dneighbo_ vaguely remembers issues with () vs no ()
+<jcater> self.file_input
+<dneighbo_>     self.CheckNegative()
+<dneighbo_>   File "zerocheck.py", line 104, in CheckNegative
+<dneighbo_>     line = self.file_input.readline()
+<dneighbo_> AttributeError: 'ConvertPosition' instance has no attribute 'file_input'
+<dneighbo_>  self.inputfile = CmdOpt.getArgument(0) 
+<dneighbo_> is inside my run(self)
+<dneighbo_> grr its the ()
+<dneighbo_> if i do
+<dneighbo_> self.CheckNegative
+<dneighbo_> opposed to self.CheckNegative()
+<dneighbo_> i think it works
+drochaid (drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) left irc: Read error: 113 (No route to host)
+<Arturas> bye
+<dneighbo_> must you define self everywhere?
+Arturas (~arturas@gsk.vtu.lt) left #gnuenterprise.
+<jcater> self.CheckNegative does not call self.CheckNegative()
+<jcater> dneighbo_: yes
+drochaid (~drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) joined #gnuenterprise.
+<dneighbo_> sigh then how do i call CheckNegative and have it recognize self.variables
+dneighbo_ (dneighbo@mail.libertydistribution.com) left irc: Excess Flood
+dneighbo_ (dneighbo@mail.libertydistribution.com) joined #gnuenterprise.
+<jamest> i assume that run() is in the same class as CheckNegative()
+<jamest> in which case always use
+<jamest> self.file_input in both run and CheckNegative
+dsmith (firewall-u@cherry7.comerica.com) joined #gnuenterprise.
+drochaid (drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) left irc: Read error: 104 (Connection reset by peer)
+drochaid (~drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) joined #gnuenterprise.
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+chillywilly (~danielb@d79.as28.nwbl0.wi.voyager.net) joined #gnuenterprise.
+<psu> da chillmeister
+<psu> dunno what that means, but sounds good
+<chillywilly> hi'
+<jcater> chillmaester?  Master of the Cold?
+<chillywilly> jack forst's little brother
+<chillywilly> you crazy fuck
+ra3vat (ds@ics.elcom.ru) left irc: "Client Exiting"
+psu (psu@manorcon.demon.co.uk) left irc: Remote closed the connection
+reinhard (~rm@N812P008.adsl.highway.telekom.at) joined #gnuenterprise.
+<chillywilly> hi reinhard
+<Harald1> am I right, that gnue depends on python > 2.1? If yes should I report code whose only purpose python 1.5.2 compatibility is via dcl as a ticket or as a wo, or shouldn't I do anything?
+<dneighbo_> i dont understand the question
+<dneighbo_> gnue depends on python 2.0 2.1 2.2
+<dneighbo_> i.e. > 1.5.2
+<dneighbo_> 2.2 python has some bugs
+<Harald1> and GConfigParser.py contains code which is only needed for 1.5.2
+<dneighbo_> gotcha
+<dneighbo_> um submit it as a ticket probably
+<dneighbo_> or work order
+<dneighbo_> either way would be fine
+<Harald1> ok
+<dneighbo_> were you one i told to send patches via dcl?
+<dneighbo_> if so send to info@gnue.org as well because dcl gateway appears to be eating attachments
+<Harald1> one can send patches via dcl?
+<dneighbo_> well there is way to include 'attachments'
+<dneighbo_> to workorder/tickets
+<dneighbo_> so if you find a bug and fix it
+<dneighbo_> submit it as a bug and attach the patch
+<dneighbo_> then when patch applied ticket can be closed etc
+<dneighbo_> but for somereason attachments arent working quite right and i havent had time to look into it
+<Harald1> ok, and why should the patch be send to info@gnue.org and not the one responsible for the ticket?
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+^chewie (chewie@flemingi.dsl.visi.com) left irc: Excess Flood
+^chewie (~chewie@flemingi.dsl.visi.com) joined #gnuenterprise.
+btami (~btami@dial-3-30.emitel.hu) joined #gnuenterprise.
+<btami> hi all
+<Harald1> dneighbo: ok uploading the patch does not work, I'll submit it via email
+<psu> hi btami
+psu (psu@manorcon.demon.co.uk) left irc: Remote closed the connection
+<btami> wow, i'v made my first work order in DCL
+<btami> responsible:jcater :)
+<btami> night
+btami (btami@dial-3-30.emitel.hu) left irc: 
+<jcater> sigh
+<jcater> I'm starting to not like dcl
+<jcater> ppl expecting me to work :)
+<chillywilly> heh
+<chillywilly> you lazy bum
+Action: jcater looks around
+<jcater> me?
+<jcater> I do have concerns about people submitting bugs against cvs head
+<jcater> as that's a given :)
+<chillywilly> it's just a good way for you to keep track of them ;)
+<chillywilly> muwaahahahha
+<jcater> I'd prefer to handle it like I handle it here at work
+<jcater> "um, yeah... well, just email me"
+<jcater> 6 months later
+<jcater> "what email? I don't recall an email?!!?"
+<chillywilly> heh
+<jcater> "besides, 90% of the time, it's a user error... just try again"
+<chillywilly> quality work
+<jcater> well, actually I get away with it here at work
+<jcater> because usually the "bug mysteriously disappeared and has never happened again"
+<chillywilly> a BTS should be more than just users reporting bugs, I think it should be more like a TODO type thing for developers too ;)
+<jcater> iow, they did something wrong the first time and won't admit it
+<jcater> um, yeah
+<ajmitch> morning
+<jcater> afternoon
+<ajmitch> howsit?
+<jcater> swell
+ToyMan (stuq@65.167.123.51) left irc: "Client Exiting"
+drochaid (drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) left irc: Read error: 104 (Connection reset by peer)
+drochaid (~drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) joined #gnuenterprise.
+reinhard (rm@N812P008.adsl.highway.telekom.at) left irc: "Even if you're on the right track, you'll get run over if you just sit there"
+<jamest> l8r
+jamest (~jamest@hobbes.math.ksu.edu) left #gnuenterprise.
+<chillywilly> ok, I am taking a chance but you guyys have to tell me what's shitty about this logo --> http://frell.dyndns.org/~danielb/
+<chillywilly> ;)
+<jcater> is that a bird taking a crap?
+<chillywilly> uh?
+<chillywilly> it's the liberty bell silly
+<jcater> dude
+<jcater> that seriously looks like a yellow bird
+<jcater> providing some, um, droppings
+<jcater> incidentally, don't rip off our logo :)
+<jcater> that's not nice
+<jcater> the "Free Your Enterprise" :)
+<chillywilly> how's that your 'logo'?
+<jcater> ok
+<jcater> sales mark
+<nickr> its a tagline not a logo
+<chillywilly> I thought it was somethign different
+<chillywilly> Free Software For Your Business
+<jcater> well
+<chillywilly> it's not yours then is it?
+<jcater> I've been saying "free your enterprise" for over a year
+<ajmitch> after watching the matrix? 'free your mind...'
+<jcater> I've also said "putting the free back in free enterprise"
+<jcater> then from that, I came up with "free your enterprise"
+<chillywilly> when?
+<nickr> saying something and having it be a servicre mark or trademark aren't the same thing :P
+<jcater> nickr: in the US, sure it can
+Action: jcater is well-versed in trademark law
+<nickr> jcater: only if you use it as a trademark in business afaixk
+<chillywilly> sue me then
+<jcater> that's a big component of my responsibilities :)
+<jcater> nickr: he was
+<jcater> :)
+<chillywilly> I don't believe you said it before anyone else
+<nickr> but you weren'
+<nickr> t
+<jcater> I was using it in a non-profit capacity
+<chillywilly> the second one I heard you mention before
+<jcater> and who said I wasn't using it in a business?
+<jcater> I'm not... but I was curious why you assumed that :)
+<nickr> beceause you are trying to claim trademark on it
+<jcater> trademarks don't have to be owned by companies
+<nickr> I never claimed they did.
+<chillywilly> they have to be registered don't they?
+<jcater> a "registered trademark" has to be registered
+<chillywilly> or mayeb just in use
+<jcater> just defended
+<chillywilly> show me some proof where the damn thing is used in some capacity
+<nickr> regular trademarks have to be defended
+<jcater> a trademark has to be defended
+<jcater> hence, I was defending it :)
+<chillywilly> I am insulted that you accuse me of ripping off 'your' slogan
+<jcater> it's a slogan I donated to GNUe
+<jcater> at least as far as I'm concerned
+<jcater> :)
+<chillywilly> bah, I thought of it plenty of times, it's nothing new
+<jcater> I still say the torch looks like a little birdie taking a crap
+<chillywilly> the toch does?
+<chillywilly> er, torch
+<jcater> ya
+<chillywilly> why did I even bother asking you anyway?
+<jcater> beats me
+<chillywilly> everyone else seeems to know what it is
+<jcater> but I was giving you an honest answer
+Action: jcater will have to remember to not give honest feedback to chilly as he can't handle it
+<chillywilly> oh please
+<chillywilly> where's the bird at?
+<chillywilly> in the flame or something?
+<jcater> sigh
+<chillywilly> I don't see a 'bird'
+<jcater> the yellow flame
+<jcater> looks like a bird mooning everyone
+<dneighbo_> um jcater you will hate FSF
+<chillywilly> inside it?
+<dneighbo_> one of the requests brad has for dcl is 'nagware' :)
+<jcater> see the fluffy tail
+<ajmitch> hehe
+<chillywilly> nagware?
+<dneighbo_> i.e. you can set a 'date' on a ticket and have it notify you if the date passes
+<ajmitch> ooh
+<chillywilly> oh
+<dneighbo_> so people can set nags to tickets
+<jcater> if that happens on ash, I'll use my mighty r00t poweres
+<dneighbo_> so not only can they give you work
+<dneighbo_> they can be reminded when you arent doing it :)
+<chillywilly> ban nagware now (tm)
+<ajmitch> nagware good! nagware good!
+<drochaid> NAGWARE NAGWARE NAGWARE NOW !!!!
+Action: ajmitch is saying this from a users perspective ;)
+Action: drochaid returns to the corner
+Action: ajmitch gives drochaid a cheer
+<jcater> seeing as to how most of the stuff in designer's BUGS file is pre-0.1.0, I definitely don't want nagware
+<jcater> :)
+<ajmitch> hehe
+<drochaid> lol
+<drochaid> jcater: you just need nagware with an option to disable ... or ostricise
+^chewie (chewie@flemingi.dsl.visi.com) left irc: "ircII EPIC4-1.1.2 -- Are we there yet?"
+chillywilly_ (~danielb@d152.as14.nwbl0.wi.voyager.net) joined #gnuenterprise.
+chillywilly (danielb@d79.as28.nwbl0.wi.voyager.net) left irc: Killed (NickServ (Ghost: chillywilly_!~danielb@d152.as14.nwbl0.wi.voyager.net))
+Nick change: chillywilly_ -> chillywilly
+crazymike (~crazymike@mke-65-31-133-230.wi.rr.com) joined #gnuenterprise.
+<ajmitch> uh oh
+<crazymike> uh oh
+<crazymike> ajmitch: where in the hell have you been???
+<ajmitch> around
+<crazymike> lol...ok
+<jcater> drochaid: what I really need is a "nag users" option... 
+<jcater> "Do you have any working examples yet????"
+<jcater> at least here at work
+<jcater> (not necessarily with the GNUe stuff I do)
+<drochaid> lol
+<crazymike> chillywilly: you here???
+<chillywilly> yes
+<chillywilly> whatcha whatcha want?
+<crazymike> you got off IM when I tried to talk to you???
+<crazymike> :(
+<drochaid> jcater: email and cron?
+<ajmitch> drochaid: cron doesn't do every 20 seconds does it?
+<drochaid> uhm .. where are my glasses?
+<drochaid> I had them just a min ago
+<chillywilly> crazymike: no connection broke
+Action: ajmitch kills idle....
+<crazymike> chillywilly: ahhh...can you go back on...I am haing issues
+<crazymike> :)
+<ajmitch> hehe
+<ajmitch> editing file on windows gave me ^M at the end of every line...
+<ajmitch> sigh
+<ajmitch> stupid windwos
+<drochaid> open your windows, let in the li[nux]ght
+<chillywilly> heheh
+Action: ajmitch downloads latest wxPython tarball
+<chillywilly> heh jcater Mr_You was the actaul first person to coin that expression according to the logs
+<chillywilly> gnue-public.log.18Sep2001:<jcater> Free Enterprise
+<chillywilly> gnue-public.log.18Sep2001:<derek> Free Enterprise
+<chillywilly> gnue-public.log.18Sep2001:<Mr_You> Free The Enterprise
+<chillywilly> gnue-public.log.18Sep2001:<jcater> GNUe Gives New Meaning to Free Enterprise
+<chillywilly> gnue-public.log.18Sep2001:<Mr_You> GNUe: Free Your Enterprise
+<jcater> I think it was said earlier than that... but either way, like I said, it's affiliated with GNUe
+<jcater> :)
+<chillywilly> we'll see
+<chillywilly> er, when it was first said
+<chillywilly> nope
+<ajmitch> kids, stop arguing over this! i'll send you to your rooms...
+<chillywilly> Mr_You
+<chillywilly> he said it first
+jbailey (~jbailey@HSE-Toronto-ppp318242.sympatico.ca) joined #gnuenterprise.
+<ajmitch> jbailey!!
+<jbailey> ajmitch!!
+<chillywilly> and jcater you're just going to have to get everyone to raise a stink before I will stop using it
+<chillywilly> because I sure as hell don't remember something said last year
+<chillywilly> I can't even remember last week half the time
+<jcater> chillywilly: I think that's unprofessional and rude... but I expect no less :)
+<jcater> it sounds like something ximian would do
+<dtm> hi all
+<jcater> howdy
+<ajmitch> yo dtm
+<dtm> werd
+<dtm> HOW ARE YOU GENTLEMEN
+<chillywilly> no one deemed it an 'official' slogan and you bet your ass if it was anywhere on tyhe web site I wouldn't use it, but somehting someone said once in IRC doesn't seemt o count much for me as I didn't come to the slogan thinking oh people said this beofre so I'll go steal it
+<ajmitch> dtm: WE ARE FINE THANKS
+<chillywilly> and to assumke so like you said the first time is insulting
+<chillywilly> but I can find a different one to make people happy
+<jbailey> dtm: <AOL/>
+<chillywilly> jcater: but I just proved your inital claim to be incorrect so my mission is complete ;P
+<jcater> bah
+<chillywilly> go look your damn self
+<jcater> I'm still not so sure
+<chillywilly> if you don't believe me
+<jcater> but I'll take it at your word
+<jcater> as it's not exactly worth arguing over
+<chillywilly> I just greedd through the logs
+<chillywilly> er, grepped
+<jcater> I've been here longer than those logs, btw
+<jcater> but that's fine
+<chillywilly> and I've been here longer than you
+<jcater> my whole point was that it was a GNUe thing
+<chillywilly> and I have all the logs in my stash
+<jcater> and I thought it improper for you to use for your thing
+<chillywilly> sure, and I renig it then
+<chillywilly> I will not use it
+<jcater> and I'll concede I might not be the first
+<chillywilly> but I didn't some to it through a GNUe thing
+<chillywilly> just thoguht it sounded cool
+<jcater> it does
+<jcater> which is why I wanted GNUe to use it :)
+<ajmitch> so we have agreement then?
+<jcater> yes
+<chillywilly> then put it up on the site as the current slogan sucks
+<ajmitch> ok, every kiss & make up
+<jcater> neither of us like kiwis
+<jcater> that's the agreement
+<jcater> right chillywilly?
+<chillywilly> right
+<chillywilly> ;P
+<ajmitch> s/every/everyone/g
+<ajmitch> you don't have to like us, just have to obey us :)
+Action: chillywilly is away: dinner
+crazymike (crazymike@mke-65-31-133-230.wi.rr.com) left irc: 
+Action: ajmitch hears silence
+Action: jcater dcc's ajmitch hearing aids
+<dtm> !@)#*@J
+<dneighbo_> btw: jcater started the phrase and mr you completed it 
+<dneighbo_> so you are right there
+<dneighbo_> BUT jcaters point was it was a gnue slogan, not necessarily that he said it
+<dneighbo_> furthermore looking back at the log i like nickr's slogan
+<dneighbo_> <nickr> GNUe doesn't smell like ass
+<ajmitch> ah, still good to have an argument, right? ;)
+<ajmitch> hehe
+<jcater> rofl
+<jcater> I missed that slogan
+<jcater> I like it too
+<jcater> how about"
+<jcater> "GNUe: It's not SAP"
+<jcater> that could be taken on a positive and a negative scale :)
+<chillywilly> dneighbo: bite me
+<chillywilly> you too dneighbo_
+Action: chillywilly is away: hitting the crack pipe
+Action: chillywilly is back (gone 00:00:02)
+<ajmitch> be nice
+<chillywilly> I don't feel like it
+<ajmitch> you should
+<chillywilly> well then I guess I might be unprofessional and ride
+<chillywilly> and ximian-like
+<chillywilly> or some shit like that
+<dneighbo> if any of you are on the gnucash list
+<dneighbo> im curious of your take on the recent FLAME fest going on there :)
+<jcater> ooo
+<jcater> archives?
+Action: dneighbo sits back and enjoys it
+<ajmitch> flames?
+<dneighbo> there are archives somewhere try gnucash.org
+Action: ajmitch wanna go look
+<chillywilly> fuck them
+<dneighbo> well they moved to XML format a while back for storage
+<chillywilly> fuck them up their stupid asses
+<dneighbo> i have talked to linas about this before
+<dneighbo> i wont state his opinion as its in the archives publically now :)
+<dneighbo> but its a humorous discussion
+<ajmitch> why can't GNUe have a decent flamewar?
+<dneighbo> we did
+<dneighbo> just no one from gnue was involved :)
+<chillywilly> uh?
+<dneighbo> just kpmg accountants and other accountants :)
+<ajmitch> hehe
+<chillywilly> oh yea
+<ajmitch> that :)
+<chillywilly> that wa pissing me off
+<chillywilly> it;s like why can't they go argue somwhere else
+<chillywilly> I was about to snap then they stopped
+<ajmitch> chillywilly: why don't we start up a decent flamewar?
+<chillywilly> I have enough shit to read
+<chillywilly> nah
+<jcater> <!-- psu: there's nothing in today's logs that needs to be repeated on KC -->
+<chillywilly> I don't have the energy and I would like to still retain mt so-called friendships or something...
+<chillywilly> s/mt/my
+<chillywilly> plus I am going out to drink myself into a stuper
+<chillywilly> so I want to go into that with a positive light
+<chillywilly> yea, that's it
+<ajmitch> not a good idea
+<chillywilly> it's an excellent idea
+<ajmitch> you gonna argue with me? ;)
+<chillywilly> I have determined that there's mot much to live for anyway, so why should I want to prolong my life?
+<chillywilly> liver disease is a gret way to kill yourself
+<chillywilly> er, great
+<drochaid> there are soooo many much easier and less painfull ways
+<chillywilly> ah, but I like suffering
+<chillywilly> suffering is what makes us human
+<drochaid> then use windows ya twonk >:)
+<ajmitch> haha
+dsmith (firewall-u@cherry7.comerica.com) left irc: "later.."
+<chillywilly> drochaid: that's cruel and unsual punishment
+<ajmitch> chillywilly: ok, listen to country music all day
+<drochaid> eeewwwwww
+<drochaid> that's just sick ajmitch
+<chillywilly> indeed
+<chillywilly> mentally unstable
+<ajmitch> i know :)
+<ajmitch> the men in white coats are coming to take me to a place where sad people become happy ;)
+<drochaid> Amsterdam?
+<chillywilly> that's what I need
+<chillywilly> to smoke a fatty bo batty blunt
+<ajmitch> i disagree
+<drochaid> do you?
+<ajmitch> i do
+<drochaid> indeed?
+<ajmitch> indeed
+<drochaid> reall?
+<drochaid> +y
+<ajmitch> reall
+<ajmitch> +y
+<drochaid> lol
+<drochaid> seadh?
+<chillywilly> I don't buy it
+<jcater> I'll buy some
+<ajmitch> jcater: he wasn't talking about donuts
+<drochaid> lol
+<jcater> oh
+<jcater> <chillywilly> to smoke a fatty bo batty blunt
+<jcater> that's not a large glazed donut?
+<chillywilly> nope
+Action: jcater goes back to his little hole
+<drochaid> you smoke donuts over there? :o
+Action: drochaid just eats them
+<chillywilly> jcater: who said you coudl come out in the first place?
+<jcater> the little yellow birdie told me
+<jcater> you know, the one taking a crap
+Action: drochaid pours boiling water down the hole
+Action: chillywilly takes a dump down the hole
+<jcater> my, it's a full moon tonight
+<jcater> and raining, to boot
+Action: drochaid throws down a can of air freshner
+Action: chillywilly seals the hole with cement before drochaid gets to it with the air freshener
+<chillywilly> ok, I'm outty 2000
+<drochaid> :o
+<chillywilly> going to go to a concert and score some smoke
+<drochaid> Tchaikovsky?
+<chillywilly> boooooong!
+<drochaid> Rautavaraa?
+<ajmitch> bye then
+<drochaid> Holst?
+<drochaid> cya :)
+<chillywilly> no stupid
+<chillywilly> the Gufs
+<ajmitch> enjoy...
+<chillywilly> who else ;)
+<drochaid> the gufs???
+<chillywilly> hehe
+<chillywilly> hell yeah!
+<chillywilly> well 1/4 of the gufs playing all Gufs songs
+<drochaid> okay then
+<chillywilly>  and some other guy
+<chillywilly> acoustic show
+<chillywilly> at UW Oshkosh
+<ajmitch> who's them?
+<drochaid> so ... country then? >:)
+<chillywilly> uh, no
+<chillywilly> you must be smoking too much
+<chillywilly> buh-bye freaks
+<ajmitch> later
+chillywilly (danielb@d152.as14.nwbl0.wi.voyager.net) left irc: 
+<drochaid> l8rs
+jcater (jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "homebound"
+dneighbo_ (dneighbo@mail.libertydistribution.com) left irc: "9) nanoseconds"
+<drochaid> CHOOO CHOOO
+<ajmitch> splat
+<drochaid> hmm, off to bed to read for an hour or so methinks
+<drochaid> mar sin leat ajmitch
+Action: ajmitch tries to guess what that means
+jpalardy (gfd@modemcable221.190-202-24.mtl.mc.videotron.ca) left irc: 
+<drochaid> would bonsoir ajmitch be any better? :)
+<ajmitch> perhaps
+jamest (~jamest@fh-dialup-201002.flinthills.com) joined #gnuenterprise.
+<ajmitch> hi jamest
+<jamest> hi
+<jamest> wow, no cater
+<jamest> he didn't go and get a life on us did he?
+jcater (~jason@HubA-mcr-24-165-193-24.midsouth.rr.com) joined #gnuenterprise.
+<jamest> whew, guess not
+<jcater> glad to see ya too
+<jcater> apt-get update
+<jcater> argh!
+<jamest> [18:13:04]<jamest> he didn't go and get a life on us did he?
+<ajmitch> hehe
+<jamest> [18:13:25]--> jcater (~jason@HubA-mcr-24-165-193-24.midsouth.rr.com) has joined #gnuenterprise
+<jamest> 21 seconds
+<jcater> lol
+<ajmitch> a bit slow
+<jcater> you know better than that
+<ajmitch> is it just me or did chillywilly seem a little unhappy today?
+<jcater> constipation?
+<ajmitch> dunno
+<dtm> PMS?
+Harald1 (Peter1234@pD9EB1377.dip.t-dialin.net) left irc: 
+jcater (jason@HubA-mcr-24-165-193-24.midsouth.rr.com) left irc: "switching machines"
+jcater (~jason@HubA-mcr-24-165-193-24.midsouth.rr.com) joined #gnuenterprise.
+dres_ (~dres@4.18.171.42) joined #gnuenterprise.
+dres (dres@4.18.171.42) left irc: Read error: 104 (Connection reset by peer)
+<jcater> I'll tell you what I want, what I really really want,
+<jcater>  So tell me what you want, what you really really want,
+<jcater>  Iwanna, I wanna, I wanna, I wanna, I wanna really
+<jcater>  really really wanna zigazig ah
+<jbailey> Ah.
+<jbailey> Spice girls.
+<jcater> jbailey: what's the protocol for requesting that a library be added to debian?
+<jcater> or do you have to find a friendly maintainer and wine & dine them?
+<jbailey> jcater: Get a Debian Developper to build the package and upload it.
+<jbailey> Or build the package yourself and find a sponsor.
+<jcater> ah
+<jcater> ok
+<jcater> I may try that route
+<jbailey> But it won't happen between now and Woody's release.  I think they've blocked new packages for now.
+<jbailey> Which library?
+<jcater> the python bindings for Sablotron (an XSLT processor)
+<jcater> sablotron is in woody
+<jcater> and the perl and php bindings are there
+<jcater> but no one did the python ones :(
+<jbailey> I'd offer, but I don't speak snake.
+<jcater> I may give it a try... it'd be good for me to learn :)
+<jbailey> =)
+<jcater> btw, I'm not gonna complain about woody being locked down :)
+<jcater> if that brings us closer to a release
+<jbailey> *lol*
+<jbailey> No kiddin'
+<jbailey> I think the release manager isn't enough of an asshole
+<jcater> is there a really good place to learn how to do debs
+<jcater> like for redhat, the "extreme rpm" book was good
+<jcater> or something like that
+Action: jcater has mostly regressed his redhat memories
+<jcater> is the "Debian Policy Manual" readable?
+<jcater> or is it like most policy manuals?
+<jbailey> It's like most policy manuals.
+<jbailey> There's a reason it takes so long to get through the DD process.
+<jcater> I don't doubt it
+Action: jcater was hoping he could just do a deb package and send it to one of the big python packagers and hopefully he'd like/approve and upload for me
+<jcater> is that a reasonable goal
+<jcater> or do I have it all backwards?
+<jcater> ewe
+<jcater> after reading thru the manual
+<jcater> maybe I better stick to gnue gruntwork
+<jbailey> *lol*
+<jbailey> If I spoke snake better, I would've had gnue packages up.  I still can't get gnue-f to run.
+<jbailey> Oh hey.  I think you're the one derek told me to harras.
+SachaS (~sacha@203.190.196.35) joined #gnuenterprise.
+<jcater> sigh
+<jbailey> I shouldn't harras you? =)
+<jcater> what's the issue?
+<jbailey> "No worky"= )
+<jbailey> He wnats me to fix the .deb's, but I can't even get the damned thing to run.  If you're on tommorow night, I can ask question.  I'm headed to bed pretty quick.
+<jcater> ok
+<jcater> I should be here
+<jcater> are you not getting a tarball to work?
+<jcater> or the existing debs?
+<jbailey> Either.
+<jbailey> I've never had a functioning gnue system.
+<jbailey> It's been the major barrier to me. =)
+alexey (~Alexey@techkran.vladimir.ru) joined #gnuenterprise.
+SachaS (sacha@203.190.196.35) left irc: "Client Exiting"
+<nickr> Heh
+<nickr> I guess I could try my hand at the packages
+<nickr> since I have been able to get it working before
+<jcater> cool
+<nickr> I'll play with it when I get home if you guys remind me
+<dnSleep> that sounded bad
+Nick change: dnSleep -> derek
+<jcater> derek: I started following that gnucash thread
+<jcater> boy, do some of those guys have egos
+<nickr> derek: I ment it in the worst way possible
+<jcater> nickr: what timezone are you in?
+<derek> :)
+<nickr> I'm in EST
+<nickr> presently
+<jcater> <nickr> I'll play with it when I get home if you guys remind me
+<jcater> um, you're not still at work are you?
+<nickr> nah, I'm at my friend's house helpin him with various linuxy things
+<jcater> ah
+<jcater> :)
+<jcater> makes more sense
+<derek> as long as you arent playing with your friends thing
+<derek> i think were ok
+<nickr> hah
+<nickr> I'm going to buy an ipaq, they are amazingly cool.
+<derek> no go zaurus
+<derek> they are cooler
+<jcater> derek: we've changed the block-level triggers a little bit on you
+<jcater> so beware
+<nickr> no way
+<nickr> ipaqs are really, really cool
+<derek> any docs?
+<nickr> and linux is very well supported
+<jcater> of course
+<jcater> GFDataSource.py
+<derek> rofl
+<jcater> :)
+<jcater> but seriously
+<jcater> <pre-commit> no longer gets called "for each block"
+<jcater> but gets called "for each pending record"
+<jcater> plus
+<jbailey> Bed time for me...
+<jcater> you have <pre-insert>, <pre-delete> and <pre-update>
+<derek> yummy
+<derek> is it working?
+<jcater> which all get called for records that were inserted, deleted, and modified (but not inserted or deleted)
+jbailey (jbailey@HSE-Toronto-ppp318242.sympatico.ca) left irc: "Client Exiting"
+<jamest> autofill will break though
+<derek> heck right now i cant even get master detail working right :(
+<jcater> note that <pre-commit> will get called even if the other 3 get called
+<jcater> so
+<jcater> there's your docs
+<jamest> but it's fixable
+<jcater> but you can have
+<jamest> knowing jcater it's already fixed
+<jcater> <trigger type="pre-insert>
+<jcater> self.created_by = "me"
+<jcater> </trigger>
+<jcater> <trigger type="pre-commit">
+<jcater> self.modified_by = "me"
+<jcater> </trigger>
+<jcater> jamest: nope :(
+<jcater> I wanted to do some reports stuff tonight
+<jamest> if you commit then I can fix
+<jcater> um
+<jcater> I don't think I have any outstanding forms code
+<jcater> lemme check
+<nickr> homeward bound
+<derek> sweet will you guys be around tomorrow or this weekend
+<derek> so i can test it :)
+<jcater> probably
+<jcater> jamest: no uncommitted code
+<jcater> ... in common or forms, that is
+dsmith (dsmith@oh-strongsville5b-143.clvhoh.adelphia.net) joined #gnuenterprise.
+Yurik (~yrashk@gw.telcos.net.ua) joined #gnuenterprise.
+<ajmitch> sup y'all?
+<nickr> namuch
+<dsmith> Home, home again.
+<ajmitch> fun
+Action: derek is away: off to see the wizard
+<dsmith> "Pay no attention to the man behind that curtain!"
+<nickr> thats no man!
+<ajmitch> it's a fembot?
+<jcater> nickr: ah, just go back to "trying your hand at the packages"
+<jcater> ;)
+<nickr> heh
+<nickr> bastard.
+<nickr> okay. So what needs to be done with the packages?
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+<ajmitch> hey psu
+<psu> hi
+jcater (jason@HubA-mcr-24-165-193-24.midsouth.rr.com) left irc: "nite"
+--- Thu Apr  4 2002

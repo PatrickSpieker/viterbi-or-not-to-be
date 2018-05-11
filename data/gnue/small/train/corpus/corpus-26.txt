@@ -1,0 +1,1390 @@
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+ratmice (matt@vespertine.pc.ashlandfiber.net) left irc: Remote closed the connection
+ratmice (matt@vespertine.pc.ashlandfiber.net) joined #gnuenterprise.
+Action: ratmice and TSCHAK were thinking similarly on the gnue gnustep thing
+edwardam_ (~edwardam@12-218-106-230.client.mchsi.com) left irc: "Client Exiting"
+<ratmice> there is an existing python objc class that would need porting
+<ajmitch> gnustep & gnue? what?
+<ratmice> someone here mentioned it hours ago
+<ajmitch> ah
+<ratmice> that it would be nice
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+<ratmice> the gnustep projects gorm and gnue form designer implement similar ideas
+<ratmice> if gorm could be extended to output gnue-form xml definitions and applications that'd be nice..
+<ratmice> it has it's own database library
+<ratmice> doubt it supports as many things as gnue
+<psu> us and Zope are the big boys when it comes to backend d/b support in python
+<psu> If there's a pyfoo driver out there for any database
+<psu> no matter how obscure
+<psu> we've probably heard of it ;-)
+Action: psu wonders if there is a py driver for native M$ Access
+<psu> not that it really matters 
+<ratmice> with odbc.. 
+<psu> in that if you are having to use M$ Access w/GNUe
+<psu> being stuck with odbc is probably the least of your problems...
+<psu> Part of thr reason for seperating the GNUe d/b abstraction into GNUe Common
+<psu> was so other projects could pick it up & re-use
+<ratmice> but, I tought my mother how to use it over the phone... :)
+<psu> if they felt so inclined
+<ratmice> by that i mean make a database and some queries
+<ratmice> looks like it should work if i can figure out this setup.py thing
+<psu> ratmice: if you are using CVS, use the ./setup-cvs.py instead 
+<psu> if tarball release, you are on right track
+<ratmice> actually trying to compile pyobjc
+Action: psu guesses we're not the only project to have a setup.py ;)
+btami (~tamas@ip102-205.ktv.tiszanet.hu) joined #gnuenterprise.
+<btami> good morning
+<psu> hi btami
+<btami> hi psu
+<psu> work time for me, too
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise.
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+ra3vat_ (~ds@ics.elcom.ru) left irc: Read error: 110 (Connection timed out)
+ra3vat (~ds@ics.elcom.ru) joined #gnuenterprise.
+grib (~grib@grib.customer.jump.net) left irc: Remote closed the connection
+grib (~grib@grib.customer.jump.net) joined #gnuenterprise.
+<ratmice> well I got the release version of pyobjc compiled, cvs is more broken
+ariel_ (~ariel@ppp-217-133-240-228.dialup.tiscali.it) joined #gnuenterprise.
+<reinhard> good morning ariel
+<ariel_> gooood morning! :)
+dres (~dres@mail.lewismoss.org) left irc: Read error: 104 (Connection reset by peer)
+dres (~dres@mail.lewismoss.org) joined #gnuenterprise.
+btami (~tamas@ip102-205.ktv.tiszanet.hu) left irc: 
+Nick change: reinhard -> rm-lunch
+ariel_ (~ariel@ppp-217-133-240-228.dialup.tiscali.it) left irc: Read error: 104 (Connection reset by peer)
+ariel_ (~ariel@ppp-217-133-240-228.dialup.tiscali.it) joined #gnuenterprise.
+dsmith (~dsmith@p199.n-chpop03.stsn.com) joined #gnuenterprise.
+Nick change: rm-lunch -> reinhard
+<ariel_> derek: ?
+<reinhard> -derek- TIME Wed Nov  6 05:22:13
+<reinhard> ariel_: i guess he is asleep :)
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: "Free Your Enterprise! - http://www.gnuenterprise.org"
+jbailey (~jbailey@65.48.140.35) joined #gnuenterprise.
+<reinhard> good morning jbailey
+<jbailey> g'morning reinhard
+dsmith (~dsmith@p199.n-chpop03.stsn.com) left irc: Read error: 110 (Connection timed out)
+<ariel_> reinhard: i tought it was from east coast
+<ariel_> sorry /he/it/
+<reinhard> he is from arizona
+<reinhard> which is quite in the west
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+<jbailey> cw
+<chillywilly> hello
+<ariel_> reinhard: i'm workink on an analysys of the class repository, when i finish i will submit a document to feedback
+<reinhard> ariel_: analysis?
+<chillywilly> hey does syslog.conf execte everything that macthes?
+<reinhard> you mean a proposal
+<chillywilly> er, log to everything that matches the selector?
+<reinhard> my understanding of analysis is to describe something that is already there
+<chillywilly> I want iptables output to only go to one file
+<chillywilly> not spewed on the screen and /var/log/messages like it does now
+<chillywilly> although I added: kern.=info			/var/log/kernel.info, but it doesn't even seem to write there
+<jbailey> Does appserver actually do anything yet?
+<chillywilly> i have iptables log with log-level info
+<chillywilly> sure
+<reinhard> jbailey: yes
+<reinhard> jbailey: it passes all data requests through to the database
+<ariel_> more a note to discuss, it will contain a class diagram, how the classes are stored as tables, how a simple example (say base+baber+cardealer+..) will fill the tables.r
+<reinhard> and has a very very basic function for calling methods
+<reinhard> ariel_: great
+<reinhard> ariel_: thanks for informing me, i just planned to start something similar
+<ariel_> can you read openoffice format?
+<reinhard> eahm...
+<jbailey> reinhard: Okay, cool.  I just want to make sure if I go throught he effort of packaging it that it's not a waste of time.
+<reinhard> i have a pc where i can :)
+<reinhard> jbailey: not sure about that
+<reinhard> it does nothing "useful" now
+<reinhard> it's more like an empty box that can be filled afterwards
+<reinhard> the only reason i see it would make sense to package it is
+<jbailey> I'm not so concerned about the usefulness.  I just want it to somewhat work as advertised.
+<reinhard> for "marketing" reasons
+<chillywilly> nobody can help with syslogd?
+<jbailey> chillywilly: No, sorry.
+<reinhard> chillywilly: don't think so
+<reinhard> chillywilly: only thing i found out is
+<chillywilly> I think it will do all that match
+<reinhard> that some messages can be turned off by dmesg command
+<chillywilly> that's not what I want ;)
+<chillywilly> I want to route some loggin elsewhere ;)
+<reinhard> ok
+<reinhard> well the feeling i got from your question was anyway
+<reinhard> that you have a much better understanding of syslogd than me :)
+<reinhard> jbailey: it does work as advertised IMHO
+<reinhard> as we advertised it as "very early proof of concept" :)
+<jbailey> Excellent!
+<chillywilly> brb
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: "Free Your Enterprise! - http://www.gnuenterprise.org"
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+lupo (~lupo@p5085F339.dip.t-dialin.net) joined #gnuenterprise.
+<lupo> hi?
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: Client Quit
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+ColeMarcus (~ColeMarcu@p50805656.dip.t-dialin.net) joined #gnuenterprise.
+<lupo> chillywilly!
+<ColeMarcus> hi guys.  Anyone from germany, and knows if there is a localysed version of gnue availabale for germany, and that the output is accepted by the finance office
+<chillywilly> lupo!
+<lupo> ColeMarcus: there is the general possibility of translating gnue. as we have 3 german-speaking developers or project-watchers, this is quite possible
+<lupo> concerning the output
+<lupo> output which is useful for the tax office has to be generated by program packages, i.e. the general ledger, which are not yet implemented
+ToyMan (~stuq@smtp.dstoys.com) joined #gnuenterprise.
+<lupo> ToyMan!
+<ToyMan> howdy
+<ColeMarcus> hmm and some simple   xml (or simmilar)output, i can render myself a document , print it out and give it to the finance office. Can this easily solved or do i need a huge time to deploy this
+<lupo> no general problem
+<jbailey> Nivada didn't legalize pot.  Weird.
+<lupo> GNUe reports takes xml and transforms it to various other formats. You can always take the raw XML and do with it what you want.
+<ColeMarcus> ;)
+<lupo> jbailey: That discussion has been going on for months now in Germany - the Green party wants it legalized
+<lupo> What a crap - they just want to do legally what they've done illegally for the last 20 years ;)
+<lupo> Nothing against pot. but the discussion shows a lot of stupid points on the conservative side
+<lupo> ColeMarcus: what do you want to use GNUe for?
+Nick change: reinhard -> columbo
+<jbailey> lupo: I just figured that Nivada of all of them would legalize first.  It's likely to be decriminalized here in Canada, and acc. to the news I just heard, doctors want to be able to prescribe heroin.
+<columbo> lupo: where were you on oct 31 from 12 p.m. to 6 p.m.?
+<jbailey> I forsee an increase in the number of university students studying to be pharmacists.
+Nick change: columbo -> reinhard
+<lupo> columbo: erm :(
+<lupo> reinhard: i was in a traffic jam and afterwards i didn't find the hotel
+<ColeMarcus> lupo well we have a small business , and well we need a fibu, and im looking around for a some linux solution instead of using lexware produkts ;)
+<lupo> ColeMarcus: I see. Well, standard GNUe is pitily not yet ready to replace common FiBu or general ERP.
+Action: lupo thinks that Frankfurt sucks
+<ColeMarcus> hmmmm  :( 
+<ColeMarcus> lupo you know any existing alternatives on linux that are still ready to use?
+<lupo> There are still NOLA and SQL Ledger
+<lupo> I plan to use NOLA for a medium business solution
+<ColeMarcus> hmm ill have a look at NOLA ( while still keeping an eye on gnue;) perhaps for later use ).  SQL Ledger is  webbased only as i know, which i dont realy like 
+<lupo> NOLA is also web based
+<ColeMarcus> hmm
+<lupo> So you see why GNUe exists :)
+<ColeMarcus> well i doenst need very complex for my needs at the moment,  (just bill handling and a little bit controlling the money flow, what goes in and what goes out)
+jbailey (~jbailey@65.48.140.35) left irc: "Client Exiting"
+<lupo> GuV?
+<ColeMarcus> yes 
+<lupo> reinhard: what has been going on?
+<reinhard> lupo: you are subscribed to gnue-dev@gnu.org?
+<lupo> reinhard: we should exchange cell phone numbers or something like that
+<lupo> reinhard: nope, not subscribed. i sometimes browse the archives, though
+<reinhard> ok
+<reinhard> browse the archives :)
+<ColeMarcus> as said just a small business ;) ( i mean at the moment im doing it completly by hand but this well gets a little bit on my nervs ;)   )
+<reinhard> look for "Halloween" :)
+<lupo> okay, got it
+<lupo> ColeMarcus: i see; i expect gnue to fullfill that requirements relatively rapid as soon as the tools are finished. dead line date: when it's ready...
+<ra3vat> ColeMarcus:  http://www.hansaworld.com/  proprietary though
+<lupo> reinhard: looks very interesting
+<lupo> reminds me a very tiny bit of SAPs architecture
+jbailey (~jbailey@65.48.140.35) joined #gnuenterprise.
+drochaid_ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+<lupo> okay gotta go
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: Read error: 104 (Connection reset by peer)
+<lupo> have a date :)
+<lupo> bye
+lupo (~lupo@p5085F339.dip.t-dialin.net) left irc: "using sirc version 2.211+KSIRC/1.1"
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: "Free Your Enterprise! - http://www.gnuenterprise.org"
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: Client Quit
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+jamest (~jamest@leibniz.math.ksu.edu) joined #gnuenterprise.
+<jamest> good morning
+<jamest> (for me anyway)
+<jbailey> I'm having a good morning.
+pattieja (~pattieja@www.pcxperience.com) joined #gnuenterprise.
+jbailey (~jbailey@65.48.140.35) left irc: "Client Exiting"
+<reinhard> hmm
+<reinhard> anybody knows what i have to install to have java in galeon/mozilla
+<reinhard> (debian woody of course) :)
+<jamest> yeah
+<jamest> hang on a sec
+<jamest> i've got a proxy setup so this line may be a bit off but try adding to your /etc/apt/sources.list
+<jamest> deb http://www.ibiblio.org/pub/linux/devel/lang/java/blackdown.org/debian/ woody non-free
+<jamest> then update and search for java
+<jamest> you should then have an option like j2re1.3
+<jamest> which is the java2 runtime
+<reinhard> ah
+<reinhard> that means it is not in woody (natively)
+<reinhard> thanks jamest
+<jamest> i think the java 1 stuff is
+<jamest> however i know some browser now require java2
+<derek> hmmm lupo left
+<derek> ariel_: did you have a question for me
+jbailey (~jbailey@atlas.fundserv.com) joined #gnuenterprise.
+<jbailey> Anyone bored and want to explain to me how designer works? =)
+dsmith (firewall-u@cherry7.comerica.com) joined #gnuenterprise.
+<jamest> jbailey: um what do you want to do?
+<jamest> a real quick demo would be to run one of the wizards
+<jamest> should be file->new->from wizard or somethig like that
+<jamest> i can step you thru it but I'll be a bit choppy on responce times
+<jamest> oooooo, that reminds me, cvs designer wizards are not happy at the moment
+<jamest> i haven't looked into why as they haven't worked quite right since I returned to coding
+Action: jamest is subtly implying that they were broke before I got back so I didn't do it :)
+<dsmith> Well, I tried the .debs on www.gnuenterprise.org.  They want me to install a date package from somewhere.
+<dsmith> Is the egenix-mx-base-2.0.4 the right package to get for that?
+Action: jbailey is away: dr meeting
+<jamest> dsmith: i thought it would autoload dependencies
+<jamest> hmmm
+<jamest> on woody you need
+<jamest> python2.1-egenix-mxdatetime
+<jamest> s/2.1/version of python installed
+<dsmith> Hmm. I've got version 2.2 of python.
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) left irc: Read error: 54 (Connection reset by peer)
+<dsmith> Well...   I already have that.  Lets start over.
+<dsmith> When I run gnue-designer, I get:
+<dsmith>    This GNUe tool requires mxDateTime to be installed
+<dsmith>    You can find the mxDateTime at 
+<dsmith>    http://www.lemburg.com/files/python/mxDateTime.html
+<dsmith> Is that because I have 2.2 of pythin installed?
+<dsmith> Hmm. actually, I have 2.1 and 2.2 installed:
+<dsmith> ii  python2.1          2.1.3-11           An interactive object-oriented scripting language (v
+<dsmith> ii  python2.2          2.2.2-1            An interactive object-oriented scripting language (v
+<dsmith> Cool. A quick "apt-get install python2.2-egenix-mxdatetime" and it seems to be working.
+<dsmith> jamest: Thanks!
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+Remosi (dahoose@port-219-88-247-104.jet.net.nz) joined #gnuenterprise.
+<ariel_> derek: yes, but now i'm busy, just few minutes
+IsoosI (dahoose@port-219-88-247-80.jet.net.nz) left irc: Read error: 104 (Connection reset by peer)
+<ariel_> derek: i've seen the new documentation of schema (gsd)
+<ariel_> we have a type 'key' (old auto) that is translated to a db specific type, may be serial, int4 or whatsoever
+<ariel_> now a primary key has 2 functions:
+<ariel_> 1) enforce uniqueness of rows
+<ariel_> 2) be referenced by foreign keys of other databases
+<ariel_> suppose i have a table with a field that references the primary key of another table
+<ariel_> i want that field to have the same type of the pk in the other table
+ratmice (matt@vespertine.pc.ashlandfiber.net) left irc: Remote closed the connection
+<ariel_> if i declare it of type key may be this is translated to serial (that i don't want since it is only a foreign key)
+<ariel_> i cannot declare it int4 (or similar) since i don't know how key is translated 
+Action: jbailey is back (gone 00:39:12)
+<ariel_> i think a solution is another type fkey that is automatically translated by the specific driver to whatever is appropriate for the specific db backend
+<ariel_> what is your opinion?
+<jbailey> jamest: It's just the part where I'm setting up the datasource that confused me.  and it spewed python errors all over the console.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<jcater> ariel_: key != serial
+<jcater> there should be an auto="" that makes it serial
+<jcater> so in the primary table
+<jcater> you might have
+<jcater> mykey -->   type="key" auto="y"
+<jcater> then in the referencing table
+<jcater> pointerToKey --> type="key"
+<jamest> jbailey: you have datasources in your connections.conf file?
+<ariel_> jcater: thank you
+<jamest> example
+<jamest> [devel]
+<jamest> comment = Math Devel Database
+<jamest> provider = psycopg
+<jamest> host = rdbms
+<jamest> dbname = devel
+<jbailey> jamest: God, no. =)
+<ariel_> jcater: there is something broken in stdout.py
+<jbailey> I'll config that up.
+<jbailey> I should probably write a README for the Debian package, too.
+<ariel_> if i run grcvs -f text -d out.txt foo.grd works fine
+<jamest> jbailey: it probably should just fail though with error dumps
+<ariel_> if i run grcvs -f text  foo.grd 
+<jamest> s/should/shouldn't
+<jcater> ariel_: yeah, we somehow broke that in the last week or two... still trying to pinpoint the problem
+<jcater> :(
+<ariel_> or grcvs -f text -d - foo.grd 
+<ariel_> it breaks
+<dsmith> jbailey: Yeah, the REAME would be nice.
+<jcater> I'm reasonably sure jamest broke it
+<ariel_> ok! waiting for the patch
+Action: jcater thwaps jamest
+<ariel_> farewell all
+<ariel_> \quit "theater"
+ariel_ (~ariel@ppp-217-133-240-228.dialup.tiscali.it) left irc: ""theater""
+<jamest> what did I break?
+StyXman (~mdione@ADSL-200-59-86-17.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<StyXman> hi alll
+Action: jbailey is away: I'm busy
+johannes_ (~johannes@M701P023.adsl.highway.telekom.at) left irc: ""dinner""
+<StyXman> GFForm's secondaryInit... is supposed to be run after the whole form is built?
+<chillywilly> fricken spamassassin
+<chillywilly> eating all the memory in my server
+<nickr> spamd
+<chillywilly> yea yea
+<chillywilly> I still can bitch about it ;)
+<chillywilly> I can't do shit right now until it is done
+<jamest> StyXman: the init system runs in phases
+<StyXman> jamest: yes, I almopst know about it..
+<StyXman> so, when loadForm is run
+<jamest> I'm pretty sure the objects are build during parsing
+<nickr> chillywilly: rewrite it using alien technology
+<jamest> then they start making passes thru the tree running the items in self._inits
+<chillywilly> nickr: ok, but what race?
+<StyXman> yes. loadForm parses and buidls the form structure, and then
+<nickr> chillywilly: Alphans have the best computer technology, and great hair
+<jamest> StyXman: ?
+<jamest> and then?
+<chillywilly> nickr: from centauri 4?
+<nickr> Oh yeeea
+btami (~btami@3e70d73a.dialin.enternet.hu) joined #gnuenterprise.
+<btami> hi all
+<nickr> btami
+<chillywilly> sup
+<btami> hello nickr, chillywilly
+<jamest> StyXman: i'm not understanding the question
+StyXman (~mdione@ADSL-200-59-86-17.cordoba.sinectis.com.ar) left irc: Read error: 60 (Operation timed out)
+<jamest> phaseInit is called by the parser after the objects have been built
+<nickr> zup
+<btami> jamest: i'm trying to hunt down one win32 forms bug, but i'v lost 
+<btami> this comes with tabbed forms
+<btami> when canging pages with mouse
+<btami> changing
+<btami> after that going to  the next record
+<btami> the "content" doesn't refresh
+<btami> i'v find something interesting in UIdriver.py in
+<btami> notebookTabHandler
+<btami> if i change 
+<btami>         action = events.Event('requestPAGE',event.GetSelection())
+<btami> to 
+<btami>         action = events.Event('requestNEXTBLOCK',event.GetSelection())
+<btami> changing tabs with mouse will be OK
+<jamest> wha?
+<btami> but PgDn/PgUp wrong
+<jamest> ok, we probably need to look into the nextBlock code and find if there is a refresh the page switching code doesn't do on its own
+<btami> but it's only on win32 IIRC
+<jamest> sigh
+<jamest> this is a long shot
+<jamest> but try adding a Refresh() event on the page widget
+Action: jamest has no working win32 boxes handy 
+<btami> ok, i will try
+<btami> i feel nobody likes to fix win32 bugs here :)
+<jamest> well
+<jamest> i started hammering thru the dcl bugs last nite
+<jamest> so if they are in there I'll make as attempt to fix them
+<btami> great!
+<jamest> wether i like it or not :)
+<btami> they are in there :)
+<jamest> with patches right?
+Action: jamest hopes and prays he won't have to spend time in windows debugging :)
+<jcater> btami: it's not so much we like to fix non-Win32 bugs vs Win32
+<jcater> it's that we don;t have win32 machines handy
+<jcater> :(
+<jamest> if anyone ones to send me a nice dual-athlon system with lots of HD, RAM, etc and WinXP
+<btami> jamest: patches? bugreports!
+<jamest> i'd be happy to wipe it, install debian, and convert my older system into a windows box :)
+<jamest> actually, I do ahve access to a (currently) win98 machine at home, however over the years I'm allowed to touch it less and less
+<jamest> wife seems to think I mess things up too much when I use it
+Action: jamest sees installing gnue and cygwin and improving things not messing them up :
+<btami> i think fixing win32 bugs is important, cose most of GNUe users
+<btami> will use win clients
+<btami> while M$ is so strong in offices
+siesel (jan@dial-213-168-72-89.netcologne.de) joined #gnuenterprise.
+<siesel> hi all
+<ajmitch> hi
+<chillywilly> hi hi
+<siesel> ajmitch: how was the exam?
+<ajmitch> which one?
+<ajmitch> i got one in a few hours :)
+<siesel> oh, I meant that.
+<siesel> good luck :)
+<ajmitch> thanks :)
+Action: jbailey is back (gone 01:29:51)
+<ajmitch> hey jbailey
+btami (~btami@3e70d73a.dialin.enternet.hu) left irc: Read error: 113 (No route to host)
+<jbailey> jamest: <jamest> provider = psycopg
+<jbailey> jamest: Where are these options documented?
+<jamest> jbailey: in the tech-ref or the developers guide in forms/doc
+<jamest> you can also look in common/src/dbdrivers
+<jamest> any dir in there that doesn't start with a _ is a valid option
+<jbailey> 'k
+<jbailey> Are all databases equally supported on Windows as well as Unix?
+<siesel> almost all are supported on both operating systems.
+<jamest> well
+<jamest> i think if the python driver is avail on that platform it should just work
+<jamest> and in windows any ODBC datasource sould work IIRC
+<jbailey> Cool.
+<jbailey> I want to make sure my example MySQL database will work on my bosses 'puter. =)
+<jamest> um
+<jbailey> There's an ODBC source for it, it shouldn't be a prob.
+<jamest> I'm about to commit query by detail support
+Action: ajmitch whispers to jamest - did he meantion _that_ word?
+<jamest> which may funk up datasources ( i can't test them all :)
+<jamest> so if you're going to demo don't cvs update right before he walks in
+<jbailey> *lol*
+<jbailey> I'm using the Debian packages, and I figured that I wouldn't update CVS until one of you told me "now's a good time"
+<jbailey> Derek does that with me for the DCL package.
+<ajmitch> i've been updating the pnet packages after nearly every decent sized commit :)
+<jbailey> ajmitch: I don't have time to pay that much attention to GNUe.
+<jamest> what!?!?!
+<ajmitch> true :)
+<jamest> GNUe = life = happiness = reason for existance
+Action: ajmitch sees why his computer feels like a 486
+<nickr> GNUe is like crack, then.
+<ajmitch> one should not have a 1-2 sec delay in typing & having characters show up, on an athlon, right?
+<jbailey> I think my 300 message per day mail volume is sufficient.
+<jbailey> ajmitch: It depends what the athalon is otherwise occupied with.
+<jbailey> if you're in a tight keyboard/display loop then no.
+<jbailey> If you're running windows, then maybe.
+<ajmitch> a little bit of disk activity slows the whole box right down :)
+<jamest> If you're slurping down pr0n from 15 different sites on the net...yes
+<jbailey> ajmitch: Turn on DMA.
+<ajmitch> time for me to really leave & study now
+<ajmitch> jbailey: i have DMA turned on
+<jbailey> ajmitch: You said that yesterday,t oo.
+<ajmitch> :P
+<jamest> ajmitch: unmask interuupts
+<ajmitch>  unmaskirq    =  1 (on)
+<ajmitch>  using_dma    =  1 (on)
+<jbailey> ajmitch: Plug it into the UDMA100/133 controller.
+<nickr> dma makes a huge difference
+<ajmitch> it is on the UDMA100 controller (motherboard)
+<jbailey> ajmitch: And failing all that, pack it into a box and send it to me.  I'll debug it for you and give it back next time I see you.
+<ajmitch> hdparm shows reasonable speeds
+<ajmitch> haha
+<nickr> I was copynig from a CD on my 1.5ghz athlon and it was DOGGING my system
+<nickr> until I turned on all the fast ide options
+<jamest> my athlon does that too once in a while
+siesel (jan@dial-213-168-72-89.netcologne.de) left irc: "later"
+<jamest> an asus or abit board IIRC
+<ajmitch> jbailey: i handled that gnats request for accounts
+<jbailey> ajmitch: Thanks.
+<jbailey> Did you email rao?
+<jamest> and if nothing else works, shut down the pr0n downloads, and just buy the mags at the store
+<ajmitch> doesn't help that i have an antique & crap video card as well :)
+<nickr> mine is a MSI nForce based board
+<ajmitch> jbailey: not yet
+<jbailey> jamest: The stuff he likes probably can't be found at stores.
+<jamest> oooo he's from NZ isn't he
+Action: ajmitch leaves before the sick jokes start
+<jamest> :)
+<nickr> sheep
+<jbailey> I wasn't thinking livestock...
+<jbailey> Unless..
+<jbailey> Naw.  Australians aren't livestock.
+<jbailey> =)
+<nickr> lol
+<jamest> if I close a ticket in dcl does the person that submitted it get an email back?
+<jbailey> if a tree falls in the forest...
+<jbailey> Sorry, I don't remember what it does.
+drochaid_ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: Read error: 54 (Connection reset by peer)
+drochaid__ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+Action: psu will get story onto website tonight re. our new official Debians
+<psu> & send to gnue-announce as well
+<jbailey> Oh dear.
+<jbailey> Did you catch that I got designer done last night, too?
+<jbailey> May as well make it accurate.
+<psu> forms, common, designer
+<jbailey> Mhm
+Action: psu will put the usual "This is CVS, whatdya expect?" disclaimer
+<jbailey> I expect bug reports. =)
+<jamest> um
+<jamest> gnue cvs made it into sid?
+<psu> jamest: that's how I read the logs, but you were actually there...
+StyXman (~mdione@ADSL-200-59-86-17.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<StyXman> I fixed another bug
+<StyXman> the one that prevented to use parameters as datasources conditions and
+<StyXman> prevented their reference in on-startup trigger
+<jamest> StyXman: which cvs is this in?
+<StyXman> the problem is that the parameters are not ...
+<StyXman> jamest: was that already fixed?
+<StyXman> my cvs is rather old, but updating is not an easy thing to do...
+<StyXman> 3 weeks, I'll say
+siesel (jan@dial-194-8-209-51.netcologne.de) joined #gnuenterprise.
+<siesel> hi hi
+<StyXman> hi siesel
+<jamest> StyXman: i dunno
+<jamest> what does your cvs do different than ours again....
+<StyXman> well, with just adding...
+Action: jamest has been gone too long to recall
+<StyXman>       '_parameters': app._parameters
+<siesel> hi StyXman.
+<StyXman> to the attributes hash passed to loadXMLObject in GFParser.loadFormm
+<StyXman> fixes it
+<jcater> um
+<jcater> that doesn't seem quite right
+<jcater> reports doesn't do that
+<jcater> hmmm
+<siesel> StyXman: IMHO the parameter stuff is already fixed by removing the parameter caching in forms.
+<siesel> but I could be wrong.
+<StyXman> well, the orginal code assigns the parameters when calling instance.setForm
+<StyXman> that's too late to read parameters in on-startup, as is done after the whole loadForm (with all the inits run) is executed
+<jcater> sigh
+<jcater> I have that one fixed in my local copy
+<jcater> but my routing isn't working properly
+<jamest> but we cut off his cvs access
+<StyXman> ah, ok
+<jcater> so I can't access savannah to commit my fixes :(
+<StyXman> routing? can't reach the cvs server?
+<StyXman> !!!
+<jcater> StyXman: yeah, our ISP is boinked today
+<jcater> e.g.
+<jcater> I can access www.google.com
+<jcater> but not news.google.com
+<jamest> jcater: can you ping
+<jamest> 199.232.41.3
+<StyXman> ours too
+<jcater> no
+<jamest> StyXman: what does your cvs do different than ours again....?
+Action: jamest can't recall
+<StyXman> jamest: I'm rather 3 weeks behind, 'cause I'm syncing our work with yours
+<ajmitch> sounds messy
+<StyXman> ah, sorru, misread
+<StyXman> uh, weel, we got historic tables, multiple tables on datasources definitions...
+<StyXman> gimme a sec
+<siesel> StyXman: you add the "_paramter" line in the loadFile calls, which is in forms/src/GFParser.py L62, right? 
+<StyXman> scrollbars alomost working...
+yogurt2unge (~charlie@ADSL-200-59-86-17.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<StyXman> siesel: no.
+aprono (~aprono@ADSL-200-59-86-17.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<StyXman> again, here:
+Chipaca (~john@ADSL-200-59-86-17.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<StyXman> to the attributes hash passed to loadXMLObject in GFParser.loadForm
+Action: Chipaca waltzes in
+<Chipaca> whassup?
+<siesel> STyXman: GFParser.loadForm is now GFParser.loadFile.
+<StyXman> siesel: uh, excuse me again. the real answer is yes.
+<jcater> why did that change to loadFile?
+<StyXman> chit
+<jamest> it changed because I need a consistant way to deal with 
+<jcater> was that part of the import migration to common?
+<jamest> yes
+<StyXman> hi guys. well, I told them things we've done
+<jcater> cool
+<StyXman> \multiple tables, historic tables, scrollbars... naything else, besides menu and toolbar?
+<jamest> historic tables?
+<StyXman> jamest: better wait till Chipaca sits down again
+<StyXman> my english is not that well yet
+<StyXman> here he comes
+<Chipaca> back
+<psu> jamest: as discussed in KC
+<Chipaca> transactional tables I believe they're also called
+Action: psu finds the ref
+Action: Chipaca hugs psu
+<Chipaca> we haven't had time to do it with delegates, as we wanted, unfortunately
+<Chipaca> because getting delegation to work would've probably changed the whole of dbsig, which was a no-no at that point
+<psu> http://kt.zork.net/GNUe/gnue20020928_48.html#19
+<Chipaca> it's still in the to-do list ;)
+<siesel> Chipaca: what do you mean with delegation?
+<Chipaca> siesel: *sigh*
+<jcater> argh!
+<jcater> zork.net is unroutable for me too
+<Chipaca> heee
+Action: jcater curses at something
+<jcater> jamest: can I curse at you?
+<Chipaca> which of the kt.zork.net?
+<Chipaca> there are like four of 'em :)
+<jamest> sure: join the crowd
+<psu> jcater: try again - it's mirrored automagically, so maybe if you hit a diff mirror...
+<jcater> jamest: @#$@!#$
+<Chipaca> kt.zork.net         	A	193.201.200.66
+<Chipaca> kt.zork.net         	A	209.61.154.49
+<Chipaca> kt.zork.net         	A	212.204.235.21
+<Chipaca> kt.zork.net         	A	217.157.160.207
+<StyXman> well, is a common procedure to curse at and blame at me for everything wrong here, so you can just join the party :)
+<jcater> StyXman: !@$@!#
+<StyXman> :)
+<StyXman> now I fell complete :)
+<StyXman> s/fell/feel/
+<StyXman> that
+<Chipaca> StyXman: you winer
+<jcater> sigh
+<jcater> I can get to one of those 4
+<jcater> however
+<Chipaca> siesel: we explained delegation about the same time, it's probably in kt...
+<jcater> they use name-based virtual hosting
+<Chipaca> jcater: edit /etc/hosts :)
+<jcater> so, it redirects me to a 404
+<psu> jcater: they are also mirroed on livejournal.com
+<StyXman> let's go kick ISP's...
+<Chipaca> siesel: in fact the link psu posted was about delegation :)
+<psu> which is esp. cool since the guy uses python rather than XSLT to parse them
+<siesel> Chipaca: thx, found it.
+<StyXman> jcater: so, how did you fixed that?
+<StyXman> the params thing, I mean..
+<jcater> um
+<jcater> I think...
+<jcater> yeah
+<jcater> GFForms.py  __init__
+<jcater>     self._parameters = app._parameters
+<jcater> which is a lot like what you did
+ColeMarcus (~ColeMarcu@p50805656.dip.t-dialin.net) left irc: 
+<StyXman> *almost*
+<StyXman> yes, seems the best place to do it.
+<StyXman> jamest: did you removed the same thing from GFInstance.setForm?
+<StyXman> s/same thing/equivalent thing/
+<StyXman> s/removed/remove/
+<StyXman> grrr english
+<jcater> StyXman: yeah
+<siesel> btw. jcater, jamest: does anyone of you have an urgent need for integrator?
+<Chipaca> siesel: ?
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise.
+<jcater> siesel: relatively so
+<jcater> I mean, not tomorrow
+<jcater> but real soon
+<jcater> I've already started on
+<jcater> it
+<jbailey> Funny, I'm just reading the website to figure out what integator is. =)
+<jcater> I think my latest stuff is in cvs
+<jcater> siesel: one of the biggest things I'll need to do next
+<jcater> (That I haven't even started on)
+<jcater> is a CSV / Flatfile dbdriver
+<jcater> even a simplistic one
+<ajmitch> gadfly not gonna cut it?
+Action: Chipaca remembers DBD::CSV
+<jcater> as my plans for integrator are primarily mapping from source datasources to destination datasources
+<jcater> ajmitch: this isn't actually to run apps against
+<jcater> I need to be able to load CVS files into my database
+<jcater> and dump them from my database
+<jbailey> ajmitch: Aren't you studying?
+<jcater> for our vendors
+<jcater> I certainly wouldn't plan on running forms against a CSV file, although it would be possible I suppose....
+<jcater> :)
+<ajmitch> jbailey: yeah, got my monitor on still tho
+<ajmitch> ah, i see
+sfb- (mattr@chew.exelus.net) left irc: "[BX] This BitchX's for you"
+<ajmitch> shouldn't take too long to do something 
+<ajmitch> when do you need it by? :)
+<jbailey> jcater: Cheaper to do it against CSV then, say, an XML flatfile. =)
+<StyXman> Chipaca: yes, sorrily this ain't perl...
+<jbailey> At least you could mmap the CSV file and get some decent performance out ofit.
+<StyXman> but I like python a lot more than perl...
+<Chipaca> StyXman: yes. But DBI kicks butt :)
+<ajmitch> jcater: i can try & start on one tomorrow if you'd like, not sure how you'd declare field names & stuff like that tho
+<ajmitch> as it would be useful for me as well
+<siesel> jcater: For me Mapping between databases and especially some kind of rule engine is important.
+<jcater> ajmitch: that's part of my hangup
+<jcater> I'm wondering about having a child node of datasource
+<jcater> <datasource type="flatfile">
+<jcater>   <flatfiledefinition> 
+<jcater>     ....
+<jcater> but am not sure
+<jcater> the best approach
+jamest (~jamest@leibniz.math.ksu.edu) left #gnuenterprise.
+<ajmitch> for something quick & dirty, just name them 'column1' or 'field2', etc
+<ajmitch> would allow for conversion
+<siesel> if the flatfile dbdriver is just used for loading csv into integrator, why should we define special names for the fields
+<ajmitch> agreed
+<siesel> wouldn't a "field_1", "field_2" etc. be enought?
+<ajmitch> as i said :)
+<jcater> I don't think it will necessarily be 1 way
+<jcater> but that's fine too
+<jcater> field_1 would work 2 ways
+<ajmitch> some CSV files may have headers
+<ajmitch> iirc
+<jcater> s/2/both
+<jcater> ajmitch: most loading software I see
+<jcater> have a "skipFirstRow" option
+<ajmitch> yep
+<ajmitch> that first row may contain field names if you're lucky
+Action: siesel would like to put all that stuff (skipFirstRow, delimiter....) into the connection.conf file
+<jcater> that's workable too
+<ajmitch> could be a good idea 
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) left irc: "'Hardware' defines as the parts of a computer system that can be kicked"
+<jcater> let's do that
+<ajmitch> i'm thinking of using CSV to import online banking records
+<ajmitch> http://www.object-craft.com.au/projects/csv/ could be useful (if you can access it :) )
+<siesel> what about writing? Should read+write access be supported. (that would mean to rewrite the file after a COMMIT)
+<ajmitch> ok
+<ajmitch> so this will be a standard db driver? i'll give it a go tomorrow for y'all
+<jcater> siesel: that's what I'm thinking
+<ajmitch> ah yup, my bank has the first row as:
+<ajmitch> Date,Amount,Payee,Particulars,Code,Reference,Tran Type
+<jcater> I can see two options
+<jcater> 1. skipFirstRow=0|1
+<jcater> or
+<jcater> 2. useHeadersAsFields
+<jcater> or soemthing like that
+<ajmitch> go for 2
+<jcater> (they don't have to be exclusive
+<jcater> )
+<ajmitch> true
+<jcater> err
+<jcater> actually
+<jcater> skiprows shouldn't be boolean
+<jcater> it should be an integer
+<jcater> as I've gotten some funky stuff frm vendors before
+<jcater> esp. when they aren't using a real application
+<jcater> but are instead doing in a spreadsheet and saving as cvs
+<jcater> s/cvs/csv
+<siesel> what about "firstRow=skip|fieldnames|data"
+<jbailey> Is there plans for GNUe to provide an interface to creating databases/manipulating schemas?
+<jcater> designer
+<jcater> siesel: and default to "data" ?
+<jcater> works for me'
+<siesel> ok.
+ajmitch (~me@wlg1-port38.jetstart.maxnet.co.nz) left irc: Read error: 104 (Connection reset by peer)
+<siesel> ehm. ... IMHO the Integrator Proposal speaks of converting data from a datasource into XML, move it into a RULE ENGINE and export the XML into a datasource again.
+<siesel> the RULE ENGINE is quite similar to a XSLT tranformation for me.
+ajmitch (~me@wlg1-port38.jetstart.maxnet.co.nz) joined #gnuenterprise.
+<ajmitch> bother
+<ajmitch> silly linux 
+<siesel> So I would like to add a module, which does kind of XSLT transformations, but is written in python, to common.
+<jbailey> 'kind of'?
+Action: ajmitch asks for logs to see what i missed :)
+<jbailey> What's wrong with regular XSLT?
+<siesel> So reports could use it too. 
+<siesel> nothing
+<jbailey> Use an XSLT namespace....
+<jbailey> Like, if it's presenting as XML, you could just use <xsl:*> tags to embed commands in.
+<siesel> I would just like to fake XML to the RULE ENGINE, because I don't think that it is good to convert huge database tables to XML just for fun.
+grib (~grib@grib.customer.jump.net) left irc: Remote closed the connection
+grib (~grib@grib.customer.jump.net) joined #gnuenterprise.
+<jcater> reports is a rule engine
+<jbailey> I've never lokoed at XML Query.  Last I looked it seemed like a bad idea.  Is it? =)
+<jcater> I dunno
+<siesel> jcater: so you would recommend to take code from reports to write integrator?
+<jcater> reuse code, yet
+<jcater> yes
+<jcater> at least, I think so
+Chipaca (~john@ADSL-200-59-86-17.cordoba.sinectis.com.ar) left irc: "ircII EPIC4-1.1.5 -- Are we there yet?"
+<StyXman> jcater: sorry, I was working. did you commited the changes?
+<jcater> StyXman: my pipe is still down to 80% of the world :(
+<siesel> Get:1 ftp://ftp.debian.org unstable/main gnue-common 0.4.1a-20021105-1 :)
+ToyMan (~stuq@smtp.dstoys.com) left irc: ": I'm off to make more toys..."
+<dsmith> Cool.  getting the new packages from Sid.
+<siesel> anyone knows how to detect the backend/server encoding of a postgresql database?
+<jbailey> s/take code from reports/move code into common and use in both reports and/
+<jbailey> ?
+<jbailey> =)
+<yogurt2unge> Lindo
+<yogurt2unge> sorry
+<yogurt2unge> bad focusing
+KeithJagrs (trilluser@63.74.24.9) joined #gnuenterprise.
+<KeithJagrs> hello
+aprono (~aprono@ADSL-200-59-86-17.cordoba.sinectis.com.ar) left irc: "Client Exiting"
+<siesel> jbailey: integrator
+<dsmith> jbailey: What's the proper/best/working driver for postgres (I'm looking for a package that works with gnue)
+<jcater> psycopg
+<jcater> but not 1.0.13
+<dsmith> Hmm how about python2.2-psycopg ?
+<dsmith> Ahh, it's 1.0.13-1
+<dsmith> jcater: What's borkeld in 1.0.13 ?
+<jcater> I upgraded to it this week
+<jcater> and they changed something in their api
+<jcater> or ahve a bad bug
+Action: jcater doesn't undesrtand why functionality between 1.0.12 and 1.0.13 would change
+<dsmith> So 1.0.12 works? I wonder if that's in woody.
+<jcater> you can grab from http://www.gnuenterprise.org/~jcater/debian/
+<jcater> it may be in woody, not sure
+<dsmith> A "apt-get install python2.2-psycopg/stable" fails
+Action: dsmith wgets http://www.gnuenterprise.org/%7Ejcater/debian/python2.2-psycopg_1.0.12-1_i386.deb
+<dsmith> jcater: Yaay!  Works.
+<jbailey> Woody! Bah!
+<jbailey> Real men use sid!
+<ajmitch> not when sid is broken!
+<jbailey> Sid's no broken.  You folks just don't have an appreciation for the finer subtleties of glibc upgrades. =)
+<StyXman> just for the record: a backup file got into cvs
+<ajmitch> jbailey: we talking about psycopg :)
+<StyXman> docbook/old/chapters/chpGNUeModuleGuide.sgm~
+<jbailey> ajmitch: Yeah, well. =)
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "Client Exiting"
+<dsmith> jbailey: Real Men use Sid.  Insane people use Experimental.
+<dsmith> jbailey: People with Work To Do use stable.
+<ajmitch> real men use LFS!
+<chillywilly> real men code in binary
+<ajmitch> real men send pulses down the cpu wires themselves
+<chillywilly> hehe
+Action: ajmitch gets back to writing notes about routing
+<dsmith> My very fist program I coded in hex (not binary), but I *did* enter it in binary.
+<ajmitch> sicko
+Action: ajmitch really gets back to study
+<dsmith> That was in, what, 1979?
+<dsmith> 23 years! Sheesh!
+<jbailey> dsmith: Yeah - I was really pleased when gnome2 got into sid so I could stop using experimental.
+<chillywilly> dsmith: you are OLD
+<dsmith> <-- "Old Guy"
+Action: chillywilly needs to wrap his noggin around this problem
+<jbailey> 1980 I used basic to type in games into our TRS-80 Coco. =)
+<jbailey> Hmm.  We might have had the model 1 by then.
+<nickr> Model 1!? wimp!
+<chillywilly> gnome2 is in sid now?
+<nickr> OS9 my ass!
+<nickr> chillywilly: yea
+<chillywilly> I can remove my experimental lines?
+<nickr> chillywilly: yea
+<chillywilly> well I'l be a monkey's uncle
+<jbailey> That explains so much.
+<dsmith> chillywilly: Playing wiht it now.
+<nickr> There are several things that piss me off about gnome2
+<nickr> on the other hand, some things are very cool
+<chillywilly> better to be pissed ff than pissed on
+<jbailey> The things that pissed me off don't seem to anymore.
+<jbailey> I've just gotten used to them.
+<chillywilly> I like gnome 2
+<chillywilly> it is my beotch
+<nickr> The main thing that pissed me off was that you couldn't set the level of the panel, it was always 'always on top'
+<dsmith> The boss installed dRedHat 8 the other day.  He's back to Debian.
+<chillywilly> lol
+<nickr> But that was mitigated whenI found you can set the hidden height to 1 pixel and autohide times to 100ms
+<chillywilly> oooh, gstreamer 0.4.2 is in now
+<chillywilly> w00t
+<nickr> whats the point of gstreamer anyway?
+<chillywilly> multi-media framework
+<chillywilly> it's like the gnue for multimedia
+<chillywilly> ;)
+<chillywilly> framework, apps, et. al.
+<nickr> It just gives me an error and does nothing.
+<chillywilly> I am going to use it to encode our church services in ogg
+<nickr> I'm looking forward to mplayer, now that divx is unencumbered. Muahahaha
+<chillywilly> right off the mixer board into my laptop
+<jbailey> chillywilly: Does gstreamer do a nice job of that?
+<jbailey> chillywilly: We're using icecast.
+<chillywilly> well all I did right now was test it with a mic
+yogurt2unge (~charlie@ADSL-200-59-86-17.cordoba.sinectis.com.ar) left irc: "Client Exiting"
+<chillywilly> gst-launch ! osssrc ! vorbisenc ! filesink location=whatever.ogg.....soemthing like that and talk into the mic ;)
+<chillywilly> we'll see how it works
+<chillywilly> I need an 1/4 to 1/8 adapter
+<dsmith> Does anyone know if it's even possible for nautilus to open .tar.gz's and .deb's like midnight commander (and gmc) does?
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<nickr> Im pretty sure you can.
+<KeithJagrs> gstreamer?
+<KeithJagrs> multimedia?
+<chillywilly>  #gstreamer
+<chillywilly> http://www.libertyetech.com/test.ogg <-- funny :P
+<dsmith> I would think that the vfs stuff would do it, but I've already got that installed.
+Action: chillywilly checks to make sure that file is still there
+<dsmith> Well, Back to Ohio.  Good Night, Folks!
+dsmith (firewall-u@cherry7.comerica.com) left irc: "later.."
+siesel (jan@dial-194-8-209-51.netcologne.de) left irc: "nigth"
+Action: chillywilly thinks the debs need to hurry up and install themselves
+<StyXman> pages are no more containers? and blocks are?
+<chillywilly> do we have gnue debs in sid now?
+<jbailey> They've been ACCEPTED.
+<StyXman> wow
+<chillywilly> but are they apt-gettable yet?
+Action: chillywilly does not know what it means to be "ACCEPTED"
+<StyXman> I guess they got in
+<jbailey> chillywilly: That's okay.  Geeks often feel like outcasts.
+<chillywilly> :'(
+<jbailey> I can see that it's in the master that gets rsync'd out, so whenever the pulse is finished, you'll be able to apt it.
+<jbailey> None of the buildds have picked it up yet, though.
+<chillywilly> k
+<chillywilly> brb
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: "Free Your Enterprise! - http://www.gnuenterprise.org"
+<StyXman> jcater: I found a strange line
+<StyXman> uh, fosr/src/uidrives/nstti/UIdriver.py:749
+<StyXman> s/fosr/forms/
+<StyXman> it reads 
+<StyXman> 'return keystroke'
+<StyXman> the cvs commit log reads:
+<StyXman> playing w/ docs
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+<StyXman> is that ok?
+<jcater> that driver is in a state of transition
+<jcater> I wouldn't go digging around too much 
+<jcater> no telling what other nasties you'll find
+<StyXman> ok. is just that I was sweeping the code...
+<StyXman> so, next week we'll have some patches.
+<StyXman> or maybe this friday
+<StyXman> but surely on monday
+<StyXman> see you around
+StyXman (~mdione@ADSL-200-59-86-17.cordoba.sinectis.com.ar) left irc: "runs"
+jamest (~jamest@adsl-64-216-107-182.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+<jbailey> ".. English-like syntax such as SQL ...."
+<jbailey> SQL is Englishlike in the same way that a kick to the head is sex-like.
+<jcater> mmmmm
+<jcater> kick-in-the-head
+Action: jcater gets excited
+<jbailey> Perhaps you would get along well with the author of this textbook.
+<jamest> physical contact?
+<jbailey> physical contact.  heads and feet can be used for sexual activity.
+<jbailey> Some might even be into pain.
+<jbailey> And there's a few people for whom that might be their *preferred* sexual contact.
+<jbailey> But not many. =)
+<jbailey> Any DCL evangelizors here?
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) joined #gnuenterprise.
+Action: jbailey pokes Derek.
+Action: jamest hands jbailey a bat
+<jamest> try this
+<Maniac> evangelizers?
+Action: Maniac sings the praise of DCL
+<jbailey> http://gcc.gnu.org/ml/gcc/2002-11/msg00122.html and the descending threads seem to indicate that folks there want to switch from Gnats to Bugzilla.
+<jbailey> People (and by this, I generally mean Derek) who would prefer that they use DCL should probably speak up.
+<jamest> I'm pretty happy with DCL for our bugs
+<jbailey> I just don't have time to explain to them why it's a good idea to use it.
+<jbailey> (Partially because I dno't actually use DCL for anything)
+<derek> jbailey: im a dcl evangelizer
+<derek> BUT its more 'work order' oriented than software bug oriented
+<jbailey> Ah, okay.
+<derek> i.e. there are several features missing that would make it better
+<derek> but i think it does pretty darn good
+<jbailey> derek: I just figured that if you felt DCL was up to it, you could poke your head it.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left #gnuenterprise ("Client Exiting").
+<derek> PLUS with most software you hope you are doing more new work
+<derek> than fixing bugs
+<derek> and i think DCL is FAR superior in task management
+<derek> but weaker in bug management (though it does an ok job of this)
+<jbailey> (Uh oh.  Derek is in an uppercase mood)
+<derek> if 'versioning' stuff was beefed up a bit it would be pretty good
+<derek> bugzilla is great for version management, but its really bad for end users to deal with (imho)
+<derek> i.e. its daunting to deal with unless you use it religiously
+<jbailey> I know several people with the same complaint.
+<derek> Remosi: csv driver, i personally wouldnt make it as complex as is talked about (well to a degree)
+<jamest> derek!
+<jamest> you have mysql running?
+<derek> as i think there is a difference between 'integrator' and 'csv driver'
+<derek> jamest: i think so but im on way out
+<jamest> i need a person with mysql running to test some stuff for me
+<derek> just was logging out and i saw my name and bat
+<derek> sos thought i shsould investigate :)
+<jamest> i felt the love?
+<jamest> s/i/and
+<derek> i can test when i get home in a few hours
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: "Client Exiting"
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) left irc: Read error: 110 (Connection timed out)
+SachaS (~Sacha@ark.cs.curtin.edu.au) joined #gnuenterprise.
+marioct (~marioct@200-204-68-155.dsl.telesp.net.br) joined #gnuenterprise.
+<marioct> hello people, I need some help with Sample examples....  
+<jamest> i'll try and help
+<marioct> good night jamest.
+<jamest> what do yo need?
+<marioct> I need SQL Sample tables. Where can I get it ?
+<marioct> To run zipcode.gfd
+<jamest> where is this sample located?
+<jamest> samples/zipcode/zipcode.gfd?
+<marioct> yes.
+<jamest> is this cvs or a release?
+<marioct> is a release... 
+<jamest> hmmm is there not a pg_zip_code.sql file in the same directory with it?
+<marioct> no there isn't !
+<jamest> sigh
+<jamest> ok
+<jamest> create table state
+<jamest> (
+<jamest>   state char(2)                 PRIMARY KEY,
+<jamest>   description varchar(30)       NOT NULL
+<jamest> );
+<jamest> create table zipcode
+<jamest> (
+<jamest>   zip char(5)      PRIMARY KEY,
+<jamest>   city varchar(30) NOT NULL,
+<jamest>   state char(2)    NOT NULL REFERENCES state
+<jamest> );
+<jamest> then quite a few lines like
+<jamest> INSERT INTO state (state, description) VALUES('AL','Alabama');
+<jamest> INSERT INTO state (state, description) VALUES('AK','Alaska');
+<jamest> INSERT INTO state (state, description) VALUES('AZ','Arizona');
+<jamest> but you can enter these directly into the form so no need to run them
+<marioct> ok, very thanks... :)
+<jamest> no problem
+<marioct> but, I need more one table called samples ?!?!?!
+<jamest> we really need to get our samples in better order
+<jamest> what database are you using?
+<marioct> Mysql .
+<jamest> ok, I'm not a mysql user so I'm not going to be much help
+<jamest> but i'll try
+<jamest> you really don't need our samples if you've installed designer
+<marioct> What can I do ? I have gnue-designer
+<jamest> in your connections.conf file setup an entry for your database
+<jamest> [gnue]
+<jamest> comment = Production DB(G)
+<jamest> provider = psycopg
+<jamest> host = gnue
+<jamest> dbname = gnue
+<jamest> replacing the provider with the database you're using 
+<jamest> provider = mysql
+<marioct> yes, I setup connections.conf to run with mysql.
+<jamest> ok, cool
+<jamest> run designer
+<jamest> gnue-designer
+<marioct> ok
+<jamest> file->new->from wzard
+<marioct> ok
+<jamest> lets do a simple one to start
+<jamest> Simple Form Wizard
+<marioct> cool
+<jamest> run that
+<jamest> do you see a title entry box
+<jamest> and a dropdown with a list of connections available?
+<marioct> ok... login required, I enter username and pass... 
+<jamest> lol, you're in better shape than me
+<jamest> i need to setup 0.4.0 real quick
+<marioct> I'm trying to understand this gnue... :)
+<marioct> now, I'm  on a screen named : Select Base TAble/Source
+<jamest> do you see tables listed?
+<marioct> one moment, I forgot to create tables. :)
+<jamest> you can create any tables you like
+<jamest> if you already have data in a database feel free to use it
+<marioct> I'll create a sample table.
+<jamest> let me know when you're ready to contine
+<marioct> I'm ready. now "Select Fields to include" !
+<jamest> ok select the fields you want to have visible on your form
+<jamest> then click add
+<jamest> on the bottom of this listing is an Arrangement method
+<jamest> pick any of them you like
+<marioct> ok.
+<jamest> grid is kinda handy for few field tables
+<jamest> but not huge tables
+<jamest> then click finished
+<marioct> ok. cool..  Now I have a form on my screen
+<jamest> file save 
+<jamest> just in case
+<marioct> ok
+<jamest> now we can exit 
+<jamest> we'll come back to it in a sec
+<jamest> once back at the prompt gnue-forms yourfile.gfd
+<marioct> exit gnue-designer ?
+<jamest> sure, or we can play some if you'd like?
+<jamest> i was going to have you run the form
+<jamest> but lets go ahead and make some changes
+<marioct> you rule !
+<jamest> double click on any field on the screen
+paqan (~paqan@202.155.120.221) left irc: "Client Exiting"
+<jamest> now in 0.4.0 there is a nasty bug that prevents a person from changing a property in the Property Inspector if a scrollbar is present on the Property Inspector dialog
+<jamest> you have to get creative and stretch the box really, really long
+<marioct> ok..
+<jamest> using the alt-key left mouse drag to move the dialog 
+<jamest> or whatever you windows manager supports
+<jamest> once the evil scrollbar is gone 
+<jamest> do you have a property called case?
+<marioct> yes, is the first one.
+<jamest> you should be able to open up a dropdown box here and choose upper
+<marioct> cool..
+<jamest> you should also have a maxLength property
+paqan (~paqan@202.155.120.221) joined #gnuenterprise.
+<jamest> and a property called required
+<jamest> if you turn on required then you cannot save changes unless you've filled this value
+<jamest> it's a UI based NOT NULL
+<jamest> if you're a sql person that is :)
+<marioct> how can I turn REQUIRED on ?
+<jamest> double click and set to true
+<marioct> sorry...  double click :)
+<marioct> what is DisplayMas??
+<jamest> it's a displayMask
+<jamest> but not functoinal in 0.4.0
+<jamest> pretend it's not there :)
+<marioct> hehe :)
+<jamest> however you can go down to typecast
+<jamest> and it'll implement some rather crude input masking
+<jamest> plus it prevents the user from entering the wrong type of data in the field
+<jamest> btw - what platform you running on?
+<marioct> linux.
+<marioct> and you ?
+<jamest> debian linux
+<marioct> me too debian.
+KeithJagrs (trilluser@63.74.24.9) left irc: "later"
+<jamest> you apt get this thing?
+<jamest> we have our repository on our server
+<marioct> not really,. I wget, and dpkg -i .debs
+<marioct> my apt-get isn working...
+<jamest> and I think jbailey pushed snapshots of our cvs into  sid
+<marioct> I will reinstall debian on my machine in decenber...
+<marioct> so apt-get will work again.
+<jamest> anyway please save your form fairly often
+<jamest> designer is, um, how do you say....fiesty
+<marioct> ok....  and where is the databsae connection ?
+<jamest> it'll work wonderful long enough for you to forget it's pre 1.0 then blam
+<jamest> exit designer and run
+<jbailey> blue?
+<jamest> gnue-forms yourfile.gfd
+<marioct> haha.. but ... what is fiesty ?
+<jbailey> jamest: Yes, yesterday's snapshots.  Should be at your friendly neighbourhood mirror.
+<jbailey> but only common, forms and designer.
+<jbailey> The others will follow later, and will likely be from yesterday's snapshot so that I have a known working base.
+<jamest> 1 chiefly Southern & Midland a : full of nervous energy : FIDGETY b : being touchy and quarrelsome
+<jamest> from w-m.com
+<marioct> ohh...  it doesn't work.
+<jamest> er
+<jamest> m-w.com
+<jamest> what is your error?
+<marioct> there are one screen of error messages...
+<jamest> i only need the last few lines
+<jamest> is this in forms or designer?
+<marioct> in forms.....
+<marioct> DB000:     AttributesNSImpl(newattrs, {}))
+<marioct> DB000:   File "/usr/lib/gnue/lib/python/gnue/common/GParser.py", line 249, in startElementNS
+<marioct> DB000:     raise MarkupError, _('Error processing <%s> tag [required attribute "%s" not present]')
+<marioct> % (name, attr)
+<marioct> DB000: gnue.common.GParser.MarkupError: Error processing <option> tag [required attribute "name" not present]
+<jamest> ah crap
+Action: jamest didn't want to do this to you
+<jamest> you a coder?
+<marioct> I know C++ not phyton... yet. :)
+<jamest> our wizards got a little wierd in the 0.4.0 release  (please note the last .0 on there :)
+<jamest> cool
+<jamest> edit the gfd file
+<jamest> anyone that groks c++ can grok gfd :)
+<marioct> hahaha..
+Action: chillywilly is grokking some c++ right now
+<jamest> in there you'll find some tags named <option>
+<jamest> what do they look like
+<marioct> wait a minute please... i think I make a mistake....
+<marioct> I ran another .gfd...
+<marioct> Now I run the correct .gfd and I received this error message...
+<marioct> DB000:     rsets = self._cursor.fetchmany()
+<marioct> DB000:   File "/usr/lib/python2.1/site-packages/MySQLdb/cursors.py", line 186, in fetchmany
+<marioct> DB000:     end = self._pos + size or self.arraysize
+<marioct> DB000: TypeError: unsupported operand types for +
+<jamest> argh!
+<marioct> After, gnue-forms asked username and password....
+<jamest> this means that the file /usr/lib/python2.1/site-packages/MySQLdb/cursors.py has issues
+<jamest> at least with our code
+<jamest> I imagine this is part of the mysql database driver?
+<jamest> outside of ours which would be in /usr/lib/gnue/lib/python/gnue/common/dbdrivers/mysql
+<jamest> sigh, what debian you running?
+<marioct> 2.2 potato.
+<marioct> release 6.
+<jamest> ok
+<jamest> with source installed python2.1?
+<jamest> or woody .debs for python 2.1
+<jamest> or other :)
+<jbailey> potato?  Are you not able to upgradE?
+<jamest> he's upgrading in december
+<jamest> his apt-get is broken
+<marioct> I will upgrade in december.. :) with backups in hands...
+<jamest> marioct: jbailey is our debian maintainer.....please refrain from feeding him and keep your hands on this side of the bars
+<jbailey> Or if you feed me, please get *vegan* donuts.
+<jbailey> They're rather hard to come by, sadly.
+<marioct> :)
+<jamest> we just have to let you run a form
+<jamest> in samples/intro/intro.gfd
+<jamest> that form does not require a data connection
+<jamest> and it shows off triggers, buttons and such
+<marioct> I have a lot of .debs for python... 2.1.3-3
+<jamest> pages, etc
+<jamest> a person can tinker with it in designer to their hearts content
+<marioct> I don't have this file :)
+<jamest> intro.gfd didn't make it in?
+<jamest> argh!!!!
+<marioct> haha.
+Action: chillywilly slabs jbailey with a trout
+<jamest> 0.5.0 is looking very much like it's going to be a no new features only cleanpu and docs release
+<marioct> Docs, is very good for new person like me..
+<jamest> cvs has some nice docs
+<Mr_You> and GNUe-SmallBiz release?
+<jamest> in openoffice format
+<jamest> Mr_You: that's a derek question
+<Mr_You> ok, its not in CVS yet
+<jamest> marioct: you up for trying CVS?
+<jamest> or do you buy the bandwidth by the byte?
+<Mr_You> I think it would do GNUe some good promoting the release of SmallBiz..
+<Mr_You> is someone doing freshmeant.net (was going to correct, but its kinda funny) ;-)
+<Mr_You> freshmeat.net
+<marioct> I'm up, but not now.... I have to sleep, it is 1a.m here in Brasil 
+<jamest> oush
+<jamest> ouch
+<jamest> where are our samples in the .debs?
+<Mr_You> if no one is doing freshmeat.net updates I could volunteer.
+<jamest> i can mail you intro.gfd if you like
+<chillywilly> oush! that hewrtz
+<marioct> I downloaded from gnue page.
+<jbailey> Hmm..  I don't remember if the samples wne into the tarball.
+<jamest> sigh
+<marioct> if you can.....  mario@mitus.com.br
+<jamest> i leave for a few months.................
+<jamest> and it's as big a mess as when I was around the first time :)
+<marioct> haha.. I'm feeling ....  I'll be here (IRC) tomorrow night...
+<jamest> sent
+<jamest> ok, have a good, um, night
+<marioct> Do you always come here ?
+Action: jamest hangs head in shame
+<jamest> yes
+<marioct> I'll try more with gnue-designer and forms... If I need some help... :)
+<jamest> ok
+<jamest> if you can get cvs
+<jamest> or if you like I can mail you an openoffice doc or pdf
+<jamest> of a designer guide for forms that jcater is working on
+<jamest> a tutorial of sorts
+Action: jbailey cries
+<jbailey> Why doesn't MS Access love me?
+<chillywilly> don't hang your head, hold it p with pride!
+<jamest> jbailey: it loves you
+<chillywilly> the goats cannot defeat us!
+<marioct> if you can ... Send -me this stuff by e-mail.
+<jamest> it's just in a "you shouldn't have been walking alone in the alley at midnight" kind of way
+<marioct> thanks again...  tomorrow I have numerical calculus lessons.... :)
+<jamest> marioct: ok, i'll try and get a pdf made tonight
+<marioct> thanks...  something is better than nothing...
+<marioct> good night people.
+<jamest> nite
+marioct (~marioct@200-204-68-155.dsl.telesp.net.br) left #gnuenterprise.
+<jbailey> ROAR.  Forms display differently than table rules.
+<jbailey> This isn't worth the 10 marks!
+<jamest> what?
+<jbailey> I'm doing a school assignment.  I have to do it in access. =(
+<jamest> dude
+Action: jamest is feeling pity for jbailey
+<jbailey> And 10% of the mark is on extra features and such.  "Use of a Query, Input Form or Report or use of Field Attributes, ie: Input Mask, Caption or Default Value."
+<jbailey> I have managed to avoid learning access for almost a decade!
+<jamest> ooooo
+<jamest> use gnue
+<jamest> then show it running on unix, windows, and OS X
+<jamest> that's an extra feature! :)
+<jbailey> Ah yes, but probably a 0 for me.
+<jamest> well, yeah 
+<chillywilly> schools are lame
+<chillywilly> they always make you learn useless crap
+<jbailey> Yeah, well.  work offered it under my training budget, so hey.  Do it while the option's there.
+<jbailey> I'm registering for 3 university classes this month. =)
+<jamest> ahhhh
+<jamest> another dcl ticket bites the dust
+<SachaS> what do you guys do to boost your motiviation ? hack gnue :)
+<jamest> um, not hack gnue for a few months
+<chillywilly> jbailey: well if yo don't have to pay then it is all good ;)
+<SachaS> i am short of sleep as I installed a new usb all-in-one printer under cups last night
+<chillywilly> it took all night?
+<SachaS> and it is working :)
+<chillywilly> yay :)
+<SachaS> thank you chillywilly :)
+<chillywilly> for what?
+<chillywilly> I didn't help
+<chillywilly> ;P
+<jamest> NOTE: the GParser now honors the Required and SingleInstance attributes in set in the G*Paser.py files
+<chillywilly> wooo
+<jamest> so if some app starts not loading files complaining about multiple instances or required tags missing
+Action: chillywilly should finish the parser for godl, but I have other *stupid* things to do...
+<jamest> then check that apps G*Parser.py file 
+<jamest> let me rephrase
+<jamest>  if some app starts not loading VALID files
+<jamest> :)
+<chillywilly> heh
+<jamest> do we have any mysql users here?
+<jamest> here mysql user, here mysql user
+<jamest> i won't trash your db , honest, i need to install it 
+<jbailey> apt-get install mysql-server
+<jbailey> =)
+<jamest> ok, now I need to admin it
+<jbailey> Keep in mind that I'm studying something else right now - specific questions good.  General statements will probably remain unanswered.
+<jamest> ah, cool
+<jamest> all I want is an easy way to admin the thing
+<jamest> setup a test user, test database, and test tables
+<jamest> mysql permissions always seem like a complete mess to me
+<jamest> so
+<jamest> is there a .deb package for something that will let me do this easily
+<jbailey> phpmyadmin
+<jbailey> God's gift to MySQL administration.
+<jamest> lol, ok, so I have to install apache and php on my workstation
+Action: jamest has decided to just take it like a man and learn how to do it manually
+<jbailey> *blink*.
+<jbailey> You don't have apache loaded?
+<jamest> on my personal workstation?
+<jamest> at home?
+<jamest> no
+<jamest> i don't even have it on my database/file server
+<jamest> no need
+<SachaS> jamest: i use apache alot to access html manuals.
+<jamest> i just point konq at the html file I need
+<jamest> i think I'm there
+<jamest> lol
+<jamest> bugz
+<Mr_You> man I'm reading this book about an Aikido Sensei... when they were learning they use to go test their skills against cocky gangsters and such
+<Mr_You> in the book they describe one scene with 30 gangsters (they were expecting 4 or so)
+<Maniac> lol: As of this writing, the very first hit with a Google search for "vb" and "macros" is a user wanting to know how to use them for viruses. <--- http://www-106.ibm.com/developerworks/library/us-cranky23.html
+<Mr_You> pre-world war II
+<Mr_You> its an auto-biography
+<Mr_You> this was forbidden by O'Sensei
+<jbailey> Which Sensei?
+<chillywilly> sounds irish
+<chillywilly> ;)
+<chillywilly> O'Sensei
+<Mr_You> some guys would come back from the dojo showing how they got beat up the night before and the following night they'd be out there looking for someone to pick a fight with them ;-)
+<Mr_You> hehe
+<Mr_You> O'Sensei (Great Teacher) is the name given to Usheiba (sp?) Sensei who created Aikido
+<Mr_You> these were his live in students
+<jbailey> Ushideshi
+<Mr_You> yup
+<jbailey> My Sensei's Sensei was an ushideshi to Tohei-Sensei.  Good stories.
+<Mr_You> great
+<chillywilly> jamest: you still here?
+<jamest> for only a moment
+<chillywilly> jamest: can you help me with frelling syslogd?
+SachaS (~Sacha@ark.cs.curtin.edu.au) left #gnuenterprise ("Client Exiting").
+<Mr_You> one day I hope to visit a Ki Aikido dojo
+<chillywilly> I was trying to get all the iptables output to go to only one file
+<Mr_You> I have read Japanese Yoga / Shin Shin Toitsu Do
+<chillywilly> instead of to any terminal and kern.log
+<jamest> ok
+Action: Mr_You has www.japaneseyoga.org ;-)
+Action: Mr_You bows to jbailey.
+<chillywilly> although only thing that now works is to the screen
+<chillywilly> jamest: you want my syslog.conf?
+<jamest> not yet
+Action: jbailey bows to Mr_You
+<jbailey> onageishemasu (sp?)
+<jbailey> Time to go home.
+<jamest> chillywilly: you want all other kern loggin to still go to console though?
+<Mr_You> onegoshimasu (sp?) heh
+<chillywilly> jamest: well wherever it goes now
+<chillywilly> whatever the debian default is
+<chillywilly> see I set my rule swith --log-level info
+<chillywilly> then tried this line at the top
+<chillywilly> kern.info     /var/log/iptables
+<chillywilly> it created the file but it remains empty
+<chillywilly> but even kern.* /var/log/kern.log isn't getting appended too either now
+<chillywilly> it used to log to console and kern.log before I started mucking about
+<chillywilly> at any rate if you have some sys admin guru setup for syslogd that you cold part with that would be appreciated
+<chillywilly> could
+<jamest> not for something like this
+<chillywilly> oh
+<jamest> the only thing I've done w/ syslog is route to remote host
+<jamest> hang on a sec
+<chillywilly> wwhatver.whatever   @host
+<chillywilly> right/
+<chillywilly> ?
+<chillywilly> ;)
+<jamest> yeah
+<jamest> chillywilly: can we hit this in tomorrow? remember that line
+<jamest> for only a moment
+<jamest> my wife requested that I leave the computer room 
+<chillywilly> man
+<chillywilly> ok
+Action: jamest knows who wears the pants in the family 
+<jamest> and it aint me
+<chillywilly> I guess you have to listen to the boss ;)
+<jamest> i'll look thru my syslog stuff at work in the morning and see if I can figure it out
+<chillywilly> I may have to try our LUG list ;)
+jamest (~jamest@adsl-64-216-107-182.dsl.tpkaks.swbell.net) left irc: "[x]chat"
+<ajmitch> hello
+<chillywilly> wtf?
+<chillywilly> I have a bunch of empty headers in my commit-gnue folder
+<chillywilly> this is whacked
+<ajmitch> so? file a bug report about it, don't whinge here :)
+<ajmitch> blame glibc or something
+jbailey (~jbailey@atlas.fundserv.com) left irc: "Client Exiting"
+<chillywilly> seems all my folders are now empty
+<chillywilly> perhaps the disk is full
+<chillywilly> hrrm
+<ajmitch> that would be sucky
+<chillywilly> yes it would
+<chillywilly> but it is not the cas
+<chillywilly> e
+<ajmitch> sighm only about 7GB free here
+<chillywilly> how about you ajmitch, know anything about making iptables log to a file via syslog?
+<chillywilly> man, this doesn't make any sense
+<chillywilly> mutt is diaplying the mails but the headers are all empty
+<chillywilly> WEIRD
+<chillywilly> if I select a new one it tells me it cannot copy the message'
+<chillywilly> maybe a perms thing
+<chillywilly> *sigh* this blows
+<Mr_You> chilly, you tried sending kern.debug and other priorities to other log files?
+<chillywilly> nope, but if I set the log-level it should work shouldn't it?
+<chillywilly> I dunno I didn't have time to play with it frther
+<ajmitch> depends
+<Mr_You> I think you want to config other kern.=debug (=info,=blah) lines in the syslog.conf and see which debug levels send to which priorities (debug, info)
+<Mr_You> or I think someone mentioned maybe a later version having an option to log elsewhere
+<chillywilly> yea, someone said I could do --to-log file.log
+<chillywilly> but I didn't see that in the iptables man page
+<Mr_You> might be a newer version
+<chillywilly> one would think that sid would have a newer version of iptables
+<Mr_You> I've never had to mod syslog.conf in all these years
+<ajmitch> apt-get install syslog-ng
+<chillywilly> ajmitch: saw that mentioned too
+<Mr_You> I felt sorry for people who had to watch log files scroll by during the day ;-))
+<chillywilly> in a mail from some list when doing a google search
+<chillywilly> does mutt have a bug in it?
+<chillywilly> with imap
+<chillywilly> cause it is NOT displaying messsage headers correctly now
+<chillywilly> :(
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) left irc: Read error: 113 (No route to host)
+<chillywilly> they are all blank and of 0 size :(
+<chillywilly> how lame
+<chillywilly> I just upgraded earlier
+<chillywilly> hmmm
+Action: chillywilly suspects it is the fll / partition on this box :(
+<chillywilly> er, full
+Action: chillywilly wonder how the frell it got full
+rdean (~rdean@12-221-229-247.client.insightBB.com) joined #gnuenterprise.
+Action: chillywilly does an apt-get clean
+<chillywilly> this looks useful
+<chillywilly> ulogd - The Netfilter Userspace Logging Daemon
+<Mr_You> you could have tried in syslog.conf by now ;-)
+<chillywilly> yea, but I am not only working on that
+rdean (~rdean@12-221-229-247.client.insightBB.com) left irc: "Client Exiting"
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: Read error: 104 (Connection reset by peer)
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: Client Quit
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: "Free Your Enterprise! - http://www.gnuenterprise.org"
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+--- Thu Nov  7 2002

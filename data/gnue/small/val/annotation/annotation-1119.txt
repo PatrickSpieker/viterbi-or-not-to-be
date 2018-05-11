@@ -1,0 +1,30 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.2006-09-13" author="Peter Sullivan" contact="mailto:psu@burdonvale.co.uk" enddate="13 Sep 2006 12:00:00 -0800" startdate="13 Sep 2006 12:00:00 -0800" subject="[IRC] 13 Sep 2006" title="Changing attributes of a form from within a trigger">
+
+<topic>Forms</topic>
+<topic>Application Server</topic>
+
+<p>Reinhard M&#252;ller (reinhard) noted that <quote who="Reinhard M&#252;ller">a lot of 
+attributes of GFBlock and GFField are changeable in trigger namespace</quote>
+and <quote who="Reinhard M&#252;ller">wondered what was the 
+reasoning behind this</quote>. Jason Cater (jcater) explained 
+<quote who="Jason Cater">at one time, our specifications for forms was that 
+triggers could practically build a form at runtime and anything/everything was 
+changable/scriptable - that was probably a pipe dream (and probably not necessary)
+- but it's possible the code you saw was the start of that general trend</quote>.
+Reinhard noted that <quote who="Reinhard M&#252;ller">the dream of building a form at 
+runtime</quote>, whilst theoretically possible in a two-tier environment (GNUe Forms 
+client talks directly to a database), wasn't really practicable in a three-tier 
+environment (GNUe Forms client talks to GNUe Application Server talks to 
+database), as there would be no mechanism for triggers in the GNUe Forms client 
+to dynamically <quote who="Reinhard M&#252;ller">create new objects</quote> on the 
+GNUe Application Server. He noted that, as of time of writing, 
+<quote who="Reinhard M&#252;ller">*all* possible attributes of the 
+&lt;block&gt; tag were exported to trigger namespace - autoCommit, queryable, 
+editable, deletable, autoCreate, autoCommit, autoNextRecord, transparent - 
+similar for GFField - maxLength, minLenght, queryDefault, case, required...
+I think practically none of them are very useful, and with some of them you 
+might even be able to screw something up if you change at runtime</quote>.</p>
+
+</section>
+
+

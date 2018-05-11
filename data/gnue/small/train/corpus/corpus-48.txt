@@ -1,0 +1,852 @@
+<dneighbo> %
+<dneighbo> if you have field name
+<dneighbo> do f8
+<dneighbo> in the name entry
+<dneighbo> do 
+<dneighbo> ra%
+<dneighbo> hit f9
+<dneighbo> it should return all results starting with ra
+<dneighbo> if you do f8
+<dneighbo> %ra%
+<dneighbo> f9
+<dneighbo> it should get you any name containing ra
+jcater (~jcater@cpe-066-061-083-220.midsouth.rr.com) left irc: "nite"
+<chillywilly> anyone know if gettimeofday(&now, NULL); and then now.tv_usec would give me the current time in milliseconds?
+<chillywilly> anyone? anyone?
+<chillywilly> bueler? bueler?
+<ra3vat> for now i would like % to be added from beginning of non empty search entry
+<ra3vat> do f8
+<ra3vat> do 
+<ra3vat> ra
+<chillywilly> hmmm that gives microseconds
+<ra3vat> it expands to %ra 
+<chillywilly> gess you need to divide by 1000
+<chillywilly> grooovy
+<ra3vat> dneighbo: any hints?
+<dneighbo> hmmm
+<dneighbo> there is something called 'sloppyquery'
+rdean (~rdean@12-221-229-247.client.insightBB.com) left irc: "Client Exiting"
+<dneighbo> or there was
+Action: dneighbo thinks what you are describing might have been what that was for, but have never used it
+<dneighbo> can you try sloppyquery
+<ra3vat> i saw some sloppy related part commented out in the code, will try it anyway
+<dneighbo> ok
+<dneighbo> ra3vat: if you put sloppyquery=""
+<dneighbo> in a block
+<dneighbo> i "think"
+<dneighbo> what will happen is everytime you execute a query
+<dneighbo> it will append a % to the end
+<dneighbo> actually it looks like it will have effect of doing the following
+<dneighbo> you enter ra it converts to
+<dneighbo> %r%a%
+<dneighbo> and you might have to do it as sloppyQuery
+<dneighbo> and you might have to do it as sloppyQuery=""
+<dneighbo> you can look in forms/src/GFObjects/GFBlock.py to see exactly what its doing 
+<dneighbo> or if you need to patch it
+<dneighbo> please let me know if this works
+<dneighbo> as right this second i can not readily test
+<ra3vat> dneighbo: D-G.pdf defines sloopyQuery only among entry attributes
+<dneighbo> doh you are right
+<dneighbo> try entry
+<dneighbo> i was thinking block as its in block code
+<dneighbo> but thasts cause it fires onProcessQuery
+<dneighbo> but it checks entry.xxx
+<ra3vat> form works but search fails
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: "Free Your Enterprise! - http://www.gnuenterprise.org"
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+Arturas (arturas@bit.codeworks.lt) joined #gnuenterprise.
+<Arturas> Hello
+<ra3vat> Hello Arturas
+<ra3vat> Hello reinhard
+btami (~tamas@ip102-205.ktv.tiszanet.hu) joined #gnuenterprise.
+<dneighbo> hmmm mplayer plays windows media stuff thats cool
+<dneighbo> now if i can get the sound to work
+<Arturas> Hi Bajusz
+<btami> hi Arturas
+<btami> yes
+<btami> yes: for i have time
+<dneighbo> grr anyone have sources.list for player stuff?
+<dneighbo> nmeos.net seems toastified
+<btami> i havn't
+Nick change: SachaS_uni -> SachaS
+<Arturas> btami: how did you build GNUe.exe's for Windows? did you have any problems with gettext?
+<dneighbo> found one
+<btami> Arturas: McMillan+Inno
+<btami> what problems do you think?
+<Arturas> yesterday i finished setup-cvs.py for Windows
+<Arturas> but when trying to run form
+<Arturas> it gives traceback on gettext (some string is NULL or something like that)
+<Arturas> i thought i maybe you have met with this problem while building exe's
+<btami> no, i havn't met any problems with gettext
+<btami> can you send me your script to try
+<Arturas> setup-cvs for win?
+<btami> yes
+<Arturas> it's in the CVS as setup-cvs2.py
+<btami> ooo
+<Arturas> (at least it should be there)
+<Arturas> but it's now finally finished - still some bugs exist
+<btami> i see
+<Arturas> now => not
+<btami> i will try
+<Arturas> i warned you :)
+<btami> ok :)
+<dneighbo> probably a little late but why setup-cvs2.py
+<dneighbo> instead of setup-cvs-win.py or somethign?
+<Arturas> it's not ready to replace current setup-cvs.py and it's working (=> should be working) both on Linux and Windows
+Action: Arturas is away: meeting (10 min.)
+Action: Arturas is back (gone 00:10:52)
+<btami> Arturas: why do you put fsutil.exe and linkd.exe into CVS, they aren't free software
+<btami> maybe there are free alternetives on the net
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) left irc: Read error: 113 (No route to host)
+<Arturas> if you're using Windows (legally of course), you may use these tools
+<Arturas> and as far as i heard, there are no alternatives yet
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) joined #gnuenterprise.
+<Arturas> i included them because although these tools are included by default with WindowsXP, they are not included with Windows2000
+<Arturas> (it's possible to download them somewhere from Microsoft web site)
+<Arturas> do you think we should refuse from using them?
+<btami> no, just not from our CVS
+<ajmitch> non-free software is a bad thing to have in GNU CVS :)
+<btami> maybe a README about where to find/download these would be better
+<Arturas> i don't like this idea too, but can we say to the user "if you want to install GNUe, make sure you have ...exe and ...exe or download them and put into specified folder and only then you can install GNUe"? :/
+<btami> hey, setup-cvs.py is for developers
+<btami> not for end users
+<Arturas> hm, sorry :)
+<btami> :)
+<btami> Arturas: can i bugreport for you?
+<btami> about setup-cvs2.py
+<Arturas> btami: ??
+<btami> i got: cannot create a link at: c:\python22\lib\gnue
+<btami> oh, wait 
+<btami> i was wrong
+<btami> tried it on VFAT volume
+<Arturas> :)
+<btami> trying again :)
+<Arturas> the error is correct :)
+<ajmitch> Arturas: derek will shoot you if you leave those files in there ;)
+<ra3vat> could anyone interested in web forms driver comment on http://openthought.net/cgi-bin/demo_app/demo.pl
+<Arturas> Derek will shoot me for putting these files there :) ok, i'll remove them in about 10 mins
+<btami> Arturas: i got the same error
+<btami> i have c: VFAT
+<btami> e: NTFS
+<btami> the win2k is in e:
+<btami> i wanted to install into e:\gnue\bin, e:\gnue\conf
+<btami> but the script forces c:\python22\lib\gnue
+<btami> becouse my python resides there
+<btami> hmm
+<Arturas> that's one of the problems i had - how do i enter gnue into python's modules search path
+<Arturas> somewhere in the middle of setup-cvs2.py is the call
+<ajmitch> PYTHONPATH, or sys.path :)
+<Arturas> under Windows
+<Arturas> i solved it by creating a link in python..\lib\gnue pointing to gnue folder
+<Arturas> but this is wrong solution
+<Arturas> removed ...exes, added readme (-> win-links.txt)
+SachaS (~Sacha@dialup-196-113.wasp.net.au) left irc: Read error: 104 (Connection reset by peer)
+ariel_ (~ariel@ppp-217-133-247-84.dialup.tiscali.it) joined #gnuenterprise.
+<reinhard> good morning ariel_
+<reinhard> sorry that i was so unresponsive yesterday
+<reinhard> just a few remarks to the object repository document you sent me
+<reinhard> first (and most important) thanks for your work :)
+<reinhard> on the general design
+<reinhard> i'm not sure if we want to include inheritance at all
+<reinhard> and if we want to include versioning and compounds in the very first version
+<reinhard> when i looked at your document i got the feeling that XML is not a perfect way of explaining something to a human
+<ra3vat> anyone can drop me a test message on ds at ics.elcom.ru, please
+<reinhard> ra3vat: ok
+<reinhard> sent
+<ra3vat> reinhard: thanks, got it
+<reinhard> ariel_: i like the tablular explaination you did much better
+<reinhard> i thought i might try to change it into an object oriented explaination
+<reinhard> (like the old (current) api definition of appserver)
+<reinhard> thanks also for the diagram of appserver structure
+<reinhard> it seems like my installation of dia is hosed
+<reinhard> if i open the diagram i get errors about missing fonts :(
+<reinhard> is it possible for dia to export .eps and .png ?
+<ariel_> reinhard: 
+<reinhard> if yes i could easily include into the whitepaper
+<reinhard> -o
+<ariel_> don't care about fonts warning, i also have, just click OK 
+<ariel_> to export right-click on open diagram
+<ariel_> choose file then export
+<reinhard> when i click ok for the warning
+<reinhard> the diagram doesn't look right
+<reinhard> the text is outside the boxes
+<ariel_> uhmm
+<ariel_> i dunno it changes mine from Hevetica boldOblique  to adobe courier medium-r-normal that fits well
+<reinhard> it changes everything to "fixed" for me
+<reinhard> however i have about zero idea how fonts work in X
+<reinhard> i have this problem with other diagrams too
+<reinhard> so it's certainly my own fault
+<ariel_> if there aren't changes i can send png btw the first picture in the note is png export of the dia
+<reinhard> ariel_: thanks
+<reinhard> ariel_: btw i am talking about appserver architecture diagram
+<reinhard> not about the class diagram
+<ariel_> i can send png just tell me if you prefer the classical package shape (rectangle with label) instead of the component shape (rectangle with side ellipses and smaller rectangles)
+<reinhard> um
+<reinhard> i don't care that much i think
+<reinhard> what you like better :)
+<ariel_> ok 
+ColeMarcus (ColeMarcus@pD9E4EE34.dip.t-dialin.net) joined #gnuenterprise.
+<ariel_> reinhard: just sended png
+<ariel_> i wanted to continue with the note, but may be better i wait for the proposal
+<reinhard> ariel_: thanks got it
+<reinhard> (the png)
+<reinhard> i hope to write the proposal this week
+<ajmitch> hello
+SachaS (~Sacha@dialup-196-77.wasp.net.au) joined #gnuenterprise.
+siesel (jan@xunzi.sinologie.uni-bonn.de) joined #gnuenterprise.
+<siesel> morning
+<ajmitch> hi
+Nick change: reinhard -> rm-lunch
+Action: Arturas is away: Lunch :)
+Suit (~Suit@dsl-217.195.238-029.inovara-dsl.nl) joined #gnuenterprise.
+<Suit> gnuebot: help
+<Suit> hmm, not a very helpfull bot ;)
+<ra3vat> Suit: he is too dump for that :)
+<Suit> then what does it do, kick flooders?
+<ra3vat> saves logs
+<Suit> ah
+<Suit> dneighbo: active?
+<ra3vat> sleep most probably in that time
+<Suit> hmm, yeah, now I see
+Nick change: Suit -> Suit|afk
+<ra3vat> flooders? who is that? :) we are on #gnuenterprise
+<Suit|afk> Oh well, I could paste some VB to liven up things around here ;)
+Action: Suit|afk is now really afk
+Action: Arturas is back (gone 00:30:54)
+dsmith (~dsmith@p165.n-chpop06.stsn.com) joined #gnuenterprise.
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) left irc: Read error: 113 (No route to host)
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) joined #gnuenterprise.
+Nick change: Suit|afk -> Suit
+Action: drochaid is back (gone 09:23:27)
+dsmith (~dsmith@p165.n-chpop06.stsn.com) left irc: Read error: 110 (Connection timed out)
+hjibds2 (~henderson@host62-7-105-56.in-addr.btopenworld.com) joined #gnuenterprise.
+jamest (~jamest@leibniz.math.ksu.edu) joined #gnuenterprise.
+<hjibds2> hi
+<hjibds2> Is GNUe ready for production use
+<Arturas> hi
+<Arturas> it's pretty hard to say
+<Arturas> it depends :/
+<Arturas> practically it almost ready
+<Arturas> but it depends on what you want from GNUe
+<hjibds2> we are a small business and need some kind of ERP system - my knowledge is very limited in this area
+<jamest> we have no prebuilt packages for you to use
+<jamest> we're (slowly) getting the tools in place to make building such packages easy
+<hjibds2> u mean install from source?
+<jamest> no, i mean we have no Inventory Control package, or general ledger package
+<hjibds2> what kind of time scale is there for these packages?
+<jamest> we have tools that let you easily create data entry screens (what we call forms) and reports
+<jamest> dneighbo is working on a small biz package right now that is strickly client/server
+<jamest> i _think_ he was getting it checked into gnu's cvs server but I'm not sure where that is at
+<hjibds2> sounds intresting
+<jamest> I'm also not sure what stage it's at
+<jamest> jcater has also submitted a package called RentFree (or something like that) to gnu's cvs that manages rental property
+<jamest> again, I'm also not sure what stage it's at
+<jamest> so the tools work in 2 tier mode (client/server)
+<jamest> and work on appserver is progressing but it is not ready yet to build systems around it
+Action: drochaid is away: it's pissing down and I'm in full gore-tex :)
+<btami> jamest: have you any success with GTK2 on win32 ?
+<jamest> btami: i've had 0 time to try it out
+<jamest> i've got a few deathlines at home that all fall on the 1st of dec
+<jamest> which is sucking up all my free time
+<hjibds2> Are there any systems of a similar nature I can look at?
+<jamest> hjibds2: i don't know
+<jamest> i know there are other projects but I'm not sure the state of any of them
+<jamest> hjibds2: do you have an existing system in place?
+<hjibds2> head office are looking at implementing a larger version of the system that we need based on asp and M$ SQL server - i don't want to go down that route
+<jamest> btami: i plan to take a few days off to get ahead so I can GNUe again
+<btami> ok :)
+<hjibds2> jamest - not yet - we are looking at getting some form of system in place in the next 6 months
+<jamest> hjibds2: is middlewear important to you?  or are you happy w/ a 2-tier system?
+<hjibds2> we would be happy with a 2-tier system
+<jamest> what platforms are the clients ?
+<hjibds2> win32
+<jamest> well, dneighbo's small biz thing might give you what you need
+<jamest> and I'd hope to have most the issues w/ win32 worked out in 6 months
+<jamest> (the UI driver for windows isn't native win32api so we have to create one)
+<jamest> but I can't say for sure
+<jamest> the salesman would say "You bet we can."
+<jamest> but then I'm not a salesman :)
+<hjibds2> lol
+btami (~tamas@ip102-205.ktv.tiszanet.hu) left irc: 
+<hjibds2> does dneighbo have a website for his small buz thing? do you know?
+<jamest> no clue
+Action: jamest was away from the project for several months and is still playing catchup
+<hjibds2> wheres the best place to look for a crash course on CVS - would like to understand it
+dsmith (firewall-u@cherry7.comerica.com) joined #gnuenterprise.
+grib (~grib@grib.customer.jump.net) left irc: "I'm too lame to make a quit message"
+<jamest> on our cvs code or cvs in general?
+<hjibds2> cvs in general - i've never really done much development work but would like to read up a bit about it
+<jamest> ah
+<jamest> http://www.cvshome.org/ is the hompage
+<hjibds2> thx
+ColeMarcus (ColeMarcus@pD9E4EE34.dip.t-dialin.net) left irc: Read error: 110 (Connection timed out)
+hjibds2 (~henderson@host62-7-105-56.in-addr.btopenworld.com) left irc: 
+grib (~grib@grib.customer.jump.net) joined #gnuenterprise.
+Suit (~Suit@dsl-217.195.238-029.inovara-dsl.nl) left irc: Read error: 54 (Connection reset by peer)
+Suit (~Suit@dsl-217.195.238-029.inovara-dsl.nl) joined #gnuenterprise.
+Nick change: rm-lunch -> reinhard
+<reinhard> oops
+<reinhard> long lunch :)
+dneighbo (~laurie@cpe-24-221-112-50.az.sprintbbd.net) left irc: "Client Exiting"
+lupo (~lupo@pD9542896.dip.t-dialin.net) joined #gnuenterprise.
+<lupo> hi
+paqan (~paqan@202.155.120.221) left irc: Remote closed the connection
+<jamest> hi
+<jamest> lupo: testing framework needed research 
+<jamest> i didn't have any concrete requirements
+<jamest> but anything is better than nothing 
+<jamest> :)
+paqan (~paqan@202.155.120.221) joined #gnuenterprise.
+<lupo> jamest: :)
+<lupo> jamest: is writing testcases okay?
+<lupo> i just need to get gnue running on my laptop
+<jamest> i don't understand the question?
+<lupo> you said that siesel has started testcases
+<lupo> so i asked whether testcases are sufficent for testing purposes
+<lupo> because a real automated testing system is hell work
+<jamest> testcases are fine with me 
+jamest (~jamest@leibniz.math.ksu.edu) left irc: Remote closed the connection
+jamest (~jamest@leibniz.math.ksu.edu) joined #gnuenterprise.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<Arturas> does someone know, function "self._block._resultSet.current.getField(self.field)" returns self.field value from database or from form - i can't figure it out :\
+<jamest> that should be from the resultset loaded from the database
+<jamest> if you've altered it then it should reflect that alteration
+<jamest> i believe
+<Arturas> thank you
+Action: drochaid is back (gone 01:49:25)
+Bill_H (~chatzilla@ip66-2-83-130.z83-2-66.customer.algx.net) joined #gnuenterprise.
+siesel (jan@xunzi.sinologie.uni-bonn.de) left irc: "later"
+ariel_ (~ariel@ppp-217-133-247-84.dialup.tiscali.it) left irc: "Uscita dal client"
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) left irc: Read error: 113 (No route to host)
+<Arturas> bye
+Arturas (arturas@bit.codeworks.lt) left irc: "Client Exiting"
+Suit (~Suit@dsl-217.195.238-029.inovara-dsl.nl) left irc: "Client Exiting"
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: Read error: 104 (Connection reset by peer)
+paqan (~paqan@202.155.120.221) left irc: "Client Exiting"
+lupo (~lupo@pD9542896.dip.t-dialin.net) left irc: "using sirc version 2.211+KSIRC/1.1"
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+yogurt2unge (~charlie@ADSL-200-59-86-17.cordoba.sinectis.com.ar) joined #gnuenterprise.
+Bill_H (~chatzilla@ip66-2-83-130.z83-2-66.customer.algx.net) left irc: Remote closed the connection
+paqan (~paqan@202.155.120.221) joined #gnuenterprise.
+dsmith (firewall-u@cherry7.comerica.com) left irc: "later.."
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) joined #gnuenterprise.
+AmateurSurgeon (~as@pc-80-192-5-18-az.blueyonder.co.uk) joined #gnuenterprise.
+<AmateurSurgeon> anyone around ?
+<nickr> yep
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: Read error: 110 (Connection timed out)
+siesel (jan@dial-213-168-92-226.netcologne.de) joined #gnuenterprise.
+KeithJagrs (trilluser@63.74.24.9) joined #gnuenterprise.
+yogurt2unge (~charlie@ADSL-200-59-86-17.cordoba.sinectis.com.ar) left irc: "Client Exiting"
+AmateurSurgeon (~as@pc-80-192-5-18-az.blueyonder.co.uk) left irc: Read error: 110 (Connection timed out)
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+KeithJagrs (trilluser@63.74.24.9) left irc: "later"
+revDeke (www-data@alt1.libertydistribution.com) joined #gnuenterprise.
+dsmith (firewall-u@cherry7.comerica.com) joined #gnuenterprise.
+<revDeke> ok on newsforge they are running an article on openMFG
+<revDeke> which doesn appear free, open or even available
+<revDeke> and that well kind of got my goad
+<revDeke> it was an interview
+<revDeke> i took the liberty of responding to the same questions from a gnue standpoint
+<revDeke> and was going to submit back as an opinion piece
+<revDeke> but wanted to get consensus from this group if that was ok
+<jcater> I suppose
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: Read error: 54 (Connection reset by peer)
+drochaid_ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+<jcater> I just don't see where they get off associating themselves with open source/free software
+<jcater> they are just trying to be the peachtree of the manufacturing world
+<revDeke> well that is what made me irrate
+<revDeke> and i thought putting them to the 'open fishbowl' way our community works
+<revDeke> might do some good :)
+<drochaid_> revDeke: do you have a copy to hand of what you're planning to post?
+<siesel> Quite funny: "(...) [OpenMFG] is certainly a better deal than the much-discussed "Shared Source" initative from Microsoft (...) 
+<jcater> oooo
+<jcater> we better get busy
+<jcater> several references to GNUe
+<revDeke> ?
+<jcater> in the comments
+<revDeke> drochaid_: i actually sent something to editors already as i had to get going
+<revDeke> hopefully the will post it
+<revDeke> if you give me your email address i will send it to you
+<drochaid_> heh
+<revDeke> btw: the best thing we can do is to post comments/rebuttals to these type of articles
+<revDeke> to just let people know we exist and that we DO have working code
+<drochaid_> send to calum@morrell-consultancy.co.uk please
+<revDeke> sent
+<jcater> I posted my comment
+<jcater> I expect everyone else to as well
+<jcater> cool, mine's already there
+<ra3vat> what is the url?
+<jcater> http://newsforge.com/newsforge/02/11/11/1848223.shtml?tid=3
+<jcater> mine is the "This is ridiculous" post
+psu (psu@public1-wear2-3-cust42.midd.broadband.ntl.com) joined #gnuenterprise.
+<revDeke> sup psu
+<revDeke> read recent backlog and feel free to comment on newsforge
+Action: revDeke suspects you will have a good opinion on the subject
+<ra3vat> <ra3vat> could anyone interested in web forms driver comment on http://openthought.net/cgi-bin/demo_app/demo.pl
+<ra3vat> ?
+<psu> heh
+Action: siesel looked at it. jsforms is using a similar aproach.
+<siesel> I don't think that we can get much from it, because we would have to add too much and even write a perl->python interface, or reimplement gnue-common in perl
+<psu> For us, having a company (ab)use the open source label like this is almost a positive
+<psu> shows that RMS was right to insist on "free s/w" rather than "open source" as a label
+<psu> as it's harder for people to twist that 
+<ra3vat> siesel: i usually remember complains about web interface when any new data require to reload a page and fighting about not to let jave in. is that link demostrate one possible solution? 
+<siesel> yes, it is one possible solution, and it is the solution choosen by the jsforms client (alpha stage at http://www.gnuenterprise.org/~jan/jsclient/gnue-forms.html
+<revDeke> psu good point you should make that a comment :)
+<nickr> its easy to twist free software
+<siesel> I also looked at a quite similar but (IMHO) more powerful project than openthought, 
+<ra3vat> siesel: thanks for clarifying :)
+<siesel> which was quite good, but had one bad point: at the moment it just worked with netscape 4.x
+<siesel> ra3vat: it's allways good to know other projects which do quite similar stuff. If the webclient is once working, it could f.e. use openthought plugins for authetification etc. 
+<psu> revDeke: I'm desperately trying to catch up on KC at the moment
+<psu> the distraction of my new internet account isn't helping either
+<psu> psu (psu@public1-wear2-3-cust42.midd.broadband.ntl.com) has joined channel #gnuenterprise
+m00seT (~sadend@29.123-136-217.adsl.skynet.be) joined #gnuenterprise.
+Action: m00seT slaps jamest around a bit with a large trout
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) left irc: Read error: 113 (No route to host)
+Action: m00seT slaps derek around a bit with a large trout
+<psu> wow
+Action: jcater hides
+<psu> m00set
+<m00seT> yep
+<m00seT> psu=...
+<m00seT> ?
+<revDeke> m000seT
+<revDeke> NO WAY!
+<revDeke> how are the little ones
+<jamest> m00seT: 
+<revDeke> btw: this is derek
+<psu> don't mind me, I'm just a newbie
+<m00seT> wasn't here for a long time
+<m00seT> hi james
+Action: jamest feels special that he got the first slapping
+<m00seT> lmao
+<jamest> what's up?
+<revDeke> jamest: obviously not much, he found time to come here :)
+<m00seT> just looking how you all did after I left LOL
+<m00seT> http://stage.vitaminic.com/sad_end_projects
+<m00seT> http://stage.vitaminic.com/ph_d_phunky_dissidents
+<m00seT> http://artists.iuma.com/IUMA/Bands/Subliminal_Sound_Architects/
+<m00seT> lol
+<m00seT> Gnue hs come a long way
+<jamest> and has a ways to go
+<m00seT> ...
+<m00seT> haven't touched a compiler in ages
+Action: jcater feels like a spouse at a high school reunion
+<jamest> hey m00seT, this is our whipping boy jcater
+<jamest> jcater this is m00seT
+<m00seT> after working on that Navision erp project in the real world, got sick of computers
+<jamest> we really had a thing for him until he left, then we had to settle for you
+<m00seT> Hi Jcarter
+<m00seT> lol
+<jamest> ooooo, remove the R quick
+Action: psu only recognised the nick due to recent maintenance work on http://www.gnuenterprise.org/community/contrib.php
+<m00seT> lol
+<m00seT> sorry jimmy
+<m00seT> Many of the oldies still around I see
+<jamest> yeah
+<m00seT> Must confess that since I turned back to musicmaking, have turned to the dark SIde
+<m00seT> Only Win2000 at presnet ... (freighting stable ...)
+<m00seT> ... probably a mac in the (not so) near future
+<m00seT> So James, how's the house and the wife?
+drochaid_ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: Read error: 54 (Connection reset by peer)
+drochaid_ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+<jamest> um, both are doing fine 
+paqan (~paqan@202.155.120.221) left irc: Read error: 60 (Operation timed out)
+<m00seT> Great!
+<jamest> yours?
+<m00seT> Same ... hust bought a small house, worked 5 months in it, have moved since sept.8
+<jamest> cool
+<m00seT> BTW, was reading this and had to thinkl about you guys : http://www.cnn.com/2002/TECH/biztech/11/12/outlookchallenger.ap/index.html
+<m00seT> Familiar?
+<jamest> ha!
+<jamest> we smoke him!
+<jamest> we've been in development for YEARS and it doesn't exist yet
+<m00seT> Resistance is futile he
+<m00seT> ASSIMILATE!
+paqan (~paqan@202.155.120.221) joined #gnuenterprise.
+<m00seT> Have to go old friends ... may the force be with you ... ;-)
+<grib> jcater: were you astroturfing in your newsforge comment?  "I looked at gnue a few weeks ago"? 
+<m00seT> Cya 
+<jcater> grib: eh?
+m00seT (~sadend@29.123-136-217.adsl.skynet.be) left irc: 
+<grib> jcater: oops, sorry.  newforge comments page display is confusing
+<grib> it looked like the followup to yours was the start of the thread.
+<jcater> yeah, it is confusing
+<jcater> they need to rethink their layout
+<jcater> as I thought the same thing when I first went there
+psu (psu@public1-wear2-3-cust42.midd.broadband.ntl.com) left #gnuenterprise.
+drochaid_ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: Excess Flood
+drochaid_ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+drochaid_ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: Read error: 104 (Connection reset by peer)
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+<siesel> hi Daniel
+marioct (~marioct@200-204-68-155.dsl.telesp.net.br) joined #gnuenterprise.
+<marioct> hello people, good night !
+<jamest> hello
+<marioct> Hello james.
+<marioct> I've just downloaded gnue via CVS, and I'll read docs... but I have one question...
+<jamest> ok
+<marioct> how can I run gnue-forms with curses ? 
+<jamest> for any optons you can run
+<jamest> gnue-forms --help
+<jamest> gnue-forms --interface curses
+<jamest> should do it
+<jamest> well
+[16:59] Last message repeated 1 time(s).
+<jamest> gnue-forms --interface curses form.gfd
+<marioct> ok, but I got this : Error: Unable to load any valid UI drivers.  Aborting.
+<jamest> oooooo
+<jamest> jcater: do we need to install nstti from our cvs seperately?
+<jcater> no
+<jcater> but I'm not 100% sure setup.py has been updated to install curses
+<jcater> for common
+<marioct> can I install ?
+<jcater> hmm
+<jcater> it should be installing
+<jcater> err, wait
+<jcater> are you using our CVS code
+<jcater> or the last 0.4.0 release?
+<marioct> the 0.4.0 release
+<jcater> ok, curses wasn't present then
+<jcater> a preview will be in the 0.4.1 that we hope to release this week
+<jcater> (it's also in cvs)
+<jcater> but it's not fully usable yet
+<marioct> where in CVS ?
+<revDeke> savannah.gnu.org
+<jcater> it should be fully supported by 0.5.0
+<revDeke> sorry read that as where is not where in
+<jcater> I don't have the link handy
+<jcater> but if you open www.gnue.org
+<jcater> towards the bottom of the left column
+<jcater> you'll see "CVS"
+<jcater> that has instructions
+<jcater> I think it's something like http://www.gnuenterprise.org/community/cvs.php
+<jcater> oh, yay
+<jcater> I got it right
+<marioct> ok... thanks. Do you know about some good book that teaches python ?
+<nickr> book!?
+<marioct> yes... or tutorials ?!....I must learn python to help build gnue !!!
+<nickr> there is a good tutorial in the documentation section of python.org
+<nickr> http://www.python.org/doc/current/tut/tut.html
+<marioct> ok. thanks.. bye !
+marioct (~marioct@200-204-68-155.dsl.telesp.net.br) left irc: "using sirc version 2.211+KSIRC/1.1"
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) left irc: "The more often you run over a dead cat, the flatter it gets"
+<jcater> ===========
+<jcater> After the next point release, we are moving away from
+<jcater> cvs numbers being '?.?.?a' and instead are doing:
+<jcater>   0.1.0 (cvs) ==> 0.0.99
+<jcater>   0.1.1 (cvs) ==> 0.1.0.99
+<jcater>   1.0.2 (cvs) ==> 1.0.1.99
+<jcater>   1.0.0 (cvs) ==> 0.99.0
+<jcater>   1.1.0 (cvs) ==> 1.0.99
+<jcater> So, whereas the current post-0.4.0 code is called 0.4.1a
+<jcater> until the 0.4.1 release, it would, under this new system, 
+<jcater> be 0.4.0.99.
+<jcater> ===========
+<jcater> ... you may return to your regularly scheduled bantering
+jamest (~jamest@leibniz.math.ksu.edu) left #gnuenterprise.
+siesel_ (~jan@dial-213-168-72-252.netcologne.de) joined #gnuenterprise.
+Action: dsmith banters
+<jcater> first set of prereleases for 0.4.1 at
+<jcater> http://www.gnuenterprise.org/downloads/prereleases/
+<jcater> ------
+Action: revDeke not to be out banter, really starts to put on a raucous display of persiflage   
+<revDeke> yummy please email jbailey@gnu.org and have him deb them up
+<revDeke> and i will test debs too :)
+<revDeke> or if you can make debs i will consume them
+siesel (jan@dial-213-168-92-226.netcologne.de) left irc: Read error: 60 (Operation timed out)
+<siesel_> jcater: is it a wanted feature, that the variables set in a wizard, when its called the first time, are keeped for the second time? 
+dsmith (firewall-u@cherry7.comerica.com) left irc: "later.."
+<jcater> not ready for debs yet
+<jcater> siesel_: no, unintended
+<jcater> we have some big restucturing for both forms and the forms module in designer scheduled for 0.5.0
+<revDeke> ok will test prelease when get home
+<jcater> to eliminate crap like that
+<revDeke> are changelogs updated?
+<revDeke> and the feature maps?
+<jcater> no, I can't do that for here
+<revDeke> i.e. so i have some idea of some things to test for
+<jcater> with this first thing, just test a few forms you have that were working
+<jcater> by tonight
+Action: revDeke will do some general torture testing, but would like to beat on new features and buglets s well
+<jcater> we'll have news and changelog and a few install things worked out
+<revDeke> ok
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) left irc: Read error: 60 (Operation timed out)
+Action: revDeke needs to look at feature map to see if schema stuff is schedule for 0.5.0 or 0.4.2
+<revDeke> er 0.4.1
+<siesel_> revDeke: some of the new features have test forms  in samples/testcases
+Action: revDeke wonders if i shouldnt pay more attention to the release
+<revDeke> as i should be doing the 0.4.1 release so you guys can continue on with 0.5.0
+<revDeke> i will try to keep things updated for teh 0.4.2 release (if necessary)
+Action: revDeke will play wiht feature maps too
+<revDeke> or at least study them enough to ask questions :)
+<revDeke> siesel_: i think if we are making testing stuff it shouldnt fall in samples perhaps?
+<revDeke> unless we just want to make our samples our test bed
+<siesel_> you're free to move it to a more apropriate place
+Action: siesel_ thinks that every feature needs an implementation by an form/report etc. 
+<siesel_> which can be used for testing as for learning 
+<chillywilly> hi jan
+<chillywilly> all
+jamest (~jamest@adsl-64-216-107-182.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) joined #gnuenterprise.
+<siesel_> revDeke: I think we need to discuss again, how we handle samples and what do we want to provide samples
+<jcater> I want to rm -rf samples
+<jcater> and start all over
+<jcater> I want one interesting schema
+<jcater> with sample data and all
+<jcater> and all forms / reports / etc
+<jcater> use this schema/ theme
+<jcater> and I want to use the same schema/theme in the developers guides
+<jcater> much like Access' Northwind (or whatever) test database
+<jcater> and I don't find zipcodes interesting :)
+<siesel_> I thought of something similar.
+<siesel_> But what schema/thema should we use?
+<jcater> I dunno
+<jcater> I brought it up a few weeks ago wrt the developer's guide
+<revDeke> i have no problem with that
+<revDeke> sounds like gnue-sb :)
+<jcater> but neither I nor anyone else could come up with one
+<jcater> revDeke: maybe a simple version of that only 2-3 tables
+<revDeke> yeah
+<revDeke> thats what i meant
+<revDeke> literal sb now :)
+<jcater> anywho
+<jcater> that's not going to happen this release
+<revDeke> actually i have something
+<jcater> but I would like to see it in 0.5.0
+<revDeke> that i use for demos
+<jcater> 0.5.0 is going to be big
+<revDeke> its a video catalog database
+<jcater> yeah
+<jcater> something like that would be nice
+<jcater> it's simple
+<revDeke> its really simple
+<siesel_> 0.5.0 will have a 0.1.0 webclient
+<jcater> most people can relate to it
+<revDeke> one main table and a few foreign key tables
+<revDeke> for type = vhs, dvd etc
+<revDeke> and rating = R, PG, PG-13
+<jcater> 0.5.0 will have a lot more than a web client
+<siesel_> yes and we can add simple reports
+<revDeke> could probably put directors or actors or something for child parent
+<jcater> hmm
+<jcater> maybe we do need something slightly more complicated
+<jcater> well, no
+<revDeke> well ideal for me would be a music database
+<revDeke> CDs parent
+<revDeke> Songs Child
+<jcater> that seems even better
+<jcater> as that opens the door for more interesting/complicated forms and reports
+<revDeke> lots of lookup tables for year put out, label etc
+<revDeke> i.e. i WANT to manage my music with gnue
+<revDeke> as kmusicdb is only somewhat sane thing out there but it relies on whacked versions of kde
+<revDeke> its all postgres 
+<revDeke> so as soon as gsd is ready in designer
+<revDeke> i will suck out the schema (its gpl) ;)
+<revDeke> and viola whip up some forms
+<siesel_> complicated database schemas are not so important as complicated forms / reports IMHO
+<revDeke> you can evaluate if you want to use it as a 'sample' or not
+<revDeke> siesel_: this schema should be REALLY straight forward
+<revDeke> i suspect some cool triggers as i want to tie it into CDDB :)
+riandouglas (~riand@031.mel0605.mel.iprimus.net.au) joined #gnuenterprise.
+<jcater> I think I like this schema
+Action: siesel_ thinks that a sample application for gnue should have connections with business, like a very simplistic app for a shop who lends music
+<jcater> I'm not sure I agree
+<jcater> sorry, phone....
+<jcater> I'm not sure I agree because a 
+<jcater> sample with a pure business theme
+<jcater> will tend to try to outgrow itself
+<jcater> and try to become an actual app
+<siesel_> that's a point
+<siesel_> ok, so lets use a music database as standart sample
+<jcater> revDeke: you think you can whip up us a GSD schema?
+<jcater> sometime in the next few weeks?
+<revDeke> yeah i can likely do that
+<revDeke> that said i plan on making it a real app likely at some point :)
+<revDeke> but i can certainly do that outside the sample
+<revDeke> for now i have a spreadsheet with my music and i need that to go away 
+<revDeke> so i am driven by simple replacement
+<revDeke> :)
+<revDeke> how about tonight
+<revDeke> actually i MUST work on gnue-sb tonight
+<jcater> yes
+<jcater> you must
+<jamest> yes
+<jamest> please
+<jamest> we're preping prereleases so working on forms/designer/etc will be good testing
+<revDeke> both jamest and jcater are begging for me to break things
+Action: revDeke looks for alan funk or some other prank video camera crew
+<revDeke> must run
+revDeke (www-data@alt1.libertydistribution.com) left #gnuenterprise.
+<jcater> fyi, anyone who looked at the prereleases
+<jcater> I did a Python 2.2 -only thing
+<jcater> that's being fixed
+<jcater> but if you are on python 2.1, please wait for round two :(
+<jcater> jan: what is scale?
+<siesel_> the second parameter for a decimal: POSTGRES SQL: "CREATE TABLE ... myval DECIMAL(precision,scale), ..
+<jcater> no
+<jcater> postgres uses a funky definition for precision
+<jcater> using our parameters, that's DECIMAL(length, precision)
+<siesel_> ok, then the XSLT file are wrong.
+<jcater> we are working on the schema system
+<jcater> trying to get it back together
+<jcater> it has been totally trashed
+<jcater> so yeah it's out of whack right now
+<siesel_> the last time I worked on it was quite ok.
+<jcater> it was way out of spec
+<siesel_> ok, that means that the XSLT files etc. has to be updated
+riandouglas (~riand@031.mel0605.mel.iprimus.net.au) left irc: Read error: 113 (No route to host)
+<siesel_> I will first add a GSD types to database native types to the documentation to see if there is anything missing
+<jcater> there is no simple GSD-type to database-types mapping unfortunately
+<jcater> -pre1 releases reuploaded with python2.2 specific stuff removed
+<jcater> bbl
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left #gnuenterprise ("Client Exiting").
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<jamest> lol
+<jamest> that doesn't look like a different ip to me
+<jamest> the building with all the desks is work....the building with the woman and small child is home
+Action: siesel_ finally read the whole schema.sxw
+<jcater> jamest: lol
+<jcater> woman and small child were ill and have gone to bed
+<siesel_> derek, why the hell do you removed datatypes like float or made varchar and char the same?
+<chillywilly> DO NOT POKE WOMAN WITH SUPER OGG POINTY STICK
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+<jcater> siesel_: that was not the direction we were wanting to take gsd
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: Read error: 54 (Connection reset by peer)
+<siesel_> During the first discussions about gnue you never mentioned anything about that.
+<jcater>  ?
+<siesel_> sorry, about GSD.
+Action: chillywilly is lost on this gsd "direction"
+<jcater> sure it was
+<jcater> as a matter of fact
+<jcater> that's the way my original code in designer was coded
+Action: jcater is away: food
+<chillywilly> is varchar in SQL cmpliant?
+<chillywilly> like with the standard
+<siesel_> dunno, but its quite different if you use varchar or char, as it is between float and number
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+siesel_ (~jan@dial-213-168-72-252.netcologne.de) left irc: "There is no problem that, when programmed just right, isn't more complicated."
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: Read error: 54 (Connection reset by peer)
+drochaid_ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+rdean (~rdean@12-221-229-247.client.insightBB.com) joined #gnuenterprise.
+paqan (~paqan@202.155.120.221) left irc: "Client Exiting"
+paqan (~paqan@202.155.120.221) joined #gnuenterprise.
+paqan (~paqan@202.155.120.221) left irc: Client Quit
+paqan (~paqan@202.155.120.221) joined #gnuenterprise.
+drochaid_ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: "Client Exiting"
+jamest (~jamest@adsl-64-216-107-182.dsl.tpkaks.swbell.net) left #gnuenterprise.
+Action: jcater is back (gone 01:57:55)
+SachaS (~Sacha@dialup-196-77.wasp.net.au) left #gnuenterprise ("Client Exiting").
+riandouglas (~riand@184.b.009.mel.iprimus.net.au) joined #gnuenterprise.
+nickr (~panphage@e-64-35-146-236.empnet.net) left irc: Read error: 110 (Connection timed out)
+riandouglas (~riand@184.b.009.mel.iprimus.net.au) left irc: Read error: 104 (Connection reset by peer)
+riandouglas (~riand@130.c.011.mel.iprimus.net.au) joined #gnuenterprise.
+SachaS (~Sacha@dialup-196-77.wasp.net.au) joined #gnuenterprise.
+riandouglas (~riand@130.c.011.mel.iprimus.net.au) left irc: Read error: 104 (Connection reset by peer)
+nickr (~panphage@e-64-35-146-236.empnet.net) joined #gnuenterprise.
+<ajmitch> yo
+<chillywilly> oy
+<nickr> !
+<ajmitch> mr willychilly!!
+<jcater> ?
+<chillywilly> mr hctimj
+<chillywilly> mr hctimja even
+<jcater> wouldn't that be mitchaj ?
+<jcater> given his pattern?
+Action: jcater shuts up now
+<chillywilly> he has 3 parts though
+<jcater> true
+<chillywilly>  a. j. mitch
+<jcater> I wondered about that
+<jcater> sigh
+<jcater> ajmitch: your name doesn't parse well
+<ajmitch> my apologies
+<ajmitch> it comes from the days of being limited to 8 char usernames
+<ajmitch> ./nick andrewm
+<ajmitch> :)
+<chillywilly> nooooo!
+<ajmitch> oh come on
+<ajmitch> andrewm was a nice guy
+<chillywilly> HEH
+<chillywilly> yea, he was a nice guy to argue with and watch him get pissed and leave the channel
+<chillywilly> it was entertaining
+<chillywilly> ;)
+<ajmitch> i can imagine why
+Action: chillywilly wonders what all the network traffic is about
+<chillywilly> change...compile...change...compile....
+<chillywilly> I should just use python
+<jcater> rofl
+<jcater> for a sec
+<jcater> I thought chillywilly was talking about himself again
+<jcater> but I guess he was talking about andrewm, eh?
+<ajmitch> lol
+<chillywilly> you all suck!!!!!
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left #gnuenterprise ("Free Your Enterprise! - http://www.gnuenterprise.org").
+<jcater> hehe
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+<chillywilly> :P
+<ajmitch> yay, he's gone!
+<ajmitch> oh
+<ajmitch> woops
+<chillywilly> :'(
+<ajmitch> :D
+Action: ajmitch needs a clue
+Action: chillywilly needs a life, a clue, and a lobotomy
+<ajmitch> sigh, i haven't even finised the csv stuff, let alone the gtk2 bugs :)
+<ajmitch> got a form here that works with wxpython but not the gtk2 driver
+<ajmitch> ie, it crashes forms 
+<chillywilly> w00t
+Action: chillywilly waits for g++
+<chillywilly> and waits...
+<ajmitch> chillywilly: i think your 386 could be pushing it a bit
+<chillywilly> hmmm?
+<ajmitch> you should upgrade to one of them new m68k macs
+<chillywilly> cpu MHz		: 451.031
+Action: ajmitch is impressed
+<chillywilly> model name	: Pentium III (Coppermine)
+<chillywilly> yea, it so leeet
+<ajmitch> cat: /proc/cpuinfo: No such file or directory
+<chillywilly> lol
+<ajmitch> think i need a decent OS?
+<chillywilly> this is only a laptop
+<chillywilly> whatcha usin'?
+<chillywilly> GNU?
+<ajmitch> yeah, cut & pasted from that box
+<chillywilly> well install the procfs translator ;)
+<chillywilly> I dunno if it will do cpuinfo though
+<chillywilly> npr if it's usable anyway :P
+<chillywilly> nor
+Action: ajmitch has no use for it
+<ajmitch> size:            312M
+<ajmitch> free:            212M
+Action: ajmitch should get back to hackering
+Action: chillywilly is watching his program spawn  bazillion threads
+<ajmitch> bbl
+<derek> hey children you arent allowed to play until you have tested your 0.4.1 prerelease
+<derek> now put your programs away and get to testing
+<chillywilly> sorry dad
+<chillywilly> hmm, how long is 100 secs?
+<chillywilly> er, 1000
+Action: chillywilly gesses this is too frelling long ;)
+<jcater> >16 min
+<chillywilly> bah
+Action: chillywilly shortens it
+Action: derek gets out his belt and threatens the children to start testing 0.4.1 before dad has to use the belt he is holding
+Action: derek starts to count to three
+Action: jcater hides his donut in his overalls
+<derek> rofl
+<derek> you realize the 'donutman' wears overalls
+<jcater> sigh
+<jcater> so, what're you trying to say?
+Action: derek hopes you arent putting htem in the 'donutholder' in your overalls
+<jcater> hehe
+<derek> s/in/on
+<chillywilly> bad bad dad
+<derek> P utils/doc-xml-attrs-openoffice.py
+<derek> ?
+Action: jcater hasn't seen donuts THAT large!  but they sure sound yummy
+<derek> roflmao
+<derek> do we have something that allows us to store .sxw files as raw xml?
+--- Wed Nov 13 2002

@@ -1,0 +1,50 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.2006-09-14" author="Peter Sullivan" contact="mailto:psu@burdonvale.co.uk" enddate="14 Sep 2006 12:00:00 -0800" startdate="14 Sep 2006 12:00:00 -0800" subject="[IRC] 14 Sep 2006" title="Using either primary keys or object ids to uniquely identify records">
+
+<topic>Forms</topic>
+<topic>Common</topic>
+
+<p>Alex Bodnaru (alexbodn) asked for <quote who="Alex Bodnaru">help to activate the 
+inventory demo: the data is ok in the gnue database</quote> but 
+<quote who="Alex Bodnaru">there is a query that complains there is no 
+oid.</quote> Reinhard M&#252;ller (reinhard) was <quote who="Reinhard M&#252;ller">not 
+sure the inventory demo is functional any more at all - I haven't tried it 
+in literally years</quote>. James Thompson (jamest) explained that 
+<quote who="James Thompson">if a table doesn't define a primary key then 
+our system falls back to using oid</quote> to uniquely identify rows 
+(for example, in updates). However, the postgresql database software 
+(which was the most common database software people tended to use with 
+GNUe) had recently <quote who="James Thompson">dropped the oid column by 
+default in new tables</quote>. In any case, the preferred way of dealing 
+with this was to tell the datasource (GNUe's connection to the database) 
+what column - or group of columns - represented the primary key in the 
+underlying table. GNUe would then use this to identify unique rows, rather 
+than the object id. This would work regardless of whether the database 
+software GNUe was being used with had object ids or not. Really, object 
+ids were only needed <quote who="James Thompson">when a table is defined 
+without a PK - which is really a bad practice that i'm very guilty 
+of</quote>. Reinhard confirmed that the GNUe datasource would use the
+primary keys on the table, but only if the datasource definition told 
+it what the primary keys were. Alex confirmed this - 
+<quote who="Alex Bodnaru">it stopped complaining only after i have added 
+the primarykey option</quote>.</p>
+
+<p>Later, James noted <quote who="James Thompson">we have a bigger 
+issue than i thought - as I just created the zipcode table with a 
+PK - and the datasource still attempts to use the oid column in the 
+query</quote>. Reinhard said that the reason for this was 
+<quote who="Reinhard M&#252;ller">because the primary key field can change 
+on inserts if there is a trigger on db side - so the only really 
+reliable record identifier is the oid</quote>. James replied that 
+<quote who="James Thompson">the oid isn't in newest postgresql</quote>. 
+Alex said that it could still be switched on - 
+<quote who="Alex Bodnaru">you may create the table with oids option</quote>. 
+Reinhard asked <quote who="Reinhard M&#252;ller">are oid's depreciated to use 
+or are they just turned off by default but still a valid option?</quote> 
+James grabbed <quote who="James Thompson">the latest tarball and read the 
+release notes</quote>, reporting that <quote who="James Thompson">reading 
+the release notes it looks like OIDs are going to be around for a while - 
+just not created by default</quote>.</p>
+
+</section>
+
+

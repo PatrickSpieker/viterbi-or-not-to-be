@@ -1,0 +1,1464 @@
+<chillywilly> for the record if you hack the klogd config file and do KLOGD="-c 4" it will turn off the crap on the console
+<chillywilly> er, init script ;)
+<chillywilly> and the default syslog.conf will log all kernel stuff to kern.log
+<chillywilly> including iptables packet filtering/nat output
+<ajmitch> yay
+<chillywilly> night
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: "Free Your Enterprise! - http://www.gnuenterprise.org"
+SachaS (~Sacha@ark.cs.curtin.edu.au) joined #gnuenterprise.
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+<ajmitch> hi psu!
+<psu> hi aj
+Action: psu has skimmed yeaterday's log
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+<psu> Integrator looks like it's taking off
+<psu> I know it sounds *so* twentieth century
+<psu> but CSV is still an important format
+<ajmitch> with some interesting issues
+<psu> the evolutionary path for flat file data seems to be 
+<psu> fixed width text files -> CSV -> XML
+<ajmitch> heh yay
+<SachaS> hi reinhard: good reading your mails about appserver
+<ajmitch> this should be an interesting driver to hack up :)
+<psu> New jbailey debians now on web site front page & gone to gnue-announce
+<reinhard> good morning SachaS and all
+btami (~tamas@ip102-205.ktv.tiszanet.hu) joined #gnuenterprise.
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise ("work is the curse of the drinking classes...").
+johannes_ (~johannes@M701P023.adsl.highway.telekom.at) joined #gnuenterprise.
+ariel_ (~ariel@ppp-217-133-240-41.dialup.tiscali.it) joined #gnuenterprise.
+<ariel_> good morning all
+btami (~tamas@ip102-205.ktv.tiszanet.hu) left irc: 
+<SachaS> bye
+SachaS (~Sacha@ark.cs.curtin.edu.au) left #gnuenterprise ("Client Exiting").
+wayneg (merlinx@ppp1423.qld.padsl.internode.on.net) left irc: "You ain't got debian you ain't got shit!"
+drochaid__ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: Read error: 104 (Connection reset by peer)
+drochaid_ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+ariel_ (~ariel@ppp-217-133-240-41.dialup.tiscali.it) left irc: "Uscita dal client"
+gunebakan (~gunebakan@195.87.232.196) joined #gnuenterprise.
+gunebakan (~gunebakan@195.87.232.196) left #gnuenterprise.
+jamest (~jamest@leibniz.math.ksu.edu) joined #gnuenterprise.
+drochaid_ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: Read error: 104 (Connection reset by peer)
+drochaid__ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+ToyMan (~stuq@smtp.dstoys.com) joined #gnuenterprise.
+ariel_ (~ariel@ppp-217-133-240-41.dialup.tiscali.it) joined #gnuenterprise.
+drochaid__ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: Read error: 104 (Connection reset by peer)
+drochaid_ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+btami (~tamas@ip102-205.ktv.tiszanet.hu) joined #gnuenterprise.
+<btami> hi all
+<btami> jamest you here?
+<jamest> sorta
+<jamest> what'd I break?
+<btami> query by detail support
+<btami> has some typo
+<btami> in popy and postgresql
+<btami> and some dbdrivers are left untached
+<btami> in postgresql there is sql;=""
+<btami> in popy there is sql="" and sql="", but in all others
+<btami> sql="" and sql
+<jamest> sigh
+<jamest> hang on, the mysql driver also has bug in it
+<jamest> i'll commit 
+<jamest> fix
+<btami> please hack interbase too
+<btami> sorry, i have to go home now
+<btami> bye
+btami (~tamas@ip102-205.ktv.tiszanet.hu) left irc: 
+<jamest> wtf
+<jamest> i swore i did all these
+<ra3vat> hi all
+<ra3vat> jamest: papo's gnue tree has about twice more functions in trigger namespace
+<ra3vat> is there any purpose to keep ours such limited?
+<ra3vat>     self._triggerFunctions={'clear':{'function':self.processClear},
+<ra3vat>                             'jumpRecord':{'function':self.jumpRecord,
+<ra3vat>                                           'global': 1,
+<ra3vat>                                           },
+<ra3vat>                             'getRecordCount':{'function':self.getRecordCount},
+<ra3vat>                             'getCurrentRecord':{'function':self.getCurrentRecord},
+<ra3vat>                             'isSaved':{'function':self.isSaved},
+<ra3vat>                             'deleteRecord':{'function':self.deleteRecord},
+<ra3vat>                             'isEmpty':{'function':self.isEmpty},
+<ra3vat>                             'nextRecord':{'function':self.nextRecord},
+<ra3vat>                             'lastRecord':{'function':self.lastRecord},
+<ra3vat>                             'firstRecord':{'function':self.firstRecord},
+<ra3vat>                             'prevRecord':{'function':self.prevRecord},
+<ra3vat>                             'newRecord':{'function':self.newRecord},
+<ra3vat>                             'initQuery':{'function':self.initQuery},
+<ra3vat>                             'processQuery':{'function':self.processQuery},
+<ra3vat>                             'commit':{'function':self.commit},
+<ra3vat>                             'processRollback':{'function':self.processRollback},
+<ra3vat>                             }
+<ra3vat> from papo's forms/src/GFObjects/GFBlock.py
+dsmith (dsmith@oh-strongsvillecadent1-1c-20.clvhoh.adelphia.net) joined #gnuenterprise.
+<jamest> ra3vat: i wouldn't think so
+<jamest> i setup the trigger namespace so it could be easily extended then I sat back and let others extend it
+Action: jamest is lazy like that
+<jamest> i'm hoping that we can start looking at merging the two trees in the very near future
+<jamest> or at least setting them up as a branch in our cvs until we can work thru the changes
+<ra3vat> it would be great
+<ra3vat> On-Switch trigger when is it raised?
+<jamest> whenever the current record is switched to another record
+<ra3vat> when i walk through resultset?
+<ra3vat> ok, works now, put it into wrong wrong place
+KeithJagrs (jorgre@63.74.24.9) joined #gnuenterprise.
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) left irc: Read error: 104 (Connection reset by peer)
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+ariel_ (~ariel@ppp-217-133-240-41.dialup.tiscali.it) left irc: "Uscita dal client"
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+dsmith (dsmith@oh-strongsvillecadent1-1c-20.clvhoh.adelphia.net) left irc: "later.."
+ColeMarcus (~ColeMarcu@p50805C31.dip.t-dialin.net) joined #gnuenterprise.
+<ra3vat> is it possible to have several blocks on one page and perform query on that blocks separately?
+<ra3vat> so i can get resultset in one of them, walk through and via on-Switch trigger update related info in other block
+<ra3vat> for now query (initQuery?) in any block clears all page
+<jamest> not in the current code base
+<ra3vat> from initQuery:
+<ra3vat>     if self.mode != 'query':
+<ra3vat> #      for block in self._form._blockList:
+<ra3vat> #        block.mode = 'query'
+<ra3vat> #
+<ra3vat> what is the logic that block.initQuery() initailizes all blocks of the form?
+Action: ra3vat votes for merging with papo's tree :)
+<jcater> where'd you get papo's tree?
+<jcater> we've never seen it
+<ra3vat> :pserver:anoncvs@subversions.gnu.org:/cvsroot/papo may be that?
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) left irc: Read error: 104 (Connection reset by peer)
+<jamest> what's the papo page again?
+Action: jamest can't find it on sourceforge
+<jcater> it's on savannah
+Action: jcater doesn't have url
+<jcater> btw, only their forms are in that papo cvs repository
+<ra3vat> http://savannah.nongnu.org/projects/papo
+Action: jamest feels dumb
+<jamest> it's in there jcater
+<jamest> http://savannah.nongnu.org/cgi-bin/viewcvs/papo/gnue/
+<jcater> eh?
+<jcater> cvs -d :pserver:anoncvs@subversions.gnu.org:/cvsroot/papo co papo
+<jcater> didn't grab it for some reason
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+<jcater> ah
+<jcater> cvs -d :pserver:anoncvs@subversions.gnu.org:/cvsroot/papo co gnue
+<jcater> got it 
+dsmith (~dsmith@208.40.56.34) joined #gnuenterprise.
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+KeithJagrs (jorgre@63.74.24.9) left irc: Read error: 60 (Operation timed out)
+ToyMan (~stuq@smtp.dstoys.com) left irc: Remote closed the connection
+ToyMan (~stuq@smtp.dstoys.com) joined #gnuenterprise.
+<psu> ok, web site has been updated to include brief descriptions 
+<psu> of the non-main Forms clients 
+<psu> available via http://www.gnuenterprise.org/tools/forms.php
+<psu> Let me know of any omissions or corrections needed 
+<jcater> err
+<jcater> that's a little confusing to me
+<psu> Is there a "freedom-loving" name for Java?
+<jcater> but maybe that's because I'm a developer
+<jcater> the Curses and GTK are slightly different than the others
+<jcater> java, emca, php are separate forms clients
+<jcater> curses, gtk, and wx are modes of our main, reference client
+<jamest> yeah
+<jamest> i think it should be grouped together
+Action: psu will re-word accordingly
+<jamest> and said that it supports wx, gtk, curses
+<jamest> actually
+<jamest> the java client is so old i bet it'd be a major overhaul to get it to even remotely function
+<jcater> dude
+<jcater> have you looked at jforms
+<jcater> there's no code in there
+<jcater> it's all files w/blank class defs iirc
+<jamest> if that's the case then I'd be tempted to drop it
+<jcater> we need to look at the whole way we're handling this
+<jcater> I'm not sure this is clear
+Action: psu will try again
+<psu> http://www.gnuenterprise.org/tools/forms.php
+<psu> I can see a case for not mentioning the "Other Forms Clients" at all
+<psu> but they exist, even if
+<Mr_You> JForms is Java no?  who is working on that?
+<psu> only as prototypes (jscript)
+<psu> Mr_You: No-one. 
+<psu> or (like the Java) as failed experiments to be kept around as an awful warning ;-)
+<Mr_You> ahh
+<jamest> maybe we shouldn't mention them
+<Mr_You> Jans javascript code could replace JForms
+<jamest> as people will try them out and they ask about them
+<jamest> until we have a live one
+<Mr_You> yeah but its cvs james, no releases ;-)
+<Mr_You> they get what they deserve ;-)
+<jamest> i mean not on the main page
+<jamest> as no one is working on java one so why mention it
+<Mr_You> yeah
+<Mr_You> maybe archive it, or create an "old" directory.. for failed attempts ;-)
+<psu> well, the other Forms clients are fairly well hidden
+<psu> Not on the status page, not on the left toolbar, etc
+<psu> Only accessible from /tools/forms.php
+revDeke (www-data@alt1.libertydistribution.com) joined #gnuenterprise.
+<psu> masta may have some ideas
+<Mr_You> for a second, I looked around to see if you could "authenticate" groups, but I couldn't find anything in pam.
+<jcater> psu: my issue is with "official" vs "other people's implementations"
+<jcater> as jsforms != the html mode for gnue-forms
+Action: jcater is just worried about confusion
+<Mr_You> it would require local machine specific group checking
+<Mr_You> what do you mean jsforms != html moe for gnue-forms?
+<Mr_You> what is then?
+<jcater> I dunno what it is
+<Mr_You> so why not jsforms?
+<jcater> we have planned all along to have an html mode for gnue-forms
+<jcater> that's no secret
+<Mr_You> yeah but no one has put anytime or ideas into it cept me and Jan, AFAIK
+<Mr_You> and the best thing we came up with was using js.
+<jcater> I'm not saying don't do jsforms.. go for it
+<jcater> I never said that
+<Mr_You> but saying its not going to be included is kinda a time waster
+<jcater> included?
+<jcater> included in what?
+<revDeke> my opinion is that we have 3 distinct things (perhaps 4)
+<Mr_You> let me put it this way...you won't create a sufficient HTML client WITHOUT JS
+<jcater> Mr_You: maybe so
+<Mr_You> inclued as a GNUe Forms client.
+<jcater> but the jsforms plans do not hold up to the reference implementation needs
+<Mr_You> jcater: maybe you'd prefer active-x?  ;-)
+<revDeke> 1. UI Drivers - (python based drop in drivers, curses, pygtk2, wx fit this bill) that are official
+<jcater> at least, if they will require appserver
+<jcater> as the webpage reads
+<jcater> I mean, that's completely useless for me
+<Mr_You> well you gotta start somewhere
+<jcater> we have
+<revDeke> 2. Forms Implemenations - complete rewrites of forms that are not drivers that are official
+<jcater> and it's called gnue-common
+<jcater> and gnue-forms.uidriver.base
+<revDeke> 3. same thing as 1 only non official
+<Mr_You> umm
+<revDeke> 4. same thing as 2 only non offical
+<Mr_You> that would be fine to implement a python-based CGI for "2-tier"-like connectivity
+<Mr_You> but its not going to be persistent
+<revDeke> i think that 3 and 4 dont belong on the gnue.org website except maybe as links to non official gnue stuff
+<jcater> like hell its not
+<Mr_You> umm
+<psu> official == in our CVS, or likely to be?
+<revDeke> 1 and 2 belong there but need to be distinct
+<Mr_You> tell me how you will make HTTP persistent using CGI?
+<revDeke> as there is a difference between running gnue-forms -u gtk2 someform.gfd
+<revDeke> and running
+<revDeke> phpforms someform.gfd
+<revDeke> if that makes sense
+<jcater> Mr_You: you added the CGI part
+<Mr_You> jcater: how else would you connect to a DB from an "HTML client"?
+<Mr_You> way I see it this.. atleast for the immediate future:
+<revDeke> psu: im not sure how to define official
+<revDeke> ultimately it should be if its in our cvs its 'official'
+<Mr_You> for unencrypted 2-tier LAN service you could use local machine clients..
+<revDeke> but i think jcater and jamest mentioned that perhaps the java version shouldnt be in there anymore
+<revDeke> as its not maintained
+<revDeke> and is nearly worthless now
+<Mr_You> for encrypted 3-tier WAN service over the net, you could use appserver and HTML or local machine clients.
+<jcater> Mr_You: that's not our vision, though
+<jcater> that defeats the mission
+<jcater> "All our tools can be used together or independently"
+<revDeke> in the future i would say the only kind of java implementation that coudl be official woudl be one that used all free software 
+<revDeke> i.e. a free java virtual machine and toolkits
+<Mr_You> jcater: but why would you use an HTML client AND local clients in the same "group?
+<jcater> huh?
+<revDeke> Mr_You: i think you are overseeing the basic principles of gnue
+<revDeke> and looking with far too narrow of a scope
+<jcater> why would I use curses, win32, and gtk in the same group then?
+<jcater> because of different user's needs
+<revDeke> certainly one could make an HTML client that did not require apserver
+<Mr_You> I'm trying to understand how you would use HTML client independently
+<revDeke> er appserver
+<revDeke> Mr_You: that wasnt the point
+<revDeke> the point is you could use an HTML client w/ or w/o appserver
+<revDeke> w/ or w/o reporter
+<revDeke> w/ or w/o integrator
+<Mr_You> rev: absolutely, but lets talk technical
+<revDeke> just like you should be able to use appserver w/o ANY forms implementation
+<Mr_You> how is it POSSIBLE to use an HTML client without middleware?
+<revDeke> um
+<Mr_You> HTML client can't talk to the DB directly
+<revDeke> how is it possible to write client server applications w/o middleware?
+<revDeke> i.e. i dont see how middleware is 'special'
+<revDeke> er html
+<revDeke> the UIhtml.py driver for forms
+<Mr_You> I don't see what middleware is being used in a 2-tier setup.. its only 2 hehe
+<revDeke> would be what the 'middleware' would become
+<revDeke> the browser kind of becomes the 'toolkit' (like wx or gtk)
+<Mr_You> I'm not refering to "internal middleware"
+<revDeke> Mr_You: thats my point
+<Mr_You> man this is frustrating
+<revDeke> im not seeing WHY you need middleware
+<Mr_You> lets get on the same page
+<jcater> Mr_You: I'm not discouraging any of y'all from doing the jsforms thing
+<revDeke> at one time someone was writing an UIhtml.py (its in cvs if i remember correctly)
+<jcater> I never said that
+<Mr_You> what is the gripe?  that HTML client requires appserver and it won't run alone in 2-tier setup, correct?
+<jcater> I just said we have plans for a UIhtml client
+<revDeke> that basically used forms and was just a driver
+<revDeke> Mr_You: the gripe is some folks dont want an EXTRA layer called appserver
+<Mr_You> rev: ok
+<revDeke> by forcing the client to use appserver you are forcing htem to use a layer they feel is unnecessary
+<Mr_You> rev: so tell me now, how you would expect to get persistent connections using a webserver and HTML client?
+<revDeke> much like the wx client
+<revDeke> i woudl expect the html client
+<revDeke> to allow use of appserver or allow use of common db system directly
+<revDeke> where the forms developer makes that decision
+<Mr_You> but you can't have persistent connections with "common db system directly"
+Action: revDeke could be wrong, but i think that was the crux of jcaters argument
+<Mr_You> and it still requires a web-server, your middleware/extra component
+<jcater> Mr_You: I connect to websites everyday
+<jcater> that have database backends
+<jcater> and my browswer isn't talking to their database
+<revDeke> like all crapp^H^H^H^H web applications you often have to 'fake' your persistence
+<Mr_You> jcater: it is "persistent-like" it is not truly persistent.
+<jcater> well
+<jcater> lemme tell you
+<revDeke> again i STRONGLY suggest you look at UIhtml.py
+<jcater> I'm not opening up a pipe back to my database
+<jcater> for a remote web browser to use
+<jcater> :)
+<revDeke> jcater: chicken
+<Mr_You> correct... so what I'm saying is.. you can't create an HTML client WITHOUT extra components, which in this case it would require APPSERVER OR Apache/webserver.. it wouldn't work without one or the other
+<jcater> Mr_You: yes it can
+<Mr_You> how so?
+<ra3vat> psu: "here" link from http://www.gnuenterprise.org/tools/jsforms.php is broken
+<psu> ra3vat: thanks
+<Mr_You> persistent-like is a whole other ballgame
+<Mr_You> its going to be a PITA to code.. IMO
+<jcater> um
+<jcater> as opposed to javascript
+<jcater> that opens connections back to home office
+<jcater> ?
+<jcater> :)
+<Mr_You> javascript is just implementing xmlrpc
+<Mr_You> I'm still waiting for your explaination
+<jcater> Mr_You: I've pasted links to my rough outline many times
+<jcater> lemme dig it up
+<Mr_You> no no
+<Mr_You> I'm refering to your response "<jcater> Mr_You: yes it can"
+<Mr_You> how is it possible to run an HTML client without a webserver?
+<jcater> Mr_You: gnue-forms can stand by itself and communicate back to a webbrowser
+<jcater> there's no magic to that
+<Mr_You> so gnue-common has a builtin webserver now?
+<jcater> ya
+<Mr_You> ok, and this isn't news worth mentioning?
+<jcater> um
+<jcater> it's part of python's library
+<Mr_You> ok
+<jcater> it formed the basis
+<Mr_You> frustrating again
+<jcater> of the initial gnurpc implementation
+<jcater> how do you think
+<Mr_You> its either in gnue-common or is planned to be in gnue-common or what?
+<jcater> gnue-common is serving xmlrpc calls?
+<Mr_You> ok ok
+<jcater> not by magic
+<Mr_You> so 
+<revDeke> hmmm isnt magic just science unexplained :)
+<Mr_You> this is bizare
+<jcater> psu: I have one concern/suggestion
+<revDeke> so if he didnt know that python had webserver capabilities it could be construed as /magic/ no?
+<revDeke> ;)
+<jcater> I strongly feel, whatever appoach we take w/the various forms
+<jcater> ...user
+<Mr_You> so where would this gnue-common webserver code be executed?  on the local machine?
+<Mr_You> you would startup the gnue-web-server on the db machine?
+<Mr_You> I'm very aware that many programming languages have http libraries.
+<jcater> pk, back
+<Mr_You> way I look at it is this... create a jsforms client that does xmlrpc then when the "gnue-web-server" begins to work you just integrate it with the javascript client.. cause javascript is going to be required for screen writes.
+<jcater> psu: I strongly feel, whatever appoach we take w/the various forms
+<jcater> the website layout should be more like
+<jcater> http://www.gnuenterprise.org/tools/forms/.......
+<jcater> e.g., 
+<jcater> you have 
+<jcater> http://www.gnuenterprise.org/tools/curses
+<jcater> this could just as well refer to the curses navigator client
+<Mr_You> no one has explained to me how you can run webserver code without a webserver.
+<jcater> you would be your own webserver
+<Mr_You> you mean gnue would have a webserver
+<jcater> gnue has a webserver
+<jcater> I don't understand why you're arguing with me
+<jcater> I don't even understand what this is about
+<Mr_You> why not just build the webserver into appserver?
+<jcater> um
+<jcater> why?
+<Mr_You> I'm trying to figure out the roadmap!
+<jcater> then just build forms into appserver while you're at it
+<Mr_You> and the argument is still this..
+<jcater> if the other tools can use the code, it goes in common
+<jcater> we all agree to that so far
+<Mr_You> formsclients shouldn't require extra software for 2-tier setup.. I'm ASKING YOU.. HOW IS THIS EVEN POSSIBLE with HTML client?  ITS NOT.
+<Mr_You> AFAICS
+<Mr_You> understand?
+<Mr_You> ie. it requires a webserver or appserver.. either way one is required, you said it wasn't, but I haven't heard how.
+<Mr_You> you can't build an HTML 2-tier client without something executing and connecting to the DB.. that ain't gonna be the browser, like you mentioned.
+<Mr_You> if I'm wrong, correct me already.
+<jcater> 2 tier refers to database access
+<jcater> I never said "no server of any type"
+<jcater> app server != a general purpose server like a webserver
+<Mr_You> you said it would work without appserver or webserver.
+<jcater> as I said earlier
+<Mr_You> "yes it can" was your response to mine.
+<revDeke> btw: psu i agree with jason on tools/curses and such
+<jcater> ok, maybe I misunderstood you 
+<jcater> you said apache/webserver
+<jcater> so I thought you meant cgi + apache
+<jcater> which is not the case
+<jcater> but I also said
+<jcater> early on
+<jamest> mod_forms :)
+<jcater> the gnue-forms client can be its own server
+<Mr_You> I said apache/webserver because if a webservr is required it should be able to use apache
+<Mr_You> thats good too
+<Mr_You> so you see.. I stand by my thoughts that js is required for dynamic screen writes.. you build the layout code into JS then add on xmlrpc and 2-tier connectivity
+<jcater> and I said that's great
+<jcater> I'm not discouraging jsforms
+<Mr_You> the 2-tier connectivity requires backend coding just as the xmlrpc route does also.
+<Mr_You> but you just can't have an HTML client with both functionalities until both backends are coded.
+<Mr_You> I understand ya'lls point now.
+<Mr_You> it comes down to the requirement of configuring and running appserver vs the requirement of configuring and running a webserver.
+<Mr_You> and the only answer I see is that one will have to come later at the expensive of the other
+<jcater> I wasn't asking for an answer about anything
+<jcater> I don't remember asking a question
+<Mr_You> and I could be wrong, but appserver+jsforms is further along than webserver+jsforms
+<jcater> webserver+jsforms?
+<jcater> who said anything about webserver+jsforms
+<jcater> ?
+<Mr_You> oh man
+<jcater> I think that's where we're getting confused
+<ajmitch> morning
+<Mr_You> s/webserver/gnue-web-server
+<Mr_You> that better?
+<jcater> s/jsforms/html client
+<jcater> that's better
+<Mr_You> why not call it jsforms?
+Action: revDeke remembers at one time a UIhtml.py floating around
+<revDeke> that seemed to acutally kind of work
+<Mr_You> and you said webserver was confusing not jsforms wtf?
+<revDeke> it required webware or something
+<ajmitch> did UIwebware.py ever work?
+<Mr_You> uggh
+<Mr_You> nm
+<revDeke> yeah that one
+Action: ajmitch is into webware stuff
+Action: revDeke thought it kind of worked
+<Mr_You> I don't understand why I keep getting a response that a webserver isn't required for html client hehe
+<jcater> what?
+Action: revDeke would like to see a python/html implemenation first at it should require LEAST amount of work
+<jcater> you aren't
+<jcater> you never did
+<Mr_You> yer confusing the hell out of me, I'm trying to lay it out as simple as possible
+<revDeke> rather than a full forms rewrite in javascript or php
+<jcater> you said
+<Mr_You> you're not going to have a dynamic client with JS
+<jcater> and I could be wrong, but appserver+jsforms is further along than webserver+jsforms
+<revDeke> but thats just me, im not writing the the client so its not for me to dictate
+<ajmitch> revDeke: well, that was what the webware one was like, no?
+<jcater> and I said? webserver+jsforms
+<jcater> it should be 
+<revDeke> ajmitch: yes
+<jcater> .... and I could be wrong, but appserver+jsforms is further along than webserver+html client
+<jcater> which I kind of disagree with as well
+<jcater> but that's another story
+<Mr_You> revDeke: a python/html client would still require javascript for any sort of dynamic on screen functionality.
+<ajmitch> tho it'd ideally need js for client-side processing of things like input masks, keystrokes, etc
+<ajmitch> as Mr_You said :)
+<jcater> and I keep on saying, I'm not discouraging/competing w/jsforms
+<jcater> it's a good idea
+<jcater> go for it
+Action: ajmitch thinks there is a degree of confusion here
+<Mr_You> ajmitch: correct, so why not write all of the layout in JS I say.. ;-0
+<Mr_You> anyways.. this is pointless.. siesel has a good deal of work done on the jsforms client and its looking good
+<jcater> great!
+<jcater> I'm glad
+<Mr_You> slap on some sort of cgi component and you have eliminated your appserver requirement
+<Mr_You> easy as that ;-)
+<Mr_You> from what I understand ya'll are talking about having a client that requires a backend cgi component to do most of the forms layout and processing.. and having a "lite weight" javascript functionality to maintain dynamic screen writes and persistent-like capability..
+<Mr_You> going the route that has been taken, you can reuse the js code for the 2-tier connectivity.
+<jcater> not at all!
+<jcater> but I give up
+<jcater> y'all do your thing
+<Mr_You> well jason, I'm sorry, but no one has explained to me how 2-tier connectivity will be done without the use of some sort of "CGI"
+<jcater> why do I have to design the html client right here in IRC?
+<jcater> http://www.gnuenterprise.org/~jcater/HTMLClient.txt
+<jcater> are my plans
+<Mr_You> because we've been discussing this everyone keeps their comments to themselves?
+<jcater> what?
+siesel (jan@dial-194-8-205-204.netcologne.de) joined #gnuenterprise.
+<siesel> hi all
+<Mr_You> hi
+<Mr_You> that last comment was wrong, my bad.
+<Mr_You> what I meant to say..
+<Mr_You> is how do you plan on not using js?
+<jcater> sigh
+<siesel> cool. seems like web clients are being discussed
+Action: Mr_You sighs too.
+<revDeke> btw: Mr_You i never said that js couldnt be used in a python client
+<revDeke> for html
+<revDeke> i.e. i would expect it
+<Mr_You> rev and all
+<Mr_You> lets not just expect it... it is REQUIRED for dynamic screen writes
+<jcater> revDeke: my vision on that is
+<jcater> the html client would NOT require JS
+<jcater> but if there
+<revDeke> i think you could do that
+<jcater> it could take advantage of it
+<Mr_You> ok
+<revDeke> the biggest thing that becomes an issue
+<Mr_You> I understand more now.
+<revDeke> is client side triggers
+<jcater> dudes
+<jcater> I never said every detail had been worked out
+<Mr_You> I personally don't want to touch a forms client that has to reload the screen every click or key stroke or whatever.. I would use a js client 
+<revDeke> but the data stuff and such i see no problems
+<jcater> Mr_You: great!
+<Mr_You> jason: no problem
+<jcater> neither would I
+Action: revDeke thinks its an implementation detail not an architectural one
+<Mr_You> I'm trying to explain why JS is in our best interest for the enduser
+<ajmitch> revDeke: aye
+<revDeke> as jcater points out, we dont have to design it here today
+<jcater> Mr_You: let me state this
+<jcater> I would fully expect y'alls jsforms to be a better experience for the end-user
+<jcater> BECAUSE
+<jcater> it is a specific, targeted version of forms
+<jcater> BUT
+<Mr_You> now tell me why you would not want to use JS
+<jcater> that doesn't mean we don't want a version using our gnue-forms core
+<jcater> Mr_You: because support for JS is very, very lackluster/unstandard
+<jcater> I never said we wouldn't use it... just not require it
+<Mr_You> bigger issue than all of this is triggers in HTML client..
+<jcater> sigh
+<jcater> I'm ending this discussion right now
+<jcater> we are not designing this today
+<jcater> I am happy you guys are doing a jsforms client
+<jcater> I am
+<jcater> another implementation will keep us in check
+<Mr_You> well I'm not a coding madman like jan
+<jcater> and it will be something very useful
+<jcater> that doesn't negate use having a more general purpose one in gnue-forms
+<jcater> even if it's not as robust/user friendly
+<dsmith> One of the problems of js is that it is different for every browser.  Some don't even support it (like dillo).
+<jcater> now, that's all I have to say on the matter
+Action: jcater out
+<Mr_You> I'll say this... I expect to leave it up to the developer (siesel) as to the point of where incompatibilities become an issue
+<Mr_You> between browsers on whether to code that functionality or not.
+<jcater> psu: did you catch my comment on the site layout
+<jcater> wrt forms/
+<jcater> ?
+<psu> jcater: I have already fixed to distinguish modes of ref client
+<psu> and "other" clients
+<psu> Just need to be told which of the "other" clients we regard as unofficial at the moment
+<psu> and I'll remove them completely
+<jcater> I think it's safe to say Java
+<jcater> has jan abandoned phpforms in favor of jsforms?
+<jcater> or are those both still being developed?
+<jcater> siesel?
+<Mr_You> I dunno if I should mention this on the list, but we could begin group and user based access control using the system group file (requiring local system lookup) or internal objects.
+<siesel> just one word to the whole stuff: IMHO 1. choices are good 2. there has to be ONE standart implementation (more than one will allways become unmaintainted) 3. 
+<jcater> 3. ???
+<jcater> is that like
+<jcater> 1. Write GNUe
+<jcater> 2. ???
+<jcater> 3. Profit?
+<jcater> ;)
+<Mr_You> heh
+<Mr_You> 3. ??
+<Mr_You> 4. Profit
+<siesel> 3. jsforms should be so modular that you can easily implement three different setups: a) standalone jsforms b) jsforms with preloaded data, +...  c) ... d) just take triggers from jsforms the rest will keep on the server side (php or python or perl ....)
+<Mr_You> maybe.. lik datasources.. we could also have access list, would be an XML file.. and use internal objects/group file to find out who is a part of which.
+<ajmitch> jcater: CSV db driver inherit from _static ?
+<siesel> jcater: 3. Profit like in joining Greanpeace.
+<jcater> siesel: :)
+<revDeke> btw: i dont know if anyone caught my CSV driver comment
+<ajmitch> revDeke: i did
+<jcater> revDeke: no
+<Mr_You> anyone comments about what I mentioned?
+<jcater> when was it said?
+Action: siesel is listening
+<ajmitch> revDeke: you said you didn't want it to be complex
+<revDeke> i think good things were discussed, but im curious about making db driver more complex than need be
+<ajmitch> revDeke: how owuld it be more complex?
+<Mr_You> rev: when is smallbiz gonna be in the cvs?
+<revDeke> i.e. some of the things sounded more like 'integrator' issues than db driver issues
+Action: ajmitch will probably work on it after work today
+<jcater> revDeke: possibly
+<revDeke> im not saying anything said shouldnt be in the db driver
+<revDeke> im just saying i woudl be cautious
+<jcater> which things specifically are you thinking about?
+<revDeke> as generally there are two types of things 
+<revDeke> csv files in which you wnat to read and write
+<revDeke> and csv files which are used to 'move' data
+<revDeke> jcater: i think you brought up a VERY good point in the dont assume 1 line
+<revDeke> some wierd files dont start data until two or three lines in
+<revDeke> and the issue of do you have header rows or not etc
+<revDeke> another good point
+<revDeke> both of those should be in the driver i htink
+<ajmitch> yup
+<ajmitch> you don't think field renaming should be?
+<revDeke> but one must evaluate how can one reasonably read/write is for some things
+<revDeke> i.e. is it only valid for import/export
+<siesel> read write files and files to just "move" data could be differenciate by a "mode=RW|R|W|R_seq|W_seq" field
+<jcater> well
+<jcater> I wouldn't expect to run GNUe Forms off of it
+<jcater> I suppose one "could"
+<ajmitch> heh
+<revDeke> again im picking nits here
+<revDeke> im not saying anything discussed doesnt belong in the dbdriver
+<revDeke> BUT
+<ajmitch> are there any docs (yet) for writing db drivers?
+<revDeke> if things are more for import export i think defining them in the conf file sucks :)
+<revDeke> i.e. it should be part of integrator imho
+<revDeke> i.e. i deal with flatfile passing for mainframe for a living
+<ajmitch> yuck
+<revDeke> and having to setup connections.conf stuff for it would be ugly
+<jcater> ajmitch: source code
+Action: jcater ducks
+Action: revDeke might be envisioning too far out to what integrator will be like
+<jcater> revDeke: true
+<jcater> however
+<jcater> hear me out for a sec
+<siesel> revDeke: I thought of this thing too. In normal case the names of the csv file are changing all the time.
+<ajmitch> jcater: ok, so i'm expected to write up docs as i go? :)
+Action: jcater faces similar issues you are
+<jcater> I'm really thinking, wherever you define it, this really boils down to a <datasource> issue
+<jcater> so there's really two options
+<revDeke> ajmitch: didnt i send you the GNUe Telepathy Headband in via post?
+<jcater> 1. do as I originally suggested
+<ajmitch> revDeke: must have missed it
+Action: revDeke was envisioning another file format..... for integrator that is XML based
+<jcater> and have a <datasource type="fixed"><flatfiledef>.........</flatfiledef></datasource>
+<ajmitch> yaff
+<revDeke> that could be as simple as holding this kind of data
+<revDeke> and as complex as providing mappings and triggers etc
+<revDeke> again maybe im thinking too much into integrator here
+<revDeke> im not against what has been proposed it will be great to see a csv driver of any type 
+<revDeke> as i would expect it to evolve, so i dont want to 'over complicate' things
+<Mr_You> what does csv stand for?
+<revDeke> just thinking outloud
+<jcater> well, IF it's a part of the datasource definition
+<jcater> (since we are considering other things now)
+<revDeke> comma separated value
+<jcater> 1. it can be part of the <datasource> tag (or a subtag)
+<jcater> 2. it can be part of the connections.conf file
+<jcater> those are basically the 2 options
+<jcater> I'm ok with either
+<jcater> IF it's 2
+<revDeke> is there a way like FORMS where we can override
+<jcater> you could still leave out connections.conf (for one-time stuff)
+<revDeke> i.e. i can define a connections.conf file
+<jcater> and have a <database> tag
+<revDeke> OR
+<revDeke> i can define a <database> tag
+<jcater> yeah
+<jcater> :)
+<revDeke> if so im totally cool with it
+<jcater> now, I'm totally cool with my 1 or 2
+<revDeke> as the integrator xml file im thinking of
+<jcater> I honestly have no preference
+<jcater> well
+<revDeke> could then if one time stuff just write out the db tag
+<jcater> the advantage for #2
+<revDeke> if its reused it could be in a connections.conf
+<jcater> is if it IS a cvs file you need to reference very often
+<jcater> it could be in connections.conf
+<revDeke> yip
+Action: Mr_You sighs.
+<jcater> maybe I need to shut up
+<jcater> and let derek talk
+<revDeke> im in 100% agrteement here
+<jcater> we are talking in parallel here :)
+Action: revDeke hopes im thinking like them and not them thinking like me (or we are all doomed) ;)
+<jcater> I'm reasonably sure you're thinking like us
+Action: jcater ducks
+<jcater> did hell freeze over today?
+<jcater> my feet are cold
+<ajmitch> nope, still warm here
+<Mr_You> I love being ignored.
+<Mr_You> way it goes
+<revDeke> smallbiz is in cvs now
+<Mr_You> what is csv?
+<siesel> revDeke: I thought of XML input for Integrator too. But then we need a new directorys "sources","filters","destinations" like report has.
+<ajmitch> Mr_You: comma separated values
+<revDeke> comma separated value (i answered that earler)
+Action: Mr_You feels like an idiot once again.
+<Mr_You> I've never refered to it as acronym.
+<revDeke> siesel: more ithink like jcater (or something like that)
+<ajmitch> i only see it as an acronym :)
+<revDeke> i think that integrator is just a different front end to reports
+<jcater> siesel: I'm not sure about all of that
+<jcater> imho
+<jcater> integrator is
+<revDeke> i.e. im thinking the reports engine with little work will do most of what integrator needs to
+<jcater> <datasource>s  <-----> <datasource>s
+<jcater> providing a mapping layer between them
+<jcater> to do complex stuff
+<revDeke> just that you get a UI that is slightly different
+<jcater> (with triggers if need be)
+<revDeke> jcater: i agree with that 
+<revDeke> maybe its reports with a little more
+<jcater> so I'm not sure what "filters" and "destinations" would be for
+<jcater> in integrator
+<revDeke> at one time i thought completely separate, but i see more and more shared to a degree
+<revDeke> i tried to not get lost in the details and just kind of observe
+<jcater> revDeke: in my mind.. it's reports with a SINGLE destination... another datasource :)
+<revDeke> i like this converstion in that the CSV driver to me is a HUGE first step for integrator
+<revDeke> ie. i have needs for integrator but mostly with CSV
+<revDeke> as soon as we have CSV driver i can start to torture test integrator with sample usages :)
+Action: revDeke notes that i opened a credit like with ye lowly donut shoppe in Memphis
+<revDeke> s/like/line
+<jcater> ooooo
+<ajmitch> bbl, time for me to work :)
+<Mr_You> my bank offers Quicken (QIF) and MSMoney (OFX)
+<Mr_You> should be easy enough to integrate
+<psu> Ok, so I'll remove the Java forms client from the website
+<psu> Is someone going to tag it then remove it fromCVS too?
+<psu> And should I drop the ECMAScript/Javascript as well?
+<psu> At least until siesel and Mr_You get something that is CVS-able?
+<siesel> tell me where to put it into cvs then I will commit
+<psu> <irony>/jforms?</irony>
+<siesel> psu: possibly just commenting (jsClient) out would be good for now.
+<siesel> jcater: you asked about phpforms. At the moment I will first make jsforms a bit more complete before combining it with phpforms, moving much code from it into phpforms and make phpforms still work with non ECMAscript capable clients.
+<siesel> But now I need a working Integrator (<datasource>s  <-----> <datasource>s)
+<jcater> um
+<jcater> we need to hash out what a gmd file is gonna look like
+<jamest> ack!
+<jamest> i leave for 1/2hour and have 25 pages of logs to read
+<jcater> jamest: psu will have an executive summary by Sunday :)
+<jamest> i can wait then :)
+ColeMarcus (~ColeMarcu@p50805C31.dip.t-dialin.net) left irc: 
+<siesel> my thoughts about are kind of the following: 1. define source and destination datasources 2. define fields to be directly copied
+<psu> heh, it's Thursday
+<psu> That makes it next week in KC-land ;-)
+<jcater> I didn't specify which sunday :)
+<psu> jcater: true
+<siesel> 3. source fields split into multiple dest fields 4. source fields merged into single dest. fields 5. source fields being input for triggers only and populate dest fields
+<siesel> 6. multiple rows from source which get merged into one row in the dest. datasource 7. "row splits" 8. submappings for detail datasources
+<siesel> Jason: what do you think?
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) left irc: "Everything that is worth fighting for, is worthy fighting dirty for"
+<jcater> I'd say thats a pretty good use-case listing :)
+<psu> forms section on website changed again
+<psu> hopefully now definitive 
+<psu> www.gnuenterprise.org/tools/forms.php
+<jamest> psu: i like that better
+<jamest> 1 possible change :)
+<jamest> would it be cleaner to have 1 page on the reference client with #section tags for the various drivers
+<jamest> as I know that I want to see a native win32 driver and a qt driver 
+<jamest> and I'm sure we need an emacs driver too :)
+<psu> The main justification for separate pages is 
+<psu> that each mode of the ref client may have diff statuses
+<psu> and it's confusing to have too many "Status" lines on one page
+<psu> IMHO
+<siesel> if we have the emacs driver, we possibly won't need anymore. Even unicode would be handled perfectly ;)
+<siesel>  /anymore/any other driver/
+<jamest> psu: good point
+<jamest> wx: flaky
+<jamest> curses: unusable
+<jamest> gtk2: who knows?
+<jamest> hmmmm, maybe we should just leave status off :)
+<jamest> j/k
+Action: jcater would still rather see
+<jcater>  /tools/forms/
+<jcater>  /tools/forms/curses
+<jcater>  /tools/forms/gtk2
+<jcater>  /tools/forms/wx
+<jcater> if you want to keep separate pages
+<jcater> as I think /tools/curses 
+<jcater> is ambiguous
+<jcater> considering we have a curses navigator too
+<jamest> true dat
+<jamest> as reports almost has a curses and wx mode i think
+Action: psu will fix that in the pending site overhaul for when we get it into CVS
+<psu> as the current site assumes things that make that difficult
+<psu> but I intend to "unassume" them once I need to get site working in both locations 
+<psu> i.e. www.gnu.orh/software/gnue & www.gnuenterprise.org
+Action: psu sometimes whishes we had stuck with Zope
+<psu> but I got so blocked with that, I even did the unthinkable
+<psu> and RTFM-ed
+<psu> and even that didn't work ;-/
+<jamest> :)
+<psu> documentation == the last step before apt-get remove
+<grib> hey any of you gnue-ers have any experience with EDI?  are there any free libraries to deal with it, pref C? 
+<jcater> I know derek dealt heavily w/EDI
+<jcater> but I don't know if he had any free libraries to play with
+ToyMan (~stuq@smtp.dstoys.com) left irc: ": I'm off to make more toys..."
+<grib> jcater: from what I can tell it doesn't seem like rocket science, but I'm just sort of trying to get a handle on the big picture from a dev perspective... looking at source is generally the way I learn best :)
+<Mr_You> from what I understand EDI is a broad concept..
+<grib> I guess I'm thinking specifically about ANSI X.12 and EDIFACT, which seem to be the most prevalent standards. 
+<Mr_You> ok
+<grib> but the whole "Value Added Network" concept and how EDI transactions actually take place is sort of eluding me.  Anyway I figured somebody around here might have a clue about it... when's derek generally around? 
+<psu> theoretically, EDI is meant to be a dead duck with ebXML and the like about
+<psu> but like many legacy technologies
+<jcater> like my fax machine?
+<jcater> :)
+<psu> it's proving much more resistant than the tech consultants expected/hoped
+<revDeke> rofl
+Action: psu sits opposite a COBOL programmer at work
+<revDeke> you poor naive innocent developer
+<revDeke> EDI is TECHNICALLY is as simple as it gets
+<revDeke> tis the politics of EDI that is a nightmare
+<nickr> psu: man, you really have derek disease.
+<revDeke> everyone has different EDI standard
+<revDeke> i.e. doctype
+<revDeke> and uses different VANs (carriers)
+<revDeke> the price is LUDICROUS
+<psu> nickr: i find that if i wait until the end of the sentance 
+<psu> to press return
+<psu> someone else has already said what I was going 
+<psu> to
+<revDeke> i suspect there will be little hope of free EDI stuff until the cost of EDI comes down
+<revDeke> as free software develoeprs can afford to test it
+<nickr> psu: I have a touch of that myself unless I'm hopped up on caffiene and type like the wind.
+Action: revDeke could look into whether LDC would gpl stuff its not likely though
+<revDeke> as over time it became cheaper in ways to outsource some of it and deal with it on an outer level
+<revDeke> as customizing for each vendor was tedious
+Action: revDeke still thinks the best biz model in the world would be FREE EDI
+<revDeke> i.e. all libraries and such are completely free
+<revDeke> all software free
+<revDeke> and the 'HUB' van could be 1/3rd the price of what exists today
+Action: jcater thinks the best biz model in the world is FREE DONUTS.... I'm just waiting for someone to try it next door to me
+<revDeke> and you would still make serious cash
+<nickr> EDI does seem like mostly a service type situation.
+<revDeke> anyhow grib you are sick sick sick man if you want to do EDI in C
+<revDeke> as much as i hate perl it would make sense because of its good text parsing capabilities
+<revDeke> but C is well just not optimal for slicing and dicing text files
+<revDeke> imho
+<nickr> It can be with the right support libraries.
+<jcater> true
+<revDeke> python would is fun for edi cause its all about the lists baby :)
+<jcater> you could compile in perl support :)
+<nickr> haha
+<nickr> or pcre
+<revDeke> i.e. you just read the file in as dictionaries and go to work
+<nickr> yea
+<revDeke> but back to grib's original issue, there arent any free ones i know of
+<revDeke> i plan on authoring some (they will be in python)
+<revDeke> for now its not high priority
+<grib> revDeke: you seem, to know what yer talking about :) thanks for the info (still reading scrollback)...
+<revDeke> at some time i think might close a contract deal that would involve paying to author an EDI VAN
+<revDeke> and corresponding libraries
+<revDeke> if you want i can put you contact with the EDI guru
+<revDeke> ive been removed from it for a bit and he does all of it now
+<grib> revDeke: I know --><--- that much about EDI and I would waste a guru's time at this point.  I'm just trying to figure out which direction is up.  
+<revDeke> i owe him a lunch so i can meet with him and get update of what is being done there now
+<revDeke> well it kicks ass in sense that if you do volume
+<revDeke> it saves you a lot of money
+<revDeke> even though its expensive
+<jcater> grib: follow the $$$$$$ ... that's the direction it goes
+<grib> revDeke: what's expensive?  is it using a VAN, who charges per document?  
+<revDeke> VANs generally charge per document (or per byte)
+<revDeke> a transaction might be in neighborhood of say 1.00 
+<revDeke> well it might take 4 docs to complete a transaction
+<revDeke> order
+<revDeke> invoice
+<revDeke> payment
+<revDeke> so 4 for a roudn trip transaction
+<revDeke> shipping manifest
+<revDeke> if you do say 1000 orders a day
+<grib> I take it that EDIFACT is an XML based text format ... is that what really gets used, or is the older X.12 stuff still more common?  
+<revDeke> that s4,000 a day with say 20 business days
+<revDeke> thats 80,000 a month
+<revDeke> er month w/ 20 days not day with 20 days
+<revDeke> x.12 is more common (or was last i played)
+<revDeke> though many were starting to support XML variations
+<revDeke> think of a VAN as a good ole boy network
+<revDeke> when i was playing there were like 4
+<revDeke> GM owned one
+<revDeke> Sears owned one
+<revDeke> Walmart owned one
+<revDeke> and a bank owned one
+<revDeke> most peopel were going through GM's
+<revDeke> but say you do business with business X and he uses GM
+<revDeke> you have to sign up with GM
+<revDeke> to do business with him
+<revDeke> then you get an accoutn with business Y and he uses Sears
+<revDeke> you ahve to sign up with Sears to do business with him
+<revDeke> you can use GM
+<revDeke> er cant
+<grib> yep, sounds like a typical squeeze play. 
+<revDeke> the 'setup fees' are kind of costly 
+<revDeke> and everyone does it a little different
+<revDeke> then even with the same VAN
+<revDeke> you might have walmart use 874 for invoices
+<revDeke> but mcdonalds uses 872
+<revDeke> the documents are 'similar' but different
+<revDeke> anyhow there has been some shake out and there are a lot more than 3 now
+<revDeke> and people are starting to belong to more than one or two
+jbailey (~jbailey@atlas.fundserv.com) joined #gnuenterprise.
+<revDeke> so some ofthose barriers are dropping
+<revDeke> but they are still there and frustrating
+<revDeke> however EDI rocks when it works
+<grib> revDeke: but generally a transaction is just an exchange of text documents following a "knowable" (i.e. purchasable) format?  and the protocol for connecting to and delivering documents to the VAN is knowable too? 
+<revDeke> someone sends an order electronically hits the floor and pick ticket is generated, product packed and shipped... the person ordering gets a shipping manifest
+<revDeke> whenthey get the shipment the invoice goes out electronically their system auto deposits the payment and sends a receipt
+<revDeke> and you just cut out half the human labor process :)
+<revDeke> and got paid quicker to boot
+<revDeke> grib: yes
+<revDeke> its purely shoving around text files
+<revDeke> thats why i say 'techinically' its pretty simplistic
+<revDeke> gnue will support it REALLY well
+<revDeke> with integrator
+<revDeke> which we were discussing earlier
+<revDeke> in fact once someone makes a 'document' they coudl put under the gpl for others to use
+<revDeke> then all they would have to do is map their data into it :)
+<grib> revDeke: so it would be moderately reasonable to use XML report formats, process them to generate report output, and then transform that into an EDI doc, at least on the output direction...
+pattieja (~pattieja@www.pcxperience.com) left irc: "[x]chat"
+<revDeke> absolutely
+<revDeke> im more thinking that if you XML-EDI you could have reports actually just output that
+<revDeke> but either way you have flexibility
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise.
+<jbailey> revDeke: Is designer eventually supposed to let you setup the database too?
+<revDeke> yes
+<revDeke> i think we want strong database support in our IDE
+<revDeke> there is start of schema editor in there
+<revDeke> i suspect that will just continue to be built on
+<revDeke> because its so plugin oriented it should be easy for people to continue to enhance functionality without know the internals
+<revDeke> i would like to see it be able to design queries and create views and many other things (though its not high priority)
+<revDeke> i.e.. someone not wanting to touch GNUe
+<revDeke> might be interested in GNUe Schema and the Designer portion that manages databases
+<revDeke> as a consistent cross platform / cross database mangament tool doesnt really exist
+ToyMan (~stuq@glvv-dsl1-116.citlink.net) joined #gnuenterprise.
+dsmith (~dsmith@208.40.56.34) left irc: "later.."
+<revDeke> time to go home
+revDeke (www-data@alt1.libertydistribution.com) left #gnuenterprise.
+<jamest> sounds like a plan
+jamest (~jamest@leibniz.math.ksu.edu) left #gnuenterprise.
+<jcater> mmmmm
+<jcater> home is where the donuts are
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "home"
+Action: siesel has no home then
+<jbailey> My donuts are at home. =(
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+<jbailey> Heya dan.
+<chillywilly> re
+<chillywilly> sup jeff
+<jbailey> Not much.  Just ignoring my homework.
+<chillywilly> are those debs in yet ;)?
+<chillywilly> :P
+<jbailey> They were in yesterday.
+<chillywilly> ok, ok
+<chillywilly> I didn't check
+<jbailey> Apparently. ;)
+<chillywilly> well I'm a busy man ya know
+<chillywilly> busy busy busy
+<jbailey> *lol*
+Action: chillywilly fails to see the humor in that statement
+<chillywilly> man I need some caffiene
+<chillywilly> gotta get pepped up for some hacking
+<jbailey> What'cha breaking today?
+rdean (~rdean@12-221-229-247.client.insightBB.com) joined #gnuenterprise.
+<chillywilly> jbailey: my own thing
+<chillywilly> not gnue related
+<chillywilly> something that I should've finish long ago
+<chillywilly> it's kinda like the thorn in my side
+<jbailey> Infected?
+<chillywilly> I MUST finish it now or die trying
+<jbailey> Oozing with puss?
+<chillywilly> definitely
+<chillywilly> yuuuup
+<jbailey> Sweet
+<nickr> man, MIT's Dspace is such a ripoff of GNUe Docustore
+Action: nickr shakes a fist
+<chillywilly> I don't see any Docustore
+<chillywilly> where's Docustore?!? ;)
+<nickr> there is a partially finished proposal thatI wrote over a year ago
+<nickr> no way
+<nickr> wait
+<nickr> about 2 years ago
+<chillywilly> exactly ;)
+Action: chillywilly pokes nickr in the eye with the sharp end of a trout
+<nickr> ow
+<nickr> someone should update the link for that, btw
+<chillywilly> and that someone would be psu ;)
+<nickr> it should be http://nick.industrialmeats.com/proj/etc ...
+<nickr> I should rewrite the proposal
+<nickr> I've had several good ideas since I wrote it.
+<chillywilly> you should write some python too ;)
+<nickr> I write python all day at work
+<chillywilly> yea, but what abot gnue
+<chillywilly> about
+<chillywilly> anyway, I am just giving you a hard time cause it is what I do best
+<nickr> I see
+Action: chillywilly drinks raspberry iced tea
+<nickr> that explains a lot
+<chillywilly> kdjfhskdjflksjd hfjkhgskdjfgkjghIYI&687tGIUYT7t
+<jbailey> There are sharp ends on trout?
+<chillywilly> you wanna find to?!?
+<chillywilly> er, out
+<nickr> maybe instead of playing Natural Selection for four hours tonight I will rewrite my proposal
+<chillywilly> yea, why don't you do something with your life
+<chillywilly> ;)
+<nickr> natural selection is like crack though
+<nickr> Unbelievably addictive
+<chillywilly> nickr: I don't believe you
+siesel (jan@dial-194-8-205-204.netcologne.de) left irc: "night all"
+<nickr> uh huh
+<chillywilly> nopw
+<chillywilly> nope
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) joined #gnuenterprise.
+Action: rdean is away: ut2003
+jamest (~jamest@adsl-64-216-107-182.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+<ra3vat> for what purpose such a sql command is raised:
+<ra3vat> DB005: [DBdriver:573] SELECT count(*) FROM reclaims WHERE ((1 = 0))
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<ra3vat> ?
+<jamest> it returns a completely empty recordset from the database
+<ra3vat> ok
+#gnuenterprise: mode change '+o derek' by ChanServ!ChanServ@services.
+Topic changed on #gnuenterprise by derek!~dneighbo@cpe-24-221-112-50.az.sprintbbd.net: really useless banter
+#gnuenterprise: mode change '-t ' by ChanServ!ChanServ@services.
+#gnuenterprise: mode change '+t ' by gnuebot!~eggdrop@65.101.4.211
+#gnuenterprise: mode change '-t ' by ChanServ!ChanServ@services.
+#gnuenterprise: mode change '+t ' by gnuebot!~eggdrop@65.101.4.211
+#gnuenterprise: mode change '-t ' by ChanServ!ChanServ@services.
+#gnuenterprise: mode change '+t ' by gnuebot!~eggdrop@65.101.4.211
+#gnuenterprise: mode change '-t ' by ChanServ!ChanServ@services.
+#gnuenterprise: mode change '+t ' by gnuebot!~eggdrop@65.101.4.211
+#gnuenterprise: mode change '-t ' by ChanServ!ChanServ@services.
+#gnuenterprise: mode change '+t ' by gnuebot!~eggdrop@65.101.4.211
+#gnuenterprise: mode change '-t ' by ChanServ!ChanServ@services.
+#gnuenterprise: mode change '+t ' by gnuebot!~eggdrop@65.101.4.211
+#gnuenterprise: mode change '-t ' by ChanServ!ChanServ@services.
+#gnuenterprise: mode change '+t ' by gnuebot!~eggdrop@65.101.4.211
+#gnuenterprise: mode change '-t ' by ChanServ!ChanServ@services.
+#gnuenterprise: mode change '+t ' by gnuebot!~eggdrop@65.101.4.211
+#gnuenterprise: mode change '-t ' by ChanServ!ChanServ@services.
+#gnuenterprise: mode change '+t ' by gnuebot!~eggdrop@65.101.4.211
+#gnuenterprise: mode change '-t ' by ChanServ!ChanServ@services.
+#gnuenterprise: mode change '+t ' by gnuebot!~eggdrop@65.101.4.211
+#gnuenterprise: mode change '-t ' by ChanServ!ChanServ@services.
+#gnuenterprise: mode change '+t ' by gnuebot!~eggdrop@65.101.4.211
+#gnuenterprise: mode change '-t ' by ChanServ!ChanServ@services.
+<derek> gack
+#gnuenterprise: mode change '+t ' by gnuebot!~eggdrop@65.101.4.211
+#gnuenterprise: mode change '-t ' by ChanServ!ChanServ@services.
+#gnuenterprise: mode change '+t ' by gnuebot!~eggdrop@65.101.4.211
+#gnuenterprise: mode change '-t ' by ChanServ!ChanServ@services.
+#gnuenterprise: mode change '+t ' by gnuebot!~eggdrop@65.101.4.211
+#gnuenterprise: mode change '-t ' by ChanServ!ChanServ@services.
+#gnuenterprise: mode change '+t ' by gnuebot!~eggdrop@65.101.4.211
+#gnuenterprise: mode change '-t ' by ChanServ!ChanServ@services.
+<derek> gnuebot you bick stop it
+#gnuenterprise: mode change '+t ' by gnuebot!~eggdrop@65.101.4.211
+#gnuenterprise: mode change '-t ' by ChanServ!ChanServ@services.
+#gnuenterprise: mode change '+t ' by gnuebot!~eggdrop@65.101.4.211
+#gnuenterprise: mode change '-t ' by ChanServ!ChanServ@services.
+#gnuenterprise: mode change '+t ' by gnuebot!~eggdrop@65.101.4.211
+#gnuenterprise: mode change '-t ' by ChanServ!ChanServ@services.
+#gnuenterprise: mode change '+t ' by gnuebot!~eggdrop@65.101.4.211
+#gnuenterprise: mode change '-t ' by ChanServ!ChanServ@services.
+#gnuenterprise: mode change '+t ' by gnuebot!~eggdrop@65.101.4.211
+#gnuenterprise: mode change '-t ' by ChanServ!ChanServ@services.
+#gnuenterprise: mode change '+t ' by gnuebot!~eggdrop@65.101.4.211
+#gnuenterprise: mode change '-t ' by ChanServ!ChanServ@services.
+<jbailey> ROFL!
+#gnuenterprise: mode change '+t ' by gnuebot!~eggdrop@65.101.4.211
+#gnuenterprise: mode change '-t ' by ChanServ!ChanServ@services.
+Topic changed on #gnuenterprise by jbailey!~jbailey@atlas.fundserv.com: really useless banter | foo
+#gnuenterprise: mode change '+t ' by gnuebot!~eggdrop@65.101.4.211
+#gnuenterprise: mode change '-t ' by ChanServ!ChanServ@services.
+#gnuenterprise: mode change '+t ' by gnuebot!~eggdrop@65.101.4.211
+#gnuenterprise: mode change '-t ' by ChanServ!ChanServ@services.
+#gnuenterprise: mode change '+t ' by gnuebot!~eggdrop@65.101.4.211
+#gnuenterprise: mode change '-t ' by ChanServ!ChanServ@services.
+#gnuenterprise: mode change '+t ' by ChanServ!ChanServ@services.
+#gnuenterprise: mode change '+t ' by gnuebot!~eggdrop@65.101.4.211
+<ajmitch> oh dear
+<derek> sorry for now gnuebot and chanserv want to bitch fight if over t
+<derek> so you will have to wait until i can fix gnuebot :)
+<ajmitch> so deop gnuebot
+<derek> um he will come back
+<derek> he is persistent little bi0tch
+<derek> and i dont want to ban him
+<derek> i woudl rather fix him, i just cant right now
+<ajmitch> i didn't say ban, i said deop
+<derek> he will reop himself
+<derek> he's not dumb you know
+<jbailey> Take away his perms in chanserv. =)
+<jbailey> That might just break him, though
+<jamest> why do we even have him?
+<jamest> we have 2 bots in here
+<jbailey> And the everpresent chanserv. =)
+<derek> jamest its nice to have a back up
+<derek> however
+<derek> he shouldnt be an op
+<derek> and shouldnt have any rights except to log the channel :)
+<ra3vat> why is that so many messages on form's startup DB003: [EventController:57] Unknown Event: updateENTRY
+<jamest> events are now defined per object instead of globaly
+<jamest> so if you've events on objects we've missed then they won't fire
+<jamest> if the form is in sampes i can fix
+<jamest> ooooo
+<jamest> does the form have buttons?
+<ra3vat> no
+<ra3vat> with what sample form i can try?
+<jamest> i was asking if it was a sample form
+<ra3vat> no
+<jamest> if it's not then we've got issues
+<jamest> ok
+<jamest> hang on
+<jamest> oooo, nevermind
+Action: jamest read that as trigger issue not event issue
+<jamest> triggers are now defined per object
+<jamest> the event system 
+<jamest> sigh, were to start :)
+<jamest> any object can register to listen to any other object (basically)
+<jamest> however that object may only understand what to do with a few of those events
+<jamest> example: so if you and i both did something crazy like register to listen to derek
+<jamest> and derek says "jump off a bridge"
+<jamest> i may know how to jump off a bridge so I go do it
+<ra3vat> :)
+SachaS (~Sacha@dialup-196-246.wasp.net.au) joined #gnuenterprise.
+<SachaS> hello everyone
+<jamest> you on the other hand don't know how (or are too smart to listen to him) and instead say "Unknown Event: jump off bridge"
+<jamest> hi
+<derek> jamest.jumpOffBridge(true)
+<derek> rofl
+<derek> i typed that originally as
+<derek> jamest.jumpOffBridget(true)
+<jamest> lol
+Action: jamest took a while to see the typo
+<ra3vat> jamest: ok, i will look into that (fridge?) later
+<derek> jamest: what do you guys need testing on?
+Action: derek will be ready to rock in a few minutes
+<jamest> everything
+<jamest> but specifically
+<jamest>  try and break query by detail
+<jamest>   designer issues
+<jamest> any issue you find please let me know
+<jamest> any database drivers you can test
+<jbailey> On Monday I have to demo Gnue to my boss against a mysql database.
+<jbailey> And he'll decide if we'll use it for our purchase order system and network database. =)
+<jamest> then you'll want me to commit the fixes
+<jamest> :)
+<jamest> actually
+<jamest> the python-mysql in woody has issues 
+<jamest> or we have issues working with it
+<jamest> i just built 0.9.2 mysql from source and it works fine
+<jbailey> I'm running unstable.
+<jamest> yeah
+<jbailey> It'll be using the debs I uploaded, so it's all python 2.2
+<jamest> oh, your computer
+<jbailey> I don't have anyone elses handy.
+<jamest> well, i'm happy to do what I can to make demo success
+<jbailey> Well - this demo is the whole reason I could spend paid time packaging it.
+<jbailey> We might be saving ourselved liek 25 licenses of filemaker.
+<jamest> are you getting things working ok?
+dsmith (dsmith@oh-strongsvillecadent1-1c-20.clvhoh.adelphia.net) joined #gnuenterprise.
+<jamest> then I'm much much more interested in making things work for you
+<jbailey> I haven't tried designer yet against a database source.  I ran out of time, and it turns uot I wasn't logging the conversation where you told me what to put in. =)
+<jamest> i'll test tonight
+<jbailey> I can read the website and dig it out though.  tommorow maybe.
+<jamest> as I have mysql working
+<jbailey> Sure - I'm doing another CVS upload this weekend, so let me know if that's a good snapshot.
+<jamest> if you have openoffice
+<jamest> read jcaters guide in OO format
+<jbailey> I've also gotten confirmation from the folks in #python that I can change it from arch: any to arch: all.
+<jbailey> That'll speed up the time it takes to get into testing.
+<jbailey> Hmm.  I don't know if abiword reads OO format or not.
+<jbailey> He hasn't got it in pdf?
+<jamest> it teaches form creation from both text editor and designer
+<jbailey> Ah, nice.
+<jamest> dunno
+<jamest> i'll look
+<ajmitch> jbailey: what reasons for choosing mysql?
+<jbailey> ajmitch: two reasons.
+<jbailey> ajmitch: 1) I know how to make it work
+<jbailey> ajmitch: 2) phpmyadmin
+<ajmitch> heh ok
+<ajmitch> phppgadmin is ok, i guess
+Action: ajmitch uses both mysql & pgsql
+<jbailey> I don't know of a nice equivalent for pgsql.
+<ajmitch> phppgadmin does pretty much the same
+<jbailey> Ah, really?  I had heard that it sucked.
+<jbailey> It's been a while though.
+Action: ajmitch hasn't used it enough to say if it sucks or not
+<jbailey> Dunno.  I used mSql way back when.  I switched to Mysql when the rest of the world did.
+<ajmitch> good to hear that designer is being nice :)
+<ajmitch> i wonder if it's worth me printing out the developers guide
+<ajmitch> even with all it's TODOs
+<jamest> i don't think I would yet
+<ajmitch> ok
+<jamest> crap
+<ajmitch> costs me 15c a page to print at uni
+<jbailey> Ouch
+<jamest> then dont
+<jbailey> Go to kinkos or something.
+<ajmitch> kinkos?
+<jamest> copyco
+<ajmitch> sounds dodgy
+<jamest> i can't make the pdf file
+<jbailey> No Kinkos in the correct hemisphere?
+<jamest> it bombs on my system
+<jbailey> jamest: Can you make a .ps?
+<jbailey> Like print to file?
+<jamest> trying
+<jamest> uploading
+<jamest> http://www.gnuenterprise.org/~jamest/
+<jamest> ps format
+<jbailey> Cool - Do you want the pdf? =)
+<ajmitch> excelletn
+<jbailey> Ah, cool.  Anjuta supports python syntax highlighting.
+<jamest> does mysql support subselects?
+<jbailey> I think mysql 4 might.
+<jbailey> the current version definetly doesn't.
+<jamest> argh
+<jbailey> (unless I just have the syntax horribly wrong)
+<jamest> what you using to make the pdf files
+<jamest> ps2pdf?
+<jbailey> ps2pdf
+Action: jamest will install on ash and make them
+<jamest> seems that mysql doesn't
+<jamest> unless we both have the syntax horribly wrong
+<jamest> jbailey: what will you demo monday?
+<jbailey> I haven't decided.
+<jbailey> I might reproduce our network database.
+<jbailey> If I do that and can show him it on Linux and windows that would be cool.
+<jbailey> If I can figure out how phpforms works, even better. =)
+<jamest> all in a weekend ?
+<jamest> :)
+<jbailey> Hmm..  I was thinking in 2 hours tommorow afternoon. =)
+<jamest> well, i know you're feeling the python love right now
+<jbailey> Is phpforms supposed to work off of the same gcd files as gnuef?
+<jamest> the same gfd files yes
+<jbailey> typo, sorry. =)
+<jamest> in fact jan had a webpage that you could upload your form
+<jamest> it had 0 privacy though
+<chillywilly> gnuef sounds a LOT like queef
+<jamest> i wouldn't try and sell gnue on phpforms yet though
+<jamest> as I'm not sure if it's ready
+<jbailey> dict queef doesn't give me anything.
+<jamest> jbailey: you don't want to know
+<jbailey> jamest: It's not the critical selling features.  The win32 client will be.
+<chillywilly> it's slang ;)
+Action: jamest whimpers
+<jamest> win32 with wx is a complete bitch
+<jbailey> *lol* 
+<jbailey> Looks bad?
+<jamest> functions wierd
+<jbailey> Joy. =)
+<ajmitch> jamest: found a vic^H^Holunteer to do a python win32 client?
+<jamest> i haven't tried cvs on it yet
+<jamest> ajmitch: all we need is a UIdriver.py file for win32all
+<jamest> and we're golden
+<ajmitch> yeah
+<jamest> i actually started digging this morning on that 
+<ajmitch> i know, but there's not too much docs for the win32 stuff
+<jbailey> Would it distress you to know then that part of this proposal is to use it as a purchase order system for millions of dollars a year?
+<jamest> jbailey: nope
+<jbailey> And that if it works that it would be on almost everyone's desk in a 70 person company? =)
+<jamest> i feel good about forms iand common
+<jamest> i feel ok about designer
+<ajmitch> jbailey: only 70 people?
+<jamest> i feel ok about reports
+<ajmitch> appserver still a bit iffy
+<jbailey> I haven't looked at reports yet.
+<jbailey> Only designer and forms.
+<jbailey> (and obviously common by extension)
+<ajmitch> navigator might need some love, i guess, but it's fairly simple 
+<jamest> yeah
+<jamest> jbailey: to be completely honest
+<jbailey> Well, hey, it's in Debian now - it *must* be stable. =)
+<jamest> i'd be more worried about mysql :)
+<jamest> but then I'm bias
+<jamest> and if it works for you it works for you
+<jbailey> *lol*  I've run millions of transactions on mysql before. =)
+rdean (~rdean@12-221-229-247.client.insightBB.com) left irc: "Client Exiting"
+<ajmitch> keep good backups :)
+<jbailey> It's starts to suck wind when you load 20 million records into it.
+<jbailey> But so did pgsql. =)
+<ajmitch> i know
+<jbailey> ALthough... pgsql would at least still load. =)
+<jamest> jbailey: if you have a sec I can give a 90 second demo of designer/forms
+<jamest> well, if you have 90secs 
+<jamest> and currnet cvs
+<ajmitch> cool
+<jamest> mysql works no
+<jamest> now
+Action: ajmitch does cvs update
+<jamest> though without subselects query by detail will fail
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) got netsplit.
+ToyMan (~stuq@glvv-dsl1-116.citlink.net) got netsplit.
+Remosi (dahoose@port-219-88-247-104.jet.net.nz) got netsplit.
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) got netsplit.
+gnuebot (~eggdrop@65.101.4.211) got netsplit.
+<jbailey> I'll update from CVS tommorow maybe.
+<jbailey> It's close to bedtime and I want to go home soon.
+<ajmitch> ok 
+<jbailey> And the Hurd is top story on slashdot right now.
+<ajmitch> hehe
+<jamest> :)
+<ajmitch> going to post a few comments?
+<jbailey> I usually do.  I think we have enough bitches^H^H^H^H^H^H^Husers who can do that now.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) returned to #gnuenterprise.
+Remosi (dahoose@port-219-88-247-104.jet.net.nz) returned to #gnuenterprise.
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) returned to #gnuenterprise.
+gnuebot (~eggdrop@65.101.4.211) returned to #gnuenterprise.
+#gnuenterprise: mode change '+oo derek gnuebot' by calvino.freenode.net
+<ajmitch> yeah, there have been a few more around lately
+<jbailey> Especially since the story is so stupid.  RMS was stupid in proposing a release date this year and got caught with his pants down.
+<ajmitch> don't know why he thought it'd be ready
+<jamest> he had jbailey working on it
+<ajmitch> i haven't seen a massive speedup in development lately
+<jbailey> jamest: I'm not a core developper. =)
+<jbailey> I just provide abuse and have been around longer than all but one person who still commits to the Hurd tree. =)
+<ajmitch> jamest: chillywilly perhaps?
+<jamest> perhaps
+<ajmitch> jbailey: you also provided an autobuilder
+<jbailey> And still do.
+<chillywilly> hmmm?
+<ajmitch> it's alive again?
+<jbailey> Although it's spent most of its time recently building toolchains.
+ToyMan (~stuq@glvv-dsl1-116.citlink.net) got lost in the net-split.
+<jamest> what are we looking at timewize for a hurd based system in production
+<ajmitch> depends on what developers focus on - if they focus on L4 porting, then it could be awhile
+<jbailey> I can't asnwer that, but here's what I can give you.
+<jbailey> We got pthreads about a month ago.
+<jbailey> Marcus spent the last two nights hacking on oskit-mach and chasing stability bugs.
+<jbailey> Using oskit mach has the neat advantage that it has a serial debugger.
+<jbailey> Whcih means that we can get backtraces off of kernel crashes.
+<jbailey> This summer we switched to the same "io" core of glibc that linux uses.
+<jbailey> Neal claims that he has a solution to the partition limit ready to implement after christmas.
+<jamest> so things are moving along
+<ajmitch> ah, he does? useful
+<jbailey> I've been working with Matthias Klose on getting our toolchain up to date.
+<jbailey> Earlier this week we finally got pascal and chill running on our boxes.
+<jbailey> and as soon as ajmitch fixed libffi we'll have gcj,.
+<jbailey> ;)
+<jbailey> s/fixed/fixes/
+<jbailey> So you can generally expect apps to run.
+Action: derek hasnt read back log
+<ajmitch> hmm
+<jbailey> XFree works - I've seen it on Marcus' laptop.
+<derek> jbailey: if you want purchase order system PLEASE use gnue
+<derek> i can promise to help
+<derek> as part of gnue-sb
+<jbailey> derek: The decision isn't mind.
+<derek> i.e. if he is willing to do it as gpl
+<jbailey> s/mind/mine/
+Action: ajmitch should try & compile that stuff
+<derek> he will get additional help
+<derek> the network database of course you are on your own :)
+<jbailey> jamest: So things are moving along and picking up speed.
+<jamest> did gnue-sb get in cvs?
+<jbailey> MArcus' console is now in use on a bunch of systems and he's porting it to oskit-mach.  That gives us all the virtual terminal support that Linux has.  Scrollback buffers in each window, *and* unicode support on the console.
+<derek> jamest: csi is on after that i can start testing
+<jbailey> And we also have multi-attach like screen -x.
+<derek> jamest: yes its in cvs
+<ajmitch> jamest: the savannah project is up, i think
+<derek> though we need it to be gnu.org not nongnu.org
+Action: derek doesnt know the issues there
+<derek> but its in gnue-sb cvs
+<jbailey> jamest: And that's all in the last few months.
+<derek> the gsd's are busted unless jcater got around to fixing the schema stuff in cvs
+<ajmitch> derek: just a setting on savannah
+KeithJagrs (trilluser@63.74.24.9) joined #gnuenterprise.
+Action: derek runs back to CSI see you a few
+<ajmitch> jbailey: time for me to try & resolve build dependencies for gcc-3.2...
+Action: chillywilly has tun X on the Hurd before
+<chillywilly> er, run
+<ajmitch> this could be a minor nightmare :)
+<jbailey> ajmitch: I haven't uploaded the bison and something else, sorry.
+<jbailey> All of the build deps build no prob, though.
+<ajmitch> doxygen?
+<jbailey> dpkg-buildpackage -B
+<ajmitch> doing apt-get -b source :)
+<ajmitch> generally works better when i don't have the source to play with yet
+jbailey (~jbailey@atlas.fundserv.com) left #gnuenterprise ("Client Exiting").
+<Maniac> so linux fans, should my next install be debian?
+<ajmitch> there can be no other!
+<jamest> depends
+<jamest> it's the only thing I'd install
+<jamest> if at all possible
+<derek> there is something other than debian gnu/linux
+<derek> hmmmm
+<jamest> but it's frustrating to see it trail behind the other distros wrt to package version numbers
+<derek> ?
+Action: derek found redhat frustrating
+<Maniac> i run mandark loonuks now
+<jamest> woody ships with kde 2.2
+<derek> for that reason
+<derek> you all would have new cool toys
+<derek> and i couldnt even get the stinking software in a package
+<derek> i was compiling so much it was sick
+Action: derek thinks
+<jamest> that's the love part of debian
+<jamest> apt-get
+<derek> sid + other sources.list lines
+<derek> = pure bliss
+<jamest> the bad thing is you either run testing or sid
+<jamest> (no way in hell on productoin equipment)
+<derek> i.e. you might not be able to get kde3 or gtk2 or such 
+<jamest> or stable
+<derek> but with a sources.list file addition generally will get it
+<jamest> or learn like i finally did how to run a mixed system
+<derek> and as jamest says i might not put a SERVER on testing/sid
+<ajmitch> nor would i generally have a workstation on sid
+<derek> but generally a server shouldnt be running 'brand new' software
+<derek> as its likely not fully tested
+<ajmitch> except for my home box which i develop on
+<derek> i.e. when a new redhat comes out with latest gcc and kde and such
+<derek> no way its had proper testing already :)
+<derek> anyhow its all opinion, i still say the best thing you can do is run what your friends run
+<derek> (or whoever you get support from)
+<derek> jamest: you know where jcater is or if he will be back?
+Action: derek is curious about schema stuff
+<derek> i want to convert our samples over to using gsd's
+<derek> as well as get gnue-sb working properly
+<jamest> um
+<jamest> his cable modem fried
+<jamest> so he's off line at night until he gets replacement
+<derek> ouch
+<derek> thats wrong
+<derek> i wouldnt go home
+<jamest> he had some work to do at the store
+<jamest> but talked about going to work late tonight to work on some things
+<jamest> so he may be here later
+<derek> cool
+<jamest> l8r
+<jamest> derek: update cvs again before you test things
+<derek> ok
+<derek> hey where do you get mailman?
+<jamest> and I'm cleaning out the dcl tickets
+<derek> the reporst are debian version is very old
+<jamest> so submit more
+<ajmitch> list.org
+<derek> anyone have a sources.list
+<jamest> l8r
+jamest (~jamest@adsl-64-216-107-182.dsl.tpkaks.swbell.net) left irc: "[x]chat"
+<derek> l8r
+<ajmitch> not that i know of
+<derek> well what do you know ;)
+<ajmitch> 2.0.13 is the version in sid, and is the latest stable mailman version
+<derek> yeah looks like 2.1 is on beta4
+<derek> but still how can debian test it if its not in sid?
+<ajmitch> heh
+<ajmitch> debian tests software as stable for inclusion in a distro
+<ajmitch> they don't track the gnome 2.1.x series, for example
+<derek> yeah i know
+<derek> but generally on bigger patches there are sources.list of stuff that is close
+<derek> i.e. whomever is the maintainer puts in his home dir as he is brewing the packages until they become stable
+<ajmitch> ah
+<ajmitch> mithrandir is maintainer for mailman
+<derek> i thought salve wass
+<ajmitch> hmm
+<ajmitch> lemme check
+<ajmitch> Maintainer: Tollef Fog Heen <tfheen@debian.org>
+<ajmitch> which is mithrandir - debian-installer guy
+<ajmitch> people.debian.org/~tfheen has no mailman stuff
+<derek> yeah i checked too
+KeithJagrs (trilluser@63.74.24.9) left irc: "later"
+<ajmitch> he's online now, ask him about it :)
+<derek> where is he
+<derek> and who is him (tfheen or mithrandir)
+<ajmitch> uses the nick mithrandir
+<derek> what channel?
+<ajmitch> he's in #debian-devel, might not be a good idea to ask there ;)
+Action: ajmitch points derek in the direction of /whois
+<derek> ah why not its fun to be flamed
+<derek> by know it all ^H^H^H^H^H^H good guys
+<ajmitch> it's your skin that'll get roasted
+<chillywilly> mithrandir is a LOTR reference derek ;)
+<chillywilly> Gandalf Mithrandir the wizard :)
+<chillywilly> in case no one knew but I suspect many did, so I dunno why I bothered to state the obvious
+Action: chillywilly is on crack
+Action: chillywilly passes it around
+<derek> ymmmy
+Action: derek bogarts the crack
+<derek> pip
+<derek> e
+dsmith (dsmith@oh-strongsvillecadent1-1c-20.clvhoh.adelphia.net) left irc: "later.."
+--- Fri Nov  8 2002

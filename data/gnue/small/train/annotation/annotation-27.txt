@@ -1,0 +1,106 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.07Nov2002" enddate="06 Nov 2002 16:00:00 -0800" startdate="06 Nov 2002 16:00:00 -0800" subject="[IRC] 07 Nov 2002" title="Other GNUe Forms clients">
+
+<topic>Forms</topic>
+
+<p>Peter Sullivan (psu) said the <quote who="Peter Sullivan">web 
+site has been updated to include brief descriptions 
+of the non-main Forms clients</quote>. Jason Cater (jcater) 
+said <quote who="Jason Cater">the Curses and GTK are slightly 
+different than the others - java, emca, php are separate forms 
+clients - curses, gtk, and wx are modes of our main, reference 
+client</quote>. James Thompson (jamest) noted 
+<quote who="James Thompson">the java client is so old i bet it'd 
+be a major overhaul to get it to even remotely function</quote>. 
+Jason said it was just some code stubs in CVS. Charles Rouzer 
+(Mr_You) said that <quote who="Charles Rouzer">Jans javascript 
+code</quote>, as discussed in 
+<kcref subject="[IRC] 21 Oct 2002" title="Javascript forms client" />, 
+<quote who="Charles Rouzer">could replace JForms</quote>. 
+Jason noted that Javascript was not intended to be the 
+definitive html mode for GNUe Forms, but encouraged Charles 
+and Jan Ischebeck (siesel) to work on the Javascript version as 
+an alternative. Charles felt it would be difficult to write 
+an effective HTML client without using Javascript.</p>
+
+<p>Derek Neighbors (revDeke) said there were two types of 
+GNUe Forms client - ones that were in effect just UI drivers 
+plugged into the main python code, and complete re-writes 
+such as the phpForms and Javascript Forms client. Each of 
+these two types could either official (in GNUe's CVS) or 
+unofficial.</p>
+
+<p>Charles noted that people could either use the normal 
+Forms client in 2-tier mode, or the Javascript Forms client 
+(which would require Application Server) in n-tier mode. 
+Derek said the point of GNUe was that people could just 
+use the tools they needed - <quote who="Derek Neighbors">you 
+could use an HTML client w/ or w/o appserver - w/ or w/o 
+reporter - w/ or w/o integrator</quote>. Charles appreciated
+this, but asked <quote who="Charles Rouzer">how you would expect 
+to get persistent connections using a webserver and HTML 
+client?</quote> Derek said that he would expect an HTML client, 
+just like the wxPython client, to allow devlopers to use 
+either AppServer, or connect directly to the database using 
+GNUe Common. Charles said this would still require an extra 
+componant to make it "persistant-like," whether that was 
+Application Server or a web server. Jason said 
+<quote who="Jason Cater">gnue-forms can stand by itself 
+and communicate back to a webbrowser - there's no magic to 
+that</quote>. It used the normal python libraries to, in 
+effect, give itself a built-in web server for HTML 
+clients - this <quote who="Jason Cater">formed the basis of 
+the initial gnurpc implementation</quote>. This removed 
+the need for either GNUe Application Server or a stand-alone 
+web server running Forms via cgi.</p>
+
+<p>Charles still felt <quote who="Charles Rouzer">that js 
+is required for dynamic screen writes.. you build the layout 
+code into JS then add on xmlrpc and 2-tier connectivity</quote>. 
+Derek noted that there had been a UI driver for the standard 
+Forms client that used webware to support HTML clients, which 
+had worked to a degree. He felt that this approach would be 
+less work than trying to rewrite the whole Forms client in 
+either Javascript or even php. There was no reason why an HTML 
+UI driver could not use Javascript for dynamic screen writes 
+and so on, although Jason was keen for the HTML client to not 
+require Javascript, but use if is if was available. Derek 
+said <quote who="Derek Neighbors">the biggest thing that becomes 
+an issue is client side triggers - but the data stuff and such 
+i see no problems</quote>.</p>
+
+<p>Jason said that a Forms client completely re-written in 
+Javascript would probably <quote who="Jason Cater">be a better 
+experience for the end-user BECAUSE it is a specific, targeted 
+version of forms BUT that doesn't mean we don't want a version 
+using our gnue-forms core</quote> as well. He was 
+<quote who="Jason Cater">happy you guys are doing a jsforms 
+client</quote> as <quote who="Jason Cater">another implementation 
+will keep us in check and it will be something very useful</quote> 
+but <quote who="Jason Cater">that doesn't negate use having a more 
+general purpose one in gnue-forms even if it's not as robust/user 
+friendly</quote>. Jan Ischebeck (siesel) concluded
+<quote who="Jan Ischebeck">1. choices are good - 2. there has to 
+be ONE standart implementation (more than one will allways become 
+unmaintainted) - 3. jsforms should be so modular that 
+you can easily implement</quote> different set-ups.</p>
+
+<p>Looking at the web site, James Thompson (jamest) wondered if it 
+would <quote who="James Thompson">be cleaner to have 1 page on the 
+reference client with #section tags for the various drivers - 
+as I know that I want to see a native win32 driver and a qt driver -
+and I'm sure we need an emacs driver too :)</quote> Peter said 
+<quote who="Peter Sullivan">The main justification for separate pages 
+is that each mode of the ref client may have diff statuses - 
+and it's confusing to have too many "Status" lines on one page</quote>. 
+Jason said he <quote who="Jason Cater">would still rather see</quote>
+information about other Forms clients in a subdirectory - 
+<quote who="Jason Cater">as I think /tools/curses is ambiguous 
+considering we have a curses navigator too</quote>. James added 
+<quote who="James Thompson">reports almost has a curses and wx mode i 
+think</quote>. Peter said he would <quote who="Peter Sullivan">fix 
+that in the pending site overhaul for when we get it into 
+CVS</quote>.</p>
+
+</section>
+
+

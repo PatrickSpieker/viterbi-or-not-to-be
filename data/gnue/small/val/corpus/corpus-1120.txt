@@ -1,0 +1,357 @@
+*** SachaS has quit IRC
+*** johannesV has joined #gnuenterprise
+<johannesV> good morning
+*** SachaS has joined #gnuenterprise
+*** Muile has joined #gnuenterprise
+*** reinhard has joined #gnuenterprise
+<reinhard> good morning
+<reinhard> alexbodn: the sample database is in zipcode.gsd
+<reinhard> you can read that into your db with gnue-schema
+*** btami has joined #gnuenterprise
+*** Muile is now known as kilo
+*** SachaS has quit IRC
+*** SachaS has joined #gnuenterprise
+<reinhard> ouch
+<reinhard> gnue-forms 0.5.x loses all changes without any confirmation if you switch to query mode
+<reinhard> customer just learned that the hard way...
+<johannesV> bahh
+<reinhard> funny enough I just changed it in svn head a few days ago
+<alexbodn> hi reinhart. thanks, let me see
+<alexbodn> sorry reinhard: no data for the zipcode table.
+<alexbodn> i have found compatible data and posted to gnue-dev this morning :-)
+<reinhard> yes, we have no data for the zipcode table
+<reinhard> only the states table is filled out
+*** btami has quit IRC
+*** johannesV has quit IRC
+*** jamest has joined #gnuenterprise
+<alexbodn> hi all.
+<alexbodn> i would ask your help to activate the inventory demo: the data is ok in the gnue database, which is in the [gnue] config section.
+<alexbodn> there is a query that complains there is no oid. i wish to change this query, but i don't know where is it saved.
+*** johannesV has joined #gnuenterprise
+<reinhard> alexbodn: ouch
+<alexbodn> so?
+<reinhard> alexbodn: I am not sure the inventory demo is functional any more at all
+<reinhard> I haven't tried it in literally years
+<alexbodn> what demo may i try?
+<reinhard> are you running release or svn?
+<jamest> alexbodn: postgresql dropped the oid column by default in new tables
+<jamest> so i imagine you're using a newer postgresql as your storage system right?
+<alexbodn> i know about this. i can change this behaviousr, but i'd prefer to change the query (and learn about the system a littel :-))
+<alexbodn> s/ousr/our/
+<jamest> if a table doesn't define a primary key then our system falls back to using oid
+<alexbodn> s/littel/little/
+<jamest> depending on what you're using in gnue (like say a .gfd) you can tell the datasource which columns to use as the primary key
+<alexbodn> ok, but where is the form data source defined?
+<jamest> in a gfd file
+<alexbodn> i see. but what option is the primary key?
+<jamest> i'm checking now
+<alexbodn> i'm here, thanks in advance :-)
+<jamest> in the <datasource> tags in a gfd file you can add a primarykey="field,field2,field3"
+<jamest> which is a work around when missing a primary key def on a table
+<alexbodn> you mean this would be a 'kind of de-facto unique combination'?
+<jamest> yes
+*** kilo has quit IRC
+<jamest> unless things have changed greatly the sql gnue generates used to compare every field along with the oid
+<jamest> but it still expected it
+<jamest> primarykey IIRC short circuits that and uses the defined fields to determine the proper record
+<jamest> reinhard: is that still the case?
+<jamest> reinhard: i svn'd up :)
+<alexbodn> so no way around oid?
+<jamest> it only happens when a table is defined without a PK
+<jamest> which is really a bad practice that i'm very guilty of
+<jamest> so I imagine the demo was setup missing a PK
+<alexbodn> all tables here have pk
+<jamest> wha?
+<jamest> then it should be fine
+<alexbodn> but not in the datasource
+<jamest> shouldn't be needed there IIRC as it tries the table first
+<jamest> and falls back to OID
+<jamest> i think
+<jamest> alexbodn: which demo are you running?
+<alexbodn> inventory
+<alexbodn> may there be more than a form in a gfd (at least here)?
+<jamest> no
+<jamest> gfd = gnue form definition
+<alexbodn> ok
+<jamest> you can have a form and multiple dialog defs in a single gfd
+<jamest> a dialog is just a form of type dialog used to generate custom input popups
+<jamest> which form are you trying to run in there
+<jamest> as there are 3
+<alexbodn> why should i need different dialogs for one form?
+<jamest> an example that I have here
+<jamest> in shipping as they scan the UPCs codes of items and put in a box
+<jamest> the system checks to see if it was really part of that order
+<jamest> if not it pops up a custom dialog that says something like
+<jamest> this isn't part of the order, type "YES" to continue
+<jamest> as my users tend to just click through anything without reading it so they can get back to whatever it is they really want to do
+<alexbodn> i understand: dialogs don't have to represent the form data, but may be any msgbox
+<jamest> yes
+<jamest> alexbodn: with the latest svn checkout i can't run anything in that demo
+<jamest> nor any of my own forms it would seem :)
+<alexbodn> i begin to love it, even though my demo shows no data :-( yet!
+<jamest> one of the traditional demos that was used a lot in debugging by a few of us was the zipcode stuff
+<jamest> i'm not sure what reinhard and johannesV and co use now
+<johannesV> still using zipcode
+<johannesV> :)
+<jamest> but zipcode forms are simple and show several features
+<jamest> johannesV: :)
+<alexbodn> i have the version packaged in debian testing. the moment i might do serious gnue based development, i'll allways have the latest and greatest :-)!
+<alexbodn> so i'll try zipcode. btw, i've posted on gnue-dev a method to fill the zipcode table
+<jamest> johannesV: wx drive in svn is toast it would seem
+<jamest> wx26 is working....sorta
+<jamest> seems like not svn'n up for months is going to cost me a bit ;)
+<reinhard> jamest: do you have tracebacks?
+<reinhard> can you describe the symptoms?
+<jamest> yeah, tracebacks :)
+<johannesV> :)
+<reinhard> jamest: give them to me!
+<jamest> reinhard: give me a bit, i'm figuring out if it's my devel install, my forms, or an issue with the code
+<reinhard> or you fixing yourself?
+<reinhard> I'm 95% positive it's an issue with the code
+<reinhard> I did some changes lately that affect all uidrivers and I did the changes in wx ui without being able to test at all
+<jamest> i think i'll take a look as if I have to plone/zope any more today i think i'll lose it
+<reinhard> alexbodn: when the db has a primary key it doesn't help if in the <datasource> definition in the GFD it isn't mentioned
+<reinhard> jamest: heh, you're gnueing for recreation? ;-P
+<alexbodn> right, it stopped complaining only after i have added the primarykey option
+<reinhard> jamest: anyway, I'll help in any way I can
+<jamest> well, at home I am still working on the house for "recreation"
+<jamest> and i've been ploning and javaing for the last few months non-stop at work
+<jamest> so it's 8 hours of suck followed by an evening of suck
+<jamest> i think I can gnue just a little for mental health reasons :)
+<jamest> or is that if I work on gnue i must be mental?
+<alexbodn> the zipcode table has the primarykey field zipcode too, while in the zipcode.gfd demo it seems to have been referenced as "zip"
+<alexbodn> now i changed zip to zipcode probably in the wrong options :-(
+<alexbodn> i mention, i'm using the sql to create the schema, not the gsd file (yet)
+<reinhard> is the sql still there?
+<reinhard> i thought we completely replaced it by the gsd
+<jamest> hmmm
+<jamest> we have a bigger issue than i thought
+<alexbodn> i took it from another demo :'(
+<jamest> as I just created the zipcode table with a PK
+<jamest> and the datasource still attempts to use the oid column in the query
+<alexbodn> right
+<reinhard> yes
+<reinhard> because the primary key field can change on inserts if there is a trigger on db side
+<reinhard> so the only really reliable record identifier is the oid
+<jamest> but the oid isn't in newest postgresql
+<jamest> i thought we used the previous values of the fields during updates
+<jamest> so every field had to match
+<alexbodn> you may create the table with oids option
+<alexbodn> brb
+<jamest> alexbodn: yes, but then we're not friendly w/ the default postgresql config moving forward
+<reinhard> jamest: are oid's depreciated to use or are they just turned off by default but still a valid option?
+<alexbodn> i accept it, but as we are programmers, we should just use the documented recipes ;-)
+<reinhard> turning off oid usage for postgres is a one-line change
+<reinhard> but it takes away the possibility to use on-insert triggers on the db
+<jamest> i'm pretty sure it's depreciated
+<jamest> but let me grab the latest tarball and read the release notes
+<jamest> hmmmmm
+<jamest> would we need to drop it completely
+<jamest> or could we check the table schema to see if it exists and use it if available
+<alexbodn> brb
+<jamest> that way we could qualify on tables that use on-insert triggers you have to have an oid
+<reinhard> I'm not sure the oid is listed as a column when you query the schema in postgres
+<jamest> reading the release notes it looks like OIDs are going to be around for a while
+<jamest> just not created by default
+<jamest> reinhard: the form isn't getting added as a key in _gfObjToWidget for the wx24 driver
+<jamest> how long ago did you change that so I can look at the diffs to see what you were doing?
+<jamest> as it's not giving a keyerror in line 298 of the uidrivers/_base/UIDriver
+<jamest> actually , scratch that
+<jamest> hmmmmm
+<jamest> in the base ui driver we have a huge try: except KeyError: block that wraps the entire method
+<reinhard> jamest: sorry, on the phone
+<reinhard> *long* phone call
+<reinhard> :(
+<jamest> what's happening is in the 2.4 driver
+<jamest> that that in the _buildUI function in the base the line that read
+<jamest> supported = self.supportedWidgets [object._type]
+<jamest> is generating a key error that is caught by the function wide wrapper
+<jamest> and ignored (as it should be for triggers, connections and such)
+<jamest> now I'm trying to figure out why 2.4's form widget isn't using the configuration {} setup in it's form/__init__.py
+* jamest is verbally going through this in case reinhard has a "Whoops I forgot to change foo" moment
+*** klasstek has joined #gnuenterprise
+<alexbodn> hi, i'm back :-)
+<reinhard> so far I hand't even had a "uuhh.. I messed with this" moment
+<alexbodn> hoorai, i did it ! :-P
+<alexbodn> i can see the zipcode demos
+<jamest> reinhard: :)
+<jamest> we ignore a lot of excepts in the buildForm process
+<reinhard> yes
+<reinhard> that's a part that I didn't go through yet
+<jamest> in this case a bad import in form/widget.py
+<jamest> was causing it to not generate an error but instead be dropped from the supported widget list
+<jamest> lol
+<jamest> next!
+<reinhard> hmmm... actually giving a primarykey field should shop forms from using oid
+<reinhard> <datasource primarykey="foo">
+<jamest> reinhard: it's not working
+<jamest> i don't know why yet
+<alexbodn> it is (for me)
+<jamest> as that is my work around in my production system
+<jamest> hmmmmmmm
+<jamest> maybe I screwed up my test setup
+<jamest> as i do use that in production with 8.1
+<jamest> sigh, it helps to save the .gfd with the primarykey="" added before testing to see if the change worked
+<jamest> reinhard: 24 works again, however it seems that buttons on a form break it during a rollback
+<reinhard> jamest: removing the RESPONSE is not good
+<alexbodn> pardon my ignorance: in the master/slave zipcode form, how is the link between the blocks deduced?
+<alexbodn> only by implied foreign key?
+<jamest> reinhard: i sync'd it up with the way wx26 does it
+<jamest> let me dbl check
+<reinhard> _RESPONSE should be a global variable rather than an instance variable now
+<reinhard> which probably was my mistake
+<reinhard> to not remove the "self."
+<alexbodn> sorry, i found the detaillink option :-)
+<jamest> hmmmm
+<jamest> 26 doesn't return response either
+<reinhard> err that is the exception handler?
+<reinhard> not the _ui_show_message_?
+<reinhard> erm yes it is
+<reinhard> scratch what I said, your changes were perfectly right
+<reinhard> I wonder how buttons can break a rollback, as rollback doesn't do anything ui special IIRC
+<jamest> doh' i said rollback
+<jamest> i meant query
+<jamest> if I open zipcode.gfd
+<jamest> and immediately press f8/f9
+<jamest> i get
+<jamest> GFButton instance has no attribute '_field'
+<jamest> in GFBLock line 913
+<jamest> however that button is associated with a block="zip" in the gfd
+<jamest> and if I remove it then she's fine
+<alexbodn> pardon me please, but how can i use query datasets, and use say, picture fields?
+<jamest> use query datasets?
+<jamest> you mean perform a query from a form?  or something else?
+<alexbodn> using a select statement
+<jamest> that would be read only I believe
+<jamest>   <datasource name="dtsBranches" connection="epm" prequery="Y" type="sql">
+<jamest>     <sql>
+<jamest>       sql statement
+<jamest>      </sql>
+<jamest>   </datasource>
+<jamest> if you need read/write
+<jamest>   <datasource name="dtsInvoice" connection="epm" table="invoice">
+<alexbodn> is it straight forward too? :-)
+<jamest>    <condition>
+<jamest>       <and>
+<jamest>         <or>
+<jamest>           <eq>
+<jamest>             <cparam name="queryType"/>
+<jamest>             <cconst type="char" value="A"/>
+<jamest> then close the tags
+<jamest> i could paste the whole example there but it's fugly
+<jamest> ah
+<jamest> here's  a simple one
+<alexbodn> it's wonderfull!
+<jamest> from my incoming fax assignment form
+<jamest>   <datasource name="dtsXref_image" connection="epm"
+<jamest>               order_by="claim_no,entry_timestamp,url" prequery="Y" primarykey="url" table="xref_image">
+<jamest>     <condition>
+<jamest>       <null>
+<jamest>         <cfield name="claim_no"/>
+<jamest>       </null>
+<jamest>     </condition>
+<jamest>   </datasource>
+<jamest> also happens to have an image field
+<jamest>       <image name="imgURL" Char:height="25" Char:width="94" Char:x="1"
+<jamest>              Char:y="3" block="blkXref_image" field="fldUrl"/>
+<jamest> in this case the image is stored outside the table with a url field in the table
+<alexbodn> i quite love this text based metrics
+<alexbodn> i was meaning to calculate the image, like a map or a graph
+<jamest> i believe reinhard and friends have added a newer layout style into forms as well
+<jamest> i've not looked at it yet though
+<jamest> i don't believe you could currently generate an image on the fly
+<jamest> though you could display a filesystem image and manipulate it inside triggers
+<alexbodn> i'm looking forward to convert access applications to gnue, and later, to finish an autoconvertor
+<jamest> which is how i do my fax assignments
+<jamest> the user has a set of rotate buttons and a scale dropdown
+<alexbodn> i'mm looking forward to involvement with gnue
+<jamest> which uses triggers to manipulate the image
+<jamest> once the user gets what they want they assign it to the appropriate order (a claim)
+<alexbodn> is there a larger quantity of documentation and working examples?
+<jamest> fwiw, i have to do something like
+<jamest>           # Poor man's refresh.
+<jamest>           blkXref_image.nextRecord()
+<jamest>           blkXref_image.prevRecord()
+<jamest> in the trigger to get the image to refresh, but i imagine that <image> could be enhanced to provide more functionality
+<alexbodn> well known everywhere! ;-)
+<reinhard> jamest: button query problem should be solved, can you try please?
+<jamest> samples are all in gnue-forms/samples and there is a gnue-samples package
+<jamest> docs are a weak point
+<reinhard> documentation is in the files ending in .py
+<jamest> exactly
+<jamest> just like plone and zope
+<jamest> :)
+<reinhard> but you are highly encouraged to aks for help here at any time
+<dimas_> where is the program then?
+<alexbodn> is there any plan of a web ui?
+<reinhard> dimas_: lol
+<reinhard> alexbodn: several, all of them stalled
+<reinhard> there were attempts on a php based ui
+<reinhard> then a pure html ui
+<jamest> a javascript ui
+<reinhard> then another php attempt
+<alexbodn> no problem, gtk2 is wonderful too ;-)
+<reinhard> ah, yes, javascript also
+<jamest> reinhard: yeah, that did it
+<jamest> reinhard: fwiw, that sloppyQuery thing
+<jamest> that was put in by request here eons ago when I was consulting
+<jamest> and we've never once used it
+<reinhard> I've neither used it
+<jamest> if it looks as ugly to you as it does to me I wouldn't be against depreciating it
+<alexbodn> thanks a lot folks. i'm in. i'll have a dayly intake of gnue, and hope to be also able to contribute
+<jamest> what it does if you've not looked
+<jamest> is replace your field query values of
+<jamest> 'reinhardRocks'
+<jamest> with
+<reinhard> I know
+<reinhard> %foo$
+<reinhard> err
+<reinhard> %foo%
+<jamest> %f%o%o% actually
+<reinhard> eek
+<jamest> yeah
+<alexbodn> :-)
+<reinhard> that's indeed pretty ugly
+<jamest> they insisted
+<jamest> as they wanted to instead of typing
+<alexbodn> thanks a lot. bye for now
+<jamest> bye
+<reinhard> bye alexbodn
+<jamest> 11-222-333-4444
+<reinhard> hope to see you again here :)
+<jamest> to type
+<jamest> 22444
+<jamest> and hit all matches
+<alexbodn> bye all. you are doing great work!
+<reinhard> so "foo" would also match "fuck our boss"? ;-P
+<jamest> my for johannesV
+<jamest> maybe for
+<jamest> er, i mean yeah
+<jamest> it would
+<alexbodn> sure, it's worth!
+<reinhard> jamest: if you think nobody uses it you can as well just remove it
+<alexbodn> bye all
+<reinhard> I won't object at all
+<jamest> reinhard: it's somewhat scary how quick you expanded foo into that
+<reinhard> lo
+<reinhard> lol
+<reinhard> jamest: I am going to leave for 2 days in 3 hours
+<reinhard> so if you have any questions remaining please ask now
+<reinhard> or ask johannes tomorrow :-)
+<jamest> i think i'm good for now
+*** jamest has left #gnuenterprise
+<reinhard> wow
+<reinhard> this was a lot less troubles than I expected
+<reinhard> :)
+*** jamest has joined #gnuenterprise
+<reinhard> cu all
+*** reinhard has quit IRC
+*** johannesV has quit IRC
+*** jcater has joined #gnuenterprise
+*** jamest has left #gnuenterprise
+*** kilo has joined #gnuenterprise
+*** klasstek has quit IRC
+*** kilo has quit IRC
+*** derek has quit IRC
+*** curt__ has joined #gnuenterprise
+*** curt_ has quit IRC

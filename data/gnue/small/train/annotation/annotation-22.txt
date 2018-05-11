@@ -1,0 +1,126 @@
+<section archive="http://mail.gnu.org/pipermail/gnue/2002-October/003355.html" enddate="03 Nov 2002 15:28:26 -0800" posts="16" startdate="31 Oct 2002 02:21:41 -0800" subject="Subject: cross tables in reports?" title="OLAP tools and pivot tables in Reports">
+
+<topic>Reports</topic>
+
+<p>Sebastian Brosig asked <quote who="Sebastian Brosig">Can 
+gnue reports, or any other Free database tool for that matter, 
+create crosstables</quote> - <quote who="Sebastian Brosig">i 
+know the</quote> Open Office 
+<quote who="Sebastian Brosig">spreadsheet has the "Data Pilot" 
+which is OpenOffice's answer to pivot tables but it's a 
+point-and-click interactive tool and not a database</quote>.
+Derek Neighbors said <quote who="Derek Neighbors">Right now 
+today.  It can not do CrossTabulation.  It will at somepoint
+support this.  Furthermore, I am working to try to get a free 
+OLAP implementation that GNUe can use as well.  OLAP is pivot 
+tables on steriods. :)</quote> Jason Cater said 
+<quote who="Jason Cater">I will try to post an example pivot 
+report done in GNUe shortly. Reports does more than you 
+initially realize :) Of course, we don't have any sort of visual 
+designer (yet), so it's rather difficult to see what's
+going on :(</quote>. Todd Boyle felt that there was a 
+distinction <quote who="Todd Boyle">between the goal of computing 
+a particular crosstab at design time, versus providing users 
+dynamic cross-tabs among a whole, balanced data surfing capability 
+at runtime.   The latter is of course much harder but turns out, 
+pretty essential for managers to investigate and understand 
+problems /oppties which, guess what.  design time
+programmers cannot always anticipate.</quote> He noted that 
+proprietary <quote who="Todd Boyle">OLAP vendors have been providing 
+dynamic crosstabs for at least a decade, against large datasets 
+usu. by precomputing various subtotals.</quote></p>
+
+<p>Stan Klein suggested looking at R, 
+<quote who="Stan Klein">a clone of a commercial language called 
+S</quote> which <quote who="Stan Klein">appears to be popular 
+among academic departments of statistics, who use and contribute. 
+It might be worthwhile to look at producing GNUe output that can 
+be processed by R or to consider an interface that allows R 
+capabilities to operate on GNUe-managed databases</quote> - 
+<quote who="Stan Klein">The combination of GNUe and R could make 
+a very high powered strategic planning, forecasting, and data 
+mining capability.</quote> He gave <quote who="Stan Klein">an 
+extract from the R Introduction manual discussing 
+crosstabs</quote> Derek said <quote who="Derek Neighbors">I 
+think the standard OLAP engine language for financials is a 
+langaguage called A (im serious not being smart butt).  There is 
+a GPL implementation from Morgan Stanley (the original authors) 
+called <a href="http://www.aplusdev.org">A+</a>.</quote> 
+Stan said <quote who="Stan Klein">A+ is a variant of a language
+called APL ("A Programming Language") that, IIRC, was developed 
+by an IBM researcher in the early 1970's</quote>, which needed 
+<quote who="Stan Klein">a special keyboard to be able to input 
+all the peculiar characters that it used</quote> - 
+<quote who="Stan Klein">Think obfuscated C and go a few orders 
+of magnitude worse.  :-)</quote>. By contrast, 
+<quote who="Stan Klein">R is a more general statistical package, 
+similar in capability to SAS or SPSS, with the possible exception 
+of the user interface.</quote> <quote who="Stan Klein">I think the 
+big users of R, besides academics, are probably strategic planners, 
+market researchers, and scientific researchers, especially in the
+medical and social sciences where statistics are important.</quote> 
+Gontran Zepeda said <quote who="Gontran Zepeda">It so happens I 
+have spent part of the past couple weeks hacking up a kludgey
+perl *cough* package that interacts with R</quote>. He felt that 
+R had a <quote who="Gontran Zepeda">quite un-gnu like</quote>.
+There were facilities for using python within R, but GNUe would 
+really need something the othe way around - but R did have 
+<quote who="Gontran Zepeda">a DBI type interface.  That's right 
+kids, get data from mysql, postgresql or plain flat files into 
+your analysis space directly from R.</quote> He was not convinced 
+that adding R as another dependancy for GNUe Reports was necessary, 
+asking <quote who="Gontran Zepeda">Doesn't jamest have pivot tables 
+working anyway?</quote> Stan <quote who="Stan Klein">took a look 
+at the links on the R homepage and found something called
+RSPython that appears to provide interfaces both ways</quote> 
+between R and Python, although <quote who="Stan Klein">It looks 
+like you need to know something about the objects involved, so it's 
+an interface that needs to be programmed for specific 
+purposes.</quote> He suggested <quote who="Stan Klein">The easiest 
+way for GNUe to quickly do an interface (if desired) would be
+to write files using Reports in a format that can be read by R, use 
+the Python to R interface to send R commands to read the input files
+and perform various functions, and then write the output from R to a 
+file that could either be printed or imported to a database.</quote> 
+He saw this as an add-on rather than a core dependancy. He also noted 
+<quote who="Stan Klein">there appears to be work ongoing on GUI 
+interfaces for R, but it doesn't seem to be very far along.  It might 
+be nice to let the R folks know that GNUe might be a good candidate 
+for that.</quote> Derek still preferred A+ as a general OLAP 
+framework - and <quote who="Derek Neighbors">To do general crosstab 
+type of reports I dont think an additionalpackage is 
+necessary.</quote></p>
+
+<p>Stan did some more research, and said that either OLAP or 
+<quote who="Stan Klein">Traditional statistical packages</quote> 
+could be used <quote who="Stan Klein">for strategic business 
+analysis.</quote> These both required human intervention, at least 
+in specifying the analysis to do. Also, <quote who="Stan Klein">There 
+are also AI-based approaches under which the analytical tool searches 
+for patterns in the data "on its own."</quote> In general, 
+<quote who="Stan Klein">I detected a lot of "buzzwordism" in what 
+I saw</quote> and <quote who="Stan Klein">when this kind of stuff is 
+demo'ed it looks very "gee whiz" especially when stuff like 3D
+graphics are included.</quote> There were really two issues - 
+<quote who="Stan Klein">whether a free/open-source OLAP package can 
+be built using A+</quote>, which it obviously could, given effort. 
+<quote who="Stan Klein">The other issue is which of these approaches 
+GNUe can support.  I hope the answer is all of the above</quote>, 
+including R.</p>
+
+<p>Todd said the most important part of a GNUe-linked OLAP tool 
+was user-friendliness for the non-technical user. Quickbooks 
+had dominated the small business accounting market, not 
+because of any better functionality, but because it was 
+perceived as more user-friendly. This was why he preferred 
+something that built on existing experience of pivot tables.
+Jason agreed that <quote who="Jason Cater">I see great
+value in getting GNUe to talk to existing OLAP tools</quote> 
+but pointed out that <quote who="Jason Cater">GNUe *will* 
+(pretty much does) support simple pivot tables/cross
+tabulation in its reports package.  And, this does not/will 
+not require any external OLAP packages</quote>.</p>
+
+</section>
+
+

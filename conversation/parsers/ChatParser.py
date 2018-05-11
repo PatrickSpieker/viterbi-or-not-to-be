@@ -2,6 +2,7 @@ import xml.etree.ElementTree as ET
 from nltk.translate.bleu_score import sentence_bleu
 import os
 import glob
+from tqdm import tqdm
 
 # The subdirectories under which ROUGE-compatible summaries should be output
 OUTPUT = 'output/'
@@ -40,38 +41,45 @@ class ChatParser:
         thread_labels = []
         thread_names = []
 
-        for anno_filename in glob.glob('{}/*.txt'.format(annotation_dir)):
-            curr_thread = []
-            curr_thread_labels = []
-            quotes = []
-            anno_file = anno_filename # os.path.join(annotation_dir, anno_filename)
-            thread_index = anno_filename.split('-')[1].split('.')[0]
-            tree = ET.parse(anno_file)
-            root = tree.getroot()
-            for p in root.findall('p'):
-                for q in p.findall('quote'):
-                    if q.text is not None:
-                        quotes.append(q.text.replace('\n', '').replace(',', '').strip().split())
+        print('Parsing')
+        files = glob.glob('{}/*.txt'.format(annotation_dir))
 
-            corpus_filename = 'corpus-' + thread_index + '.txt'
-            corpus_file = open(os.path.join(corpus_dir, corpus_filename), 'r', errors='ignore')
-            for line in corpus_file.readlines():
-                line = line.replace('\n', '').replace(',', '').strip().split()
-                curr_thread.append(' '.join(line))
+        with tqdm(total=len(files)) as pbar:
+            for anno_filename in files:
+                curr_thread = []
+                curr_thread_labels = []
+                quotes = []
+                anno_file = anno_filename # os.path.join(annotation_dir, anno_filename)
+                thread_index = anno_filename.split('-')[1].split('.')[0]
+                tree = ET.parse(anno_file)
+                root = tree.getroot()
+                for p in root.findall('p'):
+                    for q in p.findall('quote'):
+                        if q.text is not None:
+                            quotes.append(q.text.replace('\n', '').replace(',', '').strip().split())
 
-                similarity = sentence_bleu(quotes, line)
+                corpus_filename = 'corpus-' + thread_index + '.txt'
+                corpus_file = open(os.path.join(corpus_dir, corpus_filename), 'r', errors='ignore')
+                for line in corpus_file.readlines():
+                    line = line.replace('\n', '').replace(',', '').strip().split()
+                    curr_thread.append(' '.join(line))
+                    try:
+                        similarity = sentence_bleu(quotes, line)
+                        if similarity > SIMILARITY:
+                            curr_thread_labels.append(1)
+                        else:
+                            curr_thread_labels.append(0)
+                    except KeyError:
+                        curr_thread_labels.append(0)
+                
+                nested_thread = []
+                nested_labels = []
+                nested_thread.append(curr_thread)
+                nested_labels.append(curr_thread_labels)
+                threads.append(nested_thread)
+                thread_labels.append(nested_labels)
+                pbar.update(1)
 
-                if similarity > SIMILARITY:
-                    curr_thread_labels.append(1)
-                else:
-                    curr_thread_labels.append(0)
-            
-            nested_thread = []
-            nested_labels = []
-            nested_thread.append(curr_thread)
-            nested_labels.append(curr_thread_labels)
-            threads.append(nested_thread)
-            thread_labels.append(nested_labels)
         return threads, thread_labels, thread_names
 
     def compile_reference_summaries(self):

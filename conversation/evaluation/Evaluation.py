@@ -2,6 +2,7 @@ import subprocess
 import re
 import glob
 import os
+import pdb
 
 class Evaluation:
     def __init__(self, metrics, debug, examples):

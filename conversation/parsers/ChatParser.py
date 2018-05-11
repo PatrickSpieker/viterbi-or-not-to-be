@@ -1,10 +1,13 @@
 import xml.etree.ElementTree as ET
+from nltk.translate.bleu_score import sentence_bleu
 import os
 import glob
 
 # The subdirectories under which ROUGE-compatible summaries should be output
 OUTPUT = 'output/'
 REFERENCE = 'reference/'
+
+SIMILARITY = 0.7
 
 class ChatParser:
     def __init__(self, overall_dir, debug):
@@ -40,7 +43,7 @@ class ChatParser:
         for anno_filename in glob.glob('{}/*.txt'.format(annotation_dir)):
             curr_thread = []
             curr_thread_labels = []
-            quotes = set()
+            quotes = []
             anno_file = anno_filename # os.path.join(annotation_dir, anno_filename)
             thread_index = anno_filename.split('-')[1].split('.')[0]
             tree = ET.parse(anno_file)
@@ -48,22 +51,20 @@ class ChatParser:
             for p in root.findall('p'):
                 for q in p.findall('quote'):
                     if q.text is not None:
-                        quotes.add(q.text.replace('\n', ''))
+                        quotes.append(q.text.replace('\n', '').replace(',', '').strip().split())
 
             corpus_filename = 'corpus-' + thread_index + '.txt'
             corpus_file = open(os.path.join(corpus_dir, corpus_filename), 'r', errors='ignore')
             for line in corpus_file.readlines():
-                line = line.replace('\n', '')
-                curr_thread.append(line)
-                quoted = 0
-                for q in quotes:
-                    if q.replace(',', '') in line.replace(',', ''):
-                        curr_thread_labels.append(1)
-                        quoted = 1
-                        break
-                if not quoted:
+                line = line.replace('\n', '').replace(',', '').strip().split()
+                curr_thread.append(' '.join(line))
+
+                similarity = sentence_bleu(quotes, line)
+
+                if similarity > SIMILARITY:
+                    curr_thread_labels.append(1)
+                else:
                     curr_thread_labels.append(0)
-                    quoted = 0
             
             nested_thread = []
             nested_labels = []
@@ -74,7 +75,7 @@ class ChatParser:
         return threads, thread_labels, thread_names
 
     def compile_reference_summaries(self):
-        for anno_filename in os.listdir(self.annotation('val')):
+        for anno_index, anno_filename in enumerate(os.listdir(self.annotation('val'))):
             anno_file = os.path.join(self.annotation('val'), anno_filename)
             thread_index = anno_filename.split('-')[1].split('.')[0]
             output_dir = OUTPUT + REFERENCE
@@ -88,10 +89,11 @@ class ChatParser:
             tree = ET.parse(anno_file)
             root = tree.getroot()
 
-            filename = output_dir + 'thread{}.txt'.format(thread_index)
+            filename = output_dir + 'thread{}_reference1.txt'.format(anno_index)
             with open(filename, 'w') as output_file:
                 for p in root.findall('p'):
-                    output_file.write(p.text)
+                    for q in p.findall('quote'):
+                        output_file.write(q.text.replace('\n', '') + '\n')
 
     def debug(self, output):
         if self.debug_flag:

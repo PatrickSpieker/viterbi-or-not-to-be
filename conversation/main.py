@@ -134,8 +134,6 @@ def main():
     # Train model using training data
     model = train_model(model_type, thread_labels, training_sentence_features)
 
-    pdb.set_trace()
-
     # Parse val data
     val_data = eval_parser.parse('val')
 

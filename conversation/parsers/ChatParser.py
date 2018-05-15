@@ -83,16 +83,16 @@ class ChatParser:
         return threads, thread_labels, thread_names
 
     def compile_reference_summaries(self):
+        output_dir = OUTPUT + REFERENCE
+        if os.path.exists(output_dir):
+            for f in glob.glob(output_dir + '*'):
+                os.remove(f)
+        else:
+            os.makedirs(output_dir)
+            
         for anno_index, anno_filename in enumerate(os.listdir(self.annotation('val'))):
             anno_file = os.path.join(self.annotation('val'), anno_filename)
             thread_index = anno_filename.split('-')[1].split('.')[0]
-            output_dir = OUTPUT + REFERENCE
-
-            if os.path.exists(output_dir):
-                for f in glob.glob(output_dir + '*'):
-                    os.remove(f)
-            else:
-                os.makedirs(output_dir)
 
             tree = ET.parse(anno_file)
             root = tree.getroot()
@@ -101,7 +101,11 @@ class ChatParser:
             with open(filename, 'w') as output_file:
                 for p in root.findall('p'):
                     for q in p.findall('quote'):
-                        output_file.write(q.text.replace('\n', '') + '\n')
+                        if q:
+                            for p2 in q.findall('p'):
+                                output_file.write(p2.text.replace('\n', '') + '\n')
+                        else:
+                            output_file.write(q.text.replace('\n', '') + '\n')
 
     def debug(self, output):
         if self.debug_flag:

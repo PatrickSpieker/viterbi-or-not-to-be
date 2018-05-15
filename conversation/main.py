@@ -118,14 +118,14 @@ def main():
 
     # TODO: ideally, remove this in the future
     # Collapse emails into threads
-    training_data['data'] = collapse_threads(training_data['data'])
-    training_data['labels'] = collapse_threads(training_data['labels'])
+    # training_data['data'] = collapse_threads(training_data['data'])
+    # training_data['labels'] = collapse_threads(training_data['labels'])
 
     # Produce sentence features
     training_sentence_features = feature_vectorizer.vectorize(training_data)
 
     # Flatten thread labels to match the feature shape
-    thread_labels = flatten(training_data['labels'])
+    thread_labels = flatten(flatten(training_data['labels']))
 
     # # If crosstraining is enabled, use the second round of training data
     # if args.crosstrain is not None:
@@ -152,8 +152,8 @@ def main():
 
     # TODO: ideally, remove this in the future
     # Collapse emails into threads
-    val_data['data'] = collapse_threads(val_data['data'])
-    val_data['labels'] = collapse_threads(val_data['labels'])
+    # val_data['data'] = collapse_threads(val_data['data'])
+    # val_data['labels'] = collapse_threads(val_data['labels'])
 
     # Produce sentence features
     val_sentence_features = eval_feature_vectorizer.vectorize(val_data)
@@ -184,12 +184,13 @@ def test_model(model, val_data, sentence_features, step, threshold):
         os.makedirs(output_dir)
 
     threads = val_data['data']
+    collapsed_threads = collapse_threads(val_data['data'])
 
     predicted_annotations = model.predict(sentence_features)
-    sentences = flatten(threads)
+    sentences = flatten(collapsed_threads)
 
     sentence = 0
-    for thread_index, thread in enumerate(threads):
+    for thread_index, thread in enumerate(collapsed_threads):
         thread_summary = []
         for _ in range(0, len(thread), step):
             if predicted_annotations[sentence] > threshold:

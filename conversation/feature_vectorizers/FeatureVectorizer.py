@@ -37,13 +37,15 @@ class FeatureVectorizer:
         print('Vectorizing: Computing Special Features')
 
         threads = input['data']
-        documents = [' '.join(x) for x in threads]
+        collapsed_threads = self.collapse_threads(threads)
+        documents = [' '.join(x) for x in collapsed_threads]
 
         # Determine the number of sentences using the specific input format
         # for this data type
         num_sentences = 0
         for thread in threads:
-            num_sentences += len(thread)
+            for chunk in thread:
+                num_sentences += len(chunk)
 
         # Create an appropriately shaped array to hold the feature vectors
         sentence_features = np.ndarray(shape=(num_sentences, self.NUM_FEATURES))
@@ -54,11 +56,11 @@ class FeatureVectorizer:
         self.TF_IDF_FEATURES = np.squeeze(np.asarray(np.mean(tf_idf, axis=1)), axis=1)
 
         # Count special terms per sentence, thread
-        with tqdm(total=len(threads)) as pbar:
-            for thread_index, thread in enumerate(threads):
+        with tqdm(total=len(collapsed_threads)) as pbar:
+            for thread_index, collapsed_threads in enumerate(collapsed_threads):
                 thread_special_count = 0
                 self.SENT_SPECIAL_COUNTS[thread_index] = []
-                for sentence_index, sentence in enumerate(thread):
+                for sentence_index, sentence in enumerate(collapsed_threads):
                     sent_tokens = tokenize.word_tokenize(sentence)
                     tagged_sent = tagger.pos_tag(sent_tokens)
                     prev_proper_index = -10
@@ -84,46 +86,57 @@ class FeatureVectorizer:
         global_sentence_index = 0
         with tqdm(total=len(threads)) as pbar:
             for thread_index, thread in enumerate(threads):
-                for sentence_index, sentence in enumerate(thread):
-                    for feature_index, feature in enumerate(self.FEATURES):
-                        feature_result = getattr(self, feature)(input, thread_index, thread, sentence_index, sentence)
-                        sentence_features[global_sentence_index, feature_index] = feature_result
-                    global_sentence_index += 1
-                pbar.update(1)
+                for chunk_index, chunk in enumerate(thread):
+                    for sentence_index, sentence in enumerate(chunk):
+                        for feature_index, feature in enumerate(self.FEATURES):
+                            feature_result = getattr(self, feature)(input, thread_index, thread, chunk_index, chunk, sentence_index, sentence)
+                            sentence_features[global_sentence_index, feature_index] = feature_result
+                        global_sentence_index += 1
+                    TF_ISF_CACHE = {}
+                    pbar.update(1)
 
         return sentence_features
 
+    def flatten(self, nested_list):
+        return [label for thread in nested_list for label in thread]
+
+    def collapse_threads(self, threads):
+        collapsed_threads = []
+        for thread in threads:
+            collapsed_threads.append(self.flatten(thread))
+        return collapsed_threads
+    
     # --- For subclasses, override these methods: ---
 
-    def tf_idf(self, input, thread_index, thread, sentence_index, sentence):
+    def tf_idf(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
         return 0
 
-    def tf_isf(self, input, thread_index, thread, sentence_index, sentence):
+    def tf_isf(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
         return 0
 
-    def sentence_length(self, input, thread_index, thread, sentence_index, sentence):
+    def sentence_length(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
         return 0
 
-    def sentence_position(self, input, thread_index, thread, sentence_index, sentence):
+    def sentence_position(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
         return 0
 
-    def title_similarity(self, input, thread_index, thread, sentence_index, sentence):
+    def title_similarity(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
         return 0
 
-    def centroid_coherence(self, input, thread_index, thread, sentence_index, sentence):
+    def centroid_coherence(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
         return 0
 
-    def special_terms(self, input, thread_index, thread, sentence_index, sentence):
+    def special_terms(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
         return 0
 
-    def is_question(self, input, thread_index, thread, sentence_index, sentence):
+    def is_question(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
         return 0
 
-    def sentiment_score(self, input, thread_index, thread, sentence_index, sentence):
+    def sentiment_score(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
         return 0
 
-    def number_count(self, input, thread_index, thread, sentence_index, sentence):
+    def number_count(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
         return 0
 
-    def url_count(self, input, thread_index, thread, sentence_index, sentence):
+    def url_count(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
         return 0

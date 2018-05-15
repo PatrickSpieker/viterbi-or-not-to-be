@@ -15,14 +15,14 @@ from nltk.corpus import sentiwordnet as swn
 
 class EmailFeatureVectorizer(FeatureVectorizer):
 
-    def tf_idf(self, input, thread_index, thread, sentence_index, sentence):
+    def tf_idf(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
         return self.TF_IDF_FEATURES[thread_index]
 
-    def tf_isf(self, input, thread_index, thread, sentence_index, sentence):
+    def tf_isf(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
         if sentence_index in self.TF_ISF_CACHE:
             tf_isf = self.TF_ISF_CACHE[sentence_index]
         else:
-            thread_with_name = thread.copy()
+            thread_with_name = self.flatten(thread.copy())
             thread_with_name.append(input['names'][thread_index])
             tf_isf_vectorizer = TfidfVectorizer()
             tf_isf = tf_isf_vectorizer.fit_transform(thread_with_name)
@@ -31,17 +31,18 @@ class EmailFeatureVectorizer(FeatureVectorizer):
         tf_isf_features = np.squeeze(np.asarray(np.mean(tf_isf, axis=1)))
         return tf_isf_features[sentence_index]
 
-    def sentence_length(self, input, thread_index, thread, sentence_index, sentence):
+    def sentence_length(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
         return len(sentence)
 
-    def sentence_position(self, input, thread_index, thread, sentence_index, sentence):
+    def sentence_position(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
         return sentence_index
     
-    def title_similarity(self, input, thread_index, thread, sentence_index, sentence):
+    def title_similarity(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
         if sentence_index in self.TF_ISF_CACHE:
             tf_isf = self.TF_ISF_CACHE[sentence_index]
         else:
-            thread_with_name = thread.copy()
+            #thread_with_name = thread.copy()
+            thread_with_name = self.flatten(thread.copy())
             thread_with_name.append(input['names'][thread_index])
             tf_isf_vectorizer = TfidfVectorizer()
             tf_isf = tf_isf_vectorizer.fit_transform(thread_with_name)
@@ -51,11 +52,12 @@ class EmailFeatureVectorizer(FeatureVectorizer):
         sentence_vector = tf_isf[sentence_index]
         return linear_kernel(title_vector, sentence_vector).flatten()
 
-    def centroid_coherence(self, input, thread_index, thread, sentence_index, sentence):
+    def centroid_coherence(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
         if sentence_index in self.TF_ISF_CACHE:
             tf_isf = self.TF_ISF_CACHE[sentence_index]
         else:
-            thread_with_name = thread.copy()
+            #thread_with_name = thread.copy()
+            thread_with_name = self.flatten(thread.copy())
             thread_with_name.append(input['names'][thread_index])
             tf_isf_vectorizer = TfidfVectorizer()
             tf_isf = tf_isf_vectorizer.fit_transform(thread_with_name)
@@ -65,13 +67,13 @@ class EmailFeatureVectorizer(FeatureVectorizer):
         sentence_vector = tf_isf[sentence_index]
         return linear_kernel(tf_isf_mean, sentence_vector).flatten()
 
-    def special_terms(self, input, thread_index, thread, sentence_index, sentence):
+    def special_terms(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
         return self.SENT_SPECIAL_COUNTS[thread_index][sentence_index] / self.THREAD_SPECIAL_COUNTS[thread_index] if self.THREAD_SPECIAL_COUNTS[thread_index] != 0 else 0
 
-    def is_question(self, input, thread_index, thread, sentence_index, sentence):
+    def is_question(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
         return 1 if sentence.endswith('?') else 0
 
-    def sentiment_score(self, input, thread_index, thread, sentence_index, sentence):
+    def sentiment_score(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
         tag_set = {'NN', 'NNS', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ', 'JJ', 'JJR', 'JJS', 'RB', 'RBR', 'RBS'}
         total_score = 0.0
         sent_tokens = tokenize.word_tokenize(sentence)
@@ -104,7 +106,7 @@ class EmailFeatureVectorizer(FeatureVectorizer):
                     pass
         return total_score / len(tagged_sent)
 
-    def number_count(self, input, thread_index, thread, sentence_index, sentence):
+    def number_count(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
         """number_count = 0
         sent_tokens = tokenize.word_tokenize(sentence)
         tagged_sent = tagger.pos_tag(sent_tokens)
@@ -115,5 +117,5 @@ class EmailFeatureVectorizer(FeatureVectorizer):
         return number_count"""
         return len(re.findall('\d', sentence))
 
-    def url_count(self, input, thread_index, thread, sentence_index, sentence):
+    def url_count(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
         return len(re.findall('https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+', sentence))

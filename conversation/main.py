@@ -10,7 +10,8 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
 from sklearn.naive_bayes import GaussianNB
 from sklearn.neural_network import MLPClassifier
-from sklearn.tree import DecisionTreeClassifier
+from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor
+from sklearn.linear_model import BayesianRidge
 import numpy as np
 
 from feature_vectorizers.EmailFeatureVectorizer import \
@@ -35,8 +36,9 @@ def main():
     parser = argparse.ArgumentParser(description='Train and evaluate the conversation-specific model for automatic conversation summarization. Allows selection between several different types of models and datasets, as well as customization of the metrics to be used in evaluation and various options for debugging. After evaluation, system-generated summaries can be found in the output/system directory', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('dataset', help='the path of the dataset to use, specified as a path relative to the data/ directory, i.e. to use the full bc3 dataset: \'bc3/full\'')
     parser.add_argument('--type', choices=['email', 'chat'], default='email', help='the format of the dataset being used')
-    parser.add_argument('--model', choices=['naivebayes', 'decisiontree', 'perceptron'], default='naivebayes', help='the type of model to train and test')
+    parser.add_argument('--model', choices=['naivebayes', 'decisiontree', 'perceptron', 'regression_dt', 'regression_br'], default='naivebayes', help='the type of model to train and test')
     parser.add_argument('--metric', choices=['L', '1', '2', 'all'], default='all', help='which metric(s) to report when evaluating the model')
+    parser.add_argument('--threshold', type=float, default=0.5, help='the cutoff at which to consider sentences as part of the summary')
     parser.add_argument('--evaldataset', help='the path of the dataset to use for evaluation')
     parser.add_argument('--evaltype', choices=['email', 'chat'], help='the format of the evaluation dataset being used')
     parser.add_argument('--debug', action='store_true', help='if set, outputs various debugging information during execution')
@@ -87,11 +89,15 @@ def main():
 
     # Use the appropriate model type
     if args.model == 'naivebayes':
-        model_type = GaussianNB
+        model = GaussianNB()
     elif args.model == 'decisiontree':
-        model_type = DecisionTreeClassifier
+        model = DecisionTreeClassifier()
     elif args.model == 'perceptron':
-        model_type = MLPClassifier
+        model = MLPClassifier()
+    elif args.model == 'regression_dt':
+        model = DecisionTreeRegressor()
+    elif args.model == 'regression_br':
+        model = BayesianRidge(compute_score=True)
 
     # Use the appropriate evaluation metrics
     if args.metric == 'all':
@@ -99,6 +105,9 @@ def main():
     else:
         metrics = [args.metric]
     evaluation = Evaluation(metrics, debug=args.debug, examples=args.examples)
+
+    # Use the appropriate threshold
+    threshold = args.threshold
 
     # Parse training data
     training_data = parser.parse('train')
@@ -132,7 +141,7 @@ def main():
     #     thread_labels = thread_labels.extend(flatten(cross_training_data['labels']))
 
     # Train model using training data
-    model = train_model(model_type, thread_labels, training_sentence_features)
+    model.fit(training_sentence_features, thread_labels)
 
     # Parse val data
     val_data = eval_parser.parse('val')
@@ -150,7 +159,7 @@ def main():
     val_sentence_features = eval_feature_vectorizer.vectorize(val_data)
 
     # Generate the model's predicted summaries on the val data
-    test_model(model, val_data, val_sentence_features, 3 if args.type == 'email' else 1)
+    test_model(model, val_data, val_sentence_features, 3 if args.type == 'email' else 1, threshold)
 
     # Compile the reference summaries
     eval_parser.compile_reference_summaries()
@@ -166,7 +175,7 @@ def train_model(model_type, sentence_labels, sentence_features):
 
     return model
         
-def test_model(model, val_data, sentence_features, step):
+def test_model(model, val_data, sentence_features, step, threshold):
     output_dir = OUTPUT + SYSTEM
     if os.path.exists(output_dir):
         for f in glob.glob(output_dir + '*.txt'):
@@ -183,7 +192,7 @@ def test_model(model, val_data, sentence_features, step):
     for thread_index, thread in enumerate(threads):
         thread_summary = []
         for _ in range(0, len(thread), step):
-            if predicted_annotations[sentence] == 1:
+            if predicted_annotations[sentence] > threshold:
                 thread_summary.append(sentences[sentence] + ' ')
             sentence += step
         

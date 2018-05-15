@@ -3,6 +3,7 @@ from tqdm import tqdm
 from sklearn.feature_extraction.text import TfidfVectorizer
 from nltk import tokenize
 from nltk import tag as tagger
+import re
 np.set_printoptions(threshold=np.inf)
 
 class FeatureVectorizer:

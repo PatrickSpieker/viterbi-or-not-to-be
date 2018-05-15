@@ -19,7 +19,8 @@ class FeatureVectorizer:
         'is_question',
         'sentiment_score',
         'number_count',
-        'url_count'
+        'url_count',
+        'position_from_end'
     ]
     NUM_FEATURES = len(FEATURES)
     TF_IDF_FEATURES = []
@@ -113,7 +114,16 @@ class FeatureVectorizer:
         return self.TF_IDF_FEATURES[thread_index]
 
     def tf_isf(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
-        return 0
+        if chunk_index in self.TF_ISF_CACHE:
+            tf_isf = self.TF_ISF_CACHE[chunk_index]
+        else:
+            chunks = [' '.join(x) for x in thread]
+            tf_isf_vectorizer = TfidfVectorizer()
+            tf_isf = tf_isf_vectorizer.fit_transform(chunks)
+            self.TF_ISF_CACHE[chunk_index] = tf_isf
+
+        tf_isf_features = np.squeeze(np.asarray(np.mean(tf_isf, axis=1)))
+        return tf_isf_features[chunk_index]
 
     def sentence_length(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
         return len(sentence)
@@ -171,3 +181,6 @@ class FeatureVectorizer:
 
     def url_count(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
         return len(re.findall('https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+', sentence))
+
+    def position_from_end(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
+        return len(chunk) - sentence_index

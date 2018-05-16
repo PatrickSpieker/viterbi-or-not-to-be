@@ -48,6 +48,8 @@ class ChatPreprocessor:
                             # It is time to create a new chunk because the username
                             # has changed. To do so, save the current chunk and
                             # prepare a new chunk to work on under new_chunk_text.
+                            if new_chunk_text[-1][-1] not in self.SENTENCE_END:
+                                new_chunk_text[-1] += '.'
                             new_thread_text.append(new_chunk_text)
                             new_thread_labels.append(new_chunk_labels)
                             new_chunk_text = []
@@ -58,8 +60,6 @@ class ChatPreprocessor:
                         # chunk to be modifying. Add the sentence, ending with
                         # a period if it does not already.
                         new_sentence = sentence_match.group(2)
-                        if new_sentence[-1] not in self.SENTENCE_END:
-                            new_sentence += '.'
 
                         new_chunk_text.append(new_sentence)
                         new_chunk_labels.append(input['labels'][thread_index][chunk_index][sentence_index])

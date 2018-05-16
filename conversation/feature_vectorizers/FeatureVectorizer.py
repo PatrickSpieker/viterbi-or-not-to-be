@@ -45,8 +45,12 @@ class FeatureVectorizer:
         threads = input['data']
         collapsed_threads = self.collapse_threads(threads)
         documents = [' '.join(x) for x in collapsed_threads]
-        paragraphs = ['\n\n'.join(x) for x in collapsed_threads]
 
+        paragraphs = []
+        for thread in collapsed_threads:
+            cleaned_sentences = [x.replace('\n', '') for x in thread]
+            paragraphs.append('\n\n'.join(cleaned_sentences))
+                
         # Determine the number of sentences using the specific input format
         # for this data type
         num_sentences = 0
@@ -63,20 +67,20 @@ class FeatureVectorizer:
         self.TF_IDF_FEATURES = np.squeeze(np.asarray(np.mean(tf_idf, axis=1)), axis=1)
 
         # Compute topic divisions
-        text_tiler = tokenize.TextTilingTokenizer(demo_mode=False)
-        for thread in paragraphs:
-            topic_boundaries = text_tiler.tokenize(thread)
-            thread_positions = []
-            for topic_boundary in topic_boundaries:
-                sentences = topic_boundary.split('\n\n')
-                if len(sentences[0]) == 0:
-                    sentences = sentences[1:]
+        # text_tiler = tokenize.TextTilingTokenizer(demo_mode=False)
+        # for thread in paragraphs:
+        #     topic_boundaries = text_tiler.tokenize(thread)
+        #     thread_positions = []
+        #     for topic_boundary in topic_boundaries:
+        #         sentences = topic_boundary.split('\n\n')
+        #         if len(sentences[0]) == 0:
+        #             sentences = sentences[1:]
 
-                num_topic_sentences = len(sentences)
-                for sentence_index, sentence in enumerate(sentences):
-                    thread_positions.append(sentence_index / num_topic_sentences)
+        #         num_topic_sentences = len(sentences)
+        #         for sentence_index, sentence in enumerate(sentences):
+        #             thread_positions.append(sentence_index / num_topic_sentences)
 
-            self.TOPIC_DIVISIONS.append(thread_positions)
+        #     self.TOPIC_DIVISIONS.append(thread_positions)
 
         # Count special terms per sentence, thread
         with tqdm(total=len(collapsed_threads)) as pbar:
@@ -219,4 +223,5 @@ class FeatureVectorizer:
         return (len(chunk) - sentence_index) / len(chunk)
 
     def topic_position(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence, thread_sentence_index):
+        return 0
         return self.TOPIC_DIVISIONS[thread_index][thread_sentence_index]

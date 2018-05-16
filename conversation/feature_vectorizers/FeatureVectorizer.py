@@ -22,7 +22,8 @@ class FeatureVectorizer:
         'sentiment_score',
         'number_count',
         'url_count',
-        'position_from_end'
+        'position_from_end',
+        'topic_position'
     ]
     NUM_FEATURES = len(FEATURES)
     TF_IDF_FEATURES = []
@@ -150,7 +151,7 @@ class FeatureVectorizer:
         return len(sentence)
 
     def sentence_position(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence, thread_sentence_index):
-        return sentence_index
+        return sentence_index / len(chunk)
 
     def title_similarity(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence, thread_sentence_index):
         return 0
@@ -214,7 +215,7 @@ class FeatureVectorizer:
         return len(re.findall('https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+', sentence))
 
     def position_from_end(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence, thread_sentence_index):
-        return len(chunk) - sentence_index
+        return (len(chunk) - sentence_index) / len(chunk)
 
     def topic_position(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence, thread_sentence_index):
         return self.TOPIC_DIVISIONS[thread_index][thread_sentence_index]

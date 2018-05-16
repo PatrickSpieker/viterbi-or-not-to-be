@@ -28,6 +28,7 @@ class FeatureVectorizer:
     TF_ISF_CACHE = {}
     THREAD_SPECIAL_COUNTS = []
     SENT_SPECIAL_COUNTS = {}
+    TOPIC_DIVISIONS = []
 
     def vectorize(self, input):
         """
@@ -42,6 +43,7 @@ class FeatureVectorizer:
         threads = input['data']
         collapsed_threads = self.collapse_threads(threads)
         documents = [' '.join(x) for x in collapsed_threads]
+        paragraphs = ['\n\n'.join(x) for x in collapsed_threads]
 
         # Determine the number of sentences using the specific input format
         # for this data type
@@ -57,6 +59,21 @@ class FeatureVectorizer:
         tf_idf_vectorizer = TfidfVectorizer()
         tf_idf = tf_idf_vectorizer.fit_transform(documents)
         self.TF_IDF_FEATURES = np.squeeze(np.asarray(np.mean(tf_idf, axis=1)), axis=1)
+
+        # Compute topic divisions
+        text_tiler = tokenize.TextTilingTokenizer(demo_mode=True)
+        for topic in paragraphs:
+            _, _, _, topic_boundaries = text_tiler.tokenize(topic)
+
+            position_since_last_boundary = 0
+            for sentence_index, is_boundary in enumerate(topic_boundaries):
+                if is_boundary == 1:
+                    position_since_last_boundary = 0
+                else:
+                    position_since_last_boundary += 1
+                topic_boundaries[sentence_index] = position_since_last_boundary
+
+            self.TOPIC_DIVISIONS.append(topic_boundaries)
 
         # Count special terms per sentence, thread
         with tqdm(total=len(collapsed_threads)) as pbar:
@@ -89,13 +106,15 @@ class FeatureVectorizer:
         global_sentence_index = 0
         with tqdm(total=len(threads)) as pbar:
             for thread_index, thread in enumerate(threads):
+                thread_sentence_index = 0
                 for chunk_index, chunk in enumerate(thread):
                     for sentence_index, sentence in enumerate(chunk):
                         for feature_index, feature in enumerate(self.FEATURES):
-                            feature_result = getattr(self, feature)(input, thread_index, thread, chunk_index, chunk, sentence_index, sentence)
+                            feature_result = getattr(self, feature)(input, thread_index, thread, chunk_index, chunk, sentence_index, sentence, thread_sentence_index)
                             sentence_features[global_sentence_index, feature_index] = feature_result
                         global_sentence_index += 1
-                    TF_ISF_CACHE = {}
+                        thread_sentence_index += 1
+                    self.TF_ISF_CACHE = {}
                     pbar.update(1)
 
         return sentence_features
@@ -111,10 +130,10 @@ class FeatureVectorizer:
     
     # --- For subclasses, override these methods: ---
 
-    def tf_idf(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
+    def tf_idf(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence, thread_sentence_index):
         return self.TF_IDF_FEATURES[thread_index]
 
-    def tf_isf(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
+    def tf_isf(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence, thread_sentence_index):
         if chunk_index in self.TF_ISF_CACHE:
             tf_isf = self.TF_ISF_CACHE[chunk_index]
         else:
@@ -126,16 +145,16 @@ class FeatureVectorizer:
         tf_isf_features = np.squeeze(np.asarray(np.mean(tf_isf, axis=1)))
         return tf_isf_features[chunk_index]
 
-    def sentence_length(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
+    def sentence_length(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence, thread_sentence_index):
         return len(sentence)
 
-    def sentence_position(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
+    def sentence_position(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence, thread_sentence_index):
         return sentence_index
 
-    def title_similarity(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
+    def title_similarity(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence, thread_sentence_index):
         return 0
 
-    def centroid_coherence(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
+    def centroid_coherence(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence, thread_sentence_index):
         if chunk_index in self.TF_ISF_CACHE:
             tf_isf = self.TF_ISF_CACHE[chunk_index]
         else:
@@ -148,13 +167,13 @@ class FeatureVectorizer:
         sentence_vector = tf_isf[chunk_index]
         return linear_kernel(tf_isf_mean, sentence_vector).flatten()
 
-    def special_terms(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
+    def special_terms(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence, thread_sentence_index):
         return self.SENT_SPECIAL_COUNTS[thread_index][sentence_index] / self.THREAD_SPECIAL_COUNTS[thread_index] if self.THREAD_SPECIAL_COUNTS[thread_index] != 0 else 0
 
-    def is_question(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
+    def is_question(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence, thread_sentence_index):
         return 1 if sentence.endswith('?') else 0
 
-    def sentiment_score(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
+    def sentiment_score(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence, thread_sentence_index):
         tag_set = {'NN', 'NNS', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ', 'JJ', 'JJR', 'JJS', 'RB', 'RBR', 'RBS'}
         total_score = 0.0
         sent_tokens = tokenize.word_tokenize(sentence)
@@ -187,11 +206,14 @@ class FeatureVectorizer:
                     pass
         return total_score / len(tagged_sent)
 
-    def number_count(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
+    def number_count(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence, thread_sentence_index):
         return len(re.findall('\d', sentence))
 
-    def url_count(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
+    def url_count(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence, thread_sentence_index):
         return len(re.findall('https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+', sentence))
 
-    def position_from_end(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
+    def position_from_end(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence, thread_sentence_index):
         return len(chunk) - sentence_index
+
+    def topic_position(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence, thread_sentence_index):
+        return self.TOPIC_DIVISIONS[thread_index][thread_sentence_index]

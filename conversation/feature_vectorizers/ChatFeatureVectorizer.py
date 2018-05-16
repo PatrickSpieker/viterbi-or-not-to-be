@@ -15,5 +15,5 @@ from nltk.corpus import sentiwordnet as swn
 
 class ChatFeatureVectorizer(FeatureVectorizer):
 
-    def title_similarity(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
+    def title_similarity(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence, thread_sentence_index):
         return 0

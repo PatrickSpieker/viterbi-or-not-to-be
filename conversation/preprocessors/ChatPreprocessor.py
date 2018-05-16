@@ -1,6 +1,9 @@
 import re
 
 class ChatPreprocessor:
+
+    SENTENCE_END = set(['.', '!', '?'])
+
     def preprocess(self, input):
         return self.longest_contiguous_message(input)
 
@@ -52,8 +55,13 @@ class ChatPreprocessor:
                             current_username = sentence_match.group(1)
 
                         # At this point, new_chunk_text refers to the correct
-                        # chunk to be modifying.
-                        new_chunk_text.append(sentence_match.group(2))
+                        # chunk to be modifying. Add the sentence, ending with
+                        # a period if it does not already.
+                        new_sentence = sentence_match.group(2)
+                        if new_sentence[-1] not in self.SENTENCE_END:
+                            new_sentence += '.'
+
+                        new_chunk_text.append(new_sentence)
                         new_chunk_labels.append(input['labels'][thread_index][chunk_index][sentence_index])
 
             # The chunks for this thread have been computed

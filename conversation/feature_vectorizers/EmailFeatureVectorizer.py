@@ -12,20 +12,9 @@ from nltk import tokenize
 from nltk import tag as tagger
 from nltk.corpus import stopwords
 from nltk.corpus import sentiwordnet as swn
+from nltk.translate.bleu_score import sentence_bleu
 
 class EmailFeatureVectorizer(FeatureVectorizer):
 
-    """def title_similarity(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
-        if sentence_index in self.TF_ISF_CACHE:
-            tf_isf = self.TF_ISF_CACHE[sentence_index]
-        else:
-            #thread_with_name = thread.copy()
-            thread_with_name = self.flatten(thread.copy())
-            thread_with_name.append(input['names'][thread_index])
-            tf_isf_vectorizer = TfidfVectorizer()
-            tf_isf = tf_isf_vectorizer.fit_transform(thread_with_name)
-            self.TF_ISF_CACHE[sentence_index] = tf_isf
-        
-        title_vector = tf_isf[tf_isf.shape[0] - 1]
-        sentence_vector = tf_isf[sentence_index]
-        return linear_kernel(title_vector, sentence_vector).flatten()"""
+    def title_similarity(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence, thread_sentence_index):
+        return sentence_bleu(input['names'][thread_index], sentence)

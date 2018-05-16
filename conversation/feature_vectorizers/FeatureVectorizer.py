@@ -4,6 +4,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
 from nltk import tokenize
 from nltk import tag as tagger
+from nltk.corpus import sentiwordnet as swn
 import re
 np.set_printoptions(threshold=np.inf)
 

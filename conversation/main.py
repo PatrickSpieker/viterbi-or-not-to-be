@@ -61,6 +61,7 @@ def main():
 
     # If specified, use alternate evaluation
     if args.evaldataset is not None and args.evaltype is not None:
+        eval_type = args.evaltype
         eval_dataset = '../data/' + args.evaldataset
 
         if args.evaltype == 'email':
@@ -72,6 +73,7 @@ def main():
             eval_preprocessor = ChatPreprocessor()
             eval_feature_vectorizer = ChatFeatureVectorizer()
     else:
+        eval_type = args.type
         eval_parser = parser
         eval_preprocessor = preprocessor
         eval_feature_vectorizer = feature_vectorizer
@@ -159,7 +161,7 @@ def main():
     val_sentence_features = eval_feature_vectorizer.vectorize(val_data)
 
     # Generate the model's predicted summaries on the val data
-    test_model(model, val_data, val_sentence_features, 3 if args.type == 'email' else 1, threshold)
+    test_model(model, val_data, val_sentence_features, 3 if eval_type == 'email' else 1, threshold)
 
     # Compile the reference summaries
     eval_parser.compile_reference_summaries()

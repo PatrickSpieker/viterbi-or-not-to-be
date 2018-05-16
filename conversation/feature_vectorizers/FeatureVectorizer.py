@@ -63,7 +63,7 @@ class FeatureVectorizer:
         self.TF_IDF_FEATURES = np.squeeze(np.asarray(np.mean(tf_idf, axis=1)), axis=1)
 
         # Compute topic divisions
-        text_tiler = tokenize.TextTilingTokenizer(demo_mode=True)
+        """text_tiler = tokenize.TextTilingTokenizer(demo_mode=True)
         for topic in paragraphs:
             _, _, _, topic_boundaries = text_tiler.tokenize(topic)
 
@@ -75,7 +75,7 @@ class FeatureVectorizer:
                     position_since_last_boundary += 1
                 topic_boundaries[sentence_index] = position_since_last_boundary
 
-            self.TOPIC_DIVISIONS.append(topic_boundaries)
+            self.TOPIC_DIVISIONS.append(topic_boundaries)"""
 
         # Count special terms per sentence, thread
         with tqdm(total=len(collapsed_threads)) as pbar:
@@ -218,4 +218,5 @@ class FeatureVectorizer:
         return (len(chunk) - sentence_index) / len(chunk)
 
     def topic_position(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence, thread_sentence_index):
-        return self.TOPIC_DIVISIONS[thread_index][thread_sentence_index]
+        #return self.TOPIC_DIVISIONS[thread_index][thread_sentence_index]
+        return 0

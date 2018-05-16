@@ -117,7 +117,7 @@ class FeatureVectorizer:
                         global_sentence_index += 1
                         thread_sentence_index += 1
                     self.TF_ISF_CACHE = {}
-                    pbar.update(1)
+                pbar.update(1)
 
         return sentence_features
 

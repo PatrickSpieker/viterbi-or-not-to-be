@@ -15,11 +15,5 @@ from nltk.corpus import sentiwordnet as swn
 
 class ChatFeatureVectorizer(FeatureVectorizer):
 
-    def tf_isf(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
-        return 0
-
     def title_similarity(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
-        return 0
-
-    def centroid_coherence(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
         return 0

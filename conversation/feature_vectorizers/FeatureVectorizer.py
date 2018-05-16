@@ -1,6 +1,7 @@
 import numpy as np
 from tqdm import tqdm
 from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import linear_kernel
 from nltk import tokenize
 from nltk import tag as tagger
 import re
@@ -135,7 +136,17 @@ class FeatureVectorizer:
         return 0
 
     def centroid_coherence(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
-        return 0
+        if chunk_index in self.TF_ISF_CACHE:
+            tf_isf = self.TF_ISF_CACHE[chunk_index]
+        else:
+            chunks = [' '.join(x) for x in thread]
+            tf_isf_vectorizer = TfidfVectorizer()
+            tf_isf = tf_isf_vectorizer.fit_transform(chunks)
+            self.TF_ISF_CACHE[chunk_index] = tf_isf
+
+        tf_isf_mean = np.mean(tf_isf, axis=0)
+        sentence_vector = tf_isf[chunk_index]
+        return linear_kernel(tf_isf_mean, sentence_vector).flatten()
 
     def special_terms(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
         return self.SENT_SPECIAL_COUNTS[thread_index][sentence_index] / self.THREAD_SPECIAL_COUNTS[thread_index] if self.THREAD_SPECIAL_COUNTS[thread_index] != 0 else 0

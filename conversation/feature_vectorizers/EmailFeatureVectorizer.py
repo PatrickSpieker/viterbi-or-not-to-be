@@ -15,19 +15,7 @@ from nltk.corpus import sentiwordnet as swn
 
 class EmailFeatureVectorizer(FeatureVectorizer):
 
-    """def tf_isf(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
-        if chunk_index in self.TF_ISF_CACHE:
-            tf_isf = self.TF_ISF_CACHE[chunk_index]
-        else:
-            chunks = [' '.join(x) for x in thread]
-            tf_isf_vectorizer = TfidfVectorizer()
-            tf_isf = tf_isf_vectorizer.fit_transform(chunks)
-            self.TF_ISF_CACHE[chunk_index] = tf_isf
-
-        tf_isf_features = np.squeeze(np.asarray(np.mean(tf_isf, axis=1)))
-        return tf_isf_features[chunk_index]
-
-    def title_similarity(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
+    """def title_similarity(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
         if sentence_index in self.TF_ISF_CACHE:
             tf_isf = self.TF_ISF_CACHE[sentence_index]
         else:
@@ -40,19 +28,4 @@ class EmailFeatureVectorizer(FeatureVectorizer):
         
         title_vector = tf_isf[tf_isf.shape[0] - 1]
         sentence_vector = tf_isf[sentence_index]
-        return linear_kernel(title_vector, sentence_vector).flatten()
-
-    def centroid_coherence(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence):
-        if sentence_index in self.TF_ISF_CACHE:
-            tf_isf = self.TF_ISF_CACHE[sentence_index]
-        else:
-            #thread_with_name = thread.copy()
-            thread_with_name = self.flatten(thread.copy())
-            thread_with_name.append(input['names'][thread_index])
-            tf_isf_vectorizer = TfidfVectorizer()
-            tf_isf = tf_isf_vectorizer.fit_transform(thread_with_name)
-            self.TF_ISF_CACHE[sentence_index] = tf_isf
-
-        tf_isf_mean = np.mean(tf_isf, axis=0)
-        sentence_vector = tf_isf[sentence_index]
-        return linear_kernel(tf_isf_mean, sentence_vector).flatten()"""
+        return linear_kernel(title_vector, sentence_vector).flatten()"""

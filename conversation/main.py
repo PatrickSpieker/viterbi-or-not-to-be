@@ -44,6 +44,7 @@ def main():
     parser.add_argument('--debug', action='store_true', help='if set, outputs various debugging information during execution')
     parser.add_argument('--examples', action='store_true', help='if set, displays the system-generated summaries during evaluation')
     parser.add_argument('--nopreprocessing', action='store_true', help='if set, disables preprocessing for the training and validation data')
+    parser.add_argument('--crosstrain', help='if specified, the dataset to additionally train on before evaluation (assumed to be the opposite type of data from the argument given in "type")')
     args = parser.parse_args()
 
     # Interpret the dataset relative to the data folder
@@ -78,16 +79,16 @@ def main():
         eval_preprocessor = preprocessor
         eval_feature_vectorizer = feature_vectorizer
 
-    # # If cross-training is enabled, create the second set of training input processors
-    # if args.crosstrain is not None:
-    #     if args.type == 'chat':
-    #         cross_parser = EmailParser(dataset, args.debug)
-    #         cross_preprocessor = EmailPreprocessor()
-    #         cross_feature_vectorizer = EmailFeatureVectorizer()
-    #     elif args.type == 'email':
-    #         cross_parser = ChatParser(dataset, args.debug)
-    #         cross_preprocessor = ChatPreprocessor()
-    #         cross_feature_vectorizer = ChatFeatureVectorizer()
+    # If cross-training is enabled, create the second set of training input processors
+    if args.crosstrain is not None:
+        if args.type == 'chat':
+            cross_parser = EmailParser(dataset, args.debug)
+            cross_preprocessor = EmailPreprocessor()
+            cross_feature_vectorizer = EmailFeatureVectorizer()
+        elif args.type == 'email':
+            cross_parser = ChatParser(args.crosstrain, args.debug)
+            cross_preprocessor = ChatPreprocessor()
+            cross_feature_vectorizer = ChatFeatureVectorizer()
 
     # Use the appropriate model type
     if args.model == 'naivebayes':
@@ -118,29 +119,22 @@ def main():
     if (not args.nopreprocessing):
         training_data = preprocessor.preprocess(training_data)
 
-    # TODO: ideally, remove this in the future
-    # Collapse emails into threads
-    # training_data['data'] = collapse_threads(training_data['data'])
-    # training_data['labels'] = collapse_threads(training_data['labels'])
-
     # Produce sentence features
     training_sentence_features = feature_vectorizer.vectorize(training_data)
 
     # Flatten thread labels to match the feature shape
     thread_labels = flatten(flatten(training_data['labels']))
 
-    # # If crosstraining is enabled, use the second round of training data
-    # if args.crosstrain is not None:
-    #     cross_training_data = cross_parser.parse('train')
-    #     if (not args.nopreprocessing):
-    #         cross_training_data = cross_preprocessor.preprocess(cross_training_data)
-    #     cross_training_data['data'] = collapse_threads(cross_training_data['data'])
-    #     cross_training_data['labels'] = collapse_threads(cross_training_data['labels'])
-    #     cross_training_sentence_features = cross_feature_vectorizer.vectorize(cross_training_data)
+    # If crosstraining is enabled, use the second round of training data
+    if args.crosstrain is not None:
+        cross_training_data = cross_parser.parse('train')
+        if (not args.nopreprocessing):
+            cross_training_data = cross_preprocessor.preprocess(cross_training_data)
+        cross_training_sentence_features = cross_feature_vectorizer.vectorize(cross_training_data)
 
-    #     # Concatenate so as to train on all available data
-    #     training_sentence_features = np.concatenate(training_sentence_features, cross_training_sentence_features)
-    #     thread_labels = thread_labels.extend(flatten(cross_training_data['labels']))
+        # Concatenate so as to train on all available data
+        training_sentence_features = np.concatenate(training_sentence_features, cross_training_sentence_features)
+        thread_labels = thread_labels.extend(flatten(flatten(cross_training_data['labels'])))
 
     # Train model using training data
     model.fit(training_sentence_features, thread_labels)
@@ -151,11 +145,6 @@ def main():
     # Preprocess val data
     if (not args.nopreprocessing):
         val_data = eval_preprocessor.preprocess(val_data)
-
-    # TODO: ideally, remove this in the future
-    # Collapse emails into threads
-    # val_data['data'] = collapse_threads(val_data['data'])
-    # val_data['labels'] = collapse_threads(val_data['labels'])
 
     # Produce sentence features
     val_sentence_features = eval_feature_vectorizer.vectorize(val_data)
@@ -168,14 +157,6 @@ def main():
 
     # Evaluate the model's performance using the preferred metrics
     evaluation.rouge_evaluation()
-
-def train_model(model_type, sentence_labels, sentence_features):
-
-    # Train the model
-    model = model_type()
-    model.fit(sentence_features, sentence_labels)
-
-    return model
         
 def test_model(model, val_data, sentence_features, step, threshold):
     output_dir = OUTPUT + SYSTEM

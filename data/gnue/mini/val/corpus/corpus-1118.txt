@@ -1,0 +1,266 @@
+*** derek has quit IRC
+*** johannesV has joined #gnuenterprise
+<johannesV> good morning
+<dimas_> good morning
+*** reinhard has joined #gnuenterprise
+*** btami has joined #gnuenterprise
+<btami> good morning
+<reinhard> good morning
+*** SachaS has joined #gnuenterprise
+*** Muile has joined #gnuenterprise
+*** Muile is now known as kilo
+*** SachaS is now known as SachaMampf
+*** btami has quit IRC
+*** SachaMampf is now known as SachaS
+*** kilo has quit IRC
+*** johannesV_ has joined #gnuenterprise
+*** johannesV has quit IRC
+*** johannesV_ has quit IRC
+*** johannesV has joined #gnuenterprise
+*** jamest has joined #gnuenterprise
+<reinhard> good morning jamest
+<reinhard> I have a question about focus triggers
+<jamest> ok
+<reinhard> it seems like navigating from one record to another (like scrolling to the next record) fires the FOCUS-OUT triggers for the block with the old record loaded
+<reinhard> and the FOCU-IN triggers for the block with the new record loaded
+<reinhard> I understand the reasoning behind that - you can do consistency checks in the focus-out trigger and the user can never navigate out of an "icomplete" block
+<reinhard> is that the reason why this was done?
+<reinhard> s/icomplete/incomplete/
+<jamest> yes
+<reinhard> ok
+<jamest> focus triggers were to work along the lines of
+<jamest> an inverted tree of form -> block -> field
+<jamest> and you could think of the focus as moving up a branch and back down to the new location
+<jamest> so in block moves would be
+<reinhard> sure, when you *really* move the focus
+<reinhard> but I'm talking about the case when you don't move the cursor at all
+<reinhard> but you just navigate to the next record
+<reinhard> i.e. you *stay* in the same field, entry, and block
+<reinhard> but the current record of the block changes
+<jamest> i still think it should fire
+<reinhard> ok
+<reinhard> I agree on this
+<reinhard> however I found it does *only* fire the block level triggers
+<reinhard> and I think it should at least fire the field level triggers, too
+<jamest> i would think so as well
+<jamest> sigh
+<reinhard> there *might* be arguments to not fire the page level and entry level triggers
+<jamest> i've not worked with forms in months
+<jamest> so I fear the next svn up :)
+<reinhard> as the focus does not move around in the ui, it only moves around in the "logic"
+<reinhard> anyway
+<jamest> we do entry level triggers?
+<reinhard> I'll add the field level triggers then
+<reinhard> yes
+<jamest> interesting
+<reinhard> we also have page level triggers
+<jamest> hmmm
+<jamest> i'm sure they have a purpose (and I've probably used them and forgot :)
+<jamest> but i can't think of example off top of head where I'd need them vs a block or field level trigger
+<jamest> other than for buttons
+<reinhard> buttons have *no* focus triggers - they are no entries
+<reinhard> maybe they were done "just to play safe" when the field/entry split was done
+<jamest> doh' i was thinking triggers not focus triggers on that last bit
+<reinhard> (my understanding is that in earlier times field and entry were the same object)
+<jamest> they were
+<jamest> it was a design mis-feature carried over from sql-forms
+<jamest> where in sql forms you had to create lots of triggers and fake fields on other pages to make a value appear on all pages
+<reinhard> hmmm
+<reinhard> maybe then you kept the entry level focus triggers to be compatible with earlier versions of forms
+<jamest> like here i have a claim number that I want on every page
+<jamest> with the split I just have multiple entries reference the same field
+<reinhard> yes
+<jamest> entry was the addition IIRC
+<reinhard> it really makes sense
+<reinhard> oh
+<reinhard> hmmm
+<jamest> field existed from day one I believe
+<reinhard> anyway, I'll do the focus-in and focus-out game for fields, too
+<jamest> cool
+<reinhard> to be consistent in block/field
+<reinhard> as to PRE-* and POST-*
+<reinhard> is there any specific thought behind that?
+<jamest> iirc focus trigger evolution was need based :)
+<reinhard> because they are fired immediately after each other
+<reinhard> so you could as well have a ON-FOCUSIN and ON-FOCUSOUT
+<jamest> pre can stop the focus change
+<jamest> it should be more along the lines of
+<jamest> pre-focus-out
+<jamest> change focus
+<jamest> post focus out
+<jamest> pre focus in
+<jamest> the idea IIRC at the time was
+<jamest> pre-focus out could validate
+<reinhard> now it is
+<reinhard> pre-focusout
+<reinhard> post-focusout
+<reinhard> change focus
+<reinhard> pre-focusin
+<jamest> post-focus-out could perform functions with the understanding that it validated
+<reinhard> post-focusin
+<jamest> i don't think we ever really utilized the feature for anything
+<jamest> so it just kinda stayed in there like that
+<jamest> one of those "i'll put this here just to get the idea in, then expand later"
+<jamest> again, it was based upon sql-forms focus options
+<jamest> i'm not sure it's ever been actually used :)
+<reinhard> I mean
+<reinhard> it would make sense in this order
+<reinhard> pre-focusout
+<reinhard> pre-focusin
+<reinhard> change focus
+<reinhard> post-focusout
+<reinhard> post-focusin
+<jamest> yes, that would make far more sense
+*** derek has joined #gnuenterprise
+<reinhard> hmmm... seems it was like that once
+<reinhard> digging through svn history now...
+<reinhard> seems to have been lost in switching to a common setFocus function used by several ways of moving the focus
+<reinhard> s/setFocus/changeFocus/
+<reinhard> anyway, thanks jamest
+<jamest> np, i wish i was more help
+<reinhard> about svn up....
+<jamest> yes?
+<reinhard> I really expect your next svn up to result in some debugging work for both you and me :(
+<reinhard> so you might not try it on mission critical systems first
+* jamest blinks
+<jamest> you're not talking about using one of those mythical testing environments are you?
+<reinhard> :)
+<reinhard> another very funny feature of forms we found is autoCommit
+<reinhard> autoCommit meant that commit was fired when you navigate to the next record
+<reinhard> but it was *not* fired when you navigate to prev record
+<jamest> lol
+<jamest> i'd wager that was, um, an unintended feature
+<reinhard> there also were many other ways to escape the autocommit
+<reinhard> e.g. autocommit also isn't fired when you simple move the focus to a different block
+<jamest> iirc jcater added autocommit as a quick and dirty
+<reinhard> yes
+<reinhard> still I found it to be a very nice feature
+<jamest> and has sinse moved the project which motivated him to join gnue to a zope based web site
+<jamest> but he's stuck around due to our charming personalities
+<reinhard> :)
+*** derek has quit IRC
+<reinhard> you mean jcater is not a forms user any more?
+<reinhard> there is another thing that jcater added once that I would be curious about the rationale
+<reinhard> you can set all kinds of properties of blocks and fields in the trigger namespace
+<reinhard> even things like autoCommit and autoNextRecord etc
+<reinhard> I would why someone should ever want to change the autoCommit property of a block in a trigger
+*** derek has joined #gnuenterprise
+<jamest> that I don't know
+*** SachaS has quit IRC
+*** derek has quit IRC
+*** derek has joined #gnuenterprise
+*** jcater has joined #gnuenterprise
+*** SachaS has joined #gnuenterprise
+*** klasstek has joined #gnuenterprise
+*** klasstek_ has joined #gnuenterprise
+*** klasstek has quit IRC
+*** nickr has quit IRC
+*** nickr has joined #gnuenterprise
+*** johannesV has quit IRC
+*** klasstek_ has quit IRC
+<reinhard> hmmmm
+<reinhard> all that pre/post-focusin/out turns out to be a lot trickier as it seems at first sight
+<reinhard> like for example if a new record is inserted it would mean
+<reinhard> 1. pre-focusout
+<reinhard> 2. insert new record
+<reinhard> 3. pre-focusin on new record (which would actually already be wrong because the new record would already be the current record)
+<reinhard> 4. jump back to old record
+<reinhard> 5. post-focusout for old record
+<reinhard> 6. jump back to new record
+<reinhard> 7. post-focuin for new record
+<reinhard> also the question arises if pre-focusin can validate anything and block if needed
+<reinhard> and what will happen if post-focusout says it's ok to lose focus but pre-focusin says "i don't want it"
+<reinhard> now I still wonder: do we actually gain anything compared to the much simpler system
+<reinhard> 1. on-focusout (which could for compatibilty run pre-focusout and post-focusout) which can validate and block
+<reinhard> 2. create/move record
+<reinhard> 3. on-focusin (which can not block)
+<reinhard> this would mean that all triggers in any case only run on current records
+<reinhard> bearing the advantage that for example all details are loaded correctly
+<jcater> I don't think the focus-in's were necessarily blocking in the original design
+<jcater> for this very reason
+<reinhard> so is there any advantage in having separate pre-focusin and post-focusin?
+<reinhard> and separate pre-focusout and post-focusout?
+<jcater> I don't care going forward
+<jcater> but the logic was, iirc
+<jcater> pre-focusout could block
+<jcater> (that would be its main purpose)
+<jcater> then the others were called knowing that the focus was changing
+<jcater> (it's been a while though)
+<jcater> I see the advantage of pre-focusout and post-focusout
+<jcater> but not necesarily of pre-focusin and post-focusin
+<jcater> but I'm pretty sure we just wanted to stay consistent with naming
+<reinhard> couldn't you just write the code you put in post-focusout at the end of pre-focusout?
+<jcater> but I don't really care if they were replaced with on-*
+<jcater> reinhard, yes
+<reinhard> I'm willing to "move forward"
+<jcater> though
+<jcater> no
+<jcater> that's not entirely true
+<reinhard> but I want to be sure I don't move back :-)
+<jcater> let me think this again
+<jcater> I think it has to do with the tree that gets parsed
+<jcater> entry.pre-focus-out -> block.pre-focus-out -> page.pre-focus-out
+<jcater> any one could abort
+<jcater> if all of those succeed
+<jcater> then post-focus-outs are called
+<jcater> so I'm not entirely sure how true "couldn't you just write the code you put in post-focusout at the end of pre-focusout?" is
+<reinhard> ah
+<reinhard> gotcha
+<jcater> I'm thinking out loud
+<jcater> so this may not be sound logic :)
+<jcater> I'm just trying to remember the "why" of it
+<reinhard> I think you have a very valid point
+<reinhard> but then again, it would mean that running the post-focusout *before* the focus *really* leaves the entry/block doesn't hurt at all
+<reinhard> right?
+<jcater> as long as we know that it will in fact leave the focus
+<reinhard> ok
+<reinhard> so we're back to the old
+<reinhard> 1. pre-focusout
+<reinhard> 2. post-focusout
+<reinhard> 3. actually move around
+<reinhard> 4. pre-focusin
+<reinhard> 5. post-focusin
+<reinhard> where only 1. can block
+<jcater> I think that makes sense
+<reinhard> and I'm exactly where I was 6 hours ago
+<jcater> sorry
+<reinhard> except for the difference that I now understand it :-)
+<reinhard> which might be the 6 hours well invested :-)
+<reinhard> thanks a lot for explaining
+<jcater> no problem
+<reinhard> jcater: while we're talking
+<reinhard> I saw that a lot of attributes of GFBlock and GFField are changeable in trigger namespace
+<reinhard> like GFBlock.autoCommit, transparent, autoNewRecord...
+<reinhard> and I wondered what was the reasoning behind this
+<reinhard> as I can't imagine any reason to change a block's autoCommit behaviour on runtime
+<jcater> where do you see that it's changable?
+<jcater> at one time, our specifications for forms was that triggers could practically build a form at runtime and anything/everything was changable/scriptable
+<jcater> that was probably a pipe dream
+<jcater> (and probably not necessary)
+<jcater> but it's possible the code you saw was the start of that general trend
+<reinhard> ah ok
+<jcater> but
+<jcater> I too see no practical need to change autoCommit behavior :)
+<jcater> (I'm going from memory here... not actually looking at the code)
+<reinhard> well the dream of building a form at runtime ends at least at the point where you want to create new objects
+<reinhard> but you're right, I think simply *all* possible attributes of the <block> tag were exported to trigger namespace
+<reinhard> autoCommit, queryable, editable, deletable, autoCreate, autoCommit, autoNextRecord, transparent
+<reinhard> similar for GFField - maxLength, minLenght, queryDefault, case, required...
+<reinhard> I think practically none of them are very useful, and with some of them you might even be able to screw something up if you change at runtime
+<reinhard> off to TV, bb in 1 h
+*** jamest has left #gnuenterprise
+*** kilo has joined #gnuenterprise
+*** SachaS has quit IRC
+<reinhard> good night all
+*** reinhard has quit IRC
+*** SachaS has joined #gnuenterprise
+*** kilo has quit IRC
+*** jcater has quit IRC
+*** SachaS has quit IRC
+*** SachaS has joined #gnuenterprise
+*** alexbodn has joined #gnuenterprise
+<alexbodn> hi all. i wish to try gnue, and i miss the zipcodes examples. can anybody point me to it?
+<alexbodn> i mean i miss the database file :-(
+<alexbodn> brb
+<alexbodn> so, where can i find the zipcodes sample database?
+<alexbodn> please :-)

@@ -1,0 +1,430 @@
+[00:11] Last message repeated 1 time(s).
+<SachaS> went to /gnue/designer and did a ./setup.py install
+<SachaS> error: can't copy 'doc/DevelopersGuide-Forms.txt': doesn't exist or not a regular file
+<SachaS> and script seems to stop.
+<derek> hmm
+<derek> do ./setup.py devel instead
+<SachaS> in the main directory?
+<derek> since you are running cvs copies right?
+<SachaS> right
+<derek> sure main directory will work (or so jason says)
+<SachaS> in the main directory. does not work. Press Control-D to abort or any other key to continue. i press a key and nothing happens,.
+<SachaS> i go to designer
+<SachaS> and make a ./setup.py devel
+<SachaS> -> Creating client/gfdes
+<SachaS> so i go into client/
+<SachaS> and sh ./gfdes
+<SachaS> and in gfdes is some strange path:
+<SachaS> PYTHONPATH=/usr/local/src/gnue/designer/../gnuef/.cvsdevelbase:$PYTHONPATH; export PYTHONPATH
+<SachaS>   /usr/bin/python /usr/local/src/gnue/designer/../gnuef/.cvsdevelbase/gnue/designer/GFDesigner.py $*
+<SachaS> i need a break. started at 07.00 am. its 14.24 now. and its not working. geas does not compile and designer not working.
+Nick change: SachaS -> SachaS_break
+<SachaS_break> and I want a SHARP Linux PDA :)
+<derek> um i had this problem too
+<derek> now if i can recall what i did to fix it
+<derek> ok where is src/gnue/designer?
+<derek> i assume not in /usr/local/src/gnue/designer
+<derek> edit the gfdes file
+<derek> to 
+<derek> PYTHONPATH=/dir/your/cvstree/gnue/designer/../............
+<derek> and and then the line after it
+<derek> in same way
+<derek> and try again
+<derek> jcater and jamest would be ones to ask why this is now broken in cvs
+<derek> its not in release
+<derek> it should not take 7 hours to install gnue
+Nick change: SachaS_break -> SachaS
+<SachaS> derek: changed settings in /usr/local/src/gnue/designer/dfdes. designer comes up now :)
+<SachaS> derek: is it that with the designer you can create gui pages. and within these gui pages you can reference tables and table entries to display.?
+reinhard (~rm@62.47.45.250) joined #gnuenterprise.
+<SachaS> good morning reinhard
+<reinhard> hello SachaS
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+<psu> #join #gnuenterprise
+<psu> oops
+<nickr> yes
+MicahY ([IftDqM4Ki@c1306879-a.salem1.or.home.com) left irc: "[x]chat"
+<SachaS> reinhard: after getting problems with python dependencies i got the source and installed python2.1.1, orbit-python-0.3.1, wxPython-2.2.7 and PyXML-0.6.6
+<SachaS> reinhard: first question: is PyXML the correct xml package for python?
+<psu> New website design - much better IMHO
+<SachaS> second question: after installing python2.1.1 and PyXML i go back to the python installation and do the tests. the test_pyexpat fails. i guess thats not good.
+bigbrother joined #gnuenterprise.
+Zdean (~mdean@mkc-65-28-73-63.kc.rr.com) joined #gnuenterprise.
+derek (~derek@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+Isomer (dahoose@210-86-56-90.jetstart.xtra.co.nz) joined #gnuenterprise.
+Yurik (~yrashk@gw.telcos.net.ua) joined #gnuenterprise.
+gnuebot (eggdrop@mail.libertydistribution.com) joined #gnuenterprise.
+ajmitch (~me@p61-max7.dun.ihug.co.nz) joined #gnuenterprise.
+SachaS (~sacha@203.190.196.140) joined #gnuenterprise.
+#gnuenterprise: mode change '+o gnuebot' by ChanServ!ChanServ@services.
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise.
+<SachaS> reinahrd: i see the test_xmllib works though but the test_pyexpat fails.
+alexey (alex@techkran.vladimir.ru) joined #gnuenterprise.
+Yurik (yrashk@gw.telcos.net.ua) left irc: "BitchX-1.0c18 -- just do it."
+<reinhard> SachaS: sorry was not looking
+<reinhard> now back
+<reinhard> i guess you are configuring gnue-common at the moment
+<reinhard> which i didn't do for over 6 months
+<reinhard> so i am completely out of touch with that
+<reinhard> i can't even test because i still have python 1.5.2 installed
+<reinhard> i would guess there is a package called PyExpat but not sure
+alexey (alex@techkran.vladimir.ru) left irc: Ping timeout: 184 seconds
+alexey (alex@techkran.vladimir.ru) joined #gnuenterprise.
+Action: SachaS checks for pyexpat
+<SachaS> dpkg -l | grep expat shows that libexpat1 - 1.95.2-4 is installed (on debian woody)
+<SachaS> when I compile geas (after autogen.sh and ./configure) with make i get an error: /usr/bin/ld: cannot find -lpython2.1
+<reinhard> ok i can help you on that
+<reinhard> where is libpython2.1 for you?
+<SachaS> i have a libpython2.1 in /usr/local/lib/python2.1/config
+<SachaS> i have a libpython2.1.a in /usr/local/lib/python2.1/config
+<reinhard> argh
+<reinhard> silly install
+<reinhard> please do
+<reinhard> LDFLAGS="-L/usr/local/lib/python2.1/config" ./configure
+<reinhard> make
+<SachaS> /usr/local/lib/python2.1/config/libpython2.1.a(posixmodule.o): In function `posix_tmpnam':
+<SachaS> /usr/local/src/Python-2.1.1/./Modules/posixmodule.c:4212: the use of `tmpnam_r' is dangerous, better use `mkstemp'
+<SachaS> is the output of make
+<SachaS> and collect2: ld returned 1 exit status
+<SachaS> plus some undefined references
+<SachaS> in /usr/local/src/Python-2.1.1/./Modules/posixmodule.c:
+<SachaS> :(
+<reinhard> arrrgh python embedding is a killer
+<reinhard> sorry must leave customer is waiting for me
+<SachaS> np
+<SachaS> ta
+<reinhard> will be back in about 2 hours
+<reinhard> sorry
+<reinhard> l8r
+reinhard (rm@62.47.45.250) left irc: "Omnis enim res, quae dando non deficit, dum habetur et non datur, nondum habetur, quomodo habenda est.  -- Aurelius Augustinu
+<ajmitch> back
+<SachaS> wb ajmitch
+<ajmitch> howsit going SachaS?
+<SachaS> ajmitch: i installed python2.1.1, orbit-python-0.3.1, wxPython-2.3.1 and PyXML-0.6.6 and could compile them and install them.
+<SachaS> ajmitch: if they work how they should i dont know. the wxPython demo i could check.
+<SachaS> ajmitch: then i went to the designer and started the client. the client works but i did not try to create a page.
+<ajmitch> ok
+<SachaS> ajmitch: my compilation of geas has some problems with python2.1.
+<ajmitch> oh?
+<ajmitch> i shoudl try compile geas
+<SachaS> ajmitch: oh yeah give it a try if it compiles.
+<ajmitch> shouldn't be too bad
+<SachaS> ajmitch: actually it does not have to run at the moment it is more like to get into gnue
+<ajmitch> ok
+<ajmitch> you just want to try forms & designer at the moment?
+<SachaS> ajmitch: i also need to read some documentation first.
+<ajmitch> k
+<ajmitch> compiling..
+chillywilly (danielb@d53.as13.nwbl0.wi.voyager.net) left irc: Ping timeout: 181 seconds
+chillywilly (~danielb@d20.as14.nwbl0.wi.voyager.net) joined #gnuenterprise.
+<ajmitch> heh
+<SachaS> ajmitch: does geas compile`?
+<ajmitch> SachaS: i dunno, i've got a slow somputer
+<ajmitch> computer
+<ajmitch> so it'll take awhile before i can say yes or no
+<SachaS> ajmitch: :)
+<SachaS> ajmitch: which version of python do you use?
+<ajmitch> 2.1.1
+<ajmitch> geas has compiled & installed
+<ajmitch> using --enable-python-methods
+<SachaS> ajmitch: you run sid. i run woody and installed python2.1.1 from source. hmmmm
+<ajmitch> yeah, installing from packages is nearly always cleaner
+<ajmitch> dunno how well geas will run, but it compiled
+<ajmitch> i should check this, since it probably hasn't built in python method support properly
+Nick change: SachaS -> SachaS_away
+SachaS_away (sacha@203.190.196.140) left irc: Ping timeout: 181 seconds
+reinhard (~rm@62.47.45.250) joined #gnuenterprise.
+Nick change: reinhard -> rm-lunch
+ra3vat (~ds@195.239.66.15) joined #gnuenterprise.
+dres__ (dres@4.18.171.42) left irc: Remote closed the connection
+dres__ (~dres@4.18.171.42) joined #gnuenterprise.
+neilt (~neilt@dhcp64-134-54-175.chan.dca.wayport.net) joined #gnuenterprise.
+neilt (neilt@dhcp64-134-54-175.chan.dca.wayport.net) left irc: 
+ra3vat (ds@195.239.66.15) left irc: Ping timeout: 181 seconds
+skeeter (~skeeter@cs666916-91.satx.rr.com) joined #gnuenterprise.
+alexey (alex@techkran.vladimir.ru) left irc: "[x]chat"
+dres__ (dres@4.18.171.42) got netsplit.
+derek (derek@cpe-24-221-112-50.az.sprintbbd.net) got netsplit.
+nickr (nick@e-172-IP26.empnet.net) got netsplit.
+Maniac (darryl@h24-82-132-209.wp.shawcable.net) got netsplit.
+nickr (nick@e-172-IP26.empnet.net) returned to #gnuenterprise.
+derek (~derek@cpe-24-221-112-50.az.sprintbbd.net) returned to #gnuenterprise.
+Maniac (~darryl@h24-82-132-209.wp.shawcable.net) returned to #gnuenterprise.
+dres__ (~dres@4.18.171.42) returned to #gnuenterprise.
+jcater (~root@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+Nick change: jcater -> jcater_
+Nick change: jcater_ -> jcater
+ajmitch (me@p61-max7.dun.ihug.co.nz) got netsplit.
+ajmitch (~me@p61-max7.dun.ihug.co.nz) returned to #gnuenterprise.
+alexey (~alexey@195.151.214.34) joined #gnuenterprise.
+ra3vat (~ds@195.239.66.38) joined #gnuenterprise.
+ToyMan (~stuq@c5300-3-ip210.albany.thebiz.net) joined #gnuenterprise.
+alexey (alexey@195.151.214.34) got netsplit.
+ajmitch (me@p61-max7.dun.ihug.co.nz) got netsplit.
+nickr (nick@e-172-IP26.empnet.net) got netsplit.
+Isomer (dahoose@210-86-56-90.jetstart.xtra.co.nz) got netsplit.
+nickr (nick@e-172-IP26.empnet.net) returned to #gnuenterprise.
+ajmitch (~me@p61-max7.dun.ihug.co.nz) returned to #gnuenterprise.
+Isomer (dahoose@210-86-56-90.jetstart.xtra.co.nz) returned to #gnuenterprise.
+Isomer (dahoose@210-86-56-90.jetstart.xtra.co.nz) got netsplit.
+ajmitch (me@p61-max7.dun.ihug.co.nz) got netsplit.
+ToyMan (stuq@c5300-3-ip210.albany.thebiz.net) got netsplit.
+ra3vat (ds@195.239.66.38) got netsplit.
+Maniac (darryl@h24-82-132-209.wp.shawcable.net) got netsplit.
+Isomer (dahoose@210-86-56-90.jetstart.xtra.co.nz) returned to #gnuenterprise.
+ajmitch (~me@p61-max7.dun.ihug.co.nz) returned to #gnuenterprise.
+ra3vat (~ds@195.239.66.38) returned to #gnuenterprise.
+alexey (~alexey@195.151.214.34) got lost in the net-split.
+Maniac (~darryl@h24-82-132-209.wp.shawcable.net) got lost in the net-split.
+ToyMan (~stuq@c5300-3-ip210.albany.thebiz.net) got lost in the net-split.
+ToyMan (~stuq@c5300-3-ip210.albany.thebiz.net) joined #gnuenterprise.
+Nick change: rm-lunch -> reinhard
+neilt (~neilt@user-2ivel8u.dialup.mindspring.com) joined #gnuenterprise.
+#gnuenterprise: mode change '+n ' by sagan.openprojects.net
+neilt (neilt@user-2ivel8u.dialup.mindspring.com) left irc: Client Quit
+jcater (root@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "switching machines"
+neilt (~neilt@user-2ivel8u.dialup.mindspring.com) joined #gnuenterprise.
+#gnuenterprise: mode change '+n ' by sagan.openprojects.net
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+#gnuenterprise: mode change '+o neilt' by ChanServ!ChanServ@services.
+alexey (~alexey@195.151.214.34) joined #gnuenterprise.
+Topic changed on #gnuenterprise by !niven.openprojects.net: Welcome to GNU enterprise, need help email info@gnue.org
+<reinhard> heh
+jcater (jason@w202.z065105010.mem-tn.dsl.cnc.net) got netsplit.
+ToyMan (stuq@c5300-3-ip210.albany.thebiz.net) got netsplit.
+<reinhard> german government is discussion for a few weeks now about
+<reinhard> whether to replace windows by gnu/linux for some of their system
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) returned to #gnuenterprise.
+<neilt> reinhard:  did you see the email for a
+<reinhard> and guess what today ms offered to give them windows sources
+Nick change: neilt -> neil-meeting
+ToyMan (~stuq@c5300-3-ip210.albany.thebiz.net) returned to #gnuenterprise.
+<reinhard> neil-meeting: alan clifford overview text?
+<reinhard> yes i saw that
+<reinhard> will read and comment (if i have comments) :)
+Nick change: Zdean -> mdean-[work]
+ra3vat (ds@195.239.66.38) left irc: Ping timeout: 182 seconds
+ra3vat (~ds@195.239.66.38) joined #gnuenterprise.
+ra3vat (ds@195.239.66.38) left irc: Client Quit
+ra3vat (~ds@195.239.66.38) joined #gnuenterprise.
+jcater (jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "Client Exiting"
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+jamest (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+jbailey (~jbailey@Toronto-HSE-ppp3639101.sympatico.ca) joined #gnuenterprise.
+Nick change: neil-meeting -> enilt
+Nick change: enilt -> neilt
+<jbailey> enilt sounds like something evil out of the bible. ;)
+<neilt> :)
+<neilt> reinhard: did you see email for HR Package
+colonel (~arun@202.88.232.184) joined #gnuenterprise.
+reinhard (rm@62.47.45.250) left irc: Ping timeout: 181 seconds
+reinhard (~rm@62.47.45.250) joined #gnuenterprise.
+<reinhard> <reinhard> neilt: no
+<reinhard> <reinhard> i am not on the hr list
+<reinhard> <reinhard> hr is my enemy actually
+<reinhard> <reinhard> i was not even capable of understanding my paycheck (at the time i got them) :)
+<neilt> so its good then that you dont get paychecks anymore :)
+<reinhard> exactly :)
+bigbrother joined #gnuenterprise.
+dres__ (dres@4.18.171.42) got netsplit.
+reinhard (rm@62.47.45.250) got netsplit.
+Isomer (dahoose@210-86-56-90.jetstart.xtra.co.nz) got netsplit.
+jcater (jason@w202.z065105010.mem-tn.dsl.cnc.net) got netsplit.
+jamest (jamest@hobbes.math.ksu.edu) got netsplit.
+colonel (arun@202.88.232.184) got netsplit.
+jbailey (jbailey@Toronto-HSE-ppp3639101.sympatico.ca) got netsplit.
+nickr (nick@e-172-IP26.empnet.net) got netsplit.
+skeeter (skeeter@cs666916-91.satx.rr.com) got netsplit.
+ajmitch (me@p61-max7.dun.ihug.co.nz) got netsplit.
+chillywilly (danielb@d20.as14.nwbl0.wi.voyager.net) got netsplit.
+mdean-[work] (mdean@mkc-65-28-73-63.kc.rr.com) got netsplit.
+derek (derek@cpe-24-221-112-50.az.sprintbbd.net) got netsplit.
+ToyMan (stuq@c5300-3-ip210.albany.thebiz.net) got netsplit.
+nickr (nick@e-172-IP26.empnet.net) returned to #gnuenterprise.
+reinhard (~rm@62.47.45.250) returned to #gnuenterprise.
+skeeter (~skeeter@cs666916-91.satx.rr.com) returned to #gnuenterprise.
+chillywilly (~danielb@d20.as14.nwbl0.wi.voyager.net) returned to #gnuenterprise.
+Isomer (dahoose@210-86-56-90.jetstart.xtra.co.nz) returned to #gnuenterprise.
+ajmitch (~me@p61-max7.dun.ihug.co.nz) returned to #gnuenterprise.
+dres__ (~dres@4.18.171.42) returned to #gnuenterprise.
+mdean-[work] (~mdean@mkc-65-28-73-63.kc.rr.com) returned to #gnuenterprise.
+derek (~derek@cpe-24-221-112-50.az.sprintbbd.net) returned to #gnuenterprise.
+colonel (~arun@202.88.232.184) returned to #gnuenterprise.
+jbailey (~jbailey@Toronto-HSE-ppp3639101.sympatico.ca) returned to #gnuenterprise.
+jamest (~jamest@hobbes.math.ksu.edu) returned to #gnuenterprise.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) returned to #gnuenterprise.
+ToyMan (~stuq@c5300-3-ip210.albany.thebiz.net) returned to #gnuenterprise.
+reinhard (rm@62.47.45.250) left irc: Ping timeout: 181 seconds
+#gnuenterprise: mode change '-o neilt' by ChanServ!ChanServ@services.
+#gnuenterprise: mode change '+o gnuebot' by ChanServ!ChanServ@services.
+#gnuenterprise: mode change '+o neilt' by ChanServ!ChanServ@services.
+ajmitch (me@p61-max7.dun.ihug.co.nz) left irc: Ping timeout: 181 seconds
+ajmitch (~me@p61-max7.dun.ihug.co.nz) joined #gnuenterprise.
+ToyMan (stuq@c5300-3-ip210.albany.thebiz.net) got netsplit.
+nickr (nick@e-172-IP26.empnet.net) got netsplit.
+skeeter (skeeter@cs666916-91.satx.rr.com) got netsplit.
+mdean-[work] (mdean@mkc-65-28-73-63.kc.rr.com) got netsplit.
+derek (derek@cpe-24-221-112-50.az.sprintbbd.net) got netsplit.
+chillywilly (danielb@d20.as14.nwbl0.wi.voyager.net) got netsplit.
+nickr (nick@e-172-IP26.empnet.net) returned to #gnuenterprise.
+mdean-[work] (~mdean@mkc-65-28-73-63.kc.rr.com) returned to #gnuenterprise.
+derek (~derek@cpe-24-221-112-50.az.sprintbbd.net) returned to #gnuenterprise.
+skeeter (~skeeter@cs666916-91.satx.rr.com) returned to #gnuenterprise.
+Action: derek is back (gone 00:00:41)
+chillywilly (~danielb@d20.as14.nwbl0.wi.voyager.net) returned to #gnuenterprise.
+reinhard (~rm@62.47.45.111) joined #gnuenterprise.
+ToyMan (~stuq@c5300-3-ip210.albany.thebiz.net) returned to #gnuenterprise.
+<derek> hi reinhard
+reinhard (rm@62.47.45.111) got netsplit.
+derek (derek@cpe-24-221-112-50.az.sprintbbd.net) got netsplit.
+dres__ (dres@4.18.171.42) got netsplit.
+nickr (nick@e-172-IP26.empnet.net) got netsplit.
+ajmitch (me@p61-max7.dun.ihug.co.nz) got netsplit.
+jcater (jason@w202.z065105010.mem-tn.dsl.cnc.net) got netsplit.
+jamest (jamest@hobbes.math.ksu.edu) got netsplit.
+Isomer (dahoose@210-86-56-90.jetstart.xtra.co.nz) got netsplit.
+skeeter (skeeter@cs666916-91.satx.rr.com) got netsplit.
+mdean-[work] (mdean@mkc-65-28-73-63.kc.rr.com) got netsplit.
+colonel (arun@202.88.232.184) got netsplit.
+jbailey (jbailey@Toronto-HSE-ppp3639101.sympatico.ca) got netsplit.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) returned to #gnuenterprise.
+jamest (~jamest@hobbes.math.ksu.edu) returned to #gnuenterprise.
+Isomer (dahoose@210-86-56-90.jetstart.xtra.co.nz) returned to #gnuenterprise.
+ajmitch (~me@p61-max7.dun.ihug.co.nz) returned to #gnuenterprise.
+nickr (nick@e-172-IP26.empnet.net) returned to #gnuenterprise.
+dres__ (~dres@4.18.171.42) returned to #gnuenterprise.
+derek (~derek@cpe-24-221-112-50.az.sprintbbd.net) returned to #gnuenterprise.
+reinhard (~rm@62.47.45.111) returned to #gnuenterprise.
+skeeter (~skeeter@cs666916-91.satx.rr.com) returned to #gnuenterprise.
+mdean-[work] (~mdean@mkc-65-28-73-63.kc.rr.com) returned to #gnuenterprise.
+colonel (~arun@202.88.232.184) returned to #gnuenterprise.
+jbailey (~jbailey@Toronto-HSE-ppp3639101.sympatico.ca) returned to #gnuenterprise.
+<jamest> :)
+nickr (nick@e-172-IP26.empnet.net) got netsplit.
+jamest (jamest@hobbes.math.ksu.edu) got netsplit.
+jcater (jason@w202.z065105010.mem-tn.dsl.cnc.net) got netsplit.
+ajmitch (me@p61-max7.dun.ihug.co.nz) got netsplit.
+Isomer (dahoose@210-86-56-90.jetstart.xtra.co.nz) got netsplit.
+Isomer (dahoose@210-86-56-90.jetstart.xtra.co.nz) returned to #gnuenterprise.
+nickr (nick@e-172-IP26.empnet.net) returned to #gnuenterprise.
+ajmitch (~me@p61-max7.dun.ihug.co.nz) returned to #gnuenterprise.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) returned to #gnuenterprise.
+jamest (~jamest@hobbes.math.ksu.edu) got lost in the net-split.
+jcater (jason@w202.z065105010.mem-tn.dsl.cnc.net) got netsplit.
+ajmitch (me@p61-max7.dun.ihug.co.nz) got netsplit.
+jbailey (jbailey@Toronto-HSE-ppp3639101.sympatico.ca) got netsplit.
+skeeter (skeeter@cs666916-91.satx.rr.com) got netsplit.
+colonel (arun@202.88.232.184) got netsplit.
+mdean-[work] (mdean@mkc-65-28-73-63.kc.rr.com) got netsplit.
+dres__ (dres@4.18.171.42) got netsplit.
+Isomer (dahoose@210-86-56-90.jetstart.xtra.co.nz) got netsplit.
+reinhard (rm@62.47.45.111) got netsplit.
+derek (derek@cpe-24-221-112-50.az.sprintbbd.net) got netsplit.
+skeeter (~skeeter@cs666916-91.satx.rr.com) got lost in the net-split.
+Isomer (dahoose@210-86-56-90.jetstart.xtra.co.nz) got lost in the net-split.
+dres__ (~dres@4.18.171.42) got lost in the net-split.
+mdean-[work] (~mdean@mkc-65-28-73-63.kc.rr.com) got lost in the net-split.
+derek (~derek@cpe-24-221-112-50.az.sprintbbd.net) got lost in the net-split.
+colonel (~arun@202.88.232.184) got lost in the net-split.
+jbailey (~jbailey@Toronto-HSE-ppp3639101.sympatico.ca) got lost in the net-split.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) got lost in the net-split.
+ajmitch (~me@p61-max7.dun.ihug.co.nz) got lost in the net-split.
+reinhard (~rm@62.47.45.111) got lost in the net-split.
+jamest (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+ajmitch (~me@p61-max7.dun.ihug.co.nz) joined #gnuenterprise.
+Isomer (dahoose@210-86-56-90.jetstart.xtra.co.nz) joined #gnuenterprise.
+jbailey (~jbailey@Toronto-HSE-ppp3639101.sympatico.ca) joined #gnuenterprise.
+colonel (~arun@202.88.232.184) joined #gnuenterprise.
+mdean-[work] (~mdean@mkc-65-28-73-63.kc.rr.com) joined #gnuenterprise.
+skeeter (~skeeter@cs666916-91.satx.rr.com) joined #gnuenterprise.
+dres__ (~dres@4.18.171.42) joined #gnuenterprise.
+derek (~derek@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+reinhard (~rm@62.47.45.111) joined #gnuenterprise.
+jamest (jamest@hobbes.math.ksu.edu) got netsplit.
+jcater (jason@w202.z065105010.mem-tn.dsl.cnc.net) got netsplit.
+mdean-[work] (mdean@mkc-65-28-73-63.kc.rr.com) got netsplit.
+jbailey (jbailey@Toronto-HSE-ppp3639101.sympatico.ca) got netsplit.
+colonel (arun@202.88.232.184) got netsplit.
+skeeter (skeeter@cs666916-91.satx.rr.com) got netsplit.
+ajmitch (me@p61-max7.dun.ihug.co.nz) got netsplit.
+dres__ (dres@4.18.171.42) got netsplit.
+Isomer (dahoose@210-86-56-90.jetstart.xtra.co.nz) got netsplit.
+reinhard (rm@62.47.45.111) got netsplit.
+derek (derek@cpe-24-221-112-50.az.sprintbbd.net) got netsplit.
+nickr (nick@e-172-IP26.empnet.net) left irc: Ping timeout: 181 seconds
+chillywilly (danielb@d20.as14.nwbl0.wi.voyager.net) left irc: Remote closed the connection
+ra3vat (ds@195.239.66.38) left irc: Ping timeout: 181 seconds
+chillywilly (~danielb@d20.as14.nwbl0.wi.voyager.net) joined #gnuenterprise.
+bigbrother joined #gnuenterprise.
+#gnuenterprise: mode change '+o gnuebot' by ChanServ!ChanServ@services.
+ToyMan (stuq@c5300-3-ip210.albany.thebiz.net) got netsplit.
+ToyMan (~stuq@c5300-3-ip210.albany.thebiz.net) returned to #gnuenterprise.
+alexey (~alexey@195.151.214.34) joined #gnuenterprise.
+neilt (~neilt@user-2ivel8u.dialup.mindspring.com) joined #gnuenterprise.
+ra3vat (~ds@195.239.66.38) joined #gnuenterprise.
+dres_ (~dres@4.18.171.42) joined #gnuenterprise.
+dres__ (dres@4.18.171.42) got netsplit.
+dres_ (dres@4.18.171.42) got netsplit.
+neilt (neilt@user-2ivel8u.dialup.mindspring.com) got netsplit.
+ToyMan (stuq@c5300-3-ip210.albany.thebiz.net) got netsplit.
+dres_ (~dres@4.18.171.42) returned to #gnuenterprise.
+neilt (~neilt@user-2ivel8u.dialup.mindspring.com) returned to #gnuenterprise.
+ToyMan (~stuq@c5300-3-ip210.albany.thebiz.net) returned to #gnuenterprise.
+dres__ (~dres@4.18.171.42) got lost in the net-split.
+<neilt> jamest:  you here?
+ra3vat (ds@195.239.66.38) left irc: "Client Exiting"
+<neilt> is anyone here that can verify assingment from Mark H Smith?
+<jamest> i'm here
+<jamest> no assignment listed on that name yet
+jbailey (jbailey@Toronto-HSE-ppp3639101.sympatico.ca) left irc: "Client Exiting"
+<Isomer> Assignment?
+<jamest> copyright assignment
+<jamest> we ask all big contributors to assign copyright to the fsf
+<Isomer> ah fair enough
+Action: Isomer was thinking this was sounding like school
+<derek> something like that
+<Isomer> has everyone finished their assignments?  Hand in box is on the left.  Pick up your next assignment as you arrive, this week we're implementing a Free Database Engine
+<derek> rofl
+chillywilly_ (~danielb@d147.as1.nwbl0.wi.voyager.net) joined #gnuenterprise.
+chillywilly (danielb@d20.as14.nwbl0.wi.voyager.net) left irc: Ping timeout: 183 seconds
+ra3vat (~ds@195.239.64.177) joined #gnuenterprise.
+dres_ (dres@4.18.171.42) left irc: Remote closed the connection
+dres (~dres@4.18.171.42) joined #gnuenterprise.
+nickr (nick@e-172-IP26.empnet.net) joined #gnuenterprise.
+alexey (alexey@195.151.214.34) left irc: Ping timeout: 181 seconds
+alexey (~alexey@195.151.214.34) joined #gnuenterprise.
+madlocke (madlocke@pD9523377.dip.t-dialin.net) joined #gnuenterprise.
+alexey (alexey@195.151.214.34) left irc: Ping timeout: 181 seconds
+alexey (~alexey@195.151.214.34) joined #gnuenterprise.
+alexey (alexey@195.151.214.34) left irc: Client Quit
+alexey (~alexey@195.151.214.34) joined #gnuenterprise.
+colonel (arun@202.88.232.184) left irc: "[x]chat"
+jbailey (~jbailey@Toronto-HSE-ppp3639101.sympatico.ca) joined #gnuenterprise.
+jbailey (jbailey@Toronto-HSE-ppp3639101.sympatico.ca) left irc: "Client Exiting"
+dres (dres@4.18.171.42) left irc: Remote closed the connection
+<neilt> derek:  you still here?
+<neilt> he sent in proposal to info@gnue.org for HR package
+<neilt> did we respond to get assignment or can we proceed to get comments?
+<neilt> on the HR package?
+dres (~dres@4.18.171.42) joined #gnuenterprise.
+<derek> um
+<derek> i think we can play with getting comments
+<derek> at least we should respond to the fellow :)
+<derek> i dont think we have got his assignment
+<derek> i dont know if he sent or not
+<neilt> can i put in cvs as a proposal without assignemnt?
+<neilt> the format is rtf i need to convert it and put it in a better format for doistribution
+<neilt> so i can either put in cvs or email it around?
+dres (dres@4.18.171.42) left irc: Remote closed the connection
+dres (~dres@4.18.171.42) joined #gnuenterprise.
+<derek> cvs probably not good idea
+<derek> but i think we could either email or post on your personal website
+<derek> i think he started the paperwork process, just not positive
+<derek> sigh, being on hold w/o speaker fon sucks
+<derek> i need to buy a voice modulator
+reinhard (rm@62.47.45.111) left irc: Ping timeout: 181 seconds
+reinhard (~rm@62.47.45.111) joined #gnuenterprise.
+reinhard (rm@62.47.45.111) left irc: Ping timeout: 181 seconds
+reinhard (~rm@N812P015.adsl.highway.telekom.at) joined #gnuenterprise.
+madlocke (madlocke@pD9523377.dip.t-dialin.net) left irc: "Client Exiting"

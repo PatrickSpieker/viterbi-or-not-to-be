@@ -5,6 +5,7 @@ class EmailPreprocessor:
     def preprocess(self, input):
         processed_input = {
             'names': input['names'],
+            'authors': input['authors']
         }
 
         # Remove quoted text and any "sentences" that are composed of solely

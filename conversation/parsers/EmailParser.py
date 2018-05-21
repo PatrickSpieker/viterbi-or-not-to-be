@@ -18,20 +18,21 @@ class EmailParser:
         return '{}/{}/annotation.xml'.format(self.overall_dir, partition)
 
     def parse(self, partition):
-        threads, thread_labels, thread_names = self.load_data(self.corpus(partition), self.annotation(partition))
+        threads, thread_labels, thread_names, thread_authors = self.load_data(self.corpus(partition), self.annotation(partition))
 
         data = {
             'data': threads,
             'labels': thread_labels,
-            'names': thread_names
+            'names': thread_names,
+            'authors': thread_authors
         }
 
         return data
         
     def load_data(self, corpus_file, annotations_file):
         annotations = self.parse_annotations(annotations_file)
-        threads, thread_labels, thread_names = self.parse_corpus(corpus_file, annotations)
-        return threads, thread_labels, thread_names
+        threads, thread_labels, thread_names, thread_authors = self.parse_corpus(corpus_file, annotations)
+        return threads, thread_labels, thread_names, thread_authors
 
     def parse_annotations(self, xml_file):
         tree = ET.parse(xml_file)
@@ -62,10 +63,12 @@ class EmailParser:
         all_threads_text = []
         all_threads_labels = []
         all_threads_names = []
+        all_threads_authors = []
 
         for thread in root:
             thread_text = []
             thread_labels = []
+            thread_authors = []
             name = thread.find('name').text
             listno = thread.find('listno').text
             self.debug('---------- Thread with name "' + name + '" and listno ' + listno + ' ----------')
@@ -73,6 +76,7 @@ class EmailParser:
             for doc in thread.findall('DOC'):
                 # Email doc contents typically contain { Received, From, To, (Cc), Subject, Text }
                 subject = doc.find('Subject').text
+                author = doc.find('From').text
                 text = doc.find('Text')
                 self.debug('\n    Email subject: "' + subject + '"')
                 email_text = []
@@ -88,13 +92,15 @@ class EmailParser:
 
                 thread_text.append(email_text)
                 thread_labels.append(email_labels)
+                thread_authors.append(author)
 
             self.debug('\n')
             all_threads_text.append(thread_text)
             all_threads_labels.append(thread_labels)
             all_threads_names.append(name)
+            all_threads_authors.append(thread_authors)
 
-        return all_threads_text, all_threads_labels, all_threads_names
+        return all_threads_text, all_threads_labels, all_threads_names, all_threads_authors
 
     def compile_reference_summaries(self):
         with open(self.corpus('val')) as corpus_file, open(self.annotation('val')) as annotations_file:

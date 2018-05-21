@@ -81,12 +81,14 @@ def main():
 
     # If cross-training is enabled, create the second set of training input processors
     if args.crosstrain is not None:
+        crosstrain_dataset = '../data/' + args.crosstrain
+
         if args.type == 'chat':
-            cross_parser = EmailParser(dataset, args.debug)
+            cross_parser = EmailParser(crosstrain_dataset, args.debug)
             cross_preprocessor = EmailPreprocessor()
             cross_feature_vectorizer = EmailFeatureVectorizer()
         elif args.type == 'email':
-            cross_parser = ChatParser(args.crosstrain, args.debug)
+            cross_parser = ChatParser(crosstrain_dataset, args.debug)
             cross_preprocessor = ChatPreprocessor()
             cross_feature_vectorizer = ChatFeatureVectorizer()
 
@@ -133,7 +135,7 @@ def main():
         cross_training_sentence_features = cross_feature_vectorizer.vectorize(cross_training_data)
 
         # Concatenate so as to train on all available data
-        training_sentence_features = np.concatenate(training_sentence_features, cross_training_sentence_features)
+        training_sentence_features = np.concatenate((training_sentence_features, cross_training_sentence_features))
         thread_labels = thread_labels.extend(flatten(flatten(cross_training_data['labels'])))
 
     # Train model using training data

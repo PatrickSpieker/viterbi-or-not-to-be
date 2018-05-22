@@ -12,6 +12,7 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.neural_network import MLPClassifier
 from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor
 from sklearn.linear_model import BayesianRidge
+from sklearn import svm
 import numpy as np
 
 from feature_vectorizers.EmailFeatureVectorizer import \
@@ -36,7 +37,7 @@ def main():
     parser = argparse.ArgumentParser(description='Train and evaluate the conversation-specific model for automatic conversation summarization. Allows selection between several different types of models and datasets, as well as customization of the metrics to be used in evaluation and various options for debugging. After evaluation, system-generated summaries can be found in the output/system directory', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('dataset', help='the path of the dataset to use, specified as a path relative to the data/ directory, i.e. to use the full bc3 dataset: \'bc3/full\'')
     parser.add_argument('--type', choices=['email', 'chat'], default='email', help='the format of the dataset being used')
-    parser.add_argument('--model', choices=['naivebayes', 'decisiontree', 'perceptron', 'regression_dt', 'regression_br'], default='naivebayes', help='the type of model to train and test')
+    parser.add_argument('--model', choices=['naivebayes', 'decisiontree', 'perceptron', 'regression_dt', 'regression_br', 'regression_sv'], default='naivebayes', help='the type of model to train and test')
     parser.add_argument('--metric', choices=['L', '1', '2', 'all'], default='all', help='which metric(s) to report when evaluating the model')
     parser.add_argument('--threshold', type=float, default=0.5, help='the cutoff at which to consider sentences as part of the summary')
     parser.add_argument('--evaldataset', help='the path of the dataset to use for evaluation')
@@ -103,6 +104,8 @@ def main():
         model = DecisionTreeRegressor()
     elif args.model == 'regression_br':
         model = BayesianRidge(compute_score=True)
+    elif args.model == 'regression_sv':
+        model = svm.SVR()
 
     # Use the appropriate evaluation metrics
     if args.metric == 'all':

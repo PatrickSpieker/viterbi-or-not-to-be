@@ -31,11 +31,11 @@ export default class RoomSelector extends Component {
         return (
             <form onSubmit={this.handleSubmit}>
                 <label>
-                    Username:
+                    <h2>Username:</h2>
                     <input type="text" value={this.state.username} onChange={this.handleUsername} />
                 </label>
                 <label>
-                    Chatroom Name:
+                    <h2>Chatroom Name:</h2>
                     <input type="text" value={this.state.room} onChange={this.handleRoom} />
                 </label>
                 <input type="submit" value="Submit" />

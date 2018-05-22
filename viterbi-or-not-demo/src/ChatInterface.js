@@ -24,7 +24,7 @@ export default class ChatInterface extends Component {
 
     render() {
         let messageLog = this.props.chatMessages.map((message) =>
-            (<li key={message.key}><h2>{message.author}</h2>{message.message}</li>)
+            (<li key={message.key}><b>{message.author}</b>{message.message}</li>)
         );
 
         return (

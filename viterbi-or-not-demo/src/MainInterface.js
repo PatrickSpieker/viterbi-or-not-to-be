@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 import ChatInterface from './ChatInterface';
 import SummaryInterface from './SummaryInterface';
@@ -13,6 +13,7 @@ export default class MainInterface extends Component {
         }
 
         this.sendMessage = this.sendMessage.bind(this);
+        this.refreshSummary = this.refreshSummary.bind(this);
     }
 
     componentDidMount() {
@@ -26,7 +27,7 @@ export default class MainInterface extends Component {
             chatMessages.sort((a, b) => {
                 return a.timestamp - b.timestamp
             });
-            this.setState({chatMessages: chatMessages});
+            this.setState({ chatMessages: chatMessages });
         });
     }
 
@@ -39,12 +40,66 @@ export default class MainInterface extends Component {
         this.props.db.collection(this.props.room).add(message);
     }
 
+    refreshSummary() {
+        // Package the data for sending
+        let messageText = []
+        let authors = []
+
+        this.state.chatMessages.forEach((message) => {
+            messageText.push(message.message);
+            authors.push(message.author);
+        });
+
+        // Send fetch request
+        fetch('http://127.0.0.1:5000/api', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                messages: messageText,
+                authors: authors,
+            })
+        }).then((response) => response.json())
+        .then((responseJson) => {
+            console.log(responseJson);
+
+            let summaryLines = []
+            var indices = new Array(responseJson.length);
+            for (var i = 0; i < responseJson.length; ++i) {
+                indices[i] = i;
+            }
+
+            indices.sort(function (a, b) { return responseJson[a] < responseJson[b] ? 1 : responseJson[a] > responseJson[b] ? -1 : 0; });
+
+            console.log(indices);
+
+            let included = indices.slice(6)
+
+            console.log(included);
+
+            for (let i = 0; i < messageText.length; i++) {
+                if (responseJson[i] >= 0.1) {
+                    summaryLines.push(messageText[i]);
+                }
+            }
+            // for (let i = 0; i < messageText.length; i++) {
+            //     if (i in included) {
+            //         summaryLines.push(messageText[i]);
+            //     }
+            // }
+            this.setState({summary: summaryLines})
+        });
+
+    }
+
     render() {
         return (
             <div>
                 <h1>{this.props.room}</h1>
                 <ChatInterface chatMessages={this.state.chatMessages} sendMessage={this.sendMessage} />
-                <SummaryInterface summary={this.state.summary} />
+                <SummaryInterface summary={this.state.summary} refreshSummary={this.refreshSummary} />
             </div>
         );
     }

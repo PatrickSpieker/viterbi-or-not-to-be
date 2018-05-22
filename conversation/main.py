@@ -3,6 +3,7 @@ import glob
 import os
 import pdb
 from functools import reduce
+import pickle
 
 from nltk import tag, tokenize
 from nltk.corpus import stopwords
@@ -46,6 +47,7 @@ def main():
     parser.add_argument('--examples', action='store_true', help='if set, displays the system-generated summaries during evaluation')
     parser.add_argument('--nopreprocessing', action='store_true', help='if set, disables preprocessing for the training and validation data')
     parser.add_argument('--crosstrain', help='if specified, the dataset to additionally train on before evaluation (assumed to be the opposite type of data from the argument given in "type")')
+    parser.add_argument('--save', help='if specified, serializes the trained model and saves it to the given file')
     args = parser.parse_args()
 
     # Interpret the dataset relative to the data folder
@@ -143,6 +145,11 @@ def main():
 
     # Train model using training data
     model.fit(training_sentence_features, thread_labels)
+
+    # Save the model if specified
+    if args.save is not None:
+        with open(args.save, 'wb') as save_file:
+            pickle.dump(model, save_file)
 
     # Parse val data
     val_data = eval_parser.parse('val')

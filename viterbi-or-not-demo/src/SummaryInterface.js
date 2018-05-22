@@ -9,6 +9,16 @@ export default class SummaryInterface extends Component {
     }
 
     render() {
-        return (<h1>Summary Castle</h1>);
+        let messageLog = this.props.summary.map((message) =>
+            (<li key={message.key}>{message}</li>)
+        );
+        return (
+            <div>
+                <button onClick={this.props.refreshSummary}>
+                    Summarize
+                </button>
+                <p>{messageLog}</p>
+            </div>
+        );
     }
 }

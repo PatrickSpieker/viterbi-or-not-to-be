@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 
-import RoomSelector from '../components/RoomSelector';
-import MainInterface from '../components/MainInterface';
+import RoomSelector from './RoomSelector';
+import MainInterface from './MainInterface';
 
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 
-import { getConfig } from '../environment.js';
+import { getConfig } from './environment.js';
 
 export default class App extends Component {
     constructor(props) {

@@ -17,4 +17,5 @@ from nltk.translate.bleu_score import sentence_bleu
 class EmailFeatureVectorizer(FeatureVectorizer):
 
     def title_similarity(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence, thread_sentence_index):
-        return sentence_bleu(input['names'][thread_index], sentence)
+        names = input['names']
+        return sentence_bleu(names[thread_index], sentence)

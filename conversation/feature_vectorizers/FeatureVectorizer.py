@@ -23,7 +23,9 @@ class FeatureVectorizer:
         'number_count',
         'url_count',
         'position_from_end',
-        'topic_position'
+        'topic_position',
+        'previous_tf_isf',
+        'author_frequency'
     ]
     NUM_FEATURES = len(FEATURES)
     TF_IDF_FEATURES = []
@@ -31,6 +33,8 @@ class FeatureVectorizer:
     THREAD_SPECIAL_COUNTS = []
     SENT_SPECIAL_COUNTS = {}
     TOPIC_DIVISIONS = []
+    THREAD_AUTHOR_COUNTS = []
+    THREAD_SENTENCE_COUNTS = []
 
     def vectorize(self, input):
         """
@@ -52,11 +56,22 @@ class FeatureVectorizer:
             paragraphs.append('\n\n'.join(cleaned_sentences))
                 
         # Determine the number of sentences using the specific input format
-        # for this data type
+        # for this data type and build up author counts
         num_sentences = 0
-        for thread in threads:
-            for chunk in thread:
+        authors = input['authors']
+        for thread_index, thread in enumerate(threads):
+            thread_num_sentences = 0
+            author_counts = {}
+            for chunk_index, chunk in enumerate(thread):
+                chunk_author = authors[thread_index][chunk_index]
+                if chunk_author in author_counts:
+                    author_counts[chunk_author] += 1
+                else:
+                    author_counts[chunk_author] = 1
                 num_sentences += len(chunk)
+                thread_num_sentences += len(chunk)
+            self.THREAD_AUTHOR_COUNTS.append(author_counts)
+            self.THREAD_SENTENCE_COUNTS.append(thread_num_sentences)
 
         # Create an appropriately shaped array to hold the feature vectors
         sentence_features = np.ndarray(shape=(num_sentences, self.NUM_FEATURES))
@@ -225,3 +240,25 @@ class FeatureVectorizer:
     def topic_position(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence, thread_sentence_index):
         return 0
         return self.TOPIC_DIVISIONS[thread_index][thread_sentence_index]
+
+    def previous_tf_isf(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence, thread_sentence_index):
+        previous_index = chunk_index - 1
+        if chunk_index == 0:
+            previous_index = chunk_index
+
+        if previous_index in self.TF_ISF_CACHE:
+            tf_isf = self.TF_ISF_CACHE[previous_index]
+        else:
+            chunks = [' '.join(x) for x in thread]
+            tf_isf_vectorizer = TfidfVectorizer()
+            tf_isf = tf_isf_vectorizer.fit_transform(chunks)
+            self.TF_ISF_CACHE[previous_index] = tf_isf
+
+        tf_isf_features = np.squeeze(np.asarray(np.mean(tf_isf, axis=1)))
+        return tf_isf_features[previous_index]
+
+    def author_frequency(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence, thread_sentence_index):
+        chunk_author = input['authors'][thread_index][chunk_index]
+        if chunk_author not in self.THREAD_AUTHOR_COUNTS[thread_index]:
+            return 0
+        return self.THREAD_AUTHOR_COUNTS[thread_index][chunk_author] / self.THREAD_SENTENCE_COUNTS[thread_index]

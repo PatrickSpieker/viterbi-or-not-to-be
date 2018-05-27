@@ -29,18 +29,38 @@ export default class RoomSelector extends Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <label>
-                    <h2>Username:</h2>
-                    <input type="text" value={this.state.username} onChange={this.handleUsername} />
-                </label>
-                <label>
-                    <h2>Chatroom Name:</h2>
-                    <input type="text" value={this.state.room} onChange={this.handleRoom} />
-                </label>
-                <input type="submit" value="Submit" />
-            </form>
-
+            <div id="room-selector-container">
+                <div id="room-selector">
+                    <form onSubmit={this.handleSubmit}>
+                        <div id="room-selector-username">
+                            <label>
+                                <h2 className="form-label">Username</h2>
+                                <div className="form-line">
+                                    <input className="form-input" type="text" value={this.state.username} onChange={this.handleUsername} />
+                                </div>
+                            </label>
+                        </div>
+                        <div id="room-selector-room">
+                            <label>
+                                <h2 className="form-label">Chatroom Name</h2>
+                                <div className="form-line">
+                                    <input className="form-input" type="text" value={this.state.room} onChange={this.handleRoom} />
+                                    <button className="submit-button" type="submit"><i className="material-icons">arrow_forward</i></button>
+                                </div>
+                            </label>
+                            <div id="room-selector-existing">
+                                <h2 className="form-label">Or Select An Existing Chat</h2>
+                                <div id="room-selector-options">
+                                    <input type="button" value="Dog Walking" />
+                                    <input type="button" value="Throwing People Into Buckets" />
+                                    <input type="button" value="We Broke the Fridge!" />
+                                    <input type="button" value="Look at that Inequality" />
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         )
     }
 }

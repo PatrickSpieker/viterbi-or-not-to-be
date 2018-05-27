@@ -21,12 +21,20 @@ export default class App extends Component {
         });
 
         this.state = {
-            username: null,
-            room: null,
+            username: 'castle',
+            room: 'Dog Walking',
             db: db
         }
 
         this.selectRoom = this.selectRoom.bind(this);
+        this.clearRoom = this.clearRoom.bind(this);
+    }
+
+    clearRoom() {
+        this.setState({
+            username: null,
+            room: null
+        });
     }
 
     selectRoom(newUsername, newRoom) {
@@ -37,10 +45,17 @@ export default class App extends Component {
     }
 
     render() {
+        let appInterface;
         if (this.state.room === null) {
-            return <RoomSelector selectRoom={this.selectRoom} />
+            appInterface = (<RoomSelector selectRoom={this.selectRoom} />);
         } else {
-            return <MainInterface db={this.state.db} room={this.state.room} username={this.state.username} />
+            appInterface = (<MainInterface db={this.state.db} room={this.state.room} username={this.state.username} clearRoom={this.clearRoom} />);
         }
+
+        return (
+            <div id="app-container">
+                {appInterface}
+            </div>
+        );
     }
 }

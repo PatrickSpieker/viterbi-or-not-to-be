@@ -96,10 +96,23 @@ export default class MainInterface extends Component {
 
     render() {
         return (
-            <div>
-                <h1>{this.props.room}</h1>
-                <ChatInterface chatMessages={this.state.chatMessages} sendMessage={this.sendMessage} />
-                <SummaryInterface summary={this.state.summary} refreshSummary={this.refreshSummary} />
+            <div id="main-interface-container">
+                <div id="chat-container">
+                    <div id="title-bar">
+                        <button id="back-button" onClick={this.props.clearRoom} >
+                            <i className="material-icons">arrow_back</i>
+                        </button>
+                        <h1>{this.props.room}</h1>
+                        <button id="summary-button" onClick={this.refreshSummary} >
+                            <i className="material-icons">format_list_bulleted</i>
+                            Summarize
+                        </button>
+                    </div>
+                    <ChatInterface chatMessages={this.state.chatMessages} sendMessage={this.sendMessage} />
+                </div>
+                <div id="summary-container">
+                    <SummaryInterface summary={this.state.summary} />
+                </div>
             </div>
         );
     }

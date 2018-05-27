@@ -13,10 +13,7 @@ export default class SummaryInterface extends Component {
             (<li key={message.key}>{message}</li>)
         );
         return (
-            <div>
-                <button onClick={this.props.refreshSummary}>
-                    Summarize
-                </button>
+            <div id="summary-interface">
                 <p>{messageLog}</p>
             </div>
         );

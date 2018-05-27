@@ -15,6 +15,7 @@ class FeatureVectorizer:
         'tf_isf',
         'sentence_length',
         'sentence_position',
+        'thread_sentence_position',
         'title_similarity',
         'centroid_coherence',
         'special_terms',
@@ -25,7 +26,9 @@ class FeatureVectorizer:
         'position_from_end',
         'topic_position',
         'previous_tf_isf',
-        'author_frequency'
+        'author_frequency',
+        'result_relation',
+        'circumstance_relation'
     ]
     NUM_FEATURES = len(FEATURES)
     TF_IDF_FEATURES = []
@@ -35,6 +38,10 @@ class FeatureVectorizer:
     TOPIC_DIVISIONS = []
     THREAD_AUTHOR_COUNTS = []
     THREAD_SENTENCE_COUNTS = []
+    RESULT_RELATION_MARKERS = ['because of', 'as a result of', 'because', 'and', 'so', 'as a result', 'when', 
+        'as', 'since', 'now', 'after', 'the result', 'so far', 'now that', 'and so', 'thus', 'but']
+    CIRCUMSTANCE_RELATION_MARKERS = ['when', 'as', 'after', 'following', 'since', 'and', 'without', 'but', 
+        'once', 'until', 'with', 'before', 'now', 'while', 'if', 'given', 'because']
 
     def vectorize(self, input):
         """
@@ -173,6 +180,9 @@ class FeatureVectorizer:
     def sentence_position(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence, thread_sentence_index):
         return sentence_index / len(chunk)
 
+    def thread_sentence_position(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence, thread_sentence_index):
+        return thread_sentence_index / len(self.collapse_threads(thread))
+
     def title_similarity(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence, thread_sentence_index):
         return 0
 
@@ -262,3 +272,9 @@ class FeatureVectorizer:
         if chunk_author not in self.THREAD_AUTHOR_COUNTS[thread_index]:
             return 0
         return self.THREAD_AUTHOR_COUNTS[thread_index][chunk_author] / self.THREAD_SENTENCE_COUNTS[thread_index]
+
+    def result_relation(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence, thread_sentence_index):
+        return 1 if sentence.lower().startswith(tuple(self.RESULT_RELATION_MARKERS)) else 0
+
+    def circumstance_relation(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence, thread_sentence_index):
+        return 1 if sentence.lower().startswith(tuple(self.CIRCUMSTANCE_RELATION_MARKERS)) else 0

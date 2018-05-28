@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 export default class RoomSelector extends Component {
     constructor(props) {
@@ -26,27 +28,42 @@ export default class RoomSelector extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        this.props.selectRoom(this.state.username, this.state.room);
+        if (this.state.username === '') {
+            toast.error('Please enter a username!');
+        } else if (this.state.room.length !== 4) {
+            toast.error('Please enter a valid room code!')
+        } else {
+            this.props.selectRoom(this.state.username, this.state.room);
+        }
     }
 
     handleCreateRoom(event) {
-        this.props.createRoom(this.state.username);
+        if (this.state.username === '') {
+            toast.error('Please enter a username!');
+        } else {
+            this.props.createRoom(this.state.username);
+        }
     }
 
     handleCopyRoom(event) {
-        this.props.copyRoom(this.state.username, event.target.value);
+        if (this.state.username === '') {
+            toast.error('Please enter a username!');
+        } else {
+            this.props.copyRoom(this.state.username, event.target.value);
+        }
     }
 
     render() {
         return (
             <div id="room-selector-container">
+                <ToastContainer hideProgressBar={true} />
                 <div id="room-selector">
                     <form onSubmit={this.handleSubmit}>
                         <div id="room-selector-username">
                             <label>
                                 <h2 className="form-label">Username</h2>
                                 <div className="form-line">
-                                    <input className="form-input" type="text" value={this.state.username} onChange={this.handleUsername} required />
+                                    <input className="form-input" type="text" value={this.state.username} onChange={this.handleUsername} />
                                 </div>
                             </label>
                         </div>
@@ -54,7 +71,7 @@ export default class RoomSelector extends Component {
                             <label>
                                 <h2 className="form-label">Enter a Chatroom Code</h2>
                                 <div className="form-line">
-                                    <input className="form-input" type="number" value={this.state.room} onChange={this.handleRoom} min="1000" max="9999" required />
+                                    <input className="form-input" type="number" value={this.state.room} onChange={this.handleRoom} />
                                     <button className="submit-button" type="submit"><i className="material-icons">arrow_forward</i></button>
                                 </div>
                             </label>

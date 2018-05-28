@@ -8,6 +8,9 @@ import 'firebase/firestore';
 
 import { getConfig } from './environment.js';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+
 export default class App extends Component {
     constructor(props) {
         super(props);
@@ -113,10 +116,19 @@ export default class App extends Component {
     }
 
     selectRoom(newUsername, newRoom) {
-        this.setState({
-            username: newUsername,
-            room: newRoom
-        });
+        this.state.db.collection('metadata').doc('reserved_rooms').get()
+            .then(document => {
+                if (document.exists) {
+                    if (document.data().reserved_rooms.includes(newRoom)) {
+                        this.setState({
+                            username: newUsername,
+                            room: newRoom
+                        });
+                    } else {
+                        toast.error('Could not find that room code. Please check to make sure it\'s correct!');
+                    }
+                }
+            });
     }
 
     render() {

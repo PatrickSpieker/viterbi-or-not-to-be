@@ -12,6 +12,7 @@ export default class SummaryInterface extends Component {
         let messageLog = this.props.summary.map((message) =>
             (<li key={message.key}>{message}</li>)
         );
+
         return (
             <div id="summary-interface">
                 <p>{messageLog}</p>

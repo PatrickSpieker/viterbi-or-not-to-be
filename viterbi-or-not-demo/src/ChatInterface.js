@@ -30,8 +30,12 @@ export default class ChatInterface extends Component {
     render() {
         let messageLog = [];
 
-        if (this.props.chatMessages.length > 1) {
-            let message = this.props.chatMessages[0];
+        let chatMessages = this.props.chatMessages.filter((message) => {
+            return !message.hasOwnProperty('action');
+        });
+
+        if (chatMessages.length > 0) {
+            let message = chatMessages[0];
             let lastAuthor = message.author;
 
             messageLog.push(
@@ -40,8 +44,8 @@ export default class ChatInterface extends Component {
                 (<li className="other label" key={message.key + '_new_author'}>{message.author}</li>)
             )
 
-            for (let i = 0; i < this.props.chatMessages.length; i++) {
-                let message = this.props.chatMessages[i];
+            for (let i = 0; i < chatMessages.length; i++) {
+                let message = chatMessages[i];
 
                 if (message.author !== lastAuthor) {
                     // New author, needs to have name printed

@@ -9,7 +9,7 @@ from tqdm import tqdm
 OUTPUT = 'output/'
 REFERENCE = 'reference/'
 
-SIMILARITY = 0.1
+SIMILARITY = 0.01
 
 class ChatParser:
     def __init__(self, overall_dir, debug):
@@ -58,9 +58,9 @@ class ChatParser:
                     p_str = ET.tostring(p).decode("utf-8")
                     p_str = re.sub('<p>', '', p_str)
                     p_str = re.sub('</p>', '', p_str)
-                    p_str = re.sub(r'^<quote(.*?)>$', '', p_str)
+                    p_str = re.sub(r'^<quote(.*)>$', '', p_str)
                     p_str = re.sub('</quote>', '', p_str)
-                    p_str = re.sub(r'^<a(.*?)>$', '', p_str)
+                    p_str = re.sub(r'^<a(.*)>$', '', p_str)
                     p_str = re.sub('</a>', '', p_str)
                     p_str_sents = p_str.split("\\.")
                     for sent in p_str_sents:
@@ -114,9 +114,9 @@ class ChatParser:
                     p_str = ET.tostring(p).decode("utf-8")
                     p_str = re.sub('<p>', '', p_str)
                     p_str = re.sub('</p>', '', p_str)
-                    p_str = re.sub(r'^<quote(.*?)>$', '', p_str)
+                    p_str = re.sub(r'^<quote(.*)>$', '', p_str)
                     p_str = re.sub('</quote>', '', p_str)
-                    p_str = re.sub(r'^<a(.*?)>$', '', p_str)
+                    p_str = re.sub(r'^<a(.*)>$', '', p_str)
                     p_str = re.sub('</a>', '', p_str)
                     output_file.write(p_str.replace('\n', ''))
                     #for q in p.findall('quote'):

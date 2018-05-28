@@ -30,7 +30,7 @@ export default class ChatInterface extends Component {
     render() {
         let messageLog = [];
 
-        if (this.props.chatMessages.length !== 0) {
+        if (this.props.chatMessages.length > 1) {
             let message = this.props.chatMessages[0];
             let lastAuthor = message.author;
 

@@ -103,7 +103,7 @@ export default class MainInterface extends Component {
                             <i className="material-icons">arrow_back</i>
                         </button>
                         <h1>{this.props.room}</h1>
-                        <button id="summary-button" onClick={this.refreshSummary} >
+                        <button id="summary-button" className="active-button" onClick={this.refreshSummary} >
                             <i className="material-icons">format_list_bulleted</i>
                             Summarize
                         </button>

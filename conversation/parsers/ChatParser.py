@@ -2,13 +2,14 @@ import xml.etree.ElementTree as ET
 from nltk.translate.bleu_score import sentence_bleu
 import os
 import glob
+import re
 from tqdm import tqdm
 
 # The subdirectories under which ROUGE-compatible summaries should be output
 OUTPUT = 'output/'
 REFERENCE = 'reference/'
 
-SIMILARITY = 0.7
+SIMILARITY = 0.1
 
 class ChatParser:
     def __init__(self, overall_dir, debug):
@@ -54,9 +55,19 @@ class ChatParser:
                 tree = ET.parse(anno_file)
                 root = tree.getroot()
                 for p in root.findall('p'):
-                    for q in p.findall('quote'):
-                        if q.text is not None:
-                            quotes.append(q.text.replace('\n', '').replace(',', '').strip().split())
+                    p_str = ET.tostring(p).decode("utf-8")
+                    p_str = re.sub('<p>', '', p_str)
+                    p_str = re.sub('</p>', '', p_str)
+                    p_str = re.sub(r'^<quote(.*?)>$', '', p_str)
+                    p_str = re.sub('</quote>', '', p_str)
+                    p_str = re.sub(r'^<a(.*?)>$', '', p_str)
+                    p_str = re.sub('</a>', '', p_str)
+                    p_str_sents = p_str.split("\\.")
+                    for sent in p_str_sents:
+                        quotes.append(sent.replace('\n', '').replace(',', '').strip().split())
+                    #for q in p.findall('quote'):
+                    #    if q.text is not None:
+                    #        quotes.append(q.text.replace('\n', '').replace(',', '').strip().split())
 
                 corpus_filename = 'corpus-' + thread_index + '.txt'
                 corpus_file = open(os.path.join(corpus_dir, corpus_filename), 'r', errors='ignore')
@@ -100,12 +111,20 @@ class ChatParser:
             filename = output_dir + 'thread{}_reference1.txt'.format(anno_index)
             with open(filename, 'w') as output_file:
                 for p in root.findall('p'):
-                    for q in p.findall('quote'):
-                        if q:
-                            for p2 in q.findall('p'):
-                                output_file.write(p2.text.replace('\n', '') + '\n')
-                        else:
-                            output_file.write(q.text.replace('\n', '') + '\n')
+                    p_str = ET.tostring(p).decode("utf-8")
+                    p_str = re.sub('<p>', '', p_str)
+                    p_str = re.sub('</p>', '', p_str)
+                    p_str = re.sub(r'^<quote(.*?)>$', '', p_str)
+                    p_str = re.sub('</quote>', '', p_str)
+                    p_str = re.sub(r'^<a(.*?)>$', '', p_str)
+                    p_str = re.sub('</a>', '', p_str)
+                    output_file.write(p_str.replace('\n', ''))
+                    #for q in p.findall('quote'):
+                    #    if q:
+                    #        for p2 in q.findall('p'):
+                    #            output_file.write(p2.text.replace('\n', '') + '\n')
+                    #    else:
+                    #        output_file.write(q.text.replace('\n', '') + '\n')
 
     def debug(self, output):
         if self.debug_flag:

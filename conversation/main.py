@@ -33,6 +33,7 @@ OUTPUT = 'output/'
 # The subdirectories under which ROUGE-compatible summaries should be output
 REFERENCE = 'reference/'
 SYSTEM = 'system/'
+AUTHORS = 'authors/'
 
 def main():
     parser = argparse.ArgumentParser(description='Train and evaluate the conversation-specific model for automatic conversation summarization. Allows selection between several different types of models and datasets, as well as customization of the metrics to be used in evaluation and various options for debugging. After evaluation, system-generated summaries can be found in the output/system directory', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
@@ -172,6 +173,7 @@ def main():
         
 def test_model(model, val_data, sentence_features, step, threshold):
     output_dir = OUTPUT + SYSTEM
+    authors_output_dir = OUTPUT + AUTHORS
     if os.path.exists(output_dir):
         for f in glob.glob(output_dir + '*.txt'):
             os.remove(f)
@@ -181,20 +183,33 @@ def test_model(model, val_data, sentence_features, step, threshold):
     threads = val_data['data']
     collapsed_threads = collapse_threads(val_data['data'])
 
+    author_data = val_data['authors']
+    authors = []
+    for thread_index, thread in enumerate(threads):
+        for chunk_index, chunk in enumerate(thread):
+            for sentence in chunk:
+                authors.append(author_data[thread_index][chunk_index])
+
     predicted_annotations = model.predict(sentence_features)
     sentences = flatten(collapsed_threads)
 
     sentence = 0
     for thread_index, thread in enumerate(collapsed_threads):
         thread_summary = []
+        summary_authors = []
         for _ in range(0, len(thread), step):
             if predicted_annotations[sentence] > threshold:
                 thread_summary.append(sentences[sentence] + ' ')
+                summary_authors.append(authors[sentence])
             sentence += step
         
         filename = output_dir + 'thread{}_system1.txt'.format(thread_index)
         with open(filename, 'w+') as output_file:
             output_file.write('\n'.join(thread_summary))
+
+        authors_filename = authors_output_dir + 'thread{}_authors1.txt'.format(thread_index)
+        with open(authors_filename, 'w+') as output_file:
+            output_file.write('\n'.join(summary_authors))
 
 def flatten(nested_list):
     return [label for thread in nested_list for label in thread]

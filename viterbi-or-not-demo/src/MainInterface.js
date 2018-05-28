@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 import ChatInterface from './ChatInterface';
 import SummaryInterface from './SummaryInterface';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+
 export default class MainInterface extends Component {
     constructor(props) {
         super(props);
@@ -51,7 +54,7 @@ export default class MainInterface extends Component {
         });
 
         // Send fetch request
-        fetch('http://viterb.me/api', {
+        fetch('http://127.0.0.1:5000/api', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -63,8 +66,6 @@ export default class MainInterface extends Component {
             })
         }).then((response) => response.json())
         .then((responseJson) => {
-            console.log(responseJson);
-
             let summaryLines = []
             var indices = new Array(responseJson.length);
             for (var i = 0; i < responseJson.length; ++i) {
@@ -73,11 +74,7 @@ export default class MainInterface extends Component {
 
             indices.sort(function (a, b) { return responseJson[a] < responseJson[b] ? 1 : responseJson[a] > responseJson[b] ? -1 : 0; });
 
-            console.log(indices);
-
             let included = indices.slice(6)
-
-            console.log(included);
 
             for (let i = 0; i < messageText.length; i++) {
                 if (responseJson[i] >= 0.1) {
@@ -90,8 +87,9 @@ export default class MainInterface extends Component {
             //     }
             // }
             this.setState({summary: summaryLines})
+        }).catch((error) => {
+            toast.error('Could not connect to summarization API!');
         });
-
     }
 
     render() {

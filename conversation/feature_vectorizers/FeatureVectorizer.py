@@ -236,7 +236,10 @@ class FeatureVectorizer:
                     total_score += senti_score
                 except:
                     pass
-        return total_score / len(tagged_sent)
+        if len(tagged_sent) == 0:
+            return 0
+        else:
+            return total_score / len(tagged_sent)
 
     def number_count(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence, thread_sentence_index):
         return len(re.findall('\d', sentence))

@@ -56,7 +56,6 @@ export default class RoomSelector extends Component {
     render() {
         return (
             <div id="room-selector-container">
-                <ToastContainer hideProgressBar={true} />
                 <div id="room-selector">
                     <form onSubmit={this.handleSubmit}>
                         <div id="room-selector-username">

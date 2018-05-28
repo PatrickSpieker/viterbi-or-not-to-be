@@ -141,6 +141,7 @@ export default class App extends Component {
 
         return (
             <div id="app-container">
+                <ToastContainer hideProgressBar={true} />
                 {appInterface}
             </div>
         );

@@ -15,7 +15,7 @@ export default class SummaryInterface extends Component {
 
         return (
             <div id="summary-interface">
-                <p>{messageLog}</p>
+                <ul>{messageLog}</ul>
             </div>
         );
     }

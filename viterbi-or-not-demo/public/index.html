@@ -15,6 +15,39 @@
             }
         }
 
+        @media (min-aspect-ratio: 5/8) {
+            html {
+                font-size: 100%;
+            }
+            #room-selector {
+                width: 450px;
+            }
+            #chat-container {
+                width: 65vw;
+            }
+            #summary-container.open {
+                width: 50vw;
+            }
+        }
+
+        @media (max-aspect-ratio: 5/8) {
+            html {
+                font-size: 160%;
+            }
+            #room-selector {
+                width: 90vw;
+            }
+            #chat-container {
+                width: 100vw;
+            }
+            #summary-container.open {
+                width: 100vw;
+                position: absolute;
+                top: 4rem;
+                left: 0;
+            }
+        }
+
         html, body {
             margin: 0;
             padding: 0;
@@ -39,7 +72,6 @@
         
         #room-selector {
             display: flex;
-            width: 450px;
             flex-direction: column;
             justify-content: space-between;
             align-items: stretch;
@@ -109,11 +141,15 @@
             width: 3rem;
             height: 3rem;
             border-radius: 1.5rem;
-            margin-left: 10px;
+            margin-left: 0.5rem;
             background-color: #F77F00;
             color: #FFFCF2;
             cursor: pointer;
             box-shadow: 0 5px 15px #2E353255;
+        }
+
+        .submit-button i {
+            font-size: 1.5rem;
         }
 
         .room-selector-section {
@@ -179,7 +215,6 @@
         }
 
         #chat-container {
-            width: 65vw;
             height: 100vh;
             background-color: #FFFCF2;
             display: flex;
@@ -190,7 +225,7 @@
 
         #title-bar {
             width: 100%;
-            height: 65px;
+            height: 4rem;
             background-color: #2E3532;
             flex-shrink: 0;
             display: flex;
@@ -199,7 +234,7 @@
         }
 
         #back-button {
-            width: 65px;
+            width: 4rem;
             background-color: transparent;
             border: none;
             color: #FFFCF2;
@@ -207,7 +242,7 @@
 
         #title-bar h1 {
             flex-grow: 1;
-            line-height: 65px;
+            line-height: 4rem;
             margin: 0 0 0 20px;
             font-family: 'Roboto', sans-serif;
             color: #FFFCF2;
@@ -222,7 +257,7 @@
         #chat-listing {
             flex-grow: 1;
             margin: 0;
-            margin-top: 5px;
+            margin-top: 0.5rem;
             overflow-x: hidden;
             overflow-y: scroll;
         }
@@ -264,11 +299,16 @@
             cursor: pointer;
         }
 
+        #back-button i {
+            font-size: 1.75rem;
+        }
+
         #summary-button {
-            height: 45px;
-            /* width: 8rem; */
-            font-weight: 700;
-            margin: 10px;
+            height: 2.5rem;
+            font-weight: 500;
+            font-size: 1rem;
+            margin: 0.75rem;
+            padding: 0.5rem;
             border-radius: 4px;
             display: flex;
         }
@@ -277,10 +317,6 @@
             overflow: hidden;
             height: 100vh;
             transition: width 0.2s;
-        }
-
-        #summary-container.open {
-            width: 50vw;
         }
 
         #summary-container.closed {

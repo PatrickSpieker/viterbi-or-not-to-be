@@ -70,7 +70,7 @@ export default class MainInterface extends Component {
         });
 
         // Send fetch request
-        fetch('http://127.0.0.1:5000/api', {
+        fetch('http://viterb.me/api', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -105,37 +105,17 @@ export default class MainInterface extends Component {
                 }
             }
 
-            // let summaryLines = []
-            // var indices = new Array(responseJson.length);
-            // for (var i = 0; i < responseJson.length; ++i) {
-            //     indices[i] = i;
-            // }
-
-            // indices.sort(function (a, b) { return responseJson[a] < responseJson[b] ? 1 : responseJson[a] > responseJson[b] ? -1 : 0; });
-
-            // let included = indices.slice(6)
-
-            // for (let i = 0; i < messageText.length; i++) {
-            //     if (responseJson[i] >= 0.3) {
-            //         summaryLines.push(messageText[i]);
-            //     }
-            // }
-            // for (let i = 0; i < messageText.length; i++) {
-            //     if (i in included) {
-            //         summaryLines.push(messageText[i]);
-            //     }
-            // }
-
-            setTimeout(() => {
-                this.setState({
-                    loading: false,
-                    summary: summaryLines,
-                    predictions: predictions
-                });
-            }, 400);
+            this.setState({
+                loading: false,
+                summary: summaryLines,
+                predictions: predictions
+            });
         }).catch((error) => {
             toast.error('Could not connect to summarization API!');
             console.log(error);
+            this.setState({
+                loading: false
+            });
         });
     }
 

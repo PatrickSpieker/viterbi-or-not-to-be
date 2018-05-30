@@ -24,7 +24,7 @@ feature_vectorizer = ChatFeatureVectorizer()
 
 @app.route('/')
 def serve():
-    return 'Ya this Flask server is running!!'
+    return 'Ya this API is working! Now go use our demo!'
 
 @app.route('/api', methods=['POST'])
 def api():

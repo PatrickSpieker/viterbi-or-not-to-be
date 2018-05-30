@@ -67,6 +67,10 @@ class ChatPreprocessor:
                         new_chunk_text.append(new_sentence)
                         new_chunk_labels.append(input['labels'][thread_index][chunk_index][sentence_index])
 
+            new_thread_text.append(new_chunk_text)
+            new_thread_labels.append(new_chunk_labels)
+            new_thread_authors.append(current_username)
+
             # The chunks for this thread have been computed
             result['data'].append(new_thread_text)
             result['labels'].append(new_thread_labels)

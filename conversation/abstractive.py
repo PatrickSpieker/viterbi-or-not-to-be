@@ -20,6 +20,7 @@ with open('extractive.txt', 'r') as extractive, open('authors.txt', 'r') as auth
     close_quote = ['”']
     said_words = ['said', 'mentioned']
     reply_words = ['replied', 'responded']
+    transitions = ['so', 'also', 'and', 'well', 'ok', 'okay']
     for line_index, line in enumerate(extractive):
         line_tokens = line.split()
         processed_line = ''

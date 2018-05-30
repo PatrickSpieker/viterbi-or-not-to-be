@@ -103,7 +103,10 @@ class ChatParser:
             
         for anno_index, anno_filename in enumerate(os.listdir(self.annotation('val'))):
             anno_file = os.path.join(self.annotation('val'), anno_filename)
-            thread_index = anno_filename.split('-')[1].split('.')[0]
+            try:
+                thread_index = anno_filename.split('-')[1].split('.')[0]
+            except:
+                continue
 
             tree = ET.parse(anno_file)
             root = tree.getroot()

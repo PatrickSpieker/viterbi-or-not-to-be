@@ -49,6 +49,7 @@ def main():
     parser.add_argument('--nopreprocessing', action='store_true', help='if set, disables preprocessing for the training and validation data')
     parser.add_argument('--crosstrain', help='if specified, the dataset to additionally train on before evaluation (assumed to be the opposite type of data from the argument given in "type")')
     parser.add_argument('--save', help='if specified, serializes the trained model and saves it to the given file')
+    parser.add_argument('--load', help='if specified, ignores all other model-related settings and loads a serialized model from a given file')
     args = parser.parse_args()
 
     # Interpret the dataset relative to the data folder
@@ -120,37 +121,44 @@ def main():
     # Use the appropriate threshold
     threshold = args.threshold
 
-    # Parse training data
-    training_data = parser.parse('train')
+    if args.load is None:
 
-    # Preprocess training data
-    if (not args.nopreprocessing):
-        training_data = preprocessor.preprocess(training_data)
+        # Parse training data
+        training_data = parser.parse('train')
 
-    # Produce sentence features
-    training_sentence_features = feature_vectorizer.vectorize(training_data)
-
-    # Flatten thread labels to match the feature shape
-    thread_labels = flatten(flatten(training_data['labels']))
-
-    # If crosstraining is enabled, use the second round of training data
-    if args.crosstrain is not None:
-        cross_training_data = cross_parser.parse('train')
+        # Preprocess training data
         if (not args.nopreprocessing):
-            cross_training_data = cross_preprocessor.preprocess(cross_training_data)
-        cross_training_sentence_features = cross_feature_vectorizer.vectorize(cross_training_data)
+            training_data = preprocessor.preprocess(training_data)
 
-        # Concatenate so as to train on all available data
-        training_sentence_features = np.concatenate((training_sentence_features, cross_training_sentence_features))
-        thread_labels = thread_labels.extend(flatten(flatten(cross_training_data['labels'])))
+        # Produce sentence features
+        training_sentence_features = feature_vectorizer.vectorize(training_data)
 
-    # Train model using training data
-    model.fit(training_sentence_features, thread_labels)
+        # Flatten thread labels to match the feature shape
+        thread_labels = flatten(flatten(training_data['labels']))
 
-    # Save the model if specified
-    if args.save is not None:
-        with open(args.save, 'wb') as save_file:
-            pickle.dump(model, save_file)
+        # If crosstraining is enabled, use the second round of training data
+        if args.crosstrain is not None:
+            cross_training_data = cross_parser.parse('train')
+            if (not args.nopreprocessing):
+                cross_training_data = cross_preprocessor.preprocess(cross_training_data)
+            cross_training_sentence_features = cross_feature_vectorizer.vectorize(cross_training_data)
+
+            # Concatenate so as to train on all available data
+            training_sentence_features = np.concatenate((training_sentence_features, cross_training_sentence_features))
+            thread_labels = thread_labels.extend(flatten(flatten(cross_training_data['labels'])))
+
+        # Train model using training data
+        model.fit(training_sentence_features, thread_labels)
+
+        # Save the model if specified
+        if args.save is not None:
+            with open(args.save, 'wb') as save_file:
+                pickle.dump(model, save_file)
+
+    else:
+        # Load a previously saved model
+        with open(args.load, 'rb') as load_file:
+            model = pickle.load(load_file)
 
     # Parse val data
     val_data = eval_parser.parse('val')
@@ -174,11 +182,20 @@ def main():
 def test_model(model, val_data, sentence_features, step, threshold):
     output_dir = OUTPUT + SYSTEM
     authors_output_dir = OUTPUT + AUTHORS
+
+    # Make sure the output dir exists
     if os.path.exists(output_dir):
-        for f in glob.glob(output_dir + '*.txt'):
+        for f in glob.glob(output_dir + '*'):
             os.remove(f)
     else:
         os.makedirs(output_dir)
+
+    # Make sure the authors output dir exists
+    if os.path.exists(authors_output_dir):
+        for f in glob.glob(authors_output_dir + '*'):
+            os.remove(f)
+    else:
+        os.makedirs(authors_output_dir)
 
     threads = val_data['data']
     collapsed_threads = collapse_threads(val_data['data'])

@@ -118,7 +118,7 @@ class ChatParser:
                     p_str = re.sub('</quote>', '', p_str)
                     p_str = re.sub(r'^<a(.*)>$', '', p_str)
                     p_str = re.sub('</a>', '', p_str)
-                    output_file.write(p_str.replace('\n', ''))
+                    output_file.write(p_str) #.replace('\n', ''))
                     #for q in p.findall('quote'):
                     #    if q:
                     #        for p2 in q.findall('p'):

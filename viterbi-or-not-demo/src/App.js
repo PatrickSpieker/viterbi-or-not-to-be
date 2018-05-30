@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 import RoomSelector from './RoomSelector';
 import MainInterface from './MainInterface';
+import Admin from './Admin';
 
 import firebase from 'firebase/app';
 import 'firebase/firestore';
@@ -133,7 +134,11 @@ export default class App extends Component {
 
     render() {
         let appInterface;
-        if (this.state.room === null) {
+        let activate_admin = window.location.search === '?admin=SausageBug1';
+
+        if (activate_admin) {
+            appInterface = (<Admin db={this.state.db} />);
+        } else if (this.state.room === null) {
             appInterface = (<RoomSelector selectRoom={this.selectRoom} createRoom={this.createRoom} copyRoom={this.copyRoom} />);
         } else {
             appInterface = (<MainInterface db={this.state.db} room={this.state.room} username={this.state.username} clearRoom={this.clearRoom} />);

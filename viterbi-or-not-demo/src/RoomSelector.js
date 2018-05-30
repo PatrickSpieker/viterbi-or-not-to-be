@@ -28,6 +28,7 @@ export default class RoomSelector extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        console.log('HEY BABE WE SUBMITT');
         if (this.state.username === '') {
             toast.error('Please enter a username!');
         } else if (this.state.room.length !== 4) {
@@ -77,16 +78,19 @@ export default class RoomSelector extends Component {
                             <div className="room-selector-section">
                                 <h2 className="form-label">Create a new Room</h2>
                                 <div className="room-selector-options">
-                                    <button id="room-create" className="room-selector-button active-button" onClick={this.handleCreateRoom}><i className="material-icons">add</i>Create New</button>
+                                    <button id="room-create" className="room-selector-button active-button" type="button" onClick={this.handleCreateRoom}>
+                                        <i className="material-icons">add</i>
+                                        Create New
+                                    </button>
                                 </div>
                             </div>
                             <div className="room-selector-section">
                                 <h2 className="form-label">Or Start From an Example</h2>
                                 <div className="room-selector-options">
                                     <input className="room-selector-button" type="button" value="Dog Walking" onClick={this.handleCopyRoom} />
-                                    <input className="room-selector-button" type="button" value="Throwing People Into Buckets" onClick={this.handleCopyRoom} />
                                     <input className="room-selector-button" type="button" value="We Broke the Fridge!" onClick={this.handleCopyRoom} />
-                                    <input className="room-selector-button" type="button" value="Look at that Inequality" onClick={this.handleCopyRoom} />
+                                    <input className="room-selector-button" type="button" value="Working on NLP" onClick={this.handleCopyRoom} />
+                                    <input className="room-selector-button" type="button" value="Mysteries of Coding" onClick={this.handleCopyRoom} />
                                 </div>
                             </div>
                         </div>

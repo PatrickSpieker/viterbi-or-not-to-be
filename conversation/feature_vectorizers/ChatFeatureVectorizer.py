@@ -28,3 +28,6 @@ class ChatFeatureVectorizer(FeatureVectorizer):
             title += ranked_keywords[i] + ' '
         
         return sentence_bleu(title, sentence)
+
+    def topic_position(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence, thread_sentence_index):
+        return self.TOPIC_DIVISIONS[thread_index][thread_sentence_index]

@@ -251,7 +251,7 @@ class FeatureVectorizer:
         return (len(chunk) - sentence_index) / len(chunk)
 
     def topic_position(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence, thread_sentence_index):
-        return self.TOPIC_DIVISIONS[thread_index][thread_sentence_index]
+        return 0
 
     def previous_tf_isf(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence, thread_sentence_index):
         previous_index = chunk_index - 1

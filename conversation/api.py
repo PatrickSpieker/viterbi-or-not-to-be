@@ -11,11 +11,12 @@ from feature_vectorizers.ChatFeatureVectorizer import \
 
 import pickle
 import ast
+import json
 
 app = Flask(__name__)
 CORS(app)
 
-MODEL = 'saved_models/reg_chat.pickle'
+MODEL = 'saved_models/snack_pack.pickle'
 with open(MODEL, 'rb') as model_file:
     model = pickle.load(model_file)
 preprocessor = ChatPreprocessor()
@@ -43,15 +44,27 @@ def api():
         'names': []
     }
 
+    print('data')
     print(data)
+    print()
 
     preprocessed = preprocessor.preprocess(data)
 
+    print('preprocessed')
     print(preprocessed)
+    print()
 
     features = feature_vectorizer.vectorize(preprocessed)
     predictions = model.predict(features)
-    print(predictions)
-    predictions_list = str(list(predictions.tolist()))
 
-    return predictions_list
+    print('predictions')
+    print(predictions)
+    print()
+
+    predictions_list = list(predictions.tolist())
+
+    response_data = {
+        'predictions': predictions_list
+    }
+
+    return json.dumps(response_data)

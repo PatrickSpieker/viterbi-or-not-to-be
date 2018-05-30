@@ -42,14 +42,15 @@ export default class Admin extends Component {
 
         let timestamp = Date.now();
 
-        for (let message of this.state.conversation.split('\\n')) {
+        for (let message of this.state.conversation.split('\n')) {
             let parts = message.split(':');
-            this.props.db.collection(this.props.room).add({
+            console.log('adding ' + parts);
+            this.props.db.collection(this.state.room).add({
                 author: parts[0],
                 timestamp: timestamp,
                 message: parts[1].trim()
             });
-            timestamp.setSeconds(timestamp.getSeconds() + 1);
+            timestamp += 1;
         }
     }
 

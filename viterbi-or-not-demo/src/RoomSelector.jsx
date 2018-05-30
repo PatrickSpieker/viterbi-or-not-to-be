@@ -28,7 +28,6 @@ export default class RoomSelector extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        console.log('HEY BABE WE SUBMITT');
         if (this.state.username === '') {
             toast.error('Please enter a username!');
         } else if (this.state.room.length !== 4) {

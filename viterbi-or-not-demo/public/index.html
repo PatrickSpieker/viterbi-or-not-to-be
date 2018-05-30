@@ -6,6 +6,15 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <style>
 
+        @-webkit-keyframes rotating {
+            from {
+                -webkit-transform: rotate(360deg);
+            }
+            to {
+                -webkit-transform: rotate(0deg);
+            }
+        }
+
         html, body {
             margin: 0;
             padding: 0;
@@ -170,11 +179,12 @@
         }
 
         #chat-container {
-            width: 800px;
+            width: 65vw;
             height: 100vh;
             background-color: #FFFCF2;
             display: flex;
             flex-direction: column;
+            flex-shrink: 0;
             box-shadow: 0 5px 15px #2E353255;
         }
 
@@ -256,23 +266,55 @@
 
         #summary-button {
             height: 45px;
-            width: 8rem;
+            /* width: 8rem; */
+            font-weight: 700;
             margin: 10px;
             border-radius: 4px;
             display: flex;
         }
 
+        #summary-container {
+            overflow: hidden;
+            height: 100vh;
+            transition: width 0.2s;
+        }
+
+        #summary-container.open {
+            width: 50vw;
+        }
+
+        #summary-container.closed {
+            width: 0;
+        }
+
         #summary-interface {
             height: 100%;
+            width: 35vw;
             margin: 0;
             padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             background-color: #2E3532;
             color: #FFFCF2;
             box-shadow: 0 5px 15px #2E353255;
         }
 
-        .summary-interface-collapsed {
-            width: 0;
+        #summary-listing {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.2rem;
+            list-style-type: none;
+        }
+
+        #summary-listing li {
+            margin: 4px;
+        }
+
+        .infinite-spin {
+            margin-left: 10px;
+            -webkit-animation: rotating 2s linear infinite;    
         }
 
         </style>

@@ -46,6 +46,8 @@ export default class ChatInterface extends Component {
 
             for (let i = 0; i < chatMessages.length; i++) {
                 let message = chatMessages[i];
+                let scaledPrediction = 0.6 * this.props.predictions[i] + 0.2;
+                let background = this.props.predictions.length === 0 ? {} : {backgroundColor: 'rgba(5, 168, 170, ' + scaledPrediction + ')'};
 
                 if (message.author !== lastAuthor) {
                     // New author, needs to have name printed
@@ -59,8 +61,8 @@ export default class ChatInterface extends Component {
 
                 messageLog.push(
                     (message.author === this.props.author) ?
-                    (<li className="self message" key={message.key}>{message.message}</li>) :
-                    (<li className="other message" key={message.key}>{message.message}</li>)
+                    (<li className="self message" key={message.key} style={background}>{message.message}</li>) :
+                    (<li className="other message" key={message.key} style={background}>{message.message}</li>)
                 )
             }
         }

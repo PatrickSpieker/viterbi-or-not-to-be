@@ -4,6 +4,7 @@
         <title>Viterbi Or Not To Be</title>
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <style>
 
         @-webkit-keyframes rotating {
@@ -15,38 +16,6 @@
             }
         }
 
-        @media (min-aspect-ratio: 5/8) {
-            html {
-                font-size: 100%;
-            }
-            #room-selector {
-                width: 450px;
-            }
-            #chat-container {
-                width: 65vw;
-            }
-            #summary-container.open {
-                width: 50vw;
-            }
-        }
-
-        @media (max-aspect-ratio: 5/8) {
-            html {
-                font-size: 160%;
-            }
-            #room-selector {
-                width: 90vw;
-            }
-            #chat-container {
-                width: 100vw;
-            }
-            #summary-container.open {
-                width: 100vw;
-                position: absolute;
-                top: 4rem;
-                left: 0;
-            }
-        }
 
         html, body {
             margin: 0;
@@ -61,9 +30,11 @@
         #room-selector-container {
             width: 100vw;
             height: 100vh;
+            min-height: 570px;
             margin: 0;
             padding: 0;
-            overflow: hidden;
+            overflow-x: hidden;
+            overflow-y: auto;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -107,7 +78,7 @@
 
         #room-selector-username {
             background-color: #FFFCF2;
-            padding: 40px;
+            padding: 3rem 4rem;
         }
 
         #room-selector-username .form-label {
@@ -122,7 +93,7 @@
 
         #room-selector-room {
             background-color: #2E3532;
-            padding: 40px;
+            padding: 3rem 4rem;
         }
 
         #room-selector-room .form-label {
@@ -153,7 +124,7 @@
         }
 
         .room-selector-section {
-            margin-top: 40px;
+            margin-top: 2.5rem;
         }
 
         #room-selector-options {
@@ -258,6 +229,7 @@
             flex-grow: 1;
             margin: 0;
             margin-top: 0.5rem;
+            padding-bottom: 5rem;
             overflow-x: hidden;
             overflow-y: scroll;
         }
@@ -277,21 +249,24 @@
             margin-top: 20px;
             font-family: 'Roboto', sans-serif;
             font-weight: 700;
-            font-size: 1rem;
+            font-size: 1.2rem;
             line-height: 1.2rem;
             list-style: none;
         }
 
         #chat-form {
+            position: fixed;
+            bottom: 0;
+            background-color: #FFFCF2;
+            height: 5rem;
             box-sizing: border-box;
-            width: 100%;
             padding: 20px;
         }
 
         #chat-input {
             border: solid 2px #2E3532;
             color: #2E3532;
-            font-size: 0.9rem;
+            font-size: 1.3rem;
             padding-left: 10px;
         }
 
@@ -308,7 +283,6 @@
             font-weight: 500;
             font-size: 1rem;
             margin: 0.75rem;
-            padding: 0.5rem;
             border-radius: 4px;
             display: flex;
         }
@@ -353,6 +327,49 @@
             -webkit-animation: rotating 2s linear infinite;    
         }
 
+        /* Desktop */
+        @media all and (min-width: 481px) {
+            html {
+                font-size: 100%;
+            }
+            #room-selector {
+                width: 450px;
+            }
+            #chat-container {
+                width: 65vw;
+            }
+            #chat-form {
+                width: 65vw;
+            }
+            #summary-container.open {
+                width: 50vw;
+            }
+        }
+
+        /* Phone */
+        @media all and (max-width: 480px) {
+            html {
+                font-size: 70%;
+            }
+            #room-selector {
+                width: 90vw;
+            }
+            #chat-container {
+                width: 100vw;
+            }
+            #chat-form {
+                width: 100vw;
+            }
+            #summary-container.open {
+                width: 100vw;
+                position: absolute;
+                top: 4rem;
+                left: 0;
+            }
+            #summary-container.open #summary-interface {
+                width: 100vw;
+            }
+        }
         </style>
     </head>
     <body>

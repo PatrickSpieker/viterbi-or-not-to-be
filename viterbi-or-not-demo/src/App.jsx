@@ -25,8 +25,8 @@ export default class App extends Component {
         });
 
         this.state = {
-            username: 'snup',
-            room: '2962',
+            username: null,
+            room: null,
             db: db
         }
 

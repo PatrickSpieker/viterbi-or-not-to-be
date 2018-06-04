@@ -40,12 +40,14 @@ export default class MainInterface extends Component {
     }
 
     sendMessage(messageText) {
-        let message = {
-            author: this.props.username,
-            timestamp: Date.now(),
-            message: messageText
-        };
-        this.props.db.collection(this.props.room).add(message);
+        if (messageText.trim() !== '') {
+            let message = {
+                author: this.props.username,
+                timestamp: Date.now(),
+                message: messageText
+            };
+            this.props.db.collection(this.props.room).add(message);
+        }
     }
 
     closeSummary() {
@@ -65,12 +67,15 @@ export default class MainInterface extends Component {
         });
 
         this.state.chatMessages.forEach((message) => {
-            messageText.push(message.message);
-            authors.push(message.author);
+            if (message.message.trim() !== '') {
+                messageText.push(message.message);
+                authors.push(message.author);
+            }
         });
 
         // Send fetch request
-        fetch('http://viterb.me/api', {
+        // fetch('http://viterb.me/api', {
+        fetch('http://127.0.0.1:5000/api', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -87,6 +92,7 @@ export default class MainInterface extends Component {
 
             console.log(responseJson);
 
+            let formattedLines = responseJson.formatted;
             let predictions = responseJson.predictions;
             let sortedPredictions = responseJson.predictions.slice(0);
 
@@ -101,7 +107,7 @@ export default class MainInterface extends Component {
             let summaryLines = [];
             for (let i = 0; i < predictions.length; i++) {
                 if (predictions[i] >= thresholdPrediction) {
-                    summaryLines.push(messageText[i]);
+                    summaryLines.push(formattedLines[i]);
                 }
             }
 

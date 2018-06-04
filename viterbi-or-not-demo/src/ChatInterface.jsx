@@ -67,8 +67,10 @@ export default class ChatInterface extends Component {
             }
         }
 
+        let interfaceClass = this.props.predictions.length === 0 ? '' : 'highlighted';
+
         return (
-            <div id="chat-interface">
+            <div id="chat-interface" className={interfaceClass}>
                 <ul id="chat-listing">
                     {messageLog}
                 </ul>

@@ -18,16 +18,18 @@ from rake_nltk import Rake
 class ChatFeatureVectorizer(FeatureVectorizer):
 
     def title_similarity(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence, thread_sentence_index):
-        r = Rake()
-        chunks = [' '.join(x) for x in thread]
-        threads = [' '.join(x) for x in chunks]
-        keywords = r.extract_keywords_from_text(threads[thread_index])
-        ranked_keywords = r.get_ranked_phrases()
-        title = ''
-        for i in range(0, min(5, len(ranked_keywords))):
-            title += ranked_keywords[i] + ' '
+        return 0
+        # r = Rake()
+        # chunks = [' '.join(x) for x in thread]
+        # threads = [' '.join(x) for x in chunks]
+        # keywords = r.extract_keywords_from_text(threads[thread_index])
+        # ranked_keywords = r.get_ranked_phrases()
+        # title = ''
+        # for i in range(0, min(5, len(ranked_keywords))):
+        #     title += ranked_keywords[i] + ' '
         
-        return sentence_bleu(title, sentence)
+        # return sentence_bleu(title, sentence)
 
     def topic_position(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence, thread_sentence_index):
-        return self.TOPIC_DIVISIONS[thread_index][thread_sentence_index]
+        return 0
+        # return self.TOPIC_DIVISIONS[thread_index][thread_sentence_index]

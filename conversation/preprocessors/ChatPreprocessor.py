@@ -40,7 +40,8 @@ class ChatPreprocessor:
                     # be dropped.
                     sentence_match = username.match(sentence)
 
-                    if sentence_match is not None:
+                    # Only process sentences with usernames and with message bodies
+                    if sentence_match is not None and sentence_match.group(2).strip() != '':
                         if current_username is None:
                             # If this is the first sentence in a chunk, store
                             # the username as the first username

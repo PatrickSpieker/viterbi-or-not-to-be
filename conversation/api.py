@@ -9,6 +9,8 @@ from feature_vectorizers.EmailFeatureVectorizer import \
 from feature_vectorizers.ChatFeatureVectorizer import \
     ChatFeatureVectorizer
 
+from abstractive import generate_formatted, flatten
+
 import pickle
 import ast
 import json
@@ -63,8 +65,13 @@ def api():
 
     predictions_list = list(predictions.tolist())
 
+    all_sentences = flatten(flatten(preprocessed['data']))
+    all_authors = flatten(flatten(preprocessed['authors']))
+    formatted = generate_formatted(all_sentences, all_authors)
+
     response_data = {
-        'predictions': predictions_list
+        'predictions': predictions_list,
+        'formatted': formatted
     }
 
     return json.dumps(response_data)

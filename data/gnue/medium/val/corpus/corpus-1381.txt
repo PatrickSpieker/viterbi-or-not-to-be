@@ -1,0 +1,1405 @@
+siesel (jan@dial-213-168-95-124.netcologne.de) joined #gnuenterprise.
+<ajmitch> hi siesel
+<siesel> hi ajmitch, hi all 
+<chillywilly> hey jan
+<siesel> hi chillywilly
+<Remosi> the FSF wanted a contact manager program written in GnuE didn't they?
+<ajmitch> yep
+<ajmitch> bbl :)
+<Remosi> did anything come of that?
+<chillywilly> dunno, that's da masta's domain
+<Remosi> are there any production quality apps for GNUe yet?
+<chillywilly> nope
+<chillywilly> not yet
+<chillywilly> ppl have various 2-tier systems in place
+<chillywilly> like jcater and jamest do, iirc
+<chillywilly> no real apps/packages though
+<chillywilly> you can use our nice accounting system or anything like that
+<chillywilly> er, can't
+<chillywilly> ;)
+<chillywilly> no place to enter invoices yet ;)
+<Remosi> heh
+<Remosi> trying to find a list of things of why people would want a Linux server in their small business :)
+<chillywilly> freedom ;)
+<chillywilly> their systems don't drop off like flies
+<chillywilly> their admins are happier ;)
+<Remosi> heh
+<Remosi> yeah, I know those ones
+<Remosi> just trying to think of practical apps
+<siesel> yes, exactly.
+Action: chillywilly jst went through hell last night fixing mom's winblows for her
+<chillywilly> admining winders is like kicking yourself in the nuts
+<siesel> there is nothing to administrate, you just can install it and reinstall it and reinstall it :(
+<chillywilly> yep
+<chillywilly> problem it is having
+<chillywilly> it hangs on power save mode
+<chillywilly> it wa set t just turn off the monitor
+<chillywilly> it still doesn't wake up
+<chillywilly> so I turned it off
+<chillywilly> bt that's not what took me all night
+<chillywilly> I took the whole thing apart and cleaned it good
+<siesel> Remosi: there is an version of a kind of contact manager in forms/samples/track
+<chillywilly> plled everything out of the case except the mobo
+<chillywilly> man it was dirty
+<siesel> Yea, one reason to use water cooling, is to have a CLEAN case :)
+<chillywilly> lol
+<chillywilly> it helps when you overclock it ;)
+Action: chillywilly just used a vacuum with a hose attachment
+<siesel> btw. do you know how to check which package was updated in debian/unstable between today and yesterday?
+<chillywilly> apt-get update; apt-get [dist-]upgrade ;)
+<chillywilly> with th one option turned on
+<chillywilly> or your apt.conf configured properly
+<chillywilly> ;)
+<siesel> I mean without using apt or dselect 
+<chillywilly> I know
+<chillywilly> I was being a smart ass
+<chillywilly> I dunno I don't worry about it
+<chillywilly> I just ask the apt bot and see if there's anything broke
+<chillywilly>  /j #debian
+<chillywilly>  /msg apt news #debian
+<chillywilly> news read 1
+<chillywilly> news read 2
+<chillywilly> news read ...
+<chillywilly> if all is well I upgrade
+<siesel> I just would like to know if libwxgtk2.2-python is updated soon. 
+<chillywilly> ah yea
+<chillywilly> well lemme see
+<chillywilly> I jst upgraded a while ago
+<chillywilly> btw, incoming.debian.org has stff waiting to go into the archive
+<chillywilly> nope
+<chillywilly> Sorry, but the following packages have unmet dependencies:
+<chillywilly>   libwxgtk2.2-python: Depends: python (< 2.2) but 2.2.1-10 is to be installed
+<chillywilly> E: Sorry, broken packages
+<chillywilly> this blows
+<chillywilly> no forms
+<chillywilly> :(
+<siesel> yes, since monday, I have to live with dpkg -i --force-depends libwxgtk2.2-python.deb :(
+<chillywilly> does it work?
+<chillywilly> if so thenI wouldn't sweat it
+<chillywilly> it sucks but you can live with it
+<chillywilly> siesel: wasn't it you that mention PLR and gave me a link to an article about it?
+<chillywilly> mentioned PLY that is
+<chillywilly> ttp://www.linuxgazette.com/issue79/divakaran.html
+<chillywilly> that one
+<chillywilly> er, http://www.linuxgazette.com/issue79/divakaran.html
+<siesel> yep, 
+<chillywilly> scky thing is yu have to read the input in as a big string to pass in, it won't take streamable objects like sockets or files
+<chillywilly> it doesn't do LALR either
+<chillywilly> but it seems easier to use
+<chillywilly> LALR(1) that is
+<chillywilly> does SLR parsing
+<chillywilly> crud, I need to go to bed
+<chillywilly> night siesel
+<chillywilly> nigt all
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: "woooooosh!"
+<siesel>         l9~'?=ol      ~
+Kniht (~Kniht@dlk-129.idcnet.com) joined #gnuenterprise.
+<siesel> \quit later
+siesel (jan@dial-213-168-95-124.netcologne.de) left irc: "later"
+terr (~terr@dsl-cap-208-38-10-7-cgy.nucleus.com) joined #gnuenterprise.
+<terr> I hope there are ppl here - I'd like to ask a few questions.
+<terr> Is the the developers group or the users group?
+<terr> Anyone?
+<Sacha_away> hi terr
+<Sacha_away> some are developpers here. (me not :)
+<terr> Still here.
+<terr> I was reading up on vide.  Oh - so much to learn.
+<terr> Sacha - I read the docs on GNUe forms.  I'm familiar with Oracle SQL*FORMS and PLSQL.  When I read the GNUe forms docs it looks as if some things are similar.  
+terrell (~terr@dsl-cap-208-38-10-7-cgy.nucleus.com) joined #gnuenterprise.
+terr (~terr@dsl-cap-208-38-10-7-cgy.nucleus.com) left irc: Read error: 104 (Connection reset by peer)
+<terrell> damn - system dropped
+<terrell> Sacha - still here?
+<ra3vat> terrell: hi
+<Sacha_away> terrell yes.
+<Sacha_away> terrell: i install gnue (including common, forms and designer) two nights ago. give it a try, maybe
+<terrell> did you get any of the questions I was trying to ask?  My system disconnected
+<ra3vat> terrell: main forms developers jamest and jcater also users (former?) of Oracle Forms
+<terrell> sacha - I jsut want to ask how one specific thing is handled - if it is nadles that is.
+<Sacha_away> the only question i got: if oracles sql*forms and plsql is similar to gnue forms. i dont know oracles form.
+<Sacha_away> terrell: ra3vat is your man :)
+Nick change: Sacha_away -> SachaS_dinner
+<ra3vat> oh
+terrell (~terr@dsl-cap-208-38-10-7-cgy.nucleus.com) left irc: Read error: 104 (Connection reset by peer)
+terr (~terr@dsl-cap-208-38-10-7-cgy.nucleus.com) joined #gnuenterprise.
+<terr> arrgh
+<terr> In block2 I think the variables will correspond to a single sepcific record at any point in time. right?
+<terr> If so - then is there some way that trigger code can fetch a value  from the "previous" reocrd for block2 or the "next" record?
+<terr> OR can more than one record be referenced by block2 and if so how are the block.variables mapped into the database records?
+<ra3vat> what is block2?
+<ra3vat> what are you trying to do?
+<terr> just a block that hold variables corresponding to a table in the databse where multiple entries exist.
+<terr> well say I had line items in an invoice with a line# that is stored - not the real example but easy to understand.
+<terr> when block2 is on say line item#4 I want to know if the values in lines other than 4 can be referenced
+<terr> In this case block1 woudl hold the header infor for the invoice incl an invoice# while block2 corresponds to all the line items.  One can have several line items on any given invoice of couirse
+<ra3vat> trying to fing you something useful
+<terr> ra - hey thanks.  
+<terr> I coun't see any reference in the syntax in the docs that would lead me to beleive that a variable in block2 can refer to other than a single record from table2.
+<terr> Something whipped by
+Kniht (~Kniht@dlk-129.idcnet.com) left #gnuenterprise.
+terr (~terr@dsl-cap-208-38-10-7-cgy.nucleus.com) left irc: Remote closed the connection
+lupo (~lupo@B93a8.pppool.de) joined #gnuenterprise.
+SachaS_dinner (~Sacha@dialup-196-223.wasp.net.au) left irc: Read error: 60 (Operation timed out)
+jbailey (~jbailey@CPE014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+<lupo> hi jbailey
+<jbailey> hi lupo
+SachaS_dinner (~Sacha@dialup-196-47.wasp.net.au) joined #gnuenterprise.
+Nick change: SachaS_dinner -> SachaS
+lupo (~lupo@B93a8.pppool.de) left irc: "using sirc version 2.211+KSIRC/1.1"
+jbailey (~jbailey@CPE014260028338.cpe.net.cable.rogers.com) left #gnuenterprise ("Client Exiting").
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+Nick change: SachaS -> Sacha_away
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: "Client Exiting"
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+siesel (jan@dial-213-168-92-160.netcologne.de) joined #gnuenterprise.
+<siesel> hi all :)
+<psu> hi siesel
+<psu> New KC is up
+<psu> http://kt.zork.net/GNUe/gnue20020907_45.html
+<psu> Man, the formatting on the bullet points sucks bag
+<psu> (no idea what that means, but it sounds good)
+<siesel> cool. 
+heikoV (~heiko@D5763F82.kabel.telenet.be) joined #gnuenterprise.
+<siesel> Hi heikoV
+<heikoV> hello
+<heikoV> it was a long time
+<heikoV> how is the weather in germany?
+<siesel> quite pleasant, ~ 27°C, sun, ...
+<heikoV> what are the main focusses of gnue right now?
+<siesel> hmmm, at the moment the main working areas seems to be gnue-designer, the gtk2 uidriver for forms, reports, appserver ....
+<siesel> quite difficult to tell, everyone has his favorites :)
+<siesel> \quit
+<heikoV> ???
+Action: siesel hates backslashes
+siesel (jan@dial-213-168-92-160.netcologne.de) left irc: "Real programmers code it into the client"
+<psu> website now has the new, lite blue, colour scheme
+<psu> as per the e-mail list discussion
+Nick change: jcater -> jcAway
+<jcAway> psu: excellent
+reinhard (~rm@M704P000.adsl.highway.telekom.at) joined #gnuenterprise.
+<heikoV> \quit
+heikoV (~heiko@D5763F82.kabel.telenet.be) left irc: "Client exited"
+heikoV (~heiko@D5763F82.kabel.telenet.be) joined #gnuenterprise.
+jcAway (~jcater@cpe-024-165-223-104.midsouth.rr.com) left irc: Remote closed the connection
+jcater (~jcater@cpe-024-165-223-104.midsouth.rr.com) joined #gnuenterprise.
+heikoV (~heiko@D5763F82.kabel.telenet.be) left #gnuenterprise.
+jcater_ (~jcater@cpe-024-165-223-104.midsouth.rr.com) joined #gnuenterprise.
+jcater_ (~jcater@cpe-024-165-223-104.midsouth.rr.com) left irc: Client Quit
+lupo (~lupo@B974c.pppool.de) joined #gnuenterprise.
+lupo (~lupo@B974c.pppool.de) left irc: Client Quit
+jbailey (~jbailey@CPE014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+<psu>  /leave #gnuenterprise
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise.
+jbailey (~jbailey@CPE014260028338.cpe.net.cable.rogers.com) left #gnuenterprise ("Client Exiting").
+Grantbow (~grantbow@12-233-20-180.client.attbi.com) got netsplit.
+Grantbow (~grantbow@12-233-20-180.client.attbi.com) returned to #gnuenterprise.
+Bobacus (~rob@pc2-cmbg2-5-cust191.cam.cable.ntl.com) left irc: "[x]chat"
+Grantbow (~grantbow@12-233-20-180.client.attbi.com) got netsplit.
+Grantbow (~grantbow@12-233-20-180.client.attbi.com) returned to #gnuenterprise.
+reinhard (~rm@M704P000.adsl.highway.telekom.at) left irc: "Reality is for people that lack imagination"
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+<chillywilly> hmmm, seems GNUe KC #45 is 404
+perlhead (~fheinz@200.43.144.248) joined #gnuenterprise.
+perlhead (~fheinz@200.43.144.248) left irc: Client Quit
+Maniac (~User@h24-82-132-209.wp.shawcable.net) left irc: "Client Exiting"
+Nick change: Sacha_away -> SachaS
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) joined #gnuenterprise.
+<ajmitch> hey fixe
+SachaS (~Sacha@dialup-196-47.wasp.net.au) left #gnuenterprise ("Client Exiting").
+SachaS (~Sacha@dialup-196-118.wasp.net.au) joined #gnuenterprise.
+<Mr_You> hi
+<Mr_You> samurai jack is a cool cartoon heh, powerpuff girls aren't  so bad either heh
+<chillywilly> hehe
+<Mr_You> just watched the movie and roommate bought some powerpuff girl episodes..
+<chillywilly> HEH
+Action: chillywilly sometimes wonders if cartoons are really more for adults ;)
+<Mr_You> well adults make'em ;-)
+<Mr_You> S.J. kinda blew me away tho..
+<chillywilly> ja
+<chillywilly> S.J. rawks
+<chillywilly> the guy from saturday night live does his voice
+<Mr_You> there's a lot of tradition in there..
+<Mr_You> yeah
+<chillywilly> the skinny black guy
+<Mr_You> its like the director is up on his samurai action flicks
+<Mr_You> long pauses for emphases, dramatic action..
+<Mr_You> great music
+<Mr_You> good message
+<Mr_You> all of it
+<Mr_You> best action cartoon for kids I've seen in a long time
+<chillywilly> yea
+<Mr_You> you seen the episode with the irish guy and the hillbillies?
+<chillywilly> well I *have* t sleep
+<Mr_You> its the bonus episode on the DVD
+<chillywilly> night night
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: "Free Your Enterprise! - http://www.gnuenterprise.org"
+SachaS (~Sacha@dialup-196-118.wasp.net.au) left #gnuenterprise ("Client Exiting").
+jcater (~jcater@cpe-024-165-223-104.midsouth.rr.com) left irc: 
+Nick change: dneighbo -> derek
+#gnuenterprise: mode change '+o derek' by ChanServ!ChanServ@services.
+<ajmitch> hey derek
+<derek> hi ajmitch
+--- Mon Sep  9 2002
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+<ajmitch> hi psu
+<psu> hi aj
+sfb- (mattr@chew.exelus.net) got netsplit.
+dtm ([3YtE0tQl8@ip55.promontory.sfo.interquest.net) got netsplit.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) got netsplit.
+nickr (~panphage@e-64-35-146-236.empnet.net) got netsplit.
+Mr_You (~car@gso88-217-049.triad.rr.com) got netsplit.
+pattieja (~pattieja@www.pcxperience.com) got netsplit.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) returned to #gnuenterprise.
+Mr_You (~car@gso88-217-049.triad.rr.com) returned to #gnuenterprise.
+nickr (~panphage@e-64-35-146-236.empnet.net) returned to #gnuenterprise.
+sfb- (mattr@chew.exelus.net) returned to #gnuenterprise.
+dtm ([3YtE0tQl8@ip55.promontory.sfo.interquest.net) returned to #gnuenterprise.
+pattieja (~pattieja@www.pcxperience.com) returned to #gnuenterprise.
+#gnuenterprise: mode change '+o derek' by card.freenode.net
+<derek> hi
+<derek> dang netsplit
+Action: psu likes netsplits 
+<psu> well, sorta
+<psu> I look at a day's log and see it says 95k & get depressed 
+<ajmitch> but 90k is from netsplits?
+<psu> & cheer up
+<psu> ;)
+Action: psu got a flyer for LinuxExpoUK2002 
+<psu> will see if I can go
+<psu> Far too late to get a GNUe stall
+<psu> & I'm not sure they have a ".org pavillion"-type area anyway
+<psu> but could still be interesting
+<ajmitch> hmm
+reinhard (~rm@M704P000.adsl.highway.telekom.at) joined #gnuenterprise.
+<psu> "The UK's only location for Enterprise Linux computing"
+<ajmitch> hi reinhard
+<reinhard> good morning
+<reinhard> offtopic question
+<reinhard> can anybody explain in a few words the difference between mono and dotgnu?
+<ajmitch> i can try
+<ajmitch> mono is looking for mainly .NET framework compatibility, with the associated tools
+<ajmitch> DotGNU looks to include that stuff, but to have a more genereic webservices platform with other tools, as well as supplying some webservices
+<psu> so sorta dotgnu is like "GNU's not .NET", whereas mono is more like lindows?
+<ajmitch> the .NET-compatible stuff is getting the main focus in DotGNU at the moment, but there is work underway that's not related to that stuff, like authentication & VRS
+<ajmitch> psu: yeah
+<ajmitch> DotGNU will be using the higher-level mono stuff where appropriate, no point redoing the wheel for everything :)
+<ajmitch> hmm, that's the second time in 1/2 an hour that i've answered the mono vs dotgnu question ;)
+<psu> ajmitch: time for an X-chat macro? ;)
+<ajmitch> hehe
+<reinhard> ajmitch: thanks
+<reinhard> ajmitch: seriously i would have expected an answer to this question somewhere on dotgnu.org but didn't find it
+<ajmitch> heh, i'll see if i can get someting added
+<derek> reinhard: that would break FSF norm of making things difficult
+<derek> you make things too clear and people might try to help and that becomes more work than its worth ;)
+<derek> much better to make barrier to entry high enough that only the most elite participate ;)
+<ajmitch> like GNUe? ;)
+<ajmitch> i think that the GNUe website is too clear on things
+<psu> I can rot13 the whole site if that would help ;-)
+<ajmitch> double-rot13
+<psu> double rot13 = clear text?
+<ajmitch> gotta be extra careful!
+<ajmitch> yeah ;)
+<derek> we have a website?
+<ajmitch> hmm why is bayonne under tools yet dcl under packages?
+<ajmitch> derek: yeah, the one with the ugly colours :)
+<derek> thats outta control, next thing you know some nutty englisman will go and read these logs and post summaries to the internet
+<ajmitch> don't want to have that happening
+<dtm> derek: what's up
+<derek> picking my nose
+<ajmitch> hi dtm
+<derek> http://www.gnuenterprise.org/tools/tools.php
+<ajmitch> yes?
+<derek> ajmitch: thats where bayonne is
+<derek> werent you asking?
+Action: derek is horribly delayed in response :)
+<ajmitch> derek: no
+<ajmitch> i was asking why DCL was not listed on that page, yet bayonne is
+<psu> 'cause DCL is a package, not a tool 
+<ajmitch> how so? :)
+<psu> Fine shades of distinction, I know
+<ajmitch> grr, something is broken here
+<ajmitch> DB000:   File "/usr/lib/python2.2/site-packages/MySQLdb/connections.py", line 115, in __init__
+<ajmitch> DB000:     self._make_connection(args, kwargs2)
+<ajmitch> DB000:   File "/usr/lib/python2.2/site-packages/MySQLdb/connections.py", line 41, in _make_connection
+<ajmitch> DB000:     apply(super(ConnectionBase, self).__init__, args, kwargs)
+<ajmitch> DB000: TypeError: connect() argument 2 must be string, not None
+<ajmitch> last person to touch connection related stuff was siesel
+<derek> lk;asfdj;lkasjfd;klasjfkl;asdjf;klasjdf
+<derek> jas;kldfjsa;lkj;klasdfj
+<derek> aljd;kfjas;lkdfj
+<derek> i hate mysql driver
+<derek> bastards can never decide how they want to do thigns :)
+<psu> The reason I list DCL as a package is that, although at the moment, it is in effect a package that includes its own tools
+<ajmitch> i don't think it's the driver's fault
+Action: derek doesnt have mysql anymore to test
+<derek> ajmitch: in this case its not
+<derek> psu: im with you
+<derek> dcl is a package
+<psu> eventually it should become a "normal" package using the main GNUe tools
+<psu> w/ the PHP front end as an option
+<derek> i.e. it is an producitity application w/o doing anything
+<derek> bayonne is a tool
+<derek> installing bayonne doesnt do anything useful for you
+<derek> until you write applications with it
+<ajmitch> ok
+<derek> much like forms and such
+<ajmitch> ok, psycopg driver just worked with dcl forms
+<ajmitch> good thing that gtk2 driver was committed, i broke my wxpython installation
+<derek> rofl
+<derek> does it look nice the gtk2 one?
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise ("work time...").
+<derek> and what did you ahve to do?
+<derek> i.e. im interested in trying gtk2 but nervous
+<derek> can i run gtk2 and gtk at same time
+<ajmitch> well i've got all gnome 2 stuff compiled with garnome, installed into ~/garnome
+<ajmitch> yes, it's designed to work together
+<ajmitch> the sid wxpython package only compiled for python 2.1, 2.2 is default now
+<derek> i dont compile
+<derek> i quit a while back
+<derek> 12 step program and all 
+<derek> it really got me cured
+<ajmitch> hehe
+Action: ajmitch will bbiab
+<derek> 1. We admitted we were powerless over compiling - that our computer systems had become unmanageable.
+<derek> 2. Came to believe that a packaging system greater than compiling could restore us to sanity.
+<derek> 3. Made a decision to turn our makefiles and our compilers over to the care of Debian as we understood it.
+<derek> 4. Made a searching and fearless inventory of apt-cache.
+<derek> 5. Admitted to #gnuenterprise, to ourselves the exact nature of our compiling.
+<derek> 6. Were entirely ready to have Debian remove all these source on our computer systems.
+<derek> 7. Humbly asked Debian to remove our makefiles.
+<derek> 8. Made a list of all applications we had compiled, and became willing to use packages for them all.
+<derek> 9. Made direct packages for such applications wherever packages didnt exit, except when to do so would produce non free packages.
+<derek> 10. Continued to use packages and when we didnt promptly admitted it.
+<derek> 11. Sought through apt-get and dpkg to improve our computer systems with Debian as we understood it, asking only for knowledge of Debian's package for us and the power to install them.
+<derek> 12. Having had a philosophical awakening as the result of these steps, we tried to carry this message to compiler freaks and to practice these principles in all our affairs.
+btami (~tamas@ip102-205.ktv.tiszanet.hu) joined #gnuenterprise.
+<derek> and that ajmitch my friend is how you kick the compiling habit
+<btami> hi all
+<derek> hi btami
+<btami> are you never sleep :)
+<derek> only when im not awake
+Action: derek is away: dont wake the slumbering giant, he might think you an oversized donut and swallow you whole....
+lupo_ (~lupo@pD950540A.dip.t-dialin.net) joined #gnuenterprise.
+<lupo_> hi
+lupo_ (~lupo@pD950540A.dip.t-dialin.net) left irc: "using sirc version 2.211+KSIRC/1.1"
+<dtm> does anyone here have a template for a business invoice?  like the one in Excel?  i can't find one for openoffice so i want to convert/recreate one.
+siesel (jan@xunzi.sinologie.uni-bonn.de) joined #gnuenterprise.
+reinhard (~rm@M704P000.adsl.highway.telekom.at) left irc: Read error: 104 (Connection reset by peer)
+<siesel> morning :)
+ariel_ (~ariel@ppp-217-133-245-76.dialup.tiscali.it) joined #gnuenterprise.
+<ariel_> siesel: hi Jan
+reinhard (~rm@M704P000.adsl.highway.telekom.at) joined #gnuenterprise.
+<ajmitch> hi 
+<dtm> alert -- I found some excellent business templates for OpenOffice.  http://documentation.openoffice.org/Samples_Templates/User/template/index.html
+Scape29 (~Scape29@10.Red-80-33-22.pooles.rima-tde.net) joined #gnuenterprise.
+<Scape29> I'm looking for this project about "Python feature freeze", someone talked about on the list some month ago
+<Scape29> I don't find it....
+<ajmitch> hmm?
+<ajmitch> references?
+<Scape29> uhm, scanning the mail-list archive :-)
+siesel (jan@xunzi.sinologie.uni-bonn.de) left irc: "later"
+JohannesV (~jve@M691P023.adsl.highway.telekom.at) joined #gnuenterprise.
+SachaS (~Sacha@dialup-196-118.wasp.net.au) joined #gnuenterprise.
+btami (~tamas@ip102-205.ktv.tiszanet.hu) left irc: "Client Exiting"
+SachaS (~Sacha@dialup-196-118.wasp.net.au) left #gnuenterprise ("Client Exiting").
+sfb- (mattr@chew.exelus.net) got netsplit.
+dtm ([3YtE0tQl8@ip55.promontory.sfo.interquest.net) got netsplit.
+JohannesV (~jve@M691P023.adsl.highway.telekom.at) got netsplit.
+Mr_You (~car@gso88-217-049.triad.rr.com) got netsplit.
+pattieja (~pattieja@www.pcxperience.com) got netsplit.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) got netsplit.
+nickr (~panphage@e-64-35-146-236.empnet.net) got netsplit.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) returned to #gnuenterprise.
+SachaS (~Sacha@dialup-196-120.wasp.net.au) joined #gnuenterprise.
+JohannesV (~jve@M691P023.adsl.highway.telekom.at) returned to #gnuenterprise.
+Mr_You (~car@gso88-217-049.triad.rr.com) returned to #gnuenterprise.
+nickr (~panphage@e-64-35-146-236.empnet.net) returned to #gnuenterprise.
+sfb- (mattr@chew.exelus.net) returned to #gnuenterprise.
+dtm ([3YtE0tQl8@ip55.promontory.sfo.interquest.net) returned to #gnuenterprise.
+pattieja (~pattieja@www.pcxperience.com) returned to #gnuenterprise.
+#gnuenterprise: mode change '+o derek' by card.freenode.net
+SachaS_ (~Sacha@dialup-196-158.wasp.net.au) joined #gnuenterprise.
+SachaS (~Sacha@dialup-196-120.wasp.net.au) left irc: Read error: 60 (Operation timed out)
+Nick change: SachaS_ -> SachaS
+<SachaS> yep ZipCode example in forms working with postgresql :)
+<ajmitch> cool
+<SachaS> hi ajmitch
+<SachaS> ajmitch: triggers you have to write in code?
+<ajmitch> yes, i think so
+<ajmitch> python is easy :)
+<SachaS> do the triggers have its own syntax?
+<SachaS> their own syntax.
+<ajmitch> i don't know too much about that, perhaps look at some of the sample forms
+<SachaS> yep.
+<SachaS> ajmitch: i have a question about cvs: - i download the source from cvs (cvs update) and install it each time. how does the other way work, with the cvs scripts? 
+<ajmitch> what cvs scripts?
+<SachaS> i "cvs updated" a couple day ago and run the setup scripts in common, forms and designer
+<ajmitch> ah
+<ajmitch> ./setup-cvs.py is easier
+<SachaS> there is another way siesel told me.
+<ajmitch> much easier, in fact :)
+<SachaS> does setup-cvs.py download the source code as well?
+<ajmitch> no
+<SachaS> no?
+<ajmitch> cvs update grabs the source
+<ajmitch> you've got to have source for it to install
+<SachaS> ok. what does setup-cvs?
+<ajmitch> setup-cvs.py makes scripts that let you use the cvs copy of gnue
+<SachaS> o
+<ajmitch> and sets up the conf dir
+<SachaS> ok. the cvs copy of gnue.
+<SachaS> what is the cvs copy of gnue?
+Action: ajmitch shoots SachaS
+<SachaS> please donts shoot.
+<ajmitch> the cvs copy is the source that you're playing with :)
+<ajmitch> the directory in which you do cvs update
+<SachaS> ok. so i want to get the latest source code. i do a cvs update then i go into common, forms and designer and do a setup in each. thats a way to get up-to-date. right?
+<ajmitch> it's an ugly way of doing it
+<SachaS> but a way, right?
+<ajmitch> i do cvs update, then just run setup-cvs.py
+<ajmitch> yes, it is one way
+<SachaS> ok.
+sfb- (mattr@chew.exelus.net) got netsplit.
+dtm ([3YtE0tQl8@ip55.promontory.sfo.interquest.net) got netsplit.
+Mr_You (~car@gso88-217-049.triad.rr.com) got netsplit.
+JohannesV (~jve@M691P023.adsl.highway.telekom.at) got netsplit.
+pattieja (~pattieja@www.pcxperience.com) got netsplit.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) got netsplit.
+nickr (~panphage@e-64-35-146-236.empnet.net) got netsplit.
+<ajmitch> setup-cvs.py creates programs with different names like gfcvs for gnue-forms
+<SachaS> ah ok.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) returned to #gnuenterprise.
+JohannesV (~jve@M691P023.adsl.highway.telekom.at) returned to #gnuenterprise.
+Mr_You (~car@gso88-217-049.triad.rr.com) returned to #gnuenterprise.
+nickr (~panphage@e-64-35-146-236.empnet.net) returned to #gnuenterprise.
+sfb- (mattr@chew.exelus.net) returned to #gnuenterprise.
+dtm ([3YtE0tQl8@ip55.promontory.sfo.interquest.net) returned to #gnuenterprise.
+pattieja (~pattieja@www.pcxperience.com) returned to #gnuenterprise.
+#gnuenterprise: mode change '+o derek' by card.freenode.net
+<SachaS> ok i try it.
+<SachaS> is it a problem (for cvs-setup) when i did setup common, forms and designer with setup in each directory the other day?
+<SachaS> will see :)
+Action: SachaS running cvs update
+<SachaS> and went into each directory and did a ./setup.py install :)
+ariel__ (~ariel@ppp-217-133-245-76.dialup.tiscali.it) joined #gnuenterprise.
+ariel_ (~ariel@ppp-217-133-245-76.dialup.tiscali.it) left irc: Read error: 104 (Connection reset by peer)
+Scape29 (~Scape29@10.Red-80-33-22.pooles.rima-tde.net) left irc: "[x]chat"
+btami (~tamas@ip102-205.ktv.tiszanet.hu) joined #gnuenterprise.
+<btami> hi
+<btami> how can i write a bootable netinst cd with gtoaster?
+<btami> the Make Bootable is grey !
+<btami> help!
+ToyMan (~stuq@smtp.dstoys.com) left irc: "Client Exiting"
+ToyMan (~stuq@smtp.dstoys.com) joined #gnuenterprise.
+btami (~tamas@ip102-205.ktv.tiszanet.hu) left irc: "Client Exiting"
+reinhard (~rm@M704P000.adsl.highway.telekom.at) left irc: "It is easiest to suggest solutions when you know nothing about the problem"
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<derek> everyone run
+<derek> he's back
+Action: derek is back (gone 07:18:31)
+<nickr> eek
+ariel__ (~ariel@ppp-217-133-245-76.dialup.tiscali.it) left irc: "Uscita dal client"
+Action: derek is away: work
+jbailey (~jbailey@CPE014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+JohannesV (~jve@M691P023.adsl.highway.telekom.at) left #gnuenterprise ("Client Exiting").
+jbailey (~jbailey@CPE014260028338.cpe.net.cable.rogers.com) left #gnuenterprise ("Client Exiting").
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+azar (~nobody@ip-80-205.evc.net) joined #gnuenterprise.
+<azar> is anybody using reiserfs on a production server ?
+stbain (~stbain@66.207.65.76) joined #gnuenterprise.
+<azar> hello
+<stbain> greetz
+<azar> where are u from ?
+StyXman (~mdione@modem80-adsl1.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<StyXman> hi 'vrybody
+<azar> hi
+<azar> are you students or workers ?
+<StyXman> both
+<azar> do you use linux at work ?
+<StyXman> and at home
+<jcater> azar: I ran resiserfs on a production server up until 18 months ago
+<jcater> s/resiser/reiser :)
+<StyXman> is there a way to pass parameters to forms?
+<jcater> not at the moment
+<jcater> we have code in reports that allows for parameter passing
+<jcater> that I want to move into common
+<jcater> so forms can use as well
+<StyXman> ok, I'll take alook and try to port it to forms.
+<StyXman> ah, ok
+<ToyMan> derek around?
+<StyXman> azar: why do you ask?
+<fixe> azar: i am using reiserfs
+JohannesV (~jve@M691P023.adsl.highway.telekom.at) joined #gnuenterprise.
+JohannesV (~jve@M691P023.adsl.highway.telekom.at) left irc: Client Quit
+<StyXman> I used reiser, but switched to ext3 due compatibility
+<StyXman> my disk has traveled a lot :)
+<StyXman> so, ain't '"%s" % a' equivalent to 'str(a)'?
+<azar> because i just had to reformat my reiserfs two times
+der_edoc (www-data@alt1.libertydistribution.com) joined #gnuenterprise.
+<azar> on time to free disk space not liberated, and another time because i had files i cannot delete
+<StyXman> wrong way to fix things, I guess
+<azar> space was not freed there was differences between df and du 
+<jcater> I never had issues w/ReiserFS
+<StyXman> uh, yes, that happens. I never found why
+<jcater> but heard horror stories
+<azar> 20 users /home 8Go
+<jcater> so switched to ext3
+<azar> and last time there was files i cannot remove any more
+<jcater> (plus the backwards compatability was really nice)
+<azar> is there same problems with ext3 ?
+<jcater> I haven't had any issues w/ext3
+<jcater> I use it on all my servers
+<jcater> but that doesn't mean there aren't problems :)
+<der_edoc> jcater: i have used ext3 for about 4 months now on multiple machines and havent hit a snag yet (knock on wood) and in all instances i converted from ext2 to ext3
+<der_edoc> no i cant say that means there are no problems, but if i cant easily break it, thats saying a LOT
+<der_edoc> s/no/now
+<ra3vat> der_edoc: hi, _edoc in russian means someone who like to eat a lot and do that fast, does it fit well with that literally reading? :)
+<der_edoc> ra3vat it fits me yes
+<der_edoc> but its basically code red backwards
+<ra3vat> so you're doing like edoc and code comes out 
+<chillywilly> hi folks
+Action: chillywilly prefers XFS filesystem
+<chillywilly> but you gotta patch your kernel ;)
+<jcater> chillywilly: ya, and how many of those do you run in production? ;)
+<chillywilly> 1
+<chillywilly> my server is damn productive
+<chillywilly> XFS has been around for a long time and used extensively by SGI
+<jcater> err
+<jcater> that's misleading
+<chillywilly> you know they do those hard core graohics type things
+<chillywilly> graphics
+<jcater> JFS has been used by IBM for ages as well
+<jcater> :)
+<jcater> but not under linux
+<chillywilly> why should that matter?
+Action: jcater guesses IBM's AIX kernel is a different code base than Linux's
+<jcater> and SGI's UNIX OS was a separate code base than Linux
+<chillywilly> ok, and have you had problems with GNU/Linux's scalability?
+<chillywilly> why would IBM put it on mainframes if it sucked?
+<jcater> wtf are you talking about?
+<jcater> I'm talking about just because a file system is being ported from another OS that doesn't mean it's inherently stable on Linux
+<jcater> just because it was stable on that other OS
+Action: jcater was not talking anything about stability
+<jcater> although
+<jcater> since you bring it up
+<jcater> don't think for a second that IBM is converting it's mainframes from AIX to linux
+<jcater> they are offering a linux "module" (or whatever they call it) 
+<jcater> to people who need it
+<jcater> there's a big difference
+<Mr_You> IIRC, the mainframes run OS/390
+<Mr_You> not AIX
+<chillywilly> if it is relatively the same code for the filesystem them obviously it comes down to the underlying filesystem interfaces/code (the VFS in Linux's case)
+<jcater> and that in know way knocks linux
+<jcater> Mr_You: true dat
+Action: jcater hasn't had all my caffeine yet
+<Mr_You> Linux is the answer to a dying OS/390
+<jcater> IBM isn't replacing OS/390
+<jcater> linux isn't a mainframe OS
+<Mr_You> mainframes are dying, so is OS/390
+<chillywilly> they are running virtual Linux's on top of it, why would thye do such a crazy thing?
+<Mr_You> its not a mainframe OS right,  but running Linux on a mainframe extends its life
+<Mr_You> chillywilly: cause thats the best way they could get it working?
+<chillywilly> yea, but I mean what's the point of doing that?
+<Mr_You> to run non-OS/390 apps I assume, to get your monies worth from the hardware/investment
+<Mr_You> to extend the life of OS/390/IBM mainframes.. ie. enabling more (new) applications to run on these dying geezers
+<chillywilly> ok, but doe shtis say anything about Linux's scalability?
+<chillywilly> er, does this
+<chillywilly> or am I smoking good crackk?
+Action: chillywilly takes a hit on the crack pipe
+Action: chillywilly passes it around
+<Mr_You> well.. linux is multiplatform..
+<chillywilly> has anyone seen this hyper threading technology that they are hacking into the Linux kernel?
+<Mr_You> its scalable to some extent
+<chillywilly> er, read about it
+<chillywilly> oh well my circular logic befuddles me
+<Mr_You> scability is determined by "hardwired" file system sizes and processors
+<Mr_You> and memory
+<chillywilly> true dattttt
+<chillywilly> doh
+<chillywilly> too many t's
+<chillywilly> jdhfnlksjdflkab nsdfjfyg wepfuj
+reinhard (~rm@M704P000.adsl.highway.telekom.at) joined #gnuenterprise.
+<chillywilly> wassup reinhard ?!?
+<Mr_You> "SGI Demos 64-Proc Linux Box".. now thats scability
+<chillywilly> w00t
+<Mr_You> processor scability isn't a problem with server farms, but you don't get real memory scability
+<Mr_You> requires shared memory across a cluster
+<reinhard> hi
+<chillywilly> howdy old man
+<chillywilly> :P
+<Mr_You> hi reinhard
+ariel_ (~ariel@ppp-217-133-241-251.dialup.tiscali.it) joined #gnuenterprise.
+<chillywilly> BitchX licks the big one
+<Mr_You> scrollz is fine
+Action: chillywilly grumble, grumble
+<chillywilly> wassat?
+<chillywilly> you know we need a decent blootbot in here
+<chillywilly> I want one that I can google with
+<chillywilly> dagnabit
+Action: chillywilly should run one of his server
+<chillywilly> the chillywillybot
+<chillywilly> ;P
+<der_edoc> how hard is it to add a drive to an existing system? 
+Action: der_edoc did long wihile back and remebmer it being easy but that was many moons ago
+<Mr_You> depends 
+<der_edoc> i suppose need to format it and such
+Action: stbain sighs
+<stbain> so... what's been going on?
+<der_edoc> then jjust add it to fstab?
+<chillywilly> der_edoc you might have to modify your fstab
+<StyXman> jcater: are names intended to be unique?
+<chillywilly> the letters are based on the IDE/SCSI bus positions
+<chillywilly> (obviously)
+<chillywilly> do, based on where it is just hack fstab
+<chillywilly> s/do/so/
+<Mr_You> hmm newsforge is down for me
+<der_edoc> chilly dont i have to format it?
+<jcater> StyXman: that's still up for debate
+<chillywilly> create a filesystem on there yes
+<Mr_You> where is this GNUe IRC client?
+Action: chillywilly was going to write an IRC rpc driver
+<Mr_You> anyone?
+<jcater> Mr_You: bitchx | gnue-forms
+<jcater> ?
+<jcater> :)
+<chillywilly> did you not read what I be typing?
+<chillywilly> niggie
+<chillywilly> we have no IRC client
+<Mr_You> I've seen users with "GNU Enterprise  User" as their realname.
+<Mr_You> IRCNAME
+<chillywilly> they changes it to be that way then
+<chillywilly> changed
+<chillywilly> with some client
+<Mr_You> username "www-data".. sure looks like a web-based IRC client
+<chillywilly> ssssh
+<Mr_You> was thinking someone set somethin up
+<chillywilly> he's iding out
+<chillywilly> he's using a CGI based one
+<chillywilly> do a /ctcp version once
+<chillywilly> not me stbain 
+<stbain> hehe
+<chillywilly> -:- CTCP VERSION reply from der_edoc: CGI:IRC 0.5 - http://cgiirc.sf.net/
+[14:16] Last message repeated 1 time(s).
+<chillywilly> oops
+<Mr_You> arrgghh wtf is broke with DNS?!?
+<chillywilly> ?
+<chillywilly> whose dns?
+<Mr_You> zonealarm is confused
+<chillywilly> isn't that a winblows firewall software?
+<stbain> yes
+Action: chillywilly is ashamed he knows that
+<Mr_You> pretty neat
+<StyXman> jcater: uh, what did you understood by 'names'? I meant objectnames, as in the 'name' attribute.
+<jcater> StyXman: yes
+<Mr_You> bout time someone wrote a decent IRC client
+<Mr_You> using CGI
+<StyXman> I realized that my question was very ambiguos...
+<StyXman> what are the parameters used for in reports?
+<chillywilly> Mr_You der_edoc doesn;t think it is decent....he was bitcing baout it the other day
+<chillywilly> about
+<jcater> StyXman: well, reports can use them 2 ways
+<jcater> 1) in the conditions for datasources
+<Mr_You> undernet has a java app, I think, which is pretty cool
+<jcater> so you can run gnue-reports myreports begindate=09/02/02 enddate=09/03/02
+<chillywilly> I ain't doing sheeit at work!?!?!?!!!
+<jcater> 2) the conditions can just appear in the output of reports
+<chillywilly> woooooo
+<jcater> i.e., 
+<jcater> gnue-reports myreports custom_title="My Sales Report"
+<jcater> I would foresee forms using it similarly
+<StyXman> uh, I'll try to guess how does it do it.
+<jcater> i.e., it could use them in datasources to limit a query
+<jcater> or it could be values that trigger code could access
+<StyXman> yes, it's what we need.
+<jcater> datasources inherently support parameters
+<jcater> but only reports currently passes them
+<jcater> it should be trivial to get forms to
+<jcater> it just hasn't happened yet
+<StyXman> yes, that one too. indeed, we're thinking about a kind of 'app' that would integrate a lot of forms into one single app.
+<StyXman> in a different way that navigator does. it would also handle app config and, more specifically, users and roles.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: "later"
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+<der_edoc> rather than cowboy up your own, its better to discuss
+<der_edoc> i.e. navigator is supposed to handle at somepoint role based access control to things
+<der_edoc> and also tools are discussed to do things like manage connections.conf and such
+<psu> Actually, if connections.conf was XML, we could use DEsigner to edit it ;-)
+<psu> then it really would be "the emacs of GNUe"...
+Action: jcater thwaps psu with a large, irish trout
+<jcater> erm
+<jcater> does irish trout == beer battered trout? 
+<jcater> :)
+<der_edoc> does the jcater irish trout special come with chips?
+<der_edoc> if so can you dish me up one too?
+siesel (jan@dial-194-8-195-37.netcologne.de) joined #gnuenterprise.
+<siesel> hi :)
+<der_edoc> run, the germans are coming, the germans are coming, run
+azar (~nobody@ip-80-205.evc.net) left irc: "KVIrc 2.1.1 'Monolith'"
+<siesel> hehehe
+<ariel_> hi jan
+<ariel_> siesel: are you there?
+Chipaca (~john@200.59.86.80) joined #gnuenterprise.
+<Chipaca> hi all
+<siesel> hi ariel_, I'm here
+<StyXman> hi Chipaca 
+<siesel> hi Chipaca
+<ariel_> siesel: i'm reviewing the code in _featuretest and i'm asking
+<ariel_> why the field type in geas_meta_object is varchar
+<ariel_> and not another table/object such as 'geas_meta_type'?
+ToyMan (~stuq@smtp.dstoys.com) left irc: "Client Exiting"
+<ariel_> then type in geas_meta_object would be an int referring, as foreign key, the oid of geas_meta_type. 
+<ariel_> vantages: 
+<ariel_> 1) less waste of space.
+<ariel_> 2) only 'known' types can be inserted
+<ariel_> 3) specific info on the type can be stored in other fields of geas_meta_type, for example if type is 'function' the language or wathsoever
+<siesel> The idea was to only use one table at the beginning, and split it up into multiple tables later.
+<ariel_> another question:
+<siesel> ok
+<ariel_> now geas_meta_object is filled 'by hand' 
+<siesel> btw. derek: you can use gtk and gtk2 together without problems on debian/unstable.
+<siesel> just uncomment the two lines in the uidriver to "require gtk2"
+<ariel_> i guess tomorrow a parser will do the job, but which language will be used? gsd, idl, odl, godl or what?
+stbain (~stbain@66.207.65.76) left irc: "Ni!"
+<psu> since chillywilly isn't here, I guess it falls to me to say "ODMG"
+<siesel> there will be many parsers which can fill the internal structures
+<siesel> hehe :)
+Action: jcater thwaps psu
+<der_edoc> psu  i think that means odl
+<der_edoc> can i take step back and say can geas not focus on objects until it can get basics done?
+Action: psu is just trying to fill up his GNUe Buzzword Bingo card
+<der_edoc> thats the problem
+<der_edoc> geas always seems to want to play buzzword bingo
+<der_edoc> instead of focusing on just working :)
+<siesel> since I 'm not 100% conviced that odl/odmg 3.0 ... is the best choice for internal structures etc. I would prefer a own format first. I think using .gsd as a start would be ok. 
+<siesel> we can later add all that ODMG features to appserver and to the godl / odl parsers
+ra3vat_ (~ds@ics.elcom.ru) joined #gnuenterprise.
+<siesel> The main drawback of odl IMHO is that code and definitions are seperated. I would like to have a file format which combines both
+<siesel> like putting kind of <trigger> or <method> sections in a extended .gsd file
+ra3vat (~ds@ics.elcom.ru) left irc: Connection timed out
+ra3vat_ (~ds@ics.elcom.ru) left irc: Client Quit
+ra3vat (~ds@ics.elcom.ru) joined #gnuenterprise.
+<ariel_> separation of code and definitions is not a bad thing, it improves reusability
+<ariel_> you can improve the code for a single method without reloading/recompiling the whole thing
+Chipaca (~john@200.59.86.80) left irc: "ircII EPIC4-1.0.1 -- Are we there yet?"
+<siesel> I don't think, that putting code and definition together is a must, but it makes things much easier.
+<siesel> btw. appserver could provide a "load new code into function X" method, which solves that problem.
+<siesel> I just want to program like in f.e. python and not in the way like C, where I always have to change two file (.h, .c) if I modify the interfaces
+<ariel_> what about the old 'gcd'
+<siesel> I've started writing a parser for it, but there seems to be a heaps of reasons not to use 'gcd', I just don't remeber :)
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+<siesel> hi Daniel
+<chillywilly> ello
+<ariel_> can i improve gcdparser.py just to convert all the Neil's work into gsd?
+<siesel> yes, that should be possible. 
+<siesel> Not only possible, that would be great :)
+Action: chillywilly has been reading the bison manual
+<chillywilly> gcd schmecd
+<ariel_> i will do, but since is a 'use and throw' job may be i will use old geas code to do it (in c) since that parser is more complete
+<ariel_> what we need is only the output, i.e the gsd's
+<chillywilly> can anyone reach http://www.dotster.com?
+<Mr_You> use
+<Mr_You> yes
+<chillywilly> blah I hate my ISP
+<psu> works for me - redirects to web.dotster.com
+<siesel> ariel_: yes, it would be much easier to use geas to build up its db structure and then use designer to create a gsd out of it
+Action: ariel_ is away: sleep
+<siesel> ariel: night
+<chillywilly> fucking shit
+<chillywilly> that's it I am going to kick their a$$
+<chillywilly> ;)
+<ariel_> not sure it will work, because 'type' in gcd doesn't create classes but just reusable definitions
+<ariel_> anyway i' m really tired, later...
+<siesel> the_edoc: what do you think about a special dbdriver to edit the connections.conf in gnue-forms
+<StyXman> why GRSources.prepare is marked as 'please go bye bye'? 
+<jcater> because it will go away at some point
+<jcater> :)
+<siesel> jcater: what do you think about using forms itself to edit its own config files?
+<jcater> I'd thought about that before
+<chillywilly> anyone know ff hand the name of the website (OASIS group) that has the DTD and such for dcbook, etc.
+Action: jcater even considered making IMAP and POP3 dbdrivers for gnue-common
+<jcater> but then the more I thought about it
+<chillywilly> I don't think I could ever reach their website either
+<jcater> the more I thought that might be hellacious to maintain
+<jcater> for the little benefit derived
+<siesel> i.e. you think that writing a seperate app, or config dialog to do this is easier?
+<chillywilly> www.oasis-open.org
+<jcater> I think a popup dialog in Designer to do this may be best
+<jcater> I'm honestly not sure
+<jcater> I'm torn in several directions
+<der_edoc> i think making a python app to do it is fine
+<der_edoc> sigh this irc client eats my comments
+<der_edoc> i can type faster than it can process (how sad)
+<siesel> USA Today: Incredebil: Human faster than Computer 
+<Mr_You> hehe
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise.
+reinhard (~rm@M704P000.adsl.highway.telekom.at) left irc: "There's always one more imbecile than you expect"
+reinhard (~rm@M704P000.adsl.highway.telekom.at) joined #gnuenterprise.
+StyXman_ (~mdione@200.59.86.57) joined #gnuenterprise.
+<jcater> siesel: that's a bad headline
+<jcater> more appropriately:
+<jcater> USA Today: Mountain Dew, Dots push human faster than computer
+<jcater> Subtitle: Massive amounts of pizza shown to reverse the effects
+<chillywilly> heh
+<nickr> Dots eh
+<der_edoc> roflmao
+Action: der_edoc has been dot free for about a month
+StyXman (~mdione@modem80-adsl1.cordoba.sinectis.com.ar) left irc: Read error: 113 (No route to host)
+Nick change: StyXman_ -> StyXman
+<der_edoc> though i did scarf a large pizza last night :)
+<ajmitch> hi
+<jcater> lol
+<jcater> I forgot the topic of conversation
+<jcater> and read the "dot free for about a month"
+Action: jcater thought it was a WinXP reference
+Action: jcater was confused :)
+<jcater> then I was going to ask
+<jcater> wtf have you been using dotNet prior to a month a go
+<StyXman> jcater: I just can't follow the code. how does exactly reports pass parameters to the datasoures?
+<nickr> what is a Dot, exactly?
+<nickr> some sort of new street drug?
+<nickr> spank? horse? the snake?
+<jcater> Reports has a GRParameter class
+<jcater> that subclasses common's GParameter
+<jcater> so it all happens automatically
+<jcater> we just need some code in the gfclient.py code
+<jcater> that takes the parameters from the command lines
+<jcater> and sets the GFParameter object
+<jcater> with the value
+<jcater> then GDataSources will take over from there
+Nick change: reinhard -> rm-sleep
+<der_edoc> if you remove sleep wont you get tired?
+<StyXman> yes, I saw the part where sys.argv convers into self.PARAMETERS or the like an then they're copied all over the code till they become GRParameters...
+StyXman_ (~mdione@modem69-adsl1.cordoba.sinectis.com.ar) joined #gnuenterprise.
+perlhead (~fheinz@modem69-adsl1.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<StyXman_> hi 'head
+<StyXman_> freaking ISP...
+<perlhead> tell me about it.
+perlhead (~fheinz@modem69-adsl1.cordoba.sinectis.com.ar) left irc: Client Quit
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "home"
+StyXman (~mdione@200.59.86.57) left irc: Read error: 60 (Operation timed out)
+Nick change: StyXman_ -> StyXman
+sshack (~sshack@h24-70-202-72.gv.shawcable.net) joined #gnuenterprise.
+<chillywilly> this is so fun
+<chillywilly> thei tech support chat thing for RR
+<chillywilly> ;P
+<ajmitch> umm yeah
+<chillywilly> I can't reach http://www.dotster.com or http://www.oasis-open.org
+<chillywilly> he's telling me se nslookup, to ping the IP, etc.
+<chillywilly> HEH
+<chillywilly> now he's trying to transfer me to the network specialist becase thye don't know Linux ;)
+<ajmitch> online, or on phone?
+<chillywilly> it jst times out
+<chillywilly> online java chat
+<chillywilly> I cna ping them
+<chillywilly> the IPs resolve
+<ajmitch> ok, blame your isp
+<chillywilly> yep
+<chillywilly> :)
+<ajmitch> i can get to the oasis-open.org page
+<chillywilly> really
+<chillywilly> what abot dotster?
+<ajmitch> well, i can get a page title, and galeon has loaded some data :)
+<chillywilly> about
+<chillywilly> k
+<ajmitch> yup, i can get to both
+<chillywilly> blah
+<ajmitch> :D
+<chillywilly> it's the ISP's fault
+<chillywilly> I am naked with no firewall up right now ;P
+perlhead (~fheinz@modem69-adsl1.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<chillywilly> I tried tracerouting it
+<chillywilly> at sme point I get *** lines
+<chillywilly> you know how to interpret that ajmitch?
+<ajmitch> it's broken
+<chillywilly> routing problem?
+<chillywilly> blah
+<ajmitch> dunno
+<chillywilly> well that's the only evidence I have of brokenness
+<ajmitch> check that you don't have broken ECN settings
+<chillywilly> what's that? ;)
+<ajmitch> cat /proc/sys/net/ipv4/tcp_ecn
+<chillywilly> alrighty
+<ajmitch> it used to be a prblem
+<chillywilly> frell:~# cat /proc/sys/net/ipv4/tcp_ecn
+<chillywilly> 1
+<ajmitch> ahah
+<ajmitch> set that to 0, and retry
+<sshack> ajmitch: He can't have "broken" ecn settings.
+<ajmitch> sshack: broken for accessing these sites ;)
+<sshack> ajmitch: Someone between him and the remote host can have a broken router that doesn't know how to handle ecn.
+<chillywilly> wtf is ECN anyway
+<sshack> ajmitch: That's not his problem though, it's theirs. 
+<ajmitch> still amounts to brokenness somewhere
+<sshack> chillywilly: Explicit congestion notification.
+<chillywilly> ok
+<chillywilly> I think there's a bnd link along the way
+<sshack> What does a traceroute say?
+<StyXman> chillywilly: mb you better use mtr
+<sshack> Okay, question. Are the re any subprojects in gnue that need an extra developer?
+<ajmitch> all of them
+<ajmitch> :)
+<chillywilly> frell:~# cat /proc/sys/net/ipv4/tcp_ecn
+<chillywilly> 0
+<StyXman> yes, I saw the part where sys.argv convers into self.PARAMETERS or the like an then they're copied all over the code till they become GRParameters...
+<sshack> Which one most needs an extra developer?
+<StyXman> you say that GDataSources will look for them and use them if found?
+<ajmitch> hmm, appserver?
+<StyXman> (those were for jcater)
+<chillywilly> sshack: traceroute dies after so many hops
+<chillywilly> spits out lines like
+<chillywilly>  15 * * *
+<chillywilly> etc.
+<sshack> chillywilly: There you are then.
+<chillywilly> yep
+<chillywilly> :)
+<ajmitch> i dunno...
+<chillywilly> someone shit is fbarred
+<ajmitch> you can ping the box
+<chillywilly> yes I can ping it
+<sshack> ajmitch: I shall look into appserver then.
+<ajmitch> i get a large number of no replies
+<ajmitch> yet i can load the page
+<ajmitch> chillywilly: have you retried yet?
+<StyXman> chillywilly: they may be dropping echo requests... our uni does that
+<chillywilly> not yet
+<chillywilly> echo is a ping right?
+<sshack> chillywilly: Yes.
+<ajmitch> icmp & udp
+<StyXman> chillywilly: yeap
+<sshack> ICMP echo == ping.
+<chillywilly> pign works though
+<ajmitch> traceroute apparantly uses udp echo by default
+<StyXman> chillywilly: that's why: you better use mtr
+<chillywilly> haha
+<chillywilly> that worked ajmitch
+<ajmitch> hmm, what a guess :)
+<chillywilly> so what's the issue with that?
+<chillywilly> and how can I make sure it is always disabled?
+<ajmitch> it's a kernel option, can probably be set elsewhere in debian
+<chillywilly> so I get notified of ECN and then it can't connect or what?
+Action: ajmitch larts chillywilly with the rtfm stick ;)
+<chillywilly> *sigh*
+<chillywilly> there is no damn manual ;)
+<ajmitch> i'm sure i saw it in the kernel configuration somewhere...
+<chillywilly> actally where could I look? run the frelling kernek config program and read the help?
+<ajmitch> dunno
+<chillywilly> do you know how it works?
+<ajmitch> no, if i did i wouldn't be telling you to look at google
+<chillywilly> where did you hear about that issue?
+<chillywilly> perhaps there's a fe more lists I need to subscribe to or something
+<ajmitch> a year or so ago
+<ajmitch> heh
+<chillywilly> man you have a good memory
+<chillywilly> ;)
+<chillywilly> do you have it turned off?
+<chillywilly> and if so where
+<ajmitch> http://www.aplawrence.com/Linux/ecn.html
+<chillywilly> options file?
+Action: chillywilly looks
+<chillywilly> thanks ajmitch
+Remosi (dahoose@port-62-162.jet.net.nz) got netsplit.
+<ajmitch> i think it was probably turned off in my kernel config
+<chillywilly> aw crud
+<chillywilly> that means I should recompile the bugger ;)
+<ajmitch> no
+<chillywilly> well relaistically I don't want that crap in there
+<chillywilly> at all
+<ajmitch> then disable it
+Remosi (dahoose@port-62-162.jet.net.nz) returned to #gnuenterprise.
+perlhead (~fheinz@modem69-adsl1.cordoba.sinectis.com.ar) left irc: "Client Exiting"
+<ajmitch> i'd imagine that it could be /etc/network/options
+<ajmitch> but nooo, it's not
+<chillywilly> blah
+<chillywilly> that would only make sense ;)
+Remosi (dahoose@port-62-162.jet.net.nz) got netsplit.
+<chillywilly> all my kernels are infected with it
+<chillywilly> I had to do the same for this box
+<chillywilly> this just gives me a gd excse to compile a new kernel ;)
+<chillywilly> er, good
+Remosi (dahoose@port-62-162.jet.net.nz) returned to #gnuenterprise.
+der_edoc (www-data@alt1.libertydistribution.com) left irc: "CGI:IRC 0.5 (EOF)"
+<nickr> what does gnue use for standalone executables?
+<nickr> py2exe or mcmillan?
+<nickr> or some other twisted concoction
+nike_degresbosh (www-data@alt1.libertydistribution.com) joined #gnuenterprise.
+<chillywilly> I think the latter
+<nickr> fie
+<chillywilly> fie?
+<nickr> FIE!
+<chillywilly> erm, ok ;)
+nike_degresbosh (www-data@alt1.libertydistribution.com) left irc: "CGI:IRC 0.5 (EOF)"
+StyXman (~mdione@modem69-adsl1.cordoba.sinectis.com.ar) left irc: "ircII EPIC4-1.1.5 -- Are we there yet?"
+nike_degrebosh (www-data@alt1.libertydistribution.com) joined #gnuenterprise.
+rm-sleep (~rm@M704P000.adsl.highway.telekom.at) left irc: Read error: 104 (Connection reset by peer)
+nike_degrebosh (www-data@alt1.libertydistribution.com) left irc: Client Quit
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: Read error: 113 (No route to host)
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+rm-sleep (~rm@M704P000.adsl.highway.telekom.at) joined #gnuenterprise.
+siesel (jan@dial-194-8-195-37.netcologne.de) left irc: Read error: 110 (Connection timed out)
+SachaS (~Sacha@dialup-196-158.wasp.net.au) left irc: Read error: 113 (No route to host)
+Action: chillywilly looks for derek
+<chillywilly> derek: show time real soon now(tm)?!?
+jcater (~jcater@cpe-024-165-223-104.midsouth.rr.com) joined #gnuenterprise.
+<chillywilly> hi jc
+<chillywilly> yo gonna listen to WOPN tonight?
+<chillywilly> s/yo/you/
+<chillywilly> someone should change the topic
+Action: jcater doesn't have a sound card
+<chillywilly> bah
+<chillywilly> why not?
+<chillywilly> you're gonna miss derek's interview ;)
+<jcater> but
+<jcater> I don't have my wading boots anyway
+<jcater> ;)
+<chillywilly> lol
+Action: derek is back (gone 11:27:28)
+<derek> boots? im angry you said that
+<ajmitch> heh
+<derek> when i talk you need waders dang it
+<derek> wear boots and you will be wiping it off your pants ;)
+<ajmitch> ready for your moment of glory?
+<derek> not really
+<derek> im hungry must find food
+<derek> is wopn streaming right now?
+<ajmitch> yes
+<derek> grr xmms crapped on em
+<derek> says
+<derek> couldnt open audio
+<derek> 1. correct output selected
+<derek> 2. no other programs blocking
+Action: LuftHans gets in from yoga and tunes in wopn
+<derek> 3. sound card configured
+<derek> what is nuts is im not finding anything else using it
+<derek> it worked fine yesterday
+<LuftHans> ogg123 -d esd http://stream.wopn.org:10000/wopn-broadband.ogg
+<derek> and if i shut it down and open frozenbubble the sound on frozen bubble works so it aint the sound card
+<derek> grrr
+<ajmitch> esd?
+<ajmitch> that's just wrong
+<derek> ok have it working
+<derek> somehow my setting go changed from oss to esd in xmms
+<derek> how odd
+<LuftHans> ajmitch: why?
+<ajmitch> esd is basically unmaintained, not very good with latency
+<ajmitch> i'm using a soundcard now that allows hardware mixing
+<LuftHans> well, it's default for debian, so it can't be bad :)
+<LuftHans> my card doesn't do hardware mixing, that would be cool
+<derek> LuftHans: i would agree, BUT
+<derek> they install LILO by default too ;)
+<ajmitch> default for debian?
+<LuftHans> oh, and I suppose you think we should be using grub
+<derek> ajmitch: yip unless you use progeny
+<derek> um yeah i do suppose that ;)
+<LuftHans> it's only good if you want to multi-boot with lesser OSen :)
+<ajmitch> default for gnome, perhaps
+<derek> LuftHans: not ture
+<derek> er true
+<chillywilly> LuftHans: the Hurd is lesser?
+<derek> LuftHans: see the light
+<chillywilly> grub rules
+<LuftHans> ah, OK, Hurd would be OK.
+<chillywilly> :)
+<derek> http://gnue.org/~dneighbo/notes/java_plugin.html
+<derek> oops
+<derek> http://gnue.org/~dneighbo/notes/grub.html
+<LuftHans> derek: as I said before, I couldn't get grub working.
+<LuftHans> yeah, I need to use that and try it again.
+<chillywilly> hey I have a debian kernel mini howto I wrote
+<chillywilly> (i.e., make a deb of the kernel you compiled)
+<LuftHans> using kernel-package?
+<chillywilly> ajmitch: thanks again dewd setting that ECN thing to 0 has really imprved my connection speed
+<ajmitch> cool
+<chillywilly> well actually I think these packages are cahced on my server (doh)...but the other ones weren't
+<derek> LuftHans: im utterly disguisted you seconded quickbooks online
+<chillywilly> LuftHans: yes
+<LuftHans> derek: get NOLA working, then bitch :)
+<derek> not only is it far from free software
+<derek> but its an ASP
+<derek> the evil twin of prop software
+<derek> if i get NOLA working will azoto use it?
+<derek> btw: i wont say anything on the list
+<derek> i figured i could rib you here in irc 
+<LuftHans> I'm planning on it. I even hope to help with being part of the drive to get it working.
+<LuftHans> I figure we can get Carl to use something else, but it's one of the few business apps things for which I could have input.
+<LuftHans> BTW, if we get NOLA working under similar circumstances I can probably get that CPA to start using it :).
+<derek> im not concerned per say with what carl uses :) (though i would like to see him preserve his freedom)
+<derek> but AZOTO should really practice what they preach :)
+<chillywilly> what/who is azoto?
+<derek> AriZona evil word Technology Orginzation ;)
+<chillywilly> they preach Free Software?
+<LuftHans> ariel zenon offers technology OOpisms
+<LuftHans> if you can provide the trillions of dollars we'd need to do Free Hardware, we'll do it. Until then it's Free Software and Open Technology :)
+<LuftHans> derek: I didn't say that's what AZOTO will be using, did I?
+<LuftHans> short term, we might, but I intended not to indicate that
+<derek> LuftHans: i read half an email out of 30 with that subject
+<derek> i just saw (the cpa uses it)
+<derek> and so figured you were talking about azoto
+<derek> i think 'kimi' said something about using it
+<LuftHans> currently there aren't any Free Software packages, so we'll have to use a non-free package until one is
+<LuftHans> that or just not track accounting stuff, which is what we currently do
+<derek> paper/pencil
+<derek> or large marker ;
+<derek> )
+<LuftHans> derek: we need a tool kimi can use
+Grantbow (~grantbow@12-233-20-180.client.attbi.com) left irc: Remote closed the connection
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) left irc: Connection timed out
+Grantbow (~grantbow@12-233-20-180.client.attbi.com) joined #gnuenterprise.
+esands (~nic@mdr1-port28.jetstart.maxnet.co.nz) joined #gnuenterprise.
+<esands> hey
+<chillywilly> ho
+<chillywilly> heeeeey
+<chillywilly> hooooo
+<chillywilly> heeeeey
+[22:43] Last message repeated 1 time(s).
+<chillywilly> hooooo
+<esands> sounding like a house, Mr Ed.
+<chillywilly> it's mr chillywilly to you ;)
+<ajmitch> hi esands, 
+<esands> hey
+<ajmitch> ltns
+<chillywilly> derek: when you up homey?
+<esands> yeah, been busy. Then my desktop had issues - both a faulty new PSU and case 
+<chillywilly> when, when wheeeen!
+<chillywilly> damn these packages 
+<chillywilly> damn them all to hell
+<esands> Had a go with the cvs version of gnucash and the new business conponents.  Now I'm fiddling around with acclite to see what thats like.
+<ajmitch> ok
+<esands> how is acclite at the moment?  
+<derek> chillywilly: 9:15 i think
+<derek> esands: its going
+<derek> esands: what did you think of the gnucash stuff
+Action: derek is curious, i have considered reviewing but have been too busy
+<esands> I can send you the debs if you wish.  Although I need to get my desktop going first. 
+Action: esands considers ...
+<esands> I think the business part of gnucash is functional
+<derek> um hmm
+<derek> i suppose if you have them it might be worth looking at
+<esands> It has promising and is usable
+<esands> However, if you've used gnucash before you'll know when I says its very manual.
+<esands> Still that's probably because Derek (the guy developing it) is designed it so far mostly for his own use
+<chillywilly> derek: you need to school the WOPN boyz on Free Software ;)
+<derek> esands: to me its nothing more than a toy, until it reads/writes to SQL database
+<derek> i.e. flatfiles are just not suitable for business (imho)
+<esands> I figure its current target is home size businesses  
+<derek> to me its a quickbooks replacement (or sounds like)
+<derek> which there is a market for, but not market persay that gnue is going after
+<esands> I agree for most companys. However I've used it for my personal company for a while.  That said my personal company is very small, and I must admit in the last 6 months I've had difficults using it effective. 
+<esands> It does have a sql feature though.  Unfortunately its out of date, and currently doesn;t work with the cvs version.
+<esands> Definitely gnue and gnucash target different markets.  The big different though between the two products is that gnucash is stable having reached MILESTONE 1. 
+<esands> Gnue is still work in progress. Useful no doubt, but still needing further work.  
+<derek> we have really hit past our milestone one
+<derek> as our first milestones were for the framework
+<derek> not the applications
+<derek> and soon now, we will enter first phase of application development
+<derek> expect working goodies within the month
+<derek> and kick butt goodies within 6 months
+<esands> My personally experience between the two so far: I've used gnucash (although only tested the business component side of things) and I've _tried_ to use (unsucessfully) gnue for a couple spreadsheet replacement needs I have
+<chillywilly> derek: you ready?!?
+<derek> ?
+<esands> Sure, you know what I mean by MILESTONE though. I a sense gnucash is a finished/sellable product at the moment. Gnue is quite there yet.
+<chillywilly> you're next dewd
+<chillywilly> interview time
+<chillywilly> ;)
+<derek> hmm odd i have sold it to a few customers last month alone
+<derek> there is this fixation that 'shrinkwrap' means good and complete
+<derek> oh well different markets i suppose
+<LuftHans> derek: when he asks you to moo respond with gnu: :)
+<chillywilly> LuftHans: :)
+<chillywilly> I like that idea
+<LuftHans> or even just gnu
+<chillywilly> gnooooooooo!
+<sshack> Good evening all.
+<chillywilly> derek: guh-noooooo!
+<derek> gary guh noooooooooooooo
+<esands> Sure, but you are a core developer. Consider the part-developer who spends a lot of time doing business stuff (ie. me ;). I'm ready to do some work (hell I've compiled gnucash cvs to for myself) but I don't have a lot of time to spend trying to get things going. Or at least that's been my experience so far with gnue.  Of course since its a FS/OSS type project I've missed much in the last three months.  Things are probably different aga
+Action: derek is not quite sure what to expect
+<chillywilly> hehe
+<esands> Hm
+<esands> Something I can use. ;)
+Action: chillywilly feels confident in derek's ability to articulate all that is gnu(e)
+<ajmitch> have jcater & jamest been hiding lately, or just busy?
+<derek> esands: what distro are you running?
+<derek> ajmitch: busy
+Action: chillywilly slaps jcater around
+<esands> debian of course. 8)
+<derek> esands: on a BLANK debian install gnue takes no longer than say 20 minutes to install (including postgres)
+<chillywilly> :)
+<derek> on redhat/mandrake then yes its hell, but i cant help crappy packaging ;)
+<esands> sure, but the lack of documentation make it tricky to use.  Although I haven't checked the document in the last couple months.
+<derek> yes docs are not quite there
+<esands> I use the cvs version away.
+<derek> problem is its a framework
+<derek> not an application
+<esands> Sure
+<derek> so making docs is difficult
+<LuftHans> esands: ask in here and you can get it working
+<derek> as there is a certain amount of given one needs to know
+<esands> but even framework needs docs, otherwise its difficult for outsiders to use.  Of course its a moving target at the moment.
+<sshack> derek: Not entirely. Depends who your documentation is targeted towards.
+<derek> until we get a real users manual
+<derek> esands: i agree 1000%
+<derek> to both comments
+<sshack> api level documentation for developers using the framework is more difficult than developer level docs.
+<derek> just docs for a framework (that covers all users) is a HUGE task
+<derek> and we dont want our developers doing it
+<derek> and we havent had volunteers :)
+<esands> sshack: Its the most important though, otherwise its difficult to build a community interest in USE, not development
+<esands> anyway, these are just comments for my personal experience so far.
+<derek> yes i agree
+<derek> we are selfish as of late
+<esands> s/for/from/
+<derek> we have personal needs for gnue
+<derek> and so we are concentrating on the tools and our needs
+<derek> we would love someone to help with docs
+<esands> itches too scratch are the reason projects like this exist.  Wouldn't be fun for you to do it otherwise
+<derek> as LuftHans said we are more than willing to help via irc
+<sshack> derek: Why not document everything once a question or problem has arisen?
+<derek> yeah
+<derek> sshack: we try to
+<derek> its a big job
+<sshack> It is.
+<derek> its on my list to finish a tutorial
+<sshack> But once you start doing it, it starts to become natural.
+<derek> but i am swamped have real clients need gnue applications
+<sshack> ahh.
+<esands> You guys probably need something like a wiki/fom.  Make document in the first instance a communitity task
+Action: LuftHans plans on helping with the docs probs once he gets a couple of projects done and can move on to gnue
+<derek> no wiki's suck
+<esands> 8P.
+<derek> actually wiki's are good for informal documentation
+<derek> and throwing ideas around
+<derek> but i dont think they shoudl be a documentation substitution
+<esands> TWiki is pretty cool.  Of course I'm bais.  
+<sshack> wiki's are perfect for informal stuff.
+<LuftHans> docs with room for comments on the end are better, they're semi-wiki
+<sshack> but you don't want to have to search through a wiki to find an answer to your problems.
+<derek> the biggest problem you will find is we are business guys that know how to code
+<esands> I think though at the moment you don't really have any formal document. Something that's easy keep up to date is more important than something that is 'formal'.
+<derek> and as such we like to deal with thing slike we do in business world
+<derek> i.e. get up and go to someones desk
+<LuftHans> you then need someone(s) to go through comments and put the suggestions into the dos.
+<derek> in our world the equivalent is IRC
+<LuftHans> s/dos/docs/
+<derek> once a community is big enough i encourage wiki and such
+<derek> and will probalby help with getting content into it
+<derek> dont expect other gnue core folks to though
+<derek> as its not their style (and rightfully so, as it would only slow down their production) ;)
+<esands> Actually I disagree. Business process is important to document. Otherwise if you have outsides/newbies entering a business unit without knowledge of how tasks are processed its harder to bring them up to speed without effective resources
+<derek> you misunderstood me
+Maniac (~User@h24-82-132-209.wp.shawcable.net) joined #gnuenterprise.
+<derek> i didnt say business process was unimportant to document
+<derek> at work we have a professional technical writer that comes to our meetings
+<sshack> Development steaming forward is good. But everyonce in a while you need to stop and checkpoint everything.
+Action: chillywilly thinks derek will have to be *untangled* soon for his interview ;)
+<derek> and translates our development process
+<derek> i dont have that here ;)
+<sshack> or else the only one's who know anything will be those in the loop/cabal/inner circle.
+<derek> unless someone wants to volunteer
+<esands> heh.
+<derek> btw: psu does this to a degree with his kernel cousins and i adore him dearly for it
+<esands> I guess you need some professional doc writes in the gnue team then. 8)
+<chillywilly> core people can't do everything
+<derek> chillywilly: i think thats what im trying to drive at ;)
+<chillywilly> :)
+<esands> definitely. kc is the only reason I'm able to follow what's happening with gnue sometimes
+<sshack> Something the quality of gnu octave or gnu scientific library docs would be very useful.
+<sshack> Actually the octave docs are slightly better than gsl.
+<chillywilly> they are also further along
+<esands> just a note outside the current discussion, its probably worth changing the acclite footer to point at the gnue web site instead of the nola site.  Its not polite otherwise.
+<chillywilly> much further
+<chillywilly> gsl rocks
+<derek> not polite?
+<derek> i figured not giving them attribution was worse
+<derek> fwiw: the idea is not to have a fork
+<derek> just to finish our regutting and give back to noguska
+<derek> at which point if they dont like we fork
+<esands> Sure, but for the purposes of bug reports acclite is not their problem.  Since its not their development
+<sshack> chillywilly: I've got the dead tree books for gsl and octave. octave has by far the better manual.
+<sshack> gsl is a good reference, but not a great manual.
+<chillywilly> well I use gsl in a pet project of mine
+<chillywilly> gsl and gnu common c++
+<esands> sshack: how much they able to copy from matlab though?
+<chillywilly> I have used octave too, but not fr a long while (not since I was in college)
+<sshack> esands: I don't know, i've never actually seen a matlab manual. I'm a mathematica guy.
+<derek> esands: good point, though it was never meant as public consumption
+<derek> short of gnue folks helping us review our changes :)
+<chillywilly> I jsut submitted a big patch to gnu common c++ like last weeks or so
+<derek> it kind of grew into more than that, because we were slow getting changes back to nola
+<jcater> ajmitch: both jamest and my jobs deal with schools
+<derek> i will make the changes and commit 
+<esands> sure, but having a link to the snapshots from kc makes it reasonablely public.  
+<ajmitch> jcater: ok
+<derek> jcater you live
+<jcater> ajmitch: so come September
+<jcater> jcater: all hell breaks loose for both of us
+<ajmitch> oh lovely 
+<jcater> s/jcater/ajmitch
+<chillywilly> *joy*
+<ajmitch> back to a resemblance of sanity soon?
+<chillywilly> that sorta bites the big one jcater ;)
+<jcater> ajmitch: yip
+<jcater> ajmitch: about January 2, or so
+<chillywilly> :(
+<chillywilly> that's a ways away
+<ajmitch> yeah, a long way
+<jcater> fsck
+Action: jcater just got another desupport notice from Oracle
+<jcater> happy, happy, joy, joy
+<derek> poop
+<chillywilly> desupport?
+<jcater> chillywilly: ya
+<jcater> the latest round of "if you are still using this old, old version, we won't support you any more
+<jcater> old, old version = 18 months, maybe
+<chillywilly> ah
+<chillywilly> bah
+<chillywilly> what crap
+<jcater> funny enough, Win98 and WinNT are desupported
+<jcater> permanently
+<chillywilly> you can get someone else to support you though, can't you?
+<ajmitch> this isn't FS :)
+<jcater> chillywilly: nah
+<jcater> only reason to be supported (imho) 
+<jcater> is you get free upgrades
+<chillywilly> yea, but you can't get the code anyway
+<chillywilly> ah
+<jcater> yearlyt support contracts w/free upgrades
+<chillywilly> gayness
+<jcater> are much cheaper than waiting a few years and repurchasing
+<esands> is there a bug with adding users in acclite?
+<ajmitch> you can add users?
+<jcater> beats me
+<LuftHans> jcater: sounds like an excuse to move to SAPdb :)/
+<jcater> LuftHans: no kidding
+<jcater> but we have to much legacy code at the moment
+Action: LuftHans will be calling about an Oracle job after the dneighbo i/view on WOPN, though.
+<chillywilly> M$ will provide you with support s yo don't hurt yourself when they bend you over 
+<jcater> (hence the reason I joined gnue 18 months ago :)
+<ajmitch> derek!!!!
+<esands> ajmitch: other than the default admin:password user
+<ajmitch> he's on WOPN
+<jcater> sigh
+<ajmitch> http://streamer.wopn.org:10000/wopn-broadband.ogg
+<jcater> I wish we could get a transcript
+<ajmitch> http://stream.wopn.org:10000/wopn-broadband.ogg
+Action: jcater is really curious what kind of promises derek is making that we will have to deliver
+<jcater> :)
+<esands> is there a way to get acclite to debug log sql commands to a file?
+<jcater> "Oh, yeah; the GNUe-Sanitizer module will clean out your refrigerator and sanitize your toilet"
+<ajmitch> it'll be archived, so you could get a transcript
+<sshack> oh dear god. pc jr.
+<sshack> The power.
+<jcater> "And the GNUe-Carpenter can do additions, but the GNUe-Electrical module isn't yet functional"
+<jcater> "But give us 2 months and she'll be able to do electrical wiring too"
+<ajmitch> hehe
+<jcater> sigh
+<jcater> I have to run back to the city
+<jcater> bbi45min
+fixe (~adam@dsl081-147-021.chi1.dsl.speakeasy.net) joined #gnuenterprise.
+Action: chillywilly is recording =)
+<LuftHans> aha! We've got him! He just admitted to writing documentation :).
+<sshack> mehehehe.
+<sshack> "whuh huh. uhm. uhhh. What database backends does it work with? yeah. Uhh yeah.."
+<ajmitch> hehhe
+<ajmitch> new release anyday?
+<ajmitch> now that's something new... ;)
+<sshack> The host is so bloody bored with him.
+--- Tue Sep 10 2002

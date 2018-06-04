@@ -1,0 +1,156 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.05Nov2002" enddate="04 Nov 2002 23:00:00 -0800" startdate="04 Nov 2002 23:00:00 -0800" subject="[IRC] 05 Nov 2002" title="GNUe Project organisation - version numbers, roadmaps, testing and branches">
+
+<mention>Jan Ischebeck</mention>
+
+<p>Jeff Bailey (jbailey) said <quote who="Jeff Bailey">The 
+version number in Debian is going to be 20021105.</quote> 
+Andrew Mitchell (ajmitch) was not keen on this, 
+<quote who="Andrew Mitchell">unless this is the 
+2million, 21 thousand, and fifth debian revision :)</quote>. 
+Jason explained that, for help desk purposes, the About 
+box in the CVS version of Forms said it was 0.4.1a 
+("a" for "alpha") - <quote who="Jason Cater">but it will 
+become 0.4.1 when released</quote>. It was noted that 
+Debian - and other packaging systems - would regard 
+0.4.1a as a later version than 0.4.1. Jason said that 
+it was not really possible to change this before 
+0.4.1 was released - James Thompson (jamest) 
+suggested going straight to 0.4.2.</p>
+
+<p>Derek Neighbors (derek) said the project 
+<quote who="Derek Neighbors">might as well release 0.5.0
+- we have no method right now (seriously) - other than 
+chaos - its completely abitrary</quote>. 
+<quote who="Derek Neighbors">there is no 'roadmap' that 
+states what release is what - so there is no control - 
+at which point who cares if its 0.4.1 or 0.5.0 (independent 
+of the alpha question) - there is nothing stating what 
+features will be in what releases - so USERS have no idea 
+until something is released what is what</quote>. Jason said 
+<quote who="Jason Cater">we have our internal markers - 
+a lot is dependent on whether common's API changed - 
+if common's API is vastly different, it has to be a major 
+point release</quote>. Derek said 
+<quote who="Derek Neighbors">until now its been no big deal - 
+as we didnt have mass of other developers - and we didnt have 
+production users</quote>. Jason said 
+<quote who="Jason Cater">it's not perfect, nor well planned
+- but it's not arbitrary</quote>.</p>
+
+<p>Derek said <quote who="Derek Neighbors">we need to very 
+soon get to the point where we really maintain 2 releases - 
+so that someone on an old release can expect to get their bugs 
+fixed - but not expect a bunch of expiremental features or 
+major breakage</quote>. James said 
+<quote who="James Thompson">i thought someone was going to 
+backport patches if we tagged cvs?</quote> Derek said 
+<quote who="Derek Neighbors">that would be me - 
+my problem is cvs commits are going like mad - 
+but the cvs commit messages frankly suck - and there is no 
+roadmap or system used to manage what should be backported. 
+My proposal is we have a strict feature roadmap for the new 
+releases and only if some feature is minor in nature does it 
+get backported</quote>.</p>
+
+<p>James said <quote who="James Thompson">i can't see that 
+working with free labor</quote>. Derek emphasised 
+<quote who="Derek Neighbors">i never said 'put dates on 
+features'</quote>. James explained 
+<quote who="James Thompson">what I'm saying is that like 
+tonight - i finally got sick of the no query by detail - 
+so I'm fixing it. This isn't on any roadmap - other than 
+I'm sick of it</quote>. Derek said he was 
+<quote who="Derek Neighbors">not saying that roadmaps cant 
+change</quote> - the importance of the roadmap was that it 
+provided a place to park feature requests for the future 
+rather than the next immediate release - 
+<quote who="Derek Neighbors">at some point one has to say 
+this road is closed</quote> - creeping featurism had been 
+had been a factor in the length of time taken over the 
+last two GNUe releases. This had affected GNUe's relationship 
+with other projects, including papo.</p>
+
+<p>Also, with a roadmap, it would be possible to split 
+changes in CVS head between bug fixes to existing features 
+(which would get ported back to interim 'stable' releases) 
+and new features which belonged only in the new release. 
+James said <quote who="James Thompson">nothing prevents that 
+today however the API is constatnly in flux, we are a 0.5.0 
+project - I can see something stable as we approach 
+1.0</quote>. Derek said <quote who="Derek Neighbors">as we 
+get more developers and more solid releases it will be 
+mandatory to avoid chaos</quote>.</p>
+
+<p>James said <quote who="James Thompson">well, another way 
+to approach this problem that i would prefer - an (semi-)
+automated testing framework</quote>. Jason said 
+<quote who="Jason Cater">I would too - and I've BEGGED people 
+to do it</quote>. Derek agreed 
+<quote who="Derek Neighbors">certainly that is necessary to 
+help speed moving a release out the door - as thats one thing 
+that has made the process difficult - feature freeze is called - 
+and it takes too long to test to point where its too tempting 
+to add new features in</quote>. Jason noted that 
+Jan Ischebeck (siesel) <quote who="Jason Cater">has even taken 
+the initiative to start one in samples/testcases - but I don't 
+see testcases flowing in</quote>. James said he had 
+<quote who="James Thompson">been adding to it for what I'm 
+working on - but it's not standardized yet - was hoping to make 
+it part of the 0.5.0 cleanup release</quote>. Daniel Baumann 
+(chillywilly) noted <quote who="Daniel Baumann">there's different 
+types of testing - black-box, white box, etc. - white box 
+requires good knowledge of the code that is being tested - 
+the *internals* of it - there's probably only 3 ppl right now 
+that fit this description, imho - with perhaps a couple that 
+have a decent understanding</quote>. James explained 
+<quote who="James Thompson">i wanted to make a gnue navigator 
+thing - with various forms that had pages lableed step 1 2 3 4 
+- and a final pass/fail step</quote>. Daniel said 
+<quote who="Daniel Baumann">basically we need a testing team 
+and/or go intoa  testing mode</quote>. James felt that 
+<quote who="James Thompson">anything is better than what we have 
+now - which IIRC was jcater saying "prereleases is here please 
+test" - then have people test after the final release</quote>.</p>
+
+<p>Daniel said <quote who="Daniel Baumann">soem ppl can't code 
+without some structure as they like to see down the "road" 
+;)</quote> Derek said <quote who="Derek Neighbors">the people 
+closest to gnue have the roadmap in their head - and cant see 
+why anyone is frustrated that there is no structure - because 
+when you are close to it, there appears to be structure (and 
+there is) - just its not in a format that can be well 
+shared</quote>. He was <quote who="Derek Neighbors">not so 
+much requesting things be radically different than they are 
+now, just that they be better presented to the public</quote>. 
+Jason, referring back to 
+<kcref archive="http://mail.gnu.org/pipermail/gnue-dev/2002-October/000282.html" subject="[Gnue-dev] Release Process [Was Re: Kudos - keep up the hard work!]" />, 
+said <quote who="Jason Cater">we are already stretched pretty 
+thin - the few of us</quote>. He felt it was unfair to 
+suggest that the core developers were not responsive to end-user 
+needs - <quote who="Jason Cater">I've spent a HELL of a lot of 
+time on the developer's guide</quote>, which he personally had 
+no need for. Derek said <quote who="Derek Neighbors">im willing 
+to write up roadmaps and maintain a back branch - 
+but not if i have to swim against the river to do it - 
+i.e. if you and jamest loathe the idea of roadmaps i woudl rather 
+not try to document whats in your heads for the public :)</quote>. 
+Jason alsoo objected <quote who="Jason Cater">you make it sound 
+like we just only add new features and never look back - jamest 
+and I take a release every so often - and do NOTHING but cleanup
+and profiling</quote>, as planned for the 0.5.0 release. 
+Derek said <quote who="Derek Neighbors">actually my complaint 
+is you guys do far too much clean up :) - and my hope is to get 
+to a point where others can 'clean up some' and you guys can add 
+new cool stuff</quote>. Jason agreed, but said 
+<quote who="Jason Cater">I would also like some donuts - but I 
+don't have any - so it won't happen</quote> without extra 
+volunteers. He felt over-managed on the project. Daniel 
+said <quote who="Daniel Baumann">I think all FS projects could use 
+a bit of management, however, I don't think they need "managers" 
+;)</quote>. Matt Rice (ratmice) suggested 
+<quote who="Matt Rice">I think we need the man with the yellow 
+hat from curious george books</quote>.</p>
+
+</section>
+
+

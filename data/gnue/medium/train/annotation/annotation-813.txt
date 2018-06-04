@@ -1,0 +1,53 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.24Jun2002" enddate="23 Jun 2002 23:00:00 -0800" startdate="23 Jun 2002 23:00:00 -0800" subject="[IRC] 24 Jun 2002" title="Using XML to describe database schemas">
+
+<topic>Application Server</topic>
+<topic>DCL</topic>
+
+<mention>Stuart Bain</mention>
+
+<p>Jan Ischebeck (siesel) looked at the XSLT scripts available 
+in DCL for converting XML database definitions into database
+creation scripts for specific databases, as referred to in 
+<kcref archive="http://mail.gnu.org/pipermail/gnue/2002-Jun/003127.html" subject="Contact, Event, and Workshop Managers" />
+and 
+<kcref subject="[IRC] 13 Jun 2002" title="Converting applications to GNUe" />, 
+and felt this could be used to create the default database tables
+for the GNUe Application Server. He asked where these should be 
+placed in GNUe's CVS. Derek Neighbors (dneighbo) asked Jan to  
+<quote who="Derek Neighbors">check in the .xml file as well as the 
+processed .sql files (so we dont make xslt processing a requirement 
+for cvs users) yet :)</quote>. HE personally would like to 
+restructure CVS to <quote who="Derek Neighbors">move samples and 
+things like this out as well as docs of the modules - but thats a 
+major undertaking and we certainly dont all feel that way :)</quote> 
+Jan asked whether the DCL code had been assigned to the Free 
+Software Foundation - <quote who="Jan Ischebeck">i.e. can I directly 
+copy it</quote> into GNUe's CVS.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.25Jun2002">
+The next day</a>, 
+Derek Neighbors (dneighbo) and Stuart Bain (stbain) were 
+trying out some other GPL-ed finance packages to look at the 
+database schemas. Derek did not have Oracle, so talked Stuart 
+through extracting the schemas in the XML format.
+Derek noted that Jan was moving the code that used this 
+from the DCL CVS into GNUe Common (GNU-RPC). 
+Jan said he had not done so yet, as he was not sure where it 
+should go. Derek said <quote who="Derek Neighbors">basically 
+we have the python script that wraps the xslt processor (though 
+any xslt processor could be used)</quote>.</p>
+
+<p>Derek gave an example of what a standard SQL CREATE TABLE 
+statement would look like in the XML format. As well as being 
+a quick way of supporting multiple databases, it also produced 
+excellent schema documentation - he 
+<a hef="http://goats.gnue.org/~dneighbo/fsf/datadictionary.html">pointed</a> 
+to a sample. Instead of converting to XML manually, he was hoping 
+<quote who="Derek Neighbors">to use gnue common and its 
+introspection and have it auto create XML</quote>.
+Stuart posted some sample CREATE TABLE statments in 
+MySQL and Oracle formats.</p>
+
+</section>
+
+

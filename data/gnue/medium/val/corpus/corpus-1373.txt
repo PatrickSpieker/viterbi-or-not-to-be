@@ -1,0 +1,505 @@
+<dtm> hey there guys
+<dtm> chillywilly, derek
+<dtm> http://slashdot.org/comments.pl?sid=39300&cid=4198651  <-- dtm's commentary on the passing of the great Leonard Zubkoff
+reinhard (~rm@M690P020.adsl.highway.telekom.at) joined #gnuenterprise.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: "g'night"
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+btami (~tamas@ip102-205.ktv.tiszanet.hu) joined #gnuenterprise.
+<ajmitch> hi
+<btami> good morning
+JohannesV (~jve@M689P012.adsl.highway.telekom.at) joined #gnuenterprise.
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise ("work is the curse of the drinking classes...").
+Isomer (dahoose@port-62-164.jet.net.nz) got netsplit.
+Mr_You (~car@gso88-217-049.triad.rr.com) got netsplit.
+ra3vat (~ds@ics.elcom.ru) got netsplit.
+pattieja (~pattieja@www.pcxperience.com) got netsplit.
+Isomer (dahoose@port-62-164.jet.net.nz) returned to #gnuenterprise.
+Mr_You (~car@gso88-217-049.triad.rr.com) returned to #gnuenterprise.
+ra3vat (~ds@ics.elcom.ru) returned to #gnuenterprise.
+pattieja (~pattieja@www.pcxperience.com) returned to #gnuenterprise.
+ariel_ (~ariel@ppp-217-133-240-48.dialup.tiscali.it) joined #gnuenterprise.
+paci (~paci@212.94.129.20) joined #gnuenterprise.
+siesel (jan@xunzi.sinologie.uni-bonn.de) joined #gnuenterprise.
+<siesel> morning :)
+Nick change: acmZzzzzzzzz -> acm
+<acm> morning!
+Nick change: acm -> neo
+neo (~Andy@hax0r-9600bps-analog-modem-pool.3solv.net) left irc: "Client Exiting"
+btami (~tamas@ip102-205.ktv.tiszanet.hu) left irc: "Client Exiting"
+jamest (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+lupo_ (~lupo@p3EE1D2AB.dip.t-dialin.net) joined #gnuenterprise.
+<lupo_> hi
+<siesel> hi lupo_
+<lupo_> hey siesel :)
+<lupo_> what are you doing at the moment regarding gnue?
+<siesel> I design some formulars and need the trigger system, and unicode support.
+<lupo_> good
+<lupo_> i don't know whether reinhard told you already
+<siesel> what?
+<lupo_> i have organized money to host a european gnue developers meeting
+<siesel> cool.
+<lupo_> so, i have already found a good place, about 300km from you, 300km from reinhard, and 100km from me which is about the shortest way for each of us. i don't know whether our baltic developers can join.
+<siesel> The baltic developers, thats Arturas, ...?
+<lupo_> yep
+<lupo_> what country were they from? lithuania?
+<siesel> yes.
+<lupo_> the only problem is that a lufthansa economy class flight (vilnius-ffm) costs about 5000Eur :(
+SachaS (~Sacha@dialup-196-207.wasp.net.au) joined #gnuenterprise.
+<siesel> Its quite cheap to go by bus from lithuania to germany, I just dunno, how long it takes :( :(
+Arturas (~arturas@gsk.vtu.lt) joined #gnuenterprise.
+<Arturas> Hello
+<siesel> Hi Arturas
+<SachaS> hi siesel. thanks for your guiding through the intallation last night
+<SachaS> siesel: it works fine and designer is working.
+<siesel> your welcome.
+<SachaS> siesel: had a look at couple samples. samples are fine. did not try the database in the background yet.
+<siesel> you will use mysql ?
+<SachaS> siesel: i guess so. i dont have a concrete project so try the easiest one
+<siesel> I would recommend to use postgresql instead, its not much more complicated than mysql, and many samples work better using postgresql
+reinhard (~rm@M690P020.adsl.highway.telekom.at) left irc: Read error: 104 (Connection reset by peer)
+reinhard (~rm@M690P020.adsl.highway.telekom.at) joined #gnuenterprise.
+<SachaS> how come? should be transparent, shouldn't it?
+<siesel> the forms access is transparent, but most samples have database creation scripts which are written for postgresql
+<SachaS> ok. fair enough
+<siesel> there are just a few ones, which are using the new GSD format.
+<SachaS> the property inspector seems to not let me change values, easaly, sometimes. did you notice?
+<siesel> yes, thats an wx python bug. You have to make the property window so large, that the scrollbar disapears. Then you can change values again.
+<SachaS> argh. at least you know the bug.
+<SachaS> cool yes is working.
+<SachaS> oops. segmentation fault
+<SachaS> gnue-designer --debug-level 5 might help next time
+<siesel> are you using the cvs version?
+<SachaS> yes cvs version
+<siesel> designer is under heavy development in cvs, so it will segfault sometimes :(
+<SachaS> actually i updated my local files with cvs update. there are some g???cvs files i do not understand what they are for.
+<SachaS> thats ok then.
+<siesel> that are the scripts to start gnue programs directly from cvs source tree.
+<siesel> gfcvs is for gnue-forms, gfdes for gnue-designer ...
+<SachaS> from the local cvs source tree?
+<siesel> yes. So you just ddon't have to install every package after every cvs update
+<SachaS> dont understand but will try.
+ToyMan (~stuq@smtp.dstoys.com) joined #gnuenterprise.
+<SachaS> siesel. what should i do if i find a problem. i know i should fix it :)
+siesel (jan@xunzi.sinologie.uni-bonn.de) left irc: "later"
+<lupo_> SachaS: report it
+<SachaS> ta lup_
+<SachaS> ta lupo_
+<lupo_> "ta"?
+<SachaS> thank you
+<lupo_> aha :)
+<lupo_> anyone seen david sugar in the recent days ?
+<SachaS> lupo_ where shall i send a report concerning designer?
+<lupo_> email it to designer-support at gnuenterprise.org, with version and OS information
+JohannesV (~jve@M689P012.adsl.highway.telekom.at) left irc: Read error: 110 (Connection timed out)
+<lupo_> a good idea is to send a patch :)
+<SachaS> lupo_ i know. first time i try desginer :)
+<lupo_> i wouldn't worry. the code is quite understandable, even if you are not a python crack and wxPython guru, you will grasp the code quite fast
+Remosi (dahoose@port-62-162.jet.net.nz) joined #gnuenterprise.
+jamest (~jamest@hobbes.math.ksu.edu) got netsplit.
+<SachaS> ok. sent a report. cya later
+Nick change: SachaS -> SachaS_away
+Nick change: SachaS_away -> SachaS_sleep
+jamest (~jamest@hobbes.math.ksu.edu) got lost in the net-split.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+Isomer (dahoose@port-62-164.jet.net.nz) left irc: Read error: 110 (Connection timed out)
+Arturas (~arturas@gsk.vtu.lt) left irc: "Client Exiting"
+stbain (GunAndGiz@ip68-10-44-170.rn.hr.cox.net) left irc: Read error: 104 (Connection reset by peer)
+giz-0ut (GunAndGiz@ip68-10-44-170.rn.hr.cox.net) joined #gnuenterprise.
+Nick change: giz-0ut -> stbain
+<stbain> hrmmm... wife cleans... knocks the power on the cable modem out
+<stbain> can't really complain because after all... she was cleaning
+JohannesV (~jve@M700P003.adsl.highway.telekom.at) joined #gnuenterprise.
+perlhead (~fheinz@modem80-adsl1.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<lupo_> hehe
+<perlhead> is the gnue-devel list dead?
+<perlhead> I sent a message to the list yesterday, but as far as I can tell, it hasn't been distributed yet...
+ajmitch (~me@wlg1-port13.jetstart.maxnet.co.nz) left irc: Read error: 110 (Connection timed out)
+<lupo_> perlhead: perhaps problems during the server migration of the last few weeks
+<perlhead> Shouldn't be... the subscription process worked fine, so the listserv must have been running.
+<lupo_> hm
+<perlhead> Besides, it's gnue-devel@gnu.org, nothing to do with gnue.org...
+ajmitch (~me@wlg1-port12.jetstart.maxnet.co.nz) joined #gnuenterprise.
+<lupo_> so then, perhaps mailman.gnu.org has issues :(
+ariel_ (~ariel@ppp-217-133-240-48.dialup.tiscali.it) left irc: "Uscita dal client"
+SachaS_sleep (~Sacha@dialup-196-207.wasp.net.au) left irc: Excess Flood
+SachaS_sleep (~Sacha@dialup-196-207.wasp.net.au) joined #gnuenterprise.
+<derek> um if you sent to gnue-devel@gnu.org thats not a valid address
+<derek> i think its gnue-dev
+<derek> http://mail.gnu.org/mailman/listinfo/gnue-dev
+<lupo_> ah yes - of course :)
+<perlhead> derek: thanks, I sent it to the wrong address indeed.
+<perlhead> Only different: I did send it to gnue-dev, but for some reason I put @gnue.org instead of gnu.org
+<perlhead> There it goes again...
+<derek> perlhead: i will attempt to get all patches applied tonight
+<derek> please (i know you guys have done several times) send all patches to me at derek@gnue.org today
+<derek> so i know i dont miss anything
+lupo_ (~lupo@p3EE1D2AB.dip.t-dialin.net) left irc: "using sirc version 2.211+KSIRC/1.1"
+<perlhead> derek: thank you for the offer.
+<perlhead> However, my mail has broader implications than just applying the patches.
+<perlhead> My guys have been preparing patches repeatedly, only to find that they become outdated before they get applied.
+<derek> i will respond to the email, but in fairness doing your own cvs tree really hurts
+<perlhead> And even if they manage to create valid recent patches for our current needs, and you manage to apply them tonight, we still have the problem of what will happen with our future patches.
+<derek> you cant make changes to a ton of files
+<derek> and then submit giant patches and expect quick turn times
+<derek> a patch should only include code specific to the thing its fixing
+<derek> and so many of the patches you sent of course were way out of date to the cvs tree as you were using a different cvs tree
+<derek> a major server issue hasnt helped things
+<derek> but in future small bite sized patches will get applied more quickly
+<derek> this is no different than say the linux kernel
+<perlhead> derek: I know the separate tree hurts. We don't like it, and I hope I made it clear in the mail. It hurts *us*.
+<perlhead> The problem is that our patches didn't start being this huge.
+<perlhead> They began life as simple things (save for some major functionality improvements)
+<perlhead> But as time went by without them being incorporated, they accreted.
+<perlhead> Most of them could have been incorporated as small fixes, only time conspired against it.
+<derek> i thihk we can work this out
+<derek> i hope that jcater responds
+<perlhead> Let me stress this: *we want to kill our branch* *we don't like it* *we did it because we had no other choice*
+<perlhead> As to the comparison with the linux kernel, you are right, it's not that different.
+<perlhead> But as far as I know, major contributors to the kernel have commit privileges to their areas of activity.
+<perlhead> Trust me, Vía Libre will continue to contribute to GNUe in a major way.
+<derek> that is our problem
+<derek> we dont have yet 'areas of activity'
+<perlhead> We want GNUe to succeed as a coherent project. The success of our own project depends from it.
+<derek> we have one giant cvs tree that has no discrimination
+<derek> that is high on our list to break cvs into smaller modules
+<derek> so we can give commit access by module and such
+<perlhead> If we wait for that, hell will freeze over. You guys are overworked as it is. You don't have the *time* to the segmentation.
+<perlhead> There are more important things in the queue.
+<derek> then we have to continue with patches i think
+<derek> we have been burned on more than one occassion doing differently
+<derek> even in patches via libre has done, things were discussed in irc and everyone seemed in agreement
+<derek> yet it was coded in way that was not agreed
+<derek> jcater can give specifics
+<derek> now certainly it was just a communication breakdown (so not criticizing coding or coding techniques)
+<derek> but the idea behind patches is that stuff like that gets caught pre checkin not post checkin
+paq (~paq@202.155.120.221) joined #gnuenterprise.
+<perlhead> Sorry, I can't comment on that as I don't have the specifics, but I doubt the patches were coded in a way that was agreed to be *not* the right way.
+<perlhead> I'm absolutely sure the intent is to do things the right way.
+<derek> correct
+neilt (~neilt@66.95.5.110) joined #gnuenterprise.
+#gnuenterprise: mode change '+o neilt' by ChanServ!ChanServ@services.
+<neilt> hello all
+<neilt> anyone home?
+<derek> actually i am here and at home
+<derek> go figure
+<derek> it must be your lucky day
+<derek> or unlucky as the case may be ;)
+Action: derek is away: work
+<derek> sigh time to get to get to the office
+<reinhard> neilt: hello
+<reinhard> i am sorta here
+<reinhard> i have guests at home and may be a bit slow in responding
+<reinhard> but i am here
+<neilt> back, sorry someone walked into my office
+<neilt> does anyone know of any good free web community software?
+<neilt> or have a recommendation where i should look
+<reinhard> sorry I don't understand what you mean with "web community software"
+<reinhard> something for making discussion forums and the like?
+<neilt> yes
+<neilt> moderated web based discussions
+<reinhard> i could imagine that phpnuke/postnuke has a module for that
+<reinhard> the software package we used for our former web site
+<neilt> cool, i'll look into that
+<neilt> has anyone used phpBB?
+<nickr> me, me
+<neilt> what was your experience?
+<nickr> It is most excellent
+<neilt> nickr: did it have any problems?
+<nickr> that that I know of
+<neilt> cool, thanks
+jamest (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+paci (~paci@212.94.129.20) left irc: "ciao"
+stuart_ (~stuart@216.12.37.168) joined #gnuenterprise.
+Nick change: stuart_ -> stbain2
+<stbain2> greetz
+psu (peter@manorcon.demon.co.uk) joined #gnuenterprise.
+psu (peter@manorcon.demon.co.uk) left #gnuenterprise ("bbl").
+karlis (redrobin@62.85.68.65) joined #gnuenterprise.
+karlis (redrobin@62.85.68.65) left irc: "[BX] 2000: year of the BitchX"
+wedniatnuom (www-data@alt1.libertydistribution.com) joined #gnuenterprise.
+<wedniatnuom> i think neilt left but i thought phpBB was known to be highly unsecure
+<wedniatnuom> unless im thinking of another one
+<wedniatnuom> http://www.securiteam.com/unixfocus/5WP0E2A7FA.html
+<wedniatnuom> being one one of its latests bugs (i dont know if its closed or not)
+<wedniatnuom> http://www.phpadvisory.com/advisories/view.phtml?ID=52
+<wedniatnuom> from a few weeks ago
+<wedniatnuom> just word of caution, most php holes are not a big deal if run on intranet
+<wedniatnuom> so it might be a pointless issues, just an fyi
+wedniatnuom (www-data@alt1.libertydistribution.com) left irc: "CGI:IRC 0.5 (EOF)"
+ToyMan (~stuq@smtp.dstoys.com) left irc: "Client Exiting"
+<nickr> is there a thing in sql for like .. a value that isn't a string but sort of a symbolic name
+<nickr> like #defines or enums, kinna
+<nickr> but I don't care if its a number or not
+reinhard (~rm@M690P020.adsl.highway.telekom.at) left irc: "The chance of forgetting something is directly proportional to ... to ... aehm ..."
+StyXman (~mdione@modem80-adsl1.cordoba.sinectis.com.ar) joined #gnuenterprise.
+ra3vat (~ds@ics.elcom.ru) left irc: "Client Exiting"
+<StyXman> I have a very serious focus problem
+<jamest> lay off the caffine and MTV
+<jamest> it'll help
+<StyXman> :) I don't have tv.
+<nickr> StyXman: give yourself caffiene blood poisoning
+<StyXman> neither good coffee...
+<jamest> :)
+<StyXman> bur the problem is that I have this nice fowm with lookups
+<StyXman> the lookips are the same entry with rows=5
+<StyXman> suppise I have no record that math my query
+<jamest> ok
+<StyXman> suppise I click in the 3rd lookup
+<StyXman> suppose I have a keyb with the correct labells
+<StyXman> suppose I have a keyb that works
+<StyXman> suppose I start writing in this 3rd entry.
+<StyXman> the focus is 'there', even the 'cursor' (that '|' thingy)
+<StyXman> but as you write the leters appear in the 1st (!!!) enry
+<StyXman> (entry)
+<jamest> ouch
+<StyXman> yeap. ouch. cpouldn't find where to fic that. I'm totally *lost*
+ra3vat (~ds@ics.elcom.ru) joined #gnuenterprise.
+<StyXman> indeed, the focus get to the last entry a 'could' be written to. in my example, as there's no matches, it goes into 'inser' mode and writes in the first row.
+<StyXman> if I click in the 5th row, I get the same. if I have 3 mattches and try to writte in tthe 5th, the 4th gets the data. and so on.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+<StyXman> hi chillywilly 
+<chillywilly> hi
+<jamest> wow
+<chillywilly> at least some people say hi to me ;)
+<jamest> ok
+<chillywilly> you don't count as you're never around
+<chillywilly> hi jamest
+<chillywilly> :)
+<StyXman> wow? ok?
+Action: chillywilly was joking anyway
+Action: chillywilly high fives jamest
+<chillywilly> how's it going sir?
+<StyXman> cloudy, cold, no coffee, no women
+<chillywilly> hello all my gnu fiends :)
+<StyXman> and lots of work. good ay, uh?
+<chillywilly> sure :-/
+<jamest> hi chillywilly and co
+<jamest> StyXman: wow - that's a bad focus error
+Action: chillywilly is being evil and using xml.dom.minidom
+<StyXman> jamest: yes, I realize...
+<chillywilly> it is complainign abot some mismacthed tag but I can find the typo
+<StyXman> (sorry for being sacastic. uh, badd day anyways..)
+<StyXman> can=cant?
+<chillywilly> danielb@obfuscation:~/src/cvs/gnue/appserver/src/_featuretest$ python parser.py 
+<chillywilly> Traceback (most recent call last):
+<chillywilly>   File "parser.py", line 5, in ?
+<chillywilly>     dom = parse("./thekitchensink.godl")
+<chillywilly>   File "/usr/lib/python2.2/site-packages/_xmlplus/dom/minidom.py", line 1286, in parse
+<chillywilly>     return _doparse(pulldom.parse, args, kwargs)
+<chillywilly>   File "/usr/lib/python2.2/site-packages/_xmlplus/dom/minidom.py", line 1279, in _doparse
+<chillywilly>     events.expandNode(rootNode)
+<chillywilly>   File "/usr/lib/python2.2/site-packages/_xmlplus/dom/pulldom.py", line 253, in expandNode
+<chillywilly>     event = self.getEvent()
+<chillywilly>   File "/usr/lib/python2.2/site-packages/_xmlplus/dom/pulldom.py", line 265, in getEvent
+<StyXman> nice hostame :)
+<chillywilly>     self.parser.feed(buf)
+<chillywilly>   File "/usr/lib/python2.2/site-packages/_xmlplus/sax/expatreader.py", line 211, in feed
+<chillywilly>     self._err_handler.fatalError(exc)
+<chillywilly>   File "/usr/lib/python2.2/site-packages/_xmlplus/sax/handler.py", line 38, in fatalError
+<chillywilly>     raise exception
+<chillywilly> xml.sax._exceptions.SAXParseException: <unknown>:1433:10: mismatched tag
+<chillywilly> danielb@obfuscation:~/src/cvs/gnue/appserver/src/_featuretest$ 
+<chillywilly> woooooo
+<chillywilly> sorry
+<chillywilly> thanks :)
+<chillywilly> hrrrm
+<chillywilly> I should see if I can register obfuscation.net
+Chipaca (~john@modem80-adsl1.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<StyXman> .net is for isp's...
+<chillywilly> darn
+<chillywilly> ok, .org then
+<chillywilly> whatever
+<Chipaca> hi all
+<StyXman> uh, .org is undder battle now.
+<chillywilly> seems like all the god ones are takem
+<StyXman> but should be .org, yes
+<chillywilly> eschew obfscation
+<chillywilly> :)
+<Chipaca> chillywilly: bless you
+<chillywilly> a buddy of mine had a tshirt that said that
+<chillywilly> it means "be clear" ;)
+<chillywilly> sorta ironic :)
+<chillywilly> avoid "obfscation"
+<StyXman> ironic? sounds sound to me.
+<chillywilly> avoid being unclear
+<chillywilly> be clear
+<chillywilly> well you're saying be clear
+<chillywilly> at the same time yo are sing words that are not very clear in their meaning or used a lot
+<chillywilly> so you are kinda doing the opposite
+<Chipaca> chillywilly: hmm, maybe if you add some charts we'll get it
+<StyXman> :))
+<chillywilly> blah
+<chillywilly> I thought maybe it was language thing
+<chillywilly> excuse me for wanting to help you out when you need none
+Action: chillywilly wields trout
+Action: chillywilly thwaps Chipaca
+Action: Chipaca ducks
+Action: Chipaca grabs chillywilly by his trout hand hurls him against the hppa
+<Chipaca> s/hand/and/
+<chillywilly> you can't duck if you're alread thwapped
+<chillywilly> already
+<StyXman> yeah, that's cheating
+yogurt2unge (~charlie@modem80-adsl1.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<chillywilly> [16:31:43] --> lloyd (~odium@209-6-81-94.c3-0.frm-ubr2.sbo-frm.ma.cable.rcn.com) has joined #hurd
+<chillywilly> [16:32:10] <lloyd> You Hurd gnurds!
+<StyXman> chillywilly: after a 5th read, I get it. but you know, thre's always the 'do what I say and not what I do' thing...
+<StyXman> and the 'do what I mean and what I say' one.
+<StyXman> (and not)
+<Chipaca> StyXman: and then there's 'do foo'
+<Chipaca> StyXman: or foo.do()
+<Chipaca> StyXman: or do(foo, 'NOW')
+<StyXman> and 'now' do: foo
+<Chipaca> or rpm, foo 'NOW' do
+<Chipaca> er
+<Chipaca> rpn
+Action: Chipaca shuts up
+<chillywilly> yea, shutup already
+<chillywilly> ;)
+Action: Chipaca yawns
+Action: chillywilly hugs xml-mode
+<Chipaca> chillywilly: coffee?
+<Chipaca> chillywilly: xml-mode is useless without a good DTD :(
+<chillywilly> C-c C-v gave a better error than the SAX parser
+aprono (~aprono@modem80-adsl1.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<chillywilly> nsgmls:thekitchensink.godl:1433:24:E: end tag for "interface" omitted, but OMITTAG NO was specified      
+<Chipaca> chillywilly: and the C-X `
+<chillywilly> must've missed a </interface>
+<chillywilly> Chipaca: well, it helped me find the error even with no DTD
+<chillywilly> DTDs are lame anyway ;)
+neilt (~neilt@66.95.5.110) left irc: Read error: 110 (Connection timed out)
+<chillywilly> schemas is where it's at
+<chillywilly> :P
+Action: Chipaca scratches his foo
+<Chipaca> whatever you say
+<Chipaca> I'm going fot the coffee
+<chillywilly> it worked
+<chillywilly> I was missing an ending interface tag for the "CodeSlave" interface :)
+wedniatnuom (www-data@alt1.libertydistribution.com) joined #gnuenterprise.
+perlhead (~fheinz@modem80-adsl1.cordoba.sinectis.com.ar) left irc: "Client Exiting"
+<wedniatnuom> he y now dont leave
+Action: wedniatnuom wonders if he went for coffee too
+perlhead (~fheinz@modem80-adsl1.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<StyXman> wedniatnuom: who do you mean?
+<wedniatnuom> chipaca left for coffee
+<wedniatnuom> then perlhead left the room
+<wedniatnuom> i thought maybe chipaca sent him for coffee
+<StyXman> :)
+<perlhead> wedniatnuom: I hear you didn't want me to leave?
+<StyXman> I thing you get the food chain wrong :)
+<wedniatnuom> i was teasing
+<wedniatnuom> re: coffee thing
+<chillywilly> wedniatnuom: why do you use a billion different nicks now?
+<chillywilly> where be da masta at?
+<chillywilly> anyone know if there's debian packages for the 4suite set of xml tools - http://4suite.org
+<wedniatnuom> who cares use saboltron :)
+<nickr> chillywilly: there is
+<chillywilly> what all does saboltron do?
+<nickr> not much
+<chillywilly> 4Suite is a platform for XML and RDF processing. It provides facilities for processing DOM, SAX, RDF, XSLT, XInclude, XPointer, XLink, XPath. It provides a server for such operations through HTTP (including native SOAP and WebDAV) and FTP. APIs can be accessed directly from Python or XSLT extensions. 
+<chillywilly> hmmm
+<wedniatnuom> lik you need all that shit?
+<wedniatnuom> er stuff?
+<chillywilly> yea
+<wedniatnuom> yeah gnue does so much rdf processing and all :)
+<chillywilly> well the server I could care less about
+<wedniatnuom> and we are heavy users of webDAV
+<wedniatnuom> and FTP
+JohannesV (~jve@M700P003.adsl.highway.telekom.at) left irc: Read error: 104 (Connection reset by peer)
+<chillywilly> I never looked at rdf, I dunno what it is good for
+<wedniatnuom> XSLT XPATH XLINK stuff i think is handled by saboltron 
+<wedniatnuom> DOM and SAX are native to python
+JohannesV (~jve@M700P003.adsl.highway.telekom.at) joined #gnuenterprise.
+<chillywilly> the minidom licks bag
+<chillywilly> that's the onyl real implementation
+<chillywilly> xml.dom is jst generic stuff to bild a real DOM parser and minidom is missing some things (only level 1 parser)
+<chillywilly> nickr: what's the pakcage name?
+<chillywilly> package
+<chillywilly> nevermind
+<chillywilly> found it
+<chillywilly> hrrrm, why does removing python2.2 pakcages pull python2.1 with it?
+stbain2 (~stuart@216.12.37.168) left irc: "Client Exiting"
+neilt (~neilt@ip68-100-144-59.nv.nv.cox.net) joined #gnuenterprise.
+#gnuenterprise: mode change '+o neilt' by ChanServ!ChanServ@services.
+<StyXman> chillywilly: downgrade to woody?
+<Chipaca> chillywilly: use apt-cache dotty and figure it out :)
+<chillywilly> what's dotty?
+<Chipaca> chillywilly: graphviz
+<Chipaca> chillywilly: dotty is an interactive thingie for dot(1)
+<Chipaca> http://www.research.att.com/sw/tools/graphviz/
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "Client Exiting"
+perlhead (~fheinz@modem80-adsl1.cordoba.sinectis.com.ar) left irc: "Client Exiting"
+wedniatnuom (www-data@alt1.libertydistribution.com) left #gnuenterprise.
+StyXman (~mdione@modem80-adsl1.cordoba.sinectis.com.ar) left #gnuenterprise.
+yogurt2unge (~charlie@modem80-adsl1.cordoba.sinectis.com.ar) left irc: "Client Exiting"
+aprono (~aprono@modem80-adsl1.cordoba.sinectis.com.ar) left irc: "Client Exiting"
+jcater (~jcater@cpe-024-165-223-104.midsouth.rr.com) joined #gnuenterprise.
+<Chipaca> jcater: hi
+<jcater> hi
+Action: Chipaca waves
+<Chipaca> time to go
+<Chipaca> :)
+Chipaca (~john@modem80-adsl1.cordoba.sinectis.com.ar) left irc: "ircII EPIC4-1.0.1 -- Are we there yet?"
+jbailey (~jbailey@CPE014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+SachaS_sleep (~Sacha@dialup-196-207.wasp.net.au) left irc: Read error: 113 (No route to host)
+neilt (~neilt@ip68-100-144-59.nv.nv.cox.net) left irc: Read error: 110 (Connection timed out)
+jbailey (~jbailey@CPE014260028338.cpe.net.cable.rogers.com) left #gnuenterprise ("Client Exiting").
+<Mr_You> hi
+<chillywilly> howdy
+<Mr_You> wonderin how I can make a web-based forms client persistent-like
+<Mr_You> might require javascript or :-( flash
+<Mr_You> well  I can't hang around.. maybe tommorow evening..
+Action: Mr_You &
+<derek> hmmm look at the one in cvs?
+jbailey (~jbailey@CPE014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+SachaS (~SachaS@134.7.3.174) joined #gnuenterprise.
+jbailey (~jbailey@CPE014260028338.cpe.net.cable.rogers.com) left #gnuenterprise ("Client Exiting").
+SachaS (~SachaS@134.7.3.174) left #gnuenterprise.
+Grantbow (~grantbow@12-233-20-180.client.attbi.com) joined #gnuenterprise.
+<Mr_You> re
+<Mr_You> derek: you mean phpforms client?
+<Mr_You> dere: gotta love variables named "$this" :-((
+<Mr_You> makes me sick
+<Mr_You> I can't follow the flow of complex code either
+<Mr_You> tho I can do some mean regexps heh
+<Mr_You> if anyone is awake and  interested in a off-log Q&A in #gnue /join #gnue
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: "woooooosh!"
+jcater (~jcater@cpe-024-165-223-104.midsouth.rr.com) left irc: "nite"
+<Mr_You> I'm working on a Perl UI driver and webmin module
+<Mr_You> wondering how navigator and the client will integrate best
+<Mr_You> oh, hmm I gots an idea
+<ajmitch> uh oh...
+<Grantbow> lol
+<derek> um variables like $this are HIGHLY acceptable
+<derek> seriously
+<derek> its an 'instance' of an object
+<Mr_You> I can't read that code
+<Mr_You> no big deal, I like writing my own
+<derek> i havent looked at the code so i cant commen t:)
+<Mr_You> I've never done OOP
+<Mr_You> will do that some other time
+<Mr_You> I want somethin workin first ;-)
+<Mr_You> wow, this country restricts the names of babies
+<ajmitch> heh
+<Mr_You> this guy wants his son named after OSBL
+<Mr_You> germany 
+<LuftHans> Mr_You: yeah, it has to have been previously used. About the only way to get new names allowed is via naturalization of foreigners. Schtupid.
+<derek> he we are getting clobbered at linuxfund.org now
+<derek> go vote people
+Action: ajmitch can't anymore :(
+Topic changed on #gnuenterprise by derek!~dneighbo@cpe-24-221-112-50.az.sprintbbd.net: Login to http://www.linuxfund.org and put your penguin pesos where your pie hole is and vote for GNUe!
+<ajmitch> we need to advertise it outside of the small GNUe community
+<derek> im not sure highest vote wins
+<derek> i think it might be simply it helps their board decide
+<ajmitch> ok
+<ajmitch> gnue is far more important than some silly game
+<derek> i think so, but certainly those workign on the game dont :)
+<ajmitch> and how many are working on the game?
+<ajmitch> i know of one arrogant person who annoys #wopn with his advertising
+paq (~paq@202.155.120.221) left irc: Read error: 104 (Connection reset by peer)
+<derek> hmmmm i will have plug it during the interview with #wopn then is what you are saying ;)
+<derek> muhahahaha
+<ajmitch> yep :)
+<ajmitch> hmmm, www.linuxfund.org times out
+<Mr_You> well gotta run, this is costin me
+Mr_You (~car@gso88-217-049.triad.rr.com) left #gnuenterprise.
+--- Fri Sep  6 2002

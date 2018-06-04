@@ -1,0 +1,526 @@
+[00:01] Last message repeated 1 time(s).
+<dtm> werd.
+<dtm> dneighbo: dude.  i'm getting a glimpse from your conversation here, of a problme you're having with FSF
+<dtm> dneighbo: am I correct in understanding that there is some need internal to FSF operations for which gnue is or could be suitable for, and they won't use it?  or is that one related to your workplace?
+ra3vat (ds@ics.elcom.ru) joined #gnuenterprise.
+jcater (jason@HubA-mcr-24-165-193-24.midsouth.rr.com) left irc: "later"
+reinhard (~rm@62.47.45.104) joined #gnuenterprise.
+<ra3vat> reinhard: hello
+<dtm> ra3vat: hi
+<dtm> reinhard: hi
+<ra3vat> dtm: hello, no zZzZ again :)
+<dtm> eh?  you're sleepless?
+<dtm> i stayed up all night last night doing my first draft of my Business Plan, so yay
+<dtm> gave the presentation of it in class todya
+<dtm> today
+<dtm> @#*)%
+<dtm> gonna graduate thursday
+<dtm> sd.mfk;.jsfui
+<ra3vat> ah, then good luck with the graduation
+<dtm> yessir
+<dtm> it shall be done.
+<dtm> is anyone here interested in quake3?
+<ra3vat> dtm: will it helps with your graduation? :)
+<dtm> could be.
+Yurik (~yrashk@gw.telcos.net.ua) joined #gnuenterprise.
+alexey (~Alexey@ns.techkran.vladimir.ru) joined #gnuenterprise.
+SachaS (~sacha@203.190.196.216) joined #gnuenterprise.
+SachaS (sacha@203.190.196.216) left irc: Remote closed the connection
+SachaS (~sacha@203.190.196.216) joined #gnuenterprise.
+alexey (Alexey@ns.techkran.vladimir.ru) left irc: "[x]chat"
+SachaS (sacha@203.190.196.216) got netsplit.
+dneighbo (dneighbo@cpe-24-221-112-50.az.sprintbbd.net) got netsplit.
+Maniac (User@h24-82-132-209.wp.shawcable.net) got netsplit.
+markoi (marko@h126n2fls21o825.telia.com) got netsplit.
+Isomer (dahoose@210-86-57-216.jetstart.xtra.co.nz) got netsplit.
+mdean (mdean@mkc-65-28-73-63.kc.rr.com) got netsplit.
+SachaS (~sacha@203.190.196.216) returned to #gnuenterprise.
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) returned to #gnuenterprise.
+Maniac (~User@h24-82-132-209.wp.shawcable.net) returned to #gnuenterprise.
+markoi (marko@h126n2fls21o825.telia.com) returned to #gnuenterprise.
+mdean (~mdean@mkc-65-28-73-63.kc.rr.com) returned to #gnuenterprise.
+Isomer (dahoose@210-86-57-216.jetstart.xtra.co.nz) returned to #gnuenterprise.
+SachaS (~sacha@203.190.196.216) left #gnuenterprise ("Client Exiting").
+alexey (~Alexey@ns.techkran.vladimir.ru) joined #gnuenterprise.
+alexey (Alexey@ns.techkran.vladimir.ru) left irc: "[x]chat"
+ToyMan_mobile (~stuq@65.167.123.51) joined #gnuenterprise.
+ToyMan_mobile (stuq@65.167.123.51) left irc: Client Quit
+ToyMan (~stuq@65.167.123.51) joined #gnuenterprise.
+Nick change: reinhard -> rm-away
+jamest (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+dsmith (firewall-u@cherry7.comerica.com) joined #gnuenterprise.
+andrizas (~andrizas@adsl-213-190-40-206.takas.lt) joined #gnuenterprise.
+andrizas (andrizas@adsl-213-190-40-206.takas.lt) left irc: Client Quit
+<ra3vat> jamest: hello
+<jamest> hello
+<ra3vat> jamest: how to downgrade cvs copy to say two days ago stage?
+<ra3vat> forms stopped working with last (yesterday?) updates
+<jamest> um
+<jamest> forms updates?
+Action: jamest hasn't checked his gnue mail in a week
+<ra3vat> yes my copy of forms worked yesterday and not after today's update
+<jamest> let me update here real quick
+Action: jamest deperately wants to gnue again
+<ra3vat> DB000:   File "/home/ds/cvs/gnue/gnue/forms/.cvsdevelbase/gnue/common/GParser.py", line 297, in characters
+<ra3vat> DB000:     if isinstance(self.xmlStack[0],self.xmlMasqueradeNamespaceElements):
+<ra3vat> DB000: TypeError: second argument must be a class
+<jamest> sigh
+<ra3vat> what?
+<jamest> it's broke :)
+<jamest> I'm commiting a fix
+<jamest> ok, update and it should work
+<jamest> seems some new feature used by reports isn't in forms yet so I added a simple check 
+<jamest> not sure that the overall effect will be but "it works for me"
+<ra3vat> checking out
+<ra3vat> yes, now it works for me too
+<nickr> ugh, its too early
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<dneighbo> its jcaters fault he broke the parser
+<dneighbo> at least thats what junior says
+<jcater> broked tha parser?
+<jcater> "it works for me"
+<dneighbo> must go
+dneighbo (dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: "Client Exiting"
+<ra3vat> jcater: works for me only after jamest's fix
+<jamest> jcater: there is a ref to a self.xmlMasqueradeNamespaceElements that is only assigned in reports code
+<jamest> so it bombed in forms
+<jcater> how odd
+<jcater> I tested that with several forms
+<jcater> not sure when it broke
+<jamest> try it w/ helloworld.gfd
+<jamest> it's pretty easy to spot via glimpse
+<ra3vat> i did with simple/form.gfd
+<jamest> /home/jamest/cvs/gnue/common/src/GParser.py:     self.xmlMasqueradeNamespaceElements = None
+<jamest> /home/jamest/cvs/gnue/common/src/GParser.py:     elif self.xmlMasqueradeNamespaceElements:
+<jamest> /home/jamest/cvs/gnue/common/src/GParser.py:       object = self.xmlMasqueradeNamespaceElements(self.xmlStack[0])
+<jamest> /home/jamest/cvs/gnue/common/src/GParser.py:       if self.xmlMasqueradeNamespaceElements and isinstance(self.xmlStack[0],self.xmlMasqueradeNamespaceElements):
+<jamest> /home/jamest/cvs/gnue/reports/src/GRParser.py:     self.xmlMasqueradeNamespaceElements = GRLayout.GRPassThru
+<jamest> in GRParser.py it's being assigned a class, nothing in GFParser did the same so the isinstance() failed as the second arg was set to None
+<jcater> ok, I believe you :)
+<jcater> but I swear I tested it w/several forms
+<jcater> I must've rewritten that one if statement after testing
+<jcater> I dunno
+<jamest> i just wanted to you know what I did as I have no idea if i did the right thing
+Action: jamest applied a band-aid and went back to the html that he loves so dearly
+dres (~dres@4.18.171.42) joined #gnuenterprise.
+SachaS (~sacha@203.190.196.211) joined #gnuenterprise.
+SachaS (sacha@203.190.196.211) got netsplit.
+markoi (marko@h126n2fls21o825.telia.com) got netsplit.
+Isomer (dahoose@210-86-57-216.jetstart.xtra.co.nz) got netsplit.
+mdean (mdean@mkc-65-28-73-63.kc.rr.com) got netsplit.
+Maniac (User@h24-82-132-209.wp.shawcable.net) got netsplit.
+SachaS (~sacha@203.190.196.211) returned to #gnuenterprise.
+Maniac (~User@h24-82-132-209.wp.shawcable.net) returned to #gnuenterprise.
+markoi (marko@h126n2fls21o825.telia.com) returned to #gnuenterprise.
+mdean (~mdean@mkc-65-28-73-63.kc.rr.com) returned to #gnuenterprise.
+Isomer (dahoose@210-86-57-216.jetstart.xtra.co.nz) returned to #gnuenterprise.
+yogurt2unge (~charlie@modem224-adsl1.cordoba.sinectis.com.ar) joined #gnuenterprise.
+jbailey (~jbailey@HSE-Toronto-ppp286290.sympatico.ca) joined #gnuenterprise.
+dneighbo (~dneighbo@tmp-200253.flinthills.com) joined #gnuenterprise.
+<dneighbo> Bonjour mon amis
+<jbailey> Bonjour - Ca va?
+<dneighbo> comment t'allez vous?
+<dneighbo> comme ci comme ca 
+<jcater> se habla gnue?
+<dneighbo> oui
+<dneighbo> je parle gnue
+<dneighbo> GNUe est tres chic.
+<jcater> GNUe est tres headache.
+<dneighbo> Il vous donnera un grand penis!
+<jbailey> Le gnue-viagra-a-l'herbe!
+<SachaS> headache = mal à la tete
+<dneighbo> parce que c'est si bon
+<SachaS> GNUe c'est commme une voiture sans moteur
+<SachaS> sorry guys
+<dneighbo> merde a la tete explains gnue developers eh :)
+<jbailey> dneighbo: Et l'alcool pour le sens..  (How do you spell blood again?)
+<jbailey> sengs?
+<jbailey> Hmm
+<jbailey> Ca fait trop long depuis que j'ecris.
+<dneighbo> its been so long since i spoke/wrote french 
+<dneighbo> i shoudl start more often
+<dneighbo> er practice
+<dneighbo> les femmes aiment les hommes qui utilisent le gnue
+<dneighbo> jcater that should be our 'pitch'
+<dneighbo> women love men that use gnue :)
+<SachaS> sorry guys about my comment. according to the homepage of gnue it is an erp system with which you can do hr, finance, supply chain management etc etc but there is so much missing.... it will take much more time.
+<dneighbo> years
+<SachaS> thanks dneighbo and i though i am mean :)
+<jbailey> SachaS: "erp".
+<jbailey> Like when you try to use it, your tend to yell erp, and throw your computer out the window?
+<dneighbo> i think your statement was a lie though
+<dneighbo> didnt it say
+<dneighbo> its like a car with out a motor?
+<SachaS> yes.
+<dneighbo> it should read its like a motor w/o a car
+<SachaS> :)
+<dneighbo> what exactly are you looking for SachaS ?
+<dneighbo> i.e. i really really want to get some gnue apps out the door
+<dneighbo> even if they are not the 'official' n-tier spec
+<dneighbo> i have a commitment to getting some stuff done for ToyMan 
+<dneighbo> and i have some stuff im doing for client of mine
+<dneighbo> and we might have some contact manager stuff coming down the road
+<dneighbo> and i have lots of todos for DCL/GNUe
+<dneighbo> but 
+<dneighbo> i really am willing to start and try to coddle things people need
+<dneighbo> that are willing to participate
+<dneighbo> i.e. test and actually use in production
+<dneighbo> all i can is last night
+<SachaS> dneighbo: i wanted to use it for some simple tests.
+<dneighbo> forms over 'ssh tunnel' saved me countless hours and was an utter god send
+<dneighbo> it just ROCKS
+<SachaS> dneighbo: i tried to install it on debian testing without success because of python stuff. I guess i got the designer running but did not try to create pages. MUST give it another try.
+<SachaS> dneighbo: finance. simple account with add and minux (activa and passiva). i guess it just gets bloody compilcated fast ...
+<dneighbo> SachaS are you looking to use this or just want to play?
+<dneighbo> installing on debian testing shoudl be really quick
+<dneighbo> what was the hang up ?
+<SachaS> dneighbo: Primarly play, i guess. python-orb or python-something. was about 2 months ago.
+<dneighbo> i think you just
+<dneighbo> apt-get install libwxgtk2.2-python (wehre 2.2 is what ever version in testing)
+<dneighbo> it will install python for you
+<dneighbo> and other dependencies
+<dneighbo> since you no longer need pyxml
+<dneighbo> thats it
+<dneighbo> then just get cvs tree
+<dneighbo> and from root of cvs tree run
+<dneighbo> ./setup-cvs (or something)
+<dneighbo> its only setup file there
+<dneighbo> and voila you are done (w/o db access)
+<dneighbo> if you want db access
+<dneighbo> apt-get install postgres (whatever the name is)
+<dneighbo> apt-get install psycopg
+<SachaS> :)
+<dneighbo> and edit your config file and done
+<SachaS> i know it is all easy :)
+<SachaS> its 01.30 am here so I will not do it now. another day.
+<SachaS> to run an erp system would be bloody great! 
+<SachaS> dneighbo: i wrote a report about ebxml and mentioned gnue in there. if you want you can have a look at it at ttp://www.openebxml.org/information/papers/papers.html (Student paper by Sascha)
+<SachaS> http://www.openebxml.org/information/papers/papers.html 
+<SachaS> good night.
+SachaS (~sacha@203.190.196.211) left #gnuenterprise ("Client Exiting").
+rm-away (rm@62.47.45.104) left irc: "Don't believe in miracles -- rely on them"
+<dneighbo> sacha ran off but his story is on gnuenterprise now
+<dneighbo> its actually a pretty darn good little research paper
+<dneighbo> i recommend reading it if you are interested in such glamorous and exciting things as electronic business :)
+<dneighbo> jcater you here?
+<dneighbo> actually anyone have an idea for a new poll?
+<jbailey> "spoon" "fork" ?
+<dneighbo> fork
+<dneighbo> spoons are obsolete
+<dneighbo> i REALLY do not understand the concept of a spoon
+<dneighbo> if its so liquid that you cant use fork
+<dneighbo> drink it from the container (duh)
+<dneighbo> hell i vote chopstix personnaly
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+<jcater> dneighbo: here
+<psu> <aol>me too</aol>
+<jcater> dneighbo: how about "What primary reporting solution does your business use?"
+<jcater> Oracle-Reports
+<jcater> Crystal Reports
+<jcater> FRx
+<jcater> In-house Custom Solution
+<jcater> blah, blah, blah
+<jcater> just an idea
+<psu> Business Objects
+<psu> Cognos Impromptu
+<psu> Oracle Designer
+<psu> s/Designer/Discoverer
+<psu> OLAP-u-like
+<psu> just made that last one up, btw
+<jcater> :)
+<jcater> EZ-OLAP :)
+<psu> we could put it in the poll & see how many people pick it
+<psu> sorta like the CowboyNeal option on /. polls
+<jcater> rofl
+<dneighbo> jbailey you here?
+<dneighbo> new poll is up
+<jamest> and the site is down
+<dneighbo> huh?
+<dneighbo> its up for me
+<jcater> it is?
+<jcater> working for me
+<jamest> www.gnuenterprise.org won't work for me
+<dneighbo> soudns like a personal problem
+<dneighbo> you should contact your 'network administrator'
+<dneighbo> ;)
+<jcater> jamest: I think you need to tell your sysadmin
+<dneighbo> jinx
+<jcater> sigh
+<jamest> nah, i'll ignore the problem till it goes away
+<jamest> i'm having too much fun html'ing
+<dneighbo> yeah its not like the sys admin ever fixes the problem anyhow
+<jamest> the site is up for you guys?
+<jamest> i can't even ssh into it
+<jamest> i take that back
+<jcater> jason@jason:~/cvs/gnue$ ssh jcater@ash
+<jcater> jcater@ash's password:
+<jamest> i can ssh into it
+<jamest> any command that attempt to tell me wazzup with the memory/process space hangs that connection
+<jamest> feel free to prove me wrong....please
+<jcater>  13:03:08 up 35 days, 16:50,  5 users,  load average: 0.29, 0.21, 0.08
+<jcater> 89 processes: 88 sleeping, 1 running, 0 zombie, 0 stopped
+<jcater> CPU states:  13.4% user,   3.0% system,   0.0% nice,  83.7% idle
+<jcater> Mem:     95116K total,    84912K used,    10204K free,     4720K buffers
+<jcater> Swap:   248888K total,    45376K used,   203512K free,    26748K cached
+<jcater>   PID USER     PRI  NI  SIZE  RSS SHARE STAT PU %MEM   TIME COMMAND
+<jcater> 28687 www-data  15   0  4092 3948  2252 D     5.9  4.1   0:00 apache
+<jcater> 28454 www-data   9   0  3932 3796  2304 S     5.7  3.9   0:01 apache
+<jcater> 28783 jcater    16   0   992  992   768 R     1.3  1.0   0:00 top
+<jcater> 28446 www-data  10   0  3840 3704  2284 S     0.1  3.8   0:01 apache
+<jcater> 28776 root       9   0  1688 1648  1364 S     0.1  1.7   0:00 sshd
+<jcater>     1 root       9   0   496  448   424 S     0.0  0.4   0:25 init
+<jcater>     2 root       9   0     0    0     0 SW    0.0  0.0   0:52 keventd
+<jcater>     3 root      19  19     0    0     0 SWN   0.0  0.0   0:44 ksoftirqd_CPU0
+<jcater>     4 root       9   0     0    0     0 SW    0.0  0.0  26:56 kswapd
+<jcater>     5 root       9   0     0    0     0 SW    0.0  0.0   0:00 bdflush
+<jcater>     6 root       9   0     0    0     0 SW    0.0  0.0  23:09 kupdated
+<jamest> sigh
+<jamest> I'm going to fall back on the "works for you" defense and ignore the problem
+Yurik (yrashk@gw.telcos.net.ua) left irc: No route to host
+Chipaca (~john@modem224-adsl1.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<Chipaca> hi all
+Action: Chipaca peers around
+Action: Chipaca yawns
+Action: psu is away: bathtime
+<psu> probably more info than you actually needed, but never mind ;-)
+<Chipaca> heh
+ToyMan_ (~stuq@65.167.123.51) joined #gnuenterprise.
+yogurt2unge (charlie@modem224-adsl1.cordoba.sinectis.com.ar) left irc: "Client Exiting"
+ToyMan_mobile (~stuq@65.167.123.51) joined #gnuenterprise.
+ToyMan_mobile (stuq@65.167.123.51) left irc: Client Quit
+ToyMan_LTop (~stuq@65.167.123.51) joined #gnuenterprise.
+Chipaca (john@modem224-adsl1.cordoba.sinectis.com.ar) left irc: "ircII EPIC4-1.0.1 -- Are we there yet?"
+Action: psu is back
+psu (psu@manorcon.demon.co.uk) left irc: "[x]chat"
+jbailey (~jbailey@HSE-Toronto-ppp286290.sympatico.ca) left #gnuenterprise ("Client Exiting").
+ToyMan_LTop (stuq@65.167.123.51) got netsplit.
+ToyMan_ (stuq@65.167.123.51) got netsplit.
+markoi (marko@h126n2fls21o825.telia.com) got netsplit.
+Isomer (dahoose@210-86-57-216.jetstart.xtra.co.nz) got netsplit.
+mdean (mdean@mkc-65-28-73-63.kc.rr.com) got netsplit.
+Maniac (User@h24-82-132-209.wp.shawcable.net) got netsplit.
+Mr_You (rouzer@mankind.boredom.org) got netsplit.
+ra3vat (ds@ics.elcom.ru) got netsplit.
+pattieja (pattieja@www.pcxperience.com) got netsplit.
+gnuebot (eggdrop@mail.libertydistribution.com) got netsplit.
+jamest (jamest@hobbes.math.ksu.edu) got netsplit.
+dres (dres@4.18.171.42) got netsplit.
+dsmith (firewall-u@cherry7.comerica.com) got netsplit.
+ToyMan (stuq@65.167.123.51) got netsplit.
+nickr (panphage@e-172-IP28.empnet.net) got netsplit.
+gnuebot (eggdrop@mail.libertydistribution.com) returned to #gnuenterprise.
+ToyMan_LTop (~stuq@65.167.123.51) returned to #gnuenterprise.
+ToyMan_ (~stuq@65.167.123.51) returned to #gnuenterprise.
+Isomer (dahoose@210-86-57-216.jetstart.xtra.co.nz) returned to #gnuenterprise.
+mdean (~mdean@mkc-65-28-73-63.kc.rr.com) returned to #gnuenterprise.
+markoi (marko@h126n2fls21o825.telia.com) returned to #gnuenterprise.
+Maniac (~User@h24-82-132-209.wp.shawcable.net) returned to #gnuenterprise.
+dres (~dres@4.18.171.42) returned to #gnuenterprise.
+dsmith (firewall-u@cherry7.comerica.com) returned to #gnuenterprise.
+jamest (~jamest@hobbes.math.ksu.edu) returned to #gnuenterprise.
+ToyMan (~stuq@65.167.123.51) returned to #gnuenterprise.
+ra3vat (ds@ics.elcom.ru) returned to #gnuenterprise.
+Mr_You (rouzer@mankind.boredom.org) returned to #gnuenterprise.
+pattieja (~pattieja@www.pcxperience.com) returned to #gnuenterprise.
+nickr (~panphage@e-172-IP28.empnet.net) returned to #gnuenterprise.
+#gnuenterprise: mode change '+o gnuebot' by zahn.openprojects.net
+<ra3vat> bye cu
+ra3vat (ds@ics.elcom.ru) left irc: "Client Exiting"
+ToyMan_LTop (stuq@65.167.123.51) left irc: "Client Exiting"
+chillywilly (~danielb@d46.as8.nwbl0.wi.voyager.net) joined #gnuenterprise.
+ToyMan (stuq@65.167.123.51) left irc: "Client Exiting"
+jcater (jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: Read error: 110 (Connection timed out)
+dsmith (firewall-u@cherry7.comerica.com) left irc: "later.."
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<chillywilly> hi jv
+<chillywilly> er, jc
+<chillywilly> you got dsl now?
+<chillywilly> or you at work?
+<jcater> at work
+<chillywilly> yea, I am stupid
+<chillywilly> I should've known that
+ToyMan_home (CaryKittne@c5300-2-ip208.albany.thebiz.net) joined #gnuenterprise.
+dres (dres@4.18.171.42) left irc: Read error: 104 (Connection reset by peer)
+dres (~dres@4.18.171.42) joined #gnuenterprise.
+Linux (Xeyes@62.150.1.183) joined #gnuenterprise.
+Linux (Xeyes@62.150.1.183) left #gnuenterprise.
+dres_ (~dres@4.18.171.42) joined #gnuenterprise.
+dres (dres@4.18.171.42) left irc: Read error: 104 (Connection reset by peer)
+SachaS (~sacha@203.190.196.211) joined #gnuenterprise.
+SachaS_ (~sacha@203.190.196.167) joined #gnuenterprise.
+SachaS_ (sacha@203.190.196.167) left irc: "Client Exiting"
+dres_ (dres@4.18.171.42) left irc: Read error: 104 (Connection reset by peer)
+dneighbo (dneighbo@tmp-200253.flinthills.com) left irc: "[BX] *SUBLIMINAL*MESSAGE* USE BITCHX *SUBLIMINAL*MESSAGE*"
+jcater (jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "homebound"
+SachaS (sacha@203.190.196.211) left irc: Read error: 113 (No route to host)
+K4rbonk|0 (~bah@a-pi15-12.tin.it) joined #gnuenterprise.
+<K4rbonk|0> hello all!
+ToyMan_LTop (~stuq@c5300-2-ip208.albany.thebiz.net) joined #gnuenterprise.
+ToyMan_home (CaryKittne@c5300-2-ip208.albany.thebiz.net) left irc: "Client Exiting"
+javaguy (ian@dhcp065-024-035-118.columbus.rr.com) joined #gnuenterprise.
+<K4rbonk|0> please, do you know if gnue can be implemented in a small shop? does it interact with a cash register?
+<javaguy> CW: you know who's in charge of the various packages (e.g., Base, Supply Chain, etc) ?
+<chillywilly> mainly neil
+Action: chillywilly is away: I'm busy
+jbailey (~jbailey@HSE-Toronto-ppp287326.sympatico.ca) joined #gnuenterprise.
+<K4rbonk|0> please, do you know if gnue can be implemented in a small shop? does it interact with a cash register?
+<javaguy> hey jbailey.  Long time no see
+<jbailey> Heya javaguy!
+<javaguy> K4rbonk|0: I know GNUe's been used in production in quite a few different environments
+<javaguy> Not sure what sort of point-of-sales support has been developed (or even what would be required)
+<K4rbonk|0> javaguy: you mean big business... can you suggest me something for a little shop?
+<javaguy> mainly small to midsized business, in place of Access/QuickBooks/Peachtree
+<javaguy> most of the big shops tend to stick with the commercial ERP systems (so far...)
+<dtm> hi all
+<dtm> K4rbonk|0: it is intended to be fully scalable like javaguy says
+<dtm> K4rbonk|0: also there is a company called http://appgen.com if you need something more specific which gnue may not have completed yet.
+<K4rbonk|0> okay thanks to all :)
+<dtm> K4rbonk|0: i suggest them because they use open standards such as SQL and java, so we can interoperate with them eventually :)
+<dtm> K4rbonk|0: but you should stick around and ask the gnue experts
+<dtm> K4rbonk|0: dont leave without fully investigating it
+<dtm> K4rbonk|0: or email info@gnue.org with your specs
+<K4rbonk|0> oh this is a great idea!
+<dtm> K4rbonk|0: gnue's team is willing to adjust priorities to users' needs
+<dtm> K4rbonk|0: so i encourage you to know your specs and features that you need, in any case, and send them to the gnue core team and see how much is already complete, or if there's a short term common interest.
+<K4rbonk|0> okay i'll surely do it.. i think this project is very interesting... .NET? bbuuuaaahh!!! :))
+<dtm> hahah
+<dtm> agreed
+<K4rbonk|0> :)
+<dtm> yes and gnue has a sufficiently mature core that it's being used in production already
+<dtm> the designers are quite wizardly
+<K4rbonk|0> great! i'm a proud linux user!
+<dtm> so it's not like it's _onlY_ set to be used by a specific audience
+<dtm> K4rbonk|0: yes , so are we!  glad to meet you :)
+<K4rbonk|0> me too!!! yeah!!!! :) f#ck m$!!!
+<dtm> K4rbonk|0: you'll wanna talk to people like chillywilly, derek (aka dneighbo), mdean, jamest, nickr, etc
+<dtm> K4rbonk|0: hahaha
+<dtm> there are those who would say that ;>
+<dtm> K4rbonk|0: info@gnue.org will surely reach everyone
+<dtm> K4rbonk|0: derek is the project manager
+<dtm> the head one, anyway
+<K4rbonk|0> f#ck every rubbish .dll .vxd file in my pc years ago!
+<dtm> hehehe
+<dtm> sounds like you're devoted.
+<K4rbonk|0> an dnow the penguin is on my iMac... Mac Os X? microkernel thing.... bad..
+crazymike (~crazymike@mke-65-31-133-230.wi.rr.com) joined #gnuenterprise.
+jcater (~jason@HubA-mcr-24-165-193-24.midsouth.rr.com) joined #gnuenterprise.
+<jcater> wassup, my peeps
+<crazymike> waz-up
+<dtm> K4rbonk|0: heh   microkernels rule, but the mach-o executable format does not.
+<dtm> K4rbonk|0: i have os10 on my Pismo powerbook
+jbailey (~jbailey@HSE-Toronto-ppp287326.sympatico.ca) left #gnuenterprise ("Client Exiting").
+<dtm> K4rbonk|0: and Yellowdog Linux on my 8500
+Action: dtm ^5 K4rbonk|0
+<K4rbonk|0> me too yellowdog
+<dtm> yay
+<dtm> jcater: whirred
+<dtm> crazymike: w3rd
+<K4rbonk|0> i have problem with video power save with this ati rage 128
+<dtm> K4rbonk|0: i see
+<K4rbonk|0> but kernel 2.5 is near!!!
+<crazymike> dtm: Hellz Yeaaa!!!
+Action: jcater is away: f00d
+<dtm> @*#)&@JO
+<dtm> K4rbonk|0: you should hang out in #mklinux, http://lists.linuxppc.org, and http://lists.yellowdoglinux.com
+<dtm> K4rbonk|0: since you're concerned about devices and kernely things
+<K4rbonk|0> uh wonderful! :)
+<K4rbonk|0> tnx
+crazymike (crazymike@mke-65-31-133-230.wi.rr.com) left irc: 
+ToyMan_LTop (stuq@c5300-2-ip208.albany.thebiz.net) left irc: "Client Exiting"
+dres (~dres@4.18.171.42) joined #gnuenterprise.
+ToyMan_LTop (~stuq@c5300-2-ip208.albany.thebiz.net) joined #gnuenterprise.
+<K4rbonk|0> ehi it seems that gshop is what i was looking for... http://gshop.sourceforge.net
+ToyMan_LTop (stuq@c5300-2-ip208.albany.thebiz.net) left irc: Client Quit
+chillywilly_ (~danielb@d131.as3.nwbl0.wi.voyager.net) joined #gnuenterprise.
+jamest_ (~jamest@64.39.201.34) joined #gnuenterprise.
+chillywilly (danielb@d46.as8.nwbl0.wi.voyager.net) left irc: Read error: 113 (No route to host)
+<jamest_> sigh
+<jamest_> i wanna gnue
+Nick change: chillywilly_ -> chillywilly
+<chillywilly> where be my homie at?
+<chillywilly> werd to my peeps
+Action: chillywilly compiles nethack
+Action: chillywilly reads smalltalk odmg binding
+Action: javaguy is drafting XML Schema and WSDL docs for Base
+<chillywilly> mmmmmm, boston creme coffeee cake
+<chillywilly> uuuuuuuuhhhhhhhhh
+<chillywilly> t's like sex
+<chillywilly> for your tummy
+<chillywilly> mmmmmmmmmmmmmmmmm
+<chillywilly> damn that was good
+<chillywilly> I could eat te whole cake
+<chillywilly> s/te/the
+Maniac (User@h24-82-132-209.wp.shawcable.net) left irc: "Client Exiting"
+K4rbonk|0 (bah@a-pi15-12.tin.it) left irc: "Client Exiting"
+Action: jcater is back (gone 02:06:48)
+<chillywilly> wb jcater
+<jcater> thx
+<jcater> did y'all miss me?
+<chillywilly> yea, I cried myself to sleep before
+<jcater> ah
+<jcater> well, no more :)
+<chillywilly> yay!
+<chillywilly> I can go on living
+<jcater> in living color
+<chillywilly> lemme tell ya somethin'
+Action: chillywilly says that in his best fire marshall bill voice
+<chillywilly> dude, I think people who do not use autoconf and sutomake should be round up and repeatedly beaten with cattle prods
+<chillywilly> compilgin nethack sucks the big one
+<chillywilly> er, compiling
+<jcater> autoconf is for wussies
+<chillywilly> bah
+<chillywilly> python is ok and can be exempt
+<chillywilly> but c/c++ should use the auto* tools
+<chillywilly> so i can move on with my life
+<chillywilly> damnit
+<chillywilly> seeing how you are back and all
+<chillywilly> I would feel complete if I had nethack compiled
+<chillywilly> I would have purpose and a vision
+<chillywilly> :'(
+<chillywilly> this sucks
+<jcater> living up to its namesake, eh?
+<chillywilly> yea
+<chillywilly> I could just apt-get it but I want the gnome interfac
+<chillywilly> e
+<chillywilly> (there's a QT one too)
+Action: chillywilly takes a big hit off the crack pipe
+<chillywilly> bah, I found where to hack the Makefile at
+<chillywilly> ack
+<chillywilly> linking errors now
+dsmith (dsmith@oh-strongsville5b-143.clvhoh.adelphia.net) joined #gnuenterprise.
+jbailey (~jbailey@HSE-Toronto-ppp287326.sympatico.ca) joined #gnuenterprise.
+jcater (jason@HubA-mcr-24-165-193-24.midsouth.rr.com) left irc: "niteness"
+derek (~derek@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<jbailey> derek!
+<jbailey> I finally got an answer as to where dcl should live in the filesystem. =)
+<derek> cool where?
+Action: chillywilly is cold
+<chillywilly> I am stuck onn this level
+alexey (~Alexey@techkran.vladimir.ru) joined #gnuenterprise.
+<chillywilly> is there anyway to get rid of rocks in nethack?
+<derek> rock
+<derek> we now have bug tracking via email 
+Action: derek does happy dance
+<derek> its 10:30 do you know where you donuts are?
+#gnuenterprise: mode change '+o derek' by ChanServ!ChanServ@services.
+Topic changed on #gnuenterprise by derek!~derek@cpe-24-221-112-50.az.sprintbbd.net: It's 22:00 do you know where your donuts are?j
+Topic changed on #gnuenterprise by derek!~derek@cpe-24-221-112-50.az.sprintbbd.net: It's 22:00 do you know where your donuts are?
+<chillywilly> it's 23:00 here
+<derek> hey cw
+<derek> how goes it seems like long time no see
+<derek> like at least 12 hours if not more
+<chillywilly> I don't think it has been that long
+<chillywilly> we had OSHA training all day long today it was lame
+Action: dsmith is happy because he is back home again
+<derek> hi markoi
+<chillywilly> ack, I died form eating tainted neat
+<chillywilly> er, meat
+<chillywilly> night
+chillywilly (danielb@d131.as3.nwbl0.wi.voyager.net) left irc: 
+dsmith (dsmith@oh-strongsville5b-143.clvhoh.adelphia.net) left irc: "later.."
+<derek> um dang everyone seems to have left
+<derek> if i have things in fstab to mount
+<derek> and they didnt mount at startup
+<derek> is there a way a i can basically tell fstab to run again?
+<derek> or must i mount manually?
+--- Thu Mar 28 2002

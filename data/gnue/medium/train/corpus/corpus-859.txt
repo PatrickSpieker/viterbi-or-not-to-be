@@ -1,0 +1,281 @@
+*** johannesV has joined #gnuenterprise
+*** reinhard has joined #gnuenterprise
+<reinhard> good morning all
+*** derek has quit IRC
+<johannesV> good morning
+*** btami has joined #gnuenterprise
+<reinhard> johannesV: I just noticed that dialog boxes in the wx26 driver are not modal
+<reinhard> the "go to record" box and the about box both allow the main form to be clicked while the box is still open
+<reinhard> then the cursor even blinks in the main form
+<reinhard> but I can't type anything
+<reinhard> --
+<reinhard> johannesV: you're still able to use wx (24) driver and win32 driver, right?
+<reinhard> could you please test if menu bar and toolbar still works as expected with these drivers?
+<reinhard> (after my last commit)
+<btami> reinhard: have you read my yesterday traceback?
+<reinhard> oh yes
+<btami> ok
+<reinhard> I completely forgot about that, thanks for reminding
+<btami> btw. the latest released gnue-reports doesn't work with gnue-common
+<reinhard> that's bad
+<reinhard> should we do a release of gnue-reports now? would that help?
+<btami> it needs GRParser .py and GRSources from svn head to work
+<btami> trying...
+*** kilo has joined #gnuenterprise
+<kilo> good morning
+<btami> hi kilo
+<dimas_> good morning
+<btami> reinhard: nope, it needs svn common too
+<reinhard> ok
+<reinhard> so we might want to look into releases for common and reports at least
+<reinhard> actually latest release of forms *should* work with svn common
+<btami> dunno
+<reinhard> (because I don't want to release forms in the middle of this stuff we are doing)
+<btami> i think non use released reports yet
+<btami> except me :)
+<kilo> :)
+<kilo> i tried i tried :)
+<btami> lol
+<reinhard> btami: about your traceback yesterday
+<reinhard> can you please svn up and see if you can reproduce?
+<btami> yes
+<reinhard> (although I think nothing should have changed here)
+<btami> same error (with gtk2 uidriver only)
+<reinhard> when you open the form and then go to query mode, does that traceback, too?
+<btami> Traceback (most recent call last):
+<btami>    File "/adat/svn/gnue/.cvsdevelbase/gnue/forms/uidrivers/gtk2/ToolBar.py", line 107, in _toggleEvent
+<btami>     self._fire(userAction, not button.get_active())
+<btami>    File "/adat/svn/gnue/.cvsdevelbase/gnue/forms/uidrivers/_commonGuiToolkit/ToolBar.py", line 127, in _fire
+<btami>     self.driver.dispatchEvent (event, _form = self.form)
+<btami>    File "/adat/svn/gnue/.cvsdevelbase/gnue/common/events/EventController.py", line 152, in dispatchEvent
+<btami>     handler(event)
+<btami>    File "/adat/svn/gnue/.cvsdevelbase/gnue/forms/GFInstance.py", line 1149, in requestQuery
+<btami>     message = event._form.initQuery ()
+<btami>    File "/adat/svn/gnue/.cvsdevelbase/gnue/forms/GFForm.py", line 613, in initQuery
+<btami>     if self._currentBlock.mode != 'query':
+<btami>  AttributeError: 'NoneType' object has no attribute 'mode'
+<reinhard> hmmmm
+<reinhard> is the first focusable widget on that form a button?
+<btami> yes
+<reinhard> ok
+<reinhard> I can reproduce
+<btami> bingo, if i put it to be second it's ok
+<reinhard> did you change that lately?
+<reinhard> or did it work with button first before johannes' changes?
+<btami> yes, lately
+<reinhard> ok, so it could be that the problem was there since ever?
+<reinhard> (however, I wonder why it works with old wx driver at all)
+<kilo> it was there earlier iirc
+<johannesV> reinhard, the dialgs *are* shown modal ... i would say it's a bug in wx that the mouse-click is sent to (and handled by) the parent-window
+<reinhard> johannesV: oh, ok
+<reinhard> can you investigate further?
+<johannesV> running it on msw it works as intended
+<johannesV> so it appears to be a wxGTK bug
+<reinhard> ok
+<reinhard> on msw
+<reinhard> do you have an hourglass cursor while your mouse is outside the dialog?
+<johannesV> on wxMac it works fine too
+<johannesV> no, there's no hour-glass ... should it be there ?
+<reinhard> I'm not sure
+<reinhard> (did you svn up?)
+<johannesV> if so we'd have to change the cursor for the parent-frame
+<reinhard> I set the mouse to hourglass immedately on toolbar click
+<johannesV> ah, ok
+<johannesV> just a sec
+<johannesV> hm, that damn svn ...
+<johannesV> have to wait for the first timeout ...
+<johannesV> this could take some time
+<btami> strange
+<btami> svn works ok here
+<johannesV> reinhard, for which frame are you changing the cursor ?
+<btami> no first timeout needed
+<johannesV> btami, that's a problem which only affects jamest and me ... :(
+<btami> hmm
+* johannesV still waiting for timeout
+<kilo> maybe j* problem? :D
+<johannesV> yah
+<johannesV> we'd have to ask jcater then ... :)
+<kilo> :)
+<reinhard> johannesV: I just do a wx.beginBusyCursor()
+<johannesV> hm, but then what kind of cursor is set for the new dialog ?
+<reinhard> if there's something better, please tell me (or change in wx26/Udriver.py beginWait()
+<reinhard> honestly I just copied that over from the old wx driver :)
+<johannesV> oh, time out ....
+<johannesV> svn running now
+<johannesV> ok, the hour-glass blinks for a very short time
+<reinhard> hmm...
+<reinhard> I'm trying to find *any* modal dialog in a gtk2 app
+<johannesV> ok, hour-glass also blinks on msw
+<johannesV> reinhard, the dialog is modal
+<johannesV> as it stays on top of the parent
+<reinhard> yes
+<johannesV> the pb is, that one is still able to focus another widget of the paretn
+<reinhard> I think for gtk2 modal dialogs *always* allow the main window to be focussed again
+<johannesV> maybe
+<johannesV> reinhard, what shall i check wrt toolbar on msw/mac ?
+<reinhard> just if query, delete, undelete, exit work
+<reinhard> with menu and with toolbar
+<reinhard> especially with old wx driver and with win32 driver (as I can't test for those)
+<johannesV> ah, ok , so i need a database ...
+* johannesV sending wol-call downstairs ...
+<btami> i'm just trying wx26 on XP, but the spalsh is before the startup error box, so i can't read the error msg unless turn off splash in gnue.conf
+<johannesV> hmm, i think there should be a fix to hide the splash in the exception handler ...
+<johannesV> btami, can you add a bugreport to roundup ?
+<btami> yep
+<reinhard> btami: can you work around the button-is-first-control-on-form bug for now? I think it might take some time to fix this properly
+<btami> sure
+<reinhard> ok, I'll add this one to roundup then
+<btami> thx
+<reinhard> two new bugs within 2 minutes
+<reinhard> not a good day ;-)
+<btami> i have another 2
+<btami> designer tracebaks with unicode error with this form
+<btami> forms with win32 ui too
+<johannesV> reinhard, win32-driver seems to be ok with menu and toolbar
+* btami is fighting to correct overlapping errors without designer
+<johannesV> btami, i'm sorry for that ... but it must have been done at some point in time ... :(
+*** kilo_ has joined #gnuenterprise
+<btami> nevermind, it's my bad
+<johannesV> reinhard, wx-driver is ok too
+<reinhard> johannesV: thanks for testing
+*** kilo_ has left #gnuenterprise
+<btami> i got this error with wx, wx26, win32 (gtk2 is ok):
+<btami> Traceback (most recent call last):
+<btami>    File "/adat/svn/gnue/gnue-forms/scripts/gnue-forms", line 34, in ?
+<btami>     client.run ()
+<btami>    File "/adat/svn/gnue/.cvsdevelbase/gnue/forms/GFClient.py", line 201, in run
+<btami>     instance.activate ()
+<btami>    File "/adat/svn/gnue/.cvsdevelbase/gnue/forms/GFInstance.py", line 356, in activate
+<btami>     self.activateForm ('__main__', self._parameters)
+<btami>    File "/adat/svn/gnue/.cvsdevelbase/gnue/forms/GFInstance.py", line 388, in activateForm
+<btami>     form.refreshDisplay (form)
+<btami>    File "/adat/svn/gnue/.cvsdevelbase/gnue/forms/GFForm.py", line 1028, in refreshDisplay
+<btami>     block.walk(self.__refreshDisplay)
+<btami>    File "/adat/svn/gnue/.cvsdevelbase/gnue/common/definitions/GObjects.py", line 256, in walk
+<btami>     child.walk (function, *args, **parms)
+<btami>    File "/adat/svn/gnue/.cvsdevelbase/gnue/common/definitions/GObjects.py", line 256, in walk
+<btami>     child.walk (function, *args, **parms)
+<btami>    File "/adat/svn/gnue/.cvsdevelbase/gnue/common/definitions/GObjects.py", line 256, in walk
+<btami>     child.walk (function, *args, **parms)
+<btami>    File "/adat/svn/gnue/.cvsdevelbase/gnue/common/definitions/GObjects.py", line 253, in walk
+<btami>     function (self, *args, **parms)
+<btami>    File "/adat/svn/gnue/.cvsdevelbase/gnue/forms/GFForm.py", line 1038, in __refreshDisplay
+<btami>     self.dispatchEvent('updateENTRY',object, _form=self)
+<btami>    File "/adat/svn/gnue/.cvsdevelbase/gnue/common/events/EventController.py", line 152, in dispatchEvent
+<btami>     handler(event)
+<btami>    File "/adat/svn/gnue/.cvsdevelbase/gnue/forms/uidrivers/_base/UIdriver.py", line 394, in updateEntry
+<btami>     assert gDebug (5, "UPD-ENTRY %s current: '%s' (%s)" % (entry, value, index))
+<btami>  UnicodeEncodeError: 'ascii' codec can't encode character u'\xf3' in position 16: ordinal not in range(128)
+<btami> http://www.gnuenterprise.org/~btami/ugyfel.gfd
+<btami> tha pb is with 3. page, same fields as on1., just rows=20
+<reinhard> btami: can you try again now?
+*** SachaS is now known as SachaAway
+<btami>    File "/adat/svn/gnue/.cvsdevelbase/gnue/common/events/EventController.py", line 152, in dispatchEvent
+<btami>     handler(event)
+<btami>    File "/adat/svn/gnue/.cvsdevelbase/gnue/forms/uidrivers/_base/UIdriver.py", line 394, in updateEntry
+<btami>     assert gDebug (5, "UPD-ENTRY %s current: %s (%s)" % (entry, repr(value),
+<btami>  UnicodeEncodeError: 'ascii' codec can't encode character u'\xf3' in position 16: ordinal not in range(128)
+<btami> dunno why gtk2 and others differs
+<reinhard> strange
+<reinhard> can you give me the value of "entry", "value", and "index" just before the traceback?
+<btami> i tried to print them
+<btami> they are ok until the 3.page coming
+<reinhard> try to print repr(x) instead of x
+<reinhard> that should work in any case
+<btami> ok, wait...
+<btami> tamas@tami:/adat$ gfcvs -u wx26 ugyfel.gfd
+<btami> form.layout.Alapadatok.entNev u'3S COMPUTER Kft.' 0
+<btami> form.layout.Alapadatok.Box1.entIrsz1 u'6721' 0
+<btami> form.layout.Alapadatok.Box1.entVaros1 u'Szeged' 0
+<btami> form.layout.Alapadatok.Box1.entUtca1 u'K\xe1lvin t\xe9r 7.' 0
+<btami> form.layout.Alapadatok.Box2.entIrsz2 '' 0
+<btami> form.layout.Alapadatok.Box2.entVaros2 '' 0
+<btami> form.layout.Alapadatok.Box2.entUtca2 '' 0
+<btami> form.layout.Alapadatok.Box3.entTel1 u'426-277' 0
+<btami> form.layout.Alapadatok.Box3.entTel2 '' 0
+<btami> form.layout.Alapadatok.Box3.entFax '' 0
+<btami> form.layout.Alapadatok.Box3.entEmail1 u'3s@tiszanet.hu' 0
+<btami> form.layout.Alapadatok.Box3.entEmail2 '' 0
+<btami> form.layout.Alapadatok.entMegj '' 0
+<btami> form.layout.Alapadatok.Box4.entKNev u'L\xe1szl\xf3 Ferencn\xe9' 0
+<btami> form.layout.Alapadatok.Box4.entKEmail '' 0
+<btami> form.layout.Alapadatok.Box4.entKTel1 '' 0
+<btami> form.layout.Alapadatok.Box4.entKTel2 '' 0
+<btami> form.layout.Alapadatok.Box4.entKMegj u'Gizike' 0
+<btami> form.layout.Program.entEgyezteto True 0
+<btami> form.layout.Program.entEllenorzes True 0
+<btami> form.layout.Program.entFokfel1 True 0
+<btami> form.layout.Program.entFokfel2 True 0
+<btami> form.layout.Program.entGepkocsi True 0
+<btami> form.layout.Program.entHalozat False 0
+<btami> form.layout.Program.entMunkaber True 0
+<btami> form.layout.Program.entMunkaugy False 0
+<btami> form.layout.Program.entMunkavis True 0
+<btami> form.layout.Program.entNyenyi True 0
+<btami> form.layout.Program.entSzabadsag True 0
+<btami> form.layout.Program.entTobbceges True 0
+<btami> form.layout.Program.entLetszam u'0-\xf6tvenig' 0
+<btami> form.layout.Program.entGeneralt u'xhrekekvui' 0
+<btami> form.layout.Program.entValaszkod u'zlxmuqylmc' 0
+<btami> form.layout.Program.entMaxstr u'charlie' 0
+<btami> form.layout.Program.entSzam u'2148236671867' 0
+<btami> form.layout.Program.entVerzio u'3.41' 0
+<btami> form.layout.Program.entKuldes True 0
+<btami> ok, found it
+<btami> the page name attrib on page 3
+<reinhard> contains non-ascii chars?
+<btami> yep
+<reinhard> ok
+<reinhard> I don't think this is allowed at all
+<btami> it was no pb before
+<reinhard> you could fix it for this traceback by adding a repr() around the "entry" also
+<reinhard> or even better
+<reinhard> replace %s by %r
+<reinhard> (which results in the same thing)
+<reinhard> bbl
+<btami> aha, i have to use caption too
+<btami> ok, solved with caption
+<johannesV> hm, maybe i've introduce that bug wrt page-captions ...
+<johannesV> let me have a look
+<johannesV> ah, no should work well
+<johannesV> btami, have you already solved that encoding-problem ?=
+<kilo> bbl
+*** kilo has left #gnuenterprise
+<btami> johannesV: yes, using caption attrib
+<btami> there was name only before
+<johannesV> ah, ok
+*** jamest has joined #gnuenterprise
+<btami> bbl
+*** btami has quit IRC
+*** johannesV has quit IRC
+*** johannesV has joined #gnuenterprise
+*** klasstek has joined #gnuenterprise
+*** derek has joined #gnuenterprise
+<reinhard> l8r
+*** reinhard has quit IRC
+*** llp has joined #gnuenterprise
+*** johannesV has quit IRC
+*** llp has quit IRC
+*** llp has joined #gnuenterprise
+*** llp has quit IRC
+*** jamest has left #gnuenterprise
+*** jamest has joined #gnuenterprise
+*** klasstek has quit IRC
+*** dimas_ has quit IRC
+*** chillywilly has quit IRC
+*** nickr has quit IRC
+*** klasstek has joined #gnuenterprise
+*** dimas_ has joined #gnuenterprise
+*** chillywilly has joined #gnuenterprise
+*** nickr has joined #gnuenterprise
+*** llp has joined #gnuenterprise
+*** klasstek has quit IRC
+*** jcater has quit IRC
+*** jamest has quit IRC
+*** derek has quit IRC
+*** jcater has joined #gnuenterprise
+*** derek has joined #gnuenterprise
+*** jcater has left #gnuenterprise
+*** derek has quit IRC
+*** llp has quit IRC
+*** derek has joined #gnuenterprise

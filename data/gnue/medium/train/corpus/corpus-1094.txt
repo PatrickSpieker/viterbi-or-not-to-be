@@ -1,0 +1,1167 @@
+[00:01] Last message repeated 1 time(s).
+<derek> fitzix: ouch on the bnetd thing
+<derek> i hadnt read it
+<fitzix> check it out... I'm going to help organize a boycott of Blizzard Entertainment... this could be the big one if it goes to court... think of the rammifications on ALL of our software if this gets through
+<derek> well maybe it will force lawyers/judges to address the evilness of the DMCA (or whatever it is)
+dres (dres@4.18.171.42) left irc: Read error: 104 (Connection reset by peer)
+dres (~dres@4.18.171.42) joined #gnuenterprise.
+dres (dres@4.18.171.42) left irc: Read error: 104 (Connection reset by peer)
+dres (~dres@4.18.171.42) joined #gnuenterprise.
+jcater (~jason@24.92.70.39) joined #gnuenterprise.
+ra3vat (ds@ics.elcom.ru) joined #gnuenterprise.
+<jcater> 'sup, my peeps
+<derek> hey dood you ran off an left jbailey hanging
+<jcater> dude
+<jcater> my crappy cable connection went down
+<jcater> and that's crappy, not crappie
+<derek> rofl
+<jcater> dude
+<jcater> I felt really bad
+<jcater> cause he'd just said he thought the room cleared when he needed help
+<derek> :)
+<derek> yeah sure likely story :)
+<jcater> sigh
+<jcater> but it's true
+<jcater> well, I'm not sure how long it was out
+<jcater> because as soon as wife noticed jcater != internet
+<jcater> she took over :(
+fitzix (fitzix@168.129.252.64.snet.net) left irc: "Client Exiting"
+reinhard (~rm@N809P002.adsl.highway.telekom.at) joined #gnuenterprise.
+psu (peter@manorcon.demon.co.uk) joined #gnuenterprise.
+Nick change: derek -> dnSleep
+jcater (jason@24.92.70.39) left irc: "Client Exiting"
+<reinhard> off to salzburg
+<reinhard> will be back on monday
+<reinhard> (maybe sunday)
+reinhard (rm@N809P002.adsl.highway.telekom.at) left irc: "Anything is good and useful if it's made of chocolate"
+steveb (~steveb@node-c-5e9c.a2000.nl) joined #gnuenterprise.
+<psu> hi steveb
+<steveb> hi
+<psu> it's a bit quiet in this channel at the moment
+<psu> all the USA guys are asleep
+<steveb> i've never been here before
+<psu> and our main european developer just went off to Salzburg for the weekend
+<steveb> ..only just discovered gnue yesterday
+<psu> steveb: any questions about gnue?
+<steveb> hmm, what proportion is python?
+<psu> warning : anything technical and I'll just say "come back this evening when the Yanks are here"
+<psu> steveb: as I understand it, most/all of the Forms part is 
+<psu> and the GNUe Common module
+<psu> The application server was written in C.
+<psu> The plan is to use python for most stuff 
+<psu> and just rewrite in C where necessary for speed
+<steveb> sounds good.
+<psu> Not sure if this applies to the app server as well  
+<psu> (which is being rewritten)
+<psu> or if that is to remain fully in C.
+<steveb> thanks. i have to go to work now
+<psu> best time to catch people here is the evening European time
+<steveb> ok
+<steveb> is cvs usable?
+<psu> not sure
+<psu> there is a lot of active development
+<psu> so it tends to get broken with regularity
+<psu> best bet is probably to download the 0.1.1 official release off the website
+<psu> which OS are you using?
+<steveb> linux
+<psu> The .tar.gz files are there
+<psu> we don't have working debs or rpms at the moment 
+<psu> so you will need to resolve dependancies by hand
+<psu> main one is that GNUe needs python 2.x
+<psu> which is not AFAIK current version in stable debian or redhat
+<steveb> i have python2.1
+<psu> cool ;-)
+<psu> have you ever had python 1.5.2 on the system?
+<psu> as I know some people have had problems with getting the 
+<psu> 2.x version to take priority
+<steveb> yes, i have both. i should be able to figure it out
+<psu> this was such a common problem that there is a script somewhere
+<psu> that does a python test on your system and tells you how many pythons you have ;-)
+<psu> and what to do about it
+<psu> jcater is the man to speak to if you need it.
+<steveb> ta. now i'm *really* going to work
+<psu> ok.
+<psu> me too, anyway
+psu (peter@manorcon.demon.co.uk) left irc: "[x]chat"
+dsmith (firewall-u@cherry7.comerica.com) left irc: Remote closed the connection
+cslewis (~cslewis@216.223.232.98) joined #gnuenterprise.
+<cslewis> hi. is anyone around that can answer some high level questions about gnue?
+pattieja (pattieja@www.pcxperience.com) left irc: Read error: 110 (Connection timed out)
+pattieja (~pattieja@www.pcxperience.com) joined #gnuenterprise.
+cslewis (cslewis@216.223.232.98) left irc: "User pushed the X - because it's Xtra, baby"
+alexey (alex@strel.techkran.vladimir.ru) left irc: Remote closed the connection
+alexey (alex@195.151.214.33) joined #gnuenterprise.
+chillywilly_ (~danielb@d137.as7.nwbl0.wi.voyager.net) joined #gnuenterprise.
+chillywilly (danielb@d59.as5.nwbl0.wi.voyager.net) left irc: Read error: 113 (No route to host)
+alexey (alex@195.151.214.33) left irc: "[x]chat"
+Isomer (dahoose@210-86-56-189.jetstart.xtra.co.nz) left irc: "Client Exiting"
+Isomer (dahoose@210-86-56-189.jetstart.xtra.co.nz) joined #gnuenterprise.
+Isomer (dahoose@210-86-56-189.jetstart.xtra.co.nz) left irc: "Client Exiting"
+Isomer (dahoose@210-86-56-189.jetstart.xtra.co.nz) joined #gnuenterprise.
+Isomer (dahoose@210-86-56-189.jetstart.xtra.co.nz) left irc: Client Quit
+Isomer (dahoose@210-86-56-189.jetstart.xtra.co.nz) joined #gnuenterprise.
+Isomer (dahoose@210-86-56-189.jetstart.xtra.co.nz) left irc: "Client Exiting"
+Isomer (dahoose@210-86-56-189.jetstart.xtra.co.nz) joined #gnuenterprise.
+Isomer (dahoose@210-86-56-189.jetstart.xtra.co.nz) left irc: Client Quit
+Isomer (dahoose@210-86-56-189.jetstart.xtra.co.nz) joined #gnuenterprise.
+Isomer (dahoose@210-86-56-189.jetstart.xtra.co.nz) left irc: Client Quit
+Nick change: chillywilly_ -> chillywilly
+Isomer (dahoose@210-86-56-189.jetstart.xtra.co.nz) joined #gnuenterprise.
+Isomer (dahoose@210-86-56-189.jetstart.xtra.co.nz) left irc: Client Quit
+Isomer (dahoose@210-86-56-189.jetstart.xtra.co.nz) joined #gnuenterprise.
+Isomer (dahoose@210-86-56-189.jetstart.xtra.co.nz) left irc: Client Quit
+Isomer (dahoose@210-86-56-189.jetstart.xtra.co.nz) joined #gnuenterprise.
+chillywilly (danielb@d137.as7.nwbl0.wi.voyager.net) left irc: 
+Isomer (dahoose@210-86-56-189.jetstart.xtra.co.nz) left irc: Client Quit
+jamest (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+Artas (~artkri@gsk.vtu.lt) joined #gnuenterprise.
+<Artas> hello ra3vat
+Arturas2 (~raven@fmstml-22.vtu.lt) joined #gnuenterprise.
+Yurik (~yrashk@gw.telcos.net.ua) joined #gnuenterprise.
+<Yurik> re
+jbailey (~jbailey@HSE-Toronto-ppp318862.sympatico.ca) joined #gnuenterprise.
+cslewis (~vircuser@216.223.233.213) joined #gnuenterprise.
+<jamest> hi
+Arturas2 (raven@fmstml-22.vtu.lt) left irc: "changing servers"
+<Yurik> jamest hi
+Arturas (~raven@fmstml-22.vtu.lt) joined #gnuenterprise.
+<Yurik> Arturas hi
+<Arturas> Hello
+<Arturas> test
+<Yurik> passed
+<Arturas> :)
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<Yurik> jcater hi
+<jcater> hello
+dneighbo (~dneighbo@tmp-200253.flinthills.com) joined #gnuenterprise.
+<Arturas> Good morning Derek :)
+cslewis (vircuser@216.223.233.213) left irc: Read error: 104 (Connection reset by peer)
+<Arturas> .
+<dneighbo> hello
+<dneighbo> or goodnaktis....
+Action: dneighbo is improvising
+<Arturas> :)
+<Arturas> almost perfect improvisation :)
+<Arturas> sorry for grammar mistakes
+dsmith (firewall-u@cherry7.comerica.com) joined #gnuenterprise.
+jasomja (~jasomja@dorm.student.utc.sk) joined #gnuenterprise.
+<jasomja> hello
+<dneighbo> hi jasomja 
+<dneighbo> Arturas we are trying to collect what is most pressing for you to start digging into
+<dneighbo> you have the tools installed correct?
+<dneighbo> if so have you created any database applications (or tried the samples)?
+<dneighbo> if not we should have you do that
+<Arturas> I installed all the snapshot except geas and there were no errors
+<dneighbo> then we have some action items that need work
+<Arturas> yes
+<dneighbo> specifically we think you could help a lot with internationalization
+<Arturas> ok
+<dneighbo> i think we have an uncommitted patch
+<Arturas> what is uncomminted?
+<dneighbo> but if you could do some testing 
+<Arturas> what is uncommitted?
+<dneighbo> jamest: will have to speak on that, i dont have the patch
+<jamest> it's a patch that allows for unicode in forms IIRC
+<jamest> reading/speaking only one language makes it impossible for me to properly test it
+<jamest> :)
+<jamest> however
+<Arturas> ok
+<jamest> i18n everywhere in GNUe would be a good thing
+<Arturas> ?
+<Arturas> what is that i18n??
+<Yurik> Artas internationalization
+<Yurik> Arturas internationalization
+<Arturas> internationalization=locale ?
+<jamest> yes
+<jamest> i noticed from the logs yesterday that you know a few different languages
+<Arturas> yes
+<Arturas> it's interesting to learn them and search for differences :)
+Action: jcater is away: lunch
+<Arturas> :)
+jasomja (jasomja@dorm.student.utc.sk) left irc: "BitchX: the ONLY IRC client on Viagra!"
+<Arturas> what languages do you know?
+<jamest> english
+<jamest> barely
+<jamest> :)
+<Arturas> and what programming languages?
+dsmith (firewall-u@cherry7.comerica.com) left irc: Remote closed the connection
+<jamest> um
+<jamest> used lots of them
+<jamest> perl, pascal, c, c++, java, vb, fortran, x86 asm, etc, etc
+<jamest> however mainly python now
+<Arturas> impressing
+<jamest> not really
+<jamest> just old :)
+<Arturas> :)
+<jamest> does i18n seem interesting?
+<jamest> as we've got lots to do :)
+<Arturas> yes, why not
+<Arturas> what exactly will i have to do?
+<jamest> well
+<jamest> take the existing tools 
+<jamest> and make with work w/ unicode and/or localization features
+<jamest> so that you could write a form in russian
+<jamest> have the menus and such appear in russian
+<jamest> store russian in the backend
+<jamest> it's as much a design job as a coding job
+<jamest> as we can do some of this now
+<jamest> it's just doing it correctly that needs attention :)
+<Arturas> ok
+<Arturas> i will be only one who takes care of it?
+<jamest> well
+<jamest> we're all working in the code
+<jamest> and others could step up to help
+<jamest> but I imagine you'd be the primary person
+<Arturas> ok then :)
+<jamest> however
+<jamest> if this sounds sucky
+<Arturas> :o|
+<jamest> then we can find something else
+<Arturas> i will do my best
+<Arturas> i have a question (problem?)
+<Arturas> i installed forms
+<jamest> that is a problem :)
+<Arturas> they had to be in /usr/local/gnue/forms
+<Arturas> in /usr/local/gnue there are doc, etc
+<Arturas> but there seem to be no catalog 'forms'
+<Arturas> i repeated the installation
+<Arturas> there were no errors again
+<Arturas> but it told that files 'cannot be copied because they allready exist'
+<jamest> that is fine
+<Arturas> ???
+<jamest> we don't install sample forms
+<jamest> you're commands are gfclient
+<jamest> gfdesigner
+<jamest> your
+<jamest> not you're :)
+<jamest> they are in /usr/local/gnue/bin
+<jamest> IIRC
+<Arturas> ok
+<Arturas> what is IIRC?
+<jamest> if i recall correctly
+<Arturas> :)
+<Arturas> next problem is with GEAS - it doesn't want to install
+<Arturas> i run ./autoconfigure
+<Arturas> everything is ok
+<Arturas> then run make
+jamest (jamest@hobbes.math.ksu.edu) left irc: Remote closed the connection
+<Arturas> and after a few seconds i get an error that:
+<Arturas> cannot stat .c
+<Arturas> No such file or directory
+<Arturas> will i need GEAS?
+jamest (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+<jamest> whoops
+<jamest> killed the wrong process #
+<jamest> :)
+<Arturas> :)
+<jamest> wife is here for lunch now
+<jamest> I'll be back in 1 hour
+<Arturas> sorry, but i'll be unable to be here then
+<Arturas> will you be here on Monday?
+<Arturas> have to quit today
+<Arturas> bye 
+Arturas (raven@fmstml-22.vtu.lt) left irc: "[BX] Reserve your copy of BitchX-1.0c18 for the Sony Playstation today!"
+Artas (~artkri@gsk.vtu.lt) left #gnuenterprise.
+dneighbo_ (~dneighbo@tmp-200253.flinthills.com) joined #gnuenterprise.
+dneighbo_ (dneighbo@tmp-200253.flinthills.com) left irc: "Client Exiting"
+Yurik (yrashk@gw.telcos.net.ua) left irc: Remote closed the connection
+psu (peter@manorcon.demon.co.uk) joined #gnuenterprise.
+Action: psu is away: at the car wash, baby...
+Action: jcater is back (gone 01:30:19)
+Action: psu is back
+dres (dres@4.18.171.42) left irc: Read error: 104 (Connection reset by peer)
+dres_ (~dres@4.18.171.42) joined #gnuenterprise.
+<psu> carwash was closed ;-(
+Action: psu wants a car wash cam
+<Mr_You> heh
+tomte (~tom@pD9004814.dip.t-dialin.net) joined #gnuenterprise.
+cslewis (~vircuser@qdslip213.spinn.net) joined #gnuenterprise.
+<tomte> hi
+<cslewis> howdy
+<cslewis> anyone familiar w/ designer on windows?
+<tomte> I'm not
+<Mr_You> whats the question?
+<cslewis> does it work? i can't basic things working, but perhaps i'm doing something wrong
+<Mr_You> are you using the latest build?
+<cslewis> yes, the latest binary for windows
+<Mr_You> update connections.conf
+<cslewis> update it to what? i editted and added my own data source (?)
+Nick change: tomte -> tomte_away
+<Mr_You> cslewis: ok, thats about all I know right now ;-)  is the DB connection working?  i tink the wizard should work now, but not so sure
+<psu> cslewis: what database are you working with?
+<psu> the wizard doesn't work with all of them yet
+<Mr_You> I see
+<psu> as it doesn't know how to ask for lists of tables and fields 
+<psu> from some obscure databases (like IBM DB2 ;-)
+<cslewis> using pypgsql. docs say the wizard works with it. i am able to connect but nothing else
+<cslewis> file -> new -> from wizard: brings up a blank window
+<Mr_You> what DB?
+<Mr_You> oh postgres
+<cslewis> right, postgres
+<Mr_You> I was wondering about that myself.. what driver is used to connect to postgres from windows?
+Action: psu remembers an obscure bug, but thought it had been fixed
+<dneighbo> hey
+<Mr_You> I think I'll dive into this myself today
+<psu> the postgres drivers try to connect using your windows username & pw
+<dneighbo> first off wizard works with dbw now :)
+<psu> *not* the one defined in connections.conf
+<Mr_You> what is dbw?
+<dneighbo> s/db2/dbw
+<cslewis> the schema navigator shows my table but nothing else seems to work. for ex, should i be able to edit entries in the property inspector?
+<dneighbo> i have ugly log
+<dneighbo> can we start by restating some of the knowns?
+<dneighbo> this machine is too slow to go read logs
+<cslewis> dneighbo: knowns relating to my issue or something else?
+<dneighbo> yes your issue
+<cslewis> me: newbie, platform: windows, code: latest build, driver: pyPgSQL. i cant get designer to do anything useful. it connects to the database and shows it in the schema but everything else fails.
+<dneighbo> i abuse designer regularly on windows sometimes even :)
+<dneighbo> ok define latest build?
+<cslewis> GNUe-Designer-03-feb-2002.exe          03-Feb-2002 11:48   3.9M 
+<dneighbo> ok
+<dneighbo> let me grab and try here
+<dneighbo> make sure its not instant bug :)
+<dneighbo> there is lots of work going on so its tough to tell if the nightlies are toast or not
+<cslewis> it may be operator error :) i'm trying to do a simple test of the system
+<cslewis> i'm stumbling around blindly and most everything i do throws exceptions
+<dneighbo> hmmm
+<dneighbo> you have forms and common installed?
+<dneighbo> if so from where?
+<dneighbo> i dont see builds for those
+<cslewis> forms yes. i didn't see common so i assumed it was included in one of the above
+<dneighbo> correct its included
+<dneighbo> where did you get forms
+<cslewis>  GNUe-Forms-snapshot-12-feb-2002.exe    12-Feb-2002 08:51   4.9M 
+<dneighbo> hmm this could be the problem
+<cslewis> should i try the jan 29 version of both?
+<dneighbo> as designer and forms sometimes need to be in sync
+<dneighbo> as i assume forms installs the common
+<dneighbo> and designer uses common
+<dneighbo> so if you have new designer with older common this could be some issue
+<dneighbo> yes try same version of both
+<dneighbo> let me know what happens then
+<cslewis> ok, i'll uninstall and start over. thx for the help.
+<cslewis> ok
+<dneighbo> i.e. just uninstall designer (from the start/programs)
+<dneighbo> er nevermind i guess you have to uninstall both
+<dneighbo> to get proper versions
+<dneighbo> it should leave your conf files and things though
+<cslewis> d/l'ing now...
+<jcater> actually, I don't know if our uninstall will leave the conf files
+<jcater> jamest noticed this just recently
+<dneighbo> jcater: i was just starting to think the same thing :)
+<dneighbo> as i just uninstalled my version 
+<dneighbo> adn it appears to have eaten them :)
+<cslewis> same here
+<dneighbo> cslewis: hopefully you didnt make a ton of connection.conf entries :(
+Action: dneighbo is sorry, i could swear at one time it didnt eat them
+<cslewis> no. its easy to recreate
+<dneighbo> cslewis while you are waiting for that mind me asking how you heard about gnue? and what you plan to use it for?
+Action: dneighbo is curious like that :)
+<cslewis> originally on slashdot, i think. then yesterday searched for info on wxpython.
+<cslewis> i want to rewrite a customer/order db. my plan was to use wxpython/python/postgres and do a 3-tier design
+<dneighbo> slashdot? wow, not as a main story i suspect
+<dneighbo> cslewis nah you want to use gnue :)
+<dneighbo> much more simple
+<cslewis> then i found gnue
+<cslewis> :)
+<cslewis> but i understand its 2-tier at the moment
+<dneighbo> i promise designer works 
+<dneighbo> yes currently it is
+<dneighbo> but soon will be n-tier
+<dneighbo> we have app server but its getting some over hauling to it
+<dneighbo> i think you would find 2 tier would probably work ok for you (unless its already a huge installment)
+<dneighbo> until we have n tier ready
+<dneighbo> adn then all your forms should be able to stay the same (ie. dont have to rewrite them)
+<jcater> well, depends on how you define 2-tier
+<jcater> in the sense of remote methods
+<jcater> we are only 2-tier
+<jcater> at the moment
+<jcater> but in the sense of connection proxying, etc
+<cslewis> ok i got the older matching versions installed. can somebody hold my hand through a 'hello world' type of thing?
+<jcater> we do support some middleware
+<jcater> i.e., odbc, etc
+<jcater> bbias
+<cslewis> my main goal is to have the business logic in python objects
+<cslewis> dneighbo: designer seems to be acting the same. i can't do much of anything with it.
+<jamest> cslewis: what is wrong?
+<cslewis> just trying to test out designer. i can connect to my database, but nothing else.
+<cslewis> the wizard window is blank.
+<jamest> :(
+<cslewis> most other actions throw exceptions
+<jamest> is this the release?
+<jamest> or a snapshot?
+<cslewis> using: windows, jan 29 build of designer and forms, pypgsql
+<cslewis> could be operator error?
+<cslewis> for instance: i add a button to page. double click the button. the property inspector opens. should i be able to edit properties here?
+<cslewis> also: if i save a form and try to execute it, i see several windows open briefly then disappear.
+<jamest> hmmm
+<jamest> this isn't right (obviously)
+<jamest> we really need to do a new release
+<jamest> from memory
+<jamest> the last win32 release (0.1.1) had login issues with postgresql when windows username didn't match db username
+<cslewis> would that prevent me from doing a non-db related form?
+<jamest> the matching snapshots after that were quick bundles of the current cvs tree
+<jamest> no it should not
+<jamest> cslewis: where are you located
+<cslewis> new mexico
+<jamest> as I'll be home in < 4 hours
+<jamest> and could whip up some new snapshots
+<jamest> of forms and designer
+<cslewis> i should be getting to work in about 4 hrs. i'll be there for 2-3 hours
+<jamest> ah
+<cslewis> will you put them on the website or somewhere else?
+<jamest> i will put them on the website
+<jamest> but
+<jamest> if you give me your email
+<jamest> i'll send you the URL to them the moment they are done
+<cslewis> excellent. i'll check there. i'll also try to synch up the usernames and see if that changes them
+<cslewis> csl@balticave.com
+<cslewis> thanks for your help
+psu (peter@manorcon.demon.co.uk) left irc: "[x]chat"
+<cslewis> forgot to mention: i'm using NT 4.0. i assume there arent any major known issues with that.
+cslewis (vircuser@qdslip213.spinn.net) left irc: "User pushed the X - because it's Xtra, baby"
+cslewis (~Ident@qdslip213.spinn.net) joined #gnuenterprise.
+<cslewis> with designer, should i be able to save and execute a blank form?
+<cslewis> or is there some basic functionality i have to implement?
+<cslewis> here the traceback i get:
+<jamest> yes
+<cslewis> DB000: Traceback (most recent call last):
+<cslewis> DB000:   File "<string>", line 54, in ?
+<cslewis> DB000:   File "c:\python21\gnue\forms\gfclient.py", line 118, in run
+<cslewis> DB000:   File "c:\python21\gnue\forms\gfclient.py", line 154, in runForm
+<cslewis> DB000:   File "C:\PYTHON21\gnue\forms\GFInstance.py", line 509, in activate
+<cslewis> DB000:   File "C:\PYTHON21\gnue\forms\GFEvent.py", line 76, in dispatchEvent
+jbailey (~jbailey@HSE-Toronto-ppp318862.sympatico.ca) left #gnuenterprise ("Client Exiting").
+<cslewis> DB000:   File "C:\PYTHON21\gnue\forms\GFEvent.py", line 87, in processEvent
+<cslewis> DB000:   File "C:\PYTHON21\gnue\forms\UIbase.py", line 273, in updateEntry
+<cslewis> DB000: AttributeError: 'None' object has no attribute 'hidden'
+<jamest> sigh
+<jamest> this was a bug in cvs
+<jamest> that we squashed this week IIRC
+<cslewis> ok, i'll wait for the new build
+<jamest> i didn't think it was in the last snapshot
+<jamest> but w/ designer
+<jamest> you get basic stuff out of the box
+<cslewis> i'm excited to see it in action. i hope i can use it on my project
+<jamest> i do too
+<jamest> :)
+<jamest> i think you'll find the cvs stuff a lot nicer anyway
+Action: jamest would love to release
+<jamest> but we're still testing
+<cslewis> well i'll be using on both win & unix.
+<cslewis> but i'm kind of a unix desktop weenie and i don't yet have a working x server
+<cslewis> what compiler do you use to compile the windows version?
+<jamest> it's all in python
+<jamest> we use mcmillian installer to create an image of the python install on our machine
+<jamest> then inno to create the setup.exe
+<cslewis> oh, is it only geas that's in c?
+<jamest> yes
+<jamest> on the forms/designer side of things
+<jamest> we're doing python 
+<jamest> then if we find performance issue
+<jamest> that can't be fixed via cleanup or design
+<jamest> we'll recode that piece in C
+<jamest> hasn't happened yet though :)
+cslewis (Ident@qdslip213.spinn.net) left irc: Read error: 104 (Connection reset by peer)
+psu (peter@manorcon.demon.co.uk) joined #gnuenterprise.
+tomte (~tom@pD9054E51.dip.t-dialin.net) joined #gnuenterprise.
+<tomte> back again, strange I got my 24 hours ISP-disconnect, but I'm still here as tomte_away
+<psu> tomte: this irc server has a very long time out IIRC
+<tomte> maybe someone can kick tomte_away?
+<tomte> split personality ;)
+<psu> don't worry, we're used to it
+<psu> several people log the channel both at work and at home 
+<psu> so are always in duplicate ;-)
+<tomte> hehe
+tomte_away (tom@pD9004814.dip.t-dialin.net) left irc: Read error: 110 (Connection timed out)
+<psu> oh look, there he goes
+<tomte> cool, myself at last :)
+Action: psu is away: back in 30 mins
+chillywilly (~danielb@d148.as26.nwbl0.wi.voyager.net) joined #gnuenterprise.
+<chillywilly> yo
+Action: psu is back
+<chillywilly> gah
+<chillywilly> anyone readthat bnetd article?
+<chillywilly> on newsforge
+<chillywilly> that fitzix pasted here last night
+<psu> nope
+<psu> got the url to hand?
+<psu> found it
+<chillywilly> yep
+<psu> http://www.newsforge.com/article.pl?sid=02/02/21/1344204&mode=thread
+<chillywilly> http://www.newsforge.com/article.pl?sid=02/02/21/1344204&mode=thread
+<chillywilly> jinx
+<chillywilly> looks as though ESR even posted
+<chillywilly> I bet that first response was fitzix's ;)
+<chillywilly> I can tell
+<psu> the logical work-around is to relocate servers to outside US
+<chillywilly> :)
+<chillywilly> this stuff makes me damn sick man
+<chillywilly> anyone who uses the DMCA to beat ppl down with deserves to be boycotted
+<psu> but of course, no-one has ever told Congress that they don't control the internet outsid the USA
+<chillywilly> dude, I don't even see how it is a DMCA violation
+<chillywilly> it does break the copy protection it just doesn't enforce it
+<chillywilly> even if they had a pirated copy installed wtf does that have to do with the server?
+<psu> bnetd could always call their bluff
+<chillywilly> it would've been pirated long before they hooked up to the server
+<psu> & ask for access to their CD key database
+<chillywilly> hehe
+<psu> & refuse connections from pirated/multiple CDs
+<psu> s/pirat*/'pirat*'
+<psu> since copying a non-free CD, whilst morally indefensible
+<psu> isn;t in the same league as real piracy
+<chillywilly> well, ppl should just take the high road and use Free software :)
+<chillywilly> this is more admirable, imho
+<psu> chillywilly: I've read a lot about SOAP
+<chillywilly> this sheds some light on my stance on games though
+<chillywilly> oh?
+<psu> would you regard it as a standard or a proprietary tech
+<psu> ?
+<chillywilly> dunno
+<chillywilly> it is a W3C standard
+<psu> or a java-style proprietary standard
+<psu> oh OK
+<chillywilly> (which so far is free)
+<chillywilly> in both senes of the word
+<chillywilly> er, senses
+<chillywilly> heh, someone says that Diablo is based on rogue and hack
+<psu> UK govt is likely to make it mandatory for use in public sector systems
+<chillywilly> maybe even nethack
+<chillywilly> that is sorta lame
+<psu> if it was, like, dotNet, I would whinge
+<nickr> thats sort of like saying windows is based on macintosh
+<psu> they are already hardcore on products that support XML
+<chillywilly> nickr: well I haven't played ,uch of any of those games
+<chillywilly> er, much
+<nickr> I'w never played diablo, but I heard good things about it from fans.
+<chillywilly> psu: well I suppose it is ok, but it could be abused
+<nickr> I agree with the post that says ID software's model is good
+<nickr> they have a huge good reputation
+<chillywilly> ID is cool
+<chillywilly> they have a nice balance
+<chillywilly> psu: what if someone wanted to use CORBA?
+<nickr> I want to use corba
+<chillywilly> what if someone comes up with something better?
+<psu> chillywilly: theoretically, these standards are mandatory
+<psu> i.e. govt agencies can't buy anything non-compliant
+<chillywilly> (or I should say what happens when someone comes up with the next best thing)
+<chillywilly> (cause you know they will)
+<psu> chillywilly: I guess the standard gets changed - eventually
+<psu> they are also very keen on web based applications 
+<psu> which will go down well in parts of AZ...
+<psu> something like gnue, where you have max flexibility 
+<psu> with multi platform and
+<psu> db and rpc access all abstracted
+<psu> might well end up being the only thing that meets all the requirements
+<chillywilly> cool
+steveb (steveb@node-c-5e9c.a2000.nl) left irc: "l8er"
+<psu> http://www.e-envoy.gov.uk/publications/frameworks/egif3/contents.htm
+<psu> pretty dry stuff, I know
+<psu> best bit is that the use of XML schemas is mandatory
+<chillywilly> well this is a nice step
+<psu> but at the moment, only one (property db) has been defined 
+<chillywilly> however, do they make a case for the license of the software or do they think it will be enough to have a n open standard?
+<chillywilly> hrrrm
+<chillywilly> you seem to have answered my question already ;)
+<psu> there is nothing to stop a proprietary ERP vendor complying with all these "open"/free standards
+<psu> in fact, if they ever want to make a govt sale again, they have to.
+<psu> but because s/w like gnue thrives on standards
+<psu> even uses them natively
+<psu> rather than an afterthought 
+<psu> it's pro-freedom generally
+<chillywilly> well...we are trying anyway, that's where I want to push GEAS ;)
+<psu> http://www.govtalk.gov.uk/interoperability/agreedschema.asp
+Action: chillywilly needs learn more about xml stuff
+<nickr> its interesting hov often times free software is all about satisfying standards
+<chillywilly> hehe
+<chillywilly> it definitely is funny
+dsmith (dsmith@oh-strongsville5a-64.clvhoh.adelphia.net) joined #gnuenterprise.
+<chillywilly> maybe because we have nothing to gain by trying to embrace and extend them
+<chillywilly> ;)
+<psu> standard == no lock in
+<psu> or less lock in, anyway
+<psu> as more clueful users are beginning to realise
+<chillywilly> speaking of which
+<nickr> I think its more of a pride thing to be standard compliant, also a shortcut to possibly quality designs
+Action: chillywilly adds more notes to odmg.txt
+<psu> has anyone got admin access on the website?
+<psu> I posted an announcement for KC 16 which hasn't been approved yet
+<psu> and KC 17 is almost ready to go ;-)
+<chillywilly> I saw it on the mailling list
+<chillywilly> only jamest and derek have access, AFAIK
+jamest (jamest@hobbes.math.ksu.edu) left irc: "[x]chat"
+<chillywilly> anyone know what a julian date is?
+<nickr> Yes
+<psu> no of days since date x
+<nickr> Its the yea
+<psu> can't remember which
+<psu> 1/1/1900 sounds convincing
+<nickr> No
+tomte (tom@pD9054E51.dip.t-dialin.net) left irc: "KVIrc 2.1.2-pre1 'Monolith'"
+<jcater> January 1, 4713 BC
+<jcater> http://scienceworld.wolfram.com/astronomy/JulianDate.html
+<jcater> 'sup my peeps?
+<nickr> 4000-something BC
+<nickr> yea
+<nickr> http://www.cis.upenn.edu/~aaronb/stargaze/juliandate.html
+<chillywilly> thanks
+<chillywilly> jcater: wassup dawg
+<nickr> jcater: fast bastard
+<psu> oh well, I was only 5000+ years out ;-)
+ICJ (foobar@pD9552869.dip.t-dialin.net) joined #gnuenterprise.
+<ICJ> Hi"!
+<chillywilly> ello
+<psu> good evening
+<ICJ> read my email concerning privacy laws?
+Action: dneighbo is too dumb to read, he can only write
+<chillywilly> privacy schmivacy
+<psu> ICJ: I don't think it's a major issue, basically just good data protection
+<chillywilly> j/k
+<psu> the UK has already implemented the directive 
+<psu> and the sky hasn't yet fallen
+<psu> of course, US data protection laws are much weaker
+<psu> hence the need for "safe harbour" provisions
+<psu> for companies wanting to share data from EU to US arms
+<ICJ> <psu> ICJ: I don't think it's a major issue, basically just good data protection
+<dneighbo> i didnt read it yet
+<ICJ> well, the technical thing is the "the user's consent has to be documented"
+<dneighbo> but i will say this
+<dneighbo> looks as though you are saying Europe is going gungho privacy
+<dneighbo> while US is going gungho let corporate intellectuall 'property' override everything
+<dneighbo> with addition of 'terrorist' legislation
+Action: dneighbo fears soon we will see following:
+<dneighbo> in Europe its against the law for software to easily get at customer data or transmit
+<dneighbo> and
+<dneighbo> in US its MANDATORY for software to easily get at customer data and transmist it :)
+<dneighbo> boy wont that be fun
+<dneighbo> why no didier you need your software flag : 'screw customer' set to false if you are in France
+<psu> ok my e-mail is FUBAR
+<psu> anyone know how to make exim ignore smtp requests
+<psu> instead of bounce them?
+<jcater> apt-get install postfix ?
+<jcater> j/k
+Action: jcater doesn't
+<psu> I don't want to receive mail on Debian yet
+<psu> so set exim to local 
+<psu> but it seems to be bouncing stuff
+<psu> <clueless>what would be the implication if I deinstalled exim and had no mta at all</clueless>
+<psu> or do I not even want to go there?
+<jcater> I don't think that's a big deal
+<jcater> if you have a remote machine to do smtp with
+<jcater> e.g., an isp
+<psu> I think my isp is the only one in uk that tries to deliver mail via both smtp and pop
+<psu> nope, this isn't going to work
+neilt (~neilt@dhcp64-134-54-184.chan.dca.wayport.net) joined #gnuenterprise.
+#gnuenterprise: mode change '+o neilt' by ChanServ!ChanServ@services.
+<psu> if I uninstall exim, all my dependancies go phut
+<chillywilly> you read the docs yet?
+<psu> chillywilly: i looked at exim.conf, but it looks 
+<psu> busy
+<psu> also did man exim
+<chillywilly> apt-get install exim-doc
+<chillywilly> iirc
+<chillywilly> or
+<chillywilly> apt-get install exim-doc-html
+<psu> cheers
+Action: chillywilly uses exim but only the dialup fongiration
+<chillywilly> er configuration
+<chillywilly> the option that tells it to use a smarthost
+<nickr> I wrote a local only mailer for routers that need like logrotate but don't want exim or any smtp server
+<nickr> Its not completely stable but it works reasonably well
+<psu> i'm not sure exim is even the culprit
+<psu> it may be working exactly as I want 
+<chillywilly> that's who usually bounces your mail
+<psu> and it's just inetd that's telling incoming smtp connections to FOAD
+<psu> anyway, I should be able to solve this a bit better after some sleep
+<chillywilly> foad, hehe
+psu (peter@manorcon.demon.co.uk) left #gnuenterprise.
+Action: dneighbo hungry he want foad
+<dneighbo> bbllg
+dneighbo (dneighbo@tmp-200253.flinthills.com) left irc: "[BX] Ping-pong timeout"
+<chillywilly> foad == fuck off and die
+<chillywilly> iirc
+jcater (jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: ""I've been finding things in the Forest," said Tigger importantly. "I've found a Pooh and a Piglet and an Eeyore?""
+dres_ (dres@4.18.171.42) left irc: Connection timed out
+<dsmith> chillywilly: It's actually how to start a daemon. "fork off and die".  The child process continues to run in the background.
+<chillywilly> yes I know, but I don't tell ppl to fork off
+<chillywilly> I was thinking of it in a different context
+Action: chillywilly is an evil bastard remember?
+jamest (~jamest@fh-dialup-201091.flinthills.com) joined #gnuenterprise.
+<dsmith> Actually, I made it up. :) It sounded good though.
+#gnuenterprise: mode change '+o jamest' by ChanServ!ChanServ@services.
+<jamest> did derek really go to sleep?
+jcater (~jason@24.92.70.39) joined #gnuenterprise.
+<jamest> yo!
+<jamest> jcater
+<jamest> wazzup
+<jcater> yo! ChanOp Jamest
+<jcater> rofl
+<jcater> I love zope's debugging logs
+<jcater> ------
+<jcater> 2002-02-23T00:15:41 INFO(0) zdaemon zdaemon: Fri Feb 22 18:15:41 2002: Houston, we have forked
+<jcater> ------
+<jcater> 2002-02-23T00:15:41 INFO(0) zdaemon zdaemon: Fri Feb 22 18:15:41 2002: Houston, we have forked
+<jcater> ------
+<jcater> 2002-02-23T00:15:41 INFO(0) zdaemon zdaemon: Fri Feb 22 18:15:41 2002: Hi, I just forked off a kid: 320
+<nickr> heh
+Topic changed on #gnuenterprise by jamest!~jamest@fh-dialup-201091.flinthills.com: GNUe - like you've got anything better to do on a friday night
+<jamest> ahhhhh
+<nickr> amen
+<jamest> what power
+Action: jcater bows before the mighty jamest
+ICJ (foobar@pD9552869.dip.t-dialin.net) left irc: "ChatZilla 0.8.5 [Mozilla rv:0.9.8+/20020214]"
+Action: dsmith is playing with his modem
+Action: dsmith is also waiting for pizza
+<dsmith> Anyone here remember modems?
+<nickr> mo dem?
+<nickr> Sounds like some homey speak
+<dsmith> heh
+<dsmith> I'm trying to get my modem to spit out callerid stuff, but it seems like it isn't even responding to a ring.
+<dsmith> I wonder if I have too many phones plugged in, and the ring signal isn't strong enough for the modem.
+<nickr> I'm painfully transferring netbsd/hpcmips over a 56k link
+<dsmith> nickr: hpcmips?
+<nickr> Handheld PC
+<dsmith> Ah
+<nickr> wince
+<dsmith> Ug
+<nickr> well yea, theres a reason I'm transferring netbsd to it
+<nickr> :)
+<dsmith> I put netbsd on an old sun3 once.  It was fun. obsd was too big.
+<nickr> netbsd is sleek
+<dsmith> Netbsd runs on cobalt mips!
+<nickr> yea
+<nickr> I can't wait for debian/netbsd ;)
+<dsmith> too true
+<nickr> argh, this is too slow
+<nickr> 2,085,452 takes hov long over 56k?
+<nickr> hrm.
+<dsmith> nickr: So, do you remember how to get a modem to say 'RING' when the phone rings? (don't answer, just spit out 'RING')
+<nickr> I wish the stupid browser had like a speed and percent indicator
+<nickr> dsmith: it should be the defgault that it does that
+<dsmith> nickr: use wget
+<nickr> there is no wget for hpc
+<dsmith> nickr: but it has a browser?
+<nickr> yea, IE
+<nickr> the weird, embedded version of IE
+<dsmith> Ah.
+perico (perico@213-98-201-180.uc.nombres.ttd.es) joined #gnuenterprise.
+<chillywilly> hey
+Action: dsmith is sad the nickr has to use ie, but glad he is using it for netbsd
+<chillywilly> my mom works for a law firm
+<chillywilly> and they are looking for software to manage things
+<chillywilly> gonna have to pitch GNUe to them ;)
+<nickr> this would all be much easier if my flash card reader worked with smartmedia
+<perico> I all. I have recently discovered GNUe and would like to try it and, if possible collaborate on it but I'm lost
+<perico> Any advice on how to begin will be very wellcome !
+<jamest> what are you looking for perico?
+<jamest> er, what are your needs?
+<perico> well, I'm a freelance programmer and think that GNUe may be perfect for me if I find a way to make it work !
+<jamest> ah
+<jamest> ok
+<jamest> well
+<jamest> have you downloaded any code?
+<jamest> or the CVS tree?
+<perico> Yes, in fact I have just unzip the windows ZIP with everything (not easy to find) and having a look at it.
+<perico> What i find quite confusing is the way the different modules interact, ie what do you need to run the thing
+<chillywilly> hey jamest, could you do a text export of the forms tech ref for me?
+<chillywilly> please  :)
+<jamest> perico: so you are on windows?
+<jamest> chillywilly: i'll do it right now
+<chillywilly> yipee :)
+Action: chillywilly needs to get forms friendly
+<perico> well, in fact I'm on both windows and linux but currently I have not a good modem to acces inet from linux so right now I'm on windows ...:(
+Action: chillywilly adds more notes to odmg.txt
+<jamest> perico: ok
+<jamest> if you give me a sec I can try and help
+Action: jamest is working on new win32 snapshots
+<jamest> http://www.gnuenterprise.org/~jamest/techref.txt
+<jamest> for you chillywilly
+<jamest> perico: ok
+<jamest> geas won't run on win32 so that is out 
+<jamest> that leaves
+<chillywilly> than you
+<jamest> common, forms, designer
+<chillywilly> er, thank
+<jamest> chillywilly: it's a bit outdated
+<jamest> but not bad
+<chillywilly> this is not the cvs version?
+<jamest> chillywilly: it is however the trigger namespace is in flux
+<jamest> so not documented
+<jamest> i planned to update the doc prior to release
+<chillywilly> a 0.1.2 release?
+<jamest> perico: common is the core of the other apps
+<jamest> it gives you db access, app framework, etc
+<jamest> forms is our end user UI client
+<jamest> deisgner builds the xml based .gfd files that forms runs
+<jamest> chillywilly: maybe a 0.3.0 release
+<jamest> a lot has changed
+<chillywilly> ooooh
+<chillywilly> true
+<perico> just a quick question, is the system development statutus? I mean, is it under strong development or usable?
+<jamest> so
+<jamest> the system is usable and is in use in a few places
+<chillywilly> jamest: so using 0.1.1 would be the best bet for a stable system this time around?
+<jamest> no
+<chillywilly> how long off is the release?
+<jamest> er
+<jamest> sigh
+Action: jamest is now depressed
+<chillywilly> don't be
+<jamest> 0.1.1 is lacking alot compared to cvs
+<jamest> however cvs took some serious abuse over the last few weeks
+<chillywilly> well I am going to play with cvs then ;)
+<jamest> so she's stable but not well tested
+<chillywilly> hrrrm
+<chillywilly> okey dokey
+<chillywilly> I need to get postgres going once again
+Nick change: dnSleep -> derek
+<perico> well, thanks for helping, I'll better take a closer look. I'll be  back !
+<jamest> perico: how heavy the devel is depends on the workloag
+<jamest> workload
+<jamest> but
+<jamest> cvs should work most the time
+<jamest> or get fixed quickly
+<jamest> as I need to working at work :)
+<jamest> to = it
+<chillywilly> :)
+<jamest> a few of us are in that boat
+<jamest> so we don't break cvs intentionally 
+<jamest> (very often :)
+<chillywilly> well I was talking to my mom and they are a small firm that needs some nice software
+<jamest> nice software....damn......think they'd settle for GNUe?
+<chillywilly> sure
+<chillywilly> ;)
+<chillywilly> anything is better than nothing
+Action: derek is back (gone 71:15:43)
+<chillywilly> (which is what they have)
+<derek> man all that sleep i was gone nearly 3 days :)
+perico (perico@213-98-201-180.uc.nombres.ttd.es) left irc: 
+<chillywilly> hehe
+<chillywilly> you were in hybernation
+<jcater> yeah
+<chillywilly> jamest: is the lyx version current?
+<jcater> too much pizza and dots will do that to ya
+<derek> hey now, it was the donuts that did me in dood
+<jamest> chillywilly: no
+<chillywilly> ah well
+<jamest> you've got the lyx version freshly converted
+<chillywilly> is that text one you extracted form cvs though?
+<chillywilly> ah
+<chillywilly> ok
+<jamest> yes
+<chillywilly> groovy
+<jamest> didn't check it though for accuracy
+<jamest> figured you'd yell if something didn't work
+<jamest> :)
+<chillywilly> no problem
+<derek> i need to get some foad ;9
+<derek> brb
+<chillywilly> anyone know where I can find something that explains better what the diff is between an inner and outer join?
+<derek> right here
+<chillywilly> the one postgres guide I was reading was damn confusing
+<derek> an inner join only includes rows where BOTH tables are the same
+<derek> and outer join includes all of either the left or right table and only the matching of the other
+<chillywilly> jcater: and you say OO crap ius confusing...I think relational calculus is also damn confusing
+<chillywilly> ok
+<chillywilly> you got an example?
+<jcater> old skool people don't use inner/outer joins :)
+<chillywilly> hehe
+Action: jcater is old skool sql
+<chillywilly> I thought that was the power of sql
+<chillywilly> joins and shit
+<chillywilly> btw, nice topic ;)
+Action: chillywilly knows how to use select and all those goodies
+<jcater> we'll have you thinking relationally soo 
+<jcater> soon
+<jcater> mwahahahaha
+<chillywilly> nothing wrong with relational
+<chillywilly> just it's not as extensible as inheritance ;P
+<jcater> different tools for different needs
+<chillywilly> sure
+Action: jcater likes to program w/objects
+<jcater> but would never want to store my large-scale database as objects
+<chillywilly> no object to relational mapper?
+<chillywilly> so you would never use geas if it became usable?
+<chillywilly> ;)
+<jcater> um
+<jcater> at ncs
+<jcater> probably not
+<jcater> for a new venture
+<jcater> possibly
+<chillywilly> you don't want to spend the time redesigning as objects?
+<chillywilly> is that why?
+<chillywilly> or you think performance would suck
+<jcater> um
+<jcater> a mixture of both
+<chillywilly> don't fix it if it ain't broke
+<chillywilly> ;)
+<jcater> largely, it has to do with maintenance and expandability
+<jcater> and I know that's supposed to be the argument w/objects
+<chillywilly> uhuh
+<jcater> but long-term, I haven't seen an object schema that stands the test of time
+<jcater> but then again, I'm used to thinking relationally :)
+<derek> =============
+<jcater> but, heh, there's room for both in this world
+<chillywilly> fair enough
+<derek> TABLE ONE                     TABLE TWO
+<derek> FIRST_NAME   PHONE_ID         ID  PHONE
+<derek> JASON           1              1  551-5555
+<derek> PETE            2              2  552-5555
+<derek> PAUL            3              3  553-5555
+<derek> MIKE            1              4  554-5555
+<derek> DAN             2              5  555-5555
+<derek> JAMEST                         6  556-5555
+<derek> INNER JOIN
+<derek> FIRST_NAME   PHONE_ID         ID  PHONE
+<derek> JASON           1              1  551-5555
+<derek> PETE            2              2  552-5555
+<derek> PAUL            3              3  553-5555
+<derek> MIKE            1              1  551-5555
+<derek> DAN             2              2  552-5555
+<derek> LEFT OUTER JOIN
+<derek> FIRST_NAME   PHONE_ID         ID  PHONE
+<derek> JASON           1              1  551-5555
+<derek> PETE            2              2  552-5555
+<derek> PAUL            3              3  553-5555
+<derek> MIKE            1              1  551-5555
+<derek> DAN             2              2  552-5555
+<derek> JAMEST                         
+<derek> RIGHT OUTER JOIN
+<derek> FIRST_NAME   PHONE_ID         ID  PHONE
+<derek> JASON           1              1  551-5555
+<derek> PETE            2              2  552-5555
+<derek> PAUL            3              3  553-5555
+<derek>                                4  554-5555
+<derek>                                5  555-5555
+<derek>                                6  556-5555
+<derek> dinner time bbs
+<jcater> ooooo.... it's fun with joins!
+<chillywilly> hmmmm
+<jcater> come back tomorrow for "Fun with Unions!"
+<chillywilly> heheh
+<chillywilly> can you do a union in sql?
+<jcater> yes
+<chillywilly> I guess any set operations right
+<chillywilly> as that
+<chillywilly> s the basis
+<chillywilly> you have a set with relations, iirc
+<jcater> purdy much
+<derek> jcater: i dont do unions :)
+<jcater> a select returns a "set"
+<jcater> so the union of set 1 with set 2 is
+<derek> btw: im assuming my samples were correct its been a while
+<jcater> select column from table1 UNION select column from table2
+Action: chillywilly sings "ir's been a while"
+<chillywilly> er, it's
+<chillywilly> sorry, you started it
+<chillywilly> a uniojn gives you waht is common in the sets right?
+Action: chillywilly tries to remember some math
+<jcater> no
+<chillywilly> doh
+<jcater> union is a distint join 
+<jcater> intersect is the common stuff
+<jcater> minus is what's in #1 and not in #2
+Action: jcater uses oracle's flavor of unions
+<jcater> I'm not sure if their union keywords are SQL92
+<chillywilly> ah
+<chillywilly> maybe I should read that papaer again once
+<chillywilly> but when they start doing set notation my brain just turns off ;)
+<chillywilly> I hate when they get all theoretical with the notation
+<chillywilly> it's worse than calculus
+<chillywilly> well, if I were to write a GNUe solution today I would probably go with a 2-tier forms silution anyway as geas is lacking too much for my tastes
+<jcater> one of the biggest lackings in geas is the ability to contruct complex conditions
+<jcater> we hit that roadblock pretty hard w/the forms driver
+<chillywilly> you mean mutiple ands?
+<jcater> multiple/nested
+<chillywilly> with nots and junk?
+<chillywilly> desc
+<chillywilly> what's a nested condition look like?
+<chillywilly> er, nevermind
+<chillywilly> you mena like a condition that uses another condition inside it right?
+<jcater> (salary > 40000 and office = 2) or title = 'Manager'
+<chillywilly> yep
+<chillywilly> I got it ;)
+<jcater> yeah
+<jcater> sorry
+<nickr> sweet, netbsd boots
+<chillywilly> infidel
+Action: jcater has been meaning to do netbsd on my DreamCast
+<chillywilly> ;P
+<chillywilly> grooovy
+<nickr> jcater: debian on DC
+<chillywilly> but will you be able to play games on it if you do thayt jcater?
+<jcater> debian runs on DC?
+<nickr> yea
+<jcater> dude
+<jcater> really?
+<nickr> I'm fairly sure
+<nickr> I think i have a link
+<chillywilly> doesn't that turn it into another computer then?
+<chillywilly> instead of a game console
+Action: jcater wants to do some embedded/consumer level stuff
+<nickr> jcater: http://www.m17n.org/linux-sh/dreamcast/
+<jcater> and wanted to play w/DC
+<chillywilly> mmmm
+<chillywilly> embedded
+<chillywilly> you need to get GNUe running on DC
+<chillywilly> hehe ;)
+<chillywilly> we don't believe in playing
+<chillywilly> just do some data entry dagnabit
+<jcater> actually
+<jcater> that is one of my goals
+<chillywilly> rofl
+<chillywilly> casn I do data entry with my game controller?
+<jcater> yes
+<chillywilly> lol
+<jcater> to prove a point :)
+<nickr> My friend wanted to replace all the workstations in the company with DCs cause they are cheaper than PCs
+<jcater> all you need is X running
+<chillywilly> that's funny
+<jcater> and you could do diskless-style network
+<jamest> $20 keyboard, $60 DC
+<chillywilly> you are evil man
+<jamest> and a TV
+<nickr> live CD
+<chillywilly> hmmm
+<chillywilly> that would be pretty cheap
+<nickr> use NFS for the homedirs
+<nickr> Mmm, Its gonna be seeet to have a unixlike on this hpc
+<nickr> it has a full kb
+<nickr> it'll be a nice wireless workstation
+<chillywilly> in relational jargon what's a tuple?
+<chillywilly> nevermind
+<derek> thats not a relational term
+<derek> persay but rather a programming one
+<jamest> i need people to stress test cvs
+<derek> jamest i can do that in a few
+<jamest> please
+Action: jcater jumps up and down on cvs
+Action: jcater grabs his hammer, torch, and safety glasses
+<jamest> no goats?
+<chillywilly> derek: yes it is
+<chillywilly> derek: it's part of the relational model dawg
+<chillywilly> I read it in the postgresql tutorial
+<jamest> ah
+<derek> um postgres uses jacked up language to a degree :)
+<jamest> in postgresql's terms
+<jamest> it is a record
+<jcater> chillywilly: this buds for you
+<derek> most SQL folks call it a result or record set
+<chillywilly> yea, I dun figured that out
+<jcater> http://www.chimu.com/publications/objectRelational/
+<chillywilly> jcater: thanks dude
+<derek> and then the it's a 'row' or a 'record' ;)
+<chillywilly> derek: yes and so does postgres, but this crap in the tutorial is the theoretical methematical stuff, uses set notation and subscripts
+<chillywilly> they even say that a row == tuple at a different point, but i forgot what it said a tuple was and I got unlazy and went back and looked
+<chillywilly> ;P
+<chillywilly> and...
+[20:45] Last message repeated 1 time(s).
+<chillywilly> too many friggin ands
+<chillywilly> this and is and not and a and run and on and sentence
+<dsmith> I liked the unlazy part
+<chillywilly> ;P
+<chillywilly> if !lazy:
+<chillywilly>   rtfm()
+Action: chillywilly is not sure '!' is valid python syntax
+<chillywilly> any takers?
+<chillywilly> did I get it right?
+<chillywilly> ok, their outer join example makes sense I think
+<jcater> if not lazy: 
+<jcater>   rtfm()
+<chillywilly> doh!
+<dsmith> Anyone here know modems well?
+<chillywilly> bah, this is loopy
+<jamest> not well, i just have to use them 
+<chillywilly> hmmm
+<chillywilly> this is fucking with my head
+<chillywilly> a cross join
+<chillywilly> inner join on true
+<chillywilly> does anybody use this shit?
+<jamest> i dont
+<jamest> i use where clauses
+<jamest> i'm oldskool
+<chillywilly> hehe
+<dsmith> I had a wierd query I couldn't figure out. (note I am *NO* sql wizard!)
+<dsmith> Maybe you guys could help.
+<chillywilly> *sigh*
+<chillywilly> [20:52:47] * crazymike beats chillywilly with the smoke pole
+<dsmith> There are about 3 or 4 (maybe 5) tables. One col in each table has the thing (it's a tape lable, as in backup tapes)
+<dsmith> I needed a list of all lables, and which tables they were in.
+Action: dsmith scrolls back to look at the join example
+<chillywilly> hrrrm
+<jcater> select 'mytablename', labelfield from table1 where type = 'label' UNION
+<chillywilly> union?
+<jcater> select 'mytablename', labelfield from table2 where type = 'label' UNION
+<jcater> select 'mytablename3', labelfield from table3 where type = 'label' UNION
+<chillywilly> I thought those were outlawed by da masta?
+<jcater> ...
+<jcater> no
+<jcater> masta said he didn't use them
+<dsmith> Hmmm.
+<jcater> there's a difference
+<jamest> jcater: that only covers the 1st 3 tables.....what about the other 2
+Action: jamest runs
+<jcater> jamest: I already looked
+<jcater> the other 2 tables don't have anything
+<dsmith> heh
+<jamest> ah ok
+<dsmith> Hmm.  I didn't explain very well.
+<dsmith> The result should be something like:
+Action: dsmith fires up an editor
+<dsmith> label  library  offsite scratch stgpool
+<dsmith> ---------------------------------------
+<dsmith> TAPE01  y       n       n       tapepool
+<dsmith> TAPE02  y       n       y       -
+<dsmith> TAPE03  n       y       n       copypool
+<dsmith> TAPE05  n       y       y       -
+<dsmith> The tables are library, offsite, scratch and stgpool
+<dsmith> Kinda wierd eh?
+<dsmith> I want to get a list of all tapes, and what tables they are in.
+<dsmith> Orderd by tape lable
+<jcater> does your database support subselects as table names?
+<dsmith> It's an embedded db2.  I'm not sure.
+<jcater> ah
+<jcater> does embedded db2 support views?
+<dsmith> In this application, no.
+<chillywilly> are those both SQL92 features?
+<jcater> hmm
+<dsmith> I only have a SELECT.
+<jcater> chillywilly: not sure of that's SQL92 otr not to be honest
+Action: chillywilly whispers something about GNUe Forms
+<dsmith> It's actually part of a backup system. (Tivoli Storage Manager)
+<dsmith> Just wondering.
+<jcater> can you test an sql statement...
+<dsmith> Well, it's not really sql, just a select.
+<jcater> select label from (select label from library)
+<jcater> I have no idea what embedded db2 supports
+<dsmith> Ahh.  sub-select.
+<dsmith> This was about 2 years ago I needed this, so I'm kinda cloudy.
+<dsmith> Figured it was some kind of a join, but a union sounds interesting.
+<jcater> if it supported subselects, then
+<jcater> select label, max(library), max(offsite), max(scratch), max(stgpool) from
+<jcater> (
+<jcater> select label, 'y' as library, 'n' as offsite,'n' as scratch, '-' as stgpool from library
+<jcater> UNION
+<jcater> select label, 'n' as library, 'y' as offsite,'n' as scratch, '-' as stgpool from offsite
+<jcater> UNION
+<jcater> select label, 'n' as library, 'n' as offsite,'y' as scratch, '-' as stgpool from scratch
+<jcater> UNION
+<jcater> select label, 'n' as library, 'n' as offsite,'n' as scratch, stgpool as stgpool from stgpool
+<jcater> )
+<jcater> group by label
+<jcater> is what you could do
+<jcater> if it supported views
+chillywilly_ (~danielb@d45.as10.nwbl0.wi.voyager.net) joined #gnuenterprise.
+<jcater> then the subselect could be replaced with a view
+chillywilly (danielb@d148.as26.nwbl0.wi.voyager.net) left irc: Killed (NickServ (Ghost: chillywilly_!~danielb@d45.as10.nwbl0.wi.voyager.net))
+Nick change: chillywilly_ -> chillywilly
+<jcater> if neither are supported, I'm not sure :(
+<dsmith> Hmmm. Thnaks
+Action: dsmith saves the irc buffer for further study
+jamest (~jamest@fh-dialup-201091.flinthills.com) left #gnuenterprise.
+<chillywilly> yay
+Action: chillywilly is going to go bowling
+Action: jcater is away: reading
+neilt (neilt@dhcp64-134-54-184.chan.dca.wayport.net) left irc: Read error: 113 (No route to host)
+jcater (jason@24.92.70.39) left irc: "Client Exiting"
+--- Sat Feb 23 2002

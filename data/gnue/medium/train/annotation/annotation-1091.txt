@@ -1,0 +1,248 @@
+<section archive="http://mail.gnu.org/pipermail/gnue-dev/2002-February/000024.html" enddate="25 Feb 2002 17:59:19 -0800" posts="1" startdate="21 Feb 2002 00:00:00 -0800" subject="[Gnue-dev] GEAS Version 2.0 Meeting" title="GNUe Application Server planning">
+<topic>Application Server</topic>
+<topic>Common</topic>
+<topic>Forms</topic>
+
+ 
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.21Feb2002">
+On IRC</a>, Jan Ischebeck (Jan) asked <quote who="Jan Ischebeck">How difficult 
+is it to write an other "connection" to GEAS</quote> such as SOAP or 
+RPC. Reinhard M&#252;ller (reinhard) said this would be easy once GNUe Application Server 
+(GEAS) had been re-written to use GNU-RPC, as this would abstract the transport 
+layer. As at time of writing, however, this would be <quote who="Reinhard M&#252;ller">
+very difficult because CORBA code is spread all over geas</quote>. He was 
+<quote who="Reinhard M&#252;ller">actually rewriting geas part by part</quote>, 
+starting <quote who="Reinhard M&#252;ller">with the parser</quote>, then moving on to 
+the database abstraction, which would use GNUe Common, 
+<quote who="Reinhard M&#252;ller">and the method calling part</quote>. Jan asked
+about the mechanics of the re-write. Reinhard said <quote who="Reinhard M&#252;ller">
+you are exactly pointing out the main problem i am facing - i change the main code
+which is a major PITA</quote> and breaks other parts of the code. However, 
+<quote who="Reinhard M&#252;ller">it forces me to look at the "main" code and 
+understand how it works - which will (hopefully) help me when replacing the next 
+parts</quote>. Jan said there were other possible approaches, but didn't seem to 
+think they were much better.</p>
+
+<p>Neil Tiffin (neilt) suggested <quote who="Neil Tiffin">i say we just re-write it
+- I think a complete rewrite would allow to separate out parts better and get more
+help - also I think we should be thinking about multiptle servers instead of one 
+monolithic one - we need to build it from the ground up mult-threaded - with a 
+workflow engine at the core :)</quote>. Jan suggested <quote who="Jan Ischebeck">
+why don`t make the object templates a kind of active, so you just need a container
+to build them up and store them, and let there buisness logic kind of work. so 
+different templates can be connected with differnt servers or diff. threads...
+</quote>.</p>
+
+<p>Derek Neighbors (dneighbo) said it was important to 
+<quote who="Derek Neighbors">not add rpc stuff to geas</quote>, as this now 
+belonged in GNU-RPC/GNUe Common - <quote who="Derek Neighbors">if you want to be
+productive in moving it forward look at common and there are some rpc abstraction 
+classes there</quote>. Jan noted that GNUe Common was written in python, whilst 
+GEAS was in C. Derek said he would prefer the new GEAS to be written in python 
+<quote who="Derek Neighbors">for coherency and speed of development - and if parts
+are slow its easy enough to move them to C</quote>. Jan asked about 
+<quote who="Jan Ischebeck">concrete plans</quote>. Derek was concerned that 
+<quote who="Derek Neighbors">there seems to be a rising division of ideals - so at
+some point we either converge or diverge</quote>. However, 
+<quote who="Derek Neighbors">not all the right people are hear right now to have 
+this dicussion (thus is the problem with time zones) :)</quote>. Neil felt that
+<quote who="Neil Tiffin">geas is a great subject to talk about - its just not the 
+main focus of the project</quote>. Derek disagreed - it was just that Forms had 
+developed faster than GEAS. Neil said that Forms wasn't working with GEAS. 
+Derek said this was because of <quote who="Derek Neighbors">iirc its a bug in 
+orbit-python</quote>. Neil said he hadn't had any problems, and on GEAS  
+<quote who="Neil Tiffin">the only real outstanding issue is that the search IDL 
+is nto so good</quote>. Derek said <quote who="Derek Neighbors">we really need 
+to talk more about it</quote>, and suggested a get-together for all interested 
+parties next week.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.23Feb2002">
+Two days later,</a> Derek said he thought there was agreement 
+that workflow didn't belong in GEAS, but <quote who="Derek Neighbors">
+we need to be aware of it and talk about it during talks of geas
+</quote>. Neil agreed - <quote who="Neil Tiffin">I dont want to 
+design the workflow server right now - I want to allow for it and 
+have a general understanding of where it fits</quote>, and pointed 
+to his diagram at 
+<a href="http://www.gnuenterprise.org/modules.php?op=modload&amp;name=NS-My_eGallery&amp;file=index&amp;do=showpic&amp;pid=31">
+http://www.gnuenterprise.org/modules.php?op=modload&amp;name=NS-My_eGallery&amp;file=index&amp;do=showpic&amp;pid=31
+</a>. 
+Derek said it <quote who="Derek Neighbors">doesnt look horribly 
+wrong but will have to chew on it about</quote>. Neil said it was 
+only a basis for discussion - <quote who="Neil Tiffin">I would like 
+to get a similar drawing for common - so we can discuss how to use 
+bits of common and merge it with geas</quote>.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.24Feb2002">
+The next day</a>, Reinhard referred to the problems he was having 
+keeping the old and new parser code in sync,  and commented 
+<quote who="Reinhard M&#252;ller">the more i think about it the 
+more i am for a rewrite from scratch - especially if i look at the 
+pain i went through with this double parser phase</quote>.</p> 
+
+<p>Neil asked <quote who="Neil Tiffin">did you see the new diagram for
+geas and do you have any comments?</quote>. Reinhard said he thought 
+the SQL generator <quote who="Reinhard M&#252;ller">should be integrated in
+the database adapter - because the sql is database dependent</quote>. 
+He was more worried about <quote who="Reinhard M&#252;ller">when to create 
+the tables and columns in the db - and what to do with dynamic changes 
+to the object definitions.</quote>. He outlined a possible way of doing
+this, where the extra field would be created and stored just within
+GEAS initially, but <quote who="Reinhard M&#252;ller">when access to a 
+column is requested, and the column doesn't exist in the in-memory 
+table it first rescans the schema of the table (in case someone else 
+has created the column meanwhile) and if it still doesn't exist the 
+column is created "on the fly"</quote>. Neil was worried that
+<quote who="Neil Tiffin">the data base could be filled with a lot of 
+garbage</quote>, even with Reinhard's suggested 
+<quote who="Reinhard M&#252;ller">clean-up procedure</quote>. He felt there
+should be some manual process, rather than unrestricted 
+<quote who="Neil Tiffin">on the fly adding of columns</quote>. Reinhard
+suggested this could be <quote who="Reinhard M&#252;ller">not completely 
+"invisible" for the user but triggered by a call to some 
+procedure in geas</quote>.</p>
+
+<p>Later, Jan asked <quote who="Jan Ischebeck">whats about the old 
+buissness objects, after a change of an table?</quote>. Both Reinhard 
+and Neil thought, as Neil put it, <quote who="Neil Tiffin">only adding 
+allowed in auto fashion</quote>. Reinhard noted that also 
+<quote who="Reinhard M&#252;ller">we would have to restrict that a new 
+column may not be NOT NULL</quote>.</p>
+
+<p>In any case, <quote who="Reinhard M&#252;ller">the "batch" 
+method must exist in parallel to bootstrap a system</quote>. Neil said 
+that the <quote who="Neil Tiffin">batch system and the SQL 
+generator</quote> could share a lot of code. Reinhard went further, 
+<quote who="Reinhard M&#252;ller">i see batch system being an 
+automatisation of sql generator</quote>. This would mean 
+<quote who="Reinhard M&#252;ller">that the "object server" 
+translates outside access on objects into calls of methods and access 
+to the database - while enforcing things like security and 
+integrity</quote>. Neil agreed, but said this would mean 
+<quote who="Neil Tiffin">we need to break the business object = table 
+restriction</quote>. Reinhard said that had already been discussed, 
+and said <quote who="Reinhard M&#252;ller">while travelling yesterday i 
+made some notes on my thoughts on geas on paper - i will write down 
+and combine with your last mail somehow to get a 
+"whitepaper"</quote>.</p>
+
+<p>Neil asked how much his GEAS diagram <quote who="Neil Tiffin">
+mmirrors common :)</quote>. James found several points of comparison. 
+He asked <quote who="James Thompson">is old geas no longer considered 
+worth maintaining? IOW...is this a new geas?</quote>. Neil said the 
+problem with the existing GEAS was that <quote who="Neil Tiffin">no one
+will support it with forms - so we are stuck in limbo</quote>. James 
+said he had <quote who="James Thompson">tried on linux and solaris
+w/ same resutls - a segfault every time I use a boolean</quote>. He 
+continued that he would like to see <quote who="James Thompson">a merge
+in the code bases</quote> between GEAS and GNUe Common, 
+<quote who="James Thompson">and a fleshing out of the object model in 
+forms - it's there as a stub</quote>. Neil said that the only thing a 
+user interface such as Forms should need to know was the name of 
+the object and whether it returned a single or mutliple results - 
+<quote who="Neil Tiffin"> geas should not export objects - it should 
+provide an interface to the UI</quote>. James said 
+<quote who="James Thompson">right now geas doesn't give me anything 
+postgresql doesn't - it's a relational view of object data</quote>. 
+Neil said this was why 
+<quote who="Neil Tiffin">business object should not equal database 
+table</quote>. He added <quote who="Neil Tiffin">we should be able to 
+normalized data on the backend without effecting the UI and that should
+be hidden behind the business object - also the business object should
+provide security</quote>. Also, <quote who="Neil Tiffin">you should be 
+able to say in the UI "GIve me the object pointed to by this 
+field" - the object servers should serve it up</quote>. James 
+agreed, <quote who="James Thompson">but this is way ahead of where we 
+are today :)</quote>. Neil said <quote who="Neil Tiffin">that is why we
+need some new architecture</quote>.</p>
+
+<p>Derek cautioned against getting into detailed discussions ahead 
+of <quote who="Derek Neighbors">the set meeting - as half conversations
+between one or two people just make it more laborious to unify us
+</quote> and make sure all the key players were included. It was agreed
+to keep things informal for the moment.</p>
+
+<p>Derek suggested <quote who="Derek Neighbors">honestly i would like 
+next geas to start out with no objects - just an abstracted rpc that 
+talks to a daemon that gives data access and remote method innovaction
+- as that should be very simple with a large gain - learn from it - 
+come back and do a real geas</quote>. Neil felt this would be a 
+retrograde step - <quote who="Neil Tiffin">then we drop back 2 years 
+and dont get any benefit from what we ahve learned - we also extend the
+time to get a working enterprise system - if you want a db system, just
+use current forms</quote> and GNU-RPC. He felt 
+<quote who="Neil Tiffin">the real issues to making a middleware werver 
+work is the object handling and its relation to SQL</quote>. Derek said
+<quote who="Derek Neighbors">the big difference here is whether we make
+our middleware object transparent or whether we push that back to the 
+developer</quote>. Most systems made object/SQL mapping the 
+<quote who="Derek Neighbors">responsibility to the developer</quote>, 
+wherease GNUe could offer <quote who="Derek Neighbors">an object 
+transparent system - just its VERY VERY difficult compared to the 
+former - and why i was suggesting a more evolutionary approach</quote>. 
+Neil felt <quote who="Neil Tiffin">we are almost there now - sure we 
+have some problems but so does forms</quote>. Derek felt 
+<quote who="Derek Neighbors">we have a much better idea of what is 
+involved but i wouldnt say almost there :) - much closer than most 
+though :)</quote>.</p>
+
+<p>He noted <quote who="Derek Neighbors">the people doing most of the 
+coding right now are not showing extreme interest in object 
+transparency (though they are not saying they wont support doing it in
+gnue)</quote>. He would rather have a limited but working GEAS which 
+didn't offer object transparancy, rather than 
+<quote who="Derek Neighbors">sit with an unused half done thing for a 
+long time, which only makes gnue look bad - if we can get a ton of 
+people willing to do the other i would be a lot more inclined to not do
+evolutionary</quote>. Getting a limited GEAS working might also 
+encourage more people to get involved - <quote who="Derek Neighbors">
+they will be encouraged at the potential and more willing to code 
+object transparency</quote>. Neil said <quote who="Neil Tiffin">but as
+a business developer I can not use forms - its not productive enough.
+There are too many peices that have to be manually spliced togeher
+</quote>. He noted <quote who="Neil Tiffin">there is no way to define 
+the business concept and tie it together so it can be discussed - I 
+have to have someone that understand SQL, XML etc then they have to 
+understand how they relate to each other and how the system 
+works</quote>.</p>
+
+<p>James said that the GTRiggerNSObject already within GNUe Common 
+<quote who="James Thompson">might be the start of a object interface 
+to forms</quote>. Jason said this was the point of it even as of time
+of writing - <quote who="Jason Cater">forms is an object-based UI that
+is currently using a relational backend</quote>. He emphasised 
+<quote who="Jason Cater">forms knows NOTHING about SQL... it simply 
+talks to an object provided by gnue-common</quote>. James said this 
+object could be extended to <quote who="James Thompson">expose a 
+getGFD() in geas - then using that to build the UI on the fly [...] 
+doing this would keep the objects on geas</quote>. In fact, 
+<quote who="James Thompson">GTriggerNSObject could easily become 
+GEASObject</quote>. Derek confirmed this <quote who="Derek Neighbors">
+would let you either grab GEAS objects and methods or let you tie 
+hardcoded methods to GEAS objects or tie hardcoded functions to gnue 
+objects</quote> - the last being what it alrady did in 2-tier, and 
+which would mean 2-tier would still be supported.</p>
+
+<p>After checking various people's availability by private e-mail, 
+Derek announced on the mailing list: <quote who="Derek Neighbors">
+There have been many disparate talks about the future of GEAS (GNUe 
+Application Server) and where it his headed and how it plays in the 
+overall GNUe architecture.  We will be meeting on irc at 
+irc.openprojects.net #gnuenterprise on the following day/time: 
+Thursday Feb 28th GMT 19:00 - 23:00 
+Anyone having an opinion or wishing to discuss should show up there.
+</quote>. This would probably need to be moderatated, and should 
+last for about 1.5 hours.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.25Feb2002">
+The next day</a>, as part of a general GEAS bug discussion, 
+Reinhard explained the background to the current problems. 
+<quote who="Reinhard M&#252;ller">We got this contributed from a company 
+that wrote geas for their own needs - we decided to take it and 
+adapt it to our needs - however we found out it is a PITA - 
+and last week we finally decided to do a rewrite from scratch
+</quote>. He added <quote who="Reinhard M&#252;ller">we are working on a 
+whitepaper and there is a drawing on the website</quote>.</p>
+
+</section>
+

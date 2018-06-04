@@ -1,0 +1,2095 @@
+[00:39] Last message repeated 1 time(s).
+nickr (panphage@208.205.172.28) left irc: Remote closed the connection
+nickr (~panphage@e-172-IP28.empnet.net) joined #gnuenterprise.
+reinhard (~rm@62.47.45.104) joined #gnuenterprise.
+Action: reinhard is reading the logs
+<reinhard> nickr: just FYI vi is older than emacs
+<reinhard> AFAIK
+alexey (Alexey@techkran.vladimir.ru) left irc: "[x]chat"
+Harald1 (Peter1234@pD9517369.dip.t-dialin.net) joined #gnuenterprise.
+<Harald1> hi
+Action: Yurik is away: I'm busy
+[03:12] Last message repeated 1 time(s).
+Harald1234 (Peter1234@pD9517369.dip.t-dialin.net) joined #gnuenterprise.
+Harald1 (Peter1234@pD9517369.dip.t-dialin.net) left irc: Read error: 104 (Connection reset by peer)
+Nick change: Harald1234 -> Harald1
+<Harald1> is anybody here, who can help me with cvs? I am using anonymous cvs and it works. The only problem is, that the directories forms.test, objectserver and python-gnue-base are missing. 
+<reinhard> just a sec
+btami (~tamas@ip102-205.ktv.tiszanet.hu) joined #gnuenterprise.
+<btami> hi all
+<btami> Harald1: maybe these dirs are not used or dead
+<reinhard> sorry back
+<reinhard> had a long phone
+<reinhard> they are dead yes
+<reinhard> the dirs
+<reinhard> where did you get those names from?
+<reinhard> probably an outdated documentation or somehting like that
+<Harald1> well you see them in the web interface
+<Harald1> and they are in the cvs snapshots
+<reinhard> oops
+<reinhard> which web interface do you use?
+<reinhard> lxr/bonsay are heavy out of sync
+<reinhard> AFAIK
+<Harald1> http://subversions.gnu.org/cgi-bin/viewcvs/gnue/gnue/
+<reinhard> ok
+<reinhard> that should be current
+<Harald1> and in the snapshots here http://www.gnuenterprise.org/downloads/snapshots/
+<reinhard> ok
+<reinhard> those dirs are empty
+<reinhard> or only contain other (empty) directories
+<reinhard> they are obsoleted
+<reinhard> and if you check out using -P then empty dirs are ignored
+<reinhard> so everything is ok
+<Harald1> yes, I just wondered, as I downloaded a snapshot and it contained these dirs. Then I did an update and the dirs disappeared
+<btami> reinhadr: have you read jcater email on gnue-dev about reports?
+<reinhard> not yet
+<btami> I must go, by
+btami (tamas@ip102-205.ktv.tiszanet.hu) left irc: "Client Exiting"
+SachaS (~sacha@203.190.196.142) joined #gnuenterprise.
+Harald1 (Peter1234@pD9517369.dip.t-dialin.net) left irc: Read error: 54 (Connection reset by peer)
+<SachaS> hi reinhard
+ra3vat (ds@ics.elcom.ru) joined #gnuenterprise.
+dneighbo (~derek@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+dnSleep (derek@cpe-24-221-112-50.az.sprintbbd.net) left irc: Read error: 110 (Connection timed out)
+<reinhard> hi SachaS
+<SachaS> hi Reinhard. how are you?
+<reinhard> thanks fine
+<SachaS> i had a look at BPML today. BPML is a meta language.
+<SachaS> basically a xml vocabulary for business processes.
+<reinhard> ah
+<SachaS> (i still am not sure where to place it in connection with a erp system, though)
+<SachaS> question what is a business process?
+<SachaS> "A structure for action" ... according to some guy
+<reinhard> hmmm
+<reinhard> i would say it is
+<reinhard> an algorithm for the business
+<SachaS> so basically BPML has some tags which people can use to describe their business processes (as mentioned yesterday, mainly for enterprise business processes)
+<SachaS> yeah is also good.
+<SachaS> I cited the specification: "A process is a specific ordering of work activities across time and place, with a beginning, an end, and clearly defined inputs and outputs"
+<SachaS> the main entities of the BPML vocabulary are: - messages, - participants, - activites, - rules, -transactions and - processes.
+<SachaS> what are you doing when you analised your business processes and modelled/described them with BPML?
+<SachaS> I guess there is no software out there yet which "simply" parses it and executes it and voila you have a system which handles your processes.
+<SachaS> what i miss is a document, specification with the title: "How do I create a state-of-the-art Enterprise Resource Planning System"
+<SachaS> maybe your work can result in such a document if there is none yet.
+dneighbo (derek@cpe-24-221-112-50.az.sprintbbd.net) left irc: Read error: 110 (Connection timed out)
+<SachaS> reinhard: that is more or less what i got out of BPML so far.
+<SachaS> ok. gtg bye
+SachaS (~sacha@203.190.196.142) left #gnuenterprise ("Client Exiting").
+Harald1234 (Peter1234@pD9517369.dip.t-dialin.net) joined #gnuenterprise.
+ToyMan (stuq@65.167.123.51) left irc: "Client Exiting"
+ToyMan (~stuq@65.167.123.51) joined #gnuenterprise.
+<Harald1234> is anybody here using gfclient + mysql?
+Nick change: Harald1234 -> Harald1
+<Harald1> it seems like there's a bug in mysqldb. because when I want to log in, gfclient crashes with "TypeError: unsupported operand types for +: 'int' and 'NoneType'" if I change it in the corresponding pythong file from None to 0 it works. Is this a known behaviour?
+jamest (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+alexey (~alexey@195.151.214.34) joined #gnuenterprise.
+neilt (~neilt@66-61-51-107.wo4.cox.rr.com) joined #gnuenterprise.
+#gnuenterprise: mode change '+o neilt' by ChanServ!ChanServ@services.
+dsmith (dsmith@oh-strongsville5b-143.clvhoh.adelphia.net) left irc: Remote closed the connection
+dsmith (~dsmith@208.40.56.34) joined #gnuenterprise.
+alexey (alexey@195.151.214.34) left irc: Remote closed the connection
+reinhard (rm@62.47.45.104) left irc: "All things being equal, fat people use more soap"
+Arturas (~raven@gsk.vtu.lt) joined #gnuenterprise.
+<Arturas> Hello
+<Yurik> Arturas: hi
+<ra3vat> Arturas: hello
+yogurt2unge (~charlie@modem224-adsl1.cordoba.sinectis.com.ar) joined #gnuenterprise.
+dneighbo (~dneighbo@64.39.200.253) joined #gnuenterprise.
+Chipaca (~john@modem224-adsl1.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<Arturas> Hello Derek
+<dneighbo> hey Arturas 
+<dneighbo> how is i18n going?
+<dneighbo> you get ra3vat to test things for you?
+<Arturas> yes
+<dneighbo> good news or bad news?
+<Arturas> he said the strings even in source code were different [they should be the same]
+<Arturas> :\
+<Arturas> where in forms font is set up?
+<Arturas> can't find it
+<Arturas> know that on file ~/.gtkrc
+<dneighbo> if set anywhere would be gnue.conf
+<Arturas> depends only menu-fonts
+<Arturas> no
+<Arturas> there is font-size, width, but not font-name
+<dneighbo> then its coming from your theme of either gnome/kde or windowmanager
+<dneighbo> er maybe thats not correct
+<Arturas> no :)
+<Arturas> if that would be, everything would be fine :)
+<dneighbo> as i think we use some fixed font
+<Arturas> yes :)
+<Arturas> in gnue.conf
+<Arturas> but somewhere has to be
+<Arturas> font name and font encoding
+<ra3vat> Arturas: the test shows strings as one-byte character string, so no any i18n specific symbols
+<Arturas> [at least default values]
+<ra3vat> no unicode
+<Arturas> ra3vat: the letter was encoded in utf8
+<Arturas> ra3vat: could you maybe send the same letter back to me?
+<Arturas> ra3vat: (dcc?)
+<ra3vat> Arturas: yes the letter was. Saw it correctly in Outlook Express with specific symbols as you described in the message 
+<ra3vat> and then what?
+Action: yogurt2unge is away: get food
+StyXman (~mdione@200.59.86.224) joined #gnuenterprise.
+<dneighbo> outlok express.... shame on you dmitry
+<Arturas> ra3vat: you have kde?
+<Arturas> :)
+<ra3vat> yes
+<Arturas> better than me over telnet :)
+<Arturas> ra3vat: can you open the same letter in kmail?
+<Arturas> kde supports cut&paste with i18n
+<Arturas> copy the source into file
+<Arturas> chmod 777 :)
+<Arturas> and run
+<dneighbo> hey Arturas 
+<dneighbo> # The next 2 options are only used by the wxPython clients
+<dneighbo> # Normally, default font style and size is used, according to the active theme
+<dneighbo> # Set this to 1 if you want fixed width fonts
+<dneighbo> fixedWidthFont = 1
+<dneighbo> # Font size if fixedWidthFont = 1 (ignored otherwise)
+<dneighbo> pointSize = 14
+<dneighbo> this tells me that the THEME font is used
+<Arturas> eys
+<Arturas> m
+<Arturas> yes
+<Arturas> ?
+<dneighbo> so that is where you would get your font information
+<Arturas> what is THEME?
+<dneighbo> i dont use kde so dont know how it works
+<dneighbo> in gnome
+<Arturas> what it is in gnome?
+<dneighbo> you can edit your 'theme' for gnome or your 'theme' for your windowmanager
+<Arturas> we're back again
+<dneighbo> in gnome if you go to settings:gnome control center
+<Arturas> 1.
+<Arturas> in kde i have the same control center
+<dneighbo> then
+<Arturas> 2.
+<dneighbo> desktop->theme selector
+<Arturas> all fonts are set up for iso10646-1 encoding
+<Arturas> 3.
+<dneighbo> it shows the themes
+<dneighbo> and you can use a USER font instead of theme font there
+<dneighbo> to override the 'theme'
+<Arturas> all texts in kde are displayed [with i18n data] ok
+<Arturas> 4.
+<Arturas> if forms uses THEME
+<Arturas> they should support  i18n data too
+<ra3vat> Arturas: if i got the test source from your second message (from attachment) is not it the same? 
+<Arturas> but it is not so
+<dneighbo> an easy way to test
+<Arturas> ra3vat: the same [at least should be :]
+<dneighbo> change your theme to a really ODD and DISTINGUISHING FONT
+<dneighbo> then open up forms
+<dneighbo> if it has that same odd font you know its using the theme
+<Arturas> what does it mean: odd, distinguish?
+<dneighbo> if its font remains the same you know it is not
+<dneighbo> means: something you would notice
+<dneighbo> i.e. make font, big and bold or something
+<Arturas> ok
+<ra3vat> Arturas: in the source strings encoded as multybyte utf8 string but they displayed as one-byte lenght character strings on my system
+<ra3vat> another source to get info about encoding is sys.getdefaultencoding() on python's startup
+<Arturas> dneighbo: i'll (*@(*#%Q!#$&%#$@)!(#* you. Made my font size 48 and now can't cancell it - cancel button is below the screen :| and i can't reach it
+<Arturas> :)
+<dneighbo> ouch
+<dneighbo> you dont have virtual desktops
+<Arturas> ra3vat: don't know
+<dneighbo> hey dont kill me
+<dneighbo> jamest used to configure forms so that they were like 1000 times bigger than my video card could deal with
+<dneighbo> thusly crashing X entirely
+<Arturas> :)
+<Arturas> have desktops
+<Arturas> but windows don't extend
+<Arturas> they stay in the same desktop 
+<dneighbo> kde sux
+<Arturas> :)
+<Arturas> till NOW i WAS happy :)
+<dneighbo> Arturas its problaby out in a .kde file somewhere
+<Arturas> ra3vat: if i'm remembering good, defaultenc. is ascii 
+davi (davi@80-25-136-215.uc.nombres.ttd.es) joined #gnuenterprise.
+<ra3vat> Arturas: yes, and one need to change it to use forms with i18n strings 
+<ra3vat> otherwise you 'll get 
+<ra3vat> DB000: UnicodeError: ASCII encoding error: ordinal not in range(128)         
+<Arturas> no, if i enforce strings as unicode
+<Arturas> look:
+<Arturas> sstring=('i18n data','utf8')
+<Arturas> sstring2=str(sstring.encode('utf8'))
+<Arturas> print sstring2
+<Arturas> and you'll get nice i18n data
+<Arturas> (you can try ;)
+<Arturas> dneighbo: no changes in forms, although kde looked really awfully
+<ra3vat> yes, but i'm saying about current forms codebase 
+<Arturas> so the has to be font defined as iso88-something
+<Arturas> and where is it??????
+<Arturas> maybe i simple missed the line :(
+Action: Arturas sometimes can be really big idiot :)
+<Arturas> ra3vat: by the way
+<Arturas> the same sstring2 in form won't be displayed with i18n data
+<ra3vat> and even without .encode(..) strings there are enforced to behave as unicode strings and if correct encoding is not provided we'll get that exception
+<Arturas> it will contain something like 'A[]"
+<dneighbo> im an i18n idiot
+<dneighbo> so im not much help
+<dneighbo> Arturas i was under impression forms was not inflicting its own font
+<dneighbo> i grepped the source and am not finding anything
+<Arturas> dneighbo: you are the one who knows what is going on here 
+<Arturas> that's the problem
+<Arturas> ra3vat: ok, let's say we have python defaultencoding unicode
+<Arturas> but i believe that i18n data in forms won't be displayed anyway
+<jamest> um
+<ra3vat> it displayed
+<Arturas> Hello jamest :)
+<jamest> the font encoding is in UIwxpython
+<dneighbo> forms/src/uidrivers/wx/UIdriver.py:      self.splash.SetFont(wxFont(20,wxSWISS,wxNORMAL,wxBOLD))
+<dneighbo> forms/src/uidrivers/wx/UIdriver.py:      self.splash.SetFont(wxFont(10,wxSWISS,wxNORMAL,wxBOLD))
+<dneighbo> found it
+<dneighbo> damn damn damn
+<Arturas> mhm
+<dneighbo> UIdriver.py
+<jamest>  initFont function
+<Arturas> dneighbo: now we could set it to be unicode or utf8 or anything else and it doesn't work - i've tried that about 2 weeks ago :(
+<Arturas> jamest: where is it/
+<Arturas> jamest: where is it?
+<jamest> derek:that sectoin only sets the splashscreen fonts 
+<Arturas> jamest: IF that section could work, others could work too
+<jamest> the only forms font settings should only occure in initFont()
+<jamest> at about line
+<jamest> 90 of  forms/src/uidrivers/wx/UIdriver.py
+<jamest> i haven't messed with fonts in forms in a long, long time 
+drochaid_ (~drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) joined #gnuenterprise.
+<Arturas> checking...
+StyXman (mdione@200.59.86.224) left irc: Read error: 113 (No route to host)
+drochaid (drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) left irc: Read error: 104 (Connection reset by peer)
+Nick change: drochaid_ -> drochaid
+<dneighbo> jamest i pasted the init part too
+<dneighbo> but there was / at beigingin
+<dneighbo> so it didnt show up in bitchx :)
+<dneighbo> Arturas my gut (but i could be way off)
+<dneighbo> is in gnue.conf
+<dneighbo> allow people to set the font
+<dneighbo> like we do other font options
+<dneighbo> and put what is in forms now as the 'default' there
+<dneighbo> then just use GConfig
+<dneighbo> to read that 
+<dneighbo> should be example in init of GConfig
+<dneighbo> for fixedfont variable and such
+<dneighbo> line 85 - 9X on forms/src/uidrivers/wx/UIdriver.py
+<dneighbo> def initFont(widget, affectsLayout=1):
+<dneighbo>   if int(GConfig.get('fixedWidthFont')):
+<dneighbo>     widget.SetFont(wxFont(int(GConfig.get('pointSize')),wxMODERN,wxNORMAL,wxNORMAL))
+<dneighbo> you will need to read up on wxFont i think
+<dneighbo> but i assume you could chagne out wxMODERN
+<dneighbo> with
+<Arturas> dneighbo: checking that now [downloading wxFont docs]
+<dneighbo> GConfig.get('font')
+<dneighbo> and put font = blah
+<dneighbo> in the gnue.conf file
+<Arturas> dneighbo: no, i hope adding something like 'encoding="utf8"' should be enough
+<dneighbo> yes that would be nice :)
+<Arturas> dneighbo: did not understand what you said earlier - from "is in gnue.conf"
+jcater (~jason@HubA-mcr-24-165-193-24.midsouth.rr.com) joined #gnuenterprise.
+<nickr> hrm
+<Harald1> is anybody here using gfclient + mysql?
+<nickr> this channel was highlighted but I can't find my name in backscroll
+<jamest> Harald1: I'm not, jcater is not, but someone was at one time
+Action: dneighbo was
+<dneighbo> i test on mysql occasionally
+<Harald1> dneighbo: should it work?
+<dneighbo> i dont 'use' 'use' it but i make sure it works
+<dneighbo> it was working at the 0.1.1 release or 0.1.2 (whatever last release was)
+<dneighbo> what is your client platform and server platform
+<dneighbo> my tests were with
+<Harald1> I've got a problem under win 2000. when I want to login gfclient crashes
+<Harald1> both win 2000
+<dneighbo> debian (client) redhat (server) and
+<dneighbo> win98 (client) redhat(server
+<dneighbo> hmmm
+<dneighbo> using odbc driver or native mysql?
+<Harald1> gfclient crashes with "TypeError: unsupported operand types for +: 'int' and 'NoneType'" 
+<dneighbo> my win98 tests with mysql were using the odbc driver
+<dneighbo> Harald1 ok you have a python problem :)
+<Harald1> i use mysqldb and it seems that the error is in mysqldb
+<dneighbo> you need python 2.x
+<Harald1> I have 2.2
+<dneighbo> ouch
+<dneighbo> 2.2 you dont want
+<dneighbo> drop to 2.1
+<dneighbo> 2.2 is buggy
+<Harald1> if i change the None in the source code of mysqldb to 0 it works...
+<dneighbo> you can use it but you wont be able to save forms in designer because of a streamIO bug in unicode support w/ 2.2 (still unfixed even in last candidate release)
+<dneighbo> ah
+<dneighbo> well i would create a diff
+<dneighbo> and send it to mysqld folks as a patch :)
+<Harald1> dneighbo: well I am able to save forms in designer
+<dneighbo> if you save them
+<dneighbo> reopen them
+<dneighbo> and save them
+<dneighbo> can you reopen them?
+<dneighbo> i was encountering this issue on linux w/ python and traced it back to a python2.2 bug
+<Harald1> I'll contact the developers later/tomorrow
+<dneighbo> jcater tried to put in a hack to work around it
+<Harald1> i'll try...
+<dneighbo> it seemed to not fix it for me
+<dneighbo> BUT i was running python from pretty much cvs from right before 2.2 release :)
+<dneighbo> so a newer official 2.2 might be ok as i noticed commits for unicode (just not stringIO) but as stated i think jcater put in a hack to maneuver around stringIO
+<Harald1> streamIO bug is still present. python crashes
+<dneighbo> well one thing you can do (painful)
+<dneighbo> is open the form in a text editor
+<dneighbo> and substitue ^@ for null
+<dneighbo> and then the form will be ok
+<dneighbo> but next time you save it it will save with the ^@'s
+<Harald1> where are the ^@? at the end of lines?
+<dneighbo> oh no
+<dneighbo> after EVERY character
+<dneighbo> so you get ^@o^@u^@t^@p^@u^@t^@ like that :)
+<dneighbo> if you have someone one staff you want to 'joke' with
+<dneighbo> this is one of thsoe good 'joke' bugs :)
+<Harald1> should it be visible in an editor?
+<dneighbo> um dependons on how cool an editor you use :)
+<dneighbo> in emacs its visible
+<dneighbo> but ^@ means its an escape char that most 'windows' editors wont show you like
+<dneighbo> ^M
+<Harald1> What should happen if I do save->exit->start->load?
+<dneighbo> would crash designer
+<dneighbo> iirc
+<dneighbo> what happens is when you create a form no issue
+<dneighbo> save a form no issue
+<dneighbo> but when you OPEN a form it uses stringIO to read in the xml file
+<dneighbo> and that is what converts it to unicode
+<dneighbo> so then when you save it, it has that ^@ stuff in it
+<Harald1> for me save->exit->start->load does not crash
+<dneighbo> tainting it for next open or for reading by forms
+<dneighbo> cool well then you might not have the bug
+<Harald1> and no ^@ in gfd
+<dneighbo> cool
+<dneighbo> it might be a unix only problem too
+<Harald1> but if i do save->load it crashes
+<dneighbo> hmmm
+<dneighbo> is there way you can install python2.1 on that machine as well?
+<dneighbo> or better yet just grab the 0.1.1 release
+<dneighbo> it has all dependencies compiled in so to speak
+<Harald1> I'll try it later/tomorrow
+<dneighbo> adn try exactly same thing and tellme if it bomb
+<Harald1> is 2.1 / 2.2 installation at the same time possible
+<dneighbo> you can run them concurrently
+<dneighbo> but for testing you can just get the release
+<dneighbo> and windows puts everything in dlls
+<dneighbo> that are much easier to download and install and remove
+<jamest> Harald1: your running a python installed forms/designer
+<jamest> ?
+<jamest> that's cool, most people use the bins
+<dneighbo> he is cooler than most :)
+<dneighbo> as he actually submits bug reports :)
+<jamest> lol
+<jamest> i'm sure there'll be lots of them
+<jamest> as I'm fighting w/ forms a bit at work on windows
+<jamest> if i'd only get these !@#!@# web site accessibilty updates completed
+<Harald1> jamest: yes, because I want to know what happens. and besides this the cvs has no bins...
+<jamest> cvs on windows!?!?!?
+<jamest> you are da man!
+<jamest> going to force us to keep ourselves honest w/ win32 cvs updates :)
+Action: jamest is away: lunch!
+<Harald1> jamest: my win is mostly unix: apache, mysql, perl, php, xemacs, gcc, ...
+StyXman (~mdione@200.59.86.224) joined #gnuenterprise.
+<dneighbo> Harald1 so you meant to say your virtual linux box :)
+<jcater> or is that GNU/Win ?
+<dneighbo> rofl
+<dneighbo> what do they call the win kernel?
+Chipaca (john@modem224-adsl1.cordoba.sinectis.com.ar) left irc: "ircII EPIC4-1.0.1 -- Are we there yet?"
+<dneighbo> other than BSOD
+<jcater> not sure
+<dneighbo> ah i know
+<dneighbo> GNU/kernel32
+<dneighbo> as when you hose up windows it says kernel32.dll error :)
+<dneighbo> or something
+<dneighbo> its scary but i hear pretell that
+<dneighbo> Debian/Windows is close
+<dneighbo> via cygwin
+<dneighbo> i.e. apt and much of debian is getting tooled to be usable via cygwin
+<jcater> cool
+<jcater> I guess
+<jcater> (slightly irrelevant to me :)
+<dneighbo> me too, but kind of interesting
+pattieja (pattieja@www.pcxperience.com) left irc: "[x]chat"
+<ra3vat> jcater: why I could not assign fnt = wxFont(int(GConfig.get('pointSize')),wxMODERN,wxNORMAL,wxNORMAL))
+<ra3vat> ?
+<ra3vat> like in initFont()
+<dneighbo> where?
+<dneighbo> where were you trying to assign it but were not able?
+<ra3vat> i'm trying to add some test code in UIdriver initFont()
+<dneighbo> what does your test code look like?
+<ra3vat> wait, test again 
+<dneighbo> oh dear reading wxFont overview this seems most hideous
+<Arturas> have to go onw
+jamest (jamest@hobbes.math.ksu.edu) got netsplit.
+<Arturas> now
+<Arturas> but 
+<dneighbo> um Arturas wait
+<dneighbo> i think this will fix thigns
+<Arturas> SetFont(wxFont(12,wxModern,wxNormal,wxBold,TRUE,"",wxFONTENCODING_SYSTEM))
+<dneighbo> yes
+<dneighbo> er now
+<dneighbo> er wait
+<Arturas> doesn't work
+<dneighbo> try this
+<dneighbo> widget.SetFont(wxFont(int(GConfig.get('pointSize')),wxMODERN,wxNORMAL,wxNORMAL))
+<dneighbo> er now give me a minute to change that :)
+<dneighbo> widget.SetFont(wxFont(int(GConfig.get('pointSize')),wxMODERN,wxNORMAL,wxNORMAL,encoding=wxFONTENCODING_UTF8))
+<dneighbo> can you try that?
+<Arturas> i'll try tomorrow and email results to you
+<dneighbo> ra3vat can you try that?
+<dneighbo> Arturas cool
+<jcater> ra3vat: I can't get wxFont to play nicely
+<Arturas> bye
+<jcater> so I am not much help
+<ra3vat> there is wxFont::GetDefaultEncoding
+<ra3vat> according to wxWindows help
+Arturas (raven@gsk.vtu.lt) left irc: "ircII/tkirc"
+<ra3vat> but i got 
+<ra3vat> DB000:     print "wxPython default encoding", fnt.GetDefaultEncoding()
+<ra3vat> DB000: AttributeError: 'wxFont' instance has no attribute 'GetDefaultEncoding
+<ra3vat> ?
+jamest (~jamest@hobbes.math.ksu.edu) got lost in the net-split.
+<ra3vat> dneighbo: i'll look on the home machine. Some day i used wxFONTENCODING_KOI8 nicely
+<dneighbo> DB000:     widget.SetFont(wxFont(int(GConfig.get('pointSize')),wxMODERN,wxNORMAL,wxNORMAL,encoding=wxFONTENCODING_UTF8))
+<dneighbo> DB000: NameError: global name 'wxFONTENCODING_UTF8' is not defined
+<dneighbo> dneighbo@wright:~$ 
+<dneighbo> is what i get in there so have to do more research i guess
+StyXman (mdione@200.59.86.224) left irc: "Hey!  Where'd my controlling terminal go?"
+<dneighbo> however
+<dneighbo>     widget.SetFont(wxFont(int(GConfig.get('pointSize')),wxMODERN,wxNORMAL,wxNORMAL,encoding=wxFONTENCODING_))
+<dneighbo> grrr
+<dneighbo>     widget.SetFont(wxFont(int(GConfig.get('pointSize')),wxMODERN,wxNORMAL,wxNORMAL,encoding=wxFONTENCODING_DEFAULT))
+<dneighbo> works fine
+<dneighbo> so does
+jamest (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+<dneighbo>     widget.SetFont(wxFont(int(GConfig.get('pointSize')),wxMODERN,wxNORMAL,wxNORMAL,encoding=wxFONTENCODING_SYSTEM))
+<dneighbo> which is what arturas was wanting to use i think
+<dneighbo> what ticks me off
+<dneighbo> is that here:
+<dneighbo> http://www.lpthe.jussieu.fr/~zeitlin/wxWindows/docs/wxwin155.htm#wxfont
+<dneighbo> it shows wxFONTENCODING_UTF8 as a valid wxFontEncode type
+<dneighbo> wonder i my wx version is too old or something
+<dneighbo> crap
+<dneighbo> they are saying UTF8 is a 'microsoft' only encoding
+<dneighbo> one option is we could put 
+<ra3vat> hmm
+<dneighbo> EncodingType=
+<dneighbo> in gnue.conf
+<dneighbo> and then you can set it
+<dneighbo> i wish i could 'test' the SYSTEM one
+<dneighbo> ra3vat can you change to last code i pasted in UIdriver.py
+<dneighbo> for wx
+<dneighbo> and tell me if arturas sample works?
+<ra3vat> to _UTF8?
+<dneighbo> um this
+<dneighbo>  widget.SetFont(wxFont(int(GConfig.get('pointSize')),wxMODERN,wxN
+<dneighbo>                ORMAL,wxNORMAL,encoding=wxFONTENCODING_SYSTEM))
+<dneighbo> the _UTF8 wont work on linux
+<dneighbo> you might try it on windows
+<dneighbo> if that doesnt work you could try
+<dneighbo>                ORMAL,wxNORMAL,encoding=wxFONTENCODING_KOI8))
+<dneighbo> for cryillic stuff
+<dneighbo> i can get things to run with these different option (cept UTF8)
+<dneighbo> but i dont have other charsets to 'test' them with :)
+<dneighbo> ra3vat i lose you?
+jamest (jamest@hobbes.math.ksu.edu) got netsplit.
+nickr (panphage@e-172-IP28.empnet.net) got netsplit.
+Mr_You (rouzer@mankind.boredom.org) got netsplit.
+drochaid (drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) got netsplit.
+yogurt2unge (charlie@modem224-adsl1.cordoba.sinectis.com.ar) got netsplit.
+ra3vat (ds@ics.elcom.ru) got netsplit.
+Yurik (yrashk@gw.telcos.net.ua) got netsplit.
+dtm (dtm@ip32.promontory.sfo.interquest.net) got netsplit.
+Harald1 (Peter1234@pD9517369.dip.t-dialin.net) got netsplit.
+davi (davi@80-25-136-215.uc.nombres.ttd.es) got netsplit.
+dsmith (dsmith@208.40.56.34) got netsplit.
+neilt (neilt@66-61-51-107.wo4.cox.rr.com) got netsplit.
+ToyMan (stuq@65.167.123.51) got netsplit.
+Isomer (dahoose@210-86-58-201.jetstart.xtra.co.nz) got netsplit.
+SirK (SirK@203.149.68.226) got netsplit.
+Mr_You (rouzer@mankind.boredom.org) got lost in the net-split.
+Isomer (dahoose@210-86-58-201.jetstart.xtra.co.nz) got lost in the net-split.
+dtm (dtm@ip32.promontory.sfo.interquest.net) got lost in the net-split.
+SirK (~SirK@203.149.68.226) got lost in the net-split.
+Yurik (~yrashk@gw.telcos.net.ua) got lost in the net-split.
+nickr (~panphage@e-172-IP28.empnet.net) got lost in the net-split.
+ra3vat (ds@ics.elcom.ru) got lost in the net-split.
+Harald1 (Peter1234@pD9517369.dip.t-dialin.net) got lost in the net-split.
+ToyMan (~stuq@65.167.123.51) got lost in the net-split.
+neilt (~neilt@66-61-51-107.wo4.cox.rr.com) got lost in the net-split.
+dsmith (~dsmith@208.40.56.34) got lost in the net-split.
+yogurt2unge (~charlie@modem224-adsl1.cordoba.sinectis.com.ar) got lost in the net-split.
+davi (davi@80-25-136-215.uc.nombres.ttd.es) got lost in the net-split.
+drochaid (~drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) got lost in the net-split.
+jamest (~jamest@hobbes.math.ksu.edu) got lost in the net-split.
+drochaid (~drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) joined #gnuenterprise.
+neilt (~neilt@66-61-51-107.wo4.cox.rr.com) joined #gnuenterprise.
+reinhard (~rm@N812P008.adsl.highway.telekom.at) joined #gnuenterprise.
+jamest (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+davi (davi@80-25-136-215.uc.nombres.ttd.es) joined #gnuenterprise.
+yogurt2unge (~charlie@modem224-adsl1.cordoba.sinectis.com.ar) joined #gnuenterprise.
+dsmith (~dsmith@208.40.56.34) joined #gnuenterprise.
+ToyMan (~stuq@65.167.123.51) joined #gnuenterprise.
+Harald1 (Peter1234@pD9517369.dip.t-dialin.net) joined #gnuenterprise.
+ra3vat (ds@ics.elcom.ru) joined #gnuenterprise.
+nickr (~panphage@e-172-IP28.empnet.net) joined #gnuenterprise.
+Yurik (~yrashk@gw.telcos.net.ua) joined #gnuenterprise.
+Mr_You (rouzer@mankind.boredom.org) joined #gnuenterprise.
+Isomer (dahoose@210-86-58-201.jetstart.xtra.co.nz) joined #gnuenterprise.
+dtm (dtm@ip32.promontory.sfo.interquest.net) joined #gnuenterprise.
+SirK (~SirK@203.149.68.226) joined #gnuenterprise.
+#gnuenterprise: mode change '+o neilt' by vinge.openprojects.net
+Maniac (User@h24-82-132-209.wp.shawcable.net) left irc: Read error: 104 (Connection reset by peer)
+User_ (~User@h24-82-132-209.wp.shawcable.net) joined #gnuenterprise.
+yogurt2unge (~charlie@modem224-adsl1.cordoba.sinectis.com.ar) left #gnuenterprise.
+<ra3vat> dneighbo: need to go, will try to look tomorrow
+<ra3vat> bye
+ra3vat (ds@ics.elcom.ru) left irc: "Client Exiting"
+<reinhard> if any debian studs are here
+<reinhard> how risky is it to install a new kernel image
+<reinhard> ?
+Action: jcater is away: doctor
+<jcater> reinhard: well, you
+<jcater> you're name isn't "Derek", so that's a good start
+<jcater> :)
+<reinhard> lol
+<jcater> must run to doctor
+<dsmith> reinhard: No risk at all, just make sure you have another kernel that works and your lilo.conf is right before you run lilo.
+<dsmith> reinhard: I used to make kernels all the time.  The "Debain Way" is very nice.
+<reinhard> dsmith: thanks
+<reinhard> 5
+<reinhard> oops
+<dneighbo> clarify
+<dneighbo> install new STOCK kernel (in apt)
+<dneighbo> or compile a new kernel
+<dneighbo> since debian has so many kernel choices i suggest staying away from a compiled kernel unless there is just something you are in dire need of that isnt in a stock kernel
+<dneighbo> if its stock kernel its about a 10 minute process
+<dneighbo> though i would wait for nickr to be around
+<dneighbo> as he has a groovy little trick that lets you upgrade your kernel and at the same time convert to GRUB and away from lilo :)
+Action: drochaid returns
+<dneighbo> drochaid how do you pronounce your nick?
+<dneighbo> as i see droch aid
+<dneighbo> and think
+<dneighbo> drawk ade
+<dneighbo> and i think of either some really wicked type of koolaid
+<dneighbo> or some antiacid medication
+<reinhard> dneighbo: install new stock kernel
+<reinhard> update woody from 2.2.19 to 2.4.x
+<dneighbo> apt-get install kernel-image-2.4.xxxxxxx
+<dneighbo> is all you have to do
+<drochaid> dneighbo: that depends where you come from
+<dneighbo> but it will ask you some questions and such
+<drochaid> <dneighbo> drawk ade
+<dneighbo> thats what im asking
+<drochaid> that ones wrong :)
+<dneighbo> where you come from how do you pronounce it :)
+<drochaid> can you say och without saying ock?
+<dneighbo> a ch sound like church
+<nickr> I always thought it was 'droche ade'
+<drochaid> aye
+<nickr> long o
+<dneighbo> nickr like roche (the candy)
+<drochaid> it is either droch aid, or droch age
+<dneighbo> row shay
+<dneighbo> on
+<dneighbo> drow shay?
+<drochaid> depending where in Scotland you are ;)
+<drochaid> dneighbo: nope
+<drochaid> am I going to have to record this? ;)
+<nickr> so drawk aid?
+<drochaid> nope
+<drochaid> no awk or ock
+<drochaid> it's a very soft sound
+<drochaid> och
+<nickr> so it is like roche
+<nickr> but without the eh
+<nickr> hehe
+<drochaid> how do you pronounce roche? ;)
+<nickr> how aboot that
+<nickr> row sheh
+<drochaid> nope
+<drochaid> someone dcc me a mic and I'll stick an mp3 up or summat
+<nickr> actually more like roh sheh
+<drochaid> wtf??
+<drochaid> pòg mo thòin
+<nickr> its not our fault you speak a crazy language.
+<drochaid> it's not my fault no one can say och
+<drochaid> I thought it was mainly the English that could only say it as ock
+<nickr> its och like loche then?
+<drochaid> think loch .. unless you call it a lock :/
+<nickr> throaty ch sound
+<drochaid> yep
+<drochaid> sounds like you're clearing your throat
+<nickr> why didn't you say so in the first place?
+<nickr> all this soft-ch stuff confused me
+<drochaid> it's the same thing!!
+<nickr> no it isn't
+<nickr> soft-ch is 'sh'
+<drochaid> no, that's not a soft ch, that's an ah
+<drochaid> *sh
+<dneighbo> wow
+<dneighbo> The economic anarchy of capitalist society as it exists today is, in my opinion, the real source of the evil. We see before us a huge community of producers the members of which are unceasingly striving to deprive each other of the fruits of their collective labor?not by force, but on the whole in faithful compliance with legally established rules. In this respect, it is important to realize that the means of production?that is to say, the entire p
+<dneighbo> oducing consumer goods as well as additional capital goods?may legally be, and for the most part are, the private property of individuals.
+<nickr> er
+<nickr> isn't that what capitalism is?
+<nickr> the state allowing some people to rip off other people?
+<nickr> comparing it to anarchy is false.
+<dneighbo> what is amazing is that is written by Albert Einstein
+<nickr> capitalism as we know it depends on laws
+<nickr> hah
+<nickr> cool
+<nickr> I didn't know that Einstein was a filty commie
+<nickr> I knew all those scientitsts were a bit fruity
+<dneighbo> http://www.monthlyreview.org/598einst.htm
+<dneighbo> yes he was it appears
+<dneighbo> basically states capitalism erodes our sense of value to a society
+<drochaid> I thought he was a Marxist?
+<dneighbo> and makes us hostile towards one another
+<reinhard> x5
+<nickr> scientists are all the same... they SAY they are trying to help us, but what they're really doing is trying to RULE THE WORLD
+<reinhard> argh
+<dneighbo> well yes marxist veiw more
+<nickr> theres a really good part of illuminatus that talks about capitalism
+reinhard (rm@N812P008.adsl.highway.telekom.at) left irc: "Friends may come and go, but enemies accumulate"
+<drochaid> communism took marxism and remove the better points about it
+<dneighbo> wow that essay is just incredible
+<drochaid> the ideology behind marxism is fairly sound
+<dneighbo> Private capital tends to become concentrated in few hands, partly because of competition among the capitalists, and partly because technological development and the increasing division of labor encourage the formation of larger units of production at the expense of smaller ones. The result of these developments is an oligarchy of private capital the enormous power of which cannot be effectively checked even by a democratically organized political s
+<dneighbo> he described m$ and the trial in 1949
+<nickr> Huh, thats pretty interesting
+<dneighbo> This is true since the members of legislative bodies are selected by political parties, largely financed or otherwise influenced by private capitalists who, for all practical purposes, separate the electorate from the legislature. The consequence is that the representatives of the people do not in fact sufficiently protect the interests of the underprivileged sections of the population. Moreover, under existing conditions, private capitalists inevi
+<dneighbo> the main sources of information (press, radio, education). It is thus extremely difficult, and indeed in most cases quite impossible, for the individual citizen to come to objective conclusions and to make intelligent use of his political rights.
+<dneighbo> wowzers
+<nickr> when was this written?
+<nickr> hehe
+<dneighbo> this BLOWS me away that this was authored in 1949
+<nickr> its as true today as ever
+<nickr> actually its more true today
+<drochaid> tbh, it's been the same for hundreds of years .. he was simply recording what was the case then
+<dneighbo> I am convinced there is only one way to eliminate these grave evils, namely through the establishment of a socialist economy, accompanied by an educational system which would be oriented toward social goals. In such an economy, the means of production are owned by society itself and are utilized in a planned fashion.
+<dneighbo> is his solution
+<drochaid> the only thing that's changed is the extent a single person or company can control a market on a global basis
+<dtm> dneighbo: good point; let's make an educational system which has goals!
+<dtm> :)
+<drochaid> wouldn't that be a contradiction in terms?
+<drochaid> it would be in the UK
+<nickr> the problem of a socialist state is that it moves privilage back into the hands of the state
+<nickr> the key to true freedom is removwing privilage entirely
+<drochaid> uhm
+<drochaid> bollocks
+<nickr> privilage is private law
+<nickr> an economic system needs to have everyone on the level playing field
+<drochaid> I don't believe that's possible
+<nickr> Well, its possible to the extent that you remove thet state granting privilage
+<drochaid> how?
+<nickr> I don't know man, I didn't do it.
+<drochaid> lol
+<dneighbo> actually nickr he address your concern
+<dneighbo> Nevertheless, it is necessary to remember that a planned economy is not yet socialism. A planned economy as such may be accompanied by the complete enslavement of the individual. The achievement of socialism requires the solution of some extremely difficult socio-political problems: how is it possible, in view of the far-reaching centralization of political and economic power,
+<dneighbo> to prevent bureaucracy from becoming all-powerful and overweening? How can the rights of the individual be protected and therewith a democratic counterweight to the power of bureaucracy be assured?
+<dneighbo> Clarity about the aims and problems of socialism is of greatest significance in our age of transition. Since, under present circumstances, free and unhindered discussion of these problems has come under a powerful taboo, I consider the foundation of this magazine to be an important public service.
+<drochaid> nah, still bollocks ;)
+<nickr> hrm
+<nickr> on this day of our assention we praise the fallen
+<drochaid> and that's a load of old balls an all :)
+<drochaid> what be it?
+<dneighbo> i have the coolest wife!
+Action: drochaid notes a subtle change of subject emerging :)
+<drochaid> sup dneighbo?
+<drochaid> ok, tell us once she's finished >:)
+<nickr> haha
+<nickr> (tmi)
+tarzeau (~tarzeau@dclient217-162-4-89.hispeed.ch) joined #gnuenterprise.
+<jamest> sigh
+<drochaid> hey jamest
+<jamest> hey
+<drochaid> sup dood?
+<jamest> I have html comming out my rear
+<tarzeau> heh
+<nickr> jamest: gross!
+<dneighbo> at least its not going in your rear :)
+Action: drochaid blinks
+Action: Yurik is away: 5 min
+Action: Yurik is back (gone 00:04:37)
+<drochaid> :o
+<drochaid> 23 secs early!!!
+<drochaid> go away again
+<nickr> still, html out the ass is a serious problem, that you should consult a doctor about
+Yurik (yrashk@gw.telcos.net.ua) left irc: "Client Exiting"
+<drochaid> lol
+<drochaid> I didn't mean quit Yurik
+jamest (jamest@hobbes.math.ksu.edu) left irc: "(brb)"
+Action: dneighbo wonders if jcater (doctor) had a similar html out the ass problem
+jcater (jason@HubA-mcr-24-165-193-24.midsouth.rr.com) left irc: Read error: 104 (Connection reset by peer)
+<dneighbo> if so i hope its not contagious
+Yurik (~yrashk@gw.telcos.net.ua) joined #gnuenterprise.
+<drochaid> I think you frightened him off dneighbo
+<drochaid> wb Yurik
+<Yurik> drochaid: re
+<dneighbo> drochaid excessive amounts of html out your ass has been known to make you fall right out of irc
+<drochaid> lol
+<drochaid> I see
+<dneighbo> wonder if preparationH helps any with the irratation of such a condition
+<dsmith> All those ugly < and >'s?  It's gotta help.
+<drochaid> that's a very interesting and deep thought
+jamest (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+<drochaid> and on that note .. I'm off to switch the oven on for a PIZZA!!
+<drochaid> wb jamest
+<dneighbo> drochaid i had pizza last night... yummy
+mdean (mdean@mkc-65-28-73-63.kc.rr.com) left irc: Read error: 104 (Connection reset by peer)
+<dneighbo> i think  you eat pizza as often as i do
+<drochaid> dneighbo: so did I :D
+tarzeau (~tarzeau@dclient217-162-4-89.hispeed.ch) left #gnuenterprise ("http://www.hurd-bunny.tk/ bunnies are better than dolphins!").
+dsmith (dsmith@208.40.56.34) left irc: No route to host
+jcater (~jason@HubA-mcr-24-165-193-24.midsouth.rr.com) joined #gnuenterprise.
+<dneighbo> jcater: get your battery recharged, oil changed and wrists rotated?
+<jcater> something like that
+chillywilly (~danielb@d182.as26.nwbl0.wi.voyager.net) joined #gnuenterprise.
+<dneighbo> i told the doc to 'overclock' you
+<jcater> :)
+<dneighbo> but he said aging AI dont do well with overclocking and its probably not worth the risk
+<jcater> how, now
+<jcater> I'm not aging
+<jcater> just "maturing"
+<jcater> yeah, that's it
+<dneighbo> has anyone seen the movie cherry2000
+<jamest> lol
+<jamest> i think so
+<jamest> dude shorts out his girlfriend in the washing machine suds at the start of the movie
+<chillywilly> hi guys
+<dneighbo> yep
+<jamest> hey
+<dneighbo> his AI wife blows a fuse
+<jamest> that was a long time ago
+<dneighbo> but she is an 'old' model
+<dneighbo> so he is on a mission to find a replica
+<dneighbo> small tidbit
+<dneighbo> the director of cherry2000 was the writer of
+<dneighbo> 'strange brew' (a cult classic)
+<chillywilly> heheh
+<chillywilly> you hoser
+<dneighbo> piss off eh
+<dneighbo> i think this should be our mantra for tech support
+<dneighbo> Doug McKenzie: Figures you wouldn't know how to work it if it's got a computer.
+<dneighbo> Bob McKenzie: Oh yeah, Mister Wizard, you know, eh...
+<dneighbo> Doug McKenzie: Let me try, I'm a genius.
+<chillywilly> what's the switch to prune dirs with cvs?
+<chillywilly> ah found it
+<nickr> dneighbo: I love that movie
+Shevagol (~lgz@80.18.22.147) joined #gnuenterprise.
+chillywilly (danielb@d182.as26.nwbl0.wi.voyager.net) left irc: Remote closed the connection
+chillywilly (~danielb@d182.as26.nwbl0.wi.voyager.net) joined #gnuenterprise.
+<jamest> l8r
+jamest (~jamest@hobbes.math.ksu.edu) left #gnuenterprise.
+<dneighbo> hi Shevagol 
+<Shevagol> hi dn
+<Shevagol> i have visited gnue website
+<Shevagol> looking for a sort of 'open crm'
+<Shevagol> does gnue provide crm (sales&mktg) features?
+<dneighbo> not currently
+<dneighbo> currently the framework is robust
+<dneighbo> but the applications built with the framework are not yet there
+<dneighbo> if you defined what you were looking for in a proposal its likely someone might put it together for you :)
+<Shevagol> cool
+<Shevagol> i am still investigating CRM, gathering info
+<drochaid> hey Shevagol
+<Shevagol> hey :)
+<Shevagol> you play with ERP as well?
+<drochaid> I do
+<drochaid> not as much as I'd like to tho
+<drochaid> pretty much the same as firewalls really
+Action: chillywilly checks out commoncpp2
+<dneighbo> yes more than we would like to admit sometimes :)
+<Shevagol> i don't actually play ERP,would like to deal with CRM
+<Shevagol> but the two closely match
+Action: chillywilly compiles commoncpp2
+<Shevagol> too much ERP for tonight, bye guys :)
+Shevagol (~lgz@80.18.22.147) left #gnuenterprise.
+<nickr> ERP is some bad shit. It'll mess you up.
+<drochaid> listen to nickr, the ERP evangalist ;)
+Action: nickr bangs the pulpit
+<nickr> so to speak
+<drochaid> uhm
+Action: drochaid backs off slowly
+<neilt> later
+neilt (neilt@66-61-51-107.wo4.cox.rr.com) left irc: "later all"
+<dneighbo> as long as you dont 'bang on your bozo' (re: punch the clown
+<dneighbo> you can bang all you like
+<drochaid> I've got to be honest dneighbo, I think banging the budgie while with granny in the greenhouse is probably out of bounds as well :/
+<dneighbo> well im into freedom as long as it doesnt hurt others so why dont we do the blanket....
+<dneighbo> ;you can bang whatcha like; as long as you dont have your webcam on
+<nickr> hha
+<nickr> aha
+<nickr> speaking of which
+<dneighbo> anyone else think osdn sucks
+<dneighbo> new themes.org is just not as easy to use and slow as sin
+<dneighbo> new newsforge is pretty but not nearly as functional
+<dneighbo> freshmeat is about only one (knock on wood) to not get screwed up
+<dneighbo> slashdot of course has been somewhat of a pit for some time
+Action: drochaid doesn't use osdn
+<dneighbo> i like a purdy desktop so i go get themes about twice a year from themes
+<dneighbo> and i started liking newsforge
+<dneighbo> as a replacement to slashdot
+<nickr> themes is horribly fucked now
+<dtm> hi alll
+<nickr> the old layout and arrangement was very usable
+<dneighbo> nickr that might be putting it nicely
+Action: dtm messes with phpgw
+<dneighbo> beyond being almost too slow to use
+<dneighbo> its got a horrid layout
+<nickr> yea
+<nickr> I just leach backgrounds from it. :)
+<dtm> how are you ladies doing
+Action: nickr doesn't FEEL like a lady
+<dtm> ok how are you dipstix doing?
+<jcater> I'm doing well
+Action: nickr is trippin
+<nickr> whoa whoa whoa
+<dtm> great
+<drochaid> this particular dipstix is ok, if a little tied up with legal probs
+<dtm> nickr: #)@(*
+<nickr> ooh
+<dtm> drochaid: so you're only ok if you're tied up?
+<drochaid> dtm: please don't excite me :D
+Action: dneighbo looks around
+<dneighbo> oh im doing ok too
+<dneighbo> must run ttfn
+dneighbo (dneighbo@64.39.200.253) left irc: "[BX] Abort Retry Fail"
+<chillywilly> uh
+<chillywilly> ok
+Action: chillywilly installs commoncpp2
+jbailey (~jbailey@HSE-Toronto-ppp286529.sympatico.ca) joined #gnuenterprise.
+<chillywilly> where's dyfet when I need him?
+<chillywilly> that bastard
+<chillywilly> macro name changin bastard at that
+<chillywilly> ;P
+pattieja (~pattieja@www.pcxperience.com) joined #gnuenterprise.
+Nick change: User_ -> Maniac
+<dtm> YOU WILL ALL ACKNOWLEDGE ME.
+<dtm> pattieja: hi there.  how are you?
+Action: dtm manipulates a giant trout so that it kisses chillywilly on the lips when he's not looking
+<pattieja> dtm: OK FINE.  I'M ACKNOWLEDGING YOU.  :)
+<dtm> pattieja: good to hear it! :)
+<pattieja> eewwwww?
+<dtm> pattieja: are you saying chillywilly's not good enough for my giant trout/
+<dtm> ?
+<dtm> i dont think we need to go there.
+<pattieja> ...
+<dtm> pattieja: so are you a gnue user/admin/hacker/person?
+<pattieja> I found it one day and joined the chat room, but couldn't get much of the software to run.  And (I haven't checked in awhile) it didn't seem that it was in a usable state yet for payroll and inventory.
+<dtm> well you should just park it right here and ask some questions :)
+<dtm> lurk if you have to!
+<dtm> but dont change that dial!
+<dtm> i haven't actually used most of GNUe, eer
+<dtm> ever
+<dtm> so you're ahead of me.
+<dtm> i am all over DCL though
+<dtm> so you should install DCL for good luck!
+<pattieja> what's DCL
+<pattieja> ?
+<dtm> http://dcl.sf.net
+<dtm> the ultimate project management tool in the universe.
+<dtm> All require it.
+<dtm> it's merging with gnue
+<nickr> its an unnatural union
+<nickr> like if the ocean merged with the land!
+<nickr> or a fish merged with C. Everet Coup!
+<nickr> well I guess it would depend on the kind of fish
+<chillywilly> your weird
+<chillywilly> freaking weirdo
+<chillywilly> you all are fscked in thre head
+<nickr> well if I'm left to my own devices, do you see what happens?
+<chillywilly> yea, it's pretty damn scary
+<nickr> its not my fault that I'm a danger to myself and others
+<chillywilly> yes it is
+<chillywilly> take responsibility for your actions damnit
+<chillywilly> ;)
+<nickr> bah
+<dtm> nickr: lol
+<dtm> chillywilly: you shoulda been in here coaching him into normalcy.
+<dtm> it takes an open source community to raise a hacker.
+<dtm> @#*)!%J
+<dtm> O POOR NICKR.  WHERE O WHERE DID WE GO WRONG?!
+<nickr> hehe
+<chillywilly> umm, screw open source
+Action: dtm enters the hallowed halls of hackers past...  and summons the spirits of the chiefs
+<nickr> a free software community raised me
+<nickr> thats why I'm so messed up
+<chillywilly> it takes a free software community damnit
+<dtm> oh yeah
+<dtm> nickr: HTA'TS WHY
+<nickr> I'm a dangerous anarchist!
+<dtm> HAHA
+<chillywilly> damn, I just want to know which macro to use to check for commoncpp2
+<dtm> so what's the term for the non-all-inclusive arch between the "free software" ideals and "open source" ideals?
+<chillywilly> damn youse
+<dtm> there's gotta be one
+<chillywilly> damn youse all to heeel
+<dtm> is it called "realistic source"?  "fair source"?
+<dtm> or maybe it's not of software at all.
+<dtm> maybe it's all about the love.
+<nickr> it is about the love, yes
+<dtm> The love.
+<nickr> THe chad.
+<dtm> I SAW A MOVIE LAST NIGHT WHERE PEOPLE GOT SHOT.
+Action: drochaid wants some love :(
+Action: dtm readies some hot wax
+Action: drochaid snuggles his cameras
+Action: drochaid has a warm glow inside now :)
+Action: dtm readies some chocolate fondue
+<dtm> :-o
+<chillywilly> drochaid: you need help man
+<drochaid> why?
+<dtm> chillywilly: how are you sir
+<dtm> ?
+<chillywilly> I am alive
+<drochaid> you think I need more camera equipent?
+<chillywilly> that is all
+<dtm> chillywilly: nothing more?
+<drochaid> well, you're right .. I do
+ToyMan_home (CaryKittne@216.238.227.229) joined #gnuenterprise.
+<nickr> drochaid: I think you need more fuzzy camera equipment
+<dtm> chillywilly: dammieuxe, cheeeley.
+<nickr> better to snuggle.
+<drochaid> but I don't have the 40k or so I need [gbp, not usd]
+<dtm> drochaid: 40k of what?!
+<dtm> ToyManhi
+<dtm> ToyMan_home: hi
+<drochaid> camera equipment
+<dtm> ToyMan_home: you have confounded my nick completion!
+<ToyMan_home> heh
+Action: dtm notes to all that toyman is a nick completion confoundist
+<chillywilly> that's a kicking offense
+<ToyMan_home> something about my nick...
+<chillywilly> too bad no one trusts me with ops
+<drochaid> lol
+<drochaid> you need more camera equip chillywilly .. then they'd trust you with ops
+<chillywilly> you need your head exammined
+<chillywilly> what's new?
+Action: nickr whacks drochaid with a light meter
+<drochaid> what make?
+<drochaid> spot or ambient?
+<nickr> its actually antique
+<nickr> has the nicest leather case
+<drochaid> I love that polaris that goes to 0.5% spot metering :D
+<nickr> not antique, probably 'classic'
+Action: drochaid has an old light meter in a leather case
+<drochaid> a flip down bit at the front to allow for strong or dull light conditions?
+<nickr> no it has a wheell that you turn and you turn it so far and it switches to 'high'
+<drochaid> oooh
+<drochaid> newer than the old one I've got then :)
+<nickr> General Electric Exposure Meter Type PR-1 For Film or Plates
+<drochaid> mines a Gossen
+<nickr> neat
+<nickr> its like fucking arctic here today
+<nickr> what happened to spring!?
+<chillywilly> the seasons are shufting imho
+<chillywilly> er, shifting
+<chillywilly> it's cold then a botta biotch here too
+<drochaid> nickr: spring took place on Feb 23th
+<drochaid> *rd
+<chillywilly> s/th/rd
+<drochaid> beat ya ;P
+<chillywilly> I was showing you the correct way to fix your typos nick-a
+<chillywilly> so there :P
+<chillywilly> dude we have a lot of people with write access to gnue
+<drochaid> there are several ways to correct a typo
+<chillywilly> https://savannah.gnu.org/project/memberlist.php?group_id=34
+<drochaid> if the alteration is obvious, the method I employed is more suitable
+<chillywilly> well it is not geeky enough
+<chillywilly> therefore you loose
+<chillywilly> my method is sed-like at least
+<drochaid> lol
+<drochaid> I have fully admitted several times my lack of serious technical knowledge
+<chillywilly> well your windows usage makes that painfully obvious ;)
+<nickr> drochaid: thats nothing a few quarts of coffee and some toothpicks and 'reeudcation' films couldn't fix
+<chillywilly> hehe
+<nickr> and I suppose a catheter would be indicated as well
+<nickr> chillywilly: prepare the chair
+<chillywilly> yes master
+<nickr> hehe
+<drochaid> lmfao nickr
+<drochaid> chillywilly: windows is the best OS ever created
+<drochaid> I pity the user who doesn't use it exclusively
+<chillywilly> *cough*
+<nickr> lrol
+<drochaid> muahahahahahahaa
+<chillywilly> windows is like a glass house or something
+<chillywilly> one stone and it goes crashing down
+<drochaid> glass can be a very strong material
+<drochaid> can withstand many times it's weight
+<chillywilly> in my experience the best way to crash windows is to install a network card
+<drochaid> can be made resistant to fast moving projectiles
+<chillywilly> ths makes it near impossible to use
+<drochaid> and provides warmth and protection to it's users
+<drochaid> then the ventilation shuts off and they all die :)
+<chillywilly> it provides "convenience" instaed of "security"
+<drochaid> how relelvant is security nowadays anyway?
+<dtm> GLASS FREAKING RULES
+<drochaid> it's not like there's anyone out there that will take advantage of you
+<chillywilly> drochaid: you must be smoking good shit
+<chillywilly> you better share
+<chillywilly> oh wait
+<chillywilly> on second thought
+Action: dtm imbibes in a patty
+<chillywilly> you best be keeping dat to yoself
+<drochaid> heh
+Action: dtm takes a bite with the alfalfa streaming out his mouth
+<drochaid> nah, I'm just a very objective person
+<dtm> THIS HERE'S SOME GOOD SHIT.
+<drochaid> obviously not with what I said above tho ;)
+<dtm> chillywilly: hi.
+<chillywilly> ho
+<dtm> chillywilly: wax on, wax off!
+Action: dtm points at the name tags
+<chillywilly> paint da fence
+<dtm> lol
+<dtm> DON'T FALL IN!!!
+<dtm> FORROW ME, FORROW ME!  DON'T GET LOSS, DON'T GET LOSS!
+<dtm> drochaid: @#(I)
+<dtm> LADIES AND GENTLEMEN, DO I NOT SPEAK THE TRUTH??
+Action: dtm dominates all who oppose
+Action: chillywilly offers some non-caps-lock stuff for dtm's smoking pleaseure
+<drochaid> uhm
+<drochaid> chillywilly: you thought *I* was smoking something? 
+Action: drochaid nods at dtm
+<nickr> lets get high and have fun
+<dtm> EYE VILL CRUSH J00 LIKE GRAPE
+<chillywilly> CAPS LOCKS IS FOR HOMOSEXUALS
+Action: dtm bounces off the ropes and tangles with chillywilly
+<dtm> @#*)@:O
+Action: drochaid has salbutanol
+<chillywilly> (*&YO
+Action: drochaid can get really high with salbutanol
+<drochaid> legally :)
+<dtm> HEMEROSEXURALS ARE DENIED THEIR GOD-GIVEN RIGHT TO REPRODUCE.
+<drochaid> hemero???
+<dtm> WE BROTHERS IN ARMS (hey, get your arms off me) MUST BOND (ow) TOGETHER TO FIGHT THIS INJUSTICE.
+<nickr> hereosexuals are those that enjoy sex involving blood
+<dtm> UHHH.
+<drochaid> uhm
+<dtm> goll durnit, those aint the ones!!
+<nickr> hemereo rather
+<chillywilly> ew
+<chillywilly> liek when she's on the rag?
+<dtm> get your bloody homies outta here
+<chillywilly> youcky
+<dtm> chillywilly: good grief dood.  that's a delicate subject.
+<dtm> :)
+<chillywilly> i don't see any women here
+<chillywilly> bye
+<nickr> fun but wessy
+<chillywilly> my woman is here
+<nickr> messy
+<chillywilly> hehe
+<dtm> chillywilly's on the hunt
+<dtm> IT'S ON.
+chillywilly (danielb@d182.as26.nwbl0.wi.voyager.net) left irc: 
+<dtm> oh yeah.  it's on.
+<dtm> hey you guys.  get back to owork!
+<dtm> btw tgif
+<drochaid> it's 1:35am
+<drochaid> I'm going to bed soon
+Action: dtm hungers for foods
+<dtm> drochaid: no it's not
+<dtm> it's broad daylight out.
+<dtm> ya layze baxtard.
+<dtm> wutchoo thinkin?
+<drochaid> only if there's a flood light pointing at your window
+Harald1 (Peter1234@pD9517369.dip.t-dialin.net) left irc: 
+crazymike (~crazymike@mke-65-31-133-230.wi.rr.com) joined #gnuenterprise.
+crazymike (crazymike@mke-65-31-133-230.wi.rr.com) left irc: Client Quit
+ToyMan_home (CaryKittne@216.238.227.229) left irc: "Client Exiting"
+<dtm> drochaid: yeah it's the BIG STAR IN THE SKY
+<dtm> what are you, one of those drugged out losers who's afraid of daylight?
+<dtm> 1:35am inDEED!
+<dtm> oh you've even forged the clock on your computer.
+<dtm> now _it's_ in on this charade too.
+<dtm> what depths will you not stoop to?
+<dtm> MY OPINION OF YOU HAS CHANGED, MISTER.
+<drochaid> lolol
+<dtm> yeah okay, "flood lights".  uh huh.  i know those code words.
+<dtm> "going to bed".  mmhmm.
+<nickr> LOL
+<dtm> ok gotta return some movies.
+<dtm> these last ones were defective.  this time i want some movies without the breasts so pronounced they have their own casting chairs and places in the credits, and nobody should get shot.
+dneighbo (~derek@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<dtm> (i rented Tomb Raider -- well my mom did._
+<dtm> )
+<dtm> dneighbo: @#)*%
+<dtm> brb
+<dtm> bbl
+<dtm> afk
+<dneighbo> i liked it
+<dneighbo> tomb raider
+Action: dneighbo is currently listening to : 14-15=( Various Artists - Revive Us / Annointed 15| 4:06 )15=14-
+<dtm> yeah i BET you did, heathen!
+<dtm> REPENT
+<dtm> phpgw rewlz.  
+<dtm> bbl
+<dneighbo> phpgw licks heathen
+<dneighbo> jbailey: you dig into dem debs yet :)
+<dneighbo> anyone here have mame working on debian?
+<dneighbo> that has time to answer questions tonight?
+<jbailey> I can answer questions.
+<dneighbo> rock
+<dneighbo> what is best way...
+<dneighbo> apt-get install mame?
+<jbailey> I haven't worked on the gnue debs, though.  Chilli and I couldn't get it work.
+<jbailey> What's mame?
+mdean (~mdean@mkc-65-28-73-63.kc.rr.com) joined #gnuenterprise.
+chillywilly (~danielb@d182.as26.nwbl0.wi.voyager.net) joined #gnuenterprise.
+<chillywilly> grrrrr
+<chillywilly> look at this shit:
+<chillywilly> http://linuxtoday.com/news_story.php3?ltsn=2002-03-22-011-26-NW-HW-LL
+<chillywilly> SSSCA is back
+<chillywilly> witha  brand new shiny name
+<chillywilly> god bless america
+Action: chillywilly pukes
+<chillywilly> "I'm mad as hell and I'm not going to take it anymore"
+<chillywilly> anyone home?
+<jbailey> no
+<jbailey> =)
+<chillywilly> I dunno whether to be pissed off or just depressed as hell
+<jbailey> Is that the "all pcs must have hardware copy protection" bill?
+<chillywilly> yes
+<chillywilly> all electtronic devices
+<chillywilly> even
+<jbailey> Ah.  Well - the US has shown that their willing to build more jails when they run out of space..
+<chillywilly> this is like the former coviet union when they put guards at every copy machine
+Action: dneighbo is currently listening to : 14-15=( Various - Gravity / Delirious? 15| 3:20 )15=14-
+<chillywilly> er, soviet
+<drochaid> what's the SSSCA??
+<chillywilly> heh
+<chillywilly> a shitty bill that got renamed
+<drochaid> ah
+<chillywilly> says that all electronic devices must have copy-protection mechanisms
+<drochaid> oh
+<chillywilly> mandated by the federal gov't
+<drochaid> that along the lines of the DMCA?
+<chillywilly> (US federal gov't)
+<chillywilly> it's worse than the DMCA
+<drochaid> that's the thing you see,
+<drochaid> DMCA has no effect on anyone outside the US
+<drochaid> as it's been found illegal by international law
+<chillywilly> well, don't think it's going to stay in the US and you can ignore it because I guarantee you America's disease will spread
+<drochaid> indeed
+<chillywilly> besides, nationalism is BS
+<drochaid> but it will be much slower now there is legislation going into place to actively fight the DMCA in the UK and several other countries
+<drochaid> in what sense chillywilly?
+<chillywilly> in the sense that these are global times
+<Isomer> the SSSCA says that a machine must only run signed code basically
+<Isomer> say bye bye to Free Software
+<drochaid> these are anything BUT global times
+<drochaid> oh that one ... ta Isomer
+<drochaid> also completely illegal accross Europe
+chillywilly_ (~danielb@d63.as27.nwbl0.wi.voyager.net) joined #gnuenterprise.
+<chillywilly_> bah, dialup sucks
+chillywilly (danielb@d182.as26.nwbl0.wi.voyager.net) left irc: Killed (NickServ (Ghost: chillywilly_!~danielb@d63.as27.nwbl0.wi.voyager.net))
+<drochaid> ok doodles, I'm cackered so I'm off to bed
+<drochaid> mar sin leabh
+Nick change: drochaid -> drochaid[zZz]
+<dtm> chillywilly_: dialup rules.
+<dneighbo> chillywilly_: you know how to configure mame on debian
+<jcater> is mame apt-gettable?
+<dneighbo> yes
+<jcater> must be sid
+<dneighbo> i have it
+<dneighbo> just dont know how to configure it
+<dneighbo> or 'what do you do next'
+<dneighbo> yes sid
+<dneighbo> xmame
+<dneighbo> and 5 other packages
+<dneighbo> want to get it configured for the kids ;)
+<nickr> its in non-free
+<dneighbo> oh so chilly wont have it then
+<jcater> dneighbo: likely story
+<jcater> "for the kids" my arse
+<nickr> maybe its contrib
+<nickr> hrm
+<nickr> the software itself is free, but the things it plays and emulates aren't
+Maniac (User@h24-82-132-209.wp.shawcable.net) left irc: "Client Exiting"
+Action: jbailey is away: dinner
+<jcater> argh!!!!
+<jcater> where's jamest when you need him
+<nickr> getting drunk, probably
+<nickr> the ol' alchy
+<jcater> sigh
+<jcater> 2/3's of my datasource code in reports was commented out by him
+<jcater> trying to figure him out
+<nickr> thats a lot of code
+<jcater> trying to figure him out
+<jcater> (oops...wrong window)
+<Isomer> Ode to Views
+<Isomer> sigh
+<jcater> excellent ode
+davi (davi@80-25-136-215.uc.nombres.ttd.es) left irc: "Client Exiting"
+<nickr> quite.
+Action: jbailey is back (gone 00:46:59)
+Nick change: chillywilly_ -> chillywilly
+jbailey (jbailey@HSE-Toronto-ppp286529.sympatico.ca) left irc: "Client Exiting"
+jcater (jason@HubA-mcr-24-165-193-24.midsouth.rr.com) left irc: "nite"
+alexey (~alexey@195.151.214.34) joined #gnuenterprise.
+drochaid[zZz] (drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) left irc: Read error: 104 (Connection reset by peer)
+Isomer (dahoose@210-86-58-201.jetstart.xtra.co.nz) left irc: Read error: 104 (Connection reset by peer)
+drochaid[zZz] (~drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) joined #gnuenterprise.
+Isomer (dahoose@210-86-57-216.jetstart.xtra.co.nz) joined #gnuenterprise.
+alexey (alexey@195.151.214.34) left irc: "Client Exiting"
+--- Sat Mar 23 2002
+[01:33] Last message repeated 1 time(s).
+Isomer (dahoose@210-86-57-216.jetstart.xtra.co.nz) left irc: "Client Exiting"
+Isomer (dahoose@210-86-57-216.jetstart.xtra.co.nz) joined #gnuenterprise.
+chillywilly (danielb@d63.as27.nwbl0.wi.voyager.net) left irc: 
+ra3vat (ds@ics.elcom.ru) joined #gnuenterprise.
+alexey (~alexey@195.151.214.34) joined #gnuenterprise.
+Yurik (yrashk@gw.telcos.net.ua) left irc: "Client Exiting"
+Yurik (~yrashk@gw.telcos.net.ua) joined #gnuenterprise.
+alexey (alexey@195.151.214.34) left irc: Read error: 113 (No route to host)
+reinhard (~rm@N812P008.adsl.highway.telekom.at) joined #gnuenterprise.
+<Yurik> reinhard: hi
+alexey (~alexey@195.151.214.34) joined #gnuenterprise.
+<reinhard> Yurik: re
+chillywilly (~danielb@d151.as28.nwbl0.wi.voyager.net) joined #gnuenterprise.
+<Yurik> chillywilly: hi
+<chillywilly> ello
+Action: Yurik is hacking directory service code
+<chillywilly> ok
+psu (peter@manorcon.demon.co.uk) joined #gnuenterprise.
+<Yurik> psu: hi
+<psu> hi Yurik
+alexey (alexey@195.151.214.34) left irc: "Client Exiting"
+<chillywilly> anyone know how to get that dyntext thing in gimp?
+Harald1 (Peter1234@pD9EB0949.dip.t-dialin.net) joined #gnuenterprise.
+<Harald1> hi
+<psu> brb
+psu (peter@manorcon.demon.co.uk) left irc: "[x]chat"
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+<Harald1> dneighbo: are you here?
+mike__ (~mike@mke-65-31-133-230.wi.rr.com) joined #gnuenterprise.
+<chillywilly> sup mike__
+<mike__> hey man
+<mike__> nice shot
+Nick change: mike__ -> crazmike
+<chillywilly> super phreak
+Nick change: crazmike -> crazymike
+<crazymike> i dunno why that was my name
+<chillywilly> cause you're a super phreak
+<crazymike> yeah, thats cool
+Nick change: crazymike -> superphreak
+<superphreak> lol
+<chillywilly> http://www.sba.gov/wi/index.html
+<chillywilly> you wanna start a bidness?
+<superphreak> I am not qualified to wipe my own ass, how can I help start a bidness???
+<superphreak> :)
+Action: superphreak is about to take a vi test!!!
+<superphreak> woohoo
+<superphreak> gtuxnes
+<superphreak> ooops
+<chillywilly> uh?
+<chillywilly> scotty is also a super ohreak
+<chillywilly> er, phreak
+<chillywilly> he wanted a sandwhich for breafuss
+<superphreak> lol
+<superphreak> make sure he don't eat Philly-Ribeye :)
+<chillywilly> a cheese sandwhich even'
+<chillywilly> lol
+<chillywilly> I could go for one of those
+<superphreak> i'll brb...got to go take my test
+<chillywilly> good luck phreak
+<dneighbo> Harald1: im here
+<Harald1> dneighbo: I completed the tests: same result for Python 2.2 and gfdesigner 0.2.2a, gfdesigner 0.1.1 (exe) and Python 2.1.2 and gfdesigner 0.2.2a
+alexey (~alexey@195.151.214.34) joined #gnuenterprise.
+<Harald1> should I post the complete results to dcl, as there were some more problems with the exe-releases
+<Harald1> ?
+<dneighbo> when you say same result
+<dneighbo> which result :)
+Action: dneighbo doesnt recall exactly what the problem was 
+<dneighbo> the crashing after like save/reload
+<Harald1> yes and that it only happens when gfdesigner is not exited
+<dneighbo> where are you seeing designer 0.2.2a?
+<Harald1> in the about dialog
+<dneighbo> hmmm
+<psu> cool
+<dneighbo> guess im ill informed much anymore
+<Harald1> 0.2.0a I mean
+<dneighbo> ok that sounds slightly better :)\
+<dneighbo> let me test here can you give me exact steps
+<dneighbo> of what you are doing to make it crash
+<Harald1> yes: open gfdesigner, load a file, save it, close the file (but not gfdesigner), load the file -> crash
+<Harald1> but: open gfdesigner, load a file, save it, exit gfdesigner, open gfdesigner, load file -> no crash
+<dneighbo> ok trying now
+<dneighbo> hmmm i have different bug
+<dneighbo> i open gfdesigner
+<dneighbo> load a file
+<dneighbo> save it
+<dneighbo> close the file (But designer exits) insetad of closing
+<dneighbo> never mind my stupidity
+<Harald1> ?
+<dneighbo> i forget that we dont do designer quite right :)
+<dneighbo> i was doing designer file.gfd
+<dneighbo> which is NOT the same as 
+<dneighbo> designer
+<dneighbo> then open the file
+<dneighbo> so in my case close/exit behaved the same
+<dneighbo> please file the bug
+<dneighbo> it exists in windows as well
+<dneighbo> er linux
+<Harald1> to dcl?
+<dneighbo> i.e. my current cvs does the exact same thing
+<dneighbo> yeah to dcl
+<Harald1> can you assist me? I'm not sure what priority, account, type I should add
+<dneighbo> it appears as though even a debug level 50 gives no useful information on the crash so no need to submit anything
+<dneighbo> what are options for priority
+<dneighbo> it should be something like 'next patch release' or something
+<Harald1> high, medium, low
+<Harald1> no that's type
+<dneighbo> let me look real quick
+<dneighbo> you are contact
+<dneighbo> account 'end user'
+<Harald1> yes
+<dneighbo> product gnue designer
+<dneighbo> priority medium
+<dneighbo> type next minor release
+<dneighbo> btw: if every you arent sure guess what you feel is best and will change it if we dis agree :)
+<Harald1> ok. I've got another thing:
+<dneighbo> cool
+Action: dneighbo loves that we have another bug hunter, i was feeling so lonely
+<Harald1> there's a problem with the gfdesigner exe release. the normal release doesn't start, and the debug release has not /etc dir
+<Harald1> not = no
+<Harald1> so it wouldn't start either, it only displays for a second, that no gnue.conf is available
+<Harald1> dneighbo: It seems that the saving bug is even worse. It crashes on other files, too, after one file was saved and closed
+<Harald1> but it does not crash, when the first file is not closed
+drochaid_ (~drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) joined #gnuenterprise.
+drochaid[zZz] (drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) left irc: Read error: 104 (Connection reset by peer)
+Action: superphreak is back
+<ra3vat> dneighbo: what is enduser login to dclgw?
+<chillywilly> hey superphreak
+<chillywilly> how did you do?
+<chillywilly> are you a mad unix guru now?
+<superphreak> LOL
+<superphreak> it was gay...took me 5 min
+<superphreak> :)
+<chillywilly> woooo!
+<chillywilly> you going home now?
+<superphreak> no...now we have lecture
+<superphreak> sounds fun, hey
+<chillywilly> bah
+<superphreak> i wish i could go home now
+<chillywilly> I thought you were done with that class?
+<superphreak> no...unix is a few more weeks
+<superphreak> networking is over
+<chillywilly> bummer
+<superphreak> yup
+<chillywilly> a few more weeks of getting up early on saturday
+<chillywilly> haha
+<chillywilly> :P
+<superphreak> hey, be nice
+<chillywilly> never
+<superphreak> lol
+<chillywilly> mr dneighbo there is trying to get zsnes working
+<superphreak> lol
+<superphreak> hell yeah!!!
+<chillywilly> cause he is also a super phreak
+Action: chillywilly trout slaps reinhard
+<chillywilly> dude I got up earlier then I get up druing the week
+<chillywilly> I got up at the time I should get up during the week ;)
+<chillywilly> yea, that's it
+<superphreak> lol
+<superphreak> how come???
+<chillywilly> I dunno
+<chillywilly> probably because I crashed on the couch
+<chillywilly> and my friggin alarm went off
+<chillywilly> so scotty woke up
+<chillywilly> and came out and slept with me on the couch
+<chillywilly> and it is not that comfortable
+<superphreak> bummer :)
+<chillywilly> man tose Hurd guys really don't like Linux much ;)
+<chillywilly> er, those
+<superphreak> you gonna play some shit w/ dneighbo when he gets it running???
+<superphreak> TMNT???
+<superphreak> :)
+<chillywilly> I dunno he's trying to convert hos nephews to GNU/Linux
+<chillywilly> we probably have too long of a ping time
+<superphreak> ahhhh
+<chillywilly> he's in the friggin desert
+<psu> in the old days, all the UK gamers used to hate the US gamers
+<psu> referred to them as LPBs
+<superphreak> thats cause the UK gamers were inferior :)
+<chillywilly> ah, nationalism
+<psu> Low Ping Bastards
+<psu> no UK broadband in those days
+<chillywilly> how I love it so
+<chillywilly> about as much as I love the new SSSCA bill
+<psu> of course, precious little UK broadband even now
+<superphreak> chillywilly: the SSSCA is "Dead on Arrival"
+<superphreak> :)
+<psu> my cable company has a whole channel devoted to their "high speed internet"
+<psu> (128k or 256k)
+<chillywilly> good for you
+<psu> but whenever I use the "enter your postcode to check availability"
+<psu> the website crashes
+<chillywilly> heheh
+<psu> not reassuring ;-/
+<chillywilly> I can;t check the availability online for time warner either
+<chillywilly> the page gives me an error
+<superphreak> cause TIME/WARNER is the anti-christ!!!
+<psu> i'm just hoping the cable company goes bankrupt soon 
+<psu> from its £18 billion debt
+<psu> & someone else buys the infrastructure up cheap
+<chillywilly> yea
+<psu> only problem is it would prob end up being AOL-TW ;-<
+<superphreak> lol
+<superphreak> goodluck psu 
+<superphreak> hahahah
+<chillywilly> superphreak:wwe should just burn down their head quarters then wehn we go to do the fire alarm inspectio ;)
+<chillywilly> er, inspection
+<superphreak> chillywilly: hell yeah!!!
+<chillywilly> yea, right
+<superphreak> chillywilly: lets take 'em out!!!
+<chillywilly> you;'d cry like a llittle butch with a skinned knee when you have no broadband
+<superphreak> chillywilly : thats not their hq though
+<chillywilly> er, bitch
+<superphreak> yes, I would
+<superphreak> but then I would just find someone else to get broadband from
+<chillywilly> you;d have to use Ameritech then ;)
+<superphreak> NO, ameritech is just as bad
+<chillywilly> that's asking for it
+<superphreak> fsck Ameritech
+<chillywilly> ameritech sucks ass
+<chillywilly> I know this
+<chillywilly> nick-a
+<superphreak> no more ghetto-ness
+<chillywilly> what was ghetto?
+<superphreak> nick-a
+<chillywilly> oops
+<superphreak> thats whiteboy ghetto
+<chillywilly> yoo fucking bad bitch
+<chillywilly> er, too
+<superphreak> fsck you
+<chillywilly> don't make me busta cap
+<superphreak> lol
+<chillywilly> anyway, it's all your fault
+<superphreak> no it isn't
+<chillywilly> you have ghettoized too many people
+<superphreak> it is your fault for working with me
+<chillywilly> now it is like second nature
+<chillywilly> fine then
+<chillywilly> I'll just go work with Carla
+alexey (alexey@195.151.214.34) left irc: Remote closed the connection
+<superphreak> ok
+<chillywilly> (shea right)
+<superphreak> you do that
+<chillywilly> no
+<superphreak> want to go bowling tonight???
+<chillywilly> you'll go work with her
+<dneighbo> ra3vat: guest, guest
+alexey (~alexey@195.151.214.34) joined #gnuenterprise.
+<chillywilly> superphreak: I dunno I am broke
+<chillywilly> I had to pay the creedit counseling nazis
+<superphreak> chillywilly: you are always broke :) 
+<superphreak> chillywilly: we work for Simplex
+<chillywilly> hey you're the one who couldn't get money out of the tyme machine the other day ;)
+<chillywilly> true dat
+<dneighbo> um Harald1 the .exe's assume you create gnue.conf and such
+<dneighbo> i.e. on your system in like program files/gnue/etc
+<superphreak> thats what I am saying...we work for Simplex, therefore we don't have much money
+<chillywilly> superphreak: you mean tyco ;)
+<dneighbo> or something
+<chillywilly> simplex had the shit to gether for the most part
+<superphreak> chillywilly: yeah, sorry TYCO
+<dneighbo> there should be a samples.gnue.conf and samples.connections.conf
+<dneighbo> just copy those and name the copy gnue.conf connections.conf
+<dneighbo> then try designer again
+<chillywilly> I bjust realized something
+<chillywilly> I have no artistic talent
+<superphreak> whats that???
+<superphreak> I don't either
+Action: chillywilly was trying to make a logo again
+<superphreak> I am not made to be artistic
+<chillywilly> it sucked
+<superphreak> as a matter of fact, I ahve no talents what-so-ever
+<superphreak> :(
+<Harald1> dneighbo: no that's the problem with the exe release, there's no /etc and sample confs, I copied my normal ones and then the debug release worked
+<dneighbo> hmmm the .exe release on win95 had them
+<Harald1> 0.1.1?
+<dneighbo> um yes i think so
+<dneighbo> did you get official releases
+<dneighbo> or nightlies of some sort
+<ra3vat> dneighbo: can you give me account in dclgw?
+<dneighbo> i dont have a windows box here so i cant confirm
+<Harald1> dneighbo: I assume. They are from http://www.gnuenterprise.org/downloads/designer/
+<dneighbo> ra3vat: just need name (i dont remember how to spell it) dmitry sorvokin? and email ds@telcom.ics.ru ?
+<dneighbo> yeah thats right place
+<dneighbo> but its common that would do the etc file et al
+<dneighbo> i.e. you didnt just get designer right
+<dneighbo> you got common/forms/designer when you got 0.1.1
+<ra3vat> dneighbo: (login name - dimas) dmitry sorokin ds@ics.elcom.ru
+<Harald1> no, I just wanted to test the exe release, so just designer
+<dneighbo> er actually i think designer should install common
+<dneighbo> install forms and designer
+<Harald1> and debug works when I copy my /etc 
+<superphreak> chillywilly: did you die???
+<chillywilly> no
+<superphreak> ok, just checking
+<chillywilly> are alive?
+<chillywilly> er, you alive
+<superphreak> yeah, unfortunately
+<superphreak> :)
+Action: chillywilly stabs superphreak with a frozen trout
+<Harald1> dneighbo: non-debug works, too when copying /etc
+Nick change: dneighbo -> derek
+Action: superphreak dies a slow and painful death
+Action: derek wants to play
+Nick change: superphreak -> crazymike
+<derek> apt-getting snes
+<chillywilly> you need to have the same rom as the other guy
+<chillywilly> for netplay
+<crazymike> yup, you do
+Action: chillywilly works on geas architecture proposal ;)
+<chillywilly> muuuwahahahha
+<chillywilly> I finished that book dude
+<crazymike> wtg...about time
+<chillywilly> about time nothing
+<chillywilly> at least I read
+<crazymike> lol
+<chillywilly> ya phreak
+<crazymike> that just means you are a boring old man :)
+<crazymike> you have nothing better to do than read a book
+<crazymike> hehe
+<chillywilly> well considering what the book is about
+<chillywilly> and where we are right now
+<chillywilly> you can lick my ballsack
+<crazymike> bear it bitch
+<chillywilly> hah
+<chillywilly> you is crazy
+<crazymike> lol...hence my name
+<chillywilly> hey derek why does docbook not make a separate copyright page thingy anymore?
+<chillywilly> I mean a hyper link to a separate page
+<chillywilly> it used to do like this:
+<chillywilly> Copyright ? 2002 by Free Software Foundation
+<chillywilly> which would be a hyper link to this crap
+<chillywilly>  Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.1 or any later version published by the Free Software Foundation; with no Invariant Sections, with no Front-Cover Texts and with no Back-Cover Texts. A copy of the license is included in the section entitled "GNU Free Documentation License". 
+<chillywilly> but now it includes it all on the front page
+<chillywilly> it like they changed the book style sheets
+<chillywilly> it's
+<derek> i dont know
+<chillywilly> of course not
+<derek> probably they changed style sheet
+<chillywilly> that wouldbe too easy
+<chillywilly> is reinhard there?
+Action: chillywilly pokes reinhard
+<derek> reinhard + docbook == vampire + garlic + holy water
+<derek> not trying to infer that reinhard is a vampire (just that was first 'contrast' that came to mind
+<crazymike> lol
+<chillywilly> I'm not asking him abotu docbook
+Nick change: crazymike -> gone_with_the_wi
+<chillywilly> I want to ask him about the existing geas specs
+Nick change: gone_with_the_wi -> nevermind
+<chillywilly> etc
+<chillywilly> fine
+<chillywilly> I'll just ask ;)
+<chillywilly> should there be 2 sepearet documents API and architecture or should they be one in the same
+Nick change: nevermind -> I_Hate_Nicks
+<chillywilly> and is this going to be made into a hackers guide down the road
+<chillywilly> or should I just not worry about that shit and get my ideas down for discussion purposes?
+<I_Hate_Nicks> chillywilly:I Love You!!!
+<chillywilly> I love you too
+<I_Hate_Nicks> yeah!!!
+<chillywilly> what is your problem?
+<I_Hate_Nicks> what do you mean???
+<chillywilly> cause your nick got cutt off?
+<I_Hate_Nicks> what does it say???
+<chillywilly> well you have an I_Hate_Nicks nick
+<I_Hate_Nicks> thats my nick
+<chillywilly> yes
+<chillywilly> obviously
+Nick change: I_Hate_Nicks -> I_Hate_Nicks_awa
+<I_Hate_Nicks_awa> damn
+<I_Hate_Nicks_awa> oh well
+<I_Hate_Nicks_awa> i'll bbl
+<chillywilly> there's a limit to how long it can be
+<chillywilly> you'll just have to live with that
+<chillywilly> phreak
+<chillywilly> hrrrm
+<chillywilly> I wonder why emacs doesn't use the sgml mode
+<chillywilly> gah
+<chillywilly> maybe I need to install psgml mode
+<chillywilly> yep
+Nick change: I_Hate_Nicks_awa -> I_Hate_Nicks
+<I_Hate_Nicks> whats up???
+Action: Yurik is away: just for few minutes, will be back shortly
+Action: Yurik is away: I'm busy
+<derek> anyone liking family genealogy
+<derek> GRAMPS is a seriously kick butt application for gnu/linux
+<derek> like one of the BEST i have used on gnu/linux to date
+<I_Hate_Nicks> GRAMPS...cool name
+<I_Hate_Nicks> GRAMPS, or CRAMPS???
+<I_Hate_Nicks> lol
+<I_Hate_Nicks> is anyone out there???
+<chillywilly> yep
+<chillywilly> tanya is buggin me yo ;)
+<chillywilly> j/k
+<I_Hate_Nicks> how come???
+<chillywilly> I dunno
+<chillywilly> she's IMing me
+<I_Hate_Nicks> ok
+Holgerio (~Holger@pD9E858CC.dip.t-dialin.net) joined #gnuenterprise.
+<Holgerio> whois harald1
+SachaS (~sacha@203.190.196.249) joined #gnuenterprise.
+I_Hate_Nicks (mike@mke-65-31-133-230.wi.rr.com) left irc: "[BX] Just do it like Nike... BEEATCH!"
+<chillywilly> she probably thinks I am a wacko now
+Action: Yurik is away: home, beer, sleep
+<derek> hi Holgerio
+jcater (~jason@HubA-mcr-24-165-193-24.midsouth.rr.com) joined #gnuenterprise.
+<derek> hi jcater
+<Harald1> hi jcater
+<chillywilly> hiya jc
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+crazymike (~mike@mke-65-31-133-230.wi.rr.com) joined #gnuenterprise.
+<crazymike> my aim died
+<crazymike> quit
+crazymike (mike@mke-65-31-133-230.wi.rr.com) left irc: Client Quit
+ToyMan_home (CaryKittne@c5300-3-ip240.albany.thebiz.net) joined #gnuenterprise.
+<reinhard> chillywilly: of course you can just write down for discussion
+<reinhard> but please make sure we all know what you are talking about
+<reinhard> e.g. don't talk about "the API"
+<reinhard> but rather about "the API between Module X and Module Y"
+<reinhard> or like that
+<reinhard> if you get what i mean :)
+<reinhard> however
+<reinhard> final documentation will be separated by the intended reader
+<reinhard> an API doc (for the front end)
+<reinhard> and an internal "hacker's guide"
+<reinhard> away again
+Nick change: reinhard -> rm-away
+Action: psu is away: bbl
+Holgerio (Holger@pD9E858CC.dip.t-dialin.net) left irc: Read error: 32 (Broken pipe)
+jbailey (~jbailey@HSE-Toronto-ppp319038.sympatico.ca) joined #gnuenterprise.
+<dneighbo> grrr
+<dneighbo> the new versions of galeon are horrid
+<dneighbo> they lock up mroe than internet exploder
+SachaS (~sacha@203.190.196.249) left #gnuenterprise ("Client Exiting").
+<dneighbo> emulators suck
+<dneighbo> i need to find someone who has gottent this stuff to work OR at least point me at RELEVANT documentation
+chillywilly_ (~danielb@d133.as14.nwbl0.wi.voyager.net) joined #gnuenterprise.
+chillywilly (danielb@d151.as28.nwbl0.wi.voyager.net) left irc: Read error: 113 (No route to host)
+alexey (alexey@195.151.214.34) left irc: "Client Exiting"
+Action: drochaid_ returns home
+Nick change: drochaid_ -> drochaid
+mdean (mdean@mkc-65-28-73-63.kc.rr.com) left irc: Read error: 110 (Connection timed out)
+ra3vat (ds@ics.elcom.ru) left irc: "Client Exiting"
+Action: psu is back
+<drochaid> wb psu
+<psu> hiya
+<psu> wb yr good self
+dneighbo (dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: "Client Exiting"
+<psu> what's the quickest way of stripping a control character from a file in *n*x?
+<psu> pref from command line w/pipes?
+Action: psu should join #linux-weenies
+Action: psu is away: dinner
+<derek> sed/awk
+<derek> but what control charcacter
+<derek> as if its ^M or something
+<derek> tools already exist that do this
+<dtm> hi all
+<dtm> yay, i just spent my saturday morning in a class about credit review and counseling!
+<dtm> if you people dont have perfect credit, you should file a letter of dispute... not to say it's not your fault, but to state your intent for it to not happen again and to request trust.
+<dtm> DO IT NOW!!@$
+<dtm> derek: hi how's it going
+<dtm> psu: are you looking for something like 'dos2unix'?  otherwise, join #linpeople
+<derek> if you have a fetish for the color red and run gnome
+<derek> the GTK theme 'rage' plus the 'crux' sawfish manager (defaulted to use themes colors) rocks
+<derek> if only the them was more white instead of gray 
+<psu> derek - yep, it's ^M that needs to go
+Action: psu is back
+<derek> dos2unix is what you want
+<psu> is there a deb?
+<psu> or is it so simple it doesn't need one?
+<nickr> pipe it though tr, tr -d '\r'
+Nick change: rm-away -> reinhard
+psu (psu@manorcon.demon.co.uk) left irc: "[x]chat"
+btami (~btami@dialin75-isdn1.emitel.hu) joined #gnuenterprise.
+<btami> hi all
+<reinhard> hi btami
+<btami> is jcater here?
+<chillywilly_> hey reinhard
+Nick change: chillywilly_ -> chillywilly
+<Harald1> btami: doesn't seem so, I asked him a question a few hours ago and didn't get a response
+<btami> :(
+<btami> Harald1: I'v read in log that you are a bug hunter
+<btami> have you tried reports?
+Nick change: chillywilly -> chillywillyhey
+Nick change: chillywillyhey -> chillywilly
+<Harald1> btami: no sorry
+<chillywilly> oops
+<chillywilly> hey ppl
+<Harald1> hi chillywilly
+<jbailey> chillywilly, chillywilly, chillywillyhey!
+<btami> hi chi*
+Nick change: jbailey -> chickenman
+<chillywilly> jbailey: why do you make fun of me?
+<chickenman> Heya btami!
+Nick change: chickenman -> jbailey
+Action: chillywilly wields trout
+<jbailey> chillywilly: I wasn't thinking like making fun, so much as what you'd yell to a favourite football star.  Sort of a chant-like bit...
+<chillywilly> yea, I see
+Action: chillywilly trout slaps jbailey anyway
+<jbailey> Now, /btami/ I'm making fun of... 
+<jbailey> ;)
+Phython (~jim@rn-remcke4a01.uwaterloo.ca) joined #gnuenterprise.
+<btami> :)
+<chillywilly> Phython: what you doing in here man?
+<chillywilly> ;)
+<Phython> checking out the trout slapping regionals
+<chillywilly> I am winning of course
+<Phython> I see
+<chillywilly> hmmm, docbook is the devil
+Phython (~jim@rn-remcke4a01.uwaterloo.ca) left #gnuenterprise ("Client Exiting").
+<chillywilly> what the heck is firebird?
+<chillywilly> nevermind
+<btami> firebird is the free successor of interbase
+<chillywilly> grooovy
+<reinhard> If A equals success, then the formula is _A = _X + _Y + _Z.  _X is work.  _Y
+<reinhard> is play.  _Z is keep your mouth shut.
+<reinhard> 		-- Albert Einstein
+<reinhard> "The most difficult thing in the world is to know how to do a thing and
+<reinhard> to watch someone else do it wrong without comment."
+<reinhard> 		-- Theodore H. White
+<reinhard> the best program in the world
+<reinhard> fortune
+<reinhard> :-)
+<reinhard> think i'd better go to bed now
+<chillywilly> hehe
+<reinhard> night all
+<chillywilly> night
+reinhard (rm@N812P008.adsl.highway.telekom.at) left irc: "Don't contradict a woman -- wait until she does herself"
+Harald1234 (Peter1234@pD9E0EE03.dip.t-dialin.net) joined #gnuenterprise.
+<dtm> hi
+Harald1 (Peter1234@pD9EB0949.dip.t-dialin.net) left irc: Read error: 110 (Connection timed out)
+<chillywilly> ho
+<chillywilly> dtm: my brotha
+Nick change: Harald1234 -> Harald1
+<dtm> HWIRRED.
+<chillywilly> whirred even
+<dtm> i was just playing with the stupid kids in the movie swapping channel
+<dtm> hey dan
+<dtm> this kid axed me
+<dtm> HEY ARE YOU WITH THE FBI OR ANTI-PIRACY?
+<chillywilly> axed you?
+<dtm> :-o
+<chillywilly> hah
+<chillywilly> piracy
+<dtm> like i'm going to say....  "Yes"?
+<chillywilly> that's a misnomer if I ever heard one
+drochaid (drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) left irc: Read error: 104 (Connection reset by peer)
+drochaid (~drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) joined #gnuenterprise.
+<dtm> yeah
+<dtm> i really like RMS's essay involving that
+<dtm> really enlightening
+<dtm> it even helped my perspective on it
+<chillywilly> if I make you a copy of a movie that is copyrighted then I am  as bad as someon attacking, raping, and pillaging a ship right?
+<dtm> not that it clears my conscience
+<chillywilly> hehe
+<dtm> coz i still commit theft
+<dtm> i wouldn't ever deny that.
+<dtm> but it's that their definition of theft is _wrong_.
+<dtm> so it's theft in the name of civil disobedience, mostly
+<dtm> and yeah sometimes i do steal stuff that i coulda bought or rented
+<dtm> like downloading an mpeg rather than making a $0.99 rental. 
+<dtm> that would have been fair.
+<chillywilly> snoogans
+<dtm> so it kinda blurs off into the distance
+<chillywilly> how about they let me download it for free
+<chillywilly> then I can send the author money directly
+<dtm> i'd pay to download it
+<chillywilly> and not the copyright police bastards
+<dtm> well in the case of hollywood movies, there are tons of big money involved
+<chillywilly> the "content" providers
+<dtm> so having a gray distribution mechanismis understandable
+<dtm>  the people who provide lighting, cameras, food, etc
+<dtm> moviemaking is an incredibly huge job none of us can estimate
+<dtm> well , often it is.
+<dtm> some movies are as simple as typical software engineering
+<chillywilly> wel copyright isn't supposed to last forever it is basically a restriction on free speech
+<chillywilly> there
+<chillywilly> 's no compromise anymore
+<chillywilly> look at mutha freakin' disney
+<dtm> yeah
+<dtm> hey i found out recently that the word 'patent' is rooted in the phrase "to make public"
+<dtm> isn't that fascinating
+<chillywilly> yea
+<chillywilly> well you do have to disclose the information
+<dtm> i never knew that before just recently.
+<dtm> yeha
+<chillywilly> you see that they renamed the SSSCA?
+<chillywilly> and now are trying to pass that POS
+<dtm> no and i dont know what the SSSCA is
+<dtm> well at least i know i'm not _personnally_ responsible directly for the destruction of civilization ;)
+<dtm> i dont come up with this shit.
+<dtm> ;>
+<chillywilly> federal law mandating that all electronic devices must have copy protection mechanisms in them
+<dtm> all that's needed is for "good men" to do nothing :)
+<dtm> i wrote to the library of congress about the mpaa and riaa
+<dtm> oh that
+<dtm> like hard drives
+<dtm> neato
+<chillywilly> http://linuxtoday.com/news_story.php3?ltsn=2002-03-22-011-26-NW-HW-LL
+<dtm> HDTV already was infested with things like that
+<chillywilly> sucko
+<dtm> copy and content controls
+<dtm> censorship
+<chillywilly> dude this is like communist russia putting armed guards at copy mahcines
+<dtm> i know HDTV is supposed to be a materially desirable consumer item but i'd just as soon smash it with Sledge O Matic(tm) as watch it if it had that stuff in it.
+<dtm> yeah it is.
+<chillywilly> but they do it with technology
+<dtm> yep
+<chillywilly> it's fascist
+<dtm> and chilly, believe me, this stuff is _so_ important that i respect anyone who thinks this way about it
+<dtm> i mean who prioritizes it this much
+<dtm> and recognizes and analyzes it
+<dtm> just think if everyone did that a _little_ bit.
+<dtm> instead of having a few of us trying in futility to carry the rest
+<dtm> but we still have to try.
+<chillywilly> I think people are too busy being brainwashed by the PR and consumerism that is all too prevalent in america
+<dtm> maybe something will happen such that we'lll not just slide slower down the slippery slope, but instead have some STRATEGIC advance.
+<dtm> yeah
+<chillywilly> so then the politicians and corporations get to pass the laws they want
+<chillywilly> and no one says boo
+<dtm> their self relationship is so screwed, they dont even know what choice _is_ let alone its value.
+<chillywilly> because they are so apathetic
+<dtm> yeah especially when it's marketed as a desirable consumable
+<chillywilly> dude I am readying my protect sign once again
+<chillywilly> er, protest
+<dtm> what sign?
+<chillywilly> the one I will make
+<chillywilly> ;)
+<dtm> heh
+<chillywilly> right after I write my congressman
+<dtm> gonna storm capitol hill?
+<chillywilly> heck yea
+<dtm> well shit dude
+<dtm> think about it
+<dtm> i heard that something like only TEN THOUSAND Americans wrote to the govt about the microsoft case.
+<chillywilly> that's pathetic
+<chillywilly> I don;t know who to be more pissed at
+<dtm> if that's the case then not only do they surely have a filtering process for it reaching the desks of decisionmakers, but we could write a _GOOD_ one that'd get there.
+<dtm> yeah i know
+<chillywilly> the common americans aor the jag offs trying to screw them
+<dtm> exctly
+<dtm> well
+<dtm> it wouldn't be possible unless it was a two part process
+<dtm> it'd be different if the average American couldn't figure it out
+<dtm> couldn't learn about it
+<dtm> we may as well find already well written essays, put a quick cover letter on it, and forward it on.
+<chillywilly> Free Software is an extreme and I recognize that, but I think it is only necessary if we are to win anything back for the people before it is too late
+<dtm> see
+<dtm> my personal problem is that i dont know my audience well
+<dtm> so i have a writing style issue
+<dtm> i dont know how specific or general to b
+<dtm> e
+<dtm> some of these people have never seen the inter-web
+<dtm> i dont know if i should try cluing them in, or just casting a vote
+<chillywilly> someone said that these guys doign this are clueless and they will leave a big mess for us to clean up
+<chillywilly> (wrt to technology etc.)
+<chillywilly> it's the old men who don't even know what the net is
+<chillywilly> but guess whcih coporations(s) are behind that bill and basically bought it?
+<chillywilly> disney, et. al.
+<chillywilly> I'm never going to look at mickey mouse the same
+<nickr>  the mouse is a huge, evil corporation, in the worst sense of the word
+<chillywilly> nickr: do you think in the movie dogma that the whole mooby refernce is a poke at disney?
+<nickr> probably
+<nickr> iirc
+<chillywilly> it'a a bit too similar
+<chillywilly> er, it's
+<chillywilly> crazymike is convinced that is the case
+<chillywilly> galeon 1.2 crashes too much
+<jbailey> chillywilly: I like Robin Williams comments about Mickey mouse:
+<jbailey> "Remember that to your 3 year old, it's not a cute little mouse, it's a 6 foot fucking rat!"
+<chillywilly> hehe
+<chillywilly> robin williams rules
+<chillywilly> I saw his stand-up show the other day
+<chillywilly> when he came down here
+<chillywilly> er, up
+<chillywilly> whatever
+<chillywilly> http://www.roaringpenguin.com/hollings.php3
+<chillywilly> you know even if I have a bootlegged mpeg
+<dtm> @#(*)
+<chillywilly> if I like the movie that much
+<chillywilly> I would probabyl buy the VHS tape
+btami (btami@dialin75-isdn1.emitel.hu) left irc: 
+<chillywilly> or DVD
+<dtm> @(*#)
+<dtm> well i do like Disneyland though
+<dtm> and i like a lot of Disney movies
+<dtm> not all of em
+<dtm> Disneyland is a model corporation in terms of operations and personnel.
+<chillywilly> I'm on an all out disney boycott
+<chillywilly> brb
+<dtm> so there's a lot to learn from and emulate
+<chillywilly> caorline is here
+<chillywilly> er, caroline
+<dtm> but that doesn't mean we have to patronize their stuff seriously
+Action: chillywilly is away: I'm busy
+<dtm> chillywilly: tlel her i said HIGH.
+<dtm> some disney movies are quite inspiring and educational, even the recent ones
+<dtm> i really liked Beauty and the Beast part 2
+<dtm> and Hercules
+<dtm> i especially liked watching them on a $1000 portable dvd player in a jet plane
+<dtm> when i traveled often, i rented the dvd player for like $20-30 round trip plus 3 or 4 movies
+<dtm> and two batteries
+<dtm> that was grate
+Action: chillywilly is back (gone 00:04:28)
+<chillywilly> we're going to get pizza
+<chillywilly> don't tell da masta
+<chillywilly> ;)
+Action: chillywilly is away: dinner
+<dtm> PIZZAS#(
+<dtm> I WNAT L[IZZAS.
+<dtm> i'm going to make pizza tonight.
+<dtm> chilly sealed it
+<dtm> @#(*)
+<nickr> I was gonna order pizza
+<nickr> but at the momentI realized that I had the money to, I was already cooking rice
+<dtm> rice is healthier
+<dtm> i ate rice last night
+<dtm> you eat rice tonight and i'll eat pizza, ok?
+jbailey (jbailey@HSE-Toronto-ppp319038.sympatico.ca) left irc: "Client Exiting"
+ToyMan_home (CaryKittne@c5300-3-ip240.albany.thebiz.net) left irc: "Client Exiting"
+jbailey (~jbailey@HSE-Toronto-ppp318041.sympatico.ca) joined #gnuenterprise.
+<derek> i want pizza
+<Harald1> derek: well I've got no pizza, but a question:
+<Harald1> which trigger events are implemented, just those from http://www.gnuenterprise.org/docs/techref/x81.html or all?
+Action: chillywilly is back (gone 01:13:01)
+<derek> um where do you see 'all' :)
+<derek> i would say the ones in the techref 'should' be implemented
+<derek> but these are things that unless one of the developers are using them, probably are not getting properly regression tested
+<Harald1> all are those in the VALIDTRIGGERS list
+<derek> so the safe answer is in the source code you can get a list of what is there in code
+<derek> then only by testing can you determine if they work
+<Harald1> err no list
+<derek> (bad answer i know)
+<derek> but i would 'assume' that if its in the techref
+<derek> its in the source and it SHOULD work
+<derek> i.e. if you use one that is the tech ref and it doesnt work please file a bug against it
+<Harald1> actually I am not using them at moment, but look at how they work/ are implemented
+<derek> Harald1: i forget you wanting to 'develop' gnue tools
+<derek> or use them
+<nickr> dtm: I had rice and ramyun, not just rike by itself
+Action: derek has bad memory so i apologize if i already asked
+<derek> i like to know how people fit into the picture
+<Harald1> derek: at the moment I'm far from "developing". I am trying to get an overview, and understand how certain things are done
+<derek> i guess the real question was
+<Harald1> and I looked at the technical reference and saw the sentence "We would like to increase the number of supported languages as time permits" in the trigger part, and now I try to understand how triggers work
+<derek> 'do you plan on using gnue as an end user' or 'as a developer'
+<Harald1> derek: mostly as a developer
+<Harald1> because I still go to university. but I think will soon (in a few years) be a big option. So knowing it is not only interesting, but also useful :)
+jbailey (jbailey@HSE-Toronto-ppp318041.sympatico.ca) left irc: "Client Exiting"
+Harald1 (Peter1234@pD9E0EE03.dip.t-dialin.net) left irc: Read error: 104 (Connection reset by peer)
+chillywilly (danielb@d133.as14.nwbl0.wi.voyager.net) left irc: Read error: 113 (No route to host)
+chillywilly (~danielb@d153.as4.nwbl0.wi.voyager.net) joined #gnuenterprise.
+Harald1234 (Peter1234@pD9E0EE03.dip.t-dialin.net) joined #gnuenterprise.
+Harald1234 (Peter1234@pD9E0EE03.dip.t-dialin.net) left irc: Client Quit
+crazymike (~crazymike@mke-65-31-133-230.wi.rr.com) joined #gnuenterprise.
+crazymike (crazymike@mke-65-31-133-230.wi.rr.com) left irc: 
+jbailey (~jbailey@HSE-Toronto-ppp318254.sympatico.ca) joined #gnuenterprise.
+crazymike (~crazymike@mke-65-31-133-230.wi.rr.com) joined #gnuenterprise.
+<crazymike> chillywilly: are you there???
+crazymike (crazymike@mke-65-31-133-230.wi.rr.com) left irc: 
+jbailey (jbailey@HSE-Toronto-ppp318254.sympatico.ca) left irc: "Client Exiting"
+jbailey (~jbailey@HSE-Toronto-ppp319372.sympatico.ca) joined #gnuenterprise.
+crazymike (~crazymike@mke-65-31-133-230.wi.rr.com) joined #gnuenterprise.
+<crazymike> what do you need to type to open "Open Office"???
+<crazymike> i forgot
+jbailey (jbailey@HSE-Toronto-ppp319372.sympatico.ca) left irc: "Client Exiting"
+jcater (jason@HubA-mcr-24-165-193-24.midsouth.rr.com) left irc: "Client Exiting"
+<chillywilly> soffice beeatch
+<crazymike> ummm
+<crazymike> do I have star office or open office???
+<chillywilly> but it of course has to be in the PATH
+<crazymike> soffice doesn't work
+<chillywilly> doesn't matter
+<chillywilly> type the absolute path ir change into the dir
+<chillywilly> s/ir/or
+<crazymike> the dir if Open Office???
+<crazymike> s/if/of
+<chillywilly> uh, yea
+<crazymike> i am in there
+<chillywilly> btw, girls suck
+<crazymike> yup
+<chillywilly> I am going gay
+<chillywilly> ;)
+<crazymike> i don't know shit
+<crazymike> I can't find the shit
+<crazymike> the dir I was in is the original one after extracting the tarball
+<chillywilly> danielb@mishka:/home/mike/OpenOffice.org641$ ls
+<chillywilly> LICENSE  LICENSE.html  README  README.html  help/  program/  setup@  share/  soffice@  spadmin@  user/
+<chillywilly> it's right there silly
+<crazymike> thats the one???
+<crazymike> i thought that was the other one
+<crazymike> nevermind
+<crazymike> then I was in it
+<chillywilly> why you all up in my bidness?
+<crazymike> but soffice doesn't work...you said it doesn't matter
+<chillywilly> how deos it not work?
+<chillywilly> er, does
+<crazymike> you said to type soffice
+<crazymike> bash: soffice: command not found
+<chillywilly> it has to be in the PATH of course
+<chillywilly> or do
+<chillywilly> ./soffice from that place
+<crazymike> you said that or go intot eh dir
+<chillywilly> ./ is the current dir
+<crazymike> i installed wine...are you mad at me now???
+<crazymike> :)
+<chillywilly> nope
+<chillywilly> ok
+<crazymike> ok
+<chillywilly> retsart another terminal and type soffice from anywhere
+<chillywilly> er, start
+jbailey (~jbailey@HSE-Toronto-ppp318712.sympatico.ca) joined #gnuenterprise.
+<chillywilly> hmm, that's fscked up
+<chillywilly> hey jeff
+<crazymike> bash: soffice: command not found
+<chillywilly> yea, yea
+<chillywilly> I just said it didn't work
+<crazymike> oh...ok
+<chillywilly> ym bad
+<chillywilly> you must relogin
+<chillywilly> er, my
+<crazymike> relogin???
+<chillywilly> login again
+<crazymike> into what???
+<chillywilly> lougout then log back in
+<crazymike> i can't at the moment
+<chillywilly> for gnome
+<crazymike> i am dowloading shit
+<chillywilly> then you ain't going to get those changes to add the Open Office path
+<crazymike> i will when i do it
+<crazymike> i did what i needed to do in there already
+<chillywilly> look in /home/mike/.bash_profile once
+<chillywilly> you tell me what I did ;)
+<chillywilly> this is your mission grasshopper
+<crazymike> export PATH=$PATH:/home/mike/OpenOffice.org641
+<chillywilly> yep
+<chillywilly> however you need a new login shell
+<crazymike> for???
+<chillywilly> which rewuires you logout and log bakc i
+<chillywilly> then it will reread that file
+<crazymike> ahhh
+<crazymike> i will
+<chillywilly> the shell will that is
+<crazymike> later
+<chillywilly> so you have told me
+<crazymike> yup
+<chillywilly> here's the kicker
+<chillywilly> how can I make that kast change shorter
+<chillywilly> er, last
+<chillywilly> what substitues for the HOME dir?
+<chillywilly> muuuwahahahaa
+<chillywilly> this is unix 101 now
+<chillywilly> resistence is futile
+<chillywilly> girls suck!!!
+<chillywilly> god this shit is getting so fucking old
+<crazymike> lol
+crazymike (crazymike@mke-65-31-133-230.wi.rr.com) left irc: 
+jbailey (jbailey@HSE-Toronto-ppp318712.sympatico.ca) left irc: "Client Exiting"
+--- Sun Mar 24 2002

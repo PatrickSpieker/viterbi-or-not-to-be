@@ -1,0 +1,37 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.2006-03-28" author="Peter Sullivan" contact="mailto:psu@burdonvale.co.uk" enddate="28 Mar 2006 12:00:00 -0800" startdate="28 Mar 2006 12:00:00 -0800" subject="[IRC] 28 Mar 2006" title="GNUe Application Platform">
+
+<topic>Navigator</topic>
+
+<p>Further to 
+<kcref subject="[IRC] 27 Mar 2006" title="GNUe Application Platform to replace Navigator?" />, 
+Jason Cater (jcater) said that his view of GNUe Application Platform (GAP) 
+was that it was a way of <quote who="Jason Cater">providing clients a cleaner 
+way to get at</quote> the GNUe Common Library <quote who="Jason Cater">and 
+each other</quote>. He noted that <quote who="Jason Cater">right now, all 
+client apps are based on GClientApp</quote>, which <quote who="Jason Cater">takes 
+care of initializing some services</quote> - <quote who="Jason Cater">gap is 
+providing a way for all components of a tool to get at that "service" 
+cleanly</quote>. For example, the current way of sharing connections was 
+messy, and caused problems when refactoring code. And this was just connections - 
+there were other componants that tools might want to share. GAP, by contrast, 
+<quote who="Jason Cater">would allow any component of any tool to declare 
+what components of other tools it needs - without creating an __init__ 
+nightmare</quote>.</p>
+
+<p>James Thompson (jamest) added that <quote who="James Thompson">it also 
+enables an application to only load the components it needs - like in my 
+case I have lots of</quote> based on the core GNUe client application 
+code - <quote who="James Thompson">however not all need the command line 
+parsing, or configuration file support - so in those cases I wouldn't make 
+a request for that service and it wouldn't load</quote>. He hoped that 
+<quote who="James Thompson">eventually, if it proves out, all the other 
+gnue apps could use gap as their base - and with the simple high level UI 
+common setup you could say "I love designer, I do.  I want to use it to edit 
+all my python apps" - you could take designer's startup config file (that 
+says which components to load) and remove the gui layout parts, leaving 
+only it's trigger editor component</quote> to make it an editor for generic 
+python code, not just GNUe triggers.</p>
+
+</section>
+
+

@@ -1,0 +1,301 @@
+psu (psu@public1-wear2-3-cust32.midd.broadband.ntl.com) joined #gnuenterprise.
+dsmith (dsmith@oh-strongsvillecadent1-1c-203.clvhoh.adelphia.net) left irc: "later.."
+ninja (rossg@r89-sniHS1.S.loxinfo.net.th) left irc: Read error: 60 (Operation timed out)
+ninja (rossg@203.146.54.173) joined #gnuenterprise.
+psu (psu@public1-wear2-3-cust32.midd.broadband.ntl.com) left irc: Read error: 104 (Connection reset by peer)
+ninja (rossg@203.146.54.173) left irc: Read error: 113 (No route to host)
+SachaS (~Sacha@dialup-196-176.wasp.net.au) left #gnuenterprise ("Client Exiting").
+jamest (~jamest@adsl-64-216-111-42.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+johannes_ (~johannes@M697P006.adsl.highway.telekom.at) joined #gnuenterprise.
+johannes (~johannes@M697P006.adsl.highway.telekom.at) left irc: Read error: 111 (Connection refused)
+jamest (~jamest@adsl-64-216-111-42.dsl.tpkaks.swbell.net) left irc: "[x]chat"
+ToyMan (~stuq@smtp.dstoys.com) joined #gnuenterprise.
+ToyMan (~stuq@smtp.dstoys.com) left irc: "Client Exiting"
+ToyMan (~stuq@170-215-205-41.glv.frontiernet.net) joined #gnuenterprise.
+Remosi (dahoose@port-210-54-58-151.jet.net.nz) left irc: "Client Exiting"
+ToyMan (~stuq@170-215-205-41.glv.frontiernet.net) left irc: "Client Exiting"
+wombat2 (~mpalmer@server.baileyroberts.com.au) joined #gnuenterprise.
+<wombat2> How precisely does DCL integrate with the rest of GNUe?  The Debian packages make no mention of the rest of GNUe, or Python, or anything else I've seen mentioned about GNUe...
+<chillywilly> it's not really integrated yet
+<wombat2> OIC
+<chillywilly> bayonne isn't either
+<wombat2> Can they work with the AS and other components?
+<chillywilly> AS?
+<chillywilly> app server?
+<wombat2> Application Server, yes
+<chillywilly> the appserver hasn't been oficially released
+<chillywilly> right niow gnue can do 2-tier very well
+<chillywilly> and gnue-sb will have some 2-tier solutions for small business...but the appserver needs more work before e have official gnue packages
+<chillywilly> thus is the state of things
+<derek> no it doesnt work with appserver
+<derek> there are actually forms for dcl in the contrib directory
+<derek> i.e. there should be forms to manage all of dcl's administrative tables
+<derek> as well as a parital Work Order form
+<derek> the initial DCL stuff for GNUe will be making a non web based version of DCL
+<derek> with the framework
+<derek> the 1.0 roadmap for DCL dictates we move logic and layout even more
+<wombat2> So DCL doesn't actually use any of the GNUe framework?  It's out on it's own path?
+<derek> so that GNUe DCL can be made to call the same 'backend' functions as the php version
+<derek> wombat2: yes and no
+<derek> right now today it can 'stand alone'
+<derek> and likely will for some time as we dont want to 'force' the GNUe architecture onto existing DCL users
+<derek> instead there really will be a 'mirrored' front end for DCL using the GNUe Framework (some of this is in DCL cvs already)
+<derek> the other part will be making DCL more modular for reuse
+Action: derek is hoping that core reusued functions will actually be in python
+<derek> and not php
+<wombat2> Not a fan of PHP?
+<derek> and php can get to them via XML-RPC or the likes
+<derek> i never said that
+<derek> php has its place
+<derek> enterprise applications isnt one of them
+<derek> its a great 'web' tool
+<wombat2> Heh
+<derek> just like perl is a great text processor/sys admin tool
+<derek> python is more an 'application' writers language
+<derek> php / perl are great for quick things
+<derek> or things that are more 'hacked' together
+<derek> they degrade a bit in the application long haul
+<wombat2> That's why I've never really gotten into python, then - not much of an application writer...
+Action: derek still maintains a good amount of stuff in php
+<derek> but point blank dcl started as a web tool (toy)
+<derek> and has matured a lot
+<wombat2> Independent of GNUe?
+<derek> i think its definitely more in the application space
+<derek> and is only going further there
+<derek> that is one reason i think mike was interested in working with gnue
+<derek> it seemed to make more sense of where he wanted to take dcl
+<wombat2> One thing I didn't see on the website is any "testimonials".  I'm looking at getting GNUe accepted as the replacement for Access here at work.  Is anyone willing to stand up and say "at this moment in time I'm doing X with GNUe"?
+<wombat2> I can speil about "it's good, it's free, it's what we should use" until I'm blue in the face, but my bosses like to say "Hmm, we're not going it alone".
+<derek> yes
+<derek> we have
+<derek> large university that uses it (one you would recognize)
+<derek> and 
+<derek> very large local government using it
+<derek> neither will go on record to talk about it, but likely would talk to an individual about it
+<derek> we have a magazine reseller (one of the largest if not the largest) that will use and speak publically about it
+<derek> a small bookstore using as backend to a l'ane Point of Sale
+<derek> and two or three more companies getting ready to transition to it
+<wombat2> What sort of uses are they putting it to?  Ephemeral stuff, or core business functions?  And are they using the prewritten stuff, or doing a lot of development of their own stuff?
+<derek> we have 2 companies that supoprt and consult on it out side the united states
+<derek> one in lithuania and one in argentina
+<wombat2> And, finally, are they places where core GNUe developers work, or are they selecting it independently?
+<derek> all development of own stuff
+<derek> some are 'core' functions, but not 'CORE' functions
+<derek> i.e. things that are core to deparmental functions
+<derek> but not core to enterprise operations
+<wombat2> So they're using the Designer with Forms and Reports to write all of their stuff?
+<derek> no one is using it for financials, human resources
+<derek> wombat2: yes
+<wombat2> I know I'm generalising severely here, I'm just trying to get a feel for GNUe's use
+<derek> cept those that are adopting as we speak
+<derek> they will be using GNUe Small Business
+<derek> gnue-sb
+<derek> mostly for backend manufacturing
+<derek> it is being written as we speak so they are 'early adopters'
+<wombat2> I'll put my cards on the table here, so you know where I'm coming from
+Action: derek glances at Vee2d2 ;)
+<derek> Vee2d2: is the owner of one such business :)
+<wombat2> My boss, many years ago, started writing an Access app to do some of the mgmt of this company.  It's now blown out, and I was hired (mostly) to convert it to something more reliable
+<wombat2> Since a 300MB chunk of Access data doesn't scale real well
+<wombat2> And they also want to be able to sell it
+<chillywilly> hehe
+<derek> ok toyman owns a company similar position
+<derek> there is tool pgadminII
+<derek> it will quickly convert your access to postgres
+<derek> you can then use gnue wizards to make forms from those tables VERY quickly
+<derek> the only real work you will have to do that isnt 'grunt' work
+<wombat2> Derek: I doubt pgadminII will handle this DB
+<chillywilly> "access doesn't scale well" <-- that's funny ;)
+<derek> er 'busy' work
+<derek> is the 'code' to do 'special' things
+<derek> all data handling will be handled for you
+<derek> as to the reselling
+<wombat2> There is a converter to turn Access forms into GNUe forms?
+<derek> they would be on odd ground re: GPL
+<derek> wombat2: no, but there isnt much of a need
+<derek> if you have the table you can pretty much run a wizard that does all the work
+Action: wombat2 web-searches for pgadminII
+<wombat2> OK, I soooo needed to find pgadminII months ago...
+<wombat2> derek: You said that selling modules for GNUe would be on odd ground - why?
+dsmith (dsmith@oh-strongsvillecadent1-1c-203.clvhoh.adelphia.net) joined #gnuenterprise.
+<derek> wombat2: i will discuss in 10 minutes
+<derek> can you wait
+<wombat2> yep.
+<derek> ok
+<derek> odd because its well odd
+<derek> let me explain
+<derek> 'technically' i think you are ok
+<derek> becasue your forms/reports etc are 'files' that get read and processed by the framework
+<derek> so technically they aren't 'linked'
+<derek> similar to i can write a proprietary php page (and if php were gpl) it could still process it and im ok
+<derek> BUT
+<wombat2> BUT?  Sorry, I was off doing other stuff, didn't see you come back in (as it were <g>)
+<derek> there will be lots of 'reusable' stuff you will lock yourself out of
+<derek> i.e. you couldnt build off others work that is GPL in the form/report/navigator space
+<wombat2> But the application I write will be GPLd.
+Action: derek is just stating i would consider GPL'ing it even if you wanted to resell it
+<derek> ah ok :)
+<derek> never mind it woudlnt be odd then
+Action: derek totally pro selling GPL applications :)
+<wombat2> Hmm, I should have mentioned that I am a Free Software Nut at the start
+Action: derek read things that weren't there
+<wombat2> Wombat, BE Hons, FSN
+<derek> i apologize
+<derek> <wombat2> I'll put my cards on the table here, so you know where I'm coming from
+<wombat2> That's OK.  I guess you get a lot of people saying "I'm going to write it, and I'm not going to give anything back, so there you hippies"
+<derek> <wombat2> And they also want to be able to sell it
+aaron_ (coyote@msp-24-163-193-174.mn.rr.com) left irc: Read error: 110 (Connection timed out)
+<derek> generally people that preface with 'let me be honest about want i want to do' and then say they want to sell gpl stuff
+<derek> do so because they are questioning 'can i get away with it' :)
+Action: derek shouldnt have read that into the statement because clearly its not what you said :)
+<wombat2> No, I was linking into the "I need references to support my GNUe decision", by explaining why I wanted the info
+<wombat2> OK, now that's sorted out... <g>
+<derek> we probably get a little more of it than most projects because people are still kind of 'amazed' that someone would write free enterprise software
+<derek> somehow they cna see hippies writing graphics programs and web browsers but not financial packages
+<derek> in a nutshell to your question
+<derek> gnue is right on the cusp
+<derek> it is far enough along its suitable for production work
+<wombat2> Seems like a perfectly sensible thing to do.  ERP stuff is moving more into the infrastructure arena (like OSes and DBMSes) and free software is best for infrastructure software
+<derek> but i would be lying to you if i didnt tell you, that you woudl be on the bleeding edge
+<wombat2> Love the taste of blood <g>
+<derek> that is, not every feature is there
+<derek> enough features exist to (imho) replace access
+<derek> but you might have to deal with some 'quirks' here and there
+<derek> that said
+<derek> i will say we are hardcore IRC folks and give major play to people actively using framework
+<derek> read: its not uncommon to have things patched w/in the hour
+Action: derek notes we dont promise that, just its not unheard of
+<derek> i woudl tell you, but you likely know... ms access has quirks too, and you surely wont get them solved in an hour :)
+Action: derek generally tells people, if you have used lots of free software in the past and have patience
+<wombat2> Always good to have active development.  Yeah, Access has quirks aplenty, and you just have to live with them...
+<derek> gnue is probably right for you, and it would help us and others alot for you to invest time
+<derek> if you needed something yesterday and your boss gets mad and likes to blame stuff on things that have no logically reason for being blamed just cause he is mad
+<derek> gnue probably isnt ready for you
+<wombat2> Well, I'm convinced.  I think GNUe has a bright future.  My boss is a bit mad, but he's sensible enough to listen to *why* something went TU instead of taking my head off at the neck.
+Action: derek has no idea if that 'helps' you or not
+<wombat2> Proof of his madness is trying to store 300MB of data in access...
+<derek> rofl
+Action: derek finds often times the same guy trying to fight a 300mb access database is the same one that cant understand why it takes 10 minutues longer to make the query 'efficient' ;)
+<wombat2> Who's the DD who packages all the GNUe stuff for Debian?
+<derek> Vee2d2: are you around... im thinking of maybe doing some more gnue-sb tonight
+<derek> jeff bailey
+<derek> and you can flame him all you want
+<derek> in fact you can tell him i told you to do so
+<wombat2> Why would I flame him?
+Action: derek laughs evily ....
+<derek> um cause i asked?
+Action: derek notes we have a 'good' time developing software
+Action: wombat2 snickers
+<derek> if you stick around this channel long enough
+<derek> you will wonder if we ever do real work
+<derek> search google on about any topic and this channel comes up in the top 10
+<wombat2> I think that's obvious enough...
+<derek> try madgoat love for example ;)
+<wombat2> I think I'll avoid asking about that one... <g>
+<wombat2> Any suggestions on when Jeff might be in the channel?  Does he have a regular time?  I'm interested in talking to him about packaging up more stuff.
+<derek> um
+<derek> what do you want packaged?
+Action: derek has him working on getting 0.4.3 packaged
+<derek> he is changing how its packaged a bit to make it easier
+<derek> also he wants to make dcl more automated to install
+<wombat2> Not so much wanting to get it packaged, but helping package it
+<derek> wrt: configuring database
+Action: wombat2 === mpalmer@debian.org
+<derek> i.e. he wants help :)
+<derek> he is on weekend sometimes
+<derek> mostly i think after work
+<derek> he is in toronto (iirc) EST
+<derek> so probably in around 4pm EST
+<derek> he might read logs in which case hopefully he will contact you
+<derek> if i see him i will tell him to read log if i remember (no promises im an alzheimers candidate) ;)
+<wombat2> I might have a poke in the source and get myself more familiar with the system and then e-mail him (if we haven't found each other before then)
+<wombat2> It's a little early for me to be making any concrete decisions just yet <g>
+Action: derek is away: movies bbl
+Nick change: wombat2 -> wombat_
+<chillywilly> well...
+<wombat_> well, well, three holes in the ground?
+<chillywilly> yea somethin' like that
+<chillywilly> I think you're going to fit in 'well' here
+Action: wombat_ groans
+<chillywilly> you started it
+<chillywilly> you have to take it like a man now
+<wombat_> I think you're being a bit of a 'bore'
+Action: chillywilly releases the mad goats
+Action: wombat_ ponders the advisability of IRC cascades
+<chillywilly> whatever those are...
+<wombat_> cascades, or bores?
+<wombat_> A bore is a hole drilled under ground to get at the water table (popular here in .au)
+<chillywilly> I know
+<chillywilly> "IRC cascades"
+<chillywilly> is that like an escapade but on irc?
+<wombat_> A cascade is (usually) a great big long thread of puns.  Popular in one newsgroup I frequent, and I'd be surprised if one or more denizens here weren't familiar with the group in question
+<chillywilly> yea...ppl need to get a life
+<chillywilly> let me know when you find one ;)
+<wombat_> I'd heard that you could pick them up at your local nightclub (people kept saying to me "get a life, go to a nightclub") but I've looked around and can't seem to find one.  Those places are too dark to look properly, though.
+<chillywilly> yea, well there was a nightclub in chicago where some ppl go trampled to death
+<chillywilly> I think I'll pass
+<wombat_> Yeah, I heard about that one.  Not nice.
+Action: chillywilly is 2 hours north of chicago
+<wombat_> No wonder you're chilly
+<chillywilly> ;P
+<chillywilly> well my nick is of course a reference to the excellent cartoon pen-GNU-in on the woody woodpeackger show
+<chillywilly> woodpecker too
+<wombat_> I never watched much Woody Woodpecker, I'm sorry to say.  Doesn't seem to get much airtime here
+<chillywilly> I don't wacth it much now a days either
+<chillywilly> I'm not sure they play it on any channels anymore
+<wombat_> Who was it made by?
+dsmith (dsmith@oh-strongsvillecadent1-1c-203.clvhoh.adelphia.net) left irc: "later.."
+<chillywilly> I dun recall
+<jcater> mooo
+<chillywilly> my system is a bit loaded as I am installing debs
+<chillywilly> dinner?
+<chillywilly> ;P
+Vee2d2 (~vin@c66.169.136.41.ts46v-07.otn-c1.ftwrth.tx.charter.com) left irc: Remote closed the connection
+Vee2d2 (~vin@c66.169.136.41.ts46v-07.otn-c1.ftwrth.tx.charter.com) joined #gnuenterprise.
+<jcater> Mike!
+<Vee2d2> heya Jason!
+<Vee2d2> that was rather strange.. 
+Vee2d2 (~vin@c66.169.136.41.ts46v-07.otn-c1.ftwrth.tx.charter.com) left irc: Remote closed the connection
+Vee2d2 (~vin@c66.169.136.41.ts46v-07.otn-c1.ftwrth.tx.charter.com) joined #gnuenterprise.
+<Vee2d2> ok.. so that was strange too
+<Vee2d2> X keeps crashing
+<Vee2d2> =/
+<jcater> yuck
+wombat_ (~mpalmer@server.baileyroberts.com.au) left irc: 
+larard (tom@66-108-164-106.nyc.rr.com) joined #gnuenterprise.
+Action: derek thought you just wanted to see if you coudl get jcater to say Mike! twice
+<Vee2d2> =)
+<jcater> Derek!
+<jcater> bah
+<jcater> not as exciting
+<derek> Jason!
+<derek> hmmm lacks someting
+<derek> DonutFreak!
+<derek> ah much better
+Action: derek has a new idea for GNUe fund raising
+Action: derek puts on best 'telemarketer' voice
+<derek> dials a number
+<derek> Yes sir, my name is Derek, I'm from the Fraternal Order of Donut Eaters.
+<derek> We are having our annual Donut Ball.
+<derek> Can we count on you for a $100 donation?
+<derek> FODE needs your support.
+Action: derek is back (gone 02:52:08)
+<jcater> Trouble!
+<jcater> bah
+<jcater> can't use that
+<jcater> several ppl might get confused
+Action: jcater looks towards chilly
+<jcater> :)
+<jcater> bah
+Action: jcater is giving Designer mouth-to-mouth
+<chillywilly> wassup?
+<chillywilly> someon call me?
+<jcater> but she just won't come back around
+<chillywilly> someone*
+<jcater> I think jamest really did her in
+<jcater> nah, just me
+<chillywilly> bah
+<chillywilly> ;)
+<Vee2d2> brb
+chillywilly (danielb@mke-24-167-199-83.wi.rr.com) left irc: "brb"
+--- Sun Mar  2 2003

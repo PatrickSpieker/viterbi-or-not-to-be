@@ -1,0 +1,57 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.09Sep2002" enddate="08 Sep 2002 23:00:00 -0800" startdate="08 Sep 2002 23:00:00 -0800" subject="[IRC] 09 Sep 2002" title="Format for loading Application Server object definitions">
+
+<topic>Application Server</topic>
+<topic>Designer</topic>
+
+<p>Ariel Cal&#242; (ariel_) was <quote who="Ariel Cal&#242;">reviewing 
+the code in _featuretest and</quote> wondered why
+<quote who="Ariel Cal&#242;">the field type in geas_meta_object is 
+varchar</quote> rather than a look-up to another table of allowed values
+for Object types. This would save space, mean that 
+<quote who="Ariel Cal&#242;">only 'known' types can be inserted</quote> 
+and that <quote who="Ariel Cal&#242;">specific info 
+on the type can be stored in other fields of geas_meta_type, for 
+example if type is 'function' the language or wathsoever</quote>. 
+Jan Ischebeck (siesel) said <quote who="Jan Ischebeck">The idea 
+was to only use one table at the beginning, and split it up into 
+multiple tables later.</quote> Ariel said that, as of time of 
+writing, <quote who="Ariel Cal&#242;">geas_meta_object is filled 'by 
+hand' - i guess tomorrow a parser will do the job, but which 
+language will be used? gsd, idl, odl, godl or what?</quote>
+Jan said <quote who="Jan Ischebeck">there will be many parsers which 
+can fill the internal structures</quote>. It was suggested that the 
+intial version of appserver should not focus on objects until the 
+basics were done. Jan said <quote who="Jan Ischebeck">since I 'm not 
+100% conviced that odl/odmg 3.0 ... is the best choice for internal 
+structures etc. I would prefer a own format first. I think using 
+.gsd as a start would be ok. we can later add all that ODMG features 
+to appserver and to the godl / odl parsers</quote>. Ariel said 
+<quote who="Ariel Cal&#242;">separation of code and definitions is not a 
+bad thing, it improves reusability - you can improve the code for a 
+single method without reloading/recompiling the whole thing</quote>. 
+Jan felt <quote who="Jan Ischebeck">I don't think, that putting code 
+and definition together is a must, but it makes things much easier.
+btw. appserver could provide a "load new code into function X" method, 
+which solves that problem. I just want to program like in f.e. python 
+and not in the way like C, where I always have to change two file 
+(.h, .c) if I modify the interfaces</quote>.</p>
+
+<p>Ariel asked <quote who="Ariel Cal&#242;">what about the old 
+'gcd'</quote> as a format? Jan said <quote who="Jan Ischebeck">I've 
+started writing a parser for it, but there seems to be a heaps of 
+reasons not to use 'gcd', I just don't remeber :)</quote> Ariel suggested 
+<quote who="Ariel Cal&#242;">can i improve gcdparser.py just to 
+convert all the</quote> existing .gcd (GNUe Class Defintion) definitions 
+from the draft GNUe package proposals into the .gsd (GNUe Schema 
+Definition) format. Jan said <quote who="Jan Ischebeck">that would be 
+great :)</quote>. Ariel said this would probably be a one-off conversion - 
+<quote who="Ariel Cal&#242;">what we need is only the output, i.e the 
+gsd's</quote>. Jan felt <quote who="Jan Ischebeck">it would be much 
+easier to use geas to build up its db structure and then use designer 
+to create a gsd out of it</quote>, but Ariel was 
+<quote who="Ariel Cal&#242;">not sure it will work, because 'type' in gcd 
+doesn't create classes but just reusable definitions</quote>.</p>
+
+</section>
+
+

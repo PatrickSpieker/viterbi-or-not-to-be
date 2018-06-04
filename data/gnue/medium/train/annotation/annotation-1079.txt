@@ -1,0 +1,62 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.07May2002" enddate="06 May 2002 23:00:00 -0800" startdate="06 May 2002 23:00:00 -0800" subject="[IRC] 07 May 2002" title="Designer internals">
+
+<topic>Designer</topic>
+
+<p>Marcos Dione (StyXman) said he had <quote who="Marcos Dione">been 
+poking into designer' code. 'vrything looks good, except for Incubator. 
+I can't find where elements is defined.</quote> Jason Cater (jcater) 
+said <quote who="Jason Cater">those are pulled directly from 
+forms/src/GFParser.py iirc</quote>. Marcos asked whether 
+<quote who="Marcos Dione">all the available widgets are *hardcoded* 
+in that file? I thought you loaded from some xml file...</quote>
+James Thompson (jamest) said <quote who="James Thompson">That 
+file is the xml to internal widget mapping so is hard coded - 
+but that file is only the parser mapping</quote>.</p>
+
+<p>Marcos asked <quote who="Marcos Dione">ok, whar does that big 
+structure mean? I see that Attributes list the valid attributes, 
+and some mappings, but what do the rest of keys mean?</quote>
+James <quote who="James Thompson">thought that was documented 
+somewhere</quote> but couldn't find it. He explained:</p>
+
+<quote who="James Thompson">
+<ul>
+<li>BaseClass = python class to map to</li>
+<li>Required = must exist in file</li>
+<li>SingleInstance = only create one</li>
+<li>ParentTags = container object in the xml file 
+(example block can contain entry but entry cannot 
+contain block)</li>
+</ul>
+</quote>
+
+<p>Marcos asked <quote who="Marcos Dione">where are the 
+available widgets defined? I see that those are just for 
+loading already built forms...</quote>. James said that 
+<quote who="James Thompson">all publicly available (via 
+the gfd) widgets are defined in there</quote> and 
+<quote who="James Thompson">they are implemented in 
+forms/src</quote>.</p>
+
+<p>After some discussion about the Incubator module, 
+James explained <quote who="James Thompson">Incubator does 
+something that will eventually be cleaned up but it works for 
+now - we have no clean API for designer to work with a form 
+yet</quote>. Jason was not sure that was fair - 
+<quote who="Jason Cater">I think designer plays nicely with 
+forms objects - the big API deficiency is in drawing the 
+objects - i.e., the wx driver needs a better designer-compat 
+api</quote>. He did not <quote who="Jason Cater">foresee 
+Incubator changing too terribly much (as it works w/forms, 
+reports, ....)</quote> James said he 
+<quote who="James Thompson">was speaking of the hacks to 
+draw things</quote>.</p>
+
+<p>Jason pointed out that <quote who="Jason Cater">the 
+beauty of designer is that if jamest adds a l33t new widget 
+to the Forms client, then designer can create/modify that widget 
+without any programming in designer</quote>. It needed better 
+documentation, however.</p>
+
+</section>
+

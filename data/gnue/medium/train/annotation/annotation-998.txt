@@ -1,0 +1,174 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.15Nov2002" enddate="14 Nov 2002 16:00:00 -0800" startdate="14 Nov 2002 16:00:00 -0800" subject="[IRC] 15 Nov 2002" title="Feature plans for 0.5.0 and later">
+
+<topic>Forms</topic>
+<topic>Designer</topic>
+<topic>Navigator</topic>
+
+<mention>Keith</mention>
+
+<p>Derek Neighbors (revDeke) said he might need to do a 
+few point releases of 0.4.x, depending on how long James and Jason 
+took to do 0.5.0. James Thompson (jamest) said 
+<quote who="James Thompson">most of 0.5.0 
+shouldn't be major, we've been looking into it - it'll be major on the 
+user visible side of things, but internals shouldn't kill us</quote>. 
+Derek was <quote who="Derek Neighbors">thinking the win32 driver and 
+curses drivers will be the biggies - not necessarily in 'dev' time but 
+in testing time - assuming basic curses support didnt make it into 
+0.4.1</quote>. James said <quote who="James Thompson">i'm pretty sure 
+it will be _almost_ feature complete for 0.4.1 - but I haven't tested 
+in a few days</quote>. Derek was impressed - <quote who="Derek Neighbors">i 
+dont think it needs to be 'complete' for 0.4.1 just like i dont think win32 
+would need to be complete for 0.5.0 - but more 'reasonably' complete 
+'first preview' give us lots of feedback :)</quote></p>
+
+<p>James said 
+<quote who="James Thompson">i imagine 0.5.0 will have the new gfd format 
+and maybe the start of win32 - the new gfd format will be a HUGE gain 
+for forms - as you'll be able to do l33t things in it</quote> due to 
+the <quote who="James Thompson">complete seperation of layout from 
+logic</quote> - <quote who="James Thompson">you'll be able to mirror 
+fields on multiple pages, mix things about any way you like. I think 
+0.5.0 is this year - it's become an itch we've got to scratch - you 
+should get a layout manager system as well</quote>. Keith Jagrs (KeithJagrs) 
+noted <quote who="Keith Jagrs">there's only one month and a half left to new 
+year's eve</quote>. Jason Cater (jcater) said <quote who="Jason Cater">our 
+history is to release either right before or on a major holiday</quote>. 
+Derek agreed - <quote who="Derek Neighbors">well 0.5.0 before end of Q4 
+02 would be great - while there are lots of holidays generally that means 
+time off work - which means to a degree gnue time :)</quote> He was 
+<quote who="Derek Neighbors">worried about this gfd switch - will we 
+have conversion tools? or open in design and save - /me is only worried 
+as im getting ready to do a boat load of forms</quote>. James said 
+yes - <quote who="James Thompson">I think we're pretty good about 
+changing things and hiding it</quote> - <quote who="James Thompson">it's 
+worth it in any case - this is something I wanted from day 1</quote> - 
+<quote who="James Thompson">it's how sql*forms from oracle did it</quote>. 
+Jason said <quote who="Jason Cater">jamest and I were discussing and 
+decided we really couldn't wait any longer - as the closer to 1.0 we get, 
+the more stable the gfd format must be - so if we are going to do a 
+"correction" in our format - we better get it on!</quote>. Also, 
+James pointed out that they were planning much more documentation 
+with the 0.5.0 releases, so would rather change the format before 
+documenting it rather than after! He had always wanted to 
+<quote who="James Thompson">seperate the logic from the layout in 
+gfd - when I started I wanted something out the door fast - so I blended 
+them which was a bad, bad thing - but it was quick, i was just learning 
+python while coding, i was young and needed the money</quote>. 
+Nick Rusnov (nick) sympathised - <quote who="Nick Rusnov">we've all been 
+domn that route - but you end up just spending all your money on gold 
+chains and skintight pants.</quote></p>
+
+<p>Jason noted <quote who="Jason Cater">you realize with this separation
+I will quite literally be able to do a converter</quote> to get 
+existing Oracle SQL*Forms working as GNUe Forms instead - the only 
+other issue was Oracle's specialist PL/SQL trigger logic. Derek 
+said <quote who="Derek Neighbors">well i think ultimately we will be 
+better than sql*forms for many reasons</quote> James said 
+<quote who="James Thompson">we are better now in many respects</quote>. 
+<quote who="James Thompson">layout they have us - stability of the 
+painter they had us - abilities of the painter we kill them - painter 
+= deisigner</quote> But <quote who="James Thompson">forms is more 
+powerfull than their client IMHO</quote>.</p>
+
+<p>Later, looking at the feature plans, as discussed in 
+<kcref subject="[IRC] 08 Nov 2002" title="Feature plans for GNUe" />, 
+Derek Neighbors (derek) asked <quote who="Derek Neighbors">for 
+forms what happened to 0.4.1 release? we should leave them on 
+there as complete, no?</quote> - <quote who="Derek Neighbors">i 
+think it makes for a nice history as well</quote>. James said 
+that the feature plans <quote who="James Thompson">start w/ 
+0.5.0</quote>. Derek said <quote who="Derek Neighbors">there 
+are features that are missing (i assume these are possibly not 
+comprehensive) - in which case i will throw out the feature 
+and you all can determine where it best fits</quote>. He 
+emphasised that it was up to James and Jason, as the main 
+coders, to decide which version a feature belonged to -
+<quote who="Derek Neighbors">i.e. you could say we will never 
+support that, we will support it after 1.0 sometime or yeah we 
+need that lets decide where it goes</quote>. James noted that 
+he and Jason were looking to tidy these up as part of the 
+0.4.1 release anyway - they knew there were some duplicates 
+and inconsistancies.</p>
+
+<p>Derek asked <quote who="Derek Neighbors">what is grid view 
+mode?</quote> James explained it 
+<quote who="James Thompson">converts a std form to look like 
+pgaccess - it's a 'shut up users that keep asking for pgaccess 
+on my systems even though pgaccess is slow and buggy' 
+feature</quote> Derek asked about a <quote who="Derek Neighbors">a 
+native grid widget</quote> to replace the current rows="10" 
+functionality, as discussed previously in many threads, as far 
+back as <kcref subject="[IRC] 28 Jan 2002" title="GNUe vs E/AS" />. 
+He realised this was mostly cosmetic, but 
+<quote who="Derek Neighbors">again this is high priority it 
+could be post 1.0 - but thats what im asking ... should it be pre 
+1.0 and if so, how pre 1.0 - im thinking the blocks/fields things 
+might make it easier to implement</quote>. He also questioned 
+<quote who="Derek Neighbors">the need for a qt driver pre 
+1.0</quote> - ideally he would like to find a volunteer from 
+outside the core developers to write this 
+<quote who="Derek Neighbors">like happened with gtk2 one -
+i.e. i would like to see a qt driver - just hate to see critical 
+resources on it, again i understand the scratch an itch so its 
+comment not a complaint</quote>.</p>
+
+<p>He added <quote who="Derek Neighbors">most of my other stuff 
+was questions for designer, but looks like its plan isnt produced 
+yet. The three things i have there 
+<ol>
+  <li>good mask editor</li>
+  <li>starting of schema editor</li>
+  <li>trigger editor capabilities</li>
+  <li>cvs integration</li>
+  <li>project capabilities</li>
+  <li>gpd editor</li>
+</ol>
+- schema and gpd</quote> (GNUe Process Definition - the file format 
+for Navigator) <quote who="Derek Neighbors">editor are becoming a 
+big weakness i see as i am starting to write applications</quote>. 
+<quote who="Derek Neighbors">project capabilities and trigger 
+editor would be nice but i can hobble ok w/o - mask editor and cvs 
+integration would be gravy :)</quote> - also a 
+<quote who="Derek Neighbors">reports design capability</quote>.</p>
+
+<p>Andrew Mitchell (ajmitch) said <quote who="Andrew Mitchell">a 
+good mask editor could have a set of preset masks to use</quote>. 
+Jason said there was already some functionality for this, but it 
+needed some more polish. The way it worked at the moment was that 
+you defined a format in the gnue.conf file, and could then 
+reference it from GNUe Forms Definitions (.gfd).</p>
+
+<p>Derek also asked 
+for a <quote who="Derek Neighbors">calendar picker</quote> for 
+date format fields - <quote who="Derek Neighbors">i think about 
+every platform can support as well - i see it as nothing mroe 
+than attribute of entry of some kind</quote>. James was not sure 
+of the need. Derek gave a practical example - 
+<quote who="Derek Neighbors">im planning airline travel - i want 
+to travel week of christmas - i want ot leave monday before christmas
+and return friday after christmas - do you know those dates w/o 
+looking at a calendar? unfortunately i dont - its much easier for 
+the application to show me a calendar than to hunt one down 
+:(</quote> Andrew asked <quote who="Andrew Mitchell">hmm, when was 
+wxCalendarCtrl added to wxpython? is it in 2.2.x ? :)</quote> 
+Derek agreed  it was not a <quote who="Derek Neighbors">high priority 
+thing - it was one of those ithink we need, could be post 1.0 pre 
+1.0 thats your call</quote>. James wondered if this would be better 
+done as a plug-in. Derek felt this was pretty core, but 
+<quote who="Derek Neighbors">im not opposed to abstracting it so 
+that other things can be done as well - i.e. i realize there will be 
+lots of similar requests some we agree with some we dont</quote>.</p>
+
+<p>Andrew, after carefully donning a 
+<quote who="Andrew Mitchell">flameproof suit</quote> asked 
+<quote who="Andrew Mitchell">what sort of timeframe are we 
+estimating for these releases? :)</quote> Derek said 
+<quote who="Derek Neighbors">there was talk about trying to have 
+0.5.0 by end of december early january if real life (tm) treats 
+everyone well - i think predicating anything beyond that for other 
+releases makes little sense</quote>.</p>
+
+</section>
+
+

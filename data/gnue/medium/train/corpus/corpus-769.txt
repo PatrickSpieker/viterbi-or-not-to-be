@@ -1,0 +1,653 @@
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+fajun (~fajun@61.131.82.144) left irc: Read error: 104 (Connection reset by peer)
+ariel__ (~ariel@ppp-217-133-244-77.dialup.tiscali.it) left irc: "Uscita dal client"
+jcater (~jason@cpe-024-165-193-024.midsouth.rr.com) joined #gnuenterprise.
+<ajmitch> hi jcater
+<jcater> hi
+<ajmitch> hmm designer doesn't start
+<jcater> grrr
+Action: ajmitch does cvs up
+<ajmitch> i could have caught a cvs copy between commits
+<jcater> hmm
+<jcater> what's the error
+<jcater> maybe I forgot to cvs add a file
+<jcater> as it comes up here
+<ajmitch> DB000:     GDebug.printMesg(2,"%s.%s doesn't appear to be a valid wizard" % (package.__name, base))
+<ajmitch> DB000: AttributeError: 'forms.wizards' module has no attribute '_BaseInstance__name'
+<ajmitch> but you've committed since then
+<jcater> oh, yeah
+<jcater> that's old
+<ajmitch> master/detail wizard died on me yesterday, i'll see if it does today
+<ajmitch> i've got to figure out that stuff too
+<ajmitch> eg i have a customer table, a cnotes table, & a notes table here
+<ajmitch> where cnotes has id from the other two tables (associative entity)
+<jcater> shared notes?
+<ajmitch> something like that i think
+Action: ajmitch didn't do the db :)
+<ajmitch> appears to have worked today
+<ajmitch> (the wizard, on another pair of tables)
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+<ajmitch> i need to print/read the userguide i think :)
+<ajmitch> designer is turning out quite well, you're doing a good job :)
+<jcater> just wait
+<jcater> in a week or so, you will see some major improvements
+<ajmitch> excellent
+Action: jcater is using designer for a big project at the moment
+<ajmitch> ah
+<jcater> so I'm having to deal with all it's oddities
+<jcater> and if I have to deal with an oddity more than two or three times, 
+<ajmitch> navigator doesn't currently get forms from the current dir, does it?
+<jcater> I get p*ssed off
+<ajmitch> understandable
+<jcater> no
+<ajmitch> ok, am wondering if i should let it do that
+<jcater> but since I'm the main designer coder, if I get p'd off, then I end up fixing it :)
+<ajmitch> it seems like each UI driver in navigator has form loading code
+<jcater> yeah
+Action: jcater wouldn't really recommend anything but the UIwxpython right now
+<jcater> the others need to be subclassed from it
+<ajmitch> it's what i'm using
+<ajmitch> hmm, how to do master-detail when there's a many-many relationship?
+<jcater> egads
+<jcater> are you trying to make me think or something?
+<jcater> :)
+<ajmitch> my apologies, it must be late there :)
+<ajmitch> then again, it's friday night here
+Action: jcater has spent last 6 hrs filling a moving truck
+<ajmitch> ugh
+<jcater> yip
+<jcater> that describes how I feel
+<ajmitch> now i have to try & figure out labels from cryptic field names
+<ajmitch> hmm, from a describe statement:
+<ajmitch> | status   | enum('open','posted','printed','emailed') |
+<jcater> um
+<jcater> yuck
+<ajmitch> will have to limit combo box to those, i guess :)
+Action: ajmitch is building forms from a very simple web-based accounting system
+<jcater> which one?
+<ajmitch> custom one written by boss which only he uses :)
+<jcater> lol
+<ajmitch> this is mainly just a way for me to learn forms & designer
+<ajmitch> oh dear, now this is a screwup
+<ajmitch> customer.id is numbered starting at 10000, invoice.cid is numbered from 0, the php code must mangle that before a query
+<ajmitch> how ugly
+<ajmitch> perhaps not
+Action: ajmitch takes a blunt object to the database
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+<ajmitch> yo psu
+<ajmitch> how are you?
+<psu> fine
+<psu> and
+<psu> as a special treat just for you
+<psu> http://kt.zork.net/GNUe/gnue20020713_37.html
+<ajmitch> wooo!
+<jcater> woohoo
+<jcater> late night reading material
+Action: ajmitch will have to look out for assignment papers sometime soon
+<ajmitch> takes awhile for mail to get here :)
+siesel (jan@dial-195-14-233-100.netcologne.de) joined #gnuenterprise.
+<siesel> morning
+<siesel> psu: thanks for you great work
+Action: siesel is reading KC GNUe #37 
+<psu> thanks
+<psu> not sure how many name checks I gave you this time ;-)
+<psu> ajmitch got several
+<jcater> psu: as always, thanks for doing the GNUe KC
+<jcater> I'd like to make one coment re: 5. Security release of DCL
+<jcater> s/coment/comment
+Action: jcater thinks that statements like dneighbo's should be qualified
+<psu> i did wonder about that
+<jcater> i.e., "It is HIGHLY suggested that you update." --> "..if you run DCL on an untrusted network"
+<jcater> as I hate scare tactics like that
+Action: jcater imagines we are one of the only ppl running a "public" dcl instance
+<jcater> s/only/few
+<psu> I assume the exploits discovered are theoretical rather than actual?
+Action: ajmitch was just on phone
+<jcater> yes
+<ajmitch> hi siesel
+<ajmitch> psu: yeah, i do tend to talk a bit on irc :)
+<jcater> but it's just like that NOLA notice last week
+Action: ajmitch needs to code more, talk less
+<jcater> if you are running on an untrusted network, then the package has issues
+<ajmitch> yes
+<jcater> but of course the question then has to be raised, why are you running it on an untrusted network??
+<jcater> but that's just my $0.02
+<ajmitch> stupidity? :)
+<jcater> oh, also
+<jcater> well, you know
+<jcater> I don't mean to sound elitist or anything
+<jcater> but, seriously
+<jcater> the first question my accounting ppl at work always ask is
+<jcater> can anyone access their systems
+<jcater> and we are a small company
+<jcater> if someone's installing an accounting package for someone
+<jcater> and makes it publicly accessible
+<jcater> well, they better either be a well-intentioned family member
+<jcater> or fired one
+<jcater> ok, I'll stop ranting
+<jcater> about security
+<jcater> I would like to make one comment regarding CVS designer
+<jcater> (that maybe psu could put in the next KC)
+<jcater> The cvs version of designer is undergoing some needed restructuring... if cvs is broken and you are relying on cvs designer to get your work done, then you might want to tag your gnue/designer module as the 0.3.x branch
+<psu> duly noted
+<jcater> That branch is only for bug-fixes
+<jcater> the outcome will be worth the frustration.
+<jcater> thanks
+Action: jcater took great care not to get any typos in that statement :)
+Action: ajmitch will probably still play with cvs designer, but keep an old copy around :)
+<jcater> that would be advisable
+Action: jcater tries not to break designer when he commits
+<jcater> but sometimes they slip by me
+<ajmitch> i'll try & catch bugs
+<ajmitch> and staple them to the wall until you've fixed them
+Action: siesel likes searching typos ;)
+<jcater> lol
+<jcater> to both
+siesel (jan@dial-195-14-233-100.netcologne.de) left irc: "(work)"
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise ("work also").
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+Arturas (arturas@bit.codeworks.lt) joined #gnuenterprise.
+<Arturas> Hello
+<jcater> hi
+<jcater> nite
+jcater (~jason@cpe-024-165-193-024.midsouth.rr.com) left irc: "waaayyyy past my bedtime"
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+<ajmitch> hi Arturas
+<Arturas> Hi ajmitch :)
+Arturas (arturas@bit.codeworks.lt) left #gnuenterprise ("reboot...").
+Arturas (arturas@bit.codeworks.lt) joined #gnuenterprise.
+<ajmitch> running windows? ;)
+<Arturas> hei!
+<Arturas> no - linux, but this other machine and i finished configuring my window manager & login shell  :)
+<ajmitch> reboot??
+Action: ajmitch would think that a reboot is completely unnecessary :)
+<Arturas> well,..... 'reboot' is shorter that 'i will logout and then login and then i'll be here again'    :)
+<ajmitch> hehe
+<ajmitch> 'relogin' then :)
+<ajmitch> a shame jcater left
+<ajmitch> [ajmitch @ ajmitch src] gfcvs invoices.gfd 
+<ajmitch> Gdk-ERROR **: BadWindow (invalid Window parameter)
+<ajmitch>   serial 4178 error_code 3 request_code 15 minor_code 0
+<ajmitch> window appeared for 1/2 a second & then disappeared
+<Arturas> for me this error looks not like GNUe error
+<ajmitch> no, it's something with wxWindows
+<Arturas> can you see any other form?
+<Arturas> maybe the border is 100000px or something like that...
+<ajmitch> yes, i can see other forms
+<ajmitch> i made that broken form in designer 
+ariel_ (~ariel@ppp-217-133-243-142.dialup.tiscali.it) joined #gnuenterprise.
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+<Arturas> it seems we have bug while trying to load any numeric record from database
+<Arturas> if source of the form is:
+<Arturas>   <page name="pgTimesheet">
+<Arturas>     <block datasource="dtsTime" name="blkTime">
+<Arturas>       <label name="lblItemID" text="Item ID:" width="20" x="1" y="1"/>
+<Arturas>       <entry field="item_id" name="inpItemID" width="10" height="1" 
+<Arturas>         x="1" y="2"/>
+<Arturas>       <label name="lblAssignmID" text="AssignmID:" width="20" x="1" y="3"/>
+<Arturas>       <entry field="assignment_id" name="inpAssignmID" width="10" height="1" 
+<Arturas>         x="1" y="4"/>
+<Arturas>       <label name="lblDate" text="Date:" width="20" x="1" y="5"/>
+<Arturas>       <entry field="day" name="inpDay" width="10" height="1" 
+<Arturas>         x="1" y="6"/>
+<Arturas>       <label name="lblHours" text="Hours:" width="20" x="1" y="7"/>
+<Arturas>       <entry field="hours" name="inpHours" width="10" height="1"
+<Arturas>         x="1" y="8"/>
+<Arturas>       <label name="lblNotes" text="Notes:" width="20" x="1" y="9"/>
+<Arturas>       <entry field="notes" name="inpNotes" width="20" height="4"
+<Arturas>         x="1" y="10" typecast="text"/>
+<Arturas>     </block>
+<Arturas>   </page>
+<Arturas> --
+<Arturas> and data in table is:
+<Arturas>  item_id | assignment_id |    day     | hours |        notes         
+<Arturas> ---------+---------------+------------+-------+----------------------
+<Arturas>      337 |          1279 | 2002-07-01 |   0.0 | 
+<Arturas>      338 |          1282 | 2002-07-01 |   0.0 | 
+<Arturas>      339 |           739 | 2002-07-01 |   0.0 | 
+<Arturas>      340 |          1368 | 2002-07-01 |   0.0 | 
+<Arturas>      341 |          2879 | 2002-07-01 |   0.0 | 
+<Arturas> ----
+<Arturas> error is:
+<Arturas> DB000:   File "/home/users/arturas/gnue/gnue-ro-3/gnue/.cvsdevelbase/gnue/common/GDataSource.py", line 208, in createResultSet
+<Arturas> DB000:     self.__setResultSet( resultSet )
+<Arturas> DB000:   File "/home/users/arturas/gnue/gnue-ro-3/gnue/.cvsdevelbase/gnue/common/GDataSource.py", line 232, in __setResultSet
+<Arturas> DB000:     listener(resultSet)
+<Arturas> DB000:   File "/home/users/arturas/gnue/gnue-ro-3/gnue/.cvsdevelbase/gnue/forms/GFObjects/GFBlock.py", line 175, in _loadResultSet
+<Arturas> DB000:     if self._resultSet.firstRecord():
+<Arturas> DB000:   File "/home/users/arturas/gnue/gnue-ro-3/gnue/.cvsdevelbase/gnue/common/GDataObjects.py", line 364, in firstRecord
+<Arturas> DB000:     if not self._loadNextRecord():
+<Arturas> DB000:   File "/home/users/arturas/gnue/gnue-ro-3/gnue/.cvsdevelbase/gnue/common/dbdrivers/_dbsig/DBdriver.py", line 159, in _loadNextRecord
+<Arturas> DB000:     rsets = self._cursor.fetchmany()
+<Arturas> DB000: ValueError: invalid literal for float(): 0.0
+<Arturas> ---
+<Arturas> while trying execute query in the form
+<Arturas> tried to fix it, but all i managed was to find exact place where error raises
+<Arturas> file common/src/dbdrivers/_dbsig/DBdriver.py
+<Arturas> def _loadNextRecord(self):
+<Arturas>   .....
+<Arturas>   try:
+<Arturas>     rsets = self._cursor.fetchmany()
+<Arturas> --
+<Arturas> maybe this is my system\database error
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+vakYpollo (~higopico@151.Red-80-36-135.pooles.rima-tde.net) joined #gnuenterprise.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+<Arturas> hi chillywilly :)
+<chillywilly> hi
+<vakYpollo> just a question about reports.
+<vakYpollo> I have considered TeX/LaTeX as a report engine, but I have som etrouble.
+<vakYpollo> I have seen some GNUeR code to check what technology is being used.
+<chillywilly> the reports guru is not present, unfortunately
+<vakYpollo> who is he?
+<vakYpollo> (or she
+<vakYpollo> )
+<vakYpollo> (him?)
+<vakYpollo> :P
+<chillywilly> neither one of them...if you happen to see jcater (main author) or dneighbo I would ask one of them
+<chillywilly> or just "derek" (dneighbo in disguise)
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+Action: chillywilly heads off to work now
+<vakYpollo> thanks then
+<chillywilly> welcome
+<chillywilly> cya
+lupo_ (~lupo@62.225.210.176) joined #gnuenterprise.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: "woooooosh!"
+<lupo_> hi there
+Action: Arturas is away: Lunch :)
+lupo_ (~lupo@62.225.210.176) left irc: "using sirc version 2.211+KSIRC/1.1"
+alexey_ (~Alexey@techkran.vladimir.ru) left irc: "[x]chat"
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+drochaid (~drochaid@pc2-kirk1-2-cust175.ren.cable.ntl.com) left irc: "Do not meddle in the affairs of dragons, because you are crunchy and taste good with ketchup."
+<ariel_> su
+<mdean> Password:
+ToyMan (~stuq@smtp.dstoys.com) joined #gnuenterprise.
+vakYpollo (~higopico@151.Red-80-36-135.pooles.rima-tde.net) left irc: "[x]chat"
+Action: Arturas is back (gone 01:17:02)
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+<jbailey> ajmitch: You there?
+Action: jbailey is away: shower
+jamest (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+Action: jamest may actually get to GNUe sometime today
+<Arturas> hi jamest
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) left irc: "Client Exiting"
+StyXman (~mdione@modem117-adsl.capfed2.sinectis.com.ar) joined #gnuenterprise.
+<jamest> hi
+<StyXman> hi peop
+<StyXman> hey, jamest, do you know the status of scrollbars?
+<StyXman> there's a rumor here that they're working...
+jcater (~jason@cpe-024-165-193-024.midsouth.rr.com) joined #gnuenterprise.
+<jamest> um
+<StyXman> hi jcater 
+<jamest> i'm so out of the loop
+<jamest> i wouldn't know
+<StyXman> oh, ack, I'll ping jcater 
+<jamest> jcater?
+<StyXman> hey, jcater, do you know about scrollbars?
+<StyXman> there's a rumor here that they're working...
+<jcater> somewhat
+<jamest> I thought you were loafing around this weekend and wouldn't be back till monday.
+<jcater> they were introduced many decades ago
+<jcater> as a graphical element for "modern" guis
+<jcater> oh, our scrollbars
+<jcater> I haven't touched them
+<jamest> introduced is a really crappy word
+<jcater> jamest: I am loafing around :)
+<jamest> i added a <tag> and code to create the widget
+<jamest> and that is all
+<jamest> i thought someone else worked on making them do something
+Action: jcater too
+<StyXman> ah, so they had not changed
+<jcater> but don't recall any details
+<jcater> I don't use them
+<jamest> someone was doing something somewhere
+<jcater> so wouldn't know
+<StyXman> I have some ideas, wanna hear them?
+<jamest> I have 0 time right now, my mail system is partially fried, !@#!@# sysadmin is changing the system over live this morning
+<jcater> I'm not really here today
+<StyXman> :)
+<StyXman> ok, I'll hack it here, and when it's done, we'll talk about it.
+<jamest> sorry man
+<jamest> someone needs to come up with a way to hook one's brain to several bodies
+<jamest> as I swear I'll never do everything in life I want to do
+<Arturas> i have found that in common/src/FormatMasks we have at least 3 files (DateMask.py, NumberMask.py, TextMask.py) that each of them defines things like monthNames, weekdayNames over and over - wouldn't it be simplier to define all them once in BaseMask.py?
+<jcater> Arturas: I would stay out of those files
+<jcater> as you are wasting your time
+<StyXman> jcater: is that a threat? :)
+<jcater> NumberMask and TextMask aren't even implemented
+<jcater> so the code you see there is
+<jcater> a cut and paste from DateMask
+<jcater> and DateMask isn't even finished
+<StyXman> say I want to make scrollbars have some functionality. should I implement it @ uidriver level, or @ gfobject (in fact, gfscrollbar)?
+Action: Arturas sometimes hates those differences in time.... a whole day.... :/
+<Arturas> jcater: thanks :)
+Action: jcater would imagine gfscrollbar, with any wx-specific stuff in uidriver
+<StyXman> are events and triggers the same? I'm a little confused...
+<jamest> there should already be a gfscrollbar file IIRC
+<StyXman> jamest: yes, it is, but is a litlle... uh, spartan :)
+<StyXman> I mean, I see code like this in a form's trigger:
+<StyXman>       self._object.dispatchEvent(GFEvent('requestCOMMIT'))
+<StyXman> and things like this in GF files:
+<StyXman>     self._triggerFunctions={'allowedValues':{'function':self.allowedValues,},
+<StyXman> are they 'connected'?
+<jamest> events == events internal to forms - 
+<jamest>   button clicks, requests for next record, etc, etc
+<jamest> triggers == chunks of code that are attached to certain "trigger events" that are specified in the gfd, grd, etc files
+<jamest>   pre-commit, pre-update, etc, etc
+<StyXman> aha, but how are events handled by gfobjects? hacking the dispatchEvent function?
+<jamest> objects registers with other objects to listen to events
+<jamest> via a registerListener functoin IIRC
+<jamest> trigger events are hard coded into the program
+<StyXman> no, I need new 'events' on gfscrollbar...
+<StyXman> (I think)
+<jamest> so that a internal requestNEXTRECORD event would make the form attempt to switch to the next record
+<StyXman> like 'scrollUp' event, which should do something..
+<jamest> part of that switching logic fires triggers like pre-focusout, pre-focusin, etc, etc
+<jamest> oooo
+<jamest> there is a dictionary of events in the objects that listen for them
+<jamest> you can look at either GFForm or GFInstance for example 
+Action: jamest can't recall off top of head which file has them
+<jamest> you create a entry that maps an event to a specifc handler function
+<jamest> and that's it
+<jamest> i have to run for a bit
+ariel_ (~ariel@ppp-217-133-243-142.dialup.tiscali.it) left irc: "Uscita dal client"
+<Arturas> more about DateTime:
+<Arturas> in common/src/dbdrivers/_dbsig/DBdriver.py
+<Arturas> found
+<Arturas> return value.strftime(self._dateTimeFormat)
+ge (~george@207.245.39.226) joined #gnuenterprise.
+<Arturas> as far as i understand 'strftime' function gives date\time string formatted  according to locale settings
+<Arturas> but do i need localized SQL queries for database?
+<Arturas> i guess it shouldn't be there
+<Arturas> function 'strptime' should be used
+<Arturas> (if no one says anything against, i'll correct it and commit into cvs in about an hour)
+<ge> hi, i am touching gnu enterprise since yesterday. but i don't how to build up the application. could any guru tell me more?
+<StyXman> ge: you don't build, just run. 
+<StyXman> ge: you using cvs or release?
+<ge> hi, StyXman. i installed the forms in windows
+stbain (~stbain@66.207.65.76) joined #gnuenterprise.
+<ge> if i want to use financial package, i have to install Geas, right?
+<Arturas> ge: you should be able simply to click on .gfd file and open it
+<Arturas> ge: Geas: i'm afraid i don't know this
+<ge> geas is an app. server
+<ge> i think it is neccessary if i want to run in 3-tier infrastructure
+<ge> how can use the financial package, any thread?
+<ge> actually, i can't find the pachage for download
+<jamest> hi george
+<ge> hi jamest
+<jamest> the financial package doesn't exist yet
+<ge> how r u
+<jamest> well
+<jamest> we've specs on one
+<ge> ah?
+<jamest> but we've been working on the tools
+<jamest> there is also work being done on porting an accounting package to gnue
+<jcater> Arturas: self._dateTimeFormat should be set to whatever postgresql needs
+<jcater> Arturas: apparently, it is currently set with the "locale" mask
+<ge> i see
+<jamest> jcater: am I correct in saying that
+<ge> so far, i can only download and use tools ,right?
+<ge> any other packages released?
+<ge> how about CRM?
+<ge> ok, buddies, i have to go outside for a while
+<jcater> jamest: yes
+<ge> thank you so much. see you later
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+<jamest> ge: no user ready packages have been released
+<jamest> the tools are getting most the focus at this time
+<jamest> a lot of planning has been done on packages for the old GEAS
+<StyXman> so, how do I bind a function to a event? thru a eventHandler?
+<jamest> and I think someone was looking at making the new app server work with them, if it doesn't do so all ready
+<jamest> StyXman: in GFInstance.py
+<jamest>     # Incoming events
+<jamest>     self.registerEventListeners( {
+<jamest>                            # Datasource trigger events
+<jamest> is example of binding GFInstance functions to events
+<StyXman> so, if I want gfsb to have events, I just write the functions that handle the events and then register them to listen to the new events? events are global?
+<jamest> events are only passed to objects that request to listen to events
+<jamest> so not really global
+<StyXman> yeah, but I mean 'global' in the sense that anyone can listen to certain event...
+<StyXman> or I'm misunderstandin what events are for. I what the UIsb to call the GFsb's 'event' handler...
+<jcater> so UI* doesn't have to know about GF* internals, and vice versa
+<StyXman> jcater: uh?
+<jcater> yes?
+<StyXman> I don't parse your comment...
+<jcater> err
+<jcater> I have to run an errand
+<jcater> bbs
+Action: jcater is away: um, I'm away
+pirate1962 (~neighbor@phnxdslgw4poolc175.phnx.uswest.net) joined #gnuenterprise.
+Nick change: pirate1962 -> derek
+<StyXman> hi derek 
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+<derek> hello
+derek (~neighbor@phnxdslgw4poolc175.phnx.uswest.net) left irc: 
+ge (~george@207.245.39.226) left #gnuenterprise.
+<Arturas> hi Derek
+<Arturas> well, "hi" was a bit too late :/
+<StyXman> jcater: let me know when you're back, please :-/
+<Arturas> bye
+Arturas (arturas@bit.codeworks.lt) left #gnuenterprise ("Client Exiting").
+alexey_ (~alexey@195.151.214.34) left irc: "Client Exiting"
+<StyXman> j's: would you say that calling gfsb functions from uisb is bad?
+<jamest> yes
+<jamest> all that should be passed via events
+yogurt2unge (~charlie@modem117-adsl.capfed2.sinectis.com.ar) joined #gnuenterprise.
+<StyXman> but I don't get how to link events...
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+<StyXman> say, which is the difference between calling self._eventHandler and dispatchEvent?
+<jamest> you wnat to use dispatchEvent
+<jamest> 99.9% of the time
+<jamest> that sends the event to the objects that have registered to listen to it
+<StyXman> but most of the examples use the other one...
+<StyXman> aha, but the other does not?
+<jamest> huh?
+<StyXman> calling eventHandler...
+<jamest> sigh, maybe someone changed something
+<jamest> IIRC _eventHandler was a dictionary right?
+Action: jamest doesn't have time to dig into code
+<StyXman> jamest: wx/uidriver.py:710
+<StyXman> there's the wxbuttons event handler...
+<StyXman> it calls eventhandler
+<StyXman> (sorry, typing with one hand, eating with the other :)
+<jamest> ok, that's in the initialization of the widget
+Action: jcater is back (gone 01:32:47)
+<jamest> which is IIRC setting the event handler for newly created widgets
+<jamest> I'm pretty sure you'd want to use dispatchEvent to send the actual events 
+<StyXman> ok, suppose I dispatch the event. how do I say the certain func in gfsb is listening? 
+<StyXman> call to registereventlistener in gfsb's constructor?
+<jcater> yes
+dneighbo (~dneighbo@tmp-200253.flinthills.com) joined #gnuenterprise.
+<dneighbo> jcater you see on SAP list that EDS is putting coders on SAP-DB
+<dneighbo> specifically they are looking at doing an OS/390 on Linux implementation :)
+<dneighbo> umm yummy
+stbain (~stbain@66.207.65.76) left irc: "off to work I go"
+Ford_ (~times@pD9E2C14B.dip.t-dialin.net) left irc: Read error: 110 (Connection timed out)
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+yogurt2unge (~charlie@modem117-adsl.capfed2.sinectis.com.ar) left irc: "Client Exiting"
+jcater (~jason@cpe-024-165-193-024.midsouth.rr.com) left irc: "Client Exiting"
+Ford_ (~times@pD954B0A8.dip.t-dialin.net) joined #gnuenterprise.
+StyXman (~mdione@modem117-adsl.capfed2.sinectis.com.ar) left irc: Read error: 113 (No route to host)
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+reinhard (~rm@M698P020.adsl.highway.telekom.at) joined #gnuenterprise.
+ToyMan (~stuq@smtp.dstoys.com) left irc: "Client Exiting"
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+siesel (jan@dial-213-168-91-110.netcologne.de) joined #gnuenterprise.
+<siesel> Hi all!
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+<chillywilly> hi jan
+<chillywilly> wassup?
+Ford_ (~times@pD954B0A8.dip.t-dialin.net) left irc: "[x]chat"
+siesel (jan@dial-213-168-91-110.netcologne.de) left irc: Read error: 113 (No route to host)
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: "woooooosh!"
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+jbailey (~jbailey@atlas.fundserv.com) joined #gnuenterprise.
+<jbailey> dneighbo: *ping*
+<ajmitch> morning
+<jbailey> g'day to you Mr. Mitchell.
+<jbailey> Derek appears to be asleep again.
+<jbailey> Sheesh. =)
+<ajmitch> surely not
+<jamest> sigh
+<jamest> so much for gnue today
+<ajmitch> hi jamest
+<jbailey> jamest: No hacking today?
+perlhead (~fheinz@modem117-adsl.capfed2.sinectis.com.ar) joined #gnuenterprise.
+<perlhead> Any ideas where gfcvs gets its font?
+<perlhead> It gives me a big, ugly font whith some weird encoding which does not match my locale.
+<perlhead> Tried resetting the GTK theme font... no change.
+perlhead (~fheinz@modem117-adsl.capfed2.sinectis.com.ar) left irc: "Client Exiting"
+Chipaca (~john@modem117-adsl.capfed2.sinectis.com.ar) joined #gnuenterprise.
+<Chipaca> hi all
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+<ajmitch> hi
+<chillywilly> howdy
+jamest (~jamest@hobbes.math.ksu.edu) left irc: Remote closed the connection
+reinhard (~rm@M698P020.adsl.highway.telekom.at) left irc: "Everything that is worth fighting for, is worthy fighting dirty for"
+Action: Chipaca notes # is slow today
+<ajmitch> perhaps
+<chillywilly> ?
+Action: Chipaca looks at chillywilly 
+Action: Chipaca tries not to vomit
+Action: Chipaca fails
+Action: Chipaca looks again
+<ajmitch> rofl
+<chillywilly> fuck off
+Action: Chipaca whistles innocently
+Action: chillywilly troutslaps Chipaca into oblivion
+Action: dneighbo raises hand
+<dneighbo> can i get a free trout slap
+<dneighbo> admin question for cvs
+<dneighbo> someone at user group is asking how to share 'cvs' files
+<dneighbo> i.e. say i have 5 products
+<dneighbo> myfoo, yourfoo, ourfoo, thefoo, somefoo
+<dneighbo> and i have a file foo.c
+<jbailey> symlink them.
+Action: chillywilly troutslaps dneighbo *hard*
+<dneighbo> it is used by myfoo and yourfoo
+<jbailey> Or use a library.
+<dneighbo> ok thats what i was thinking
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+<jbailey> a library is better.
+<dneighbo> well gut reaction was code right
+<jbailey> Since that's the Right Thing in all cases.
+<dneighbo> and make it a library silly
+<jbailey> but a symlink works.
+<dneighbo> but say this is legacy
+<dneighbo> how do you symlink in cvs?
+<dneighbo> i.e. how does that work
+<dneighbo> is it a file system symlink on the repository side
+<dneighbo> or is a cvs symlink
+<jbailey> you haave to go into the repository and symlink in the filesystem
+<dneighbo> ok
+<dneighbo> then if someone cheecks out foo.c from myfoo
+<dneighbo> and commits it
+<dneighbo> the other 4 projects repositories auto get updated?
+<dneighbo> if they are symlinked
+<dneighbo> and then one of them can do the same?
+<jbailey> yes
+<ajmitch> sounds ugly
+<jbailey> it is
+<jbailey> it's certainly the wrong thing.
+<jbailey> But it works, and people like it. =)
+<dneighbo> well lots of people have done bad design
+<dneighbo> so im sure this fellow isnt the first to have to address the problem :)
+<chillywilly> say you are *hypothetically* doing an xml markup of an object description language
+<chillywilly> and you wanted tp specify operation parameters
+<chillywilly> what would yo do
+<dneighbo> that would be dumb who would do that
+<chillywilly> ths way: parameter name="element" mode="in" type="Object"/>
+<chillywilly> er, <parameter
+<chillywilly> or
+<chillywilly> <paramater mode="in" type="Object">element</parameter>
+<chillywilly> cause xml is easier to parse and there's already and existing parser code base to use ;)
+jbailey (~jbailey@atlas.fundserv.com) left #gnuenterprise ("Client Exiting").
+<chillywilly> s/and/an/
+<chillywilly> defining a new on consists of creating a dict and setting up a derived class for the "handler" (a.k.a. GParser.py) ;)
+<chillywilly> s/on/one/
+<Chipaca> chillywilly: the first one
+<chillywilly> ok
+<Chipaca> chillywilly: of the two; I'd probably do neither :)
+perlhead (~fheinz@modem117-adsl.capfed2.sinectis.com.ar) joined #gnuenterprise.
+<chillywilly> Chipaca: what's that mean?
+perlhead (~fheinz@modem117-adsl.capfed2.sinectis.com.ar) left irc: Client Quit
+<Chipaca> chillywilly: I dunno what 'parameter' is, but I'd probably have it more entity-oriented (less attributes)
+<Chipaca> chillywilly: but i dunno what parameter is, so I'm probably off base
+<chillywilly> ok
+<chillywilly> it is a paramter to an operation call of an object
+<Chipaca> perlhead here says he's getting russian fonts instead of iso8859-1 in gnue, why can that be?
+<chillywilly> <operation name="insert_element" result="void">
+<chillywilly>   <parameters>
+<chillywilly>     <parameter name="element" mode="in" type="Object"/>
+<ajmitch> Chipaca: maybe arturas' latest changes to forms
+<chillywilly>     <!-- Perhaps parameters should be in this format?
+<chillywilly>     <paramater mode="in" type="Object">element</parameter>
+<chillywilly>     -->
+<chillywilly>   </paramaters>
+<chillywilly> </operation>
+<chillywilly> or, void insert_element(in Object element);
+<chillywilly> so Chipaca you would make them tags with content like:
+<chillywilly> <operation>
+<chillywilly>   <name>insert_element</name>
+<chillywilly> ...
+<chillywilly> less attributes...
+<Chipaca> yes, my xml tends to be more like that
+<Chipaca> both are equivalent, of course
+<chillywilly> well I read that a general rule it to use attributes for metadata
+<chillywilly> data about the tag
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+Action: Remosi reads KC
+<Chipaca> pah! I shpit on da metadata
+<Chipaca> :)
+Action: Remosi gets to "internationalised dates in Forms"
+Action: Remosi discovers that you guys suggest the worst possible solution "mm/dd/yy"
+<Remosi> for internal representation
+Action: Remosi goes and finds a shotgun to preform some reeducation
+Action: chillywilly listens to the new chili peppers song
+Action: Remosi ponders if cw had any say in this diabolical date mangling plan
+<chillywilly> nope
+<chillywilly> forms markup seems attribute heavy
+<chillywilly> <form width="35" height="15" title="Input Validation Test"> wouldn't you want to dot his like <form width="35" height="15><title>Input Validation Test</title>...</form
+<chillywilly> s/his/this/
+<chillywilly> eh...I suppose this is all just splitting hairs and a matter of style
+<Remosi> the one true date format is "YYYY-MM-DD" 
+<Remosi> the dateformat in KC is "mm/dd/yy", it's not y2k compliant, it's ambigious with the european "dd/mm/yy"
+<Chipaca> oh, and it sucks
+<chillywilly> KC?
+<Chipaca> s/european/non-USAean/
+<Chipaca> no, mm/dd/yy
+<chillywilly> Kansas City?
+<chillywilly> Kernel Cousins?
+<chillywilly> ;)
+<Chipaca> kernel traffic
+<Chipaca> kt.zork.net
+<chillywilly> Kernel Cousin
+<chillywilly> ok
+<chillywilly> crap only half hour to scifi bliss :)
+<Chipaca> ag! 20:30!
+Action: Chipaca runs
+Chipaca (~john@modem117-adsl.capfed2.sinectis.com.ar) left irc: "pant, pant"
+<dneighbo> chillywilly you still around oh cvs guru
+<dneighbo> guess he is out getting scifi bliss
+dneighbo (~dneighbo@tmp-200253.flinthills.com) left irc: "bye bye"
+ToyMan (~stuq@216.238.228.151) joined #gnuenterprise.
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+ToyMan (~stuq@216.238.228.151) left irc: "Client Exiting"
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+dres_ (~dres@mail.lewismoss.org) joined #gnuenterprise.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) got netsplit.
+dres (~dres@mail.lewismoss.org) got netsplit.
+Remosi (dahoose@port-62-148.jet.net.nz) got netsplit.
+nickr (~panphage@e-172-IP28.empnet.net) got netsplit.
+gnuebot (eggdrop@mail.libertydistribution.com) got netsplit.
+nickr (~panphage@e-172-IP28.empnet.net) returned to #gnuenterprise.
+gnuebot (eggdrop@mail.libertydistribution.com) returned to #gnuenterprise.
+#gnuenterprise: mode change '+o gnuebot' by ChanServ!ChanServ@services.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) returned to #gnuenterprise.
+dres (~dres@mail.lewismoss.org) returned to #gnuenterprise.
+Remosi (dahoose@port-62-148.jet.net.nz) returned to #gnuenterprise.
+dres (~dres@mail.lewismoss.org) left irc: No route to host
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+--- Sat Jul 13 2002

@@ -1,0 +1,311 @@
+*** klasstek has quit IRC
+*** reinhard has joined #gnuenterprise
+<reinhard> good morning all
+*** johannesV has joined #gnuenterprise
+<johannesV> good morning
+*** btami has joined #gnuenterprise
+<btami> good morning
+<johannesV> hi btami
+<reinhard> hi btami
+<reinhard> did you see our discussion from the day before yesterday about requery after commit?
+*** yure has joined #gnuenterprise
+<btami> reinhard: yes, but can't remember if there was any conclusion
+<reinhard> yes, that's right
+<reinhard> actually I was hoping for your input
+<btami> i can summarize my complaints
+<johannesV> bbk
+<johannesV> erm
+<johannesV> bbl
+<btami> i mean complaints of our employee
+<reinhard> first question is
+<btami> but i have start from the beginning
+<reinhard> is the requery only wanted after a rollback, or also after a commit?
+<btami> hmm, i had no time to think about it
+<btami> let me describe our situation first
+<reinhard> ok
+<btami> we have an old dos based (foxpro) payroll app
+<btami> it works with only some hundreds of peops data in most cases
+<btami> so, all of my forms starts with all data opened
+<btami> something similar as prequery="Y" for all datasources
+<btami> and all form has two F keys
+<btami> one for browse, and one for seek 1 record by a key (name, etc.)
+<btami> all modification is happening on 1 record at a time
+<btami> after user modifies something, he can save or escape
+<btami> so
+<btami> in a new gnue based inhouse form
+<btami> the "clear form" button is misleading her
+<btami> koz she thinks it only will undo only the form she modified right now
+<btami> this was 1. complaint
+<btami> th 2. is
+<btami> after pressing this button, koz she did something wrong
+<btami> she lose prequery='Y' and the current record she worked on
+<btami> was this understandable ?
+<reinhard> yes
+<btami> ok :)
+<reinhard> both issues are actually related to the "undo" function, and not to commit in any way
+<btami> yes
+<reinhard> so commit behaviour could stay as it is now?
+<btami> i think so
+<reinhard> because at the original discussion we disgressed into thinking that after commit, changes from the backend should be refreshed
+<reinhard> and thinking more about this, it seemed a bad idea
+<btami> yep
+<reinhard> so the question is
+<reinhard> would the "undo" function revert to the state of the result set before any change was made
+<reinhard> or should it refresh data from the backend
+<reinhard> risking that, for example, the current record suddenly disappears because another user has just deleted it
+<reinhard> or records "jumping around" because somebody changed a record in a way relevant for the sort order
+<btami> seems the former is a bit better
+<reinhard> ok, I think this is something that would also fit jcater's and jamest's concepts
+<reinhard> but we might want to sleep over it once again :)
+<btami> you mean "undo" will take him to the state where he was after last "save" , arn'n you?
+<reinhard> right
+<btami> ok, cool
+<reinhard> or after the last query, whatever was last
+<btami> yep
+*** yure has quit IRC
+*** btami has quit IRC
+*** lupo__ has joined #gnuenterprise
+*** jamest has joined #gnuenterprise
+*** jcater has joined #gnuenterprise
+<reinhard> bbl
+*** reinhard has quit IRC
+*** johannesV has quit IRC
+*** johannesV has joined #gnuenterprise
+*** btami has joined #gnuenterprise
+*** klasstek has joined #gnuenterprise
+<jamest> reinhard: I saw the unsed import commits
+<jamest> if you're not using pylint yet, i'd suggest it as it catches those
+*** derek has joined #gnuenterprise
+*** sjc has joined #gnuenterprise
+*** SachaS has joined #gnuenterprise
+*** reinhard has joined #gnuenterprise
+<reinhard> do we have a decent configuration for pylint?
+<reinhard> seeing my fresh and beautiful actions.py rated with -40/10 makes me feel depressed ;-)
+<reinhard> wow
+<reinhard> I like this :)
+<jamest> yes
+<jamest> i have one at home
+<reinhard> ok
+<jamest> there are only a few edits
+<reinhard> for example I would like to not require docstrings for __xxxx functions
+<jamest> do you have a .pylintrc file in $HOME
+<reinhard> and if possible it should accept u_(), _(), gDebug() et al
+<jamest> do you have a .pylintrc file in $HOME :)
+<reinhard> nope
+<jamest> hmmmm
+<reinhard> I used pylint for the first time now
+<jamest> do
+<jamest> pylint --generate-rcfile
+<reinhard> would be nice if you could commit your .pylintrc in common/utils
+<jamest> it's 2 edits atm
+<jamest> iirc
+<jamest> in [REPORTS]
+<jamest> # Include message's id in output
+<jamest> include-ids=yes
+<jamest> in [VARIABLES]
+<jamest> additional-builtins=u_,gDebug,gConfig
+<reinhard> ok
+<jamest> that should do it
+<jamest> as for the """""" on __XXXX functoins
+<jamest> I'd be tempted to just do a one liner
+<jamest> as I assume you're talking __get__ type things?
+<reinhard> no
+<reinhard> they are already excluded
+<jamest> or __call__
+<reinhard> no-docstring-rgx=__.*__
+<jamest> that msg-id on thing is nice
+<reinhard> I consider purely local functions (like __foo()) as non-docstringy
+<reinhard> I changed it to
+<reinhard> no-docstring-rgx=__.*
+<jamest> as you can go to
+<jamest> http://www.logilab.org/projects/pylint/documentation/features
+<jamest> and get notes on why it flagged it
+<jamest> also, in the masks stuff
+<jamest> i've started doing things like
+<jamest> # Copyright 2001-2006 Free Software Foundation
+<jamest> #
+<jamest> # pylint: disable-msg=R0903,
+<jamest> #  R0903 disabled as these classes represent placeholders and
+<jamest> #  as such don't have public methods
+<jamest> as that's per module disable of pylint msgs
+<jamest> disable-msg=R0903,C0103,ETC010
+<reinhard> nice
+<jamest> i figured we'd disable the msgs we were ok with in that module then occasionally replace the
+<jamest> # pylint: disable-msg=R0903,
+<jamest> with
+<jamest> # pylint: enable-msg=R0903,
+<jamest> and verify that the warnings are all what is expected
+<jamest> then re-disable it
+<jamest> i really like pylint
+<jamest> it catches errors that would be a bear otherwise
+<jamest> the only bad think about that disable of doc strings
+<jamest> thing
+<jamest> for me it's a great reminder that a method doesn't have a comment describing function
+<reinhard> I have a question about GTriggerCore
+<reinhard> there are reqirements to an object so it can have triggers attached
+<reinhard> and there are other requirements so the objects can be visible in the trigger namespace
+<reinhard> AFACT both things are implemented in GTriggerCore
+<reinhard> is there any reason why this is not separated?
+<reinhard> as there might be objects that can be seen in a trigger, but can't have a trigger themselves (for example a menu item, a toolbar, a label...)
+<reinhard> oh.....
+<reinhard> I just noticed that "can have triggers attached" would actually be GTriggerExtension
+<reinhard> so I don't understand why _localTriggerNamespace and _validTriggers are defined in GTriggerCore instead of GTriggerExtension
+<jamest> they should be 2 classes
+<jamest> i thought they were two
+<jamest> eh, wait, you said that at the bottom didn't you :)
+<reinhard> jamest: just read the last two lines from me :)
+<reinhard> yes
+<jamest> is the localTriggerNamespace the namespace from that instance down?
+<jamest> at one time i think we could attach a triger to something (say a block)
+<jamest> and self == ref to block
+<jamest> self.field == ref to field in that block
+<jamest> however I think this broken years before i went MIA
+<reinhard> this is exactly that
+<reinhard> AFAICT
+<reinhard> and so it would only make sense for objects that you *can* actually attach a trigger to
+<reinhard> I mean
+<reinhard> I could do the standard gnue evolutionary way: change it and look who screams
+<reinhard> but I figured I'd ask before :)
+<jamest> i would think so
+<reinhard> ok
+*** chillywilly has quit IRC
+<reinhard> another question
+*** chillywilly has joined #gnuenterprise
+<reinhard> each object in the trigger namespace has a _parent property
+<reinhard> do you make use of that in any way?
+<jamest> in my triggers?
+<jamest> no
+<jamest> i believe i always use absolute reference from form.
+<jamest> form.block.field
+<reinhard> ok
+<reinhard> I figure that you also don't make use of the _object property of trigger objects that let you directly access the GObj object that should actually be hidden behind it
+<jamest> i do not
+<jamest> i *think* that was added for papo folks
+<jamest> and was a horrible, horrible idea
+<reinhard> ok
+<reinhard> so you agree with removing it again
+<jamest> yes
+<reinhard> good
+<jamest> i see the trigger namespace as ideally being
+<jamest> a restricted python environment with control over imports (not implemented and not sure if possible since we do javascript to IIRC)
+<jamest> having no access to the GObjs, only to instances of the class that implements the namespace representation of that object in the trigger
+<jamest> damn, could i have said that any more complicated
+<reinhard> I think I understand, and I agree with that concept
+<jamest> there is a class that maps a var name in the trigger to an object
+<jamest> and controlls access to that object via the exposed properties
+<reinhard> right
+<jamest> methods, etc
+<reinhard> that's GObjNamespace
+<jamest> that was to hide/protect the GObj based instances
+<reinhard> exactly the class I'm cleaning up, pep8ifying etc. right now
+<reinhard> :)
+<reinhard> thus all these questions
+<jamest> :)
+<jamest> so out of curiosity, did you get above the -40 in pylint :)
+<reinhard> yes
+<reinhard> it was mostly about undefined u_
+<jamest> it's always depressing to hit those
+<jamest> also, i'm not sure if it's good form
+<jamest> but I started doing
+<jamest> __revision__ = "$Id$"
+<jamest> to get rid of that warning
+<jamest> about the missing __revision__
+<reinhard> I have actions.py with only a few warnings left that I can't do anything about because they are based in the abstract base classes
+<reinhard> I removed the __revision__ from my .pylintrc :-)
+<reinhard> and added __all__ instead
+<reinhard> which I really consider useful to have
+<jamest> what's __all__?
+* jamest recalls using it in __init__.py files at times
+<reinhard> documents what will go into "from foo import *"
+<reinhard> let me explain
+<reinhard> if you have foo.py:
+<reinhard> from bar import baz
+<reinhard> def frob():
+<reinhard>   pass
+<reinhard> ----
+<reinhard> and then somewhere you do
+<reinhard> from foo import *
+<reinhard> it does not only import frob but also baz
+<reinhard> because baz is in foo's global namespace because of the import
+<reinhard> but if you have in foo.py an additional line
+<reinhard> __all__ = ['frob']
+<reinhard> from foo import * will only import frob
+<reinhard> err I think that was a rather complicated explanation :)
+<jamest> no, i got it, we've used it in common, i just haven't needed in a while
+<jamest> so I followed
+*** johannesV has quit IRC
+*** btami has quit IRC
+*** jamest_ has joined #gnuenterprise
+*** jamest has quit IRC
+<reinhard> I'm now trying to understand what __properties__ is all about in triggers
+<reinhard> is it correct that I must do
+<reinhard> form.myBlock.__properties__.editable = True
+<reinhard> instead of
+<jamest_> iirc it was too allow you to set certain things
+<reinhard> form.myBlock.editable = True?
+<jamest_> yes
+<jamest_> it's poorly named
+<jamest_> but we were trying to avoid a namespace issue
+<reinhard> and that's done because I could be unlucky and have a field in that block with the name "editable"?
+<jamest_> right
+<jamest_> but there are better ways i'd imagine
+<jamest_> .setProperty('prop',value)
+<reinhard> I'm not sure I can think of any
+<jamest_> or
+<jamest_> setProperty(form.block.field, property, value)
+<reinhard> hmmm
+<reinhard> is this __properties__ in use at all?
+<jamest_> in a demo trigger somewhere :)
+<reinhard> so we could dare break it?
+<jamest_> i would think so
+<reinhard> actually
+<reinhard> hmmm.....
+<reinhard> I would prefer going to the most intuitive
+<reinhard> form.myBlock.editable = True
+<reinhard> because with the same argument, we could also say it's a problem that no block may have a field named "gotoRecord"
+<reinhard> because form.myBlock.gotoRecord is a function
+<jcater> and I like to name stuff __
+<jcater> __<something>__ too!
+<jamest_> jcater __a__, __x__, __j__
+<jamest_> __q__
+<reinhard> so what do you think?
+<jamest_> i think i'm ok with direct access
+<reinhard> ok
+*** jamest_ has quit IRC
+*** lupo__ has quit IRC
+*** sjc has quit IRC
+<reinhard> good night all
+*** reinhard has quit IRC
+*** klasstek has quit IRC
+*** derek has quit IRC
+*** lupo__ has joined #gnuenterprise
+*** yure has joined #gnuenterprise
+*** yure has quit IRC
+*** sacha has joined #gnuenterprise
+*** yure has joined #gnuenterprise
+*** yure has quit IRC
+*** yure has joined #gnuenterprise
+*** yure has quit IRC
+*** reinhard has joined #gnuenterprise
+<reinhard> for the logs
+<reinhard> there was something I changed yesterday in trigger namespace handling code that I'd like to see confirmation that it's ok (or notification that it's not)
+<reinhard> any trigger got a copy of the __dict__ of the "self" object into its local namespace
+<reinhard> so for a block trigger, you could do either
+<reinhard> self.firstRecord()
+<reinhard> or just
+<reinhard> firstRecord()
+<reinhard> I removed that as I considered it a bug, but now I'm not sure if it is wanted behaviour
+<reinhard> in any case I don't like it very much as it allows for sloppy programming
+<reinhard> and it will most probably hurt the "support for self in named triggers" todo item
+<reinhard> anyway, if anybody knows some background why this was done, I'd be happy to know :)
+<reinhard> cu all
+*** reinhard has quit IRC
+*** CirrusImage has joined #gnuenterprise
+<jcater> reinhard: I'm going to guess you just broke a LOT of jamest's forms
+*** sjc has joined #gnuenterprise
+*** yure has joined #gnuenterprise
+*** lupo__ has quit IRC
+*** yure has quit IRC
+*** lupo__ has joined #gnuenterprise
+*** derek has joined #gnuenterprise
+*** sjc has quit IRC

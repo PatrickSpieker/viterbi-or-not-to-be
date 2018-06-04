@@ -1,0 +1,89 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.23May2002" enddate="22 May 2002 23:00:00 -0800" startdate="22 May 2002 23:00:00 -0800" subject="[IRC] 23 May 2002" title="Storing the methods of business objects">
+
+<topic>Application Server</topic>
+
+<p>Harald Meyer (Harald1) asked <quote who="Harald Meyer">where 
+are the methods of business objects stored</quote> in GNUe 
+Application Server version 2. Reinhard M&#252;ller 
+(reinhard) said <quote who="Reinhard M&#252;ller">along 
+with the class definitions - we haven't set it in stone but 
+i strongly believe it will be in the database</quote>. 
+Yurii Rashkovskii (Yurik) asked <quote who="Yurii Rashkovskii">you 
+mean you'll store code in db?</quote>. Reinhard confirmed 
+this - <quote who="Reinhard M&#252;ller">gcd or xml will only 
+be a means to trasport it - but at runtime all this will 
+come from the db</quote>.</p>
+
+<p>Harald asked <quote who="Harald Meyer">are the set of 
+language for methods implementation a limited one?</quote>
+Reinhard said that support for methods written in languagues 
+other than python <quote who="Reinhard M&#252;ller">is very low on 
+priority - and i'm still not sure if it makes sense to support 
+compiled languages for methods</quote>. Yurii suggested this 
+might be important <quote who="Yurii Rashkovskii">for 
+the time-critical methods at least</quote>. 
+Reinhard said that <quote who="Reinhard Mueller">two appservers
+(with load balancing)</quote> could have different operating 
+systems or processors, which would make compiled method code 
+impractical, and <quote who="Reinhard M&#252;ller">i don't think 
+compiling method code gains much performance - as opposed to 
+for example optimization of db access</quote>.</p>
+
+<p>Harald asked if thie meant <quote who="Harald Meyer">that 
+if two business objects have some methods which are identical, 
+these have to be stored twice?</quote> Reinhard said yes, 
+but <quote who="Reinhard M&#252;ller">this won't be the case very 
+often (imho)</quote>. Yurii said that, on his project, 
+<quote who="Yurii Rashkovskii">attributes &amp; methods 
+are separated. methods are just reffered from the database to 
+their location at services that run that methods - so method 
+could be implemented in any language - the only one thing is 
+that this method wrapper must be able to talk w/ its 
+service</quote> He felt <quote who="Yurii Rashkovskii">that 
+storing code in db is a bad idea</quote>.
+Harald said he did not <quote who="Harald Meyer">have 
+anything against storing the code in the db. but what I 
+think would be better: don't store the methods with the 
+objects, but just referr to them</quote>.</p>
+
+<p>Yurii asked whether GNUe Application Server would 
+<quote who="Yurii Rashkovskii">start method code on each 
+request for this method execution?</quote> Reinhard said he 
+was not sure, but 
+<quote who="Reinhard M&#252;ller">i <cite>think</cite> we 
+should aim at something like - method code can be dynamically 
+changed while server is running and on next invocation new code 
+is active - but appserver caches method code and if not changed  
+then it can use (precompiled) version in cache</quote>.</p>
+
+<p>Reinhard said that a lot of these issues could be 
+reviewed once they had some working code, and could see the 
+impact of different ways of working - 
+<quote who="Reinhard M&#252;ller">we can discuss about the best way 
+to store methods for 3 years and not write a single line of code -
+i know it because the gnu enterprise project worked like this for 3 
+years until derek came and kicked our butts :)</quote>. Different 
+people had different ideas about how things would work as of time 
+of writing.</p>
+
+<p>Harald asked <quote who="Harald Meyer">can/will business 
+objects run automatically or only if the are controlled by a 
+user?</quote> For example, automatic re-ordering of products 
+that fall below minium stock levels. Reinhard said that business
+<quote who="Reinhard M&#252;ller">objects do not act, they are 
+acted upon</quote> but <quote who="Reinhard M&#252;ller">invoked 
+by the user or invoked by cron doesn't make much 
+difference</quote>. Harald said he hadn't been clear about 
+what a  business object was from Reinhard's whitepaper. 
+He asked whether <quote who="Harald Meyer">the data itself is 
+part of the business object, or is it just the definition of 
+the data?</quote>. Reinhard said that 
+<quote who="Reinhard M&#252;ller">business object can actually mean 
+both</quote> - he preferred the terms 
+<quote who="Reinhard M&#252;ller">a business object class or 
+a business object instance</quote> where a distinction was 
+needed.</p>
+
+</section>
+
+

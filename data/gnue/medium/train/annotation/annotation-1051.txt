@@ -1,0 +1,65 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.29May2002" enddate="28 May 2002 23:00:00 -0800" startdate="28 May 2002 23:00:00 -0800" subject="[IRC] 29 May 2002" title="Testing GNUe Application Server">
+
+<topic>Application Server</topic>
+
+<p>Derek Neighbors (dneighbo) volunteered to do some testing of the GNUe
+Application Server (GEAS). Jan Ischebeck (siesel) said 
+<quote who="Jan Ischebeck">if the installer is working 
+without problems, we can do a release of appserver 0.0.1 soon.</quote>
+Derek said <quote who="Derek Neighbors">not really as it relies on common - 
+or at least it should require common - which means we have to have a 
+release of common in conjunction with it</quote>. Jan clarified 
+<quote who="Jan Ischebeck">soon = after the release of common. :)</quote></p>
+
+<p>Derek tried <quote who="Derek Neighbors">playing stupid user</quote> 
+and tried to install using the instructions in  the INSTALL.cvs file. He asked 
+<quote who="Derek Neighbors">does your setup.py in appserver directory 
+check for a VALID rpc driver installed?</quote> Jan confirmed this. 
+Derek asked <quote who="Derek Neighbors">if you run appserver and no rpc 
+driver is available what happens?  do you get a good error message telling 
+you wehre to get it?</quote> Jan said this was the same as trying to use 
+an unavailable database driver - it <quote who="Jan Ischebeck">raises an 
+error with an url</quote> of the location of the driver. Derek liked
+this idea.</p> 
+
+<p>Derek noted that <quote who="Derek Neighbors">the install file</quote> 
+did not mention the changes needed to the connections.conf file to define 
+a connection for GEAS. He got the various GEAS tests working on his system, 
+with just a few minor problems that had already been fixed since the 
+CVS snapshots had been run at midnight (Central Standard Time). He 
+wondered how it managed to <quote who="Derek Neighbors">access postgres 
+w/o me giving some sort of credentials</quote>? Jan said 
+<quote who="Jan Ischebeck">its reinhard's code. It just takes your 
+LOGNAME and set a bogus password.</quote> Derek said, based on his 
+testing, <quote who="Derek Neighbors">i give it a green light 
+success</quote> - it might make sense to release this as 
+Application Server 0.0.1 along with the 0.2.0 Forms/Designer/Common
+releases. Daniel Baumann (chillywilly) did a round of 
+<quote who="Daniel Baumann">hi fives</quote> for the GEAS team, 
+and added <quote who="Daniel Baumann">wait until it does cool 
+things like objects ;)</quote>.</p>
+
+<p>There was some discussion about adding support for 
+GConditions before the 0.0.1 release. Derek re-emphasised his 
+point from 
+<kcref subject="[IRC] 29 May 2002" title="Planning for next release - and beyond" />, 
+saying it was important to start getting disciplined about 
+roadmaps, and using CVS branches for items which were not 
+due until a later release. Jan felt that 
+creating a CVS branch at 0.0.1 was a little excessive. 
+Jason Cater (jcater) said that <quote who="Jason Cater">imho, we 
+need a damn good reason to branch cvs and then remerge - 'cause 
+despite what anyone says, that's a bitch to manage :)</quote> 
+Derek said it was more a case of making 
+<quote who="Derek Neighbors">changes twice</quote>. He was open 
+to suggestions, but the overall GNUe project was beginning to 
+get too big - <quote who="Derek Neighbors">too many developers - 
+too many itches - too many products</quote> - to manage on the 
+informal basis that had worked fine until now. He said 
+<quote who="Derek Neighbors">some of it is we need good packaging 
+and testers - so we can better automate the release process - so 
+developers dont have to devote a week to 'releasing' - as that 
+would help a lot of the problems</quote>.</p>
+
+</section>
+

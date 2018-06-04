@@ -1,0 +1,296 @@
+*** krizz_ has quit IRC
+*** johannesV has joined #gnuenterprise
+<johannesV> good morning
+<sacha> morning
+*** kilo has joined #gnuenterprise
+<johannesV> hi sacha
+*** btami has joined #gnuenterprise
+<btami> good morning
+<kilo> good morning
+*** reinhard has joined #gnuenterprise
+*** johannesV_ has joined #gnuenterprise
+*** johannesV has quit IRC
+*** johannesV_ has quit IRC
+*** johannesV has joined #gnuenterprise
+*** yure has joined #gnuenterprise
+*** krouzos has joined #gnuenterprise
+<krouzos> johannesV? r u here?
+<johannesV> yes
+<krouzos> can i ask something about wx? ( i think u r working on it right?)
+<johannesV> of course
+<krouzos> it's an encoding problem, that i only have with ui wx (gtk2 works fine)
+<johannesV> what kind of problem ?
+<krouzos> i can't write greek in text boxes
+<krouzos> althought they are displayed correctly
+<krouzos> do i have to set something in wx?
+<johannesV> ah, so after jumping to the next field the text disapears ?
+<krouzos> yeah!!! that :D
+<johannesV> hm
+<johannesV> i've already sent a bug report to the wx mailing list yesterday evening
+<johannesV> the problem is a bit tricky ...
+<krouzos> tricky ehh?
+<johannesV> all unicode-characters generate a wx.EVT_TEXT event (containing a proper unicode-string)
+<johannesV> gnue-forms has to process the wx.EVT_CHAR event (to make use of it's display-handlers)
+<johannesV> and that wx.EVT_CHAR event returns a *wrong* unicode-character
+<johannesV> in fact it just returns something like the latin-1 character code of the key pressed
+<johannesV> it works fine on wx.MSW and appears to work on wx.Mac (not heavily tested the latter one)
+<krouzos> so it has to do with wx itself and not with gnue?
+<johannesV> so i want to wait for robin dunn's oppinion to this problem before taking further steps
+<johannesV> yes
+<johannesV> and no
+<johannesV> yes, because wx.EVT_CHAR is buggy
+<krouzos> ok, i just  wanted to let u know about it
+<johannesV> and no, because wx.EVT_TEXT is working correct
+<johannesV> (but it is not useable to gnue)
+<johannesV> anyway, thank's for reporting
+<krouzos> i'm just playing around here :)
+<johannesV> i'm sorry i cannot do more on this atm
+<johannesV> have to run for lunch now
+<johannesV> bbl
+<krouzos> bye
+<krouzos> and thanks
+<krouzos> >> [12:51] johannesV: it works fine on wx.MSW
+<krouzos> it doesn't work for me in windows, too
+<krouzos> wxPython2.6-win32-unicode-2.6.2.1-py24
+<krouzos> that's for after lunch :)
+<johannesV> krouzos, 2.6.2.1 is broken anyway (dropdowns), have you tried using 2.6.1 ?
+<krouzos> nope
+<krouzos> i'll do that
+<johannesV> ok, thanks for checking ... hm, i'm sure GetUnicodeKey () on wx.MSW returns proper unicode-values (at least it does for me) ...
+* johannesV away again
+*** krouzos has quit IRC
+*** reinhard has quit IRC
+*** btami has quit IRC
+*** reinhard has joined #gnuenterprise
+<johannesV> hm, reinhard, i've experimented with wx.EVT_MOUSWHEEL ...
+<johannesV> it could be quite easy to fire previous-/nextRecord events as a result of a wheel-event
+<johannesV> pb is, how to determine the block which needs to be scrolled
+<johannesV> we could bind such an event to each GFEntry, so one could use the wheel to scroll the corresponding block of each control
+<johannesV> (without havin a scrollbar)
+<reinhard> I think we should have that in 0.6 when we have layout management
+<johannesV> but that doesn't change anything to the pb, does it ?
+<reinhard> and we can define which vbox/hbox would be bound to a block regarding mouse wheel events
+<johannesV> ah, ok
+<johannesV> so that would do the trick then
+<reinhard> it could at least :)
+*** kilo has left #gnuenterprise
+*** yure has quit IRC
+*** klasstek has joined #gnuenterprise
+*** jamest has joined #gnuenterprise
+<jamest> reinhard: any timeline for moving the beta's to release?
+<jamest> i've got some stuff I'd like to commit but it's at the base app level so i'd prefer to wait till after release
+<reinhard> common or forms?
+*** sacha has quit IRC
+<jamest> common
+<jamest> minor stuff but nothing I'd want in during a beta
+<jamest> i've added docs to config system and adding a sys config dir override
+<jamest> as it has to be GNUEs install dir/etc atm
+<jamest> i'm also in navigator
+<reinhard> ok
+<reinhard> I think I might do today or tomorrow
+<jamest> no real rush as I'm going to be away from the computer till probably thursday night (wed night maybe)
+<reinhard> johannesV: what do you think about final release common+forms+appserver?
+<jamest> i can easily wait another week or so
+<reinhard> I don't see any need to wait longer
+<reinhard> actually we must do the cut now and start with 0.6 work anyway
+<johannesV> hm, i had some minor things to do in 0.5
+<johannesV> bah ... i don't mind ...
+<johannesV> you can start a release if you like to
+<reinhard> johannesV: no problem, just let me know when you are ready
+<johannesV> ok, so i give it a try today
+<reinhard> no need to hurry
+<reinhard> as jamest said he can wait till thursday without problems
+<jamest> or this weekend
+<johannesV> ok
+*** dimas has quit IRC
+*** dimas_ has joined #gnuenterprise
+*** Shufla has joined #gnuenterprise
+<Shufla> hello :)
+<jamest> hi
+<Shufla> i've found one irclog, in which you have criticised tinyerp. there's still no contribution between tinyerp-gnue?
+<reinhard> hi Shufla
+<reinhard> I can't remember to have "criticised" tinyerp
+<Shufla> ops. that's my english :)
+<reinhard> IIRC I said I would have been happy if they had approached us for cooperation, but they didn't
+<Shufla> aaah!
+<Shufla> indeed!
+<Shufla> and they (hey - fb@tiny) wasn't interested? :(
+<reinhard> and now we both are in a project state where it's not easy to cooperate much any more
+<Shufla> s/hey/he/
+<reinhard> tinyerp was developed behind the curtain completely
+<reinhard> and they only made things public when everything was finished more or less
+<Shufla> yes. they published more or less ready-to-go product.
+<reinhard> so they made it impossible for us to even ask for cooperation
+<Shufla> and right now they do not put cvs/svn to public. only for partners.
+<derek> i believe i contacted tiny erp
+<derek> for 3 years every year i would compile all similar projects and email them for collaboration
+<derek> that is how DCL got bundled under us
+<derek> ARIAS got bundled (or was going to at one time) under us
+<Shufla> me too!!11 ;) in my company we are looking for OS SME ERP solution, and tinyerp is one of which are interested in
+<Shufla> ARIAS?
+<Shufla> ok, got it
+<derek> http://www.aria-erp.org/ i think is their url now
+<derek> it was the original NOLA software
+<derek> i think jcater and myself helped port to postgres
+<derek> and did some work fixing up directory structures from original NOLA
+<derek> even started making some GNUe screens for it at one point
+<derek> it kind of died on the vine
+<Shufla> hm. I was looking at GNUe on jan'06, but as I see it's still not ready to deployment :(
+<Shufla> and my programming skills (and time) is not enough to incorporate :(
+<Shufla> well, my boss want me to implement something working "alomst" right-now
+<Shufla> but tinyerp core team isn't interested in much contribution, without becoming partner
+<reinhard> heh
+<reinhard> if you look for a project that is interested in contribution no matter from whom, gnue is the project for you :)
+*** derek has quit IRC
+<Shufla> well, I'll have to discuss that with my boss :) but he need some proofs of concept :)
+<Shufla> well, I've got to go right now, but I'm keeping my eye on GNUe :)
+*** Shufla has quit IRC
+*** derek has joined #gnuenterprise
+*** johannesV has quit IRC
+*** johannesV has joined #gnuenterprise
+*** johannesV has quit IRC
+*** johannesV has joined #gnuenterprise
+*** yure has joined #gnuenterprise
+*** reinhard has quit IRC
+*** jcater has quit IRC
+*** jcater has joined #gnuenterprise
+*** sjc has joined #gnuenterprise
+*** krizz has joined #gnuenterprise
+*** krizz has quit IRC
+*** psu has joined #gnuenterprise
+*** klasstek has quit IRC
+*** krizz has joined #gnuenterprise
+<johannesV> jamest, are you around ?
+<derek> no jcater is the round one ;)
+<johannesV> :)
+* psu is pretty round as well at times
+<derek> hey psu
+<psu> hi derek
+<derek> the blackcats appear doomed to relegation :(
+<derek> BUT
+* psu got down to 20 stone but now on way back up ;-(
+<derek> i now have full home and away kits, thanks to their dismal performance, people are sending me merchandise just to make fun of me
+<psu> we are already preparing for promotion campaign in 2006-07
+<derek> the big problem is my second favorite (the reds) are not having a good time finding the back of the net
+<psu> hmm if you get a free shirt out of it, I would say make all the fun you like
+<derek> so its been a disappointing season for me thus far
+<derek> seeing fulham take 3 points from mourhino and the chelsea scum was fun though :)
+<psu> fulham's first win vs chelsea since 1977
+<derek> do you know how liverpool made out today?
+* derek forgot to record it
+* derek wonders if match is over or might still be on live365
+* psu would just listen on bbc website 
+<psu> but i believe these are barred for furriners
+<psu> rights issues ;-(
+*** krizz has quit IRC
+<psu> only just started & liverpool are 2-0 up already
+<psu> http://news.bbc.co.uk/sport1/hi/football/teams/b/birmingham_city/live_text/default.stm
+<derek> YES!
+<psu> has a "text commentary"
+<derek> more goals than they have put in all month :) (or so it feels like)
+<derek> did you see the west ham v man city game the other day
+<derek> man city nearly equalized in the final minutes (great last 15 minutes)
+* derek notes how pitiful it is to see some excited about trivial games, just because finding a good match on tv is so rare
+<jamest> johannesV: am now
+<johannesV> for the logs: accessing a form's parameters within an On-Startup trigger fails; the reason is quite simple. _parameters of a GFForm are set by the GFInstance when activating a form (as it mixes in the user parameters there). But the On-Startup trigger get's fired by the GFForm's secondary phase init (which happens on construction of the GFForm object from XML)
+<jcater> anyone know of a decent streaming video editor?
+<johannesV> ah
+<johannesV> there he is ...
+<johannesV> jcater, which video format ?
+<jcater> avi or whatever
+<jcater> (can convert)
+<johannesV> on linux ?
+<jcater> ubuntu, fink, mac... one of the 3
+<derek> http://www.virtualdub.org/ ?
+* jcater thought that was windows
+<derek> maybe
+* jcater will boot up his laptop and test it
+<derek> there is a ton of stuff for mac, but not free software
+<johannesV> on mac i was using iMovie HD, but i'm about to change to Final Cut
+<derek> have you tried imovie?
+<jcater> yeah
+<jcater> buggy
+<johannesV> on linux i'm using ProjectX (for the mpeg stuff recorded from dvb)
+<derek> or as johannesV says Final Cut
+<derek> http://www.avid.com/freedv/
+<johannesV> reinhard was experimenting with kino, but i didn't like kino as it was very unstable (and knowing the mac world it felt uncomfortable)
+<jcater> actually, I'm trying to find one that won't forcibly downsample my format to NTSC/HD, etc
+<johannesV> so most of the time i'm using iMovie or FinalCut
+<jcater> it is an 800x600 screen capture
+<jcater> and avid & imovie both wanted to make it smaller, which distorted it
+<derek> bummer
+* jcater is making some training videos for work
+<jcater> hmm
+<johannesV> jamest, have you tried gauntlet.gfd after adding that param-stuff to On-Startup Trigger ?
+<jamest> johannesV: i didn't add parameter stuff on on-startup
+<jamest> i had a bunch of forms that used that and some recent changes to gnue-forms broke all of them :)
+* derek takes the blame
+<johannesV> hm
+<jamest> derek: you should
+<psu> i though we were only allowed to blame stuff on derek when he wasn't here
+<johannesV>   8220     jamest   <trigger type="ON-STARTUP" name="trgStartup"><![CDATA[
+<johannesV>   8220     jamest     value =  form.getParameter('param1')
+<johannesV>   8220     jamest     if value:
+<johannesV>   8220     jamest       styleFields.defaultField=value
+<johannesV>   8220     jamest
+<johannesV>   8220     jamest     value =  form.getParameter('param2')
+<johannesV>   8220     jamest     if value:
+<johannesV>   8220     jamest       styleFields.labelField=value
+<johannesV>   8220     jamest   ]]></trigger>
+<johannesV> that is from "svn blame gauntlet.gfd"  :))
+<jamest> johannesV: how old is that though
+<jamest> i know this broken recently (as in this year)
+<derek> im an equal opportunity scape goat
+<derek> here.  not here.  i will take the blame
+<johannesV> r8220 | jamest | 2006-03-12 01:01:05 +0100 (Son, 12 Mär 2006) | 2 lines
+<johannesV> start of a very basic testkit for use by other gnue packages
+<johannesV> it's not very old, isn't it ?
+<jamest> psu: i don't see the need to limit my blaming of derek
+<johannesV> :)
+<jamest> johannesV: that would have been a mistaken comit then
+<jamest> from ancient edits to my local forms
+<johannesV> well, i don't think that gauntlet.gfd is very importaint; but it showed that we have to think about params being available to On-Startup-Triggers
+<johannesV> as this doesn't work yet
+<johannesV> (which we wouldn't have discoverd if you haven't added that stuff)
+<johannesV> ok, i've to run now; maybe we could talk about this before doing the actual release then ...
+<johannesV> have a nice day !
+*** johannesV has quit IRC
+<psu> jamest: an equal opportunity blamer. good.
+<jamest> johannesV: but it DID work in forms up until just recently
+<jamest> it's what our production forms here used until a recent install from svn broke unimportant features such as our ability to process payments
+<jamest> psu: i also blame derek for the weather, my receeding hair line, any odd issues at work
+<psu> jamest - you can try blaming him for this
+<jamest> psu: pretty much anything that I care for
+<jamest> s/care/ don't care/
+<psu> http://news.bbc.co.uk/sport1/hi/football/teams/s/sunderland/4778496.stm
+<psu> Mind, as far as I can tell, derek himself is only person in whole of North America who cares ;-/
+<derek> not true.. i know one other american that likes sunderland in arizona
+<derek> he just wont admit it ;)
+* psu guesses it's the reyna link
+<derek> that is what got me started
+<derek> plus i love an underdog
+<jamest> psu: sounds like something derek would be responsible for causing
+<derek> and EVERYONE here pretty much is Arsenal or ManU fan
+* psu used to be a san diego chargers fan for similar reasons
+*** derek_ has joined #gnuenterprise
+*** derek has quit IRC
+*** derek_ has quit IRC
+<psu> nite...
+*** psu has quit IRC
+*** Amorphous has quit IRC
+*** Amorphous has joined #gnuenterprise
+*** Amorphous has quit IRC
+*** Amorphous has joined #gnuenterprise
+*** Amorphous has quit IRC
+*** Amorphous has joined #gnuenterprise
+*** kilo has joined #gnuenterprise
+*** derek has joined #gnuenterprise
+<jcater> virtualdub is really slick
+*** jamest has quit IRC
+*** kilo has left #gnuenterprise
+*** derek has quit IRC
+*** derek has joined #gnuenterprise
+*** sjc has quit IRC
+*** derek has quit IRC
+*** derek has joined #gnuenterprise
+*** krizz has joined #gnuenterprise

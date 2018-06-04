@@ -1,0 +1,120 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.03Feb2002" enddate="04 Feb 2002 00:00:00 -0800" startdate="03 Feb 2002 00:00:00 -0800" subject="[IRC] 03 Feb 2002" title="Document Storage/Content Management for GNUe">
+<topic>DCL</topic>
+<topic>Common</topic>
+<topic>Application Server</topic>
+
+
+<p>Possibly rembering the discussions from 
+<kcref startdate="20 Nov 2001 00:00:00 -0800" title="GNUe Workflow and Document Management" />
+Daniel Baumann (chillywilly) noted <quote who="Daniel Baumann">nickr is 
+supposed to be writing something</quote> for Document Management for GNUe. 
+Nick Rusnov (nickr) said <quote who="Nick Rusnov">maybe I should actially
+produce some docustore code - When I finish ratmaze and poplar I'll 
+work on docustore</quote>. He added <quote who="Nick Rusnov">ratmaze is 
+sort of like docustore actually - more like 'projectstore'</quote> 
+He went on to say <quote who="Nick Rusnov">i just realized hov I can 
+save a lot of time with diplicated work - i'll rewrite the docustore 
+spec to use ratmaze's metadata structure - and then use ratmaze as a 
+prototype</quote>. He explained <quote who="Nick Rusnov">I keep all my 
+projects and data and such in a directory tree like proj/blah/blah - 
+ratmaze basically adds metadata to this structure as separately stored 
+xml files - also enables journal entries and thumbnails and such
+</quote>. This meant he could <quote who="Nick Rusnov">have 'homepages' 
+for my projects and have them all browsable - maintaining the same 
+directory structure as the projects and allowing other info to be 
+associated with them</quote>.</p>
+
+<p>Michael Dean (mdean) wondered <quote who="Michael Dean">if it could 
+be implemented within DCL to some extent</quote>? Nick said his 
+<quote who="Nick Rusnov">metadata is in xml files rather than database 
+tables</quote>. Michael said <quote who="Michael Dean">dcl can attach 
+files to projects, but it doesn't allow you to place a structure for 
+storage into the project</quote>. Nick and Michael agreed to work 
+together on XML or database table specifications. Nick explained 
+<quote who="Nick Rusnov">What ratmaze will do is chase down all the 
+constituant parts of an index and then transform them with an xslt
+</quote> using a cgi script written in python, <quote who="Nick Rusnov">
+and using DOM to manipulate the page as I assemble it - then using 
+4Front to transform it</quote>. He had chosen 4front over Sablotron 
+simply becuase it had a Debian package.</p>
+
+<p>Nick explained he wasn't working to any particular
+Document Storage model - <quote who="Nick Rusnov">I'm creating a 
+system based on my experiences mostly, not on any document management 
+system that currently exists. I should probably look at those. 
+With this new idea to unify docustore and ratmaze I have a little 
+to think about.</quote> He had <quote who="Nick Rusnov">an oldish 
+<a href="http://green.zorcat.com/~nick/proj/document-store/gnue/spec/Document-Store/documentstorespec.html">
+proposal</a>, pre-ratmaze</quote> and also some very old DTDs for the 
+XML data, but <quote who="Nick Rusnov">If I want to merge all of this 
+into one metadata management system, then I'll have to come up with 
+some new stuff</quote>.</p>
+
+<p>Later, he explained <quote who="Nick Rusnov">the docustore platform 
+is more of a database engine for document management than a direct 
+document management system.. something like phpgroupware or dcl or geas
+or whatever would call upon it for document storage needs.</quote> They
+would use GNU-RPC to communicate with the document store, which 
+would enable them to use any supported RPC mechanism, not just 
+CORBA. He said he hadn't progressed very far with his docustore 
+ideas yet, but <quote who="Nick Rusnov">I'm good at doing things that 
+theres cohesive demand for</quote>. The thread degenerated into a 
+competition to see who could be the most demanding.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.04Feb2002">
+The next day</a>, Stuart Bain (stbain) wondered <quote who="Stuart Bain">
+now that I know python - how can I help?</quote>. 
+He would send back his <quote who="Stuart Bain">
+project assignment docs</quote>.
+Derek Neighbors (derek) said <quote who="Derek Neighbors">
+the architecture is highly usable in 2 tier mode -
+n tier doesnt play nicely yet - and applications arent 'shrinkwrapped'
+but several people use for production stuff</quote>. 
+He said <quote who="Derek Neighbors">you could use GEAS today
+if you wanted to write your own front ends to it</quote>. 
+He added <quote who="Derek Neighbors">i just want to make sure im not 
+saying geas doesnt do anything - as it does</quote>. 
+Daniel Baumann (chillywilly) <quote who="Daniel Baumann">pets poor geas -
+I still love you - don't listen to them - geas juts needs more lovin'
+</quote>.</p> 
+
+<p>James Thompson (jamest) said Stuart should pick whatever area he was 
+most interested in - <quote who="James Thompson">that's a weak answer I 
+know</quote>. Stuart said <quote who="Stuart Bain">it would be nice to have
+a system I can look at and say, "You know what? I can replace that 
+monster AIX box w/ one little Linux PC that will run your entire 
+operation." - or three boxes ;)</quote>. He was probably more 
+interested in applications than tools, 
+<quote who="Stuart Bain">but I want to know the ins and outs of the tools 
+too - tools == means to end(apps)</quote>. 
+Nick mentioned <quote who="Nick Rusnov">
+this document management system that I was working on</quote>. 
+James said <quote who="James Thompson">stbain: if you could help nickr 
+that'd be cool</quote>.</p> 
+
+<p>Stuart asked whether Nick had <quote who="Stuart Bain">
+considered an imaging interface go go w/ that? That way you can have a 
+document imaging and management architecture under one roof</quote>. 
+Nick said he <quote who="Nick Rusnov">had envisioned having any 'object'
+able to be managed under the same storegae system</quote>. OCR would just
+be <quote who="Nick Rusnov">another input method.</quote>. 
+Stuart said many Document Management systems he had seen were 
+<quote who="Stuart Bain">for HR departments - 
+they are simply document repositories for the immense amount 
+of paperwork companies have to process to keep up w/ their hundreds 
+of employees - if they want to look up my docs, they punch in my SSN 
+and scroll through the descriptions - they would <cite>love</cite> to 
+have it integrated right into their ERP software</quote> but this was 
+rarely possible as at time of writing. Nick said 
+<quote who="Nick Rusnov">Its pretty trivial, really. the key is making it 
+abstract</quote>. James noted <quote who="James Thompson">you might be 
+able to use a fair amout of common</quote> for database and RPC 
+abstraction. Nick said <quote who="Nick Rusnov">this has been 
+recommended to me - particlularly database abstraction stuff</quote>.
+James added <quote who="James Thompson">we've also got a base app in 
+there - that gives you debug levels, profiling, config file reader, 
+the start of a trigger system - and lots of other little things
+</quote>.</p>
+
+</section>
+

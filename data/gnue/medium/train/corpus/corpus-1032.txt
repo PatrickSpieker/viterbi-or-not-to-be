@@ -1,0 +1,466 @@
+<ajmitch> morning all
+dneighbo_ (~dneighbo@65.101.4.211) left irc: "away"
+ajmitch (~me@wlg1-port2.jetstart.maxnet.co.nz) left irc: Connection timed out
+rdean (~rdean@chcgil2-ar2-4-64-030-076.chcgil2.dsl-verizon.net) joined #gnuenterprise.
+ajmitch (~me@wlg1-port8.jetstart.maxnet.co.nz) joined #gnuenterprise.
+jcater__ (~jason@cpe-024-092-089-068.midsouth.rr.com) joined #gnuenterprise.
+Nick change: bkuhn -> bkuhnIdle
+jcater_ (~jason@cpe-024-165-223-104.midsouth.rr.com) left irc: Read error: 110 (Connection timed out)
+Nick change: jcater__ -> jcater_
+<ajmitch> ello jcater_
+<jcater_> i
+<ajmitch> how's designer shaping up?
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: Remote closed the connection
+Action: ajmitch merrily tries to crash forms & fails
+Nick change: jcater_ -> jcater
+<ajmitch> damn, this form works on one desktop but dies on the other :)
+<stbain|away> dneighbo: what was the solution?
+Nick change: stbain|away -> stbain
+<ajmitch> my, this is broken
+<ajmitch> [ajmitch @ ajmitch src] gfcvs invoices.gfd 
+<ajmitch> Gdk-ERROR **: BadWindow (invalid Window parameter)
+<ajmitch>   serial 3670 error_code 3 request_code 15 minor_code 0
+<ajmitch> dang i luv these error messages :)
+Action: ajmitch kicks wxPython
+<chillywilly> that's beatiful
+<ajmitch> fix it pls chillywilly
+<jamest_> ajmitch: shut off the splashscreen
+<chillywilly> ajmitch: no
+Action: ajmitch tries
+<ajmitch> well, whaddaya know? it works!
+<dneighbo> stbain: um me using my brain :)
+<dneighbo> i was thinking something in the first query was critical to sorting (with filter) for the second query to work right
+<dneighbo> but i was on crack
+<dneighbo> all is well now
+<dneighbo> ajmitch: what jamest said
+<dneighbo> i get that a lot (espeically with a few themes)
+<ajmitch> dneighbo: that's a worry
+<dneighbo> disabling splash screen makes it disappear
+<dneighbo> what is odd is it seems to happen more with certain themes or larger prequeries
+<ajmitch> i'd say threading
+<dneighbo> id say jacked up splashscreen action in wx* ;)
+Action: dneighbo just got a boat load of killer new cd's :)
+<ajmitch> yeah, but if something tries to write to the wrong X context die to race issues, it could cause it :)
+Action: dneighbo needs to get out grip and get busy
+<dneighbo> so i can make personal 'backups' of course
+<jamest_> it's when the splashscreen timeout causes the spashscreen to be removed before the login window is up
+<jamest_> on a loaded down machine or click to place window manager this happens alot
+<jamest_> i'm pretty sure others have looked at it other than me and nothing obvious is wrong in our code
+<jamest_> l8r
+jamest_ (~jamest@fh-dialup-202101.flinthills.com) left #gnuenterprise.
+jcater (~jason@cpe-024-092-089-068.midsouth.rr.com) left irc: "Client Exiting"
+<dneighbo> girls
+<dneighbo> thats right run away 
+<ajmitch> heh
+<chillywilly> I would run away if I saw you a coming
+<chillywilly> er, let's not go there now dneighbo
+rdean (~rdean@chcgil2-ar2-4-64-030-076.chcgil2.dsl-verizon.net) left irc: "Client Exiting"
+<stbain> how up to date is the latest windows release?
+<stbain> of forms/designer/etc.
+<stbain> n/m
+<stbain> 0.3.0
+<stbain> nite all
+stbain (~GunAndGiz@ip68-10-44-170.rn.hr.cox.net) left irc: "Ni!!!!!!!!!!"
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+<ajmitch> hey psu
+<ajmitch> wassup?
+<psu> nothin' much
+<psu> btw
+<psu> I was under the impression that the $1 was 
+<psu> from FSF to you rather than
+<ajmitch> yeah, nb cleared it up for me
+<psu> other way round ;-)
+<ajmitch> silly me ;)
+<ajmitch> they should get the papers back there in a couple of days
+Action: psu likes the idea of getting people to pay for working for him ;-)
+<psu> like the old joke about the guy desperate for a job filling in application form
+<psu> under "Salary expected?" he puts "Yes"
+<ajmitch> hehe
+Action: psu hugs his Debian
+<psu> I needed to convert a gif to a png
+<psu> searched in dselect for gif2png
+<psu> not only was it called that
+<psu> it was already installed ;-)
+<ajmitch> hehe
+<ajmitch> psst, it's an ESR prog
+<psu> woody CDs should arrive today
+<psu> ajmitch: is that good or bad?
+<ajmitch> if you distribute an binary application under LGPL, you are obliged to provide source, right?
+<psu> AFAIK, yes
+<psu> the diff from "full" GPL is that you cannot enforce that on 
+<psu> in the same way
+<ajmitch> that's what i thought
+<psu> however IANAL
+<ajmitch> it's not too much of a hassle, because the descendant from this app will be under GPL+LE anyway
+<ajmitch> and will hopefully be GNU :)
+<psu> which way around is GNUe CVS?
+<psu> i.e. by default do I get the 0.3.0 stable+bugfixes
+<ajmitch> nope
+<psu> or jcater's brave GNU world of pluggable designer, etc?
+<ajmitch> by default you get the fresh & juicy goodness that has been committed
+<psu> k()()l
+<ajmitch> most people have branches for stable & leave HEAD for development
+Action: psu is trying to find jcater's technotes
+<psu> anyway
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise ("work time").
+Arturas (~arturas@bit.codeworks.lt) joined #gnuenterprise.
+<Arturas> Hello
+<ajmitch> hi
+siesel (jan@dial-213-168-98-6.netcologne.de) joined #gnuenterprise.
+<siesel> hi all
+<ajmitch> hey siesel
+<ajmitch> how are you today?
+<siesel> hi ajmitch
+siesel (jan@dial-213-168-98-6.netcologne.de) left irc: "later"
+SachaS (~Sacha@dialup-196-240.wasp.net.au) joined #gnuenterprise.
+Nick change: SachaS -> SachaS_away
+sledge_ (~sledge@B92f8.pppool.de) joined #gnuenterprise.
+sledge_ (~sledge@B92f8.pppool.de) left irc: "using sirc version 2.211+KSIRC/981227-pre0.9"
+gnuebot joined #gnuenterprise.
+nickr (~panphage@e-172-IP28.empnet.net) left irc: Remote closed the connection
+#gnuenterprise: mode change '+o gnuebot' by ChanServ!ChanServ@services.
+nickr (~panphage@208.205.172.28) joined #gnuenterprise.
+Nick change: SachaS_away -> SachaS
+<SachaS> hi ajmitch
+<ajmitch> hi
+<SachaS> peter sullivan is doing a great job with the kernel cousin gnue reports.
+<ajmitch> definitely
+Action: Arturas is away: "Lunch"
+Arturas (~arturas@bit.codeworks.lt) left irc: "Client Exiting"
+dyfet ([uRSAGhlBD@dsl-65-188-113-57.telocity.com) joined #gnuenterprise.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: "woooooosh!"
+stbain (~stbain@66.207.65.76) joined #gnuenterprise.
+<stbain> greetz
+<stbain> I just showed DCL to my Operations Officer (handles building maintenance and whatnot) and he seemed pretty enthused about getting everything up and running w/ it
+<ajmitch> hey cool
+Action: ajmitch setup DCL last night, it's quite nice :)
+<stbain> his maintenance crew doesn't have access to a computer to update their WO's w/ timecards, but he's going to click on the add timecard link and just hit print so they can fill out the info on paper and he'll enter it manually
+<stbain> yah... I set it up yesterday
+<stbain> pretty slick
+<stbain> just have to figure out how I want to lay out my "Products" since I'm using it for a helpdesk application
+<ajmitch> yeah
+<ajmitch> i'm just playing with it at the moment, only got small-time stuff 
+SachaS (~Sacha@dialup-196-240.wasp.net.au) left irc: Read error: 113 (No route to host)
+<stbain> probably Email, Hardware, Software, Network, Alarm Systems, Telephony, HVAC, Plumbing, Building Maintenance, etc.
+<ajmitch> ah ok
+<stbain> but... I'll have to explain to my end users that the problem categories are listed as "Products"
+<stbain> actually, I'll probably modify the form and/or work w/ dneighbo to create a custom form for them to submit trouble calls without having to have a user login
+<ajmitch> that'll be useful - how will you do that with a form?
+<ajmitch> because the form needs username/password for the database ;)
+<stbain> not a GNUe form, a PHP form
+<stbain> or I might rip the mail gateway code off and slap a web frontend on it
+lupo_ (~lupo@217.80.84.72) joined #gnuenterprise.
+<stbain> since it allows anyone w/ email to create new tickets without having to login
+<ajmitch> ah right, someone was looking at that a week or so ago
+SachaS (~Sacha@dialup-196-131.wasp.net.au) joined #gnuenterprise.
+dyfet ([uRSAGhlBD@dsl-65-188-113-57.telocity.com) left irc: "Client Exiting"
+lupo_ (~lupo@217.80.84.72) left #gnuenterprise.
+btami (~btami@195.228.11.134) joined #gnuenterprise.
+btami (~btami@195.228.11.134) left irc: Client Quit
+dneighbo_ (~dneighbo@65.101.4.211) joined #gnuenterprise.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+siesel (jan@dial-213-168-89-113.netcologne.de) joined #gnuenterprise.
+<siesel> hi 
+siesel (jan@dial-213-168-89-113.netcologne.de) left irc: "later"
+Action: stbain looks @ dneighbo
+<stbain> I announced my plans for DCL in the staff meeting this morning. The proposal was met with much enthusiasm.
+<dneighbo_> ymmy
+<jamest> sigh
+<jamest> i wish more people were like that
+<jamest> :)
+<dneighbo_> cool
+<dneighbo_> i had sent sap a list of 'gripes' from slashdot postings
+<dneighbo_> they posted a great response
+<dneighbo_> http://developers.slashdot.org/comments.pl?sid=37305&threshold=-1&commentsort=1&tid=99&mode=flat&cid=4016958
+<dneighbo_> my personal favorite comment
+<dneighbo_> Q. Really is difficult, at present, to hack. In general, the code is VERY challenging to work with (particularly the ugly, custom built build system), although it should be said that the SAP internal developers are steadily improving all aspects of the system, and a time WILL come when external developers can see rewards for their hacking efforts.
+<dneighbo_> A. True. Although I still object to the notion that make was presented to mankind on the mount Sinai.
+jamest (~jamest@hobbes.math.ksu.edu) left irc: Remote closed the connection
+jamest (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+sledge_ (~sledge@B9210.pppool.de) joined #gnuenterprise.
+sledge_ (~sledge@B9210.pppool.de) left irc: Client Quit
+stbain (~stbain@66.207.65.76) left irc: "Client Exiting"
+StyXman (~mdione@modem126-adsl1.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<StyXman> hello!
+Chipaca (~john@modem126-adsl1.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<Chipaca> we've got to send in a patch that touches common and forms, where do we send it?
+Action: Chipaca notes it's the famous n-table select patch
+<Chipaca> dneighbo, jamest, jcater?
+<Chipaca> anyone?
+Action: Chipaca looks around in anguish
+<jcater> info@gnue.org
+<Chipaca> jcater: just there? no foo-support, no dev@bar?
+yogurt2unge (~charlie@modem126-adsl1.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<dneighbo_> Chipaca not right now cause the server is being moved
+<dneighbo_> otherwise yes normally you would send to productname-support@gnuenterprise.org as well :)
+<Chipaca> dneighbo_: thanks
+<Chipaca> dneighbo_: what's your alter-ego doing?
+<yogurt2unge> LLegue tarde
+<Chipaca> dneighbo_: meaning, why are both dneighbo and dneighbo_ in?
+yogurt2unge (~charlie@modem126-adsl1.cordoba.sinectis.com.ar) left irc: "Client Exiting"
+<dneighbo_> oh moses this one is good
+<dneighbo_> > Microsoft Technician
+<dneighbo_> > One of Microsoft's finest technicians was drafted and sent to boot camp.
+<dneighbo_> >
+<dneighbo_> > At the rifle range, he was given some instruction, a rifle, and bullets. He
+<dneighbo_> > fired several shots at the target.
+<dneighbo_> >
+<dneighbo_> >  The report came from the target area that all attempts had completely
+<dneighbo_> > missed the target.
+<dneighbo_> >
+<dneighbo_> > The technician looked at his rifle, and then at the target. He looked at
+<dneighbo_> > the rifle again, and then at the target again.
+<dneighbo_> >
+<dneighbo_> > He put his finger over the end of the rifle barrel and squeezed the trigger
+<dneighbo_> > with his other hand.
+<dneighbo_> >
+<dneighbo_> > The end of his finger was blown off, whereupon he yelled toward the target
+<dneighbo_> > area, "It's leaving here just fine, the trouble must be at your end!"
+<Chipaca> that doesn't sound like microsoft technician, that sounds like any "technician" that is really a helldesk guy, as in from an ISP
+<dneighbo_> if only they would send them all to the firing range
+<dneighbo_> you could tell a good tech from a bad one by the number of fingers he had left ;)
+<dneighbo_> jamest: why do you only have 3 fingers and thumb on your left hand again?
+Action: dneighbo_ runs for cover
+Action: dneighbo_ suspects the right answer is his aim was off one day and one of the lusers actually got a chance to fire back ;)
+<jcater> dneighbo_: I think his BUFH finally bit his middle finger off after seeing it so often
+<dneighbo_> roflmao
+<dneighbo_> jcater that was a REALLY good one
+<jamest> :)
+<dneighbo_> this is going to sound dumb, but how do you make a dos bootfloppy from win98?
+Action: dneighbo_ seems to remember doing this before, but it was an odd location to do so
+<Chipaca> dneighbo_: i can't answer that in public
+<jcater> dneighbo_: format a: /s
+<jcater> or if it is already a cleanly formatted one
+<jcater> sys a:
+<dneighbo_> invalid fucntion
+<Chipaca> dneighbo_: right click on the diskette, click on format, and tell it you want to transfer the system files, please.
+<dneighbo_> ok got it
+<Chipaca> don't forget the please, or you get the BSOD
+sledge_ (~sledge@B2bbd.pppool.de) joined #gnuenterprise.
+<Chipaca> don't overdo the please either
+<dneighbo_> i was silly and put wrong disk in that wastn formatted :)
+<Chipaca> win98 is written in intercal, so you've got to weigh your pleases
+<dneighbo_> damn isa devices on linux, make life hell :)
+<sledge_> where are those irc logs?
+<Chipaca> dneighbo_: why? what's up?
+<sledge_> oh
+<sledge_> server is moving :)
+blixem (~doraedin@ip-210-54-149-34.orcon.net.nz) joined #gnuenterprise.
+<blixem> anyone here able to answer a dcl problem perchance?
+<jamest> dneighbo_ would be your best bet I imagine
+<blixem> I'll throw the question out then in case he stops back by this screen :)
+<blixem> I was running DCL 20020215 perfectly fine with PHP 4.2.1, and postgres 7.1.2.  I upgraded PHP to 4.2.2 for the security fix and poof my DCL broke, sortof http://www.jungledrum.co.nz/~brucec/broken-dcl.png shows what happens after I log in.
+<blixem> problem is I upgrade DCL to 706, that doesn't fix it.  I roll back PHP and that doesn't fix it.
+<blixem> so I completely remove dcl and php, reinstall them both (php 4.2.1) and still get the same thing
+<blixem> I even tried connecting to a mysql db instead, to see if it was a postgres problem but it keeps doing the same thing.
+<blixem> it does this on windows, IE5.5, Netscape and on Linux Galeon and Opera.
+<blixem> any clues?
+<dneighbo_>  sigh isa kkicking my butt
+<StyXman> dneighbo_: what the problem?
+<dneighbo_> poof it broke, cause php turned globals off by default
+<dneighbo_> fix php.ini to have Globals turned on and i suspect your problem will releive itself
+Action: dneighbo_ thinks mdean is changing some things so we arent dependent on that
+<dneighbo_> but silly php changed mid stream and it bit us :(
+<dneighbo_> StyXman : i have isa nic
+<dneighbo_> i downloaded bootdisk (win98) and driver config tool
+<dneighbo_> i turned off plug and play
+<dneighbo_> and then configured the irq/io
+<dneighbo_> as irq 3 and io 300 (so i assume 0x300)
+<dneighbo_> i then in bios configured
+<dneighbo_> irq 3 as reserved
+<dneighbo_> and
+<dneighbo_> io something - something (the one with a 3) as reserved
+<dneighbo_> and rebooted
+<dneighbo_> used modconf to install ne2000
+<dneighbo_> which is ne2 (i think)
+<dneighbo_> and when asked for parameters i put
+<dneighbo_> irq=3 io=0x300
+<dneighbo_> and it failed
+<dneighbo_> can someone that knows isa help?
+<dneighbo_> am i not passing params correctly?
+<blixem> dneighbo_: geezus I swear I tried that before, thanks!
+<dneighbo_> no problem
+Action: dneighbo_ scared all the pci loving goats away?
+<jcater> isn't 3 a COM port irq?
+Action: jcater would've chosen 9 or 10 (/me usually uses 10)
+<dneighbo_> ok will try 10
+<dneighbo_> what io should i use?
+blixem (~doraedin@ip-210-54-149-34.orcon.net.nz) left #gnuenterprise.
+<StyXman> dneighbo and why did you turned pnp off?
+Action: jcater uses 0x300 usually
+<StyXman> dneighbo try passing just io=0x300
+<StyXman> which kernel version?
+<dneighbo_> 2.2.x
+ToyMan (~stuq@smtp.dstoys.com) left irc: "Client Exiting"
+<jamest> dneighbo: change irq port and use try ne driver if ne2 doesn't work
+<jamest> ooo
+Action: jamest just remembered
+<StyXman> jamest: ne is for 2.4.x, IIRC
+<jamest> i _think_ ne2 is pci card only
+Action: jamest doesn't have time to verify
+<StyXman> jamest: no, ne2kpci is for pci...
+<sledge_> locate ne.o -> /lib/modules/2.2.14/net/ne.o
+<jcater> wtf!
+<jcater> sylpheed doesn't support ldap
+<jcater> grrr
+<dneighbo_> changed to irq 10
+<dneighbo_> jcater: i love the simplicity of sylpheed but a few things are starting to irrate me about it
+<StyXman> he, mutt rocks
+<jcater> um, yeah
+<jcater> I can just see my customer service reps using mutt
+Action: jcater can't even see me using mutt
+<StyXman> jcater: did you played with scrollbars? I have a problem with free scroll...
+<jcater> I'm in the middle of a crisis at work, so no time to look
+<dneighbo_> irq 10 still fails
+<StyXman> ok
+<dneighbo_> grr i think its time to just get a friggin pci card
+<StyXman> dneighbo dyd you try passing only the io?
+<sledge_> dneighbo_: you got a real prob. what about buying a cheap rtl8139?
+<dneighbo_> just hate telling someone else the answer is spend more money :(
+<jcater> dneighbo_: um, for $15 or so, I would!
+<jcater> what kind of network card is it?
+<jcater> are you sure ne2 is the right dirver?
+<dneighbo_> passing just io fails
+<sledge_> use ne
+<dneighbo_> kingston KNE20T
+<dneighbo_> sledge_ you rock
+<dneighbo_> ne works
+<dneighbo_> now if i can get it to do something :)
+<sledge_> 'kay :)
+<jcater> wtf
+<jcater> kmail doesn't support ldap either
+<sledge_> lol
+<StyXman> jcater: I think kde3's kmail would...
+Action: jcater has KDE3
+<StyXman> uh.
+<sledge_> the moment jcater looks at a mail client, he makes it sound as if it was crap
+<jcater> these are the two email clients I have in mainstream use
+<jcater> by my users
+<jcater> I love both dearly
+<dneighbo_> whoo hoo rock
+<jcater> but, damn
+<dneighbo_> its working
+<jcater> no ldap support?
+<jcater> and they are as far along as they appear to be?
+<dneighbo_> pygmy
+<jcater> hell no
+<sledge_> i can't believe that none of them supports ldap
+<dneighbo_> rofl
+Action: dneighbo_ was being funny
+<dneighbo_> pygmy SOUNDED promising
+Action: sledge_ noticed
+<dneighbo_> until looking at it
+<jcater> on kdenews.org:
+<jcater> "I couldn't agree more. I know there is work under way from the Sphynx project to get LDAP support into Kmail, but haven't seen any definite from anybody as to when it will become available."
+<jcater> this was a few weeks ago
+<jcater> :)
+<jcater> and there are patches for sylpheed
+<jcater> but debian + patches != jcater's production machine
+<sledge_> jcater: balse?
+<sledge_> s/balse/balsa/
+<dneighbo_> smack the sylpheed dude
+<dneighbo_> as thats on my todo list
+<dneighbo_> i.e. install openldap
+<dneighbo_> use for home use and work with making work with gnue/dcl
+<sledge_> jcater: teak?
+<dneighbo_> sigh dumb question
+<dneighbo_> is there a way to tell what version of debian you are running?
+<dneighbo_> i installed from disks someone gave me labeled 'woody'
+<dneighbo_> but it feels like potato :)
+<StyXman> dneighbo see in /etc/apt/sources.list
+<dneighbo_> and teh cdrom sources say potato, but the apt sources it say stable
+<dneighbo_> which at the time of the disks woody was stable
+<dneighbo_> so im thinking its potato even though the disks said woody 
+<StyXman> stable until a week ago (or two) was potato...
+<dneighbo_> ok logged out
+<dneighbo_> and it says 2.2 which is potato
+<sledge_> dneighbo_: for god's sake, UPDATE!
+<dneighbo_> i am
+<dneighbo_> i already pointed sources just need to know if i needed a dist-upgrade or an upgrade
+<jcater> dist-upgrade
+<StyXman> dneighbo and get a grip :)
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+<StyXman> hi chillywilly 
+<sledge_> chillywilly! :)
+<sledge_> so much time, so few see
+sledge_ (~sledge@B2bbd.pppool.de) left #gnuenterprise.
+StyXman (~mdione@modem126-adsl1.cordoba.sinectis.com.ar) left #gnuenterprise.
+<dneighbo_> nickr once upon a time you had me do somethign like tasksel to setup desktop/X
+<dneighbo_> was it dselect?
+<dneighbo_> im thinking it was more like synaptic (but i know that wasnt it)
+<nickr> er
+<nickr> aptitude?
+<dneighbo_> ah yes
+<dneighbo_> muchas gracias
+<dneighbo_> or is that muchos
+<dneighbo_> .ar folks will correct me im sure
+<nickr> muchos I think.
+<nickr> de nada
+Jayce^ (~jayce@65.204.214.55) joined #gnuenterprise.
+jamest (~jamest@hobbes.math.ksu.edu) left #gnuenterprise.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "Client Exiting"
+jamest (~jamest@fh-dialup-201028.flinthills.com) joined #gnuenterprise.
+<dneighbo_> hey nickr gnome-terminal wont work and looking at apt-get it fails because of a doc issue
+Action: dneighbo_ is curious of best way to fix
+<nickr> gnome terminal is fucked in unstable anyway
+<dneighbo_> this is stable
+<nickr> oh
+<dneighbo_> though i install multi-gnome-terminal
+<nickr> what is the exact symptoms
+<dneighbo_> and now gnome-terminal seems to launch, but if i try to ins
+<dneighbo_> er let me switch to that machine
+<dneighbo_> just a sec downloading ssh
+_dneighbo (~dneighbo@65.101.4.211) joined #gnuenterprise.
+<_dneighbo> Unpacking gnome-terminal (from .../gnome-terminal_1.4.0.6-5_i386.deb) ...
+<_dneighbo> Replacing files in old package gnome-panel-data ...
+<_dneighbo> dpkg: error processing /var/cache/apt/archives/gnome-terminal_1.4.0.6-5_i386.deb (--unpack):
+<_dneighbo>  trying to overwrite `/usr/share/gnome/help/gnome-terminal', which is also in package gnome-help-data
+<_dneighbo> Errors were encountered while processing:
+<_dneighbo>  /var/cache/apt/archives/gnome-terminal_1.4.0.6-5_i386.deb
+<_dneighbo> E: Sub-process /usr/bin/dpkg returned an error code (1)
+<_dneighbo> audiophile:/home/dave# apt-get install --force gnome-terminal
+<_dneighbo> E: Command line option --force is not understood
+_dneighbo (~dneighbo@65.101.4.211) left irc: Client Quit
+<nickr> dpgk --install --force-overwrite --force-depends /var/cache/apt/archives/gnome-terminal_1.4.0.6-5_i386.deb && apt-get -f install
+Action: nickr makes mystical handwaving gestures
+Action: nickr utters magick words
+<nickr> I suppose in the case of apt, I'd be 'uddering' magick words
+<nickr> hehe.
+<dneighbo_> cool, cause im low on goats, so sacrificing one right now is not an option, so just having to use magic incantations is good
+Action: pattieja is away: voting...
+<nickr> .misread that as vomiting at first
+jcater (~jason@cpe-024-092-089-068.midsouth.rr.com) joined #gnuenterprise.
+<ajmitch> morning
+<jcater> morning
+<dneighbo_> hey nickr when you install a new kernel how do you get it to list hte modules again?
+<dneighbo_> seems like 1 out of 2 times after rebooting into new kernel there are no modules (until you do that magic chant) that im not recalling right now
+<nickr> depmod -a
+<nickr> it should do it at bootup though
+<dneighbo_> nope thats what you said last time :)
+<dneighbo_> [05:33] <nickr> there is no possible way if you installed the kernel package that you'd end up without tonnes of modules in there.
+<dneighbo_> [05:38] <dneighbo> um
+<dneighbo_> [05:38] <dneighbo> im special remember
+<dneighbo_> [05:40] <nickr> Yea.
+<dneighbo_> then you suggested depmod -a and that didnt work
+<dneighbo_> but a reboot did work after doing depmod -a
+<dneighbo_> so i did depmod -a and no dice so doing a reboot and we will see
+<dneighbo_> piss that didnt work either
+Action: ajmitch wonders what magic ability dneighbo_ has
+<dneighbo_> im like blink from xanth
+<dneighbo_> he had aura that disabled magic
+<dneighbo_> i have aura that disables electronics
+<dneighbo_> i bet i could make serious coin as a QA tester somewhere ;()
+Jayce^ (~jayce@65.204.214.55) left irc: Read error: 110 (Connection timed out)
+<dneighbo_> sigh i cant get them to show even after reboot
+<dneighbo_> most odd
+<dneighbo_> actually note upgrading to grub solved this problem before
+<jcater> dneighbo_: no, I don't think so as the suicide rate at said company would skyrocket :)
+<dneighbo_> dont think the programmers woudl take me to lunch for helping them find bugs?
+<dneighbo_> this modules thing is killing me
+Mr_You (~car@24.88.217.49) joined #gnuenterprise.
+<Mr_You> hi
+<chillywilly> hi
+<dneighbo_> grr tried update-modules
+<SachaS> bye
+SachaS (~Sacha@dialup-196-131.wasp.net.au) left #gnuenterprise ("Client Exiting").
+--- Wed Aug  7 2002

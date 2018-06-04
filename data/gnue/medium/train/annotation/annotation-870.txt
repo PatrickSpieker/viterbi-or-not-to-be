@@ -1,0 +1,64 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.01Nov2002" enddate="04 Nov 2002 23:00:00 -0800" startdate="31 Oct 2002 23:00:00 -0800" subject="[IRC] 01 Nov 2002" title="Unusual error message from GDataObject">
+
+<topic>Common</topic>
+
+<p>John Lenton (Chipaca) reported an unusual error message - 
+<quote who="John Lenton">"You've got your bar in my foo! And 
+you've got your foo on my bar!  Two great reams that ream well 
+together!"</quote> - <quote who="John Lenton">it's in 
+__singleQuery - I'm trying to massage it into being more 
+helpful - but I thought I'd check in here first; I can't be 
+the first guy to come accross this</quote>. Andrew Mitchell 
+(ajmitch) suggested adding some debug statements 
+<quote who="Andrew Mitchell">to print the traceback as 
+well</quote> John said <quote who="John Lenton">the error is 
+"no results to fetch"</quote>. Later, Jason Cater (jcater) 
+said <quote who="Jason Cater">if he's getting that message, 
+then he's calling a virtual function that should be 
+over-ridden by a subclass - /me fears they are messing around 
+with GDataObject internals that they shouldn't be - 
+kind of like me and electricity :)</quote>.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.04Nov2002">
+The next day</a>, John mentioned the error messaga again. 
+James Thompson (jamest) said <quote who="James Thompson">i 
+remember sticking in an error like that - but only when things 
+failed rather hideously</quote>. This had been removed from 
+recent CVS versions. He related a (possibly urban legend) 
+story about <quote who="James Thompson">a coder that left 
+in a message to himself along the lines of "hey dumbass, 
+you shouldn't be able to do that" - (this was a 
+comercial product) - anyway it shipped with the error message 
+accidentaly left in - some lady hit it :) Can you imagine the 
+tech support call - "Yeah.  Your program called me a dumbass."
+- "Well....is it true?"</quote>.</p>
+
+<p>Later, John reported that the error <quote who="John Lenton">seems 
+to ocurr even with some of the samples from cvs (this is with a 
+current gnue from your cvs)</quote>. Jason asked 
+<quote who="Jason Cater">how are you triggering that message?
+I've never seen it. is it a specific function you are calling that 
+triggers it - or a certain trigger</quote>? John said it was just 
+<quote who="John Lenton">when accessing the db - it's in pgsql's 
+extension triggers (or something like that</quote>). James said 
+this was an <quote who="James Thompson">old error of mine - 
+meant really bad thing happened that should never have been 
+triggered - it's not in our cvs anymore IIRC</quote>. John said 
+he would check further. Jason said <quote who="Jason Cater">something 
+y'all have done is triggering it - I've never seen it triggered 
+before</quote> Unlike James, he though the error message was still 
+in the CVS code, <quote who="Jason Cater">but like you said, it's 
+in a place that is never triggered - if you can reproduce in one of 
+the samples, let us know - I've just never seen it - doesn't mean 
+it doesn't happen :)</quote></p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.05Nov2002">
+The next day</a>, John reported <quote who="John Lenton">I couldn't 
+reproduce the reaming error on a clean gnue pulled last night from 
+cvs with any of the samples in the forms/samples directory - 
+so you've fixed it between when we pulled your cvs and last night, 
+or we broke it in the same period (methinks the former)</quote>.</p>
+
+</section>
+
+

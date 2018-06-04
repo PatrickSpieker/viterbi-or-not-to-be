@@ -1,0 +1,48 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.12Jul2002" enddate="14 Jul 2002 23:00:00 -0800" startdate="11 Jul 2002 23:00:00 -0800" subject="[IRC] 12 Jul 2002" title="Date masks in GNUe Common">
+
+<topic>Common</topic>
+
+<p>Arturas Kriukovas (Arturas) reported 
+<quote who="Arturas Kriukovas">i have found that in 
+common/src/FormatMasks we have at least 3 files (DateMask.py, 
+NumberMask.py, TextMask.py) that each of them defines 
+things like monthNames, weekdayNames over and over - wouldn't it be 
+simplier to define all them once in BaseMask.py?</quote> 
+Jason Cater (jcater) said <quote who="Jason Cater">NumberMask and 
+TextMask aren't even implemented - so the code you see there is
+a cut and paste from DateMask - and DateMask isn't even 
+finished</quote>.</p>
+
+<p>Later, Arturas noted that <quote who="Arturas Kriukovas">in 
+common/src/dbdrivers/_dbsig/DBdriver.py - found - 
+return value.strftime(self._dateTimeFormat). As far as i 
+understand 'strftime' function gives date\time string formatted  
+according to locale settings. But do i need localized SQL queries 
+for database? I guess it shouldn't be there</quote> - he would 
+<quote who="Arturas Kriukovas">correct it and commit into cvs</quote> 
+if no-one disagreed. Later, Jason said <quote who="Jason Cater">self.
+_dateTimeFormat should be set to whatever postgresql needs - 
+apparently, it is currently set with the "locale" mask</quote>.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.15Jul2002">
+Some days later</a>, Arturas advised <quote who="Arturas Kriukovas">I have 
+just changed common/src/dbdrivers/_dbsig/DBdriver.py file - could
+someone please review change - maybe you'll have some ideas how to 
+improve source - it's a bit problematic now</quote>, but was converting 
+dates by droping the decimals after the seconds. Jason Cater (jcater) 
+warned <quote who="Jason Cater">you shouldn't be making postgres-specific 
+changes in _dbsig or you'll break all the other drivers</quote>. He 
+understood the problem, in that localised month names in queries were 
+causing errors, <quote who="Jason Cater">I just don't agree with the 
+solution - that was the purpose of _dateTimeFormat</quote>. If it was not 
+working properly, it needed to be changed, not by-passed. Arturas agreed - 
+<quote who="Arturas Kriukovas">i changed it so that now it gives fixed 
+'YEAR-MONTH-DAY HOUR:MINUTE:SECOND' format not the localised one</quote>. 
+The dropping of the decimals for seconds was a slightly different issue, 
+in that PostgreSQL <quote who="Arturas Kriukovas">holds date\time with 
+...,99 but it does not accept such format in queries :/</quote> He 
+guessed this might be better fixed elsewhere.</p>
+
+</section>
+
+

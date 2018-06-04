@@ -1,0 +1,1161 @@
+[00:00] Last message repeated 1 time(s).
+<nickr> I don't think so
+<nickr> it'd be nice though
+<nickr> maybe I file a wishlist bug
+<derek> you are too kind
+<chillywilly> should be "severe"
+<chillywilly> ?
+<chillywilly> "critical"?
+<chillywilly> ;P
+<derek> chillywilly: no he shoudl threaten the maintainer followed by mail bombs to their home unitl its put in
+<chillywilly> haha
+<chillywilly> man C++ I/O internals is wacky
+<chillywilly> Pantera rocks my socks
+<chillywilly> "it's on sale at the fucking dollar store"
+<derek> you suck
+<nickr> I'll send anthrax
+<nickr> and ask 'how much for the leetle girl!?q
+<chillywilly> why do I suck?
+<nickr> because its a high-paying vocation
+<chillywilly> uh, I don't see any money
+<chillywilly> bitch
+<nickr> maybe you shoudl ask for the money up front
+<chillywilly> I just ask yo momma
+<nickr> my momma doesn't requiire the services of a sucker
+StormBringer (~eugene@194.84.60.130) joined #gnuenterprise.
+<StormBringer> hi ppl
+Action: chillywilly is wondering how the hell he can have 2 apps sharing his sound card
+<chillywilly> I don;t have esd running for this shotty card
+<Isomer> hrm
+<nickr> er
+ra3vat (ds@195.239.204.226) joined #gnuenterprise.
+<ra3vat> hello all
+<nickr> Hi
+<ra3vat> hello nickr
+<StormBringer> ra3vat: hi
+<StormBringer> ra3vat: any news since August?
+holgi (~schurig@pD958AEE8.dip.t-dialin.net) joined #gnuenterprise.
+Nick change: holgi -> holsch
+<ra3vat> hello StormBringer
+<ra3vat> not much news
+<holsch> Question: I've seen gcd files and and I understand that this are forms.
+<holsch> Is there any means for calling other forms?
+ra3vat (ds@195.239.204.226) left irc: "Client Exiting"
+<holsch> Also I'm wondering if it possible to catch single keys, e.g. to react to Shift-F1 or so
+<derek> holsch: yes you can call other forms
+<derek> as to catching keys
+<derek> you can write triggers in python so it should be possible, BUT i think wx might take some control of that so it might be a bit ugly
+<derek> i know we are doing it in forms itself 
+<derek> but whether easy way to make it in gfd file im not so certain
+<holsch> Do you know by chance a gfd in CVS that calls another one (I mean, 2-tier, not via geas) ?
+<derek> ummm let me look i think i have a sample somewhere
+<holsch> Ah, I saw in GFclient.py this:
+<holsch>   def runFormFromTrigger(self, formFile):
+<holsch>     self.runForm(formFile, disableSplash=1)
+<holsch> that must be related ...  (i guess)
+<derek> yip
+<derek> no sample in cvs that has it
+<derek> i might have a personal one around here that does
+<derek> its a fairly simple python call im just remembering it off top of my head
+<holsch> Okay, when you do it in Python I can figure it out.
+<holsch> That means that basically you have to program menus on your own,
+<holsch> neither the forms xml nor the designer helps you.
+<derek> holsch: not yet
+<derek> currently what we have been doing is creating 'speed bars'
+<derek> i.e. make a form that has buttons on it
+<derek> then when you click a button it calls a trigger to launch a form
+<derek> we are working currently on implementing menus
+<derek> they will be i think a separate xml file that can be contained
+<derek> there is a doc floating about on them, but i dont have it readily
+<derek> i.e. we are starting to make real applicaitons now
+<derek> and MENUS are a MUST
+<derek> so its coming very soon :)
+<nickr> !
+<StormBringer> derek: that's cool
+<derek> we had some 'mask' concerns for like date/time and currency etc
+<derek> so that has been current focus
+<holsch> derek: I work for a company that makes and sells radio equipment for storage warehouses
+<derek> as soon as thats done i think you will see the menus coming
+<holsch> http://www.mn-logistik.de/spektrum/hardware/datenfunk/e4_pdf_link1.html
+<derek> until use the poor man speed bar :)
+<holsch> and so eventually I'd have to resurrect -u text and make some
+<holsch> possibility to use mouse-less forms :-)
+<derek> we will have them in curses
+<derek> -u text isnt 'dead' its just 'dormant'
+<holsch> :)
+<nickr> does -u rtext use wx somehow?
+reinhard (~rm@62.47.44.225) joined #gnuenterprise.
+<derek> its awaiting the UI clean up coming in next version
+<derek> nickr: nope
+<nickr> cause I was writing a pytho n widget library...
+<derek> currently we have base widgets in 'python'
+<derek> then we have extensions in python
+<nickr> for curses
+<derek> the extentions are in UIxxxx.py
+<derek> so there is a UIwxpython.py
+<derek> UIhtml.py
+<derek> UIcurses.py
+<derek> etc
+<nickr> nog
+<derek> so if its 'python UI driver' you get the benefit of all the base widget stuff
+<holsch> Ups, the URL was broken, I hate those javascript driven web pages: http://www.mn-logistik.de/spektrum/hardware/datenfunk/e4_pdf_link1.html
+<derek> and just have to extend it to your UI (if that makes sense)
+<derek> as im sure jcater and jamest when get a chance will make a UIqt.py ;)
+<derek> and someone could fairly readily make a pyGTK one
+<derek> UIGTK.py
+Action: nickr pukes
+<derek> nickr: i agree, but it CAN be done
+<nickr> qt :P
+<holsch> I'd love UIqt.py tooo (KDE addict).  Or if we can re-use existing widgets then UInewt.py
+<nickr> UIMotif .. ew
+<nickr> UIOpenGL .. hmm :)
+<holsch> nickr: urgh
+<derek> holsch: hey now 
+<derek> you company sells those?
+<derek> the scanners?
+<holsch> derek: yes
+Action: derek works some with warehouse wehre getting ready to implement symbol stuff
+<nickr> I've4 always wanted one of those
+<holsch> derek: but we also make software for them ...
+<derek> is there ANY way perhaps we could get one on loan?
+<nickr> or rather a network of those
+<derek> to program them for gnue?
+<derek> if we gpl all the code and give back to your company?
+<derek> or do you have an emulator or something
+<derek> as you realize this woudl be HUGE for supply chain of gnue
+<derek> i think we would consider making you 'preferred vendor' :)
+<holsch> derek: maybe. You know, currently we program in C and embedded-sql (used to do this with
+<nickr> the symbol ones run dos, boo? or palmos
+<holsch> informix-se/on and now with SAP DB). I always thought that this is not efficient
+<holsch> and am doing some research on where to aim for the future. But I'm just the sysadm, not
+<holsch> some sort of boss. So I can just suggest things to my boss (althought he is very open).
+<holsch> nickr: Symbol is a competitor to us. Some of their terminals run dos, some WinCE, some
+<derek> what kind of os on those things?
+<holsch> their own stuff.
+<holsch> The same with the Intermec terminals, our main vendor (we are more or less an OEM)
+<nickr> I know they have a few palm based models
+<holsch> I still longe too see such a terminal with Linux, e.g. like on the iPAQ. I hate WinCE (no security,
+<holsch> anyone can hot-sync it at his home PC)
+<derek> holsch: well originally we were gonna us the palm w/ symbol infared and write stuff for palmos
+<holsch> derek: what are you doing company-wise?
+<derek> now we are using symbol or thinking about it (for something other than gnue)
+<derek> BUT i want to see gnue have this functionality
+<nickr> derek: I have palm programming experience, btw
+<derek> jade and i wrote the inventory managment and such for the largest independent distributor for m&m mars candy
+<derek> so looking to automate their warehouse with such hardware
+<derek> w/ our current system
+<derek> HOWEVER long term we are wanting to put gnue there
+<derek> but independent of that i really do want to see gnue have this kind of stuff
+<holsch> I also thing that GNUe is a long term goal. But it has potential ... and that's the exciting thing!
+<nickr> yea, gnue everywhere
+<derek> but it NEVER will unless vendors cooperate because we dont have the 'money' to buy these
+chillywilly (danielb@d57.as21.nwbl0.wi.voyager.net) left irc: Read error: 113 (No route to host)
+chillywilly (~danielb@d172.as13.nwbl0.wi.voyager.net) joined #gnuenterprise.
+<holsch> derek: such a device is about 3000 Euro, but you also need a radio antenna etc ...  and some knowledge
+<derek> if toyman doesnt have this kind of thing now he might want it
+<derek> and we are moving him to gnue soon
+<holsch> on how to setup the infrastructure. Not sure if a germany based company can give you this ...
+<derek> holsch: i used to be an operations manager at federated department stores(macy's) and we had texlon equipment there
+<derek> full RF System
+<holsch> So you need an antenna (not sure on the price, I'm not in sales) and if you don't buy 802.11 you
+<derek> we have been doing schematics for the palm and symbol stuff
+<holsch> also need a special controller, otherwise a normal wireless lan hub (but then the power
+<derek> for the palm we were going to do 802.11b
+<holsch> for the terminal won't last so long, IP traffic all the time eats battery)
+<derek> i have 802.11b here at the house
+<nickr> is there palm 802.11b hardware?
+<derek> nickr: that was part of the problem we dropped 1100 for palm w/symbol and they were to get '802.11b' and it didnt come so we were gonna go to handspring with expansion packs
+<derek> but they never got a barcode reader
+<derek> so now we sit with symbol
+<derek> actually i shouldnt say we, it is jade at this point, i dont do much consulting for them anymore :)
+Yurik (~yrashk@gw.telcos.net.ua) joined #gnuenterprise.
+<holsch> derek: you can get a barcode reader for the Compaq iPAQ ...  (but that is not yet supported by Linux)
+<Yurik> re
+<nickr> theres an 802.11b springboard!?
+<holsch> derek: but if it would, you could stay Linux. However, an iPAQ is not Warehouse-enabled
+<derek> no and an ipaq isnt durable enough
+<holsch> derek: (too fragile, once it dropped onto the floor it's probably broken)
+<derek> i really would rather partner with a company like where you are at
+<derek> as its a win win situation
+<derek> gnue needs this kind of capability
+<derek> and its good sales opportunity for your company
+<derek> gack
+<holsch> derek: I see. So, currently we could get going with some curses stuff and just do a
+<holsch> derek: telnet from the radio terminal to some linux server.
+<derek> its 1:13 here why the hell didnt anyone tell me, i thought it was like 23:00
+<derek> holsch: i dont know, what operating system do these things run?
+<holsch> derek: doesn't really matter if you use telnet, does it?  GNUe forms would run on a Linux box.
+<holsch> holsch: however, we have usually the capability to enable/disable/start the scanner,
+<derek> ah so these things will run telnet
+<holsch> holsch: and we have an extra printer output where we can send data to it, escaped by some
+<derek> you could certainly telnet to a unix server
+<holsch> holsch: start string so that the device knows it's not for the screen ...
+<derek> and fire up curses forms
+<holsch> s/holsch: /derek: /   :-)
+<derek> hmmmm, i think there is a lot of possibility here
+<holsch> derek: yes, they run Telnet and Telnet5250.
+<derek> what kind of terminal do the emulate?
+<derek> and what 'input' capabilities do they have
+<holsch> vt220 like. We have our own terminfo file for them ...   monochrome
+<derek> man this might be easy holsch
+<derek> start a telnet session
+<derek> run forms on the server
+<holsch> derek: input: keys (letters, digits, function keys) and the scanner
+ra3vat (ds@195.239.204.226) joined #gnuenterprise.
+<derek> displaying curses vt220 on your scanner
+<derek> real time
+<holsch> derek: but NO mouse. No point and click to some button on the screen.
+<derek> thats fine its curses
+<holsch> derek: newer terminals have touchscreen, but that doesn't really work over telnet :(
+<derek> put it this way jason currently runs like a 40 node call center in GUI mode
+<derek> off a single server w/ diskless workstations
+<derek> so performance wise 
+<holsch> derek: the scanner normally simulates keyboard input, but can programmatically
+<derek> curses based running on server im not even sweating
+<holsch> derek: enabled and disabled, so that the user won't scan while in the menu, e.g.
+<holsch> derek: no, performance wise that's ok. Most of our servers are VERY idle.
+Action: derek is excited, but know that no company will probably loan something like this to gnue to proof it :(
+<derek> but maybe you can proof it for us :)
+<holsch> bored to death, when you look at the load average
+<holsch> derek: I would probably loan to someone in germany or any country here like CH, AT, UK, NL etc
+<chillywilly> reinhard is in AT
+<chillywilly> isn't he?
+<holsch> chillywilly: he is
+<derek> yip reinhard is in austria
+<derek> AND he owns his own company that does this kind of work
+<derek> used to be subsidiary of Baan
+<derek> bytewise
+<holsch> www.bitewise.at ...
+<derek> he might be VERY interested
+<chillywilly> man g++ 3.0.3 seems slower
+<derek> http://members.aon.at/bytewise/
+<holsch> g++ 3.x IS slower
+<chillywilly> why?
+<derek> he will be in brussels for fosdem?
+<reinhard> yes he will
+<reinhard> :)
+<chillywilly> hehe
+<derek> speak of the mad austrian :)
+<reinhard> (sorry i am busy at work but sometimes a bit lurking)
+<chillywilly> fuck
+Action: chillywilly kicks gnu common c++
+<reinhard> whom?
+<derek> the joystick?
+<derek> reinhard: earlier joke
+<reinhard> hey now
+<derek> er re : not reinhard
+<reinhard> this channel is logged!
+<derek> hahaha
+<derek> its way late i need to go to bed
+<derek> reinhard chat with holsch some
+<nickr> night massa
+<derek> i think he might have toys that are interest to you
+<derek> definitely of interest to gnue
+<reinhard> yeah gotta talk about that sometime
+<chillywilly> joysticks/.
+<chillywilly> '?
+<chillywilly> ????
+<derek> night all
+<nickr> zz
+<reinhard> night derek
+<chillywilly> ZZZZZzzzzzzZZzzZzZzZZZzzzzzzzzzzzzzz
+<holsch> night
+Action: derek is away: zzzz
+<chillywilly> help?!?!??!??1?!?
+<reinhard> "MDE" (how we call this) is very interesting to me
+<holsch> MDE is "Mobile Data Equipment"
+<reinhard> however gotta do some euro conversions today again
+<reinhard> ah
+<reinhard> we used to say "Mobile Daten-Erfassung"
+<reinhard> however
+Nick change: reinhard -> rm-work
+<rm-work> :(
+<rm-work> holsch: we will discuss that later
+<holsch> whats 'rm-work'  remove minus work -> remove negative work -> remove leisure time?
+<chillywilly> bah
+<chillywilly> Dave is evil
+<chillywilly> he's using a strstream
+<chillywilly> those are obsolete
+<rm-work> rm == reinhard müller :)
+<rm-work> not remove
+<chillywilly> rm -r work
+<chillywilly> ;)
+<chillywilly> rm -rf work
+<chillywilly> weeee
+<chillywilly> amazing what a little 'using namespace std;' will do for ya ;)
+<chillywilly> gawd ths frigging compiler is painful
+<chillywilly> painfully slow
+ra3vat (ds@195.239.204.226) left irc: "Client Exiting"
+ra3vat (ds@195.239.204.226) joined #gnuenterprise.
+StormBringer (eugene@194.84.60.130) left irc: Read error: 60 (Operation timed out)
+holsch (schurig@pD958AEE8.dip.t-dialin.net) left irc: "using sirc version 2.211+KSIRC/1.1"
+alexey (alex@techkran.vladimir.ru) left irc: "[x]chat"
+alexey (alex@techkran.vladimir.ru) joined #gnuenterprise.
+roby (~jrobiez@APh-Aug-102-1-3-50.abo.wanadoo.fr) joined #gnuenterprise.
+StormBringer (~eugene@194.84.60.130) joined #gnuenterprise.
+roby (jrobiez@APh-Aug-102-1-3-50.abo.wanadoo.fr) left irc: 
+rm-work (rm@62.47.44.225) left irc: "Even if you're on the right track, you'll get run over if you just sit there"
+reinhard (~rm@62.47.44.225) joined #gnuenterprise.
+<chillywilly> hey reinhard
+Action: Yurik is back
+<chillywilly> sup Yurik
+<Yurik> chillywilly hi
+jamest (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+ToyMan (~stuq@c5300-3-ip137.albany.thebiz.net) joined #gnuenterprise.
+alexey (alex@techkran.vladimir.ru) left irc: "[x]chat"
+jbailey (~jbailey@HSE-Toronto-ppp318911.sympatico.ca) joined #gnuenterprise.
+roby (~jrobiez@APh-Aug-102-1-3-50.abo.wanadoo.fr) joined #gnuenterprise.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+chillywilly (danielb@d172.as13.nwbl0.wi.voyager.net) left irc: Read error: 113 (No route to host)
+chillywilly (~danielb@d126.as29.nwbl0.wi.voyager.net) joined #gnuenterprise.
+dneighbo (dneighbo@mail.libertydistribution.com) joined #gnuenterprise.
+<dneighbo> hey how do i change my time in linux?
+<dneighbo> if ntp wont work?
+<dneighbo> i.e. ntp runs on a port that my firewall no likey
+<dneighbo> cat: time: No such file or directory
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+<jcater> man date
+<jbailey> DATE(1)                        FSF                        DATE(1)
+<jbailey> NAME
+<jbailey>        date - print or set the system date and time
+<jbailey> SYNOPSIS
+<jbailey>        date [OPTION]... [+FORMAT]
+<jbailey>        date [-u|--utc|--universal] [MMDDhhmm[[CC]YY][.ss]]
+<jbailey> Oh, that wasn't a request? =)
+<dneighbo> yip
+<dneighbo> thanks
+<dneighbo> found it on own after asking
+<dneighbo> i was trying time 
+<dneighbo> now dont i need to do something with hwclock ?
+<dneighbo> hwclock --systohc 
+<dneighbo> ?
+<dneighbo> btw: thanks i appear to have a good time now
+<dneighbo> thats bad thing about ntp it spoiled me :)
+holsch (~schurig@p5080A45B.dip0.t-ipconnect.de) joined #gnuenterprise.
+<holsch> Hi
+Nick change: alexey_ -> alexey
+reinhard (rm@62.47.44.225) left irc: "Anything is good and useful if it's made of chocolate"
+<jamest> hi
+<jbailey> I dunno.  hwclock doesn't exist on the Hurd, and I use ntp on Linux.
+<jamest> hwclock is the util
+<jamest> --systohc is I _think_ the switch
+<dneighbo> jamest yes seemed to work and hwclock --show
+<dneighbo> seems to show it as updated
+<dneighbo> hopefully i wont have to test the theory for some time :)
+<jbailey> dneighbo: ntp won't go through the FW?
+<jamest> dneighbo: do a date
+<jamest> if it still shows the right time
+<jamest> then you did it right
+<jamest> otherwise your time would be wrong again
+<jamest> btw you may want to use rdate -s some.system.name
+<jamest> in a cronjob
+<dneighbo> i dont have any systems that are 'accurate' that are linux based
+<dneighbo> i.e. for an rdate
+<dneighbo> unless i can get rdate to use ssh
+alexey (alexey@195.151.214.34) left irc: "Client Exiting"
+Action: jbailey is away: phone.
+<jamest> we need a forms browser
+<jcater> ?
+<jamest> I'm getting too many forms for users to remember names of them
+<jamest> I'm using the symlink trick to make forms look like commands
+<jamest> but they still have to know the names of the commands
+<jamest> i may setup a web page
+<jamest> but the network install only sets up the gfd file associations on the installing machine
+<jamest> not the other network clients
+<jcater> this on win32?
+<jamest> mixed
+<jamest> win32, solaris, linux
+<jcater> do we have an archive of our old mailing lists somewhere?
+<jcater> found them
+<jcater> What do you think of the process idea we had earlier
+<jcater> http://lists.gnue.org/pipermail/gnue-discuss/2001-July/000211.html
+<jcater> if this is a reasonable direction, I can get my guy inhouse to do a quick menu based on this xml markup
+<jcater> it wouldn't be hard w/gnue-common
+Action: jcater really needs something like this soon as well
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+alexey_ (alexey@195.151.214.34) left irc: Client Quit
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+Action: jbailey is back (gone 00:25:06)
+<dneighbo> i need it too
+<dneighbo> and have had 2 requests from users
+<dneighbo> read last nights log at end from holsch
+<dneighbo> we NEED menus
+<dneighbo> er navigation
+<dneighbo> and i think the most logical way right now is menu's
+<dneighbo> jcater: im all for the process thing as it sits
+<dneighbo> like all things gnue we can extend/ditch/hack it to meet needs as our needs change :)
+<dneighbo> btw: i thought you already had some one cruising on it
+<dneighbo> in the techref or somewhere else in the mean time we need to document how to 'call another' form
+<dneighbo> as its a FAQ
+<dneighbo> and i never remember the syntax
+<jcater> just call runForm("location/form.gfd")
+roby (jrobiez@APh-Aug-102-1-3-50.abo.wanadoo.fr) left irc: 
+<dneighbo> jcater: it doesnt seem to be answering :)
+<jcater> ?
+<holsch> dneighbo: Hmm, I did not really request menus :)
+<nickr> I'd think a sort of scrollable list of forms with descriptions would be useful
+<holsch> dneighbo: it's not even clear what we need. For small projects a static menu would be fine,
+<holsch> dneighbo: but for a full-blown ERP you need some access restritions --- and preferable only
+<holsch> dneighbo: display what a user is allowed to run
+<holsch> dneighbo: which is, in the end, a database-driven menu
+<nickr> I'm thinking for a large installation, you have a cgi script that generates the list in the form of an xml file that the forms client can read, so the forms client starts pointing at that url, gets the current list of forms, and allows the user to select one
+<holsch> nickr: so one has to setup database, geas, apache, cgi-scripts ...  makes installation more and more
+<holsch> nickr: cumbersome. Having this inside the CORBA datastream would be nicer
+<nickr> true, since my app will have those services already it'd be perfect
+<nickr> although getting the list directly from a gcomm source seems more elegent
+<jcater> hmm
+<jcater> let's slow down a bit :)
+<jcater> I think the current plan of attach is having an XML process definition to send to the navigator/menuing system
+<jcater> eventually this will incorporate RBAC
+jbailey (jbailey@HSE-Toronto-ppp318911.sympatico.ca) left irc: "Client Exiting"
+<jcater> I supposed the XML file could be generated however you wanted to, although at my install, I will do it manually
+<jcater> err, with designer when it supports it :)
+<jcater> I want to keep this simple up front
+<holsch> sounds fine, that pushes the design issues to the client. Whats RBAC?
+<jcater> Role-Based access control
+<nickr> jcater: the menu would be abstract (<item desc=blah uri=blah/>) or physical?
+<jcater> not sure I follow
+Yurik (yrashk@gw.telcos.net.ua) left irc: Remote closed the connection
+<nickr> well gfds have a lot of physical markup, I'm wondering if you forsee the menu having the same sort of thing, or just being an abstract list of forms
+<jcater> abstract
+<nickr> ah good
+<dneighbo> i agree for now we just need xml defition of a menu
+<dneighbo> and what form it calls
+<dneighbo> or what trigger it calles
+<dneighbo> no access, no workflow
+<dneighbo> and then you can pass that xml file to forms client
+<dneighbo> to tell it to build that menue
+<dneighbo> menu
+<dneighbo> and we can get more complex as we go
+<dneighbo> holsch : i was trying to say you were asking for what jamest and the rest of us were asking for
+<dneighbo> and that is a simple way to collect forms for the user
+<dneighbo> into a single application
+<dneighbo> which at this time makes most sense (imho) via menus
+dres (dres@4.18.171.42) left irc: Read error: 104 (Connection reset by peer)
+dres_ (~dres@4.18.171.42) joined #gnuenterprise.
+neilt (~tiffinn@66.95.5.123) joined #gnuenterprise.
+<dneighbo> hi neilt 
+joebullhead (~joe@h-64-105-244-252.ATLNGAHP.covad.net) joined #gnuenterprise.
+<neilt> hello all
+Yurik_ (~yrashk@gw.telcos.net.ua) joined #gnuenterprise.
+<Yurik_> re
+alexey_ (alexey@195.151.214.34) left irc: "Client Exiting"
+ra3vat (ds@195.239.204.226) left irc: "Client Exiting"
+Yurik_ (yrashk@gw.telcos.net.ua) left irc: Read error: 54 (Connection reset by peer)
+jbailey (~jbailey@HSE-Toronto-ppp319317.sympatico.ca) joined #gnuenterprise.
+neilt (tiffinn@66.95.5.123) left irc: "Client Exiting"
+ToyMan (~stuq@c5300-3-ip137.albany.thebiz.net) left #gnuenterprise ("Client Exiting").
+ToyMan (~stuq@c5300-3-ip137.albany.thebiz.net) joined #gnuenterprise.
+<dneighbo> im hooked on these polls here seems an interesting one from this group
+<dneighbo> http://www.selectsmart.com/FREE/select.php3?client=programlanguage
+<dneighbo> nevermind python isnt even an option :)
+<dneighbo> rofl i did one on political ideology here were my results
+<dneighbo> # 1Anarchist# 2Marxist# 3Progressive# 4Socialist# 5Leninist# 6US Liberal# 7US Libertarian# 8US Conservative
+<dneighbo> i agree w/ them mostly but i dont know how they derived anarchist?
+<dneighbo> i mean i didnt answer any questions in sense that didnt want government
+<nickr> Anarchy is self governace
+<nickr> so maybe you answered heavily in favor of axsolute freedom
+<nickr> that programming language test is too low resolution
+<nickr> they need a 'would you prefer a language that doesn't suck' option
+Action: nickr got C++ as the top option :P
+<dneighbo> nickr yeah i got java as my top option
+<dneighbo> i assume because i wanted to write real database apps
+<dneighbo> and required it be no cost and have free tutorials and things
+<dneighbo> php and such were kicked down as they are not good for 'real db apps' only web ones
+<dneighbo> funny thing is vb and delphi came in 2 and 3
+<dneighbo> and i was like how on EARTH when i put as HIGH importance
+<dneighbo> that it is inexpensive to start and inexpensive to learn
+<dneighbo> that they put the two most expensive programs in my top 3 ?
+<dneighbo> ;)
+<nickr> heh
+<dneighbo> obviously the metrics of the polls or the authors are smoking crack
+<nickr> delphi you can learn without having delphi though
+<nickr> since its object pascal and FPC supports most Delphi extensions
+<nickr> Delphi was my #2 also
+<nickr> I assume they rank high because of their database connectivity
+<dneighbo> yeah
+<dneighbo> thats true
+<dneighbo> same w/ vb
+<dneighbo> btw: i was a windows delphi programmer before finding free software
+<nickr> ah
+<nickr> good for you
+<dneighbo> haha there is a weird one, 'what junk food would you be?'
+<nickr> better than being a windows msc++ programmer
+<dneighbo> and mine came back as 'pizza' how fitting
+<dneighbo> nickr well most of what i LIKED about delphi was its community
+<nickr> I grew up on pascal so I like delphi just for old time sake
+<dneighbo> to me its closest thing to free software community in prop world
+ToyMan (~stuq@c5300-3-ip137.albany.thebiz.net) left #gnuenterprise ("Client Exiting").
+<dneighbo> as evidenced by most delphi coders adopting linux
+<nickr> borland seems pretty cool about its developement community fiking bugs
+<dneighbo> and now borland itself adopting linux
+<nickr> they sell you the source to the base libs along with the compilers, don't they?
+<dneighbo> yeah i think so
+<dneighbo> and LOTS of free ware 3rd party components
+<dneighbo> i think that the VCL now CLX are some of the best technologies i've seen
+<dneighbo> borland very much takes a gnue approach to portability and such
+<nickr> yea
+<nickr> I've read some not so nice things about the kylix development group though
+Yurik_ (~yrashk@gw.telcos.net.ua) joined #gnuenterprise.
+<dneighbo> ok took another test for political philosphy and much more accurate
+<dneighbo> # 1Liberal Socialist# 2Anarcho-Communist# 3Social-Liberal# 4American "Liberal"# 5Social Democratic# 6Left-wing Neoliberal (Clinton)# 7Marxist# 8Christian Democratic# 9National Socialist# 10Soviet "Communist"# 11Liberal# 12Christian Socialist# 13Fascist# 14American "Conservative"# 15Burkean (liberal) Conservative# 16Revolutionary Conservative/Monarchist (far right)# 17Right-wing Neoliberal (Thatcher)# 18Liberal Nationalist
+<nickr> anarcho-communist
+<nickr> heh
+<dneighbo> though im curious as the definitoin of christian socialist
+<jbailey> dneighbo: Liberal socialist?
+<dneighbo> as if i saw a list of these that is probably what i woudl have slated my self
+<jbailey> What are you doing in the US?  Come north!
+<dneighbo> jbailey i think they messing up the term liberal
+<dneighbo> as i see my self as conservative in the 'moral' sense
+<dneighbo> but liberal in terms of 'freedom'
+<jbailey> Oh, then definetly stay where you are.  We tend to be the opposite here. =)
+<jbailey> Pot smoking?  Likely to be legal in February.  Charter of Rights and Freedoms?  2/3's majority vote to remove all rights from Canadians, no recourse, no appeal process. =)
+<nickr> yow
+<nickr> weird
+<jbailey> that's okay, they haven't done it in 30 years or so. =)
+<nickr> if they are going to remove most freedoms, of cousre they would legalize pot smoking... so that people would be lulled into a false sense of security
+<nickr> ;)
+<jbailey> Our itteration of the anti-terrorist act was passed after they had closed down debate, because they didn't feel like talking about it.
+<jbailey> I'm not *quite* sure how they did that, aside from what do you do if the government decides to change the rules and the enforces them?
+<nickr> leave the country?
+psu (peter@manorcon.demon.co.uk) joined #gnuenterprise.
+derek (derek@cpe-24-221-112-50.az.sprintbbd.net) left irc: Connection timed out
+<nickr> probably an unrealistic suggestion ;)
+<dneighbo> nickr i dont know
+<dneighbo> with americas slumping economy, over ego'ed corporations and downright corrupt politicians
+<nickr> yea
+<dneighbo> europe is looking better and better all the time
+<nickr> hah
+<nickr> central america is looking better all the time
+<nickr> europe looks like a vacation :)
+<dneighbo> well at least in central america of your govt pisses you off
+<nickr> although europe doesn't dave such a great history of freedom-enhancing activities, in general
+<dneighbo> at least you have a fighting chance of 'overthrowing them'
+<nickr> truethat :)
+<nickr> maybe a nice south-pacific kingdow
+<nickr> kingdom
+<dneighbo> my sister is constantly urging me to move to hawaii
+<nickr> heh
+<nickr> I was thinking more like .tv or .nu or something ;)
+<nickr> although those countries ore very open for corporate abuse
+<jamest> and .nz has killer sponges!
+<jamest> those crazy nz'rs
+<holsch> nickr: europe HAS a great history of freedom-enhancing activities. Just thing of the french revolution,
+psu (peter@manorcon.demon.co.uk) left #gnuenterprise.
+<holsch> nickr: or, newer, the fall of the iron curtain
+psu (peter@manorcon.demon.co.uk) joined #gnuenterprise.
+<nickr> true
+<nickr> killer sponges?
+<nickr> sounds useful
+Action: chillywilly doesn't care ,uch for the United Corporation of America either lately
+<chillywilly> Corporations
+<chillywilly> but the question is
+<chillywilly> do we just give up?
+<chillywilly> or do we take back America? ;)
+<jamest> http://www.nzherald.co.nz/storydisplay.cfm?storyID=585240&thesection=news&thesubsection=general&thesecondsubsection=
+<jcater> well, there's a problem with that argument, chillywilly
+<jcater> as corporations aren't some machine out there
+<jcater> they are run by ppl
+<nickr> lets just start our own country
+<jcater> some mystical corporate entity doesn't screw you over
+<chillywilly> there ya go
+<chillywilly> gnufoundland
+<jcater> some person at that mystical corporate entity screws you over
+<chillywilly> ;P
+<chillywilly> jcater: the man runs the corporation
+<jcater> chillywilly: what would that be, a socialist?
+<chillywilly> what would what be?
+<nickr> no, I want to starte a distributed republci like in Diamond Age
+<dneighbo> jcater i couldnt agree more
+<dneighbo> i see it as a dual problem
+<dneighbo> problem a. is that society is so money hungry they have no other motives
+<dneighbo> i.e. thats why you see owners of corporations screwing people w/o regret
+jbailey (jbailey@HSE-Toronto-ppp319317.sympatico.ca) left irc: "Client Exiting"
+<dneighbo> and problem b. is that the people in govt have the similar moral juxtaposition and so are giving more power to the corporation
+jbailey (~jbailey@HSE-Toronto-ppp319317.sympatico.ca) joined #gnuenterprise.
+<chillywilly> I agree they are run by ppl, and those ppl are the elite few who have more than they would ever need
+<dneighbo> people like to do things as a corporation as their 'deeds' can remain largely 'faceless'
+<dneighbo> and thus their guilt is burdened
+<dneighbo> example: Enron
+<dneighbo> you think some bad stuff went on with that surely
+<dneighbo> but in every newspaper article it will be enron this and enron that
+<chillywilly> they hide behind theor corporate mask
+<dneighbo> it wont be teh names of the board memebers of enron
+<dneighbo> the ones that REALLY made the profits that will never be repaid
+<chillywilly> if I am going to do something for someone, I am going to make sure they can hold me accountable
+<dneighbo> i do think one step would be to get govt to stop giving so much leeway to corporations
+<dneighbo> and start punishing individuals
+<chillywilly> hhmmmm
+<chillywilly> you mena for the ppl
+<chillywilly> by the pppl
+<chillywilly> damn where have I heard this before
+<chillywilly> ;)
+<dneighbo> mind you i dont htink america is horrible
+<dneighbo> but i havent been happy with a lot of the choices
+<chillywilly> America isn't afghanistan or anything ;)
+<chillywilly> I think America as of late is the product of greed, pure and simple...and somewhere along the line this old dusty document we call a constitution has been forgotten about
+<chillywilly> pushed aside for the sake of making a buck
+<dneighbo> well one that has me most in ire as of late is the trading of security for liberty
+<chillywilly> hear hear
+<dneighbo> as what kills me is right now in time of war it 'sounds reasonable'
+<dneighbo> but in 3 years when things blow over than they move these 'liberty killers' to internal wars (like drugs, domestic violence, crime families, etc) i fear how far it will go
+<chillywilly> heh
+<chillywilly> you see the miovie traffic
+<dneighbo> yip
+<chillywilly> you can't have a war on drugs
+<dneighbo> hey when spend several hundred million dollars on something that reserves you the right to call it whatever you want :)
+<chillywilly> just like you can't have a war on terrorism
+<dneighbo> s/million/billion
+<dneighbo> darn typos
+<dneighbo> but thats another rant :)
+<chillywilly> oh yea
+<chillywilly> btw, isn't giving up those freedoms in the name of security really letting the terrorists win?
+<chillywilly> isn't that exactly what they want?
+<chillywilly> http://www.gstreamer.net/releases/0.3.1/notice.php
+<chillywilly> ;)
+<chillywilly> you see that dneighbo?
+<chillywilly> GStreamer "Flows Like Belgian Beer" 0.3.1 released
+<nickr> I like creative codenames
+<chillywilly> yea, we need some
+<nickr> They can all be goat and goat related
+<nickr> especially involving feta cheese
+<chillywilly> hehe
+<chillywilly> I don't think masta would allow it
+<nickr> Don't milk the goats.
+<chillywilly> I wanted them to call our "wizards", "mastas".....he didn't buy that one either
+<chillywilly> GNUe "Don't Milk The Goats" 0.x.0 released ;)
+psu (peter@manorcon.demon.co.uk) left #gnuenterprise.
+<nickr> Heheh
+<nickr> thats rather obscene though
+<nickr> considering the developers are called goats
+<chillywilly> we aren't the goats
+<chillywilly> the goats are what rapes you when you have a nice bug in your code that you have to hunt down
+<chillywilly> it can be painful ;)
+<chillywilly> milking them is a baaaaad idea
+<nickr> heh
+<dneighbo> chillywilly we are the goats
+<dneighbo> code goats rapes us
+<dneighbo> we goat rape users
+<dneighbo> its a cyclical thing
+<nickr> thus the idea of milking goats IS obscene
+<chillywilly> oh
+<chillywilly> whatever'
+Action: Yurik_ is back
+Nick change: Yurik_ -> Yurik
+<chillywilly> sup Yurik
+Action: Yurik made a lot of useful work and is going to sleep for a few hours... It is a question to decide - how much hours to sleep? :))
+<Yurik> max value is 5 :)
+<chillywilly> heheh
+<chillywilly> sleep is for the weak
+Action: Yurik started crontab -e
+<Yurik> hehe :)
+<Yurik> i just need to be non-sleepy tomorrow :]
+Action: Yurik decided to sleep 3:45
+<holsch> echo 0 >/proc/sys/sleepy
+jcater (jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: Remote closed the connection
+reinhard (~rm@62.47.44.225) joined #gnuenterprise.
+<holsch> Hi Reinhard
+<chillywilly> howdy reinhard
+<Yurik> holsch hehe
+<reinhard> hello all
+<Yurik> reinhard hello
+Action: Yurik will start sleeping in 8 minutes
+Action: chillywilly should take a nap
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<jcater> oops
+<jcater> Ctrl+Alt+Backspace gets a difference effect than Ctrl+backspace :)
+<chillywilly> hehe
+<chillywilly> yup
+Action: chillywilly notes old school Metallica rules
+<nickr> yea
+<nickr> I have a distinct lack of oldschool metalica in my collecxion
+Action: chillywilly is listening to his Ride The Lightning CD
+<dneighbo> nickr what ever you do dont 'trade' vintage metallica unless you do so via 'tape'
+<dneighbo> vintage metallica : hell yeah its cool that kids record our shows and trade the tapes, rock on....
+<chillywilly> yea, yea
+<chillywilly> we know they are bastards
+<chillywilly> now days
+<dneighbo> new metallica : any infringement on metallica's music or trademarks will punished to fullest extent, such piracy robs the artist we have never support or will support piracy
+<dneighbo> chillywilly btw i like vintage metallica myself
+<chillywilly> s/or/nor
+<dneighbo> just so irratiing that when they didnt understand the industry had no record label pull etc
+<dneighbo> they PROMOTED the sharing of their music
+<dneighbo> after they started to get REAL royalities and such they denounce they agree w/ the practice
+<nickr> dneighbo: can the 'tape' be a Travan 9gb with mp3s on it?
+<chillywilly> the grateful dead was the coolest band that shared ;)
+<dneighbo> dont know ask lars ;)
+<chillywilly> fuck lars
+<chillywilly> he's a little dickhead
+<chillywilly> plus they are old and washed up now anyway
+<chillywilly> they sound like god damn michael bolton
+<dneighbo> chilly you would like these guys
+<nickr> I like the big crazy singer guy
+<dneighbo> http://www.pillarmusic.com
+<dneighbo> or at least i think you would
+<nickr> he's funny
+<dneighbo> nickr jamest hatsfield
+<chillywilly> hetfield
+<dneighbo> he would be against piracy too, but you have to be sober to care about much
+<nickr> nlue
+<nickr> true
+<chillywilly> you see the little cartoon about metallica
+<dneighbo> chillywilly dang thats what i typed at first then thought it was wrong and retyped it
+<chillywilly> lars is all jumping around a million miles and james is a big ol; monster that says "Napster Baaad"
+<chillywilly> it was on joecartoon.com
+<dneighbo> chillywilly let me know if you end up liking pillar or not
+<chillywilly> btw, that site rules
+<chillywilly> ok
+<reinhard> you know it's samba's 10th birthday today?
+<nickr> chillywilly: that was hilarious
+<reinhard> http://groups.google.com/groups?q=tridge&scoring=d&as_drrb=b&as_mind=1&as_minm=1&as_miny=1992&as_maxd=17&as_maxm=1&as_maxy=1992&selm=1992Jan10.091323.17768%40newshost.anu.edu.au&rnum=5
+<nickr> chillywilly: too bad its flash
+<nickr> but it is reallf funng
+<chillywilly> yip ;)
+<chillywilly> dneighbo: does pillar have any mp3s of their stuff?
+<chillywilly> hey their tab is all power chords
+<chillywilly> yuck ram files
+<chillywilly> that's evil
+<reinhard> night all
+reinhard (rm@62.47.44.225) left irc: "Friends may come and go, but enemies accumulate"
+<chillywilly> and quicktime videos
+<chillywilly> no fun
+<nickr> ram is okay
+<nickr> at least they have support for other platforms
+holsch (~schurig@p5080A45B.dip0.t-ipconnect.de) left #gnuenterprise.
+<nickr> I mean okay in the least desirable sense
+joebullhead (joe@h-64-105-244-252.ATLNGAHP.covad.net) left irc: "I'm too lame to make a quit message"
+<chillywilly> I would have to add non-free to my sources.list to listen
+<chillywilly> I'm not going to do that ;)
+<chillywilly> but yes the lesser of the evils is real player
+Rafterman (tim@lister.sesgroup.net) joined #gnuenterprise.
+Rafterman (tim@lister.sesgroup.net) left irc: Client Quit
+<dneighbo> chillywilly um we could probably 'magically' find you some pillar mp3's
+<chillywilly> hehe
+<dneighbo> but i really liked them
+<dneighbo> and was impressed they put tabulature up on their site
+<dneighbo> and had a forum and such
+<jcater> ok
+<chillywilly> yea that
+<jcater> first draft of GNUe Navigator is in cvs
+<chillywilly> 's cool
+<jcater> currently wx only
+<jcater> it's butt-ugly, but functional :)
+<chillywilly> what does navigator do?
+<chillywilly> dneighbo: don't they have a CD you can buy?
+<jcater> it will drive your car for you if you have a GPS system installed
+<chillywilly> heh
+<chillywilly> gah
+<chillywilly> dneighbo: 
+<chillywilly> you click on their store
+<chillywilly> and it goes
+<chillywilly> netscape does not function properly
+<chillywilly> use IE 4+
+<chillywilly> no way man!!!
+<chillywilly> christians should support Free Software, imho ;)
+<nickr> chillywilly: it gets and renders a list of forms for users
+<chillywilly> kewl
+<jcater> it presents forms and reports in a menu fashion
+<chillywilly> customizable menus?
+<jcater> it's based on a .GPD xml file (GNUe Process Definition)
+<chillywilly> hrrrrm
+<chillywilly> is that like workflow?
+<chillywilly> when did you create YAF?
+<jcater> um, if you close your eyes hard enough, it might resemble some aspect of workflow
+<chillywilly> yet another format
+<jamest> that was a proposal from months ago IIRC
+<jcater> from july
+<chillywilly> maybe I should read the list more close sly then
+<chillywilly> july?
+<chillywilly> that was eons ago
+<chillywilly> ;)
+<chillywilly> what list is it on?
+<jcater> I dunno
+<jcater> scroll back
+<jcater> I posted a link to it a few hours ago
+<nickr> will it mutate into workflow?
+<jcater> workflow is one of those "all-encompassing" words
+<chillywilly> isn't that its original intent?
+Action: Yurik can't sleep.. ergghh
+Action: nickr dips gpd in mutation causing chemicals and gets a duck with a goat tail
+<nickr> hrm
+fil_c (~username@p.cole.easynet.co.uk) joined #gnuenterprise.
+<Mr_You> re
+Action: jbailey is away: shopping.
+<dneighbo> nickr it might tie into workflow
+<dneighbo> workflow groupware etc
+<dneighbo> are so subject to debate :)
+<dneighbo> we are baby stepping
+<dneighbo> i could see this go from menu
+<dneighbo> to supporting roles
+<dneighbo> in a workflow like capacity
+<dneighbo> to tying to a 'real' workflow engine
+<dneighbo> but for now its simply an application container to launch other forms and reports and such
+<dneighbo> btw: jcater how did you implement
+<dneighbo> ?
+<jcater> wx
+<Mr_You> just build it into GEAS and create a DCE GEAS design so you can distribute the load ;-)
+<dneighbo> im hope that it gives a 'trigger' call or something
+<dneighbo> were its calling runForm
+<dneighbo> or runReport
+<dneighbo> BUT you could write python code to do anything?
+<dneighbo> as i want to tie things like export data
+<dneighbo> or import data
+<dneighbo> or launch application x
+<dneighbo> etc from it :)
+<dneighbo> if that makes sense?
+<Mr_You> or seperate each function seperate of GEAS
+<jcater> kinda
+<Mr_You> multiple daemons 
+Action: dneighbo will be exicited to play when i get home
+<jcater> right now it supports forms and reports
+<jcater> but if you look at the XML markup, you can see
+<dneighbo> jcater: and for right now thats all it needs to support :)
+<jcater> that can be extended to other things
+<dneighbo> cool
+<nickr> makes sense to me
+<dneighbo> i want to look at it but probably wont as its wifey's 30th bday today
+<Mr_You> happy b-day to wifey neighbors
+<jcater> btw, this was simply to scratch an immediate itch
+<nickr> I could see easy role thing, where when you launch that client you get a list of roles, then each role has a collrection of tasks associated with it (forms and reports)
+<dneighbo> jcater while we are talking immediate itch
+<chillywilly> hide
+<dneighbo> at one time you had an authentication manager
+<chillywilly> run jc run!
+Action: jcater thinks dneighbo should get to scratching
+<jcater> :)
+<dneighbo> so you didnt have to create users in postgres or db for each user
+<jcater> yip
+<dneighbo> what are chances of putting that in there somewhere?
+<dneighbo> in cvs
+<dneighbo> as a use this if you must but count on it changing kind of thing?
+<jcater> ok
+<dneighbo> as i think i will need it for dstoys based on requirements im looking at
+<jcater> I can do that
+<dneighbo> sometimes a hack that is a hack is better than nothing at all :)
+<dneighbo> i.e. i think we all agree we dont want to do auth long term this way
+<jcater> well, actually it's a pluggable system
+<dneighbo> but its better than creating a lot of db users :)
+<jcater> so I don't even consider it a "hack" per se :)
+<dneighbo> thats right, me vaguely remembers discussing it, but i remembered it existed
+<nickr> going from simple auth to roles seems easy, if you could associate a list of roles with each user
+<dneighbo> btw: are you adding this to patches or unstable
+<nickr> then associate a list of forms and reports with each role
+<dneighbo> as if we get the menu stuff put in and masks are even marginally useful and we get the authentication thing
+<jamest> we're not using patches at the moment 
+<dneighbo> its definitely worthy of release
+<jamest> as the new UI stuff isn't here yet :(
+<jcater> ha!
+<jcater> we can release gnue-nav now :)
+<jcater> as its perfect
+<jcater> <cough>
+<dneighbo> jcater you're full of donuts
+<nickr> I wish I were full of donuts.. _\
+Action: dneighbo wishes he were full of pizza....
+<dneighbo> we need 'transporters' or 'replicators'
+<jcater> ?
+<nickr> yea
+<nickr> both
+<dneighbo> i want 2 slices of pie (pepperoni) from a NYC pizza shop
+<nickr> transporters would make travel very inexpensive. :)
+<dneighbo> the pizza out here is ok, but its not NYC
+<jamest> l8r
+<dneighbo> mostly the good pizza here is from chicago
+jamest (~jamest@hobbes.math.ksu.edu) left #gnuenterprise.
+<nickr> dneighbo: do you like siscillian pizza?} theres this great place 2 blocks from here
+<Mr_You> mmm
+<dneighbo> nickr its ok
+<dneighbo> i like paper thin, greasy as all hell pizza
+<dneighbo> i think the place i really liked was on upper west side
+<Mr_You> I love scicillian, need to find a good place arond here
+<dneighbo> pizza joint, pizza joint too
+<dneighbo> ?
+<nickr> I don't like paper thin pizza that has no flavor like most NY pizza
+<dneighbo> they made a mean calzone too
+<nickr> I love sicillian because its big and doughy and way garlicky
+<dneighbo> actually a calzone done right kicks butt over a pizza any day of the week
+<nickr> yea
+<dneighbo> nickr i like sicillian, BUT most places that make it right have other italian food besides pizza
+<dneighbo> and generally i cant turn down tortellni and gnocchi and such
+<nickr> dneighbo: yea, the place I'm thiking of is an itallian resturant
+<nickr> dneighbo: they just happen to have pizza also
+<dneighbo> so the pizza gets turned down in favor of stuff i dont get all the time :)
+<Mr_You> yeah most pizza places don't have a kick butt scillian kinda weird.. my mom could make a great one
+<nickr> they have really good lasagna too
+<nickr> anfway
+<nickr> I'm making myself hungry
+<Mr_You> I ate some pork at a carribean place last night
+Action: chillywilly is also getting hungry
+<Mr_You> and sweet potato fries
+<Mr_You> those things are pretty unreal
+<Mr_You> taste like candy heh
+<nickr> carribean sounds good
+<chillywilly> sure does
+<Mr_You> I'll get the jerk chicken next time
+<Mr_You> its a brand new place... has a lounge too..reggae band on friday.. good one..
+<Mr_You> so go for dinner then just walk over to the lounge for some good music
+<nickr> jerk chicken, jerk beef, jerk pork... is there any meat this man can't jerk?
+<jcater> trout?
+<Mr_You> they had a snapper dish that is also on my list, don't recall it being jerk hehe
+Action: jcater loves jerk
+<jcater> and no snide comments ;)
+<chillywilly> damn
+Action: chillywilly was ready to pounce
+<nickr> I already made my snide comment ;)
+<chillywilly> s/love/is a/
+<chillywilly> :D
+<dneighbo> this sounds like a porn channel
+Action: chillywilly runs away fast
+Action: dneighbo went to this killer caribbean place
+<dneighbo> i saw some pretty incredible snapper
+<Mr_You> anyone know if a working web Forms client will be included in next release?
+Action: chillywilly cannot eat fish
+<dneighbo> made me so hungry i couldnt decide which meat to jerk
+<Mr_You> hehe
+Action: chillywilly is probably the only penguin that us allergic to fish
+<dneighbo> Mr_You probably not
+<chillywilly> s/us/is
+<dneighbo> as i hope to release before the ui cleanup
+<dneighbo> based on the things that have started to be added
+<dneighbo> masks/auth/navigation
+<Mr_You> oh well, way it goes..
+<jcater> I think jamest and I are ready
+<jcater> masks won't make it, I don't think
+<jcater> they are pretty much ready
+<jcater> but to get them to work w/0.1.x will require a butt-load of hacks
+<dneighbo> huh?
+<dneighbo> arent we going to release 0.2.0 ?
+<dneighbo> or i mean 0.3.0 i guess
+<jcater> 0.1.1
+<dneighbo> oh i asked about htat
+<chillywilly> gah
+<chillywilly> fucking goats!!!!
+<dneighbo> jamest said you guys weren't doing patches
+<dneighbo> so i thought that meant next release woudl be from head
+<nickr> gotta milk them goats to get feta
+<jcater> we have been so busy fixing problems that we haven't make HEAD incompatable w/0.1
+<jcater> so head is still 0.1
+<dneighbo> rofl
+<dneighbo> ok
+<dneighbo> but still should be making the changes off the 0.1.0 branch
+<dneighbo> to be compatiable
+<dneighbo> er to form good habits
+<chillywilly> branches schmanches
+Action: chillywilly would settle for non-crashing code
+<jcater> we'll rebranch as soon as we are ready to break head
+Action: chillywilly beats head into monitor
+<jcater> which I'm ready now
+gulliver (~gulliver@bi-node.teuto.de) joined #gnuenterprise.
+neilt (~neilt@dhcp64-134-54-175.chan.dca.wayport.net) joined #gnuenterprise.
+#gnuenterprise: mode change '+o neilt' by ChanServ!ChanServ@services.
+dsmith (~dsmith@oh-strongsville5a-64.clvhoh.adelphia.net) joined #gnuenterprise.
+<chillywilly> wassup my peeps
+<chillywilly> neilt: what's the dilly?
+<neilt> the dilly
+<neilt> ?
+<chillywilly> hehe
+<chillywilly> that's ebonics for what's the deal
+<chillywilly> ;)
+<nickr> whats the dilly, yo?
+<chillywilly> i.e., how's it hanging, waaaaazzzzzaaaaapaneeen even
+<jcater> what's the 4-11?
+<nickr> or wazthadillio? as the wiggers say
+<neilt> i see, its been how long since you graduated?
+<chillywilly> umm, the sad thing is it's been even lionger since I was exposed to real ebonics
+<chillywilly> but my partner in crim likes to spend most i the day making fun of it
+<chillywilly> so I get to hear it all again
+gulliver (gulliver@bi-node.teuto.de) left irc: "Client Exiting"
+<chillywilly> bah
+<chillywilly> this is stupid
+<dneighbo> so joo sayin dat der homie be a busta white?
+<chillywilly> I dunno, you got some scrimps g iz mitie howngrey
+<dneighbo> tellim joo give him fitty snaps to quit his trippin
+<nickr> ebonics truely is a sttrange and beautiful language
+phil_c (~username@du-037-0127.access.clara.net) joined #gnuenterprise.
+<chillywilly> this makes no sense
+<chillywilly> friggin Event objects don't block the thread on Wait() in gcc++
+<chillywilly> wtf!?!?!?!
+<chillywilly> aaaaaaaaaaaaaaaaarrrrrrrrrrrrrrrrrrrrggggggggggggghhhhhhhhh!
+<dneighbo> only chilly goes from ebonics dissing to bitching about multi threaded inadequacies of gcc
+<nickr> it is simply the way of things
+<chillywilly> gcc++ is gnu common c++
+<chillywilly> not gcc
+<chillywilly> ;)
+<chillywilly> I'm not sure if that's the proper abbreviaion for it
+<chillywilly> ;)
+<chillywilly> abbreviation
+<chillywilly> maybe Dave calls it ccgnu
+<chillywilly> I dunno either way the fucking thread just keeps on going
+<chillywilly> that little bastard
+<dneighbo> oh man this is too funny
+<dneighbo> http://wantdbest.com/humor/jokes/babies.html
+Action: jbailey is back (gone 00:48:58)
+<chillywilly> where do you find this stuff?
+<chillywilly> I mean instead of sirfing the net why aren't you hacking dneighbo?
+<chillywilly> well?
+Action: chillywilly pulls out his trout
+<chillywilly> pay back is a bitch
+chillywilly_ (~danielb@d146.as20.nwbl0.wi.voyager.net) joined #gnuenterprise.
+chillywilly (danielb@d126.as29.nwbl0.wi.voyager.net) left irc: Killed (NickServ (Ghost: chillywilly_!~danielb@d146.as20.nwbl0.wi.voyager.net))
+Nick change: chillywilly_ -> chillywilly
+<dneighbo> chillywilly truth be known my mom sends me the jokes
+<dneighbo> so not surfing for them
+fil_c (username@p.cole.easynet.co.uk) left irc: Read error: 110 (Connection timed out)
+madlocke (madlocke@pD952340E.dip.t-dialin.net) joined #gnuenterprise.
+<madlocke> hi
+madlocke (madlocke@pD952340E.dip.t-dialin.net) left irc: Client Quit
+<chillywilly> dneighbo: yea, your mom needs help dude
+<chillywilly> ;P
+<chillywilly> moms shouldn't be sending stuff like that
+<chillywilly> ;)
+jamest (~jamest@fh-dialup-202020.flinthills.com) joined #gnuenterprise.
+<chillywilly> sup g
+<jamest> work
+<chillywilly> on GNUe?
+<jamest> sorta
+<chillywilly> explain
+<jamest> converting older production gnue forms gfd files to newest forms
+<jamest> usually finds bugs
+<chillywilly> ah
+<jamest> bash-2.05a$ gfcvs po.gfd
+<jamest> Gtk-CRITICAL **: file gtkmain.c: line 894 (gtk_grab_remove): assertion `widget != NULL' failed.
+<jamest> /usr/local/bin/gfcvs: line 17:  2375 Segmentation fault      /usr/bin/python /home/jamest/cvs/gnue/forms/.cvsdevelbase/gnue/forms/GFClient.py $*
+<jamest> for instance :)
+<jcater> operator error
+<jamest> of course
+<jamest> ls
+fil_c (~username@du-037-0114.access.clara.net) joined #gnuenterprise.
+phil_c (username@du-037-0127.access.clara.net) left irc: Read error: 113 (No route to host)
+<chillywilly> jamest: you're not the onyl one having fun now
+<chillywilly> ;)
+<nickr> I'm glad I'm not having 'fun'
+Action: chillywilly 's test program that uses his library is crashing ans freaking Dave keeps changing how commonc++'s classes work on me so I think I am using them right and then look at the actual code and come to find out I need to use a whole different object
+<chillywilly> he keeps refactoring things on me
+Action: chillywilly used to be able to use Event class a certain way, now the same funcationality that I want has been moved to a Conditional class
+<chillywilly> ugh
+<chillywilly> the price we pay for using development (cvs) code
+<nickr> yea
+<nickr> fool
+<chillywilly> oh and AI used to be able to detahc a thread and it would not Notify() the parent
+<chillywilly> detach
+<chillywilly> frell
+<dneighbo> l8r g's
+dneighbo (dneighbo@mail.libertydistribution.com) left irc: "BitchX: now with wings"
+<chillywilly> BitchX gives you wings!
+Yurik (yrashk@gw.telcos.net.ua) left irc: Read error: 104 (Connection reset by peer)
+<Mr_You> rgh?
+<Mr_You> oops
+jcater (jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "home"
+<Mr_You> man I need a faster box, like a dual athlon
+jcater (~jason@24.92.70.201) joined #gnuenterprise.
+Action: chillywilly is away: supper
+Action: chillywilly is back (gone 00:15:55)
+phil_c (~username@du-037-0241.access.clara.net) joined #gnuenterprise.
+fil_c (username@du-037-0114.access.clara.net) left irc: Read error: 110 (Connection timed out)
+rdean (rdean@chcgil2-ar2-052-243.chcgil2.dsl.gtei.net) joined #gnuenterprise.
+<chillywilly> rdean and mdean....too scary ;)
+<Mr_You> related?  ;-)
+<chillywilly> I think those dudes are brothers actually
+<chillywilly> hey rdean
+jcater (jason@24.92.70.201) left irc: Remote closed the connection
+<chillywilly> aren't you mdean's brother?
+<Mr_You> heh cool
+jcater (~jason@24.92.70.201) joined #gnuenterprise.
+<chillywilly> hey what's that blind mellon song they always play and has that little girl in the bee costume called?
+<chillywilly> all I can say is that my life is pretty plain....
+<chillywilly> etc.
+<chillywilly> anyone?
+<jamest> IIRC no rain
+<Mr_You> yeah
+<chillywilly> ok
+<Mr_You> blind melon was great
+<Mr_You> I think they felt they caught something and froze it in time with the CD never to be replicated again.. 
+<Mr_You> cause they couldn't write songs like that album was written
+<Mr_You> thats why if I ever sign a contract I wanna have 40 or so songs in my back pocket
+derek (~derek@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<chillywilly> sup dawg
+<derek> hello
+jbailey (jbailey@HSE-Toronto-ppp319317.sympatico.ca) left irc: "Client Exiting"
+<derek> why does phil_c seem familiar?
+<chillywilly> all I cna say is that my life is pretty plain
+<chillywilly> ....
+<phil_c> derek... because I've been silently listening for a while!!
+<derek> is that a start to a pop punk trio tune?
+<derek> ah
+<chillywilly> no
+<chillywilly> blind melon
+<phil_c> I've got to catch some Zzzzss ... later
+phil_c (username@du-037-0241.access.clara.net) left irc: "Client Exiting"
+Action: derek is away: guitar lessons
+<chillywilly> :)
+<jamest> guitar man
+[rdean] (~rdean@chcgil2-ar2-052-243.chcgil2.dsl.gtei.net) joined #gnuenterprise.
+Action: chillywilly can play the guitar
+rdean (rdean@chcgil2-ar2-052-243.chcgil2.dsl.gtei.net) left irc: Read error: 104 (Connection reset by peer)
+neilt (neilt@dhcp64-134-54-175.chan.dca.wayport.net) left irc: Read error: 113 (No route to host)
+<Mr_You> anyone have the "todos" command on their debian box?
+Yurik (~yrashk@gw.telcos.net.ua) joined #gnuenterprise.
+<Mr_You> nm
+Yurik (yrashk@gw.telcos.net.ua) left irc: Read error: 104 (Connection reset by peer)
+[rdean] (rdean@chcgil2-ar2-052-243.chcgil2.dsl.gtei.net) left irc: "Client Exiting"
+<nickr> whatn the deal with gnue and LWCE?
+<chillywilly> I think jc is going to be there
+<nickr> hrm, I was thinking if theres still time to get involved I should
+<chillywilly> yes you should
+<chillywilly> ;)
+<chillywilly> since it is in your backyard
+<chillywilly> ;P
+<nickr> Exactly.
+<jcater> any gnome-ites around?
+<jcater> how do I start a gnome session in display :1
+<jcater> if gnome isn't my default win manager?
+<nickr> gnome-session -display :1
+<nickr> heh
+<nickr> thats probably not what you were asking
+<nickr> are you running gdm?
+<jcater> actually, thet is what I was asking
+<jcater> thanks
+<nickr> oh. heh :)
+<nickr> if you meant a full blown X session taht just happens to use gnome, gdm will open a new dispalf for youand everything
+Yurik (~yrashk@gw.telcos.net.ua) joined #gnuenterprise.
+alexey (alex@techkran.vladimir.ru) joined #gnuenterprise.
+Yurik (yrashk@gw.telcos.net.ua) left irc: Read error: 104 (Connection reset by peer)
+<StormBringer> hi alexey
+<alexey> hello StormBringer
+Yurik (~yrashk@gw.telcos.net.ua) joined #gnuenterprise.
+Action: Yurik is awake
+<nickr> morning
+<chillywilly> sup peeps
+<nickr> someone subscribed to tmta on freshmeat
+<nickr> neato
+<chillywilly> tmta?
+<chillywilly> is that yours?
+<nickr> yea
+Action: derek is back (gone 03:24:30)
+<jcater> massa derek: tell the misses happy b'day
+Action: derek wants to learn how to play the intro into project86's chimes
+<derek> jcater: will do
+<jamest> yeah
+<chillywilly> ues, happy b-day mrs. masta
+<chillywilly> s/ues/yes
+<chillywilly> :)
+<jcater> chillywilly: that'd be the grand-masta
+<jcater> ;)
+<chillywilly> hehe
+<nickr> haha
+<chillywilly> hrrrm, what makes a process a zombie process?
+<chillywilly> it's parent is dead?
+<chillywilly> and it is waiting  there forever
+<nickr> yea
+<nickr> because its waiting on the return of SIGCHLD
+<nickr> or whatever
+<chillywilly>  Processes marked <defunct> are dead  processes  (so-called
+<chillywilly>        "zombies")  that  remain  because  their  parent  has  not
+<chillywilly>        destroyed them properly. These processes will be destroyed
+<chillywilly>        by init(8) if the parent process exits.
+<nickr> but that signal will never be delivered
+jcater (jason@24.92.70.201) left irc: "nite"
+<chillywilly> night all
+chillywilly (danielb@d146.as20.nwbl0.wi.voyager.net) left irc: 
+<Yurik> e all
+<Yurik> morning
+--- Wed Jan  9 2002

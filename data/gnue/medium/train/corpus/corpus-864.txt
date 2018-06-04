@@ -1,0 +1,322 @@
+*** SachaZzz is now known as SachaS
+*** johannesV has joined #gnuenterprise
+<johannesV> good morning
+*** btami has joined #gnuenterprise
+<btami> good morning
+*** reinhard has joined #gnuenterprise
+<reinhard> good morning all
+*** johannesV_ has joined #gnuenterprise
+*** johannesV has quit IRC
+*** kilo has joined #gnuenterprise
+<kilo> good morning
+*** lekma has joined #gnuenterprise
+<lekma> good morning
+<lekma> reinhard: i tested you changes, the script that use to take 4min+ is now 0:01:53.797909
+<lekma> \o/
+<reinhard> excellent
+<reinhard> now how do we stand in that sap comparsion?
+<reinhard> not that i would take beating sap as a minimum requirement, but just curious
+<lekma> First try:
+<lekma> 1 min 45 sec. for 516.390 records and display two fields.
+<lekma> Second try:
+<lekma> 1 min 35 sec
+<lekma> so we're not there yet
+<reinhard> this is *including* the rpc layer?
+<lekma> yep
+<reinhard> xmlrpc or hessian?
+<lekma> and my test is only 185000 records, one field
+<lekma> sap, i don't remember (their protocol), gnue, xmlrpc for the moment
+<lekma> i'm hitting strange bugs in http 1.1 with hessian
+<reinhard> ok
+<reinhard> I think that xmlrpc still adds a lot of overhead
+<lekma> even thougt in oure encode/decode hessian is 3 to 4 time faster
+<lekma> s/oure/pure
+<lekma> the request still eats 300Meg of memory (instead of 500)
+<reinhard> well
+<reinhard> at least for speed we're not magnitudes away any more
+<lekma> :)
+*** btami has quit IRC
+<reinhard> lekma: as for "only one field", please don't forget that there is always the gnue_id as a second field
+<reinhard> also, I think adding more fields wouldn't make it slower proportionally
+<reinhard> i.e. a second field would by far not add the same amount of time again
+<lekma> no, of course
+<lekma> i need a gnue expert
+<lekma> that's plain crazy
+<reinhard> you mean you need a gnue expert who's plain crazy? ;-)
+<reinhard> that would be implied :)
+<lekma> a hessianlib.dumps() of a big list outside of gnue context:
+<lekma> hessianlib.dumps() 0:00:00.143382
+<lekma> the same in ServerAdapter:
+<lekma> hessian.dumps () 0:00:26.166066
+<lekma> i don't understand where the extra time comes from
+<lekma> while xmlrpc is coherent
+<lekma> ie:
+<lekma> xmlrpclib
+<lekma> .dumps:  0:00:02.267522
+<lekma> in ServerAdapter:
+<lekma> xmlrpc.dumps () 0:00:02.914790
+<reinhard> how did you get these times?
+<reinhard> pstats module?
+<lekma> dumping value :
+<lekma>     r = 30000
+<lekma>     v = ["this is a record", 1, 2, 1000001, "(08)123123123", "some more text", 22/7.0 , u"some unicode", True, False]
+<lekma>     value = ([v for i in range(r)])
+<lekma> nope datetime.datetime()
+<reinhard> ah
+<reinhard> even with pstats i see "unexplainable" results sometimes
+<lekma> the crazier is if i run in profile
+<reinhard> like a function that only consists of a single function call uses 20 seconds
+<reinhard> for 100000 calls
+<lekma> everything is back to normal, ie hessian faster than xmlrpc
+<reinhard> I suspect all the hidden python magic like garbage collection and the like has a big impact on performance
+<reinhard> and the decision when exactly python runs the garbage collection might depend on conditions that we as humans would regard as "random"
+*** kilo has left #gnuenterprise
+<lekma> it is systematic
+<lekma> it is always slower when run in gnue
+<lekma> and always faster outside gnue
+<lekma> that doesn't seem like random
+<lekma> :(
+<lekma> it drives me crazy
+<reinhard> I think it is slower because within gnue there is a lot more garbage to collect
+<reinhard> but I can only suspect, too
+<reinhard> that's all guessing
+<jcater> could it have anything to do with unicode vs non-unicode data?
+<reinhard> AFAICT lekma's non-gnue test contains unicode data, too
+<lekma> yes same data
+<lekma> everything is equal
+<jcater> do you have psyco installed on your computer? I know gnue initializes it by default if it can find it, which in most cases makes a huge performance diff ... but I wonder if it causes problems with your lib
+* jcater is just making guesses here ... sorry if I'm butting in :)
+<reinhard> jcater: your suggestions are welcome
+<lekma> >>> import psyco
+<lekma> Traceback (most recent call last):
+<lekma>   File "<stdin>", line 1, in ?
+<lekma> ImportError: No module named psyco
+<lekma> >>>
+<lekma> so psyco seems out of the equation
+<lekma> could you guys have a look at the code cause it really is driving me crazy
+<lekma> ?
+<jcater> I'd be happy to
+<jcater> as you have me very curious
+<reinhard> I can also try
+<lekma> can i dcc send?
+<reinhard> can you mail?
+<jcater> please email to jason at gnue.org for me
+<reinhard> reinhard at gnue dot org
+<reinhard> :)
+<lekma> ok
+<lekma> sent
+* lekma hopes you will find where he has been stupido :)
+<lekma> bbl
+<lekma> back
+*** johannesV__ has joined #gnuenterprise
+*** johannesV_ has quit IRC
+<reinhard> lekma: get it
+<reinhard> erm
+<reinhard> got it
+<reinhard> will look this evening (i think)
+<lekma> thx
+<reinhard> but from a first sight, it looks non-trivial :)
+<reinhard> so I really need some time to dig into it
+*** derek has joined #gnuenterprise
+*** klasstek has joined #gnuenterprise
+<lekma> bb
+*** johannesV__ has quit IRC
+*** bigbrother has joined #gnuenterprise
+*** SachaS is now known as SachaZzz
+*** klasstek has quit IRC
+*** jcater has joined #gnuenterprise
+*** bigbrother` has joined #gnuenterprise
+*** bigbrother has quit IRC
+*** derek has quit IRC
+*** sjc has quit IRC
+*** derek has joined #gnuenterprise
+*** someon has joined #gnuenterprise
+<someon> Wow...  been forever since I've been on...  I've been reading the logs, though...
+<someon> jamest: Any chance of getting the www->irc proxy back?
+<someon> And another question for those that write often....  (Reinhard, Johannes, Lekma, ...) does anyone use Eclipse and PyDev to GNUe?
+*** someon has left #gnuenterprise
+<jcater_> I tried it
+<jcater_> the frustration I had was that a file had to be part of a project
+*** jcater_ has quit IRC
+*** SachaZzz has quit IRC
+*** reinhard has joined #gnuenterprise
+<reinhard> good morning all
+*** kilo has joined #gnuenterprise
+*** btami has joined #gnuenterprise
+<btami> good morning
+*** johannesV has joined #gnuenterprise
+<johannesV> good morning
+*** johannesV_ has joined #gnuenterprise
+*** lekma has joined #gnuenterprise
+<lekma> good morning
+<reinhard> hi lekma
+*** johannesV has quit IRC
+<lekma> i figured it out
+<reinhard> really? cool
+<reinhard> what was it?
+<lekma> a bug in hessianlib that shown itself when dumping instances
+<lekma> which in fact makes me wonder if hessian is really faster than xmlrpc
+<lekma> bah soon the answer
+<lekma> some more tests and we'll see
+*** SachaS has joined #gnuenterprise
+<lekma> some results:
+<lekma> Server is a small comp
+<lekma> Client is a big comp (more mem, more cpu power)
+<lekma> running gnue-appserver and tests on Server:
+<lekma> python 00000_test_psycopg.py
+<lekma> 0:00:02.222326
+<lekma> python 00000_test_xmlrpc.py
+<lekma> 0:02:07.577575
+<lekma> python 00000_test_hessian.py
+<lekma> 0:01:41.565727
+<lekma> running gnue-appserver on Server and tests on Client:
+<lekma> python 00000_test_psycopg.py
+<lekma> 0:00:01.537350
+<lekma> python 00000_test_xmlrpc.py
+<lekma> 0:01:52.654580
+<lekma> python 00000_test_hessian.py
+<lekma> 0:01:35.573958
+<lekma> well i don't know if it was worth the trouble
+<lekma> even though pure dumps/loads is around 3 times faster in hessian than xmlrpc
+<reinhard> these numbers witness a huge improvement
+<lekma> that's true we're not in the 4min+ range anymore
+<lekma> but i believe we should be in the less than 1min range
+<SachaS> lekma are you testing gnue client with gnue server or some gnue server to gnue server communication ?
+*** btami has quit IRC
+<lekma> ?? i'd say client/server
+<SachaS> ok.
+<lekma> hessian is an rpc protocol
+<SachaS> ok.
+* SachaS is still interested in gnue 2 gnue communication ... maybe based on ebXML messaging.
+*** kilo has left #gnuenterprise
+*** jamest has joined #gnuenterprise
+*** SachaS has quit IRC
+<lekma> bbl
+*** lekma has quit IRC
+*** SachaS has joined #gnuenterprise
+*** SachaS has quit IRC
+*** SachaS has joined #gnuenterprise
+*** bigbrother has joined #gnuenterprise
+*** bigbrother` has quit IRC
+*** klasstek has joined #gnuenterprise
+*** jamest has quit IRC
+*** derek has quit IRC
+*** johannesV_ has quit IRC
+*** johannesV_ has joined #gnuenterprise
+*** jcater has joined #gnuenterprise
+*** derek has joined #gnuenterprise
+<reinhard> cu all
+*** reinhard has quit IRC
+*** SachaS has quit IRC
+*** jamest has joined #gnuenterprise
+*** johannesV_ has quit IRC
+*** jamest has quit IRC
+*** jamest has joined #gnuenterprise
+*** ncjp has quit IRC
+*** jamest has left #gnuenterprise
+*** jcater has quit IRC
+*** sjc has joined #gnuenterprise
+*** jcater has joined #gnuenterprise
+*** klasstek has quit IRC
+*** sjc has quit IRC
+*** derek has quit IRC
+*** derek has joined #gnuenterprise
+*** SachaS has joined #gnuenterprise
+*** johannesV has joined #gnuenterprise
+<johannesV> good morning
+*** reinhard has joined #gnuenterprise
+<reinhard> good morning all
+*** kilo has joined #gnuenterprise
+*** btami has joined #gnuenterprise
+<btami> good morning
+*** kilo has left #gnuenterprise
+*** kilo has joined #gnuenterprise
+<kilo> good morning
+*** johannesV_ has joined #gnuenterprise
+*** johannesV has quit IRC
+*** lekma has joined #gnuenterprise
+<lekma> good morning
+*** kilo has left #gnuenterprise
+*** btami has quit IRC
+*** jamest has joined #gnuenterprise
+<reinhard> good morning jamest and jcater
+<jamest> morning reinhard
+<jamest> or afternoon :)
+<reinhard> I've just committed some more stuff in gnue-common/src/utils/tree.py
+<reinhard> and would again like you to have a look at it and tell me whether this is what you would consider the right direction
+<jamest> i can try to look a bit later
+<reinhard> thanks
+<reinhard> lekma: I saw your patch in roundup - don't you have commit access yet?
+<lekma> nope
+<reinhard> is there still a problem with your copyright assignment, or is it just that you should get an account on ash?
+<reinhard> I thought I saw some mails about your copyright assignmet cc'd to info at gnue.org but I didn't follow too closely
+<lekma> the copyright assignment is still not solved (fsf seems to be like any other system... confused)
+<lekma> the first mail got lost
+<lekma> and then arrived
+<lekma> so frances sent it back
+<lekma> and 2 days after we got a second letter
+<lekma> of course the first one had the name wrong
+<lekma> :)
+<reinhard> sigh
+<lekma> so it's in the process of being solved
+<lekma> but it takes time
+<reinhard> so I think I will just commit it
+<reinhard> so others can have a look and a try at all
+<lekma> i'm writing the javascript client right now
+<reinhard> hessian driver committed
+<lekma> ok thx
+<jcater> reinhard/lekma: did y'all figure anything out with the performance?
+<lekma> yep
+<lekma> there was a bug withe the hessian lib
+<lekma> but that don't solve all performance issue
+<jcater> okay
+<jcater> I suspected as much
+<jcater> I wrapped the calls into the hotshot profiler the other day
+<jcater> and noticed that most of the wait was inside of the networking code of hessianlib.py
+<lekma> that's another pb, whch in fact is the same for xmlrpc
+<lekma> appserver adds a non negligeabable overhead in ClientAdapter and ServerAdapter
+<lekma> but it tries hard to balance this overhead with agressive http 1.1 connections
+<lekma> so all in all it's not that bad
+<lekma> in fact the way it's done make http 1.1 connections nearly twice faster as standard httplib.HTTPConnection
+<jcater> cool
+<lekma> disclaimer: i may be wrong on my lecture of what appserver does (note to myself: i am not a programmer (repeat x100))
+<jcater> nah, I think the definition of "programmer" is pretty loose these days
+<jcater> after all, jamest claims to be one
+<lekma> :)
+<jamest> true dat
+*** klasstek has joined #gnuenterprise
+*** SachaS has quit IRC
+*** lekma has quit IRC
+*** Amorphous has quit IRC
+*** lekma has joined #gnuenterprise
+*** Amorphous has joined #gnuenterprise
+*** SachaS has joined #gnuenterprise
+*** johannesV__ has joined #gnuenterprise
+*** johannesV_ has quit IRC
+*** jamest has quit IRC
+*** reinhard has quit IRC
+*** lekma has quit IRC
+*** reinhard has joined #gnuenterprise
+*** jamest has joined #gnuenterprise
+<johannesV__> reinhard, are you around ?
+<reinhard> yes
+*** johannesV__ has quit IRC
+*** bigbrother` has joined #gnuenterprise
+*** bigbrother_ has quit IRC
+*** jamest has left #gnuenterprise
+*** Amorphous has quit IRC
+*** Amorphous has joined #gnuenterprise
+*** Amorphous has quit IRC
+*** Amorphous has joined #gnuenterprise
+<reinhard> good night all
+*** reinhard has quit IRC
+*** Amorphous has quit IRC
+*** Amorphous has joined #gnuenterprise
+*** klasstek has quit IRC
+*** Amorphous has quit IRC
+*** Amorphous has joined #gnuenterprise
+*** ncjp has joined #gnuenterprise
+*** ncjp has quit IRC
+*** ncjp has joined #gnuenterprise
+*** SachaS has quit IRC
+*** SachaS has joined #gnuenterprise

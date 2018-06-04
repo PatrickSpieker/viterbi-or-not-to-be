@@ -1,0 +1,127 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.04May2002" enddate="03 May 2002 23:00:00 -0800" startdate="03 May 2002 23:00:00 -0800" subject="[IRC] 04 May 2002" title="Problems installing GNUe dependancies in Mandrake">
+
+<p>Tihomir Purgar (the_grunf) said <quote who="Tihomir Purgar">i'm 
+using mandrake 8.2, and there's no way i can install 
+wxGTK...it says i need libpng.so.2</quote>. He had
+<quote who="Tihomir Purgar">libpng.so.3</quote> and had 
+tried doing a link to "alias" it, 
+<quote who="Tihomir Purgar">but seems like configure is smarter 
+than i</quote>. He confirmed that Mandrake GNU/Linux used 
+rpm (RedHat Package Management) - he had 
+<quote who="Tihomir Purgar">downloaded all the dependencies 
+and i'm stuck in this prob</quote>. James Thompson 
+(jamest) said <quote who="James Thompson">i don't see where 
+in wxPtyhon it references libpng :( - my source is old though.
+One thing you could try in setup.py change the CORE_ONLY = 1 - 
+i have to do this on solaris to get wxpython to 
+build</quote>.</p>
+
+<p>Tihomir posted his rpm dependancies error 
+messages. James asked <quote who="James Thompson">doesn't rpm 
+dependency checking only look for installed RPM packages</quote>? 
+If any of the dependancies were present, but not installed via 
+rpm, it might be worth telling <quote who="James Thompson">rpm to 
+ignore dependencies during install - i think I used to have to do this 
+when mixing source and rpm installs</quote>.</p>
+
+<p>Later, Derek Neighbors (dneighbo) said that he personally 
+recommended <quote who="Derek Neighbors">either compile everything 
+or compile nothing imho</quote> on rpm-based systems. He had 
+<quote who="Derek Neighbors">installed both ways and gotten 
+it to work - source install is suprisingly easy - though i 
+would almost bet that all the dependencies are actually on 
+your mandrake disks in rpm format if you have even a 
+relatively new mandrake distribution</quote>.</p>
+
+<p>Earlier, Tihomir followed James' advice to switch off 
+dependancy checking in the rpm installation, and then got some 
+error messages from GNUe's own setup.py file - 
+<quote who="Tihomir Purgar">No valid UI drivers are installed on 
+this machine:</quote>. James asked <quote who="James Thompson">do 
+you have a DISPLAY var set? - as the checking tries to open an 
+connection to your xserver - this burns me all the time on remote 
+installs :)</quote>. Tihomir confirmed 
+<quote who="Tihomir Purgar">yup....i'm running X now...</quote>.</p>
+
+<p>James pointed to the 
+<quote who="James Thompson">gnue-diag.sh</quote> in 
+<quote who="James Thompson">common/scripts/</quote>. This was 
+<quote who="James Thompson">created to scan installs and find issues
+- but it's fairly old - not sure if it still works properly</quote>.
+Tihomir tried it, and reported 
+<quote who="Tihomir Purgar">grunf....it says i have wxPython installed 
+!!!!!</quote>, wondering <quote who="Tihomir Purgar">so why is this 
+gnue-diag saying i have wxPython installed and setup.py 
+doesn't...</quote>? James said the difference might be 
+<quote who="James Thompson">the gnue-diag looks to see if the file 
+exists via a shell command - the setup.py  actually trys to import 
+it</quote>. He suggested trying to import the wxPython file 
+manually - <quote who="James Thompson">this way you can see the error 
+wx is hitting</quote>. Tihomir cut &amp; pasted his python error 
+message.</p>
+
+<p>Derek said <quote who="Derek Neighbors">i think this is probably 
+a python problem - you have python 1.5.2 still on this machine? 
+If so when you installed wxPython it probably installed for python 
+1.5.2 - and now the operation you are performing is probably looking 
+for it in python 2.x - and so rightfully its saying it does not 
+exist</quote>. Tihomir said he thought he had 
+<quote who="Tihomir Purgar">dowloaded and installed wxPython for Python 
+2.1</quote>. Derek got the_grunf to check his python version, and 
+concluded <quote who="Derek Neighbors">ah yes you definitely need 
+<a href="http://www.rpmfind.net//linux/RPM/cooker/contrib/RPMS/wxPython-2.3.2.1-1mdk.i586.html">wxPython2.2</a></quote>.
+Tihomir downloaded and installed it, 
+<quote who="Tihomir Purgar">but still no work</quote>. Derek 
+suggested running setup-cvs.py from the root gnue directory, 
+instead of the setup.py. This did not give any errors.</p>
+
+<p>When starting the Forms client with the intro.gfd sample 
+form, there was a problem with the 
+<quote who="Derek Neighbors">mxDateTime dependency - lets fix 
+that for you :) - jamest: should i file bug that setup-cvs.py 
+didnt catch that?</quote>. James said 
+<quote who="James Thompson">setup-cvs.py doesn't seem to do 
+dependency checking - at least not for things like wxWindows 
+or mxDateTime - i understand the wxWindows not being there but 
+I hit jcater up about mxDateTime when he shows up</quote>. 
+Jason Cater (jcater) said he <quote who="Jason Cater">hadn't 
+considered it before</quote>. James suggested checking 
+<quote who="James Thompson">only if it's something all gnue 
+apps depend upon - like the python check - as reports doesn't 
+need wx to live - but the db driver system dies w/o mxdatetime. 
+I almost think this should be part of the installer - 
+and the developer setup shouldn't need it. Course that implies 
+we need to release - so that people aren't forced to cvs :)</quote>. 
+Derek said <quote who="Derek Neighbors">i think the developer 
+setup should have it all - as it INSTALLS all packages</quote>. 
+He added <quote who="Derek Neighbors">i do agree about release 
+so that we dont have people using cvs install</quote>.</p>
+
+<p>Tihomir reported that he was now getting an error message 
+<quote who="Tihomir Purgar">Unable to load locale information falling 
+back to default English language translations.</quote> James said 
+<quote who="James Thompson">that's fine - basically you haven't 
+set an localization - or our system doesn't know your localization - 
+that is very much a work in progress</quote>. However, Forms was 
+not loading. Jason suggested running it with 
+<quote who="Jason Cater">--debug-level 10</quote>. Tihomir 
+pasted the debug messages, and Derek concluded 
+<quote who="Derek Neighbors">ok - so we still have wx problem</quote>. 
+He felt <quote who="Derek Neighbors">we really need to retrace all 
+your steps - and systematically uninstall all you have done relating 
+to wx* - so we have clean slate. As best i can tell it looks like its 
+installed just not quite correctly - i.e. its out there under 
+python2.2</quote>. He suggested <quote who="Derek Neighbors">can i get 
+you to uninstall the rpm for wxPython</quote> which had come with 
+the Mandrake distribution <quote who="Derek Neighbors">and try 
+<a href="http://prdownloads.sourceforge.net/wxpython/wxPython-2.3.2.1-1-Py22.i386.rpm">this one</a>
+instead</quote> directly from SourceForge? This proved to solve the 
+problem, and the sample form finally loaded.</p>
+
+<p>Derek concluded <quote who="Derek Neighbors">when people say rpm 
+is as good as apt - my response isnt rpm is a bad packaging system - 
+its that Debian is MUCH better about QUALITY of its packaging 
+:)</quote>.</p>
+
+</section>
+

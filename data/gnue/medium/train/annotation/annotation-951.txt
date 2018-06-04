@@ -1,0 +1,70 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.10Jul2002" enddate="09 Jul 2002 23:00:00 -0800" startdate="09 Jul 2002 23:00:00 -0800" subject="[IRC] 10 Jul 2002" title="Including data in GNUe Application Server schema definitions">
+
+<topic>Application Server</topic>
+<topic>Designer</topic>
+<topic>Integrator</topic>
+<topic>Common</topic>
+<topic>Financials (Accounting)</topic>
+
+<p>Jan Ischebeck (siesel) asked <quote who="Jan Ischebeck">which 
+command line to use to login + checkout acclite?</quote> 
+(as previously discussed in 
+<kcref subject="[IRC] 28 Jun 2002" title="NOLA and acclite - free software financials packages" />). 
+Jason Cater (jcater) said <quote who="Jason Cater">we don't have 
+anon cvs for that yet - but snapshots are at 
+<a href="http://www.gnuenterprise.org/~jcater/snapshots/acclite/">
+http://www.gnuenterprise.org/~jcater/snapshots/acclite/</a></quote>. 
+Jan noted <quote who="Jan Ischebeck">that 'data' and 'database schema' 
+is split into two sql files in acclite.</quote> This had started him 
+thinking about <quote who="Jan Ischebeck">the GNUe Schema Definition 
+file</quote> which <quote who="Jan Ischebeck">has no way to put some 
+base data into it. (quite ok for a SCHEMA definition ;) ) 
+but data should be stored in an XML representation too. 
+for ease of use I would like to put schema and data into ONE file. 
+any objections, ideas?</quote></p>
+
+<p>Later, Derek Neighbors (dneighbo) said 
+<quote who="Derek Neighbors">definitely we need to have the 'data' 
+statements as part of our schema spec - its just a matter of 
+definining and making xslt xsl for it</quote>. He personally 
+preferred keeping the schema definitions and base data 
+separate as <quote who="Derek Neighbors">i like to work in sizeable 
+chunks</quote>, but <quote who="Derek Neighbors">im open to debate 
+though</quote>. Jan said he would not even mind having each table 
+as a separate file, as long as <quote who="Jan Ischebeck">there is 
+ONE comand to create a whole table set, or if there is one</quote> 
+GNUe Schema Definition (.gsd) <quote who="Jan Ischebeck">file 
+which includes the other ones :)</quote> Derek noted that 
+<quote who="Derek Neighbors">well xml/xslt supports includes</quote>.</p>
+
+<p>Jason emphasised that <quote who="Jason Cater">I see xslt as a 
+means to an end - not the end itself. In the not-so-distant future
+GNUe-COmmon's dbdrivers will accept a schema tree
+and each driver will be able to create the schema natively</quote>. 
+Derek agreed - <quote who="Derek Neighbors">in fact for designer and 
+some other things i almost would like to have it go off the</quote> 
+XML schema definitions rather than use introspection to check what 
+was actually in the database - <quote who="Derek Neighbors">but 
+thats another discussion</quote>. He saw 
+<quote who="Derek Neighbors">this functionality as being important 
+also for integrator as well as designer :)</quote></p>
+
+<p>Jan proposed a simple XML format for data, with rows and values, 
+optionally also with fieldnames, probably as a separate section after 
+the end of the existing &lt;/schema&gt; closing tag. Jason noted that 
+<quote who="Jason Cater">GParser depends on there being a 
+single enclosing tag around an entire file (i.e., the "root" 
+element)</quote> which would affect where the &lt;data&gt; tags could be 
+placed. Jan wondered whether <quote who="Jan Ischebeck">if we do it 
+that way, is &lt;schema&gt; still the right name for the root tag?</quote>
+Jason thought so, <quote who="Jason Cater">as to me required datasets 
+are still part of a schema definition</quote>. Jan said that he would 
+like to use this format <quote who="Jan Ischebeck">as a dump format for 
+the appserver</quote> as well, and asked <quote who="Jan Ischebeck">would 
+you object to put "non-required" datasets into it?</quote>. Jason said 
+<quote who="Jason Cater">I see no problem with that - most tools like 
+that include an option to dump only schema or schema + data anyway</quote>.
+Jan said he would go away and work out some examples.</p>
+
+</section>
+

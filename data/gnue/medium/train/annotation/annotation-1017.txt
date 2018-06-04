@@ -1,0 +1,107 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.2006-05-10" author="Peter Sullivan" contact="mailto:psu@burdonvale.co.uk" enddate="12 May 2006 12:00:00 -0800" startdate="10 May 2006 12:00:00 -0800" subject="[IRC] 10 May 2006" title="Performance issues with Application Server and XML-RPC">
+
+<topic>Application Server</topic>
+
+<p>Malek Hadj-Ali (lekma) reported <quote who="Malek Hadj-Ali">after 
+benchmarking a little bit the appserver, i got some ugly 
+results</quote>. The bottleneck appeared to be in the XML-RPC (remote 
+procedure call) code rather than in the application server itself. So 
+Malek had <quote who="Malek Hadj-Ali">searched for an alternative to 
+xmlrpc</quote> and <quote who="Malek Hadj-Ali">finally found a spec 
+for a binary rpc protocol, that was partly implemented in 
+python</quote>, called <a href="http://caucho.com/hessian/">hessian</a>. 
+He <quote who="Malek Hadj-Ali">re implemented it in python</quote> 
+taking care <quote who="Malek Hadj-Ali">to keep the api</quote> 
+the same as for the existing XML-RPC used by GNUe. The 
+<quote who="Malek Hadj-Ali">results are: the encoding part is 
+slightly slower than xmlrpc - the decoding is way faster than xmlrpc
+- so on the overall hessian is faster</quote>. However, Reinhard 
+M&#252;ller (reinhard) was still concerned about the loss in performance 
+compared to just running a query directly against the database - 
+<quote who="Reinhard M&#252;ller">xmlrpc adds an overhead of 20000% - 
+and hessian adds an overhead of 6000% - which both are disgusting 
+numbers :(</quote>.</p>
+
+<p>In any case, <quote who="Reinhard M&#252;ller">the simple fact that 
+appserver itself (without the rpc protocol) adds 4000 % overhead 
+is not nice</quote> - <quote who="Reinhard M&#252;ller">what strikes me 
+odd is that I think we did performance tests and they were 
+acceptable</quote>. Johannes Vetter (johannesV) wondered if 
+<quote who="Johannes Vetter">maybe the number of records was too 
+low then</quote>, noting that the GNUe Schema Definition (.gsd)
+format <quote who="Johannes Vetter">has shown to be not very well 
+suited for large files</quote>. Malek confirmed that generating 
+the gsd file seemed to be the bottleneck.</p>
+
+<p>Malek sent his sample data and code to Johannes, who ran them 
+himself, and got even more extreme results - just over a second 
+for running a query directly against the database, and almost 18 
+minutes going via Application Server and XML-RPC. Malek said that 
+he had dug into the code enough to determine that 
+<quote who="Malek Hadj-Ali">the for loop in fetch is the 
+killer</quote>, but did not understand the GNUe code internals 
+enough to progress any further. Reinhard said that the data 
+from the database should only be being fetched once and then 
+cached before being processed to XML-RPC - 
+<quote who="Reinhard M&#252;ller">it might be a good idea to check 
+postgresql logs to see if the sql statements against the db are 
+those that we would expect - acually finding out that a bug 
+somewhere causes a new sql statement to be issued for every 
+record would be an easy eplanation of the bad performance, 
+and should be fixable - but i fear it's not that 
+easy...</quote>. Johannes confirmed from the database 
+logs that only one SQL statement was being generated.</p>
+
+<p>Johannes did some testing with hotshot, a high performance 
+logging profiler for python, and was able to produce some 
+statistics on what parts of the code were taking the most 
+time to run.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.2006-05-11">The
+next day</a>, Malek reported <quote who="Malek Hadj-Ali">my hessian 
+impl seems to be now faster than xmlrpc in decoding and encoding 
+(after a bit of tuning on unicode)</quote> - also 
+<quote who="Malek Hadj-Ali">it generates smaler messages which 
+is good for network</quote>. He confirmed there were no new 
+external dependencies in the code - he had implemented the 
+hessian protocol directly within the existing GNUe code base.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.2006-05-12">The
+next day</a>, Reinhard developed further optimisation improvements. 
+Previously, GNUe had been <quote who="Reinhard M&#252;ller">using 
+the same datasources library for forms and appserver</quote> 
+but this <quote who="Reinhard M&#252;ller">had a lot of overhead 
+that was only for forms - like tracking dirty records, caching, 
+etc</quote>. For Application Server, these sorts of issues 
+were <quote who="Reinhard M&#252;ller">anyway done in appserver 
+itself</quote>. So he had written a more 'raw' ResultSet 
+function, removing this overhead, which Application Server 
+could then use directly. He added <quote who="Reinhard M&#252;ller">as 
+a side effect, it should also greatly reduce the memory 
+footprint</quote>.</p>
+
+<p>Also, he wondered if these optimisations 
+<quote who="Reinhard M&#252;ller">might also be interesting for 
+reports, as AFAICT reports should also be able 
+to work without that overhead</quote> - except possibly 
+<quote who="Reinhard M&#252;ller">the missing master/detail ability 
+might be a problem...</quote>.</p>
+
+<p>However, this was still <quote who="Reinhard M&#252;ller">only 
+a part of the performance loss in appserver</quote>, which was 
+still significantly slower than accessing the data directly using 
+the psycopg database driver. Although GNUe Application Server was 
+already faster, as of time of writing, than some other, slower, 
+database drivers!</p>
+
+<p>Reinhard said he would change Application Server's data 
+access code to use <quote who="Reinhard M&#252;ller">the new 
+ResultSet.raw() function</quote> he had written. He also made 
+various other optimisations, not all of which yielded the 
+expected results - <quote who="Reinhard M&#252;ller">python profiling 
+is full of surprises - changing a single</quote> assignment statement 
+into a simpler form <quote who="Reinhard M&#252;ller">increased 
+overall appserver performance by  &gt; 5%</quote>!</p>
+
+</section>
+

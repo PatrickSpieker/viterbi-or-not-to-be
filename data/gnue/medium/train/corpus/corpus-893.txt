@@ -1,0 +1,2450 @@
+rdean (~rdean@12-221-229-247.client.insightBB.com) joined #gnuenterprise.
+rdean (~rdean@12-221-229-247.client.insightBB.com) left irc: Client Quit
+gcom (~chatzilla@adsl-65-66-106-148.dsl.rcsntx.swbell.net) left irc: Read error: 60 (Operation timed out)
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+<ajmitch> hi psu
+<chillywilly> peeee esssssee yeeeeew
+<psu> good morning
+<chillywilly> ugh, sleep...
+Action: chillywilly is away: ZZZzzz
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) joined #gnuenterprise.
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+btami (~tamas@ip102-205.ktv.tiszanet.hu) joined #gnuenterprise.
+<Yurik> reinhard, btami: hi
+<btami> hi all
+<ajmitch> greetings people!
+<reinhard> good morning all
+Yurik_ (~yrashk@as5300.kharkov.ukrtel.net) joined #gnuenterprise.
+Yurik__ (~yrashk@as5300.kharkov.ukrtel.net) joined #gnuenterprise.
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) left irc: Read error: 54 (Connection reset by peer)
+Yurik_ (~yrashk@as5300.kharkov.ukrtel.net) left irc: Read error: 104 (Connection reset by peer)
+johannes__ (~johannes@M701P023.adsl.highway.telekom.at) left #gnuenterprise ("Client Exiting").
+johannes_ (~johannes@M701P023.adsl.highway.telekom.at) joined #gnuenterprise.
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise ("work time...").
+Yurik__ (~yrashk@as5300.kharkov.ukrtel.net) left irc: Read error: 104 (Connection reset by peer)
+ariel_ (~ariel@ppp-217-133-240-27.dialup.tiscali.it) joined #gnuenterprise.
+_Maniac (~User@h24-82-132-209.wp.shawcable.net) joined #gnuenterprise.
+Maniac (~User@h24-82-132-209.wp.shawcable.net) left irc: Read error: 104 (Connection reset by peer)
+btami (~tamas@ip102-205.ktv.tiszanet.hu) left irc: 
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) left irc: "Even if you're on the right track, you'll get run over if you just sit there"
+johannes_ (~johannes@M701P023.adsl.highway.telekom.at) left irc: Remote closed the connection
+johannes_ (~johannes@M701P023.adsl.highway.telekom.at) joined #gnuenterprise.
+SachaS (~Sacha@dialup-196-91.wasp.net.au) joined #gnuenterprise.
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+ariel_ (~ariel@ppp-217-133-240-27.dialup.tiscali.it) left irc: "Uscita dal client"
+lupo (~lupo@pD9E684DB.dip.t-dialin.net) joined #gnuenterprise.
+<lupo> hu?
+lupo (~lupo@pD9E684DB.dip.t-dialin.net) left irc: "using sirc version 2.211+KSIRC/1.1"
+btami (~tamas@ip102-205.ktv.tiszanet.hu) joined #gnuenterprise.
+jamest (~jamest@leibniz.math.ksu.edu) joined #gnuenterprise.
+<reinhard> aye captain
+ToyMan (~stuq@smtp.dstoys.com) joined #gnuenterprise.
+ariel_ (~ariel@ppp-217-133-240-27.dialup.tiscali.it) joined #gnuenterprise.
+<jamest> hi
+<jamest> for all the appserver developers in the house
+<jamest> jcater and myself are wanting to do a normal release of common, forms, reports, designer
+<jamest> then do what I've been calling a spitshine release at (0.5.0)
+<jamest> meaning the next release is 0.4.1
+<jamest> then 0.5.0 comes out with no new functionality
+<jamest> (I'm talking common version numbers btw)
+<reinhard> that means like
+<jamest> we've instead focus on code cleanup
+<jamest> docs
+<reinhard> 0.4.1 is really 0.5.0 beta ?
+<jamest> bugfixes
+<btami> i have to say there are some (many) win32 bugreports in DCL
+<jamest> 0.4.1 would be basically cvs that we have now
+<jamest> btami: cool, those are worth fixing then
+<jamest> in 0.4.x
+<SachaS> hi reinhard
+<reinhard> hey SachaS
+<reinhard> long time no see
+<jamest> however how would this effect appserver?
+dsmith (~dsmith@p199.n-chpop03.stsn.com) left irc: Read error: 60 (Operation timed out)
+<jamest> do we need to hold off on a common freeze for a while to get some features needed in there
+<reinhard> i would rather say that it would be better
+<reinhard> to do both 0.4.1 _and_ 0.5.0 of common
+<reinhard> _before_ we break it again :)
+<jamest> 0.5.0 wasn't to break anything it's to clean it up
+<jamest> and get docs
+<reinhard> yes
+<reinhard> i meant
+<reinhard> i would like to let you release 0.5.0 of common
+<SachaS> long time no see ........ no wonder when i got father :))
+<reinhard> before we (we = appserver team) break it
+<jamest> lol
+<reinhard> that means
+<reinhard> we will try to wait for 0.5.0 to be released
+<reinhard> before we touch common
+<jamest> hmmmmm
+<jamest> is there anything you need in common in the near future?
+<reinhard> however it would be good to ask siesel too
+<reinhard> because he's exactly the one that can answer this question
+<reinhard> he always was the personified interface between common and appserver :)
+<reinhard> and at our meeting he talked about some points he wants to change in common
+<reinhard> however i didn't get the feeling that they were _urgent_
+<jamest> ok, the main reason I ask is we don't want the appserver needs to not get met
+<jamest> and I'd hate to try and say "no new features" if it hurts appserver
+<jamest> i'd rather do a series of 0.4.x releases to get what you require in there first
+<jamest> we've kind of promised ourselves no common|forms|designer 0.5.0 without good docs
+<reinhard> good promise jamest :)
+<jamest> well, one thing that I hope to get into 0.4.1 is autodoc support for triggers in the base apps
+<jamest> so that it'll be easier to create them for 0.5.0 :)
+<jamest> autodoc = our command line interface to dump various info about things like parameters
+btami (~tamas@ip102-205.ktv.tiszanet.hu) left irc: 
+Chipaca (~john@ADSL-200-59-86-17.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<Chipaca> hi all
+<Chipaca> for the record I couldn't reproduce the reaming error on a clean gnue pulled last night from cvs with any of the samples in the forms/samples directory
+dsmith (firewall-u@cherry7.comerica.com) joined #gnuenterprise.
+<Chipaca> so you've fixed it between when we pulled your cvs and last night, or we broke it in the same period (methinks the former)
+<Chipaca> end of for-the-record.
+Action: drochaid is away: not ere
+<jamest> :)
+jamest (~jamest@leibniz.math.ksu.edu) left irc: Remote closed the connection
+dragon (~dragon@pcd252010.netvigator.com) joined #gnuenterprise.
+jamest (~jamest@leibniz.math.ksu.edu) joined #gnuenterprise.
+<jamest> so that's what that cable hooked into the back of the switch does
+<Chipaca> pretty much
+jamest (~jamest@leibniz.math.ksu.edu) left irc: Remote closed the connection
+Arturas (~arturas@fmgs-03.vtu.lt) joined #gnuenterprise.
+<Arturas> Hello
+jamest (~jamest@leibniz.math.ksu.edu) joined #gnuenterprise.
+<Chipaca> hi
+<jamest> hello again
+IsoosI (dahoose@port-219-88-246-35.jet.net.nz) left irc: Read error: 113 (No route to host)
+<Chipaca> excuse me, I'm going to paste some lines
+<Chipaca> (yell if it's not ok)
+<Chipaca> (defun gnue-mode ()
+<Chipaca>   "xml-mode + python-mode in triggers"
+<Chipaca>   (interactive)
+<Chipaca>   (xml-mode)
+<Chipaca>   (mmm-mode)
+<Chipaca>   (mmm-ify-by-regexp 'python-mode "<trigger[^>/]*>" 0 "</trigger>" 0 0 )
+<Chipaca>   )
+<Chipaca> (setq auto-mode-alist (cons '("\\.g[rf]d$" . gnue-mode) auto-mode-alist))
+<Chipaca> end of paste
+<Chipaca> for your emacsing pleasure :)
+<Chipaca> I'm sure the regexps can be better, this is just a quick hack :)
+<jamest> this merges the python and xml modes together in emacs?
+Action: drochaid is back (gone 01:27:11)
+<jamest> if so that is cool
+<derek> jamest: you here to maybe help me with some ppp stuff?
+Action: derek can never find anyone who knows pp
+<derek> er ppp
+Action: jamest fskcing hates ppp but i can try
+<jamest> i'm stuck on the with my dsl provider
+<derek> well any hints on configuring a modem in linux
+<derek> i think i used kppp before and got modem to work
+Action: derek has connected to an ISP successfully before
+<derek> just not work
+<jamest> yeah
+<jamest> one huge one
+<jamest> wvdial
+<jamest> it just works most the time
+<jamest> i think it works similar to windows dialup
+<Chipaca> jamest: yes, it merges xml and python, such that xml is xml and triggers are python
+<Chipaca> derek: debian?
+<derek> is it gui?
+<derek> or text files
+<derek> Chipaca: yeah debian
+<jamest> it's a text command line tool
+<Chipaca> derek: first, wvdial to identify your modem and its caps
+<jamest> but I don't recall having to set anything
+<jamest> other than username/pasword/phone#
+<Chipaca> derek: then, pppconfig so pon poff etc work (the std "debian way")
+<derek> Chipaca: ok apt-getting wvdial and pppconfig
+<derek> will ask for further instructions in a minute :)
+<Chipaca> sure thing
+Action: derek really needs to get our VPN software to work under linux
+<derek> so i can use broadband to connect but for now dialup is find
+<derek> er fine
+<derek> VDIAL AUTOCONFIGURATION
+<derek> WvDial includes a program called wvdialconf, which can automatically
+<derek> detect your modem and create a /etc/wvdial.conf file.
+<derek> Autodetection may cause problems on some computers.
+<derek> Do you want to configure wvdial now? [Y/n] 
+<Chipaca> n
+<derek> ok now what
+<Chipaca> wvdialconf
+<Chipaca> :)
+<derek> latitude:/home/dneighbo# wvdialconf
+<derek> Usage: wvdialconf <configfile-name>
+<derek> 	(create/update a wvdial.conf file automatically)
+<derek> latitude:/home/dneighbo# 
+<derek> what should i put for configfile-name ( /home/dneighbo/wvdial.conf )?
+<Chipaca>  /dev/null
+<derek> ttyS0<*1>: ATQ0 V1 E1 -- failed with 2400 baud, next try: 4800 baud
+<derek> ttyS0<*1>: ATQ0 V1 E1 -- failed with 4800 baud, next try: 9600 baud
+<derek> ttyS0<*1>: ATQ0 V1 E1 -- failed with 9600 baud, next try: 19200 baud
+<derek> ttyS0<*1>: ATQ0 V1 E1 -- failed with 19200 baud, next try: 115200 baud
+<derek> ttyS0<*1>: ATQ0 V1 E1 -- and failed too at 115200, giving up.
+<derek> Port Scan<*1>: S1   S2   S3   
+<derek> Sorry, no modem was detected!  Is it in use by another program?
+<derek> Did you configure it properly with setserial?
+<derek> um the problem here
+<derek> is i have a pcmcia modem
+<Chipaca> LOL
+Action: derek has gotten it to work in the past
+<Chipaca> ok, lets start over.
+<derek> its just been a long time and it was under redhat
+<Chipaca> you have pcmcia working?
+<derek> yip
+<derek> its combo ethernet/modem card
+<derek> so the card is working as im talking to you on the net with the ethernet card :)
+<Chipaca> ouch
+<Chipaca> do you happen to know that it can work as both simultaneously?
+<derek> ouch
+<derek> i believe they can
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<derek> if they cant i can kill one
+Action: derek thinks in the past when i fired up the modem i lost my net connection 
+<derek> which i can live with
+<Chipaca> try unpluggint it and plugging it back in, so we can check the logs
+<derek> Chipaca: i will in a minute
+<derek> need to get irc on another machine so i have a net connection
+SachaS (~Sacha@dialup-196-91.wasp.net.au) left irc: Read error: 60 (Operation timed out)
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) left irc: Read error: 104 (Connection reset by peer)
+<derek> btw: kppp seems much easier
+<derek> brb
+Arturas (~arturas@fmgs-03.vtu.lt) left irc: Read error: 110 (Connection timed out)
+<derek> ok i popped cards out
+<derek> er card
+<derek> and popped it back in
+<derek> did /etc/init.d/pcmcia restart
+<derek> what log did you wnat?
+<derek> <derek> ok i popped cards out
+<derek> <derek> er card
+<derek> <derek> and popped it back in
+<derek> <derek> did /etc/init.d/pcmcia restart
+<derek> <derek> what log did you wnat?
+<Chipaca> tail /var/log/syslog
+<Chipaca> or grep ttyS /var/log/syslog
+TSCHAK (~garnome@dialin-184.fbg.net) joined #gnuenterprise.
+<TSCHAK> I'm curious, how much effort would it take to do something like a GNU forms front-end in GNUstep ?
+<derek> nothing with ttyS
+<derek> are there python bindings to GNUstep?
+<derek> similar to pyGTK or pyQT
+<derek> if so, probably about 3 days for someone that knows python and GNUstep
+ariel_ (~ariel@ppp-217-133-240-27.dialup.tiscali.it) left irc: "Uscita dal client"
+<TSCHAK> derek: no, but I bet a binding could be written for python..there are similar bindings for java and ruby already.
+<Chipaca> and gnue
+<TSCHAK> hmmm
+<Chipaca> derek: and pcmcia?
+<derek> TSCHAK: well then it woudl be num_days to write python binding + 3 days ;)
+<TSCHAK> derek: hehehe
+<derek> you could also write in ruby or java or such, just the time would be longer as you would have to rewrite many things that are alredy written in python
+<TSCHAK> *nod*
+<derek> if you use python you only need to write a 'driver' for the gnustep api and nothing mroe
+<TSCHAK> the native language is Objective-C..but a python binding should fit.
+<derek> bingo
+<derek> Nov  5 08:39:57 latitude kernel: cs: cb_free(bus 2)
+<derek> Nov  5 08:39:59 latitude kernel: cs: cb_alloc(bus 2): vendor 0x115d, device 0x0003
+<derek> Nov  5 08:39:59 latitude kernel: PCI: Enabling device 02:00.0 (0000 -> 0003)
+<derek> Nov  5 08:39:59 latitude kernel: PCI: Setting latency timer of device 02:00.0 to 64
+<derek> Nov  5 08:39:59 latitude kernel: eth0: Xircom cardbus revision 3 at irq 11 
+<derek> Nov  5 08:39:59 latitude kernel: PCI: Enabling device 02:00.1 (0000 -> 0003)
+<derek> Nov  5 08:39:59 latitude kernel: ttyS04 at port 0x4080 (irq = 11) is a 16550A
+<derek> Nov  5 08:39:59 latitude cardmgr[201]: socket 0: CardBus hotplug device
+<derek> 04 it appears
+Action: Chipaca points at the ttyS
+<Chipaca> try wvdial against that
+<derek> grr kppp only does ttyS0 - 3 no 4
+<derek> explain how to try wvdial against that
+<Chipaca> wvdial --help :)
+<Chipaca> don't remember
+<derek> why doesnt /dev/modem work? /me thought thats how i used before
+<Chipaca> ok, ln -s ttyS4 /dev/modem
+<derek> wtf
+<derek> latitude:/home/dneighbo# ln -s /dev/ttyS
+<derek> ttyS0  ttyS1  ttyS2  ttyS3  
+<derek> there is no /dev/ttyS4
+<Chipaca> cd to /dev
+<Chipaca> ./MAKEDEV ttyS4
+<derek> latitude:/dev# ln -s /dev/ttyS4 /dev/modem 
+<derek> ln: `/dev/modem': File exists
+<derek> latitude:/dev# 
+<Chipaca> ok, ln -sf ttyS4 /dev/modem
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+<derek> hmmm trying pppconfig
+<derek> i think its hanging on /ed/ttyS4 probe
+<derek> so tcreating that was probably bad
+<derek> oh now
+<derek> it found it
+<derek> yeah
+<Chipaca> great
+<Chipaca> derek: what wm do you use?
+<derek> fluxbox
+<derek> ok pppconfig set
+<derek> now what
+<derek> btw it wanted my password
+<derek> i left as blank as i have a device that i have to type crap into that autogen's me a passwrod before each login
+<derek> 'activcard'
+<derek> so hopefully it will let me enter a password
+<Chipaca> not sure
+<Chipaca> perhaps :)
+<derek> wooohooo can connect via kppp now
+<derek> via /dev/modem
+<Chipaca> is kppp a kde app, or just qt?
+<derek> an app
+<derek> er qt
+<derek> The pppd daemon died unexpectedly!
+<derek> Exit status: 1
+<Chipaca> yeap, that sounds like kppp
+<Chipaca> derek: did you try wvdialconfig again?
+<derek> Nov  5 09:00:16 latitude pppd[7612]: The remote system is required to authenticate itself
+<derek> Nov  5 09:00:16 latitude pppd[7612]: but I couldn't find any suitable secret (password) for it to use to do so.
+<derek> Nov  5 09:00:16 latitude pppd[7612]: (None of the available passwords would let it use an IP address.)
+<derek> hmmm likely i need them to reset me
+<derek> this activcard thing is irrating
+<Chipaca> sounds like it, yes
+<derek> sorry on hold with tech support at work
+<derek> .......
+<derek> .........
+<jcater> "Please hold... your call is important to us"
+<jcater> ...."Which is why we put you on perpetual hold"
+<Chipaca> "because the telco is paying us by the minute"
+<derek> interesting
+<derek> pppd died - The remote system is required to authenticate itself ...
+<derek> As far as I can tell there are two causes for this problem:
+<derek>     * /etc/ppp/options contains the auth option. Simply put a # comment character in front and try again.
+<derek> * Your system already has a default route. Have you set up a local network ? In thise case recent versions of pppd will behave as if the auth had been specified. To override this you may add noauth to the pppd arguments in kppp' setup dialog. Alternatively you could take down the local network prior to dialing in. I'd be thankful if someone could provide instructions on how to peacefully combine the two network connections.
+<derek> in the options file
+<derek> its says DO NOT comment out auth :)
+<derek> hmmm who is right :)
+<derek> work states they have seen no login attempts
+<Chipaca> try without auth
+<Chipaca> (it'll break pon/poff, but that's ok if you'll be using kppp afaik)
+<derek> so its connecting but dying before it ever attempts to login there
+<derek> anyone use anything else?
+<derek> if so help is appreciated
+<derek> i.e. i ran pppconfig
+<derek> so what is the debian way to login?
+<jcater> what are you doing?
+<Chipaca> derek: to make sure you _could_ connect, install minicom, and do it 'by hand'
+<derek> jcater: trying to use pppd
+<jcater> on your firewall?
+neilt (~neilt@66.95.5.110) joined #gnuenterprise.
+#gnuenterprise: mode change '+o neilt' by ChanServ!ChanServ@services.
+<derek> trying with auth disabled
+<derek> then will try without network up
+<derek> this is a new ppp or kernel issue
+<Chipaca> blue
+<nickr> magenta
+<Chipaca> nickr: yeah
+<nickr> orangutan
+<Chipaca> silverback
+<derek> um i dont get this
+<derek> latitude:/etc/ppp# /etc/init.d/networking stop
+<derek> Deconfiguring network interfaces... done.
+<derek> latitude:/etc/ppp# ifconfig
+<derek> eth0      Link encap:Ethernet  HWaddr 00:10:A4:D1:6F:C6  
+<derek>           inet addr:192.168.0.103  Bcast:192.168.0.255  Mask:255.255.255.0
+<derek>           UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+<derek>           RX packets:4721 errors:0 dropped:0 overruns:0 frame:0
+<derek>           TX packets:3912 errors:0 dropped:0 overruns:0 carrier:0
+<derek>           collisions:0 txqueuelen:100 
+<derek>           RX bytes:4312329 (4.1 MiB)  TX bytes:334362 (326.5 KiB)
+<derek>           Interrupt:11 Base address:0x4000 
+<derek> latitude:/etc/ppp# 
+<derek> how can you stop networkign yet still have open interfaces?
+<derek> grrr
+<jcater> interfaces are loaded by the kernel iirc
+<derek> i might have to install windows :(
+<jcater> doesn't mean they have to be bound
+<derek> as not being able to connect to work is keeping me from workign at home
+<jcater> is this your firewall?
+<derek> no
+<derek> im just trying to dial out
+<derek> pppd to work
+<nickr> does it dial up?
+<derek> sure it dials out
+<derek> it just fails to login
+<nickr> what does it say exactly?
+<derek> hold on getting you message
+<derek> hmmmm
+grib (~grib@grib.customer.jump.net) left irc: Remote closed the connection
+<derek> i noticed this
+<derek> Opener: received OpenDevice
+grib (~grib@grib.customer.jump.net) joined #gnuenterprise.
+<derek> Opener: received ExecPPPDaemon
+<derek> In parent: pppd pid 7977
+<derek> Couldn't find interface ppp0: No such device
+<derek> Kernel supports ppp alright.
+<derek> It was pppd that died
+<derek> pppd exited with return value 16
+<derek> Sending 7968 a SIGUSR1
+<derek> is the term window for kppp
+<derek> The pppd daemon died unexpectedly
+<derek> exit status : 16
+<Chipaca> derek: hold it
+<derek> see 'man pppd' for an explanation of the error codes
+<nickr> type ifconfig ppp0
+<derek> or look at faq ...
+<derek> if i do details
+<Chipaca> derek: don't put kppp into the equation right yet
+<derek> Nov  5 09:49:29 latitude pppd[7977]: pppd 2.4.1 started by root, uid 0
+<derek> Nov  5 09:49:29 latitude pppd[7977]: Using interface ppp0
+<derek> Nov  5 09:49:29 latitude pppd[7977]: Connect: ppp0 <--> /dev/ttyS4
+<derek> Nov  5 09:49:36 latitude pppd[7977]: Remote message: Password validation failure
+<derek> Nov  5 09:49:36 latitude pppd[7977]: PAP authentication failed
+<derek> Nov  5 09:49:38 latitude pppd[7977]: Hangup (SIGHUP)
+<derek> Nov  5 09:49:38 latitude pppd[7977]: Modem hangup
+<derek> Nov  5 09:49:38 latitude pppd[7977]: Connection terminated.
+<derek> Nov  5 09:49:38 latitude pppd[7977]: Exit.
+<Chipaca> derek: hey, it's working
+<Chipaca> derek: it's not authing, but its working
+<Chipaca> derek: doesn't kppp let you enter a password?
+<nickr> ah
+<nickr> derek: are your secrets correct?
+<nickr> you know
+<nickr> linux is great and all
+<nickr> but netbsd's ppp is much better
+<derek> latitude:/dev# ifconfig ppp0
+<derek> ppp0: error fetching interface information: Device not found
+<derek> latitude:/dev# 
+<derek> for nickr
+<nickr> er freebsd's
+<derek> i do inter a password
+<derek> er enter
+<derek> but i think its cause i took 'auth' off
+<derek> or something
+<derek> nickr: i have a crappy activcard thing
+<derek> where my password changes everytime
+<derek> so its REALLY frelling hard to know :(
+<derek> and if you do it wrong twice you have to call help desk and have them reset your account
+<derek> i dont have windows box around to VERIFY my account
+<nickr> oh
+<Chipaca> derek: may I suggest you use wvdial, that'll ask for a username/password right there (sidebanding ppp's conf etc)
+<nickr> so it prompts you for your password out of band before every session?
+<derek> last time i called and had them reset me (an hour ago) they told me they hadnt even seen me attempt to login
+<nickr> blah
+<derek> Chipaca: the problem is wvdial is a bitch to use
+<derek> nickr: i have what looks like a calculator (called and activcard)
+<derek> i have to enter codes into it
+<derek> and it generates me a password
+<jcater> are you sure you're using the right authentication mechanism?  CHAP and not PAP?
+<derek> i have CHAP/PAP
+<derek> set in kppp
+<nickr> derek: I know how it works
+<Chipaca> jcater: its a OTP setup, CHAP/PAP don't work with OTP
+<jcater> OTP?
+<Chipaca> afaik that is
+<Chipaca> apt, otp?
+<derek> nickr: can you walk me through it
+<Chipaca> err wrong channel :)
+<nickr> derek: heh. I don't know if you can use this auth method in linux.
+<Chipaca> <subject change> how do I get the currently focused widget? </>
+<nickr> derek: But I'm looking.
+<nickr> You can certainly go the other way
+<nickr> which is weird and or annoying
+<derek> if i can use WHAT auth method?
+<derek> it should be standard old auth
+<Chipaca> derek: one-time passwords
+<nickr> if you can login with your vcard through ppp
+<derek> likely PAP
+<nickr> I don't think its standard auth.
+<derek> all the 'card' does is give me a password
+<jcater> derek: unlikely if it's an MS server
+Action: derek swears i have logged in successfully under linux with the card
+<nickr> tried turning on 'mschap' ?
+<derek> i just couldnt get routing to work
+<nickr> or whatever
+<derek> and no one was aroudn that could tell me anything about ppp0 routing stuff
+<derek> but since then i moved to debian, 2.4 kernel, new pppd
+<nickr> derek: Can you give me the more verbose messages that come out rigdht before it fails to authenticate?
+<derek> calling help desk back
+<derek> nickr: from where... i pasted all messages i got
+<nickr> er
+<nickr> /var/log/ppp0.log or somethin
+<Chipaca> derek: mind if I ssh in?
+<derek> ok im connecting for sure now (since removing auth)
+<derek> just failing authentication
+<derek> had my activcard reset
+<derek> will call to get authtype now
+<derek> nickr: no ppXXXX anything log in /var/log/
+<Chipaca> derek: why is your isp so amazingly paranoid? or is it NORADisp?
+<derek> Chipaca: i dont mind so much its just a bitch as this is behind my firewall
+jbailey (~jbailey@atlas.fundserv.com) joined #gnuenterprise.
+<derek> Chipaca: i work for the government
+<derek> its not an isp im dialing into its the government :)
+<jbailey> derek: That's a scary statement to enter to.
+<Chipaca> whee
+<nickr> derek: /var/log/ppp/ ?
+<nickr> THE GOVERNMENT DUNDUNDUNNNNN
+<jbailey> so I'm going to start hacking on the gnue packaging.  Which piece goes first?
+<nickr> jbailey: gnue-common ?
+<derek> nickr: nope
+<derek> jbailey: its in cvs
+<nickr> derek: try daemon.log then
+<derek> nothing but dhcp requests in there
+<Chipaca> <subject change> how do I get the currently focused widget? </>
+<nickr> gar
+<derek> nickr: im confirming the authtype
+<jbailey> derek: I know it's in CVS (although I haven't decided for certain that I will use the stuff in CVS or not.  I don't like that style of packaging) - But I imagine that there's some build order to get it running.
+<derek> they think its CHAP, but are verifying
+<nickr> derek: sorry I'm not more help, I am flying blind here
+<nickr> derek: I haoven't used ppp for over a year
+<derek> nickr: i understand
+<jcater> derek: what software server are you connecting to?
+<derek> thast problem no one uses it
+<derek> sos getting help is near impossible
+<nickr> all the knowlede has been replaced with Counter Strike strategy
+<jcater> like MS Remote Services 2006 or such?
+<derek> jcater: its likely a cisco/baynetworks/etc type modem bank
+<nickr> if its RAS you need to turn on mschap
+<derek> or sheeva
+<jcater> I seriously imagine you need mschap
+<derek> is there a mschap?
+<nickr> yes
+Action: jbailey shudder
+<jbailey> Balmer in chaps
+Action: jbailey pukes.
+<derek> i dont see it in kppp
+<nickr> lol
+<nickr> derek: yea well, you might have to add some option to some config file. I've hit the limit of my knowledge in this area
+<derek> dang
+<jcater> http://www.geocrawler.com/archives/3/54/2000/1/50/3167529/
+<jcater> could be related
+<jcater> http://docsrv.caldera.com:8457/en/FAQ/PPP/PPP-FAQ-12.html
+<jcater> could be related
+<nickr> indeed
+<jcater> boy, having hardware details SURE would be helpful :)
+<nickr> it seems like you shouldn't have to care if they are standards compliant
+<nickr> damn you standards
+Arturas (~arturas@fmgs-03.vtu.lt) joined #gnuenterprise.
+<derek> ok its a cisco box we are hitting
+<derek> its set to do PAP autho
+<nickr> well that wasn'nt so hard was it?
+<derek> the telecom guys say im connecting but getting rejected on password
+<nickr> excellent
+<nickr> ... that we know the cause now
+<nickr> well
+<nickr> have a butter handle on the problem
+<nickr> mmm butter
+<jbailey> Mmm butter.
+<derek> i have card reset and so will try again if it fails they can test the account on windows for me
+<nickr> fresh creamery butter
+<Chipaca> *sigh*
+<derek> im lost 
+<Chipaca> derek: l map
+Action: Chipaca is mudding way too much
+<jbailey> derek: So which piece do I build first? =)
+<derek> common
+<derek> i dont understand why you dont use what we have though
+<jbailey> I haven't said that I won't.
+<derek> if you are going to make new debs can you commit them to cvs and get them in sid?
+<jbailey> It will probably be based on it heavily - but I don't like packaging being in the tree.  HAving it in packaging makes it that much harder.
+<jbailey> phone lurk.
+<jcater> I don't want a debian/ structure in cvs
+<jcater> as then we have 
+<jcater> redhat/
+<jcater> freebsd/
+<jcater> windows/
+<jcater> that's why we have packaging, just fyi
+<jcater> mmmm
+<jcater> lunch
+<jbailey> I understand that.  abisource does the same thing, and it has the sideeffect that no DD understands it when they look at it.
+Action: Chipaca just wanted to know the name of the current widget
+<jbailey> The way I do the packaging is that the upstream source is just a tarball sitting in the deb.  That way upgrades are mostly just replacing the tarball.
+<jbailey> I will cheerfully keep that in cvs if you'd like - that would be easy enough - but I'd make a new toplevel "packaging/debian/PACKAGENAME/" probably...
+<jbailey> Is that an okay compromise?
+<jcater> Chipaca: form.getCurrentEntry()
+Action: Chipaca looks at it
+<jcater> Chipaca: that what you're looking for?
+<Chipaca> probably
+<Chipaca> it certainly sounds like it :)
+<jbailey> "What if toothbrushes were sold like proprietary ERP software?"
+<derek> i think im connected
+<jbailey> "Instead of 1.00 for a brush that lasts a year...."
+<jbailey> You really should repalce your toothbrush every quarter.
+<derek> Opener: received OpenDevice
+<derek> Opener: received ExecPPPDaemon
+<derek> In parent: pppd pid 8644
+<derek> Couldn't find interface ppp0: No such device
+<derek> Kernel supports ppp alright.
+<derek> Opener: received OpenResolv
+<derek> Opener: received RemoveSecret
+[11:41] Last message repeated 1 time(s).
+<derek> and then everything went away
+<derek> ppp0      Link encap:Point-to-Point Protocol  
+<derek>           inet addr:172.22.5.10  P-t-P:156.42.5.251  Mask:255.255.255.255
+<derek>           UP POINTOPOINT RUNNING NOARP MULTICAST  MTU:1500  Metric:1
+<derek>           RX packets:4 errors:3 dropped:0 overruns:0 frame:0
+<derek>           TX packets:4 errors:0 dropped:0 overruns:0 carrier:0
+<derek>           collisions:0 txqueuelen:3 
+<derek>           RX bytes:84 (84.0 b)  TX bytes:87 (87.0 b)
+<derek> oh moses i think im connected
+<derek> now to fight routing ....
+<jbailey> "Am I too small for your package?"
+<jbailey> Oh dear..
+<nickr> you have to stop routing to your local network before you dialup and pppd will automatically route through ppp0
+<derek> at least im back to where i was before...
+<derek> nickr: how does one do that
+<Chipaca> jcater: that doesn't seem to work
+<jcater> Chipaca: what does it do?
+<Chipaca> attributeerror
+Action: Chipaca is typing w/one hand
+<jcater> I don't want to know why
+<nickr> derek: before you dialup, do a route del default
+<nickr> that should do ya
+<Chipaca> jcater: it's probably just old
+<jcater> Chipaca: I was referring to the one-handed typing :)
+<Chipaca> jcater: eating
+Action: jbailey is away: fixing bugs
+<derek> ok dumb question
+<derek> how do i 'hang up'?
+<Chipaca> derek: poff ?
+Action: derek assumes normally kppp minimizes into a kde tray somewhere
+<Chipaca> derek: either that or put the modem in the microwave
+<Chipaca> derek: ah, yes
+<derek> nickr: before i do a route del default
+<derek> how do i get back local network?
+<derek> just redo dhclient
+<nickr> well, make note of your gateway
+<nickr> should be like 192.168.1.1
+<nickr> or somethin
+<nickr> and then later you can route add default gw 192.168.1.1
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: Read error: 104 (Connection reset by peer)
+drochaid_ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+drochaid_ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: Read error: 104 (Connection reset by peer)
+drochaid__ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+edwardam (~edwardam@12-218-106-230.client.mchsi.com) joined #gnuenterprise.
+<edwardam> hello ... This is the gnue channel right?
+<nickr> Seems so
+laurie (~laurie@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+Action: laurie hugs the ugly bastards of gnue
+<laurie> i have workign dial in to work
+<laurie> this SOOOO kicks butt
+<edwardam> I was wondering what's the best way to get started with GNUe ?
+<jamest> edwardam: yes it's the GNUe channel
+<jamest> end user or developer or both :)
+<edwardam> both ... I have a need and am a pythoner of sorts ... so I'd love to contribute ...
+Nick change: drochaid__ -> drochaid
+<edwardam> jamest: both ... I have a need and am a pythoner of sorts ... so I'd love to contribute ...
+Action: jbailey is back (gone 00:17:05)
+<nickr> Pythoneer
+<nickr> like rocketeer
+<nickr> or mousekateer :O
+<jbailey> rockeater?
+<edwardam> heh
+<nickr> gross
+<nickr> rocks are unsanitary
+<jbailey> "You don't know where that penny's been", "Yes I do, Mom!  I've had it in my pocket for a week!"
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: Read error: 110 (Connection timed out)
+<jbailey> Is gnue python2.2 friendly?
+<edwardam> good question. Will I need to install an older python?
+<jbailey> I'll assume no for now and just bitch loudly when it doesn't work. =)
+<jbailey> or rather, I'll assume yes.
+<jbailey> (no to your question)
+<edwardam> gotcha .. same here ... ;-)
+<jbailey> Eexcellent.
+<edwardam> first steps ... compile wxpython ... 
+<edwardam> too bad wxGTK still uses gtk 1.2 ....
+Action: Chipaca mumbles inane incantations about the mothers of wx
+<jamest> edwardam: i have to run for about 1 hour
+<jamest> then I can help you out
+<jamest> l8r
+jamest (~jamest@leibniz.math.ksu.edu) left irc: "[x]chat"
+<jbailey> Lunch time.
+Action: jbailey is away: I'm busy
+<nickr> how do I change the cursor in wx?
+edwardam (~edwardam@12-218-106-230.client.mchsi.com) left irc: Remote closed the connection
+edwardam (~edwardam@12-218-106-230.client.mchsi.com) joined #gnuenterprise.
+Action: jbailey is back (gone 00:23:45)
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+<jbailey> jcater: Pin
+<jbailey> g
+<jbailey> gah
+<jcater> jbailey: werd
+<jcater> nickr: wxSetSursor() iirc
+<jcater> jbailey: also, after putting in packaging/debian/
+<jcater> I later wondered if that should've been
+<jcater> packaging/debian/woody
+<jcater> packaging/debian/sarge
+<jcater> packaging/debian/unstable
+<jcater> as really, the ones I did are for woody/
+<jcater> as they rely on python 2.1 stuff
+<jbailey> jcater: How are you telling it not to run install_lib or to not create /usr/local/gnue?  I see that you've got the site files in the debian directory, but your rules file doesn't use them at all.
+<jcater> are you specifically looking at common right now?
+<jbailey> yes.
+<nickr> jcater: Thanks.:)
+<jcater> jbailey: did you look at the setup.cfg.debian in that directory?
+<jbailey> Yes, but nothing in your rules file seems to refer to it.
+<jcater> that replaces the setup.cfg.in 
+<jbailey> Ah, okay.
+<jcater> my README.cvs has everything I did
+<jcater> command wise
+<jbailey> Gotcha.
+<jcater> Of course
+<jcater> I did that before I realized you can do the sed tricks
+<jcater> so take it for what it's worth :)
+<jbailey> No prob - I'm sure when it's uploaded people will scour it and berate me for doing it wrong.  I'm used to that. =)
+<Arturas> bye
+Arturas (~arturas@fmgs-03.vtu.lt) left irc: 
+<jbailey> byte-compiling stage/lib/python/gnue/common/cursing/Event.py to Event.pyc
+<jbailey>   File "stage/lib/python/gnue/common/cursing/Event.py", line 31
+<jbailey>     class Event():
+<jbailey>                 ^
+<jbailey> SyntaxError: invalid syntax
+<jbailey> is that bad?
+<edwardam> jbailey: shouldn't it be class Event:
+<jbailey> Dunno - I don't speak snake.
+<jbailey> I don't have to know anything about python until tommorow night.
+<edwardam> heh
+<jbailey> (That's when I'm doing my first python assignment for school)
+<edwardam> jbailey: yes ... it's supposed to be 'class Test:' ...
+<jbailey> Hey - someone who speaks python with CVS access wanna fix that? =)
+<edwardam> jbailey: unless you inherit from another class.
+<edwardam> then it would be 'class Test(ClassInheritedFrom):' ... 
+jamest (~jamest@adsl-64-216-107-182.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+<jbailey> I'm surprised it doesn't stop the build on that failure.
+<jcater> jbailey: hang on...
+Action: jbailey grabs a noose..
+<jbailey> Hanging..
+<jcater> otay, commited
+<jbailey> Tx, I'll repull in a sec.
+<psu> v minor update to the website
+<psu> I have added "Docs" to the "Project" section as well as "Community"
+<psu> both point to the same place for the moment
+<psu> until I think through what jcater and drochaid were arguing about 
+<psu> and do something a bit more radical
+<jcater> psu: as long as you do what I ask, everything will be A-Ok
+<jcater> ;)
+<jcater> just kidding
+<jbailey> jcater: Is there any way to make setup.cfg read an environment variable?
+<jcater> I'm happy with whatever
+<jcater> jbailey: not to my knowledge, but I'm not 100% sure
+<jbailey> 'k.
+<drochaid> psu: we weren't arguing, I was right and he was wrong :)
+<psu> oh, and I think I've also worked out why www-support@gnuenterprise.org was broken
+<psu> the link on the website mailto:ed www.suport@gnuenterprise.org
+<psu> someone was obviously taking the p...
+Action: psu hangs head in shame at schoolboy level humour
+<jbailey> =)
+<jbailey> and having her period, too...
+Action: psu decides to put a full stop to any more jokes
+<jbailey> One-uping in jokes can only lead to disaster.
+<jcater> or becoming a chillywilly
+<jamest> ew
+<jamest> damn man, i'd kick them before I'd let that happen
+#gnuenterprise: mode change '+o jamest' by ChanServ!ChanServ@services.
+Action: jamest is ready 
+<jcater> gack
+<jcater> it's jamest with a derek complex
+<jcater> this can only lead to disaster
+<jamest> argh!!!! My computer!!!!!!!!!!!!  It's on fire!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+<jbailey> Hmm.  I can see jcater being the first to go, somehow...
+<jbailey> =)
+<jamest> my modem just started bleeding!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+<jcater> nah
+<jamest> this derek crap isn't all it's cut out to be
+<jcater> jbailey: he hasn't fully grokked reports yet; even though he's started using them in production
+<jcater> so he NEEDS me :)
+<jamest> yip
+<jamest> I'm still in recovery from that last bit of catercode comprehension
+<psu> jcater is to python what martha stewart is to cookies
+<psu> anyone can make cookies, 
+<jbailey> nauseating?
+<psu> but only martha stewart can make 'em like martha stewrt
+<psu> for good or ill
+<jamest> but only jcater can make cookies while practicing insider trading?
+<jcater> rofl
+Action: psu was going to use a british TV cook, but then you wouldn;t have grokked it
+<jbailey> 'use'?
+<jbailey> How were you going to use him?
+<jcater> british cook?
+<psu> should have just said jcater is to python what krispy kreme is to donuts
+<jcater> isn't that an oxymoron
+<jcater> ?
+<psu> then we all could have grokked it
+<Chipaca> jcater: no, that's crook, not cook
+<jbailey> Sure - bangers and mash is still coked.
+<jbailey> cooked, rather.
+<jamest> coked eh
+<jamest> explains alot
+<psu> jbailey: right first time?
+<jbailey> The BK veggie burgers are way better than the ones here, so I can't complain too much.
+<jbailey> And the best one I've ever had was at the Hard Rock in London.
+Action: psu doesn't think the Hard Rock Cafe in Picadilly Circus is necess representative of wider British cusine
+<jbailey> psu: And three cheers to that! =)
+<jbailey> I was only a vegetarian there and had trouble eatin.
+<jbailey> I can't imagine trying to get lunch now...
+<psu> The best Euro cuisine is meant to be Belgian -
+<psu> French cooking, German portions ;-)
+<jbailey> jcater: Does gnue-common actually have any binaries? =)
+<jamest> other than the pngs?  no
+<jamest> pure python the way nature intented it to be
+<jbailey> Okay - So I won't let it stress me that /usr/bin contains only textfiles (now moved to use/share/doc/gnue-common)
+<jamest> one more time please.....in dumbass
+Action: jamest does grok that last sentence
+<jamest> i need it in a form I can understand
+<jbailey> I was expecting there to be a binary or two in usr/bin.
+<jbailey> There wasn't any.
+<jbailey> There were, however, some text files.
+<jamest> ah no
+<jbailey> I moved them to a better place.
+<jamest> yes
+<nickr> now they've gone to a better place
+<nickr> do not morn them, they are in paradise
+<laurie>  lprng sucks
+<Chipaca> laurie: nope
+<nickr> yea
+<nickr> laurie: use pdq
+<laurie> it seems to be incapable of printing mroe than one complex doc without jamming up the queue
+<laurie> grrr
+Action: laurie notes it could be my server or printer as well not necessarily lprng
+<jamest> laurie: you're just related to derek
+<jcater> it ceases to amaze we the trouble you have with this stuff
+<jcater> I have lprng running two offices
+<jcater> printing much more than color photos
+<jcater> :)
+<jamest> oh yeah, me too
+<laurie> it works like a champ
+<laurie> as long as you send one print job
+<laurie> wait until 30 seconds after its done and send another
+<laurie> but send 10 jobs back to back
+<jbailey> byte-compiling stage/lib/python/gnue/common/cursing/Event.py to Event.pyc
+<jbailey>   File "stage/lib/python/gnue/common/cursing/Event.py", line 35
+<jbailey>     __init__(self):
+<jbailey>                   ^
+<jbailey> SyntaxError: invalid syntax
+<laurie> they all make it to the queue but only the first prints
+<jamest> the rest disappear?
+<jamest> or hang
+<laurie> hang
+<laurie> not disappear
+<laurie> i dont know how to FORCE them to print
+<jamest> what printer
+<laurie> so i end up having to 'restart' lprng and resubmitting
+<jcater> jbailey: committed
+<laurie> deskject 842C
+<jamest> i'd almost bet you've got a gs process hanging
+<laurie> and the crappy thing is i think its printer
+<jamest> and lpr is waiting for that to finish before starting next ojb
+<laurie> hmmm
+<jamest> i see something simlar with an 890C I have 
+<laurie> any ideas how to fix that
+<jcater> deskjet.upgrade()
+<jamest> so far I've tried happy thoughts
+<jamest> but they haven't worked well
+<jamest> ooooo
+Chipaca (~john@ADSL-200-59-86-17.cordoba.sinectis.com.ar) left irc: "ircII EPIC4-1.0.1 -- Are we there yet?"
+<jamest> now that I think about it I haven't seen it since I installed a customized ghostscript
+<jamest> man, if only printing in windows was this easy 
+<laurie> btw it makes total sense as these are multipage pdf documents
+<laurie> funny thing is wife said why do you like linux 
+<jamest> i'd personally try another printer filter
+<laurie> look at this printing problem
+<laurie> my response was basically
+<laurie> under linux i might have same number of problems BUT
+<jamest> dude, printing under windows SUCKS
+<laurie> generally i can repair them without rebooting
+<laurie> and
+<jamest> i have a user with a printjob where she needs 600 color printouts
+<laurie> either i can FIX them or at least know WHY the problem exists and have hope it will be fixed soon
+<jamest> windows pukes (don't go into why we're printing them :)
+<jamest> lprng takes it like a champ
+<jamest> the printqueue system under winXX is complete crap
+<jamest> it hangs constantly 
+<jbailey> You guys don't seem to have copyrights on the top of each file. =(
+<jamest> what!!!!!!!!!!!!!!!!!!?
+<jamest> we should have
+<jamest> what files are you looking at?
+<jbailey> I've looked at __init__.py and utils/create-technote-index.py
+<jbailey> Sorry, gnue/__init__.py
+<jamest> there's a lot of __init<nevermind :)>
+<jamest> um
+<jamest> gnue/__init__.py?
+<ajmitch> morning!
+<jbailey> jamest: I found some in src. =)
+<ajmitch> ah printing! how i hate thee
+<ajmitch> laurie: how do they hang? for me, when i try to print 4 pages per sheet, gs crunches away, & sits there :)
+<laurie> just crunch and sit
+<laurie> btw: any vnc users here that use tightvnc adn debian?
+<laurie> how do you set compression and screen resolution?
+<laurie> my desktop at work is like 1800x1600 or something on windows vnc i can set some factors to scale that down to fit in a 800x600 space also i can use compression
+<laurie> to make it faster
+siesel (jan@dial-213-168-97-239.netcologne.de) joined #gnuenterprise.
+<siesel> hi
+<ajmitch> hi siesel
+<jbailey> Why are the icons in gnue/common/images chmod +x ?
+<jamest> we're radical like that
+<jamest> i don't know
+<jbailey> changing permissions with CVS is a bitch. =(
+<jcater> haven't you ever wanted to execute pr0n?
+<jamest> lol
+<jcater> we were experimenting
+<jbailey> Down to two more permission faults and gnue-common will be lintian clean.
+<jbailey> Any object to me removing the x bits from the .ico's?
+<jbailey> (Is there a ChangeLog I should record that in?)
+<jamest> you working directly aginast the cvs tree?
+<jbailey> Yes.
+<jbailey> Well, sort of.
+<jamest> please just fix it
+<jbailey> I'm taking a tarball of the CVS tree and stuffing it into my packaging.
+<jbailey> Which is mostly jcaters packaging.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<ajmitch> sounds dangerous
+<jcater> I actually thought you weren't supposed to package against a cvs tree directly
+<jcater> that's why I worked from the source tarball
+<jcater> that's what I read at least
+<jbailey> It depends on the maintainer.
+<jbailey> I only package against CVS when I'm friends with upstream.
+<jcater> ah, ok
+<ajmitch> and what level of masochism they like
+<jcater> well, that's why I did it that way
+<ajmitch> i package from cvs for DotGNU stuff
+<jbailey> This way I can say to you guys "Ping me when I should update"
+<jcater> otherwise I would've preferred to do against cvs
+<ajmitch> because i am part of upstream :)
+IsoosI (dahoose@port-219-88-246-66.jet.net.nz) joined #gnuenterprise.
+<jcater> ajmitch: you should waste your time working on our stuff
+<jcater> not theirs
+<jcater> :)(
+<jcater> :)
+<ajmitch> sorry
+<ajmitch> hey at least i hacked the gtk2 forms driver a little yesterday :)
+<jbailey> ROAR
+<jbailey> They're not taht way in CVS.  Why did they cvs co that way then?
+<ajmitch> blame jcater
+<jcater> yes
+<jcater> because I just fixed them
+<jcater> :-/
+<jbailey> That would do it. =)
+<jcater> I thought you were asking for it to be fixed :)
+<jbailey> Well, I was - but since that fix wasn't python related I was willing to do it. =)
+<psu> it's checkin competition nite in #gnuenterprise...
+<jcater> otay
+<jbailey> Uh oh.  We've got a reporter in the house. =)
+<jcater> you can do any more :)
+<jbailey> There's only one more permissions fixup I have to do, and it's in the debian packaging.
+<ajmitch> psu: they've both got access to the savannah box, be warned!
+<ajmitch> jbailey: when will GNU use DCL? ;)
+<psu> ajmitch: ISTR the words "freeze over" and h-e-double--hockey-sticks being used somewhere...
+<jbailey> ajmitch: Dunno.  Now that you're on the accounts team, you'll have a good feel for what's needed.  Why don't you make a proposal? =)
+<jbailey> wayneg: gnue-common: script-not-executable ./usr/lib/gnue/lib/python/gnue/common/GTest.py
+<jbailey> One warning left and off we go!
+<ajmitch> once i got a hold of how the current system works
+<ajmitch> i don't know how well dcl does user groups & permissions on stuff
+<ajmitch> would have to ask derek on that
+<jbailey> ajmitch: As a test run, I'm willing to put bug-inetutils and bug-mailutils on it when you install it.
+<jbailey> Then we'll move conversion over to discuss lists.
+<ajmitch> right
+<jbailey> s/conversion/conversation/
+<ajmitch> i don't know it as well as the GNUe folks :)
+<jbailey> Bah, you *are* a GNUe folk, aren't you? =)
+<jbailey> ./build-tree/common/stage/lib/python/gnue/common/GTest.py
+<jbailey> Should that be executable?
+<jcater> wtf is that?
+<ajmitch> just cos i'm a GNUe lurker doesn't mean they let me play with dcl :)
+<jbailey> It's not clear to me why some .py's in src/ are chmod +x and some are not.
+<ajmitch> some are library modules
+<jcater> really, there shouldn't be any in src/ that are
+<jcater> all that should be are in utils/ or scripts/ iirc
+<ajmitch> and jcater is the man who should know :)
+Action: jcater checks his umask on his dev machine
+<jcater> looks ok
+<jbailey> jcater: src/GTest.py even has a header #!/usr/bin/env python
+<jbailey> That suggests that it ought to be executable.
+<jcater> I dunno what GTest.py is
+<jamest> jbailey: i think next to nothing should be +x
+<jbailey> (and in fact, that's why lintian is showing up with it)
+<jcater> but it shoudln't be in common/src
+<jcater> I do know that
+<jamest> most the scripts that are +x are created on install 
+<jcater> yeah
+<jcater> really the utils/ stuff is +x
+<jcater> but those won't be installed anyway
+<jcater> those are developer's lazy hacks
+<jcater> and the setup.py
+<jcater> but jamest is right
+<jbailey> I'm going out on a limb to say it should either be +x or the top line should be removed. =)
+<ajmitch> GTest.py looks to be an RPC tester
+<jcater> sigh
+<jcater> that should not be in common/src
+<jamest> with jan's name on it
+<jamest> get a rope
+<ajmitch> #!/usr/bin/env python
+<ajmitch> # GNU Enterprise Common Testing client 
+<jcater> can someone move that to utils/
+<jbailey> Adn you folks wonder why I had trouble creating the packaging from scratch... =)
+Action: drochaid is away: dying elsewhere
+neilt (~neilt@66.95.5.110) left irc: "later all"
+<jbailey> jcater: How do you like it moved?
+<jamest> mv
+<jamest> it's meaningless to our installs so personally I don't care about it's location in cvs history
+<jcater> I didn't have this problem I guess
+<jcater> because I used the packaged tarballs
+<jamest> jbailey: we value change history in cvs more than file location 
+<jamest> so we're not above moving a file
+<ajmitch> you can move the file on the server
+<jamest> ya
+<ajmitch> all of you can :)
+<siesel> GTest.py shouldn't be executable, as GFClient.py shouln't be executable
+<jamest> hey jan
+<jamest> did you see the talk about 0.5.0 this morning?
+<siesel> hi jamest
+<siesel> no I had no time to look.
+<jamest> a possible feature freeze on forms/reports/common between the 0.4.x and 0.5.0 releases
+<jamest> so that 0.5.0 is no new features only bug fixes, code cleanup, documentation
+<jamest> if that'll work for the appserver people
+Remosi (dahoose@port-219-88-246-65.jet.net.nz) joined #gnuenterprise.
+<jamest> and reinhard mentioned you'd be one to talk to to find out if common needed something before the freeze
+<jbailey> ajmitch: I don't know if they all have shell accounts.
+<jamest> no
+<jbailey> ajmitch: I was a real asshole when I was the subversions admin and refused to give them out.
+<ajmitch> jbailey: jcater just got one
+<jamest> only I did 
+<jbailey> ajmitch: The current folks have continued my fine tradition.
+<ajmitch> jbailey: i could believe that :)
+<ajmitch> jamest: jcater got an account last week, poor chap
+<jamest> yeah, i know, he'll learn 
+<jcater> hey
+<jcater> I didn't ask for it
+<jbailey> You want it in utils?
+<jcater> works for me
+<jcater> we can then adjust setup-cvs.py if need be
+siesel_ (jan@dial-213-168-72-99.netcologne.de) joined #gnuenterprise.
+<siesel_> IMHO GTest.py should be more than just a RPC tester. So
+<siesel_>          I put it in common. If it should be moved, then it should be moved
+<siesel_>          into scripts (like grpcdoc etc.)
+<jcater> err
+<jbailey> siesel_: You've got about 60 seconds to convince jcater to tell me different instructions...
+<jamest> siesel! quick! Offer donuts!
+<jcater> siesel_: my thinking was any developer-related stuff goes in util
+<jcater> any end-user stuff goes in scripts/
+<jamest> scripts are for gnue-forms gnue-reports etc
+<jcater> I plan on yanking gnuedtd and others out of scripts/ and into utils/ too
+<jamest> maybe jbailey could hit them all at once?
+<siesel_> ok, thats ok with me too.
+Action: siesel_ hasn't any donuts to offer today.
+<jbailey> jamest: As long as 'them all' is clear.
+<siesel_> jamest: The most important stuff which has to go into common BEFORE 5.0 is a new version of the appserver dbdriver.
+<jbailey> Move from src/ to utils committed.
+<siesel_> That's because we have defined a better API for communication between clients and appserver.
+Action: siesel_ looks into the log for the datelines.
+Remosi (dahoose@port-219-88-246-65.jet.net.nz) left irc: Read error: 113 (No route to host)
+<jbailey> Have heard not resposnes to what "them all" might be, I'm assuming empty set, and logging off of subversion.
+<jbailey> One last pull and build. =)
+IsoosI (dahoose@port-219-88-246-66.jet.net.nz) left irc: Read error: 113 (No route to host)
+gcom (~chatzilla@adsl-64-219-163-14.dsl.rcsntx.swbell.net) joined #gnuenterprise.
+<jbailey> Woohoo!  Lintian clean!
+<ajmitch> yay
+<ajmitch> upload time? ;)
+<jbailey> I forgot to put the close of the adoption.
+<ajmitch> might be a good thing to test first
+<jbailey> I should have a release name for these.
+<siesel_> Jason, James: when do you want to release 4.1?
+<jbailey> This is the "I got around to it " release...
+<jbailey> Hmmm.
+<jbailey> The is the "Round Tuit" release.
+<derek> looks like 0.5.0 will release before 4.1
+<jbailey> Much better.
+Action: psu suggested using Star Wars names for releases some time ago
+<siesel_> 0.4.1?
+<ajmitch> nononononononono
+<psu> light side = Tools, dark side = Packages
+<jamest> the 0.4.1 tools will be real soon now
+<jamest> i think
+<psu> Anakin/Vader = 1.0 release bringing everything together
+<jamest> I'm hammering on missing feature I want pre 0.5.0
+<derek> tatoonie?
+<derek> the desolate desert release?
+<jamest> features
+<jamest> and dcl issues
+<jamest> we may have a 0.4.1 0.4.2 etc
+<derek> hopefully after next release we will have real roadmap
+<jamest> but I think both jcater and myself really want 0.5.0 to be cleanup
+<derek> to determine what goes where
+<jcater> jamest: he said that dirty word again!
+<derek> i.e. if something belongs in somewhere or not
+<jamest> and if he's not in the same mindset i've got cash set back for donuts
+<siesel_> hehe
+<jbailey> Hmm.  Is there any way of testing gnue-common before I upload?
+<jbailey> I guess there isn't is there.
+<jamest> um
+<jamest> what are you testing?
+<ajmitch> test it with gnue-forms?
+<jamest> .debs?
+<jcater> jbailey: dpkg --install gnue-common*
+Action: jcater awaits his troutslapping
+<jbailey> jcater: I have made sure it installs. =)
+<jcater> you're probably gonna hve to do gnue-forms before you can know if it worked right
+<jbailey> jamest: Yeah.  I'm about to uplaod gnue-common to unstable.
+<jbailey> jcater: Joy. =)
+<jamest> ooooo
+<jbailey> Do you think I should hold off uploading?
+<jbailey> Or should I gratuitously break anyone who had it installed? =)
+<jamest> we could get you account on ash and put in the external repository there
+<jamest> then fools^H^H^H^H^Hpeople in here could try it out
+<jbailey> *lol*
+siesel (jan@dial-213-168-97-239.netcologne.de) left irc: Read error: 110 (Connection timed out)
+<jbailey> That might work.
+Nick change: siesel_ -> siesel
+<ajmitch> gratuitously break!!
+<jbailey> Or I could just create a new module on subversions for it all.
+<ajmitch> jbailey: they'll install on a decent OS, right? ;)
+<psu> ajmitch: most debs install on a decent OS 
+<jamest> debian/hurd 
+<ajmitch> i haven't sneezed today, so it hasn't crashed
+<jbailey> ajmitch: I don't think we have python2.2 yet.
+<jbailey> ajmitch: You'll have to troutslap the port maintainer.
+<jbailey> But do it later.  This week is toolchain week.
+<ajmitch> ii  python2.2                         2.2.1.91-1                        An interactive object-oriented scripting language (version 2.2)
+<jbailey> Then it should go in fine.
+<ajmitch> i have webware running nicely on it
+<jbailey> Marcus is hacking oskit-mach this week.
+<ajmitch> fun
+<jbailey> Neal is writing exams for the next 4 weeks.
+<ajmitch> poor neal
+<jbailey> Someone needs to get db4 working and in unstable so that perl can get built and go in unstable.
+<ajmitch> and i've got an exam tomorrow!
+Action: ajmitch should run off & study soon, really
+<jbailey> Hmm.
+<jbailey> I guess I'll wait until I do forms to upload.
+<jbailey> *pout*
+<ajmitch> :)
+Action: psu is away: but not far
+<ajmitch> jbailey: what was holding up libffi? it builds fine in the pnet tree
+<ajmitch> well, afaik it does :)
+<jbailey> pnet?
+<ajmitch> dotgnu compiler
+<jbailey> That sounds like you might have some info about it.  Please fix. =)
+<ajmitch> the one that i package :P
+<jbailey> I hear a volunteer! =)
+<ajmitch> only thing i had to change was a configure option
+<jbailey> Excellent!
+<jbailey> Which one?
+Action: ajmitch hunts
+<ajmitch> added a i*86-*-gnu*) TARGET=X86; TARGETDIR=x86;;
+<ajmitch> in libffi/configure.in
+<ajmitch> and it built
+<jbailey> I did that, and I still get an error. =(
+<ajmitch> weird
+<jbailey> Some preprocessor symbols not working.
+<ajmitch> perhaps different version
+<jbailey> Yeah, maybe.
+<jbailey> But at least I know that it shouldn't be very hard.
+<ajmitch> k
+<ajmitch> the fun bits will be libgc & threads ;)
+<jbailey> libgc already builds. =)
+<jbailey> I'm sure gcj will exercise the pthreads code, though.
+<ajmitch> oh it builds fine
+<ajmitch> but if you look at the code, it has black magic
+<jbailey> *all* garbage collectors are black magic.
+<ajmitch> hehe
+<ajmitch> it has linux-specific thread code, and other specifics
+<ajmitch> also has some mach voodoo :)
+<jbailey> jcater: Why did you call the package gnue-forms-wxgtk instead of just gnue-forms?
+<ajmitch> because there's a phpforms? :)
+<ajmitch> and a gtk2 driver for that client
+<jamest> that package contains the wxwindows gtk client
+<jcater> because there's also a gnue-forms-curses
+<jcater> and a gnue-forms-gtk
+<jcater> err
+<jamest> we support cur
+<jcater> gnue-forms-gtk2
+<jamest> nevermind
+<jbailey> Ah, I see.
+<jcater> was that not the right thing to do?
+<jamest> is there a better way?
+<jbailey> Will those all come from different sources, then?
+<jamest> as we have UI plugins
+<jcater> actually
+<jamest> all in gnue/src/uidrivers
+<jcater> there probably should be a gnue-forms-base or such
+<jbailey> jcater: It's probably the right thing to do - I'm still learning about gnue.
+<jcater> as a good chunk of the code is the same
+<jamest> then driver .debs
+<jamest> none of them are so huge they could go in base
+<jamest> but the dependencies change based upon what you need
+<ajmitch> cool, so we'll end up with 10 forms packages ;)
+<jcater> and soon enought
+<jcater> gnue-forms-qt :)
+<jcater> or knue-forms
+<ajmitch> gnue-forms-base depends on gnue-forms-wxgtk | gnue-forms-wxgtk
+<jamest> yeah
+<ajmitch> oops
+<jcater> as the case may be :)
+<ajmitch> eeeevil
+<ajmitch> do NOT name it knue-forms
+<ajmitch> please
+<jbailey> Okay, cool.  So they'll be different source packages too, then.  That just lets me know how to setup the conflicts/replaces headers.
+<ajmitch> well...
+<ajmitch> wxgtk & gtk2 are in same source
+<ajmitch> dunno about curses, it might be as well
+<jbailey> Oy.
+TSCHAK (~garnome@dialin-184.fbg.net) left irc: Read error: 60 (Operation timed out)
+<jcater> err
+<jcater> not different source packages, no
+<jbailey> Okay.  So I'll put the source package as gnue-forms and the package then as gnue-forms-wxgtk for now.
+<jcater> ajmitch: what's wrong w/ knue-forms? :)
+Action: ajmitch kicks jcater
+<jbailey> jcater: rms might find out and then you'll never hear the end of it. =)
+<jcater> bah
+<jcater> I can take him
+<jcater> I think
+<ajmitch> hehe
+<dsmith> Is there a php forms?
+<ajmitch> yes
+<dsmith> That is, can you do web based gnue stuff now?
+Action: dsmith starts hopping up and down
+<siesel> yes you can but not very stable at the moment.
+<jbailey> WARNING: File doc/techref.pdf does not exist... not installing!
+<jbailey> WARNING: File doc/techref.txt does not exist... not installing!
+<jbailey> WARNING: File doc/user_guide.txt does not exist... not installing!
+<jbailey> WARNING: File doc/user_guide.pdf does not exist... not installing!
+<jbailey> WARNING: File man/gnue-forms.1 does not exist... not installing!
+<jbailey> Expected?
+<jcater> sigh.  I guess I'll never understand this web-based frenzy
+<jcater> jbailey: it's just a warning
+<jcater> ignorable for now... those no longer exist
+<jbailey> jcater: Zero footprint clients save us a pile of cash here.
+<jbailey> jcater: You sure?
+<jbailey> jcater: Normally WARNING means something else.  It's a different word in upper case. =)
+<jcater> jbailey: yip
+<jcater> we need to fix our setup.py before the next release
+<jcater> we don't have those files any longer
+<jcater> I love the thrill of 0 footprint too
+<jcater> just in practice
+<jcater> I squeal like a stuck hog
+<jcater> psu: and yes you can quote me on that
+<ajmitch> umm
+<jbailey> I wonder sometimes if I'm happiest having never met any of you. =)
+Remosi (dahoose@port-219-88-247-65.jet.net.nz) joined #gnuenterprise.
+<jamest> no need to wonder, you are 
+<ajmitch> is this the real Remosi?
+<jbailey> Wow.  Litian clean first pass.
+<ajmitch> hey i got that yesterday
+<ajmitch> of course the package consisted of only a few .dll files to be installed ;)
+TSCHAK (~garnome@dialin-8.fbg.net) joined #gnuenterprise.
+<jbailey> .dll?
+<ajmitch> yup
+<ajmitch> scary isn't it
+<ajmitch> both mono & pnet compile to .exe or .dll :)
+<jbailey> mono
+<jbailey> Like C#?
+<ajmitch> yes
+<jbailey> wow.  I didn't think that had gone anywhere.
+<ajmitch> pnet is primarily a C# compiler
+<ajmitch> heh
+<dsmith> jbailey: Are you the maintainer of any other Debian packages?
+<ajmitch> dsmith: be warned, he is!
+<derek> jcater: there is no such thing as zero footprint client
+<derek> web apps need a broswer ive yet to find one that is ZERO footprint
+<jbailey> dsmith: Umm..  'yes'. =)
+<jbailey> dsmith: Why do you ask?
+<derek> to top that off they are all different
+<jcater> derek: why are you telling me that :)
+<jcater> go back a page in the log
+<ajmitch> dsmith: you might even use one or two of his packages ;)
+<dsmith> jbailey: Just curious
+<derek> and EVERY corporate one we have looked into MANDATED i.e. 5.0
+<derek> jcater: i hit autocomplete it picked wrong j
+<derek> jcater: im thinking at some point of making a 'wrapper' for forms so its a plugin
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) left irc: "The more often you run over a dead cat, the flatter it gets"
+<derek> so you can run forms like 'applets'
+<derek> i.e. you go to a url that uses forms
+<jcater> derek: or we write a XUL uidriver :)
+<derek> and it tells you to get gnue plugin v0.4.1
+<derek> you go and grab that and voila now forms works
+<derek> the sad thing is it will quell the 'web freaks'
+<derek> but in essence it is nothing more than normal forms wrapped
+<jbailey> dsmith: I co-maintain the hurd packages, glibc, and mailutils.  I also maintain diffmon and dcl.  I will soon upload gnue-*, and inetutils
+<jbailey> I will also soon be helping Carlos package sapdb.
+<siesel> derek: what about database access through firewalls ?
+<derek> ssh
+<derek> forms can contain a self contained ssh client
+<derek> and use a tunnel
+<jbailey> jcater: Why did you get rid of the man page for gnue-forms?
+<derek> jbailey: i will do happy dance to see sapdb
+<ajmitch> let me guess, exec("gnue-forms") and grab the X window? :)
+<derek> why the heck does galeon for sid suck so bad right now
+laurie (~laurie@cpe-24-221-112-50.az.sprintbbd.net) left irc: "Client Exiting"
+<jbailey> derek: Carlos is taking it from me.  He's buddies with upstream.
+<ajmitch> that's what a prelimenary gstreamer media plugin does
+<jbailey> ajmitch: gstreamer has a gf plugin?
+<ajmitch> jbailey: no, a mozilla plugin :P
+<jcater> jbailey: I did?
+<jcater> wha?
+<jcater> I thought I passed it to dh_man??? whatever
+<jcater> dude
+<jcater> I had to ave done that
+<jbailey> WARNING: File man/gnue-forms.1 does not exist... not installing!
+<jcater> jbailey: that's created dynamically
+<jbailey> <jcater> ignorable for now... those no longer exist
+<jcater> when we package up a tarball
+<jbailey> Ah, I see.
+<jbailey> How can I force the generation from CVS so that I can get it in the deb?
+<jcater> ./setup.py sdist
+<ajmitch> bbl y'all :)
+ToyMan (~stuq@smtp.dstoys.com) left irc: ": I'm off to make more toys..."
+<jbailey> jcater: I suspect that command has other side effects.  Care to enlighten me?
+<jcater> well, it creates a source tarball
+<jbailey> Hmmm.
+<jcater> *if* you have done ./setup-cvs.py
+<jcater> then you can just do a 
+<jcater> (cd man; ~/bin/gfcvs --generate-man-page)
+Action: psu is back (gone 00:43:42)
+<jbailey> Is there a useful way to override the target version in sdist?
+<jcater> eh?>
+<jbailey> The version number in Debian is going to be 20021105.
+<jbailey> So I would want the source tarball to have that version,
+<jbailey> Or somethingk like that.
+<jcater> um
+<jcater> not currently
+<jcater> we can add version prefixes easily
+<jcater> like 0.4.0-rc1
+<jcater> but not actually change the version
+<jbailey> 0.4.0-20021105 would be fine.
+<jbailey> In automake land I always define a rule:
+<jbailey> release:
+<jbailey>         $(MAKE) dist distdir=$(PACKAGE)-`date +"%Y%m%d"`
+<jcater> GNUE_VERSION_SUFFIX=`date +"%Y%m%d"` ./setup.py sdist
+<jcater> iirc
+<jcater> yeah
+<jcater> #
+<jcater> # You can run:
+<jcater> #   $ GNUE_VERSION_SUFFIX=-pre1 ./setup.py sdist
+<jcater> # and the packages will be created as GNUe-App-0.x.x-pre1.tar.gz
+<jcater> #
+<jbailey> Installing lyx
+<ajmitch> 0.4.0-20021105 would be bad
+<jbailey> ajmitch: Why so?
+<ajmitch> unless this is the 2million, 21 thousand, and fifth debian revision :)
+<jbailey> I could add a -1 to that.
+<ajmitch> oops, missed out 100 revisions
+<psu> ajmitch: we'll get there someday ;-)
+<jbailey> I think it copes with that.
+<ajmitch> can you have 2 '-'? i thought you couldn't
+<jbailey> psu: Hopefully not of the same version.
+<jbailey> ajmitch: Dunno.  Let's see if dpkg-buildpackage pukes.
+<psu> jbailey: um, no 
+<ajmitch> jbailey: just checked, it should be ok
+<jbailey> ajmitch: Tx.
+<ajmitch> The upstream_version may contain only alphanumerics[14] and the characters . + - : (full stop, plus, hyphen, colon) and should start with a digit. If there is no debian_revision then hyphens are not allowed; if there is no epoch then colons are not allowed. 
+<jbailey> Coo.
+<jbailey> Should this sdist command work on all of the gnue packages?
+<jcater> jbailey: yes
+<jcater> ajmitch: actually, that will come out to be 0.4.1a-20021105, fyi
+<jbailey> GNUe-Forms-0.4.1a20021105.tar.gz
+<ajmitch> right :)
+<jcater> purdy
+<jbailey> It seems to be missing a hyphen.
+<jbailey> Oh, I see in your example I have to add it.
+<jcater> GNUE_VERSION_SUFFIX=-`date +"%Y%m%d"` ./setup.py sdist
+<jcater> I was going from memory
+<jcater> but was slightly off
+<jbailey> Your memory is still quite good.
+<jbailey> But the monkey still gets his way with you for an hour.
+<jbailey> ls -al
+<jbailey> BAH
+<jbailey> Hmm - it doesn't seem to have put the manpage into the tarball
+<ajmitch> dang
+<jbailey> ls
+<ajmitch> AUTHORS  BUGS  COPYING  CVS/  INSTALL  Makefile  NEWS  README  TODO  debian/  images/  samples/  src/
+<jbailey> gnue-common is now 0.4.1a-20021105 too.
+<ajmitch> ;)
+<jbailey> ajmitch:  =)
+<jbailey> I must be getting close to it working.  Everyone's dissapeared. =)
+<ajmitch> run for cover...
+<jbailey> =)
+gcom (~chatzilla@adsl-64-219-163-14.dsl.rcsntx.swbell.net) left irc: Read error: 104 (Connection reset by peer)
+siesel_ (jan@dial-213-168-92-126.netcologne.de) joined #gnuenterprise.
+<Mr_You> hi jan
+<jbailey> Ah, Lintian is confused for at least one of the errors.
+<ajmitch> what a surprise...
+<jbailey> Now I just need a man page for this, and it's clean.
+Action: ajmitch runs down to the shop to buy some food, bbias
+<jbailey> So..  I should install this thing to test it.
+<jcater> jbailey: make a man directory first
+<jcater> manually
+<jcater> then see if it creates the manpage
+siesel (jan@dial-213-168-72-99.netcologne.de) left irc: Read error: 60 (Operation timed out)
+<jbailey> There already is a man directory
+<siesel_> hi Mr_You
+<derek> jbailey: well create it again
+<derek> gnue like its develoeprs is rather stubborn
+<jbailey> Well, I think I'm ready to try installing these bloody things.
+dres (~dres@mail.lewismoss.org) left irc: Remote closed the connection
+dres (~dres@mail.lewismoss.org) joined #gnuenterprise.
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise ("nite...").
+dsmith (firewall-u@cherry7.comerica.com) left irc: Remote closed the connection
+<jbailey> Hmm..  So how to test this thing now that I've got it installed? =)
+<jbailey> jeffb@desert:~/debian$ gnue-forms 
+<jbailey> Traceback (most recent call last):
+<jbailey>   File "/usr/bin/gnue-forms", line 41, in ?
+<jbailey>     from  gnue.forms.GFClient import *
+<jbailey> ImportError: No module named gnue.forms.GFClient
+<jbailey> Probably not good. =)
+<jamest> run it and if your /home partition survives then it passes
+Action: jbailey looks at /home
+<jbailey> Perfect, let's upload. =)
+<jamest> ew
+<jamest> that error isn't good
+<jbailey> What's it mean, uncle James?
+<jamest> i'd say it means that the locatoin of the GFClient.py file isn't in the python search path
+<jamest> well
+<jamest> the gnue dir
+<jbailey> I can check that.
+<jbailey> Hmm.  Looks like it's in usr/lib/gnue/lib/python/gnue/forms/GFClient.py
+<jbailey> Which is certainly far away from the python search path.
+<jbailey> Any suggestions as to where it ought to be?
+<jcater> did you start from scratch w/the rules file?
+<jbailey> jcater: No.
+<jcater> hmm
+<jcater> it seds the the gnue-forms shell script with that location
+<jbailey> jcater: I took yours and wedged it into a dbs build.
+<jcater> hmm
+<jbailey> Lemme make sure that the sedding is still called.
+<jbailey> It may have gotten pruned at one point - I was noting the differences between common and forms, and was mostly using the stuff in common.
+<derek> mine is in /usr/local/gnue/lib/python/gnue/forms/GFClient.py
+<derek> is it supposed to be in /usr/local/ or /usr/lib/ ?
+<jbailey> derek: Packages never install anythying in /usr/local
+ToyMan (~stuq@glvv-dsl1-116.citlink.net) joined #gnuenterprise.
+<jbailey> jcater: I see where it chews 'python' to being a specific version.
+<derek> jbailey: for clarification there is a difference between packages NEVER install and packages SHOULD NEVER install :)
+<derek> as what i pasted was installed by packaging of one form or another :)
+<jcater> jbailey: ?
+<jamest> anyone know the keyboard shortcut for moving python comment blocks in emacs?
+<jcater> jamest: ^Zvi filename
+<jamest> :)
+<ajmitch> bigot
+<jcater> ajmitch: I thought all codes in emacs were prefixed w/ c- or m-?
+<derek> you mean indents?
+<jcater> wouldn't it be C-biggot?
+<jamest> comments
+<jamest> ctrl-c + #
+<jamest> will take marked text and add ## to the front of each line
+<jamest> ctrl-something ctrl-c # will remove it
+<ajmitch> ah
+<derek> you here?
+<derek> you can do
+<jamest> no
+<jcater> yes
+<derek> ctrl-spacebar
+<derek> to set region
+<derek> highlight what you want then do
+<derek> C-x TAB
+<jcater> some day I'll have to learn emacs
+<jcater> but I haven't found a good tutorial yet
+<jbailey> jcater: Can you tell me where the sed is supposed to be?  I don't see anything in your rules file that would cover that.
+<jamest> whoop
+<jcater> 	: # Replace all '#!' calls to python with $(python)
+<jcater> 	: # and make them executable
+<jcater> 	cd debian && \
+<jcater> 	for i in `find tmp/$(GNUEBINDIR) -type f`; do \
+<jcater> 	  sed '1s,#!.*python[^ ]*\(.*\),#! /usr/bin/$(python)\1,' \
+<jcater> 		$$i > $$i.temp; \
+Action: derek is amazed jamest is using emacs
+<jcater> 	  if cmp --quiet $$i $$i.temp; then \
+<jcater> 	    rm -f $$i.temp; \
+<jamest> ctrl-u ctlr-c #
+<jcater> 	  else \
+<jcater> 	    cat $$i.temp |sed "s,'stage,'/usr/lib/gnue,"|sed "s,'/usr/lib/gnue/etc/connections.conf','/etc/gnue/connections.conf'," > $$i;  \
+<jcater> 	    rm -f $$i.temp; \
+<jcater> 	    chmod 755 $$i; \
+<jcater> 	    echo "fixed interpreter: $$i"; \
+<jcater> 	  fi; \
+<jcater> 	done
+<jamest> it's the only editor in the world capable of getting me ready for gnue datasource code
+<jbailey> Oh, I see aprt of the problem.
+<jbailey> I'm not installing to tmp anymoer.
+<jbailey> Cool.
+<jcater> jamest: not true
+<jcater> jamest: a hex editor would be just as well
+<jbailey> And the comment doesn't describe that at all.
+<jcater> jbailey: sorry
+<jcater> that was my first rules file ever
+<jcater> it was a bit, um, overbearing on me
+<jcater> and I forgot to comment in some places :(
+<jbailey> jcater: That's fine. =)
+<jbailey> jcater: This is my first gnue install.
+<jcater> jbailey: it was basically:
+<jcater> Holy shit! it worked!
+<jcater> <clunk>
+<jbailey> Every other attempt has met in massive failure, so...
+<jcater> 2 hrs later... I awaken
+<jamest> lol
+<jamest> nakid and without a donut
+<jcater> exactly
+<jcater> so how could I possibly remember to go back and comment
+<jcater> jbailey: just ask jamest
+<jcater> be glad I didn't do self-modifying sed
+<jamest> he was damn near histerical on the phone
+<ajmitch> hehe
+<jbailey> *lol*
+Action: ajmitch only has simple packages :)
+<jamest> what bothered me was it wasn't for 15 minutes until he noticed his clothes missing
+<jbailey> jamest: I'm sure it was a warm day.
+<jbailey> Ah!  Much better error.
+<ajmitch> jamest: this was just on the phone, right? 
+<jbailey> GNUe Common Version 0.4.1a
+<jbailey> Error: No Forms Definition File Specified.
+<jamest> oh yeah
+<jbailey> Is there a sample forms definition and mysql unload file on the website somewhere so I can try this out quickly?
+<jamest> try the intro.gfd sample
+<jamest> a database isn't required
+<jamest> does anyone use the forms <entry> option  sloppyQuery
+<jcater> not I
+<chillywilly> lick my sack
+<chillywilly> beotches
+<jamest> hey chilly's back
+<jcater> wb chillywilly
+<chillywilly> why you gonna talk smack when a body is not present?
+<jbailey> Frighting.  It appears to be running.
+<jamest> why should we treat you any different than say derek?
+<chillywilly> thanks...I guess
+<ajmitch> chillywilly: must you detail such disturbing activity?
+<jbailey> fear
+<jbailey> piglatin.  woo
+<chillywilly> how am I like derek? I don't file unnecessary bug^H^H^Hfeatre requests
+<chillywilly> thanks jc
+<jbailey> I just have to figure out how to make the bloody man page and I'll upload to sid.
+<chillywilly> ajmitch: get in line punk
+Action: chillywilly needs to vote for governor tonight
+Action: chillywilly is going to vote libertarian
+<ajmitch> that's nice
+<jcater> woot
+<jcater> jbailey: had you done a ./setup-cvs.py
+<chillywilly> it's better than voting republocrat
+<jcater> as I forgot
+<jcater> even setup.py sdist requires that
+<jcater> to create the man page
+<jbailey> jcater: No, I'm doing GNUE_VERSION_SUFFIX=-`date +"%Y%m%d"` ./setup.py sdist and working from that.
+<jbailey> jcater: It appears that I can generate one from ``gnue-forms --generate-man-page'' 
+<jbailey> When an odd feature.
+<jcater> jbailey: yeah, that's what I was about to say
+<jcater> our code auto-documents itself
+<chillywilly> my car needs a new muffler
+<siesel_> jcater: how can I quit the curses client? 
+<chillywilly> my old beater
+<jcater> siesel_: ctrl+\  ?
+<jamest> jbailey: we're pushing as much of that in as possible
+<ajmitch> siesel_: reset button? :)
+<chillywilly> hi jan
+<jbailey> Is there any way to make sdist to this for me?
+<chillywilly> ajmitch: shut it ;)
+<siesel_> hi Daniel
+<jamest> i would think we could modify setup.py to do it
+<jamest> but I'm not sure those pages are 100% complete
+<jcater> jamest: ??
+<jbailey> jamest: Even if they're partially complete that's fine.
+<jbailey> The GNU project doesn't support man pages, right? =)
+<jamest> jcater: ???
+<jbailey> So having a partial one, and a note to look at the texinfo documentation is usually fine.
+<jamest> i'm not sure what you're questioning?
+<jcater> as soon as I learn texinfo
+<jcater> we'll hve a --generate-texinfo-page :)
+<jcater> jamest: um
+<jcater> I'm not sure what you mean by partially complete
+<jcater> wrt?
+<jamest> i didn't think they generated the description, files, known bugs
+<jamest> sections
+<jcater> Known bugs is hardcoded
+<jcater> to "Are you kidding?"
+<jcater> maybe you're right... it may not do files yet
+<jamest> that was part of the 0.5.0 release, um, <whisper> roadmap </whisper>
+<jcater> argh!
+<jcater> spit!
+<jcater> are you turning on me too?
+Action: jamest grabs the trashcan lid and prepares to be assulted
+Action: jcater hides in his corner, crying
+<jcater> see, my problem with roadmaps is
+<jcater> it doesn't define where we're going
+<jamest> they are not need based
+<jcater> it defines what others expect me to do 
+<jcater> :)
+<jcater> of course, now that you're back
+<jcater> mwahahaha
+<ajmitch> jcater: there are others who can help!
+<jcater> "can" and "will" are two different things
+<jcater> but I digress :)
+<chillywilly> nah, no one is worthy of hacking jcater's code
+<chillywilly> ;)
+<jcater> I welcome help
+<jcater> and I'd like to take this opportunity to thank
+<jcater> those who have started coding more and more
+<jcater> btami
+<jcater> ajmitch
+<jcater> jan
+<jcater> papo
+<ajmitch> jcater: ok, i promise that i will hack the gtk2 forms driver this weekend & next week :)
+<jcater> ariel
+<jcater> et al
+<ajmitch> since i've already started
+<jcater> I *know* I missed someone... so don't take it personally
+<jamest> man
+<ajmitch> chillywilly?
+<jcater> oh, and of course jbailey for packaging this up
+<ajmitch> :)
+<jamest> know we know how he feels about my code
+Action: jcater looks thru the forms changelog
+<jamest> thats ok though, i agress
+<jamest> agree
+<jcater> jamest: you haven't started coding more and more
+<jbailey> jamest: So, could I ask you to hack sdist to generate the man page sometime soon?
+<jbailey> =)
+<jcater> you've always coded
+<jcater> except for that brief 18 month leave of absense
+<jcater> ;)
+<jamest> well yeah, i had to get over the crack addiction that gnue drove me too
+<chillywilly> ajmitch: I don't need any recognition form donut boy ;)
+<chillywilly> from
+<jamest> as if you're not on crack the code doesn't make sense
+<jcater>  /msg jamest well, I swear I didn't tell anyone it was because of the abuse clinic you were staying at
+<jamest> jbailey: I can try 
+<ajmitch> chillywilly: perhaps if you showed some more respect ? :)
+<chillywilly> is that the secret?
+<jamest> right now I'm up to my knees in datasources
+<jbailey> jamest: Thanks.  I'm certain to get a bug pretty quickly filed for not having a man page.
+<chillywilly> ajmitch: yea like he shows me respect, right? ;)
+<jamest> and it's kinda icky
+<jbailey> jamest: As long as I know it's on a todo list. =)
+<ajmitch> he might if you showed some
+<jamest> so datasources, shower, man page thing
+<jcater> jbailey: were you not going to do gnue-forms --generate-man-page temporarily?
+<chillywilly> I do respect him
+<jbailey> jcater: Hmmm.. I could, but I'm worried that I would forget about it.
+<jamest> of course jcater will have it commited before i finish this sentence
+<chillywilly> giving ppl shit is the highest form of respect ;)
+<jcater> chillywilly: yeah, like my mother-in-law does
+<jbailey> jcater: The problem is that gnue-forms isn't runnable from it's temp location, is it?
+<jbailey> Or hey - I guess it is runnable from it's place in staging.
+<chillywilly> jcater: whatever
+<jbailey> Nope, it's not.
+<jbailey> jeffb@desert:~/debian/gnue-forms-0.41a-20021105$ build-tree/GNUe-Forms-0.4.1a-20021105/stage/bin/gnue-forms --help
+<jbailey> Traceback (most recent call last):
+<jbailey>   File "build-tree/GNUe-Forms-0.4.1a-20021105/stage/bin/gnue-forms", line 41, in ?
+<jbailey>     from  gnue.forms.GFClient import *
+<jbailey> ImportError: No module named gnue.forms.GFClient
+<jbailey> So I've got no way of generting it live.
+<jcater> hmmm
+<jcater> I wonder.....
+<ajmitch> what do you wonder?
+<jcater> can you require that gnue-common is installed before you can build gnue-forms?
+<jbailey> jcater: Yes.
+<jbailey> jcater: Is that desirable?
+Action: jcater is thinking
+<jcater> don't do it yet
+<ajmitch> jbailey: lazycode spammed #gnu & #fsf with same question :)
+<jcater> jbailey: what does your "staging" area look like?
+Action: ajmitch just had nil incentive to think about an answer
+<jbailey> Define staging?
+<jcater> or build, or whatever
+<jcater> <jbailey> Or hey - I guess it is runnable from it's place in staging.
+<jbailey> The tarball is unpacked into build-tree
+<jcater> the sdist tarball
+<jcater> ?
+<jbailey> So the python build puts everything in build-tree/tarball/stage
+<jbailey> Yes.
+<jcater> ok
+<jbailey> It occured to me that all the paths would be correct from there, but they're not.
+<jbailey> Anyone feel like trying my gnue-common and gnue-forms packages for sid?
+<ajmitch> hmm
+<jbailey> (silence falls on the channel)
+<jcater> I can
+<jbailey> If not, I can just upload them.  I've got them signed and ready. =)
+Action: ajmitch has crap in /usr/local/gnue that could conflict
+<jbailey> jcater: Lemme just get them to a website.
+<ajmitch> i presume they shouldn't
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) joined #gnuenterprise.
+<ajmitch> ok, let us test!
+<derek> jbailey: my problem is i have 4 diff versions installed :)
+<derek> so im afraid my testinmg would bear much fruit
+<derek> once at least one other person has tested i will give it a whirl
+<nickr> whats the name of that win32 library for python?
+<jcater> win32all
+<jcater> pythonwin
+<nickr> ah, thanks
+siesel_ (jan@dial-213-168-92-126.netcologne.de) left irc: "night"
+<ajmitch> http://www.python.org/windows/pythonwin/
+<nickr> of course there is no really useful documentation for it :)
+<ajmitch> course not
+StyXman (~mdione@ADSL-200-59-86-17.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<ajmitch> hi StyXman
+<jcater> jbailey: well
+<jcater> I have a hack
+<jcater> um
+<jcater> jason@jason:~/test/GNUe-Forms-0.4.0a-pre3$ echo "import sys
+<jcater> import src
+<jcater> sys.modules{'gnue.forms':src}
+<jcater> "; cat scripts/gnue-forms|python - --generate-man-page
+<jcater> it works
+<jcater> but it ain't pretty
+<jcater> but it works from the staging area
+<ajmitch> why do you want to build manpages that way?
+<jbailey> ajmitch: I'd prefer they just came from sdist
+<jcater> they do come from sdist
+<StyXman> hi alll
+<jbailey> From your friendly neighbourhood aptable source:
+<jbailey> deb http://people.debian.org/~jbailey gnue sid 
+<jcater> as long as you already have forms installed
+<jbailey> apt-get install gnue-forms-wxgtk
+<StyXman> (this time I didn't mispelled it, is just for the consistence :)
+<StyXman> so. anybody seen siesel lately?
+<jcater> StyXman: he was here briefly today
+<StyXman> hmmm 
+<jbailey> I didn't set it up as an aptable source archive, but all the files are in there if you want to pull them down and see what I did.
+<StyXman> because a couple of weeks ago he said he will look into the problem that parameters are no set up at time
+<StyXman> I mean, I cannot use form parameters @ on-startup trigger and in database conditions...
+<jcater> you can't get them
+<jcater> or set them
+<StyXman> they're not built yet, as siesel said
+<StyXman> I can't _get_ them... but may be that is fixed?
+<jcater> wha?
+<jcater> wow
+<jcater> somethings odd about those debs
+<jcater> it runs
+<jbailey> *lol*
+<ajmitch> no
+<jcater> but my intro.gfd shows no labels
+<ajmitch> that's not possible
+<jcater> but running against my latest cvs copy, they do show
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: Read error: 104 (Connection reset by peer)
+<jcater> hmmm
+Action: jcater doesn't see how that could be related even
+<ajmitch> bye chillywilly!
+<ajmitch> yay! :)
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+<jcater> ajmitch: don't be talkin smack about a body
+<jcater> err
+<jcater> nevermind
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: Read error: 54 (Connection reset by peer)
+<jcater> as I was saying....
+<jcater> :)
+<StyXman> chilliwilly bounces all around
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+Action: ajmitch staples chillywilly to the wall
+<ajmitch> sit! stay!
+<jbailey> <jcater> but running against my latest cvs copy, they do show
+<jbailey> ehsy?
+<jbailey> what?
+<jbailey> (rather...)
+<jbailey> *sigh*
+<jcater> jbailey: lemme do screenshots
+<jcater> I don't see how this could have *anything* to do with debs
+<jcater> but its odd
+<chillywilly> jcater: frell off
+<jcater> chillywilly: btie me
+<chillywilly> ajmitch: why should I?
+Action: chillywilly rips jcater in half then ties him together
+<ajmitch> don't try apt-get install gnue-forms gnue-designer
+<jbailey> *lol*
+<ajmitch> unless you want the 0.1.1 version :)
+<jbailey> Just gnue-forms for now.  That sould pull in common and al of it's dependancies automatically.
+<ajmitch> gnue-forms didn't look to be 0.4.x
+<jcater> http://www.gnuenterprise.org/~jcater/debug-cvs.png
+<jcater> vs
+<jcater> http://www.gnuenterprise.org/~jcater/debug-deb.png
+<jbailey> ajmitch: did you do gnue-forms or gnue-forms-wxgtk?
+<ajmitch> jbailey: i eventually did gnue-forms-wxgtk
+<ajmitch> sigh
+<ajmitch> no worky, i got cruft in /usr/local/bin :)
+<jcater> fsck
+<jcater> nevermind
+<jcater> ajmitch just explained my problem too
+<derek> is she cute?
+<jcater> $ which gnue-forms
+<jcater> /usr/local/bin/gnue-forms
+johannes_ (~johannes@M701P023.adsl.highway.telekom.at) left irc: Read error: 54 (Connection reset by peer)
+<derek> nevermind that is
+johannes_ (~johannes@M701P023.adsl.highway.telekom.at) joined #gnuenterprise.
+<chillywilly> you know what i thought would be cool is to have a forms "component" that you cold embed into an existing interface like gtk+/gnome or even qt/kde
+<jcater> jbailey: running the right gnue-forms, she looks beautiful :)
+<jbailey> jcater: Excellent!
+<ajmitch> chillywilly: cool, get hacking on it then
+<chillywilly> alrighty then ;)
+<jcater> derek: if you squint hard enough
+<jcater> and/or have enough vodka
+<jcater> vegan vodka, of course
+<jbailey> =)
+<ajmitch> those vegans are an odd lot
+Action: ajmitch wonders what jcater's life would be like without chicken strips :)
+<jbailey> You can do breaded tofu strips.
+<jbailey> I don't think they're very good, mind you.
+<jcater> ajmitch: much happier
+<jbailey> Tofu scramble is good though.= )
+<ajmitch> jcater: you have then far too often?
+<jcater> I assume you are being sarcastic
+<jcater> that's the second biggest running joke in irc about me
+<jcater> 1. donuts
+Action: ajmitch wasn't sure if it was every night, or most nights :)
+<jcater> 2. wife eats nothing but chicken strips
+<jcater> :)
+<jcater> seriously dude
+<jcater> she was in such a mood for seafood
+<jcater> \me thought "hell, yeah!"
+<ajmitch> you haven't got her to eat only donuts?
+<jcater> we go to red lobster
+<chillywilly> we had some really good chicken strips at the hockey game last friday
+<jcater> guess what she orders!
+<jcater> chicken strips
+<jcater> she's in the mood for mexican
+<jcater> \me thought "hell, yeah!"
+<jcater> we go to local mexican restaurant
+<ajmitch> dude, your wife has issues
+<jcater> guess what she orders!
+<jcater> we are at jamest's house visiting for the weekend
+<jcater> he takes us out to nice local restaurant
+<jcater> one guess....
+<jcater> chicken strips
+<ajmitch> and you have to eat them at home?
+Action: jcater usually does two meals
+<ajmitch> ah
+<jcater> I'm more a beef guy
+<chillywilly> is she a bit obsessive compulsive?
+<jcater> but I eat anything and everything
+Action: jbailey runs.
+<jcater> chillywilly: only with food
+<chillywilly> has t have eerything a certain way
+Action: ajmitch ties jbailey down
+<chillywilly> has to only eat certsin things'
+<jbailey> ajmitch: Oooo.
+<jbailey> ajmitch: Just don't let Angie know.
+<ajmitch> you ain't uploaded them packages yet!
+<jcater> ajmitch: I think he's enjoying that too much
+<ajmitch> jcater: that's what i'm worried about
+<jbailey> ajmitch: How would you know? =)
+<ajmitch> i haven't heard omnic's scream in frustration yet
+<jbailey> omnic?
+<jbailey> Who's that?
+<ajmitch> mike beattie
+<jbailey> I don' tknow him.
+<ajmitch> one of the debian ftp people
+<ajmitch> he works at uni here
+<jbailey> *lol*
+<jbailey> He doesn't like uploads?
+<ajmitch> it's gnue :)
+<ajmitch> wait until they have to put in override entries for all the new packages :)
+<jbailey> ajmitch: forms alerady will require one because of the name change. =)
+<ajmitch> yup
+<ajmitch> does gnue-forms-wxgtk replace gnue-forms?
+<jbailey> ajmitch: replace,conflicts, yes.
+<ajmitch> ok
+<jcater> jbailey: so, overall, how was my first deb?
+Action: jcater knows i had mistakes
+<ajmitch> i have the lovely thing where i had to put an epoch version on my pnet debs
+<jbailey> So all I have left is designer, and I've adopted and replaced everything that was already in Debian.
+<jbailey> jcater: Good - Have you taken a look at the source for mine?  you'll notice they look very similar to yours.
+<ajmitch> appserver?
+<jcater> jbailey: not yet
+<ajmitch> gnue-appserver had best replace geas
+<jcater> jbailey: do you have cvs access to our tree?
+<jbailey> oh yeah.  'geas'
+<ajmitch> gnue-appserver has a lower version than geas, i guess :)
+<ajmitch> what version is appserver at now?
+<jbailey> 0.0.6
+<jbailey> (-8)
+<ajmitch> appserver or geas?
+<jbailey> geas
+<jbailey> appserver shows 0.0.2
+<ajmitch> i wanted to know appserver :)
+<jbailey> But I'll upload it as a new package that conflicts/replaces the old one.  It won't be a problem.
+<ajmitch> ok
+<jbailey> I'll probably do designer tommorow morning so I can show it off to my boss.
+<jbailey> Is there any value in doing appserver yet, or should it wait?
+<jbailey> jcater: Yes, I do.
+<ajmitch> do appserver just to get rid of geas
+<ajmitch> petition for the removal of geas from the archive :)
+<jbailey> I'll just file a bug and have it removed.
+<ajmitch> ok
+<jbailey> jcater: If you take a look at the packaging, you'll see why it's difficult to put in upstream CVS.  I wouldn't mind creating another module in the GNUe project on savannah to store them, though.
+<chillywilly> are all the packages called gnue-something?
+<ajmitch> gnue doesn't do modules ;)
+<jbailey> chillywilly: They will be.
+<chillywilly> sholdn't it be gnue-appserver?
+<ajmitch> chillywilly: yes!!
+<ajmitch> chillywilly: it will be
+<chillywilly> ok, sorry...
+<ajmitch> as soon as appserver is packaged
+<jbailey> Which might be this weekend.
+Action: chillywilly has to go vote for governor
+<ajmitch> geas is the old andrewm & others code
+<chillywilly> I know
+<jbailey> Yeah, I think I'll do designer tommorow morning.
+<ajmitch> cool
+<jbailey> Hopefully it goes quickly like the last one did - about an hour.
+<ajmitch> jbailey: which libgc was giving you troubles?
+<jbailey> ajmitch: Context?
+<ajmitch> jbailey: GNU/Hurd
+<ajmitch> just to go wildly offtopic :)
+<jbailey> ajmitch: None recently...
+<ajmitch> jbailey: ok, it was libffi?
+<jbailey> libffi, yes.
+<jbailey> The one in gcc-3.2
+<ajmitch> right
+<ajmitch> hmm
+<jbailey> Does dyfet ever drop by here anymore?
+<ajmitch> yup
+Action: chillywilly is away: going to the polls
+<ajmitch> from time to time
+<jbailey> I'll probably be writing software for telephone management for Nortel M1 Option 11c phone switches.  It's probably something I should write as a plug in system and contribute to Bayonne.
+<ajmitch> cool fun :)
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) left irc: "÷ÙÛÅÌ ÉÚ XChat"
+<Mr_You> in canada or U.S. jbailey?
+<jbailey> Depends who's looking for me.
+<jcater> hehe
+<jcater> grrrr
+<Mr_You> Raleigh has a Nortel location.
+<jcater> gentoo's webpage isn't konqueror friendly
+<jcater> they should be shot
+<jbailey> Ah, I'm in Canada.  But I don't work for Nortel.
+<Mr_You> I use to admin at Fujitsu Network Switching for their developers..
+<jbailey> I work for a company that is tired of paying contractors to do MAC orders.
+<Mr_You> ok
+<jbailey> So I will write somethign that shows a picture of the phone, and you can change the buttons.  When you hit 'go', it will out the set, and then upload the new one. =)
+<jbailey> But there's room for a couple levels of abstraction there:
+<jbailey> Both the set, and the backend.
+<ajmitch> fool the users so that they always ring the helpdesk instead of the sysadmins? :)
+Action: ajmitch reads too much BOFH
+<jbailey> Could do that with call forward, never mind messing with sets.
+<ajmitch> pity you can't rewire the phone to put mains voltage into the handset :)
+StyXman (~mdione@ADSL-200-59-86-17.cordoba.sinectis.com.ar) left irc: "silently"
+<jbailey> ajmitch: Expect the scream soon. =)
+<ajmitch> :)
+<jbailey> gnue-common_0.4.1a-20021105-1_i386.changes uploaded successfully to localhost
+<jbailey> gnue-forms_0.4.1a-20021105-1_i386.changes uploaded successfully to localhost
+<jcater> um
+<jcater> what happens when we release 0.4.1?
+<jbailey> I will ignore it.
+<ajmitch> 20021105 was yesterday
+<jbailey> ajmitch: Not here.
+<ajmitch> you're so behind
+<jbailey> ajmitch: As always.
+<jcater> jbailey: ???
+<jbailey> jcater: The version number was generated from sdist - Assuming you never lower the number that it generates, I will continue to produce sane debs.
+<jcater> we never lower the number
+<jcater> but it will become 0.4.1 when released
+<jbailey> Excellent!
+<jbailey> 0.4.1 is lower than 0.4.1a.
+<ajmitch> so you're lowering the number according to debian's versioning
+<jbailey> So I will probably be unable to update number you increment beyond that.
+<jbailey> wtf?
+<jbailey> bah.
+<ajmitch> as others use X.X.Xa to indicate a subrelease after X.X.X
+Action: ajmitch has sane upstream for pnet :)
+<jcater> according to debian's standards, I suppose so :(
+Remosi (dahoose@port-219-88-247-65.jet.net.nz) left irc: Read error: 104 (Connection reset by peer)
+<jbailey> It had never occured to me that you might do it otherwise.
+<jcater> jbailey: what if we change that do to
+<jcater> (our internal code)
+<jcater> 0.4.1_alpha
+<jcater> that works out better, doesn't it?
+<ajmitch> probably not
+<ajmitch> 1 < 1_alpha :)
+<jbailey> Probably not. =(  It's a fairly simple match.
+<jcater> sigh
+<ajmitch> which is why you get hideously ugly versions like 2.999+3.0.alpha20-3
+<ajmitch> (samba)
+<jbailey> In any event, it's uploaded, so I couldn't stop it now if I tried.
+<jbailey> I could always epoch it if it were terribly important.
+<ajmitch> yup
+<ajmitch> i had to do that yesterday :)
+<jbailey> And I need to go do my homework.
+<ajmitch> lol
+Action: ajmitch runs away to study
+<jcater> I guess we'll have to change our internal naming scheme
+<derek> jcater how are we moving on a 'fixed' schema program
+<jcater> sigh
+<ajmitch> tomorrow evening, i celebrate!
+Action: chillywilly is back (gone 00:25:40)
+<jcater> ajmitch: yay!
+<jcater> derek: moving
+Action: derek wants to do some *testing* after dinner ;)
+<jbailey> jcater: Sorry for the hassle.
+<derek> cool
+<jcater> jbailey: well, I imagine it'll be an issue with all packaging systems we will later support
+<jbailey> Yeah, probably.
+<jcater> I was just looking on gentoo
+<jcater> and it will be there
+<jcater> it would be on freebsd's ports
+<jbailey> I think it is on RH too.
+<jcater> hmm
+<jcater> I guess we could do
+<jcater> 0.4.0.99
+<jbailey> Yup.  I've seen that.
+<ajmitch> or go for 0.4.x
+<jbailey> But would you mind skipping to 1.4.2 for the next release?  =)
+<ajmitch> where x is even for stable
+<jcater> if we're gonna start packaging up CVS periodically
+<jcater> we may need to start that
+<jcater> I'll talk to jamest tonight
+<jbailey> Sure.  I will package up CVS as often as someone says "This would be a good idea".
+<ajmitch> i have this: 0.4.7.20021106-1
+<ajmitch> as 0.4.6 was just released
+<ajmitch> 0.4.8 will be next stable release
+<jbailey> ajmitch: I don't like that option because sometimes upstream decides they want to use another decimal place.
+<ajmitch> jbailey: then i'd smack upstream around
+<jbailey> ajmitch: But cw *scares* me!
+<ajmitch> hehe
+<ajmitch> in my case upstream is the dotgnu people
+<ajmitch> damn
+<ajmitch> esands: Build-Depends dependency on gcc-3.2 cannot be satisfied because the package libc6.1-dev cannot be found
+<jbailey> What system are you on?
+<ajmitch> oops, silly nick completion
+<ajmitch> GNU/Hurd
+<jbailey> Really?
+<jbailey> That's messed up, lemme check my upload from this morning.
+<ajmitch> it has | libc0.3-dev in build-depends :)
+<jcater> jbailey: for this "change-over" period
+<jcater> I supppose the official 0.4.1 release
+<jcater> could be 0.4.1b
+<jcater> wrt packaging :)
+<jbailey> jcater: Tx. =)
+<jcater> as we can't change our method now
+<jcater> err, until after 0.4.1 is released, I mean
+<ajmitch> sure you can!
+<jamest> we could release 0.4.2
+<ajmitch> exactly
+<jcater> without a 0.4.1?
+<ajmitch> yup
+<derek> sigh why bother releasing 0.4.1 at all
+<jbailey> jcater: It only stresses OCD people.
+<jbailey> =)
+<derek> might as well release 0.5.0
+<derek> we have no method right now (seriously)
+<derek> other than chaos
+<derek> its completely abitrary
+<jcater> I certainly wouldn't say that
+<derek> as to packaging why the a and b and c and such
+<jbailey> ajmitch: Something's messed up.  My upload from this morning definetly doesn't mention libc6.1
+<jcater> derek:
+<jcater> 0.4.0 is the last releaser
+<ajmitch> or you could do what wolfgang is doing - start at -0.9 & work upwards to 0 :)
+<jcater> cvs is known internally as 0.4.1a (alpha)
+<jcater> that's for support reasons
+<ajmitch> jbailey: hmm ok
+<jcater> if a user goes to "Help|ABout" when using CVS
+<jcater> it shows 0.4.1a
+<ajmitch> jbailey: 3.2?
+<jcater> that's our cue
+<jcater> but when we release
+<jcater> it becomes 0.4.1
+<derek> imean more with numbers 
+<jbailey> ajmitch: I upload gcc-3.2 this morning.
+<ajmitch> ok
+<jbailey> ajmitch: Let's take it to #hurd
+<jcater> that's the part that's not working
+<derek> my point is there is no 'roadmap' that states what release is what
+<derek> so there is no control
+<jcater> no control for whom?
+<derek> at which point who cares if its 0.4.1 or 0.5.0 (independent of the alpha question)
+<derek> any control anywhere
+<jcater> we have our internal markers
+<derek> there is nothing stating what features will be in what releases
+<derek> so USERS have no idea until something is released what is what
+<jcater> a lot is dependent on whether common's API changed
+<derek> we do a bad job of limiting breakage
+<jcater> if common's API is vastly different, it has to be a major point release
+<derek> until now its been no big deal
+<jcater> I dare say it's not arbitrary
+<derek> as we didnt have mass of other developers
+<derek> and we didnt have production users
+<jcater> it's not perfect, nor well planned
+<jcater> but it's not arbitrary
+<derek> you and jamest both admit you use cvs generally for production
+<derek> we need to very soon get to the point where we really maintain 2 releases
+<jcater> I'm actually using 0.4.0 in production
+<derek> so that someone on an old release can expect to get their bugs fixed
+<jamest> i have no desire to release0.5.0 without major documentation
+<derek> but not expect a bunch of expiremental features
+<derek> or major breakage
+<jamest> i thought someone was going to backport patches if we tagged cvs
+<jamest> ?
+<derek> that would be me
+<derek> my problem is cvs commits are going like mad
+<derek> but the cvs commit messages frankly suck
+<ajmitch> or have a stable branch maintainer - someone who's not handling the main tree
+<derek> and there is no roadmap or system used to manage what should be backported
+<derek> my proposal is we have a strict feature roadmap
+<derek> for the new releases and only if some feature is minor in nature does it get backported
+<jamest> i can't see that working with free labor
+<derek> and bug fixes be committed as only the bugfix with commit messages pointing to the dcl bug number
+<jcater> that's bullshit
+<derek> jamest: i never said 'put dates on features'
+<ajmitch> you mean that developers have to put bugfixes into dcl even if they have a 5-min patch?
+<jamest> what I'm saying is that like tonight
+<derek> ajmitch: absolutely
+<jamest> i finally got sick of the no query by detail
+<jamest> so I'm fixing it
+<jamest> this isn't on any roadmap
+<jamest> other than I'm sick of it
+<derek> and btw: im not saying that roadmaps cant change
+<jcater> ajmitch: yes he is
+<jcater> that's part of the problem
+<derek> jamest: you entirely miss the point
+<ajmitch> or yesterday, i found a gtk2 bug, and fixed it within a couple of minutes
+<ajmitch> haven't sent you the patch yet :)
+<derek> the point isnt that a roadmap cant change
+<derek> its that there is something to work at 
+<jcater> I'm not against roadmaps per se
+<jcater> I think general guidelines are great
+<derek> and if someone deems you know what ofr 0.5.0 we need detail queries
+<derek> add it to the fucking roadmap
+<derek> at some point one has to say this road is closed
+<derek> or you end up with woody (the six year release)
+<jcater> well
+<derek> we already have had this happen with two releases
+<jcater> I have absolutely no hesitation putting woody into use at any place of business
+<derek> where they took twice as long as planned because 'features' snuck in
+<jcater> without any IT department on standby
+<derek> jcater: you missed the analogy
+<derek> ask the debian developers how they felt about potato vs woody issue
+<derek> it was hell for them
+<jbailey> derek: And the fact that sarge is showing signs of being just as long.
+Remosi (dahoose@port-219-88-247-65.jet.net.nz) joined #gnuenterprise.
+<derek> certainly we can end up with things like 0.4.23423423423
+<chillywilly> woody was not that long
+<derek> cause 0.5.0 wont feature freeze
+<ajmitch> chillywilly: hyperbole
+Action: derek isnt saying there is problems with 0.5.0 
+<jcater> wtf are you talking about?
+<derek> just stating that the problems will only get worse
+<derek> the more develoeprs come along
+<chillywilly> ajmitch: don't make me whoop you ;)
+<derek> wtf am i talking about?
+<ajmitch> chillywilly: shutup for a change & let them argue it out :)
+<jcater> <derek> certainly we can end up with things like 0.4.23423423423
+<derek> well we have a group running a custom fuckign cvs cause we couldnt get our shit together
+<chillywilly> ajmitch: same to you pal
+<jcater> we couldn't get our shit together?
+<jbailey> g'night gentlemen.
+<derek> and another group that stopped putting full time employees on gnue because we cant understand development cycles
+jbailey (~jbailey@atlas.fundserv.com) left #gnuenterprise ("Client Exiting").
+<derek> jcater: yeah we promissed a release for a month
+<derek> and never showed signs of getting close
+<jcater> part of the gawd damn problem
+<jcater> were buggy patches from them
+<jcater> that got into cvs
+<derek> wait
+<derek> that was a month BEFORE they STARTED thier cvs
+<derek> the REASON they had own cvs
+<derek> is our release was 6 months old
+Action: chillywilly hands out the popcorn
+SachaS (~Sacha@dialup-196-91.wasp.net.au) joined #gnuenterprise.
+<chillywilly> here ajmitch, I'm sowwy
+<ajmitch> derek: so what are you proposing? hard feature freeze at specified times, followed by only bugfixes until release?
+<derek> ajmitch: im saying if you have a roadmap for say 0.5.0 and 0.4.0 is current release
+<derek> any bug fixes applied to cvs can immediately be ported to 0.4.0 tree and new 0.4.1 and 0.4.2 releases can be made
+<derek> as soon as the feature list is nearing completion for 0.5.0 someone says ok we are freezing 0.5.0
+<derek> any new features go into 0.6.0 roadmap
+<ajmitch> like KDE's cycle?
+<chillywilly> "branch"?
+<jamest> nothing prevents that today however the API is constatnly in flux, we are a 0.5.0 project
+<jcater> chillywilly: someone has to maintain it
+<ajmitch> new features have to be added to the feature plan
+<chillywilly> jcater: yes
+<derek> jamest: i have stated in the past it has been impossible to do this to a degree
+<derek> BUT 
+<jamest> I can see something stable as we approach 1.0
+<derek> as we get more developers and more solid releases it will be mandatory to avoid chaos
+<jamest> well, another way to approach this problem that i would prefer
+<jamest> an (semi-)automated testing framework
+<jamest> i'd love to see that today
+<jcater> I would to
+<jcater> and I've BEGGED people to do it
+<derek> jamest: certainly that is necessary to help speed moving a release out the door
+<jcater> I haven't seen a damn thing
+<derek> as thats one thing that has made the process difficult
+<jcater> so guess what
+<derek> feature freeze is called
+<jcater> I guess you or I need to do it
+<derek> and it takes too long to test to point where its too tempting to add new features in 
+<jcater> siesel has even taken the initiative
+<jcater> to start one in samples/testcases
+<jcater> but I don't see testcases flowing in
+<jamest> yeah, i've been adding to it for what I'm working on
+<jamest> but it's not standardized yet
+<jamest> was hoping to make it part of the 0.5.0 cleanup release
+<chillywilly> there's different types of testing
+<chillywilly> black-box, white box, etc.
+<chillywilly> white box requires good knowledge of the code
+<chillywilly> that is being tested
+<chillywilly> the *internals* of it
+<chillywilly> there's probably on 3 ppl right now that fit this description, imho
+<chillywilly> er, only
+<chillywilly> with perhaps a couple that have a decent understanding
+<ajmitch> how do you do automated forms testing?
+<derek> well you have test cases and unit testing
+<derek> unit testing will take a program that interfaces with the API of forms etc
+Action: chillywilly apppoints derek as the "getting our shit together" guru ;)
+<jamest> ajmitch: we'd have to create a pipe to send pre-packaged events into the form
+<ajmitch> right, so you can't really test UI drivers that well
+<derek> test cases should be sample forms sets or applications that have a QA person walk through
+<ajmitch> as they're terribly subjective at times :)
+<jamest> i wanted to make a gnue navigator thing
+<chillywilly> well also the ppl need to document when they test it
+<jamest> with various forms that had pages lableed step 1 2 3 4
+<chillywilly> especially when it is interactive like a form
+<jamest> and a final pass/fail step
+<chillywilly> basically we need a testing team and/or go intoa  testing mode
+<derek> chillywilly, i dont think anyone wants me to have that title
+<derek> as they feel i dont do any work and only demand things
+<derek> its much more fun to code when you just do as you like
+<jamest> anything is better than what we have now
+<derek> its more like work if you add structure
+<derek> and i can relate to that
+<jamest> which IIRC was jcater saying "prereleases is here please test"
+<jamest> then have people test after the final release
+<chillywilly> but it is sort of informal
+<chillywilly> no offense
+<derek> jamest: yes anything is better
+<chillywilly> soem ppl can't code without some structure as they like to see down the "road" ;)
+<derek> unfortunately all people are like that
+<derek> just the people closest to gnue have the roadmap in their head
+<derek> and cant see why anyone is frustrated that there is no structure
+<jamest> or voices telling us what to do next
+<chillywilly> :P
+<derek> because when you are close to it, there appears to be structure (and there is) 
+<derek> just its not in a format that can be well shared
+<derek> i.e. not everyone can hear the voices ;)
+<chillywilly> well can't I download the jcater essence via my nueral interface ala the matrix?
+<derek> fwiw: its not so much requesting things be radically different than they are now, just that they be better presented to the public
+<jcater> well
+<jcater> to use psu's terminology
+<jcater> when I brought up wikis
+<jcater> we are already stretched pretty thin
+<chillywilly> wiki, wiki
+<jcater> the few of us
+<derek> and i still think that all bugs should go through a tool, if everyone hates dcl fine, lets use bugzilla or request tracker or whatever people like
+<jcater> and you make it sound like we are unresponsive to the public
+<derek> but its necessary to cut down support as we grow
+<jcater> I've spent a HELL of a lot of time on the developer's guide
+<jcater> did I need the damn thing?
+<jcater> no
+dsmith (~dsmith@p199.n-chpop03.stsn.com) joined #gnuenterprise.
+<derek> jcater: yes i agree to that
+<chillywilly> thanks jcater :)
+<jcater> did I have more pressing things I should've been working on?
+<jcater> yes
+<chillywilly> we luv you man!
+<derek> im willing to write up roadmaps and maintain a back branch
+<jcater> and dammit
+<jcater> you make it sound like we just only add new features and never look back
+<derek> but not if i have to swim against the river to do it
+<jcater> jamest and I take a release every so often
+<jcater> and do NOTHING but cleanup
+<jcater> and profiling
+<derek> i.e. if you and jamest loathe the idea of roadmaps i woudl rather not try to document whats in your heads for the public :)
+<jcater> and cos
+<jcater> err, docs
+<derek> jcater: actually my complaint is you guys do far too much clean up :)
+<jamest> lol
+<derek> and my hope is to get to a point where others can 'clean up some' and you guys can add new cool stuff
+<jamest> there are tons of things I want to toss in 0.5.0
+<jcater> derek: so would I 
+<jcater> I would also like some donuts
+<jcater> but I don't have any
+<jamest> depreciated tags and the upgrade code hidden in gnue to support them
+<jcater> so it won't happen
+<chillywilly> jcater: I have some
+Action: chillywilly thinks derek must change his nick to "masta" when going on such a crusade ;)
+<chillywilly> it's only fair to warn ppl when he's in masta-mode
+<jcater> maybe a step down from masta mode would help
+<jcater> we can only take so many "forms is useless... it's been useless since 0.3.0"
+<jcater> I have to go home
+<chillywilly> bye
+<jcater> I hope my cable modem resynced over night
+<chillywilly> cya l8r
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "home"
+ratmice (matt@vespertine.pc.ashlandfiber.net) joined #gnuenterprise.
+SachaS (~Sacha@dialup-196-91.wasp.net.au) left irc: Connection timed out
+<ajmitch> well that was fun
+<chillywilly> indeed :(
+<chillywilly> but I think all FS projects could use a bit of management, however, I don't think they need "managers" ;)
+<ratmice> I think we need the man with the yellow hat from curious george books
+<derek> ratmice: i like him
+<ratmice> did I read something about multi datasource forms in the kc?
+<jamest> maybe
+<jamest> they work readonly right now
+<jamest> s/they/they should/
+dsmith (~dsmith@p199.n-chpop03.stsn.com) left irc: "later.."
+<jamest> my understanding is that the writable patch submitted has some issues that need addressed
+dsmith (~dsmith@p199.n-chpop03.stsn.com) joined #gnuenterprise.
+<ratmice> I actually might not need it
+<ratmice> if i make a command line forms client for the static dbdriver
+<jamest> what are you trying to do?
+<ratmice> forms client -> static db driver -> appserver -> database
+<ratmice> er... gui forms client -> dynamic db driver ... static db -> client -> appserver
+<ratmice> so I can go offline and add data and upload it when I can
+<jamest> ah
+<jamest> ok
+<ratmice> it's either that or run the appserver locally, and make some transaction log
+Remosi (dahoose@port-219-88-247-65.jet.net.nz) left irc: Read error: 104 (Connection reset by peer)
+edwardam_ (~edwardam@12-218-106-230.client.mchsi.com) joined #gnuenterprise.
+jamest (~jamest@adsl-64-216-107-182.dsl.tpkaks.swbell.net) left irc: "[x]chat"
+dsmith (~dsmith@p199.n-chpop03.stsn.com) left irc: "later.."
+dsmith (~dsmith@p199.n-chpop03.stsn.com) joined #gnuenterprise.
+edwardam (~edwardam@12-218-106-230.client.mchsi.com) left irc: Read error: 110 (Connection timed out)
+KeithJagrs (trilluser@63.74.24.9) joined #gnuenterprise.
+<KeithJagrs> hello
+TSCHAK (~garnome@dialin-8.fbg.net) left irc: "Client Exiting"
+dsmith (~dsmith@p199.n-chpop03.stsn.com) left irc: "later.."
+dsmith (~dsmith@p199.n-chpop03.stsn.com) joined #gnuenterprise.
+<KeithJagrs> for when is the frankfurt meeting scheduled?
+<derek> its over
+<derek> was last week
+<derek> oct 31st i think
+<KeithJagrs> aaah
+<KeithJagrs> did you meet there?
+<KeithJagrs> some fo you, I mean
+<derek> not i but several others
+<derek> ariel, reinhard, jan at least
+<derek> i think even one or two more
+<chillywilly> it was all europeans
+<KeithJagrs> where are you located derek
+dragon (~dragon@pcd252010.netvigator.com) left irc: "[x]chat"
+<derek> arizona usa
+<KeithJagrs> hmmm
+<KeithJagrs> have you seen rattle snakes?
+<KeithJagrs> in the wild?
+ToyMan (~stuq@glvv-dsl1-116.citlink.net) left irc: ": I'm off to make more toys..."
+<derek> um in the wild
+<derek> ive seen them in my backyard
+<derek> literally
+<derek> well not at this house, but when we lived in carefree
+<KeithJagrs> hehe
+<KeithJagrs> wow
+dsmith (~dsmith@p199.n-chpop03.stsn.com) left irc: "later.."
+<derek> i think this is one of the few states you can carry a loaded firearm into virtually any place but a bank or a govt building legally and not get 'weird looks'
+<derek> i.e. its legal with a permit to carry concealed weapons here as well
+<derek> its not 'cowboy and indians' really, but its still very much the 'wild west' ;)
+<KeithJagrs> you bet
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) joined #gnuenterprise.
+<KeithJagrs> what are those guns used for?
+<KeithJagrs> I mean, do they actually get to use them
+<KeithJagrs> for protection 
+dsmith (~dsmith@p199.n-chpop03.stsn.com) joined #gnuenterprise.
+<derek> nah
+<KeithJagrs> or to shoot cans and bottles on a fence
+<derek> just hicks wanting to look cool mostly
+<derek> not many people carry them
+<derek> you just dont get looks when you do
+<KeithJagrs> I see
+<KeithJagrs> is death penalty established there?
+<derek> um yeah
+<derek> but funny thing
+<derek> the judges were sentencing people to death w/o a jury
+<derek> so all those that got sentenced to death look like they will be going free
+<derek> as the supreme court slapped their hands pretty hard for that blunder
+<KeithJagrs> well..
+<KeithJagrs> veryfunny
+<derek> arizona politics are rather funny
+<derek> we have actually impeached a governor
+<derek> and currently have sheriff joe arpaio touted as 'toughest sheriff in america'
+<derek> he puts inmates in pink underwear
+<derek> feeds them green (as in rotten) bologna
+<derek> and makes them sleep in tents when its 115 degrees outside
+<KeithJagrs> uggh
+<derek> a little bou our sheriff 
+<derek> http://www.mcso.org/
+<chillywilly> how does he get away with that?
+<derek> with what?
+<chillywilly> treating the inmates in such a way
+<derek> http://www.cnn.com/2002/LAW/06/24/scotus.executions/ is the deathrow thing
+<derek> people here love it
+<derek> basically they feel inmates are scum and should die
+<chillywilly> ah yea AZ is pretty republican aren't they? ;)
+<derek> yeah but likely we will elect a democrat for gov
+Action: derek needs to go turn on tv to get polls
+Action: derek hopes all US residents voted today
+<KeithJagrs> hopefully
+<KeithJagrs> gotta get some sleep
+<KeithJagrs> nite!
+Action: chillywilly voted
+<chillywilly> derek: democrats are no better
+dsmith (~dsmith@p199.n-chpop03.stsn.com) left irc: Remote closed the connection
+<KeithJagrs> they are likely better in threating the people, but they are aswell sold to big corporations, whose interest they serve
+<derek> ajmitch: pillar is coming to NZ in january
+Action: chillywilly likes to call them rebuplocrats
+Action: derek is away: watching election unfold
+Action: chillywilly voted libertarian for WI governor
+Action: ajmitch has no idea who/what pillar are
+<chillywilly> pillar is a christian rock group
+Action: ajmitch is away crunching study notes
+<chillywilly> ajmitch: do yo know trelane?
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) left irc: Read error: 60 (Operation timed out)
+<chillywilly> I dunno why but I got talked into being an oper on irc.dougk-ff7.net and then he was on there being an ass
+KeithJagrs (trilluser@63.74.24.9) left irc: "later"
+<chillywilly> and I don't think I will go back
+<chillywilly> because I question the judgement of anyone that wold make him a staffer
+<chillywilly> he's been banned from #wopn before, iirc that's how much of a dolt he is
+<chillywilly> he's worse than Diablo-D3
+Action: chillywilly is away: pizza
+Action: chillywilly is back (gone 00:03:01)
+<chillywilly> anyone know how to make iptables log to a file?
+<chillywilly> I am sick of it filling up the system log and/or spewing on the screen
+<Mr_You> syslog.conf?
+<chillywilly> ah yea
+<chillywilly> I was gonna take a look at that
+<chillywilly> who does the say exim know to use mail.conf in /var/log ?
+<chillywilly> I mean how does the selector match in sysylogd.conf?
+<chillywilly> syslogd.conf
+<chillywilly> syslog.conf even ;)
+<Mr_You> how does exim know to use mail.conf in /var/log?
+<chillywilly> mail.log that is
+<chillywilly> how can I know which "priority" the filetering code jas to say do
+<chillywilly> kernel.iptables  /var/log/iptables.log
+<chillywilly> or whatever
+<chillywilly> where does it get the selector and priority?
+<chillywilly> how can I know what has what?
+<Mr_You> I still don't understand the question, but man syslogd
+<chillywilly> I have been reading syslog.conf man page
+<chillywilly> that will be the next one I look at
+<chillywilly> the syslogd man page
+<chillywilly> Mr_You: you mean a big unix admin liek you doesn't have this tuff memorized? ;)
+<Mr_You> The priority is one of the following keywords, in  ascend­
+<Mr_You>        ing  order:  debug,  info,
+<Mr_You> etc..
+<Mr_You> thats in syslogd.conf
+<Mr_You> syslog.conf
+<Mr_You> man page
+<chillywilly> yea I got that
+<chillywilly> but how would I know wat priority iptables messages have?
+<chillywilly> so I can put them in their own place
+<chillywilly> or would they just be in kern
+<chillywilly> kernel.whatever
+<Mr_You> yeah they are a part of kern
+<chillywilly> nm, I am just going to read until I get an answer
+<chillywilly> I can't separate them?
+<Mr_You> I doubt it.
+<chillywilly> I don't want all the packet stuff filling up /var/log/mesages
+<Mr_You> not via syslog
+<chillywilly> messages
+<Mr_You> maybe via iptables configuration
+<chillywilly> or spewing to the console when I have a VT on my firewall box
+<Mr_You> yeah you would have to route kern.=info or such to /var/log/info 
+<chillywilly> how do you know it is info?
+<Mr_You> "or such"
+<chillywilly> that's what I don't grokk
+<chillywilly> someone said there was an --log-to option but I don't see it
+<Mr_You> you'll just have to find which one it is that you want since it doesn't tell you in the man pages
+<chillywilly> for iptables that is
+Remosi (dahoose@port-219-88-247-65.jet.net.nz) joined #gnuenterprise.
+<Mr_You> not in the debian version
+<Mr_You> woody
+<chillywilly> I am rnning sid of course ;)
+<Mr_You> I would just setup multiple lines and log files and pick which one you wanna keep
+<Mr_You> or setup one and just change the = part
+paqan (~paqan@202.155.120.221) left irc: "Client Exiting"
+jbailey (~jbailey@65.48.140.35) joined #gnuenterprise.
+<ajmitch> the jeff-meister!
+<jbailey> Heya.
+<jbailey> Is someone here willing/able to give me rights to alter the topic?
+Action: ajmitch can't
+<jbailey> It would be nice to be able to post things there when relevant.
+<ajmitch> yep
+<jbailey> Well, for everyone - gnue-common, gnue-forms, and gnue-designer were all ACCEPTED into Debian as of about 30 minutes ago.  They'll be in sid tommorow.
+<jbailey> The geas update will probably wait until next week.  
+<jbailey> In the meantime, I'll probably be back tommorow to pester about how to use the data sources in designer. =)
+<jbailey> Since all I did was generate ugly Python errors.
+jbailey (~jbailey@65.48.140.35) left #gnuenterprise ("Client Exiting").
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: "Free Your Enterprise! - http://www.gnuenterprise.org"
+paqan (~paqan@202.155.120.221) joined #gnuenterprise.
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) joined #gnuenterprise.
+IsoosI (dahoose@port-219-88-247-80.jet.net.nz) joined #gnuenterprise.
+Remosi (dahoose@port-219-88-247-65.jet.net.nz) left irc: Read error: 110 (Connection timed out)
+Nick change: _Maniac -> Maniac
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) left irc: Read error: 54 (Connection reset by peer)
+--- Wed Nov  6 2002

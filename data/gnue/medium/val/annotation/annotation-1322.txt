@@ -1,0 +1,86 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.15Apr2002" enddate="15 Apr 2002 23:00:00 -0800" startdate="14 Apr 2002 23:00:00 -0800" subject="[IRC] 15 Apr 2002" title="Progress on GNUe Reports">
+<topic>Reports</topic>
+
+<p>Michael Dean (mdeanlt) asked <quote who="Michael Dean">how is reports 
+going?</quote>. Derek Neighbors (dneighbo) replied 
+<quote who="Derek Neighbors">good - we are generating html now - 
+and text (though poorly formatted)</quote>. Output was currently 
+to a static file, <quote who="Derek Neighbors">but its all using pysablot 
+so we can do inline eventually</quote>. Already 
+<quote who="Derek Neighbors">reports support output of file, email, printer, 
+fax</quote>.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.16Apr2002">
+The next day</a>, 
+Talli Somekh (talli) asked <quote who="Talli Somekh">i noticed that there's been 
+quite a bit of activity with GNUe Reports in CVS the past few weeks - has it's 
+status of proof of concept changed at all?</quote>. Derek Neighbors (dneighbo) 
+said <quote who="Derek Neighbors">the proof of concept works - if you take the 
+foobulations report and run it, it reads teh database and creates resulting XML
+and we have text and html transformations of that XML</quote>. Talli asked if 
+it was production-ready. Derek said <quote who="Derek Neighbors">i would say if 
+you have to be in production like today and you arent willing to 'suffer the 
+ills' of using growing software then reports is not for you today - IF however
+you have a little time before you need to be in produciton i.e. you are coding 
+production and you have developers on staff that can quickly patch code if for 
+some reason the reports development team is around - then reports might be a 
+pretty good bet for you</quote> He added <quote who="Derek Neighbors">for 
+immediate focus text and html will be the concentrated outputs - but i am 
+looking at gnumeric and excell outputs as well - ps, pdf etc will come shortly 
+but with XSLT they have to go to FO first which i need to study up on</quote>.
+Talli asked whether <quote who="Talli Somekh">creating new reports</quote> was 
+a developer or end-user task. Derek said <quote who="Derek Neighbors">currently 
+there is no visual report designer though we are expecting that our current 
+visual forms designer will be easily adapted to the task</quote>. However, 
+even at time of writing, <quote who="Derek Neighbors">if they know markup 
+they can do it - i.e. if they could write an html report they could write 
+a gnue report right now</quote>.</p>
+
+<p>On the postscript and PDF output, Nick Rusnov (nickr) suggested 
+<quote who="Nick Rusnov">someone will have to make a Python FO engine or 
+else install java.</quote>. Derek said <quote who="Derek Neighbors">i am 
+somewhat of an old skool postscript wizard - and im HIGHLY likely to instead 
+go straight from XML to raw postscript as we have a python libary for 
+postscript</quote>. Jason Cater (jcater) thought this 
+<quote who="Jason Cater">would take ENTIRELY too long to write</quote>
+Nick asked <quote who="Nick Rusnov">is FO really that complex? 
+surely its mappable to TeX or something</quote>?</p>
+
+<p>Jason said that <quote who="Jason Cater">the html and text markups are 
+quick little scripts dneighbo did</quote>, so <quote who="Jason Cater">writing 
+other output formats will be trivial</quote>. Derek noted that 
+<quote who="Derek Neighbors">with nickrs help most of that report for 
+html has css (so any html person) could alter it without touching any 
+real 'code' or xslt style sheets</quote>. Eventually, 
+<quote who="Derek Neighbors">our designer will allow you to drag and drop 
+to create reports - i will go out on a limb and say after we nail some basic 
+reports and iron out some kinks that will be probably high on the list 
+of next steps</quote>. For client/server access, 
+<quote who="Derek Neighbors">fairly quickly we should support clients that
+can talk some form of RPC (CORBA or XML-RPC etc) to talk to it</quote>.</p>
+
+<p>Jason confirmed that he had not implemented triggers in 
+GNUe Reports yet - <quote who="Jason Cater">that'll be 0.0.2</quote>, 
+but <quote who="Jason Cater">I feel I have enough to justify a first 
+release</quote>. Talli felt <quote who="Talli Somekh">well, a free reports 
+app is certainly among the holy grails in the free software 
+world</quote>. Nick said <quote who="Nick Rusnov">perl has EXCELLENT 
+report generation stuff - that people rarely use - which is silly, 
+cause thats what perl is FOR</quote>. Neither Derek nor Jason were 
+keen on perl as a dependancy.</p>
+
+<p>For the column width tags, Derek was 
+<quote who="Derek Neighbors">thinking it will be a lot easier to do 
+width="" on each tag like you had it before - but we can make the 
+'designer' do the work - i.e. if in a header row you set a width it 
+sets teh width for all its children</quote>. Jason said that was possible 
+- <quote who="Jason Cater">just seems redundant</quote>. Derek clarified 
+that you could use Reports without Designer - indeed, as of time of writing 
+you had to - <quote who="Derek Neighbors">you could certainly use emacs 
+or vi or anything that would let you edit flat text or xml</quote>. 
+Talli said <quote who="Talli Somekh">we've had many clients begging for 
+reports, so this will certainly be something that will be on our 
+radar</quote>.</p>
+
+</section>
+

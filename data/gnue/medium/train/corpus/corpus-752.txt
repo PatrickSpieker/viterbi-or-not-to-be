@@ -1,0 +1,148 @@
+*** bigbrother` has quit IRC
+*** dimas_ has quit IRC
+*** ncjp has quit IRC
+*** curt has quit IRC
+*** SachaZzzz has quit IRC
+*** derek has quit IRC
+*** derek has joined #gnuenterprise
+*** curt has joined #gnuenterprise
+*** SachaZzzz has joined #gnuenterprise
+*** ncjp has joined #gnuenterprise
+*** dimas_ has joined #gnuenterprise
+*** derek has quit IRC
+*** derek has joined #gnuenterprise
+*** johannesV has joined #gnuenterprise
+*** SachaZzzz has quit IRC
+<johannesV> good morning
+<dimas_> good morning
+*** derek has quit IRC
+*** SachaS has joined #gnuenterprise
+*** derek has joined #gnuenterprise
+<SachaS> hi derek
+<derek> hi SachaS
+<SachaS> http://www.ebxml.org/ebxmlpodcasts.htm
+<SachaS> another project almost closed :)
+<SachaS> derek: how is life? must be late for you.
+<derek> busy for most part
+<derek> its like midnight here
+<SachaS> i looked at asterisk. i remember you and your company started to integrate voip into your ruby apps ... would be interesting to see what you guys are up to ;)
+<derek> we have click to dial integrated in our applications
+<derek> we also have full CDR (call detail records)
+<derek> working
+<derek> with associations to contacts
+<SachaS> now i am a bit too far away to come over and have look :(
+<SachaS> but sounds very interesting.
+<derek> we are doing some other fun stuff with asterisk
+<derek> i think we will be making it a more aggressive line of business to our company
+<derek> we currently have 5 external asterisk installs and then 3 internal (with cross country interoperability)
+<derek> along with most of our developers running asterisk at home
+<derek> we might be doing a 50 phone install next month which would be interesting
+<SachaS> sweet!
+<derek> coolest thing i have seen to date (and we used ruby to do it)
+<derek> was i called into an extension and left a message at a prompt
+<derek> then ran a report (which resulted in phone numbers)
+<derek> we then had every phone number from the report called and played the message
+<derek> we dialed out and called about 250 people with a 1 minute message in about 40 minutes
+<derek> using no copper lines :)
+<derek> in hindsight i think we could have done it about 20 minutes, but we were throttling it to six out bound calls at one time in a 10 second stager
+<derek> expect our "phone tree" features to be live to our users very very soon now :)
+<SachaS> nice
+<derek> just remember that asterisk can hurt your head ( http://flickr.com/photo_zoom.gne?id=191235340&size=m )
+<SachaS> hehe
+<SachaS> outsch
+<SachaS> alian family
+<SachaS> alien family
+<derek> hopefully by weekend will have parallel installed (and more memory installed) so that i can have ubuntu up and working
+<derek> then might be able to play with gnue more
+<SachaS> the gnue activerecord interface is still outstanding ;)
+* SachaS goes back to work
+<derek> i think a lot of what rails does gnue was doing first :)
+* derek too
+*** deke has joined #gnuenterprise
+*** derek has quit IRC
+*** deke has quit IRC
+*** reinhard has joined #gnuenterprise
+<reinhard> good morning
+*** btami has joined #gnuenterprise
+<johannesV> hey btami ...
+<johannesV> i've fixed a bug in the wx26-uidriver of the released version ...
+<johannesV> is it possible for you to create a new win-installer-package ?
+<johannesV> the new tar.gz-file is available via downloads (on the web-site)
+<johannesV> it is called gnue-forms-0.5.14a
+*** johannesV has quit IRC
+*** johannesV has joined #gnuenterprise
+*** jamest has joined #gnuenterprise
+*** SachaS has quit IRC
+*** jamest has quit IRC
+*** jamest has joined #gnuenterprise
+*** klasstek has joined #gnuenterprise
+*** llp has joined #gnuenterprise
+*** jcater has joined #gnuenterprise
+*** bigbrother` has joined #gnuenterprise
+*** derek has joined #gnuenterprise
+*** SachaS has joined #gnuenterprise
+*** derek has quit IRC
+<btami> johannesV: just uploaded to http://www.gnuenterprise.org/~btami
+<btami> the latest released runtime doesn't contains wx26, so i think it's better to place in my home only
+<johannesV> why not ?
+<johannesV> i mean, i thought the runtime is already suited with wx26 ... ?
+<btami> no, that was a special edition for reinhard
+<btami> it's in the prerelease dir
+<btami> the latest released designer was not wx26 ready
+*** derek has joined #gnuenterprise
+<derek> jcater: do you know if grub supports raid?
+<reinhard> btami: gnue-forms 0.5.14 (without a) had the wx26 uidriver there as well
+<btami> yep
+<reinhard> just the wx26 ui wasn't usable with "official" gnue-runtime
+<btami> i'v talked about runtime
+<reinhard> the same holds for 0.5.14a
+<btami> yep
+<reinhard> so if we had 0.5.14 in downloads, I see no striking reason to not have 0.5.14a there
+<btami> ok
+<reinhard> (but still, if you feel it shouldn't, I can happily live with your home directory)
+<btami> i will move it to downloads
+<reinhard> thanks
+<btami> btw, the new box layout is cool, what do you want to be enhance before new release?
+<reinhard> johannesV still sees some stability problems
+<reinhard> and he is currently working on the new grid widget
+<reinhard> and we are cleaning up the general GF* code, which still takes some time
+<reinhard> brb
+*** reinhard has quit IRC
+<btami> thx
+*** reinhard has joined #gnuenterprise
+<reinhard> off for today
+*** reinhard has quit IRC
+<btami> johannesV: no *.zip for "a" in current
+<btami> and *.dmg
+<jcater> derek: yeah, I believe so
+<derek> yeah it does
+<derek> problem is lvm doesnt work much
+<derek> unless you have a non lvm boot partition
+<derek> we found another solution
+<jcater> well, you have to use initrd
+<jcater> but, yeah, not fun
+<jcater> what other solution?
+*** btami has quit IRC
+*** ra3vat has joined #gnuenterprise
+*** johannesV has quit IRC
+*** llp has quit IRC
+*** derek has quit IRC
+*** jamest has left #gnuenterprise
+*** SachaS has quit IRC
+*** SachaS has joined #gnuenterprise
+*** llp has joined #gnuenterprise
+*** derek has joined #gnuenterprise
+*** jcater has quit IRC
+*** klasstek has quit IRC
+*** derek has quit IRC
+*** derek has joined #gnuenterprise
+*** llp has quit IRC
+*** llp has joined #gnuenterprise
+*** deke has joined #gnuenterprise
+*** derek has quit IRC
+*** deke is now known as derek
+*** derek has quit IRC
+*** derek has joined #gnuenterprise
+*** ra3vat has quit IRC
+*** SachaS has quit IRC
+*** SachaS has joined #gnuenterprise

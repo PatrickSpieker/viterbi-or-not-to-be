@@ -1,0 +1,2083 @@
+[00:00] Last message repeated 1 time(s).
+<ajmitch> don't blame the code or yourself, jcater
+SachaS (~sacha@dialup-196-49.wasp.net.au) left irc: No route to host
+Action: jcater prods dneighbo
+<chillywilly> yea, I am just stooopid
+<dneighbo> ouch
+<dneighbo> you see my two goodies
+<dneighbo> on documenting common?
+<jcater> ?
+<jcater> how's my XSLT coming?
+<jcater> :)
+<dneighbo> gnuenterprise.org/docs/tools/common.dia
+<dneighbo> UML
+<jcater> sigh
+<jcater> you gonna make me install dia?
+<dneighbo> http://gnuenterprise.org/docs/tools/
+<dneighbo> api docs
+<chillywilly> why is there always a proxy object involved?
+<jcater> um
+<jcater> to proxy the requests
+<jcater> there may or may not be a proxy object
+<jcater> with oo-aware transports
+<jcater> (i.e., corba)
+<chillywilly> you don't need one?
+<jcater> ?
+<jcater> you just asked me why is there always one
+<jcater> and I said there doesn't always have to be one
+Action: jcater is confused
+<jcater> maybe it's the benadryl
+<jcater> or the tequila
+<jcater> or the heavily glazed donuts
+<chillywilly> you didn't finish your statement
+<jcater> I was making a statement?
+Action: jcater is studying the dia of common
+<chillywilly> [00:06:34] <jcater> there may or may not be a proxy object
+<chillywilly> [00:06:39] <jcater> with oo-aware transports
+<chillywilly> [00:06:42] <jcater> (i.e., corba)
+<jcater> trying to figure out what I'm looking at
+<jcater> chillywilly: because in corba's case, I think it'd handle the proxying for us
+<jcater> or at least the concept of proxying
+<jcater> BUT
+<jcater> I didn't get far into corba
+<jcater> so that may not be a fair statement
+Action: jcater hasn't fully grokked corba
+<jcater> wow... there's a lot of stuff in that common.dia
+<chillywilly> corba provides client stubs
+<chillywilly> what would you do with being connection to a unix domain socket and a tcp/ip socket at the same time?
+<chillywilly> why would someone want that and/or what is that useful for?
+<jcater> um
+Action: jcater isn't sure what you're looking at
+<chillywilly> AsyncSocketServer
+<chillywilly>  TODO: This should probably allow you to connect
+<chillywilly>     # TODO: to both a Unix-style socket file and to a
+<chillywilly>     # TODO: TCP/IP socket simultaneously.
+<jcater> yeah
+<jcater> a socket file is faster, iirc
+<jcater> but you have to be on the same machine
+<chillywilly> yea
+<jcater> i think
+<jcater> btw, recalling the Async stuff
+<jcater> that's a matter of 2 lines of code
+<jcater> so it's not a big deal providing either option
+<chillywilly> what do the params look like for tcp/ip and domain socket?
+<chillywilly> what's the diff in that dictionary
+<chillywilly> { 'socket' : 'x.x.x.x',.... for tcp/ip?
+<chillywilly> what does asynchat do for you?
+Action: chillywilly asks too many friggin questions
+<jcater> chillywilly: I haven't been in there for at least 5 months
+<jcater> I don't think the params are defined for those
+<chillywilly> for tcp/ip connections?
+<chillywilly> ok
+<jcater> but I think it's like {host: "blah", port: "1111"}
+<jcater> etc
+<chillywilly> ah yea
+<chillywilly> where's the python lib reference?
+<chillywilly> the online one
+SachaS (~sacha@dialup-196-10.wasp.net.au) joined #gnuenterprise.
+<chillywilly> I can't find the damn thing
+<jcater> http://www.python.org/doc/2.0/lib/lib.html
+<chillywilly> thanks
+<jcater> I always use the 2.0 version so I don't get myself into trouble :)
+<chillywilly> hmmm, ansychat module is not in the python lib?
+<jcater> no
+<jcater> it's part of medusa
+<jcater> which we may bring into our cvs tree (if licensing permits)
+<chillywilly> oh
+<chillywilly> the same medusa that nautilus uses?
+<chillywilly> or did use
+Action: jcater isn't familiar w/nautilus
+<jcater> but it's the same medusa that Zope and Webware used
+<chillywilly> It's also part of the Python Library as of Python-1.5.2, see asyncore.py and asynchat.py]
+<chillywilly> I see asyncore in the lib ref
+<chillywilly> but no asynchat
+<jcater> yeah
+<jcater> that confused me too
+<dtm> jcater: i forgot; are you a dcl user?
+<jcater> ssssh... don't tell my parents
+<jcater> dtm: yeah
+<dtm> jcater: have you ever used domains?
+<dtm> i'm wondering what is separated by a domain
+<dtm> i wonder if it separates user accounts
+<jcater> dtm: no
+<jcater> we're a small operation
+<jcater> (3 coders using it)
+<jcater> so I don't even know what a domain is conceptually
+<jcater> sorry
+<chillywilly> I see this trick all the time:
+<chillywilly> if __name__ == '__main__':
+<chillywilly> wtf does it mean?
+<jcater> that section of code will only execute if
+<jcater> you directly run that script from the command line
+<jcater> e.g., in my FormatMasks
+<jcater> I have some of those
+<jcater> so I can do
+<jcater> python DateMask.py
+<jcater> and have test code in that if statement that tests stuff for me
+<jcater> but when the module is imported by a gnue tool
+<jcater> that if statement doesn't return true
+<jcater> so the test code doesn't execute
+<jcater> did that make sense?
+<chillywilly> yea
+<chillywilly> it's the main module right?
+<chillywilly> that test is
+<jcater> yeah
+<jcater> e.g., in my DateMask.py file
+<jcater> if I do python DateMask.py
+<jcater> then __name__ = '__main__'
+<chillywilly> basically it's a nice way to add text code for your module
+<jcater> if I do 
+<jcater> import DateMask
+<jcater> then DateMask.__name__ = 'DateMask'
+<chillywilly> test
+<jcater> that's typically what we use if for
+<jcater> although that's not the only logical use
+<jcater> e.g.
+<jcater> GFClient.py has it iirc
+<jcater> so when you run GFClient it creates all the instances, etc
+<dtm> chillywilly: can you do be a favor and shave for me?  KTHXBYE ^_^_^_^
+<jcater> but later on, GNUe Navigator can import GFClient
+Action: dtm donut wanna shave
+<jcater> and GNUe Nav can handle setting up the environment
+<jcater> but MOST cases it's used for test code
+<jcater> must sleep
+jcater (~jason@HubA-mcr-24-165-193-24.midsouth.rr.com) left irc: "nite"
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: "Client Exiting"
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+ra3vat (ds@ics.elcom.ru) joined #gnuenterprise.
+<ajmitch> hi psu, ra3vat, bye psu, ra3vat
+<psu> well that was short & sweet ;-)
+Action: ajmitch is going off to LUG meeting :)
+<psu> such a nice polite young man, that ajmitch
+<ajmitch> *cough*
+<psu> say hi from us ;-)
+<ra3vat> hello all 
+<ra3vat> :)
+gontran (~gontran@ip68-3-244-71.ph.ph.cox.net) left #gnuenterprise.
+<dtm> ajmitch: yeah say hi
+<dtm> psu: btw yeah he's a nice guy.  he's on my "people to not kill" list.
+Action: psu submits urgent application to join the list - you never know...
+<psu> anyway, work time 
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise.
+chillywilly (~danielb@mke-65-29-142-117.wi.rr.com) left irc: "Philosophers and plow men, each must know his part, to sow a new mentality closer to the heart..."
+<dtm> psu:  rofl
+<dtm> ;saljfslkjdf
+<dtm> maybe we shouldn't tell psu just yet that there is no "people to kill" list  ;)
+<dtm> make him think a couple things through first
+ra3vat (ds@ics.elcom.ru) left irc: "Client Exiting"
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+Yurik (~yrashk@gw.telcos.net.ua) left irc: Read error: 113 (No route to host)
+Yurik (~yrashk@gw.telcos.net.ua) joined #gnuenterprise.
+alexey_ (~alexey@195.151.214.34) left irc: Read error: 113 (No route to host)
+Yurik (~yrashk@gw.telcos.net.ua) left irc: Read error: 104 (Connection reset by peer)
+Yurik (~yrashk@gw.telcos.net.ua) joined #gnuenterprise.
+SachaS (~sacha@dialup-196-10.wasp.net.au) left irc: Read error: 110 (Connection timed out)
+SachaS_ (~sacha@dialup-196-193.wasp.net.au) joined #gnuenterprise.
+Nick change: SachaS_ -> SachaS
+Nick change: SachaS -> SachaS_away
+<Ford_> good morning
+<Ford_> this is a good day for coding some stuff
+Nick change: Ford_ -> Ford_afk
+Mr_You (rouzer@207.124.144.13) left irc: Read error: 101 (Network is unreachable)
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+Nick change: Ford_afk -> or
+Nick change: or -> Ford_
+alexey_ (~alexey@195.151.214.34) left irc: "Client Exiting"
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+Mr_You (rouzer@207.124.144.13) joined #gnuenterprise.
+jamest (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+sledge_ (~sledge@B2e92.pppool.de) joined #gnuenterprise.
+<sledge_> hi there
+Nick change: SachaS_away -> SachaS
+<sledge_> i saw that il18n made it into cvs
+<sledge_> but it doesn't work for me :(
+<sledge_> can someone help me?
+sledge_ (~sledge@B2e92.pppool.de) left irc: "using sirc version 2.211+KSIRC/981227-pre0.9"
+Nick change: SachaS -> SachaS_dinner
+alexey_ (~alexey@195.151.214.34) left irc: Read error: 113 (No route to host)
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+Nick change: SachaS_dinner -> SachaS
+<Ford_> dum de dum de dum de dum ......
+<jamest> hello
+SachaS_ (~sacha@dialup-196-57.wasp.net.au) joined #gnuenterprise.
+ToyMan (~stuq@65.167.123.51) joined #gnuenterprise.
+^chewie (~chewie@flemingi.dsl.visi.com) joined #gnuenterprise.
+SachaS (~sacha@dialup-196-193.wasp.net.au) left irc: Read error: 113 (No route to host)
+alexey_ (~alexey@195.151.214.34) left irc: "Client Exiting"
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+<^chewie> blah
+^chewie (~chewie@flemingi.dsl.visi.com) left irc: "ircII EPIC4-1.1.2 -- Are we there yet?"
+^chewie (~chewie@flemingi.dsl.visi.com) joined #gnuenterprise.
+<jamest> is cvs down?
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: Remote closed the connection
+dneighbo (~dneighbo@tmp-200253.flinthills.com) joined #gnuenterprise.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: Remote closed the connection
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+reinhard (~rm@N816P023.adsl.highway.telekom.at) joined #gnuenterprise.
+<SachaS_> hi reinhard
+<Ford_> Hey reinhard
+<reinhard> hello all
+<reinhard> Ford_: is your last name "Prefect"?
+<reinhard> ;)
+<Ford_> reinhard: yep :)
+Action: Ford_ shows his towel
+<reinhard> cool
+<Ford_> I flew over your whitepaper for GEAS yesterday
+<reinhard> any comments?
+alexey_ (~alexey@195.151.214.34) left irc: "Client Exiting"
+<Ford_> reinhard: not yet... it's a complex thing
+<Ford_> I fell in love with the GnuE efforts as a few days before, I got a project where I have to implement a commercial ERP system with an international working enterprise
+<Ford_> I think I might use some GnuE components for the front-end development (that form-thingie)
+<reinhard> Ford_: sounds good
+<reinhard> especially because Forms is the only _100%_really_ production usable part by now
+<reinhard> IMHO of course :)
+<Ford_> on may, 15th I'll hand out my concepts ... I will follow any step you'll do in that gnuE development... maybe in 2yrs we'll even switch over to you ?
+<Ford_> (except the financial module)
+<reinhard> why not the financial module?
+<Ford_> due to law issues in germany ... 
+<reinhard> i am 100% positive after finishing the financial module we will find someone who approves it in germany very quickly
+<Ford_> especially the administrative accounting part costs a lot when you want a certified approve by the financial ministry
+<reinhard> are you the one who wrote a mail regarding this issue a few days ago?
+<Ford_> didn't wrote a mail, discussed about that yesterday here in the channel
+<reinhard> ok then someone else wrote a mail
+<reinhard> so you are already two who need that :)
+<Ford_> :))
+<reinhard> i can imagine well that some companies would pay for that
+<Ford_> there're are a bunch of hundreds I guess
+<reinhard> if we find only say 20 companies wanting to use GNUe accounting
+<reinhard> in germany
+<reinhard> and dividing the costs among them
+<Ford_> SAP sucks... this is sth every company has learned I guess
+<reinhard> it would be doable
+drochaid (~drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) joined #gnuenterprise.
+<Ford_> reinhard: that's a good model! 
+<Ford_> reinhard: I'll add it up to my concept :)
+<reinhard> cool :)
+<reinhard> btw that's how free software works imho
+<Ford_> yes sponsoring is important
+Action: drochaid wonders if jamest is observing the chan
+<reinhard> Ford_: where exactly are you from?
+<Ford_> reinhard: I live in Giessen, Germany. It's about 80kms north from Frankfurt/Main
+<reinhard> will you be in Karlsruhe?
+<reinhard> Linuxtag
+<Ford_> when is it ?
+<reinhard> 6.6. - 9.6.2002
+<jamest> drochaid: when I can
+<Ford_> reinhard: I'll ask my CEO whether this is possible or not.. are you there as well ? is there a gnuE-exhibition ?
+<reinhard> I don't think there will be much GNUe there
+<reinhard> but sledge and myself will be at the FSF Europe booth probably
+Action: reinhard is from Austria, btw
+<Ford_> I don't like exhibitions anyway... they're only good to see the trends reflected... but usually I know the trends prior such an event... so why go there
+<reinhard> I like Linuxtag and F.SDEM and the like because you can meet interesting people there
+<reinhard> not because of the news you see there
+<Ford_> To meet vendors is the interesting part of course
+<reinhard> not even vendors
+<Ford_> but only on prior invitation
+Nick change: SachaS_ -> SachaS
+<reinhard> it was very interesting for me for example at F.SDEM to meet Georg Greve, Werner Koch (GnuPG author), Marcus Brinkmann (Hurd Hacker)
+<reinhard> and of course SachaS :)
+<Ford_> :)
+<Ford_> maybe Linuxtag differs from usual "IT-Daya
+<Ford_> s"
+<SachaS> thanks reinhard. it was a pleasuer for me to meet you :)
+<reinhard> anybody know if woody is already released?
+<SachaS> woody release delayed.
+<Ford_> what's woody (allan) ?
+<SachaS> Ford_: debian GNU/Linux distribution version 3.0
+<SachaS> Ford_: alias is woody
+<reinhard> SachaS: you know new date?
+<Ford_> I see
+<SachaS> reinhard: www.debianplanet.org is my resource. http://lists.debian.org/debian-devel-announce/2002/debian-devel-announce-200204/msg00020.html is the mail.
+<reinhard> thanks
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+<reinhard> psu: finally i meet you
+<reinhard> congratulations on your 6 months of kc
+<reinhard> and 1000 thanks for doing this great thing
+<psu> thanks reinhard
+<reinhard> i just wanted to say that :)
+<psu> of course, I wouldn't do it if I didn't want to ;-)
+<psu> I guess the motivations are
+Action: dneighbo thinks we shoudl go ahead and let psu believe we dont have ways of forcing him...(evil grin)
+<psu> a) fun - even if most of the fun bits of the log never make it into KC as they are off-topic ;-)
+<psu> b) I have seriously learned a lot about various "techie" things like appservers, RPC, etc etc
+<psu> which will come in useful
+<psu> both generally and in my "real" job
+<psu> hmm... did we ever resolve that problem that some europeans couldn't see website 
+<psu> as now "some europeans" seems to include me...
+Nick change: SachaS -> SachaS_away
+<dneighbo> i had someone send jamest traceroutes
+<dneighbo> best we can tell 
+<dneighbo> gnuenterprise.org
+<dneighbo> www.gnuenterprise.org
+<psu> hmm
+<psu> trying to ping www. and ash. both resolve to 64.39.200.253
+<psu> but I get no packets back
+<drochaid> jamest: oops, I forgot to check in to see if you responded ... I just wanted to make sure you know OOo v1.0 has been launched, if you can find a server still accepting connections
+<jcater> psu: ICMP is blocked by our firewall
+<psu> ah
+Action: psu is not quite sure what that means, but it sounds not good
+<jcater> it means you can't ping it
+<jcater> but you also can't DoS it
+<jcater> :)
+<jcater> it's a tradeoff
+<jcater> but the ip address that it's resolving to is the important thing
+Action: psu remebers the urban legend about geeks going up to golfers 
+<psu> wearing Ping baseball caps and shouting "ACK!"
+<jcater> sigh
+<jcater> :)
+<jamest> drochaid: I've got the win32, linux binaries already and solaris is at 82%
+<nickr> la
+<psu> nickr: no, that's only *half* a tellytubby, try again 
+<psu> (nint - tinky is also wrong)
+<psu> btw, Kernel Cousins has several links to your DocStore proposals
+<psu> so if you are getting unexpected visitors in the log,
+<psu> probly my fault
+<nickr> ahh that explains it
+<drochaid> jamest: I guess you knew then :) what server did you connect to? I've tried them all 2 or 3 times already :-/
+<jamest> www.planetmirror.com
+<jamest> but
+<jamest> since I'm a super swell guy
+<jamest> what do you need? win32 or linux?
+<jamest> www.math.ksu.edu/~jamest/OOo_1.0.0_LinuxIntel_install.tar.gz
+<drochaid> :-D
+<jamest> www.math.ksu.edu/~jamest/OOo_1.0.0_Win32Intel_install.zip
+<jamest> i have tested neither of them yet though
+<jamest> so for all I know the d/ls are corrupt
+gnugo (~Gnu@202.88.227.111) joined #gnuenterprise.
+<drochaid> I'm wondering if getting a corrupt download is better than getting frustrated just trying to find a server that will let me collect it ;-)
+gnugo (~Gnu@202.88.227.111) left #gnuenterprise ("Client Exiting").
+<jamest> i guess they work
+bobacus (~rja29@pc2-camc5-0-cust37.cam.cable.ntl.com) joined #gnuenterprise.
+<dneighbo> gnugo? isnt that a program
+<nickr> yea
+psu (psu@manorcon.demon.co.uk) left irc: Read error: 110 (Connection timed out)
+Ford_ (~re@pD9E2C132.dip.t-dialin.net) left irc: "REBOOT"
+<nickr> dpm
+<nickr> hrm
+<nickr> I'm paranoid, someone I don't know is surfing my archive
+<dneighbo> well apparently they know you
+<drochaid> nickr: does that person in the car over the road have a video cam trained on you?
+<drochaid> that lamp even *looks* like a mic
+<dneighbo> jamest/jcater has any work been done sicne 3/7 on master detail?>
+<jcater> um
+<jcater> I can't remember what I had for dinner last night
+<jcater> much less whether m/d has changed in the last 2 months
+<dneighbo> ok maybe a question is better
+<dneighbo> if i have a master with fields [DeptNum] and [DeptName]
+<dneighbo> and say detail
+<dneighbo> that has fields [DeptNum] and [WorkingTitle]
+<dneighbo> where DeptNum is the key
+<dneighbo> in a form i show
+<dneighbo> deptnum and deptname of the master as normal
+<dneighbo> and working title as a grid
+<dneighbo> what would expect to happen if
+<dneighbo> i hit f8
+<dneighbo> then put a dept num in the masterdeptnum field
+<dneighbo> and then a title in teh workingtitle detail field and hit f9?
+Action: dneighbo is used to not beign able to 'query' detail, but i recalled we could now, so figured i would give it a whirl
+<dneighbo> i figured if i put a dept num in master and title in detail
+<dneighbo> i would get only that title for that dept (or that masters children)
+<dneighbo> HOWEVER
+<dneighbo> what it did was query just the entire detail table (regardless of master)
+<dneighbo> is that what is 'expected' ?
+<jcater> I do know query by detail is not supported
+<dneighbo> or is this a bug?
+<jcater> we haven't implemented it yet
+<dneighbo> if its a bug has it been fixed
+<dneighbo> jcater: then we broke it
+<dneighbo> as it used to give you an ERROR if you querired by ddetail
+<dneighbo> not an error but a message saying 'thats not supported'
+<dneighbo> if its not supported we need to reinstate the message
+<dneighbo> imho
+<jcater> that error must be before the DataObject rewrite
+<jcater> but I agree, I suppose
+<dneighbo> probably
+<jcater> so, we gonna see a patch tomorrow?
+<dneighbo> jcater: the reason being if we dont give message people will complain its broken :) easier to put message saying its not supported
+Action: dneighbo is REALLY suprised
+<dneighbo> as prequery and this error message were two things jamest added orginally from his users complaints
+<dneighbo> both hav ebeen broken since rewrite and he hasnt said anything :)
+<dneighbo> i started to redo prequery as WE REALLY need it
+<dneighbo> and it should be default behavior (imho) as its a major user stumbling block
+<dneighbo> EVERY user that comes inhere with a new install asks how come i cant see my data
+<dneighbo>  :)
+<dneighbo> but you told me to hold off on it
+<dneighbo> you wanted to talk to jamest
+<jamest> um
+<jamest> prequery is in there
+<jamest> i think
+<dneighbo> i will gladly look into patching
+<dneighbo> but the prequery stuff was completely gutted (as in no longer referenced anywhere) i started to look at where it might be best put it, but didnt look right
+<jamest> um
+<jamest> i has to work
+<jamest> i = is
+<jamest> just a sec
+<dneighbo> hmm does that mean i is really is is?
+<dneighbo> reinhard: i = is
+<dneighbo> er re : 
+<dneighbo> darn bitchx even tries to finish my sentences
+<jamest> wow
+<jamest> i guess it is borked
+<jamest> i can't believe no one complained
+<jamest> sigh
+Action: jamest hides
+<jamest> i don't have time to dig in now but prequery on datasources does work or all my dropdowns would have broken
+<jamest> it's not displaying though
+<jamest> unless someone did something fancy to make prequery work only with dropdowns which I doubt
+<jcater> no
+<jcater> prequery pre-queries the datasource
+<jcater> but hasn't pre-filled blocks since our DataObject rewrite
+<dneighbo> jamest: i have complained for a few months :)
+<dneighbo> i just thought the 'syntax' changed
+<dneighbo> i didnt look at the code (as it wasnt critical to me)
+<jcater> dneighbo: he has complained
+<jcater> err, jamest
+<dneighbo> until looking into datasource trigger stuff
+<dneighbo> then jcater said where are you getting that this ever existed :)
+<jamest> ah, well, I must be really be getting good at forgetting dneighbo's issues
+Action: jamest pats self on back...."keep up the good work buddy!"
+<dneighbo> rofl
+<dneighbo> jamest: thats why it wasnt 'critical' as it didnt break my dropdowns :)
+<dneighbo> i have been meaning to make a dcl ticket (so thats my bad)
+<dneighbo> i will do so for the the prequery
+<dneighbo> and for the 'query detail not supported' issue
+<jamest> ok
+<jamest> fwiw - the query detail not supported is sporatic
+<jamest> as I saw it broke once, tried it at home and all was fine so I let it go
+<dneighbo> you mean the error message?
+<jamest> yes
+<jcater> oh, rock!
+<jcater> my Intel Microscope came in today
+<Mr_You> re
+drochaid (~drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) left irc: Read error: 104 (Connection reset by peer)
+drochaid (~drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) joined #gnuenterprise.
+joev (~joev@208.17.30.242) joined #gnuenterprise.
+siesel (jan@dial-213-168-73-230.netcologne.de) joined #gnuenterprise.
+<siesel> hi !
+<jamest> yo jan
+<reinhard> hey siesel
+<reinhard> hi joev
+Ford_ (~re@p5085AB2B.dip.t-dialin.net) joined #gnuenterprise.
+<siesel> reinhard: I saw your message on the log. Does the rpc code worked for you?
+Action: reinhard sighs silently
+<reinhard> haven't tried
+<reinhard> and as you added an non-rpc test.py i think i won't
+<reinhard> sorry
+<reinhard> still swamped with work
+<reinhard> but got a light at the end of the tunnel
+<reinhard> (yeah i know i said that several times before)
+<reinhard> :)
+<siesel> i allways don't know if there is light on the other side, so i don't like to go into tunnels. ;)
+<siesel> this is a reason, why I will never write a ssl-tunnel for RPC. ;)
+<reinhard> lol
+Action: siesel is thinking of what will come first: an app_server_cvs_test script, automaticly build by setup-cvs.py or the light at the end of reinhards tunnel.
+<reinhard> siesel: i saw you changed the field name geas_list.conditions to _conditions
+<reinhard> (and others)
+<reinhard> and added methods like setConditions
+<reinhard> is this because gnurpc only handles methods but doesn't handle fields of objects?
+<siesel> yes.
+<siesel> it can handle fields also (not implemented yet), 
+<siesel> but i thought of the methods are kind of requirements for an 'object' so I just added them.
+<reinhard> ok
+<reinhard> you have any strong feeling about
+<reinhard> doFoo(bar,baz)
+<reinhard> vs.
+<reinhard> do_foo (bar, baz)
+<reinhard> ?
+<siesel> I had to programm some java ... so I write much doFoo(bla,bla) at the moment.
+<reinhard> does java require that?
+<siesel> but i think both ways are ok. its just important to be consequent
+<siesel> no, but the whole class library is written like that...
+<reinhard> ah
+gontran (~gontran@ip68-3-244-71.ph.ph.cox.net) joined #gnuenterprise.
+<gontran> lo
+<reinhard> siesel: forms e.g. seems to be doFoo(bar, baz)
+<reinhard> gontran: hi
+<gontran> :)
+<siesel> reinhard: so what do you think? go _ing or go Ing?
+<reinhard> siesel: gnu standard is actually do_foo (bar, baz)
+<reinhard> i'm not sure what i should value higher
+<reinhard> gnu standard or consistency with forms and common
+<reinhard> plus actually i find do_foo (bar, baz) most readable
+<dneighbo> it should be
+<dneighbo> doFoo(bar, baz)
+<dneighbo> in code camel case i think is preferred
+<dneighbo> in table definitions _ is preferred
+<dneighbo> hi gontran 
+<gontran> hiya
+<gontran> workin on common.dia
+<siesel> hmmm. I think reinhard is right, do_foo (bar, baz) is more readable, ... but it uses one byte more in the code than doFoo (bar, baz).... so the real performance freaks ;) use the last one
+<reinhard> siesel: rofl
+Action: siesel is a real performance freak
+<jamest> why do that when
+<jamest> a() is valid
+<gontran> dneighbo: if you had a look, is that were you wanted it to go?
+<jamest> b()
+<jamest> c()
+<jamest> d()
+<jamest> :)
+<reinhard> siesel: actually we are talking 2 issues here
+<jamest> 1 letter function names rock!
+<reinhard> doFoo() vs doFoo () (space before "(")
+<reinhard> and do_foo vs doFoo
+<jcater> or better yet
+<jcater> _()
+<jcater> :P
+<reinhard> what do we need function names for?
+<siesel>  _(do_Foo)(_(bar),_(bars))
+<reinhard> doesn't python have "goto"?
+<jcater> yeah
+<siesel> rofl
+<jcater> python tells me to goto hell all the time
+<jcater> or so it seems
+<reinhard> lol
+<dneighbo> reinhard: i think funtionname ()
+<dneighbo> is UGLY and non cohesive
+<reinhard> siesel: anyway, at the moment we two are as inconsistent as we could be
+<dneighbo> funtionName vs function_name i have no opinion on really
+<reinhard> dneighbo: functionname(one, two) is illogical imho
+<dneighbo> but i think its 'the new way' to do
+<dneighbo> camel case
+<reinhard> either functioname (one, two) or functionname(one,two)
+<reinhard> and i have learned the latter is much harder to read than the other
+<dneighbo> i think since common, forms, reports, designer are written
+<reinhard> learned == from my own code :(
+<dneighbo> rather than go and and change
+<dneighbo> lets use what they do
+Action: dneighbo isnt certain what that is
+<dneighbo> i imagine
+<dneighbo> functionName(foo, bar) or functionName(foo,bar)
+<jcater> I think I do functionName(foo, bar) out of habit
+<jcater> but I have no clue where I picked up that habit
+<reinhard>     fileHandle = openResource(processFile)
+<reinhard>     nav = loadProcesses (fileHandle)
+<reinhard>     fileHandle.close()
+<siesel> dneighbo: whats about a small script to change all camel case to function_name style in forms designer...)?
+Action: dneighbo know he does functionname(foo, bar)
+<dneighbo> as its the most readable, whether its illogical or no :)
+<reinhard> is an excerpt from GNClient.py
+<jcater> reinhard: what?!?!?
+<jcater> you were expecting consistency>
+<jcater> ?
+<jcater> :)
+<reinhard> jcater: no
+<reinhard> not me
+<dneighbo> i think all this is bs
+<dneighbo> we can argue forever on it
+<dneighbo> its the classic my penis is longer than yours debate
+<dneighbo> i will say i havent seen any function_name
+<dneighbo> only functionName
+<dneighbo> in current code
+<dneighbo> so thtat should be the standard
+<dneighbo> whether its
+<dneighbo> name ( or name(
+<reinhard> i think we can agree on camel case because this is important to agree
+<reinhard> imho f () vs f() isn't _that_ important
+<dneighbo> or name(value, value) name(value,value)
+<dneighbo> i say who gives a shit
+<reinhard> because it's not "exported" outside the code
+<dneighbo> even its is different in the smae code
+<dneighbo> a space difference isnt going to be so vile that people will die
+<dneighbo> the important part is the name
+<dneighbo> as that is what will be 'referenced'
+<reinhard> dneighbo: yes that's what i wanted to say
+<dneighbo> reinhard then we agree :)
+<reinhard> ok
+Action: reinhard is going to change his code then
+<dneighbo> reinhard but we reserve the right to say field_name is preferred over fieldName in database schemas :)
+<reinhard> sure
+<reinhard> iAmHappyWithEverythingYouWant
+<dneighbo> rOFL
+<reinhard> howeverIDontThinkThisIsBetter
+<dneighbo> youWillGetUsedToIt
+<jamest> youHadBetterAnywayCauseIWouldCurlUpAndDieIfIEverHadToChangeTheWayIDoAnything
+<jamest> :)
+<jamest> sigh
+<jamest> my users
+<jamest> they found issues in forms
+<jamest> how dare they
+<dneighbo> for chilly:
+<dneighbo> JAVA DEVELOPER CONNECTION PROGRAM (JDC): If you could start again, would you make everything an object rather than the current int, boolean, byte, etc, viz-a-viz object disconnect?
+<dneighbo> JAMES GOSLING: No, actually I tend to go the other way, which is to say, a way to make classes behave more like primitives, so that they can be optimized and become extremely efficient, and maybe have a way to do autoboxing so that they sort of go back and forth between being objects. There are a lot of subtle problems around autoboxing that always make me nervous, and the big one being questions around identity. 
+<jamest> hmmmm, nothing about making it suck less?
+Action: jamest runs
+<dneighbo> well after i pasted that
+<dneighbo> i started thinking
+<dneighbo> do i want to admit to agreeing with teh maker of that evil called java :)
+<reinhard> siesel: i have committed the this_one to thisOne change
+<jamest> l8r everyone
+<reinhard> can you please test whether the rpc sample still works?
+<reinhard> l8r jamest
+jamest (~jamest@hobbes.math.ksu.edu) left irc: "[x]chat"
+<siesel> ok. one moment
+Action: siesel is wondering about a very slow connection to cvs at subversions.gnu.org
+<reinhard> anyway
+<reinhard> i've updated the api doc on ash, too
+<siesel> cool.
+<siesel> GEAS.grpc and INSTALL changed too. rpc demo is working again.
+<reinhard> thanks
+<reinhard> night all
+reinhard (~rm@N816P023.adsl.highway.telekom.at) left irc: "There's always one more imbecile than you expect"
+<siesel> night
+<gontran> allright kids: get your semi-beautified common.dia at http://www.gontran.net/pub/gnue/common.dia
+Nick change: gontran -> gontran_food
+<siesel> cool. I want to have a poster of it.
+<siesel> hey jcater: there is even an bakery on it
+<siesel> ;)
+rdean (rdean@chcgil2-ar2-052-050.chcgil2.dsl.gtei.net) joined #gnuenterprise.
+dsmith (firewall-u@cherry7.comerica.com) joined #gnuenterprise.
+dsmith (firewall-u@cherry7.comerica.com) left irc: "later.."
+<dneighbo> siesel what is GEAS.grpc?
+<dneighbo> i.e. what is a .grpc file?
+<siesel> a description of an RPC connection. (in XML)
+<dneighbo> hmmm
+<dneighbo> im just nervous that specs are being made w/o any formal review
+<dneighbo> i assume a .grpc is something custom to gnue?
+<siesel> yep.
+<dneighbo> is it a replacemetn to a gcd?
+<dneighbo> or is it merely a connection?
+<jcater> dneighbo: it's more like an IDL
+<dneighbo> if its a connection type of thing
+<dneighbo> where does it really belong
+<dneighbo> what should we name it
+<dneighbo> etc etc
+<siesel> it is closely connected to gcds, because some parts are similar.
+<dneighbo> these are not describing objects though right?
+<dneighbo> are they like the old geas' base idl
+<dneighbo> where you really only have like one
+<jcater> it defines what methods we want exposed, so each "Server" app will have a grpc file
+<jcater> yeah, like the old geas.idl files
+<jcater> only generalized
+<jcater> this grpc is something I was toying with
+<dneighbo> and will be different for each provider?
+Action: jcater wasn't really ready for gnurpc to go prime time yet
+<jcater> dneighbo: no
+<dneighbo> or is this a way to make it so one definite works for all providers
+<jcater> geas would have ONE grpc file
+<jcater> and gfrom that we can generate corba stubs
+<jcater> etc
+chillywilly (~danielb@mke-65-29-142-117.wi.rr.com) joined #gnuenterprise.
+<jcater> at least, that's the intention
+<dneighbo> ok and it would make the approriate idl or such substitution
+<siesel> yes
+<chillywilly> talking about gnurpc?
+<siesel> yes
+<dneighbo> i just want to make sure proper communication is being had
+<dneighbo> before committing code
+<dneighbo> as up front something .grpc seems like an odd extension
+<dneighbo> .grc mayb (gnu rpc connection)
+<jcater> that's my fault :(
+<jcater> but I was afraid gr? would be confused/conflict with reports stuff
+<jcater> none of this is set in stone
+<jcater> now that we have some examples
+<dneighbo> im not opposed to greater than 3 car extensions
+<jcater> it's probably time to formalize this stuff
+<chillywilly> this is not DOS ;)
+<jcater> and start discussions
+<dneighbo> but if its a connection file of sorts
+Action: chillywilly wishes he could wrap his head around said code
+<jcater> dneighbo: one note.. this is ONLY used by the tool developers, not sys admins or users
+<jcater> i.e., it's essentially code
+<jcater> not sure if that matters or not
+<jcater> but just an observation :)
+<siesel> many protocolls (like xmlrpc f.e.)  won't even need an  .grpc  file, but its good to have one to control access on the server side
+<dneighbo> jcater: not saying we need to change it
+<dneighbo> simply asking questions :)
+Renegade (~garetht@80.193.35.7) joined #gnuenterprise.
+<dneighbo> .grpc was not intuitive t me :)
+<jcater> all of 2 minutes went into the naming of the file
+<dneighbo> well its ounds like there will only be one of them
+<dneighbo> so it probably has no bearing
+<siesel> and it would be easy to create one:
+<siesel> Add an lokal socket implementation, which allows any kind of RPC methods, and
+<siesel>   which writes a communication protocoll into a GRPC file. 
+<siesel>   with this tool it is possible to change your application, or write a 
+<siesel>   new application, then use the special protokoll one time and voila get
+<siesel>   a GRPC file for normal protocolls
+<dneighbo> my concern was if we were to have lots of these
+<dneighbo> it woudl be worth renaming
+<jcater> ok
+<jcater> well, honestly, I foresee GNUe having a total of maybe 3 of these files
+<jcater> one for geas, one for integrator, one for report server
+<dneighbo> one for each server?
+<dneighbo> cool
+<dneighbo> same thought i had
+<jcater> well
+<jcater> depending on how we do other stuff (Authenticaion Server, Workflow Server, etc)
+<jcater> I suppose there could be more than 3
+<jcater> but you get the point
+<jcater> i.e., these are NOT a replacement for GCD
+^chewie (~chewie@flemingi.dsl.visi.com) left irc: "ircII EPIC4-1.1.2 -- Are we there yet?"
+<jcater> although, since the topic has been brought up
+<jcater> we do need to discuss at some point
+<jcater> how GCDs are gonna look
+<jcater> but, I digress
+<dneighbo> xml
+<jcater> in all honesty, we probably will do away with the GRPC files and just have them be Python data structures
+<jcater> but because I was in the test stage, it was easier to have this in an external file
+<jcater> so the various "approaches" I was testing could use the same interface definition
+<chillywilly> dude, is it spelled protocol ;)
+<jcater> wtf?
+Action: jcater is looking back
+<jcater> who mispelled it?
+<chillywilly> siesel: 
+<jcater> oh
+<chillywilly> and he commited updated docs with the same misspellings
+<jcater> that had already scrolled off my screen :)
+<jcater> yeah
+Action: chillywilly was reading RPC-absatrction.txt that's why I said it
+<jcater> we need our own dictionary of mispellings
+<jcater> number one: 
+<siesel> sorry. I'm no native speaker.
+<jcater> (for jamest) 
+<jcater> it's incoming, not incomming
+<jcater> :)
+<chillywilly> oh and also glaced donuts instead of glazed
+<jcater> number two: 
+<jcater> (for chillywilly)
+<jcater> it's relational, not oo
+Action: jcater ducks
+<chillywilly> s/f.e./e.g.
+<dneighbo> rofl
+<dneighbo> hey anyone know if there is a mime type for dia?
+<jcater> look in common/src/GMimeTypes.py :)
+<siesel> jcater: it won't be good to make a python data structure out of .grpc files. a)  having many differenet clients accessing one (GEAS, ..) server it is better to have the definition of the PROTOCOL at just one place and in a code many programming languages understands (xml)
+<dneighbo> so that i can make my browser autolaunch .dia files?
+<jcater> siesel: true
+<jcater> my only concern was the additional startup time
+<jcater> but it may not be worth that
+<siesel> b) different other reasons
+<gontran_food> dneighbo: application/x-dia-diagram ?
+<dneighbo> dood where did you find that?
+<dneighbo> i looked all over google
+<gontran_food> gnomecc :)
+<chillywilly> An application makes a call to GComm.bind() with a list of requested
+<chillywilly> interfaces and the location of its.... what's the ends of this sentence?
+<chillywilly> it sorta just stops
+<nickr> I'm suprised no one has done a really comprehensive emacs-style keymap for visual stupido
+<gontran_food> bound socket?
+<jcater> chillywilly: grpc definition file, iirc
+<jcater> chillywilly: didn't you know
+<jcater> grpc is nothing but a guessing game
+<jcater> :)
+<jcater> wtf?!?!?
+<jcater> my gs can't find the Courier font
+Action: jcater smacks gs around a bit
+<chillywilly> there's some deaign there
+<chillywilly> I just can't find it ;)
+<chillywilly> but I am stooopid
+<dneighbo> gontran_food unfortunately that doest work
+bobacus (~rja29@pc2-camc5-0-cust37.cam.cable.ntl.com) left irc: "[x]chat"
+Nick change: gontran_food -> gontran
+<gontran> dneighbo: hmm. using galeon or mozilla?
+<chillywilly> is a .grpc file in any special xml format?
+<jcater> just something we put together
+<chillywilly> oh
+<gontran> dneighbo: doh.  galeon doesn't work for me either.
+<gontran> whaddya want?  convenience?!
+<siesel> do we have a DTD for gfd files?
+<chillywilly> there's sort of one in gnue/forms/doc/ 
+<chillywilly> gnue-forms.dtd
+<siesel> what do you mean with "a sort of"
+<chillywilly> I dunno if it is official or anything like that or up to date
+<jcater> it's not up to date
+<jcater> we have a utility gnue-dtd 
+<jcater> that automatically creates a tools dtd
+<jcater> from it's GParser definition
+<siesel> there is a hint at the end of it: "This DTD was created by gnuedtd"
+<jcater> HOWEVER
+<jcater> I ran into an infinite loop w/it
+<jcater> and haven't looked at it since I discovered this
+<jcater> that's something I want to do
+<jcater> but haven't had time
+<jcater> and it's been a low priority
+<jcater> as the forms techref documents the format pretty well
+<chillywilly> hey I don't understand the bindings param in GComm.bind()
+<chillywilly> # bindings   A dictionary containing binding definitions. The dictionary
+<chillywilly> #            is of the form: {server:handler} where:
+<chillywilly> #              1) service: Name of the service being bound/exposed
+<chillywilly> #              2) handler: Method that when called returns a class 
+<chillywilly> #                 instance i.e. {'DonutPlace',getDonutPlaceObj}
+<chillywilly> what does this mean in english?
+<siesel> where can i find it? emacs xml mode needs an dtd to work  better
+<chillywilly> ;)
+<jcater> chillywilly: basically, the exposed method 'DonutPlace' calls the physical method 'getDonutPlaceObj'
+<siesel> yes you saw it right. its german. ;)
+<jcater> at least, if my memory serves me correctly
+<gontran> nice
+<siesel> jcater 's right
+<gontran> so GComm.bind allows exposure of any physical method to rpc?
+<gontran> via any name?
+<jcater> that's the idea, at least
+<gontran> if you don't mind me asking, does that mean it's not working? :)
+<jcater> I think it's working with XML-RPC now
+<jcater> thanks to siesel
+<chillywilly> siesel: so you are the new gnurpc masta ;)
+<chillywilly> ?
+<jcater> with corba, soap, et al to follow
+<gontran> ah
+<chillywilly> I want to add irc just for fun
+Action: jcater wants to troutslap chillywilly
+<jcater> ..just for fun
+<chillywilly> and to learn how it works
+<gontran> heh
+<chillywilly> thanks dude
+<chillywilly> that felt great
+<chillywilly> gimme more
+<siesel> no. jcater is still the master. I just try to figure out the deep thoughts of his mind.....
+<siesel> ... funny, after working at gnurpc I'm allways thinking about donuts... ;)
+rdean (rdean@chcgil2-ar2-052-050.chcgil2.dsl.gtei.net) left irc: "Client Exiting"
+<siesel> jcater: now there are two xmlrpc implementations: xmlrpc (gpl'd, but no https) and pw_xmlrpc (xmlrpc from pythonware)
+<jcater> cool
+<jcater> yeah, I noticed your commit
+<dneighbo> dtd is of limited use to us, i found it kind of odd to make a dtd for something that was in 'flux'
+<chillywilly> siesel: how long did it take to crack into such a scary place as jcater's mind? ;)
+<dneighbo> btw: siesel i had a working emacs mode for forms at one time
+<dneighbo> took existing xml mode
+<dneighbo> and hacked a little into it
+<drochaid> and aloha here as well Renegade
+<dneighbo> and inserted dtd for forms and was on my way
+<Renegade> lol
+<Renegade> heylo
+<siesel> cool
+<drochaid> I never claimed to pay attention .. just to be here ;)
+<dneighbo> seriously the visual designer is WAY more productive
+<dneighbo> but i digress
+<dneighbo> the way i made the dtd was found a web site where you hadn it an xml file
+<dneighbo> and it creates a dtd for it
+<dtm> hi all
+<dtm> Hi, Al.
+<dneighbo> i fed it my most complex form and got a decent dtd back
+<siesel> cool.
+<siesel> i would like to know where this gnue-dtd, jcater spoke of, can be found.
+<chillywilly> siesel: I will now bug you with gnurpc questions ;)
+Action: siesel ducks
+<chillywilly> gnue/forms/doc/gnue-forms.dtd
+<jcater> do ppl purposely ignore me when I say stuff isn't working?
+<jcater> :)
+<chillywilly> yes
+Renegade (~garetht@80.193.35.7) left irc: Read error: 104 (Connection reset by peer)
+<siesel> jcater: i like not working code.
+<jcater> it's in common/scripts iirc
+<jcater> and it's a COMPLETE mess
+<jcater> ... one of my first python programs
+<gontran> aha 'gnuedtd'
+<jcater> iirc you just run "gnuedtd forms"
+<jcater> for a forms dtd
+<jcater> or "gnuedtd reports" for a reports dtd
+<dneighbo> hmmm
+<dneighbo> gnuedtd p0rn
+<dneighbo> didnt get me what i expected
+<dtm> chillywilly: HIGH
+<jcater> dneighbo: sigh... I've been saying it's borked
+<jcater> but no one listens
+<jcater> :)
+<chillywilly> ello dtm
+<siesel> now i know, that its your first python programm: it has 389 lines of code and just 7 comments ;)
+<jcater> yeah, well
+<jcater> I've tried to cut back on comments
+<jcater> 7 was just overkill
+<jcater> :p
+<dneighbo> gontran what wm you using? windowmaker?
+<siesel> lol
+<gontran> dneighbo: noser, blaahckbocks
+<gontran> with wm dockapps :)
+<dneighbo> jcater: i expected 'borking' with gnuedtd pr0n, but sadly didnt get it
+<dneighbo> ah
+<dneighbo> i forget black box has the slit
+<dneighbo> you should try fluxbox
+<jcater> sigh
+<gontran> <snicker> slit
+Action: dneighbo is a recent fluxbox convert
+<gontran> re fluxbox, I read that they ripped off gpl code from bbkeys and re licsensed ...
+<dneighbo> though i have trouble getting things in the slit (pun intended)
+<dneighbo> gontran ?
+<dneighbo> how can they RELICENSE code if they are not copyright holders
+<gontran> dneighbo: ya really.  d00d  i know
+<gontran> dneighbo: I read that, believed it and haven't touched it 
+<gontran> though I was excited about it 
+<dneighbo> if you mean used gpl code in their code their code must be GPL compatiable
+<gontran> I know, it seems obvious, but I believe they were in violation until a rewrite or something -- 
+<gontran> don't have all the details atm
+<dneighbo> i.e. one can take gpl code and use in non gpl application as long as its a gpl compatiable license
+<gontran> hmm
+<dneighbo> what is the license?
+Action: dneighbo is a little nervous
+Action: gontran hits google
+<chillywilly> # object object (hehe)
+<dneighbo> it was in debian so i thought it was ok
+<chillywilly> lol
+Action: dneighbo goes to ask vrms
+<gontran> it's on kuro5hin
+<gontran> http://216.239.33.100/search?q=cache:0O-FbTdnWRMC:www.kuro5hin.org/print/2002/3/20/21028/6270+fluxbox+gpl+bbkeys&hl=en
+<dneighbo> hmm it seems free
+<jcater> chillywilly: you familiar w/Mike's Hard Lemonade?
+<dneighbo> jcater: he has tea now too
+<dneighbo> mike that is
+<jcater> chillywilly: if so, then consider that most of grpc was written with mike's help
+<chillywilly> jcater: yes
+<chillywilly> :P
+<gontran> more detail
+<gontran> http://www.kuro5hin.org/story/2002/3/20/21028/6270
+<chillywilly> thanks mike
+<gontran> dneighbo: implication is it's been 'fixed'
+<chillywilly> mike's hard tea?
+<chillywilly> or is it twisted tea?
+<gontran> twisted ? www.twistedmatrix.com
+<dneighbo> interesting
+<chillywilly> I am tlaking about what dneighbo said
+<chillywilly> talking
+<dneighbo> still free so im in the clear but i might have to go to blackbox on licensing principle
+<dneighbo> does blackbox support workspaces?
+<gontran> sure.  it's the pricipul of the thing afterall.
+<chillywilly> why not Gnome?
+<chillywilly> not enough memory?
+<gontran> um workspaces? like yeah I think.  
+<dneighbo> chillywilly yeah p233mhz 64mb RAM
+<gontran> oh yes, absolutesly
+<dneighbo> but honestly after playing for awhile gnome adn kde seem like over kill :)
+<dneighbo> i.e. even on a big machine
+<chillywilly> maybe, but I likes me eye candy ;)
+<gontran> I found that kde was not the answer to all of my personal problems, so I left it.
+<dneighbo> i will still run gnome on my bigger hardware
+Action: dneighbo thinks jcater should leave kde/gnome and go blackbox or such
+<dneighbo> it suits his personality better
+<jcater> dneighbo: I have all my users on KDE
+<jcater> (as it's easy for them to adjust to)
+<jcater> and I just like to be using the same thing I make them use
+<jcater> (so when issues arise, I can better resolve them)
+<jcater> I may try it at home too
+<jcater> s/too/although
+<gontran> <aside> gotta go with yer gut
+<chillywilly> gotta go with a GNU desktop ;)
+<jcater> it's a free desktop
+<chillywilly> j/k, I am going to be nice
+<gontran> <sarcasm>what's a desktop?
+Action: jcater backs down
+<chillywilly> I don't care as long as it's Free
+Action: gontran looks around at all the radicals
+<chillywilly> gontran: parse error, no ending tag for <sarcasm>
+<gontran> s/<sarcasm>/<sarcasm\//
+<jcater> <sigh/>
+<chillywilly> anyway, how does a .grpc get parsed?
+<chillywilly> hmmm, I think I need to figure out the parser
+<jcater> well, here is a summary of GNUe RPC
+<jcater> 1. Load GRPC file
+<jcater> 2. Bind your methods with the GRPC file
+<jcater> 3. ????
+<jcater> 4. Serve your stuff to the world
+<jcater> hope that clears things up
+<jcater> :)
+<chillywilly> HEH!
+<chillywilly> where's this loadDefinition function at?
+<dneighbo> i think the stork brings them
+<chillywilly> dude I followed the imports but I don't see it
+<chillywilly> they lead back to GParser.py
+drochaid (~drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) left irc: "Client Exiting"
+<chillywilly> duh, it's right fucking there
+<jcater> gah
+<jcater> I hate ghostscript
+<jcater> argh!
+<chillywilly> why?
+<jcater> damn thing won't respect the dimensions of the original document
+<chillywilly> what are you doing?
+<dneighbo> captain obvious: he is using ghostscript
+<jcater> I'm hacking Oracle Reports
+<jcater> to send a PDF file to an email address
+<jcater> I created a PS report formatter
+<jcater> and am now trying to use ps2pdf to convert that output
+<jcater> but it puts EVERYTHING in us letter (portrait)
+drochaid (~drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) joined #gnuenterprise.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "home"
+<chillywilly> why would you have a writeonly attribute?
+<chillywilly> bah, he's gnoe
+<chillywilly> gone
+<siesel> you can use gnurpc to programm your grafics card. (vga has many writeonly register)
+<chillywilly> heheh
+<chillywilly> grpc should use some format....like say odl ;)
+<siesel> i know your favorite.
+dneighbo (~dneighbo@tmp-200253.flinthills.com) left irc: "My damn controlling terminal disappeared!"
+jcater (~jason@HubA-mcr-24-165-193-24.midsouth.rr.com) joined #gnuenterprise.
+<chillywilly> hey what's the foad method again?
+<chillywilly> fork off and die?
+Action: chillywilly is looking in GServerApp.py
+<chillywilly> how does that work again?
+<siesel> which GServerApp.py
+<chillywilly> in common
+<chillywilly> I am just asking how that 'daemon' foad method is supposed to work in general
+<chillywilly> I think that's what happen in the daemonize method
+<jcater> we have a foad() method?
+Nick change: gontran -> gontcooking
+<chillywilly> no I mean method as in technique
+<jcater> oh
+<chillywilly> we have daemonize() methods that does a foad
+<chillywilly> fwict
+<jcater> we try to double fork, then kill the parent process
+<jcater> iirc
+<siesel> it copies the actual process inclusive the whole memory. now there are two programms. the first ... (jcater writes faster than me ;))
+<chillywilly> that's how fork works
+<chillywilly> I get that
+Action: jcater doesn't follow your question then
+<chillywilly> how does this but it in the backgroud?
+<chillywilly> that's the purpose right?
+<jcater> yeah
+<jcater> that's what double-forking does
+<jcater> ...put it in the background
+<chillywilly> oh
+<jcater> you fork a new process (and acutally pass control to that process)
+<chillywilly> yea
+<jcater> then kill the process attached to the terminal
+<chillywilly> hmmm
+<jcater> since the new process isn't associated w/a terminal, it's in the "background"
+<chillywilly> so why 2 forks then?
+<jcater> um
+<jcater> hang on
+<chillywilly> I have a problem with a mutli-threaded program where I want one thread to get i/o, anyone know how to solve this short of making a gui?
+<chillywilly> (just a side question ;) )
+<chillywilly> I suppose only the main thread has control of the terminal
+<chillywilly> hmmm
+<chillywilly> oh well
+<siesel> jcater: i tried to remove the second  fork--- no problem.
+<jcater>  In order to avoid having to care for the termination of child processes oneself, it is possible to delegate this responsibility to an ancestor process. ``Double fork'' allows a process not to take care of the funerals of all its child processes, but to delegate this responsibility to the init process. Here is the principle: a process P0 creates a process P1, which in turn creates a third process P2. Then P1 terminates. So P2 is
+<jcater> d will be adopted by init, which waits for its termination. The initial process P0 can execute a wait for P1 which will be of short duration. The idea is to delegate to the grandchild the work which otherwise would have been for the child.
+<jcater>  
+<jcater> a single fork will work
+<jcater> but may lead to a hung server later on
+<jcater> in non-POSIX os's a single fork is the only option
+<jcater> so we try to double-fork if possible
+<jcater> but leave it at a single-fork if that's all we can get
+<siesel> good to know.
+<chillywilly> where is that from?
+<chillywilly> you are essentially creating a zombie?
+<jcater> chillywilly: I closed that window
+<jcater> but from the Unix Programming FAQ:
+<jcater> http://www.erlenstar.demon.co.uk/unix/faq_2.html#SEC16
+<chillywilly> ok
+<siesel> can we add a link to that in an comment?
+<jcater> btw, I don't fully understand WHY it's necessary
+<jcater> but I've read many places that it's a good idea to do it
+<jcater> :)
+<jcater> siesel: yeah, I can do that
+<siesel> thx
+<chillywilly> it's a zombie process right?
+<jcater> I guess
+<chillywilly> I mean it has no parents so init inherits them
+<jcater> I can't give a better explanation than the FAQ
+<jcater> 'cause I don't fully grok what's going on
+<chillywilly> ok
+<chillywilly> that's a very helpful link
+<chillywilly> onyl thing I don't grok is the session crap
+<chillywilly> setsid(), etc.
+<jcater> I dunno
+<jcater> this is standard daemon stuff
+<jcater> I don't really know why
+<chillywilly> hey I remember someone asking in #c++ how to tell if  a process is running
+<chillywilly> they answer this in 1.9 ;)
+<jcater> lol
+<jcater> cool
+<jcater> from "man setsid":
+<jcater>        A process group leader is a process with process group  ID
+<jcater>        equal  to  its  PID.  In order to be sure that setsid will
+<jcater>        succeed, fork and exit, and have the child do setsid().
+<chillywilly> yea
+<chillywilly> how do you get info to use man page sections?
+<jcater> no clue
+<chillywilly> seems you fork twice so you can never regain a controlling terminal because then you are not a session group leader
+<chillywilly> you need to do chdir() and umask(0) after the second fork though
+<chillywilly> chdir("/")
+<chillywilly> well I suppose that might not matter
+<jcater> hmm
+<jcater> I was just thinking about reports
+<jcater> I think we should randomly insert pages in reports
+<jcater> with the caption "This page intentionally left blank"
+<jcater> what do y'all think?
+<chillywilly> uh
+<chillywilly> yea
+<chillywilly> that's an excellent idea
+<chillywilly> ;P
+<chillywilly> or we could randomly insert goat-pr0n pages
+<chillywilly> that might be better
+<chillywilly> and more our style
+<siesel> jcater, you are right gnue-dtd doesn't work for reports and forms....
+<siesel> but it works for gnurpc now... :)
+<jcater> cool
+<siesel> ok. cu l8r.
+siesel (jan@dial-213-168-73-230.netcologne.de) left irc: "KVIrc 2.1.2-pre2 'Monolith'"
+rdean (rdean@chcgil2-ar2-052-050.chcgil2.dsl-verizon.net) joined #gnuenterprise.
+gontcooking (~gontran@ip68-3-244-71.ph.ph.cox.net) left irc: "dinnertime"
+<chillywilly> jcater: you there?
+<jcater> somewhat
+<chillywilly> I don't get the proxy object constructor
+<chillywilly> can you explain it?
+<chillywilly> shal I paste some code?
+<jcater> sure
+<chillywilly> lass ProxyObject:
+<chillywilly>   def __init__(self, adapter, attr, parent=None, **params):
+<chillywilly>     for param in params.keys():
+<chillywilly>       self.__dict__["_%s" % param] = params[param]
+<chillywilly>     self._adapter = adapter
+<chillywilly>     self._parent = parent
+<chillywilly>     self._attr = attr
+<chillywilly> class that is
+rdean (rdean@chcgil2-ar2-052-050.chcgil2.dsl-verizon.net) left irc: "Client Exiting"
+<jcater> your getting into the really nasty, technical stuff now
+<chillywilly> well yea
+<chillywilly> that what happens when you read the code
+<chillywilly> ;P
+<chillywilly> are you hacking right now?
+<jcater> better postscript support to my Oracle Reports server
+<chillywilly> k
+<chillywilly> postrscript scares me
+<chillywilly> ;P
+<jcater> yeah
+<jcater> me too
+<chillywilly> almost as much as this call() method in the xmlrpc driver
+<chillywilly> ;P
+<chillywilly> #
+<chillywilly>   # Call the requested method
+<chillywilly>   #
+<chillywilly>   def call(self, method, params):
+<chillywilly>     print "Dispatching: ", method, params
+<chillywilly>     
+<chillywilly>     ## Check if the Method is part of a service or a pointer to a
+<chillywilly>     ## single object
+<chillywilly>     ##
+<chillywilly>     ## Call to an object:  method="_Management:235423456_.getAttr"
+<chillywilly>     ##                     params=""
+<chillywilly>     ## Call to an method: (of a service=one object)
+<chillywilly>     ##                     method="DonutPlace.Management.Restart"
+<chillywilly> can you explain this a bit?
+<chillywilly> looks very hairy
+<chillywilly> and I see lots of string manipulation
+<chillywilly> help!
+<chillywilly> jcater: you working on work stuff at home?
+<jcater> chillywilly: yeah
+<jcater> lot's o crap to do
+<chillywilly> well I need your experise
+<chillywilly> expertise
+<jcater> wassup?
+<chillywilly> can you explain that method string thingy?
+<jcater> what file are you in?
+<chillywilly> ServerAdapter.py of xmlrpc
+<chillywilly> call() method
+<jcater> ok
+<jcater> gnurpc supports objects
+<jcater> whether the underlying transport does or not
+<jcater> xmlrpc does not
+<jcater> so when an object is being used
+<jcater> the server creates the object
+<jcater> but the client creates a proxy of that object
+<jcater> (this is the client code in gnurpc, not the actual client app)
+<jcater> so when a method is called against an object
+<jcater> a string representing that object is passed back and forth via the transport
+<jcater> (xmlrpc)
+<jcater> since no method names can be of the format [method]
+<jcater> we used [xxxx] to denote an "object handle"
+<jcater> e.g., [12321312321].RunMyCode
+<chillywilly> ok
+<jcater> if [12321312321] is the id of MyObject
+<jcater> then the server executes MyObject.RunMyCode()
+<chillywilly> the object librarian manages these objects?
+<chillywilly> wtf does this mean: ## Call to an object:  method="_Management:235423456_.getAttr"
+<chillywilly>     ##                     params=""
+<chillywilly> that doesn't seem to fit that format
+<jcater> oh
+<jcater> well that's the general idea
+Action: jcater forgets the actual syntax
+<chillywilly> er?
+<chillywilly> is this __getattr__ () stuff?
+<jcater> some of it is, iirc
+<chillywilly> i thought you just said object calls were going to look like [oid].method?
+<chillywilly> why does this string look all funcky
+<chillywilly> tis example
+<chillywilly> that's what is confusing
+<jcater> <jcater> well that's the general idea
+<jcater> * jcater forgets the actual syntax
+<chillywilly> ok
+<chillywilly> so you telling my that comment is bogus or you have no idea what the string is really supposed to look like?
+<jcater> I have no clue what I'm telling you
+<jcater> that's the general idea of how it works
+<jcater> but I forget the details
+<chillywilly> the code seems to support what you are saying
+<jcater> looks like the comment and the code don't match
+<chillywilly> yea
+<chillywilly> ;)
+<chillywilly> I don't understand this directory stuff, is that part of xmlrpc?
+<jcater> directory stuff?
+<jcater> oh, yeah
+<chillywilly> # call to a service method            
+<chillywilly>       try:
+<chillywilly>         direntry = self.getMethodDirEntry(method)
+<chillywilly>         server_method = direntry['binding']
+<chillywilly>         signature=direntry['signature']
+<jcater> that's XML-RPC standard stuff
+<chillywilly>         
+<chillywilly>         if server_method==None:
+<chillywilly>           raise AttributeError, \
+<chillywilly> hmmm
+<chillywilly> ok
+<jcater> gah
+<chillywilly> could you maybe give a quick overview of how this directory thing works or should I rtfm ;)
+Action: jcater secretly cleans up some of siesel's code, while he's asleep :)
+<chillywilly> heheh
+<chillywilly> why the gah?
+Action: jcater just saw the
+<jcater> if len(params) == 0: 
+<jcater>  ...
+<jcater> elif len(params) == 1: 
+<jcater>  ...
+<jcater> elif len(params) == 2: 
+<jcater>  ...
+<jcater> .....
+<chillywilly> how did you fix that? does python have aswitch?
+<jcater>     # call method with params
+<jcater>     result=server_method(*params)
+<jcater> :)
+<chillywilly> heheh
+<chillywilly> just pass the whole list
+<jcater> http://xmlrpc-c.sourceforge.net/xmlrpc-howto/xmlrpc-howto-api-introspection.html
+<chillywilly> k...
+<chillywilly> so much shit to read
+<chillywilly> ;P
+<jcater> not much to it
+<jcater> just basically a few methods to say, "what methods do you expose"
+<jcater> you're gonna know more about gnurpc than I here shortly :)
+<chillywilly> did you read the whole howto?
+<jcater> at one point, I think so
+<chillywilly> dude I have to start form like square one again and read all about xml
+<chillywilly> I
+<chillywilly> 'll have to do that later
+<chillywilly> and here I was going to write some thread-safe c++ i/o streams
+<chillywilly> ohw ell
+<chillywilly> this is more fun'
+<chillywilly> the gnu stdc++ lib is scarier than your code ;)
+<chillywilly> hey where's an example .grpc file at?
+<jcater> well
+<jcater> there's the donut factory
+<jcater> and the geas.grpc in appserver/src
+<chillywilly> yea, but hopefully geas's interfaces will be a lot better when I am done here...
+<chillywilly> ;)
+<chillywilly> ok, thanks
+SachaS_away (~sacha@dialup-196-57.wasp.net.au) left irc: Read error: 113 (No route to host)
+<chillywilly> you know I always hated reading other people's code ;)
+<chillywilly> tales forever to figure out what is going on
+<chillywilly> takes
+<chillywilly> dude, I want freakin nueral tab completion
+<chillywilly> i.e., it *knows* what I am trying to type and completes it without having to match anything except what is in my brain
+<chillywilly> ;)
+<chillywilly> heheh, crazymike is trying to IM me but gaim keeps crashing on him
+SachaS_away (~sacha@dialup-196-214.wasp.net.au) joined #gnuenterprise.
+Nick change: SachaS_away -> SachaS
+<chillywilly> oooooh jcater
+<chillywilly> where are you jcater
+<chillywilly> ?
+Action: jcater hides
+<chillywilly> heeeelp
+Action: chillywilly looks and looks
+<jcater> wassup?
+<chillywilly> dewd what does the _path of an xmlized object point at?
+<chillywilly> (GObj)
+<jcater> _path?
+<chillywilly> (rpcdef)
+<chillywilly> (same thing right)
+<chillywilly>  def _xmlrpc_mapObjects(self, object, bindings, parent=None):
+<jcater> you are confusing me
+<chillywilly>     # For servicable objects, maintain a complete "path" for reference
+<chillywilly>     if object._type in ('RpService','RpMethod','RpObject'):
+<chillywilly>       if parent and hasattr(parent,'_path'):
+<chillywilly>         object._path = "%s.%s" % (parent._path, object.name)
+<chillywilly>       else:
+<chillywilly>         object._path = object.name
+<chillywilly> that stuff
+<chillywilly> the namepsace?
+<jcater> yeah
+<chillywilly> namespace
+<jcater> basically
+<jcater> oorc
+<jcater> iirc even
+<chillywilly> gnue.common.fuckoff
+<jcater> hmm
+<jcater> did siesel add that¿?
+<jcater> ?
+<jcater> I don't remember a fuckoff module
+<chillywilly> gnue.common.getAwayFromMyDamnCode
+<chillywilly> Chillywilly
+<chillywilly> ;P
+<chillywilly> gnue.common.getAwayFromMyDamnCodeChillywilly
+<chillywilly> ok, I am having too much fun as mikw would say
+<chillywilly> we just played 2 games of NBA Jam at ful speeed over the internet
+<chillywilly> er, 3
+<chillywilly> a/mikw/mike
+<chillywilly> freakin' broadband has got to be good for something
+<chillywilly> does every GObject have these member variables?
+<chillywilly> _path, _type ?
+<jcater> every GObject has _type
+<jcater> _path is specific to grpc
+<chillywilly> w00t
+<chillywilly> ok
+<chillywilly> it only sets that in _xmlrpc_mapObjects
+<chillywilly> is there an rpcdef objectd efined somewhere...
+<chillywilly> hrrrm
+<jcater> I don't remember
+<chillywilly> lotta good that does
+<chillywilly> ;P
+<chillywilly> you bever explained the proxy object to me
+<chillywilly> never
+<chillywilly> in GCommBase.py
+<chillywilly> some method hearders go a long way ;)
+<chillywilly> I have to make sure that when I hack some python that I write hearders for the methods ;)
+<chillywilly> no bagging on you btw
+<chillywilly> not
+<chillywilly> dude man fazzoli's is the best italian place to eat at....uuuuh
+<chillywilly> gotta go back there again
+<dtm> chillywilly: @*#)!*
+<chillywilly> one thing that sucks about python and the fact that there's no declarations is you can document the class and it
+<chillywilly> 's members
+<chillywilly> seeems that way anyway
+<chillywilly> should check out pydoc
+<chillywilly> or whatever it is called
+<chillywilly> dtm: 098 lhbgoi7y0 gp iu13gye *&^(IUYT
+<chillywilly> oooh jcater
+<jcater> hmm
+<jcater> it's usually women who say that
+<jcater> but, ok
+<jcater> what's up?
+<chillywilly> I am trying to be annoying like a woman
+<chillywilly> that's the point
+<chillywilly> anyway...
+<chillywilly> could you possibly explain the proxy constructor and what the various member variables are?
+<chillywilly> ProxyObejct that is
+<chillywilly> ProxyObject
+<jcater> um
+<chillywilly> you know you are going to start hating me ;)
+<chillywilly> it's in GCommBase.py
+<dtm> chillywilly: hahaha
+<chillywilly> I should document this
+<chillywilly> ;)
+<dtm> see there's a paradox, because you guys all act like you want a realdoll.com but they dont have a payment plan so you tolerate live human beings  ;)
+<chillywilly> wtf?
+<jcater> um
+<jcater> anyway
+<dtm> ok maybe that was an overstatement.
+<dtm> JUST TRYING TO BE FUNNY  :-I
+<dtm> i thought maybe there was the beginnings of a joke htere but maybe it was just an insult!  ....?
+Action: dtm goes back to reading about copyright crap on slashdot
+<chillywilly> man those things are fucking expensive
+<chillywilly> 6 gs
+<dtm> yeah, only the RIAA could afford a copyright law amendment!
+<dtm> ;->
+<dtm> oh you mean THOSE
+<chillywilly> no, the realdolls
+<dtm> yeah
+<dtm> ;>
+<dtm> but they're so realistic!
+<chillywilly> even my woman doesn't cost me that much ;)
+<chillywilly> you can't even getone on a payment plan
+<chillywilly> ;P
+<jcater> $6,000
+<jcater> that ain't bad
+<jcater> that's a year of dates
+<jcater> but, heh, you're sure to score :)
+Action: jcater /clears that one
+<chillywilly> lol
+<dtm> yeah you'd have to buy it on a credit card
+dsmith (~dsmith@p181.usnyc5.stsn.com) joined #gnuenterprise.
+dsmith (~dsmith@p181.usnyc5.stsn.com) left irc: "later.."
+jcater (~jason@HubA-mcr-24-165-193-24.midsouth.rr.com) left irc: "Client Exiting"
+dsmith (~dsmith@p181.usnyc5.stsn.com) joined #gnuenterprise.
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<ajmitch> hi dneighbo
+<dneighbo> hi ajmitch
+<dneighbo> nickr: you alive (re: did the move go ok)
+<dneighbo> crikey
+<dneighbo> i updated sid like 10 days ago and already 207 packages to upgrade
+<chillywilly> heheh
+--- Thu May  2 2002
+[00:07] Last message repeated 1 time(s).
+<dtm> chillywilly: so you've budgeted that your woman costs you less than $6000/yr eh?
+reinhard (~rm@N816P023.adsl.highway.telekom.at) joined #gnuenterprise.
+<ajmitch> hi reinhard
+<reinhard> hi ajmitch
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+SachaS (~sacha@dialup-196-214.wasp.net.au) left irc: Read error: 110 (Connection timed out)
+SachaS (~sacha@dialup-196-55.wasp.net.au) joined #gnuenterprise.
+alexey_ (~alexey@195.151.214.34) left irc: "Client Exiting"
+ra3vat (ds@ics.elcom.ru) joined #gnuenterprise.
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+dsmith (~dsmith@p181.usnyc5.stsn.com) left irc: "later.."
+alexey_ (~alexey@195.151.214.34) left irc: Read error: 113 (No route to host)
+Nick change: SachaS -> SachaS_away
+chillywilly (~danielb@mke-65-29-142-117.wi.rr.com) left irc: "Philosophers and plow men, each must know his part, to sow a new mentality closer to the heart..."
+jamest (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+SachaS_away (~sacha@dialup-196-55.wasp.net.au) left irc: Read error: 110 (Connection timed out)
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+drochaid (~drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) left irc: "Client Exiting"
+<jamest> bbiab
+jamest (~jamest@hobbes.math.ksu.edu) left irc: "[x]chat"
+smoke (~smoke@huurders.geodelft.nl) joined #gnuenterprise.
+<smoke> hello
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) left irc: "Client Exiting"
+jamest (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+<ajmitch> hi jamest
+<jamest> hi
+^chewie (~chewie@flemingi.dsl.visi.com) joined #gnuenterprise.
+alexey_ (~alexey@195.151.214.34) left irc: "Client Exiting"
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<ajmitch> morning jcater
+<jcater> morning
+<reinhard> morning all
+<reinhard> did you see the patch jens sent against some obsolete geasv1 documentation?
+<reinhard> IMHO it's *** urgent that the old obsolete docs are removed from our web page
+<ajmitch> yes
+<jcater> I have no issues with that
+<jcater> or at least write a sed script to add a header to each "THIS IS OBSOLETE DOCUMENTATION"
+<jcater> or something
+SachaS_away (~sacha@dialup-196-129.wasp.net.au) joined #gnuenterprise.
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: "Client Exiting"
+SachaS_away (~sacha@dialup-196-129.wasp.net.au) left #gnuenterprise ("Client Exiting").
+Arturas (~arturas@gsk.vtu.lt) joined #gnuenterprise.
+<Arturas> Hello :)
+ICJ (foobar@p5087096B.dip.t-dialin.net) joined #gnuenterprise.
+<ICJ> Hi!
+<ICJ> Read the docu patches I sent to gnue-dev?
+<ICJ> anyone?
+<ICJ> Huhu?
+yogurt2unge (~charlie@200.59.78.26) joined #gnuenterprise.
+<yogurt2unge> Hello people
+<yogurt2unge> I have a problem running a new download GNUE
+<reinhard> ICJ: are you jens müller?
+<yogurt2unge> I read a few time ago something about "ImportError: No module named mx.DateTime" error
+<ICJ> yes
+<ICJ> I am
+<yogurt2unge> Arturas: yes
+<yogurt2unge> Arturas: TKS, I'll probe it
+<yogurt2unge> Arturas: TKS again
+gontran (~gontran@ip68-3-244-71.ph.ph.cox.net) joined #gnuenterprise.
+<gontran> buenas dias
+<yogurt2unge> gontran: in spanish is "buenos dias"
+<gontran> yogurt2unge: yer so rite
+<gontran> :)
+<reinhard> ICJ i saw it
+<reinhard> ICJ I'm highly sorry to tell you that this doc is outdated and obsolete
+<reinhard> because it was aimed at GEAS v1
+<reinhard> however we appreciate your effort anyway
+<reinhard> our docs suck real hard :(
+<reinhard> bbl
+Nick change: reinhard -> rm-away
+<yogurt2unge> gontran: :))
+<yogurt2unge> Arturas: under debian are python-egenix-* modules TKS again
+<ICJ> oops ...
+<ICJ> Could you put that on the first page?
+<jamest> ICJ: yes, that came up in here today
+<jamest> sorry about that
+<ICJ> and could you move it to the /docbook/old directory?
+<Arturas> bye :)
+Arturas (~arturas@gsk.vtu.lt) left irc: "ircII/tkirc"
+^chewie (~chewie@flemingi.dsl.visi.com) left irc: "ircII EPIC4-1.1.2 -- Are we there yet?"
+^chewie (~chewie@flemingi.dsl.visi.com) joined #gnuenterprise.
+dneighbo (~dneighbo@tmp-200253.flinthills.com) joined #gnuenterprise.
+lsa (m@TK212017072163.wu-wien.teleweb.at) joined #gnuenterprise.
+ICJ (foobar@p5087096B.dip.t-dialin.net) left irc: Read error: 110 (Connection timed out)
+Nick change: rm-away -> reinhard
+<reinhard> hello lsa
+<reinhard> any questions we can answer for you?
+Action: reinhard saw the ".at" in the signon line
+<lsa> hallo reinhard
+<lsa> nice to see another .at
+<nickr> la de dee
+<lsa> no questions except for whether you know a reference project realised in a gnuenterprise suite
+<reinhard> dneighbo, jcater and jamest use GNUe Forms, Reports and Designer
+<reinhard> in production
+<reinhard> for projects they are involved in
+<lsa> i see
+<reinhard> GNU Enterprise as a whole (read: the end application - finance, supply chain etc) only exists on paper by now
+<lsa> what/who the hell are dneighbo, jcater and jamest ?
+<reinhard> from what i hear forms/reports/designer can be used fairly well as a m$ access replacement
+<jamest> pathetic losers from the US
+<reinhard> they are all here as we speak :)
+<lsa> :-)
+<reinhard> dneighbo and jamest are real persons
+<jamest> they look, smell, and act kinda funny most the times
+<reinhard> jcater is a coding anderoid
+<jamest> powered by donuts
+<jamest> he rocks
+<lsa> we have been assigned a smaller contract to migrate from a m$ access application and we thought about gnuenterprise as well
+<^chewie> I'm not here at all
+<reinhard> cool
+Action: ^chewie grins
+<lsa> but the project had to be web-based and gnuenterprise did not provide this interface
+<reinhard> ah
+<lsa> so we chose phpgroupware and coding has begun
+<^chewie> lsa: we chose zope instead
+<lsa> aha
+<^chewie> lsa: now, a zope product to gnu enterprise would be pretty cool
+<^chewie> ;-)
+<jamest> ^chewie: yip
+<^chewie> IMHO, PHP is good for quick hacks
+<lsa> we didn't like zope because it provides a really thick layer and a stripped-down python
+<lsa> (non-standard python) we saw many complaining about the language
+<lsa> we dont like big-n-fat apps
+<lsa> gets you very much exposed to problems in the middleware
+<^chewie> lsa: hmmm...  Not sure I agree with your assessment of zope yet
+<^chewie> lsa: but I'll keep an open mind
+<^chewie> ;-)
+Action: lsa thanks chewie for his opennes
+<dneighbo> interesting
+<dneighbo> gnue right now is PRIME for replacing access applicatinos
+<dneighbo> er applications
+<dneighbo> i.e. i think that would be the #1 use as it sits today
+<^chewie> the one feature I like most about zope is the templating as opposed to embedded markup
+<dneighbo> the 'need web' is interesting
+<dneighbo> will your application be GPL?
+<^chewie> dneighbo: true, but we don't want to push out libraries w/each client
+<^chewie> think thin client as a requirement
+<^chewie> super-thin
+<lsa> how would you migrate from a damn m$ access apps?
+<dneighbo> um yeah mozilla or i.e. are thin
+<lsa> dneighbo: of course GPL
+<dneighbo> super thin
+<^chewie> lynx is thin
+<^chewie> w3m is thin
+<dneighbo> if you are making people use lynx for a production application i pity your users
+<dneighbo> :)
+<^chewie> I pity them anyway
+<dneighbo> btw: the correct answer is mozilla,i.e. might be thick thin clients
+<dneighbo> BUT in our case they are already on the machine
+<lsa> many of the users come with their own crap OS
+<lsa> with a broken browser.
+<^chewie> I never bring focus to a particular HTML rendurer
+<lsa> why haven't you pushed the html interface of gnue?
+<lsa> (as first interface)
+<^chewie> the fact that there are many different HTML rendurers for many different platforms with MOSTLY the same output gives us a LOT of flexibility
+<^chewie> they do
+<^chewie> but they're experimental
+<^chewie> I think there's a PHPForms out there, right?
+<lsa> dunno
+<dneighbo> there is phpclient in cvs now (iirc)
+<dneighbo> also a webware one (though it might not be in cvs)
+Action: ^chewie nods
+<dneighbo> the main reason we dont/havent pushed it
+<^chewie> not familiar w/webware
+<dneighbo> is most of our core things webapplications suck
+<dneighbo> we fully want gnue to support them
+<dneighbo> but we are 'excited' to be coding them :)
+<^chewie> they do, but there is a reason for even 'sucky' front ends, such as pushing out portions of software to a web
+<dneighbo> an example would be jcater's situation
+<dneighbo> 40 nodes using LTSP
+<dneighbo> shared gfd's
+<dneighbo> shared gnue setup
+Action: ^chewie nods
+<lsa> gfd?
+<dneighbo> why bother complicating stuff with a shitty browser :)
+<dneighbo> gnue forms definition
+<lsa> aha
+<dneighbo> its what gets read by the forms engine to create a gui
+<^chewie> the largest reason why client/server apps suck on web browsers is because there is no true MVC model
+<^chewie> the protocol doesn't really allow it
+<dneighbo> people get too caught up with 'web' model imho
+<dneighbo> if you at cvs i think jcater recently checked in 'static' version stuff for gnue
+<jamest> yeah! a shitty forms client is so much better!
+<dneighbo> so an admin's life is cake to keep clients up to date
+<^chewie> heh
+<dneighbo> jamest: roflmao
+<gontran> <phm>heterogenous os environs demand a web-based solution
+Action: jamest is working in forms code today :)
+<lsa> dneighbo: sure, but how to provide the interface to people we cannot change the OS&browser of?
+<dneighbo> gontran : um thats bull shit :)
+<dneighbo> gnue runs on same platforms as browsers :)
+<gontran> I'm trying to get it out of my head
+<^chewie> more software to push out
+<dneighbo> lsa: i dont think gnue cant run on any O/S that there is a browser for
+<gontran> dneighbo: yer rite, it's mostly hype
+<dneighbo> ^chewie : i just said jcater checking in STATIC ability for gnue
+<^chewie> ;-)
+<dneighbo> so its 'shared' install
+<dneighbo> iirc
+<lsa> but then i have to tell 200+ users out there in the country to install a damn client they wont manage it ever
+<dneighbo> the only time i see web app having a real advantage
+<dneighbo> is if you have LOTS of clients you are not in any control of
+<gontran> create a nice installer?
+<dneighbo> i.e. CLASSIC web applications
+Action: lsa fully agrees with <dneighbo>
+<dneighbo> lsa: i just said that is only place where there is advantage of web app is a true disparate system
+<dneighbo> BUT
+<dneighbo> i dont many companies wanting inventory, financials etc shared by the masses of the internet
+<dneighbo> most of those applications are behind firewalls and on VPNs where the stuff is controlled (imho)
+<^chewie> s/internet/Intranet/
+<dneighbo> so when i say i shudder at web accounting
+<dneighbo> i see no ADVANTAGE to web
+<dneighbo> yet i see a very real disadvantage in ease of use
+<dneighbo> a. the widgets are not conduvice to high volume entry/validation
+<dneighbo> b. statelessness sucks :)
+<dneighbo> that said its EXTREMELY important for gnue to have a webclient :)
+<gontran> heh
+Action: lsa agrees
+<^chewie> brb
+<reinhard> bbl
+Action: reinhard is away: shower
+<lsa> what about java applet clients (i dont like java too much)
+<jamest> java!
+<jamest> argh!
+Action: jamest grabs his mallet
+<lsa> how are you going to realise the web client?
+<jamest> server side for now
+<lsa> what's on the clients side?
+<jamest> the browser only
+<lsa> plain html, dynamic html, javascript, ...?
+<dneighbo> yip
+<dneighbo> like normal web application
+<dneighbo> btw: an applet is not a web application
+<dneighbo> as you have to download .java files to your computer
+<lsa> right
+<dneighbo> so your argument of 'distribution' to lots of users over the world is then lost
+<dneighbo> as every time you upgrade they will have to redownload applet etc.... (iirc)
+Chipaca (~john@modem26-adsl.capfed2.sinectis.com.ar) joined #gnuenterprise.
+<dneighbo> wassup Chipaca 
+<lsa> they dont mind to download an app as long it cant go wrong (the download)
+<dneighbo> er
+<dneighbo> hola amigo
+<dneighbo> lsa: have you used java :) i dont think going right is in its vocabularly :)
+<Chipaca> hi all
+<dneighbo> with geas i think we can have something similar to applets
+<dneighbo> you download (via good installer) the client
+Action: lsa cites himself: "(i dont like java too much)"
+<dneighbo> and have it point back to a GEAS server
+<Chipaca> dneighbo: nothing much -- finishing touches on the ERD
+<dneighbo> and you are off to the races
+<dneighbo> cool
+StyXman (~mdione@modem26-adsl.capfed2.sinectis.com.ar) joined #gnuenterprise.
+Action: lsa doesnt even have java installed with his favourite browser...
+<StyXman> yogurt2unge: Chipaca: hi.
+joev (~joev@208.17.30.242) left irc: Read error: 104 (Connection reset by peer)
+<Chipaca> StyXman: hey there
+<yogurt2unge> StyXman: Helo
+Action: lsa will have a closer look at gnuenterprise... won't however stop coding in phpgw for the time being... will consider gnue next contract
+<lsa> thx guys
+<lsa> bye
+lsa (m@TK212017072163.wu-wien.teleweb.at) left #gnuenterprise.
+<^chewie> rehi
+dneighbo (~dneighbo@tmp-200253.flinthills.com) left irc: "BitchX-1.0c18 -- just do it."
+Nick change: gontran -> gont_avay
+dneighbo (~dneighbo@tmp-200253.flinthills.com) joined #gnuenterprise.
+<dneighbo> anyone here using fluxbox or blackbox or have in the past?
+<^chewie> yep. blackbox is nice
+<dneighbo> nevermind i got it to work
+StyXman (~mdione@modem26-adsl.capfed2.sinectis.com.ar) left irc: Read error: 104 (Connection reset by peer)
+<dneighbo> couldnt figure out how to group windows
+<dneighbo> for tabbing
+Action: dneighbo really likes this feature, i think it will make it gnue designer really nice :)
+dneighbo (~dneighbo@tmp-200253.flinthills.com) left irc: "BitchX-1.0c18 -- just do it."
+dneighbo (~dneighbo@tmp-200253.flinthills.com) joined #gnuenterprise.
+<dneighbo> http://gnuenterprise.org/~dneighbo/screenshots/
+<dneighbo> some yummy tab setup in fluxbox for designer
+<jcater> ooo
+<jcater> neato
+<jcater> what's that?
+<dneighbo> basically you can 'tab' windows
+<dneighbo> in fluxbox (and i assume other window managers)
+<dneighbo> which is nice for thigns like gimp
+<dneighbo> and designer
+Gaelle (~re@pD954B833.dip.t-dialin.net) joined #gnuenterprise.
+<jamest> dneighbo: think you can make the wxPython code emulate that?
+<jamest> :)
+<dneighbo> as i can open object inspector and property inspector and tab them
+<dneighbo> jamest: i wish (its doable but probably utter hell)
+<^chewie> ah, I see what you did
+<Chipaca> dneighbo: that's from pwm, right?
+<dneighbo> yes and no
+<dneighbo> its fluxbox
+<dneighbo> BUT they stole it from pwm
+Action: reinhard is back (gone 01:31:35)
+<dneighbo> reinhard thats one heck of a shower
+<reinhard> um finished the shower a long time ago
+<reinhard> but when i came back wife had captured my pc
+<reinhard> :)
+Ford_ (~re@p5085AB2B.dip.t-dialin.net) left irc: Read error: 110 (Connection timed out)
+ToyMan (~stuq@65.167.123.51) left irc: "Client Exiting"
+chillywilly (~danielb@mke-65-29-142-117.wi.rr.com) joined #gnuenterprise.
+<nickr> what, no red?
+<chillywilly> sup folks
+yogurt2unge (~charlie@200.59.78.26) left irc: "Client Exiting"
+yogurt2unge (~charlie@modem26-adsl.capfed2.sinectis.com.ar) joined #gnuenterprise.
+<^chewie> hmm...
+<^chewie> I notice that the debian/control file for forms lists the package as python-gnue-forms
+<^chewie> the existing package is called gnue-forms (woody)
+<^chewie> yet doing apt-get source gnue-forms reveals no debian/. specific files
+<^chewie> do you know what the "real" name of the package should be?
+<^chewie> I realize that the python naming practice in debian seems to be "python-<something>".
+<^chewie> however, since the gnue apps all relate to eachother, I don't see anything wrong w/just leaving it as "gnue-forms" w/the assumption that it's a python app.
+<dneighbo> nickr yes i use red :)
+<dneighbo> just the red has tabs that are hard to see
+<dneighbo> for the screenshot i changed to a cleaner theme
+<dneighbo> its gnue-
+<dneighbo> not python-gnue-*
+<dneighbo> our debians are being restructured
+Action: dneighbo glances at nickr 
+<dneighbo> for now the debs are broked :)
+<^chewie> yeah, I see that ;-)
+Action: ^chewie tried to use them and failed miserably. ;-)
+reinhard (~rm@N816P023.adsl.highway.telekom.at) left irc: "When all else fails, read the instructions"
+<dneighbo> gont_avay you rally avay?
+<jamest> dneighbo: you running forms right now?
+<jamest> from cvs?
+<dneighbo> yeah but not current cvs
+neilt (~neilt@66-61-51-107.wo4.cox.rr.com) joined #gnuenterprise.
+#gnuenterprise: mode change '+o neilt' by ChanServ!ChanServ@services.
+<dneighbo> cvs from 03/07
+<dneighbo> at home i have current cvs
+<dneighbo> brb
+dneighbo (~dneighbo@tmp-200253.flinthills.com) left irc: "[BX] Reserve your copy of BitchX-1.0c18 for the Sony Playstation today!"
+<neilt> hello all
+Chipaca (~john@modem26-adsl.capfed2.sinectis.com.ar) left #gnuenterprise.
+yogurt2unge (~charlie@modem26-adsl.capfed2.sinectis.com.ar) left #gnuenterprise.
+gont_avay (~gontran@ip68-3-244-71.ph.ph.cox.net) left irc: Read error: 104 (Connection reset by peer)
+<chillywilly> hiya neilt
+<jamest> l8r
+jamest (~jamest@hobbes.math.ksu.edu) left #gnuenterprise.
+<neilt> hows it hanging
+<chillywilly> a little to the left
+<chillywilly> :P
+dneighbo (~dneighbo@tmp-200253.flinthills.com) joined #gnuenterprise.
+<chillywilly> wb dneighbo
+<dneighbo> hi and bye
+<dneighbo> brb
+dneighbo (~dneighbo@tmp-200253.flinthills.com) left irc: Client Quit
+dneighbo (~dneighbo@tmp-200253.flinthills.com) joined #gnuenterprise.
+<dneighbo> ok back for real now
+<ajmitch> morning all
+<chillywilly> sup niggie
+<chillywilly> s
+<chillywilly> ;)
+neilt (~neilt@66-61-51-107.wo4.cox.rr.com) left irc: Read error: 110 (Connection timed out)
+ToyMan (~stuq@c5300-4-ip196.albany.thebiz.net) joined #gnuenterprise.
+<^chewie> later!
+^chewie (~chewie@flemingi.dsl.visi.com) left #gnuenterprise.
+<jcater> gah!
+<jcater> spamassassin just marked an email from my wife as spam
+<jcater> hehe
+<jcater> that's so cool
+<dneighbo> roflmao
+<dneighbo> spam = Spouse Possible Acutely Mad
+<dneighbo> spamassain is just looking out for you
+<chillywilly> did she send html mail?
+<jcater> she used [ /me blushes ] hotmail
+<jcater> and forgot a subject line
+Ford_ (~re@pD954BB78.dip.t-dialin.net) joined #gnuenterprise.
+<jcater> SPAM: Hit! (1.5 points)  BODY: Asks you to click below
+<jcater> SPAM: Hit! (1.8 points)  BODY: Tells you to click on a URL
+<jcater> SPAM: Hit! (2.4 points)  Subject: is empty or missing
+<Ford_> good morning
+<chillywilly> hehe
+<chillywilly> sup Ford_
+<dneighbo> guter tag
+Gaelle (~re@pD954B833.dip.t-dialin.net) left irc: Read error: 110 (Connection timed out)
+<Ford_> I heard some rumour which make me ill at ease
+<dneighbo> what rumor?
+<dneighbo> Ich werde wie ein Pferd gehangen.
+<dneighbo> is no rumore its true
+Action: chillywilly is away: food
+<nickr> ques?
+<dneighbo> Vous m'avez entendu.
+<Ford_> Microsoft might overtake another software vendor who sell ERP systems... damn Microsoft
+<dneighbo> and it will be as successful as say
+<dneighbo> 'greatplains'
+<dneighbo> ;)
+<Ford_> what is great plains ?
+<dneighbo> ERP owned by m$
+<Ford_> I see...
+<dneighbo> http://www.greatplains.com/
+<Ford_> the problem is that we just came into touch with that vendor ... and we also wanted to throw away all microsoft products. we did a lot the last days... installed openoffice everywhere and such... and now microsoft is maybe about to buy the vendor of the ERP system we wanted to buy
+<Ford_> that wouldn't be nice... and this rumour of course slows down any decisions that can be taken
+<Ford_> if only gnuenterprise would be finished yet... damn.. :-P
+<jcater> Ford_: what ERP were y'all considering, just out of curiosity
+<dneighbo> http://mikes.harderp.com
+<jcater> rofl
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "home"
+ToyMan (~stuq@c5300-4-ip196.albany.thebiz.net) left irc: "Client Exiting"
+<chillywilly> hehe
+Action: chillywilly is away: hitting the crack pipe
+Action: chillywilly is back (gone 00:00:02)
+<chillywilly> guess we need to get our shit together
+<dtm> Ford_: i congratulate you on your efforts so far
+<dtm> Ford_: what area do you live in?
+<chillywilly> hey did you knwo thwey want to regulate the internet with the FCC?
+<dneighbo> doesnt suprise me much
+<chillywilly> teySorry, but this is really late notice.  Tomorrow is the last
+<chillywilly> day for comments on the FCC's proposal to call the Internet
+<chillywilly> an "information service" for the entrenched broadband
+<chillywilly> interests.  Ostensibly, this decision is being made in
+<chillywilly> preference over classifying broadband internet as a
+<chillywilly> "communications medium," which would place it under
+<chillywilly> regulations like those phone companies are subject to.  It
+<chillywilly> is therefore being characterized as a decision for
+<chillywilly> deregulation versus regulation.
+<chillywilly> Anybody who can, PLEASE send in a note saying this is not a
+<chillywilly> question of whether regulation or deregulation is better
+<chillywilly> policy (this is just a smokescreen) -- it's a question of
+<chillywilly> the nature of the online medium:  Is it a "content" delivery
+<chillywilly> system, or a communications medium characterized by its
+<chillywilly> fundamental two-way protocols, one which brings profound new
+<chillywilly> capabilities to all citizens?
+<chillywilly> *Please* send even just a short note to the FCC at
+<chillywilly> ecfs@fcc.gov.
+<chillywilly> If you know any other constituencies that would want to put
+<chillywilly> a word in on this, please let them know.
+<dtm> chillywilly: dont worry; we here at FCC will take good care of the Internet for ya's
+<chillywilly> hehe :)
+<chillywilly> if only that was the case
+<chillywilly> I trust you infinitely more then I trust the gov't
+<chillywilly> :)
+<chillywilly> ah, I should go take the trash out
+<chillywilly> and get back to hacking my parallel i/o streams
+<chillywilly> [19:05:34] <-- Black^Ruby has quit ("Queef on my face")
+<chillywilly> lol
+<dneighbo> nickr they fixed themes.org
+<dneighbo> now it uses freshmeat engine
+jcater (~jason@HubA-mcr-24-165-193-24.midsouth.rr.com) joined #gnuenterprise.
+Nick change: jcater -> jcFood
+jamest (~jamest@fh-dialup-201015.flinthills.com) joined #gnuenterprise.
+<jamest> cvs down?
+<jamest> nevermind
+<jamest> just very, very slow to respond
+<chillywilly> hi
+<jamest> howdy
+Action: jamest gets to GNUe!
+<chillywilly> fancy meeting you here
+Action: dneighbo gets to home
+dneighbo (~dneighbo@tmp-200253.flinthills.com) left irc: "BitchX-1.0c18: just when you thought it couldn't get any better"
+jamest (~jamest@fh-dialup-201015.flinthills.com) left irc: "[x]chat"
+Nick change: jcFood -> jcater
+dsmith (dsmith@oh-strongsville5b-143.clvhoh.adelphia.net) joined #gnuenterprise.
+Action: chillywilly is away: caffiene
+Action: chillywilly is back (gone 00:13:18)
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+dsmith (dsmith@oh-strongsville5b-143.clvhoh.adelphia.net) left irc: Remote closed the connection
+<chillywilly> hey dneighbo
+<dneighbo> hi chillywilly
+<dneighbo> i hate tv
+Action: dneighbo started to watch diamondbacks then got up and took video games back to blockbuster
+<dneighbo> went to say night to wife before coming in the office and CSI was on and i got sucked in
+<chillywilly> heh
+<chillywilly> :P
+<jcater> hey all
+Action: jcater found another reason to love KDE in my remote office
+<jcater> http://www.tjansen.de/krfb/
+<dneighbo> um free donuts?
+<jcater> hehe
+<jcater> that's gonna be my new tagline
+<jcater> instead of "Free as in beer? or free as in speech?"
+Action: jcater will have
+<jcater> "Free as in Donuts? or Free as in Donut Recipes?"
+<dneighbo> rofl
+<dneighbo> um how does this help you
+<jcater> dude
+<dneighbo> as you dont want them all sharing the same desktop right?
+<jcater> running VNC servers on my remote Win32 machines
+<jcater> has saved me hours^Wdays in support
+<chillywilly> it helps you amdin them as you can connection and manipulate their desktop
+<dneighbo> yes
+<chillywilly> remotely
+Action: jcater takes control of the user's desktop
+<jcater> "well, no, you *didn't* select that option. 
+<jcater> You need to click *here* <jcater remotely moves their mouse to the correct
+<jcater> position>"
+<dneighbo> * jcater found another reason to love KDE in my remote office
+<dneighbo> i mis read this
+<chillywilly> misread even
+<jcater> all the VNC server's for Unix I've seen start up a whole new X session
+<jcater> which certainly has been useful for me too
+<dneighbo> i was thinking you were saying you liked this because it helped 'performance' re: our earlier discussion
+<jcater> ah
+<jcater> lol
+<jcater> no
+<jcater> management
+<jcater> my users can't leave well enough alone
+<dneighbo> and im thinking how the hell do 40 people share the same desktop and be productive :)
+<jcater> and have customized the hell out of kde
+<jcater> one of our customer service reps keeps calling
+<jcater> "My computer is broken"
+<dneighbo> but as support tool it makes PERFECT sense
+<jcater> my guys: Um, no it can't be... you use the EXACT same computer as the other 39 ppl
+<jcater> girl: But, it doesn't work right
+<jcater> two days later...
+<dneighbo> btw: fluxbox has full 'kde tray' support iirc
+<jcater> girl: Um, I found out that if I log in under someone else's name, it works fine
+<dneighbo> so you could run this right in fluxbox in the 'slit'
+<dneighbo> and yes 'slit' is what they really call it
+<jcater> my guys: Well, DUH! you can't leave well enough alone!
+Action: dneighbo still trips on the 'just put it in your slit' references
+<jcater> sigh
+Action: jcater has horrible, horrible flashbacks to "American Pie" and the band chick
+<dneighbo> this one summer at band camp....
+<dneighbo> ok time to get down to bidness
+<chillywilly> sheeeeeit
+<dneighbo> jcater you able to do any real time bug squashing
+<jcater> um
+<dneighbo> (although i think i ran issues by you and they are more 'jamest' arena)
+Action: jcater isn't feeling well and took 3 Tylenol PMs 20 minutes ago
+<jcater> so not sure how long I'm here
+<jcater> probably not much longer
+<dneighbo> grab a lemonade and sit right down, you are at optimal working power :)
+Action: dneighbo cant get that glass bottle through the internet, and they call this 'broadband'. ha.
+<jcater> http://www.software.hp.com/blade-servers/debian_img.htm
+<dneighbo> kick butt
+<dneighbo> having perens there tends to do that :)
+gontran (~gontran@ip68-3-244-71.ph.ph.cox.net) joined #gnuenterprise.
+derek (~derek@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<chillywilly> hi derek
+<jcater> If God had intended for man to go
+<jcater> about naked, we would have been
+<jcater> born that way.
+<chillywilly> hehe
+Action: derek is currently listening to : 14-15=( A-ha - Take on Me 15| 3:46 )15=14-
+Action: derek slaps gnuebot with a smelly old crappie
+Action: derek slaps Yurik with a smelly old crappie
+Action: derek slaps ra3vat with a smelly old crappie
+Action: derek slaps smoke with a smelly old crappie
+Action: derek slaps nickr with a smelly old crappie
+Action: derek slaps Mr_You with a smelly old crappie
+Action: derek slaps jcater with a smelly old crappie
+Action: derek slaps Isomer with a smelly old crappie
+Action: gontran listening to Lighthouse_roots_version
+Action: derek slaps gontran with a smelly old crappie
+Action: derek slaps Ford_ with a smelly old crappie
+Action: derek slaps dtm with a smelly old crappie
+Action: derek slaps dres with a smelly old crappie
+Action: derek slaps dotgnu-sage with a smelly old crappie
+Action: derek slaps dneighbo with a smelly old crappie
+Action: derek slaps derek with a smelly old crappie
+Action: derek slaps chillywilly with a smelly old crappie
+Action: derek slaps bigbrother with a smelly old crappie
+Action: derek slaps ajmitch with a smelly old crappie
+<derek> muhahaha
+Action: jcater slaps derek with a dunce cap
+Action: derek is currently listening to : 14-15=( Duran Duran - Girls On Film 15| 3:30 )15=14-
+<gontran> can I light it?
+<derek> gack
+<derek> the 80s playlist got rotated in
+<derek> im not in an 80s mode
+<derek> bbl
+derek (~derek@cpe-24-221-112-50.az.sprintbbd.net) left irc: Client Quit
+<jcater> ok
+<jcater> that was interesting
+<chillywilly> freak
+<dneighbo> that is me
+Action: gontran sniffs his face, wrinkles nose
+<dneighbo> trying to remember what 'toys' i have for xchat created
+<dneighbo> so i can get them moved to this box
+<jcater> ah
+<dneighbo> my new laptop memory arrived today and wireless card should be here soon too
+<jcater> well scp or nfs might be a better transfer method than IRC
+<chillywilly> you wrote a python script to slap ppl with a crappie?
+<dneighbo> need to get all things moved onto this desktop
+<dneighbo> chillywilly: what did you want me to use? perl?
+<chillywilly> hell no
+Action: jcater needs to make bigbrother slap chillywilly again :)
+<chillywilly> are you mental?
+<jcater> that was so cool
+<chillywilly> *sigh*
+<dneighbo> so i can wipe my laptop and put shinny new debian 3.0 with ext3 on it :) in a few weeks
+<chillywilly> so easily amused
+<jcater> well, I am reading debianplanet and slashdot
+<jcater> so, yes I am
+<gontran> debian zealots
+<jcater> no doubt
+<dneighbo> um we prefer the term bigots
+<dneighbo> its our southern heritage and all
+<dneighbo> so that's 'debian bigots'
+<gontran> riiight. y'all er debian bigots
+<dneighbo> plus you call us db's and we dont confused
+<dneighbo> wives: db (short for dumb bastard)
+<gontran> hmm. was thinking mf's
+<dneighbo> gontran: db (short for debian bigot)
+<dneighbo> we just simply answer 'yes dear'
+<dneighbo> to either
+<gontran> dneighbo: mf (short for moth...)
+<gontran> :)
+<dneighbo> mf = more freedom?
+<gontran> YES
+Action: gontran listengin to 3 joints per day
+<dneighbo> or in my case as jcater and jamest tell me and we tell our dog
+<dneighbo> mf = make friends
+<gontran> doag
+<dneighbo> if you are 'listening' to a joint, can you share?
+<dneighbo> its been long time since i have be rolf (rolling on laughing floor)
+Action: gontran shuffles round files looking for scp
+<dneighbo> hey stupid sysadmin question
+<dneighbo> what rights/groups need be a directory for apache to play nicely?
+<gontran> next time I have a listen I will
+<gontran> simply a+r 
+<gontran> but better apache member of private group with g+r
+<gontran> right?
+<gontran> heh, wives: dumb bastard
+<dneighbo> ?
+<dneighbo> hmm
+<gontran> relapse
+<dneighbo> have a+r i think (isnt that same as 776)
+<jcater> dneighbo: well, avoid mixing with Commanches
+<gontran> fex
+<jcater> and I think apache's will play nicely
+<gontran> fancy modes
+Action: gontran shuffles around bookcase
+<chillywilly> apache runs as www-data
+<dneighbo> grr piss moan
+<dneighbo> setting to chmod 777 lets me it but not the files
+Action: dneighbo hates setting up crap
+<chillywilly> boohoo
+<gontran> ooh ooh ooh me me me
+<dtm> dneighbo: are you a project or personnel manager at work?
+<dneighbo> neither
+<gontran> wtf are the perms on the dir now?
+<dneighbo> 777
+<dneighbo> but i found the problme i think
+<gontran> and it can't read the files ... oh
+<chillywilly> you read the article about the new Star Wars movie coting the economy $300 million?
+<chillywilly> costing
+<gontran> showing digitally in peoria arizona
+<chillywilly> because people will be calling in sick
+<chillywilly> to go see it
+<jcater> chillywilly: yeah... but the REAL question is... what does bathroom breaks cost the US economy?
+<chillywilly> or lunch breaks for that matter
+<chillywilly> or better yet
+<jcater> true
+<chillywilly> county maintenance guys
+Action: gontran steps back from potential political engagement
+<chillywilly> those guys are utterly fucking useless
+<chillywilly> :)
+Action: chillywilly can just imagine how hard dneighbo works being a county guy and all ;)
+<jcater> I need a Mike's
+<jcater> I also need KDE 3.0
+<chillywilly> btw, we're doing the waukesha county buildings right now ;)
+Action: jcater slaps the debian maintainers around some
+<chillywilly> can't you get it from kdcy?
+<chillywilly> or whatever that site it
+<chillywilly> s/it/is
+Action: jcater will wait for official ones
+<chillywilly> bah
+<jcater> those don't install in the proper places
+<dneighbo> rock
+<jcater> they install in /opt/kde
+<chillywilly> who cares
+<chillywilly> easier to switch then
+<gontran> I'M running kde3 from source <smirk>
+<chillywilly> kde is the devil
+<jcater> gontran: I did that for too long
+<gontran> chillywilly: so right
+<gontran> jcarter: me too, then I switched to gentoo
+<jcater> quickly grew out of that as # machines/users increased
+<chillywilly> hehe, carter
+<gontran> ah
+<jcater> I was a FreeBSD guy before debian
+<gontran> so right
+<chillywilly> hey jeff carter how's the family?
+<jcater> so I can relate to the love of ports :)
+Action: jcater smacks chillywilly around
+<dneighbo> gontran: a+r or 776 no worky
+<chillywilly> dneighbo: slap yourself
+<gontran> dneighbo: that's crazy!  
+--- Fri May  3 2002
+<dneighbo> dur
+--- Fri May  3 2002

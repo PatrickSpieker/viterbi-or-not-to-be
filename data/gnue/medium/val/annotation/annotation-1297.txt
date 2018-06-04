@@ -1,0 +1,19 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.04Feb2002" enddate="04 Feb 2002 00:00:00 -0800" startdate="04 Feb 2002 00:00:00 -0800" subject="[IRC] 04 Feb 2002" title="Referential integrity bug in GNUe Forms">
+
+
+<p>Stuart Lamb reported a bug - <quote who="Stuart Lamb">
+When a commit fails (a referential integrity violation), it pops up a 
+dialog box as expected. But apparently doesn't tell the database server 
+to rollback - because anything in the future (whether I hit "commit
+" or "rollback" next, says this - libpq.Warning: NOTICE:  
+current transaction is aborted, queries ignored until end of transaction 
+block - and that transaction block never ends</quote>. This was with 
+<quote who="Stuart Lamb">pypgsql</quote>. 
+James Thompson (jamest) tested this, and confirmed that it could cope 
+and recover from an attempt to duplicate a primary key, but not from a 
+referential integrity error (i.e. a missing foreign key), despite the 
+fact that <quote who="James Thompson">they call the exact same error 
+routines on our end</quote>.</p>
+
+</section>
+

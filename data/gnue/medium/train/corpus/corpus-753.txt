@@ -1,0 +1,650 @@
+<jcater> wtf
+reinhard (~reinhard@M1250P019.adsl.highway.telekom.at) joined #gnuenterprise.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: Remote closed the connection
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<jcater> derek: does it do this in cvs>
+<jcater> ?
+<jcater> or only when you install it?
+<derek> sorry ksnapshot locked x on me :(
+<derek> kde in sid is horribly screwed
+Action: derek has fscked up fonts after trying to move to kde (grrrr)
+<derek> let me try cvs
+<chillywilly> you are cursed
+<jcater> yes he is
+<jcater> :)
+<derek> dneighbo@latitude:~/cvs/gnue/forms/samples/zipcode$ ~/bin/gfcvs zipcode.gfd 
+<derek> WARNING: Cannot build about form 
+<derek> [Errno 2] No such file or directory: '/home/dneighbo/gnue/shared/dialogs/about.gfd'
+<derek> WARNING: Cannot build jumpto form 
+<derek> [Errno 2] No such file or directory: '/home/dneighbo/gnue/shared/dialogs/jumpto.gfd'
+<derek> WARNING: Cannot build messageBox form 
+<derek> [Errno 2] No such file or directory: '/home/dneighbo/gnue/shared/dialogs/messageBox.gfd'
+<derek> i get these w/ cvs i didnt get with install
+<jcater> you need to rerun setup-cvs.py
+<derek> cvs performs the same way
+Action: derek will try setup-cvs.py and try again
+<derek> dialog errors go away
+<derek> but cvs performs same way wrt inserting
+<derek> wtf
+<derek>  def insertRecord(self): calls  self.notifyDetailObjects()
+<derek> notifyDetailObjects calls masterResultSetChanged
+<derek> and 
+<derek> masterResultSetChanged appears to call the listeners
+<chillywilly> publisher subscriber design pattern there
+<derek> ok barking up wrong tree i think
+<derek> that message is misleading
+<derek> the debug statement prints before it does anything ;)
+Action: jcater gives up on taxes for the nite
+<jcater> later all
+jcater (~jason@cpe-066-061-083-220.midsouth.rr.com) left irc: "sleep"
+<derek> sigh
+<derek> guess that means im done testing
+Action: Vee2d2 hands derek the queue
+<chillywilly> stick a form in him
+<chillywilly> he's done
+<chillywilly> fork*
+<chillywilly> hmmm, form works too ;)
+<Vee2d2> hmm.. I dont think I want to start a fresh pot of coffee.. but I need sompn.. 
+Action: Vee2d2 raids the fridge to see what's drinkable
+Action: chillywilly has to go make a soda run
+btami (~tamas@ip102-205.ktv.tiszanet.hu) joined #gnuenterprise.
+<btami> good morning
+<chillywilly> hi
+<Vee2d2> morning btami
+<derek> well i found the bug
+<derek> and check out the comment
+<derek>       # TODO: There should probably be some tests here....
+<derek>       GDebug.printMesg(5,'Should do TESTING')
+<derek>       if not self.isSaved():
+<derek>         GDebug.printMesg(5,'Im Saved')
+<derek>         dispatchEvent('canCOMMIT')
+<derek>       else:
+<derek>         GDebug.printMesg(5,'Im Not')
+<derek>         dispatchEvent('cannotCOMMIT')
+<derek> i added the GDebug.printMesg() statements
+<derek> but the TODO: already existed ;)
+<derek> too much code to wade through to fix properly tonight
+<Vee2d2> =)
+<chillywilly> heh
+<chillywilly> did you commit it to cvs?
+<chillywilly> python is so beautiful
+<chillywilly>    $Product->{"Accessories_aref"} = &getAccessories("productKey" => $productKey); # Many to many self referential
+<chillywilly>     $Product->{"Accessories_href"} = {};
+<chillywilly>     for (my $d = 0; $d < @{$Product->{"Accessories_aref"}}; ++$d)
+<chillywilly>     {
+<chillywilly>         $Product->{"Accessories_href"}->{$Product->{"Accessories_aref"}->[$d]->{"primaryKey"}} = $Product->{"Accessories_aref"}-\
+<chillywilly> >[$d];
+<chillywilly>     }
+<chillywilly> :)
+<chillywilly> fugly!
+<Vee2d2> you're enjoying your tour de perl?
+<chillywilly> erm...kinda but python is better ;)
+<chillywilly> perl likes to fail silently
+<chillywilly> python will throw exceptions at you
+<chillywilly> cause if I mistype a variable name (which of course I do all the time) perl will just simply chug along like everything is gravy
+<Vee2d2> that depends I think
+<chillywilly> depends on what?
+<chillywilly> try to access a non-existant variable of some python object and see what happens ;)
+<Vee2d2> add a -W to your perl arguments.. eg: #!/usr/bin/perl -W 
+<Vee2d2> should give you warnings
+<chillywilly> doesn't help witha  cgi
+<chillywilly> nor does it ever tell my anything useful
+<chillywilly> I require()d a file that was non-existent and all I ever got was empty output
+<chillywilly> python would throw ImportError
+<Vee2d2> *shrug* I'm far from a perl monk.. I know just enough to be dangerous.. =)
+sub_pop_culture (~link@129.210.184.56) joined #gnuenterprise.
+Action: Vee2d2 fades in and out of conciousness
+<derek> i avoid perl like its herpes
+Action: derek goes to bed
+<chillywilly> night
+<Vee2d2> nite derek
+<Vee2d2> last night I fell asleep sitting here for a good 10-15 mins
+<chillywilly> heheh, in the computer chair?
+<derek> rofl
+<Vee2d2> yea.. 
+Action: derek is away: sleepy
+<Vee2d2> I need to finish this email and I'm off to bed as well. 
+Action: chillywilly has work to do
+Action: chillywilly will be up for another 2 hours at least
+ra3vat (~ds@ics.elcom.ru) left irc: "Client Exiting"
+ra3vat (~ds@ics.elcom.ru) joined #gnuenterprise.
+aaron_ (coyote@msp-24-163-193-174.mn.rr.com) left irc: Excess Flood
+aaron_ (coyote@CPE-24-163-193-174.mn.rr.com) joined #gnuenterprise.
+johannes (~johannes@M1250P007.adsl.highway.telekom.at) joined #gnuenterprise.
+sub_pop_culture (~link@129.210.184.56) left irc: "Client exiting"
+jrs (~jrs@dsl093-129-017.sfo2.dsl.speakeasy.net) joined #gnuenterprise.
+btami (~tamas@ip102-205.ktv.tiszanet.hu) left irc: 
+Arturas (~arturas@gsk.vtu.lt) joined #gnuenterprise.
+<Arturas> Hello
+siesel (jan@131.220.92.82) joined #gnuenterprise.
+<siesel> morning
+<Arturas> hello Jan
+siesel (jan@131.220.92.82) left irc: "restarting ion"
+IsoosI (dahoose@port-219-88-246-54.jet.net.nz) joined #gnuenterprise.
+Remosi (dahoose@port-210-54-58-115.jet.net.nz) left irc: Read error: 113 (No route to host)
+Remosi (dahoose@port-219-88-247-231.jet.net.nz) joined #gnuenterprise.
+IsoosI (dahoose@port-219-88-246-54.jet.net.nz) left irc: Read error: 113 (No route to host)
+IsoosI (dahoose@port-210-54-58-7.jet.net.nz) joined #gnuenterprise.
+Remosi (dahoose@port-219-88-247-231.jet.net.nz) left irc: Read error: 113 (No route to host)
+ToyMan (~stuq@smtp.dstoys.com) joined #gnuenterprise.
+Remosi (dahoose@port-219-88-246-92.jet.net.nz) joined #gnuenterprise.
+btami (~tamas@ip102-205.ktv.tiszanet.hu) joined #gnuenterprise.
+<btami> any appserver gurus here?
+<reinhard> sorta
+<btami> :)
+<btami> i'v just started gnue-appserver on win32
+<btami> and get errors
+<btami> Import Error: No module named commdrivers._parser.Parser
+<btami> in rpc.GComm.py
+<btami> line 133
+<reinhard> hmmm
+<reinhard> what version of appserver do you have installed
+<reinhard> and what version of common?
+<btami> cvs head
+<btami> it seems that GComm.py referenses old dir structure
+IsoosI (dahoose@port-210-54-58-7.jet.net.nz) left irc: Read error: 113 (No route to host)
+<btami> sorry, but have to go home
+<btami> bye
+btami (~tamas@ip102-205.ktv.tiszanet.hu) left irc: 
+hmason (~hmason@66.94.69.196) joined #gnuenterprise.
+Nick change: hmason -> deprogram
+jamest (~jamest@hilbert.math.ksu.edu) joined #gnuenterprise.
+<deprogram> jamest: kent state, huh?
+<jamest> kansas state
+<deprogram> of course :>
+jbailey (~jbailey@CPE0060082df811-CM014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+<deprogram> reinhard: how much is actually being done to the appserver? it seems like everyone is working on a 2-tier arrangement
+<jamest> that's not quite true
+<jamest> us 2 tier losers have less of a live than the appserver people
+<jamest> s/live/life
+<jamest> and the goal is that forms/reports/designer just work w/ 3 tier
+<jbailey> I think about appserver alot.
+<jbailey> Does that count?
+<jamest> that's why the appserver interface is just another datasource in gnue
+<jamest> jbailey: um, no
+<jamest> if things we think about alot counted, i'd have been arrested by now
+<deprogram> lol
+<jbailey> Hmm, good point.
+<deprogram> well... i have a massive legacy application that needs to be reworked into a modern architecture
+<deprogram> i'd like to put as much as possible into a middle tier
+<jamest> I don't know what deployment looks like for appserver
+<reinhard> deprogram: appserver unfortunately has much less progress than i would want it to have
+<jamest> one thing that would help though is having someone like you using it
+<deprogram> reinhard: so it seems - i'd be happy to work on it
+<jamest> I know forms/reports/common are driven by jcater and my needs
+<jamest> and sometimes even a user request
+<reinhard> one thing that would help though is somebody that kicks my ass on a daily basis
+<jamest> but we try to avoid that
+<jamest> reinhard: I'd offer but it's a hell of a commute
+<reinhard> :)
+<jamest> deprogram: if you were to work on appserver that would be great
+<reinhard> deprogram: yes what jamest said
+<jamest> we're always looking for help
+<reinhard> very great
+<deprogram> well, it would be. i have to get more familiar w. python
+<jamest> it's simple, just dont read gnue code :)
+<jamest> well, some of it
+<deprogram> :> it seems pretty transparent
+<jamest> i've been told that some of it is too hard on python newbs
+<jbailey> deprogram: We call that 'whitespace'
+<deprogram> ooo. i like whitespace (i was a graphic designer)
+<jamest> before you got too deep we'd need copyright assignment
+<jamest> all of us have signed a copyright disclaimer assigning copyright to the FSF
+<deprogram> i s'pose
+<deprogram> oic
+<jamest> it's our way of insuring no one can take their ball and go home later
+<deprogram> certainly
+<jbailey> jamest: And passing the buck legally to someone else.
+<jamest> oh yeah
+<deprogram> makes sense. it may be difficult to persuade my boss that he needs to pay me to hack open src
+<jamest> it'd be much harder to sue the fsf than say jcater
+<jbailey> deprogram: It's usually less hard than you think.
+<jamest> of course you wouldn't get much sueing any of us :)
+<deprogram> otoh, if i write a closed package he will be faced with maintaining it after i quit and move to amsterdam
+<jbailey> deprogram: The trick is to do a serious cost-benefit analysis.  If, in 2 weeks of solid hacking you can get X, and there's no assets, it's usually worth it.
+<deprogram> which i will if bush gets re-elected
+<jbailey> Most employers hate acquiring assets - then they have to write them down.
+<jbailey> A serious database app can be $10k easy.
+<deprogram> we've been throwing time (and clients money) trying to get a broken proprietary product to work
+<deprogram> i would say quite a bit more than $10k
+InsanitY (insanity@co58147-a.olden1.ov.home.nl) left irc: Read error: 110 (Connection timed out)
+jbailey (~jbailey@CPE0060082df811-CM014260028338.cpe.net.cable.rogers.com) left irc: "Client Exiting"
+Arturas (~arturas@gsk.vtu.lt) left irc: "Bye :)"
+dsmith (~dsmith@borg.altus.cc) joined #gnuenterprise.
+psu (psu@public1-wear2-3-cust49.midd.broadband.ntl.com) joined #gnuenterprise.
+<psu> hi all
+<Vee2d2> howdy psu
+<deprogram> greetings psu
+<psu> heh
+Action: psu is looking at the website
+<psu> we currently have the downloads just on the www.gnuenterprise.org version of the site
+<psu> I guess we really ought to have them on the www.gnu.org/software/gnue/ site as well
+<psu> or
+<psu> even go the whole hog and put them in ftp://ftp.gnu.org//gnu/gnue 
+<psu> only problem is that I can't find any documentation on how to do the latter 
+<psu> aha
+<psu> found it 
+<psu> https://savannah.gnu.org/faq/?group_id=11&question=How_do_I_add_files_in_the_download_area.txt
+<psu> but doesn't seem to load to ftp.gnu.org, just savannah
+Action: psu is not sure about just putting the downloads on www.gnu.org the same way as they are on www.gnuenterprise.org
+<psu> for three reasons:
+<psu> a_ non-standard wrt www.gnu.org
+<psu> b_ uses probably more space on www.gnu.org than we should really be using
+<psu> c_ anyone who wants to check out the web CVS (e.g. for a spelling mistake) 
+<psu> ends up d/l every previous version as part of the web CVS download
+<jamest> I don't thing it should be on www.gnu.org like our site
+<jamest> we should use ftp.gnu.org
+<psu> jamest: I agree
+<psu> main issue is that we would need to get an account(s) on ftp.gnu.org for upload
+<psu> not sure how big a deal that is
+<psu> It would be seamless to end user, as we can still have d/l pages that work as moment 
+<psu> with file lists 
+<psu> all prettily formatted
+<psu> but the URLs would just be ftp:// rather than http://
+<jamest> i think my account on gnu machines gives me access to ftp.gnu.org
+<jamest> i'll have to look into it
+<psu> jamest == elite ;-)
+<jamest> lol
+<jamest> i wish
+<chillywilly> ello
+<jamest> hi
+<chillywilly> ajmitch has gnu.org ftp access
+<chillywilly> don't you have access jamest ?
+<psu> Actually, ftp.gnu.org would only really work for the official releases
+<chillywilly> dude this guy is a joke
+<chillywilly> first he goes on a rant insulting ppl now he's beggint he GSL developers to switch to LGPL
+<psu> I can  imagine "issues" with trying to get jcater's hourly snapshots auto-ftped
+<chillywilly> oh then he instults them again at the end
+<psu> on both sides
+<jamest> only releases go on ftp.gnu.org
+<psu> chillywilly: just tell him diplomacy is the art of saying "nice doggy" while you reach for the monkey wrench...
+<jamest> they have a seperate setup for alpha code
+Action: jamest doesn't recall the details
+<psu> jamest: true
+<psu> I think the best thing to do at the moment
+<chillywilly> psu: well a good metaphor for his conduct would be bashing them with the monkey wrench over and over then saying "nice doggy"
+<psu> is to make the downloads still come from www.gnuenterprise.org for everything 
+<psu> but for me to fix that irritaiting <$ tabs () > bug on both sites
+<psu> chillywilly: heh
+<psu> a) "if it ain't broke, don't fix it"
+<psu> b) "if it is broke, fix the broken bit only"
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<chillywilly> re
+<jcater> er
+<chillywilly> re == regards
+Action: chillywilly thwaps jcater 
+<chillywilly> is that a better greeting?
+<chillywilly> ;)
+InsanitY (insanity@co58147-a.olden1.ov.home.nl) joined #gnuenterprise.
+<chillywilly> can we stop the InsanitY ? ;)
+<chillywilly> ello InsanitY 
+<chillywilly> nice to be able to put a face to what ails ya ;)
+<chillywilly> heh, this dude does not give up
+<jcater> the gsl guy?
+sub_pop_culture (~link@129.210.184.56) joined #gnuenterprise.
+<psu> can anyone point me to a reference in the GNUe code 
+<psu> to download a file listing from a web server directory
+<jcater> ?
+psu__ (psu@81.98.44.49) joined #gnuenterprise.
+<psu__> hmm
+<psu__> lost connection there
+<psu__> what I'm trying to do is something like
+<psu__> glob.glob ( 'http://www.foo.org/bar/*.*' ) 
+<psu__> but which works ;-)
+<jcater> that I'm not sure of
+Action: psu__ wonders if the code that allows Forms to access a gfd from an URL might help
+<chillywilly> problem is http is not a shell
+<chillywilly> ;)
+<psu__> chillywilly: you got that right 
+<psu__> might be 'interesting' if it was
+<chillywilly> well it is a shell with very limited commands
+<chillywilly> GET, POST, PUT
+<chillywilly> you can pass lots of params
+<jcater> well
+<jcater> that's not true
+<jcater> if it's an IIS server
+<jcater> you could get lots of functionality out of it
+Action: chillywilly was talking about HTTO
+<chillywilly> HTTP
+Action: psu__ wonders if I can wrestle around with the urllib library to get what I want
+<chillywilly> I think it is a possible to have some sorta HTTP globbing thing
+psu (psu@public1-wear2-3-cust49.midd.broadband.ntl.com) left irc: Read error: 110 (Connection timed out)
+<chillywilly> glob calls os.listdir() that would have to be replaced with a GET of some sorts
+<chillywilly> I think you could use urllib to make a GET request then use fnmatch()
+<chillywilly> oops, he went bye bye
+<psu__> nope
+<psu__> that's mini-me ;-)
+<chillywilly> oh that was the old psu
+<chillywilly> ;)
+Nick change: psu__ -> psu
+<chillywilly> urllib2 looks more useful
+<jcater> back
+<jcater> fwiw, I was in the middle of a joke
+<jcater> re IIS getting 0wnzed all the time
+<jcater> :)
+<chillywilly> ah ;)
+<jcater> but I got called away before the punchline
+<chillywilly> the dir would have to be browsable and you'd have to strip the uri stuff off, AFAICT
+<psu> chillywilly: yep. Almost easier to drop down to shell and use wget
+<psu> ;-/
+<chillywilly> erm, I don't thin you have to strip anything off nm
+<chillywilly> anyway, fnmatch is the key
+<chillywilly> you just need the list of the filename strings
+<psu> chillywilly: yes
+<chillywilly> you should just write a web shell ;)
+<chillywilly> I wanna do psu% ls http://www.gnu.org
+<chillywilly> ;P
+<chillywilly> j/k
+<psu> I was planning something I could do this afternoon, really ;-))
+<chillywilly> one could argue your web browser is a web shell
+<chillywilly> ;)
+<psu> one could argue your text editor is a web shell... if you use emacs
+<chillywilly> heheh
+<psu> also your spreadsheet, lisp interpreter and 
+<jcater> one could argue your webserver is a shell
+<jcater> with the right rootkit
+<chillywilly> emacs rocks
+<psu> GNUe Designer substitute
+<chillywilly> jcater: HEH
+<chillywilly> jcater: and appropriate webserver softwrae form a certain convicted monopolist makes that argument ever so true
+<psu> speaking of web security
+<psu> how paraniod are we about ash
+<jcater> ?
+<psu> i.e. do i need to program defensively against attacks by people who have CVS access
+<jcater> no
+<psu> or can we assume they are good guys
+<psu> ?
+<jcater> well
+Action: jcater isn't sure what you're thinking of :)
+<psu> It's the old php trick of passing "../../../passwd" as a parameter
+<psu> but the only way you can do this is by CVS access anyway
+<psu> I guess the one line of code to strip out any /s is worth it
+<jcater> *** New prereleases (-pre8) uploaded
+<psu> yay
+<jcater> I think these fix derek/revDeke's bugs
+<psu> s/bugs/current bugs
+<psu> fixing all of revDeke's bugs is beyond anyone
+<psu> ;-)
+<jcater> yeah
+<jcater> I've never seen anyone have as many issues
+Action: jcater wonders if it's subconsciously self-inflicted sometimes
+<jcater> :)
+<psu> The way I look at it, what we lack in quantity of testers
+<psu> we make up for in quality ;-)
+<jcater> lol
+<psu> 1 RevDeke == entire M$ beta testing team
+<chillywilly> hehe
+<chillywilly> the man is hopeless isn't he?
+<deprogram> jcater: even *with* the correct exploit, IIS is useless
+<jcater> true dat
+<deprogram> can anyone confirm that apache/unix is massively more responsive on any given hardware?
+<deprogram> IIS's threading model may be great on the benchmarks, but single-page load times seem much greater
+Action: psu guesses this isn;t really the place to look for IIS expertise ;-)
+<deprogram> doesn't seem like it :>
+Action: deprogram supposes this is not a bad thing
+lupo (lupo@pD9542986.dip.t-dialin.net) joined #gnuenterprise.
+<lupo> hullo
+<psu> hi lupo
+<lupo> hey psu
+<lupo> whazzzuuuuup?
+<psu> prerelases no. 8 on the website
+memmett (~user@sputnik.emmett.ca) left irc: Remote closed the connection
+<psu> testers welcome
+<lupo> is that the same as CVS head right now?
+chillywilly (danielb@CPE-24-167-199-83.wi.rr.com) left irc: "leaving"
+<jamest> no
+<jamest> the pre8s test the setup.py stuff too
+<jamest> which cvs doesn't :)
+<lupo> well
+<lupo> i'd love to test it but i have an exam in inorganic chemistry tomorrow
+Action: deprogram grabs the packages
+<deprogram> no noticeable difference
+<deprogram> fyi: designer startup on win2k produces this output
+<deprogram> C:\Python22\Lib\site-packages>C:\python22\python.exe c:\python22\scripts\gnue-designer
+<deprogram> Warning: No event tied to File|New|Form
+<deprogram> Warning: No event tied to File|Save
+<deprogram> Warning: No event tied to Edit|Insert|Label
+<deprogram> Warning: No event tied to Edit|Insert|Unbound Entry
+<deprogram> Warning: No event tied to Edit|Insert|Drop Down Entry
+<deprogram> Warning: No event tied to Edit|Insert|Button
+<deprogram> Warning: No event tied to Edit|Insert|Box
+<deprogram> DB000: Traceback (most recent call last):
+<deprogram> DB000:   File "C:\Python22\Lib\site-packages\gnue\designer\forms\LayoutEditor\LayoutEditor.py", line 471, in OnPageSelected
+<deprogram> DB000:     self.dispatchEvent('ObjectSelected', object=p, originator="Forms::LayoutEditor")
+<deprogram> DB000:   File "C:\Python22\Lib\site-packages\gnue\common\events\EventController.py", line 72, in dispatchEvent
+<deprogram> DB000:     handler(event)
+<deprogram> DB000:   File "C:\Python22\Lib\site-packages\gnue\designer\forms\LayoutEditor\LayoutEditor.py", line 165, in onSetCurrentObject
+<deprogram> DB000:     self._setSelection(object, selection)
+<deprogram> DB000:   File "C:\Python22\Lib\site-packages\gnue\designer\forms\LayoutEditor\LayoutEditor.py", line 248, in _setSelection
+<deprogram> DB000:     for key in self._currentSelection:
+<deprogram> DB000: AttributeError: LayoutEditor instance has no attribute '_currentSelection'
+<deprogram> the designer loads and appears to run correctly anyway
+<jcater> fixed
+btami (~btami@dial-3-35.emitel.hu) joined #gnuenterprise.
+<btami> hi
+<btami> jcater: the designer-forms conflict still exist
+<jcater> >
+<jcater> ?
+<btami> designer saves new forms with name="form"
+<btami> with and without wizard
+<btami> and forms gives 
+<btami> Key Error: __main__
+<jcater> sigh
+<jcater> I thought that was fixed weeks ago
+<btami> in GFInstance.py line 299
+<jcater> ok, committed
+<jcater> sigh
+<btami> ok, thanks
+<deprogram> jcater: nice
+siesel (jan@xdsl-213-168-117-124.netcologne.de) joined #gnuenterprise.
+<siesel> hi 
+<deprogram> hello :>
+<lupo> hi Jan
+<btami> hello siesel
+<deprogram> 'course, i still can't connect to a db
+<deprogram> using any driver... can give traceback if it'll help
+<btami> siesel: when i start gnue-appserver, i get ImportError:
+reinhard (~reinhard@M1250P019.adsl.highway.telekom.at) left irc: Read error: 54 (Connection reset by peer)
+<btami> No module named commdrivers._parser.Parser
+<btami> in common.rpc.GComm.py line 133
+reinhard (~reinhard@M1250P019.adsl.highway.telekom.at) joined #gnuenterprise.
+<btami> i'v reported this to reinhard too :)
+<btami> wb reinhard
+<jamest> deprogram: the last few lines of the traceback would help
+<jcater> btami: I'm committing a fix now
+<btami> ok, thanks again
+<jcater> ok, new gnue-common prerelease up that should fix that issue (/me hopes)
+<deprogram> C:\Python22\Lib\site-packages>C:\python22\python.exe c:\python22\scripts\gnue-designer
+<deprogram> Warning: No event tied to File|New|Form
+<deprogram> Warning: No event tied to File|Save
+<deprogram> Warning: No event tied to Edit|Insert|Label
+<deprogram> Warning: No event tied to Edit|Insert|Unbound Entry
+<deprogram> Warning: No event tied to Edit|Insert|Drop Down Entry
+<deprogram> Warning: No event tied to Edit|Insert|Button
+<deprogram> Warning: No event tied to Edit|Insert|Box
+<deprogram> DB000: Traceback (most recent call last):
+<deprogram> DB000:   File "C:\Python22\Lib\site-packages\gnue\designer\forms\LayoutEditor\LayoutEditor.py", line 471, in OnPageSelected
+<deprogram> DB000:     self.dispatchEvent('ObjectSelected', object=p, originator="Forms::LayoutEditor")
+<deprogram> DB000:   File "C:\Python22\Lib\site-packages\gnue\common\events\EventController.py", line 72, in dispatchEvent
+<deprogram> DB000:     handler(event)
+<deprogram> DB000:   File "C:\Python22\Lib\site-packages\gnue\designer\forms\LayoutEditor\LayoutEditor.py", line 165, in onSetCurrentObject
+<deprogram> DB000:     self._setSelection(object, selection)
+<deprogram> DB000:   File "C:\Python22\Lib\site-packages\gnue\designer\forms\LayoutEditor\LayoutEditor.py", line 248, in _setSelection
+<deprogram> DB000:     for key in self._currentSelection:
+<deprogram> DB000: AttributeError: LayoutEditor instance has no attribute '_currentSelection'
+<deprogram> duh!!!
+<deprogram> goddam command prompt!
+Action: deprogram curses
+<deprogram> sorry about that
+Action: jcater committed a fix for that a few minutes ago
+<jcater> have you updated cvs>?
+<deprogram> yeah, worked great
+<deprogram> i'm so used to simply selecting in a terminal, and having it put in the clipboard
+<deprogram> windows command prompt doesn't do that tho, nooo...
+<deprogram> here, try this:
+<deprogram> DB000:   File "C:\Python22\Lib\site-packages\gnue\common\datasources\GConnections.py", line 372, in _load_dbdriver
+<deprogram> DB000:     raise GDataObjects.ProviderNotSupportedError, tmsg
+<deprogram> DB000: gnue.common.datasources.GDataObjects.ProviderNotSupportedError: No database driver found for provider type 'mysql'
+<jcater> ** ok, new gnue-common prerelease to fix my fixes from last prerelease
+<jcater> deprogram: you might want to run with --debug-level 1
+<jcater> to see if there's another error message
+<jcater> what platform are you running this on?
+<jcater> do you happen to know if mxDateTime is installed?
+<btami> i'v got another error when trying to run gnue-appserver
+<btami> DB000: Traceback (most recent call last):
+<btami> DB000:   File "gnue-appserver", line 60, in ?
+<btami> DB000:     geas1.run();
+<btami> DB000:   File "c:\python22\Lib\site-packages\gnue\appserver\geasRpcServer.py", line 173, in run
+<btami> DB000:     {'OldSessionManager': self.requestOldSessionManager,
+<btami> DB000:   File "C:\python22\lib\site-packages\gnue\common\rpc\GComm.py", line 112, in bind
+<btami> DB000:     raise InvalidAdapter, mesg
+<btami> DB000: gnue.common.rpc.GComm.InvalidAdapter: No module named commdrivers
+Action: jcater just uploaded -pre8c to fix that
+<jcater> I think
+<btami> ooops
+<jcater> I just love getting the setup.py's working again
+<jcater> it's just SOOOO much fun!
+<btami> appserver it's running now on win32 again
+<btami> s/it's/is
+<deprogram> jcater: win2k sp3
+<btami> but a little confusing that it gets rpctype from gnue.conf, not from connection.conf
+Action: lupo better learns a little bit and then goes to sleep
+<deprogram> mxDateTime is installed
+lupo (lupo@pD9542986.dip.t-dialin.net) left irc: "using sirc version 2.211+KSIRC/1.1"
+<siesel> btami: which rpctype are you using on win2k?
+<siesel> Is it necessary to change the default?
+<btami> just pw_xmlrpc works
+<btami> no, it's ok
+<siesel> good.
+<deprogram> hmmm. so now i get:
+<deprogram> DB001: [C:\Python22\Lib\site-packages\gnue\common\datasources\GConnections:365] Using gnue.common.datasources.drivers.mysql as base driver for mysql
+<deprogram> DB001: [C:\Python22\Lib\site-packages\gnue\common\datasources\GConnections:404] gnue.common.datasources.drivers.mysql is not a dbdriver
+<deprogram> DB001: [C:\Python22\Lib\site-packages\gnue\common\datasources\GConnections:404] gnue.common.datasources.drivers.mysql.mysql is not a dbdriver
+<deprogram> DB001: [C:\Python22\Lib\site-packages\gnue\common\datasources\GConnections:412] gnue.common.datasources.drivers.mysql.mysql does not contain dbdrivers
+<deprogram> this happens for other drivers, too
+<jcater> egads
+<btami> siesel: i'v converted the appservertest.gfd to 0.5, but how can i login into appserver?
+<jcater> deprogram: can you update cvs (or grab new common prerelease) and see if the MySQL error still persists?
+<jcater> bbiaf
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "rebooting"
+<siesel> did you use the appservertest.gfd from the appserver/sample directory?
+bajusz (~btami@dial-5-72.emitel.hu) joined #gnuenterprise.
+<bajusz> siesel: i'v used samples/testcases/appserver/appservertest.gfd
+<siesel> you should try appserver/samples/appservertest.gfd
+<siesel> but you have to "repopulate" your database with appserver/samples/setup-pgsql...
+<bajusz> i can't see any difference, just address_ addad to table/field names
+<siesel> there is an gnue_id in the db tables now
+<bajusz> ah
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<siesel> and that "address" part is the name of the module the business object person is in
+<bajusz> ok, trying...
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: Client Quit
+<bajusz> btw. siesel: have you got a win32 at your hands ?
+<bajusz> the tabs on tabbed pages doesn't visible on win32 (wx)
+<siesel> kind of 
+<bajusz> and i can't follow the wx code
+ToyMan (~stuq@smtp.dstoys.com) left irc: "Client Exiting"
+Action: siesel will try
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+fixe (~fixe@dsl093-081-253.chi2.dsl.speakeasy.net) joined #gnuenterprise.
+btami (~btami@dial-3-35.emitel.hu) left irc: Read error: 113 (No route to host)
+jbailey (~jbailey@atlas.fundserv.com) joined #gnuenterprise.
+siesel (jan@xdsl-213-168-117-124.netcologne.de) left irc: "bbl"
+psu (psu@81.98.44.49) left #gnuenterprise.
+<bajusz> 'gnight all
+bajusz (~btami@dial-5-72.emitel.hu) left irc: 
+<jbailey> night?
+<jbailey> Where is it night?
+<jbailey> Mmmm.  west asia, I guess.
+<reinhard> jbailey: europe
+<reinhard> 23:21 for me
+<deprogram> jcater: which pieces do i need to [re]install?
+<jcater> deprogram: hang on
+<deprogram> common, obviously
+<jcater> yeah, but I need to reload
+<jcater> bad typo
+<jcater> when I packaged it
+<jcater> sigh
+<deprogram> hmm? i'm using cvs, fwiw
+<jcater> oh
+<jcater> then cvs update
+<jcater> and install common
+<jcater> and see how it goes
+<deprogram> will do
+<jbailey> reinhard: Mm.  I figured out my mistake.  I turned 4 pm into 14h00 in my head and then did the math.
+<reinhard> jbailey: yes, why on earth didn't they make the time system decimal!
+<jbailey> Or just give up on the stupid use of timezones.
+<jbailey> Then we'd all just memorise the times instead and be done with it.
+<reinhard> jbailey: i had no problem talking in gmt
+<reinhard> that's just an hour away from me :)
+<reinhard> well two hours actually as we already have dst
+<jbailey> It's only irritating in that it will change in a week for me.
+<jbailey> Having dst at different times also annoys me. =)
+<jcater> geeze
+<jcater> "Don't Worry... Be Happy"
+<jcater>     -- Benjamin Franklin
+<jbailey> Err..  Is that quote attributed correctly?
+<jbailey> Or are there perhaps days, months and years represented in the "..."
+<jbailey> ?
+<jbailey> ;P
+<jcater> lol
+<jcater> just a play on reinhard's /quit message
+<jbailey> Isn't it make love not war, or something like that?
+<reinhard> make love not children
+<deprogram> jcater: nice!
+<deprogram> for some reason it tries to connect using the loopback address, so auth fails
+<reinhard> anyway
+<reinhard> bedtime
+<reinhard> night all
+reinhard (~reinhard@M1250P019.adsl.highway.telekom.at) left irc: "Friends may come and go, but enemies accumulate"
+<deprogram> hmmmmm. i get a login box now. but even with valid credentials, i get 'Unable to connect to mysql'
+dsmith (~dsmith@borg.altus.cc) left irc: "later.."
+ToyMan (~stuq@170-215-194-218.bras01.glv.ny.frontiernet.net) joined #gnuenterprise.
+<deprogram> hmm well
+<deprogram> i'm outta here
+deprogram (~hmason@66.94.69.196) left irc: "[BX] With a BitchX here and a BitchX there, here a BitchX there a BitchX everywhere a BitchX"
+Nick change: jamest -> notJamest
+siesel (jan@xdsl-195-14-205-88.netcologne.de) joined #gnuenterprise.
+Stoke_ (~stoker@ppp137.tc-22.roc-pt.ny.localnet.com) joined #gnuenterprise.
+Stoke (~stoker@ppp264.tc-1.roc-pt.ny.localnet.com) left irc: Read error: 113 (No route to host)
+Stoke_ (~stoker@ppp137.tc-22.roc-pt.ny.localnet.com) left irc: Read error: 60 (Operation timed out)
+dsmith (~dsmith@borg.altus.cc) joined #gnuenterprise.
+dsmith (~dsmith@borg.altus.cc) left irc: Client Quit
+notJamest (~jamest@hilbert.math.ksu.edu) left #gnuenterprise.
+Nick change: jcater -> notJcaRter
+<siesel> derek: you here?
+notJcaRter (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "home"
+siesel (jan@xdsl-195-14-205-88.netcologne.de) left irc: "night"
+jcater (~jason@cpe-066-061-083-220.midsouth.rr.com) joined #gnuenterprise.
+jbailey (~jbailey@atlas.fundserv.com) left irc: "Client Exiting"
+deprogram (~deprogram@dsc05-cld-oh-6-28.rasserver.net) joined #gnuenterprise.
+sub_pop_culture (~link@129.210.184.56) left #gnuenterprise ("Client exiting").
+jamest (~jamest@adsl-64-216-111-42.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+jbailey (~jbailey@CPE0060082df811-CM014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+jbailey (~jbailey@CPE0060082df811-CM014260028338.cpe.net.cable.rogers.com) left irc: "Client Exiting"
+Action: derek wonders what siesel wants
+ToyMan (~stuq@170-215-194-218.bras01.glv.ny.frontiernet.net) left irc: "Client Exiting"
+chillywilly (danielb@CPE-24-167-199-83.wi.rr.com) joined #gnuenterprise.
+chillywilly (danielb@CPE-24-167-199-83.wi.rr.com) left irc: "leaving"
+chillywilly (danielb@CPE-24-167-199-51.wi.rr.com) joined #gnuenterprise.
+jamest (~jamest@adsl-64-216-111-42.dsl.tpkaks.swbell.net) left #gnuenterprise.
+<deprogram> anyone on suse 8.1?
+Raja (~b2bdiscou@nsw32-adsl-022.tpgi.com.au) joined #gnuenterprise.
+Raja (~b2bdiscou@nsw32-adsl-022.tpgi.com.au) left #gnuenterprise.
+jamest (~jamest@adsl-64-216-111-42.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+<jamest> derek: how goes gnue-sb against 0.5.0
+deprogram (~deprogram@dsc05-cld-oh-6-28.rasserver.net) left irc: "[BX] Back wit anutha one of doz BitchX-rockin' beats!"
+jamest (~jamest@adsl-64-216-111-42.dsl.tpkaks.swbell.net) left #gnuenterprise.
+<jcater> ** New prereleases at http://www.gnuenterprise.org/downloads/prereleases.php   (-pre9)
+<Vee2d2> not into the double digits quite yet, eh?
+<jcater> that'd be a first
+<jcater> I hope not
+<jcater> this is more than I wanted
+chillywilly (danielb@CPE-24-167-199-51.wi.rr.com) left irc: "leaving"
+<Vee2d2> hmmm
+<Vee2d2> I need to rid my garage/attic of a bunch of atinquated equipment
+<Vee2d2> bunch of 386/486 type stuff
+<Vee2d2> I should mark a couple hours down this weekend to sorting through it all and trashing a bunch of it
+jcater (~jason@cpe-066-061-083-220.midsouth.rr.com) left irc: "Client Exiting"
+chillywilly (~danielb@CPE-24-167-199-51.wi.rr.com) joined #gnuenterprise.
+--- Fri Apr  4 2003

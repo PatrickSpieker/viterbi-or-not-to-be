@@ -1,0 +1,1537 @@
+paqan (~paqan@202.155.120.221) left irc: Read error: 104 (Connection reset by peer)
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: "Free Your Enterprise! - http://www.gnuenterprise.org"
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise.
+fixe (~adam@dsl093-081-253.chi2.dsl.speakeasy.net) joined #gnuenterprise.
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+<ra3vat> hello reinhard
+<reinhard> good morning
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+<psu> hi r*
+Action: psu has been uploading btami's win setup.exes
+<psu> got the first one up, but run out of time for the other one
+<psu> I'll do that tonight
+<psu> and post an announcement to the website
+johannes (~johannes@M701P023.adsl.highway.telekom.at) joined #gnuenterprise.
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise ("l8r").
+btami (~tamas@ip102-205.ktv.tiszanet.hu) joined #gnuenterprise.
+<ra3vat> hello btami
+<ra3vat> btami: what if you set encoding="ascii" in site.py and formFontEncoding=<your encoding> does forms work?
+SachaS (~Sacha@dialup-196-30.wasp.net.au) joined #gnuenterprise.
+<btami> hi ra3vat
+<btami> why touch site.py ?
+<btami> if you don't use sitecustomize.py
+<btami> defaultencoding is "ascii"
+<ra3vat> where you put your hu encoding now? in sitecustomize?
+<btami> yes
+<btami> but it does'n works with McMillan for me
+<btami> yet :)
+<ra3vat> what if you disallow sitecustomize for test i.e switch default encoding to ascii?
+<btami> i get errors
+<btami> in designer
+<ra3vat> and forms?
+<btami> in dumpXML
+<btami> forms are ok
+<ra3vat> hm
+<btami> but reports not
+<btami> until fontEncoding not introduced in [common]
+<btami> section of gnue.conf
+<ra3vat> translating now works for me from ru_RU dir but forms failed if i switch default encoding to ascii and hope on formFontEncoding only
+<btami> sax error ?
+<ra3vat> yes
+<btami> :)
+Nick change: reinhard -> rm-away
+<btami> if formFontEncoding the same as in gfd header
+<btami> s/if/is
+<btami> ?
+<ra3vat> because i translated button text for login screen
+<ra3vat> oh it is not sax then
+<ra3vat> but unicode
+<ra3vat> let me try
+<btami> ra3vat: do you know a public place to upload win32 setup exe's?
+<btami> i failed to send them in e-mail
+<btami> 2x13 Mb
+<ra3vat> psu said hi got them
+<btami> oh, ok
+<btami> have to go now (about 1hour)
+fixe (~adam@dsl093-081-253.chi2.dsl.speakeasy.net) left irc: Read error: 110 (Connection timed out)
+SachaS (~Sacha@dialup-196-30.wasp.net.au) left #gnuenterprise ("Client Exiting").
+siesel (jan@xunzi.sinologie.uni-bonn.de) joined #gnuenterprise.
+<siesel> morning
+ariel_ (~ariel@ppp-217-133-242-13.dialup.tiscali.it) joined #gnuenterprise.
+<siesel> hi ariel_
+<ariel_> hi jan
+<ariel_> jan: do yoy know about a working sample of master/detail report?
+fixe (~adam@dsl093-081-253.chi2.dsl.speakeasy.net) joined #gnuenterprise.
+<siesel> hmmm, the samples/location was a master/detail sample
+<siesel> but it didn't work some months ago, so it was changed into a simple report
+<siesel> dunno the actual status of master/detail reports
+dsmith (~dsmith@p49.n-chpop06.stsn.com) joined #gnuenterprise.
+<ariel_> sisel: i'm doing one now and it works, the problem is that SimpleTabulation does not support nested tables
+fixe (~adam@dsl093-081-253.chi2.dsl.speakeasy.net) left irc: Read error: 110 (Connection timed out)
+Yurik__ (~yrashk@as5300.kharkov.ukrtel.net) joined #gnuenterprise.
+Yurik__ (~yrashk@as5300.kharkov.ukrtel.net) left #gnuenterprise ("Вышел из XChat").
+SachaS (~Sacha@dialup-196-30.wasp.net.au) joined #gnuenterprise.
+Nick change: rm-away -> reinhard
+btami (~tamas@ip102-205.ktv.tiszanet.hu) left irc: Read error: 110 (Connection timed out)
+ariel_ (~ariel@ppp-217-133-242-13.dialup.tiscali.it) left irc: "Uscita dal client"
+jbailey (~jbailey@CPE0060082df811.cpe.net.cable.rogers.com) joined #gnuenterprise.
+fixe (~adam@dsl093-081-253.chi2.dsl.speakeasy.net) joined #gnuenterprise.
+SachaS (~Sacha@dialup-196-30.wasp.net.au) left irc: Read error: 104 (Connection reset by peer)
+jamest (~jamest@leibniz.math.ksu.edu) joined #gnuenterprise.
+jbailey (~jbailey@CPE0060082df811.cpe.net.cable.rogers.com) left #gnuenterprise ("Client Exiting").
+fixe (~adam@dsl093-081-253.chi2.dsl.speakeasy.net) left irc: Read error: 110 (Connection timed out)
+dsmith (~dsmith@p49.n-chpop06.stsn.com) left irc: Read error: 110 (Connection timed out)
+paqan (~paqan@202.155.120.221) joined #gnuenterprise.
+ariel_ (~ariel@ppp-217-133-242-13.dialup.tiscali.it) joined #gnuenterprise.
+xetrex (beer@195.148.248.32) joined #gnuenterprise.
+StyXman (~mdione@ADSL-200-59-86-17.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<StyXman> hi all
+xetrex (beer@195.148.248.32) left irc: "ChatZilla 0.8.7 in Beonex Communicator"
+siesel (jan@xunzi.sinologie.uni-bonn.de) left irc: "Eject! Eject! Eject!"
+Arturas (~arturas@fmgs-03.vtu.lt) joined #gnuenterprise.
+<Arturas> Hello
+<ra3vat> hello Arturas
+<Arturas> hi Dmitry
+fixe (~adam@dsl093-081-253.chi2.dsl.speakeasy.net) joined #gnuenterprise.
+jcater (~jcater@cpe-066-061-083-220.midsouth.rr.com) left irc: "off to work"
+sgawrick (~sgawrick@lnk-65-28-184-98.neb.rr.com) joined #gnuenterprise.
+<derek> hello sgawrick
+<sgawrick> hello
+<sgawrick> I saw this project and am checking out what type of activity is going on.
+paqan (~paqan@202.155.120.221) left irc: Remote closed the connection
+<jamest> right now we're resting after the release
+<jamest> :)
+<sgawrick> Sounds good. I have a conference call. Maybe I will check back later.
+sgawrick (~sgawrick@lnk-65-28-184-98.neb.rr.com) left #gnuenterprise.
+paqan (~paqan@202.155.120.221) joined #gnuenterprise.
+<StyXman> jamest: I see that the simplest of our patches get through :)
+Action: StyXman throws champagne through the window
+<StyXman> (as you can see, I don't like champagne :)
+Action: derek is away: work
+<jamest> StyXman: yes, lots of questoins first
+<StyXman> jamest: just shoot, man
+<StyXman> ok, ok, put that gun down, ... sloooowly
+fixe (~adam@dsl093-081-253.chi2.dsl.speakeasy.net) left irc: Read error: 110 (Connection timed out)
+<jamest> what is atomic* stuff for?
+<jamest> what do you use genericBox for?
+<StyXman> genericBox is for asking questions with more options than 'yrs' and 'no'
+<jamest> oooo, a biggie!
+<jamest> in your code you replaced, for example,  self._form with self.getForm() then def getForm(self): return self._form
+<StyXman> atomic* is to make sure only one person can modify a what-would-be-called database register at a time
+<jamest> function calls in python are a hideous performance hit
+<StyXman> jamest: uh, we didn't knew that
+<jamest> we switched from a getFoo() to self._foo with the _ meaning private
+<jamest> yeah, we didn't either at the start
+<StyXman> ok, we'll live with that. we don't like it from an oo pov, but who cares :)
+<jamest> so the atomic is like saying select for update?
+<jamest> it locks the backend record?
+<StyXman> jamest: yes
+<jamest> hmmmmm
+<jamest> could the same result be accomplished by adding an atomic="" to the datasource tag
+<StyXman> the question is to let the driver implementing guy to select what would be right to acomplish that
+Action: jamest hasn't dug thru all the details of the aptch yet :)
+<jamest> so I don't know how you're using it 
+<jamest> if you're calling it in triggers, or if you added a tag to the datasource 
+<StyXman> the association with the entry is just to make sure only that entry must be atromic. the others may not be midified atomically
+<StyXman> as in uptading a stock table.
+<StyXman> jamest: it's a big one. take all the time you may need
+<StyXman> it's 6 month of coding
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<StyXman> hi jcater 
+aprono (~aprono@ADSL-200-59-86-17.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<StyXman> aprono: jamest asked it 'you're calling it in triggers, or if you added a tag to the datasource'
+<aprono> the first one
+<StyXman> jamest: from triggers
+<StyXman> can I paste?
+<jamest> please
+<StyXman>              lRecordCount = ownItemToUpdBlock.getRecordCount()
+<StyXman>              for recNum in range(lRecordCount):
+<StyXman>                 ownItemToUpdBlock.jumpRecord(recNum)
+<StyXman>                 ownItemToUpdBlock.levelEntry.atomicModify(lambda x:x-round(float(str(ownItemToUpdBlock.qtyEntry)),4))
+<StyXman> (it's an small excerpt; the trigger is bigger)
+<StyXman> aprono: can you explain what are we doing here? you made the code..
+<jamest> yes please
+Action: StyXman has been too much tmie away from form writing
+<StyXman> these lines are just before those ones:
+<StyXman>              ownItemToUpdBlock.initQuery()
+<StyXman>              ownItemToUpdBlock.ownDocumentEntry = lOwnDocId
+<StyXman>              ownItemToUpdBlock.processQuery()
+<jamest> on scrollbars you have them working with gridlayouts now?
+<StyXman> the middle one is copying a foreign key, I guess
+<jamest> is  ownItemToUpdBlock visible to the users?
+<aprono> jamest:  no
+<jamest> or all hidden fields
+<StyXman> jamest: scrollbars associate to its surrounding block.
+<StyXman> the 'register' to them
+<jamest> StyXman: ok, good
+<jamest> aprono: no to what?
+<StyXman> so, when the data source is updated, and the block is notified, the scrollbar gets updated too.
+<StyXman> what I can't make work is 'free scrolling'. wx is very ugly reporting these ind of events
+<StyXman> jamest: they're hidden entries
+<aprono> jamest: The parameter of the atomicModify method is a function that must be aplied to de field asociated to the entry
+<aprono> s/de/the
+<jamest> aprono: is the datasource itself only used for this one task?
+<aprono> jamest: yes
+<jamest> the reason I ask this is that we want datasources to support record locking which this appears to be
+ariel_ (~ariel@ppp-217-133-242-13.dialup.tiscali.it) left irc: "Uscita dal client"
+<jamest> if we were to add a atomic or locking="" attribute to a datasource that locked records after they were modified
+<StyXman> ah, sounds greit
+<jamest> would that serve the same purpose?
+<aprono> jamest: yes
+<jamest> and I think it may require less work on the trigger writters part :)
+<jamest> also, you exposed some gnue internals via some of those trigger functions
+<jamest> i was wondering why?
+<StyXman> aprono: you just said that may be that would block more than onw might want, or I get it wrong?
+<StyXman> jamest: like?
+<jamest> ummmm
+<StyXman> as I said in the mail ,some may be hacks to get things work in the wrong way
+<aprono> StyXman: si pero tendrias que tener la precausion para qeu no pase eso
+<jamest> getCurrentRecord
+<StyXman> aprono says that 'yes, but you should be cautious so that does not happens' answering my question
+<StyXman> aprono: we still use that?
+<jamest> I have no idea
+<aprono> StyXman: yes
+<jamest> i know we did hacks like this at one time
+<StyXman> allot
+<jamest> but started to try to move away from them as internals can change and will alot :)
+<jamest> so if we can figure out what is making you have to drop to internal levels we can adust the code
+<StyXman> jamest: which would be the right way to do it?
+<jamest> every time I've done this the workaround makes the triggers easier to maintain :)
+<StyXman> ...
+<StyXman>     if clientBlock.getCurrentRecord().isInserted():
+<StyXman>       creditLimit1Block.newRecord()
+<StyXman>       creditLimit1Block.movementTypeEntry = 1
+<StyXman>       creditLimit1Block.creditLimitEntry = "0.0"
+<StyXman> ...
+<jamest> StyXman: that depends on what you need to accomplish
+<jamest> are these forms in your cvs?
+<StyXman> is just an example
+<StyXman> yes, just grab them.
+<jamest> cool
+<jamest> that will help alot
+<StyXman> guanderful
+<StyXman> (I will frame this log)
+<jamest> lol
+<StyXman> when are the logs writen?
+<jamest> i want to get a fair bit of this in for 0.4.2 but not all of it
+<jamest> as I'm pressed for time
+<jamest> and have other bugzzz to address ;)
+<StyXman> jamest: just for the records, is there anywhere any docs on how to properly report bugs with dcl?
+<jamest> not that I know about
+<jamest> http://www.gnuenterprise.org/community/bugs.php
+<jamest> looks like it's pure email interface
+<StyXman> jamest: zanx
+<StyXman> ah, yes, that
+<StyXman> we thought dcl was the way to do it, with tickets and the bola
+<jamest> that autocreates the tickets
+<StyXman> ah, greit
+revDeke (www-data@alt1.libertydistribution.com) joined #gnuenterprise.
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+<StyXman> brb
+StyXman (~mdione@ADSL-200-59-86-17.cordoba.sinectis.com.ar) left irc: "ircII EPIC4-1.1.2 -- Are we there yet?"
+<revDeke> if you would stop leaving to go to the bathroom we would be there a lot quicker ;)
+StyXman (~mdione@ADSL-200-59-86-17.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<StyXman> back
+<StyXman> jamest: I guess you're also puzzled by that history tables thing...
+<jamest> yes, thats a major issue but I have to run to eye appointment
+<StyXman> I don't get the expression...
+<revDeke> major issue means its very problematic
+<revDeke> non trivial
+<revDeke> run to eye appointment, means he is late to visit the eye doctor
+<revDeke> and is 'running' out the door to get there
+<revDeke> that or lindsay grounded him from the car again and his literally running to the doctor office ;)
+fixe (~adam@dsl093-081-253.chi2.dsl.speakeasy.net) joined #gnuenterprise.
+<revDeke> StyXman: not seeing the patch but gathering some from it
+<revDeke> i think your history tables need to be implemented as tables and triggers and not embedded in forms (read hardcoded)
+<revDeke> i had same need for gnue-sb
+<StyXman> sb?
+<StyXman> revDeke: and making it with triggers is just a PITA
+<revDeke> was going to do all in triggers though there has been talk of making some 'convience functions' for such things so triggers would be nice and clean
+<revDeke> sb = small business http://www.gnu.org/software/gnue-sb/
+<revDeke> StyXman: you should be able to make it a shared trigger and just reuse it
+<StyXman> revDeke: so, why don't put it in gnue?
+<jcater> um
+<StyXman> ah, yes, I remember now
+<jcater> PITA or not
+<jcater> we can't have harcoded schemas in common
+<revDeke> because not everyone wants it
+<revDeke> and HARDCODING it is not a solution
+<StyXman> we done it that way because appserver (what would like to use) was not available when we started coding things
+<revDeke> its not the idea that is disagreed with
+<revDeke> even with appserver it woudl be separate
+<StyXman> s/available/stable enough/
+<StyXman> jcater: I agree, and amy be we can live with an external patch 'till we recode, I gues...
+<StyXman> let me talk to aprono...
+<StyXman> aprono: any comments? perlhead?
+<StyXman> revDeke: you were meaning gnue triggers, right?
+<StyXman> or db ones?
+<revDeke> StyXman: after this merge there will need to be some ground rules
+<revDeke> i will discuss with perlhead
+<revDeke> the biggest ones being that you guys really need to not run own cvs copy it makes reconcillation a pain
+<StyXman> ok, perlhead will comment qith us then.
+<revDeke> and the other one is that all patches come in an as 'functional' patches or they are denied
+<revDeke> i.e. if you have a multitable patch only code for that is part of the patch
+<revDeke> not 5 fixes all in one patch
+<StyXman> revDeke: remember that the patch was sent 'as is', as I had no time to filter out what I thought it won't get anyways.
+<revDeke> as it makes it take 20 times as long to reconcile and get applied
+<StyXman> and that those where just suggestions.
+<revDeke> StyXman: yes... im saying 'in the future'
+<StyXman> revDeke: NP
+<revDeke> we are willing to do what it takes to merge the repositories
+<revDeke> best we can
+<revDeke> but we dont want 'resyncing' to be a regular thing... we want one repository and patches :)
+<StyXman> revDeke: we too. I mean, I don't like the work of sync'ing. and I don't wish that to anyone :)
+<grib> revDeke: have you guys thought about working with twisted?  seems like there could be a lot of redundancy between gnue and wtisted.
+Chipaca (~john@ADSL-200-59-86-17.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<StyXman> Chipaca: !
+<Chipaca> hi all
+<revDeke> grib: yes
+<revDeke> in short i think we existed long before twisted so one should ask why isnt twisted working with us :)
+Nick change: reinhard -> rm-away
+<revDeke> specifically they iirc are much more web oriented
+<revDeke> likely the appserver team would be the best to address 'twisted' stuff
+<grib> revDeke: seems like there's mission overlap but not enough to point a finger and say somebody's wasting time.  they don't handle any of the forms/reports/etc, just the wiring and app-service. 
+<revDeke> right
+<revDeke> i think they are more similar to our appserver than gnue as a whole
+<revDeke> i think jan or jcater mentioned offering an appserver provider for them or something
+<grib> anyway their stuff looks pretty interesting.  it is sort of kitchen-sinky and the code/doc ration is a little high but I think there's useful stuff.
+<StyXman> revDeke: I just can't catch up with all your nicks, man
+<StyXman> how many nicks d'you have?
+<revDeke> 3 mostly
+<revDeke> derek, dneighbo, revDeke
+<revDeke> unless im clowning on someone
+<nickr> I love emacs.
+Action: revDeke notes that is cause i have 3 machines that im logged into regularly
+<revDeke> nickr: rms would like you to know that emacs loves you too
+<nickr> I just discovered highlight-changes-mode
+<nickr> beautious
+<revDeke> my initial big problem with emacs was so hard to remember all the cool key combos :)
+<revDeke> then i learned how to 'customize' emacs so that i could make my own easy to remember combos/functions
+<nickr> you can bind them to anything you want
+<nickr> yea
+<nickr> the real power is like, write-hook and such
+<revDeke> which now relates to my biggest problem is i cant use .emacs w/o my own .emacs file :)
+<nickr> like highlight-changes pissed me off at first because it didn't clear the changes when I saved
+<revDeke> i.e. i sit down with a stock emacs (The first thing i apt-get on any machine) and am like gack, its broked :)
+<nickr> of course the solution there is clear
+<revDeke> you can ask jcater about that.... he about died laughing at LWE when on a fresh debian box i installed emacs to edit a simple config file
+<StyXman> I'm having problems with GFBlock.getFocusOrder
+<StyXman> jamest: did you checked out papo?
+<nickr> I know all the defaultn bindings for basic editing. I'm not really into customizing the bindings because I forget the ones I add
+<nickr> of course I need global-font-lock-mode
+<nickr> :)
+<nickr> you know what'd be nice for python editing?
+<nickr> if the current 'scope' were not only highlighted, but BIGGER than the rest of the file
+<nickr> like the font face for the current scope added a line at the beginning of each line in the scope and increased the size of each line in the scope
+<nickr> at least a line along the edge of the scope, up to line line that starts i
+<nickr> hmm
+<nickr> t
+<nickr> it'd be nice if there was completion for object members also :(
+<StyXman> ok, bye. any news re the big patch, try to use the devel ml's.
+<StyXman> see you around.
+StyXman (~mdione@ADSL-200-59-86-17.cordoba.sinectis.com.ar) left irc: "yes!"
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+ariel_ (~ariel@ppp-217-133-246-232.dialup.tiscali.it) joined #gnuenterprise.
+<Chipaca> jamest: about atomic= in the datasource
+<Chipaca> jamest: (don't know if you're here -- I'll assume either you fill in when you return or you read the logs)
+<Chipaca> jamest: the problem with atomic= in the datasource is that many times the datasources are multi-table, and always multi-field, but you usually only need atomic modification of one field
+<Chipaca> derek, revDeke or whoever dneighbo is at this moment: why gnue-sb? why not papo?
+<nickr> it'd be nice if there was completion for object members also :(
+<nickr> oop
+<Arturas> bye
+Arturas (~arturas@fmgs-03.vtu.lt) left irc: 
+<revDeke> Chipaca: because you all said papo was an argentina thing
+<revDeke> i asked specifically
+<revDeke> all the stuff was in spanish even
+<revDeke> iirc
+dsmith (firewall-u@cherry7.comerica.com) joined #gnuenterprise.
+<Chipaca> revDeke: err
+<Chipaca> revDeke: perhaps there was a misunderstanding
+<Chipaca> revDeke: the stuff is in spanish because we are an argentine team, but the plan has always be to translate it as needed
+<Chipaca> revDeke: let me fish out that old email to gnue-dev
+<Chipaca> gah, it's too long to paste
+<Chipaca> revDeke: the PAPO team's medium-term objective is to replace an Argentine-specific ERP. There is, as far as we know, nothing in the design of PAPO that's Argentina-specific
+<Chipaca> revDeke: the screens are in spanish because that is _our_ target audience, but we have i18n on the "after november" map
+<Chipaca> revDeke: the ERD is in english, as are most of the comments. The mailinglist is spanish+english, but translations can be provided on demand either way
+<Chipaca> revDeke: does GNUe support i18n of forms?
+<psu> Chipaca: yes, with some flakiness. btami & ra3vat are our experts
+<psu> (on i18n)
+<Chipaca> psu: good. We'll be pestering them "after november" :)
+<psu> (for all I know, they could be our experts on flakiness as well)
+<revDeke> Chipaca: somewhat
+<psu> ;-)
+<revDeke> Chipaca: when i looked at papo it wasnt what i was after
+<revDeke> specifically you appeared to be making what we want final GNUe to be
+<revDeke> and i couldnt understand why you started papo :)
+<revDeke> with gnue-sb we plan to be much simpler than what official end game gnue would be 
+<revDeke> specifically there is no intention to use appserver with it
+<revDeke> if you think we can work together great
+<Chipaca> revDeke: because GNUe was (and is) a *long* way away of what we need, while the infrastructure is (mostly) there
+<revDeke> Chipaca: im not going to argue that
+<revDeke> its the reason gnue-sb exists :)
+<revDeke> to take advantage of what is there
+<Chipaca> revDeke: I beleive what you call small businesses in the US are what are small-to-medium here
+<revDeke> and to be turned over rapidly
+<jcater> Chipaca: but that begs the age old question "How is it faster/better to roll out your own" ?
+<Chipaca> jcater: explain, please?
+<jcater> I'm not criticising
+<jcater> it's just a question
+<jcater> how is it faster/better to do your own version of gnue than working within gnue?
+<Chipaca> jcater: when we looked at gnue it didn't seem to be going to be an application, but rather a framework
+<jcater> sure, gnue wasn't very far along... but it was further along than starting from scratch
+<jcater> hmmm
+<Chipaca> we liked the framework, but the apps (or whatever they're called) that were there seemed more like examples than anything else
+<Chipaca> also, papo is pointed more towards small-to-medium organizations, while gnue (as it name implies) is aimed at fully fledged enterprise-level stuff, that is, IOHO, over papo's head
+<Chipaca> which is why gnue-sb called our attention... it seems to be more or less what papo is getting to be
+<jcater> lol
+<jcater> seems like an odd circle
+<jcater> we wonder why papo is doing what gnue was gonna do
+<Chipaca> jeez
+<jcater> then you wonder why gnue-sb is going to do what papo was gonna do
+<Chipaca> yeap
+<Chipaca> ok, let's get this straight:
+<Chipaca> gnue was, at the time of papo's inception, no more than a (very alpha) framework
+<Chipaca> [ ] True  [ ] False  [ ] Blue
+<jcater> GNue Tools are a framework
+<jcater> GNUe Packages are not
+<psu> s/(very alpha)/ 
+<jcater> Gnue Packages were in discussion/plans
+<Chipaca> jcater: but nowhere near usuable or even useful, as they still used geas which was AWOL
+<Chipaca> IIRC
+<jcater> as opposed to......
+<jcater> starting from scratch
+<Chipaca> psu: we're speaking january
+<jcater> btw, I'm not complaining/criticizing
+<jcater> just geniunely curious
+<jcater> as this seems to be a circular argument
+<Chipaca> yes...
+<Chipaca> but we really didn't feel like we were starting from scratch inspite of gnue packages
+<Chipaca> we felt that we were starting from gnue, and that it was a shame the packages weren't there
+<grib> jcater: you seem to say "starting from scratch" like it's a bad thing.  starting from scratch is often better than trying to get another project going the direction you need.
+<psu> I suppose what we're all saying is 
+<jcater> grib: that's true
+<jcater> but in this context
+<jamest> gnue has direction?
+<jcater> we were just asked why we aren't using their stuff
+<Chipaca> jamest: in a brownian sort of way
+<jcater> it's kind of a circular argument
+<jcater> or, ironic as the case may be
+<jamest> Chipaca: perfect description!
+<jcater> there's nothing wrong with starting from scratch
+<jcater> I was just bringing recent context into the pictyre
+<jcater> picture even
+<psu> IMHO some of the "full and frank discussions" on the Tools to me indicate
+<psu> that papo has compatible but different way of approaching things
+<psu> so trying to get papo to write our GNUe packages for us 
+<psu> (which is basically what this amounts to)
+<psu> might have created too much pressure
+<psu> gnue pushing one way, papo another
+<psu> Chipaca: obviously today, papo uses 2-tier
+<psu> do you see it long term doing 2-tier
+<psu> or using appserver?
+<psu> or will you decide when you see what appserver does ;-)?
+<Chipaca> psu: long term appserver is by far the cleaner approach, but there is nothing wrong with 2-tier if the needed functionality is hidden away in dbsig, for example
+<Chipaca> appserver, objserver, or whatever
+<Chipaca> :-
+<Chipaca> )
+<psu> ok 
+<Chipaca> stupid return key
+<psu> so in that case, the "conflict" such as there is 
+<Chipaca> for example
+<psu> is between papo and full GNUe packages?
+<Chipaca> currently today we have these weird transactional tables
+<Chipaca> which dbsig sort-of knows about
+<psu> but (a) our packages don't exist yet as we are waiting for appserver and 
+<Chipaca> for a real, clean way to do it, either dbsig should know a bit more, or appserver should be there
+<Chipaca> neither is better, although cleanliness is on the appserver side
+<psu> (b) both sides knew this from the start - i remember conversations to this effect
+<psu> probably in KC somewhere ;-)
+<Chipaca> psu: s/sides/fronts/
+<psu> Chipaca: agree
+<Chipaca> :)
+<Chipaca> psu: if that's a question, yes.
+<Chipaca> there are some rough edges between what papo aims to do and what gnue seems to aim to do, mostly related to who the intended users are, but those are all confined to the UI AFAIR
+<Chipaca> So.... what're we saying here?
+<jcater> jcater is a r0x0r hunk?
+<jcater> oh, wait... that's just me saying that
+<jcater> Chipaca: I don't think anything was being said
+<jcater> just inter-project discussions :)
+<Chipaca> jcater: I would second that if my brain would stop wiggling at the thought
+<Chipaca> (about the r0x0r thing)
+<jcater> lol
+Action: Chipaca still wonders about the perceived differences between gnue-sb and papo, and the possiblity of working together
+<jamest> i'd like to see that
+<Chipaca> jamest: me wondering?
+<Chipaca> jamest: or jcater doing his r0x0r thing?
+<jamest> dude, I've seen jcater in person, I'm not even going to touch that whole r0x0r hunk thing
+<jamest> :)
+<Chipaca> jamest: ssh, don't tell him, but dneighbo handed out pics of y'all a while back
+<jcater> d00ds
+<jcater> all women find my bear gut to be r0x0r
+<jamest> i'd like to see how much papo and gnue can do together
+<jcater> bear=beer
+Action: Chipaca wonders what a grizzly beer is like
+<Chipaca> jamest: <aol>me too!</aol>
+<jamest> they really dig it when you fit a full bakers dozen of KK into your mouth at the same time dont' they
+<jcater> jamest: oh, yeah
+<Chipaca> KK>
+<Chipaca> ?
+<nickr> krispy kreme
+<jcater> Chipaca: donuts
+<Chipaca> youch
+Action: Chipaca tries to imagine 13 doughnuts in 1 mouth, and fails
+<revDeke> jamest: that was my comment
+<revDeke> papo seemed to be argentina specific on the surface
+<revDeke> and much more geared to 'manufacturing'
+<Chipaca> revDeke: LOL no
+<revDeke> my needs are more on wherehouse management than assembly line and english
+<revDeke> and thus so is gnue-sb
+<revDeke> i have no problem working together
+<Chipaca> revDeke: our ERD tries to contamplate SB product mangling, but that's about it
+<revDeke> and said even today... we should see
+<revDeke> Chipaca: some of it will fall into grib's category of different approach so different hard to find common ground
+<Chipaca> revDeke: how advanced is gnue-sb?
+<revDeke> i hate ERD stuff
+<revDeke> i find it over simplified yet grossly complex at the same time
+<revDeke> in a perfect world it is good, as is UML
+<Chipaca> revDeke: I'll be setting up a friendly web thingie to browse our ERD, as it is rather huge
+<revDeke> but to often its more cumbersome than the value it brings
+<revDeke> currently we have gsd stuff that is basically convertable into web documentation
+Action: Chipaca can't wait for derek to learn the beauty of Zot
+<revDeke> well gnue-sb i hope to be so rapid that i wont have time to learn anything new
+<Chipaca> yah, I've got to get the docs of gsd and make a zot2gsd
+<revDeke> which was the point of not doing offical gnue packages
+<revDeke> but rather gnue-sb
+Action: revDeke doesnt have time to debate argue and make things feature complete for the world
+<revDeke> but rather something that is usable and shippable
+<revDeke> and easily extensible
+<revDeke> so while i have no problems working papo or other projects, very much gnue-sb is a nonsense 'get it done' application
+<Chipaca> hmm
+<revDeke> and likely wont spend long toying with trying to incorporate a ton of varying opinions
+<revDeke> that is what GNUe official packages will tackle :)
+<revDeke> again because it uses the gnue framework it will be VERY easibly customisable
+<revDeke> oh crap im turning into psu....
+<revDeke> s/customisable/customizable
+<jcater> yeah
+<jcater> I did it earlier too
+Action: jcater slaps himself
+<Chipaca> the way you put it, it sounds like papo is more aiming at what you call a gnue package than gnue-sb
+Nick change: psu -> mrs_psu
+<mrs_psu> and what's wrong with that?
+Nick change: mrs_psu -> psu
+Nick change: rm-away -> reinhard
+<ajmitch> hi
+<revDeke> Chipaca: it could be...
+<revDeke> im not sure
+Action: ajmitch wonders why these silly people spell with 'z' instead of 's'
+<jcater> sigh
+<revDeke> ajmitch: to torture our children of course
+<jcater> next you guys are gonna say "color" is misspelled
+<psu> zilly? nope, doesn't look rite to me
+<revDeke> have you read man pages for xvncviewer before
+Action: Chipaca goes 
+Action: Chipaca returns
+<revDeke> it has --bgcolour or something as an option
+<revDeke> and in it notes: "Americans please pay close attention and learn how to spell"
+<revDeke> or something to that effect
+<Chipaca> revDeke: VNC is developed in the UK, so that's sensible
+<revDeke> yeah i was commenting it was funny
+<ajmitch> center is misspelt as well :)
+<Chipaca> lol
+<revDeke> customise thy centre colour
+<Chipaca> ok, so what
+<Chipaca> gah
+<Chipaca> stupid
+<Chipaca> revDeke: customise thee thy centre colour
+<Chipaca> ok, so what would it take to make papo a gnue package?
+<Chipaca> other than ... um... not patching gnue (=:]
+<ajmitch> donuts
+<ajmitch> lots of donuts
+<Chipaca> ajmitch: customise thee thy centre colour doughnuts
+<ajmitch> (i'm spelling it the american way so they can understand me)
+<revDeke> well to be 'official' gnue packages it will have to do formal review process
+<revDeke> if it is to be GNUe Financials etc
+<revDeke> i.e. it has to be a proposal before tis an app
+Action: Chipaca wonders if donuts are nuts of Cs
+<revDeke> and get general consensus and feedback
+<revDeke> which is SLOW (but good)
+<revDeke> and why we started gnue-sb
+<revDeke> no long feedback loop (which is bad) but much quicker deliverables (good)
+<revDeke> tis a trade off
+<revDeke> if you want papo to be a gnue app that isnt official but is blessed or something
+<revDeke> we havent fully discussed how to do this
+<revDeke> we have toyed with the discussion
+<revDeke> but not fully discussed
+<psu> papo is sorta between the gnue and gnue-sb approach
+<psu> i.e full functionality, but as "dictatorial" as gnue-sb
+<Chipaca> sorta
+<Chipaca> the database is.
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) left irc: "When all else fails, read the instructions"
+<Chipaca> the screens are examples, the database is much more than the screens can convey, because the screens should "just work" for really small organizations, while medium (or, eve, large) can usually pay for a week of work to tweak the screens for their extra foo
+<Chipaca> small, medium and large here are in Argentine terms, BTW
+<jcater> just remember, enterprise doesn't have to equal multi-billion dollar companies ...
+<psu> btami's setup.exes now on the website - linked from front page and 
+<psu> http://www.gnuenterprise.org/news/news117.php
+<psu> I manage to get a quick dig in re.free/ non-free s/w too ;-)
+<jcater> wow
+<jcater> 10Mb?
+<jcater> was it 10Mb last release?
+<psu> I think it was about that, yes
+Action: psu suspect that the extra drivers (sapdb, firebird, etc) 
+<psu> are the main causes of the bloat
+<jcater> wow
+<jcater> we were at < 5Mb
+<psu> in particular, I can't imagine the sap-db drivers being small
+<psu> How big are the full Oracle SQL*Net drivers these days?
+<jcater> who knows
+Action: jcater hasn't paid attention
+<psu> ISTR that in Oracle 7/8 days, they could be up to 15MB if you installed the kitchen sink
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+<Chipaca> how is less than 10% a major performance hit? (call vs. dereference in python 2.1)
+<Chipaca> or, how is less than 10% reason enough to through the whole OO thing out the window?
+Action: psu is away: downstairs
+<jcater> Chipaca: ???
+btami (~btami@3e70d721.dialin.enternet.hu) joined #gnuenterprise.
+<btami> hi all
+<Chipaca> jcater: a quick benchmark showed that a direct dereferencing vs. a subroutine call costs less then 10% less
+<btami> psu: thanks for all
+<Chipaca> jcater: and performance was the only reason given for using self._form instead of self.getForm
+<btami> psu: just one correction
+<btami> setup exe contains reports too
+<psu> ack
+<psu> I'd forgotten that - we were going to include it when we got to 0.1.0
+<psu> which it's now at ;-)
+<btami> and just wx is about 6Mb in the bin
+<btami> :)
+<btami> db drivers aren't too big
+<ajmitch> http://www.theregister.co.uk/content/53/28168.html
+<jamest> that 10% isn't much on occasional calls but our UI system had lots of such things going on
+<jcater> Chipaca: 2 things
+<jcater> 1. it does make a difference
+<jcater> we profiled our code for one release
+<jcater> and spent a lot of time w/that data
+<jcater> 2. that is our coding style
+<jamest> it made a huge difference in performance of gnue
+<jcater> patches shouldn't change a coding style
+<psu> btami: now fixed
+<jcater> btw, self._form is as much OO as self.getForm()
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) left irc: Remote closed the connection
+<jcater> just maybe not by the java definition
+Action: psu longs for the day when I can get site into CVS and say to people 
+<Chipaca> I have no problem wiht self.form, in fact, I kind of like it. It's the /^_/ that bothers us, as that is always an indication of 
+<Chipaca> "this is private"
+<Chipaca> and in fact you agree
+<psu> "you have CVS commit access - you can fix it"
+Action: psu corrects himself
+<Chipaca> but then you expect people to call that, so it's no longer private
+Action: Chipaca hands psu wiki
+<psu> we have a web CVS already, just if we actaully used it we'd
+<jcater> Chipaca: no, not exactly
+<jcater> in our model
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+<psu> break the www.gnu.org website
+<jcater> (and this is for a reason)
+<psu> which is a bad thing
+<reinhard> oops
+<jcater> and thing without a '_'
+<jcater> prefix
+<reinhard> just for the record
+<jcater> is considered to be a settable attribute
+<jcater> ala XML files
+<jamest> i explained badly this morning
+<psu> Chipaca: wiki is good, but we still need an "official" website
+<reinhard> gdm does _not_ just reread its configuration file if it gets a sighup
+<reinhard> :)
+<psu> Chipaca: see my many comments on wiki in KC
+Action: Chipaca hands psu a wiki with auth
+<jamest> our dumpXML keys on that _ to know to ingore it when translating an object to xml
+<psu> Chipaca: see my many comments on wiki with auth in KC
+<psu> ;-)
+<Chipaca> psu: :) not right now
+<psu> plus, wiki with auth implies users needing passwords resetting
+<ajmitch> psu: how would you break www.gnu.org?
+<psu> with a CVS website, I can dump that problem onto my nearest friendly savannah admin
+<Chipaca> gnue-public.log.14Mar2002:<jamest_> anything with a _ is considered private 
+<psu> ajmitch: I suspect a mod_php-less apache would get very unhappy with .php filetypes
+<jamest> dude i just mentioned that i explained badly this morning
+<Chipaca> jamest: that was in March
+<ajmitch> psu: it would just serve them up, uninterpreted :)
+<jamest> at least i'm consistently full of shit :)
+<psu> ajmitch: yep, but to me pages full of uninterpreted code are broken
+<ajmitch> hehe
+<psu> of course, this is a common exp for lynx users
+<Chipaca> jamest: so what we get is that stuff /^_/ is private, but we need to access it, so (naturally) we go and write some way of getting at it without breaking the (alleged) abstraction
+<psu> <script> tags, anyone?
+<jcater> Chipaca: you took that conversation out of context
+<jcater> look at it again
+<jcater> <dneighbo> jamest_ you get my commit mail
+<jcater> <dneighbo> i have question on something if you have a second
+<jcater> <jamest_> i haven't chacked that account since yesterday
+<jcater> <jamest_> let me look real quick
+<jcater> <jamest_> ok
+<jcater> <jamest_> what is your question?
+<jcater> <dneighbo> well a few
+<jcater> <dneighbo> in connectData[]
+<jcater> <dneighbo> two items are prefixed with a _
+yogurt2unge (~charlie@ADSL-200-59-86-17.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<jcater> <dneighbo> user and password
+<jcater> that's referring to the connections.conf file
+<jcater> and it being loaded into our system
+<Chipaca> jcater: ah
+<Chipaca> jcater: sorry, I grep -C'd, but not with enough C, I guess
+<Chipaca> jcater, jamest: anyhow, everybody here agrees that if it wasn't from you it was from the python docs, that /^_/ means 'private'.
+<jcater> Chipaca: ok
+<jcater> but we are explaining our design decision
+<Chipaca> if that is not the case, that's fine, but seeing as we seem to have overlooked it in reading the coding style docs for gnue, ...
+<Chipaca> jcater: no, you were giving us flak for writing accessor for what, in our book, was a private attribute
+<jcater> sigh
+<jcater> not exactly
+<jcater> but now we understand each other, eh?
+KeithJagrs (jorgre@63.74.24.9) joined #gnuenterprise.
+Action: Chipaca ponders
+<jamest> not flak
+<jamest> just explaining why I didn't want to put it in 
+<jamest> i figured I owed you a reason
+<jamest> we have chillywilly if we need to give anyone flak
+<jamest> or derek
+<Chipaca> heh, like we have StyXman
+<ajmitch> but styxman does work, doesn't he? :)
+<jamest> lol
+<Chipaca> he'd jolly well better
+<Chipaca> ok, so, now.
+<Chipaca> stuff that starts with _ is *never*, inside gnue, private
+<Chipaca> *never* *ever* *ever*
+<Chipaca> even if right after that _ there is another _
+<Chipaca> ?
+Action: jcater doesn't recall saying that
+<Chipaca> jcater: which part?
+<jcater> <Chipaca> ok, so, now.
+<jcater> <Chipaca> stuff that starts with _ is *never*, inside gnue, private
+<jcater> <Chipaca> *never* *ever* *ever*
+<jcater> <Chipaca> even if right after that _ there is another _
+<jcater> <Chipaca> ?
+<jcater> that part
+<revDeke> maybe im nuts but this boils down to 
+<revDeke> i like
+<jamest> i don't think we have a hardfast rule on private
+<Chipaca> btw, seeing as nobody guffawed at the bit on gnue coding style, do those docs exist?
+<revDeke> control statement
+<revDeke>   {
+<revDeke>   code
+<revDeke>   }
+<revDeke> jamest likes 
+<revDeke> control statement {
+<revDeke>   code }
+<revDeke> and jcater likes
+<revDeke> control statement {
+<revDeke>   code
+<revDeke>   }
+<jcater> revDeke: no, this goes beyond this
+<revDeke> well it has performance ramification and other things
+<jcater> it goes to we want _var
+<jamest> we all _know_ that doing foo in function bar should never ever have been done and we're a bad coder for doing it
+<jcater> they want either var or getVar
+<revDeke> but im saying its bad form to 
+<Chipaca> revDeke: it's not coding style as in indent, it's coding style in the abstract (for now. heh, heh, heh)
+<revDeke> take code that is done consistently and arbitarily break that
+<jamest> but i think we make mental note (this needs cleaned up/rethought/etc)
+<revDeke> w/o contacting the author to discuss
+<revDeke> as it could be the author didnt understand the other way to do it
+<Chipaca> revDeke: we'll get to indent later, ok?
+<revDeke> and so this would be helpful to know so taht ALL code could be changed
+<revDeke> or it coudl be they did it purposefully so there is reason to not do it that way
+<revDeke> i think perhaps this was the argument jcater and jamest were getting at
+<Chipaca> revDeke: *sigh*
+<revDeke> i.e. its not necessarily the functionality that is being rejected its the implementation that is being rejected
+Action: drochaid returns with PIZZA
+<jamest> dude, there's some cool stuff in that patch
+Action: drochaid feels the glare from revDeke
+<Chipaca> revDeke: I wasn't aware we'd changed coding style wrt indentation, and if we have done that, in a file where coding style wrt indentation is clear and one single way, I apologize
+Action: drochaid runs
+Action: ajmitch chases down drochaid
+<drochaid> :)
+<Chipaca> jamest: may I hang that up on the wall here?
+<jamest> huh?
+<jamest> my commnet?
+<jamest> if you like
+<Chipaca> jamest: :)
+<jamest> I'm happy to see a working scrollbar setup
+<jamest> you're menubar patches inspired jcater to add trigger to flip them off and on (I think)
+<Chipaca> revDeke: FYI, I have seen (and edited) a file where three different functions used three different indentation calls (and I don't mean one per function), so there
+<jcater> indentation calls?
+<Chipaca> revDeke: :)
+<Chipaca> agh
+Action: Chipaca shouldn't multitask at this speed
+<jamest> the whole atomic* stuff has me seriously looking at replacing the TODO lock record here crap in datasources
+<jcater> we are actually *very* standardized on indentation... any variancies are oddities that someone likely committed
+<Chipaca> jamest: did you read my comment wrt atomic as an attribute
+<jcater> we do two space indents, with no tabs
+<Chipaca> ?
+<Chipaca> jcater: are you certain? as in I'll write this up on the list of stuff to make sure before sending stuff in to gnue and it'll be ok?
+<jcater> Chipaca: ?
+<jcater> I don't think we want patches that do nothing but fix indentation levels
+<jcater> but that is what we try to code at
+<jamest> Chipaca: i don't think we're complaining about the patches
+<jamest> being out of spec
+<jcater> right, we are talking any future things
+<jamest> i think we're just pointing out why we did something one way and why we didn't apply something
+<Chipaca> jcater: I didn't mean that, I meant we usually just let emacs indent, but if we're to fix indentation before we send it to you, are you absolutely certain that that is the coding style you use, globally, and if so, we'll make it be so
+<jamest> we owe you an explenation if getForm() doesn't make it in
+<jamest> Chipaca: i use emacs to indent
+<Chipaca> jamest: I thank you that you feel you owe us an explaination
+<jcater> does emacs do 2 by default?
+<jamest> jcater: you've never complained about my commits so I assume yes ;)
+<jcater> jamest: well, I standardized my indents based on your code
+<jcater> :)
+<jcater> as that's how the vast majority of GNUe was done when I got here
+Action: jcater wasn't gonna rock the boat wrt indentation :)
+<jcater> even though I get that boat a rockin in other places
+<Chipaca> *sigh*
+<jamest> lol
+<Chipaca> We really, really need some way to tell when it's ok to go in and use the stuff and when we must write an accessor for it
+<Chipaca> really, really, really
+ariel__ (~ariel@ppp-217-133-245-92.dialup.tiscali.it) joined #gnuenterprise.
+Action: ajmitch hands Chipaca a copy of java ;)
+<jamest> i think it's pretty simple
+<Chipaca> really, really, really, really, really, really, really, really, really
+<jcater> if there's not an accessor now, then we didn't intend for it to have one
+<jcater> really!
+<jamest> if you can just grab it self._form then you grab it
+<Chipaca> jcater: now as in 0.4, or now as in ever?
+<jamest> if it requires any type of logic at all to get what you require then you need an accessor
+<Chipaca> jamest: oh is _that_ why you play with get/setattr so much!?
+<Chipaca> jamest: logic as in ... ?
+ariel_ (~ariel@ppp-217-133-246-232.dialup.tiscali.it) left irc: No route to host
+<jamest> Chipaca: ? play with get/setattr?
+Action: jamest is blanking on where this is in the code base
+<ariel__> jcater: may i ask some questions?
+<jcater> yeah
+<jcater> I may be called into a meeting shortly
+<jcater> but fire away
+<Chipaca> jamest: aren't there many places where stuff appears via getattr calls?
+<Chipaca> maybe it was __getattr__, or something
+<revDeke> better to play with get/set than yourself :)
+<ariel__> ok why descrption is not child of step and process in getxmlelements of navigator?
+<revDeke> Chipaca: is perlhead around?
+<Chipaca> revDeke: yes
+<Chipaca> revDeke: hold on
+<ariel__> when format for numeric fields will be functional?
+<Chipaca> revDeke: do you have aim,icq,jabber,something like that?
+perlhead (~fheinz@ADSL-200-59-86-17.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<jcater> actually
+<jcater> what is description?
+Action: jcater doesn't remember that tag
+<jcater> hang on, lemme look at something
+<ariel__> when i fire a report from navigator i get : no option filters in section: common
+<jcater> navigator now starts reports?
+<jcater> that's new
+<ariel__> description is cdata that is displayed on the right side of the navigator when step/process is selected
+<jcater> ariel__: navigator needs patching to support reports
+<jcater> I'll add that to my todo
+<ariel__> look at foobulation sample under navigator
+<jcater> ariel__: re the description thing, that's just an oversight
+<jcater> we'll commit a fix to that
+<jcater> ariel__: it looks like someone tried to patch navigator to support reports
+<jcater> but didn't finish it
+<jcater> I'll try to look at soon
+<jcater> ok, description thing fixed
+siesel (jan@xdsl-213-168-110-169.netcologne.de) joined #gnuenterprise.
+<Chipaca> jcater, jamest: here aprono wonders if for example _form is overridable in python; I can't really answer him, but I suspect you probably can :)
+<ariel__> jcater: what's about format format for numeric fields?
+<jcater> ariel__: in reports? or in forms? or both?
+<jcater> reports, very soon
+<jcater> forms, soon
+Action: jcater is away: phone
+<ariel__> it is not in common?
+<jcater> ariel__: yes
+<jcater> but reports needs and forms needs are slightly different
+<jcater> reports just needs to pass it a valid value
+<jcater> and get a valid display back
+<jcater> forms needs real-time formatting
+<jcater> for partial values
+<jcater> if that makes sense
+<jcater> so reports will see its thing sooner than forms will
+<ariel__> ok thank.
+<ariel__> i'm wondering if it is possible to add the preferite browser ( may also be the minibrowser of navigator) to the destination available for report
+perlhead (~fheinz@ADSL-200-59-86-17.cordoba.sinectis.com.ar) left irc: "Client Exiting"
+<ariel__> whit say filter html so in one command is possible to run report and see the results
+<jcater> ariel__: that's doable, I think
+btami (~btami@3e70d721.dialin.enternet.hu) left irc: Read error: 113 (No route to host)
+Chipaca (~john@ADSL-200-59-86-17.cordoba.sinectis.com.ar) left irc: "Hey!  Where'd my controlling terminal go?"
+<ariel__> jcater: if you are preparing the xml2sql doc i think there is a problem with <row>
+Action: jcater is back (gone 00:13:01)
+<jcater> ariel__: which doc are you looking at?
+<ariel__> i have already discussed this with jan ( siesel) 
+<ariel__> schema.xsw under common/utils/xml2sql
+<jcater> ah, ok
+<ariel__> is not only a problem of doc
+<jcater> honestly I've been so focused on getting the schema part of that right'
+<jcater> I haven't even looked at the <row> stuff yet
+<ariel__> the fact is that xsl's produces a command like: insert into table foo values( bla, bla, bla)
+<ariel__> instead of: insert into table foo(field1, .., fieldn) values( bla, bla, bla)
+<jcater> oooo
+<jcater> that is bad
+<ariel__> so the field attribute in row is ignored
+<ariel__> and the order of <value>'s inside <row> is critical
+<jcater> yes
+<jcater> I agree
+<ariel__> you can find the complete discussion in a previos irc log
+<ariel__> let me search
+<ra3vat> jcater: does the mailmerge script work?
+<jcater> I'm assuming that since you're asking, it doesn't?
+<jcater> I use the RTF mailmerge here at work almost daily
+<jcater> but I don't use the script
+<jcater> I use the new builtin filter adapter
+<ariel__> jcater see irc 21th oct, also KC 52 point 20
+<ra3vat> Traceback (most recent call last):
+<ra3vat>   File "merge-rtf", line 30, in ?
+<ra3vat>     import mailmerge
+<ra3vat>   File "mailmerge.py", line 33, in ?
+<ra3vat>     from xml.sax import saxlib, saxexts
+<ra3vat> ImportError: cannot import name saxlib
+<ra3vat> is it done for old pyxml?
+<jcater> gah
+<jcater> could be
+<jcater> let me look....
+<jcater> ooo
+<jcater> that's the script, yes?
+<ra3vat> what is a good example to start with filters?
+<ra3vat> yes, i was trying script
+<jcater> ra3vat: what are you trying to accomplish?
+<ra3vat> i did my first report from monthly.grd example
+<ra3vat> with merge i was thinking of filling template doc with data
+<jcater> ok
+Action: psu is back (gone 01:20:29)
+<jcater> I committed a possible fix to the mailmerge.py
+<jcater> I don't have anything to test with here
+Chipaca (~john@ADSL-200-59-86-17.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<jcater> but I think it works
+<jcater> ra3vat: if you want to play with merge
+<jcater> create an RTF document in the layout you want
+<jcater> wherever you want a field in that doc
+<jcater> do ::field::
+<jcater> where field is a field name
+<jcater> then run ./create-report.pl in that directory against that rtf file
+<jcater> and it should create a basic report for you
+<jcater> but you'll need to modify the <datasource>s in that report of course
+<ra3vat> thanks
+<jcater> I plan to make this into a wizard at some point
+<jcater> but that'll get you started I think
+banjaaraa (banjara@chandratech.demon.co.uk) joined #gnuenterprise.
+<banjaaraa> hi
+<psu> hi banjaaraa
+<banjaaraa> hi psu
+<psu> a fellow demonite ;-)
+<banjaaraa> just came across yesterday on the GNUe and was interested
+<Chipaca> banjaaraa: escape while you can! they will eat your children!
+<jcater> Chipaca: no, we eat _children
+Action: jcater hides
+<Chipaca> jcater: rats! I'm still confusing those
+<banjaaraa> so long time for it to come to version 1.0
+<psu> banjaaraa: we have a rule here
+<banjaaraa> how to get involved in the project?
+<psu> ooh, ooh
+<banjaaraa> everywhere rules!
+Action: psu put up a web page about that
+<psu> just the other day
+<psu> http://www.gnuenterprise.org/community/involve.php
+<banjaaraa> well i read that
+<psu> oh
+<banjaaraa> thats where the channel was mentioned
+Action: psu shuts up then
+<banjaaraa> so i am here
+<banjaaraa> got this IRC client also
+<Chipaca> jcater, jamest: other than the "we foolishly created accessors for attributes that should be accessed directly" and the historic/transactional stuff, is there anything else?
+<jcater> <entry style="textlookup">
+<jcater> what is that??
+Action: psu remembers when Demon (my ISP) had an open-access telnet IRC client
+ariel__ (~ariel@ppp-217-133-245-92.dialup.tiscali.it) left irc: Read error: 113 (No route to host)
+Action: jcater thinks that's identical to our <entry style="label">
+<jamest> we think it's a re....
+<jamest> yeah what jcater said
+<psu> guess that lasted about 10 minutes when the spambots found it...
+<Chipaca> more or less
+<banjaaraa> psu: my ISP is also demon
+<Chipaca> textlookup _is_ a label, except that it goes and fetches the labelee in a dictionary table
+<Chipaca> rather like a cross between label and dropdown
+<jamest> ah
+<Chipaca> the name might be less than perfect...
+<Chipaca> but we couldn't find anything better
+<Chipaca> :)
+<jcater> ?
+<Chipaca> "textlookup"
+<jcater> I'm lost
+<jcater> what does it do?
+<psu> Chipaca: so in effect, variable labels
+<Chipaca> jcater: thing a read-only dropdown-like thing
+<jcater> oooo
+<jcater> jamest explained to me
+<psu> is the dictionary in the GFD or the d/b?
+<jcater> that could be useful
+<Chipaca> jcater: good, I'm glad :)
+<Chipaca> jamest: could you paste the explanation?
+Action: Chipaca wants to learn to communicate better
+Action: psu wonders if jcater will discover that papo have written 0.5.0 already 
+<psu> and we can release next week ;-)
+<ajmitch> well
+<jcater> Chipaca: he said: db contains ks - it prints kansas
+<ajmitch> that would be nice :)
+<jcater> he knows how to speak my language :)
+<Chipaca> point taken
+<banjaaraa> is SAP experience of any use to u guys?
+<jcater> err, I didn't mean english
+Action: Chipaca takes too long to get down to examples
+<jcater> I meant language == my particular flavor of tech speak 
+<Chipaca> jcater: I know, I understood you the first time
+<ajmitch> lol
+<psu> banjaaraa: absolutely. We need to be slightly careful about intellectual property issues
+<jamest> <jamest> db contains ks - it prints kansas
+<jamest> <jamest> in a style=label
+<banjaaraa> of course
+<psu> but otherwise one way of looking at the GNUe packages is as a free SAP equiv.
+<Chipaca> jcater: also, english is my first language, so I probably would've thought of the other interpretation later, instead of the other way round if that weren't the case
+<psu> Of course, when it comes to d/b, SAP-DB is free anyway
+<psu> and GPL
+<banjaaraa> well SAP defines the ERP product as of now
+KeithJagrs (jorgre@63.74.24.9) left irc: "later"
+<jamest> jcater best understands a language of python, sed, english mixed together
+<jcater> yes
+<jamest> toss in the word donut once in a while to keep his interest
+<jcater> but in that order
+<jcater> python first, sed second, english as a last resort
+<Chipaca> ok, textlookups out of the way. What next?
+<psu> we aim to support as many d/b as possible but
+<psu> if we had to pick a favourite, SAP-DB would probably be it 
+<psu> as it is not just free software
+<psu> but exactly the same license (GPL) as us
+<revDeke> banjaaraa: yes sap experience is helpful to this project
+<banjaaraa> another thing....why was python chosen as the language of choice?
+<revDeke> yes we agree SAP is he ERP definer at this moment i time
+<jamest> Chipaca: is it safe to say the menubar patches are no longer needed?
+<revDeke> banjaaraa: why not? ;)
+<ajmitch> who saw the url i posted earlier?
+<revDeke> the choices were 
+<revDeke> C, Java, Python
+<revDeke> C is great for speed
+<ajmitch> http://www.theregister.co.uk/content/53/28168.html
+<ajmitch> MS' business plan ;)
+<revDeke> horrible for maintainability, quick development and a ton of other things
+<Chipaca> jamest: I understand that you (plural) have added a functional equivalent?
+<revDeke> Python does everything java claims only it does it better :)
+<jamest> Chipaca: yes
+<ajmitch> revDeke: i personally dislike python for a few things :)
+<jamest> Chipaca: on that textlookup how about
+<revDeke> read: python is only 'free' xplatform lanugage that lives up to the hype
+<Chipaca> jamest: you are correct
+<banjaaraa> ok....have never seen python before....but hopefully shouldnt be any different
+<revDeke> ajmitch: well python isnt perfect
+<jamest> <entry style="indexedLabel"
+<jamest> using the same keys as the dropdown support
+<revDeke> banjaaraa: if you have never touched python and have coded in ANY other language before you will be productive in python within 7 days :)
+<jamest> as 95% of the code already exists in there
+<revDeke> i can almost guarantee it
+<psu> banjaaraa: we also needed something that was simple enuf for biz people
+<psu> for when they need to write triggers etc
+<psu> look at me
+<Chipaca> jamest: hold on, aprono is pondering that
+<banjaaraa> well as of now ABAP is most experience i have in :)
+<psu> I know more SQL than I let on
+<revDeke> to me C is not for business applications
+<revDeke> we could have written the tools in it (at one time appserver was in C)
+<jamest> it'd use the same attributes as the style="dropdown"
+<psu> but the last lang I learned formally was ZX Basic some 15 years ago
+<revDeke> the idea of making our 'own' trigger language seemed really bad
+<jamest> so to switch from a dropdown to a readOnly view would be 
+<jamest> style="dropdown" -> style="indexedLabel"
+<psu> and I can still do just-beyond-"HelloWorld" stuff in python
+<revDeke> the only other real choices were java and python
+<jamest> and it's match our readonly style="label" we have today
+<revDeke> java didnt work on linux and wasnt free when we started so python it was :)
+<revDeke> and we are glad to date we chose it
+<banjaaraa> java didnt work on linux....meaning the project has been on for a long time?
+<nickr> java still isn't usefully free is it?
+<Chipaca> jamest: the code is different
+<ajmitch> python is even understandable :)
+<psu> nickr: let's not start that one again ;-)
+<nickr> well
+<Chipaca> jamest: because you don't want a textlookup (or indexedLabel) to fetch all the dictionary, you just want one value
+<nickr> I *know* there are free ims but
+<nickr> imps
+<psu> banjaaraa: we have a history.php on website, dating back to 1996 ;-)
+<nickr> they are incomplete
+<Chipaca> jamest: the first implementation of textlookup was just what you describe, but then aprono fixed it to only fetch what was needed
+<revDeke> banjaaraa: two things
+<banjaaraa> 1996 cool! thats when i first touched SAP
+<revDeke> 1. java still doesnt work on linux worth a crap
+<psu> banjaaraa: in current form, probably been going since 2000
+<Chipaca> jamest: and it is a style="textlookup"
+<revDeke> 2. we started before java worked at all on linux :)
+<revDeke> to date there is still no 'free' java past 1.3
+<revDeke> iird
+<revDeke> er iirc
+<nickr> revDeke: Well, not to defend java or anything, but its mostly swing that doesn't work too well
+<revDeke> all most all enterprise features are in java2
+<revDeke> nickr: you are correct
+<banjaaraa> well as long as u guys r happy with what u have chosen
+<revDeke> java core was ok, but to do anything graphical was utter hell
+<jcater> but without swing, why bother with a proprietary language?
+<nickr> of course swing is the basis of all GUI
+<revDeke> and to a large extent still does
+<Chipaca> jamest: you there?
+<banjaaraa> when u say java is not free...what do u mean? doesnt SUN allow free use of JRE?
+<Chipaca> banjaaraa: gratis, not libre
+<banjaaraa> k
+<banjaaraa> have to get my mind send in tune with the FSF
+<banjaaraa> mind set
+<revDeke> same way MP3 is not free
+<revDeke> you might be able to get GPL encoders
+<revDeke> but all it takes is one group to remove all your rights
+<revDeke> as if Java or MP3 group decide to enforce patent
+<revDeke> bye bye
+<banjaaraa> bye
+<revDeke> doesnt matter if the code is 'free'
+<revDeke> as copyright law and patent law are different
+<revDeke> the code might afford you to do as you like
+<revDeke> but patent law prevents you from running it
+<revDeke> a perfect example of this is DeCSS
+ariel_ (~ariel@ppp-217-133-243-218.dialup.tiscali.it) joined #gnuenterprise.
+<revDeke> there are plenty of dvd player software but its 'illegal' to use it :)
+Action: nickr breaks the law
+<revDeke> but specifically there are no java2 'free' implementations that i know of
+siesel (jan@xdsl-213-168-110-169.netcologne.de) left irc: "Client Exiting"
+<revDeke> even if you discounted sun's ownership and patents
+<banjaaraa> but isnt JAVA regulated by a world body now?
+<revDeke> blackdown i think is 1.3
+Action: Chipaca patiently waits for the topic he cares about to come round again
+<revDeke> Chipaca: you were asleep at the wheel it came and went ;)
+<revDeke> what does regulation have to do with it?
+<revDeke> its about control
+<jamest> real work...just a sec
+<revDeke> i think sun still owns java patents, trademarks and 'verification' rights
+<revDeke> i.e. you can be java2 compliant w/o paying huge sums of money
+<banjaaraa> ok
+<Chipaca> jamest: no problem :)  [ this is real work for me :D ]
+<revDeke> or so goes the woe of jboss and enhydra last i heard
+<revDeke> they cant officially be java2 apps
+<nickr> its fascinating to note that you can run python on JVM.
+<revDeke> because to do so would require rigiourous java2 certs that cost 50,000 or more
+<psu> revDeke: similar issues (with AT&T) is why GNU is not UNIX?
+<banjaaraa> but how important is it for GNUe to have a platform independence?
+<psu> banjaaraa: fundamental goal
+<jcater> banjaaraa: we run in more environments than a java app can
+<jcater> just an fyi
+<jcater> well, a java swing app
+<psu> and by platform indep we don;t just mean Win32, MacOS, GNU/Linux
+<Chipaca> psu: according to a vote in the POSIX board, Linux is their favourite POSIX implementation. You can't get more UNIXy than that :)
+<psu> but 
+<jcater> (to me, the two are the same)
+<psu> PDAs, phone voice mail, 
+<banjaaraa> ok...in the true sense
+<psu> and even semaphore if someone can work out TCP/IP for that ;-)
+<Chipaca> psu: semaphore?
+<psu> ok, maybe not semaphore
+<psu> your arms would get tired if you retrieved a 1000-record resultset
+<Chipaca> psu: oh, _that_ kind of semaphore
+<revDeke> psu: dont forget im in the wild west, cowboys and indians and all
+<psu> smoke signals?
+<revDeke> i have the 'smoke signal' module almost ready for prime time
+<revDeke> again the several thousand row fetches prove to be a real 'bear'
+<revDeke> you can only wave the darned rug so fast before you put out the fire
+<psu> revDeke: gzip it?
+<revDeke> hmmm i will have to contact the smoke compression guys
+<revDeke> good idea
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise ("bedtime").
+<jamest> Chipaca: so you do a new query to the db each time the index changes?
+<Chipaca> jamest: correct
+<jamest> vs our prequery
+<jamest> on the datasource
+<Chipaca> jamest: yes
+<banjaaraa> what do you recommend to get started on the project?
+<jamest> banjaaraa: beer and asprin
+<banjaaraa> thats encouraging
+<jamest> ohwait, that's to work on the code
+<jcater> and none of that english pale ale
+<banjaaraa> dont go for ales
+<jamest> Chipaca: ok, a few questions, it's a cool idea btw
+Action: Chipaca still remembers lake district bitter
+<Chipaca> jamest: shoot
+<jamest> how large are the dictionaries this thing is pulling from ?
+<Chipaca> jamest: btw, we changed it work like that because in general we were using it for things that changed less often than number of things we could show
+<Chipaca> jamest: ok, I think I answered your question. Did I?
+<jamest> I don't follow that question
+<jamest> er
+<jamest> answer
+<Chipaca> I'll answer, then (that was just a comment that happend to contain the answer)
+<Chipaca> I don't know exactly how large they were, but for example, think the price of a product would be placed in a textlookup
+<jamest> ok, i get it
+<jamest> here are a few random thoughts on my end
+<Chipaca> because we have a lot of (imaginary) products, and each client has its price list, so to bring in the data you'd have to do #products x #clients of data
+<Chipaca> <end of answer> :)
+<jamest> if we did this via a normal datasource with prequery="" and the result set it huge we kill memory (a shortcomming on our end)
+<Chipaca> yes
+<Chipaca> we have some thoughts on that, too
+<Chipaca> :)
+<jamest> if we're scrolling thru a partlist and it's having to pull the values each time from the backend the UI would get choppy (a shortcomming of the way you've set it up, i think)
+<Chipaca> yes, you wouldn't use them for that
+<jamest> now, our datasources already have a very stupid cache system built in
+<Chipaca> yes
+<jamest> could we take the following approach
+<jamest> well, a few different approached
+<jamest> s
+<Chipaca> ah, that's better :)
+<jamest> 1) this could easily be accomplished as a post-change trigger via the simpleQuery function (i think)
+<Chipaca> "this" being "a label that updates itself"?
+<jamest> 2) could we merge the concepts and use the datasources for now and concentrate on improving the cache system in datasources
+<ra3vat>   File "mailmerge.py", line 98, in merge
+<ra3vat>     parser.parseFile(data)
+<ra3vat> AttributeError: ExpatParser instance has no attribute 'parseFile'
+<jamest> yes
+<jamest> well, you'd have to attach a hidden field w/ the value 
+<jamest> then a post change trigger to an unbound entry style="label"
+<Chipaca> jamest: correct
+<banjaaraa> ****non relevant to the topic ---- are python and PHP in the same league?****
+<jamest> banjaaraa: no
+<jamest> IMHO they solve different problem sets
+<Chipaca> jamest: but it's much easier/cleaner (in the client) the other way
+<Chipaca> banjaaraa: PHP is the ASP of unix
+<jamest> Chipaca: i agree with that
+<jcater> I honestly think for *this* particular case, #1 makes the most sense
+<jcater> although I do want to see cache system improvements
+<ajmitch> bah, how do you comment out a whole block in emacs? ie, adding # to each line? :)
+<jamest> mark it
+<jamest> then ctrl-c #
+<jcater> another alternative I've thought about is to add a fk_refresh="..." to entries that have fk_*
+<jcater> with the default being fk_refresh="startup"
+<jcater> (meaning the fk stuff is gathered at form startup)
+<ajmitch> cool, thanks
+<jcater> but having an fk_refresh="ondemand" (or something similarly named)
+<jcater> that would give the same functionality as y;all describe
+<jamest> ajmitch: to unmark ctrl-u ctrl-c #
+<Chipaca> the silence means we're discussing this :)
+<ajmitch> jamest: that doesn't seem to work in 'fundamental' mode (
+<jamest> nope
+<jamest> you have to be in python mode
+<jcater> it's possible we could also emulate the resetForeignKey() calls that derek is having to do
+<ajmitch> ah well
+<jcater> with a fk_refresh="oncommit" 
+<jcater> (or something similarly named)
+<jamest> sorry, my brain thinks emacs == python editor
+<ajmitch> that's mostly what i use it for :)
+Action: ajmitch is just configuring nagios
+<jcater> ra3vat: fix committed
+<jcater> (I think)
+<Chipaca> ok, let us assume for a moment that this way (setting fk_refresh in the datasource) works. How would you do what now is textlookup?
+<banjaaraa> later----bye
+<Chipaca> (the "let us assume" is because we're still talking it over)
+<jamest> it'd be a style=label with the same attribs as a dropdown?
+banjaaraa (banjara@chandratech.demon.co.uk) left irc: 
+<jamest> yes/no/maybe/go to hell?
+<jamest> i accept any of those answers
+<Chipaca> wouldn't that amount to overloading of label?
+<jamest> hmmmmm
+<jamest> maybe :)
+<Chipaca> is overloading bad? (here the consensus is: not necessarily)
+<Chipaca> so, we do style=label overloaded with the presence or absence of the fk_stuff
+<jamest> right now it's possible to do a entry style="default" and include the dropdown attributes
+<Chipaca> now, back to the datasource: the veredict is IN
+<Chipaca> jamest: and what does that do?
+<jamest> 2 things
+<Chipaca> jamest: good!
+<jamest>   it can validate the user input on strings (big deal right :)
+<Chipaca> pretty good ...
+<Chipaca> (the "good!" thing was that I thought you'd say "breaks", which is just 1 thing)
+<jamest>   it allows a uidriver that doesn't know how to deal w/ style=dropdown to still display a normal entry and then my first reason comes into play
+<jamest> take the old, forgotten curses driver
+<Chipaca> ah, ok
+<jamest> it didn't do dropdowns but it did handle entries
+<Chipaca> ok, gotcha
+<jamest> our sample form had a dropdown where I could select Kansas in the dropdown
+<jamest> the text client let me type ks
+<jamest> as it failed to a workable state
+<Chipaca> jamest: but now you could type kansas and it's ay ah, ks
+<Chipaca> s/it's ay/it'd say/
+<jamest> please don't think we have issues with the code you sent
+<jamest> it's cool
+<Chipaca> no, I get that
+<jamest> we're just hashing out the details 
+<jamest> jcater and I do this in private a bit
+<jamest> <jamest> I have a l33t idea
+<jamest> <jcater> sure you're not just being stupid again
+<jamest> <jamest> um, hang on......nope not stupid
+<Chipaca> ok, so entry is overloaded with style and the presence or absence of fk_stuff, instead of another style
+<Chipaca> heh
+<Chipaca> sounds like brainstorming to me
+<jcater> I'm thinking this applies regardless of whether style="label" or not
+<jamest> fwiw: we can use a different style
+<Chipaca> HOWever, if we do that, do we still retain the old behaviour on fetch-on-demand, or does that have to wait for the fk_refresh thing, and if so, we think that's a way off
+<jamest> style="textlookup" or "indexBehaviour" or "foo"
+<jamest> can you paste a sample <entry style="textlookup"....> for us?
+<Chipaca> because another reason for not fetching everything is that these things might change between the first fetch and the time one wants to display them, so in effect you have to fetch it every time anyway
+<Chipaca> sure
+<aprono>  <entry x="19" y="3" field="own_document.recipient" name="priceTypeEntry" readonly=""
+<aprono>           width="20" style="textlookup" foreign_key="clientDataSource._entity_data._table"
+<aprono>           foreign_key_description="_price_type_data.name" />
+<Chipaca> (please ignore the multiple tableosity of this -- or not :)
+<jamest> oooo, this is based upon the old dropdown format eh?
+<Chipaca> jamest: probably, I guess it's changed, we haven't yet caught up if you recall
+<jamest> we're trying to fix that :)
+<Chipaca> <g>
+<Chipaca> jamest: unless you refer to the a.b.c stuff, no, that's because of multiple tables :)
+<jamest> nah, it was the foreign_key* attribs
+<jamest> but I guess that field does look a little funny
+<Chipaca> jamest: ah
+<jamest> ok
+<Chipaca> did you understand what I mentioned about having to fetch it all every time anyway?
+<jamest> i assume that the clientDataSource is the name of your datasource
+<Chipaca> jamest: ding!
+<Chipaca> jamest: meaning, yes.
+<Chipaca> jamest: also all those things strating with _ are due to the current half-magic historic/transactional tables
+Action: Chipaca still wonders if you understood what he mentioned about having to fetch it all every time anyway
+<jamest> is this datasource only used to lookup values by the textlookup
+Action: jamest understands that you want the field to update if the backend data changes
+<Chipaca> jamest: correct :)
+<Chipaca> on the second count
+<Chipaca> on the first count, correct, too.
+<jamest> dude in shiiping drops 1/2 your supply of Brut aftershave
+<revDeke> its the mickeysoft commerical
+<Chipaca> normally dropdowns/textlookups have to have their own datasource because gnue seems to make a hash of it otherwise :-/
+<jamest> exactly
+<jamest> only smelliers
+<jamest> er smellier
+<revDeke> where the guy goes to order wine and the clumsy dood nknocks it all over
+<jamest> only in semi-real-time
+<ra3vat>   File "mailmerge.py", line 98, in merge
+<ra3vat>     parser.parse(data)
+<ra3vat>   File "/usr/lib/python2.2/xml/sax/expatreader.py", line 90, in parse
+<ra3vat>     xmlreader.IncrementalParser.parse(self, source)
+<ra3vat>   File "/usr/lib/python2.2/xml/sax/xmlreader.py", line 123, in parse
+<ra3vat>     self.feed(buffer)
+<ra3vat>   File "/usr/lib/python2.2/xml/sax/expatreader.py", line 143, in feed
+<Chipaca> correct, i.e. at least when you _start_ the invoice the data is correct
+<ra3vat>     self._parser.Parse(data, isFinal)
+<ra3vat>   File "/build/ldv/RPM/BUILD/Python-2.2.1/Modules/pyexpat.c", line 521, in CharacterData
+<ra3vat> TypeError: characters() takes exactly 4 arguments (2 given)
+<nickr> yarg
+<jcater> sigh
+<jcater> ra3vat: you're gonna have to stop finding these bugs
+<jcater> you're making me work
+<jcater> :)
+<jcater> ra3vat: I'm pretty sure I have ALL the old PyXML oddities this time...
+Action: jcater doesn't have a setup that I can test with at the moment :-/
+Action: Chipaca points jcater at usermodelinux
+<jcater> Chipaca: ??
+Action: jcater points Chipaca to my users who refuse to let me gnue
+Action: Chipaca returns to prodding
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) left irc: "For each complex problem, there is a simple, understandable, obvious, and wrong solution"
+<Chipaca> SO, what's the conclusion wrt textlookup?
+<Chipaca> it gets changed to entry style=label but the backend remains teh same?
+jbailey (~jbailey@atlas.fundserv.com) joined #gnuenterprise.
+<jcater> my vote is we add an fk_refresh attribute
+<jcater> with a style of label
+<Chipaca> ok, so on to the fk_refresh thing
+<jcater> ?
+<Chipaca> the problem with that is ... 
+banjaaraa (banjara@chandratech.demon.co.uk) joined #gnuenterprise.
+<Chipaca> not problems, but things to be taken into account
+<Chipaca> if we do it on demand there has to be a triggering field. So far the datasource doesn't know about fields.
+<jcater> ?
+<Chipaca> once that is done, the rest should be fine :)
+<ajmitch> jeff!!
+<jcater> hmmm
+<Chipaca> ? <- ?
+<Chipaca> or has that changed too?
+<jcater> wait a minute... I'm confused
+Action: jcater steps back a minute to think about something
+Action: Chipaca waits
+Action: Chipaca hands jcater a thinking cap
+Action: jcater was thinking that when such a field is set, a query is done to the datasource to retrieve the current fk_descr with an fk_key of that value
+<jcater> so I'm confused about the "triggering field" thing
+<Chipaca> jcater: not all databases would know how to do that
+aprono (~aprono@ADSL-200-59-86-17.cordoba.sinectis.com.ar) left irc: "Client Exiting"
+<jcater> know how to do what?
+<jcater> the datasource would do that
+<Chipaca> know what fk_descr to return for a given fk_key ... oh, no, I got you backwards
+<jcater> ok
+<jamest> i have to run bbl
+jamest (~jamest@leibniz.math.ksu.edu) left #gnuenterprise.
+<Chipaca> jcater: you're getting information from the entry to modify the datasource -- again
+<Chipaca> jcater: so maybe it's ok
+<Chipaca> this is taking one more step down the road of "dropdowns need their own datasource"
+<Chipaca> (when you include multiple tables in the equation)
+<jcater> um
+<jcater> whoa
+<jcater> back up
+<jcater> dropdowns do have their own datasource
+<Chipaca> yes
+<Chipaca> why?
+<Chipaca> :)
+<jcater> all references to a database are done via a datasource
+<jcater> when you consider what all else datasources can do
+<jcater> this opens up a lot of possibilities
+<jcater> e.g., with our static datasources
+<jcater> we can have combo boxes that pull from a static set of values
+<jcater> defined within the form, not pulled from a table
+<Chipaca> ah
+<jcater> that's just one example
+<jcater> remember we are abstracted from a relational database
+<Chipaca> I just wanted to make sure the why was "because it works that way" :)
+<Chipaca> s/was/wasn't/
+<jcater> ah
+<jcater> no
+<jcater> we have good reasons :)
+<jcater> at least good in our minds :)
+<jcater> (I guess good is subjective)
+<Chipaca> s/good in/as good as/ ]:)
+<jcater> I take that as a compliment, thank you!
+<jcater> :)
+<Chipaca> rats
+<Chipaca> about this ... should we do it, or will you?
+<jcater> I will look at it
+<Chipaca> ok
+<revDeke> i would like it better than diong my refresh method :)
+<revDeke> if it still applies there
+<Chipaca> revDeke: probably
+<revDeke> though im not unhappy with the method i have now
+<revDeke> as it works
+<Chipaca> revDeke: the suggested way separates when you fetch the stuff from how yuo show it, which is good
+Action: revDeke has learned to not complain about things that work :)
+<revDeke> at least not publicly
+<jcater> this may open up some new interaction stuff
+<jcater> that I want to consider wrt some other things
+<jcater> possibly
+Action: jcater has to think the whole thing thru
+Action: revDeke is so happy with 0.4.1 release it will be hard to damper that
+<Chipaca> is there a "guest" account on dcl to look at the tickets?
+<revDeke> i think my next gripes will come via navigator and forms more than anything else 
+<revDeke> oh and schema stuff
+<revDeke> gripes==feature requests ;)
+<revDeke> guest/guest
+<revDeke> i think
+<revDeke> i think your team has accounts :)
+Action: Chipaca has to do a zot2gsd
+<revDeke> if not you should
+<Chipaca> revDeke: hmm, how would I know my u/p?
+<Chipaca> or is it just papo?
+<Chipaca> jcater: can you think of any further things in the Megapatch you had issues with/queries about/brainos to pick?
+<revDeke> crap
+<revDeke> dcl no worky with win2k
+<jcater> Chipaca: I think we've hit everything major
+<Chipaca> jcater: so, unless I'm mistaken, everything is in except for historic/transactional, the GetFoo() vs. _foo, and textlookup that'll be implemented differently but essentially the same?
+<Chipaca> or did I miss anything?
+<jcater> Chipaca: this is from us walking down the patch
+<jcater> we still are applying it
+jamest (~jamest@adsl-64-216-107-182.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+<Chipaca> jcater: meaning "we still have stuff to apply", or "we are applying it anyway and the rest is in the future"?
+<revDeke> crap
+<jcater> the former
+<Chipaca> I guess the first, the second sounds silly
+<revDeke> sorry it was the codeworks guys that are all setup in dcl
+<revDeke> chipaca can you send me
+<chillywilly> hi
+Action: Chipaca sends revDeke
+<chillywilly> to /dev/null?
+<revDeke> first name   lastname,  email address, preferred userid
+<revDeke> to derek@gnue.org
+<revDeke> and i will set them up for you guys
+<Chipaca> revDeke: for the team as one, or for each of us?
+<revDeke> each one i think is probably better
+<Chipaca> ok
+<revDeke> i will create an 'account' for papo as well
+<revDeke> so anything pertaining to you or that you want to open make sure its account is set to papo and you can report off that
+<revDeke> as well as by individual
+<Chipaca> great
+<revDeke> thats what i did for codeworks
+<Chipaca> great
+<revDeke> this way perlhead can see anythign outstanding for papo as well as see amount of hours worked by employee
+<revDeke> or the likes
+<Chipaca> hmm, so I don't give perlhead an account
+<nickr> so much python, so little time
+<revDeke> no perlhead gets one :)
+<revDeke> if you can get me one quickly i will do asap
+<revDeke> other wise it will probably wait some time
+<Chipaca> sending...
+<Chipaca> sent
+<Chipaca> in no particular order :)
+<Chipaca> was that "quickly"?
+<revDeke> yip
+Action: Chipaca grins
+<revDeke> are you guys papo or via libre?
+<Chipaca> papo is the project, via libre is the foundation
+<Chipaca> we are both
+<Chipaca> but not all vialibre is papo
+<Chipaca> vialibre also does courses, migrations, vertical applications (all free software...)
+Action: Chipaca wonders if those words have the same meaning in english :)
+<banjaaraa> was just checking the where python is being used on python.org....they have no mention of GNUe!?
+<banjaaraa> but they do mention melborne cricket ground :)
+<jcater> banjaaraa: where is the list of users?
+Action: jcater doesn't see a link to that on the front page
+<banjaaraa> in FAQ
+<banjaaraa> http://www.python.org/cgi-bin/faqw.py?req=show&file=faq02.002.htp
+yogurt2unge (~charlie@ADSL-200-59-86-17.cordoba.sinectis.com.ar) left irc: "Client Exiting"
+<Chipaca> ok, time to Z
+Action: Chipaca waves
+Chipaca (~john@ADSL-200-59-86-17.cordoba.sinectis.com.ar) left irc: "ircII EPIC4-1.1.2 -- Are we there yet?"
+banjaaraa (banjara@chandratech.demon.co.uk) left irc: 
+revDeke (www-data@alt1.libertydistribution.com) left #gnuenterprise.
+dsmith (firewall-u@cherry7.comerica.com) left irc: "later.."
+jbailey (~jbailey@atlas.fundserv.com) left #gnuenterprise ("Client Exiting").
+pattieja (~pattieja@www.pcxperience.com) got netsplit.
+pattieja (~pattieja@www.pcxperience.com) got lost in the net-split.
+ariel_ (~ariel@ppp-217-133-243-218.dialup.tiscali.it) left irc: Read error: 60 (Operation timed out)
+pattieja (~pattieja@www.pcxperience.com) joined #gnuenterprise.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "home"
+jcater (~jcater@cpe-066-061-083-220.midsouth.rr.com) joined #gnuenterprise.
+<ajmitch> wb mr cater
+<jcater> thx
+<derek> sigh my kids are hooked on starwars
+<ajmitch> get them away from it, quick
+<derek> ajmitch: you obviouslsy dont have kids
+<derek> 'hooked' means will watch while sitting still and quiet not breaking stuff
+Action: derek wasnt necessarily indicating it was a bad thing ;)
+<ajmitch> hehe
+<ajmitch> you're right that i don't have kids - i live in a nice & quiet house :)
+<jcater> just you wait
+Action: derek is back (gone 10:44:09)
+Action: drochaid is away: mar sin leat an drasda
+<drochaid> ajmitch will tell you what that means
+<drochaid> oidche mhath :)
+<jcater> "off to sin some more"
+<jcater> ?
+<drochaid> lol
+<ajmitch> bye for now :)
+<jcater> I like my translation better
+<drochaid> heh
+<drochaid> cyas
+<derek> jcater: i thought it was my (mar) sin (sin) is elite (leat) and (an) drastic (drasda)
+<jcater> lol
+SachaS (~Sacha@dialup-196-61.wasp.net.au) joined #gnuenterprise.
+<derek> sigh... i think i might switch to kde purely for the nice fonts
+fixe (~adam@dsl093-081-253.chi2.dsl.speakeasy.net) left irc: Read error: 110 (Connection timed out)
+<ajmitch> i got purty fonts with gnome :)
+jamest (~jamest@adsl-64-216-107-182.dsl.tpkaks.swbell.net) left #gnuenterprise.
+<derek> ajmitch: i would love gnome2 i cant get it to load on debian :(
+Action: derek doesnt know what tricks to make apt-get do to get it
+Action: derek is hooked on igal / shell commands and gtkam
+Action: derek thanks nickr
+<derek> nickr: where should i send your beer
+<dtm> down the drain, to be replaced with juice
+Action: dtm campaigns against senseless violence toward brain cells and toxin removing organs
+<jcater> ah
+<jcater> so I should quit GNUe'n ?
+Action: jcater is sure that qualifies as violence against brain cells
+<ajmitch> no, a presumption is that anyone GNUe'n already has done violence to his/her brain cells
+<jcater> true dat
+<derek> ==============
+<derek> Talking Frog
+<derek> A boy was crossing a road one day when a frog called out to him and said, "If you kiss me, I'll turn into a beautiful princess." He bent over, picked up the frog and put it in his pocket. 
+<derek> The frog spoke up again and said, "If you kiss me and turn me back into a beautiful Princess, I will stay with you for one week." The boy took the frog out of his pocket, smiled at it and returned it to the pocket. The frog then cried out, "If you kiss me and turn me back into a Princess, I'll stay with you and do *Anything* you want." Again the boy took the frog out, smiled at it and put it back into his pocket. 
+<derek> Finally, the frog asked, "What is it? I've told you I'm a beautiful Princess, that I'll stay with you for a week and do *Anything* you want. Why won't you kiss me? 
+<derek> The boy said, "Look I'm a computer programmer. I don't have time for girlfriends, but a talking frog is really cool." 
+<derek> ==============
+fixe (~adam@dsl093-081-253.chi2.dsl.speakeasy.net) joined #gnuenterprise.
+SachaS (~Sacha@dialup-196-61.wasp.net.au) left irc: Read error: 60 (Operation timed out)
+fixe (~adam@dsl093-081-253.chi2.dsl.speakeasy.net) left irc: "pamf"
+fixe (~adam@dsl093-081-253.chi2.dsl.speakeasy.net) joined #gnuenterprise.
+--- Wed Nov 20 2002

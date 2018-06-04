@@ -1,0 +1,1444 @@
+[00:00] Last message repeated 1 time(s).
+<chillywilly> is there anyway for GNU/Linux to not use the bad sectors ;)
+<chillywilly> ?
+<chillywilly> hmmm, /dev/hda3 is the one that is b0rked
+<chillywilly> that's /home IIRC
+<chillywilly> bollocks!
+<nickr> chillywilly: you have to reformat, but you can have it scan and mark bad blocks
+<nickr> chillywilly: in modren hardware, though, bad blocks usually means the drive is dying 
+Pharsyde (~pharysde@lsanca1-ar27-4-63-187-185.lsanca1.vz.dsl.gtei.net) left #gnuenterprise.
+<chillywilly> yea...she might as well replace it now
+Action: chillywilly had his laptop hard drive get fscked on a lockup
+<chillywilly> she'll probably blame me ;)
+<chillywilly> or she'll blame "Linux"
+<chillywilly> but it's winblows fault
+<chillywilly> they kept turning off the power when it would lock up
+<chillywilly> looks like there's more bad sectors
+<chillywilly> that there was before
+<chillywilly> er, than
+<chillywilly> wooooo
+<chillywilly> then I get to reinstall and do it all over again
+<chillywilly> :(
+<Mr_You> thats one thing that sucks about *nix OSs.. not automagically doing that
+<Mr_You> it also sucks that the larger a drive is the more likely it may have bad sectors from the factory
+<chillywilly> the drive must be taking a shit
+<chillywilly> gawd this sucks balls
+<chillywilly> maybe I'lll be able to salvage some stuff
+<chillywilly> (to make a reinstall/resetup go faster ;) )
+<Mr_You> installs don't take long, cept ftp over modem ;-)
+<Mr_You> a long install is solaris + patches... yow
+Action: chillywilly did a network install on that box over his modem
+<chillywilly> well over my lan and out my modem ;)
+<Mr_You> ahh ok then
+derek (~derek@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+chillywilly__ (~danielb@d39.as14.nwbl0.wi.voyager.net) joined #gnuenterprise.
+chillywilly__ (danielb@d39.as14.nwbl0.wi.voyager.net) left irc: Read error: 104 (Connection reset by peer)
+chillywilly_ (~danielb@d39.as14.nwbl0.wi.voyager.net) joined #gnuenterprise.
+<chillywilly_> aaah, that parition has /usr mounted on it
+<chillywilly_> it boots up ;)
+<chillywilly_> weeeee
+<chillywilly_> so nickr how can you mark the bad blocks?
+<chillywilly_> nevermind
+chillywilly_ (danielb@d39.as14.nwbl0.wi.voyager.net) left irc: 
+dtm_ (dtm@ip210.promontory.sfo.interquest.net) joined #gnuenterprise.
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+<dtm_> ;akjdkljsdf
+<dtm_> i need initrd help!
+<Mr_You> me too ;-)
+<Mr_You> whatcha need?
+<dtm_> askdjbnf
+<dtm_> Mr_You: hi
+<dtm_> Mr_You: i made an initrd just like in /usr/src/linux/Documentation/ramdisk.txt and when the kernel loads it, it says it can't find the superblock.
+<dtm_> input?
+<chillywilly> you didn't use /usr/src/linux/Documentation/initrd.txt?
+<dtm_> made a 2MB /dev/zero file, used 'losetup', then 'mke2fs -vm0 -b 1024 -N 20000 /dev/loop0', copied my /etc and /dev to it, and that's it
+<dtm_> wholly sheet  i didn't notice that ; lemme look
+<dtm_> oh btw i tried it compressed and uncomrpessed, same result
+<Mr_You> I'm trying to use cluster_mkinitrd but it complains about "all loop interfaces are in use"
+<dtm_> huh.
+<dtm_> do you have good loop device support in your kernel?
+<dtm_> how many does it need
+<Mr_You> lemme double check, but it should be compiled in
+<chillywilly> I must sleep now
+<chillywilly> good night all
+<chillywilly> hey at least I got the sound working on that box
+<chillywilly> ;)
+<dtm_> chillywilly: you crazy fucquir
+<chillywilly> next is the burner ;)
+<Mr_You> heh l8 man
+<dtm_> chillywilly: nitey nite
+<chillywilly> night
+chillywilly (danielb@d39.as14.nwbl0.wi.voyager.net) left irc: 
+<dtm_> hm i have no /linuxrc
+<dtm_> that kinda sucks.
+<Mr_You> not sure whats going on with the loop device deal.. at first I thought it was the mosix kernel, but I compiled a "clean" 2.4.16 kernel and same thing
+<dtm_> isn't it true that my initrd only needs /dev/tty1, /dev/raidtab, and /dev/fstab ?
+<dtm_> well i guess and /sbin/mount
+<dtm_> it's only supposed to mount and switch to the md0
+<dtm_> ok and raidstart and maybe fsck
+<dtm_> so why the heck is there initrd.txt and ramdisk.txt ?
+<dtm_> sheesh
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise.
+alexey (~alexey@195.151.214.34) joined #gnuenterprise.
+alexey (alexey@195.151.214.34) left irc: Client Quit
+<nickr> dtm_: you're supposed to use mkcramfs aren't you?
+psu (peter@manorcon.demon.co.uk) joined #gnuenterprise.
+<dtm_> nickr: not that i've heard
+<dtm_> nickr: cramfs just is compressed ext2, right?  i dont need to save space; i just need to boot
+psu (peter@manorcon.demon.co.uk) left #gnuenterprise.
+<nickr> I was under the impression that it was a special read-only type fs like for rom and stuff.
+<Mr_You> your initrd is created with mkcramfs
+<Mr_You> AFAIK
+<nickr> yes, and initrd. :)
+<Mr_You> this is pissing me off, I have no idea why it complains about: All of your loopback devices are in use!
+<Mr_You> I have 0-7
+<Mr_You>  /dev/loop0-7
+reinhard (~rm@N809P002.adsl.highway.telekom.at) joined #gnuenterprise.
+<dtm_> Mr_You: well how many does it want, and why?
+dtm_ (dtm@ip210.promontory.sfo.interquest.net) left irc: "Client Exiting"
+<Mr_You> I have no idea
+<Mr_You> fuser doesn't show anything
+<nickr> galeon is mucgh better behaved without antialiasing
+reinhard (rm@N809P002.adsl.highway.telekom.at) left irc: Read error: 104 (Connection reset by peer)
+ra3vat (ds@ics.elcom.ru) joined #gnuenterprise.
+ra3vat (ds@ics.elcom.ru) left irc: Remote closed the connection
+ra3vat (ds@ics.elcom.ru) joined #gnuenterprise.
+reinhard (~rm@N809P002.adsl.highway.telekom.at) joined #gnuenterprise.
+reinhard (rm@N809P002.adsl.highway.telekom.at) left irc: "Anything is good and useful if it's made of chocolate"
+reinhard (~rm@62.47.45.2) joined #gnuenterprise.
+alexey (~alexey@195.151.214.34) joined #gnuenterprise.
+hmmmm (~hmmm@217.66.176.240) joined #gnuenterprise.
+hmmmm (~hmmm@217.66.176.240) left #gnuenterprise ("Client Exiting").
+reinhard (rm@62.47.45.2) left irc: "Even if you're on the right track, you'll get run over if you just sit there"
+dsmith (dsmith@oh-strongsville5b-143.clvhoh.adelphia.net) left irc: Remote closed the connection
+ToyMan (~stuq@65.167.123.51) joined #gnuenterprise.
+alexey (alexey@195.151.214.34) left irc: Read error: 113 (No route to host)
+jamest (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+<derek> where o where have the little peeps gone
+reinhard (~rm@N809P002.adsl.highway.telekom.at) joined #gnuenterprise.
+<jamest> o where o where can they be
+reinhard (rm@N809P002.adsl.highway.telekom.at) left irc: "There are two types of people: those who divide people into two types, and those who don't"
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+dneighbo (~dneighbo@tmp-200253.flinthills.com) joined #gnuenterprise.
+Arturas (~root@gsk.vtu.lt) joined #gnuenterprise.
+<Arturas> Hello
+<ra3vat> Arturas: hi
+chillywilly (~danielb@d134.as13.nwbl0.wi.voyager.net) joined #gnuenterprise.
+<Arturas> Hi ra3vat
+<Arturas> Hello chillywilly
+<chillywilly> mike and I can't do network play very well because it is choppy (we're connected via cross over cable), would this have anything to do with the fact that he has a CardBus card and I only have a 16-bit pcmcia card?
+<chillywilly> anyone know?
+<Arturas> it shouldn't, but i don't know this for sure
+<chillywilly> well cardbus cards can run faster
+<dneighbo> hi Arturas 
+<chillywilly> it even says so int he PCMCIA howto
+<dneighbo> Arturas you get your mxDateTime issue resolved
+<chillywilly> and his is in 32-bit enhanced mode
+<chillywilly> accroding to winblows
+<chillywilly> wehn I ping his card it responds at PCI card speeds
+<chillywilly> 0.5ms on avg
+<chillywilly> mine responds at 1ms on avg
+<chillywilly> hmmm, but when we were on my home network it worked fine
+<chillywilly> oh, this might work
+Action: chillywilly changes the speed on mike's card to 10MB
+<chillywilly> bbl
+chillywilly (danielb@d134.as13.nwbl0.wi.voyager.net) left irc: "[BX] The birds kept calling his name, thought Caw"
+drochaid (~drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) joined #gnuenterprise.
+alexey (~alexey@195.151.214.34) joined #gnuenterprise.
+chillywilly (~danielb@d134.as13.nwbl0.wi.voyager.net) joined #gnuenterprise.
+<chillywilly> wasssup?
+<nickr> crossover can drop packets
+<chillywilly> oh?
+<chillywilly> why is that?
+<Arturas> how construction 'baseAttrs[attr]' is called (in Python)? Is this list or array or what? (attr is defined string, and when i do print baseAttrs[attr] i get an error)
+alexey (alexey@195.151.214.34) left irc: Read error: 113 (No route to host)
+<jcater> if you "print baseAttrs" that should show you what it is
+<jcater> if it prints {'Somehting': something, ...} then it's a dictionary
+<jcater> which is what I think baseAttrs is
+<jcater> and baseAttrs[attr] should be set to a string
+<jcater> wait
+<jcater> not true
+<jcater> baseAttrs[attr] could be either a string or an int
+<Arturas> it is from GParser.py
+<Arturas> int
+<Arturas> print baseAttrs gives me an error too
+<Arturas> have to quit now
+<Arturas> bye :)
+Arturas (root@gsk.vtu.lt) left irc: "ircII/tkirc"
+chillywilly (danielb@d134.as13.nwbl0.wi.voyager.net) left irc: "[BX] The name's X. BitchX."
+ra3vat (ds@ics.elcom.ru) left irc: "Client Exiting"
+ToyMan_ (~stuq@65.167.123.51) joined #gnuenterprise.
+ToyMan (stuq@65.167.123.51) left irc: Read error: 104 (Connection reset by peer)
+yogurt2unge (~charlie@modem68-adsl.capfed2.sinectis.com.ar) joined #gnuenterprise.
+jcater (jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "vacation... see y'all monday"
+psu (peter@manorcon.demon.co.uk) joined #gnuenterprise.
+stbain (~GunAndGiz@ip68-10-44-170.rn.hr.cox.net) joined #gnuenterprise.
+reinhard (~rm@62.47.45.2) joined #gnuenterprise.
+<nickr> kadak kadak kadak
+<stbain> nickr: did you ever send me an email re: the doc management system?
+<stbain> I've been a little busy lately (new baby in the house)
+<nickr> hrlm, what was I suppsode to send?
+<stbain> dunno
+<stbain> nothing informative, just more of an introduction
+<nickr> ah
+<nickr> how about a link? :)
+<stbain> go for it
+<nickr> wait, have you already seen the writeup?
+<stbain> might have
+<stbain> post it anyways so I can get a quick refresher
+<stbain> like I said, things have been a little hectic around here
+<nickr> just a sec
+Action: stbain humms the Jeopardy theme
+dtm (dtm@ip212.promontory.sfo.interquest.net) joined #gnuenterprise.
+psu (peter@manorcon.demon.co.uk) left #gnuenterprise ("switching logins").
+<nickr> http://nick.industrialmeats.com/proj/document-store/
+dtm (dtm@ip212.promontory.sfo.interquest.net) left irc: "Client Exiting"
+<nickr> had to set up my vanity domain forwarding
+<stbain> have the SGML compiled into HTML or PDF anywhere?
+<nickr> yea
+<nickr> in Document-Store/ I think
+<stbain> not authorized to view that page
+<nickr> http://nick.industrialmeats.com/proj/document-store/gnue/spec/Document-Store/documentstorespec.html
+<stbain> perfecto
+<stbain> heh... bringing you tomorrow's meat product... today
+<nickr> :)
+<stbain> cool
+<stbain> looks simple enough
+<nickr> yea, the storage part is pretty simple
+<nickr> the libarry will be the fun part.
+<nickr> Library
+<stbain> what do you see as the major hurdles to get over in order to get it implemented?
+<stbain> search engine for the library?
+<nickr> Well, the library is sort of a search engine
+<stbain> yah
+<stbain> indexing, sorting, searching
+<stbain> etc.
+<nickr> it'll warrent its own diagrams I think
+<nickr> yea
+<stbain> what about the backend? SQL server neutral?
+<nickr> I'm thinking GnUe Common
+<stbain> sounds like I'll need to read up on GNUe Common
+<stbain> ;)
+<nickr> I believe that it provides DB neutrality
+<stbain> hrmm
+<stbain> through GEAS?
+<nickr> I don't know exactly.
+<stbain> looking through Common/docs dir now
+<stbain> doesn't look like there's much info available on Common
+<stbain> frontend through forms?
+<nickr> forms/web/whatever
+<nickr> all the various objects are RPC and 'trustless' or reduced trust relationships
+<nickr> so your client just has to speak RPC
+<stbain> cool
+<dneighbo> um common will do db
+<dneighbo> w/ or w/o geas
+<dneighbo> the new geas will use common 
+<nickr> db and rpc
+<nickr> abstraction
+<dneighbo> so it would be something like
+<nickr> which is why its needed
+<dneighbo> db (common-db) geas (common - rpc)
+<dneighbo> er
+<dneighbo> db (common-db) geas (common - rpc) docustore
+<dneighbo> but it could also be
+<dneighbo> db (common-db) docustore
+<dneighbo> stbain currently only good docs for common are the source :(
+<stbain> right
+<dneighbo> we do plan on changing that though
+<stbain> heh
+<stbain> doh... 
+<stbain> looks like link for forms1.1.exe for win32 installer is broken
+<stbain> http://www.gnuenterprise.org/downloads/forms/GNUe-Forms-0.1.1.exe
+<stbain> no worky
+<dneighbo> dagnabit
+<dneighbo> i could where i fixed thos
+<dneighbo> e
+<nickr> consarnit
+<dneighbo> grrrrr
+<dneighbo> its not a link issue its a permissions issue
+<reinhard> night all
+reinhard (rm@62.47.45.2) left irc: "Never wrestle with a pig. You both get dirty and the pig likes it"
+<jamest> try now
+<dneighbo> denada
+<dneighbo> still no worky for me
+chillywilly (~danielb@d68.as8.nwbl0.wi.voyager.net) joined #gnuenterprise.
+<chillywilly> re
+<chillywilly> snoogans
+<nickr> snoochy boochy
+<stbain> jamest: works now
+<chillywilly> nickr: wjat's you are damage little boy? You have a sick and twisted world perspective
+<chillywilly> ok, ppl now onto getting the burner working ;)
+<chillywilly> woooo
+Action: chillywilly listens to Jimi
+<stbain> installing designer and forms 1.1 via Win32 installer automagically installs Common 1.1, right?
+<chillywilly> I thunk so
+<chillywilly> er think
+<nickr> windows, hah!
+<nickr> I uess it'd be good to put actual code down for docustore or at least finish the interfaces or something.
+yogurt2unge (~charlie@modem68-adsl.capfed2.sinectis.com.ar) left #gnuenterprise.
+<stbain> nickr: just so you know, I'm not a windows zealot. Rather, I'm a Linux geek
+<stbain> if only Linux would run Roger Wilco
+<chillywilly> wassat?
+<stbain> voice chat for gamers
+<chillywilly> what games use it?
+<stbain> you can use it with any game
+<stbain> runs in background
+<chillywilly> use speak freely
+<stbain> I use it for Quake3 and Return to Castle Wolfenstein
+<stbain> URL for speak freely?
+<nickr> SF sucks balls
+<chillywilly> I dunno search google man
+<chillywilly> er, search with google
+<nickr> probably something that uses RTP or H.323
+<chillywilly> sourceforge?
+<nickr> like RAT or Gnome-Phone or something
+<chillywilly> there's also gnome meeting
+<stbain> to make matters even worse, my CompSci courses which require larger project-sized submissions require the workspace/project files from MS Vis C++ :/
+<chillywilly> :-?
+<stbain> yah... sux0rs
+<chillywilly> er, :-/
+<Mr_You> re
+<chillywilly> howdy
+<Mr_You> is there a free C.A.D. app?
+<stbain> yes
+<nickr> Mr_You: for what requirements?
+<Mr_You> well.. I have no idea what I'm doing.. I just figured a C.A.D. program would let me design a garden system for me then I could build it based on those measurements.
+<Mr_You> I could do it on paper I guess.  I don't know the advantages of a C.A.D. program
+<Mr_You> except maybe it will give me the exact measurements
+<Mr_You> right?
+<nickr> maybe
+<nickr> I think freecad is a pretty gcood 2d cad program or something like that
+<Mr_You> thanks I'll give it a shot
+<nickr> maybe qcad
+<nickr> qcad has a debian packages :)
+<Mr_You> mosix has had some interesting changes
+<nickr> oh?
+<Mr_You> there is an article of a chat/interview with moshebar (sp?)
+<Mr_You> http://foundries.sf.net/clusters/index.pl?node_id=41457
+<Mr_You> basicly GPL removed on userland utils has caused a branch
+<Mr_You> www.openmosix.org
+<nickr> yea
+chillywilly (danielb@d68.as8.nwbl0.wi.voyager.net) left irc: Remote closed the connection
+chillywilly (~danielb@d68.as8.nwbl0.wi.voyager.net) joined #gnuenterprise.
+jamest (jamest@hobbes.math.ksu.edu) left irc: "[x]chat"
+<dneighbo> bbl
+dneighbo (dneighbo@tmp-200253.flinthills.com) left irc: "[BX] Yo quiero BitchX"
+ToyMan_home (CaryKittne@c5300-2-ip242.albany.thebiz.net) joined #gnuenterprise.
+dtm (dtm@ip221.promontory.sfo.interquest.net) joined #gnuenterprise.
+Action: chillywilly is burning a CD now ;)
+<Mr_You> hmmm C.A.D. is too complicated
+<chillywilly> this was a hel of lot easier to setup than the sound ;)
+Action: Mr_You will try the rigged method.
+<chillywilly> XCDRoast is cool
+<chillywilly> hey if I have Joliet extensions etc. will I sitll be able to mount it as ISO?
+Action: Isomer doesn't want anyone mounting this Iso.
+<Mr_You> mount -o loop /mnt/isofile /mntpoint
+<Mr_You> I don't know the answer to your question I guess
+<chillywilly> Isomer: hehe
+<dtm> chillywilly: yes, joliet is a filesystem type
+<dtm> has been for years
+<dtm> cat /proc/filesystems
+<chillywilly> kewl
+<dtm> it might be just built into your iso9660 driver if you selected it in .config
+<chillywilly> well the friggin CD-0Writing howto is old
+<dtm> #*())(@#
+Action: chillywilly is burning some mp3s to a CD for a test
+<chillywilly> dude  don't think I have joliet compile din
+<chillywilly> ah wel seems to work anyway
+<chillywilly> :)
+<chillywilly> /dev/cdroms/cdrom1 on /cdrom type iso9660 (ro)
+<chillywilly> booyah
+<nickr> but all the filesnames ar HOTSEX0.002
+<chillywilly> heheh
+crazymike (~crazymike@mke-65-31-133-230.wi.rr.com) joined #gnuenterprise.
+<chillywilly> sup dude
+<crazymike> hey
+<chillywilly> I gots the burner working
+<crazymike> that modem went up to $26
+<crazymike> thats cool
+<chillywilly> but XCDRoats is much cooler
+<chillywilly> er, XCDRoast
+<chillywilly> gah
+<chillywilly> you mean that combo card
+<chillywilly> ?
+<crazymike> yeah
+Action: chillywilly just burnt his mp3s onto a CD for a test
+td-work (~td-work@birddog228.birddog.com) left #gnuenterprise ("Client Exiting").
+<chillywilly> hmmm
+<chillywilly> fuck it
+<crazymike> yup
+<chillywilly> I don't want it that bad
+<dtm> chillywilly: does it work?
+<dtm> your cd-r
+<dtm> ?
+<chillywilly> yep
+<dtm> !($_
+<chillywilly> it's a cd-rw
+<dtm> is that the stuff which didn't work last night?
+<chillywilly> nah
+<chillywilly> that was the sound
+<chillywilly> got that to work though at the end of thr night
+<dtm> but wasn't cd-r broken last night
+<chillywilly> nope, didn't try to get it working much
+<chillywilly> gtoaster doesn't work too good
+<dtm> oh so it's a gtoaster problem
+<dtm> not a cd-r problem?
+<chillywilly> yea
+<chillywilly> I am using xcdroast now
+<dtm> i have a usb cd-rw i'll hafta try on leenoooks
+<chillywilly> I like it better
+<chillywilly> was easier to figure out how to work it
+<dtm> the only thing i wonder about is if i can make Toast images on macos and burn them in linux
+<chillywilly> gotta get the damn printer working
+<dtm> me too!
+<dtm> and the epson support is really booming
+<dtm> thanks to Epson in Japan
+<dtm> my 580 is allegedly supported now
+<chillywilly> oooh
+<chillywilly> this is an HP Deskjet 932C
+<chillywilly> the drivers are ok
+Action: crazymike has to get everything working, but he is an idiot, so he'll just sit here and play X-Bill
+drochaid_ (~drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) joined #gnuenterprise.
+<chillywilly> crazymike: lol
+<crazymike> :)
+drochaid (drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) left irc: Read error: 104 (Connection reset by peer)
+Nick change: drochaid_ -> drochaid
+<dtm> crazymike: an idiot?  or just crrrrrrraayyyyzaaahhhh?!?
+<crazymike> a little bit of both
+<chillywilly> crazymike: where were you beforer dawg?
+<crazymike> before when???
+<chillywilly> wit yo wo-man
+<chillywilly> earlier
+<crazymike> since I got home til now???
+<chillywilly> yea
+<crazymike> I was with my girl, then I went and got Taco Bell
+<crazymike> :)
+<chillywilly> heheh
+<chillywilly> I hav corrupted you
+<crazymike> yeah, you have
+<crazymike> mr baumann, the bitch
+<chillywilly> no more friggin rabbit food for you
+<crazymike> :)
+<chillywilly> ok mr knoblock the ass
+<chillywilly> :P
+Action: crazymike gives chillywilly a crate to the jugular
+<crazymike> :)
+<chillywilly> lol
+Action: chillywilly beats crazymike with the smoke pole
+Action: crazymike is knocked silly, er, uh CRAZY
+<crazymike> Microsoft Corp.'s most vocal rival, Sun Microsystems Inc. , on Friday filed an antitrust lawsuit against the software giant, claiming its business was damaged by Microsoft's abusive monopoly. The suit seeks damages of more than $1 billion, Sun General Counsel Michael Morris said. Under antitrust legislation, the courts would triple that award, he said.
+<chillywilly> heheh
+<chillywilly> going to get some skrimps dawg
+<crazymike> a'ight
+chillywilly (danielb@d68.as8.nwbl0.wi.voyager.net) left irc: 
+<derek> crap
+<derek> how you reconfigure x in debian again?
+<derek> dpkg --reconfigure xfree86 (i thought but that no workie)
+<crazymike> dpkg --reconfigure xserver-xfree86
+<crazymike> that should work
+<derek> ah
+<derek> hey how in gdm do you enable the shutdown menus
+Action: derek really needs to write this stuff down but wife took my 'notes' notebook
+<derek> sigh
+Action: crazymike doesn't know...you just got lucky and asked something that he actually knew before :)
+<derek> asdfj;salkdjflk;sadjfl;ksadfj
+<derek> ja;sdlkfjas;lkdfj;salkdjf
+<derek> kajs;ldfkjas;lkdfj
+<derek> im so mad
+<crazymike> I am new to the whole Linux thing
+<derek> mozilla just ate my inbox when it crashed
+<derek> had a whole bunch of friggen important emails to followup on in it
+<crazymike> that sucks
+<crazymike> :(
+<derek> btw dpkg --reconfigure xserver-xfree86 dont work either :(
+<crazymike> really???
+<crazymike> I'll be damned
+<crazymike> I could've sworn that was it
+<crazymike> :(
+<crazymike> bummer
+<derek> --configure does
+<crazymike> ahhh
+<derek> but not --reconfigure
+<derek> but like you i thought it was reconfigure
+<crazymike> my bad :)
+<derek> like ti conmplains its already installed adn configured :)
+<nickr> derek: you want dpkg-reconfigure actually
+<derek> ah
+<derek> thanks
+<derek> you da man
+<derek> we were close crazymike
+<crazymike> yeah, I saw that
+<crazymike> but yet so far :)
+<derek> is there anyway to find out videocard type
+<nickr> lspci
+<dtm> derek: X -probeonly
+<derek> i have all lspci isnt much help
+<derek> it says trident
+<derek> but gives no more info
+<derek> and i think thats wrong
+<derek> i think its really SiS
+<nickr> derek: lemme see
+<derek> its built into mother board
+<derek> and i have friggen mb docs
+<derek> and it doesnt say :(
+<nickr> derek: lets see the output of lspci
+<derek> ok
+<derek> apt getting xchat on that box
+<nickr> derek: you might also try lspci -v
+<nickr> it gives a lot more info
+Action: derek is still waiting
+<derek> darn apt server slow
+<derek> hey nickr you use gmc ever
+<derek> is there easy way to hot key a file name change
+<derek> in windows its 'f2'
+<derek> i dont see equivalent in gmc
+<derek> .......
+<derek> slow.....
+<derek> ok done
+<nickr> derek: I don't use gmc
+laurie (~laurie@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<derek> yummy
+<derek> i think lspci -v
+<derek> did the trick
+<laurie> 01:00.0 VGA compatible controller: Trident Microsystems CyberBlade/i1 (prog-if 00 [VGA])
+<laurie> 	Subsystem: Trident Microsystems CyberBlade/i1
+<laurie> 	Flags: bus master, 66Mhz, medium devsel, latency 64, IRQ 11
+<laurie> 	Memory at df000000 (32-bit, non-prefetchable)
+<laurie> 	Memory at dfee0000 (32-bit, non-prefetchable)
+<laurie> 	Memory at de800000 (32-bit, non-prefetchable)
+<laurie> 	Expansion ROM at dfed0000 [disabled]
+<laurie> 	Capabilities: [80] AGP version 1.0
+<laurie> 	Capabilities: [90] Power Management version 1
+<laurie> however
+<laurie> which card do i use?
+<laurie> 493  Trident Blade3D (generic)                         Blade3D
+<laurie> 494  Trident Cyber 9320 (generic)                      Cyber9320
+<laurie> 495  Trident Cyber 9382 (generic)                      Cyber9382
+<laurie> 496  Trident Cyber 9385 (generic)                      Cyber9385
+<laurie> 497  Trident Cyber 9388 (generic)                      Cyber9388
+<laurie> 498  Trident Cyber 9397 (generic)                      Cyber9397
+<laurie> 499  Trident Cyber 939a (generic)                      Cyber939a
+<laurie> 500  Trident Cyber 9520 (generic)                      Cyber9520
+<laurie> 501  Trident CyberBlade (generic)                      CyberBlade
+<laurie> 502?
+<laurie> er
+<laurie> 501
+<nickr> laurie: what the freak configurer are you using?
+<laurie> xf86config
+<laurie> as the reconfigure one doesnt let you jerk with video card settings :(
+<laurie> it just makes you pick from list of 'brands'
+<laurie> pretty much
+<laurie> brb see if i hosed this or not
+laurie (laurie@cpe-24-221-112-50.az.sprintbbd.net) left irc: "Client Exiting"
+<nickr> hrm
+<nickr> you should install xserver-xfree86 and use the nice debconf configurer
+<derek> i have xserver-xfree86 installed
+<derek> where is the nice debconf configure?
+<derek> i do the dpkg-reconfigure
+<derek> and it gives me like no options :(
+<nickr> and you got xf86config?
+<nickr> hrm.
+<dtm> hi guys 
+<dtm> how's it going
+<nickr> what version of debian are you runnig?
+<derek> er very little (which is nice to get things working) but horrible for a FLIPPING SCREEN
+<derek> sid
+<nickr> hrm
+Action: derek hates gdm (as im not used to it)
+<dtm> derek: what's bad about it/
+<nickr> I found the debconf thing to be much better than xf86config
+<dtm> ?
+<dtm> are you ladies having a lovely day?
+<derek> yes lovely
+<derek> nickr: its much better just not as many options
+<derek> grrrr
+<derek> that darn 'flicker' still exists when i move windows
+<derek> this irks me
+<derek> i had this problem w/ my laptop too
+<nickr> derek: flicker, like chunky jumpy?
+<derek> no
+<nickr> no I mean
+<derek> like little 'stars'
+<derek> around the windows when i move them
+<nickr> like theres interlaces of the image you're moving like halfway over on the screen?
+<derek> barely visible, but to me highlyh noticable
+<nickr> this is a SiS?
+<derek> no
+<derek> trident cyberblade
+<nickr> hrm.
+<derek> its ok for now
+<nickr> what depth?
+<derek> i dont know
+<derek> how can i tell those things?
+<derek> as i want it smaller (higher res)
+<nickr> didn't it ask you what color depth you want to use?
+Action: derek needs to fix
+<derek> 24 is what i choose
+<nickr> see the debconf one asks you these things
+<derek> i need to fix fonts too
+<derek> debians fonts by default SUCK
+<derek> they are for the 'blind'
+<derek> anyhow back to how do you change resolution?
+<derek> btw these are the things that kill me on linux
+<nickr> in the debconf thing it prompts you for this
+<derek> why should it be so difficult to change resolution?
+<derek> i mean once im running
+<derek> i should NOT have to reconfigure x everytime i want to change my resolution
+<nickr> c-a-+/-
+<derek> ca?
+<derek> ctl-alt
+<nickr> but that only cycles the ones that you selected in your config
+<nickr> its all about the X mentality
+<derek> thats fine (cycling ones in config)
+<derek> i CANT do that on my laptop though
+<derek> as only plus key i have requires a shift
+<derek> which disables the strok (fwiw) now i remember why i didnt remember that only ever have wanted to change on laptops
+Nick change: crazymike -> crazymike_away
+<nickr> there is a gnome applet that lets you do it
+<derek> btw
+<derek> doing this changed things
+<derek> but it made X go bye bye
+<derek> so i assume it crashed X
+<derek> sigh
+<derek> i give up
+<derek> i spend more time SCREWING with getting linux configured than i do doing work on it at times...
+<derek> so frustrating
+<derek> good thing is once its configured and working its pretty darned rock solid
+<drochaid> have you considered using windows?
+<drochaid> takes a couple of hours to set up ...
+<drochaid> but you'll be screwing with it constantly to keep it up :)
+Action: drochaid isn't bitter
+<drochaid> no, just because I finished a 2 day 2k build at gmt 4pm ... and at gmt 10pm it had died completely 
+<drochaid> not at all bitter
+Action: drochaid toddles off again
+<derek> ding dong the evil bitch is dead :)
+<derek> no more mozilla now, im going to sylpheed
+<derek> btw dtm i got my inbox eaten today
+<derek> about 100+ messages lost
+<derek> so if you sent something and i dont respond im sorry :(
+<derek> anyone know how to convert mailboxes from mozilla to sylpheeds type?
+Nick change: crazymike_away -> crazymike
+<derek> grrr 
+<derek> differing ssh versions
+<derek> and dpkg-reconfigure doesnt let me 'rechoose'
+ToyMan_home (CaryKittne@c5300-2-ip242.albany.thebiz.net) left irc: "Client Exiting"
+<drochaid> mar sin leibh
+<derek> feeble algebra
+<derek> er
+<derek> feasger math or whatever it is :)
+<drochaid> lol
+<drochaid> well I said goodnight, and you said good afternoon/evening ;)
+<drochaid> cya
+crazymike (crazymike@mke-65-31-133-230.wi.rr.com) left irc: "Client Exiting"
+<dtm> derek: no inbox?!  wholly shizi.tn
+<dtm> derek: you poor bastage
+<dtm> derek: well at least you can evaluate http://mmmgood.net/doc/dcl_wishlist.html unless that's mdean's area
+<nickr> derek: by definition dpkg-reconfigure should let you rechoose
+chillywilly (~danielb@d68.as8.nwbl0.wi.voyager.net) joined #gnuenterprise.
+<chillywilly> wassup?!??!
+<nickr> hey chillywilly 
+<chillywilly> where's crazymike at?
+Action: chillywilly rips CUPS out
+<chillywilly> nickr: what printing software do you use?
+<nickr> cups
+<chillywilly> anyone know wtf this is:
+<chillywilly> Mar  7 12:30:33 babers kernel: spurious 8259A interrupt: IRQ7.
+<chillywilly> that can't be good
+<chillywilly> earlier it does:
+<chillywilly> Mar  7 12:30:19 babers kernel: parport0: PC-style at 0x378 (0x778) [PCSPP,TRISTATE]
+<chillywilly> Mar  7 12:30:19 babers kernel: parport0: irq 7 detected
+<chillywilly> Mar  7 12:30:20 babers kernel: lp0: using parport0 (polling).
+<chillywilly> I'm thinking this si why the damn printer won't work anymore
+<nickr> that does'nt sounds so great
+<chillywilly> maybe I just need to load lp module with the proper params
+<chillywilly> ;)
+<chillywilly> screw the polling crap
+<chillywilly> I saw something on the Linux Kernel mailing list about someone getting alockup on that and it having to do with an nVidia card
+<chillywilly> there is an nVidia card in here
+<chillywilly> 01:05.0 VGA compatible controller: nVidia Corporation Vanta [NV6] (rev 15) (prog-if 00 [VGA])
+<chillywilly> it doesn't lock up the computer though
+<chillywilly> but the printer doesn't work :-/
+<nickr> chillywilly: polling is not what you think it is
+<chillywilly> I know
+<chillywilly> that interrupt is not good though
+<nickr> so give it the right one.
+<chillywilly> well I mena getting that message does nto look good
+<chillywilly> er, mean
+<chillywilly> er, not
+Action: derek hugs sylpheed
+Action: derek wonders if they take donations
+<derek> im tempted to cut them a check for 50 bucks
+<derek> im VERY impressed
+<derek> seemless import of netscape mail
+<derek> nice clean (FAST) interface with good features
+<nickr> yea
+Action: derek loves this threaded mail
+<derek> mmmm mmmm yummy
+<chillywilly> threaded?
+<derek> its what evolutions wishes it could be :)
+<chillywilly> mutt does that ;)
+<nickr> like mutt has
+<nickr> evo is for a ifferent audienc.
+<derek> netscape did it too
+<chillywilly> I don't need no stinkin' gius
+<chillywilly> er, guis
+<derek> but it was not good
+<derek> time will tell if syphleed does better
+<derek> nickr: you really think so?
+<derek> i guess evolution is task and calendar too
+<nickr> yes, I really do.
+<chillywilly> hehe
+<derek> but i had wife try evolution and she said
+<derek> let me put this nicely
+<nickr> I know several people who probably wouldn't use linux without evo
+<derek> 'what is this shit, give me windows back'
+<chillywilly> nickr: do you know how to specify io ports and inetrrupts to lp?
+Action: chillywilly does know the syntax
+<derek> i put on syphleed
+<derek> and her only complaint so far is in html mail if she clicks a link it does nothing
+<nickr> chillywilly:  I have no idea.
+<derek> im seeing now that it calls 'netscape' by default
+<derek> which isnt installed
+<nickr> derek: she uses outlook express normally?
+<chillywilly> cnage it
+<chillywilly> er, change
+<dtm> derek: dood, that's a pretty abusive statement for her to make to you 
+<nickr> yea, thats a smackable statement.
+<dtm> geeeeeez
+<nickr> I'm making myself sick on butterfinger BBs
+<dtm> nickr: cool
+<nickr> I'm 90% my second pound
+<chillywilly> my mom likes evolution
+<nickr> the good thing about free software is that there is a lot of choice.
+<dtm> chillywilly: does your mom give you the finger if she didn't?  ;)
+<chillywilly> wa?
+<dtm> chillywilly: like derek's wife?
+<chillywilly> where did he say that?
+<nickr> make that 100%
+<nickr> 19:01 < derek> 'what is this shit, give me windows back'
+<chillywilly> you sick bastard
+<chillywilly> that says nothing about flipping the bird
+<nickr> well he 'put it nicely'
+<dtm> ha
+<nickr> so I assume there was ball-kneeing involved
+<chillywilly> ouch
+<dtm> HA
+<chillywilly> dude everytime you use windows you get theat ball-kneeing feeling
+<dtm> heh
+<chillywilly> s/you/one/
+<derek> well the phone call was nasty
+<derek> as i just SWITCHED her to linux w/o warning
+<derek> and evolution really does suck :)
+<chillywilly> phone call?
+<chillywilly> I dunno about evolution sucking, my mom seems to like it
+<chillywilly> runs fast on this box
+<chillywilly> 800MHz Athlon ;)
+<derek> um put it this way chilly
+<derek> even the ximian developers are bagging on it being non usable to them :)
+<chillywilly> yea, what version though?
+<chillywilly> 1.0.2 seems fine
+<chillywilly> I dunno I have no opinion of it nor do I wish to use it
+<chillywilly> I am used to using keys and commds to navigate my mail
+<chillywilly> evo requires to much mouse movement
+<chillywilly> ;)
+<derek> im half teasing
+<derek> it will be a killerapp
+<derek> some day
+<nickr> I don't agree that evolution sucks
+<nickr> its a good concept, and it looks nice
+<nickr> its like a first draft
+<nickr> like X11R1
+<nickr> :)
+<derek> well i half agree
+<derek> its past sucking yes
+<derek> but its typical ximian :(
+<derek> i.e. its too microsoft ish
+<derek> and im not talking look and feel
+<derek> im talking bloat and overtly complex
+<derek> example dsmith wanted to garner address book data from it for another program
+<derek> THIS SHOULD BE AN EASY AND ENCOURAGED THING
+<derek> basically they hand him an documented and jacked db api that they say they havent yet really grokked (the storage method)
+<derek> and point him to oaf/bonobo/corba hell and say he could 'try' that too
+<derek> to me if their aim (which they say) is not the home user but the corporate desktop
+<chillywilly> blah, blah
+<chillywilly> blah, blah, blah
+<derek> stuff like that is what gives m$ a bad name
+<nickr> it does provide an interface to that
+#gnuenterprise: mode change '+o derek' by ChanServ!ChanServ@services.
+chillywilly kicked from #gnuenterprise by derek: blah blah blah to you too!
+chillywilly (~danielb@d68.as8.nwbl0.wi.voyager.net) joined #gnuenterprise.
+<nickr> its not well documented though
+<chillywilly> derek: grow up
+chillywilly kicked from #gnuenterprise by derek: blah blah blah to you too!
+chillywilly (~danielb@d68.as8.nwbl0.wi.voyager.net) joined #gnuenterprise.
+#gnuenterprise: mode change '+b *!*@*.as8.nwbl0.wi.voyager.net' by derek!~derek@cpe-24-221-112-50.az.sprintbbd.net
+chillywilly kicked from #gnuenterprise by gnuebot: Banned
+<nickr> I agree they should have encouraged the use thoir interfaces more.
+<derek> wonder if that will tick him off ;)
+<derek> evil grin
+Action: derek needs to find out how to unban him
+<nickr> that seems a little heavy handed.
+<derek> im dicking with him
+#gnuenterprise: mode change '-b *!*@*.as8.nwbl0.wi.voyager.net' by derek!~derek@cpe-24-221-112-50.az.sprintbbd.net
+chillywilly (~danielb@d68.as8.nwbl0.wi.voyager.net) joined #gnuenterprise.
+<chillywilly> wooooo
+Action: derek runs and hides
+<chillywilly> :'(
+<chillywilly> nobody wubs me
+<nickr> me either.
+<chillywilly> I wub you nickr
+<nickr> aw
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<chillywilly> man
+<chillywilly> wehat gives
+<chillywilly> lpr: cannot create /var/spool/lpd/lp/.seq
+<chillywilly> brb
+chillywilly (danielb@d68.as8.nwbl0.wi.voyager.net) left irc: 
+<dneighbo> hmmm nickr how do you detect audio cards?
+<dneighbo> 00:07.5 Multimedia audio controller: VIA Technologies, Inc. AC97 Audio Controller (rev 50)
+<dneighbo>         Subsystem: VIA Technologies, Inc.: Unknown device 4511
+<dneighbo>         Flags: medium devsel, IRQ 10
+<dneighbo>         I/O ports at d800
+<dneighbo>         I/O ports at d400
+<dneighbo>         I/O ports at d000
+<dneighbo>         Capabilities: [c0] Power Management version 2
+<dneighbo> is what i get from lspci -v
+<nickr> dneighbo: audio is trickier than video, because its not as widely supported
+<nickr> dneighbo: or as straightforward
+<dneighbo> i just wish i knew what the sound set was :(
+<dneighbo> i tried sndconfig
+<dneighbo> but no luck :(
+<nickr> you just need to ascertain the correct driver
+<nickr> and load it
+chillywilly (~danielb@d68.as8.nwbl0.wi.voyager.net) joined #gnuenterprise.
+<dtm> high.
+<dtm> chillywilly: EYE RUB SHOO TWO, CHEELEY!?@
+<chillywilly> :)
+<chillywilly> hmmm
+<chillywilly> my job is stuck in the queue
+<dtm> which job
+<chillywilly> I can't win!!!
+<dtm> ))*#
+<chillywilly> mclkzj
+<chillywilly> jkhsf0p8wqhrljiho-
+<dtm> IN WHICH QUEUE.
+<dtm> ?!
+<chillywilly> babers:/home/danielb# lpq
+<chillywilly> lp is ready and printing
+<chillywilly> Rank   Owner      Job  Files                                 Total Size
+<chillywilly> active danielb    2    mkisofs.out                           305 bytes
+<dtm> HAHAHAHAHAH
+<dtm> CHILLYL.23
+<dtm> WHEN I WAS AT VA I SPENT APPROX. 1 WEEK CONFIGURING LPD.
+<dtm> SOLID.
+<dtm> HAHAHAHA@#()*@#@
+<chillywilly> well I just have to debug it ;)\
+<chillywilly> I used apsfilter
+<dtm> chillywilly: is that standard lpd?  i would think it'd be lprng or cups by now
+<dtm> standard bsd lpd
+<dtm> ?!
+<dtm> OR WHAT.
+<chillywilly> ummm
+<chillywilly> yea
+<chillywilly> but with PPD support
+<dtm> no way
+<dtm> that still exists?
+<chillywilly> apt-get install lpr-ppd
+<dtm> on what OS is tihs?
+<dtm> oh debian
+<chillywilly> Linux babers 2.4.18-xfs #1 Thu Mar 7 16:31:08 CST 2002 i686 unknown
+<dtm> well fekkensheet.
+<chillywilly> yes
+<chillywilly> Debian sid
+<dtm> *#@)*
+<chillywilly> now it just hangs
+<chillywilly> weee
+<dtm> chillywilly: you have to constantly stop and start it.  do NOT trust 'restart'
+<dtm> dont forget to delete its queues and lock files periodically
+<chillywilly> ok
+<dtm> dont forget to drop your pants and evacuate upon its quivering wide little eyes
+<chillywilly> it won't stop
+<chillywilly> bastard
+<dtm> STOP IT, CHILY.L
+<dtm> SOTP IT@#(
+<chillywilly> killal lpd
+<dtm> DON'T LET THIS CONTINUE
+<chillywilly> er, killall lpd
+<dtm> killall -9 lpd
+<dtm> KILLTHEMALL -REALGOOD lpd
+<dtm> @#*)
+<dtm> CHILY.
+<dtm> I JUST BUILT A[PACHE 1.3.22
+<dtm> HAHAHA
+<nickr> you just use fucking cups like sane people.
+<dtm> SRPM FROM RH7.2 UPON YDL2.0
+<derek> nickr: 
+<derek> this give you more to go on?
+<derek> For full feature system designs, the Apollo KT133A is paired with the VIA VT82C686B super south bridge. Highly advanced, the EP-8KTA3 Pro combines integrated AC-97 audio support for SoundBlaster Pro and FM synthesis legacy audio, super I/O, and hardware monitoring capabilities.
+<derek> i have the via vt82c686b chip set
+Action: derek wonders if the hardware monitoring has a linux app yet :)
+<chillywilly> nickr: cups doesn't work
+<dtm> nickr: hey i dont want you extrapolating on or encouraging chilly's habits
+<chillywilly> well I got it to print one page
+<chillywilly> cancelled the job
+<chillywilly> and then it never printed again
+<chillywilly> :(
+<chillywilly> brb
+chillywilly (danielb@d68.as8.nwbl0.wi.voyager.net) left irc: 
+<derek> hmmm
+<derek> whats this
+<derek> http://www.viaarena.com/?PageID=60
+<nickr> derek: heh. hrm, you could try the sb driver.
+<derek> of course no debian on here :(
+<derek> on the url i gave
+<derek> it has instructions for redhat and mandrake on suse on how to do display, audio, usb even :(
+<nickr> derek: er?
+chillywilly (~danielb@d68.as8.nwbl0.wi.voyager.net) joined #gnuenterprise.
+<dneighbo> nickr: look at link i pasted
+<nickr> derek: just load the drivers that it recommends
+<dneighbo> it has all drivers etc for red hat, suse, etc for my motherboard
+<chillywilly> back
+<dneighbo> i cant read it
+<chillywilly> that was weird
+<dneighbo> its .gzv
+<chillywilly> all pseudo terminals were locked up
+<dneighbo> i changed to .gz
+<dneighbo> and unzip
+<dneighbo> but its like half binary half text
+<dtm> chillywilly: you poor psycho OS hacker
+<nickr> hrm
+<chillywilly> ;P
+<derek> alias char-major-116 snd
+<derek> alias snd-card-0 snd-card-via686a
+<derek> alias char-major-14 soundcore
+<derek> alias sound-slot-0 snd-card-0
+<derek> alias sound-service-0-0 snd-mixer-oss
+<derek> alias sound-service-0-1 snd-seq-oss
+<derek> alias sound-service-0-3 snd-pcm-oss
+<derek> alias sound-service-0-8 snd-seq-oss
+<derek> alias sound-service-0-12 snd-pcm-oss
+<derek> is some of what it says
+<chillywilly> ah , crap alsa
+<chillywilly> keep it away!
+<derek> anyone know has alsa works?
+<chillywilly> yep, on my laptop
+<nickr> derek: ignore that shit, just load via82cxxx_audio
+<derek> how do i load that
+<derek> i.e. how do i know what the xxx is and how do i load it
+<chillywilly> modprobe
+<derek> im a kernel newbie
+<chillywilly> lspci -v
+<nickr> derek: the xxx is literally in the name
+<chillywilly> :P
+<nickr> derek: the driver covers all the 82c* cards
+<chillywilly> rm -rf /
+<chillywilly> that's how you do it man
+<chillywilly> (pleazse don't bamn me again)
+<chillywilly> er, ban
+<dneighbo> rofl
+<dneighbo> nickr: so what do i do?
+<chillywilly> printers suck
+<nickr> dneighbo: first, what kernel are you running?
+<dneighbo> um
+<dneighbo> dunno :)
+<dneighbo> default for sid
+<chillywilly> does parport conflict with parport_pc?
+<nickr> dneighbo: uname -a
+<nickr> dneighbo: you'll probably have to install a 2.4 kernel to use the va driver.
+<nickr> via
+<chillywilly> guess notr
+<dneighbo> aegagrus:/home/dneighbo# uname -a
+<dneighbo> Linux aegagrus 2.2.19pre17 #1 Tue Mar 13 22:37:59 EST 2001 i686 unknown
+<dneighbo> aegagrus:/home/dneighbo# 
+<chillywilly> guess not
+<nickr> dneighbo: what cpu is the box?
+<chillywilly> who want to help me get this porinter working so I can sleep for a change ;)
+<dneighbo> processor       : 0
+<dneighbo> vendor_id       : AuthenticAMD
+<dneighbo> cpu family      : 6
+<dneighbo> model           : 7
+<dneighbo> model name      : AMD Duron(tm) Processor
+<dneighbo> stepping        : 1
+<dneighbo> cpu MHz         : 1202.749
+<dneighbo> cache size      : 64 KB
+<nickr> dneighbo: apt-get install kernel-image-2.4.17-k6 grub lilo-
+<dneighbo> what is grub lilo-
+<chillywilly> s/-//
+<chillywilly> wtf is thew '-' fer?
+<nickr> dneighbo: its easier to boot 2.4 with grub, because theres no thinking involved.
+<nickr> chillywilly: it removes it
+<chillywilly> oh
+<dneighbo> ok thats all well and good
+<dneighbo> why k6?
+<chillywilly> is that a pacjage or somethat apt recognizes?
+<dneighbo> duron in the k6 family?
+<chillywilly> er, package
+<dneighbo> uilding Dependency Tree... Done
+<dneighbo> The following extra packages will be installed:
+<dneighbo>   ash cramfsprogs initrd-tools 
+<dneighbo> The following packages will be REMOVED:
+<dneighbo>   lilo 
+<dneighbo> The following NEW packages will be installed:
+<dneighbo>   ash cramfsprogs grub initrd-tools kernel-image-2.4.17-k6 
+<chillywilly> fuck it typing sucks too
+<dneighbo> that look right?
+<nickr> dneighbo: dneighbo oh, I think you want -k6
+<nickr> dneighbo: er, k7
+<chillywilly> grub rocks
+<dneighbo> The following extra packages will be installed:
+<dneighbo>   ash cramfsprogs initrd-tools 
+<dneighbo> The following packages will be REMOVED:
+<dneighbo>   lilo 
+<dneighbo> The following NEW packages will be installed:
+<dneighbo>   ash cramfsprogs grub initrd-tools kernel-image-2.4.17-k7 
+Action: chillywilly needs to install grub here
+<dneighbo> oh i will be happy to go on grub
+<dneighbo> im trying it wish me luck
+<nickr> dneighbo: don't reboot until you talk to me agfain :)
+<dneighbo> ok should be done downloading in a minute
+<chillywilly> so can you do apt-get install package- for anything?
+<nickr> chillywilly: yea
+<chillywilly> what do you use to configure cups dude?
+<chillywilly> the web interface?
+<chillywilly> gtklp?
+Action: chillywilly has tried and failed with the web interface
+<dneighbo> ou are attempting to install an initrd kernel image (version 2.4.17-k7)
+<dneighbo> This will not work unless you have configured your boot loader to use
+<dneighbo> initrd.
+<dneighbo> As a reminder, in order to configure lilo, you need to
+<dneighbo> add an 'initrd=/initrd.img' in your /etc/lilo.conf
+<dneighbo> I repeat, You need to configure your boot loader. If you have already done
+<dneighbo> so, and you wish to get rid of this message, please put
+<dneighbo>   `do_initrd = Yes'
+<dneighbo> in /etc/kernel-img.conf.
+<dneighbo> Do you want to stop now? [Y/n]
+<nickr> say 'no'
+<dneighbo> what do i do?
+<nickr> or n
+<dneighbo> what is ash?
+<nickr> ash is a little tiny posix shell
+<chillywilly> a small shell
+<chillywilly> they put it on the boot floppies
+<nickr> they also put it in the initrd
+<chillywilly> bahs won'
+<chillywilly> t fit ;)
+<dneighbo> Setting up kernel-image-2.4.17-k7 (2.4.17-1) ...
+<dneighbo> /boot/initrd.img does not exist. Installing from scratch, eh?
+<dneighbo> Or maybe you don't want a symbolic link here. Hmm? Lets See.
+<dneighbo> I notice that you do not have initrd.img symbolic
+<dneighbo> link. I can create one for you, and it shall be
+<dneighbo> updated by newer kernel image packages. This is 
+<dneighbo> useful if you use a boot loader like lilo.
+<dneighbo> Do you want me to create a link from /boot/initrd.img-2.4.17-k7 to initrd.img?[Yn] 
+<chillywilly> er, bash
+<dneighbo> what now?
+<nickr> dneighbo: yes
+<dneighbo> back to prompt
+<dneighbo> what now
+<chillywilly> won't matter if you use grub ;)
+<dneighbo> nickr just said to consult him before rebooting
+<nickr> dneighbo: do grub-install
+<dneighbo> aegagrus:/home/dneighbo# grub-install 
+<dneighbo> install_device not specified.
+<dneighbo> Usage: grub-install [OPTION] install_device
+<dneighbo> Install GRUB on your drive.
+<dneighbo>   -h, --help              print this message and exit
+<dneighbo>   -v, --version           print the version information and exit
+<dneighbo>   --root-directory=DIR    install GRUB images under the directory DIR
+<chillywilly> does that ever work?
+<dneighbo>                           instead of the root directory
+<dneighbo>   --grub-shell=FILE       use FILE as the grub shell
+<nickr> oh, grub-install /dev/whatever
+<dneighbo>   --force-lba             force GRUB to use LBA mode even for a buggy
+<dneighbo>                           BIOS
+<dneighbo>   --recheck               probe a device map even if it already exists
+<nickr> the disk thta you boot from
+<dneighbo> INSTALL_DEVICE can be a GRUB device name or a system device filename.
+<dneighbo> grub-install copies GRUB images into the DIR/boot directory specfied by
+<dneighbo> --root-directory, and uses the grub shell to install grub into the boot
+<dneighbo> sector.
+<dneighbo> Report bugs to <bug-grub@gnu.org>.
+<dneighbo> aegagrus:/home/dneighbo# 
+<nickr> dneighbo: you don't have to fucking paste the whole thing
+<dneighbo> um
+<dneighbo> how do i know where?
+<dneighbo> as i had lilo on MBR
+<dneighbo> :)
+<nickr> dneighbo: type mount
+<nickr> dneighbo: look at your / device
+<chillywilly> what is the device for your drive
+<nickr> dneighbo: take the /dev/hdblahnumber and do grub-install /dev/hdblah
+<dneighbo>  /dev/hda2
+<nickr> dneighbo: grub-install /dev/hda
+<dneighbo> hmmm it comes back
+<dneighbo> i did
+<dneighbo> grub-install /dev/hda2
+<nickr> dneighbo: no no
+<dneighbo> too late
+<dneighbo> how do i undo it?
+<nickr> dneighbo: well do it with /dev/hda too
+<nickr> it doesn't matter
+<dneighbo> aegagrus:/home/dneighbo# grub-install /dev/hda2
+<dneighbo> Probing devices to guess BIOS drives. This may take a long time.
+<dneighbo> Installation finished. No error reported.
+<dneighbo> This is the contents of the device map /boot/grub/device.map.
+<dneighbo> Check if this is correct or not. If any of the lines is incorrect,
+<dneighbo> fix it and re-run the script `grub-install'.
+<dneighbo> (fd0)	/dev/fd0
+<dneighbo> (hd0)	/dev/hda
+<dneighbo> aegagrus:/home/dneighbo# 
+<dneighbo> \
+<dneighbo> aegagrus:/home/dneighbo# grub-install /dev/hda 
+<nickr> dneighbo: do.it.again.with./dev/hda
+<dneighbo> Installation finished. No error reported.
+<dneighbo> This is the contents of the device map /boot/grub/device.map.
+<dneighbo> Check if this is correct or not. If any of the lines is incorrect,
+<dneighbo> fix it and re-run the script `grub-install'.
+<dneighbo> (fd0)	/dev/fd0
+<dneighbo> (hd0)	/dev/hda
+<dneighbo> aegagrus:/home/dneighbo# 
+<nickr> alright
+<nickr> now fucking do update-grub
+<dneighbo> Could not find /boot/grub/menu.lst file. Would you like one generated for you? (y/N) 
+<nickr> yes
+<dneighbo> ok printed bunch of stuff then quit
+<dneighbo> After you have edited /boot/grub/menu.lst , please re-run 'update-grub'.
+<dneighbo> aegagrus:/home/dneighbo# 
+<dneighbo> are last lines
+<nickr> okay, now you have to edit some comments in that file
+<nickr> update-grub does a fairly magical thing
+<nickr> it uses comments in you menu.lst as arguments
+<dneighbo> ok tell me what i need to update
+<nickr> look for the DO NOT UNCOMMENT THEM line
+<nickr> slightly after there is what we're editing
+<nickr> first adjust kopt=
+<dneighbo> ok there
+<nickr> change the root device to hda2
+<dneighbo> make it what?
+<dneighbo> # kopt=root=/dev/hda2 ro
+<nickr> yea
+<nickr> thats fine actuall
+<dneighbo> shoudl it be ro?
+<dneighbo> or rw?
+<nickr> ro
+<dneighbo> otay
+<dneighbo> any other changes
+<nickr> change groot to (hd0,1)
+<nickr> everything else should be fine for now
+<nickr> save quick rerun update-grub
+<dneighbo> # groot=(hd0,1)
+<dneighbo> anymore?
+<chillywilly> why doesn't friggin grub-0install ever work for me?
+<nickr> save quit rerun update-grub
+Action: chillywilly usually makes a boot diosk and doe sit manually in the shell
+<nickr> chillywilly: because you don't know how to make it work
+<chillywilly> then boot it manually and install proper config files
+<chillywilly> I just do it how the info file tells you to without grub-install script
+<dneighbo> nickr: sorry missed that line... (probably think im a dumb ass)
+<nickr> dneighbo: yes I do
+<nickr> save quit rerun update-grub
+<dneighbo> seems to have gone well
+<nickr> okay, now try rebooting and you should have a pretty meny
+<nickr> you can continue to talk to us during reboot
+<chillywilly> uh?
+<dneighbo> ok rebooting now
+dneighbo (dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: "Client Exiting"
+<nickr> hope I didn't fuck up his system
+<nickr> :)
+<chillywilly>  hehe
+<chillywilly> ;P
+<chillywilly> we'll find out soon enough
+<chillywilly> dude that grub-install script never works for me
+<nickr> what does it do?
+<chillywilly> babers:~# grub-install /dev/hda
+<chillywilly> /dev/hda does not have any corresponding BIOS drive.
+<nickr> are you using the right device?
+<chillywilly> yea the master ide drive
+<nickr> it might be that ide-scsi is interfering
+<derek> i got grub
+<derek> and it seems to be reloading
+<chillywilly> it doesn't work on my laptop either
+<derek> GDM is back up
+<nickr> derek: nice menu eh?
+<chillywilly> but anyway, I install via a different method
+<derek> yip
+<chillywilly> nickr: how do you commonly set up CUPS?
+<chillywilly> with th4e web thingy?
+<nickr> derek: cool
+<derek> gack
+<nickr> chillywilly: yea
+<derek> it killed my networking though
+<nickr> what?
+<nickr> oh
+<derek> i tried to use xchat and says bad host
+<derek> so i do ifconfig and get nothing
+<nickr> derek: the driver name might have changed
+<nickr> derek: what do you have?
+<derek> realtek something
+<nickr> derek: pci?
+<derek> um on board
+<derek> but shsows up in pci
+<nickr> then its pci :)
+<derek> realtek 8139
+<nickr> derek: lemme see
+<derek> how do i change the driver 
+<chillywilly> you just load the module
+<derek> modconf
+<chillywilly> modprobe or insmod
+<nickr> derek: hrm just a sec
+<nickr> derek: you can use modconf to adjust your drivers you know
+<derek> im doing it already
+<chillywilly> yes it is printing
+<chillywilly> woooo
+<chillywilly> I think it is anyway
+<chillywilly> yes
+<chillywilly> heh the test page has a little simley in the uppper left corner?
+<chillywilly> that's it
+<chillywilly> ?
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<dneighbo> hi mom
+<dneighbo> i got it to work 
+<chillywilly> sup dawg
+<dneighbo> yeah :
+<chillywilly> fuck it won't do it again
+<nickr> I'm just too good.
+<chillywilly> where does cups log things?
+<nickr> um
+<nickr> /var/log ?
+<nickr> :)
+<dneighbo> so back to sound
+<dneighbo> now that we have new kernel now what?
+<dneighbo> i tried modconf to load ac7
+<dneighbo> and it loaded ok
+<chillywilly> nickr: duh
+<dtm> chillywilly: does your initrd boot to a software riad device?
+<dneighbo> but do i need to do something to configure sound?
+<chillywilly> dtm: no
+<chillywilly> dtm: it's not even a valid image
+<chillywilly> ;P
+<dneighbo> and is ac7 proper module
+<dtm> chillywilly: it switches to an alternate root, right?
+<chillywilly> dtm: I don;t really need it I ust left it there
+<nickr> dneighbo: I dunno, is it? :)
+<derek> im not sure :(
+<derek> i just have chipset number
+<derek> vt82c686b
+<nickr> dneighbo: thats generally what the drivers are named after
+<nickr> dneighbo: go into modconf and find it.. its in sound
+<derek> well this is the motherboard chipset not sound card chip set
+<derek> 7. (12/28/2001 Ver 0.91A) Red Hat Linux 7.2/7.1 VT82C686B/VT8231/VT8233/VT8233C Audio Driver Installation Guide
+<derek> This document describes four methods of installing the audio driver for VIA's south bridge chips: (1) OS built-in driver, (2) VIA driver, (3) ALSA driver from the Advanced Linux Sound Architecture project, and (4) OSS driver from 4Front Technologies. The instruction for each method and a comparison of their respective features are provided.
+<derek> was from that one
+<derek> ok foundit and installed it
+<derek> now what?
+<nickr> derek: try catting something to /dev/audio and see if it makes noise :)
+<chillywilly> I tried to orint the test page 3 more times and now ti won't go
+<chillywilly> this fucking blows man
+<chillywilly> hijs driver sucks
+<chillywilly> er, whatever the friggin thiung is called
+<chillywilly> now it prints
+<chillywilly> (switched drivers)
+<chillywilly> yay
+<dneighbo> win.wav >/dev/audio
+<dneighbo> didnt seem to produce noise
+<chillywilly> woohoo
+<chillywilly> now I just need to get the scanner working
+<nickr> dneighbo: do you have an output plugged in?
+<dneighbo> yes let me triple check though
+<nickr> hrm
+<dneighbo> cable slightly tugged on
+<dneighbo> when i pulled case out a minute ago
+<dneighbo> turned up speakers now and hear light gargle
+<dneighbo> so am getting some 'noise'
+<nickr> well wavs won't play from /dev/audio
+<nickr> try catting /vmlinuz
+<nickr> its a very good test
+<dneighbo> yikes
+<dneighbo> need to turn sound down now :0
+<dneighbo> i get lots of noise now :0
+<nickr> okay
+<nickr> thats good
+<nickr> do you have a mic plugged in?
+<dneighbo> i just need samba up
+<dneighbo> um
+<chillywilly> hehe
+<dneighbo> what package is smbmount in?
+<dneighbo> or the equivalent there of
+<nickr> dneighbo: samba
+<dneighbo> you have to get the server?
+<dneighbo> i tried getting just smbclient
+<dneighbo> but will get all of samba i suppose
+Action: chillywilly should go watch scifi as a reward to himself for getting the printer to work ;)
+<chillywilly> scifi channel even
+<nickr> heh
+Action: dneighbo thinks chillywilly is gonna punch the clown while watching lexx
+stbain (GunAndGiz@ip68-10-44-170.rn.hr.cox.net) left irc: Read error: 113 (No route to host)
+<nickr> Lexx rocks!
+<dneighbo> grr getting samba still doesnt give me samba mount
+<nickr> haah
+<nickr> apt-cache search smbmount
+Action: dneighbo thinks smbclient was probably enought
+<dneighbo> smbfs
+<nickr> ah
+<nickr> yea
+<chillywilly> lexx does indeed rule
+<dneighbo> hmmm
+<dneighbo> xmmms reports
+<dneighbo> 1. you have the correct output plugin selected
+<chillywilly> HOWEVER, wrt dneighbo's comment: "In this crazy world we don't spank the monkey the monkey spanks us!"
+<dneighbo> 2. no other programs are blocking the soundcare
+<dneighbo> 3. your soundcard is configured properly
+<nickr> dneighbo: if you're in gnome try setting your output plugin to esound
+<dneighbo> hmmmm this is weird
+<chillywilly> lp is hte print command in cups right?
+<dneighbo> i thin xxms toasted itself
+<nickr> chillywilly: sure.
+<nickr> chillywilly: if you installed cups-bsd
+<chillywilly> I thought lpr was bsd?
+<chillywilly> galeon prints like crap
+<dneighbo> xmms just locks up
+<dneighbo> when it tries to play an mp3 now
+<dneighbo> but it doesnt get the other error
+<nickr> xmms sucks bag.
+<nickr> you might try a different player.
+<nickr> or try killing esound and using the oss output plugin
+<dneighbo> the oss output one is the one that complained
+<nickr> right, thus my advise to kill esound before you try it :P
+<dneighbo> how do you kill esound?
+<nickr> killall esound
+<dtm> isn't it 'killall esd'?
+<nickr> yea
+<nickr> dneighbo: do you in fact have any linux experience at all? :)
+<dtm> dneighbo: i'll resend you the email i sent you this week
+<dneighbo> esd: no process killed
+<dneighbo> yeah, just coming from red hat originally for all this
+<dneighbo> amazing you dont have to dick with it their tools do it for you
+<dneighbo> last time i setup sound took 5 minutes
+<dtm> dneighbo: ar eyou burned out, buddy?
+<dneighbo> dtm: well that doesnt help either
+<nickr> dneighbo: you have sound setup, just the things that use it aren't cooperating
+<dneighbo> nickr: yeah, like my video. :
+<dneighbo> :)
+chillywilly_ (~danielb@d24.as8.nwbl0.wi.voyager.net) joined #gnuenterprise.
+<dtm> dneighbo: what doesn't help?
+<dneighbo> its setup and works (just has that irrating static) one of those things that one day i will have to fix but for now it will get by
+<chillywilly_> modems lick balls
+<dneighbo> dtm: burn out, and configuring debian boxes
+<dtm> dneighbo: oh sorry dood
+<dtm> dneighbo: well just know that i'm genuinely concerned for your well being
+<dtm> :)
+<nickr> dneighbo: I suggest installing SuSE or something, I don't think you're really having a good debian experience. Maybe a nice Mandrake
+<dtm> hehe
+<dneighbo> no i like debian
+<dtm> he really likes debian
+<dneighbo> configuring it is brutal
+<nickr> Mandrake is good, you don't have to think at all.
+<dneighbo> when you dont do it everyday
+<dneighbo> or even frequently
+<nickr> point and drool all the way
+<chillywilly_> amen to that brotha
+<dtm> mdk is pretty darn good
+<chillywilly_> mdk has some issues here and there though
+<dtm> the sheer vastness of its software collection helps
+<dtm> i've heard debian is similarly vast
+<chillywilly_> whiuch distro has the most packages?
+<dtm> and debian is sure more ported
+<dtm> i dunno but mdk is sickeningly large, like > 4 CDs
+<dtm> it's retarded
+<chillywilly_> debian has over 6000 packages last time I looked
+<nickr> dtm: Debian Woody is 8 CDs
+<dtm> in fact one of the first rules to distro maintenance is for the core team to not be that diverse
+<chillywilly_> heheh
+<dtm> so as to have a core competency
+<dtm> nickr: yeah that's a lot :)
+<dtm> at one point, debian was the only one which had cfengine
+<dtm> and then suse got it
+<dtm> nobody else!
+chillywilly (danielb@d68.as8.nwbl0.wi.voyager.net) left irc: Killed (NickServ (Ghost: chillywilly_!~danielb@d24.as8.nwbl0.wi.voyager.net))
+<dneighbo> so no advice for sound beyond this
+Nick change: chillywilly_ -> chillywilly
+<dtm> so i made a package on linuxppc based on suse's stupid way of making rpms
+<dtm> dneighbo: did you search for a hardware conflict?
+<dtm> dneighbo: most ia32 boxes have conflicts, or are sharing irqs
+<nickr> dtm: its PCI
+<dtm> dneighbo: linux may not like the irq sharing
+<dtm> nickr: i know
+<dtm> ia32 is garbage.
+<nickr> PCI never doesn't work
+<nickr> in my experience.
+<dneighbo> well we were able to cat a file to it and get sound
+<dneighbo> which makes me think its not a conflict
+<dtm> nickr: your experience does not extend to the recent majority then :)
+<nickr> dneighbo: ps awx |grep esound
+<dtm> nickr: ia32's tiny number of irqs doesnt go very far and must be shared.  often oyu'll find sound, usb, and video sharing one irq.
+<dneighbo> nickr: nothing
+<nickr> dneighbo: hrm, so you're in gnome now, yes? try catting again
+<dtm> i've seen cases where PCI doesn't sort out the irqs and there's a conflict
+<dtm> and i've seen where each slot is hardcoded to an irq
+<dtm> like in emachines
+<dneighbo> nickr: loud as can be
+<chillywilly> gnome-gv is b0rked
+<nickr> dneighbo: okay, so OSS should be working. try installing another mp3 player aside from xmms
+<nickr> chillywilly: yea, has been for quite a while
+Action: chillywilly hasb;t noticed
+<chillywilly> until now
+<nickr> dneighbo: scratch that
+<nickr> dneighbo: its probably a permission issue
+<dneighbo> want me to run xmms as root?
+<nickr> dneighbo: try running xmms as a user that can write to the sound device
+<chillywilly> what groups you in?
+<nickr> if that works we can address it easily
+<dneighbo> thats it
+<dneighbo> sound is working now 'as root'
+<chillywilly> is it owned root.audio?
+<dneighbo> so what is the easy fix
+<nickr> dneighbo: sweet
+<dneighbo> btw: thanks for the help, im really not a complete idiot, just an idiot minor
+<nickr> dneighbo: make sure /dev/dsp* audio* mixer* are group sound
+<chillywilly> if it is owned root.audio you just add yourself to the audio group
+<nickr> er, audio group
+<nickr> sorry
+<dneighbo> yeah all audio
+<nickr> then you adduser user audio where user is the user you want to be able to play stuff, for every user that you want to be able to play stuff
+<nickr> make sure all those devices are group read and write also
+<chillywilly> man galeon generates shitty ps
+<nickr> chillywilly: its mozilla
+<chillywilly> ok, moz then
+<chillywilly> it blows
+<chillywilly> I want it to look like my screen dam,nit
+<nickr> dneighbo: oncey ou adduser to add the groups you have to log out of gnome nad log back in, buecause you have to have everything running with the new group
+<chillywilly> why does printing under GNU/Linux have to be so shitty?
+<nickr> chillywilly: I've never had problems in printing under linux
+<nickr> I've never had problems with sound
+<nickr> I've rarely had problems with video
+<chillywilly> what kinda printer you got though ;)?
+<nickr> I've had a number of different printers
+<chillywilly> any of them new hp deskjets?
+<nickr> the best was an HP LJ2100TN because it had JetDirect :)
+<dneighbo> ok
+<dneighbo> brb
+dneighbo (dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: "Client Exiting"
+<nickr> chillywilly: never, because deskjets suck balls
+<chillywilly> heheh
+<chillywilly> agreed
+<chillywilly> they bite the big one
+<chillywilly> what is a goo GNU/Linux printer?
+<chillywilly> er, good
+<nickr> any printer that speaks Postscript is good in my book
+<nickr> if it speaks LP or JetDirect AND Postscript its insanely great
+<nickr> or IPP
+<nickr> LP|IPP|JD
+<chillywilly> lp  = line printer?
+<nickr> printer515/tcpspooler# line printer spooler
+<chillywilly> I knew this printer was going to bite the big one anyway
+<nickr> er
+<chillywilly> most new deskjets do
+<nickr> c&p sure does slaughter spacing
+<chillywilly> usually it doesn't
+<chillywilly> only line breaks it murders
+<chillywilly> what's jetdirect good for?
+<nickr> its a remote printing protocol
+<nickr> like IPP and LP
+<chillywilly> ok
+<nickr> cups supports it :)
+--- Sat Mar  9 2002

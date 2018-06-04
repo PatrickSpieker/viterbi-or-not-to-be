@@ -1,0 +1,945 @@
+[00:00] Last message repeated 1 time(s).
+<stbain> dneighbo !!!
+<stbain> help!
+<dneighbo> ?
+<dneighbo> whats up
+ajmitch_ (~me@wlg1-port2.jetstart.maxnet.co.nz) joined #gnuenterprise.
+Nick change: ajmitch_ -> ajmitch
+<dneighbo> nickr: fwiw that sources.list and apt-get work with galeon YEAH with blackdown instead of SUN java (yeah)
+<ajmitch> hey dneighbo
+<nickr> yea!
+<ajmitch> dneighbo: received & returned fsf papers today
+<dneighbo> you da man
+<dneighbo> is the talented mr. cater in?
+<stbain> dneighbo having problems w/ my new debian installation
+<dneighbo> yummy new debian
+<dneighbo> whats up
+<stbain> hehe
+<stbain> X no worky
+<stbain> GeForce4
+<stbain> not sure X4.1 has the right stuff to drive it
+<stbain> had a bear of a time getting the mouse to work, usbmgr solved that
+<stbain> but now X won't start
+<stbain> says it can't find the device
+<stbain> don't suppose there's a nice Xconfigurator of some sort that autoprobes everything?
+<dneighbo> what xserver you using
+<dneighbo> nope but its not too bad
+<stbain> XFree86 Version 4.1.0.1 / X Window Syste
+<stbain> lspci output lists:
+<stbain> 02:00.0 VGA compatible controller: nVidia Corporation: Unknown device 0253 (rev
+<dneighbo> but what xserver did you apt-get
+<dneighbo> do an lspci -v
+<dneighbo> and paste what video says
+<stbain> 02:00.0 VGA compatible controller: nVidia Corporation: Unknown device 0253 (rev
+<stbain> a3) (prog-if 00 [VGA])
+<stbain>         Flags: bus master, 66Mhz, medium devsel, latency 64, IRQ 11
+<stbain>         Memory at fd000000 (32-bit, non-prefetchable) [size=16M]
+<stbain>         Memory at e8000000 (32-bit, prefetchable) [size=128M]
+<stbain>         Memory at f4780000 (32-bit, prefetchable) [size=512K]
+<stbain>         Expansion ROM at feae0000 [disabled] [size=128K]
+<stbain>         Capabilities: [60] Power Management version 2
+<dneighbo> i assume you apt-get xserver-xfree86
+<stbain>         Capabilities: [44] AGP version 2.0
+<stbain> already have it
+<dneighbo> do a 
+<stbain> did that w/ tasksel
+<dneighbo> dpkg-reconfigure xserver-xfree86
+<ajmitch> hehe
+<stbain> already did that too
+<dneighbo> choose yes you want to manage with debconf
+<stbain> yup
+<stbain> did that
+<dneighbo> choose nv as the chipset
+<stbain> did that
+<dneighbo> continue making good selections
+<stbain> did that ;)
+<dneighbo> and then try starting X
+<dneighbo> paste the error message here 
+<stbain> no worky
+<stbain> (EE) No devices detected.
+<stbain> Fatal server error:
+<stbain> no screens found
+Action: dneighbo has never had good luck with X on debian (i generally end up mucking with XF86Config-4 directly
+<dneighbo> i think this might be you have your monitor configured poorly
+<dneighbo> what monitor do you have
+<stbain> EV700
+<dneighbo> who makes it
+<stbain> gateway
+<ajmitch> the dark lord himself is away at the moment
+<ajmitch> and i would never hassle him with X issues :)
+<dneighbo> do you ahve the manual for it?
+<stbain> heh
+<dneighbo> where you could find its vertical and horiz refresh rates?
+<dneighbo> im not finding squat on the net about it
+<stbain> it's not the refresh
+<ajmitch> read-edid
+<stbain> the driver isn't even even loading
+<ajmitch> should work
+<ajmitch> i'm sure it's an X driver thing, not monitor
+<stbain> yup
+<stbain> exactly
+<dneighbo> when i have had similar issues its been refresh rate
+<ajmitch> if you want to sell your soul you could try the prop. drivers, or the experimental xfree86 4.2 packages
+<dneighbo> even though i THOUGHT it was driver
+<dneighbo> you had this machine working with redhat no?
+<dneighbo> if so you didnt happen to save the x file from it?
+<stbain> yup
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+<stbain> mope
+<ajmitch> hey psu
+<psu> hiya
+<stbain> err... nope
+<stbain> didn't need it
+Action: ajmitch is one of these fortunate ppl who don't get X issues
+<stbain> because in redhat, everything is automatic
+<stbain> detects your monitor and vidcard for you
+<dneighbo> um
+<ajmitch> as it is in debian ;)
+<dneighbo> every distro needs an X file
+<stbain> yes, but I never needed to know the values or keep the X file
+<stbain> I know I had one, but I never had a need to back it up or keep it
+<dneighbo> for reference even on redhat its a GOOD idea to back up such files
+<stbain> heeh
+<stbain> just re-run Xconfigurator
+<dneighbo> i have had Xconfigurator do evil things after an upgrade
+<dneighbo> on redhat
+<stbain> just seems kinda weird that debian doesn't have an automagic X configuration tool
+<stbain> steal redhat's!
+<stbain> well... how do I get 4.2 installed (that's another thing that seemed weird to me... 4.2 has been out for a while)
+<dneighbo> nvidia-glx-src - NVIDIA binary XFree86 4.x driver
+<dneighbo> nvidia-kernel-src - NVIDIA binary kernel module
+<psu> s/steal/share code within the spirt of the GPL
+<dneighbo> um as much as i HATE the way debian does some things
+<dneighbo> REMEMBER Debian is the X bad mutha humper
+<dneighbo> i.e. it is the thing that makes sure that X runs on like 10 or more platforms
+<dneighbo> guys like red hurt and manlove only care about x86
+<dneighbo> so they dont have to play by nearly as many rule :)
+<dneighbo> believe me i have a half supported trident cyberblade and i have done MORE than my share of bitching about X on debian
+<dneighbo> ajmitch: do you know anything about nvidia-kernel-src
+<dneighbo> or nvidia-glx-src
+<ajmitch> hell no
+Action: ajmitch doesn't touch that stuff
+<dneighbo> would you have to compile a custom kernel?
+<dneighbo> or will that give you what you need/
+<ajmitch> shouldn't have to compile a custom kernel
+<ajmitch> woody is released for 11 archs, xfree86 is supported by upstream on 4 or 5 of those
+<stbain> it's a module
+<ajmitch> apparantly xfree86 don't test their releases too well
+<dneighbo> the big problem you have here stbain is debian dont like nvidia cause it aint free
+<ajmitch> and the debian packages are patched a lot
+<dneighbo> i would try to apt-get install one of these
+<dneighbo> nvidia-glx-src - NVIDIA binary XFree86 4.x driver
+<dneighbo> nvidia-kernel-src - NVIDIA binary kernel module
+<dneighbo> aegagrus:/home/dneighbo# 
+<dneighbo> probably the first one
+<dneighbo> then see if you can find it in modconf
+<dneighbo> and load it
+<dneighbo> then try X
+<dneighbo> although it says that 4.1 has built in Geforce support
+<ajmitch> dunno bout geforce 4 tho
+<stbain> how do I tell what files a .deb provides once it's installed?
+<ajmitch> dpkg -L package
+<stbain> because I don't see crap in the /usr/src directories that those packages installed
+<dneighbo> hey what computer is this?
+<dneighbo> is it a gateway?
+<dneighbo> if so give me the model
+<stbain> yes
+<stbain> dunno the model
+<dneighbo> and i bet we can find you a XF86Config-4 from someone who does back up theirs and post to the net :)
+<ajmitch> http://www.phy.olemiss.edu/xsf/
+<stbain> heh... GeForce4 is an upgrade
+<stbain> didn't ship w/ the PC
+<ajmitch> i see :)
+<dneighbo> i got so many cyberblade questions cause i talked about here and the logs get googled
+<dneighbo> i finally posted mine
+<ajmitch> hmm, uploaded 17% of this cd :)
+<dneighbo> http://gnue.org/~dneighbo/homedir/XF86Config-4
+<ajmitch> only about 12 hours to go for this image, and then i have 3 more to upload ;)
+<dneighbo> if you are brave enough to try 4.2 let me know how it goes as i need to try it on my box
+<dneighbo> ok
+<dneighbo> http://lists.debian.org/debian-project/2002/debian-project-200204/msg00042.html
+<dneighbo> apt-get install nvidia-glx-src
+Action: ajmitch pasted a 4.2 mirror link just before
+<dneighbo> i think that might make you compile a kernel though
+<stbain> nope
+<stbain> I've done that on redhat
+<stbain> it's a module
+<dneighbo> ok apt get it
+<dneighbo> then as root do 
+<dneighbo> modconf
+<dneighbo> go into kernel/drivers/video/?
+<stbain> ok
+<dneighbo> probably it will add nvidia
+<dneighbo> if not look in just kernel/drivers/video/
+<dneighbo> see if you can find a geforce or nividia and activate it
+<stbain> don't see it in there
+<dneighbo> try a dpkg-reconfigure xserver-xfree86
+<dneighbo> and see if in drivers you get any new choices
+<stbain> nope
+<stbain> don't see it in there either
+<dneighbo> i really think you have to compile things
+<stbain> yah
+<stbain> it puts the files in the /usr/src dir
+<stbain> question is
+<stbain> what do I do from there
+<stbain> I don't exactly see a configure file
+<dneighbo> i dont build kernel mods or kernels
+<dneighbo> i figure if it dont come packaged i shouldnt be using it
+<dneighbo> aj or chilly could help perhaps they compile kernels daily
+<dneighbo> if its supported in X 4.2 w/o kernel stuff i would do that
+<dneighbo> other option is running framebuffer nvidia 
+Action: dneighbo shudders i had NO luck getting framebuffer to work with trident
+<ajmitch> daily?
+<ajmitch> Linux ajmitch 2.4.19-pre6 #5 Mon Apr 8 20:28:00 NZST 2002 i586 unknown unknown GNU/Linux
+<ajmitch> not for quite awhile here :)
+<dneighbo> nvidia also has drivers and docs on their home page
+<ajmitch>  18:07:39 up 97 days,  3:19, 17 users,  load average: 2.66, 2.33, 1.96
+<ajmitch> not bad for my loaded desktop box :)
+<dneighbo> http://www.nvidia.com/view.asp?PAGE=linux
+<dneighbo> sorry no help 
+<stbain> yah
+<stbain> would be nice if I could just use VGA or something for now
+<stbain> how do i go about installing 4.2?
+<stbain> apt-get upgrade?
+<dneighbo> no you will have to download the debs it appears
+<dneighbo> then dpkg --install packagename.deb
+<dneighbo> i didnt see a sources list :(
+<stbain> hrmm
+<dneighbo> oh i found some hold up
+<stbain> how do I see a list of what's in a .deb file?
+<stbain> or what a package installed?
+<dneighbo> http://raw.no/x4.2/
+<dneighbo> add one of the apt lines
+<dneighbo> then probably apt-get update
+<dneighbo> apt-get install xserver-xfree86
+<dneighbo> stand back and wait :)
+<dneighbo> 4.2.0:
+<dneighbo>     Support (accelerated) for the Riva 128, 128ZX, TNT, TNT2 (Ultra, Vanta, M64), GeForce (DDR, 256), Quadro, GeForce2 (GTS, Ultra, MX), GeForce3, and Quadro2 is provided by the "nv" driver.
+<stbain> hrmmm
+<stbain> add that to my get sources?
+<stbain> wait
+<stbain> how do I build a deb package?
+<stbain> man dpkg
+<dneighbo> you dont need to
+<dneighbo> just add a line to /etc/apt/sources.list
+<dneighbo> like
+<dneighbo> apt: deb ftp://ftp.cs.umn.edu/pub/debian-misc/branden/ sid/$(ARCH)/
+<dneighbo> save it
+<dneighbo> apt-get update
+<dneighbo> apt-get install xserver-xfree86
+<dneighbo> and wait for the yummy goodies
+<stbain> reason I was asking was because the nvidia-glx-src packages have the stuff for building w/ dpkg-deb
+<dneighbo> i dont think that works how you think
+<stbain> how's that?
+<dneighbo> since you have no working X i woudl try adding line i pasted to your sources.list
+<dneighbo> and re apt-getting xserver-xfree86
+<dneighbo> as debian needs more 4.2 testers :)
+<stbain> what about raw.no?
+<stbain> or should I use 
+<stbain> deb ftp://ftp.cs.umn.edu/pub/debian-misc/branden/ sid/$(ARCH)/
+<dneighbo> use the deb ftp://ftp.cs.umn.edu/......
+<dneighbo> i need some sleep
+Action: dneighbo is away: bed
+reinhard (~rm@M701P001.adsl.highway.telekom.at) joined #gnuenterprise.
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise ("bbl").
+stbain (gandg@ip68-10-44-170.rn.hr.cox.net) left irc: "BitchX-1.0c19 -- just do it."
+riandouglas (RianDougla@203.206.88.136) joined #gnuenterprise.
+slappy (~slappy@63.229.215.140) left irc: "using sirc version 2.211+KSIRC/1.2.1"
+<riandouglas> The gnuenterprise web site is showing a site for "Aegagrus".  Any reason for this?
+<riandouglas> anybody home?
+Arturas (arturas@bit.codeworks.lt) joined #gnuenterprise.
+<ra3vat> riandouglas: hello
+<Arturas> Hello
+<riandouglas> Anyone seen the "new" gnuenterprise web site?  Just wondering whats going on there?
+<riandouglas> or is it just me who is seeing things?
+<ra3vat> http://www.gnuenterprise.org/ works as usual, no Aegagrus
+<riandouglas> Very strange.  What I'm seeing is definitely not the normal gnuenterprise web site.
+<riandouglas> It has an "about us" page, which has details for derek neighbors, jason cater and james thompson.  very strange.
+<Arturas> well
+<Arturas> at www.gnuenterprise.org i'm also seeing not usual page
+<riandouglas> So I'm not going mad then :-)
+<Arturas> no :) but i guess someone will, when sees the page :)
+<ra3vat> Arturas: hello
+riandouglas (RianDougla@203.206.88.136) left irc: Read error: 104 (Connection reset by peer)
+<Arturas> hi Dmitry :)
+<ra3vat> did you get email message from me?
+<Arturas> mmm, let me see...
+<Arturas> ra3vat: i'll fix this now
+<Arturas> thank you
+<ra3vat> thank you too :)
+SachaS (~Sacha@dialup-196-220.wasp.net.au) joined #gnuenterprise.
+<Arturas> ra3vat: updated
+reinhard (~rm@M701P001.adsl.highway.telekom.at) left irc: Read error: 110 (Connection timed out)
+ariel_ (~ariel@ppp-217-133-245-30.dialup.tiscali.it) joined #gnuenterprise.
+<ariel_> does anyone knows if <condidion> in <datasource> in reports is actually suppurted?
+<ra3vat> Arturas: now it works
+<ra3vat> ariel_: it is used in papo's forms
+<ra3vat> ariel_: missed, you asked about reports
+<ariel_> ra3vat: why it is not in common?
+<ajmitch> hi all
+<ariel_> hi
+<ra3vat> ariel_: papo guys were waiting for paperwork all I can guess
+Arturas (arturas@bit.codeworks.lt) left irc: Remote closed the connection
+Arturas (arturas@bit.codeworks.lt) joined #gnuenterprise.
+Arturas (arturas@bit.codeworks.lt) left #gnuenterprise ("lunch").
+ariel_ (~ariel@ppp-217-133-245-30.dialup.tiscali.it) got netsplit.
+jcater (~jason@cpe-024-165-223-104.midsouth.rr.com) got netsplit.
+Mr_You (rouzer@207.124.144.10) got netsplit.
+pattieja (~pattieja@www.pcxperience.com) got netsplit.
+SachaS (~Sacha@dialup-196-220.wasp.net.au) left irc: Read error: 104 (Connection reset by peer)
+ariel_ (~ariel@ppp-217-133-245-30.dialup.tiscali.it) returned to #gnuenterprise.
+jcater (~jason@cpe-024-165-223-104.midsouth.rr.com) returned to #gnuenterprise.
+pattieja (~pattieja@www.pcxperience.com) returned to #gnuenterprise.
+Mr_You (rouzer@207.124.144.10) returned to #gnuenterprise.
+Mr_You (rouzer@207.124.144.10) got netsplit.
+jcater (~jason@cpe-024-165-223-104.midsouth.rr.com) got netsplit.
+ariel_ (~ariel@ppp-217-133-245-30.dialup.tiscali.it) got netsplit.
+pattieja (~pattieja@www.pcxperience.com) got netsplit.
+jcater (~jason@cpe-024-165-223-104.midsouth.rr.com) returned to #gnuenterprise.
+pattieja (~pattieja@www.pcxperience.com) returned to #gnuenterprise.
+Mr_You (rouzer@207.124.144.10) returned to #gnuenterprise.
+ariel_ (~ariel@ppp-217-133-245-30.dialup.tiscali.it) got lost in the net-split.
+dyfet (~dyfet@dsl-65-188-113-57.telocity.com) joined #gnuenterprise.
+dyfet (~dyfet@dsl-65-188-113-57.telocity.com) got netsplit.
+Mr_You (rouzer@207.124.144.10) got netsplit.
+jcater (~jason@cpe-024-165-223-104.midsouth.rr.com) got netsplit.
+pattieja (~pattieja@www.pcxperience.com) got netsplit.
+jcater (~jason@cpe-024-165-223-104.midsouth.rr.com) returned to #gnuenterprise.
+pattieja (~pattieja@www.pcxperience.com) returned to #gnuenterprise.
+Mr_You (rouzer@207.124.144.10) returned to #gnuenterprise.
+dyfet (~dyfet@dsl-65-188-113-57.telocity.com) returned to #gnuenterprise.
+Mr_You (rouzer@207.124.144.10) got netsplit.
+jcater (~jason@cpe-024-165-223-104.midsouth.rr.com) got netsplit.
+pattieja (~pattieja@www.pcxperience.com) got netsplit.
+jcater (~jason@cpe-024-165-223-104.midsouth.rr.com) returned to #gnuenterprise.
+pattieja (~pattieja@www.pcxperience.com) returned to #gnuenterprise.
+Mr_You (rouzer@207.124.144.10) returned to #gnuenterprise.
+SachaS (~Sacha@203.190.196.18) joined #gnuenterprise.
+jamest (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+Arturas (arturas@bit.codeworks.lt) joined #gnuenterprise.
+<jamest> morning art
+<jamest> at least for me :)
+<Arturas> good morning jamest :)
+<Arturas> have you heard there is something wrong with www.gnuenterprise.org site?
+<jamest> how goes the i18n
+<jamest> no
+<Arturas> could you please take a look at it
+<jamest> we're in the process of moving the machine across the US
+<Arturas> ah
+<jamest> so the URL is being sent to a mirror of the site
+<jamest> are you not able to see it?
+<Arturas> i thought that it might have ben hacked or something
+<Arturas> i see something
+<Arturas> that has nothing common with GNUE
+<jamest> lol
+riandouglas (~Rian@083.a.006.mel.iprimus.net.au) joined #gnuenterprise.
+<jamest> what site are you seeing?
+<Arturas> but it's not a problem if you know about it :)
+<Arturas> something that has a white paper sheet in the center
+<riandouglas> hey folks.
+<Arturas> hi
+<jamest> we're running a virtual setup on one of jcaters systems as a temp solution until the box is packed up and sent to Arizona
+<Arturas> about i18n
+<Arturas> what do you think
+<Arturas> should be in i18n?
+<jamest> which is on tonights TODO list (get ash, replace HD, add memory, reconfig for new network, put in mail)
+<jamest> i'm not the person to ask about what i18n even is
+<Arturas> :)
+<jamest> as I barely speak/write/read english
+<Arturas> :) you still speak/write English much better than i do
+<jamest> i was just curious as to how usable we are in non english languages
+<Arturas> i have reach the status when i need to stop and think
+<Arturas> what else has to be added
+<jamest> uh oh!
+<Arturas> we can have translated menus
+<Arturas> error messages
+<jamest> thinking!?!? on something in GNUe!?!
+<Arturas> ?
+<Arturas> i shouldn't think?
+<Arturas> :)
+<Arturas> forms can have translated labels & etc
+<jamest> nope, thinking is against project policy
+<Arturas> so far we still do not have full unicode support
+<Arturas> mm
+<jamest> you can have translated labels inside the gfd now?
+<Arturas> yes
+<jamest> wow
+Action: jamest is out of touch
+<Arturas> although it's not best code decision
+<jamest> riandouglas: what's up?
+<Arturas> i'll have to recode it when we have [common] section in gnue.conf
+<riandouglas> Not too much.  Just wondering about the strange new website?
+<Arturas> :) :) :)
+<Arturas> everyone is curious today about it
+<jamest> sigh
+<jamest> it's a mistake
+<Arturas> jamest: i hope you're joking about thinking policy...
+<jamest> Arturas: yes
+<riandouglas> Just wondering what gnue has to do with wild goats?
+<jamest> what?!?!?!?
+<Arturas> i told you there is something wrong :)
+<jamest> could someone post the IP address
+<jamest> youre directing too
+<jamest> i have a bad feeling you're seeing our old developers page
+<Arturas> >ping www.gnuenterprise.org
+<Arturas> PING ash.gnuenterprise.org (64.39.200.253): 56 data bytes
+<Arturas> --- ash.gnuenterprise.org ping statistics ---
+<Arturas> 2 packets transmitted, 0 packets received, 100% packet loss
+<jamest> wow
+<riandouglas> i get: 65.105.10.206
+<jamest> i get the gnuenterprise site
+<jamest> roflamo
+<Arturas> from other computer:
+<jamest> we're not hacked
+<Arturas> arturas@gsk:~> ping www.gnuenterprise.org
+<Arturas> PING www.gnuenterprise.org (65.105.10.206) from 193.219.147.212 : 56(84) bytes of data.
+<Arturas> --- www.gnuenterprise.org ping statistics ---
+<Arturas> 2 packets transmitted, 0 received, 100% loss, time 1018ms
+<riandouglas> I, and I guess Arturas get a site for "Aegagrus Enterprises".  Nice huh
+<Arturas> i get that aegr(Q@#*$
+<riandouglas> I checked.  Apparently an Aegagrus is a type of wild Ibex, which is a type of goat.
+<jamest> yes
+<jamest> long story here
+<Arturas> :) so we have "Goat Enterprise"? :)
+<jamest> i used to claim that my code was raped my mad goats
+<jamest> somehow I (and GNUe) got a reputation for goats
+ariel_ (~ariel@ppp-217-133-245-30.dialup.tiscali.it) joined #gnuenterprise.
+<Arturas> hi Ariel
+<jamest> anyway, this site you're seeing was something jcater slapped together long ago (when I had a life)
+<riandouglas> How did it manage to become the gnuenterprise web site?
+<jamest> i host www.gnuenterprise.org on a machine I own at a local ISP in Manhattan, KS
+<jamest> that ISP got purchased
+<jamest> the new owners sent mail saying I'd probably have to start paying for the machine hosting
+<jamest> but not right away
+<jamest> they wanted to think about it
+<jamest> for some reason they won't respond to my emails
+<jamest> and I saw i truck which appeared to be hauling off desks and stuff from local ISP office
+<jamest> new owners are in another city in KS
+<jamest> they moved all their customer services to this other city
+<jamest> anyway, I'm getting freaked out by lack of responce from them and I'm worried that our site will get pulled or my server will end up in a truck headed out of town
+<riandouglas> sounds like alot of fun :-)
+<Arturas> not for jamest for sure :)
+<jamest> i asked jcater to put up mirror of us so I can pull that machine out ASAP
+<Arturas> what is ASAP?
+<jamest> he did that on the same machine he hosts other stuff, like that sample site you're seeing
+<jamest> as soon as possible
+<jamest> so now you're seeing a site for a company that doesn't exist
+<jamest> er, well, as far as I know doesn't exist as I'm not part of it
+<jamest> so GNUe isn't hacked
+<riandouglas> Really, there is some sparse conatct info for you :-)
+<jamest> i know
+<jamest> we'd talked about how neat it'd be to do consulting
+<jamest> and make a living doing GNUe
+<riandouglas> Sorry if this is the 12th time you've had to relay this sordid tale :-)
+<jamest> no the 1st
+<riandouglas> Well, I'm not sorry then :-)
+<jamest> oooooo
+reinhard (~rm@62.47.246.165) joined #gnuenterprise.
+<ariel_> hi Arturas
+reinhard (~rm@62.47.246.165) left irc: Client Quit
+<jamest> no hostile corporate takeovers of gnue, no skr1pt k1dd3 has 0w3d us
+<jamest> just some dns messups
+<jamest> what do people expect from free help eh?
+<jamest> :)
+<riandouglas> cool.  I was a little worried for a while.
+<jamest> well
+<Arturas> "what do people except from free help" - ee... help? :)
+<jamest> lol, see art you know english better than me :)
+<riandouglas> I dont really think about this sort of thing when it comes to free software (or the internet in general really).
+<jamest> ooooo
+<riandouglas> I just think of it as something that just happens, not having any servers of my own.
+<jamest> i just checked the whois database
+<jamest> that site you're seeing was setup last October
+<jamest> and I don't think it's changed since then :)
+<jamest> honestly , upon reflection i wouldn't want to do GNUe full time
+<jamest> as that puts deadline pressures on me that would take the fun out of it
+<riandouglas> You've got to have a hobby :-)
+<jamest> yeah, and nothing beats writting buggy software for businesses 
+<Arturas> they give you money for this :)
+<riandouglas> is there any other kind of software? :-)
+reinhard (~rm@M694P005.adsl.highway.telekom.at) joined #gnuenterprise.
+<jamest> they'll give me money!?!?!?!?!?
+<jamest> who?! Where!?! 
+Action: jamest likes money
+<Arturas> businessmen
+<Arturas> (at least, they should)
+<Arturas> :)
+<riandouglas> I knew business men had to be good for something
+<riandouglas> :-)
+<jamest> sigh
+<jamest> first openssh 3.4 breaks hostbased authentication which basically is a mad goat rape of my network here
+<jamest> now they are trojaned
+<jamest> i better switch to XP
+btami (~btami@195.228.11.209) joined #gnuenterprise.
+<btami> hi all!
+<riandouglas> howdy btami
+<btami> hi riandouglas
+<ra3vat> hello btami
+<btami> hello ra3vat
+<btami> ariel_ ?
+<Arturas> hi btami
+<btami> he asked about conditions in reports
+<btami> hi Arturas
+<btami> http://gnuenterprise.org/~dneighbo/sr/service_requests.grd
+<btami> is an example
+<btami> and GConditions.py in common is a main source for tags
+<btami> anyone tried monthly.grd on win32?
+<btami> sablotron doesn't like 'c:\anyfile...' format in Adapter.py line #69
+<btami> but if i add 'file://' prefix to parameters, it works for me
+<btami> hmmm, maybe i will send a bugreport to DCL
+btami (~btami@195.228.11.209) left irc: "bye"
+<ariel_> btami: here i am
+btami (~btami@dial-3-77.emitel.hu) joined #gnuenterprise.
+<btami> hi again
+<btami> ariel_: any progress with reports?
+jcater_ (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<btami> hi jcater_
+<jcater_> hi
+<btami> please read the log about sablotron/win32
+btami (~btami@dial-3-77.emitel.hu) left irc: "must go, bye"
+<riandouglas> got to go.
+riandouglas (~Rian@083.a.006.mel.iprimus.net.au) left irc: 
+<Arturas> what does it mean "a patch for peer review"?
+<jcater_> in what context?
+<Arturas> ## This should have been submitted as a patch for peer review.
+<jcater_> um
+<jcater_> we
+<jcater_> well
+<jcater_> hang on.... phone call
+<jamest> peer review == let others look over changes first prior to inclusion in the main code base
+<jamest> where was this at?
+<jcater_> yes, what jamest said
+<Arturas>  /common/src/dbdrivers/_pgsql/DBdriver.py
+<Arturas> ##    # To convert date from format '2002-12-31 23:59:59,99'
+<Arturas> ##    # into '2002-12-31 23:59:59' format.
+<jcater_> well
+<jcater_> for starters, you are doing that conversion to all values
+<jcater_> not just date values
+<jcater_> and secondly, it's in the wrong place
+<jcater_> that's what _toSqlString is for
+<Arturas> no, i understood all that, the question would be
+<Arturas> how do i do that per review?
+<Arturas> how do i do that peer review?
+<Arturas> i thought that something like that is going here
+<Arturas> (on #gnuenterprise)
+<Arturas> do i have email change proposition or something else?
+<jcater_> as a general rule, anything outside of your normal realm should be sent as a patch to info@gnue.org
+<jcater_> this changed the functionality of the db drivers
+<jcater_> (actually, broke them to be more specific)
+<Arturas> what is 'our normal realm'?
+<Arturas> how is patch created?
+<jcater_> cvs diff
+<jcater_> brb
+<Arturas> how do i know what changes i can simply commit and what to send as a patch?
+<jamest> on the db drivers I almost always ask jcater personally before I change them
+<jamest> as some of that code hurts my brain
+<jamest> and I got sick of breaking the drivers :)
+<Arturas> so as far as i understand, jcater is responsible for dbdrivers?
+<jamest> er, i wouldn't quite word it like that
+<jamest> he rewrote the driver system so he understands the interactions best
+<Arturas> it's because of bad my English knowledge :/
+<jamest> so I get ahold of him before I change something or before I commit it
+<jamest> the last time I didn't do this I broke something that I didn't notice for 1 month
+<jamest> then in talking to him he politely pointed me to the correct solution 
+<Arturas> i see
+<jamest> when I know he'd rather have beat me over the head with a 286 case
+<jamest> thank goodness I'm like 8 hours away
+<jcater_> yeah, but I DO know where you live
+<jamest> but honestly I've found that in the db driver section just asking him up front will save you a ton of time
+<jamest> as I didn't know about _toSqlString until I talked to him 
+<jamest> and it saved a ton of code digging
+<jamest> now if it's my code you are working on, good luck as even I don't know whats going on in there
+<Arturas> :) thanks :)
+Action: jamest mashes buttons until the computer gives up and just does what I wanted so I'll leave it alone
+<jamest> instead of that new extreme programming fad that is fad that is becomming popular
+<jamest> i use abusive programming
+<Arturas> what is 'abusive programming'?
+<jamest> the code is so bad it hurts
+ariel_ (~ariel@ppp-217-133-245-30.dialup.tiscali.it) left irc: "Uscita dal client"
+sledge_ (~sledge@B94f4.pppool.de) joined #gnuenterprise.
+sledge_ (~sledge@B94f4.pppool.de) left irc: "using sirc version 2.211+KSIRC/981227-pre0.9"
+<jamest> ping
+<jcater_> pong
+<jamest> is this thing on?
+<nickr> poing
+<jcater_> no
+<jcater_> go back to sleep now
+Action: jamest adjusts the lean on his chair and goes back to sleep to dream of quitting time
+siesel (jan@dial-213-168-64-93.netcologne.de) joined #gnuenterprise.
+<siesel> hi all
+<Arturas> hi Jan
+siesel (jan@dial-213-168-64-93.netcologne.de) left irc: "later"
+dyfet (~dyfet@dsl-65-188-113-57.telocity.com) left irc: "Client Exiting"
+<Arturas> bye
+Arturas (arturas@bit.codeworks.lt) left irc: "Client Exiting"
+yogurt2unge (~charlie@modem126-adsl1.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<yogurt2unge> dneighbo: hello
+<dneighbo> hi
+psu (psu@158.152.23.141) joined #gnuenterprise.
+y2unge (~charlie@modem126-adsl1.cordoba.sinectis.com.ar) joined #gnuenterprise.
+yogurt2unge (~charlie@modem126-adsl1.cordoba.sinectis.com.ar) left irc: Read error: 104 (Connection reset by peer)
+<y2unge> dneighbo: we did not receive papers for the Via Libre foundation 
+y2unge (~charlie@modem126-adsl1.cordoba.sinectis.com.ar) left #gnuenterprise ("Client Exiting").
+yogurt2unge (~charlie@modem126-adsl1.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<yogurt2unge>  
+<yogurt2unge> dneighbo: hello
+Action: yogurt2unge I have problems with my box
+<yogurt2unge> dneighbo: again, we did not receive papers for the Via Libre foundation 
+<dneighbo> yogurt2unge: did brian youmans email you?
+<dneighbo> work directly with him and just cc me 
+<dneighbo> his email assign@gnu.org
+<dneighbo> my email derek@gnue.org
+<dneighbo> i dont see this as a major hold up
+<dneighbo> i.e. we will take patches from you guys knowing that individual assignments are done
+<yogurt2unge> dneighbo: tks
+<yogurt2unge> I'll send him the question
+<psu> gah
+Action: psu is trying to come up with one line descriptions of GNUe tools
+<psu> and is suffering from repetition fatigue
+<psu> "Forms is a forms client that allows users to open and use forms"
+<psu> "Designer is a graphical designer that allows you to design things graphically".
+<jcater_> GNUe Forms is a data-aware user-interface generator.
+<psu> "Reports is a reports engine for producing reports"
+<psu> etc
+<jcater_> GNUe Reports is a reporting engine.
+<jcater_> GNUe App Server is a data and business rules server.
+<jcater_> GNUe Designer is an graphical IDE for GNU Enterprise.
+<jcater_> GNUe Navigator is a menuing system for GNUe Forms and Reports.
+reinhard (~rm@M694P005.adsl.highway.telekom.at) left irc: "There are two types of people: those who divide people into two types, and those who don't"
+jcater_ (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "rebooting"
+<dneighbo> i wonder what the openBSD security thugs have to say about
+<dneighbo> http://docs.freebsd.org/cgi/getmsg.cgi?fetch=394609+0+current/freebsd-security
+jcater_ (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<nickr> I laughed my ass off.
+<nickr> ha HA
+<psu> if you laughed your r-s off, does that make you nick?
+<psu>  /nick nick
+<psu> ;-)
+Action: dneighbo is away: off to work
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: "Client Exiting"
+<jcater_> wow
+<jcater_> wish I could go to work at noon
+siesel (jan@194.8.195.1) joined #gnuenterprise.
+Action: siesel thinks about sending a mail to Joined #gnuenterprise: siesel
+Action: siesel thinks about sending a mail to Network Abuse Clearinghouse ;)
+<siesel> www.gnuenterprise.org points to a quite interesting site 
+<jamest> siesel: what?
+<psu> "works for me"
+<siesel> if i load www.gnuenterprise.org, i just get the default debian apache page
+<siesel> Welcome to Your New Home in Cyberspace! ....
+<jcater_> grrr
+<jcater_> piss
+Action: jcater_ HATES HATES HATES HATES HATES HATES
+<jcater_> HATES HATES HATES HATES HATES HATES
+Last message repeated 3 time(s).
+<jcater_> name-based virtual hosting
+<jamest> jcater_: tell me how you really feel?
+<jcater_> NameVirtualHost 65.105.10.206:80
+<jcater_> <other entries that work fine...>
+reinhard (~erich@62.47.246.165) joined #gnuenterprise.
+<reinhard> hello all
+<jcater_> siesel: how does it look now?
+<reinhard> anybody knows gmc (gnome file manager)?
+<reinhard> how can i make gmc start openoffice when i double click a winword .doc file?
+sledge_ (~sledge@B2e36.pppool.de) joined #gnuenterprise.
+<jamest> reinhard: i can't help you
+<reinhard> jamest: np thanks anyway
+<jcater_> sorry, I'm a KDE guy these days, so I don't know either
+<jcater_> :(
+Action: psu might install openoffice on this PC for a laugh one day
+<psu> 233 MHz, 32MB RAM
+<reinhard> well actually my problem seems to be
+<reinhard> that gmc doesn't do the command when i double click on a file
+<reinhard> even though i assigned the command to the mime type in the gnome control center
+<jcater_> psu: that might work actually
+<jcater_> ram seems to be the issue w/openoffice more than speed :)
+<jcater_> doh!
+Action: jcater_ misread that as 32?Mb of RAM
+<jcater_> nevermind
+<sledge_> OOo with 32Mb of RAM *g*
+<sledge_> hi
+<reinhard> hi sledge_
+<siesel> jcater: looks great
+siesel (jan@194.8.195.1) left irc: " * Blackened *"
+<sledge_> s/://;   :-)
+jcater (~jason@cpe-024-165-223-104.midsouth.rr.com) left irc: Read error: 110 (Connection timed out)
+reinhard (~erich@62.47.246.165) left irc: "Client Exiting"
+ariel_ (~ariel@ppp-217-133-242-6.dialup.tiscali.it) joined #gnuenterprise.
+dkesh (~dkesh@h0001031e43c6.ne.client2.attbi.com) joined #gnuenterprise.
+dkesh (~dkesh@h0001031e43c6.ne.client2.attbi.com) left #gnuenterprise.
+<psu> hmm
+<psu> kt.zork.net now has an RSS news feed facility
+<psu> Zack's obviously been playing 
+<sledge_> psu?
+<psu> I guess it's just a mechanism for sites like linuxtoday.com
+<psu> to take the "GNUe News Headlines" 
+<sledge_> it is
+<sledge_> i just wanted to say that in the KC you confuse me with siesel
+<sledge_> sometimes
+<psu> I *think* I've learned the diff now
+<sledge_> 'kay :)
+<psu> please point me at any outstanding errors
+<psu> and I can resubmit them
+Action: psu used to get jcater and jamest mixed up at first ;-)
+<sledge_> whoo :)
+dneighbo (~dneighbo@65.101.4.211) joined #gnuenterprise.
+<sledge_> psu: in the last edition, in point 9, it was me. but never mind, i'm not so important. look, i don't even develop :)
+<jamest> we do look alot alike
+<sledge_> jamest: i thought you were a developer
+<jamest> about the only difference is that I'm the one with the stupid look on my face
+<jamest> i am/was
+<jamest> long ago
+<sledge_> middle ages?
+<jamest> well 8086 era
+<sledge_> oh, stone ages
+<jamest> yeah
+<jamest> then real life hit
+<sledge_> you got married?
+<jamest> that was years ago
+<jamest> p3 era
+<jamest> :)
+<jcater_> real life == he discovered gaming systems
+<jamest> shhhhhh
+<jamest> don't tell them my secret
+<jcater_> oops
+<sledge_> lol
+<jamest> wife did buy me a ton of games
+<jamest> it's, um, distracting
+<jamest> but I think she wants the TV back :)
+<sledge_> she bought you *computer* *games*?
+<jamest> xbox
+Action: jamest hides
+<sledge_> are you sure she hasn't got a lover and actually *wants* you to be distracted?
+<jamest> um
+<jamest> hmmmm
+<jamest> well
+<jcater_> ssssh!!!
+<jcater_> we didn't want jamest to find out
+<jamest> hmmmmmm
+<jamest> now that you mention it
+<sledge_> jcater_: i messed it, sorry
+<jamest> i've been wondering where all the gift wrapped Krispy Kreme packages were coming from
+<sledge_> Krispy Kreme sounds like ... a KDE guy?
+<jamest> nah, that can't be it
+<jamest> otherwise why would she want the TV back?
+<sledge_> that's a point
+<sledge_> there's only one solution
+<sledge_> it must be a conspiracy!
+Action: sledge_ urges anyone to start wild speculations about alien invasions
+<jamest> hmmmmmm
+<jamest> now that you mention it
+<jamest> i wondered where that anal probe came from
+<sledge_> perhaps they already have full control over your wife
+<sledge_> they want to drive you mad
+<jcater_> jamest: now we all know that is left over from your wild college days
+<jamest> if that's the case they must have control of my users
+<jamest> and it's working
+Nick change: jcater_ -> jcater
+<jcater> ooo, my firewall at home must've crashed today
+<jcater> as my nick is free again
+<jamest> lucky you
+<sledge_> down with all walls! freedom!
+<sledge_> btw, i wasn't able to get reports to work
+<sledge_> what filters are valid?
+<jcater> html and text, iirc
+<sledge_> thx
+siesel (jan@dial-194-8-209-184.netcologne.de) joined #gnuenterprise.
+sledge_ (~sledge@B2e36.pppool.de) left irc: "using sirc version 2.211+KSIRC/981227-pre0.9"
+psu (psu@158.152.23.141) left #gnuenterprise.
+Nick change: bkuhnIdle -> bkuhn
+<dneighbo> hi bkuhn 
+ToyMan (~stuq@smtp.dstoys.com) left irc: "Client Exiting"
+dkesh (~dkesh@h0001031e43c6.ne.client2.attbi.com) joined #gnuenterprise.
+<ariel_> jcater: when reports will support conditions?
+yogurt2unge (~charlie@modem126-adsl1.cordoba.sinectis.com.ar) left irc: "Client Exiting"
+<ariel_> what's wrong with the stuff in src/ignore
+<dneighbo> um it supports conditions right now today
+<ariel_> for all the db backends?
+<jcater> yes, it should support conditions
+<jcater> as conditions were written FOR reports
+<jcater> we just found a use for them in forms :)
+<dneighbo> i had a working sample at gnuenterprise.org/~dneighbo
+<dneighbo> but it will be a few days before it resurfaces
+<ariel_> i get :
+<ariel_> gnue.common.GCondition.ConditionNotSupported: Condition clause "condition"  is not supported by this db driver
+<ariel_> i put this in the grd:
+jamest (~jamest@hobbes.math.ksu.edu) left #gnuenterprise.
+<ariel_>       <conditions>
+<ariel_> 	<condition>
+<ariel_> 	  <eq>
+<ariel_> 	    <cfield name="id"/>
+<ariel_> 	    <cparam name="idparam"/>
+<ariel_> 	  </eq>
+<ariel_> 	</condition>
+<ariel_>       </conditions>
+<nickr> SAP is supported by gnue right?
+<ariel_> is this correct?
+<ariel_> of course i passed a parameter "idparam"
+<nickr> erk
+<nickr> whoa
+<nickr> dneighbo: whats the skinny on Firebird/Interbase?
+<ariel_> dneighbo: i had a look at your gr/service_request.grd
+<ariel_> there <condition> is not inside <conditions>
+<ariel_> may be this is the problem, if so the dtd of reports is wrong.
+<ariel_> let me check..
+<ariel_> that'right, without <conditions> works fine.
+<dneighbo> sigh i hate data conversions
+<dneighbo> ariel_ : i think dtd's are the spawn of satan
+<dneighbo> so certainly i didnt look at one when making that grd, but that grd works with cvs from 05/28
+<dneighbo> nickr btami is the one writing the drivers for firebird/interbase, he seems to keep them fairly up to date
+<nickr> dneighbo: what is your impression of the system in general?
+<dneighbo> i think interbase is a good database, but not enough mind share/market penetration
+<nickr> ah
+<dneighbo> i used interbase a LOT when doing delphi work
+<dneighbo> its a good database and they used to have local Interbase which was nice for access replacement
+<dneighbo> at this point my recommendations are as follows
+<dneighbo> if you want to do real work and want freedom
+<dneighbo> use SAP-DB
+<ariel_> dneighbo: i agree, but i write grds and gsds in emacs in xml-mode till we have a full functional designer
+<nickr> You know that SAP-DB requires a propriety build system, right? At least this is what I've gathered.
+<dneighbo> NO it doesnt FUD spreader
+<dneighbo> ;)
+<dneighbo> btw: yes it was
+<nickr> Hehe
+<dneighbo> i worked with Daniel Dittmar there and within a week of asking
+<dneighbo> the released under the LGPL and provided us with sources
+<nickr> sweet
+Action: dneighbo notes this is ONE of many reasons Im impressed with them
+<nickr> now if that bailey character would get on the packages..
+<dneighbo> they stated they were sorry didnt release earlier but they wanted to do some clean up before they shoved down to others
+<dneighbo> i will admit SAP-DB is like oracle (ie. it aint a point and click setup) it needs loving from a good DBA
+<dneighbo> i.e. its not a 'street' car its a formula one vehicle
+<dneighbo> if you want to race its suitable, but plan on some effort 
+<nickr> okay so I should stick with Postgres?
+<dneighbo> if you want to do reasonable work but lower administration and still have freedom
+<dneighbo> i would say use postgres
+<ajmitch> hello
+<dneighbo> if you want easy admin, lots of penetration, high speed but a slew of other problems 
+<dneighbo> use mysql
+<nickr> postgres' baffling authentication stuff pisses me off all the time
+<dneighbo> i am hoping to debunkify sap db some
+<dneighbo> if we had deb packages
+<dneighbo> and good support in designer for schema creation and such
+<nickr> ja.
+<dneighbo> i think i would definitley say SAP-DB is better choice than postgres for about any situation
+<nickr> You tend to be very opinionated tohugh
+<ajmitch> heh
+<dneighbo> pretty much
+<dneighbo> i say the same about debian
+<dneighbo> if you want the best use debian, but surely its not for everyone
+<ajmitch> and python
+<dneighbo> it takes a little work to get used to some of its oddities, but certainly once you make it over the learning curve its WELL worth it
+<nickr> no, I'm pretty sure python is for everyone.
+<dneighbo> i think SAP-DB will fall in that category
+<dneighbo> it has a little higher hump than mysql or postgres and you wont find as many folks to aid you bouncing over that hump
+<dneighbo> but you will be well rewarded if you do so
+<jcater> well, I'm not at all opinionated
+<jcater> and for once actually agree w/derek 100%
+<ajmitch> jcater: sure
+<jcater> with his analysis
+<dneighbo> some of the stuff im trying to tackle is getting word out that SAP-DB is GPL (many folks think there is some catch)
+<dneighbo> and working with others get community sites up that help a 'newbie' transition
+<dneighbo> i think you will see SAP-DB become more common in Free Software circles as the community begins to embrace it
+<dneighbo> and help grow its penetration
+<dneighbo> i can right now, there is about 4 to 5 times the traffic on SAP-DB list than there is on all postgres lists combined
+<dneighbo> and most of them are answered by SAP employees
+<dneighbo> contrary to FUD they didnt drop SAP-DB on the communities lap, they claim to have about 100 folks still working on it (i know for certain at least 4 are active in the list)
+<dneighbo> and there is a new version coming out very soon
+<dneighbo> 7.3 was just recently released
+<dneighbo> but enough about SAP-DB :)
+<nickr> Well you've given me touchy-feely reasons that it would be a good choice, but no hard feature reasons
+<dneighbo> ok, here is one reason
+<dneighbo> if you go to their site you can get a list of all the limits and features in a matrix
+<dneighbo> i cant say the same for postgres or mysql (or at least i cant find it)
+<dneighbo> one of my goals is to line them all up side by side
+<dneighbo> i will tell you the number 1 reason
+<dneighbo> 1. I know several hundred to thousands of folks use SAP-DB for SAP R/3 in production.  The best mysql example I am pointed to is um SLASHDOT.
+<dneighbo> 2. There are about 100 paid employees pounding on SAP-DB.  I dont think postgres or mysql now even have 'real' paid employees now, with mysqlAB and greatbridge having so many issues.
+<dneighbo> btw: this is from 'corporate' prospective not my personal use
+<dneighbo> i.e. SAP-DB i think will be MUCH easier for me to bring into enterprises than mysql
+<nickr> I'm more interested in the techinical perspective than the social perspective
+<dneighbo> ok
+<dneighbo> main features
+<dneighbo> Referential integrity (to be defined in CREATE TABLE or ALTER Table statement)   Referential CONSTRAINT definition    Stored procedures   Database procedures and
+<dneighbo> CREATE DBPROC statement After statement trigger (INSERT/UPDATE/DELETE) CREATE TRIGGER statement Updateable views, although not every view is updateable Updateable view table Datatype BOOLEAN Data type A number of functions including functions for date values Function (function spec) Maximum length of object names is 32 characters Names (and links indicated there) Subtransactions Subtransaction (and links indicated there) Sequences (number generator)
+<dneighbo> JOIN predicate Scrollable cursor FETCH statement Temporary tables that will be destroyed if the application ends the session.
+<dneighbo> These tables can be created within a stored procedure and selected from outside this procedure. They are updateable, although there is no implicit update of the rows that created the temporary table. CREATE TABLE statement Explicit and implicit locking on row level Transactions and Lock statement
+<dneighbo> grrr
+bigbrother (~bigbrothe@tmp-200253.flinthills.com) left irc: Read error: 110 (Connection timed out)
+<dneighbo> http://www.sapdb.org/sap_db_features.htm
+<dneighbo> about only thing they arent supporting
+<dneighbo>     *  Collations
+<dneighbo>     * Multi version concurrency for OLTP
+<dneighbo>       It is available with the object extension of SAPDB only.
+<dneighbo>     * Hot stand by
+<dneighbo> This feature is planned to be offered in one of the coming versions. 
+<dneighbo> things you probably wont find in postgres/mysql:
+<dneighbo>     *  The Microsoft cluster server is supported. For other systems scripts have to be written according to the failover solution of the system.
+<dneighbo>     * Online backup
+<dneighbo>     * Online expansion of the database
+<dneighbo>     * No explicit reorganization
+<dneighbo> supported languages:
+<dneighbo>     *  ODBC
+<dneighbo>     * C/C++ Precompiler (Embedded SQL)
+<dneighbo>     * JDBC
+<dneighbo>     * Perl DBI
+<dneighbo>     * Python
+<dneighbo>     * PHP
+<jcater> well, there goes ash
+<jcater> :)
+<dneighbo> yeah figured as much with bb going bye bye
+<dneighbo> basically best i can tell the mandate SAP AG has given the SAPDB team is stay compatiable (feature wise) with oracle
+<dneighbo> if someone can point me to postgres/mysql feature sets i would love to make a matrix that compares
+<nickr> okay, this is already inscrutible
+<dneighbo> ?
+<nickr> the source tarballs
+<nickr> criminy.
+<dneighbo> you on debian?
+<dneighbo> http://www.mybytes.de/sapdb/
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "home"
+<dneighbo> that link should help it be more exoteric to the debian distro running mobs ;)
+<nickr> um
+<nickr> I'd rather penetrate the solid obsidian face that is the build system
+<nickr> GAR
+<dneighbo> you are a sick and twisted being
+<nickr> Well
+<nickr> Not as sick OR twisted as this build system
+<nickr> I haven't seen anything this crusty since trying to compile a crazy timezone library 10 years ago
+<nickr> even like Dominion was easy.
+Action: ariel_ is donlowding the entire sap-db site :)
+<dneighbo> they have a good right up as to WHY they dont use make
+<dneighbo> and its OPEN discussion so far no one has been able to really give good ammo
+<nickr> well be that as it may, it'd be nice if they had a script in the top directory called 'build'
+<nickr> its impossible to tell what is to be done just by looking at it
+<dneighbo> http://sapdb.2scale.net/moin.cgi/NonStandardMake
+<nickr> and the installation guide is pdf, of course.
+siesel (jan@dial-194-8-209-184.netcologne.de) left irc: "night"
+<dneighbo> http://sapdb.2scale.net/moin.cgi/VmakeCritique
+<dneighbo> is the in depth version
+<dneighbo> i think jbailey is looking to make it work with make
+<nickr> okay, and it doesn't tell you how to compile it, either.
+<nickr> blah.
+<nickr> bye bye sap.
+ariel_ (~ariel@ppp-217-133-242-6.dialup.tiscali.it) left irc: ""time to sleep""
+<dneighbo> man you sound like me
+<dneighbo> stop it :)
+<nickr> Hah
+<nickr> well at least I gave it the old college try
+<dneighbo> as stated i think the classic apt-get install sap-db
+<dneighbo>  sap-db-tools
+<dneighbo> will be the turning point
+<nickr> potentially.
+<dneighbo> yummy forms just saved my boomy
+<dneighbo> nickr you be aroudn for a bit?
+<dneighbo> someone dropped off machine they couldnt get debian installed on
+<dneighbo> im going to give it a whirl
+<dneighbo> its a hewlett packard pavilion 4530
+<nickr> Hm, I may be back in a bit
+<nickr> I am leaving work shortly
+jcater (~jason@cpe-024-165-223-104.midsouth.rr.com) joined #gnuenterprise.
+<nickr> RED RUM
+<jcater> BLUE GIN
+SachaS (~Sacha@203.190.196.18) left irc: "Client Exiting"
+<nickr> ORANGE QUOINTRO
+--- Fri Aug  2 2002
+

@@ -1,0 +1,64 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.08Nov2001" enddate="11 Oct 2001 00:00:00 -0800" startdate="08 Nov 2001 00:00:00 -0800" subject="[IRC] 08 Nov 2001" title="GNUe Form triggers - XML?">
+
+<topic>Forms</topic>
+
+<p>Michael Dean (mdean) reported a conversation he had had with Derek 
+Neighbors (dneighbo) on another channel. He had asked <quote who="Michael Dean">if 
+GNUe is to be language independent, how will you implement triggers</quote>? 
+Derek said that there had been a lot of discussion about this. He remembered 
+<quote who="Derek Neighbors">the thing we all agreed on was that we want to make 
+a trigger/event system that is shared by the appserver and forms</quote>. 
+Michael suggested XML. Derek said this had been discussed, but 
+<quote who="Derek Neighbors"> it just didnt sit right in fleshing it out
+</quote>. Later on, he pointed people to 
+<a href="http://lxr.gnue.org/gnue/source/gnue-common/doc/TriggerSpecifications.txt">
+http://lxr.gnue.org/gnue/source/gnue-common/doc/TriggerSpecifications.txt</a> for more details.</p>
+
+<p>Later, Daniel Baumann (chillywilly) said his proposed plugin system would 
+remove this issue. Jason Cater (jcater) said this was different - 
+<quote who="Jason Cater">we have to have a common way inside those languages to 
+identify our objects</quote>. Daniel suggested <quote who="Daniel Baumann">GObject 
+bindings ;)</quote>. Jason later remarked <quote who="Jason Cater">however 
+we maintain our object references, we have to answer the question
+of how will the objects be represented in the language's namespace and how 
+will those references tie back into the forms, geas, or reports 
+instance</quote>? He liked the look of GObjects, however. Perry Lorier (Isomer) 
+suggested <quote who="Perry Lorier">for a v1.0 release, python only bindings 
+IMHO is perfectly fine.  Add perl, php, C, C++, scheme, visual basic bindings 
+for v2.0 and rev quickly :)</quote></p>
+
+<p>James Thompson (jamest) pointed out that you could not store a GObject in a
+database. He said <quote who="James Thompson">GDataObject is IIRC the 
+starting point of our data aware system</quote>. Daniel asked if this 
+meant re-implementing GNUe Application Server (GEAS) in GNUe Forms 
+- <quote who="Daniel Baumann">GEAS is essentially GObject and 
+GDataObject if you really think about it</quote>.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.08Nov2001">
+Two days later</a>, Derek (derek) suggested supporting spidermonkey. 
+Michael supported this, <quote who="Michael Dean">since it would make GNUe 
+web forms triggers almost no-brainer</quote>. Derek clarified 
+<quote who="Derek Neighbors">the idea was to make it so each development house 
+wouldnt have to learn a 'new language'</quote> but could use their personal 
+preference - <quote who="Derek Neighbors">our base packages will be python 
+triggers but we want to let any language be used</quote>. If someone had an 
+exisiting system in, say, perl, it might be easier <quote who="Derek Neighbors">to 
+reuse a good portion of my code in gnue as well as not have curve of learning 
+python</quote>. Jason pointed out <quote who="Jason Cater">that if someone 
+is simply wanting to extend our packages, they wouldn't have to rewrite the base 
+in their language</quote> - they could mix and match.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.08Nov2001">
+The next day,</a> Nick Rusnov (nickr) confirmed that <quote who="Nick Rusnov">xml 
+is used heavily throughout gnue</quote>. Perry Lorier (Isomer) said 
+<quote who="Perry Lorier">no databases support XML transactions</quote> - 
+apart from Microsoft SQL Server 2000, as Michael Dean (mdean) pointed out. 
+Reinhard M&#252;ller (reinhard) said <quote who="Reinhard M&#252;ller">we are doing xml 
+<strong>from</strong> database in the reports module</quote>. They had 
+<quote who="Reinhard M&#252;ller">looked at the xml query language from the gnome-db 
+project and we decided to stick with SQL for the db access because SQL is 
+sufficiently standardized and supported natively by virtually every db</quote>.</p>
+
+</section>
+
+

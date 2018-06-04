@@ -1,0 +1,94 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.29Oct2002" enddate="28 Oct 2002 23:00:00 -0800" startdate="28 Oct 2002 23:00:00 -0800" subject="[IRC] 29 Oct 2002" title="Writing GNUe applications in other languagues">
+
+<topic>Forms</topic>
+<topic>Designer</topic>
+
+<p>Bill Gribble (grib) asked <quote who="Bill Gribble">can 
+anybody here comment on the use of the designer and other 
+tools with Guile?  are they totally tied to python or 
+somewhat language neutral?</quote> James Thompson (jamest)
+said <quote who="James Thompson">right now they are tied 
+to python - we have plans to support triggers in other 
+languages - but no code exists yet to take advantage of 
+it</quote>. Derek agreed that GNUe was 
+<quote who="Derek Neighbors">tied to python - designer 
+will likely always be unless there is a port (me sees 
+little value in a port) - as to the forms client (forms 
+is a spec, there already are php and javascript and java 
+implemenations in cvs) ableit far from complete. i would 
+say there is LITTLE need to make an implementation in a 
+separate langaguage - as they are TOOLS not applications
+i.e. we plan to support business logic in ANY language
+so people writing gnue applications should be able to write 
+applications only knowing their favorite language</quote>. 
+However, <quote who="Derek Neighbors">creating an 'alternate' 
+implementation of the tool is a lot of maintainance and 
+duplication (but as stated we have samples in cvs so its 
+doable). Python is about as portable as it gets - i.e. 
+from handhelds to mainframes</quote>. He also noted 
+<quote who="Derek Neighbors">there is a native gtk2 
+version</quote> of Forms <quote who="Derek Neighbors">in 
+cvs in case wxpython is one of your concerns</quote>.</p>
+
+<p>Bill said <quote who="Bill Gribble">I am using a similar 
+designer via glade that's tied to scheme in the same way; 
+I just happen to like scheme more :) The nice thing about 
+the gnue designer is the twist you guys put on it to support 
+character cell layout. I am pretty likely to be doing a 
+significant chunk of ERP type stuff for some car dealerships 
+and I was hoping to give/take some with gnue, but I don't 
+think I'm ready to switch the tools over to python.</quote> 
+He did not <quote who="Bill Gribble">have anything against 
+python, I just like lispy languages better.  guile has its 
+limitations but at least I know what they are.</quote> 
+Derek said <quote who="Derek Neighbors">guile/scheme looks 
+very cool - problem is it has a big learning curve compared 
+to python for business programmers. I dont think that makes 
+it bad, just we tried to pick something closer to our target 
+market plus larger programmer base</quote>. He suggested 
+<quote who="Derek Neighbors">the 'right' thing to do if you 
+wanted to do this and not loose scheme is adopt the formats
+i.e. keep own designer - just make it write out gfd's and 
+grd's - then make a forms client in scheme. This shouldnt be 
+overly difficult - and it woudl actually give you 
+compatiability to GNUE - i.e. a form you write should be 
+usable by python clients as long as you are in spec - 
+especially once we have cross language trigger support</quote>.
+He noted <quote who="Derek Neighbors">we are getting ready 
+to rollout quite a bit of application base very soon - 
+geared towards manufacturing - but most of it would be 
+relevant to car dealerships too - as keeping books and paying 
+bills is pretty universal :)</quote>.</p>
+
+<p>Nick Rusnov (nickr) said <quote who="Nick Rusnov">Seems 
+like the gfds should allow you to say 'this trigger uses this 
+interpreter'</quote>. Jason Cater (jcater) said 
+<quote who="Jason Cater">we have that functionality, just no 
+sublanguages - all triggers support a language="" attribute -
+just right now, "python" is the only valid answer :)</quote>. 
+Nick asked <quote who="Nick Rusnov">does the forms client 
+really have to be written in the same lanugage as the 
+triggers?</quote> Derek said not - 
+<quote who="Derek Neighbors">the idea is that python version 
+will support triggers in ANY language</quote> that 
+<quote who="Derek Neighbors">someone writes a wrapper 
+for</quote>.</p>
+
+<p>Derek asked whether <quote who="Derek Neighbors">we 
+could make designer work same way for plugins? i.e. could we 
+make the plugin architecture support other languages</quote>? 
+Jason said <quote who="Jason Cater">I suppose so - but that's 
+a slightly different audience - /me isn't sure of the benefits
+- but it is certainly doable</quote>. Derek said that
+<quote who="Derek Neighbors">if we make a concession for 
+business applications to be outside of python (the biz 
+logic/triggers) - would it make sense to offer this 
+flexibiltiy for designer plugins</quote> as well. As Designer 
+evolved, so that <quote who="Derek Neighbors">everything 
+almost is done via plugin - we might get more stuff written 
+if we offer to let poeple write in language of choice
+- or at least python/scheme/perl</quote>.</p>
+
+</section>
+
+

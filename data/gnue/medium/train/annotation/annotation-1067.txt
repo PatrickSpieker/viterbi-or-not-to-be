@@ -1,0 +1,70 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.03May2002" enddate="07 May 2002 23:00:00 -0800" startdate="02 May 2002 23:00:00 -0800" subject="[IRC] 03 May 2002" title="Working on GNUe Application Server">
+
+<topic>Application Server</topic>
+<topic>Common</topic>
+
+<p>Charles Rouzer (Mr_You) asked <quote who="Charles Rouzer">how
+is GEAS coming?</quote> Daniel Baumann (chillywilly) said he 
+had not <quote who="Daniel Baumann">finished my draft architecture 
+document yet</quote>. However, <quote who="Daniel Baumann">there's 
+some inital code - reinhard added some to fit his API</quote>. 
+He added <quote who="Daniel Baumann">I htink jan added support for 
+GNURPC to geas - but I think that api will change - or at least 
+someone will have to take into consideration what I am doing at some 
+point</quote>. He suggested any interested parties should check 
+out his document at /docbook/Proposals/geasarch/outline.txt - 
+<quote who="Daniel Baumann">mainly working on defining the Python 
+ODMG binding which should go into common</quote>. Jan Ischebeck 
+(siesel) was working on the link between GNU-RPC (GNUe Common) and 
+the Application Server, and <quote who="Daniel Baumann">arturas is 
+doing i18n</quote>. Christian Selig (sledge_) felt that 
+<quote who="Christian Selig">i18n should wait before major production 
+releases, because (at least from my experience) having all translations 
+catch up with the primary language is a nasty issue</quote>.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.05May2002">
+Two days later</a>, Jan said <quote who="Jan Ischebeck">I've 
+read odmg.txt, but its some time ago. outline.txt is informative, 
+except of the overview at the beginning, it is mostly about odmg and 
+how to describe objects, or how to map  ODL into python objects.
+I think two other things are also very important at the moment:
+a) object-relational mapping (you said it) - 
+b) more concret definition of the way to access objects</quote>. 
+Daniel said <quote who="Daniel Baumann">well the client API is 
+defined in ODMG, imho - it just needs to be worked out</quote>.</p>
+
+<p>Daniel explained that the Application server would need 
+metaobjects - <quote who="Daniel Baumann">objects about objects - 
+so you can change the schema on the fly</quote>. Eventually, 
+<quote who="Daniel Baumann">the meta object api could be used 
+by designer to create new business objects - then from those odl 
+files can be generated and python code stubs can be 
+generated</quote>. Jan was impressed - 
+<quote who="Jan Ischebeck">GEAS V2 will be great</quote>.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.08May2002">
+Three days later</a>, Jan said he had 
+<quote who="Jan Ischebeck">talked with chilly about odmg.txt. 
+..and found a book on my bookshelf about object databases.</quote>. 
+Reinhard M&#252;ller (reinhard) said he was 
+keen on ODMG as well, <quote who="Reinhard M&#252;ller">however i feel a 
+strong urge to only implement what's needed</quote>. Jan asked 
+whether this was just to get working code sooner, or for 
+<quote who="Jan Ischebeck">performance issues</quote>. Reinhard said 
+his motto was <quote who="Reinhard M&#252;ller">"something is perfect not 
+when there's nothing left to add, but when there's nothing left to 
+remove" - which sums up all issues from performance over 
+maintainability to implementation speed :)</quote>.</p>
+
+<p>Jan said <quote who="Jan Ischebeck">I would like to implement 
+views. That would allow to handle attribut and method access issues 
+on an object access level instead of complicated attribut and 
+method acces rules.</quote> He explained <quote who="Jan Ischebeck">Its 
+like views in postgres. You define an object which is an wrapper for 
+the real object, but which only allows read access</quote> for 
+example. This would mean <quote who="Jan Ischebeck">everybody gets 
+access permission to that new object (the view) and just root has 
+access privilige for the other one</quote>.</p>
+
+</section>
+

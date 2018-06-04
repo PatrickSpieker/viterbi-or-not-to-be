@@ -1,0 +1,82 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.2006-04-12" author="Peter Sullivan" contact="mailto:psu@burdonvale.co.uk" enddate="14 Apr 2006 12:00:00 -0800" startdate="12 Apr 2006 12:00:00 -0800" subject="[IRC] 12 Apr 2006" title="Requerying on a commit in Forms">
+
+<topic>Forms</topic>
+
+<mention>Bajusz Tam&#225;s</mention>
+
+<p>Referring back to 
+<kcref subject="[IRC] 05 Apr 2006" title="Behaviour of Clear button" />, 
+Reinhard M&#252;ller (reinhard) noted the consensus that 
+<quote who="Reinhard M&#252;ller">it would be logical if after a commit the 
+complete result set would be queried again</quote>, but added several 
+further issues: <quote who="Reinhard M&#252;ller">1. actually the 
+starting point was the "undo" function (that we 
+came up with a different name afterwards), that this function should do the 
+query again - it was me who extrapolated that to the commit - is this really 
+desired to after commit see changes done by different users? and 2. doing the 
+complete query again after commit would mean newly inserted records being 
+sorted to the place they belong instead of the place they were originally 
+inserted, so it would look to the user as if the record "jumped" 
+to a different place</quote>. Also, <quote who="Reinhard M&#252;ller">3. what 
+about those records that were inserted or changed in a way that they don't 
+match the query? would they disappear after the commit?</quote>.</p>
+
+<p>Jason Cater (jcater) noted that <quote who="Jason Cater">the last query 
+is already saved</quote> since <quote who="Jason Cater">if you press the 
+"Query" button twice, the previous query is brought back 
+up</quote>, so users could re-run the query manually to see what had 
+changed if they wanted to. On the more general issue, 
+<quote who="Jason Cater">my personal feeling is in several key forms, my 
+users will get disoriented if the resultset changes on them - but I can 
+see where it would be useful/desirable too. Certainly it wouldn't be hard 
+to add a requery-on-commit attribute to datasources or blocks (is there 
+not one now?). But even then, the question becomes "what is the 
+default?"</quote>.</p>
+
+<p>James Thompson (jamest) said <quote who="James Thompson">what's the 
+advantage to the requery of the whole result set? (other than it would make 
+our record tracking and removal code go away :)</quote> But Jason was not 
+sure of this last point - <quote who="Jason Cater">as even on requery, 
+wouldn't you want it to still try to make a best-effort to go back to the 
+same record</quote>? Reinhard said that the 
+<quote who="Reinhard M&#252;ller">advantage would be that you see other records 
+that other users have added meanwhile - or changes from other users - 
+(current requery logic only requeries those records that had changes on 
+commit)</quote>. James wondered <quote who="James Thompson">if that 
+shouldn't be a separate feature - like in postgresql's case it allows 
+you to register for notifications of table updates</quote>.</p>
+
+<p>Reinhard was <quote who="Reinhard M&#252;ller">also interested in what you 
+think about this "revert" function: should it revert to the 
+original state of the db, or should it fetch changes from other transactions?
+I think new records popping up on revert might not disorient as much as it 
+would on commit</quote> but worried <quote who="Reinhard M&#252;ller">*sigh* 
+why does it happen so often that I start implementing something and after 
+that, I find out that I'm not even sure what exactly I want to 
+implement...</quote>..</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.2006-04-14">Two 
+days later</a>, Bajusz Tam&#225;s (btami) explained that some of his users 
+were having problems adjusting to using a legacy application, now 
+translated to use GNUe Forms, because of the behaviour of the 'Clear' 
+button. The 'clear' button threw away all changes since the last 
+commit, not just on the current record. Also, it did not 
+re-query the data, leaving the user looking at a blank form. 
+Reinhard M&#252;ller (reinhard) noted that 
+<quote who="Reinhard M&#252;ller">both issues are actually related 
+to the "undo" function, and not to commit in any 
+way</quote>. This meant that the behaviour of commit could 
+stay as it was as of time of writing, avoiding some of the 
+potential problems previously discussed. The main outstanding 
+issue was whether the 'undo' function should 
+<quote who="Reinhard M&#252;ller">revert to the state of the result 
+set before any change was made - or should it refresh data 
+from the backend - risking that, for example, the current 
+record suddenly disappears because another user has just 
+deleted it - or records "jumping around" because 
+somebody changed a record in a way relevant for the sort 
+order</quote>.</p>
+
+</section>
+
+

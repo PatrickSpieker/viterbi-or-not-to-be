@@ -1,0 +1,197 @@
+*** reinhard has joined #gnuenterprise
+*** kilo has joined #gnuenterprise
+*** johannesV has joined #gnuenterprise
+<johannesV> good morning
+<reinhard> good morning
+<dimas> good morning
+*** SachaS has joined #gnuenterprise
+*** dimas has quit IRC
+*** btami has joined #gnuenterprise
+*** btami has quit IRC
+*** jamest has joined #gnuenterprise
+*** kilo has left #gnuenterprise
+<reinhard> question
+<reinhard> dropdowns (or other entries with a list of allowed values
+<reinhard> )
+<johannesV> like a listbox
+<reinhard> currently when a wrong value is entered, the complete entry is deleted and the field is set back to empty
+<reinhard> and the cursor moves out of the entry
+<reinhard> and no error message is displayed
+<reinhard> I consider this a bug and would think the correct behaviour would be
+<reinhard> display error message in status line, beep, leave the input as it was (so I can just correct my typo) and leave the focus in the entry
+<reinhard> would you agree?
+<johannesV> yes
+<johannesV> i agree
+<jamest> hmmm
+<jamest> i'd agree that the dropdown should block invalid input
+<jamest> but i'm thinking about situations where input is based upon previous input
+<reinhard> this is just about invalid input from field definition
+<reinhard> i.e.
+<reinhard> not in _allowedValues
+<reinhard> invalid date
+<reinhard> invalid number
+<reinhard> etc
+<jamest> lets say that I have a list of vendors "Abes", "Bobs", and "TOms"
+<jamest> ah, nevermind
+<jamest> :)
+<reinhard> the point is
+<reinhard> when you now type "Abex" and hit enter
+<reinhard> the field is reset to "blank" and you don't even see/hear any feedback
+<reinhard> at least that's what it does for me
+<reinhard> (did, before the last commit, to be precise)
+*** johannesV_ has joined #gnuenterprise
+*** johannesV has quit IRC
+*** llp has joined #gnuenterprise
+*** SachaS has quit IRC
+*** jcater has joined #gnuenterprise
+*** jamest has quit IRC
+*** jamest has joined #gnuenterprise
+*** derek has joined #gnuenterprise
+*** llp has quit IRC
+*** dimas_ has quit IRC
+*** dimas has joined #gnuenterprise
+*** sjc has joined #gnuenterprise
+*** johannesV_ has quit IRC
+*** ra3vat has joined #gnuenterprise
+<reinhard> hmmm
+<reinhard> interesting problem
+<reinhard> I've managed to block tabbing out of a control as long as the entered value is invalid
+<reinhard> so when you hit tab or enter gnue-forms just beeps and shows an error message
+<reinhard> however I seem to have no means to block moving the focus to another widget with the mouse
+<reinhard> so you can still click out of a control even when the value is invalid
+<reinhard> does anybody have any idea about this?
+*** llp has joined #gnuenterprise
+*** jamest has quit IRC
+*** llp has quit IRC
+<reinhard> ok, I think I found a solution that behaves fairly reasonable
+<reinhard> but I guess it needs testing on different UIS
+<reinhard> Us
+<reinhard> grr
+<reinhard> UIs
+<reinhard> I can confirm that it works on gtk2 and wx26
+*** ajmitch has quit IRC
+*** ajmitch has joined #gnuenterprise
+*** llp has joined #gnuenterprise
+*** jamest has joined #gnuenterprise
+<reinhard> good night all
+*** reinhard has quit IRC
+*** jamest has quit IRC
+*** jamest has joined #gnuenterprise
+*** derek has quit IRC
+*** sjc has quit IRC
+*** jamest has quit IRC
+*** llp has quit IRC
+*** reinhard has joined #gnuenterprise
+<reinhard> good morning all
+<ra3vat> good morning
+*** ra3vat has quit IRC
+*** johannesV has joined #gnuenterprise
+<reinhard> hi johannesV
+<johannesV> good morning
+<reinhard> if you have time, please test my changes of yesterday with different uis
+<johannesV> ok
+<johannesV> something special to look at ?
+<reinhard> about mouseclicking out from an invalid entry
+<johannesV> ok
+<johannesV> is there a prepared gfd ?
+<reinhard> as there is no way of blocking the foucus change if it was done with a mouse click
+<reinhard> I tried the idea to just focus back into the invalid entry immediately
+<reinhard> it seems to work for wx26 and gtk2
+<reinhard> you can use any gfd with dropdowns in it
+<reinhard> just enter something invalid in the dropdown
+<reinhard> appserver sample.gfd should be ok
+<johannesV> ok
+<johannesV> updating svn takes a while here ... :(
+<johannesV> btw. there was little response on the wx-mailing list regarding the grid problem
+<johannesV> looks like some guys have implemented a grid-control (derived from wx.grid) which is capable of handling multiple rows per logical record
+<johannesV> but it appears as the have troubles with selecting a row as well as moving around in a logical way
+<johannesV> i've installed gnuecash yesterday to get a look at how they did it there ...
+<johannesV> (looks like is a kde app, isn't it ?)
+<reinhard> no
+<reinhard> it's a gtk1 app
+<johannesV> reinhard, bad news ...
+<johannesV> clicking out of a field having a min-length constraint ends up in a never-ending loop of error-message "minimum length is 4" ...
+<reinhard> please don't test min length
+<johannesV> use gauntlet.gfd to check ...
+<johannesV> ah, ok
+<reinhard> I just noticed that min length is checked at a *completely* other point than other constraints (like allowed values, valid date/time etc)
+<johannesV> yeah, that's not a good solution right now
+<johannesV> looks to work on wx26, although there are some weird things happening when using the mousclick to change a notebook page ..
+<johannesV> but i think that is a pb we've already discussed a while ago
+<johannesV> where the change of the page should be vetoed befored
+<johannesV> s/befored/before/
+<reinhard> I would even think that you can commit a record where an entry is below the min length
+<reinhard> you just can't tab out of it
+<johannesV> should your change work on win32 too ?
+<johannesV> or just on other platforms using wx26 ?
+<reinhard> on all UIs
+<johannesV> ok, then here we go:
+<johannesV> on wx clicking into another entry moves the UI-focus to that entry, but keeps GF-focus in the dropdown. entering new text goes still into the dropdown - the errormessage appears in the statusline
+<johannesV> on win32 clicking into another entry moves both ui- and gf-focus into the new field, no message, no error. the value of the dropdown is the first one which was available depending on my input
+<reinhard> gack!
+<johannesV> e.g. i'm entering Foo into the country-name. after clicking out of it, Falkland Islands is set
+<johannesV> using wx26 on win works as intended
+<johannesV> btw. leaving the ctrl with a tab on win32 clears the field completley
+<reinhard> you test with sample.gfd?
+<johannesV> yep
+<reinhard> can you do same test with invalid date instead of invalid dropdown value?
+<johannesV> ok, let me search for a date-field ...
+<reinhard> born
+<johannesV> yeah, could it be that 'Select-all' is no longer workin ?
+<johannesV> on wx26 i'd say it's working, aside from the wrong input-cursor-position after clicking out of the entry. while the cursor was after the last char before the click it is before the first afterwards
+*** kilo has joined #gnuenterprise
+<johannesV> win32: nothing happens at all - like it was with the dropdown; no message, no error
+<kilo> good morning
+<johannesV> wx: same as with dropdowns. ui-cursor is in the new entry. gf-layer still in the born-field (with cursor before start)
+<johannesV> good morning kilo
+*** SachaS has joined #gnuenterprise
+*** btami has joined #gnuenterprise
+*** SachaS_ has joined #gnuenterprise
+*** SachaS has quit IRC
+*** SachaS_ is now known as SachaS
+*** ra3vat has joined #gnuenterprise
+*** ra3vat has quit IRC
+*** kilo has left #gnuenterprise
+*** btami has quit IRC
+*** jamest has joined #gnuenterprise
+*** dyfet has joined #gnuenterprise
+*** btami has joined #gnuenterprise
+<reinhard> bbl
+*** johannesV has quit IRC
+*** johannesV has joined #gnuenterprise
+*** klasstek has joined #gnuenterprise
+*** llp has joined #gnuenterprise
+*** llp has quit IRC
+*** derek has joined #gnuenterprise
+*** SachaS has quit IRC
+*** klasstek has quit IRC
+*** lupo__ has joined #gnuenterprise
+*** lupo__ has quit IRC
+*** jamest has left #gnuenterprise
+*** jamest has joined #gnuenterprise
+*** johannesV has quit IRC
+*** llp has joined #gnuenterprise
+*** btami has quit IRC
+*** dyfet has left #gnuenterprise
+*** SachaS has joined #gnuenterprise
+*** jamest has left #gnuenterprise
+<reinhard> good night all
+*** reinhard has quit IRC
+*** kilo has joined #gnuenterprise
+*** sjc has joined #gnuenterprise
+*** llp has quit IRC
+*** llp has joined #gnuenterprise
+*** jcater has quit IRC
+*** kilo has quit IRC
+*** jcater has joined #gnuenterprise
+*** jcater has quit IRC
+*** derek has quit IRC
+*** sjc has quit IRC
+*** jcater has joined #gnuenterprise
+*** ajmitch has quit IRC
+*** chillywilly has quit IRC
+*** ajmitch has joined #gnuenterprise
+*** chillywilly has joined #gnuenterprise
+*** dimas has quit IRC
+*** dimas has joined #gnuenterprise
+*** llp has quit IRC

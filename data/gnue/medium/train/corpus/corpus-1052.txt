@@ -1,0 +1,1127 @@
+<frayed> jcater: it's definitely worth looking at.  Are there design documents attached to it?  The idea is that if it provides a good enough framework for us to start with, we'll be more than happy to work on it too.
+Action: dsmith isn't up on ldap, but wan't to be
+<jcater> frayed: the schema files exist :)
+<jcater> does that count?
+<jcater> actually, derek has done most of the stuff in there
+<jcater> he is swamped at work being the beginning of the year
+<chillywilly> it's not too huge
+<jcater> so he's hard to catch
+<chillywilly> even I can grokk the schema
+<chillywilly> ;)
+<frayed> small business doesn't need much.  :)
+<jcater> but you won't hurt our feelings if it isn't far enough along :)
+<frayed> I'll beat on it tonight for awhile then and see what I come up with.  I was going to work on a personal finance app with GNUe.
+<jcater> ooooooo
+<jcater> I've wanted to do that
+<frayed> jcater: all that matters is that the schema is "good enough" for us.  :)
+<jcater> Im working on a rental property management app myself
+<jcater> well
+<frayed> jcater: I would *so* like to get rid of Quicken right now.  I watched my wife rdp into the windows box to use IE to play games.
+<jcater> haven't touched it since november
+<jcater> but I *am* working on it, darn it!
+Action: jcater keeps telling myself that
+<chillywilly> suuure ;)
+<frayed> crap, what am I supposed to use from cvs to run a .gpd file?
+<jcater> gnue-navigator
+Action: frayed hasn't bothered creating a database yet, so is expecting to fail.  :)
+<jcater> though you can run the forms files directly
+<frayed> command not found
+<jcater> err
+<jcater> gncvs?
+<jcater> ooooo
+<jcater> are you running against cvs head?
+<frayed> DB000: gnue.common.GParser.MarkupError: Error processing <process> tag [I do not recognize the "description" attribute
+<frayed> yes?  :)
+<jcater> gnue-sb hasn't been upgraded to the new API
+<jcater> why... I'm not sure
+<jcater> but it is still running against the releases
+<ajmitch> ah yes, must produce patches for 0.4.x & wxpython 2.4
+<frayed> aha.  Maybe I should back off versions a bit anyway.  Designer is very unstable under the new API, but I don't know if it's just generally unstable or not.
+<ajmitch> jcater: when do you think wx 2.4 might be required for designer? 0.6.x
+<ajmitch> ?
+<jcater> ajmitch: read the channel topic
+<ajmitch> hmm, right
+<jcater> ajmitch: probably
+<frayed> I suppose I should update or back off.  heh.
+<ajmitch> good to see someone's been working (unlike me) :)
+<jcater> frayed: yeah, cvs is really being pounded on
+<jcater> so for a little while, it may not be ideal for general usage :)
+<frayed> how are the other modules for wx 2.4 compatibility right now?
+<chillywilly> the 'compatibility' is a one liner or so
+<chillywilly> ;P
+<jcater> afaik, all the other tools were fine
+<frayed> ok.  is there an easy way uninstall the cvs copy I installed, in order to downgrade to the latest stable releases?
+<ajmitch> jcater: frayed even volunteered to help with docs! :)
+<chillywilly> has there been any commits to cvs cause I don't think I have gotten a commit email in a while and I am wondering what's up with my setup
+<jcater> chillywilly: yes, at least 2 today
+<chillywilly> hmmm
+<jcater> frayed: no need to uninstall
+<jcater> http://mail.gnu.org/archive/html/gnue-dev/2002-11/msg00033.html
+<jcater> btw, gnu.org NEEDS to set up apache mod_rewrites to automatically forward old-style mailing list URLs to the new style
+<jcater> this is getting ridiculous
+<jcater> frayed: add to that list
+<jcater> cd common
+<jcater> cvs update -r common-0-4-1-branch
+Action: jcater forgot that in this particular email
+<frayed> I've got you.  Are those the only 3 components I need to worry about?  I'm still a little fuzzy on the architecture...
+<jcater> yeah
+<chillywilly> hmmm, I think I forgot to run fetchmail
+<chillywilly> after my server reboot
+<chillywilly> er, the last one
+<chillywilly> woah
+<chillywilly> getting butt loads of email
+<frayed> lemme guess, you're running an NT server?
+Action: ajmitch claps
+Action: frayed dodges
+<ajmitch> lol
+<chillywilly> frayed: uh, no
+<ajmitch> frayed: so where are you based?
+<chillywilly> Debian GNU/Linux testing
+<frayed> seattle (in the backyard of the beast)
+<ajmitch> ah
+<ajmitch> lucky fella
+<chillywilly> frayed: I was rebooting it to make sure some things were setup correctly cause, unlike NT, the only reason my server went down was a hardware failure
+<frayed> heh, there's not as much Microsoft sentiments around here as I thought there'd be.  But people are genuinely afraid not to run MS software.
+<frayed> chillywilly: aha, I get you.  For a new guy like me, though, the two sentences sounded, well...
+<chillywilly> I had to make sure GRUB was installed correctly
+<chillywilly> ;)
+<chillywilly> and that the network interfaces would come up on boot up
+<chillywilly> well I suppose I didn't HAVE to
+<chillywilly> but I did anyway
+<frayed> you know, I've never gotten GRUB to work, for some reason.
+<jcater> nor have I
+<frayed> hey dude, the reason GNU/LInux servers last so damn long is because we double-check our work.  :)
+<jcater> I always decide, "eh, lilo works..."
+<chillywilly> I install it form a boot disk usually
+<chillywilly> from
+<chillywilly> grub boot floppy
+<ajmitch> that reminds me, i have to disable the default route on eth0 coming up at bootup :)
+<frayed> I've been pretty happy with lilo, but I'm interested in that HURD kernel, and I understand lilo won't boot it.
+<chillywilly> it is quirky though
+<ajmitch> had a power cut today :(
+Action: ajmitch boots his gnu/hurd box beside him...
+<chillywilly> The experience of Napster shows that we should also permit
+<chillywilly> noncommercial verbatim redistribution to the general public -- when so
+<chillywilly> many of the public want to copy and share, and find it so useful, only
+<chillywilly> draconian measures will stop them, and the public deserves to get what
+<chillywilly> it wants.
+<chillywilly>         -- RMS, "Misinterpreting Copyright"
+<chillywilly> ;P
+<jcater> I need more donuts
+<jcater>     -- jcater
+<chillywilly> :-D
+<chillywilly> Don't make me troutslap you
+<chillywilly>    -- chillywilly
+<jcater> Mmmmm.  Pizza.
+<jcater>   -- derek
+<chillywilly>    --- Derek
+<chillywilly> ;P
+<frayed> heh, I just wrote a music license the other day.  lemme see.....
+<ajmitch> ok, time for me to reply to bug report, tell jbailey to upgrade to 0.4.3 :)
+<chillywilly> Goats!
+<chillywilly>    -- jamest
+<jcater> Mmmmm.  Vegan Chili
+<ajmitch> hehe
+<frayed> In short, you can't change the recording we
+<frayed> made, but you can make a derivative work with it.  You may distribute either the
+<frayed> recording we made or your derivative work royalty-free.  The catch is, you have to
+<frayed> credit both the band that made the recording
+<frayed> and the original band.  The only recordings my band has right now are covers.
+<frayed> DB000: gnue.common.GParser.MarkupError: Error processing <process> tag [I do not recognize the "description" attribute
+<jcater> lovely
+<ajmitch> running what?
+<frayed> same error.  gnue-sb
+<jcater> I'd recommand not using the gpd and using the gfd's by themselves
+<jcater> :)
+<ajmitch> frayed: no, what were you using to load it?
+<jcater> I better go to bed
+<ajmitch> heh, night jcater
+<frayed> I just did the instructions in the post that jcater had me read
+<frayed> gnue-navigator
+<ajmitch> ok
+<frayed> night jcater
+<jcater> heh, funny story....
+<jcater> last night at about 11:00 my time
+<jcater> I feel like it should be 4:00 am or so
+<jcater> so I go to bed
+<jcater> only to realize that it is 4:00 am or so
+<jcater> my son, before I got home
+<jcater> had changed my KClock to use Moscow time
+<ajmitch> hehe
+<jcater> and that's the only clock in my office
+<ajmitch> :)
+<jcater> so I am really tired tonight
+<jcater> :)
+<frayed> looks like you need an atomic clock
+<jcater> frayed: it updates the time nightly against the naval time service
+<jcater> so I usually trust it
+<jcater> he just changed my displayed timezone :)
+jcater (~jason@cpe-066-061-083-220.midsouth.rr.com) left irc: "sleep"
+<frayed> every reason to.  :)  The advantage to these atomic clocks they sell is that you can hang them on the wall out of kids' reach
+<frayed> too slow, I was
+<chillywilly> that is funny
+<frayed> what's a .gsd file, and what do I do with it?
+<chillywilly> it's xml markup schema file
+<chillywilly> ideally you should translate it to sql with the gnue tools for whatever database you're gonna use
+<chillywilly> however, I am not sure that is working right now
+<frayed> I discovered that much.  There's an Oracle and Postgres .sql file for creating the database, but no MySQL file
+<chillywilly> probably cause mysql isn't too popular around these parts ;)
+<chillywilly> in gnue/common/utils there some scripts
+<ajmitch> we're talking about databases
+<ajmitch> not toys
+<chillywilly> be nice ajmitch ;)
+<frayed> yeah, well, my real database doesn't work.  ;)
+<frayed> trouble getting Postgres to start, which was my first choice.  Since MySQL started, I'm using it right now.
+<frayed> when/if we do this, we'll likely setup a dedicated database server with Postgres, because my partner doesn't like MySQL either
+<ra3vat> frayed: *  ~/bin/gcvs ~/cvs/gnue/common/src/schema/scripter/Scripter.py schema.gsd postgresql > PgSQL/schema.sql 
+<ra3vat> is how to make sql
+<frayed> presumable I change "postgresql" to "mysql"?
+steptoe (~notreally@ip68-99-239-155.ph.ph.cox.net) joined #gnuenterprise.
+steptoe (~notreally@ip68-99-239-155.ph.ph.cox.net) left irc: Client Quit
+<chillywilly> frayed: nooooooooo ;)
+<frayed> I think I'm on to what's wrong with my postgres installation.  Might have it running pretty soon...
+SachaS (~Sacha@dialup-196-198.wasp.net.au) joined #gnuenterprise.
+<frayed> I just discovered that if I ssh into another machine and run an X app, the GUI appears on the machine I'm sitting at.  Forgive me for sounding green, but I didn't know about that...
+<ajmitch> yeah, that's a small useful feature :)
+<SachaS> if you have a fast connection, only
+<frayed> LAN :)
+<ajmitch> more so if it's on the local network
+<SachaS> otherwise its (X) verrrry slow
+<ajmitch> vnc is usable over 128kbps line :)
+<ajmitch> even usable on 56k :)
+<frayed> ok, I've got postgres running now.  I believe it will continue to run even if I reboot, but I'm not going to reboot to test it.  :P
+<chillywilly> are you making fun of me?
+<chillywilly> cause if you are you will be beaten senseless by fishies
+<frayed> no.  Well, yes.  But also because my server doesn't boot reliably the first time.  I think there's some bad memory in it, and I haven't fixed it.
+<frayed> every couple of weeks it kernel panics for no reason....  I'm starting to feel like an NT administrator again.  :(
+<chillywilly> you need to get some freakin' ram
+<chillywilly> are you waiting for an invitation?!?
+<chillywilly> ;)
+<frayed> I did, and that's the problem.  I think the motherboard itself is broke and will only let me use one stick, and one specific stick in one specific slot
+<frayed> But if I do that, then I can only have 32MB.
+<chillywilly> blah
+<chillywilly> rofl
+<chillywilly> this weightloss infomercial came on and this lady is supposed to be a weightloss expert and she's like a big fat thing
+<chillywilly> wtf
+<frayed> expected.  After having kids I noticed that everyone around me that didn't have kids were experts on how to take care of them.
+<chillywilly> true dat
+<frayed> when my wife and I were split up, all the single men around me were experts on how to handle a marriage and get laid.
+<frayed> oh yeah, and for some reason, BSA accountants and managers are experts on how to build and administer servers.  Riddle me that one.
+<frayed> er, BSA = BA
+<chillywilly> hehe
+Action: chillywilly was thinking "bullshit artists"
+dsmith (dsmith@oh-strongsvillecadent1-1c-203.clvhoh.adelphia.net) left irc: Remote closed the connection
+<frayed> heh, that's what my sister calls 'em.  She's a chemist, but the accountants and managers at her company seem to know everything about the scientific method.
+<chillywilly> man I am kinda tired
+<chillywilly> HEH
+<frayed> check your locale setting, dude...
+<chillywilly> most managers and suits are incompetent
+<chillywilly> I know what time it is
+<chillywilly> 1am
+<frayed> is not.  It's 11pm.
+<chillywilly> no it's 1am CST
+<chillywilly> damnit ;)
+<ajmitch> is 8pm
+<frayed> if I edit my postgres pg_hba file, do I have to restart the server?  (I know that sounds dumb, but you don't have to restart samba...)
+<chillywilly> yes you do
+<ajmitch> can't recall, i usually did :)
+<chillywilly> so samba unnecessarily reads the config file everytime it does something?
+<frayed> aha, do a kill-HUP to it, or run pg_ctl reload
+<SachaS> bye
+<chillywilly> or /etc/ini.d/postgresql restart
+<chillywilly> inti.d
+SachaS (~Sacha@dialup-196-198.wasp.net.au) left #gnuenterprise ("Client Exiting").
+<frayed> no, it just reads it every minute, I believe.  Remember, they're trying to make it act like an NT server.
+<chillywilly> blah
+<chillywilly> init.d!!!
+<chillywilly> whew
+<chillywilly> that's is so lame
+<chillywilly> NT admins are that lazy?
+<frayed> no, NT admins reboot everytime they open the command line.
+<frayed> The idea is that it does unnecessary work.  ;)
+<chillywilly> yaaay
+<chillywilly> I wanna read the config file every second
+<chillywilly> hell I wanna rrad it so often that I never actually finish reading it
+<chillywilly> it needs to be in a perpetual state of startup
+<chillywilly> that would r0x0r
+<frayed> I had an app that did that.  Ran it on an old UNICOS system, when the system was brand new.  couldn't figure out how to kill it,
+<frayed> so I logged out.
+<frayed> Next day I had an email from the administrator saying "do it again and your account will be terminated"
+<frayed> I decided not to write back and say "That was a feature, not a bug"
+<chillywilly> hmmm, how about "STFU"
+<chillywilly> hmm, almost time for bed
+<chillywilly> too bad no one will play tetrinet with me :(
+<chillywilly> bastids
+reinhard (~reinhard@M689P002.adsl.highway.telekom.at) joined #gnuenterprise.
+btami (~tamas@ip102-205.ktv.tiszanet.hu) joined #gnuenterprise.
+ajmitch_ (~ajmitch@wlg1-port19.jetstart.maxnet.co.nz) joined #gnuenterprise.
+<btami> good morning
+<frayed> good evening
+<ajmitch_> ugh
+<btami> how goes frayed?
+<frayed> aking progress, if I can just figure out how to get postgres to let me connect to it
+<chillywilly> you setup your pg_hba.conf yet?
+<frayed> that's what I'm working on right now.
+<frayed> host    all     192.168.0.0     255.255.255.0   password
+<chillywilly> password authentication for all private IPs?
+<chillywilly> hmmm
+<frayed> yeah, wireless NAT router
+<ajmitch_> ah right
+<chillywilly> I am just thinking whether you need to specify the bits
+<ajmitch_> then you need a password file
+Action: ajmitch_ used to have similar, with this:
+<chillywilly> erm, or add the person to pg_password
+<ajmitch_> host    all     192.168.0.0     255.255.255.0   password passwords
+<chillywilly> the admin guide is helpful
+<ajmitch_> chillywilly: that can be the password file, yes
+<chillywilly> well I use the db...dunno if that's sick and twisted or what
+<btami> frayed: look at jcater's msg in gnue list 2003.01.13
+<ajmitch_> sigh, helping someone setup their deadrat install
+<btami> Connecting to PostgreSQL without TCP/IP
+<chillywilly> yea, that only helps if it's the sam machine right?
+Action: chillywilly tries to remember what jcater wrote
+<frayed> um, I want to connect with TCP/IP, because I will have at least one client on d'WAN
+<btami> ok, sorry
+Action: chillywilly installs postgres real quick
+ajmitch (~ajmitch@wlg1-port35.jetstart.maxnet.co.nz) left irc: Killed (NickServ (Ghost: ajmitch_!~ajmitch@wlg1-port19.jetstart.maxnet.co.nz))
+Nick change: ajmitch_ -> ajmitch
+Action: chillywilly wonders why postgres packages depend on python
+<ajmitch> chillywilly: you can use python as a language with it
+<chillywilly> funky
+<chillywilly> I didn't know it had 'native' python support
+<ajmitch> read the docs some day :)
+<ajmitch> i found out a couple of weeks ago
+<chillywilly> shut the hell up ajmitch
+<ajmitch> fine
+<chillywilly> I read the whole frellin admin guide last week or so
+<frayed> I changed it to "trust" just to see if it would work, and it still didn't connect.  Hmm........
+<chillywilly> so lick me
+<chillywilly> is it running with -i?
+<chillywilly> to enable tcp/ip
+<frayed> umm........
+<chillywilly> there's an option somewhere
+<chillywilly> in one of the configs
+<chillywilly> lemme see if I can find it real quick
+<chillywilly> tcpip_socket = 1
+<frayed> no?
+<chillywilly> in postgresql,conf
+<chillywilly> .conf
+<frayed> hm, added it to the command line, still no
+<chillywilly> turn it on in the config file
+<frayed> still no, but the config file had every line commented.  So much for default installation, eh?
+<chillywilly> yea
+<chillywilly> debian default turns tcp/ip on
+<chillywilly> do you have a /var/log/postgresql.log file?
+<frayed> there's a postgresql directory there, but I have to su to get to it.  Just did that and waiting for authentication (doesn't normally take this long...)
+<frayed> I lied, it's a text file, it's just empty
+<frayed> no log there
+<chillywilly> hmmm
+Action: ajmitch sobs
+<chillywilly> can you connect locally?
+<chillywilly> what's wrong ajmitch?
+<frayed> can connect locally
+<ajmitch> chillywilly: trying to help grandmother save scanned photos in jpeg format, she's using win95 & some obscure software :)
+<chillywilly> can you telnet to port 5432?
+<chillywilly> on the db server
+<chillywilly> ajmitch: ok ;)
+<chillywilly> ajmitch: sounds like fun
+<chillywilly> ;P
+<frayed> crap, I forget how to specify a port with telnet.
+<chillywilly> what does netstat -l on the db server say?
+<chillywilly> telnet host 5432
+<frayed> [dave@random dave]$ telnet benedict 5432
+<frayed> Trying 192.168.0.2...
+<frayed> telnet: Unable to connect to remote host: Connection refused
+<reinhard> frayed: does postmaster run with -i option?
+<chillywilly> I asked him that ;)
+<frayed> reinhard: unable to determine for sure?  :)  yes.  I'm certain.
+<reinhard> oh sorry
+<chillywilly> netstat -l will tell you what is listening on what ports
+<chillywilly> unix  2      [ ACC ]     STREAM     LISTENING     37712  /var/run/postgresql/.s.PGSQL.5432
+<chillywilly> unix  2      [ ACC ]     STREAM     LISTENING     730    /var/run/courier/authdaemon/socket.tmp
+<chillywilly> erm
+<chillywilly> that's not what I wanted to paste
+<chillywilly> tcp        0      0 *:postgres              *:*                     LISTEN
+<chillywilly> my postmaster doesn't even show any options for some reason
+<frayed> no postgres listed
+<chillywilly> root@gandalf:~# ps ax | grep postmaster | grep -v grep
+<chillywilly> 13332 ?        S      0:00 /usr/lib/postgresql/bin/postmaster
+<chillywilly> hmmm
+<frayed> 23779 ?        S      0:00 postmaster -D /var/postgres
+<chillywilly> so first thing you need to get it to listen for tcp/ip
+<chillywilly> hmmm
+<chillywilly> no -i
+<frayed> yep, looks like it
+<frayed> if a firewall were blocking it (I don't think there is) would it still show listening in netstat?
+<chillywilly> sure
+<chillywilly> but no one would be able to connect
+<chillywilly> what distro is this?
+<frayed> psql: FATAL 1:  Database "dave" does not exist in the system catalog.
+<chillywilly> it tries to connect to a db named as the user by default
+<chillywilly> tell it to connect to template1
+<frayed> mandrake 9.0, with an already known broken installation of postgres.  I went digging in the postgres docs to figure out how to make the database files
+<chillywilly> psql -h host template1
+<frayed> psql: FATAL 1:  user "dave" does not exist
+<chillywilly> you have to give it a valid user
+<frayed> pg_ctl restart -D /var/postgres -o '-i'
+<chillywilly> also ;)
+<chillywilly> and unless you added one
+<frayed> that was the command line that finally got it to do this.  :)
+<chillywilly> postgres is th eonly user
+<frayed> I thought I'd added one.  I just want the administrative console, that's all.  heh.
+<chillywilly> login as pstgres
+<chillywilly> psql -U postgres -h host template1
+<chillywilly> IIRC
+<frayed> something like that, I got it
+<chillywilly> yaaaay
+<frayed> *phew*
+<frayed> now I should create a user and grant him rights to some database, right?  :)
+<chillywilly> sure
+<frayed> got that done.  phew, this thing's picky isn't it?  won't take a password wrapped in double quotes, has to be single quotes
+<chillywilly> yea
+<frayed> this is cool.  thanks a lot dude, it's running.  now I don't have to worry about making the schema for gnue-sb in mysql.  :)
+<chillywilly> :)
+<chillywilly> now the rest of the fellas won't give you a hard time ;)
+<frayed> do these schema files typically make the database too, or do I create the database first and then run it?
+<chillywilly> ummmm
+Action: frayed is relieved not to get a hard time over a stinkin' testbed database server.
+<chillywilly> pretty sure you need to have a db
+<chillywilly> then you can do a psql < file.sql
+<chillywilly> or whatnot
+<chillywilly> the schema is just tables and such...erm AFAIK maybe there's syntax for creating a db, but I dunno not that I recall
+Action: chillywilly gets off his lazy a$$ and looks
+<chillywilly> silly open office files
+<frayed> I think not, since postgres won't let you login without specifying a db
+<chillywilly> there's an OOo document that explains the format
+<chillywilly> right but you can alway connect to temaplate one and still issues create database foo;
+<chillywilly> but I don't think the schema stuff covers creating a db
+<frayed> well, I did it.  I wonder exactly what it did now.....  :)
+<chillywilly> you loaded an sql file?
+<chillywilly> btw, GNUe Integrator should handle doing this kinda stuff eventually
+<chillywilly> but that's not being developed currently
+<frayed> I loaded the schema.sql file for gnue-sb
+<chillywilly> also converting between formats and priming the pump with data
+<chillywilly> ok
+<chillywilly> try the forms?
+<chillywilly> are there forms?
+<frayed> all the tables are there.  :)  This is beautiful.
+<chillywilly> it's been a while since I looked at it
+<frayed> there are forms, but first I have to create the connection.  ;)
+<chillywilly> right
+<chillywilly> in connections.conf
+<frayed> I'm starting to understand why it was always so hard to get nt admins to evaluate the software I used to sell them.  heh.
+<chillywilly> also
+<chillywilly> designer will do db intrspection and lket you build forms on an exisitng database
+<chillywilly> erm, if you cna parse that ;)
+<frayed> i grokked it.  :)
+<chillywilly> existing db and their tables
+<chillywilly> why was it hard to get nt admins to evaluate software?
+<chillywilly> btw, you could alos write a script that connects, creates a db, and then load the sql file
+<chillywilly> we have examples like that in cvs all over the place
+<frayed> it was hard because they had to setup a database first, and frequently had to install the server software.  It was the nature of the stuff I was selling.
+<chillywilly> HEH
+<chillywilly> Lord forbid they should have to do that! ;)
+<chillywilly> where's the setup.exe?!?
+<chillywilly> omg!!!
+<frayed> no shit.  of course, if the software had been good software, it would've been ODBC compliant and allowed them to just point it at an access db.
+<chillywilly> the world is coming to and end!!!
+<chillywilly> aaaaaaaaaaahhhhhhhhh!!!!!!!!!!!!
+<chillywilly> true
+<chillywilly> dat
+<frayed> um, how do I make a connection to point at my postgres installation now?  :)
+<frayed> hmm....  I'm probly missing a python module or 3, come to think of it.
+<chillywilly> where do you have gnue installed?
+<chillywilly>  /usr/local/gnue ?
+<frayed> yeah
+<chillywilly> go into the etc subdir at that spot
+<chillywilly> edit connections.conf
+<frayed> did that, and hacked in.  um, here's the error message I've got right now.
+<frayed> Error: No database driver found for provider type 'psycopg'
+<chillywilly> :)
+<chillywilly> install psycopg :)
+<chillywilly> python mod
+<frayed> that's what I was just thinking.....  :)
+<chillywilly> like you said ;)
+<ajmitch> or use another one
+<chillywilly> psycopg is good
+<chillywilly> erm
+<chillywilly> with one catch i think
+<chillywilly> a certain version doesn't work
+<chillywilly> like the lastest one
+Action: chillywilly wishes jcater were here
+<chillywilly> possibly mandrake doesn't have that one yet
+<chillywilly> it broke in debian sid
+<frayed> ah well, I'll try it and see what happens.  um, i just downloaded the tarball.....
+<chillywilly> (unstable development debian)
+<chillywilly> no rpm?
+<frayed> didn't even look.  maybe I should.....
+<chillywilly> I thought mandrake had the wonderful urpmi ;P
+<chillywilly> apt-like package thing
+<frayed> mandrake does, and it's wonderful up to a certain point.
+Action: chillywilly hugs apt-get
+<chillywilly> we are also debian "promoters" here....but it's not to support and have someone using a different distros
+<frayed> I'm ready to throw in mandrake and run debian, actually.  I just don' t have the time to do it.  :(
+<chillywilly> hehe
+<frayed> ok, I went and ran drakconf, which is actually a sweet little program.
+Action: chillywilly looks at ajmitch and thinks back to the days when he used to run mandrake
+Action: ajmitch luvs mandrake!
+<chillywilly> riiiiight ;)
+Action: ajmitch rm -rf's debian
+<chillywilly> ajmitch: you know more about debian than I now
+<chillywilly> being a mad packaging fewl
+<ajmitch> heh
+Action: ajmitch tired
+<frayed> drakconf didn't get cool until 9.0, and it still bugs in a few spots....
+<chillywilly> are you looking for a deb?
+<chillywilly> did you install 0.4.x tarball of gnue?
+<chillywilly> erm, rpm
+<chillywilly> I mean
+<frayed> me?  no.
+<chillywilly> I think I screwed up
+<frayed> well, originally.  Then I had to install the cvs to get it working with wxPython 2.4.  Then I backed it off to the 0.4.x from cvs when jcater told me to earlier.  :)
+<chillywilly> oh
+<chillywilly> yea
+<chillywilly> that makes sense
+<frayed> or rather, he said there's been patches applied to 0.4.x so it works with wxPython 2.4
+<chillywilly> yea
+<chillywilly> there was an 'import string' that was forgotten in the designer code
+<chillywilly> that's the big PATCH ;)
+<chillywilly> wxpython used to import it ina  certain place
+<frayed> luckily for me there's no PostgreSQL headers on the system, and no PostgreSQL headers package.
+<chillywilly> so no one noticed
+<chillywilly> until now
+<chillywilly> get the -devel package?
+<frayed> not one, or if there is, it isn't installed.
+<frayed> *think think*
+<frayed> you can install just the headers from the postgre tarball, right?
+<chillywilly> erm, I mean go get it man! ;P
+Action: frayed thinks he read that a few minutes ago
+<chillywilly> -devel rpms are the safest
+<frayed> I just looked for it
+<frayed> I'm taking another look, though
+<frayed> *phew*
+<frayed> ok, the devel package is already installed.  I'm glad that's settled.
+<chillywilly> hmmm
+Action: frayed laughs
+<frayed> I just need to find the headers, I can pass it to the configure script when I know where they are :)
+<chillywilly> I think 1.0.13 is the version that is b0rked
+<chillywilly> what do you have?
+<frayed> 1.0.14
+<frayed> now it needs the mxDateTime.h file.  I swear I installed that already
+<chillywilly> right
+<chillywilly> I hate rpms
+<chillywilly> did I mention that?!? ;P
+<chillywilly> rpms are the devil!
+<frayed> I'm going to see if there's an rpm for that right now.  :)
+<chillywilly> I can't believe there's no damn psycopg rpm for mandrake
+<chillywilly> well I don't see one on rpmfind.net
+<chillywilly> I love debian
+Action: chillywilly hugs debian
+<frayed> I wouldn't trust it either.  Since they went to gcc 3.2 all previous rpms are now broke, officially.
+<frayed> maybe I didn't install it at all......  hmm.....
+<btami> why not use postgresql's own python driver package, i can't recall the correct name
+<frayed> eh?  idk....
+<chillywilly> they even have debs on the psycopg site
+<chillywilly> lol
+<chillywilly> well yea you can try something else if you want
+<frayed> whatever you do, cw, don't tell me to count all the time I spend dealing with rpm and compare it to the time it would take to change to debian
+<chillywilly> lol
+<chillywilly> I left rpm hell long time ago
+<chillywilly> and I'm a better person for it ;)
+<chillywilly> or something
+<frayed> ok, I just now installed the egenix-mx package from source, and the ./configure script still didn't find it
+<chillywilly> didn't find what?
+<frayed> mxDateTime is in the egenix package, right?
+<chillywilly> dunno but that sounds pretty right
+<frayed> btami: how would I configure a connection in gnue using postgres's python driver?  Not knowing is the reason I'm not doing...  ;)
+<chillywilly> python2.2-egenix-mxdatetime - Date and time handling routines for Python 2.2
+<chillywilly> guess so ;)
+<chillywilly> you need to know the name and there has to be a gnue driver for it
+<chillywilly> it might be called postgresql
+<frayed> checking if curiosity killed the cat... yes
+<chillywilly> danielb@frodo:~/software/src/cvs/gnue/common/src/dbdrivers$ ls
+<chillywilly> CVS/          _dbsig/   _pgsql/     configfile/  dbf/     informix/   msado/   odbc/      popy/        pypgsql/  sqlrelay/
+<chillywilly> __init__.py   _empty/   _static/    cxoracle/    gadfly/  ingres/     mxodbc/  odbc-db2/  postgresql/  sapdb/    sybase/
+<chillywilly> __init__.pyc  _oracle/  appserver/  db2/         geas/    interbase/  mysql/   oracle/    psycopg/     sqlite/
+<chillywilly> # DESCRIPTION:
+<chillywilly> # Postgresql implementation of dbdriver using Python DB-SIG v2
+<chillywilly> # specification.
+<reinhard> wow
+<reinhard> wouldn't have thought that this works
+<reinhard> how would you redirect stdout of a command to a file and stderr into a pipe at the same time?
+<chillywilly> hmmm, I think I broke my cvs ssh access to sunversions
+<chillywilly> subversions
+<chillywilly> damnit
+<chillywilly> tee :)
+<frayed> wow, changed the provider to postgresql and got something.  Login prompt, anyway.  :)
+<frayed> haha, kick ass
+<frayed> it works.  :)
+<chillywilly> cool, yea that seems to be a driver that you don't need any special python modules for
+<chillywilly> reinhard: tee
+<reinhard> chillywilly: how?
+<chillywilly> one sec
+<chillywilly> hmmm, maybe that won't work
+<chillywilly> it's too frellin' lat reinhard ;)
+<chillywilly> late
+<reinhard> the solution is
+<chillywilly> sleep?
+<chillywilly> ;)
+<reinhard> command 2>&1 > file | pipe
+<chillywilly> well mr. frayed are you goldne or what? :)
+<chillywilly> golden
+<chillywilly> cause my bed is calling me in the night
+<chillywilly> :-o
+<frayed> golden?
+Action: frayed doesn't get it
+<chillywilly> good to go
+Action: frayed was about to call it a night anyway
+<frayed> thanks a lot chillywilly, you've been very helpful.  :)
+<chillywilly> well here at #gnuenterprise we aim to please
+<frayed> there's a reason I like free software..... ;)
+<ajmitch> heh
+<ajmitch> night chillywilly
+<frayed> I'm definitely good to go, though.
+<frayed> night
+<ajmitch> and night frayed
+<chillywilly> g'night all
+Nick change: chillywilly -> cw-zzzZZZ
+frayed (~dave@12-230-185-238.client.attbi.com) left #gnuenterprise.
+<ra3vat> how to make bitchx to join needed server/channel instead of default?
+<ra3vat> how config file should look alike?
+Action: btami is away: out
+baby (~chaos@pD9E39C6D.dip.t-dialin.net) joined #gnuenterprise.
+<baby> andrew!
+baby (~chaos@pD9E39C6D.dip.t-dialin.net) left #gnuenterprise ("Client Exiting").
+ariel (~ariel@ppp-217-133-241-25.dialup.tiscali.it) joined #gnuenterprise.
+btami (~tamas@ip102-205.ktv.tiszanet.hu) left irc: 
+SachaS (~Sacha@dialup-196-81.wasp.net.au) joined #gnuenterprise.
+<ajmitch> hi SachaS
+<SachaS> hi ajmitch. how are you?
+<ajmitch> ok
+reinhard (~reinhard@M689P002.adsl.highway.telekom.at) left irc: "If you think there is good in everybody, you haven't met everybody"
+dsmith (dsmith@oh-strongsvillecadent1-1c-203.clvhoh.adelphia.net) joined #gnuenterprise.
+SachaS (~Sacha@dialup-196-81.wasp.net.au) left #gnuenterprise ("Client Exiting").
+grib (~grib@dsl093-098-046.wdc1.dsl.speakeasy.net) left irc: Read error: 104 (Connection reset by peer)
+dsmith (dsmith@oh-strongsvillecadent1-1c-203.clvhoh.adelphia.net) left irc: Remote closed the connection
+jamest (~jamest@adsl-64-216-106-78.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+dsmith (~dsmith@208.40.56.34) joined #gnuenterprise.
+ariel (~ariel@ppp-217-133-241-25.dialup.tiscali.it) left irc: "Uscita dal client"
+<derek> .
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+pattieja (~pattieja@www.pcxperience.com) left irc: "[x]chat"
+pattieja (~pattieja@www.pcxperience.com) joined #gnuenterprise.
+dsmith (~dsmith@208.40.56.34) left irc: "later.."
+dsmith (~dsmith@208.40.56.34) joined #gnuenterprise.
+reinhard (~reinhard@M689P002.adsl.highway.telekom.at) joined #gnuenterprise.
+reinhard_ (~reinhard@M689P002.adsl.highway.telekom.at) joined #gnuenterprise.
+reinhard_ (~reinhard@M689P002.adsl.highway.telekom.at) left irc: Remote closed the connection
+<reinhard> oops
+alex_k (~alex@195.54.196.227) joined #gnuenterprise.
+alex_k (~alex@195.54.196.227) left irc: "Client Exiting"
+dsmith (~dsmith@208.40.56.34) left irc: "later.."
+reinhard (~reinhard@M689P002.adsl.highway.telekom.at) left irc: "'Hardware' defines as the parts of a computer system that can be kicked"
+hoppy (~hoppy@cs242221-114.houston.rr.com) joined #gnuenterprise.
+hoppy (~hoppy@cs242221-114.houston.rr.com) left #gnuenterprise.
+dsmith (~dsmith@208.40.56.34) joined #gnuenterprise.
+Nick change: cw-zzzZZZ -> chillywilly
+dsmith (~dsmith@208.40.56.34) left irc: "later.."
+jbailey (~jbailey@atlas.fundserv.com) joined #gnuenterprise.
+<chillywilly> hi jeff
+<jbailey> hi dan
+<jbailey> How's hacking?
+<jbailey> I haven't seen you on here much.
+<chillywilly> I've been here
+<chillywilly> I live here I think
+<jbailey> Nse.
+<jbailey> bah!
+<jbailey> Naw.
+<jbailey> *jcater* lives here.
+<jbailey> The rest of us hang out in his livingroom from time to time.
+<chillywilly> hmmm
+<chillywilly> well then I must live in the room down the hall
+<jcater> jbailey: chillywilly is my b10tch... I keep him around for entertainment
+<chillywilly> cause that's all I am good for :(
+<jbailey> Hey, don't knock yourself out.  The richest people in the world are in entertainment.
+Action: chillywilly wishes to be more useful than cheap entertainment
+dsmith (~dsmith@208.40.56.34) joined #gnuenterprise.
+<ajmitch> hi
+<dsmith> ajmitch: Howdy
+<chillywilly> http://www.tjansen.de/krfb/
+<chillywilly> that seems pretty rad
+<jcater> chillywilly: yes
+<jcater> that's why I've been waiting impatiently for 3.1
+<jcater> since 2.2
+<jcater> as I knew that was coming
+<chillywilly> so now you can connect to your users desktops right? ;)
+<jcater> yeah
+<chillywilly> hrrrm, but do you need to deploy kde 3.1 now?
+<chillywilly> on every machine?
+<jcater> ha
+<jcater> yeah
+<jcater> both of them
+<chillywilly> heh
+<jcater> (2 ltsp servers)
+<jcater> that's why I love an ltsp setup
+<chillywilly> jcater: is there a way to tell konq to open a url in another tab like you cna with galeon?
+<jcater> there is a setting "Open new windows in a tab"
+<jcater> that does it all the time
+<jcater> otherwise, you have to right-click the link and select Open in Tab
+Action: jcater wishes they'd have a 3rd option.... middle-click to open in tab
+<chillywilly> well
+<chillywilly> I mean for my xchat url handlers I'd like to have a "open in a tab" for konq
+<chillywilly> jcater: middle click to open in tab works for konq on my system
+Action: chillywilly has a 3 button mouse
+<jcater> ah
+<jcater> not sure then
+<chillywilly> I am thinking there's som dcop call you can make
+<chillywilly> but that syntax is forieing to me
+<chillywilly> foriegn
+<chillywilly> blah
+<chillywilly> foreign dagnabit!
+<jcater> hmmmm
+<jcater> every so often
+<jcater> #ltsp holds a workshop
+<jcater> in #ltsp-workshop
+<jcater> walking people thru from the beginning on using ltsp
+Action: jcater wonders if we shouldn't do a 
+<jcater> #gnue-workshop like once a month
+<jcater> and one month talk attendees thru creating a basic form
+<jcater> or a basic report
+<jcater> etc
+<chillywilly> that would be great
+<chillywilly> I just helped a guy lats night setup gnue
+<chillywilly> last
+<chillywilly> and postgres
+<havoc> bah
+<chillywilly> ?
+<havoc> crappy snow
+<chillywilly> oh
+<chillywilly> yea
+<chillywilly> I am going to have to shovel soon
+<chillywilly> maybe I should do that first
+<chillywilly> decisions
+<havoc> do it now while it's still above freezing
+<havoc> so the rest will melt
+<havoc> then you don't have to salt
+<chillywilly> my foot is jacked up cause I was half asleep trying to run up the stairs and kinda bent my toes back on the edge of th stair
+<chillywilly> well I slipped a little
+<chillywilly> I have to drag the garbage can up anyway
+Action: chillywilly is away: snow shoveling
+<havoc> have fun :)
+<dsmith> chillywilly: Bah, who needs to shovel?  I just let the cars plow through it.
+<havoc> I have to shovel the sidewalk or I get fined
+Chipaca (~john@ADSL-200-59-86-138.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<havoc> I do not shovel my driveway though
+<Chipaca> havoc: your driveway is like you gun. If you keep it clean... oh, no, that wasn't the driveway, was it?
+<Chipaca> jamest: any news on initQuery?
+<Chipaca> jamest: you there?
+<jcater> Chipaca: I saw in the commit logs that he committed that last night
+<Chipaca> jcater: ah, great
+<Chipaca> jcater: I don't (yet) keep track of the cvs commit logs
+<jcater> Chipaca: why not?
+<jcater> it can be a very useful resource
+<jcater> :)
+<Chipaca> jcater: because others here do that (except that StyXman isn't coming in today), and the main focus here is papo, not gnue
+<Chipaca> or at least, it should be :)
+<Chipaca> today the focus is more on how-can-you-keep-your-brains-cool
+<jcater> Chipaca: http://www.herringtoncatalog.com/fs730.html
+Action: Chipaca wants one
+<chillywilly> it
+<chillywilly> s warmer out today
+Action: chillywilly is back (gone 00:20:44)
+<chillywilly> now I need a drink and a rest ;)
+<chillywilly> man my foot hurts
+<Chipaca> does gnue use more than one connection to the database per form?
+<jcater> no
+<jcater> unless you are connecting to multiple databases
+<Chipaca> not even if there are multiple datasources?
+<jcater> correct
+<chillywilly> why wouldn't you want to reuse the connection?
+<chillywilly> I want konq to import my galeon bookmarks
+<jcater> afaiac, we do want to reuse the connection
+<jcater> as it provides an implicit transactional mechanism
+<jcater> that was a distinct design decision
+<Chipaca> the question was because we have seen behaviour that seems to imply otherwise
+<Chipaca> i.e. in a master-slave relation whith which we can't use the master-slave infrastructure gnue gives us
+<ra3vat> jcater: can you help with an example of using gnue common for standalone apps?
+<Chipaca> (if you need more detail on that one, I'd have to call on aprono)
+<jcater> ra3vat: have you looked at common's Developer's Guide?
+<jcater> it has an example on using gnue-common in a script
+<ra3vat> ok, will look again
+<ra3vat> oh, i mostly looked at the Forms' one
+<ra3vat> do we have rpm packages for gnue tools?
+<ra3vat> no one here likes rpms
+<jcater> yeah, I thought so
+<jcater> someone contributed them a week or so ago
+<jcater> s/week/month
+<jcater> (man, time flies)
+<ra3vat> where to find them?
+<ra3vat> i need to look on a spac file
+<ra3vat> never did it before
+<ra3vat> spec
+<jbailey> Yeah, rpms suck.
+<jbailey> Andrew offered to update the gnue packages the other day, hmm..
+<jbailey> I wonder if he wants to co-maintainer the Debian packages with me. =)
+<ra3vat> i'd like to maintain rpm packages for one russian rpm-based distributive
+aprono (~aprono@ADSL-200-59-86-138.cordoba.sinectis.com.ar) joined #gnuenterprise.
+dsmith (~dsmith@208.40.56.34) left irc: "later.."
+Action: chillywilly is full 
+<chillywilly> buuuurp
+<jbailey> full of food now, in 4 hours: full of $hite.
+<chillywilly> ?!?
+<chillywilly> heh
+<Chipaca> jbailey: actually, depending on what he ate, it could be up to 2 days
+<chillywilly> anyone want to see a picture of ajmitch?
+<chillywilly> http://www.metawrap.com/contributors.php
+<chillywilly> doesn't james look a bit scary?
+<Chipaca> chillywilly: i'd be more aprehensive of the diablo guy
+<Chipaca> chillywilly: you want a pic of vialibre to stick up somewhere?
+<chillywilly> yea
+<chillywilly> ;)
+<chillywilly> my pictures used to be up on goats
+<chillywilly> lemme scp them to libertyetech.cm
+<chillywilly> com
+<jbailey> Chipaca: Really?
+<jbailey> Chipaca: That's a disturbing thought. =)
+<chillywilly> who is the diablo guy?
+<chillywilly> what is diablo?
+<chillywilly> the game?
+<jbailey> Spanish for devel.
+<jbailey> devil.
+<chillywilly> isn't there a game?
+<Chipaca> chillywilly: no, diablo@evilbastard.org
+<jbailey> Yeah, but it's a bad game.
+<chillywilly> oh
+<chillywilly> ooooh
+<jbailey> I assume that noone actually liked it. =)
+<Chipaca> chillywilly: andrew ryder
+<chillywilly> DUH
+<chillywilly> but he doesn't LOOK scary
+<Chipaca> chillywilly: he looks like the guy who rats on you
+<chillywilly> I should compress these further
+<chillywilly> they are rather large
+<chillywilly> danielb@frodo:~/photos$ ls -lh
+<chillywilly> total 6.6M
+<chillywilly> adn that's aonly 11 pics
+<chillywilly> only*
+<chillywilly> and
+<chillywilly> lsjnhdlfkhskdjfh
+<chillywilly> HEH, cranking the compression up made the file bigger
+<chillywilly> doh
+<Chipaca> chillywilly: imagemagick?
+<chillywilly> I used the gimp
+<Chipaca> jpg?
+<chillywilly> maybe if I save as jpg
+<chillywilly> right ;)
+<chillywilly> duh
+<Chipaca> chillywilly: for i in photos/*; do convert -verbose "$i" "${i/.whatever/.jpg}"; done
+<chillywilly> yea, I jst used the gimp
+<chillywilly> the hard way
+<chillywilly> i was thinking why don't I jst for loop this
+<Chipaca> chillywilly: sucks to be you
+<chillywilly> not really
+<chillywilly> it's done already
+<Chipaca> :-D
+<chillywilly> heh, not the total is 328k as opposed to 6.6M
+<chillywilly> http://www.libertyetech.com/photos/
+<chillywilly> don't laugh ;) they're old
+<jcater> here's a more recent one of chilly: http://www.aapoa.org/TH.html
+<jbailey> *lol*
+<jbailey> Who's holding the fisihing rod, I wonder...
+<Chipaca> chillywilly, of course
+<ajmitch> hi
+<ajmitch> chillywilly: what you posting pics of me for, eh?
+Action: ajmitch has more recent one than that now
+<jbailey> ajmitch: You wanted to update the gnue packages?
+<ajmitch> jbailey: might as well do something
+<jbailey> ajmitch: Excellent!
+<jbailey> =)
+<ajmitch> we need to have a working & nice gnue in sid :)
+<jbailey> Care to be a co-maintainer?
+<jcater> ajmitch: can those 2 coexist?
+<jbailey> (You're a DD, right?)
+<jcater> working and nice?
+<jcater> :)
+<ajmitch> no i'm not a DD
+<jbailey> Oh, hmm.
+<jbailey> How were you planning to update them, then? =)
+<ajmitch> so you'd still have to check them over :)
+<ajmitch> give them to you, of course :)
+<ajmitch> or i suppose that it'd be more work me updating them & you having to check them
+jbailey (~jbailey@atlas.fundserv.com) left irc: "Client Exiting"
+<ra3vat> ajmitch: are you experienced to prepare rpm packages?
+<ajmitch> i've done it before, but that was >2 years ago when i used mandrake
+<ra3vat> for gnue?
+<ajmitch> no, just general packages
+aprono (~aprono@ADSL-200-59-86-138.cordoba.sinectis.com.ar) left irc: "Client Exiting"
+<ra3vat> i'd like to make for gnue but never did it before
+<ajmitch> ok
+Action: ajmitch has not got a redhat or mandrake installed here
+Action: ra3vat is going to ask chillywilly to slap him with huge rpm guide
+<chillywilly> uh?
+<chillywilly> rpms are evil ;)
+<ra3vat> there exist rpm-based distros
+<chillywilly> nah, only in your imagination ;)
+<ra3vat> no, the real one, for me and other users at least
+<ra3vat> http://altlinux.com/
+jbailey (~jbailey@atlas.fundserv.com) joined #gnuenterprise.
+<ajmitch> hey jeff
+<jbailey> Heya Andrew.
+<Chipaca> ok, I'm off
+Action: Chipaca waves
+Chipaca (~john@ADSL-200-59-86-138.cordoba.sinectis.com.ar) left irc: "ircII EPIC4-1.1.2 -- Are we there yet?"
+<ajmitch> hmm interesting
+<ajmitch> copying etc/sample.connections.conf -> /usr/local/gnue/etc
+<ajmitch> not copying etc/sample.gnue.conf (output up-to-date)
+<ajmitch> not copying etc/sample.report-filters.conf (output up-to-date)
+<ajmitch> warning: install_data: no previously-included directories found matching 'translations/CVS'
+<ajmitch> copying translations/README -> /usr/local/gnue/translations
+<ajmitch> error: /usr/local/gnue/translations/README: Permission denied
+<ajmitch> make: *** [stampdir/build-stamp] Error 1
+<ajmitch> debuild: fatal error at line 456:
+<ajmitch> dpkg-buildpackage failed!
+Action: ajmitch wonders why stuff was going into /usr/local
+frayed (~dave@12-230-185-238.client.attbi.com) joined #gnuenterprise.
+<frayed> hello?
+<ajmitch> hi?
+<ajmitch> how are you?
+<frayed> good.  you?
+<ajmitch> alright
+<frayed> is anybody working on the applications that are in the cvs tree right now?
+<ajmitch> which apps are these?
+<frayed> the contact manager, accounting, um, inventory and supply chain, and so forth.  There's directories with proposals that mostly say "Proposal is forthcoming".
+<ajmitch> right
+<ajmitch> forthcoming from people like yourself ;)
+<frayed> I see.  :)
+<frayed> IN that case....
+<ajmitch> well, people have started stuff & all
+<ajmitch> but i don't know what's up with it
+<frayed> my partner and I just had our big meeting, and we've decided to go with GNUe, but we have a few reservations.
+<ajmitch> you;d have to ask someone like derek or jamest
+<frayed> Maintaining the code in the long term.
+Action: ajmitch is a mere user :)
+<frayed> hm.
+Action: ajmitch is barely a user, actually
+<frayed> I see.  derek?  jamest?  You guys here?
+Action: ajmitch brings out some donuts & pizza to lure derek out of his hole....
+<frayed> hmmm, maybe I should go get on the mailing list are bring this up here.  What it amounts to is that we want to work on the stuff that's
+<ajmitch> that's...?
+<frayed> intended to be bundled with GNUe to give it that beautiful out-of-the-box quality it's lacking right now.
+<frayed> and we want to do so in such a way that GNUe either adopts it as we do it, or they work with us to make it to their satisfaction (and ours)
+<ajmitch> ah, that would be very good
+<frayed> and the end-result is a codebase we don't necessarily have to worry about making a long-term commitment to, because GNUe has it.
+<ajmitch> then definitely jump on the mailing lists
+<frayed> in short, if our business fails, we'd drop out of development to pursue something else.  :)
+<ajmitch> heh ok
+<frayed> well, I'm gonna go and get on the lists now and bring this up there.  :)  later...
+frayed (~dave@12-230-185-238.client.attbi.com) left #gnuenterprise.
+jbailey (~jbailey@atlas.fundserv.com) left irc: "Client Exiting"
+ajmitch (~ajmitch@wlg1-port19.jetstart.maxnet.co.nz) got netsplit.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) got netsplit.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) got lost in the net-split.
+ajmitch (~ajmitch@wlg1-port19.jetstart.maxnet.co.nz) got lost in the net-split.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "dinner"
+ajmitch (~ajmitch@wlg1-port19.jetstart.maxnet.co.nz) joined #gnuenterprise.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<chillywilly> hi derek
+Action: pattieja is away: home
+<derek> frayed... just missed you
+<derek> sorry
+<derek> was the server down today?
+<derek> i got weird messages earlier
+<jamest> not that I know of
+<derek> jamest: im talking freenode.net not ash
+<jamest> I've been on all day w/o issue
+hoppy (~hoppy@cs242221-114.houston.rr.com) joined #gnuenterprise.
+hoppy (~hoppy@cs242221-114.houston.rr.com) left irc: Client Quit
+Action: derek goes to update gnue4x gnuehead gnue-sb fsf-contacts dcl9x dclhead and a myriad of other cvs trees
+<derek> http://zmaul.de/ftp/bilder/organisationsstruktur.gif is pretty funny
+<chillywilly> hi derek
+<derek> sup chillywilly
+<derek> wow someone has been touching reports
+<chillywilly> gee I wonder who
+<chillywilly> I should checkout 0.4.x branch
+jcater (~jason@cpe-066-061-083-220.midsouth.rr.com) joined #gnuenterprise.
+hoppy (~hoppy@cs242221-114.houston.rr.com) joined #gnuenterprise.
+<hoppy> anybody got a few minutes to spend with a newbie?
+<chillywilly> maybe ;)
+<hoppy> I'm basically wanting to get started taking a look at this, but haven't really a clue what it is I'm trying to get started.  Is there a good "getting started" floating around?
+<chillywilly> ummmm, no
+<chillywilly> unfortunately there isn't
+<chillywilly> there's the forms developers guide and the gnue common developers guide
+<ajmitch> hi
+<chillywilly> hey ajmitch
+<hoppy> so, assuming I know a bit of python, what exactly should I try to be doing at this point?  I would like to get some idea what it takes to build a form, and see something work.  Where to start?
+<chillywilly> form developers guide
+<chillywilly> or the many samples in gnue/forms/samples
+<hoppy> right, so what does one do with a .gfd file?  What are the basic commands to start stuff up?
+<chillywilly> depengding upon hw you installed gnue
+Vee2d2 (~vin@c66.169.136.41.ftwrth.tx.charter.com) left irc: Connection reset by peer
+<chillywilly> you do gfclient whatever.gfd
+<chillywilly> you need connections setup to the db and such
+<chillywilly> edit your connections.conf
+<chillywilly> in gnue's etc dir
+<hoppy> I think I've got a viable connectons.conf; what are the install steps after pulling down cvs and running setup.py?
+<chillywilly> first, you don't want HEAD
+<chillywilly> you want the 0.4.x branch
+<chillywilly> cause HEAD is likely to be broken until the 0.5.0 release
+<chillywilly> ajmitch: still here?
+<chillywilly> ajmitch: what's the syntax on pulling a specific branch?
+<chillywilly> :P
+<hoppy> I already know that.
+<chillywilly> cvs checkout -r whatever-the-branch-is gnue
+<chillywilly> ok
+<chillywilly> I'm not sure what
+<chillywilly> 's a gd example to setup
+<chillywilly> you might want to grab the library.gsd and make some sql file(s) and then with designer via introspection create soem forms
+<chillywilly> it's in tutorials
+<chillywilly> cause jcater said he was going t rewrite the guide to use that as an example
+<chillywilly> to handle master-detail and other thing that the simplistic example does not involve currently
+<chillywilly> erm, gnue/samples/tutorials
+<hoppy> okay, so I examine the tags in ./forms, and it looks like they are independent from the stuff in the parent directory.  This expected?
+<chillywilly> schema
+<chillywilly> ?
+<chillywilly> I don't understand your question
+<hoppy> I was hunting for the branch to use, and was wondering if this is tree wide, or per designer, appserver, reports, etc.?
+<chillywilly> oh
+<hoppy> do you treat these as more or less separate entities, or one big tree
+<chillywilly> they are separate
+<chillywilly> our cvs structure is not ideal
+<hoppy> heh, who's is?
+<chillywilly> gnue
+<chillywilly> us
+<chillywilly> the place
+<chillywilly> of crazy ppl
+<hoppy> okay - one more, where does your 'gfclient' command come from - I haven't a whiff of it here
+<chillywilly> anyway, I think common and forms, possibly designer are on that branch
+<chillywilly> you install it...if you do ./setup-cvs.py in the main gnue dir it will install either local or system wide
+<chillywilly> you pick
+<chillywilly> and the executable name then is gfcvs I believe
+<chillywilly> if you go into each dir and do ./setup.py install
+<chillywilly> and install system wide
+<chillywilly> then I think the exectable name is
+<chillywilly> gfclient
+<chillywilly> I usually run it in my home dir and all of it goes un ~/bin and ~/gnue
+<chillywilly> erm installing it via ./setup-cvs.py
+<hoppy> okay - that seems to be the juju I needed
+<chillywilly> I think jcater had a mail about how to check things out
+<chillywilly> while HEAD is b0rked
+<jcater> b0rked?
+<hoppy> would that be in the archives - I just got on the list today
+<jcater> we consider it to be "in the process of being blessed"
+<chillywilly> jcater: HEH
+<jcater> hoppy: it was in the November -02 archives
+<jcater> http://mail.gnu.org/archive/html/gnue-dev/2002-11/msg00033.html
+<chillywilly> now the gfd format is changing right?
+<chillywilly> or did 0.4.x change it?
+<jcater> however, I left out GNUe-Common in that email
+<jcater> so in addition to the steps in that email
+<jcater> do:
+<jcater> cd common
+<jcater> cvs update -r common-0-4-1-branch
+<jcater> chillywilly: 0.5.x changes it
+<chillywilly> right
+<chillywilly> k
+<chillywilly> and when is 0.5.x due :)
+<jcater> well
+<chillywilly> hehe
+<jcater> we're reasonably sure before christmas
+<jcater> but don't hold us to that
+<chillywilly> "when it's ready damnit"
+<chillywilly> christmas?!?
+<jcater> j/k :)
+<jcater> dude
+<jcater> one of the issues I'm having
+<jcater> is 0.5.0 introduces a lot of changes
+<jcater> but the way we have ppl trained now
+<jcater> once we release 0.5.0
+<jcater> ppl are going to want 0.5.1 to be a bugfix release
+<jcater> and 0.5.2 to be one too
+<jcater> and so one
+<jcater> s/one/on
+<jcater> and we aren't ready to freeze 0.5.x
+<jcater> :(
+<jcater> in many ways, the even/odd versioning really does seem better in practice
+<jcater> but I won't rehash that old debate :)
+<jcater> but that's part of the holdup of the 0.5.0 release
+<jcater> we'd originally planned to do it during christmas holidays
+<jcater> so what I've fallen back to doing
+<jcater> is just doing periodical prereleases :)
+<hoppy> okay, thaks for the help.  Looks like I'm off to battle wxWindows for awhile....
+<chillywilly> jcater: what's the issues with the win32 interface?
+<chillywilly> jcater: someone was mentioning there was issues there
+<jcater> eh?
+<jcater> well, the underlying OS would suck
+<jcater> that would be issue #1
+Vee2d2 (~vin@c66.169.136.41.ftwrth.tx.charter.com) joined #gnuenterprise.
+<chillywilly> jcater: lol
+<chillywilly> that's not my point
+<chillywilly> jeff told me win32 interface has issues
+<jcater> yeah
+<jcater> wx on windows isn't letting us intercept all the events that wx under gtk does
+<chillywilly> hmmm
+<jcater> so the interaction with the form ends up being inconsistent
+<chillywilly> why?
+<jcater> not 100% sure
+<jcater> but a native Win32 interface is HIGH on our list
+<jcater> for forms
+<chillywilly> are there python bindings to the win32 api?
+<jcater> yes
+<jcater> win32all
+<jcater> (the same package that provides our ODBC support in windows)
+<havoc> wooo
+<havoc> 245KBps downloads rule
+<jcater> nah
+<jcater> Mango Lasse
+<jcater> those rule
+Action: jcater had two tonight
+hoppy (~hoppy@cs242221-114.houston.rr.com) left irc: "using sirc version 2.211+KSIRC/1.2.1"
+ninja (rossg@203.146.54.188) joined #gnuenterprise.
+jamest (~jamest@adsl-64-216-106-78.dsl.tpkaks.swbell.net) left #gnuenterprise.
+frayed (~dave@12-230-185-238.client.attbi.com) joined #gnuenterprise.
+<frayed> hello?
+<jcater> howdy
+<frayed> jcater: did you read my post on the developer's list?
+<jcater> well
+<jcater> I got to the part where you said this was a long email
+<jcater> and stopped
+<frayed> heh.  want it in a nutshell?
+<jcater> :)
+<jcater> actually, I was on my way out at the time
+<jcater> sure
+<frayed> we want to use GNUe, and we want to work on the applications part of the package.  So, we want to work directly
+<frayed> with the project and have our code merged into the project.  It would solve a few of our problems if we can work that way,
+<frayed> and it would contribute code back to the project.
+<frayed> basically, we start with the database schema for the master plan, and when we are all agreed that it is perfect, we'd use it
+<frayed> and start coding the specific modules we need.  :)
+<frayed> um, all of our code would be turned back to the project.  I think I said that, but I definitely meant it.
+<derek> hi frayed
+<jcater> *gasp*
+<jcater> he lives
+<ajmitch> deke!
+<frayed> hi derek.  pardon the pause, I'm trying to figure out how to hack together online account access for my own bank account
+Action: frayed hopes to take a hammer to his windows terminal server in the coming weeks.
+<jcater> frayed: nah
+<jcater> just replace it with LTSP
+<frayed> reason it's windows right now is because it runs quicken for me.  seriously, if I can get rid of it, I'll turn it into a database server instead.  :)
+<jcater> man
+<jcater> if you only have one windows app you can't do without
+<frayed> looksl ike you can download ofx with http from my bank, if you have a url for one.
+<jcater> I'd strongly recommend win4lin
+<frayed> win4lin?
+<jcater> http://www.gnuenterprise.org/~jcater/snapshot2.png
+<jcater> is my desktop
+<jcater> www.netraverse.com --> win4lin people
+<jcater> I normally don't recommend non-free software to people
+<jcater> but I do have a few apps I can't get on linux
+<jcater> (QuarkXPress being one)
+<jcater> and this is a godsend for that
+<jcater> only like $40 or so too, iirc
+<jcater> runs at native speeds... it's not an emulator
+<jcater> sigh
+<jcater> only downside to that is
+<jcater> wife found my "Windows" icon on my desktop
+<jcater> and learned she could isntall Windows Messenger in that
+<jcater> so the other day I open win4lin
+<jcater> and the damn Messenger auto-starts
+--- Sat Feb  1 2003

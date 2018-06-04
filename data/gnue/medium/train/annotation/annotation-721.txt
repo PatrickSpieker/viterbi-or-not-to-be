@@ -1,0 +1,31 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.25Oct2002" enddate="24 Oct 2002 23:00:00 -0800" startdate="24 Oct 2002 23:00:00 -0800" subject="[IRC] 25 Oct 2002" title="Problems with Forms splashscreen">
+
+<topic>Forms</topic>
+
+<p>Lawrence (lawrence) reported <quote who="Lawrence">still geting 
+a Segmentation fault with gnue-forms - Splash screen comes up; then 
+font chooser; then segv - gnue-designer is fine</quote>. 
+Jason Cater (jacter) asked <quote who="Jason Cater">can you try 
+running with the -s option, and seeing if it still segfaults?</quote>. 
+Lawrence confirmed <quote who="Lawrence">looks like -s option did the 
+trick!</quote> Jason said <quote who="Jason Cater">you probably 
+want to modify your gnue.conf file with:<br />
+[forms]<br />
+disableSplash = 1<br />
+- then you won't have to use the -s option all the time</quote>. 
+He added <quote who="Jason Cater">we are having some issues 
+with timeouts on our splash screen - it rears it's ugly head on 
+slower machines. I guess we either need to find a solution, or 
+disable the splashscreen by default :(</quote> He explained
+<quote who="Jason Cater">the problem is, if the splashscreen 
+tries to disappear before the main screen is completely drawn
+it segfaults. We can increase the timer more - but that's 
+avoiding the problem, not fixing it :)</quote> Lawrence said 
+<quote who="Lawrence">slow machine? 1.4 athalon with 
+a gig of memory not fast enough?</quote> Jason said 
+<quote who="Jason Cater">wow - this is the first time we've seen 
+this problem on any thing faster than a 266Mhz</quote>.</p>
+
+</section>
+
+

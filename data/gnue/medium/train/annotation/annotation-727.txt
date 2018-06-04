@@ -1,0 +1,64 @@
+<section archive="http://mail.gnu.org/pipermail/gnue-dev/2002-October/000293.html" enddate="26 Oct 2002 03:42:51 -0800" posts="2" startdate="26 Oct 2002 03:19:57 -0800" subject="[Gnue-dev] Appserver Interface Issues" title="Performance and Overhead issues with AppServer">
+
+<topic>Application Server</topic>
+
+<p>Jan Ischebeck said that <quote who="Jan Ischebeck">While 
+writing a gnue forms client in 
+<a href="http://www.gnuenterprise.org/~jan/jsclient/gnue-forms.html">javascript</a></quote>, 
+as discussed in 
+<kcref subject="[IRC] 21 Oct 2002" title="Javascript forms client" />, 
+he had <quote who="Jan Ischebeck">discovered some big drawbacks in 
+the forms &lt;-&gt; appserver communication.</quote></p>
+
+<p><quote who="Jan Ischebeck">1. PERFORMANCE: for a simple form with 
+4 entries, 10-12 rpc calls have to be executed just for initialisation 
+and loading the first record. Because most of the rpc calls have to be 
+called sequentaly, the whole initialisation takes ca. 10 sec on a 
+LOCAL connection. Loading a new record takes 5 rpc calls.</quote> 
+Reinhard M&#252;ller was <quote who="Reinhard M&#252;ller">quite 
+surprised that RPC calls are so expensive (performance wise).
+Doesn't that mean that a single RPC call takes a whole second on a local
+connection??</quote> If this was generally true, 
+<quote who="Reinhard M&#252;ller">I'm not sure whether XMLRPC is usable 
+at all for our case.</quote>.</p>
+
+<p>Jan also mentioned <quote who="Jan Ischebeck">2. OVERHEAD+UNCONVINIENCE: 
+In the actual implementation we use a list of instances on the appserver 
+side. But this list is not really navigatable, we just can fetch one 
+element after the other. Because of this, the whole list has to be 
+stored on client side too. and prev, next functionality has to provided 
+on client side. It would be good to define the role of the geasList class  
+more concrete. So we can decide if we keep it as lean as now, or if we add 
+some navigation functionality. Another option is to add the navigation 
+functionality to the instances. a geasList could also be similar to java 
+iterator. ...</quote> Reinhard was not familiar with Java, 
+<quote who="Reinhard M&#252;ller">but I would strongly recommend to put 
+the needed navigation functionality into the server. The server is the 
+part that should handle caching and all that stuff, so navigation 
+_has_ to be there IMHO.</quote>.</p>
+
+<p>To resolve the performace problem, Jan suggested combining some 
+calls, such as <quote who="Jan Ischebeck">reqeuestNewSession + 
+login(user,pass)</quote> or <quote who="Jan Ischebeck">createList(table) 
++ setPrefetch() + setConditions + setSort + populate</quote>.
+Reinhard said he had already considered something like this, and 
+<quote who="Reinhard M&#252;ller">I think it will be good to rediscuss 
+the API at our meeting</quote>, as discussed in 
+<kcref subject="[IRC] 22 Oct 2002" title="GNUe Developers meeting in Germany" />. 
+He stated <quote who="Reinhard M&#252;ller">My goals
+for the API are that it's usable, complete, systematic, easy
+understandable and not bloated.</quote> Jan also suggested providing
+<quote who="Jan Ischebeck">functions to load more then one record, 
+and to load all fields of a record</quote>. Reinhard said 
+<quote who="Reinhard M&#252;ller">I'm not sure about loading more than 
+one Instance at a time. If calls to the server are _really_ that 
+expensive, I believe we have to make them cheaper anyway.
+Definitively, I'm against getAllFields. This will _kill_ performance
+because we most probably don't need all fields of an object, and the
+unneeded fields might be long texts or even blobs with pictures and the
+likes.</quote>. But all of this could be discussed further in 
+Frankfurt.</p>
+
+</section>
+
+

@@ -1,0 +1,256 @@
+jcater (~jason@cpe-066-061-083-220.midsouth.rr.com) left irc: "sleep"
+chillywilly (danielb@mke-24-167-199-83.wi.rr.com) left irc: "leaving"
+chillywilly (danielb@mke-24-167-199-83.wi.rr.com) joined #gnuenterprise.
+ninja (~rossg@203.156.10.42) joined #gnuenterprise.
+btami (~tamas@ip102-205.ktv.tiszanet.hu) joined #gnuenterprise.
+reinhard (~reinhard@M1250P019.adsl.highway.telekom.at) joined #gnuenterprise.
+reinhard (~reinhard@M1250P019.adsl.highway.telekom.at) left irc: "Fighting for peace is like fucking for virginity."
+reinhard (~reinhard@M1250P019.adsl.highway.telekom.at) joined #gnuenterprise.
+<reinhard> bah
+<reinhard> silly windows
+ninja (~rossg@203.156.10.42) left irc: Remote closed the connection
+havoc_ (~havoc@mke-65-31-168-36.wi.rr.com) got netsplit.
+havoc_ (~havoc@mke-65-31-168-36.wi.rr.com) returned to #gnuenterprise.
+Nick change: SachaS -> SachaS_away
+suny (~zll_sy@210.83.202.175) left irc: 
+lekma (~lekma@node1142c.a2000.nl) joined #gnuenterprise.
+Arturas (~arturas@gsk.vtu.lt) joined #gnuenterprise.
+Arturas (~arturas@gsk.vtu.lt) left irc: "Bye :)"
+btami (~tamas@ip102-205.ktv.tiszanet.hu) left irc: 
+<reinhard> bbl
+reinhard (~reinhard@M1250P019.adsl.highway.telekom.at) left irc: "War causes terrorism."
+dsmith (dsmith@oh-strongsvillecadent1-1c-181.clvhoh.adelphia.net) left irc: "later.."
+Arturas (~arturas@gsk.vtu.lt) joined #gnuenterprise.
+lekma (~lekma@node1142c.a2000.nl) left irc: Read error: 104 (Connection reset by peer)
+ToyMan (~stuq@smtp.dstoys.com) joined #gnuenterprise.
+lekma (~lekma@node1142c.a2000.nl) joined #gnuenterprise.
+ra3vat (~ds@ics.elcom.ru) left irc: Read error: 110 (Connection timed out)
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) joined #gnuenterprise.
+Nick change: mdean -> mdean-[verk]
+dsmith (~dsmith@borg.altus.cc) joined #gnuenterprise.
+ninja (~rossg@203.156.14.57) joined #gnuenterprise.
+lekma (~lekma@node1142c.a2000.nl) left #gnuenterprise.
+lekma (~lekma@node1142c.a2000.nl) joined #gnuenterprise.
+<lekma> hi everybody
+<Arturas> hello
+<lekma> someone available to help??
+<Arturas> i can try :)
+<lekma> "TypeError: 'intern' is an invalid keyword argument for this function" <-- error i get
+<lekma> when i try to launch a form
+<Arturas> it's your custom form? (not the one from the samples)
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<lekma> it's the layout.gfd form from samples/testcases/forms/layout
+<Arturas> let me see it
+<Arturas> one moment...
+<lekma> which form should i test my install with ?
+<jcater> forms/samples/intro/intro.gfd is usually a good first start
+<lekma> jcater: i got the same error
+<lekma> i install everything from cvs
+<lekma> s/install/installed
+<jcater> hmm
+<jcater> can we get more of the traceback?
+<jcater> err, error message
+aaron___ (coyote@msp-24-163-193-174.mn.rr.com) left irc: Remote closed the connection
+<lekma> DB000:   File "/usr/lib/python2.2/site-packages/_xmlplus/sax/expatreader.py", line 232, in reset
+<lekma> DB000:     self._parser = expat.ParserCreate(None, " ", intern = self._interning)
+<lekma> DB000: TypeError: 'intern' is an invalid keyword argument for this function
+<lekma> more?
+<lekma> hmm i must say i'm a newbie concerning gnue...
+<lekma> maybe i did forget something...
+<jcater> that is very odd
+<lekma> when i installed forms it complained about a missing 'login' module
+<jcater> is this a custom python installation?
+<lekma> jcater: nope fresh gentoo standard install
+<jcater> this is odd
+<jcater> as the error is coming from python
+<jcater> not from our code
+<lekma> the module was missing from src/dialogs
+jamest (~jamest@hilbert.math.ksu.edu) joined #gnuenterprise.
+<lekma> how can i find out with which config options python was compiled?
+lekma (~lekma@node1142c.a2000.nl) left #gnuenterprise ("Client exiting").
+lekma (~lekma@node1142c.a2000.nl) joined #gnuenterprise.
+<lekma> i solved the previous error by upgrading PyXML to 0.8.1
+<lekma> now I have an other error
+<lekma> DB000:   File "/usr/lib/python2.2/site-packages/wxPython/stattool.py", line 230, in EnableTool
+<lekma> DB000:     val = apply(stattoolc.wxToolBarBase_EnableTool,(self,) + _args, _kwargs)
+<lekma> DB000: TypeError: an integer is required
+<lekma> does it mean something to someone?
+<lekma> and i also have these warnings:
+<lekma> ** WARNING: Cannot add 'COMMIT' to toolbar; no icon
+<lekma> ** WARNING: Cannot add 'NEWRECORD' to toolbar; no icon
+<lekma> ** WARNING: Cannot add 'MARKFORDELETE' to toolbar; no icon
+<lekma> ** WARNING: Cannot add 'FIRSTRECORD' to toolbar; no icon
+<lekma> ** WARNING: Cannot add 'PREVRECORD' to toolbar; no icon
+<lekma> ** WARNING: Cannot add 'NEXTRECORD' to toolbar; no icon
+<lekma> ** WARNING: Cannot add 'LASTRECORD' to toolbar; no icon
+<lekma> ** WARNING: Cannot add 'JUMPPROMPT' to toolbar; no icon
+<lekma> ** WARNING: Cannot add 'ENTERQUERY' to toolbar; no icon
+<lekma> ** WARNING: Cannot add 'EXECQUERY' to toolbar; no icon
+<lekma> ** WARNING: Cannot add 'ROLLBACK' to toolbar; no icon
+<lekma> ** WARNING: Cannot add 'EXIT' to toolbar; no icon
+<lekma> where should these icons be?
+<jcater> are you using setup-cvs.py?
+<jcater> or setup.py?
+<lekma> setup.py
+<jcater> we haven't updated setup.py yet... that's on our list of things to do for the pending release
+<lekma> :-)
+<jcater> I'd recommend using setup-cvs.py when running from cvs
+<lekma> ok i'll try
+<chillywilly> hey
+<chillywilly> where is the password for dcl installed?
+<chillywilly> erm, in one of the tables?
+Action: chillywilly forgot his admin password
+<chillywilly> ah, personnel table
+lekma (~lekma@node1142c.a2000.nl) left #gnuenterprise ("Client exiting").
+Nick change: havoc_ -> havoc
+lekma (~lekma@node1142c.a2000.nl) joined #gnuenterprise.
+<lekma> hello again
+<lekma> which version of wxPython is required by GNUe?
+<jamest> 2.2
+<jamest> you'll prefer 2.4 though
+rossg_ (~rossg@203.156.11.119) joined #gnuenterprise.
+reinhard (~reinhard@M1250P019.adsl.highway.telekom.at) joined #gnuenterprise.
+ninja (~rossg@203.156.14.57) left irc: Read error: 110 (Connection timed out)
+Stoke (~stoker@ppp504.tc-1.roc-pt.ny.localnet.com) joined #gnuenterprise.
+ra3vat (~ds@ics.elcom.ru) joined #gnuenterprise.
+rossg_ (~rossg@203.156.11.119) left irc: Read error: 60 (Operation timed out)
+Arturas (~arturas@gsk.vtu.lt) left irc: "Bye :)"
+Stoke_ (~stoker@ppp171.tc-22.roc-pt.ny.localnet.com) left irc: Read error: 113 (No route to host)
+lekma (~lekma@node1142c.a2000.nl) left irc: Remote closed the connection
+ToyMan (~stuq@smtp.dstoys.com) left irc: "Client Exiting"
+ToyMan (~stuq@170-215-206-157.glv.frontiernet.net) joined #gnuenterprise.
+scout (~steve@adsl-80-126-214.sdf.bellsouth.net) joined #gnuenterprise.
+dsmith (~dsmith@borg.altus.cc) left irc: "later.."
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "l8r"
+jamest (~jamest@hilbert.math.ksu.edu) left irc: "[x]chat"
+scout (~steve@adsl-80-126-214.sdf.bellsouth.net) left #gnuenterprise ("Client Exiting").
+reinhard (~reinhard@M1250P019.adsl.highway.telekom.at) left irc: "Fighting for peace is like fucking for virginity."
+user138 (~user138@sub26-227.member.dsl-only.net) joined #gnuenterprise.
+<user138> this may be stupid, but i just installed, and now.. what. how do i get it to run?
+<chillywilly> rm -rf /
+<user138> chillywilly: thanks..i'll do that..
+user138 (~user138@sub26-227.member.dsl-only.net) left #gnuenterprise ("new kernel.... reboot").
+<chillywilly> lol
+<chillywilly> sorry, I couldn't resist
+<chillywilly> bad chillywilly 
+jcater (~jason@cpe-066-061-083-220.midsouth.rr.com) joined #gnuenterprise.
+<derek> chillywilly: i surely hope that he didnt do that
+Nick change: SachaS_away -> SachaS
+aaron___ (coyote@msp-24-163-193-174.mn.rr.com) joined #gnuenterprise.
+aaron___ (coyote@msp-24-163-193-174.mn.rr.com) left irc: Client Quit
+aaron___ (coyote@msp-24-163-193-174.mn.rr.com) joined #gnuenterprise.
+ToyMan (~stuq@170-215-206-157.glv.frontiernet.net) left irc: "Client Exiting"
+Vee (~vin@c66.169.136.41.ts46v-07.otn-c1.ftwrth.tx.charter.com) joined #gnuenterprise.
+jamest (~jamest@adsl-64-216-111-42.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+Nick change: SachaS -> SachaS_tv
+ugo (~ugo@200.69.112.141) joined #gnuenterprise.
+Vee (~vin@c66.169.136.41.ts46v-07.otn-c1.ftwrth.tx.charter.com) left irc: Read error: 110 (Connection timed out)
+ra3vat (~ds@ics.elcom.ru) left irc: Read error: 110 (Connection timed out)
+ugo (~ugo@200.69.112.141) left irc: "Cerrando la cliente"
+ra3vat (~ds@ics.elcom.ru) joined #gnuenterprise.
+<derek> jcater: fwiw dcl for sid was created before postgres 7.3 was in sid
+<derek> i think cvs has many of the 7.2 to 7.3 postgres changes fixed
+<jcater> ok
+Action: jcater got around the issues
+<jcater> just wanted to make sure he/y'all were aware of it
+<chillywilly> dcl rocks my socks
+<Vee2d2> this must be cross-channel conversation
+<chillywilly> nah, delayed
+<derek> Vee2d2: yeah
+<derek> cross channel AND delayed
+Action: derek would have responded in #dcl but jcater left :)
+Action: derek wonders why jcater is running sid
+<jcater> I do on my personal workstation
+<chillywilly> me too
+<jcater> woody on everything else
+<chillywilly> I second that motion
+<Vee2d2> I'm too impatient to run anything but sid
+<chillywilly> gandalf is running testing
+<jcater> dudes
+<jcater> I take back all I said about linux desktop publishing not being there
+<jcater> it has arrived
+<chillywilly> cool
+Action: jcater grabbed latest scribus
+<jcater> and it kicks ass
+<jcater> looks and feels a lot like QuarkXPress
+Action: chillywilly hears "another one bites the dust" theme song
+<jcater> though not as powerful yet
+<jcater> it still is pretty damn feature complete as it sits today
+<jamest> ah, but how does it stack up against the gimp?
+<derek> cool
+<chillywilly> ack
+<derek> actually the gimp kicks major butt, but its just not user friendly
+Action: jcater thwapos jamest
+Action: chillywilly covers up so as not get hit by the flying debree
+<derek> i.e. the gimp is a lot like linux vs windows
+<derek> powerful with a steep learning curve
+<derek> if only gimp had 'idiot' interface
+Action: jcater can't stand gimp
+<chillywilly> hey if *I* cna make logos witht he gimp then it can't be that steep ;)
+<derek> jcater: me either
+<jamest> you guys know that the gimp makes the perfect photoshop, illustrator, quark, python, viagra, dryer lint replacement
+<derek> but its prett powerful
+Action: derek has seen some people do some wicked stuff with gimp
+<derek> just most people dont have 500 man hours to learn how to resize a photo ;)
+<Vee2d2> pretty neat, scribus has improved a **bunch** since the last time I checked it out
+<jamest> l8r
+jamest (~jamest@adsl-64-216-111-42.dsl.tpkaks.swbell.net) left #gnuenterprise.
+<chillywilly> derek: but there's nice Free books for the gimping
+<chillywilly> heck I wlays forget how to create an alpha channel and set a certain color to transparent so I googled and it was like 3rd hit
+<Vee2d2> I dont see any point to creating anything 'new' in a raster gfx application
+<jcater> depends on the need
+<jcater> there's room for raster paint, vector paint, and page layout apps
+Action: jcater sees those as 3 distinct tools
+<Vee2d2> with exception to creative expression.. 
+<derek> btw: Vee2d2 and jcater not ignoring gnue-sb mail
+<derek> just major backlogged
+<derek> hoping to maybe respond to some of them tonight
+<Vee2d2> I've been super busy lately
+<chillywilly> you guys need to stop distracting me
+<chillywilly> before I kick all your asses
+<chillywilly> ;P
+<jcater> bring it on
+<jcater> ooooo
+<jcater> that was a good movie
+<jcater> w/kirsten dunst
+<jcater> in a cheerleading outfit
+Action: jcater runs to take a cold shower
+Action: chillywilly mails logs to mrs. cater
+Action: jcater adds chillywilly to his spamassassin blacklist
+<chillywilly> woopdeedoo
+<derek> so jcater if my wife just maybe happened to know the dunst family
+<derek> if say i got you a lunch with kirsten
+<jcater> derek: two words
+<jcater> s/two/three
+<derek> would that get more or less gnue production than a box of glazed donuts?
+<jcater> massive heart failure
+<derek> oh in that case never mind
+<chillywilly> so that would be less
+<derek> heart failure == poor productivity
+<jcater> or I might poke myself in the eye
+<jcater> upon meeting her
+<derek> well i guess thinking it through even if your production potential were increased
+<derek> the fact your wife woudl kill you on return to memphis would negate any potential gain
+<chillywilly> yea think these things through for a change
+Action: chillywilly hides
+<jcater> oh, believe me
+<jcater> I've been thinking that meeting over and over and over
+<jcater> she must be exhausted
+<derek> the one with kirsten? or the return meeting with your wife giving you a WWF smackdown in the memphis airport?
+<jcater> well, we've already established that kirsten would give me a heart attack
+<jcater> (esp. with all the donuts recently)
+<jcater> so the return trip isn't a worry
+<derek> :)
+<derek> good point
+<chillywilly> who says he can slip it under the radar?
+<chillywilly> women have a freakish 6th sense about them
+<chillywilly> you may get smacked down while trying to depart memphis
+<jcater> 6th sense?
+<jcater> I thought that was the sense of "you have spair cash on you. I can tell!"
+<derek> hmm
+<derek> my wife tells me i have sixth sense of humor all the time
+<chillywilly> gee, wonder where ya get that from
+<jcater> well, pray for da boys overseas
+<jcater> my brother in law is over there
+Action: chillywilly has been :)
+--- Thu Mar 20 2003

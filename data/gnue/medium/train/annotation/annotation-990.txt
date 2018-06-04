@@ -1,0 +1,137 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.14Nov2002" enddate="13 Nov 2002 16:00:00 -0800" startdate="13 Nov 2002 16:00:00 -0800" subject="[IRC] 14 Nov 2002" title="GNUe Schema Definition (.gsd) format">
+
+<topic>Common</topic>
+
+<p>It was asked what a GNUe Schema defintion (.gsd) format was 
+for. Bajusz Tam&#225;s (btami) explained 
+<quote who="Bajusz Tam&#225;s">its an XML markup for database 
+definition</quote>. It was not necessary for building an application, 
+but <quote who="Bajusz Tam&#225;s">it is useful for transferring data 
+from one database to another - or filling a database with 
+tables/data</quote>. Bill Gribble (grib) explained 
+<quote who="Bill Gribble">if you define the database structure 
+with XML, you can translate it into idiomatic SQL for a 
+specific database variety.</quote> Bajusz said 
+<quote who="Bajusz Tam&#225;s">you can find a good example in zipcode 
+sample - in samples/tutorials/forms/zipcode.gsd - and there is 
+an ooO doc around, but i can't recall where :)</quote>.</p>
+
+<p>Later, Nick Rusnov (nickr) asked <quote who="Nick Rusnov">is 
+there like a standard XML database dump format? Like if Iwere 
+to export all the contents of a database into an XML file 
+...</quote> Jeff Bailey (jbailey) said <quote who="Jeff Bailey">I 
+would just imagine that you'd give each field name to an element 
+and dump. XML is really bad for representing databases, though.
+You'd have to dump a Schema at the same time to give you 
+characteristics of each field. And XML implies that order is 
+important.</quote> Nick felt this was <quote who="Nick Rusnov">a 
+normal overly-complicated xml solution.</quote> Jeff disagreed - 
+<quote who="Jeff Bailey">It's exactly the right level of 
+complexity. The problem with tab or CSV is that it's lossy.
+You lose the details that you've asked for about structural 
+requirements in the cell. If you didn't care about that, then tab 
+delimited is probably a better choice anyway.  It's easier to parse.
+The other two cases where using XML is worthwhile is:
+1) Occasional Binary data, or data that uses the intended 
+separators. 2) Where you want to remove the relationships and 
+build up complete records</quote> using XSLT.</p>
+
+<p>Later still, Jan Ischebeck (siesel) asked a 
+<quote who="Jan Ischebeck">short question about GSD</quote>.
+Derek Neighbors (dneighbo) asked <quote who="Derek Neighbors">can 
+i ask what you are doing in gsd? we are EXTREMELY overhauling 
+it</quote>, which might render anything Jan was doing as moot. 
+He explained <quote who="Derek Neighbors">we are moving away from 
+xslt to a large degree - certainly it will be supported if someone 
+wants to maintain it</quote>. Jan <quote who="Jan Ischebeck">thought 
+that xslt was just the option for all the guys who want to have GSD 
+but don't want to use python</quote>. Jason explained 
+<quote who="Jason Cater">GSD is still a standard markup</quote> in 
+XML - <quote who="Jason Cater">no more no less - and we didn't want 
+gnue-common as a requirement, not necessarily python - even though, 
+to get it working quickly, I am using gnue-common - but that can be 
+removed later on</quote>, allowing people to use sablotron or any
+other XML processor to parse .gsd files.</p>
+
+<p>Jan, referring back to 
+<kcref subject="[IRC] 12 Nov 2002" title="GNUe Schema Definition (.gsd) file formats" />, 
+said his main concern was <quote who="Jan Ischebeck">why did you 
+decided to make GSD using less datatypes.</quote> Jason said 
+<quote who="Jason Cater">it was never intended to support</quote> 
+as many as it had - <quote who="Jason Cater">somewhere along the 
+line it got goat-raped and all those things added</quote>. 
+Derek Neighbors (derek) said that the original schema abstraction 
+from DCL which had inspired .gsd <quote who="Derek Neighbors">had 
+one or two more than we have now - but what wsa in cvs got trashed
+- i.e. lots of datatypes added and support in designer broke - 
+i was in a pinch so discussed with jcater and we documented and 
+revamped back to original vision. I went to make new style sheets 
+for XSLT and decided they were more cumbersome to maintain than a 
+program - so we are making a program. Certainly any XSLT stud could 
+come and modify the XSL to make it a viable alternative - 
+not only do we encourage it, we hope it happens - GNUe is about 
+choice after all. As for tying to common, im not wholly against 
+that as with XSLT one can break that dependency</quote>.
+Jason said <quote who="Jason Cater">our first priority has to 
+be our tools - I want to design stuff that other projects can 
+use - e.g., formats, etc - but that doesn't mean I can put that 
+objective ahead of it being usable for GNUe</quote>. Jan agreed. 
+Peter Sullivan (psu) felt <quote who="Peter Sullivan">it's like 
+the appserver for dotGNU issue</quote> - 
+<quote who="Peter Sullivan">we won;t discourage it but we won;t 
+compromise making AppServer the best possible business application 
+server for our purposes</quote>.</p>
+
+<p>Jan said <quote who="Jan Ischebeck">I just have two 
+concerns: 1. how abstract will GSD be? I.e. will it still 
+be usable for appserver? 2. what about gsd-&gt;sql generation 
+in dbdriver and gsd-&gt;sql driver in scripter.</quote> Jason said 
+<quote who="Jason Cater">we wanted GSD to be abstract - not to 
+be an XML version of postgres sql with some translators for other 
+dbs</quote>. On the second point, he noted that the 
+<quote who="Jason Cater">scripter is in common - so the dbdrivers 
+can certainly use it</quote> - <quote who="Jason Cater">eventually, 
+a dbdriver can take a schema def and actually create the underlying 
+tables - schema scripter (the scripts in debate here) create SQL 
+statements - so the dbdrivers could just call scripter to get the 
+SQL statements to run. Once again, though, in the scheme of things, 
+is not a huge priority</quote>. Jan asked if this meant that 
+the scripter would replace <quote who="Jan Ischebeck">the schema 
+writing code which is allready in dbdriver</quote>. Jason said 
+that all there was at the moment was a dictionary to give the 
+correct syntax/equivalent to CREATE table for each supported 
+database. Jan asked about the code <quote who="Jan Ischebeck">in 
+common/src/dbdriver/_dbsig/DBdriver.py: _buildTableDefinition 
+etc.</quote> Jason said <quote who="Jason Cater">imho this is 
+putting a lot of stuff in dataobjects - I was hoping they wouldn;t 
+get too much more complex</quote>.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.16Nov2002">
+The next day</a>, 
+Dmitry Sorokin (ra3vcat) asked <quote who="Dmitry Sorokin">what 
+gcvs is for?</quote> Derek Neighbors (dneighbo) explained 
+<quote who="Derek Neighbors">it wraps common - so say you write 
+a script myfoo.py that usues common - instead of having to set 
+python paths you can just do <code>gcvs myfoo.py</code>.</quote>
+This was especially useful as of time of writing
+<quote who="Derek Neighbors">since the gsd converter uses common 
+but isnt a real script as of yet - <code>gcvs Scripter.py 
+mycool.gsd postgresql &gt; newpsql.sql</code>.</quote></p>
+
+<p>Later, Derek Neighbors (dneighbo) reported a possible bug in the 
+GNUe Schema Definition import code - you had to include a 
+&lt;table name="table_name"&gt; tag to identify which table 
+to create, but if the table specified did match that of 
+the table to import, then the script failed silently.
+<quote who="Derek Neighbors">ie the import 'name' must match 
+the table 'name' or the .sql doesnt get created, but no errors 
+are generated. I'm not sure if you meant it to force a name 
+match or not - if not its a bug - if so, we need an error 
+message saying the .sql isnt created</quote>. Jason said that 
+was definantly a bug - the parser should 
+<quote who="Jason Cater">bomb off with an error</quote>. 
+He fixed this and committed it to CVS.</p>
+
+</section>
+
+

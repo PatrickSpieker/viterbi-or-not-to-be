@@ -1,0 +1,858 @@
+[01:33] Last message repeated 1 time(s).
+Isomer (dahoose@210-86-57-216.jetstart.xtra.co.nz) left irc: "Client Exiting"
+Isomer (dahoose@210-86-57-216.jetstart.xtra.co.nz) joined #gnuenterprise.
+chillywilly (danielb@d63.as27.nwbl0.wi.voyager.net) left irc: 
+ra3vat (ds@ics.elcom.ru) joined #gnuenterprise.
+alexey (~alexey@195.151.214.34) joined #gnuenterprise.
+Yurik (yrashk@gw.telcos.net.ua) left irc: "Client Exiting"
+Yurik (~yrashk@gw.telcos.net.ua) joined #gnuenterprise.
+alexey (alexey@195.151.214.34) left irc: Read error: 113 (No route to host)
+reinhard (~rm@N812P008.adsl.highway.telekom.at) joined #gnuenterprise.
+<Yurik> reinhard: hi
+alexey (~alexey@195.151.214.34) joined #gnuenterprise.
+<reinhard> Yurik: re
+chillywilly (~danielb@d151.as28.nwbl0.wi.voyager.net) joined #gnuenterprise.
+<Yurik> chillywilly: hi
+<chillywilly> ello
+Action: Yurik is hacking directory service code
+<chillywilly> ok
+psu (peter@manorcon.demon.co.uk) joined #gnuenterprise.
+<Yurik> psu: hi
+<psu> hi Yurik
+alexey (alexey@195.151.214.34) left irc: "Client Exiting"
+<chillywilly> anyone know how to get that dyntext thing in gimp?
+Harald1 (Peter1234@pD9EB0949.dip.t-dialin.net) joined #gnuenterprise.
+<Harald1> hi
+<psu> brb
+psu (peter@manorcon.demon.co.uk) left irc: "[x]chat"
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+<Harald1> dneighbo: are you here?
+mike__ (~mike@mke-65-31-133-230.wi.rr.com) joined #gnuenterprise.
+<chillywilly> sup mike__
+<mike__> hey man
+<mike__> nice shot
+Nick change: mike__ -> crazmike
+<chillywilly> super phreak
+Nick change: crazmike -> crazymike
+<crazymike> i dunno why that was my name
+<chillywilly> cause you're a super phreak
+<crazymike> yeah, thats cool
+Nick change: crazymike -> superphreak
+<superphreak> lol
+<chillywilly> http://www.sba.gov/wi/index.html
+<chillywilly> you wanna start a bidness?
+<superphreak> I am not qualified to wipe my own ass, how can I help start a bidness???
+<superphreak> :)
+Action: superphreak is about to take a vi test!!!
+<superphreak> woohoo
+<superphreak> gtuxnes
+<superphreak> ooops
+<chillywilly> uh?
+<chillywilly> scotty is also a super ohreak
+<chillywilly> er, phreak
+<chillywilly> he wanted a sandwhich for breafuss
+<superphreak> lol
+<superphreak> make sure he don't eat Philly-Ribeye :)
+<chillywilly> a cheese sandwhich even'
+<chillywilly> lol
+<chillywilly> I could go for one of those
+<superphreak> i'll brb...got to go take my test
+<chillywilly> good luck phreak
+<dneighbo> Harald1: im here
+<Harald1> dneighbo: I completed the tests: same result for Python 2.2 and gfdesigner 0.2.2a, gfdesigner 0.1.1 (exe) and Python 2.1.2 and gfdesigner 0.2.2a
+alexey (~alexey@195.151.214.34) joined #gnuenterprise.
+<Harald1> should I post the complete results to dcl, as there were some more problems with the exe-releases
+<Harald1> ?
+<dneighbo> when you say same result
+<dneighbo> which result :)
+Action: dneighbo doesnt recall exactly what the problem was 
+<dneighbo> the crashing after like save/reload
+<Harald1> yes and that it only happens when gfdesigner is not exited
+<dneighbo> where are you seeing designer 0.2.2a?
+<Harald1> in the about dialog
+<dneighbo> hmmm
+<psu> cool
+<dneighbo> guess im ill informed much anymore
+<Harald1> 0.2.0a I mean
+<dneighbo> ok that sounds slightly better :)\
+<dneighbo> let me test here can you give me exact steps
+<dneighbo> of what you are doing to make it crash
+<Harald1> yes: open gfdesigner, load a file, save it, close the file (but not gfdesigner), load the file -> crash
+<Harald1> but: open gfdesigner, load a file, save it, exit gfdesigner, open gfdesigner, load file -> no crash
+<dneighbo> ok trying now
+<dneighbo> hmmm i have different bug
+<dneighbo> i open gfdesigner
+<dneighbo> load a file
+<dneighbo> save it
+<dneighbo> close the file (But designer exits) insetad of closing
+<dneighbo> never mind my stupidity
+<Harald1> ?
+<dneighbo> i forget that we dont do designer quite right :)
+<dneighbo> i was doing designer file.gfd
+<dneighbo> which is NOT the same as 
+<dneighbo> designer
+<dneighbo> then open the file
+<dneighbo> so in my case close/exit behaved the same
+<dneighbo> please file the bug
+<dneighbo> it exists in windows as well
+<dneighbo> er linux
+<Harald1> to dcl?
+<dneighbo> i.e. my current cvs does the exact same thing
+<dneighbo> yeah to dcl
+<Harald1> can you assist me? I'm not sure what priority, account, type I should add
+<dneighbo> it appears as though even a debug level 50 gives no useful information on the crash so no need to submit anything
+<dneighbo> what are options for priority
+<dneighbo> it should be something like 'next patch release' or something
+<Harald1> high, medium, low
+<Harald1> no that's type
+<dneighbo> let me look real quick
+<dneighbo> you are contact
+<dneighbo> account 'end user'
+<Harald1> yes
+<dneighbo> product gnue designer
+<dneighbo> priority medium
+<dneighbo> type next minor release
+<dneighbo> btw: if every you arent sure guess what you feel is best and will change it if we dis agree :)
+<Harald1> ok. I've got another thing:
+<dneighbo> cool
+Action: dneighbo loves that we have another bug hunter, i was feeling so lonely
+<Harald1> there's a problem with the gfdesigner exe release. the normal release doesn't start, and the debug release has not /etc dir
+<Harald1> not = no
+<Harald1> so it wouldn't start either, it only displays for a second, that no gnue.conf is available
+<Harald1> dneighbo: It seems that the saving bug is even worse. It crashes on other files, too, after one file was saved and closed
+<Harald1> but it does not crash, when the first file is not closed
+drochaid_ (~drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) joined #gnuenterprise.
+drochaid[zZz] (drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) left irc: Read error: 104 (Connection reset by peer)
+Action: superphreak is back
+<ra3vat> dneighbo: what is enduser login to dclgw?
+<chillywilly> hey superphreak
+<chillywilly> how did you do?
+<chillywilly> are you a mad unix guru now?
+<superphreak> LOL
+<superphreak> it was gay...took me 5 min
+<superphreak> :)
+<chillywilly> woooo!
+<chillywilly> you going home now?
+<superphreak> no...now we have lecture
+<superphreak> sounds fun, hey
+<chillywilly> bah
+<superphreak> i wish i could go home now
+<chillywilly> I thought you were done with that class?
+<superphreak> no...unix is a few more weeks
+<superphreak> networking is over
+<chillywilly> bummer
+<superphreak> yup
+<chillywilly> a few more weeks of getting up early on saturday
+<chillywilly> haha
+<chillywilly> :P
+<superphreak> hey, be nice
+<chillywilly> never
+<superphreak> lol
+<chillywilly> mr dneighbo there is trying to get zsnes working
+<superphreak> lol
+<superphreak> hell yeah!!!
+<chillywilly> cause he is also a super phreak
+Action: chillywilly trout slaps reinhard
+<chillywilly> dude I got up earlier then I get up druing the week
+<chillywilly> I got up at the time I should get up during the week ;)
+<chillywilly> yea, that's it
+<superphreak> lol
+<superphreak> how come???
+<chillywilly> I dunno
+<chillywilly> probably because I crashed on the couch
+<chillywilly> and my friggin alarm went off
+<chillywilly> so scotty woke up
+<chillywilly> and came out and slept with me on the couch
+<chillywilly> and it is not that comfortable
+<superphreak> bummer :)
+<chillywilly> man tose Hurd guys really don't like Linux much ;)
+<chillywilly> er, those
+<superphreak> you gonna play some shit w/ dneighbo when he gets it running???
+<superphreak> TMNT???
+<superphreak> :)
+<chillywilly> I dunno he's trying to convert hos nephews to GNU/Linux
+<chillywilly> we probably have too long of a ping time
+<superphreak> ahhhh
+<chillywilly> he's in the friggin desert
+<psu> in the old days, all the UK gamers used to hate the US gamers
+<psu> referred to them as LPBs
+<superphreak> thats cause the UK gamers were inferior :)
+<chillywilly> ah, nationalism
+<psu> Low Ping Bastards
+<psu> no UK broadband in those days
+<chillywilly> how I love it so
+<chillywilly> about as much as I love the new SSSCA bill
+<psu> of course, precious little UK broadband even now
+<superphreak> chillywilly: the SSSCA is "Dead on Arrival"
+<superphreak> :)
+<psu> my cable company has a whole channel devoted to their "high speed internet"
+<psu> (128k or 256k)
+<chillywilly> good for you
+<psu> but whenever I use the "enter your postcode to check availability"
+<psu> the website crashes
+<chillywilly> heheh
+<psu> not reassuring ;-/
+<chillywilly> I can;t check the availability online for time warner either
+<chillywilly> the page gives me an error
+<superphreak> cause TIME/WARNER is the anti-christ!!!
+<psu> i'm just hoping the cable company goes bankrupt soon 
+<psu> from its £18 billion debt
+<psu> & someone else buys the infrastructure up cheap
+<chillywilly> yea
+<psu> only problem is it would prob end up being AOL-TW ;-<
+<superphreak> lol
+<superphreak> goodluck psu 
+<superphreak> hahahah
+<chillywilly> superphreak:wwe should just burn down their head quarters then wehn we go to do the fire alarm inspectio ;)
+<chillywilly> er, inspection
+<superphreak> chillywilly: hell yeah!!!
+<chillywilly> yea, right
+<superphreak> chillywilly: lets take 'em out!!!
+<chillywilly> you;'d cry like a llittle butch with a skinned knee when you have no broadband
+<superphreak> chillywilly : thats not their hq though
+<chillywilly> er, bitch
+<superphreak> yes, I would
+<superphreak> but then I would just find someone else to get broadband from
+<chillywilly> you;d have to use Ameritech then ;)
+<superphreak> NO, ameritech is just as bad
+<chillywilly> that's asking for it
+<superphreak> fsck Ameritech
+<chillywilly> ameritech sucks ass
+<chillywilly> I know this
+<chillywilly> nick-a
+<superphreak> no more ghetto-ness
+<chillywilly> what was ghetto?
+<superphreak> nick-a
+<chillywilly> oops
+<superphreak> thats whiteboy ghetto
+<chillywilly> yoo fucking bad bitch
+<chillywilly> er, too
+<superphreak> fsck you
+<chillywilly> don't make me busta cap
+<superphreak> lol
+<chillywilly> anyway, it's all your fault
+<superphreak> no it isn't
+<chillywilly> you have ghettoized too many people
+<superphreak> it is your fault for working with me
+<chillywilly> now it is like second nature
+<chillywilly> fine then
+<chillywilly> I'll just go work with Carla
+alexey (alexey@195.151.214.34) left irc: Remote closed the connection
+<superphreak> ok
+<chillywilly> (shea right)
+<superphreak> you do that
+<chillywilly> no
+<superphreak> want to go bowling tonight???
+<chillywilly> you'll go work with her
+<dneighbo> ra3vat: guest, guest
+alexey (~alexey@195.151.214.34) joined #gnuenterprise.
+<chillywilly> superphreak: I dunno I am broke
+<chillywilly> I had to pay the creedit counseling nazis
+<superphreak> chillywilly: you are always broke :) 
+<superphreak> chillywilly: we work for Simplex
+<chillywilly> hey you're the one who couldn't get money out of the tyme machine the other day ;)
+<chillywilly> true dat
+<dneighbo> um Harald1 the .exe's assume you create gnue.conf and such
+<dneighbo> i.e. on your system in like program files/gnue/etc
+<superphreak> thats what I am saying...we work for Simplex, therefore we don't have much money
+<chillywilly> superphreak: you mean tyco ;)
+<dneighbo> or something
+<chillywilly> simplex had the shit to gether for the most part
+<superphreak> chillywilly: yeah, sorry TYCO
+<dneighbo> there should be a samples.gnue.conf and samples.connections.conf
+<dneighbo> just copy those and name the copy gnue.conf connections.conf
+<dneighbo> then try designer again
+<chillywilly> I bjust realized something
+<chillywilly> I have no artistic talent
+<superphreak> whats that???
+<superphreak> I don't either
+Action: chillywilly was trying to make a logo again
+<superphreak> I am not made to be artistic
+<chillywilly> it sucked
+<superphreak> as a matter of fact, I ahve no talents what-so-ever
+<superphreak> :(
+<Harald1> dneighbo: no that's the problem with the exe release, there's no /etc and sample confs, I copied my normal ones and then the debug release worked
+<dneighbo> hmmm the .exe release on win95 had them
+<Harald1> 0.1.1?
+<dneighbo> um yes i think so
+<dneighbo> did you get official releases
+<dneighbo> or nightlies of some sort
+<ra3vat> dneighbo: can you give me account in dclgw?
+<dneighbo> i dont have a windows box here so i cant confirm
+<Harald1> dneighbo: I assume. They are from http://www.gnuenterprise.org/downloads/designer/
+<dneighbo> ra3vat: just need name (i dont remember how to spell it) dmitry sorvokin? and email ds@telcom.ics.ru ?
+<dneighbo> yeah thats right place
+<dneighbo> but its common that would do the etc file et al
+<dneighbo> i.e. you didnt just get designer right
+<dneighbo> you got common/forms/designer when you got 0.1.1
+<ra3vat> dneighbo: (login name - dimas) dmitry sorokin ds@ics.elcom.ru
+<Harald1> no, I just wanted to test the exe release, so just designer
+<dneighbo> er actually i think designer should install common
+<dneighbo> install forms and designer
+<Harald1> and debug works when I copy my /etc 
+<superphreak> chillywilly: did you die???
+<chillywilly> no
+<superphreak> ok, just checking
+<chillywilly> are alive?
+<chillywilly> er, you alive
+<superphreak> yeah, unfortunately
+<superphreak> :)
+Action: chillywilly stabs superphreak with a frozen trout
+<Harald1> dneighbo: non-debug works, too when copying /etc
+Nick change: dneighbo -> derek
+Action: superphreak dies a slow and painful death
+Action: derek wants to play
+Nick change: superphreak -> crazymike
+<derek> apt-getting snes
+<chillywilly> you need to have the same rom as the other guy
+<chillywilly> for netplay
+<crazymike> yup, you do
+Action: chillywilly works on geas architecture proposal ;)
+<chillywilly> muuuwahahahha
+<chillywilly> I finished that book dude
+<crazymike> wtg...about time
+<chillywilly> about time nothing
+<chillywilly> at least I read
+<crazymike> lol
+<chillywilly> ya phreak
+<crazymike> that just means you are a boring old man :)
+<crazymike> you have nothing better to do than read a book
+<crazymike> hehe
+<chillywilly> well considering what the book is about
+<chillywilly> and where we are right now
+<chillywilly> you can lick my ballsack
+<crazymike> bear it bitch
+<chillywilly> hah
+<chillywilly> you is crazy
+<crazymike> lol...hence my name
+<chillywilly> hey derek why does docbook not make a separate copyright page thingy anymore?
+<chillywilly> I mean a hyper link to a separate page
+<chillywilly> it used to do like this:
+<chillywilly> Copyright ? 2002 by Free Software Foundation
+<chillywilly> which would be a hyper link to this crap
+<chillywilly>  Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.1 or any later version published by the Free Software Foundation; with no Invariant Sections, with no Front-Cover Texts and with no Back-Cover Texts. A copy of the license is included in the section entitled "GNU Free Documentation License". 
+<chillywilly> but now it includes it all on the front page
+<chillywilly> it like they changed the book style sheets
+<chillywilly> it's
+<derek> i dont know
+<chillywilly> of course not
+<derek> probably they changed style sheet
+<chillywilly> that wouldbe too easy
+<chillywilly> is reinhard there?
+Action: chillywilly pokes reinhard
+<derek> reinhard + docbook == vampire + garlic + holy water
+<derek> not trying to infer that reinhard is a vampire (just that was first 'contrast' that came to mind
+<crazymike> lol
+<chillywilly> I'm not asking him abotu docbook
+Nick change: crazymike -> gone_with_the_wi
+<chillywilly> I want to ask him about the existing geas specs
+Nick change: gone_with_the_wi -> nevermind
+<chillywilly> etc
+<chillywilly> fine
+<chillywilly> I'll just ask ;)
+<chillywilly> should there be 2 sepearet documents API and architecture or should they be one in the same
+Nick change: nevermind -> I_Hate_Nicks
+<chillywilly> and is this going to be made into a hackers guide down the road
+<chillywilly> or should I just not worry about that shit and get my ideas down for discussion purposes?
+<I_Hate_Nicks> chillywilly:I Love You!!!
+<chillywilly> I love you too
+<I_Hate_Nicks> yeah!!!
+<chillywilly> what is your problem?
+<I_Hate_Nicks> what do you mean???
+<chillywilly> cause your nick got cutt off?
+<I_Hate_Nicks> what does it say???
+<chillywilly> well you have an I_Hate_Nicks nick
+<I_Hate_Nicks> thats my nick
+<chillywilly> yes
+<chillywilly> obviously
+Nick change: I_Hate_Nicks -> I_Hate_Nicks_awa
+<I_Hate_Nicks_awa> damn
+<I_Hate_Nicks_awa> oh well
+<I_Hate_Nicks_awa> i'll bbl
+<chillywilly> there's a limit to how long it can be
+<chillywilly> you'll just have to live with that
+<chillywilly> phreak
+<chillywilly> hrrrm
+<chillywilly> I wonder why emacs doesn't use the sgml mode
+<chillywilly> gah
+<chillywilly> maybe I need to install psgml mode
+<chillywilly> yep
+Nick change: I_Hate_Nicks_awa -> I_Hate_Nicks
+<I_Hate_Nicks> whats up???
+Action: Yurik is away: just for few minutes, will be back shortly
+Action: Yurik is away: I'm busy
+<derek> anyone liking family genealogy
+<derek> GRAMPS is a seriously kick butt application for gnu/linux
+<derek> like one of the BEST i have used on gnu/linux to date
+<I_Hate_Nicks> GRAMPS...cool name
+<I_Hate_Nicks> GRAMPS, or CRAMPS???
+<I_Hate_Nicks> lol
+<I_Hate_Nicks> is anyone out there???
+<chillywilly> yep
+<chillywilly> tanya is buggin me yo ;)
+<chillywilly> j/k
+<I_Hate_Nicks> how come???
+<chillywilly> I dunno
+<chillywilly> she's IMing me
+<I_Hate_Nicks> ok
+Holgerio (~Holger@pD9E858CC.dip.t-dialin.net) joined #gnuenterprise.
+<Holgerio> whois harald1
+SachaS (~sacha@203.190.196.249) joined #gnuenterprise.
+I_Hate_Nicks (mike@mke-65-31-133-230.wi.rr.com) left irc: "[BX] Just do it like Nike... BEEATCH!"
+<chillywilly> she probably thinks I am a wacko now
+Action: Yurik is away: home, beer, sleep
+<derek> hi Holgerio
+jcater (~jason@HubA-mcr-24-165-193-24.midsouth.rr.com) joined #gnuenterprise.
+<derek> hi jcater
+<Harald1> hi jcater
+<chillywilly> hiya jc
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+crazymike (~mike@mke-65-31-133-230.wi.rr.com) joined #gnuenterprise.
+<crazymike> my aim died
+<crazymike> quit
+crazymike (mike@mke-65-31-133-230.wi.rr.com) left irc: Client Quit
+ToyMan_home (CaryKittne@c5300-3-ip240.albany.thebiz.net) joined #gnuenterprise.
+<reinhard> chillywilly: of course you can just write down for discussion
+<reinhard> but please make sure we all know what you are talking about
+<reinhard> e.g. don't talk about "the API"
+<reinhard> but rather about "the API between Module X and Module Y"
+<reinhard> or like that
+<reinhard> if you get what i mean :)
+<reinhard> however
+<reinhard> final documentation will be separated by the intended reader
+<reinhard> an API doc (for the front end)
+<reinhard> and an internal "hacker's guide"
+<reinhard> away again
+Nick change: reinhard -> rm-away
+Action: psu is away: bbl
+Holgerio (Holger@pD9E858CC.dip.t-dialin.net) left irc: Read error: 32 (Broken pipe)
+jbailey (~jbailey@HSE-Toronto-ppp319038.sympatico.ca) joined #gnuenterprise.
+<dneighbo> grrr
+<dneighbo> the new versions of galeon are horrid
+<dneighbo> they lock up mroe than internet exploder
+SachaS (~sacha@203.190.196.249) left #gnuenterprise ("Client Exiting").
+<dneighbo> emulators suck
+<dneighbo> i need to find someone who has gottent this stuff to work OR at least point me at RELEVANT documentation
+chillywilly_ (~danielb@d133.as14.nwbl0.wi.voyager.net) joined #gnuenterprise.
+chillywilly (danielb@d151.as28.nwbl0.wi.voyager.net) left irc: Read error: 113 (No route to host)
+alexey (alexey@195.151.214.34) left irc: "Client Exiting"
+Action: drochaid_ returns home
+Nick change: drochaid_ -> drochaid
+mdean (mdean@mkc-65-28-73-63.kc.rr.com) left irc: Read error: 110 (Connection timed out)
+ra3vat (ds@ics.elcom.ru) left irc: "Client Exiting"
+Action: psu is back
+<drochaid> wb psu
+<psu> hiya
+<psu> wb yr good self
+dneighbo (dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: "Client Exiting"
+<psu> what's the quickest way of stripping a control character from a file in *n*x?
+<psu> pref from command line w/pipes?
+Action: psu should join #linux-weenies
+Action: psu is away: dinner
+<derek> sed/awk
+<derek> but what control charcacter
+<derek> as if its ^M or something
+<derek> tools already exist that do this
+<dtm> hi all
+<dtm> yay, i just spent my saturday morning in a class about credit review and counseling!
+<dtm> if you people dont have perfect credit, you should file a letter of dispute... not to say it's not your fault, but to state your intent for it to not happen again and to request trust.
+<dtm> DO IT NOW!!@$
+<dtm> derek: hi how's it going
+<dtm> psu: are you looking for something like 'dos2unix'?  otherwise, join #linpeople
+<derek> if you have a fetish for the color red and run gnome
+<derek> the GTK theme 'rage' plus the 'crux' sawfish manager (defaulted to use themes colors) rocks
+<derek> if only the them was more white instead of gray 
+<psu> derek - yep, it's ^M that needs to go
+Action: psu is back
+<derek> dos2unix is what you want
+<psu> is there a deb?
+<psu> or is it so simple it doesn't need one?
+<nickr> pipe it though tr, tr -d '\r'
+Nick change: rm-away -> reinhard
+psu (psu@manorcon.demon.co.uk) left irc: "[x]chat"
+btami (~btami@dialin75-isdn1.emitel.hu) joined #gnuenterprise.
+<btami> hi all
+<reinhard> hi btami
+<btami> is jcater here?
+<chillywilly_> hey reinhard
+Nick change: chillywilly_ -> chillywilly
+<Harald1> btami: doesn't seem so, I asked him a question a few hours ago and didn't get a response
+<btami> :(
+<btami> Harald1: I'v read in log that you are a bug hunter
+<btami> have you tried reports?
+Nick change: chillywilly -> chillywillyhey
+Nick change: chillywillyhey -> chillywilly
+<Harald1> btami: no sorry
+<chillywilly> oops
+<chillywilly> hey ppl
+<Harald1> hi chillywilly
+<jbailey> chillywilly, chillywilly, chillywillyhey!
+<btami> hi chi*
+Nick change: jbailey -> chickenman
+<chillywilly> jbailey: why do you make fun of me?
+<chickenman> Heya btami!
+Nick change: chickenman -> jbailey
+Action: chillywilly wields trout
+<jbailey> chillywilly: I wasn't thinking like making fun, so much as what you'd yell to a favourite football star.  Sort of a chant-like bit...
+<chillywilly> yea, I see
+Action: chillywilly trout slaps jbailey anyway
+<jbailey> Now, /btami/ I'm making fun of... 
+<jbailey> ;)
+Phython (~jim@rn-remcke4a01.uwaterloo.ca) joined #gnuenterprise.
+<btami> :)
+<chillywilly> Phython: what you doing in here man?
+<chillywilly> ;)
+<Phython> checking out the trout slapping regionals
+<chillywilly> I am winning of course
+<Phython> I see
+<chillywilly> hmmm, docbook is the devil
+Phython (~jim@rn-remcke4a01.uwaterloo.ca) left #gnuenterprise ("Client Exiting").
+<chillywilly> what the heck is firebird?
+<chillywilly> nevermind
+<btami> firebird is the free successor of interbase
+<chillywilly> grooovy
+<reinhard> If A equals success, then the formula is _A = _X + _Y + _Z.  _X is work.  _Y
+<reinhard> is play.  _Z is keep your mouth shut.
+<reinhard> 		-- Albert Einstein
+<reinhard> "The most difficult thing in the world is to know how to do a thing and
+<reinhard> to watch someone else do it wrong without comment."
+<reinhard> 		-- Theodore H. White
+<reinhard> the best program in the world
+<reinhard> fortune
+<reinhard> :-)
+<reinhard> think i'd better go to bed now
+<chillywilly> hehe
+<reinhard> night all
+<chillywilly> night
+reinhard (rm@N812P008.adsl.highway.telekom.at) left irc: "Don't contradict a woman -- wait until she does herself"
+Harald1234 (Peter1234@pD9E0EE03.dip.t-dialin.net) joined #gnuenterprise.
+<dtm> hi
+Harald1 (Peter1234@pD9EB0949.dip.t-dialin.net) left irc: Read error: 110 (Connection timed out)
+<chillywilly> ho
+<chillywilly> dtm: my brotha
+Nick change: Harald1234 -> Harald1
+<dtm> HWIRRED.
+<chillywilly> whirred even
+<dtm> i was just playing with the stupid kids in the movie swapping channel
+<dtm> hey dan
+<dtm> this kid axed me
+<dtm> HEY ARE YOU WITH THE FBI OR ANTI-PIRACY?
+<chillywilly> axed you?
+<dtm> :-o
+<chillywilly> hah
+<chillywilly> piracy
+<dtm> like i'm going to say....  "Yes"?
+<chillywilly> that's a misnomer if I ever heard one
+drochaid (drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) left irc: Read error: 104 (Connection reset by peer)
+drochaid (~drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) joined #gnuenterprise.
+<dtm> yeah
+<dtm> i really like RMS's essay involving that
+<dtm> really enlightening
+<dtm> it even helped my perspective on it
+<chillywilly> if I make you a copy of a movie that is copyrighted then I am  as bad as someon attacking, raping, and pillaging a ship right?
+<dtm> not that it clears my conscience
+<chillywilly> hehe
+<dtm> coz i still commit theft
+<dtm> i wouldn't ever deny that.
+<dtm> but it's that their definition of theft is _wrong_.
+<dtm> so it's theft in the name of civil disobedience, mostly
+<dtm> and yeah sometimes i do steal stuff that i coulda bought or rented
+<dtm> like downloading an mpeg rather than making a $0.99 rental. 
+<dtm> that would have been fair.
+<chillywilly> snoogans
+<dtm> so it kinda blurs off into the distance
+<chillywilly> how about they let me download it for free
+<chillywilly> then I can send the author money directly
+<dtm> i'd pay to download it
+<chillywilly> and not the copyright police bastards
+<dtm> well in the case of hollywood movies, there are tons of big money involved
+<chillywilly> the "content" providers
+<dtm> so having a gray distribution mechanismis understandable
+<dtm>  the people who provide lighting, cameras, food, etc
+<dtm> moviemaking is an incredibly huge job none of us can estimate
+<dtm> well , often it is.
+<dtm> some movies are as simple as typical software engineering
+<chillywilly> wel copyright isn't supposed to last forever it is basically a restriction on free speech
+<chillywilly> there
+<chillywilly> 's no compromise anymore
+<chillywilly> look at mutha freakin' disney
+<dtm> yeah
+<dtm> hey i found out recently that the word 'patent' is rooted in the phrase "to make public"
+<dtm> isn't that fascinating
+<chillywilly> yea
+<chillywilly> well you do have to disclose the information
+<dtm> i never knew that before just recently.
+<dtm> yeha
+<chillywilly> you see that they renamed the SSSCA?
+<chillywilly> and now are trying to pass that POS
+<dtm> no and i dont know what the SSSCA is
+<dtm> well at least i know i'm not _personnally_ responsible directly for the destruction of civilization ;)
+<dtm> i dont come up with this shit.
+<dtm> ;>
+<chillywilly> federal law mandating that all electronic devices must have copy protection mechanisms in them
+<dtm> all that's needed is for "good men" to do nothing :)
+<dtm> i wrote to the library of congress about the mpaa and riaa
+<dtm> oh that
+<dtm> like hard drives
+<dtm> neato
+<chillywilly> http://linuxtoday.com/news_story.php3?ltsn=2002-03-22-011-26-NW-HW-LL
+<dtm> HDTV already was infested with things like that
+<chillywilly> sucko
+<dtm> copy and content controls
+<dtm> censorship
+<chillywilly> dude this is like communist russia putting armed guards at copy mahcines
+<dtm> i know HDTV is supposed to be a materially desirable consumer item but i'd just as soon smash it with Sledge O Matic(tm) as watch it if it had that stuff in it.
+<dtm> yeah it is.
+<chillywilly> but they do it with technology
+<dtm> yep
+<chillywilly> it's fascist
+<dtm> and chilly, believe me, this stuff is _so_ important that i respect anyone who thinks this way about it
+<dtm> i mean who prioritizes it this much
+<dtm> and recognizes and analyzes it
+<dtm> just think if everyone did that a _little_ bit.
+<dtm> instead of having a few of us trying in futility to carry the rest
+<dtm> but we still have to try.
+<chillywilly> I think people are too busy being brainwashed by the PR and consumerism that is all too prevalent in america
+<dtm> maybe something will happen such that we'lll not just slide slower down the slippery slope, but instead have some STRATEGIC advance.
+<dtm> yeah
+<chillywilly> so then the politicians and corporations get to pass the laws they want
+<chillywilly> and no one says boo
+<dtm> their self relationship is so screwed, they dont even know what choice _is_ let alone its value.
+<chillywilly> because they are so apathetic
+<dtm> yeah especially when it's marketed as a desirable consumable
+<chillywilly> dude I am readying my protect sign once again
+<chillywilly> er, protest
+<dtm> what sign?
+<chillywilly> the one I will make
+<chillywilly> ;)
+<dtm> heh
+<chillywilly> right after I write my congressman
+<dtm> gonna storm capitol hill?
+<chillywilly> heck yea
+<dtm> well shit dude
+<dtm> think about it
+<dtm> i heard that something like only TEN THOUSAND Americans wrote to the govt about the microsoft case.
+<chillywilly> that's pathetic
+<chillywilly> I don;t know who to be more pissed at
+<dtm> if that's the case then not only do they surely have a filtering process for it reaching the desks of decisionmakers, but we could write a _GOOD_ one that'd get there.
+<dtm> yeah i know
+<chillywilly> the common americans aor the jag offs trying to screw them
+<dtm> exctly
+<dtm> well
+<dtm> it wouldn't be possible unless it was a two part process
+<dtm> it'd be different if the average American couldn't figure it out
+<dtm> couldn't learn about it
+<dtm> we may as well find already well written essays, put a quick cover letter on it, and forward it on.
+<chillywilly> Free Software is an extreme and I recognize that, but I think it is only necessary if we are to win anything back for the people before it is too late
+<dtm> see
+<dtm> my personal problem is that i dont know my audience well
+<dtm> so i have a writing style issue
+<dtm> i dont know how specific or general to b
+<dtm> e
+<dtm> some of these people have never seen the inter-web
+<dtm> i dont know if i should try cluing them in, or just casting a vote
+<chillywilly> someone said that these guys doign this are clueless and they will leave a big mess for us to clean up
+<chillywilly> (wrt to technology etc.)
+<chillywilly> it's the old men who don't even know what the net is
+<chillywilly> but guess whcih coporations(s) are behind that bill and basically bought it?
+<chillywilly> disney, et. al.
+<chillywilly> I'm never going to look at mickey mouse the same
+<nickr>  the mouse is a huge, evil corporation, in the worst sense of the word
+<chillywilly> nickr: do you think in the movie dogma that the whole mooby refernce is a poke at disney?
+<nickr> probably
+<nickr> iirc
+<chillywilly> it'a a bit too similar
+<chillywilly> er, it's
+<chillywilly> crazymike is convinced that is the case
+<chillywilly> galeon 1.2 crashes too much
+<jbailey> chillywilly: I like Robin Williams comments about Mickey mouse:
+<jbailey> "Remember that to your 3 year old, it's not a cute little mouse, it's a 6 foot fucking rat!"
+<chillywilly> hehe
+<chillywilly> robin williams rules
+<chillywilly> I saw his stand-up show the other day
+<chillywilly> when he came down here
+<chillywilly> er, up
+<chillywilly> whatever
+<chillywilly> http://www.roaringpenguin.com/hollings.php3
+<chillywilly> you know even if I have a bootlegged mpeg
+<dtm> @#(*)
+<chillywilly> if I like the movie that much
+<chillywilly> I would probabyl buy the VHS tape
+btami (btami@dialin75-isdn1.emitel.hu) left irc: 
+<chillywilly> or DVD
+<dtm> @(*#)
+<dtm> well i do like Disneyland though
+<dtm> and i like a lot of Disney movies
+<dtm> not all of em
+<dtm> Disneyland is a model corporation in terms of operations and personnel.
+<chillywilly> I'm on an all out disney boycott
+<chillywilly> brb
+<dtm> so there's a lot to learn from and emulate
+<chillywilly> caorline is here
+<chillywilly> er, caroline
+<dtm> but that doesn't mean we have to patronize their stuff seriously
+Action: chillywilly is away: I'm busy
+<dtm> chillywilly: tlel her i said HIGH.
+<dtm> some disney movies are quite inspiring and educational, even the recent ones
+<dtm> i really liked Beauty and the Beast part 2
+<dtm> and Hercules
+<dtm> i especially liked watching them on a $1000 portable dvd player in a jet plane
+<dtm> when i traveled often, i rented the dvd player for like $20-30 round trip plus 3 or 4 movies
+<dtm> and two batteries
+<dtm> that was grate
+Action: chillywilly is back (gone 00:04:28)
+<chillywilly> we're going to get pizza
+<chillywilly> don't tell da masta
+<chillywilly> ;)
+Action: chillywilly is away: dinner
+<dtm> PIZZAS#(
+<dtm> I WNAT L[IZZAS.
+<dtm> i'm going to make pizza tonight.
+<dtm> chilly sealed it
+<dtm> @#(*)
+<nickr> I was gonna order pizza
+<nickr> but at the momentI realized that I had the money to, I was already cooking rice
+<dtm> rice is healthier
+<dtm> i ate rice last night
+<dtm> you eat rice tonight and i'll eat pizza, ok?
+jbailey (jbailey@HSE-Toronto-ppp319038.sympatico.ca) left irc: "Client Exiting"
+ToyMan_home (CaryKittne@c5300-3-ip240.albany.thebiz.net) left irc: "Client Exiting"
+jbailey (~jbailey@HSE-Toronto-ppp318041.sympatico.ca) joined #gnuenterprise.
+<derek> i want pizza
+<Harald1> derek: well I've got no pizza, but a question:
+<Harald1> which trigger events are implemented, just those from http://www.gnuenterprise.org/docs/techref/x81.html or all?
+Action: chillywilly is back (gone 01:13:01)
+<derek> um where do you see 'all' :)
+<derek> i would say the ones in the techref 'should' be implemented
+<derek> but these are things that unless one of the developers are using them, probably are not getting properly regression tested
+<Harald1> all are those in the VALIDTRIGGERS list
+<derek> so the safe answer is in the source code you can get a list of what is there in code
+<derek> then only by testing can you determine if they work
+<Harald1> err no list
+<derek> (bad answer i know)
+<derek> but i would 'assume' that if its in the techref
+<derek> its in the source and it SHOULD work
+<derek> i.e. if you use one that is the tech ref and it doesnt work please file a bug against it
+<Harald1> actually I am not using them at moment, but look at how they work/ are implemented
+<derek> Harald1: i forget you wanting to 'develop' gnue tools
+<derek> or use them
+<nickr> dtm: I had rice and ramyun, not just rike by itself
+Action: derek has bad memory so i apologize if i already asked
+<derek> i like to know how people fit into the picture
+<Harald1> derek: at the moment I'm far from "developing". I am trying to get an overview, and understand how certain things are done
+<derek> i guess the real question was
+<Harald1> and I looked at the technical reference and saw the sentence "We would like to increase the number of supported languages as time permits" in the trigger part, and now I try to understand how triggers work
+<derek> 'do you plan on using gnue as an end user' or 'as a developer'
+<Harald1> derek: mostly as a developer
+<Harald1> because I still go to university. but I think will soon (in a few years) be a big option. So knowing it is not only interesting, but also useful :)
+jbailey (jbailey@HSE-Toronto-ppp318041.sympatico.ca) left irc: "Client Exiting"
+Harald1 (Peter1234@pD9E0EE03.dip.t-dialin.net) left irc: Read error: 104 (Connection reset by peer)
+chillywilly (danielb@d133.as14.nwbl0.wi.voyager.net) left irc: Read error: 113 (No route to host)
+chillywilly (~danielb@d153.as4.nwbl0.wi.voyager.net) joined #gnuenterprise.
+Harald1234 (Peter1234@pD9E0EE03.dip.t-dialin.net) joined #gnuenterprise.
+Harald1234 (Peter1234@pD9E0EE03.dip.t-dialin.net) left irc: Client Quit
+crazymike (~crazymike@mke-65-31-133-230.wi.rr.com) joined #gnuenterprise.
+crazymike (crazymike@mke-65-31-133-230.wi.rr.com) left irc: 
+jbailey (~jbailey@HSE-Toronto-ppp318254.sympatico.ca) joined #gnuenterprise.
+crazymike (~crazymike@mke-65-31-133-230.wi.rr.com) joined #gnuenterprise.
+<crazymike> chillywilly: are you there???
+crazymike (crazymike@mke-65-31-133-230.wi.rr.com) left irc: 
+jbailey (jbailey@HSE-Toronto-ppp318254.sympatico.ca) left irc: "Client Exiting"
+jbailey (~jbailey@HSE-Toronto-ppp319372.sympatico.ca) joined #gnuenterprise.
+crazymike (~crazymike@mke-65-31-133-230.wi.rr.com) joined #gnuenterprise.
+<crazymike> what do you need to type to open "Open Office"???
+<crazymike> i forgot
+jbailey (jbailey@HSE-Toronto-ppp319372.sympatico.ca) left irc: "Client Exiting"
+jcater (jason@HubA-mcr-24-165-193-24.midsouth.rr.com) left irc: "Client Exiting"
+<chillywilly> soffice beeatch
+<crazymike> ummm
+<crazymike> do I have star office or open office???
+<chillywilly> but it of course has to be in the PATH
+<crazymike> soffice doesn't work
+<chillywilly> doesn't matter
+<chillywilly> type the absolute path ir change into the dir
+<chillywilly> s/ir/or
+<crazymike> the dir if Open Office???
+<crazymike> s/if/of
+<chillywilly> uh, yea
+<crazymike> i am in there
+<chillywilly> btw, girls suck
+<crazymike> yup
+<chillywilly> I am going gay
+<chillywilly> ;)
+<crazymike> i don't know shit
+<crazymike> I can't find the shit
+<crazymike> the dir I was in is the original one after extracting the tarball
+<chillywilly> danielb@mishka:/home/mike/OpenOffice.org641$ ls
+<chillywilly> LICENSE  LICENSE.html  README  README.html  help/  program/  setup@  share/  soffice@  spadmin@  user/
+<chillywilly> it's right there silly
+<crazymike> thats the one???
+<crazymike> i thought that was the other one
+<crazymike> nevermind
+<crazymike> then I was in it
+<chillywilly> why you all up in my bidness?
+<crazymike> but soffice doesn't work...you said it doesn't matter
+<chillywilly> how deos it not work?
+<chillywilly> er, does
+<crazymike> you said to type soffice
+<crazymike> bash: soffice: command not found
+<chillywilly> it has to be in the PATH of course
+<chillywilly> or do
+<chillywilly> ./soffice from that place
+<crazymike> you said that or go intot eh dir
+<chillywilly> ./ is the current dir
+<crazymike> i installed wine...are you mad at me now???
+<crazymike> :)
+<chillywilly> nope
+<chillywilly> ok
+<crazymike> ok
+<chillywilly> retsart another terminal and type soffice from anywhere
+<chillywilly> er, start
+jbailey (~jbailey@HSE-Toronto-ppp318712.sympatico.ca) joined #gnuenterprise.
+<chillywilly> hmm, that's fscked up
+<chillywilly> hey jeff
+<crazymike> bash: soffice: command not found
+<chillywilly> yea, yea
+<chillywilly> I just said it didn't work
+<crazymike> oh...ok
+<chillywilly> ym bad
+<chillywilly> you must relogin
+<chillywilly> er, my
+<crazymike> relogin???
+<chillywilly> login again
+<crazymike> into what???
+<chillywilly> lougout then log back in
+<crazymike> i can't at the moment
+<chillywilly> for gnome
+<crazymike> i am dowloading shit
+<chillywilly> then you ain't going to get those changes to add the Open Office path
+<crazymike> i will when i do it
+<crazymike> i did what i needed to do in there already
+<chillywilly> look in /home/mike/.bash_profile once
+<chillywilly> you tell me what I did ;)
+<chillywilly> this is your mission grasshopper
+<crazymike> export PATH=$PATH:/home/mike/OpenOffice.org641
+<chillywilly> yep
+<chillywilly> however you need a new login shell
+<crazymike> for???
+<chillywilly> which rewuires you logout and log bakc i
+<chillywilly> then it will reread that file
+<crazymike> ahhh
+<crazymike> i will
+<chillywilly> the shell will that is
+<crazymike> later
+<chillywilly> so you have told me
+<crazymike> yup
+<chillywilly> here's the kicker
+<chillywilly> how can I make that kast change shorter
+<chillywilly> er, last
+<chillywilly> what substitues for the HOME dir?
+<chillywilly> muuuwahahahaa
+<chillywilly> this is unix 101 now
+<chillywilly> resistence is futile
+<chillywilly> girls suck!!!
+<chillywilly> god this shit is getting so fucking old
+<crazymike> lol
+crazymike (crazymike@mke-65-31-133-230.wi.rr.com) left irc: 
+jbailey (jbailey@HSE-Toronto-ppp318712.sympatico.ca) left irc: "Client Exiting"
+--- Sun Mar 24 2002

@@ -1,0 +1,57 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.01Nov2002" enddate="03 Nov 2002 23:00:00 -0800" startdate="31 Oct 2002 23:00:00 -0800" subject="[IRC] 01 Nov 2002" title="Re-using code in multiple triggers in a form">
+
+<topic>Forms</topic>
+
+<p>John Lenton (Chipaca) said he was trying to shift some code from a trigger
+to a function - despite the function containing the same code as the 
+trigger, he could not get this to work. <quote who="John Lenton">I'm 
+splitting the triggers into functions in a separate library because we're 
+using the same old triggers again and again and again</quote>. 
+James Thompson (jamest) asked <quote who="James Thompson">have you tried 
+using our import libraries instead to store the trigger? - .gfd files 
+support trigger libraries - would that give you what you require ?</quote>. 
+John said <quote who="John Lenton">it'd make it much easier - but I don't 
+think it'd make this fn work</quote>. James said he would look at John's 
+code - <quote who="James Thompson">as I did lots of trigger crap last 
+night</quote>. John said he was using a version of Forms 
+that was older, as project papo's CVS was still a few weeks behind 
+GNUe's CVS.</p>
+
+<p>Later, Jason Cater (jcater) asked <quote who="Jason Cater">stops 
+working in what way?</quote> John said it just 
+<quote who="John Lenton">silently doesn't do anything</quote>. 
+Later, he asked if there was any documentation for the form libraries 
+James had mentioned - <quote who="John Lenton">what I understood was 
+that there was a general way of adding functionality to forms without 
+having to import the library in every trigger, for example - maybe I 
+understood too much</quote>. Jason said <quote who="Jason Cater">you 
+can globally import files once on an On-Startup trigger - then it's 
+available to every trigger in the form</quote>, giving an example - 
+this <quote who="Jason Cater">works for variables too</quote>. This 
+was in the latest CVS version - <quote who="Jason Cater">it's 
+relatively new</quote>.</p>
+
+<p>John got an up-to-date CVS copy, and reported that 
+Forms now generated a segmentation fault. 
+James asked whether this was <quote who="James Thompson">an 
+on-startup in GFTrigger.py?</quote> He explained 
+<quote who="James Thompson">GFTrigger.py died last nite in 
+the cvs tree - all trigger code is in common now</quote>.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.04Nov2002">
+Some days later</a>, James said the way that trigger libraries 
+worked by creating <quote who="James Thompson">a trigger lib 
+file</quote> containing the code for the triggers, then in the 
+normal GNUe Forms Definition (.gfd) file, you would use an 
+import-trigger tab, with attributes library="filename" and 
+name="triggername". You could then refer to the trigger as 
+if it had been defined locally. He was 
+<quote who="James Thompson">working on the library system 
+now</quote> - <quote who="James Thompson">/me is altering the 
+parser system to allow other gnue apps to do imports - the current 
+cvs is forms only wrt imports - i should have any gnue apps able 
+to do them</quote> soon.</p>
+
+</section>
+
+

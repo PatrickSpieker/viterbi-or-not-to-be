@@ -1,0 +1,311 @@
+*** krizz has quit IRC
+*** reinhard has joined #gnuenterprise
+<reinhard> good morning all
+<jcater> morning
+<ajmitch> hi
+*** kilo has joined #gnuenterprise
+<kilo> good morning
+*** btami has joined #gnuenterprise
+<btami> morning
+*** lekma has joined #gnuenterprise
+<lekma> morning everyone
+<jcater> morning
+<lekma> reinhard: you around?
+<reinhard> yes
+<lekma> do you think it'd be possible to have type, length and scale returned from a load(clas, [[]], propertylist) instead of a fullType string?
+<lekma> otherwise i have to regexp or split or whatever the string to find out what i need
+<reinhard> theoretically yes, however we use that internally so it would break compatibility just once again
+<lekma> oh
+<lekma> so no?
+<reinhard> and we would like to avoid that
+<lekma> ok
+<reinhard> we would have to look where we use it
+<lekma> that would have been my next question: where is it used?
+<reinhard> language/Object.py is something I find
+<reinhard> there it is used to determine whether something is a procedure or a property
+<reinhard> and if it is a property, it selects plain property and reference property
+*** johannesV has joined #gnuenterprise
+<reinhard> alternatively you could query the gnue_class and gnue_property classes directly and not use the load (class, [[]], propertylist) hack at all
+<johannesV> good morning
+<lekma> morning johannesV
+<johannesV> hi lekma
+<lekma> there's less code involved with load :)
+<johannesV> bad news for wx26-driver regarding unicode-problems: we have to enter a bug-report agains wxPython, but robin dunn isn't sure if he can fix that at all
+<johannesV> lekma, are that good or bad news ?
+<reinhard> johannesV: is that the "no EVT_CHAR for special characters" bug?
+<lekma> johannesV: ??
+<johannesV> reinhard, yes
+<johannesV> lekma, as you've mentioned there is less code involved with load
+<johannesV> is that good for you or is that bad ?
+<lekma> it's good
+<reinhard> johannesV: that was related to a discussion we are having
+<johannesV> or do i need to backread the logs :)
+<lekma> having less code
+<johannesV> ah, ok, so i *do* backread the logs
+<johannesV> ok, now i see
+<johannesV> dimas_, are you around ?
+<johannesV> is anybody here using unicode-characters for form-input on windows ?
+<dimas_> johannesV: yep
+<dimas_> hello all
+<johannesV> hi dimas_
+<johannesV> what ui-driver are you currently using and on which os ?
+<dimas_> gtk2 in linux
+<johannesV> ah, ok, thanks; that should work (at least for the unicode-stuff)
+<reinhard> to be honest I can't understand why it should not be fixable - as all the events are there and correct in gtk2, it shouldn't be impossible to pass them through correctly through the wx layer
+<johannesV> reinhard, he said something about the native control taking away that ime-event ...
+<johannesV> but we'll see
+<johannesV> the request-id is 1455924
+<johannesV> i'll add a bug-report to our roundup, pointing to the bug-report in wxPython
+<johannesV> ok, bug-report submitted to roundup
+*** yure has quit IRC
+<johannesV> reinhard, shall i close the bug-report 66 (closing form with sqlite3)
+<johannesV> ah, it's issue 58
+<reinhard> I think I have closed that, haven't I?
+*** Shufla has joined #gnuenterprise
+*** yure has joined #gnuenterprise
+*** Shufla has left #gnuenterprise
+<lekma> a session.list sends data from cache if available, correct?
+<lekma> is there a way to refresh the cache?
+<lekma> session.rollback()?
+<lekma> s/session.list/session.request()
+<reinhard> a session.request will always do a new query on the backend
+<reinhard> bbl, off to lunch
+*** reinhard has quit IRC
+*** btami has quit IRC
+<lekma> reinhard: if you read it, i tested multiple requests with changes in the db in between
+<lekma> the result is always the same
+<lekma> ie changes in db are not reflected
+*** reinhard has joined #gnuenterprise
+<reinhard> back
+<reinhard> changes done by another transaction?
+<lekma> manually changing in db
+<kilo> i can affirm that
+<reinhard> that is a different transaction
+<reinhard> that is isolated by the db
+*** johannesV_ has joined #gnuenterprise
+<reinhard> you must start a new transaction (commit or rollback) got get changes from other transactions
+*** johannesV has quit IRC
+<lekma> reinhard: ok
+<reinhard> which I think is not only acceptable but even necessary
+<reinhard> as it would be strange if, for example, you did the same query 2 times in a row just with different sorting and you get different result sets
+<lekma> well, data changed, so to me it would seem normal
+<lekma> even "required"
+<lekma> :)
+<reinhard> it's a matter of transaction isolation
+<reinhard> it is not even a feature of appserver, it's a feature of postgres we use here
+<reinhard> (or the other backends)
+<kilo> could anyone test it if ggcvs works ok? if i use it, it put every line in the gsd file 2 times...
+<kilo> s/put/puts
+<lekma> bbl
+<johannesV_> kilo, i will double-check ... just starting db host first ...
+<kilo> thx
+<johannesV_> kilo, i can confirm it ... all rows are duplicate ?!
+<johannesV_> will investigate
+<kilo> all rows, indeed
+<kilo> thx in advance
+<kilo> btw it does not harm any functional thing, ie the gsd can be imported without any trouble... but it is double sized...
+<johannesV_> well, the gsd is doubl in size which does affect re-loading with gnue-schema (which in fact is not really optimized for handling large files)
+<kilo> indeed
+<johannesV_> oh, wow
+<johannesV_> all field lists contain each field twice
+<kilo> wow
+<johannesV_> hm, all props are doubled in the classdef of the repository item
+<johannesV_> ahhhh
+<johannesV_> f****
+<johannesV_> ok, will fix it
+<kilo> \o/
+<johannesV_> kilo, svn update and retry
+<kilo> thx
+<kilo> trying
+<kilo> it's ok, thx for the fix johannesV_
+<johannesV_> no problem
+*** yure has quit IRC
+*** jamest has joined #gnuenterprise
+*** kilo has left #gnuenterprise
+*** johannesV_ has quit IRC
+*** btami has joined #gnuenterprise
+*** siesel has joined #gnuenterprise
+<siesel> hello
+<jamest> hi
+<siesel> jamest: what time is it over there?
+<jamest> 9:06am
+<siesel> here its 0:00.
+*** johannesV has joined #gnuenterprise
+<siesel> its really bad, always when I want to start coding, ... I should go to bed. :(
+<siesel> hi johannes
+<siesel> what was the info with the IME event?
+<siesel> I just read the logs bad dunno what you mean concerning wx
+<johannesV> siesel, i've added a bug-report against wxPython
+<johannesV> siesel, the wxEVT_TEXT has the proper unicode-string, but the wx.EVT_CHAR does not show up the proper key-code
+<siesel> ok
+<johannesV> but we cannot use wx.EVT_TEXT since we have to put the displayHandler in between so it can decide wether a keypress is valid or not (i.e. max-length, format-mask, and so on)
+<siesel> I think gtk2 works by using the equivalent to EVT_TEXT, but has a way to stop the event
+<siesel> Or that is the way it was two years ago :)
+<johannesV> yeah, haven't looked into pygtk recently
+<siesel> Can we use EVT_TEXT as a fallback solution?
+<johannesV> no
+<johannesV> as this would break the displayHandler
+<johannesV> (although i'm seriously thinking about it)
+<siesel> I mean, it shouldn't be affected by setValue, so it should be only called via "bad" unicode characters
+<johannesV> at least it would be a 'dirty' workaround
+<siesel> yes
+<siesel> where can I get a good description about EVT_TEXT?
+<johannesV> it would result in strange, flickery widgets ... just think of an enty having a maxlength of 5. pressing the 6th character and holding it down, results in a flickering character
+<johannesV> which is there and then disappears and so on
+<johannesV> additionally, having format-masks is quite complicated then
+<johannesV> as EVT_TEXT has only the complete contents of the widget
+<johannesV> not just the last character pressed (which is evt_char [obviously])
+<siesel> I aggree, that just using EVT_TEXT is bad
+<johannesV> the signal chain is wx.EVT_CHAR (and if not skipped) wx.EVT_TEXT
+<johannesV> but not for all characters
+<johannesV> there are some unicode-characters which are built from multiple characters
+<siesel> yes, I would guess that characters which come from input methods go directly to EVT_TEXT
+<johannesV> if i change the input-method to cyrillic for example
+<johannesV> and then enter abcd
+<johannesV> i get the following result:
+*** klasstek has joined #gnuenterprise
+<johannesV> onCHAR: 97
+<johannesV> onTEXT: u'\u0430' at 0
+<johannesV> onCHAR: 98
+<johannesV> onTEXT: u'\u0430\u0431' at 1
+<johannesV> onCHAR: 99
+<johannesV> onCHAR: 100
+*** klasstek has quit IRC
+*** klasstek_ has joined #gnuenterprise
+<johannesV> onTEXT: u'\u0430\u0431\u0446' at 2
+<johannesV> onTEXT: u'\u0430\u0431\u0446\u0434' at 3
+*** klasstek_ has quit IRC
+<johannesV> onCHAR shows the result of GetUnicodeKey () function of the wx.EVT_CHAR event
+*** klasstek has joined #gnuenterprise
+<johannesV> where onTEXT shows the GetString () result of wx.EVT_TEXT and the current insertion point of the widget
+<siesel> and because gnue just uses the result of EVT_CHAR  just abc is printet instead of u'\u0430\u0431\u0446'
+<johannesV> as you can see the "c" generates an onCHAR only (but with a wrong keycode)
+<johannesV> well, i'm not really clear about the value of GetUnicodeKey ()
+<johannesV> shouldn't that reflect the value of say, \u0430 ?
+<johannesV> (= 4*256 + 3 * 16)
+<johannesV> instead of 97 (=a)
+<siesel> no, as I think that getchar just get the direct keypress
+<johannesV> or can you explain that ime-thing
+<johannesV> yeah
+<siesel> I cannot try it out at the moment with chinese, but I imaging the following:
+<siesel> all real keypresses are catched via EVT_CHAR
+<johannesV> yes, that would fit to the result shown above
+<siesel> when I insert a chinese charater like 我  which is writte WO3
+<johannesV> just a sec, do you have to press a W, 0, 3 to get that char ?
+<siesel> then i would press "w" "o" "3" and go down with the arrow keys to choose one out of a douzend characters which is spelled that way
+<siesel> so probably also up and down keypresses would be send down via EVT_CHAR
+<johannesV> hm, but that would mean wx.EVT_CHAR could never be enough for us
+<siesel> and when I finally press space the character I've chosen will be send to the screen
+<johannesV> insteat we have to look for a solution using EVT_TEXT anyway
+<siesel> and an EVT_TEXT would be called
+<siesel> in principle we need something in between,
+<johannesV> hm
+<johannesV> i cannot stop the emission of a wx.EVT_TEXT
+<siesel> or a way to detect if EVT_CHAR is called in IME mode
+<johannesV> what would be the benefit of that ?
+<siesel> that would solve the cyrillic becomes latin case.
+<johannesV> whose property is "IME mode"
+*** derek has quit IRC
+<siesel> if EVT_CHAR is in cyrillic mode or chinese ime input mode and  EVT_CHAR would  be called and terminated, then no cyrillic or chinese would be entered, but just normal letters
+<johannesV> and otherwise ?
+<siesel> otherwise, the characters would be passed through and converted via the IME into unicode characters
+<siesel> these characters should be intercepted asap by a kind of EVT_CHAR2 event, but if this is not possible, we have to use EVT_TEXT
+<siesel> btw. do you already have some kind of small wxpython testprogram for this issue?
+<johannesV> yeah
+<johannesV> (really small)
+<siesel> cool
+<siesel> could I try it?
+<siesel> because I want to test the difference between  gtk2 chinese IME module, which should work as described above, and the XIM input method, which I have used till now.
+<johannesV> http://www.gnuenterprise.org/~johannes/input.py
+<reinhard> must run off for today
+<reinhard> cu tomorrow
+*** reinhard has quit IRC
+<johannesV> it's just a dialog having two entries with both handlers bound
+<siesel> the XIM input method doesn't create EVT_CHAR events at all, as real keypresses are handled by the XIM server, which will finally sends the unicode characters to the application via XIM protocoll
+<johannesV> you're using the sample-program ?
+<siesel> yes. works fine.
+<siesel> I just have to install another part of the gtk2 chinese input method handler (apt-get install uim-gtk2.0)
+<siesel> sorry I was mistaken, in case of japanese input method no EVT_CHAR are produced at all
+<johannesV> ok, so the situation is even worse
+<siesel> I would like to know the meaning of EVT_CHAR in windows context
+<siesel> hopefully just the gtk2 driver has to be adapted
+<johannesV> how could this be checked on windows ?
+<siesel> by just using f.e. chinese or japanese input method
+<siesel> ok, starting up win32 chinese on a second comp.
+<johannesV> wow
+<johannesV> great
+<johannesV> i've checked with greek
+<siesel> and?
+<johannesV> and i get a wx.eVT_CHAR with values like 968
+<johannesV> looks good
+<siesel> cool
+<johannesV> try a japanese now
+<siesel> so probably its a wxGTK bug
+<johannesV> yeah, it looks like
+<johannesV> it would be great to check it on os x to
+<johannesV> but i've to find out how to change the im there first ... :)
+<johannesV> as i'm quite new to os x
+*** Shufla has joined #gnuenterprise
+*** derek has joined #gnuenterprise
+<siesel> os x is cool,  I think it should work very smooth there
+<siesel> there should be an IME setting box in the overall settings
+<siesel> installing wx2.6
+<siesel> did the japanese character worked for you?
+<siesel> ok, chinese is working
+<johannesV> no, as i couldn't select it there
+<johannesV> there is no japanese on my xp
+<johannesV> looks like i've just set my mac to simple chinese ... and now i'm trying to get back
+<johannesV> :)
+<siesel> lol
+<siesel> if you find the command to make a screen shot I can help you :)
+<siesel> I confirmed chinese and japanese on my win2k, seems to be alright
+* siesel trying to give some a advice
+<johannesV> ok
+<johannesV> so it really looks like a bug in wxGTK
+<siesel> do you find the characters 格式化 ?
+<johannesV> (as i've added the bug-report against wx.GTK)
+<johannesV> i'm about to reboot the mac now
+<siesel> ok,
+<johannesV> (as i've use another account to look at the order of the settings and controls)
+<johannesV> :)
+<johannesV> ah
+<johannesV> great, everything's in latin-1 again
+* johannesV phu
+<siesel> ok, but in case you see these characters, don't push it, as it means format ;)
+<johannesV> *lol*
+<johannesV> i'm very sorry but i've to leave now for a while ...
+<johannesV> bbl
+<siesel> ok, cu and good night.
+<johannesV> i'll backread the logs
+<johannesV> yeah, thanks ... good night to you too :)
+<siesel> I should have been sleeping already one h.
+<siesel> cu
+<siesel>  :)
+*** siesel has quit IRC
+*** Shufla has quit IRC
+*** lekma has quit IRC
+*** psu has joined #gnuenterprise
+*** psu has quit IRC
+*** johannesV has quit IRC
+*** sjc has joined #gnuenterprise
+*** johannesV has joined #gnuenterprise
+*** johannesV has quit IRC
+*** btami has quit IRC
+*** krouzos has joined #gnuenterprise
+*** krouzos has quit IRC
+*** kilo has joined #gnuenterprise
+*** jamest has left #gnuenterprise
+*** klasstek has quit IRC
+*** klasstek has joined #gnuenterprise
+*** krouzos has joined #gnuenterprise
+*** klasstek has quit IRC
+*** kilo has quit IRC
+*** krouzos has quit IRC
+*** derek has quit IRC
+*** jcater has quit IRC
+*** krizz_ has joined #gnuenterprise
+*** derek has joined #gnuenterprise
+*** dimas_ has quit IRC
+*** krizz_ has quit IRC
+*** sjc has quit IRC
+*** dimas_ has joined #gnuenterprise

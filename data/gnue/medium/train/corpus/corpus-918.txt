@@ -1,0 +1,458 @@
+dcmwai (~chatzilla@219.95.155.118) joined #gnuenterprise.
+chillywilly (~danielb@CPE-24-167-200-152.wi.rr.com) left irc: Read error: 54 (Connection reset by peer)
+chillywilly (~danielb@CPE-24-167-200-152.wi.rr.com) joined #gnuenterprise.
+jcater (~jcater@cpe-066-061-083-220.midsouth.rr.com) left irc: "Client exiting"
+bigerbrother joined #gnuenterprise.
+bigbrother (eggdrop@209.234.155.8) left irc: Read error: 110 (Connection timed out)
+Nick change: bigerbrother -> bigbrother
+<wtg> any postgreSQL gu heads around ?
+<wtg> is it possable to have two tables with a shared primary key ?
+chillywilly (~danielb@CPE-24-167-200-152.wi.rr.com) left irc: Read error: 104 (Connection reset by peer)
+<wtg> that is a key that is unique across both tables ?
+<ra3vat> use one sequence for both tables to assign pk
+<ra3vat> is that what you want?
+<wtg> yes that's it
+<wtg> can i read a doc somewhere on how to do that ?
+<wtg> or is it simple enough for you tell me how ?
+<ra3vat> in gnue or pgsql?
+<wtg> pgsql
+<ra3vat> create sequence words_id_seq;
+chillywilly (~danielb@CPE-24-167-200-152.wi.rr.com) joined #gnuenterprise.
+<ra3vat> create table words (
+<ra3vat>     id int8 DEFAULT nextval('words_id_seq') NOT NULL,
+<ra3vat> ...
+<ra3vat>     PRIMARY KEY (id)
+<ra3vat> );
+<wtg> schweet ... so the sequence is typed to int8 ?
+<ra3vat> it's usually used so, not sure for other options
+<wtg> coolies ... int8 will do me =)
+<wtg> thanks a bunch ra3vat
+<ra3vat> np :)
+Action: ra3vat is out to become dimas very soon
+dimas_ (~dimas@195.218.177.46) joined #gnuenterprise.
+Thrugooy (thrugooy@cyberneutrino.com) joined #gnuenterprise.
+<Thrugooy> hello
+<dimas_> hello Thrugooy
+<Thrugooy> ;)
+Thrugooy (thrugooy@cyberneutrino.com) left irc: "*"
+Nick change: Sacha -> SachaPlug
+Arturas (~arturas@gsk.vtu.lt) joined #gnuenterprise.
+Arturas (~arturas@gsk.vtu.lt) left irc: K-lined
+SachaPlug (~Sacha@dialup-196-224.wasp.net.au) left irc: Read error: 110 (Connection timed out)
+havoc (~havoc@CPE-65-31-171-97.wi.rr.com) joined #gnuenterprise.
+dsmith (iycuyj6yzg@oh-strongsvillecadent1-1d-165.clvhoh.adelphia.net) left irc: "later.."
+ToyMan (~stuq@smtp.dstoys.com) joined #gnuenterprise.
+tripz__ (~ville@as13-5-6.ld.bonet.se) joined #gnuenterprise.
+dcmwai (~chatzilla@219.95.155.118) left irc: "ChatZilla 0.8.11 [Mozilla rv:1.2.1/20030505]"
+ajmitch (~ajmitch@wlg1-port11.jetstart.maxnet.co.nz) left irc: Read error: 110 (Connection timed out)
+Sacha (~Sacha@dialup-196-27.wasp.net.au) joined #gnuenterprise.
+lupo (~lupo@pD9E68B23.dip.t-dialin.net) joined #gnuenterprise.
+<lupo> hi
+<dimas_> hi lupo
+<lupo> hey dimas, still alive? :)
+jbailey (~jbailey@CPE0060082df811-CM014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+<dimas_> yep
+Sacha (~Sacha@dialup-196-27.wasp.net.au) left irc: Read error: 60 (Operation timed out)
+ajmitch (~ajmitch@wlg1-port11.jetstart.maxnet.co.nz) joined #gnuenterprise.
+ajmitch (~ajmitch@wlg1-port11.jetstart.maxnet.co.nz) left irc: Read error: 60 (Operation timed out)
+jamest (~jamest@adsl-208-191-38-130.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+ajmitch (~ajmitch@wlg1-port11.jetstart.maxnet.co.nz) joined #gnuenterprise.
+reinhard (~reinhard@M1259P028.adsl.highway.telekom.at) joined #gnuenterprise.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+lxf (~agus_tea@202.73.120.115) joined #gnuenterprise.
+dcmwai (~dcmwai@219.95.31.181) joined #gnuenterprise.
+<dcmwai> hell all.
+<dcmwai> oop.. hell-->hello
+<jcater> morning
+<dcmwai> How are you ? .. 5 more minutes to start :)
+<lupo> morning?
+Action: dcmwai say.... every minutes somewhere in the world are mrning and somewhere is night :)
+<lupo> yeah :)
+<wtg> morning/evening all 
+<lupo> hi wtg
+<wtg> I have a SEQUENCE which is the PK in 2 tables and i want a third table with a FK that links to either of the PK's in the first two tables.  Any idea's on how to do it ?
+<wtg> sequence_attribute SMALLINT REFERENCES Table1 OR Table2 doesn't work =(
+<jcater> yeah, I don't know if you can do that
+<jcater> sometimes triggers are used for such primary key enforcement
+<wtg> doh 
+<wtg> thanks jcater
+Action: wtg back to the drawing board
+<dcmwai> It is time... where is Josh :(
+<dcmwai> derek there?
+<jcater> doubtful
+<dcmwai> <-- derek :)
+<dcmwai> jcater: am I at the right time
+<dcmwai> jcater: could you please haev some explain how is gnue work?
+Sacha (~Sacha@dialup-196-27.wasp.net.au) joined #gnuenterprise.
+<dcmwai> gnue have a few parts. Common, AppServ, From, Designer, Report and Navigator one more is dcl I'm not sure that is that....
+<lupo> dcmwai: what do you mean? how it works? you mean, how one can write applications with it.
+<lupo> Common is the generic library
+<dcmwai> no... How it is it insall to make it work.
+<dcmwai> s/insall/install
+<lupo> it contains routines like database access, object-XML and XML-object translation etc.
+<lupo> dcmwai: which operating system?
+<dcmwai> by right after I've install all stuff, what should i start appserv (linux)
+<lupo> how did you install? from CVS? from 0.5 packages?
+<dcmwai> oop lack of one ?
+<Sacha> object-XML and XML-object translation sounds interesting.
+<dcmwai> packages
+<Sacha> object-XML XML-objext translation; still dont know how people do that in xml applications.  well might have look at common.
+<Sacha> but not tonight.
+<lupo> dcmwai: what have you installed?
+<dcmwai> all :)
+<lupo> good
+<jcater> dcmwai: for the purpose of GNUe-SB, appserver isn't needed
+<jcater> only common and forms
+<dcmwai> jcater: ... then how is it run?
+<jcater> (and designer, to design the forms)
+<jcater> are you on windows or linux?
+<dcmwai> Linux
+<jcater> I'd check out cvs
+<lupo> jcater: sorry to bother you again, how do you make menu structures, ie. "go to manufacturing", "go to customer db" etc. in forms only?
+<jcater> then run ./setup-cvs.py
+Action: dcmwai is now on windows but using it on linux :)
+<jcater> then you can run ~/bin/gfdes 
+<jcater> (for designer)
+<jcater> or ~/bin/gfcvs (for forms)
+<dcmwai> oh that is?
+Nick change: Sacha -> SachaZzz
+<jcater> you will need Python 2.1 and wxPython 2.4 installed
+<jcater> lupo: I'm not sure
+<dcmwai> jcater: where should the gnue-sb files be allocated?
+<jcater> I think james has some samples somewhere
+<jcater> I haven't done that
+<jcater> dcmwai: those are in a separate repository
+<dcmwai> I know I download them all gnue and gnue-sb
+<dcmwai> hum...
+<dcmwai> as long as Josh isn't here the meeting cannot be continuate :(
+<dcmwai> Not continue but start :(
+<Vee2d2> you should find forms for contact management in the gnue-sb/contacts/forms directory forms for item management in gnue-sb/item/forms... 
+<dcmwai> let fine a better time :)
+<dcmwai> Vee2d2: and then.
+<dcmwai> how come all files have a ",v" behing?
+<jbailey> CVS files.
+<dcmwai> hum.. nvm
+<Vee2d2> you didnt use CVS to get the files?
+<Vee2d2> proper packages havent been made for gnue-sb yet, it's best to use a cvs client to obtain them
+<dcmwai> I'll be away send email to me 0192242326@celcom.com.my (plain text only) (email to sms) if josh is here and the meeting is ready.
+<dcmwai> I didn't I use the cvs-tarball on the webpage
+<dcmwai> BTW, what time all developer met?
+<dcmwai> s/met/meet
+<lupo> there is no specific time
+<Vee2d2> 24/7 =)
+<dcmwai> Vee2d2: You must be kidding :)
+<dcmwai> it is very hard to "Talk" that way :( And where josh is not here it is even harder :(
+<dcmwai> Be back in 40 minutes
+<lupo> who is josh?
+<Vee2d2> well, as you may come to relize as you spend more time here.. Derek for example will join, and answer questions asked or give comments to things hours maybe days prior to his joining the channel.. 
+<Vee2d2> It might not always be a real time conversation, but that is one of the nicer features of this medium
+<jbailey> Yeah.  There's a few crazy people who seem to read the logs.
+<Vee2d2> lupo: If I recall correctly dcmwai together with Josh are responsible for the Aria project (http://arias.sf.net/) and are looking for some collaboration of efforts.
+<lupo> ah
+Action: Vee2d2 prepares to put on his lawnmowerboy hat and head into his personal jungle
+<chillywilly> heh
+<chillywilly> I need to do that too
+<chillywilly> bah
+<dimas_> guys, how you call a triangle one angle of which is 90 degrees?
+lxf (~agus_tea@202.73.120.115) left irc: Read error: 104 (Connection reset by peer)
+<lupo> dimas_: right triangle
+<lupo> (not sure, i am not a native speaker)
+<dimas_> i'm only guessing too
+<dimas_> thanks though
+<dimas_> :)
+<lupo> at least that's the translation of LEO (dict.leo.org) from the german word to english
+<lupo> looks quite right
+dimas_ (~dimas@195.218.177.46) left #gnuenterprise ("Вышел из XChat").
+fixe (~fixe@dsl017-020-123.chi1.dsl.speakeasy.net) joined #gnuenterprise.
+dcmwai (~dcmwai@219.95.31.181) left irc: "ChatZilla 0.8.11 [Mozilla rv:1.2.1/20021130]"
+revDeke (www-data@209.234.155.8) joined #gnuenterprise.
+<revDeke> lupo: is there any reason why you dont use navigator?
+Action: revDeke is saying this because in the beginning i hated concept of navigator and really thought we needed extendable menu structures in the forms API
+<revDeke> maybe even to point where it 'read' in navigator xml files to build custom menus
+<revDeke> but the more i have seen of sap, peoplesoft, etc
+<revDeke> i think navigator is more the way to go
+<jcater> oh, you people of little faith
+<jcater> =)
+<revDeke> no i have faith
+<revDeke> my point was
+<revDeke> does lupo have some valid point we need to revisit in the thought of navigator
+<revDeke> or do we just need to show lupo the GNUe way to enlightenment
+<revDeke> ;)
+<revDeke> as originally navigator felt clunky to me, but i see strong value in now
+<lupo> hi
+<lupo> erm
+<revDeke> EXTREMELY strong value
+<lupo> without a basic RBAC, it is not usable for me, and i don't have a fucking clue how it could be implemented
+<revDeke> im thinking the only thing i dont like about it is it isnt very 'connected' to the main framework
+<jcater> well, the original navigator was(is) clunky
+<jcater> navigator certainly isn't in its final form
+<revDeke> maybe if you could dock it to the main form or have the forms open w/in navigator in an MDI type function
+<revDeke> i think it will be HIGHLY usable
+<revDeke> as of now its still usable
+<jcater> well
+<jcater> as with all things
+<jcater> I see this as pluggable
+<revDeke> it will get better with time
+<jcater> I want an MDI-like interface that you describe
+<jcater> (perhaps that will even become the default .. .I dunno)
+<jcater> but the beauty of the .gpd -like definition
+<lupo> do you know the SAP client?
+Action: revDeke isnt knocking it, im trying to disuade the use of custom menus as being the way to do navigation
+<jcater> is that it can be all ways
+<revDeke> i.e. custom menus with forms client
+<lupo> what do you think about "tabbed browsing" for forms within navigator?
+<revDeke> i think 'trees' is the way to go in navigator
+<revDeke> vs tabs
+<revDeke> as people in business think in trees
+<revDeke> this is why file systems are setup as trees
+<jcater> http://help.sap.com/saphelp_46c/helpdata/en/49/2dfe88088b11d396a9006094b9867b/content.htm
+<jcater> is what I'm after
+<jcater> though like I said
+<jcater> it is certainly pluggable
+<jcater> navigator can take whatever interface an organization likes
+<lupo> hm
+<revDeke> looks like tree to me ;)
+<jcater> yeah
+<revDeke> btw its nearly identical to peoplesoft
+<revDeke> the way they both do it is the USER builds own GPD
+<revDeke> i.e. its almost like a 'favorites'
+<revDeke> so if im an HR person i dont have oodles of tree to wade through
+<revDeke> i just have the trees for my stuff
+<revDeke> rofl... from that page
+<revDeke> The user menu contains only those items √ such as transactions, reports, and Web addresses √ you need to perform your daily tasks.
+<revDeke> grr
+<revDeke> i have to get to work
+Action: revDeke really likes this discussion though
+<revDeke> i will do some GNUe-SB to reflect it i think
+revDeke (www-data@209.234.155.8) left #gnuenterprise.
+StyXman_ (~mdione@ADSL-200-59-84-43.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<StyXman_> hi ppl
+StyXman_ (~mdione@ADSL-200-59-84-43.cordoba.sinectis.com.ar) left irc: Client Quit
+jamest (~jamest@adsl-208-191-38-130.dsl.tpkaks.swbell.net) left irc: Remote closed the connection
+jamest (~jamest@adsl-208-191-38-130.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+jamest__ (~jamest@adsl-208-191-38-130.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+jamest (~jamest@adsl-208-191-38-130.dsl.tpkaks.swbell.net) left irc: Remote closed the connection
+jamest__ (~jamest@adsl-208-191-38-130.dsl.tpkaks.swbell.net) left irc: Remote closed the connection
+jamest (~jamest@adsl-208-191-38-130.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+jamest (~jamest@adsl-208-191-38-130.dsl.tpkaks.swbell.net) left irc: Client Quit
+jamest (~jamest@adsl-208-191-38-130.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+ToyMan (~stuq@smtp.dstoys.com) left irc: "Client Exiting"
+<chillywilly> nice convo about UI and navigator
+btami (~btami@3e70d738.dialin.enternet.hu) joined #gnuenterprise.
+flax07 (~flax07@81.5.147.130) left irc: Read error: 113 (No route to host)
+flax07 (~flax07@81.5.147.130) joined #gnuenterprise.
+<jcater> btami: a native win32 printer driver!
+<jcater> that is too cool
+<btami> it's jast a raw (text/ps/pcl) driver
+<jcater> yeah
+<jcater> but it's still a cool first step
+<btami> yes :)
+<btami> a baby step
+<btami> i'm working on a gdi filter now
+<btami> first for SimpleTabulation, later for Universal
+<btami> when you will continue your work on reports 
+<jcater> soon
+<jcater> very soon
+<jcater> I had some major projects that needed forms
+<jcater> so I took that opportunity to fix designer
+<jcater> but I consider reports to be my baby
+<jcater> and I've been neglecting my baby
+<jcater> :(
+<btami> have you any idea about designers report support?
+<jcater> You mean, lack of support?
+<btami> yes :)
+<jcater> I've been giving a lot of thought about how to do it
+<jcater> but haven't actually done anything with it
+<btami> btw. you'v lost "File/New/From Wizard" from designer menu
+<jcater> hmm
+<jcater> ok
+<btami> and designer don't wants to open gauntlet.gfd 
+<btami> multiple blocks with name msgBlock
+<jcater> ok
+<jcater> I'll add that to my list
+<btami> thx
+<jcater> hmm
+<jcater> I swear From Wizard was there yesterday
+<jcater> I dunno what I did to break that today
+<jcater> sigh
+<jcater> hmm
+<jcater> looks like I deleted that line of code
+Action: jcater kicks himself
+lupo (~lupo@pD9E68B23.dip.t-dialin.net) left #gnuenterprise.
+reinhard (~reinhard@M1259P028.adsl.highway.telekom.at) left irc: "Even if you're on the right track, you'll get run over if you just sit there"
+<btami> 'gnight all
+btami (~btami@3e70d738.dialin.enternet.hu) left irc: 
+flax07 (~flax07@81.5.147.130) got netsplit.
+SachaZzz (~Sacha@dialup-196-27.wasp.net.au) got netsplit.
+ajmitch (~ajmitch@wlg1-port11.jetstart.maxnet.co.nz) got netsplit.
+chillywilly (~danielb@CPE-24-167-200-152.wi.rr.com) got netsplit.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) got netsplit.
+mdean (~mike@CPE-65-28-72-76.kc.rr.com) got netsplit.
+jbailey (~jbailey@CPE0060082df811-CM014260028338.cpe.net.cable.rogers.com) got netsplit.
+flax07 (~flax07@81.5.147.130) returned to #gnuenterprise.
+SachaZzz (~Sacha@dialup-196-27.wasp.net.au) returned to #gnuenterprise.
+ajmitch (~ajmitch@wlg1-port11.jetstart.maxnet.co.nz) returned to #gnuenterprise.
+jbailey (~jbailey@CPE0060082df811-CM014260028338.cpe.net.cable.rogers.com) returned to #gnuenterprise.
+chillywilly (~danielb@CPE-24-167-200-152.wi.rr.com) returned to #gnuenterprise.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) returned to #gnuenterprise.
+mdean (~mike@CPE-65-28-72-76.kc.rr.com) returned to #gnuenterprise.
+mgcon (~mstarke@ip68-3-42-197.ph.ph.cox.net) joined #gnuenterprise.
+<mgcon> derek, I guess I found a few moments to fix cvs
+<mgcon> is anyone home?
+mgcon (~mstarke@ip68-3-42-197.ph.ph.cox.net) left irc: "using sirc version 2.211+ssfe"
+dsmith (knxnqs54xv@oh-strongsvillecadent1-1d-165.clvhoh.adelphia.net) joined #gnuenterprise.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "home"
+someon (www-data@209.234.155.8) joined #gnuenterprise.
+Action: jbailey is away: dougnut hunting.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: Read error: 110 (Connection timed out)
+jcater (~jcater@cpe-066-061-083-220.midsouth.rr.com) joined #gnuenterprise.
+<Vee2d2> I've seen 2 really cool things in my area in the last couple days..
+<Vee2d2> A donut slash sub shop
+<Vee2d2> and..
+<Vee2d2> A donut slash pizza shop
+<Vee2d2> the donut/sub shop even has a drive thru.. =)
+<someon> And they say we have a one track mind....
+<jcater> mmmm
+<jcater> donuts
+<jcater> me like donuts
+Action: jcater needs to open a donut shop next
+<jcater> hmm, come to think of it
+<jcater> we don't have one in the area
+<jcater> nah, better not ... I'd eat all my profits
+Action: jbailey is back (gone 01:02:32)
+someon (www-data@209.234.155.8) left #gnuenterprise.
+jbailey (~jbailey@CPE0060082df811-CM014260028338.cpe.net.cable.rogers.com) left irc: "Client exiting"
+megcon (~mstarke@ip68-3-42-197.ph.ph.cox.net) joined #gnuenterprise.
+<megcon> any home to help w/a python path problem?
+<Vee2d2> I think your best bet is to simply blurt out whatever the problem is
+SachaZzz (~Sacha@dialup-196-27.wasp.net.au) left irc: "Client exiting"
+megcon (~mstarke@ip68-3-42-197.ph.ph.cox.net) left irc: Excess Flood
+Sacha (~Sacha@dialup-196-27.wasp.net.au) joined #gnuenterprise.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+megcon (~mstarke@ip68-3-42-197.ph.ph.cox.net) joined #gnuenterprise.
+<megcon> I need help w/either a dependency prob
+<megcon> or a python path prob
+<megcon> background: using Debian/sid
+<megcon> background: untar'd/install common, forms, designer
+<megcon> error: Importerror: No Module named wxPython.wx
+<ajmitch> ah
+<ajmitch> apt-get install libwxgtk2.4-python
+<ajmitch> iirc :)
+<megcon> installing now
+<megcon> gotta love you & apt-get :-)
+<ajmitch> apt-get is wonderful
+<megcon> I think a redhat guy would be still futzing :-)
+<ajmitch> yep
+<megcon> was this depency listed in something I read over?
+<ajmitch> probably
+<ajmitch> I can't recall where, apart from the topic here
+<megcon> holy moly has designer changed since I last took a peek!
+Action: ajmitch hasn't looked at it in awhile
+<megcon> yep, it was listed right there in the forms INSTALL file
+<megcon> outta here...thanks for the help
+megcon (~mstarke@ip68-3-42-197.ph.ph.cox.net) left irc: "using sirc version 2.211+ssfe"
+JesseBlue (~Mike2110@pD958BD84.dip.t-dialin.net) joined #gnuenterprise.
+JesseBlue (~Mike2110@pD958BD84.dip.t-dialin.net) left irc: "(I was using Polaris IRC 2001) Version:(2.01) Webpage:(http://www.polaris-central.com) Wasted:("
+Sacha (~Sacha@dialup-196-27.wasp.net.au) left #gnuenterprise ("Client exiting").
+jamest (~jamest@adsl-208-191-38-130.dsl.tpkaks.swbell.net) left irc: "Client exiting"
+Sacha (~Sacha@dialup-196-27.wasp.net.au) joined #gnuenterprise.
+Sacha (~Sacha@dialup-196-27.wasp.net.au) left irc: "Client exiting"
+Sacha (~Sacha@dialup-196-27.wasp.net.au) joined #gnuenterprise.
+cy83rpunk (~amorgan@adsl-64-168-25-49.dsl.snfc21.pacbell.net) joined #gnuenterprise.
+dcmwai (~chatzilla@219.95.162.156) joined #gnuenterprise.
+<dcmwai> hello cy83rpunk
+<cy83rpunk> hello 
+<dcmwai> this is much better :)
+<dcmwai> any developer here?
+<cy83rpunk> so.. basically if something like aria is going to link into php php needs to know how to talk to the db server..
+<cy83rpunk> php already has tons of methods for talking to db servers..
+<cy83rpunk> most use php modules to consolidate the sql calls into a common command set..
+<dcmwai> which is everyone of them also have different methode.. that why ADOSB came
+<cy83rpunk> rather than invent a whole new socket.
+<dcmwai> ADODB
+<cy83rpunk> yea thats the one..
+<cy83rpunk> so why not just use ADODB, its robust / adaptable..
+<dcmwai> so the new arias or gune-sb will talk to #gnue
+<cy83rpunk> then just have the forms connect to the respective db..
+<dcmwai> then Gnue only talk to the DB
+<cy83rpunk> so its going to be a set of functions to chat with the Gnue server..
+<dcmwai> making that Gnue is the bridge...
+<cy83rpunk> like a custom TCP socket..
+<dcmwai> No... I don't think so...
+<dcmwai> I'm not sure how will this be done that why we are here... :)
+<cy83rpunk> Probably .. and thats one spot where I see a problem..
+<dcmwai> unluckily all developer seem to be sleeping :(
+<cy83rpunk> You would almost want to make gnue listen like say Mysql or Oracle
+<jcater> um
+<cy83rpunk> so that you could simply trick php into thinking its just a nother server..
+<jcater> wtf?
+<dcmwai> Hello jcater :)
+<cy83rpunk> wed thursday friday..
+Action: jcater is trying to follow
+<jcater> and just got totally confused
+<dcmwai> cy83rpunk: would like to join our arias developing .... and I told him about #gnue-sb plan... that why we are here
+<cy83rpunk> or that other phrase..
+<jcater> ok
+<cy83rpunk> :]
+<jcater> this talk of gnue being a socket threw me for a loop
+<cy83rpunk> thats what Im not sure of, I just found out about the gnue tangent..
+<cy83rpunk> php-gtk was how I was thinking it could grow into a GUI.. 
+<cy83rpunk> though having another whole group to work with for the core data / forms may be a good plan..
+<cy83rpunk> after all I too am no accountant..
+<cy83rpunk> though I have worked a good deal of production lines, designing servers etc.
+<dcmwai> jcater: I would really want to know... If we have a web support for gune-sb How would we talk to the DB on gnue (that is the simple way of speaking)
+<dcmwai> web-support front end sorry
+<cy83rpunk> jcater: explanation of why I am interested.. http://sourceforge.net/pm/?group_id=5728 
+<cy83rpunk> just look at the projects start date.. 
+<cy83rpunk> I never got a good team to work out my ideas..
+<cy83rpunk> and have been half assedly plotting over the past few years..
+<dcmwai> cy83rpunk: you need a group of 10 and 6 year to do all that :)
+<jcater> dcmwai: if a php web frontend is maintained along side a gnue-forms version 
+<cy83rpunk> :) tell me about it..
+<dcmwai> arias only need a group of 5 and 3 year :)
+<jcater> then each would talk directly to the database
+<jcater> I would imagine
+<dcmwai> jcater: YES.. using your XML from direct port
+<jcater> just using the same database schema
+<jcater> direct port?
+<dcmwai> not direct port but direct convert/change
+<cy83rpunk> same here.. but base it on the common data..
+<dcmwai> so that it suit the web well
+<cy83rpunk> yes but it wouldn't be live..
+<dcmwai> jcater: oh that would be a very good idea.
+<cy83rpunk> direct to the db would be live..
+<dcmwai> yes... there is a problem somewhere...
+<cy83rpunk> re transactions..
+<dcmwai> unless we use ADODB which make the problem minimize
+<cy83rpunk> you could end up with missmatched data / row id's much more with import / export xml..
+Action: jcater is confused
+<dcmwai> cy83rpunk: That can be solve anywhere.
+<jcater> what xml is being exported/imported?
+<cy83rpunk> maybe an ADODB module that could talk live to the gnue server..
+<dcmwai> jcater: You remember something
+<jcater> I would recommend PEAR or ADODB (or whatever) in PHP to get database independence
+<cy83rpunk> I looked at PEAR its going to odd places.. and comercial
+<jcater> just use clean, simple SQL and you should be fairly safe
+<jcater> ok
+<dcmwai> the web foront support have to be change when the from is creat or modified
+<jcater> well I don't follow it as much as I'm sure you do
+<jcater> so I wouldn't know
+<cy83rpunk> I don't know about you guys but no one is giving me money to work on this.. :)
+<jcater> nope
+<dcmwai> If we do it this way ( From -->Web) autocreate
+<cy83rpunk> To me GBM2k arias Nola are all revenge against Navision and MAS90
+<dcmwai> ME nither...
+Action: jcater isn't interested in revenge
+<cy83rpunk> On company I was with put over a million dollars into those two companies..
+<jcater> just a good, solid, free system
+<cy83rpunk> Not literal revenge..
+<cy83rpunk> just to say look guys, this is the right idea.. 
+Action: dcmwai is stuck somewhere...
+Action: dcmwai don't revenge ...
+<cy83rpunk> See My old Idea was that the core, would be free but for example a template set for a server manufacturer company would be a thing or consulting that could be bought..
+<dcmwai> brb lunch time :)
+<cy83rpunk> My only reason for the word revenge stems from massive IS time converting / fixing those programs.. :)
+<cy83rpunk> months of updates/ patches / lost revenue..
+<cy83rpunk> You might say I was wounded by Mas90..
+<cy83rpunk> almost like recovering a crashed exchange server..
+--- Wed Jun 11 2003

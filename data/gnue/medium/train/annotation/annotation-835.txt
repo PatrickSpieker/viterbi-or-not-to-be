@@ -1,0 +1,109 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.2006-03-27" author="Peter Sullivan" contact="mailto:psu@burdonvale.co.uk" enddate="27 Mar 2006 12:00:00 -0800" startdate="27 Mar 2006 12:00:00 -0800" subject="[IRC] 27 Mar 2006" title="GNUe Application Platform to replace Navigator?">
+
+<topic>Navigator</topic>
+
+<p>James Thompson (jamest) said <quote who="James Thompson">ok, so about 
+a year ago I talked about expanding navigator - now I'd like to actually 
+start working on it. My initial goal was a framework the other gui apps 
+could build from - and netbeans does this quite well.</quote> He 
+explained <quote who="James Thompson">i use gclientapp a lot - but most 
+of the time I don't need all it has to offer</quote> - it tended to 
+get used by default. For an improved GNUe Navigator, he had done some 
+rough notes about required features:</p>
+
+<p><quote who="James Thompson">
+<ul>
+<li>Non-GUI</li>
+   <ul>
+      <li>configuration</li>
+      <li>debugging</li>
+      <li>profiling</li>
+      <li>file storage</li>
+      <li>authentication</li>
+   </ul>
+<li>GUI</li>
+    <ul>
+       <li>menus</li>
+       <li>toolbars</li>
+       <li>status bars</li>
+       <li>windows</li>
+    </ul>
+</ul></quote></p>
+
+<p>This would be rather more ambitious in scope than the current 
+Navigator, which was just a way of launching Forms or Reports. 
+He was currently calling it 'GNUe Application Platform,' (GAP) but 
+this was not important. It would have a foundation (the primary 
+application), a service registry (to manage components - this 
+would always be loaded), and then utilities for things like 
+logging support, configuration processing, debug support, 
+profiler, command line processor and datasources.</p>
+
+<p>Reinhard M&#252;ller though <quote who="Reinhard M&#252;ller">this sounds 
+interesting and useful as a development platform</quote>. James 
+gave some examples of how it could be used. He added 
+<quote who="James Thompson">i could also see the base UI framwork 
+being part of</quote> GNUe Application Platform 
+<quote who="James Thompson">so then navigator, forms, designer, 
+appserver would all derive from gap and only load the components 
+they need</quote>.</p>
+
+<p>Jason Cater (jcater) was concerned that this would 
+<quote who="Jason Cater">require a complete rewrite of everything, 
+as much as a reorganization?</quote> Reinhard was also wary - 
+<quote who="Reinhard M&#252;ller">I always thought we have one or two 
+abstraction levels too much, not too little ;-) - so I'm wondering 
+where the benefits are</quote>. James explained that it would 
+allow more changes to be loaded as a config file at runtime, 
+rather than change the underlying application. Jason realised 
+that <quote who="Jason Cater">addComponent('gap.utility.datasources')
+may or may not coincide with a gap.utility.datasources? - 
+it could be any class registering itself as providing that 
+"service"</quote>. James confirmed this - 
+<quote who="James Thompson">the other components of forms wouldn't 
+be looking for say gDebug specifically - they'd say "give me whatever 
+provides gap.application.debug" - and use that if it's 
+loaded</quote> This would mean <quote who="James Thompson">you'd no 
+longer have hard coded dependency between the various sections of 
+gnue</quote>. This was pretty similar to what the Zope 3 interfaces 
+were doing - he gave some examples.</p>
+
+<p>James noted <quote who="James Thompson">so where we'd end up 
+is - a system made of components with a well defined API via an 
+interface - loaded components would register with some type of 
+manager - components could ask for the component that provided the 
+"Foo Service" then use that service without hard coded links between 
+components</quote>. Reinhard was <quote who="Reinhard M&#252;ller">still 
+trying to understand how we would use this in gnue-forms - I can't 
+imagine a situation where I would want to, say, replace the GDebug 
+system with something different</quote> for instance. But 
+<quote who="Reinhard M&#252;ller">I could really imagine something like 
+this useful for adding new GF* elements to forms - like we have no 
+tree view, so I can write my own and plug it in</quote> - 
+<quote who="Reinhard M&#252;ller">but I think that could be done with 
+python's abilities to dynamically load modules</quote>.</p>
+
+<p>James explained <quote who="James Thompson">eventually forms, 
+designer, appserver, navigator all use this system - so instead of 
+saying "what can I do in forms" - we pull back and say, what 
+can I do in the app. Here I have lots of GClientApp stuff - lots - 
+but</quote> each business application written using the GNUe Tools 
+would only need to load the options it needed, not the whole of 
+each tool. If an application needed some functionality that 
+wasn't in any of the existing tools, the GNUe Application Platform 
+would provide a standard way of plugging it in. He gave some 
+possible examples of this.</p>
+
+<p>Jason could see how <quote who="Jason Cater">all of this could 
+be done without the component system jamest is describing, going on 
+like we're doing now - but I do see true value in this 
+direction</quote>. Reinhard <quote who="Reinhard M&#252;ller">won't stop 
+you anyway - but I'm slightly worried about the overhead this adds to 
+gnue</quote> in terms of <quote who="Reinhard M&#252;ller">complexity and 
+number of abstraction levels - which probably means higher learning 
+curve for people wanting to hack gnue</quote>. James felt the 
+opposite, as did Jason - by having a single, unifying, interface 
+to the rest of GNUe, GAP could actually make things simpler.</p>
+
+</section>
+

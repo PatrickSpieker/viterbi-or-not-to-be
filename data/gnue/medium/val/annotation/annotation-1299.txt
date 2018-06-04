@@ -1,0 +1,101 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.05Feb2002" enddate="05 Feb 2002 00:00:00 -0800" startdate="05 Feb 2002 00:00:00 -0800" subject="[IRC] 05 Feb 2002" title="PHP version of GNUe Forms client">
+<topic>Forms</topic>
+
+
+<p>Jan Ischebeck (jan) confirmed he had <quote who="Jan Ischebeck">
+continued the php client</quote> referred to in 
+<kcref startdate="30 Jan 2002 00:00:00 -0800" title="PHP client for GNUe Forms" />.
+It could now do a <quote who="Jan Ischebeck">simple query on an 
+database, input data into cache, marking as deleted, 
+adding new rows, an About box, and ... some bugs ;-)</quote>
+James Thompson (jamest) said he had made some changes to the main 
+Forms client this week, and <quote who="James Thompson">
+we need to coord better so we don't break stuff on you</quote>.</p>
+
+<p>Later, Jan confimed he had put a fairly limited sample 
+<a href="http://131.220.92.80/~jan/gfc.php">on the web</a> - not 
+all functionality was working yet. Jason Cater (jcater) noted that it 
+didn't work at all with the Konq web browser, but did with 
+<quote who="Jason Cater">mozilla</quote>. 
+Jan said he had tested it with Mozilla, but <quote who="Jan Ischebeck">
+I m no MASTER OF THE JAVASCRIPT</quote> so it might not work with all 
+browsers. He asked <quote who="Jan Ischebeck">if anybody knows how to 
+submit a form with an image button, ... and tell the server that it is
+submit button no. 1 and not submit button no. 2, in a way IE, konq, 
+netscape 4.x and mozilla understand,... please tell me.</quote>. 
+Michael Dean (mdean) offered to help. Jan was trying 
+<quote who="Jan Ischebeck">to catch an key event like "page 
+down", but it dont work. - Just "ALT-P" and 
+"ALT-N" are working now.</quote> Michael noted that 
+<quote who="Michael Dean">key events aren't available for all keys :-(
+</quote>. He later confirmed <quote who="Michael Dean">as of IE 5.0, 
+you can catch pg dn/up for onkeydown and onkeyup, but not onkeypress -
+if you're just wanting to catch when the press a key, you should use 
+onkeyup - onkeydown will fire constantly while they hold the key down
+</quote>.</p>
+
+<p>Scott Lamb (slamb) thought <quote who="Scott Lamb">It may not be necessary 
+to use javascript to do your graphical submit buttons. I'm looking at 
+W3C spec. You can have multiple submit buttons and you can have 
+graphical ones. It says "If a form contains more than one submit 
+button, only the activated submit button is successful." Which I 
+think means only its values are submitted, so you can know which was 
+clicked. Give me a second and I'll actually try it.</quote> Michael 
+agreed, but said <quote who="Michael Dean">if you need to change form 
+data or the action based on which button, you probably need</quote>
+Javascript.</p>
+
+<p>Jan felt he could now write javascript that would work on most 
+browsers, <quote who="Jan Ischebeck">Just lynx and links won't work...
+</quote>. Scott didn't feel this was too serious, but asked 
+<quote who="Scott Lamb">actually, what is it about lynx that makes it not 
+work? I'm curious now.</quote>. Jan confirmed that, 
+<quote who="Jan Ischebeck">Although not working, lynx is not too bad
+</quote>. It degraded to <quote who="Jan Ischebeck">
+[tb_save.png]-Submit [tb_new.png]-Submit ...</quote> so at least 
+you had some idea of what was happening. Scott suggested putting in 
+<quote who="Scott Lamb">alt="" attributes</quote> for the images 
+to improve this, which would also <quote who="Scott Lamb">
+give tooltip hints on graphical browsers</quote>.
+However, Jan expected that <quote who="Jan Ischebeck">lynx doesnt 
+like to send x,y arguments for an image he cannot display...... so if 
+you can click on the image in lynx</quote> it wouldn't work. Scott 
+confirmed by testing that <quote who="Scott Lamb">lynx is giving me .x 
+and .y values of 0 on image submit</quote>.</p>
+
+<p>He noted that lynx didn't like the encoding type in the web page 
+header - the 
+<a href="http://www.w3.org/TR/html4/interact/forms.html#h-17.3">
+W3</a> standard, which it complied with, required something different.
+Jan said <quote who="Jan Ischebeck">Thanks, i will never trust any 
+SELF written HTML course anymore.</quote>. Scott agreed - 
+<quote who="Scott Lamb">yeah, most of the info on the web about html is 
+pretty misleading. why I just go to the official W3 specs</quote>? 
+Jan said he had loooked at them for something some time ago, 
+<quote who="Jan Ischebeck">and it was a little bit confusing, so I 
+didnt use it. But looking on the HTML 4.0 spec. ... GREAT. I ve never 
+heard about LABELS in forms etc.</quote>. Scott agreed, but noted 
+<quote who="Scott Lamb">small catch, though: several of the things on the 
+W3 specs aren't really done by any browser.</quote>. Michael reckoned 
+<quote who="Michael Dean">html form labels rock - don't make 
+checkboxes or radio buttons without 'em ;-)</quote>.</p>
+
+<p>Jan asked for ideas <quote who="Jan Ischebeck">about the rest of 
+the UI</quote>. He explained <quote who="Jan Ischebeck">In the 
+beginning I had planned to make just the actual row in the actual 
+block editable and now everything visible is editable. What do you 
+think is better?</quote>. Scott thought that <quote who="Scott Lamb">
+minimizing the number of times you have to submit/wait for the server 
+to respond would be good - so from that perspective, the way you have 
+it now is much better</quote>. Jan agreed, but asked about cursors - 
+<quote who="Jan Ischebeck">Without cursor, how do I know which row to 
+delete (if i don't use javascript)</quote>? Scott thought 
+<quote who="Scott Lamb">how you have it now is probably the best you 
+can do. No way you can know that w/o JS, so it'll always be a bit 
+confusing to newbies. I like the way you highlight the deleted row in 
+red. Actually, you could have a seperate delete button for each 
+row. but that would require a change to the form definition.
+</quote></p>
+
+</section>
+

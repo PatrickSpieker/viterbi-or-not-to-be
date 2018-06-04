@@ -1,0 +1,138 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.02Jan2003" author="Peter Sullivan" contact="mailto:psu@burdonvale.co.uk" enddate="01 Jan 2003 16:00:00 -0800" startdate="01 Jan 2003 16:00:00 -0800" subject="[IRC] 02 Jan 2003" title="Project PAPO and GNUe">
+
+<p>Referring back to 
+<kcref archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.15Nov2002" subject="[IRC] 15 Nov 2002" title="Merging GNUe and Papo CVS code" />, 
+Marcos Dione (StyXman) asked <quote who="Marcos Dione">does 
+anybody knows about the inclussion of features implemented in our patch into 
+gnue?</quote> James Thompson (jamest) said <quote who="James Thompson">i'm still 
+working on it</quote>. He had been <quote who="James Thompson">hoping to get to 
+over the holidays</quote> but was now hoping to start this week.</p>
+
+<p>Later, Marcos asked <quote who="Marcos Dione">did you hacked anything in the 
+way of &lt;form style="dialog" /&gt;</quote>, as discussed in 
+<kcref archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.23Dec2002" subject="[IRC] 23 Dec 2002" title="Dialog boxes in Forms returning parameters" />.
+James said <quote who="James Thompson">a fair bit of the work is done</quote> - 
+<quote who="James Thompson">i just need to make some more adjustsment to the 
+UI</quote>. Marcos asked for any hints as to how this would work - 
+<quote who="Marcos Dione">I need to either reproduce it or backport it when is 
+done.</quote> James said there would be radical technical changes - 
+<quote who="James Thompson">I wouldn't reimplement - if you can give me the time
+&lt;dialog&gt; was to be able to replace your genericBox - i planed on that being 
+a dynamically created &lt;dialog&gt;</quote>.</p>
+
+<p>Derek Neighbors (revDeke) said <quote who="Derek Neighbors">no offense if you 
+would use official cvs you would save a LOT of time</quote>. James pointed out 
+that papo were still using their own CVS as <quote who="James Thompson">I'm still 
+trying to merge their changes up stream so they can migrate up</quote>. Derek 
+said <quote who="Derek Neighbors">that was my point - it takes time away from 
+adding new features to try to sync with them - and then they out of sync 
+again</quote>. He <quote who="Derek Neighbors">isnt overly 
+concerned from a gnue standpoint, just would like to help papo out by giving a 
+consistent tree</quote> -  but the <quote who="Derek Neighbors">gnue team cant 
+constantly spend time trying to resync</quote>. Marcos said that, for some time, 
+<quote who="Marcos Dione">we (almost) stopped to add features to our cvs ('cept for 
+bug fixes)</quote>.</p>
+
+<p>Marcos added <quote who="Marcos Dione">I guess we'll have our cvs anyways, as we 
+have functionality that will never get into gnue. unless there were other ways to 
+introduce them, like delegation in the db arch</quote>, as discussed in 
+<kcref archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.03Oct2002" subject="[IRC] 03 Oct 2002" title="Adding delegates support to GNUe Common" />.
+Derek said <quote who="Derek Neighbors">so what you are saying is you want a 
+fork</quote>. Marcos disagreed - <quote who="Marcos Dione">it's the last thing we 
+want.</quote> Derek said <quote who="Derek Neighbors">well if you have your own cvs 
+you have a fork</quote> - <quote who="Derek Neighbors">it might be a minor fork but 
+a fork none the less</quote>. He felt that GNUe had <quote who="Derek Neighbors">bent 
+over backwards to apply patches that you would stop using your own cvs so we wouldnt 
+have such headaches</quote>. James said <quote who="James Thompson">we're not fast 
+enough for their business needs - that's all - i mean it's been weeks/months(?)</quote> 
+Derek said <quote who="Derek Neighbors">well its a two edge sword - you have dialogs 
+almost done and styxman will spend two weeks implementing or back port - so whom is 
+slowing whom down</quote>? Applying patches generated from papo's CVS back into the 
+main GNUe CVS was time-consuming, and was only really worth it if papo were intending 
+to use GNUe's CVS in the future.</p>
+
+<p>Federico Heinz (perlhead) said <quote who="Federico Heinz">We most definitely 
+*don't* want to fork. We're doing our best to work with what we currently 
+have.</quote> Derek emphasised that he was not opposed to forking - 
+<quote who="Derek Neighbors">there are two types of forks - a pure fork... we make 
+foo, you want to go right i want to go left and we fork - and - a mild fork, we 
+make foo, you want to go right, we want to go right, you want to dress in red, we 
+want to dress in blue - in a mild fork it makes sense to 'share' as much as 
+possible - as things are going same direction.</quote> He 
+<quote who="Derek Neighbors">would rather see papo just use gnue and drop own 
+cvs</quote> but <quote who="Derek Neighbors">understands business requirements and 
+timelines</quote>. However, <quote who="Derek Neighbors">just like in a data 
+conversion if you continue entering data in old system you will never cut over to 
+the new one</quote>.</p>
+
+<p>He felt that <quote who="Derek Neighbors">this dialog sample proves as well - 
+there is functionality that might come into our cvs you want - and its murder for 
+you to back port it.</quote> However, <quote who="Derek Neighbors">if dialogs 
+will take you 2 weeks to do - and its in our system - and if it takes two weeks 
+to get cvs head to give you proper functionality</quote>, then there was no issue 
+as the work could be done in GNUe's CVS directly <quote who="Derek Neighbors">and 
+you are in sync - /me isnt saying thats the case - but you have to look at such trade 
+offs</quote>. Federico said that getting the papo CVS in sync with GNUe's would 
+take much longer than two weeks - Marcos had <quote who="Federico Heinz">played 
+catch up for quite a while in nov/dec, and he never got anywhere near the head 
+branch.</quote> Derek felt that the only way to re-sync was 
+<quote who="Derek Neighbors">to check out our cvs - then add the functionality to 
+it thats missing and submit as patches - one patch per functionality - not a giant 
+patch - a. that will minimize amount of wait time you would incur from us - b. that 
+ensures our cvs does what you need - in the mean time stop adding stuff to your 
+cvs</quote>. Federico said that the <quote who="Federico Heinz">Problem is, as I 
+understand it, that if we do that, our stuff STOPS WORKING. And we must have a 
+widely deployable version in two months. Debugged and tested.</quote> Derek 
+said <quote who="Derek Neighbors">well then i would say it behooves you to do 
+ASAP - unless you forever want a fork - as if you deploy you will NEVER get back 
+to our cvs - as you will never be able to 'stop' adding features to sync up. 
+Again im not saying you must do this, or even necessarily that you should do 
+this - that is up to you - just be forewarned we wont take patches created from a 
+cvs other than our own</quote>. Marcos did not think there was actually much 
+difference in functionality. Federico agreed - <quote who="Federico Heinz">there's 
+not actually that much more that we need... just now, a few UI things, and 
+then we can rest.</quote> Derek warned that the forthcoming changes to the GNUe 
+Forms Definition format (.gfd) in version 0.5.0 would make papo's CVS 
+<quote who="Derek Neighbors">incompatiable going forward without MAJOR work on 
+your tree</quote>.</p>
+
+<p>Marcos noted that there were some changes in papo's CVS that 
+<quote who="Marcos Dione">won't get into gnue ever. and we know that.</quote> 
+Derek said <quote who="Derek Neighbors">for somethings like that if one off deals 
+you could treat like</quote> patches to the Linux kernel, 
+<quote who="Derek Neighbors">where its a 'mini fork' for specific 
+functionality</quote>. Federico agreed, but said that the bigger issue was 
+<quote who="Federico Heinz">We have stuff we need, and that GNUe wants but 
+does not yet have in HEAD.</quote> Marcos said that, as papo had several 
+devlopers, they would still want to have a CVS even if just for version 
+control on their own patches.</p>
+
+<p>Federico fully appreciated Derek's point about ideally merging CVS before 
+papo did a wider release, but <quote who="Federico Heinz">it's a financing 
+thing</quote> - <quote who="Federico Heinz">if we get a solution that *works* 
+by march, we get the funding we need to continue work, and that work goes 
+according to *our* schedule.</quote> Derek could relate to that, but warned 
+<quote who="Derek Neighbors">if you dont make papo tree like 0.5.0 it will be 
+an utter bitch for you to back port any new functionality we put in</quote>. 
+He appreciated that papo <quote who="Derek Neighbors">have always been more 
+than eager to share their improvements, i want to make it abundantly clear 
+the gripe is not that they want to fork gnue and not give back - its more 
+that applying patches is utter hell, because they are created off a cvs tree 
+other than our own and in masse</quote>. Federico said that the funding 
+situation <quote who="Federico Heinz">means that we *will* do some shit 
+twice, which we could have gotten right the first time. But if doing so will 
+cost us our release date, we won't even get to the point where we can get it 
+right once.</quote> Derek agreed - <quote who="Derek Neighbors">the question 
+is does it outweigh what it will cost you to merge the other stuff over</quote> 
+later? Once all of the papo patches from November had been applied, 
+<quote who="Derek Neighbors">our cvs head after those patches might not be all 
+that radiacally different feature wise - anywho its up to you guys to decide 
+whats best for you</quote>. Federico said that papo's clients were not that 
+used to software development cycles - they were 
+<quote who="Federico Heinz">Sustainable development organizations, 
+mostly.</quote> - <quote who="Federico Heinz">They have great trust in us, 
+and we do all in our power to keep that trust.</quote></p>
+
+</section>
+
+

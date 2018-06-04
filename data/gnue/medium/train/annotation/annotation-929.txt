@@ -1,0 +1,122 @@
+<section archive="http://ash.gnuenterprise.org/irc-logs/gnue-public.log.16Aug2002" enddate="17 Aug 2002 23:00:00 -0800" startdate="15 Aug 2002 23:00:00 -0800" subject="[IRC] 16 Aug 2002" title="Using GNUe Application Server with php Groupware">
+
+<topic>Application Server</topic>
+<topic>Common</topic>
+<topic>Designer</topic>
+<topic>Forms</topic>
+
+<mention>Jan Ischebeck</mention>
+<mention>Dan Kuykendall</mention>
+<mention>Michael Dean</mention>
+
+<p>Continuing previous discussions in 
+<kcref subject="[IRC] 29 Apr 2002" title="GNUe as a Rapid Business Applications Development toolkit" />, 
+Dan Bethe (dtm) asked why the GNUe core developers seemed to feel
+<quote who="Dan Bethe">that gnue's application framework is not 
+appropriately generalizable toward groupware</quote>?
+<quote who="Dan Bethe">or is it that the gnue team isn't interested 
+in doing so? what if outsiders were to be made interested? are the 
+models that drastically different between a groupware and a 
+transactional enterprise framework?</quote> 
+He explained <quote who="Dan Bethe">the existing hotbed of groupware 
+that's got all the development happening, is in the LAMP space</quote> 
+(using Linux, Apache, mySQL and PHP) - <quote who="Dan Bethe">and 
+there's nothing wrong with all that but it's just that the LAMP space 
+tends to be infested with junior, "not invented here" programming demo 
+style coders</quote> - <quote who="Dan Bethe">so they need an app building 
+framework which is as easy as gnue - gnue is easy at building specific 
+kinds of apps - and if it was more fully web enabled (liek with a php or 
+sashxb style presentation driver) and if it had groupware components, then 
+someone could use it as a groupware RAD - then we add the ancillary 
+components such as device drivers, palm sync, and external bridges to WAP 
+or other messaging and formatting, and b3wm - no more 
+phpgropuware</quote>.</p>
+
+<p>Later, he asked <quote who="Dan Bethe">does gnue have any degree of 
+collaborative infrastructure?  or is it just a concurrently-usable 
+multiple-individual transaction oriented infrastructure?</quote> 
+Daniel Baumann (chillywilly) said that was what GNUe Common was 
+for - it <quote who="Daniel Baumann">has the db absatraction, the rpc 
+abstraction, and other code fr writing apps (both server and 
+client)</quote> such as <quote who="Daniel Baumann">the debug system</quote>, 
+<quote who="Daniel Baumann">the xml parser, trigger stuff, the connections 
+code for linking a form up to a db, the commn object model, format masks, 
+lots of *stuff* - appserver uses mainly the db and rpc *stuff*</quote>.</p>
+
+<p><a href="http://ash.gnuenterprise.org/irc-logs/gnue-public.log.18Aug2002">
+Two days later</a>, towards the end of a all night long, off-topic, 
+discussion, Dan said that the GNUe team 
+<quote who="Dan Bethe">have to not downplay web services :&gt;</quote>. 
+Daniel said <quote who="Daniel Baumann">we don't - 
+the have abstraction layer fr most web service protocols - xmlrcp, soap, 
+etc.</quote> and <quote who="Daniel Baumann">appserver should talk 
+to anything by exposing "web services"</quote>. Dan accepted 
+that <quote who="Dan Bethe">you often want super fast data entry in 
+a local binary app</quote> but <quote who="Dan Bethe">you should have 
+web access later</quote>. Daniel mentioned the php Forms client written 
+by Jan Ischebeck. Dan asked <quote who="Dan Bethe">what about 
+generalizing</quote> GNUe <quote who="Dan Bethe">as a general web app 
+platform or collaborative platform/</quote> - he said that Michael Dean 
+(mdean) <quote who="Dan Bethe">had been waving around about that long ago - 
+but when i talked with derek after lwce, he said that gnue has a 
+fundmanetally different model (transactoinal oriented or whatever) - 
+and is not optimized for that directly, fwiw</quote>. He did not see 
+any real difference, however. Daniel said 
+<quote who="Daniel Baumann">you "submit" the form - 
+you "commit" a transaction - same frelling thing ;)</quote>.</p>
+
+<p>Dan asked <quote who="Dan Bethe">is there any reason why we can't make 
+a *generalized* RAD out of gnue instead of just for database oriented 
+forms? - i mean you have a drag-n-drop UI for forms and db stuff...  why 
+can't those widgets be, say, user-oriented or task-oriented or 
+schedule-oriented?</quote> He realised that GNUe Designer was a type of 
+RAD tool, <quote who="Dan Bethe">but only for a specific type of app as 
+opposed to, say, designing a calendar</quote>. Daniel said that 
+<quote who="Daniel Baumann">the appserver will provide objects eventually
+- that is very generic - and you don't have to be a db guru then - just 
+an object lackey</quote>. GNUe Application Server 
+<quote who="Daniel Baumann">still needs to use 
+a db to store</quote> its objects, <quote who="Daniel Baumann">but I think 
+objects give you the generic thing that you desire</quote>.</p>
+
+<p>Dan asked <quote who="Dan Bethe">are there any alternative RADs which already 
+exist (like zope or whatever) which are compatible with gnue so we could get 
+started building groupware on your current gnue shizzit?</quote>  Daniel knew of 
+Zope, but had never used it - <quote who="Daniel Baumann">we have so much code and 
+time invested in our framework - I dunno who has the time to adapt to an 
+existing one - or if it would ever make sense to throw away our stuff rather 
+than picking some existing appserver</quote>. Dan said that 
+<quote who="Dan Bethe">phpgroupware is state of the art as far as free groupware, 
+but it's not state of the art in terms of app services</quote> - it 
+<quote who="Dan Bethe">would suck a lot less if groupware developers were 
+magically granted a kick ass framework to start with</quote> Daniel said 
+that there had been discussions with the phpGW team - they  
+<quote who="Daniel Baumann">do not wish to invest time into 
+gnue integration</quote> - this had been one of the reasons that 
+Michael Dean had affiliated DCL with GNUE rather than phpGW. 
+Dan Bethe said that Dan Kuykendall (seek3r) <quote who="Dan Bethe">has slightly 
+reopened somewhat to the idea of moving toward gnue's direction, one way or 
+another - but still! that's a bit of a leap</quote>.</p>
+
+<p>He felt that free groupware needed <quote who="Dan Bethe">major app 
+frameworks</quote> that were FSF-compatible, and hence not based on Java - 
+<quote who="Dan Bethe">the only FSF-compatible alternative to the excellent 
+enterprise quality stuff that's being done in java today, is in LAMP - 
+which is strong but is not ubiquitous enough - for example it's 
+web-only</quote>, which could prove unsuitable for tasks 
+<quote who="Dan Bethe">like mass data entry</quote>. GNUe could provide 
+an alternative, fully free, application framework for groupware 
+development. He asked if <quote who="Dan Bethe">stuff like j2ee be made to sit 
+atop gnue?  or only interoperate via message passing like soap/xmlrpc</quote>?
+Daniel said <quote who="Daniel Baumann">I think all our components/servers 
+will be web enabled and export remote interfaces</quote>.</p> 
+
+<p>Dan said that using GNUe as an alternative to phpGW for groupware 
+development <quote who="Dan Bethe">can't be all that hard on the surface 
+assuming the guts are ready - assuming that you support groupware-like data 
+structures - and then simply export it to the web via a standard gnue web output, 
+like maybe a php display driver similar to the current wxwindows 
+stuff</quote>.</p>
+
+</section>
+

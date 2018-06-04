@@ -1,0 +1,88 @@
+<section archive="http://mail.gnu.org/pipermail/gnue/2002-November/003380.html" enddate="20 Nov 2002 04:22:39 -0800" posts="7" startdate="07 Nov 2002 10:10:54 -0800" subject="Security Framework Issues" title="Designing a Security Framework for GNUe">
+
+<topic>Application Server</topic>
+
+<p>Stan Klein said he had <quote who="Stan Klein">been working 
+on updating the security framework proposal I drafted in
+May 2001</quote>, to give examples of real-world security 
+requirements and how they could be implemented in GNUe - 
+at the same time <quote who="Stan Klein">trying to infer what 
+additional GNUe features, if any, would facilitate 
+implementation of the requirements.</quote> However, there 
+did not seem to be many <quote who="Stan Klein">examples -- 
+even sanitized -- of real security requirements related to 
+the business processes and data of real enterprises.</quote> 
+He asked if anyone could suggest some, rather than him have 
+to <quote who="Stan Klein">I can construct some business 
+process security requirements scenarios from scratch</quote>.
+Jorge Lehner pointed out that <quote who="Jorge Lehner">at 
+UNI/Managua we just realized an implementacion of Role
+Based Access Control for the PostgreSQL server</quote>, 
+which was <a href="http://sam.uni.edu.ni/">downloadable</a>.
+Stan felt this was important, as <quote who="Stan Klein">In 
+my view, the underlying security has to come mainly from the
+operating system and database management system.  If there is a method of
+providing RBAC using PostgreSQL, this could probably become a major
+capability for GNUe to use.</quote></p>
+
+<p>Reinhard M&#252;ller (reinhard) said that security for n-tier
+(i.e. when using AppServer) consisted of several distinct issues:
+<ol>
+   <li><quote who="Reinhard M&#252;ller">How appserver connects to 
+       the database</quote></li>
+   <li><quote who="Reinhard M&#252;ller">How secure the connection 
+       between appserver and database</quote> (for example, encrypted, 
+       or Virtual Private Network)</li>
+   <li><quote who="Reinhard M&#252;ller">How the user authentificates to 
+       the application server</quote>.</li>
+   <li><quote who="Reinhard M&#252;ller">How secure the connection between 
+       the client and the appserver</quote>.</li>
+   <li><quote who="Reinhard M&#252;ller">Once the user has logged into 
+       appserver, what access he/she has.</quote></li>
+</ol>
+He said this last point <quote who="Reinhard M&#252;ller">could be a 
+system which defines class/condition/property/user/access tuples</quote> 
+- who can do what to which properties of which objects, on either an 
+inclusive or exception basis - giving some examples.</p>
+
+<p>Stan said that Application Server seemed to mean different things 
+to different projects - from GNUe's point of view, it was a mechanism 
+to shield client applications (such as Forms and Reports) 
+<quote who="Stan Klein">from the details and complexity of the data 
+locations and databases or other formats in which the data is 
+stored.</quote> As such, <quote who="Stan Klein">Security needs to be 
+built-in from the start.</quote> <quote who="Stan Klein">The trend is 
+toward security certification under standards</quote>, and 
+<quote who="Stan Klein">Tony Stanco at George Washington University has 
+a project to security certify Security Enhanced Linux, which will be a 
+loadable module of the Linux 2.6 kernel.  This will be a pilot project 
+for certifying the security evaluation of a free/open-source software 
+project</quote>, which might set significant precedents for GNUe. 
+It was also important to consider security not just in the context of 
+normal operations, but also against specific attacks. 
+<quote who="Stan Klein">If it is feasible to use the operating system 
+or database security for protecting the appserver, we should do 
+so</quote> as this would be more secure than "bolted-on" security in 
+the GNUe code itself. However, <quote who="Stan Klein">There may well 
+be some access controls that can only be handled
+within appserver.  If these arise, we should recognize ourselves and make
+it clear to our users that these functions are insecure against a
+sophisticated attacker.</quote> Paul Juckniess disagreed -
+<quote who="Paul Juckniess">Since you may have databases scattered 
+around the net and different operating systems you would really want 
+the security handled within the application in one place otherwise 
+administration could become very complex very fast.</quote> Stan 
+appreciated the practicalities, but said <quote who="Stan Klein">Anything 
+you do in the application that isn't protected by the operating
+system can be bypassed or defeated.  The database (which is itself really
+an application) can provide protection, but the protection it provides has
+to be grounded in the operating system also.</quote> Also, 
+<quote who="Stan Klein">Protecting 
+software written in a scripting language, such as Python, is
+also a challenge.  You need to prevent a malicious user from obtaining a
+copy of the script, tampering with it by simple editing, and redirecting
+the system to use the tampered copy.</quote>.</p>
+
+</section>
+
+

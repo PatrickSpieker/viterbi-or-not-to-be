@@ -1,0 +1,341 @@
+chillywilly (~danielb@CPE-24-167-199-51.wi.rr.com) joined #gnuenterprise.
+reinhard (~reinhard@M1259P028.adsl.highway.telekom.at) joined #gnuenterprise.
+btami (~tamas@ip102-205.ktv.tiszanet.hu) joined #gnuenterprise.
+<btami> good morning
+<reinhard> morning tami
+<ra3vat> morning b
+<ra3vat> morning reinhard
+<ra3vat> :)
+<reinhard> hi ra3vat
+<ra3vat> <btami> i see the problem, but i think this is not a gnue,wx problem, but gui in general, if
+<ra3vat> btami: gui in general? how is that?
+<btami> moment, phone call...
+<btami> ra3vat: i think this problem is exist on win32 (win32 api) and on linux too (gtk)
+<ra3vat> but it can't be a bug in widget library
+<btami> it can :)
+<btami> try a simple form with 2 entry(1 normal, 1 dropdown)
+<btami> with gtk2,wx on linux
+<btami> then with qt
+<btami> with pointSize=10
+<btami> you will see, qt is OK !
+<ra3vat> ok, i'll try today
+<ra3vat> what about native win32 driver?
+<btami> it's same as wx
+<ra3vat> may it be in gnue code? 
+<btami> i don't hink
+<btami> proof: try pointsize= 10,12,14,16,18,20,22,24,26
+<btami> and you will see, that the problem disappears with higher pointsizes
+<ra3vat> ok
+<ra3vat> what do you think could be done to solve this for smaller pointsizes?
+<btami> finish qt driver :)
+<ra3vat> i just do not understand how qt is better than native win32 for windows?
+<btami> i think they gui toolkit (qt), is independent from standard win32 gui API
+<btami> s/they/theirs
+<btami> i'v just committed a small bugfix to gtk2 driver, so
+<btami> you can try the above '"test" with -u gtk2 too
+<ra3vat> i'm in a hurry now, will try later
+<btami> ok
+reinhard (~reinhard@M1259P028.adsl.highway.telekom.at) left irc: "No problem is so interesting that you can't just walk away from it"
+johannesX (~johannes@M1258P026.adsl.highway.telekom.at) left irc: "Client Exiting"
+johannesX (~johannes@M1258P026.adsl.highway.telekom.at) joined #gnuenterprise.
+Action: btami is away: lunch
+reinhard (~reinhard@M1259P028.adsl.highway.telekom.at) joined #gnuenterprise.
+psu (psu@public1-wear2-3-cust70.midd.broadband.ntl.com) joined #gnuenterprise.
+<psu> hi all, btami
+<ra3vat> hello psu
+<psu> hi ra3vat
+ariel (~ariel@ppp-217-133-164-192.cust-adsl.tiscali.it) joined #gnuenterprise.
+wifi-droc (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+<ra3vat> feasgar math wifi-droc
+<wifi-droc> feasgar math
+<wifi-droc> ciamara tha'u?
+<ra3vat> i'm not went that far :)
+<ra3vat> you should come more often
+<wifi-droc> lol
+<wifi-droc> I've been way too busy the last few months, and not actually being any use to the project I try not to bug you too often ;)
+<ra3vat> :)
+<wifi-droc> so what's been happening round here?
+<ra3vat> 0.5.1 release at the door
+<ra3vat> native win32 ui driver
+<ra3vat> gtk2 qt ui drivers
+<wifi-droc> :o
+<wifi-droc> is that instead of or on top of wxwindows?
+<ra3vat> in addition :)
+<wifi-droc> cool :)
+<ra3vat> image support
+SachaS (~SachaS@dialup-196-33.wasp.net.au) joined #gnuenterprise.
+<psu> and a vacancy for webmaster ;-\
+<ra3vat> oh
+<wifi-droc> :o
+<wifi-droc> allo psu
+<wifi-droc> sup dood?
+wifi_droc (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+wifi-droc (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: Read error: 104 (Connection reset by peer)
+<reinhard> http://www.sco.com/scosource/quotes_from_leaders.html
+ariel (~ariel@ppp-217-133-164-192.cust-adsl.tiscali.it) left irc: Read error: 104 (Connection reset by peer)
+<reinhard> hmmm
+<reinhard> i'm not sure if rms would be happy being called a "linux leader" :-)
+<ra3vat> reinhard: are you still support sco installations? :)
+lupo__ (~lupo@pD95421CA.dip.t-dialin.net) joined #gnuenterprise.
+<lupo__> huhu
+psu (psu@public1-wear2-3-cust70.midd.broadband.ntl.com) left irc: Read error: 104 (Connection reset by peer)
+<reinhard> ra3vat: i exchange them to gnu/linux about 2 per month or so
+<reinhard> i actually did that even before all that started
+<reinhard> hey lupo__
+<lupo__> hi reinhard
+<lupo__> i have to go to the dentist today
+<ra3vat> reinhard: great
+wifi_droc (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: "Client exiting"
+btami (~tamas@ip102-205.ktv.tiszanet.hu) left irc: 
+SachaS_ (~SachaS@dialup-196-212.wasp.net.au) joined #gnuenterprise.
+SachaS (~SachaS@dialup-196-33.wasp.net.au) left irc: Read error: 110 (Connection timed out)
+Nick change: SachaS_ -> SachaS
+SachaS (~SachaS@dialup-196-212.wasp.net.au) left irc: "Client exiting"
+lxf (~trillian@202.73.120.115) joined #gnuenterprise.
+wifi-droc (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+jbailey (~jbailey@atlas.fundserv.com) joined #gnuenterprise.
+ToyMan (~stuq@170-215-246-169.bras01.mdl.ny.frontiernet.net) joined #gnuenterprise.
+lxf (~trillian@202.73.120.115) left irc: "Trillian (http://www.ceruleanstudios.com)"
+wifi-droc (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: Read error: 113 (No route to host)
+wifi-droc (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+wifi-droc (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: "Client exiting"
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+mdean (~mike@CPE-65-28-72-76.kc.rr.com) joined #gnuenterprise.
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: "Client exiting"
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+ra3vat (~ds@ics.elcom.ru) left irc: No route to host
+sub_pop_culture (~link@129.210.184.56) joined #gnuenterprise.
+sub_pop_culture (~link@129.210.184.56) left #gnuenterprise ("Client exiting").
+siesel (jan@xdsl-195-14-221-183.netcologne.de) joined #gnuenterprise.
+<siesel> hi all :)
+<reinhard> hi siesel
+<siesel> hi reinhard
+<reinhard> currently, the default for rpctype is "pw_xmlrpc"
+<reinhard> could we change that to "xmlrpc"?
+<reinhard> IIRC that would be the one normally used because it's in woody
+<siesel> should be no problem.
+<reinhard> ok thanks
+<reinhard> i'll do it
+<reinhard> just wanted to ask if you object
+<reinhard> another question
+<reinhard> a bit more complicated
+<siesel> you mean use the xmlrpc driver instead of the pw_xmlrpc driver or do you mean renaming pw_xmlrpc driver to xmlrpc
+<reinhard> i mean use the xmlrpc driver instead of pw_xmlrpc
+<reinhard> in case no config file exists (or the option is not mentioned in config file)
+<reinhard> are we still on the same page?
+<siesel> Then I would recommend to leave the pw_xmlrpc driver as default option, because its the only one working on windows in server mode and its included in the default python distro
+<siesel> page?
+<reinhard> um
+<reinhard> are we on the same page == do we talk about the same
+<reinhard> its included in default python distro?
+<reinhard> starting at which version?
+jbailey (~jbailey@atlas.fundserv.com) left #gnuenterprise ("Client exiting").
+<siesel> yep. since python2.1 or so
+Action: siesel is checking documentation
+<reinhard> because i use python2.1 and i seem to not have it
+<siesel> or so means = new in python 2.2 ;)
+<reinhard> ah ok
+<reinhard> hmmm
+<reinhard> i don't like our default to not work on standard debian stable
+<reinhard> on the other hand, i don't like our default to not work on standard windows, either
+<siesel> ok, what about a fall back list, or better: what about moving both drivers into one, and add an option to choose between the two in case both are installed
+<reinhard> actually i would like the fallback list better
+<reinhard> i'm not sure if moving both drivers into one makes much sense
+<reinhard> i mean what do we need driers for, then?
+<reinhard> drivers
+<siesel> it would look similar like the actual dbdriver implementation, i.e. all postgres drivers are down in the postgresql directory
+<reinhard> don't i have to tell which postgresql driver i want?
+Action: reinhard remembers something about a popy driver and a pygresql driver and so on
+Action: reinhard is out of sync however so this might have changed
+<siesel> I'm not shure what happens if I choose a popy driver and it doesn't exist, but with the new structure it should be possible (if it doesn't exist allready) to add such fallback code into the driver choosing allgorithm 
+<jcater> um
+<jcater> 0.5.0 introduced a fallback mechanism
+<jcater> if you say
+<jcater> provider=oracle
+<jcater> it tries the dcoracle2, then the cx_oracle
+<jcater> likewise w/postgres, etc
+<reinhard> cool
+<reinhard> jcater: thanks
+<jcater> it may not be working perfectly as this was the first release
+<jcater> but it's there
+<jcater> (patches are welcome if its not :)
+<reinhard> i think we can use this for rpc driver fallback
+<reinhard> siesel: what would you think?
+<jcater> oops
+<jcater> I saw popy
+<jcater> and thought y'all were talking about dbdrivers
+<jcater> I didn't realize you were talking about rpc drivers
+<reinhard> yes and no
+<reinhard> we were talking about rpc drivers
+<reinhard> and siesel said there is a fallback mechanism in db drivers
+<reinhard> so we discussed if we could do the same for rpc
+<siesel> reinhard: great idea, I'll implement that for rpc too. 
+<reinhard> siesel: cool
+<jcater> that's what I get for walking into the middle of a conversation :)
+Action: jcater feels like derek now
+<reinhard> lol
+<reinhard> jcater: you were helpful
+<reinhard> thanks again :)
+<reinhard> siesel: now second question
+<siesel> yes
+Action: jcater is away: painting kid's room
+<reinhard> in appserver i can request a list of objects
+<reinhard> i can have two lists "open" at the same time for the same class
+<reinhard> like in a db i can have 2 cursors on the same table
+<reinhard> now our current definition is that for updating and inserting data
+<reinhard> we don't tell which list should be affected by that transaction
+<reinhard> i see 3 possibilities
+<reinhard> a) no list is affected -- current status quo
+<reinhard> b) all lists are affected -- could be problematic f.e. for an insert
+<reinhard> c) all lists are affected f.e. by an insert where the new record fits the conditions
+<reinhard> d) we add a parameter to tell which list should be affected
+<reinhard> --
+<reinhard> um
+<reinhard> 4 possibilities
+<reinhard> :)
+<siesel> hmm
+<reinhard> a makes no sense imho
+<reinhard> as if i have a "grid" in a form and i add a record i want to see it in the grid
+<reinhard> c) can also be different from what the user would expect
+<reinhard> as i can select a list of german customers
+<reinhard> then viewing that list i add an austrian customer
+<reinhard> and as soon as i press "save" the record would disappear
+<siesel> I don't get the difference between c and b 
+<reinhard> ok i have two lists
+<reinhard> list 1 has all german customers
+<reinhard> and list 2 has all u.s. customers
+<reinhard> i add a german customer
+<reinhard> b) means the new record is visible in both lists
+<siesel> ok, got it.
+<reinhard> c) means the new record is only visible in list 1
+<siesel> so A and B doesn't really make sense
+<reinhard> agree
+<siesel> I would prefer C as I think that it requires (in case of postgres) multiple database connections to implement D
+<reinhard> speaking about implementation D is by far the easiest to implement
+<reinhard> as it is exactly what common's dbdriver's do
+<siesel> Sorry, I got it wrong again.
+<reinhard> yeah, i figured that it could be too late to ask this question ;-)
+<siesel> lol
+<siesel> IMHO it all depends on the way we implement the "list".
+<reinhard> "list" is like a wrapper around dbdriver's resultset
+<siesel> that is status quo.
+<reinhard> however
+<reinhard> i don't think the decision what is "right" should depend on implementation
+<siesel> that's "right" ;)
+<reinhard> i started to think about this when jcater talked about ACID principles in database
+<reinhard> especially when thinking about the I = isolation
+<siesel> yes. 
+<reinhard> i think d) would be "right"
+<siesel> C "hurts" isolation
+<reinhard> yes
+<reinhard> and we have to consider that _within_ a session there can be code from different authors that don't even know each other
+<siesel> But A would be fully ok with ACID
+<reinhard> if we consider the modularity
+<reinhard> yes but a) is close to unusable in pracice
+<reinhard> because when i enter a new record i want to see it after i'm finished entering it :)
+<siesel> Hmmm, I don't think so. 
+<reinhard> well we have a at the moment
+<reinhard> and i tried to write some little tiny test
+<siesel> If we use forms, the forms dbdriver stores newly inserted records at the place where they were inserted in the list
+<reinhard> and i can tell you
+<reinhard> it sucks :-)
+<reinhard> ok gotcha
+<reinhard> but what happens if i go back to that record and change something?
+<reinhard> does that work
+<reinhard> wrt UPDATE vs. INSERT
+<reinhard> ?
+<siesel> the record is stored on client side till an COMMIT
+<reinhard> it is?
+<reinhard> so in forms i couldn't trigger a bound procedure before committing
+<reinhard> ?
+<siesel> If a commit happens, the new record is inserted (remote) and its new gnue_id should be added to its representation in the local cache
+<siesel> yes. thats the drawback.
+<reinhard> hmmm
+<reinhard> ok but after the commit
+<reinhard> the record stays in the list on client side, doesn't it?
+<reinhard> and it would disappear on server side
+<siesel> It could even be inserted at once, but it would not have any records pre/post
+<siesel> yes
+<siesel> I mean: yes, it will never appear on the list on server side
+<reinhard> yes correct
+<reinhard> it has never been and will never be
+<reinhard> so client list and server list will be out of sync
+<reinhard> which could lead to a mess when for example fetching further (previously unfetched) records
+<siesel> that all depends on the implementation on the database side
+<reinhard> aside from all those considerations
+<reinhard> i still think that d) is "right"
+<siesel> if the cursor on db side will fetch new records written after its creation,
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: "Client exiting"
+<reinhard> and the fact that form's dbdriver could "hide" the drawbacks of a)
+<reinhard> i still don't think a) is correct
+<reinhard> yes it depends on whether we have cursor stability
+<reinhard> or how this is called in isolation level terminology
+<reinhard> well
+<reinhard> i probably won't work on it until next week
+<siesel> hmmm, I don't like a either, but I think its not the best solution to allways use this cursor model
+<reinhard> as i will be away 29 to 31
+<siesel> holiday?
+<reinhard> kinda
+<reinhard> go to vienna, visit some customers and make holiday at the same time :)
+<reinhard> so i'd love to give you some more time to think about it
+<reinhard> also if we are lucky derek will comment
+<reinhard> ;-)
+<siesel> hoho  
+Action: reinhard is happy he moved his backup cron job from 23:30 to 3:00...
+<siesel> I think I prefer a combination of A and C. I don't like D because it makes our simple API too complicated
+<reinhard> hmmmm
+<reinhard> it just adds a single parameter to "save" and "delete"
+<siesel> with C you could have kind of transaction domains (i.e. sessions) in which all changes directly affect everything in the domain
+<reinhard> yes
+<reinhard> first i liked c also very much
+<reinhard> but then
+<reinhard> it still can make a just inserted record disappear
+<reinhard> if it doesn't fit the original conditions
+<reinhard> apart from that
+<reinhard> there might be states where the "original conditions" aren't even defined
+<reinhard> for example when you just opened a form and inserted a record without selecting something first
+<siesel> reinhard, we shouldn't mix forms point of view with the concept of a cursor.
+<reinhard> yeah well
+<reinhard> it's too late for me, too :)
+<siesel> I had a look in the postgres user manual and there is no way to insert a record into a cursor or remove a record from a cursor
+<reinhard> hmmm
+<reinhard> so that would mean A is exactly what a pure database would do
+<reinhard> right?
+<siesel> A database with a high isolation level
+<reinhard> yes
+<reinhard> i think we nearly agree that we must do either A or D
+<reinhard> you really made me unsure about A or D
+<reinhard> i'm still convinced that we won't do B or C
+<siesel> that's  what discussion is about :)
+<reinhard> we at least want to be _better_ as a database :-)
+<reinhard> better than IIRC, not better as
+<siesel> hmmm, I think that A and C should be supported options, depending on the isolation level set.
+<reinhard> i herewith propose to delay the decision
+<reinhard> sorry i'm dog tired
+<siesel> then we still could kind of emulate D by opening subsessions for each "list"
+<siesel> good idea.
+<reinhard> :)
+<reinhard> i think i'm here tomorrow evening
+<reinhard> i'm leaving wednesday 21:00 so you won't see me till sunday after that
+<siesel> ok. I will try to be here too.
+<reinhard> ok
+<reinhard> let's both sleep over it :)
+<reinhard> night all
+<siesel> night
+reinhard (~reinhard@M1259P028.adsl.highway.telekom.at) left irc: "Don't believe in miracles -- rely on them"
+siesel (jan@xdsl-195-14-221-183.netcologne.de) left irc: "night all"
+rdean (~rdean@c-66-177-158-116.se.client2.attbi.com) joined #gnuenterprise.
+ToyMan (~stuq@170-215-246-169.bras01.mdl.ny.frontiernet.net) left irc: "Client Exiting"
+fixe (~fixe@dsl017-020-123.chi1.dsl.speakeasy.net) left irc: "because I feel like it"
+_Maniac (~User@h24-77-230-121.wp.shawcable.net) joined #gnuenterprise.
+Maniac (~User@h24-77-230-121.wp.shawcable.net) left irc: Read error: 104 (Connection reset by peer)
+SachaS (~SachaS@dialup-196-61.wasp.net.au) joined #gnuenterprise.
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+drochaid_ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: Read error: 104 (Connection reset by peer)
+drochaid_ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: Client Quit
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+sub_pop_culture (~link@129.210.184.56) joined #gnuenterprise.
+sub_pop_culture (~link@129.210.184.56) left #gnuenterprise ("Client exiting").
+rdean (~rdean@c-66-177-158-116.se.client2.attbi.com) left irc: "Client exiting"
+--- Tue May 27 2003

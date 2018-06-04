@@ -1,0 +1,553 @@
+[00:01] Last message repeated 1 time(s).
+<Mr_You> gonna watch a movie, bbl
+Nick change: mdean-[wannabeGNUe] -> mdean-[snores]
+<mdean-[snores]> night d00dz
+<chillywilly> Unlike tangible property, ideas and expressions are not susceptible to natural scarcity. As Jefferson wrote of copyright, ?Its peculiar character, too, is that no one possesses the less, because every other possesses the whole of it. He who receives an idea from me, receives instruction himself without lessening mine; as he who lights his taper at mine, receives light without darkening me.? 
+<dtm> [03:18:07] < loic > Milosch: I'm working on re-implementation of Savannah (savannah.gnu.org) to use phpGroupWare as a codebase instead of the SourceForge software.
+<dtm> now why in the heck would anybody do that?
+<dtm> i'm just curious.
+<chillywilly> cause VA Linux is evil, but why phpGW?
+<chillywilly> I dunno though
+<chillywilly> does phpGW have the  same types of project stuff as SF?
+<chillywilly> I also heard that the SF code is a mess
+<dtm> well ok, if SF code is such a mess that it's a tossup between SF and phpgw, then i'd take phpgw.
+<chillywilly> plus phpGW is a GNU Project :)
+<dtm> but i was just curious coz SF already scales
+<dtm> but that makes sense
+<dtm> thanks for explaining it all to me, bruh
+derek (derek@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<chillywilly> uh oh
+Action: chillywilly runs
+chillywilly (danielb@d164.as14.nwbl0.wi.voyager.net) left irc: Ping timeout for chillywilly[d164.as14.nwbl0.wi.voyager.net]
+mdean-[snores] (mdean@mkc-65-28-73-63.kc.rr.com) left irc: Ping timeout for mdean-[snores][mkc-65-28-73-63.kc.rr.com]
+mdean-[snores] (mdean@mkc-65-28-73-63.kc.rr.com) joined #gnuenterprise.
+ra3vat (ds@195.239.64.192) joined #gnuenterprise.
+alexey (alexey@195.151.214.34) joined #gnuenterprise.
+alexey (alexey@195.151.214.34) left irc: Client Exiting
+ra3vat (ds@195.239.64.192) left irc: [x]chat
+reinhard (rm@N801P007.adsl.highway.telekom.at) joined #gnuenterprise.
+dru (bla@203.97.82.178) joined #gnuenterprise.
+dru (bla@203.97.82.178) left #gnuenterprise.
+Nick change: mdean-[snores] -> mdean
+ra3vat (ds@195.239.66.41) joined #gnuenterprise.
+ToyMan (stuq@c5300-1-ip165.albany.thebiz.net) joined #gnuenterprise.
+jcZzz (jason@HubA-mcr-24-165-193-222.midsouth.rr.com) joined #gnuenterprise.
+ra3vat (ds@195.239.66.41) left irc: Client Exiting
+Nick change: jcZzz -> jcater
+<derek> hi all
+<mdean> guten morgen, Herr Neighbors
+<jcater> howdy
+<derek> moin herr dean
+<jcater> masta d
+<derek> ich bin der masta
+<derek> er
+<derek> ich bin der meister
+<jcater> hmm
+<jcater> I understood the second about as well as the first
+<jcater> early start, derek?
+<derek> iirc 'ich bin' == i am
+<mdean> ja
+<derek> jcater: the early coder catches the bug
+<jcater> you can have it
+<jcater> have y'all seen http://www.mosix.org/ ?
+<derek> jcater: you see it works like this ...
+<mdean> jcater: yup - even before they GPL'd their code
+<derek> the masta bird catches the bug then chews it up and spits in it in coders mouth
+<jcater> mdean: you used it?
+<mdean> jcater: it raised a big fuss in the Linux community
+<jcater> oh
+Action: jcater keeps out of touch
+<mdean> jcater: nope - just kinda follow it once in a while
+<mdean> derek: do you have a visual image?
+<jcater> lol
+<derek> of the catching or the spitting?
+<derek> ;)
+Action: derek remembers mosix now a bit
+<jcater> is this generally the same as beowolf?
+<jcater> generally=conceptually
+<jcater> mmm
+Action: jcater is baking strawberry muffins
+<mdean> derek: I had another idea about the trigger language-neutral issue
+<mdean> derek: tho I'm think it will not be a very popular idea
+<derek> jcater: you suck (wrt to fresh muffins)
+<derek> i dont think it is same as beowoulf
+<derek> it is same 'concept' of 'clusered linux'
+<derek> but i think there are like two or three 'ways' to approach clustering
+<derek> iirc beowoulf and mosix approach in different ways
+<derek> but i could be wrong
+<derek> also there is mission critical linux that does clustering
+<derek> and i think turbolinux has some clustering stuff too
+<derek> i think most of them are 'kernel' extensions
+<derek> except for beowoulf (but i could be grossly mistaken)
+<derek> mdean: what is that?
+<derek> we live on 'non popular' ideas
+<jcater> yes, we do
+<jcater> it wouldn't be fun otherwise
+<derek> thus our support for J2EE, SOAP, .NET etc
+<mdean> http://www.mozilla.org/js/spidermonkey/
+<derek> i told you my xul stories
+<derek> so actually im a fairly big fan of mozilla :)
+<derek> i think we could 'support spidermonkey'
+<mdean> personally, I think that would kick ass - since it would make GNUe web forms triggers almost no-brainer
+<derek> but it would just be another language
+<jcater> yip, I agree
+<mdean> so is there no value in using a more neutral language?
+<jcater> what d'ya mean??
+<mdean> well - I mean: use spidermonkey as the language the forms triggers are written in
+<derek> yes and no
+<derek> the idea was to make it so each development haus wouldnt have to learn a 'new language'
+<derek> so the perl house could use perl to do rules
+<derek> the php house coud php to do rules etc
+<mdean> yes but:
+<mdean> you are tied to a language currently in your forms
+<derek> if we were going to go with one language i would choose python over spidermonkey
+<mdean> and you probably don't want to embed triggers in every supported language
+<derek> mdean: yes but that is short term only
+<derek> our 'standard' language will be python for triggers
+<mdean> ok - so I'm missing the big picture then?
+<derek> and our base packages will be python triggers but we want to let any language be used
+<derek> and im sure some will 'convert'
+<derek> so you might see say
+<derek> like wxWindows has wxGTK, wxMotif, wxMac etc
+<derek> you might see GNUe Accounting (perl)
+<derek> GNUe Accounting (python)
+<derek> etc
+<derek> we would only concentrate on the python rules
+<derek> but if someone that just loved ruby or perl or php or javascript wanted to maintain a concurrent langugage we would let them
+<mdean> I think that deemphasizes the value of component based apps tho
+<derek> yes and no
+<derek> believe me i struggle with this one a lot
+<derek> i think as far as GNUe applications (from gnue) the SAP rival goes we will ONLY concentrate on python based 
+<derek> BUT gnue is also a tool that you can use independently
+<derek> here i see value in being able to 'choose' a language
+<derek> say i have an existing system written perl, that i have out grown
+<derek> if i had separated biz logic i might be able to reuse a good portion of my code in gnue
+<derek> as well as not have curve of learning python
+<derek> sometimes when i think about it, for speed sake i think (development not execution) i think we are crazy to support more than one
+<derek> and think we just support python
+<derek> and if we lose a few folks so be it
+<mdean> I'm just concerned about reinventing the wheel for the sake of doing it in another language
+<derek> i think our stance is we will simply write the ability to couple another language
+<derek> and leave it at that
+<derek> GNUe core team will not focus energy on adding a bunch of languages
+<derek> or 're duplicating' efforts to make sure there is a perl and php and python version of our applications
+<mdean> yes, but you don't want to design yourself into a corner either (which I don't think you're doing anyway)
+<derek> which is what i think you are saying seems superflous (and with that i agree)
+<derek> but some people are STUBBORN and insist on their language 
+<derek> in which case if they want to spend the time rewriting all the gnue apps in their language more power to them :)
+<derek> just means more choice for the user
+<mdean> like assembly language programmers who want their macro assembler written in assembler - pointless ;)
+Action: derek vows to beat gnue core members that suggest using their time to do this :)
+<jcater> it is worth adding that if someone is simply wanting to extend our packages, they wouldn't have to rewrite the base in their language
+<derek> jcater: that is true too
+<derek> nothing says you cant mix and match
+<derek> i.e. have base with python and add a custom trigger in perl
+<mdean> jcater: I realize that - I'm more concerned with having to have the appropriate platform depending on form trigger language
+<mdean> and doing this would be a big boost to the web side of forms
+<mdean> but
+<mdean> feh - children interrupted train of thought
+dres (dres@4.18.171.42) got netsplit.
+Mr_You (rouzer@mankind.boredom.org) got netsplit.
+ToyMan (stuq@c5300-1-ip165.albany.thebiz.net) got netsplit.
+jcater (jason@HubA-mcr-24-165-193-222.midsouth.rr.com) got netsplit.
+gnuebot (eggdrop@mail.libertydistribution.com) got netsplit.
+Maniac (nway@h24-82-132-209.wp.shawcable.net) got netsplit.
+ajmitch (me@p48-max11.dun.ihug.co.nz) got netsplit.
+mdean (mdean@mkc-65-28-73-63.kc.rr.com) got netsplit.
+nickr (nick@e-172-IP26.empnet.net) got netsplit.
+dtm (dtm@m206-221.dsl.tsoft.com) got netsplit.
+reinhard (rm@N801P007.adsl.highway.telekom.at) got netsplit.
+ajmitch (me@p48-max11.dun.ihug.co.nz) returned to #gnuenterprise.
+Maniac (nway@h24-82-132-209.wp.shawcable.net) returned to #gnuenterprise.
+mdean (mdean@mkc-65-28-73-63.kc.rr.com) returned to #gnuenterprise.
+reinhard (rm@N801P007.adsl.highway.telekom.at) returned to #gnuenterprise.
+gnuebot (eggdrop@mail.libertydistribution.com) returned to #gnuenterprise.
+Mr_You (rouzer@mankind.boredom.org) returned to #gnuenterprise.
+ToyMan (stuq@c5300-1-ip165.albany.thebiz.net) returned to #gnuenterprise.
+jcater (jason@HubA-mcr-24-165-193-222.midsouth.rr.com) returned to #gnuenterprise.
+#gnuenterprise: mode change '+o gnuebot' by benford.openprojects.net
+dtm (dtm@m206-221.dsl.tsoft.com) returned to #gnuenterprise.
+nickr (nick@e-172-IP26.empnet.net) returned to #gnuenterprise.
+dres (dres@4.18.171.42) returned to #gnuenterprise.
+<jcater> welcome back, all
+<mdean> sheesh!
+<derek> mdean: i think you have a point
+<derek> but i think webforms will be so easy and number of people knowing javascript is limited
+<derek> the UIdriver will take care of most of it
+<derek> so you all ready to talk reports 
+<derek> muhahahahaha
+<mdean> sure
+<derek> jcater: slurping cvs to test the 'evil one'
+<jcater> sigh
+reinhard (rm@N801P007.adsl.highway.telekom.at) left irc: Omnis enim res, quae dando non deficit, dum habetur et non datur, nondum habetur, quomodo habenda est.  -- Aurelius Augustinus
+chillywilly (danielb@d46.as6.nwbl0.wi.voyager.net) joined #gnuenterprise.
+chillywilly (danielb@d46.as6.nwbl0.wi.voyager.net) left irc: Killed (NickServ (This nick is reserved by another user))
+chillywilly_ (danielb@d46.as6.nwbl0.wi.voyager.net) joined #gnuenterprise.
+nickr (nick@e-172-IP26.empnet.net) got netsplit.
+dtm (dtm@m206-221.dsl.tsoft.com) got netsplit.
+Mr_You (rouzer@mankind.boredom.org) got netsplit.
+ToyMan (stuq@c5300-1-ip165.albany.thebiz.net) got netsplit.
+jcater (jason@HubA-mcr-24-165-193-222.midsouth.rr.com) got netsplit.
+gnuebot (eggdrop@mail.libertydistribution.com) got netsplit.
+dres (dres@4.18.171.42) got netsplit.
+Action: derek has to run to soccer games
+Nick change: derek -> dnSoccer
+<dnSoccer> bbl
+gnuebot (eggdrop@mail.libertydistribution.com) returned to #gnuenterprise.
+Mr_You (rouzer@mankind.boredom.org) returned to #gnuenterprise.
+ToyMan (stuq@c5300-1-ip165.albany.thebiz.net) returned to #gnuenterprise.
+jcater (jason@HubA-mcr-24-165-193-222.midsouth.rr.com) returned to #gnuenterprise.
+#gnuenterprise: mode change '+o gnuebot' by benford.openprojects.net
+dtm (dtm@m206-221.dsl.tsoft.com) returned to #gnuenterprise.
+nickr (nick@e-172-IP26.empnet.net) returned to #gnuenterprise.
+Nick change: chillywilly_ -> chillywilly
+<chillywilly> ello dewds
+<jcater> 'sup
+<mdean> howdy chillywilly
+<chillywilly> hi
+<chillywilly> yoday is my birthday
+<chillywilly> today even
+<mdean> happy birthday old man
+<chillywilly> tnx
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+<chillywilly> uh oh
+<chillywilly> he's watching us now
+dres (dres@4.18.171.42) returned to #gnuenterprise.
+<chillywilly> hey dres
+Action: chillywilly is about to use GnuCash ;)
+<psu> hey cw - my birthday too
+<chillywilly> no way?!?
+<psu> does that make us twins seperated at birth?
+<chillywilly> cool
+<psu> (bags I get to be the evil twin - maybe not)
+<chillywilly> nah, I am definitely the evil one
+<chillywilly> muuwahahahaa
+<jcater> a twin of chillywilly
+<jcater> now that's a scary thought
+<chillywilly> hehe
+<mdean> mini-chillywilly
+<psu> got a nice new toy for my birthday
+<psu> CD-R/RW writer
+<chillywilly> nice
+<psu> from the wife
+<psu> Bumper pack of 100 CR-R from
+<chillywilly> I just got some cards yesterday
+<psu> the mother-in-law
+<psu> women - gotta love 'em
+<chillywilly> I think I am gonna talk someone into going to the store and getting some equipment to build a little network here ;)
+<mdean> YES!  wxBasic!  let's start converting GNUe!
+<chillywilly> we must do it now!!!
+Action: chillywilly reprograms jcater
+<jcater> error: 'goto' does not compute
+<chillywilly> haha
+<dnSoccer> before i leave, jcater we did program you with GOTO
+<dnSoccer> i.e. GOTO Hell
+<jcater> sure that wasn't a gosub?
+<dnSoccer> i think a trout slap must have crosswired you up or something :)
+Action: dnSoccer leaving for real now
+Action: jcater has flashbacks of TRS-80 BASIC
+<mdean> written by Microsoft
+Action: psu has flashbacks of Sinclair ZX Spectrum basic
+<mdean> at least the CoCo Basic was
+<jcater> :)
+<jcater> I'm sure it was
+<psu> ZX Basic - the "standard" of the early 1980s
+<psu> (i.e. completely non-standard
+<psu> but sold more units than all the others put together)
+<psu> hmm.. now where have i heard that before...
+<jcater> rofl
+<dres> hello chillywilly
+<chillywilly> hi
+<psu> i remeber writing a "word processor" 
+<psu> (actally more a basic text editor)
+<psu> in ZX Spectrum basic
+<psu> exceedingly pointless, as I had no printer
+<jcater> yes, but it was preparing you for your role as GNUe's KC guide :)
+<jcater> it was an oracle
+<psu> I have no intention of writing my own text editor for KC!
+<jcater> lol
+<psu> Zack has some useful "macro"-type things on his web site
+<psu> for vi & emacs users
+<psu> but at the moment, the KCs are all lovingly hand-crafted 
+<psu> I won't do anything more complicated
+<psu> until I get "an itch to scratch"
+<psu> gotta go now - probably back later
+<psu> TTFN
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise.
+Nick change: chillywilly -> garygnu
+Nick change: garygnu -> chillywilly
+thomasin (thomas@pD9E62FDE.dip.t-dialin.net) joined #gnuenterprise.
+<thomasin> l
+thomasin (thomas@pD9E62FDE.dip.t-dialin.net) left irc: thomasin has no reason
+chillywilly (danielb@d46.as6.nwbl0.wi.voyager.net) left irc: Ping timeout for chillywilly[d46.as6.nwbl0.wi.voyager.net]
+ToyMan (stuq@c5300-1-ip165.albany.thebiz.net) left #gnuenterprise (Client Exiting).
+zbrown (zbrown@dsl081-067-005.sfo1.dsl.speakeasy.net) joined #gnuenterprise.
+<zbrown> hi
+<zbrown> nobody home...
+zbrown (zbrown@dsl081-067-005.sfo1.dsl.speakeasy.net) left irc: [BX] Have you huggled your BitchX today?
+Nick change: dnSoccer -> dnChores
+Maniac (nway@h24-82-132-209.wp.shawcable.net) left irc: 
+ToyMan (Stuart@c5300-3-ip113.albany.thebiz.net) joined #gnuenterprise.
+ra3vat (ds@195.239.64.46) joined #gnuenterprise.
+<ra3vat> hi all
+<dnChores> hi
+Nick change: dnChores -> dnAway
+<jcater> ra3vat: howdy
+<ra3vat> jcater: hi
+<dnAway> he lives
+Nick change: dnAway -> derek
+<jcater> who?
+<ra3vat> derek
+<ra3vat> jcater: do I need separate driver or something to use gnuef with mysql both on windows?
+<jcater> you will need a mysql driver for windows
+<jcater> hang on... lemme see if I can find precompiled mysql drivers
+jcater (jason@HubA-mcr-24-165-193-222.midsouth.rr.com) left irc: Read error to jcater[HubA-mcr-24-165-193-222.midsouth.rr.com]: Connection reset by peer
+jcater (jason@HubA-mcr-24-165-193-222.midsouth.rr.com) joined #gnuenterprise.
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+<jcater> ra3vat: I don't think the mysql drivers work on win32 without modification
+<jcater> http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/mysql-python/mysql/README.windows?annotate=1.1
+<psu> hi derek
+<psu> just sent you an email re the reports stuff from Thu
+<psu> do you want to discuss now
+<psu> or go away & have a think?
+<psu> (assuming you're not just logging anyway)
+Maniac (darryl@h24-82-132-209.wp.shawcable.net) joined #gnuenterprise.
+<ra3vat> jcater: oh, may be i'm missing something for pypgsql also? pgAdminII works fine, thanks mdean 
+<jcater> so, pgAdminII is working on Win32??
+<jcater> and you can access your postgres database?
+<ra3vat> yes
+<jcater> what message is forms giving you again?
+<jcater> the exception?
+<derek> iirc there are mysql drivers for windows 'native' 
+<derek> but i dont think they were tested
+<derek> i think windows odbc was tested
+<derek> by jade a LONG time ago so who knows status now
+<ra3vat>  jcater: hold on
+<derek> and i know there are mysql odbc drivers for windows
+<derek> psu: i can quasi discuss
+<derek> trying to burn a few things and gettiung ready to leave
+<derek> whats up
+<derek> read mail and good stuff
+<derek> we should discuss at diff time as it will go outside scope of my time today :)
+<ajmitch> morning
+<ra3vat> DB001: [C:\PYTHON21\gnue\common\dbdrivers\pypgsql\DBdriver:61] Connect user=ds p
+<ra3vat> assword= host=ics dbname=icsinfo
+<ra3vat> DB001: [C:\PYTHON21\gnue\common\dbdrivers\pypgsql\DBdriver:69] Exection could no
+<ra3vat> t create socket: Socket error, no description available.(0x0000273F)
+<ra3vat> DB001: [C:\PYTHON21\gnue\common\dbdrivers\pypgsql\DBdriver:69]
+<derek> you able to use postgres on unix?
+<psu> derek - no problem
+<psu> catch you later
+<derek> im thinking perhaps you dont have tcp/ip enabled properly on your postgres server
+<ra3vat> jcater: login window disappeared, I have dos window with that error and nothing happen  
+<ra3vat> postgres has option -t at start and I have pgAdmin working
+<ra3vat> -i
+<ra3vat> from the same win machine
+<derek> how does pgAdmin work
+<jcater> did you have to use a password with pgAdmin?
+<derek> im not familiar with it
+<derek> if its web based
+<ra3vat> jcater: w/o password
+<derek> and the files are on your postgres server its possible that its not using tcp/ip
+<derek> is your postgres server on win32 or on unix?
+<ra3vat> derek: no, it's a win32 application
+<ra3vat> postgres is on unix machine
+<jcater> and the linux machine name is ics? 
+<jcater> and the win machine is resolving this name?
+<ra3vat> derek: pgadmin.postgresql.org
+<ra3vat> jcater: yes
+<jcater> derek: we had (at mdean's suggestion) him install it on win32 to see if the win32 machine could access pgsql
+<psu> bbl
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise.
+<ra3vat> jcater: will try to download source for pypgsql
+<ra3vat> For this reason, the binary win32 versions of pyPgSQL that we provide are
+<ra3vat> already built against the PostgreSQL 7.2 development version.
+<ra3vat> I have pgsql7.1.3
+<derek> jcater: next time you can ask me to :)
+<derek> i have it all configured
+<derek> ra3vat: ah
+<derek> never mind i read why now :)
+<jcater> derek: ?
+<derek> i have windows clients at work talking to postgres on unix
+<derek> but i see that its a 'specific version' test now
+<ra3vat> jcater: pgsql version should not be the problem
+Mr_You (rouzer@mankind.boredom.org) left irc: Ping timeout for Mr_You[mankind.boredom.org]
+Mr_You (rouzer@mankind.boredom.org) joined #gnuenterprise.
+<derek> reboot number 15 for windows
+<derek> dont you love when you tell an os to go down and come back up
+<derek> and it just isnt capable of it
+<derek> even when no hardware has been changed
+<derek> 16
+<derek> yeah number 16 worked
+ToyMan (Stuart@c5300-3-ip113.albany.thebiz.net) left irc: Ping timeout for ToyMan[c5300-3-ip113.albany.thebiz.net]
+<ra3vat> jcater: test example basic.py from pypgsql source works fine from my windows machine to postgres on unix
+<jcater> ra3vat: what version of pypgsql did you grab?
+<ra3vat> latest
+<ra3vat> 2.0
+<ra3vat> example does work
+<jcater> how did you run the basic.py (what was your command line)
+<jcater> I'm trying to see what it does differently than we do
+<ra3vat> python basic.py ics::icsinfo ds ''
+<jcater> can I email you a file to test out??
+<jcater> first, can you /msg me with your connections file?
+<ra3vat> comment = GNUe Sample Connection for MySQL based developer database
+<ra3vat> provider = mysql
+<ra3vat> host = gnue
+<ra3vat> dbname = developer
+<ra3vat> [prod]
+<ra3vat> comment = PostgreSQL Sample Connection to a production database
+<ra3vat> provider = pypgsql
+<ra3vat> host = ics
+<ra3vat> dbname = icsinfo
+<ra3vat> [gnue]
+<ra3vat> comment = Connection to a database dedicated to gnue 
+<ra3vat> provider = pypgsql
+<ra3vat> host = ics
+<ra3vat> dbname = gnue
+<ra3vat> Anyone can tell me what "features" make MS Access even worse than mysql toy?
+<Mr_You> I don't understand
+<Mr_You> there is Filemaker Pro for Linux now ;-
+<Mr_You> )
+<ra3vat> we're not much like mysql but even more hate Access. Why?
+<Mr_You> I still don't understand your question
+<Mr_You> oh
+<ra3vat> why is is Access so bad besides it is from MS?
+<Mr_You> well... I don't like Access because #1=M$.. and #2 I found out that it randomly loses data.. not sure how they fixed that or if they even have.. cause supposedly fixing the problem could also lose data.. not sure whatever came out of that.. it was a big deal because a lot of doctor offices use Access.. so there are big chances some doctors offices have lost data and don't even realize it
+<Mr_You> so those are my reasons.. 
+<Mr_You> but probably the biggest reason is I just don't enjoy using M$ products, but I do require an OS on any machine and sometimes it happens to have and M$ OS on it ;-)
+<Mr_You> but I stay away from jobs that are majority Windows-work related
+<ra3vat> and then they are healing us, it's scary :)
+<ra3vat> Mr_You: thanks
+<Mr_You> yeah..
+<Mr_You> well I would say that most hospitals are probably not using Access..
+<Mr_You> unless its super small
+<Mr_You> but yeah doctors heal us and their offices could be ;-)
+<Mr_You> most major hospitals have used unix servers for years I believe
+<ra3vat> l8r
+<Mr_You> see ya
+ra3vat (ds@195.239.64.46) left irc: [x]chat
+<jcater> Mr_You: isn't that just an Urban legend?
+mdean (mdean@mkc-65-28-73-63.kc.rr.com) left irc: Ping timeout for mdean[mkc-65-28-73-63.kc.rr.com]
+mdean (mdean@mkc-65-28-73-63.kc.rr.com) joined #gnuenterprise.
+<Mr_You> hmmm
+<Mr_You> I dunno.. I'm pretty sure many places covered it, is there an info page?
+<jcater> I dunno, I really didn't follow up
+<jcater> I just heard that one of the major "cases" of this was a bad 3rd party app using Access
+<jcater> but I really don't follow MS :)
+<Mr_You> doin a search
+ajmitch (me@p48-max11.dun.ihug.co.nz) left irc: http://www.freedevelopers.net
+jcater (jason@HubA-mcr-24-165-193-222.midsouth.rr.com) left irc: Ping timeout for jcater[HubA-mcr-24-165-193-222.midsouth.rr.com]
+jcater (jason@HubA-mcr-24-165-193-222.midsouth.rr.com) joined #gnuenterprise.
+<jcater> ack!
+<jcater> power outage
+<Mr_You> bummer
+<Mr_You> bbl
+Action: Mr_You &
+dres (dres@4.18.171.42) left irc: Read error to dres[4.18.171.42]: Connection reset by peer
+dres (dres@4.18.171.42) joined #gnuenterprise.
+jamest (jamest@fh-dialup-201089.flinthills.com) joined #gnuenterprise.
+jcater (jason@HubA-mcr-24-165-193-222.midsouth.rr.com) left irc: Ping timeout for jcater[HubA-mcr-24-165-193-222.midsouth.rr.com]
+jcater (jason@HubA-mcr-24-165-193-222.midsouth.rr.com) joined #gnuenterprise.
+<jcater> argh!
+<jcater> another power outage
+<jcater> jamest: that you?
+<jamest> yip
+<jamest> it's me
+<jcater> howdy
+[21:00] Last message repeated 1 time(s).
+<jamest> so, did you play w/ mcmillan any?
+<jcater> I haven't GNUe'd much at all since we last spoke
+<jamest> ah
+<jamest> well, today didn't go as planned 
+<jcater> I polished designer's menu a little bit
+<jamest> so I have a ton of homework for tomorrow
+<jcater> ah
+<jamest> I'll try and gnue later sunday afternoon or evening
+<jcater> ok
+<jamest> you worked on the menu eh?
+<jcater> Just a little
+<jcater> cleaned up a few oddities
+<jamest> added the Help->Do my work for me. menu option
+<jamest> ?
+<jcater> no
+<jcater> BUT
+<jcater> it will tell you that you have unsaved changes if you try to Close or Exit 
+<jcater> :)
+<jcater> that's about all I've done
+<jcater> well, I spent some time w/ra3vat today
+<jamest> :)
+<jcater> I had to patch pypgsql's connect script
+<jcater> as it worked for you and I under windows
+<jamest> again?
+<jcater> but not for him
+<jamest> damn
+<jcater> I changed it to the host::dbname:user:pass:: format
+<jcater> and it worked for him
+<jcater> (and still worked for me too)
+<jcater> in retrospect, I wonder if some of his settings files
+<jcater> were not in ASCII
+<jcater> and when I modified the DBdriver to do a "%s", it converted
+<jcater> I see no reason why old format wouldn't work and the new one would, 
+<jcater> but that's how it worked out
+<jcater> btw
+<jcater> I'm doing a comprehensive README.databases
+<jcater> (have been for last 1 1/2 hours)
+<jcater> lists all the drivers we support and what they expect in connections.conf
+<jamest> um
+<jcater> um?
+<jamest> you mean that the connect string I originally had worked?
+<jamest> and that the new stuff didn't?
+<jcater> no
+<jcater> not at all
+<jamest> so instead of user=%s
+<jamest> you have host::dbname:user:pass::
+<jamest> as the string?
+<jcater> yes
+<jcater> that's how there examples are
+<jamest> sigh
+<jcater> and he used the examples (basic.py IIRC) on his windows machine to verify it was our driver and not
+<jcater> some connections problem
+<jcater> yes, sigh
+<jcater> I spent a few hours going thru the basics
+<jcater> (are you sure your dbname is right? can you ping the unqualified host?)
+<jcater> but he was using pgAdmin on windows
+<jcater> so that kinda disqualified some PostgreSQL problem :)
+<jamest> lol
+<jamest> has madlocke been arround today?
+<jcater> nope
+<jamest> drat
+<jcater> he said yesterday he'd be back in a week
+<jcater> (iirc)
+<jcater> well, I'll be!
+<jcater> PygreSQL released 3.2
+<jcater> and it supports windows
+<jamest> ah,
+<jamest> but try and find a binary
+<jamest> :)
+<jcater> :)p
+<jamest> they didn't have a 3.2 binary last week
+<jcater> nor this week
+<jamest> we still want a release this weekend?
+<jcater> if possible
+<jcater> you have time?
+<jamest> i can make time on Sun
+<jcater> this README is last thing I plan on doing
+<jamest> cool
+<jcater> derek's forms passed the test
+<jamest> did he then retest the older forms
+<jamest> to make sure they still work?
+<jcater> I dunno
+<jamest> ok, I think I'm taking off for the night
+<jamest> I'm exhaused
+<jcater> ok
+<jcater> sleep well
+<jamest> ok
+<jamest> later
+jamest (jamest@fh-dialup-201089.flinthills.com) left irc: [x]chat
+<nickr> yay, new weekly news!
+<jcater> what's the URL again? 
+<jcater> I don't have it bookmarked at home yet
+<jcater> ah, found it
+<jcater> psu: for future reference, my name is Jason, not Jeff :)
+chillywilly (danielb@d62.as29.nwbl0.wi.voyager.net) joined #gnuenterprise.
+--- Sun Nov 11 2001

@@ -1,0 +1,699 @@
+[00:06] Last message repeated 1 time(s).
+<derek> hmmm my bbrain must be tired
+<derek> i got the splits to work now and stop autocalcing stuff
+<derek> but its backwards?
+<nickr> I like ultratiny panels
+<derek> help
+<derek> this kind of stuff drives me mad
+<derek> wsating too much time w/ it
+<derek> have a transaction
+<derek> i do a split
+<derek> put 1000 as income in deposit
+<derek> 100 as income as desposit
+<derek> then say take out 100 (withdraw)
+<derek> and what does the split want to do ?
+<derek> put 1000 in withdrawl
+<derek> when it should be 1000 in deposit
+<derek> sigh no one in gnucash
+<chillywilly> on OPN?
+<derek> no irc.gimp.org
+<chillywilly> yea
+<chillywilly> I c you there
+<chillywilly> dres willcome back soon
+Action: dres is back.
+<chillywilly> well there ya go
+<chillywilly> wb derek
+<chillywilly> er, dres
+<derek> dres most odd my brain must be dysfunctional tonight
+<derek> if i do a split for a paycheck in an asset/checking ledger
+<derek> and i do
+<derek> deposit 1000
+<derek> deposit 100
+<derek> withdrawl 100
+<derek> in the split lines
+<derek> it tries to create a 1000 withdrawl line
+<derek> when im expecting a 1000 deposit line
+<derek> and i notice it is doing flipped transactions in the other ledgers
+<derek> like income / expense
+<derek> so if i flip all my transactions it does ok
+<derek> should be doing these all as 'negatives' in the split?
+<dres> no.
+<derek> as that would probably fix it as well (or is my brain missing something obvious)
+<dres> shouldn't be using negatives in splits
+<derek> i flipped the two columns and seemed to get the desired result
+<derek> but it seems 'wrong'
+<dres> say you get a paycheck.  you should withdraw X dollars from income account in one split and the second split in the transaction should have a deposit to checking.
+<derek> to get it to work i did this
+<derek> where xxx:yyy:zzzz
+<derek> xxx = account
+<derek> yyy = deposit
+<derek> zzzz: withdrawl
+<derek> income::1000
+<derek> income::100
+<derek> checkingaccount:1000:
+<derek> taxes:100:
+<derek> and it put 1000 in deposit of the line item (which is what i desired)
+<derek> but it seems 'wrong' to do a split this way
+<derek> did you run away?
+<dres> ok.  so split 1: 1100 withdrawal from income account A
+<dres> split 2: 100 deposit to expense account (taxes) B
+<dres> split 3: 1000 deposit to checking account C
+<dres> is this about right?
+<dres> no.  just having a conversation with the wife and you at once.
+<derek> yeah thats what i input to get what i wanted as 'end' result
+<dres> then it sounds right to me.  What feels wrong to you?
+<derek> it appears to have put 4 transactions in my income account (which seems right)
+<derek> the 1000 and 100 as income
+<derek> and a 1000 and 100 for charge
+<derek> remember what is weird about this too me is not used to doing 'home' finances this way
+<derek> when i deal with the 2.5 billion dollars at work i dont have 'personal' attachment too it so i dont think of it outside formulas :)
+<derek> i guess what feels unnatural
+<derek> is the split i assumed was indicative of journal its in
+<derek> so i think of it as
+<derek> 1000 deposit to the journal
+<derek> 100 deposit to journal
+<derek> 100 withdrawl from journal
+<derek> to end up with 1000 credit in the end
+<derek> BUT i guess its because an 'income' account it needs to be a withdrawl
+<derek> in any event i got it to work
+<derek> just seems a little odd, maybe its a naming thing
+<derek> i think i did find a bug though
+<derek> when i selected accounts from spouse from your wizard
+<derek> it put all the 'tax' accounts under income for the spouse
+<derek> but it put all hte normal tax accounts under expense
+<derek> bug?
+<dres> maybe.  I'm not sure what you are describing.
+<dres> probably better to write up an email and send it to gnucash-list@gnucash.org.
+<derek> nother bug
+<derek> if i say do
+<derek> Holiday Pay
+<derek> in the memo of a split (and probably elsewhere)
+<derek> then i want to do
+<derek> HOLIDAY
+<derek> it wont let me
+<derek> in another memo
+<derek> it converst
+<derek> HO
+<derek> into
+<derek> Holiday Pay
+<derek> even if i type HOLDIAY 
+<derek> it converts it back to lower case
+<dres> yea.  the auto complete is sometimes a bit aggresive.
+jcater (~jason@24.92.70.201) joined #gnuenterprise.
+<jcater> howdy
+<jcater> hmm... guess no one's home
+<chillywilly> hi
+<chillywilly> whatcha up to?
+<jcater> checking my email
+<chillywilly> you miss us that bad?
+<chillywilly> ;)
+<chillywilly> ooooh
+<chillywilly> i c
+<jcater> also testing out a checkbook program I found today
+<chillywilly> k
+<chillywilly> derek is using gnucash niw
+<jcater> et tu, cw?
+<jcater> yuck
+<chillywilly> raeding stuff on packers.com
+<chillywilly> reading even
+<chillywilly> you better watch what you say about gnucash
+<chillywilly> dres is listening
+<chillywilly> ;)
+<jcater> I didn't say anything about gnucash
+<chillywilly> er, watching
+<chillywilly> whatever
+<jcater> I just said, yuck
+<chillywilly> what is the yuck fer?
+<jcater> that could be anything
+<chillywilly> oh, sorry my bad
+<jcater> ;)
+<derek> jcater: in many ways im pleasantly suprised w/ gnucash in many ways it pisses me off :)
+<derek> but it will do for now
+<derek> btw: what checkbook program did you get?
+<jcater> lol
+<jcater> I found a simply one I like
+<jcater> cbb.sf.net
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+<jcater> it's very simple... a perl-based TCL/TK app
+<jcater> should run on many platforms
+<nickr> Rafterman
+<nickr> eoopd
+<nickr> silly autocomplete
+reinhard (~rm@N808P001.adsl.highway.telekom.at) joined #gnuenterprise.
+<jcater> rofl
+<jcater> this is for jamest int he morning
+<jcater> (if he reads the backlogs ;)
+<jcater> Alcohol and calculus don't mix. Never drink and derive.
+<jcater> (a bumper sticker)
+jcater (jason@24.92.70.201) left irc: "Client Exiting"
+Rafterman (tim@lister.sesgroup.net) left irc: Remote closed the connection
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise.
+chillywilly_ (~danielb@d9.as13.nwbl0.wi.voyager.net) joined #gnuenterprise.
+<nickr> cw
+<derek> whoo hoo 2nd full account entered and balanced and reconciled
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+alexey_ (alexey@195.151.214.34) left irc: Client Quit
+chillywilly (danielb@d17.as20.nwbl0.wi.voyager.net) left irc: Read error: 113 (No route to host)
+<nickr> must be nice to have accounts to reconcile
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+kreiszner (KennethRei@ppp005.alx.la.xspedius.net) joined #gnuenterprise.
+alexey_ (alexey@195.151.214.34) left irc: Read error: 113 (No route to host)
+kreiszner (KennethRei@ppp005.alx.la.xspedius.net) left irc: "Client Exiting"
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+roby (~jrobiez@APh-Aug-102-1-2-43.abo.wanadoo.fr) joined #gnuenterprise.
+neilt (~neilt@dhcp64-134-54-175.chan.dca.wayport.net) joined #gnuenterprise.
+#gnuenterprise: mode change '+o neilt' by ChanServ!ChanServ@services.
+neilt (neilt@dhcp64-134-54-175.chan.dca.wayport.net) left irc: Client Quit
+alexey_ (alexey@195.151.214.34) left irc: Remote closed the connection
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+ra3vat (ds@195.239.204.226) joined #gnuenterprise.
+zuperman (~ale@200.41.127.3) joined #gnuenterprise.
+<zuperman> list
+<zuperman> exit
+zuperman (ale@200.41.127.3) left irc: Client Quit
+zuperman (~ale@200.41.127.3) joined #gnuenterprise.
+<zuperman> Hi! i'm trying to find some screenshots of GNUe working, 
+<zuperman> could some one please give me a clue ? I want to see a client, for example
+<ra3vat> hi zuperman
+<zuperman> hi ra3vat !
+<zuperman> have you got experience in GNUe right ?
+<zuperman> q
+zuperman (ale@200.41.127.3) left irc: "Leaving"
+<ra3vat> ah, too many windows
+jamest (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+sledge_ (~sledge@B2d84.pppool.de) joined #gnuenterprise.
+<sledge_> hu?
+<jamest> hi
+<sledge_> hi :-)
+<sledge_> i have a short question and a long introduction :-)
+<sledge_> i've been watching the gnue project for quite a while
+<sledge_> partly because i have a lot to do with free software, mainly in the educational and political sector (i occassionally work for the fsf europe in the lobby are(n)a)
+<sledge_> partly because i have a job with the official title "researcher" at an IT company
+<sledge_> (don't worry, the question will not be "when is it ready" :-)
+<sledge_> two questions: i've failed installation of gnue on debian woody; the programs (forms, designer) tell me that i don't have the python xml libs, but i certainly have them.
+<sledge_> tracing that error, i have seen that gnue catches an error that occurs on "import" this and that xml lib.
+<sledge_> can i report that as a "bug" (or something similar) to someone or to a certain list?
+<jamest> um
+<jamest> do you have the python xml or the python SIG PyXML installed
+<jamest> you need the  PyXML one
+<jamest> and why they have 2 of them is beyond me
+<sledge_> jamest: honestly, don't know, i've installed the debian package for "xml support for python 2.x"
+<sledge_> so i need to install "the other one"
+<jamest> no , that should work :(
+<jamest> as I run woody as well
+<sledge_> strange
+<jamest> yip
+<jamest> are you running the last release or CVS?
+<sledge_> cvs
+<sledge_> my last cvs update was about two weeks ago, haven't tried again since then
+<jamest> do you still have python 1.5.x installed?
+<sledge_> no, that was my first guess, 1.5.x interfering with 2.1; i have uninstalled 1.5.x
+<sledge_> didn't help
+<sledge_> is it possible that it is a problem with debian? because when i had 1.5.x _and_ 2.1 installed, the "python" command invoked version 1.5.x; perhaps some environment variable that points to the old libraries?
+<jamest> hmmm
+<jamest> i had the same problem 
+<jamest> removed 1.5.2 and it worked
+<jamest> sigh
+ra3vat (ds@195.239.204.226) left irc: "Client Exiting"
+<jamest> so I assume it's failing during the setup.py install?
+<jamest> btw - please forgive my choppy responces
+<jamest> I'm at my "real" job 
+<jamest> :)
+<sledge_> okay :) 
+ra3vat (ds@195.239.204.226) joined #gnuenterprise.
+<jamest> is it during the setup.py install that it fails
+<jamest> ?
+<sledge_> yes, it has failed, but through raping the scripts, i have achieved an installation (into ~/bin). but that was no real solution, because forms and designer complained about not finding this or that class (of course, because i killed of the "import"s of the xml libs)
+<jamest> hmmm
+<jamest> I think I would try to install pyxml from source
+<sledge_> yes, that should be the easiest way, though i don't like it on a system with usually clever package management :-)
+<jamest> http://sourceforge.net/projects/pyxml
+<jamest> yes
+<sledge_> yep
+<jamest> i don't get it though
+<jamest> as I swear at home I have only python-xml installed
+<sledge_> if i find the error, i'll drop a mail to the list(s)
+<jamest> that would be great
+alexey_ (alexey@195.151.214.34) left irc: "Client Exiting"
+<sledge_> another very short question: what's the state? forms seems to be quite good in 2-tier, how well off is geas and designer?
+<reinhard> geas is alpha state to be honest
+<reinhard> we got an application server contributed by a company
+<reinhard> and are in the process of adapting it to our needs
+<sledge_> aha, that means you drop the current geas and use that app server instead?
+<reinhard> btw sledge_ iirc we met at linuxtag in stuttgart?
+<reinhard> no the current geas _is_ that contributed thing
+<sledge_> ah
+<sledge_> perhaps we met at linuxtag; i was there at saturday, at the fsf europe booth
+<reinhard> yes
+<sledge_> reinhard mueller?
+<reinhard> exactly
+<sledge_> i can remember the name, but not the face :-)
+<reinhard> oh
+<reinhard> the long haired guy with the big nose :)
+<reinhard> www.bytewise.at/team.html
+<sledge_> mom
+<reinhard> and sometimes i write mails to the fsfe discussion list
+<sledge_> yes, i know
+<sledge_> ah, now i remember!
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+<sledge_> me is christian selig -> http://www.newopenness.de/home/sledge/pics/schmidtbank-2001-ichbeimvortrag-small.jpg
+<jamest> :)
+<sledge_> what a small world we live in :)
+<jamest> designer works ok
+<jamest> our mouse support is alpha quality at best
+<sledge_> that's nice. python is the scripting language of choice?
+<jamest> wrt dragging widgets arround
+<jamest> so far
+<sledge_> i'd love to help, but i've got soooo much to do :-(
+<jamest> we've talked about support other languages inside triggers
+<jamest> but we've put no effort into making it happen
+alexey_ (alexey@195.151.214.34) left irc: Client Quit
+<sledge_> don't worry about other languages; it's better to have one language supported well than having a dozen unmaintained. but you already know that. :)
+<sledge_> btw, why have you choosen corba over xmlrpc or soap? (no religious discussion intended, i know their different strengths and weaknesses)
+<jamest> actually jcater has done some work on grpc
+<jamest> which should (when done) allow you to plug in comm systems like you do database drivers
+<sledge_> cool
+<sledge_> because a friend of mine has, two years ago, created apps that communicated over http, which was a big advantage in a corporate environment (no need to configure half a dozen firewalls and filters)
+<sledge_> just a thought :-)
+dsmith (~dsmith@207.180.207.254) joined #gnuenterprise.
+ToyMan (~stuq@c5300-3-ip137.albany.thebiz.net) joined #gnuenterprise.
+<sledge_> okay then, thanks for your help and answers, cu soon! :)
+sledge_ (sledge@B2d84.pppool.de) left irc: "using sirc version 2.211+KSIRC/981227-pre0.9"
+Nick change: chillywilly_ -> chillywilly
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<jcater> howdy
+<chillywilly> yo
+<jamest> yo
+<jcater> 'sup dawgs
+<chillywilly> what's the dilly?
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+alexey_ (alexey@195.151.214.34) left irc: Client Quit
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+chillywilly_ (~danielb@d167.as13.nwbl0.wi.voyager.net) joined #gnuenterprise.
+chillywilly (danielb@d9.as13.nwbl0.wi.voyager.net) left irc: Killed (NickServ (Ghost: chillywilly_!~danielb@d167.as13.nwbl0.wi.voyager.net))
+roby (jrobiez@APh-Aug-102-1-2-43.abo.wanadoo.fr) left irc: 
+dneighbo (dneighbo@mail.libertydistribution.com) joined #gnuenterprise.
+jbailey (~jbailey@HSE-Toronto-ppp319332.sympatico.ca) joined #gnuenterprise.
+joebullhead (~joe@h-64-105-244-252.ATLNGAHP.covad.net) joined #gnuenterprise.
+reinhard (rm@N808P001.adsl.highway.telekom.at) left irc: "'Hardware' defines as the parts of a computer system that can be kicked"
+<jcater> rofl
+<jcater> I love reinhard's exit message
+alexey_ (alexey@195.151.214.34) left irc: "Client Exiting"
+jcater (jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: Read error: 60 (Operation timed out)
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+jcater (jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: Client Quit
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<dneighbo> has anyone seen dtm?
+<dneighbo> in a LONG time?
+<jamest> nope
+alexey_ (alexey@195.151.214.34) left irc: "Client Exiting"
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+Bill_H (~chamilto@66-2-83-130.customer.algx.net) joined #gnuenterprise.
+holsch (~schurig@p5080A21A.dip0.t-ipconnect.de) joined #gnuenterprise.
+jamest (~jamest@hobbes.math.ksu.edu) left #gnuenterprise.
+<holsch> dneighbo: lot's of X11 font and locate problems ...  :-)
+<dneighbo> holsch yes bad night last night lots of wasted time
+<holsch> I should have pointed you to the X11 Font Beatification Howto ...
+<holsch> dneighbo: A GNUe question. While I am reading the docs, I find occassionally some errors.
+<holsch> dneighbo: I could fix them and
+<holsch> dneighbo: make a "cvs diff" afterwards. Who should I mail this output for
+<holsch> dneighbo: CVS inclusion?   And do I have to sign a formal copyright transfer form beforehand?
+Action: jcater is away: lunch!
+Action: jbailey is away: lunch!
+<holsch> Bon appetit to both :)
+S11001001 (~shadowirc@internet.evsc.k12.in.us) joined #gnuenterprise.
+<S11001001> hello any1 listening
+<holsch> Hi
+<S11001001> holsch: was hoping for more interesting happenings, but noone seems to be awake :]
+<holsch> Sometimes it's busy here, sometimes it's dead ...
+<holsch> Today was not much GNUe relevant stuff in this channel
+<S11001001> right now, the most action in c++
+dres (dres@4.18.171.42) left irc: Read error: 110 (Connection timed out)
+S11001001 (~shadowirc@internet.evsc.k12.in.us) left #gnuenterprise.
+derek (dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: Read error: 113 (No route to host)
+Action: jcater is back (gone 00:35:48)
+dres (~dres@4.18.171.42) joined #gnuenterprise.
+alexey_ (alexey@195.151.214.34) left irc: "Client Exiting"
+Nick change: joebullhead -> joebullhead_away
+Action: joebullhead_away is away: I'm busy
+<dneighbo> holsch : if its only a line or two here and there mostly 'corrections' not new content
+<dneighbo> do the diff and email to info@gnue.org
+<dneighbo> if its more than that then yes we should get assignment handled first
+<jcater> dneighbo: when you get time later, can you see if you've gotten assignment from NCS and from Robert Chatham?
+<dneighbo> as to it being dead, mondays can be like that because of 'real world'
+<dneighbo> jcater i saw that the process was started on NCS and Chatham
+<dneighbo> remind me tonight when im at home as i cant get to them.. from here....
+<jcater> ok
+<dneighbo> i think only my laptop and its not on right now its in my backpack on the office floor 
+<dneighbo> so even w/ ssh magic i cant get to it :)
+<jcater> both assignments have been signed and mailed... just wanted to make sure they were received
+<dneighbo> i dont recall seeing an email saying they were
+<dneighbo> we REALLY need to fix the process though
+<dneighbo> often times is slow
+<holsch> dneighbo: thanks
+<jcater> dneighbo: as to the ssh and backpack, you really need to look at ssh tunneling
+<jcater> ;)
+<dneighbo> and record keeping is bad
+<dneighbo> etc
+<dneighbo> jcater: rofl, they do have it now where servers are commonly bootstrapped
+<dneighbo> so that you can ssh into a small bsd box
+<dneighbo> and have it 'turn on' the linux box
+<dneighbo> i think fsf has a little setup like that now
+<dneighbo> so they can remotely 'reset' boxes if they need
+<holsch> dneighbo: then just use ext3 filesystem if you reset wildly ...
+<jbailey> dneighbo: Yes, remote reboot exists.
+Action: jbailey is back (gone 01:25:46)
+<jbailey> Very handy when I break things.. =)
+jbailey (jbailey@HSE-Toronto-ppp319332.sympatico.ca) left irc: "Client Exiting"
+Bill_H (chamilto@66-2-83-130.customer.algx.net) left irc: 
+holsch (~schurig@p5080A21A.dip0.t-ipconnect.de) left #gnuenterprise.
+reinhard (~rm@62.47.44.225) joined #gnuenterprise.
+ra3vat (ds@195.239.204.226) left irc: "Client Exiting"
+dsmith (dsmith@207.180.207.254) left irc: "later.."
+joebullhead_away (joe@h-64-105-244-252.ATLNGAHP.covad.net) left irc: "I'm too lame to make a quit message"
+ToyMan (~stuq@c5300-3-ip137.albany.thebiz.net) left #gnuenterprise ("Client Exiting").
+reinhard (rm@62.47.44.225) left irc: "If you think there is good in everybody, you haven't met everybody"
+jbailey (~jbailey@HSE-Toronto-ppp318842.sympatico.ca) joined #gnuenterprise.
+fil_c (~username@p.cole.easynet.co.uk) joined #gnuenterprise.
+Action: jbailey is away: Conference call.
+Nick change: chillywilly_ -> chillywilly
+Action: jbailey is back (gone 01:01:41)
+<chillywilly> sup jbailey
+<jbailey> Not much - Hanging out.
+chillywilly (danielb@d167.as13.nwbl0.wi.voyager.net) left irc: Read error: 104 (Connection reset by peer)
+chillywilly (~danielb@d57.as21.nwbl0.wi.voyager.net) joined #gnuenterprise.
+fil_c (username@p.cole.easynet.co.uk) left irc: Read error: 113 (No route to host)
+jcater (jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "home"
+fil_c (~username@p.cole.easynet.co.uk) joined #gnuenterprise.
+neilt (~neilt@dhcp64-134-54-175.chan.dca.wayport.net) joined #gnuenterprise.
+#gnuenterprise: mode change '+o neilt' by ChanServ!ChanServ@services.
+<dneighbo> sup neilt 
+<chillywilly> sup g masta
+<chillywilly> neilt
+<dneighbo> hey chillywilly 
+<dneighbo> im off to home
+<neilt> hey all
+<neilt> not much
+<dneighbo> to much too do tonight (Sigh)
+<neilt> too much work
+dneighbo (dneighbo@mail.libertydistribution.com) left irc: "[BX] Captain Kangaroo uses BitchX. Shouldn't you?"
+fil_c (username@p.cole.easynet.co.uk) left irc: Read error: 104 (Connection reset by peer)
+fil_c (~username@p.cole.easynet.co.uk) joined #gnuenterprise.
+<neilt> does anyone know a decent w98 chat client?
+<jbailey> Putty + irssi-text on some other system? =)
+<neilt> sounds like greek to me
+<mdean> neilt: http://www.xchat.org/
+fil_c (username@p.cole.easynet.co.uk) left irc: Read error: 60 (Operation timed out)
+neilt (neilt@dhcp64-134-54-175.chan.dca.wayport.net) left irc: 
+rdean (rdean@chcgil2-ar2-052-243.chcgil2.dsl.gtei.net) joined #gnuenterprise.
+derek (~derek@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<derek> yikes its trim in here of late
+<derek> is this project dead?
+Action: derek goes to procure some cargo suitable for instestinal digestion bbs
+dres (dres@4.18.171.42) left irc: Remote closed the connection
+dres (~dres@4.18.171.42) joined #gnuenterprise.
+<derek> for jamest and reinhard:
+<derek> from the ewok mailing list
+<derek> <---- snip
+<derek> I was just wondering if anyone knew where or how to buy ewoks stuffed animals 
+<derek> from the 1980s.      WB     Thanks
+<derek> ---->
+<derek> i found it funny thought you might too
+<nickr> ewok is something else I'm thinking
+<derek> it was to be
+<derek> enterprise wide office kommunication
+<nickr> hrm, a gnucomm thing?
+<derek> actually yes :)
+<derek> gnucomm didnt exist then
+<nickr> I see
+<derek> gnucomm has come to in many ways replace ewok
+<derek> at one time we had gedi
+<derek> gnu enterprise data interchange/interface
+<nickr> is this supposed to be like jabber?
+<derek> and to be 'funny' as programmers can be we made light of ewok
+<derek> nickr: nah it was to be more what gnucomm is
+<nickr> more phoney
+<derek> generic protocol for phone type devices
+<derek> specifically fax
+<derek> though jabber could have been used too
+<nickr> nog
+<derek> unofficially i think you will see this resurface VERY soon
+<nickr> I want sort of a localnet broadcast IM thing
+<derek> under the guise of
+<nickr> for URLs
+<derek> GNUe Groupware
+<derek> GNUe Workflow
+<nickr> ah
+<derek> and we will reuse gnucomm/bayonne for telephony portions
+<derek> waiting for some responses from FSF folks and then you see some movement :)
+<derek> mmmm food was soooooooooo good, think i was just extra hungry
+<nickr> ye
+<nickr> it irks me that emacs doesn't have more 'wizard' type things
+<nickr> like a manpage wizard
+<nickr> HELLO services
+<nickr> so it'll be like GNUe DCL+GNUComm :)
+<derek> um MORE than you think :)
+<chillywilly> you guys had cool star wars-like names back in da day
+Action: chillywilly wants return of the gedi though
+<chillywilly> ;P
+<nickr> har
+<nickr> but uncle owen, I wanted to go into town and get power converteeeers
+<nickr> *whines*
+<chillywilly> hehe
+jcater (~jason@24.92.70.201) joined #gnuenterprise.
+<chillywilly> brb
+<chillywilly> sup jc
+<chillywilly> bbiab
+<jcater> nuttin
+<nickr> man pages suck
+Action: mdean DCCs jcater some KK
+<nickr> I mean I love them and all
+<nickr> but I hate writing them :R
+<jcater> nickr: try woman pages... they usually suck even more
+<jcater> mdean: mmmmm
+<nickr> I wanna wizard for it
+<jcater> a wizard for KK?
+<jcater> I could go for that
+<jcater> "Please select your flavor"
+<jcater> "Please select any toppings"
+<nickr> a wizard for manpage creation :P
+<jcater> "Please enter the total percentage of your ddaily fat this donut should consume"
+<nickr> please select chcolate glazed cake donuts
+<jcater> <Default to 110%>
+<mdean> hehehe
+<derek> jcater: you need nut
+<jcater> ?
+<derek> its a product to track nutrients and vitamins
+<derek> it kicks SERIOUS arse
+<jcater> derek: can you check your backpack
+<jcater> derek: unless it lies to me, I don't need it
+<derek> um yes
+<jcater> trust me
+<derek> jcater: im thinking it is 'programmer' friendly
+<derek> run a report
+<derek> 4000 calories before none consisting of no nutrients, what a glorious fine day, at this pace you are loving life, live long and prosper
+<derek> s/noon/none
+<jcater> lol
+<derek> 50 calories, what is wrong jackass you are starving yourself.  doesnt your momma feed you?
+<derek> prints local kk address
+<chillywilly> back
+<chillywilly> info pages rule though
+<chillywilly> hehe
+<Mr_You> hi
+jbailey (jbailey@HSE-Toronto-ppp318842.sympatico.ca) left irc: "Client Exiting"
+jcater (jason@24.92.70.201) left irc: "Client Exiting"
+rdean (rdean@chcgil2-ar2-052-243.chcgil2.dsl.gtei.net) left irc: "Client Exiting"
+<derek> run all you cowards
+<chillywilly> haha
+<chillywilly> lol
+<derek> my mom is a riot
+<derek> some of her latest blonde jokes
+<derek> * Shermen-Williams came out with a new paint called blonde. It's not 
+<derek> too bright and spreads easy.
+<derek> * What do you call an intelligent blonde? 
+<derek> * Shermen-Williams came out with a new paint called blonde. It's not 
+<derek> too bright and spreads easy.
+<derek> * What do you call an intelligent blonde? 
+<derek> * Golden retriever.
+<derek> * How can you tell when a blonde is having a bad day? 
+<derek> * She has a tampon behind her ear, and she can't find her pencil.
+<derek> * How do you keep a blonde busy for hours? 
+<derek> * Ask her to go alphabetize your M&M's.
+<derek> * What does it mean if a blonde has square breasts? 
+<derek> * She forgot to take the kleenex out of the box.
+<derek> * Why did the blonde write TGIF on her shoes? 
+<derek> * To remind herslef Toes Go In First.
+<derek> * How do you know if a blonde has been at your computer? 
+<derek> * Whiteout on the screen.
+<derek> * How do you know if another blonde has been on your computer? 
+<derek> * Ink on the white out.
+<derek> * How do you know if a third blonde has been on your computer? 
+<derek> * Joystick's wet.
+<derek> my favorite is the sorting m&m's
+<chillywilly> the last one is just....eeew
+<chillywilly> ;P
+<derek> how do you know know three blondes have recently been at your computer?
+<derek> - chillywilly is licking your joystick ;)
+<chillywilly> yuck
+jcater (~jason@24.92.70.201) joined #gnuenterprise.
+<chillywilly> sup jc dawg
+<jcater> my iq
+<derek> sup kitten
+<derek> btw jcater you get that good deal on cats w/ free shipping to milwaukee?
+<jcater> yip
+<jcater> if we pay by credit card within the next 20 minutes, 
+<jcater> they throw in free trout for the cats
+<derek> s'oui mag
+<chillywilly> boy you're not full of yourself are you?
+<derek> huh?
+<chillywilly> you deserve a nice trout trouncing for that one
+<chillywilly> [22:43:50] <jcater> my iq
+<chillywilly> er,
+<derek> rofl i didnt even catch that
+<chillywilly> [22:41:05] --> jcater (~jason@24.92.70.201) has joined #gnuenterprise
+<chillywilly> [22:42:40] <chillywilly> sup jc dawg
+<chillywilly> [22:43:50] <jcater> my iq
+Action: derek needs to jaunt to the store for caffiene its gonna be a long night
+<chillywilly> I was just wondering jc
+<derek> actually digging into hcs stuff and it feels good to be 'productive'
+<jcater> I'm full of something
+<jcater> at least I've been told
+<chillywilly> can you fit your shirt over your head in the morning?
+<derek> jcater: we know its not good looks or charm
+<derek> leaves donuts or shit i guess
+Action: chillywilly votes for donuts
+Action: derek could learn to like that expression
+<derek> someone: blah blah blah blah
+<derek> me: dood you are so full of donuts
+<chillywilly> you're full of donuts
+<chillywilly> heheh
+<jcater> yeah, but the donuts are in my expandable pouch, apparently
+<chillywilly> someone pointed this out
+<chillywilly> http://www.apple.com/imac/
+[22:58] Last message repeated 1 time(s).
+<nickr> I don't want to hear about jcater's expandable pouch
+<chillywilly> see any similarities?
+<nickr> yea, thats silly
+<chillywilly> er
+<chillywilly> I mean
+<chillywilly> http://www.pixar.com/shorts/ljr/
+<chillywilly> cool
+<chillywilly> wanda is swimming across my screen
+<chillywilly> Gnome rules
+<nickr> yea, that happened to me the other day
+<jcater> chillywilly: is she a blond?
+<nickr> I laughed my ass off
+<jcater> the third one, to be precise?
+<chillywilly> er?
+<jcater> nevermind
+<chillywilly> the third blond?
+<chillywilly> I think I lost ya there
+<jcater> chillywilly: yeah, I can get shirts over my head in the morning
+<jcater> but I live in the south
+<jcater> why would I
+<jcater> ?
+<chillywilly> rofl
+<chillywilly> the new imac looks like a friggin lamp
+<derek> jcater: yes third blonde
+<derek> dont let chillywilly lick your computer joystick either
+<chillywilly> oh, you were talking about da masta...duh
+<chillywilly> I forgot about that already
+<chillywilly> it didn't get flushed to disk ;)
+<jcater> the wet joystick?
+<jcater> it didn't get flushed to disk>
+<jcater> ?
+<chillywilly> yea, I blocked it out
+<chillywilly> was a bit sick
+<jcater> yeah
+<jcater> we may have to troutslap da masta
+<chillywilly> hehe
+<chillywilly> man aqua is so pretty....
+alexey (alex@techkran.vladimir.ru) joined #gnuenterprise.
+<nickr> it is
+<nickr> but I get tired of hjow slow it is
+<chillywilly> you see thr imac site
+<chillywilly> I almost licked the screen
+<nickr> so I I've been only using Xenophilia lately
+<chillywilly> hmmm
+<jcater> I get a new computer tomorrow
+Action: chillywilly is using crux
+Action: jcater is excited
+<chillywilly> kewl :)
+<jcater> Athlon 1700
+<chillywilly> you pig bastard
+<jcater> 512Mb memory
+<jcater> it's for work :)
+<nickr> chillywilly: try 'xeno gradient' or 'xeno buffered'
+<nickr> they are very gentky pleasing
+Action: chillywilly prefers to piece together a system
+<jcater> chillywilly: I am :)
+<chillywilly> aight
+<nickr> apt-get install gtk-engines-xenophilia
+<chillywilly> kewl
+<jcater> btw, it's gonna suck for GNUe testing
+<chillywilly> and "engine" is usually faster
+<chillywilly> why?
+<jcater> as how can I "profile" code
+<jcater> "Um, it runs fast enough for me..."
+<chillywilly> by using gprof
+<jcater> that was a joke
+<chillywilly> :P
+<chillywilly> really?
+<jcater> actually, I profile using
+<jcater> gfcvs --profile 
+<jcater> :)
+<nickr> chillywilly: because a lot of themes use the pixmap engine, which is a dog running in molasses
+<nickr> chillywilly: engines generally render images on the fly in a more efficient way
+<chillywilly> yea
+<chillywilly> I was aksing jc why
+<chillywilly> ;)
+<chillywilly> why ugina  1.7GHz box would suck for testing GNUe
+<chillywilly> my buddy has a nice system he pieced toggethe wth a 1.5GHz Athlon in it
+<chillywilly> it flys
+<chillywilly> flies
+<chillywilly> even
+<chillywilly> I think I will go steal it
+<chillywilly> ;)
+<jcater> we build all our own computers
+<nickr> man my 550 is looking more and more oldschool
+<nickr> and my 366 is ancient
+<nickr> :(
+<chillywilly> he's got a butt load of RAM in it
+<nickr> my 550 only has 256, oh so does mt 366
+Action: jcater wonders how much RAM is in a "butt load"
+<nickr> "only"
+<jcater> nickr: :)
+<chillywilly> xeno gradient is nice
+<nickr> I like the dark purple
+<nickr> theres really no good sawfish theme to match it though
+<chillywilly> well the color doesn'tshow up too great on my laptop
+<nickr> crux-gtk is reasonable
+<chillywilly> I like xeno light
+<nickr> but its to big for my taste
+<nickr> yea
+<nickr> the various xeno iterations are pretty nice
+jcater (jason@24.92.70.201) left irc: "night"
+<chillywilly> wow
+<chillywilly> my fonts just got teenie
+<chillywilly> shit I can't even fucking read them
+<chillywilly> there
+<chillywilly> I don't like this font that much
+<chillywilly> back to my default one
+<chillywilly> one thing I hate about changing themes
+<chillywilly> is that my terminals shrink
+<chillywilly> that's very gay
+<nickr> eh?
+<nickr> chaning themes never seems to affect my terminals
+<nickr> what teminal are you suing?
+<chillywilly> gnome-terminal
+<nickr> odd
+<chillywilly> it's the whole font thing I think
+<nickr> changing themes has absolulely no effect on my terminal
+<chillywilly> it should be that way
+<nickr> on feature I'd like is to be able to 'zoom' my terminal like I can zoom galeon, so the physical window dimensions don't change, but the font size changes, and the WxH changes
+<chillywilly> that would be funky
+<derek> jcater: depends on the butt
+<derek> nickr: that would be trick, does eTerm do that?
+Action: chillywilly is reading the GNUe KC
+--- Tue Jan  8 2002

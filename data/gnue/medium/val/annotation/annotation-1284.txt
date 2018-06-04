@@ -1,0 +1,52 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.06Jan2003" author="Arturas Kriukovas" contact="mailto:arturas@gsk.vtu.lt" enddate="05 Jan 2003 16:00:00 -0800" startdate="05 Jan 2003 16:00:00 -0800" subject="[IRC] 06 Jan 2003" title="Format Masks in GNUe">
+
+<topic>Forms</topic>
+<topic>Common</topic>
+
+<mention>ra3vat</mention>
+<mention>Dmitry Sorokin</mention>
+
+<p>Marcos Dione (StyXman) asked Dmitry Sorokin (ra3vat) whether he knew what 
+was the supposed semantics for the different masks (display, input, format). 
+Marcos needed them <quote who="Marcos Dione">to show just a few decimal but 
+keeping all the decimals internally.</quote> James Thompson (jamest) was 
+afraid <quote who="James Thompson">that's up in the air right now IIRC</quote>. 
+Marcos said he <quote who="Marcos Dione">just want to know if I should 
+implement displaymask or format mask. and what will be the use in thew 
+future.</quote> James thought <quote who="James Thompson">there is
+already work done on format masks, it's already in the code base but not 
+in use IIRC</quote>. Marcos raised another question: 
+<quote who="Marcos Dione">ok, let's do the question in a better way (I 
+hope): what are display, input and format mask for? Especially, the
+difference between display and format? Input seems rather clear.</quote> 
+James noted that his answer came only from memory: 
+<quote who="James Thompson">fields can display differently when you edit 
+them vs when you're not in them. The best place to see this is in a date 
+field, as IIRC it's the furthest along. When you enter the field, 
+2003/01/06 may be displayed for editing. When you exit it may flip to 
+read "Monday, Jan. 6th 2003". I _think_ display is non editing and format 
+is editing, but again, I'm not sure.</quote> Marcos replied - 
+<quote who="Marcos Dione">it sounds to me, but I may be wrong, that display 
+is for showing (Mon, Jan 6th 2003), input for input (2003/01/06), and format 
+for internal representation (20030106)</quote> and James, on the whole, agreed: 
+<quote who="James Thompson">that could very well be. I think that 2 of the 3 
+are in use and the 3rd one is pending proper setup of the format definition. 
+The best source of info on this would be jason.</quote> Mike Vincent 
+(Vee2d2) noted that <quote who="Mike Vincent">there's a bit of information 
+in the forms dev guide (.5) pg 24.. but the only thing documented is 
+datetime.</quote></p>
+
+<p>Later, Marcos caught Jason Cater (jcater) and he answered immediately: 
+masks <quote who="Jason Cater">don't work. That's part of
+0.5</quote>. However, Marcos was also interested <quote who="Marcos Dione">what 
+are they exactly for. I mean, de dev-guide talks about display and input masks, 
+what is format for?</quote> Jason was still wondering if GNUe needed the 
+"format" mask. <quote who="Jason Cater">Input mask --&gt; when field is in input 
+mode, the mask used to validated/let the user enter the value, display mask 
+--&gt; how the field is displayed when user is not editing it, format mask 
+--&gt; (if there's a need) how the field is actually stored in the 
+database</quote>.</p> 
+
+</section>
+
+

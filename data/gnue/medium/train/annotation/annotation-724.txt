@@ -1,0 +1,132 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.25Oct2002" enddate="28 Oct 2002 23:00:00 -0800" startdate="24 Oct 2002 23:00:00 -0800" subject="[IRC] 25 Oct 2002" title="Updating drop-down lists and changeable runtime parameters">
+
+<topic>Forms</topic>
+<topic>Common</topic>
+
+<p>Derek Neighbors (revDeke) asked about adding support for 
+<quote who="Derek Neighbors">the realtime updating of dropdown 
+boxes</quote>, as discussed previously in 
+<kcref subject="[IRC] 04 Jun 2002" title="Look-up combo boxes in Forms" />. 
+He explained <quote who="Derek Neighbors">what i have is a case 
+of product categories that can have parents - the parents are 
+in combo boxes - so if i add a new one - then add a second and 
+want what i added as the first to be a parent, i have 
+to shut the form down and restart it to get it to show in the 
+dropdown</quote>. He would not object if the solution involved
+doing <quote who="Derek Neighbors">it via triggers</quote>.
+Jason Cater (jcater) said <quote who="Jason Cater">I'm adding a 
+resetForeignKey, but do note that you are programming for 
+specific UI features if using a combo that way</quote>.</p>
+
+<p>Later, Jan Ischebeck (siesel) said 
+<quote who="Jan Ischebeck">I've tried to build a testcase for 
+that resetForeignKey() statement, but there are some issues, 
+which need to change a bit of code in common</quote> - 
+<quote who="Jan Ischebeck">its the parameter stuff which made 
+me changing stuff. i've made a form with two dropdowns. The 
+user can choose a state in the first, and should choose a city 
+in the next and will get displayed the zipcode in an style=label 
+entry. The second dropdown is using a parameter in a condition 
+to display just the cities from the state chosen in the first 
+dropdown. So I added a setParameter function. But that didn't 
+work because of caching parameters values in the cparam class 
+and because of the dbsig dbdriver replacing the staticCondidition 
+by a preparsed string :( - which is also the reason of passing 
+a parameter in the command line is not working at the 
+moment.</quote> Jason said <quote who="Jason Cater">hmm - 
+I had intended on runtime parameters to be read only - /me is 
+trying to think through your example</quote>. He said 
+<quote who="Jason Cater">I guess they don't have to be - 
+I suppose we can add a setParameter and get rid of the caching 
+code</quote>. Jan said <quote who="Jan Ischebeck">other 
+possibilities would be to have a 'populateForeignKey' or a 
+'add/change staticConditions'</quote>. Jason doubted that 
+<quote who="Jason Cater">the caching code speeded things 
+up much anyway</quote>.</p> 
+
+<p>Jan pointed to the problem line of code he wanted to change - 
+<quote who="Jan Ischebeck">This will change the GObj tree.</quote>
+Jason wondered <quote who="Jason Cater">should we NOT modify the 
+GObj tree in _dbsig - but still create the static condition - 
+but add an invalidateCachedConditions() method</quote>. He 
+explained <quote who="Jason Cater">it recursively changes stuff 
+until you are left with a single string - so that it only has to 
+do that once</quote> - <quote who="Jason Cater">in the end, 
+there's only one node</quote>. This meant that 
+<quote who="Jason Cater">there's not a clean solution to</quote> 
+adding support for <quote who="Jason Cater">changable runtime 
+parameters</quote>.</p>
+
+<p>Jan said <quote who="Jan Ischebeck">the other possibility 
+would be to change the staticConditions using a trigger.</quote> 
+Jason said <quote who="Jason Cater">so you are thinking we could 
+add a setCondition(&lt;GCondition tree&gt;) method to GDataSource?
+or something like that</quote>? Jan agreed - 
+<quote who="Jan Ischebeck">its just a bit OVERKILL for just 
+changing a parameter - I mean, I would like to have both 
+possibilities.</quote> Jason agreed, but 
+<quote who="Jason Cater">what you are describing is not</quote>
+the <quote who="Jason Cater">typical use of a parameter - 
+although I'm not opposed to having a setParameter - 
+as long as we don't add much more overhead to 
+datasources</quote>. He gave a specific example - 
+<quote who="Jason Cater">I have one report using GNUe Reports 
+right now that's a master/detail report - there's approx 1,800 
+records in the master datasource - so that's 1,800 times the 
+child datasource is run</quote> - and 
+<quote who="Jason Cater">I have much more complex reports to 
+do</quote>.</p>
+
+<p>Jan said <quote who="Jan Ischebeck">my actual patch to have 
+parameter working is just to NOT cache the static part of the 
+parameters - If reports is getting too slow we still can add 
+caching, and probably in a better way :)</quote> Jason said 
+<quote who="Jason Cater">so, the plans are to add a 
+DataSource.setCondition() and a Form.setParameter() and remove 
+parameter caching? We can see how that works. I may be worried 
+about nothing :) - but you do understand my worry about reports, 
+right?</quote> Jan said <quote who="Jan Ischebeck">I fully 
+understand. And I finally know why you add that caching line to 
+parameters</quote>.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.29Oct2002">
+Some days later</a>, Jason said he was
+<quote who="Jason Cater">almost ready for a 0.4.1 release of 
+stuff</quote>. Derek asked <quote who="Derek Neighbors">did 
+we come up with a way to update lu comboboxes? we had 
+discussed using triggers or the likes</quote>. Jason said 
+<quote who="Jason Cater">it's not fully tested - but we 
+have an Entry.resetForeignKey()</quote>. Derek said he had 
+a form he wanted to test it with - 
+<quote who="Derek Neighbors">and if it works for me you 
+can probably put in 0.4.1 ;)</quote>. Jason 
+asked <quote who="Jason Cater">how does this form work?
+as that determines where you'd put it</quote>. Derek said 
+the table had <quote who="Derek Neighbors">id, description, 
+parent</quote> but some ids were also parents - 
+<quote who="Derek Neighbors">basically the category table is a 
+foreign key to its self</quote>. Jason said 
+<quote who="Jason Cater">we can do this - BUT any new "childs" 
+will need to be committed to the database before we can get 
+the dropdown to update</quote>. Derek agreed - 
+<quote who="Derek Neighbors">i was going to put the resetFK
+in the postcommit</quote> trigger.</p>
+
+<p>He tried it, and reported <quote who="Derek Neighbors">didnt 
+work, BUT didnt get a bunch of errors :)</quote> Looking at 
+the debug messages, Jason said <quote who="Jason Cater">the 
+trigger is working - wx is just not refreshing 
+properly</quote> because of <quote who="Jason Cater">the way 
+we use it</quote>. However, <quote who="Jason Cater">this is 
+good though - you now have the form the way it needs to be - 
+it's just we have to get forms</quote> client
+<quote who="Jason Cater"> p to par w/the</quote> 
+GNUe Forms Definition (.gfd). Derek asked 
+<quote who="Derek Neighbors">how hard would 
+it be to fix the resetkey to update widget</quote>? Jason 
+said he could <quote who="Jason Cater">probably do tomorrow
+- if I have a sample form to play with</quote>.</p>
+
+</section>
+
+

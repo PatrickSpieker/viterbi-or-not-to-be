@@ -1,0 +1,30 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.2006-06-26" author="Peter Sullivan" contact="mailto:psu@burdonvale.co.uk" enddate="26 Jun 2006 12:00:00 -0800" startdate="26 Jun 2006 12:00:00 -0800" subject="[IRC] 26 Jun 2006" title="Object IDs used in GNUe where there is no primary key">
+
+<topic>Forms</topic>
+<topic>Common</topic>
+
+<p>It was asked whether having an object ID field was necessary for databases being 
+accessed by GNUe. Reinhard M&#252;ller (reinhard) said <quote who="Reinhard M&#252;ller">we 
+currently depend on oids - because they are the only way of safely identifying a 
+new record that has just been inserted if the primary key has been set by a db 
+trigger</quote>. It was pointed out that, with Oracle at least, database-generated 
+object IDs were not guranteed to remain the same over time. James Thompson 
+(jamest) had not heard this, but in any case pointed out that 
+<quote who="James Thompson">postgresql 8.1 has depreciated the OID and no longer 
+created them on tables unless specifically told too during the create table 
+statemnet - this burns me quite a bit :)</quote> However, he had been under the 
+impression that the data access code for GNUe <quote who="James Thompson">only 
+used the OID if a PK field wasn't defined for that table</quote> - if you 
+defined what field or fields made up the primary key as part of the datasource 
+definition, it would use these instead of requiring an object ID. 
+He did this all the time with things like RMA numbers or order numbers - 
+<quote who="James Thompson">the user doesn't enter the PK value nor does the 
+form - they save the new record and then the rma number assigned just pops up on 
+their screen in the uneditable field :)</quote>. This would normally be done by 
+automatically re-querying the record after save - <quote who="James Thompson">but 
+I also seem to recall some dbsig drivers returning info from the execute of the 
+insert</quote>. Reinhard confirmed this.</p>
+
+</section>
+
+

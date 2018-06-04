@@ -1,0 +1,46 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.11Apr2002" enddate="15 Apr 2002 23:00:00 -0800" startdate="10 Apr 2002 23:00:00 -0800" subject="[IRC] 11 Apr 2002" title="wxPython issues with i18n and unicode">
+<topic>Forms</topic>
+
+<p>Bajusz Tam&#225;s (btami) reported he had sent <quote who="Bajusz Tam&#225;s">some
+bugs/fix to dcl on i18n issue</quote>. He said supporting 2-byte unicode 
+in the Microsoft Windows version of GNUe would not not easy, as 
+<quote who="Bajusz Tam&#225;s">win9x doesn't support unicode</quote> - 
+<quote who="Bajusz Tam&#225;s">but with last bugfix i'v sended, my texts in 
+forms are all correct now - labels, gnue.conf msgs, input, all ok</quote> 
+for 1-byte i18n. He had based this on Dmitry Sorokin's 
+<quote who="Bajusz Tam&#225;s">old fix in 0.1.1 forms</quote>. Dmitry said that 
+<quote who="Dmitry Sorokin">i think we will not switch to unicode in one day
+- i'm not ready to do my forms in utf8 right now</quote>. Bajusz confirmed 
+that, for his fix, <quote who="Dmitry Sorokin">encoding=xxx is needed in 
+form header - and correct defautltencoding in site.py or in sitecustomize.py  
+too</quote>. There was lots of good information about i18n in the 
+<quote who="Bajusz Tam&#225;s">internationalizing topic in wxpython help</quote>.</p> 
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.16Apr2002">
+Some days later</a>, Bajusz asked <quote who="Bajusz Tam&#225;s">jcater: have 
+you seen my jpg-s about "collapsed" forms?</quote>. Jason Cater (jcater) said 
+he had <quote who="Jason Cater">received them - but haven't had a chance to look 
+yet</quote>. James Thompson (jamest) said <quote who="James Thompson">this is the 
+fixed font vs non fixed font issue - we can't just move to non fixed font and it 
+totally screws up some forms</quote>. There was an option in the gnue.conf file to 
+force fixed width fonts for a particular installation, however. Jason said that 
+the problem was that, on many systems, including Microsoft Windows 98 and 
+GNU/Linux, the wxDEFAULT font <quote who="Jason Cater">falls back to non-fixed 
+width fonts</quote> He added <quote who="Jason Cater">what I *really* want to do
+is let the sysadmin specify exactly *what* font to use and if none is specified, 
+use the wxMODERN</quote>. He had <quote who="Jason Cater">had really bad luck 
+playing with wx's font system</quote>. James agreed - <quote who="James Thompson">what 
+we have today is the result of lots of trial and error which has resulted in something 
+that "sucks less" - less than what I'm not sure though :)</quote>.</p>
+
+<p>Later, Derek Neighbors (dnWork) asked <quote who="Derek Neighbors">any chance 
+specifying own fonts would fix darn ugly dropdown boxes?</quote> He said 
+<quote who="Derek Neighbors">they are a different 'size' than the other widgets and 
+the font appears different in them</quote>. James said <quote who="James Thompson">
+no, own fonts won't fix problem IIRC - we had to put a fudge factor into the dropdown 
+size calculations , again IIRC -  i don't recall why but I'm pretty sure it had 
+something to do with my tester always running some damn themed desktop vs the default 
+one I aways stick with</quote>.</p>
+
+</section>
+

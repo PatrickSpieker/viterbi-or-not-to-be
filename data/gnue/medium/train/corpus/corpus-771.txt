@@ -1,0 +1,263 @@
+[00:18] Last message repeated 1 time(s).
+fitzix (~fitzix@27.133.252.64.snet.net) joined #gnuenterprise.
+fitzix (~fitzix@27.133.252.64.snet.net) left irc: "Client Exiting"
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+reinhard (~rm@62.47.247.52) joined #gnuenterprise.
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+<ajmitch> hi
+siesel (jan@dial-195-14-254-148.netcologne.de) joined #gnuenterprise.
+<siesel> hi
+<ajmitch> hey siesl
+<ajmitch> how's phpforms coming along?
+<siesel> hi ajmitch
+<ajmitch> it's been decided that appserver probably isn't necessary for the accounting app i'm helping with, since it's for small businesses
+<ajmitch> a web forms client may be tho :)
+<siesel> I hope to bring phpforms to a stable state soon, but there are too many small problems, and I don't have a good debugger :(
+<ajmitch> ok
+<siesel> and after using python I don't like PHP anymore ;)
+Action: ajmitch would really prefer a python implementation, like madlocke's webware client :)
+<ajmitch> i'd imagine handling python triggers in php would have been fun
+<siesel> this is the reason for using phpforms with appserver, so triggers can be moved into appserver
+<ajmitch> yes, understandable
+Action: ajmitch is currently learning forms
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+gnuebot (eggdrop@mail.libertydistribution.com) left irc: Read error: 113 (No route to host)
+sledge_ (~sledge@B922e.pppool.de) joined #gnuenterprise.
+<sledge_> hi
+<sledge_> anyone of you familiar with xml2sql?
+<ajmitch> not i, sledge_
+<ajmitch> perhaps siesel :)
+<ajmitch> hi, btw
+<sledge_> do we have a list of other free ERP projects?
+<siesel> sledge: xml2sql: yes
+<siesel> you should have a look in appserver/samples/Makefile
+<sledge_> thx
+<sledge_> i just found a bug in pgsql.xsl in gnue cvs
+<siesel> oh, which bug?
+<sledge_> all scripts make a match="/", pgsql.xsl has match="/schema"
+<sledge_> which is wrong when you try it with dcl.xml
+<sledge_> i removed it and it worked
+<sledge_> all others worked before
+<siesel> yes, because pgsql.xsl is the only one which supports the new GNUe schema file format ( *.GSD )
+<sledge_> so it is a new feature that the others haven't, not a bug?
+<siesel> yep. and pgsql.xsl is the only one which can create insert statemenets out of the <data> part of an .GSD
+<sledge_> ah
+<sledge_> great
+<siesel> i think i should remove dcl.xml or convert it to dcl.gsd
+<sledge_> is gsd already defined / is there doc?
+<siesel> there is DTD in designer/src/schema
+<siesel> and you can create it with designer
+<sledge_> ok
+<sledge_> but i can safely assume that the old format can simply be converted to the new one by wrapping everything in <schema>?
+<siesel> yes
+<sledge_> wtf is a constraint?
+<sledge_> (sorry for the stupid question)
+<siesel> constrains = NOT NULL, UNIQUE, ...
+<sledge_> ah, okay
+<siesel> a foreign key is an constrain too. (also I don't know how to write a constraint in the .GSD format :(
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+<sledge_> doesn't matter
+<sledge_> i just want to look a bit through :)
+Action: ajmitch wonders how to use the FK properties of a form widget :)
+<sledge_> siesel: perhaps you have use for it :)
+Action: ajmitch ought to print out the techref.lyx & userguide.lyx for forms
+<sledge_> does techref.lyx contain information on gsd?
+<siesel> ajmitch: you can use fk_... to fill a dropdown entry.
+<siesel> sledge_: no, but if you want the ultimate information you should ask derek, because he has written it (if I'm right informed ) :)
+<ajmitch> siesel: that's *exactly* what i want
+<sledge_> okay
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+<siesel> sledge_: your example is quite good.
+<siesel> we should add it to CVS, or what do you think? 
+<siesel> oh, I've to run, shopping ...
+siesel (jan@dial-195-14-254-148.netcologne.de) left irc: "What's a script?"
+<sledge_> i go now too, bye
+sledge_ (~sledge@B922e.pppool.de) left irc: "using sirc version 2.211+KSIRC/981227-pre0.9"
+alexey_ (~alexey@195.151.214.34) left irc: "Client Exiting"
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+sledge_ (~sledge@B2e4a.pppool.de) joined #gnuenterprise.
+sledge_ (~sledge@B2e4a.pppool.de) left irc: "using sirc version 2.211+KSIRC/981227-pre0.9"
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) left irc: "Client Exiting"
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) left irc: Client Quit
+siesel (jan@dial-194-8-195-253.netcologne.de) joined #gnuenterprise.
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+<chillywilly> hi jan
+<chillywilly> all...
+<chillywilly> anyone awake in here?
+<ra3vat> hello Daniel
+<chillywilly> hi :)
+<siesel> hi chillywilly
+<chillywilly> howdy
+<siesel>  
+kemitix_ (~chatzilla@kemitix.demon.co.uk) joined #gnuenterprise.
+<siesel> :)
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<siesel> hi Derek
+<dneighbo> hi siesel
+<chillywilly> wassup g'money?
+<dneighbo> not much
+siesel (jan@dial-194-8-195-253.netcologne.de) left irc: "Real programmers code it into the client"
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+<dneighbo> chillywilly: you here? oh cvs master
+<chillywilly> yes I am here
+<dneighbo> can you answer this
+<dneighbo> After importing a project into the CVS repository, the CVS directory in my 
+<dneighbo> working directory was not created.  The work directory was in my home 
+<dneighbo> directory.
+<dneighbo> Is there a permissions issue where the CVS server cannot write to my home 
+<dneighbo> directory?
+<dneighbo> According to Webmin, the box does not have a cvs user (not a user that uses 
+<dneighbo> cvs but a user for the cvs server).  Does it need one?
+<chillywilly> I thought you just need to setup 'writers' file
+<chillywilly> in the CVSROOT module
+<chillywilly> you have to remove the original source tree ans then check it out according to the docs
+<chillywilly> or mv it out of the way if you are paranoid ;)
+<chillywilly> ah but you do want to have proper perms on the repository
+<chillywilly> I think I have a cvs group
+<chillywilly> for my personal repository
+<chillywilly> perms are owner=root, group=cvs dirs are chmod 775 files are chmod 664
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+<chillywilly> lemme know if this helps
+<dneighbo> will do its for a lug person here
+<chillywilly> i.e, it won't create the CVS dir until you check it out...which requires pulling a fresh copy
+kemitix_ (~chatzilla@kemitix.demon.co.uk) left irc: Remote closed the connection
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: "Client Exiting"
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+jamest (~jamest@fh-dialup-201188.flinthills.com) joined #gnuenterprise.
+jamest (~jamest@fh-dialup-201188.flinthills.com) left irc: Client Quit
+siesel (jan@dial-213-168-72-36.netcologne.de) joined #gnuenterprise.
+<siesel> can anyone give me hint, where I can find a comparison between different accounting systems? like german<->american?
+siesel (jan@dial-213-168-72-36.netcologne.de) left irc: "_"
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+reinhard (~rm@62.47.247.52) left irc: "Don't contradict a woman -- wait until she does herself"
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: "woooooosh!"
+jbailey (adoerkse@CPE014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+jbailey (adoerkse@CPE014260028338.cpe.net.cable.rogers.com) left #gnuenterprise ("Client Exiting").
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+debUgo- (debUgo-@sler7555-86.pool.007mundo.com) joined #gnuenterprise.
+rdean (rdean@chcgil2-ar2-4-64-030-076.chcgil2.dsl-verizon.net) joined #gnuenterprise.
+rdean (rdean@chcgil2-ar2-4-64-030-076.chcgil2.dsl-verizon.net) left irc: Client Quit
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+debUgo- (debUgo-@sler7555-86.pool.007mundo.com) left irc: No route to host
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<ajmitch> hi dneighbo
+<chillywilly> ello derek
+<dneighbo> anyone know if there is an open office channel?
+<dneighbo> or is anyone running an open office not from debian packaging?
+<dneighbo> as there is missing feature from star office i cant live w/o 
+<ajmitch> i've got OO.o here
+Action: chillywilly installed form tar ball
+<dneighbo> and i could have sworn it existed in OO 1.0
+<chillywilly> from
+<ajmitch> what is it?
+<dneighbo> can one you open up impress (power point)
+<dneighbo> and create a new slide show create two slides
+<ajmitch> yeah, give me 15min for it to open
+<dneighbo> and then go to
+<dneighbo> Slide Show
+<chillywilly> ajmitch: hehe
+<dneighbo> and tell me if you have a 'custom slideshow' as an option under that menu?
+<dneighbo> it used to be there and the DOCUMENTATION says it should be there
+<dneighbo> but it aint there :(
+<dneighbo> i will drop the debs and go to binaries if i can verify the binaries have it
+<ajmitch> still waiting for splash screen to go away & app to appear
+<dneighbo> darn you running that on a palm or what?
+<dneighbo> even my p233 64mb is quicker than that
+<dneighbo> have you considered trying fluxbox?
+<dneighbo> for desktop? it will improve the speed of your applications considerably (or at least it did for me)
+<ajmitch> compiling
+<ajmitch> that functionality does exist here
+<ajmitch> my computer is not much faster than a p233 :)
+<ajmitch> as in, i can create a custom slideshow
+<dneighbo> sigh
+<dneighbo> did you get it with debian packages?
+<dneighbo> or from openoffice tar ball
+<dneighbo> er binary
+<ajmitch> binary tarball
+<dneighbo> im downloading the openoffice binary from the site
+<dneighbo> ok cool (me was having minor panic)
+<dneighbo> as that feature ROCKS for church worship :)
+<dneighbo> i can have one powerpoint file that has all the songs
+<dneighbo> then just select the ones for a particular service as a custom show
+<ajmitch> have been asked to deb-package GNUe tools, so will try & do that as i fugre out how
+<ajmitch> excelltn
+<dneighbo> the old power point people were like NO WAY (as i guess office powerpoint doesnt do this)
+Action: ajmitch must need new keyboard - typing sucks
+<dneighbo> so they would number every slide to every song and maintain a db of them
+<dneighbo> then write down the numbers for a song set on paper
+<ajmitch> ah, this way is much better?
+<dneighbo> and use the 'go to' slide feature
+<dneighbo> i.e. key in the number of the slide
+<ajmitch> that way sucks :)
+<dneighbo> why do you think im freaking that the deb packages dont have custom slide show :)
+<dneighbo> sigh my connection is getting slower
+<dneighbo> took almost 2 minutes for open office to download this time :(
+Action: dneighbo forgets we have some dial up folks here, i shouldnt be saying that
+<ajmitch> hehe
+<ajmitch> there is a branch for 0.3.0, right?
+<dneighbo> yes
+Action: ajmitch wonders what to number cvs packages as
+<dneighbo> im the maintainer of that, but havent done anything with it :)
+<ajmitch> 0.3.0.$DATE ?
+<dneighbo> please do package 0.3.0
+<dneighbo> as 0.3.0
+<ajmitch> ah ok, will just take 0.3.0
+<dneighbo> then if you its easy we can do a -cvs (no?)
+<dneighbo> and update it regularly
+<ajmitch> yes, that's what i'd do
+<ajmitch> where regularly == nightly cron build if possible :)
+<ajmitch> don't think i can simply do that with python packages
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+<ajmitch> will need to touch up documentation on branch to reflect new binary names :)
+<dneighbo> ajmitch: certainly we could do that if the debian packaging can support it
+<ajmitch> will try, need to fuind out how to package distutils stuff (nickr said some of it wasn't nice)
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+<dneighbo> You may only copy and distribute this program consistent with the requirements and distribute this Program consistent with the requirements of either the GNU General Public License (GPL) and GNU Lesser General Public License (LGPL) or the Sun Industry Standards Source License (SISSL), respectively, depending on whether you elected to obtain access to this program via the GPL/LGPL Option or the SISSL Option. Copies of the GPL, L
+<dneighbo> SL licenses can be found http://www.openoffice.org/project/www/license.html
+<dneighbo> its so beautiful to see this as the EULA
+<chillywilly> what dialup folks?
+<dneighbo> in a product that IMHO is better than MS office :)
+<ajmitch> dneighbo: it's not an EULA tho :)
+<dneighbo> ajmitch: true dat
+<dneighbo> i mean so nice to see this wehre the EULA normally is
+<ajmitch> yeah, is much better
+<ajmitch> you can click 'accept' with a clear conscience :)
+<ajmitch> hmm, need to get up at 5:30am again
+<dneighbo> ajmitch: its bad for your health to rise that early
+<dneighbo> early to bed early to wise makes a man healthy wealthy and wise
+<ajmitch> dneighbo: i know, but there's another dotgnu meet on
+<dneighbo> is well a wives tale (i.e. only a wife would think of it)
+<ajmitch> hehe
+<dneighbo> hey i think this openoffice is broken
+<dneighbo> it cant be good
+<dneighbo> it doesnt want me to rebbot
+<dneighbo> oh crap i forgot
+<chillywilly> reboot?
+<dneighbo> GNU\Linux is winning BIG time
+<dneighbo> i was at softball
+<dneighbo> lets say the guys on our team cant spell computer much less literate with one
+<chillywilly> you play softball?
+<dneighbo> one of the guys gets a call from his girlfriend
+<dneighbo> and he asks one of the other guys, do you know if linux is any good
+<ajmitch> hmm, my uptime isn't too bad here for my main desktop box
+<dneighbo> im like (did you say linux?) (this is not type of guy i would expect to know what windows is, much less linux)
+<dneighbo> he said yeah, you know what it is
+<dneighbo> i said yeah
+<dneighbo> he said is it good
+<dneighbo> i said, yeah it kicks crap out of windows
+<dneighbo> then i had to go to bat
+<dneighbo> came back and asked him why he wanted to know
+--- Sun Jul 14 2002

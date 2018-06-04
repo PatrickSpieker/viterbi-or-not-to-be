@@ -1,0 +1,112 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.07Jun2002" enddate="06 Jun 2002 23:00:00 -0800" startdate="06 Jun 2002 23:00:00 -0800" subject="[IRC] 07 Jun 2002" title="Re-coding or re-using GNU-RPC on other projects">
+
+<topic>Common</topic>
+
+<mention>Bradley Kuhn</mention>
+
+<p>Dan Kuykendall (Seek3r) asked if there was any documentation on GComm (GNU-RPC). 
+Jan Ischebeck (siesel) said there was some preliminary documentation in CVS. 
+Dan said he was <quote who="Dan Kuykendall">building some code in php to support 
+xml-rpc and soap in much the same way. if you already have things defined then I 
+can look at doing mines much more like yours</quote>. Jan said that, as of time 
+of writing, it was too early to decide <quote who="Jan Ischebeck">which functions 
+should be made general available for all drivers and which are private 
+functions.</quote> Dan said <quote who="Dan Kuykendall">Im mostly concerned with 
+the basic functions developers wanting to the the GComm are supposed to use. Like what 
+they do to start the client, how they package up their params (selecting data types), 
+and how they make the calls, and then how the return comes back. 
+Ditto with creating a server. how they add functions, how they are documented.
+If I can make mine look like a port. so that it basicly matches, then it will be more 
+generally consistant. Syntax will be a little diff because of the diffs between python 
+and php</quote>. Jan said <quote who="Jan Ischebeck">ok, thats quite easy. the only 
+difference between python and php implementation will be</quote> that python would 
+allow you to <quote who="Jan Ischebeck">just request an service object and then all 
+method call on that service object will be transparently executed on the 
+server</quote> as part of GComm. Dan said he could <quote who="Dan Kuykendall">do the 
+same with php</quote>.</p>
+
+<p>Jan said that, as of time of writing, <quote who="Jan Ischebeck">the api is quite 
+simple: client: 1. atach(interface,options) 2. request('servicename') 3. transparent 
+calls</quote>. As it was not web-based, it used its <quote who="Jan Ischebeck">own 
+socket port</quote>. Dan said he could not do this, 
+<quote who="Dan Kuykendall">Since in PHP I am stateless. I have to wait for the web 
+server to kick me into life</quote>. Jan did not think this was a problem - 
+<quote who="Jan Ischebeck">It just means that you have to parse the 
+description file one time per method call ;) - or you keep a preparsed file in a 
+php file</quote>.</p>
+
+<p>Dan asked if GComm could detect incoming requests using different RPC protocols, 
+and select the appropriate driver. Dan and Jan worked through some examples. 
+Dan concluded that, in php, he would have to do direct access in a different way 
+to the python-based GComm. There might be problems detecting what type of 
+object was being sent, but <quote who="Dan Kuykendall">if they use this future 
+GTypeCast, they will be giving you an object that you can then get the type and 
+data from</quote> - this could also be done in PHP. He asked if the data returned 
+by an RPC request was automatically converted into python variables. Jan confirmed 
+this. Passing multiple parameters to a function would have to be done differently
+in PHP to python - although PHP version 4 could do it the python way, Dan needed to 
+use PHP version 3 for GPL compatibility. Jan said he would be prepared to change 
+the way the python-based GNU-RPC worked, provided <quote who="Jan Ischebeck">it 
+doesn't means changing heaps of code</quote>.</p>
+
+<p>Dan asked whether <quote who="Dan Kuykendall">GComm and GNUe RPC are two 
+different things?</quote>. Jason Cater (jcater) said that 
+<quote who="Jason Cater">GComm was the original working name before any coding 
+was done</quote>. It was now interchangeably referred to as GNUe Common, 
+GNU-RPC or GNUe-RPC. He emphasised that it was <quote who="Jason Cater">only 
+one implementation - the "standard" or "proposal" can be called whatever - 
+but our implementation I'd think we would call GNUe-Something</quote>. Dan 
+confirmed he was <quote who="Dan Kuykendall">gonna try building a PHP 
+version today with the xml-rpc driver</quote> for use on 
+<quote who="Dan Kuykendall">the new web services I am developing for 
+DotGNU</quote>.</p>
+
+<p>Later, Derek Neighbors (dneighbo) said he did not 
+<quote who="Derek Neighbors">see the value in spending time REPLICATING 
+gnurpc for every language</quote> but would prefer to 
+<quote who="Derek Neighbors">rather see someone wrap the python so php 
+could use it</quote>. This was <quote who="Derek Neighbors">not a python 
+is right everything else is wrong thing - its a why write same code over 
+and over in diff languages only to have to maintain it?</quote>.</p>
+
+<p>Dan Bethe (dtm) noted that Dan Kuykendall was 
+<quote who="Dan Bethe">currently redesigning</quote> phpGroupware (phpgw) 
+<quote who="Dan Bethe">somewhat to decouple the server and client and to make 
+it language neutral - not requiring php</quote>. Dan K. was keen on working 
+with GNUe, but Dan B. felt there had been some communication issues. 
+Peter Sullivan (psu_) noted that <quote who="Peter Sullivan">GNUe Common was 
+named GNU-RPC precisely because it was meant to be usable by other 
+projects</quote>. Dan B. said that Dan K. <quote who="Dan Bethe">still wants 
+to collaborate - and collaboration will probably be greatly enhanced by his 
+rearchitecture</quote>. 
+Derek noted that, although it was not quite the same issue as phpgw using 
+GNU-RPC, two separate people had started writing GNUe Forms clients in 
+php, <quote who="Derek Neighbors">and after grokking common</quote> decided 
+to use (and in one case, help to develop) that instead. It was much 
+more than <quote who="Derek Neighbors">merely data abstraction (ala 
+PEAR or PERL DBI or libGDA)</quote> - <quote who="Derek Neighbors">its 
+complete programmer abstraction</quote> including features 
+<quote who="Derek Neighbors">like handling master detail relationships
+adn complex queries and foreign key look ups and the such</quote>. 
+He felt that there were several ways of working with phpgw, depending on 
+what Dan K. wanted.</p>
+
+<p>Peter noted that <quote who="Peter Sullivan">we were going to make that 
+one-off meeting in #gnuproject</quote> 
+(<kcref subject="[IRC] 26th November 2001" title="The GNU Project - Meeting of the Minds" />) 
+<quote who="Peter Sullivan">a regular thing - but everyone is too 
+busy</quote>. He had done a prototype 
+<a href="http://www.manorcon.demon.co.uk/gnuproject.html">web page</a> 
+for it. Derek said <quote who="Derek Neighbors">i will look if i have time 
+at this - and try to reconvene a meeting - as i think there are several 
+thigns for the agenda</quote>. He was keen to keep the various 
+business-related GNU projects working together. One key issue was 
+<quote who="Derek Neighbors">where GNUe is at with its rpc abstraction - 
+as there is definitely prototype stuff there</quote>. Dan B. said that 
+phpgw's recent change in architecture meant that they would become 
+more interested in <quote who="Dan Bethe">broad interoperability</quote>. 
+Derek said he needed to speak to Bradley Kuhn.</p>
+
+</section>
+
+

@@ -1,0 +1,214 @@
+*** johannesV has joined #gnuenterprise
+*** chillywilly has quit IRC
+*** reinhard has joined #gnuenterprise
+<reinhard> good morning all
+*** btami has joined #gnuenterprise
+*** johannesV_ has joined #gnuenterprise
+<johannesV_> good morning again ...
+<btami> good morning
+*** johannesV has quit IRC
+*** derek has quit IRC
+*** chillywilly has joined #gnuenterprise
+*** yure has joined #gnuenterprise
+*** yure has quit IRC
+<johnnyss> hi
+<johannesV_> hi johnnyss
+*** yure has joined #gnuenterprise
+*** dimas has quit IRC
+*** btami has quit IRC
+*** jamest has joined #gnuenterprise
+*** btami has joined #gnuenterprise
+*** yure has quit IRC
+*** sacha has quit IRC
+*** sacha has joined #gnuenterprise
+*** jcater has joined #gnuenterprise
+*** siesel has joined #gnuenterprise
+<siesel> hello
+*** yure has joined #gnuenterprise
+<jcater> hi siesek
+<jcater> seisel
+<siesel> jcater: how is designer improving?
+<jcater> how am I progressing time-wise, or what is being added?
+<siesel> Yes, both questions please.
+<siesel> :)
+<jcater> well, as far as changes
+<jcater> it requires wx2.6 now
+<jcater> so the first change was getting it stable on 2.6
+<jcater> then I stopped using GNUe Form's ui drivers to draw widgets in real-time on the layout canvas
+<jcater> I now draw my own objects on my own canvas object
+<jcater> this gave me a tremendous amount of control over the canvas
+<jcater> so things "just work" on it now
+<siesel> cool, I saw this change, it looks great.
+<jcater> like rubberband boxes, etc
+<jcater> I also reworked the property editor
+<jcater> which as it turns out
+<jcater> was solely responsible for the 2+ second delay
+<jcater> between clicking on a widget, and having designer actually select that widget
+<jcater> actually, that will be the extent of the changes before I declare designer "stable" again
+<jcater> but there's a lot of under the hood cleaning
+<jcater> (comments, better variable naming, etc)
+<siesel> are there any other specific features you want to integrate?
+<jcater> I was trying to work through those changes before thinking about anything else
+<jcater> is there something specific you're wanting to request?
+<jcater> (I am using roundup now, I'm sure to reinhard's delight)
+<siesel> no, not at the moment
+<jcater> the main thing right now was just trying to make designer a stable, consistent experience
+<siesel> I'm just thinking how to enable designer to create appserver designs
+<jcater> yes, be thinking about that
+<siesel> and I think this is a hugh efford
+<jcater> as I do want to tackle that after I get forms support stable again
+<jcater> I haven't given it any more thought other than "I want to somehow allow appserver designs"
+<jcater> i.e., I haven't given any thought as to how that'd actually look
+<siesel> currently I'm discussing business process design tools with a colleague
+*** klasstek has joined #gnuenterprise
+<siesel> I hope to  get / find  / imaging ... some ideas how to make the transform of a ideas of a non-IT guy into appserver design
+<siesel> btw. I've found two designer errors, ... although you probably know both... here they are
+<siesel> o.dispatchEvent('ObjectCreated')
+<siesel> DB000:  AttributeError: GFBox instance has no attribute 'dispatchEvent'
+<jcater> hmm
+<siesel> No. 2: DB000:     newobj = _windows_.new_FileDialog(*args, **kwargs)
+<siesel> DB000:  PyAssertionError: C++ assertion "wxAssertFailure" failed in ../src/common/filefn.cpp(1673): missing '|' in the wildcard string!
+<jcater> can you rerun setup-cvs.py and see if you still have that error?
+*** johannesV__ has joined #gnuenterprise
+<siesel> No. 2 after opening a file
+<jcater> okay, I wasn't aware of that second one
+<jcater> but designer is in an unstable state at the moment
+*** johannesV_ has quit IRC
+*** johannesV__ has quit IRC
+<siesel> yes, after running setup-cvs.py  the GFBox error persists
+<jcater> okay
+<siesel> concerning this exceptions, don't care too much.  I just want to show you, that there are gnue-designer pre-alpha tester out there :)
+<jcater> okay
+<jcater> actually, I'm not *that* far away from wanting alpha testers
+* siesel is wondering what *that* means in terms of donuts^H^H^H^H^Hays
+<siesel> ;)
+*** johannesV has joined #gnuenterprise
+<jcater> if I can get in a couple of solid days of programming, I think it'd be where I want it at
+<jcater> of course, I had a slight disaster at my house that's now consuming my free time
+<jcater> but I'm trying to make some time at work
+<siesel> That's cool.
+<jcater> I'm also trying to hire a 4th programmer here at work
+<jcater> who, coincidentally, has several years of both python and wxPython experience
+<jcater> so I hope to have him devote at least a couple of hours a week to doing some gnue work
+<siesel> You don't want to work on gnue-designer yourself anymore ? :)
+* jcater was shocked to find someone locally who knew python, not to mention wxPython
+<jcater> sure
+<jcater> and gnue-reports
+<jcater> and gnue-forms
+<jcater> and gnue-navigator
+<jcater> :)
+<siesel> seems, like everything is accelerating.
+<siesel> btw. do you know a good open source project management tool ?
+<siesel> I tryed planner, but read the announcement of KPlato today.
+<jcater> yeah
+<jcater> strange that everyone comes back all at once
+<jcater> me, jamest, psu, you
+<jcater> maybe it was because reinhard and johannes want to work in gnue-forms, so we realized we better get back to work!
+* jcater ducks
+<reinhard> lol
+<jcater> it's kind of like me getting my son to clean his room
+<siesel> rofl
+<jcater> "Well, would you rather your dad clean you room?!? " as I grab the trash can
+<jcater> s/you/your/
+*** derek has joined #gnuenterprise
+<siesel> night
+*** siesel has quit IRC
+<reinhard> is there an easier way to do this:?
+<reinhard>             keyfields = {}
+<reinhard>             for field in self.__primarykeyFields:
+<reinhard>                 keyfields[field] = old_current[field]
+<jcater> keyfields = old_current.copy()
+<jcater> ?
+<jcater> oh, nevermind... missed the __primarykeyfields part
+<reinhard> yes
+<reinhard> it should only copy a given list of keys
+<jcater> not that I know of
+<reinhard> ok thanks
+<reinhard> ok, an issue to discuss:
+<reinhard> several people (IIRC btami, kilo among others) said it would be logical if after a commit the complete result set would be queried again
+<reinhard> let me search the logs
+<jcater> yeah, I remember the issue
+<reinhard> <reinhard> so we would have to store the last query and simply redo it
+<reinhard> <kilo> yes
+<reinhard> <reinhard> same would actually go after the commit
+<reinhard> <reinhard> as now after commit no new records are displayed
+<reinhard> now two questions
+<reinhard> 1. actually the starting point was the "undo" function (that we came up with a different name afterwards), that this function should do the query again
+<reinhard> it was me who extrapolated that to the commit
+<reinhard> is this really desired to after commit see changes done by different users?
+<reinhard> and 2. doing the complete query again after commit would mean newly inserted records being sorted to the place they belong instead of the place they were originally inserted, so it would look to the user as if the record "jumped" to a different place
+<jcater> #2 was the first thing that crossed my mind when you brought this up
+<reinhard> yeah and 3. what about those records that were inserted or changed in a way that they don't match the query? would they disappear after the commit?
+<reinhard> will be back in 2 hours or so
+<jcater> reinhard: the last query is already saved
+<jcater> so you know
+<jcater> as if you press the "Query" button twice, the previous query is brought back up
+<jcater> my personal feeling is in several key forms, my users will get disoriented if the resultset changes on them
+<jcater> but I can see where it would be useful/desirable too
+<jcater> certainly it wouldn't be hard to add a requery-on-commit attribute to datasources or blocks (is there not one now?)
+<jcater> but even then, the question becomes
+<jcater> "what is the default?"
+<jcater> I think at a minimum we should add the feature as a developer-settable option
+<jcater> I'm just torn on what the default behavior should be if the setting isn't set
+<reinhard> I'll leave that open for discussion
+<reinhard> running away now, bbl
+<jcater> re the "is there not one now?"
+<jcater> I think I was thinking of the requerying each record after commit option we have on datasources
+<jcater> but that is per-record, iirc, not per-resultset
+<jcater> so scratch that comment
+<jamest> what's the advantage to the requery of the whole result set?
+<jamest> (other than it would make our record tracking and removal code go away :)
+<jcater> go away, or more complicated?
+<jcater> as even on requery, wouldn't you want it to still try to make a best-effort to go back to the same record
+*** btami has quit IRC
+<reinhard> back
+<reinhard> jamest: advantage would be that you see other records that other users have added meanwhile
+<reinhard> or changes from other users
+<reinhard> (current requery logic only requeries those records that had changes on commit)
+<jcater> the more I think about it, the more I realize that will disorient my users more times than not
+<jamest> i almost wonder if that shouldn't be a separate feature
+<jamest> like in postgresql's case it allows you to register for notifications of table updates
+*** sjc has joined #gnuenterprise
+<reinhard> as btami has gone anyway meanwhile
+<reinhard> and I wanted his input on this
+<reinhard> I'd be also interested in what you think about this "revert" function: should it revert to the original state of the db, or should it fetch changes from other transactions?
+<reinhard> I think new records popping up on revert might not disorient as much as it would on commit
+<reinhard> *sigh* why does it happen so often that I start implementing something and after that, I find out that I'm not even sure what exactly I want to implement...
+<jcater> hmm
+* sacha is releaved to see that happening to pros, too
+<jamest> reinhard: some people claim some phase they call "design" helps with that
+* jcater is unconvinced
+<jamest> reinhard: but I never really understood what they were getting at
+<jamest> i think the closest we got in forms to "design" was
+<jamest> <jamest>hey jason, what do you think about ........
+<jcater> I'm more of an Evolutionary person than an Intelligent Design
+<jamest> <jcater>argh!  users!  make them stop!
+<jamest> jcater is away
+<jamest> <jamest>ok then, away I go
+<reinhard> :)
+*** sacha has quit IRC
+*** johannesV has quit IRC
+*** sacha has joined #gnuenterprise
+*** jamest has left #gnuenterprise
+<reinhard> good night all
+*** reinhard has quit IRC
+*** yure has quit IRC
+*** klasstek has quit IRC
+*** jamest has joined #gnuenterprise
+*** derek has quit IRC
+*** sjc has quit IRC
+<jamest> question for the non-US times/date formats
+<jamest> the input mask system has hard coded the time and date separators as : and / respectively
+<jamest> instead of that could we get away with
+<jamest> >>> import locale
+<jamest> >>> locale.nl_langinfo(locale.T_FMT)
+<jamest> '%H:%M:%S'
+<jamest> >>> locale.nl_langinfo(locale.D_FMT)
+<jamest> '%m/%d/%y'
+<jamest> and simply use the first char in the string except for [%HMSmdy]
+*** jcater has quit IRC
+*** jamest has quit IRC
+*** sacha has quit IRC
+*** sacha has joined #gnuenterprise
+*** sacha has quit IRC
+*** derek has joined #gnuenterprise

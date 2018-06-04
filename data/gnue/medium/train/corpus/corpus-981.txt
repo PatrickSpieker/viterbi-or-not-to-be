@@ -1,0 +1,1111 @@
+<derek> guess they might be suprised when some of our 'secret' press releases come out soon :)
+<derek> muhahaha
+<derek> i guess i shouldnt bag on them
+<ajmitch> hehe
+<derek> hopefully they will bring resources and good intentions
+<chillywilly> er?
+<chillywilly> secret press releases?
+<derek> as god knows we need resources :)
+<nickr> derek: yes, this is what we all hope
+<chillywilly> nevermind
+<chillywilly> I gotcha now
+<chillywilly> duh
+<chillywilly> damn I need sleep
+<derek> i need sleep, worked too hard today, really bummed i missed miguel
+<chillywilly> fitzix was looking for you
+<derek> for me?
+<derek> i didnt see anything in the log
+<chillywilly> #gnue-discuss
+<derek> ah
+<nickr> theres a #gnue-discuss now?
+<derek> its for something different
+<derek> were carrying some dotgnu / gnue related banging around
+<derek> its not a 'permanent' channel
+<derek> was just something for a day or two to hash out some group politics on how we could collaborate
+<derek> with out cluttering this channel :)
+Action: nickr nog
+Action: derek is away: sleeping
+chillywilly (danielb@d82.as21.nwbl0.wi.voyager.net) left irc: 
+dsmith (dsmith@oh-strongsville5a-64.clvhoh.adelphia.net) left irc: "Client Exiting"
+Isomer (perry@210-86-57-156.jetstart.xtra.co.nz) left irc: "Client Exiting"
+reinhard (~rm@62.47.44.94) joined #gnuenterprise.
+<ajmitch> hi reinhard
+<reinhard> morning
+<ajmitch> we had an interesting visitor earlier
+<reinhard> was just reading the log
+<reinhard> yeah
+<reinhard> it's getting strange
+<reinhard> after we had ppl from gnucash and bayonne here for quite some time
+<reinhard> then we had bkuhn
+<reinhard> now miguel
+<reinhard> i'm expecting rms to appear tomorrow
+<reinhard> ;)
+<ajmitch> hehe
+<ajmitch> now that would be a surprise
+<reinhard> bbl
+Nick change: reinhard -> rm-away
+ajmitch (me@p58-max6.dun.ihug.co.nz) left irc: Read error: 60 (Operation timed out)
+rm-away (rm@62.47.44.94) left irc: Read error: 110 (Connection timed out)
+reinhard (~rm@62.47.45.2) joined #gnuenterprise.
+ajmitch (~me@p30-max5.dun.ihug.co.nz) joined #gnuenterprise.
+dres_ (~dres@4.18.171.42) joined #gnuenterprise.
+dres__ (dres@4.18.171.42) left irc: Connection reset by peer
+dsmith (~dsmith@oh-strongsville5a-64.clvhoh.adelphia.net) joined #gnuenterprise.
+dsmith (dsmith@oh-strongsville5a-64.clvhoh.adelphia.net) left irc: "Client Exiting"
+alexey (alex@news.techkran.vladimir.ru) left irc: "[x]chat"
+chillywilly (~danielb@d168.as12.nwbl0.wi.voyager.net) joined #gnuenterprise.
+<chillywilly> jc codes like a man possessed ;)
+<chillywilly> bye
+chillywilly (danielb@d168.as12.nwbl0.wi.voyager.net) left irc: 
+dsmith (~dsmith@208.40.56.36) joined #gnuenterprise.
+<dsmith> Morning people
+jamest_ (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+ra3vat (ds@195.239.204.226) joined #gnuenterprise.
+<jamest_> ra3vat: you here?
+<jamest_> ra3vat: please msg me when you see this
+dsmith (dsmith@208.40.56.36) left irc: "Client Exiting"
+nickr (nick@e-172-IP28.empnet.net) left irc: Read error: 60 (Operation timed out)
+nickr (~nick@e-172-IP28.empnet.net) joined #gnuenterprise.
+<ra3vat> jamest: yes
+<derek> reinhard: rms general wont touch irc
+<derek> but he does give 'pleasant emails' occassionally :)
+<derek> i.e. rms knows about gnue and knows somewhat of what is going on
+<derek> jamest jamest_ you here?
+<derek> *** it looks as though rsync for cvsweb and lxr (gnue.org) are not working anymore, can we fix that or is it a jade thing?
+<derek> ****
+alexey (~alexey@195.151.214.34) joined #gnuenterprise.
+<jamest_> back
+<jamest_> i setup rsync on ash
+<jamest_> but never switched the cvsweb or lxr over from jade's stuff
+<jamest_> so it's a jade thing
+<jamest_> however I may have time this weekend
+<jamest_> to switch it all over 
+<jamest_> ra3vat: still here?
+<jamest_> worth mentioning: I have a Mac user that just tried out unix (linux) for the first time
+<jamest_> he HATES it
+<jamest_> #1 reason why he hates it
+<jamest_> stability
+<jamest_> not the OS itself
+<jamest_> but the current mix of "office" applicatoins
+<jamest_> kword seqfaults when saving
+<jamest_> abiword makes random formatting changes when saving
+<jamest_> staroffice is bloated and slow
+<jamest_> and java support prevents him from using specific sites on the web
+<jamest_> (java is buggy and crashes the browser)
+dsmith (~dsmith@208.40.56.34) joined #gnuenterprise.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<jcater> ah!
+<jcater> two jamest's
+<jcater> as if one wasn't enough
+<jamest_> bwahahahaah
+madlocke (madlocke@p50806E21.dip.t-dialin.net) joined #gnuenterprise.
+<madlocke> hi
+<jamest_> hey!
+<jamest_> madlocke!
+<jamest_> you here?
+<madlocke> yes
+<jamest_> sigh, i have a meeting in a few minutes
+<jamest_> had a little time to look at the code
+<madlocke> i have time today....
+<jamest_> you've got a lot of work done on the layout mgr
+<jamest_> it seems
+<madlocke> code changed... lot of bug fixes... gridbaglayout for wxpython works!...
+<jamest_> rock!
+<jamest_> couple of issues though
+<madlocke> just looking for one bug i still have in html layout... 
+<madlocke> ok...
+<jamest_> i can't see us replacing GParser
+<madlocke> i have time we can discuss it later
+<jamest_> as forms and designer both use it heavily
+<madlocke> for now i only wrote own one because it was easier and i wanted to try some things...
+<jamest_> and it does lots of stuff for us, typecasting, default values, file structure validation, automatic upgrade of depreciated features
+<jamest_> er, ok cool
+<jamest_> i didn't notice any IO system
+<madlocke> but still thinking of getting rid of this phaseinit... but not now...
+<madlocke> more important things to do
+<jamest_> lol
+<jamest_> phaseinit replaced a single init system
+<madlocke> it was there in an older version... just wanted to concentrate on layouting
+<jamest_> that just didn't work for our multipart system
+<jamest_> cool
+<jamest_> i was wondering if we could fold the layout manager into the current code base w/ a few changes
+<jamest_> then see about adding in the html stuff along side our current UI rewrite
+<madlocke> where to find this rewrite?
+<jamest_> um
+<jamest_> in our heads
+<jamest_> :)
+<madlocke> ah... ok...  ;)
+<jamest_> it is really dependent upon the html clients needs
+<madlocke> just getting a saw ;)
+<jamest_> jcater and I have discussed it somewhat
+<jamest_> but nothing on paper yet
+<jamest_> as we wanted to see what you had done
+<jamest_> dangit
+<jamest_> just a sec
+<madlocke> ok... when did you discuss it so i can read it and join the discussion
+<jamest_> ah
+<madlocke> jsut the day
+<jamest_> just a sec
+<jamest_> it's just been comments in passing 
+<jamest_> typically in a private window
+<jamest_> we were talking about having a single process on the web server
+<jamest_> using sessoins/cookies to driver mutliple UIhtml sessions
+<jamest_> for different users
+<jamest_> however
+<jamest_> we didn't go into it very deep
+<jamest_> as we knew you were working on it
+<madlocke> ok
+<jamest_> ahhhhh
+<jamest_> meeting postponed till 11
+<madlocke> ok
+<jamest_> what do you think?
+<jamest_> I don't recall what the june code you had did
+Action: jamest_ has bad memory
+<jcater> madlocke: hi
+<madlocke> first i want finish this html bug, then discuss what you want for the rewrite
+<madlocke> hi jcater
+<madlocke> and very important i think is i18n
+<jamest_> madlocke: i have i18n patches sent in today
+<madlocke> cool
+<jamest_> for 0.1.0 inclusion
+<jcater> really?
+<jcater> cool
+<jamest_> actually they were sent Dec 4th
+<jamest_> but I didn't get them I guess
+<jamest_> ra3vat was nice enough to send me a new copy
+<madlocke> great
+dsmith (dsmith@208.40.56.34) left irc: "Client Exiting"
+<jamest_> i hope to have them merged in this weekend
+dneighbo (dneighbo@mail.libertydistribution.com) joined #gnuenterprise.
+<jcater> dneighbo!
+<jcater> wassup?
+<jamest_> madlocke: on the layout manager
+<jamest_> in the gfd file
+<jamest_> i was thinking about keeping the number of entities to a minimum
+<jamest_> so instead of <boxLayout>, <etcLayout>
+<jamest_> we'd have <container style="box"> 
+<jamest_> <container style="grid">
+<jamest_> etc,etc
+<dneighbo> hi jcater 
+<madlocke> what to do with special styles for lms?
+<jcater> madlocke: what do you mean?
+<jamest_> lms?
+<madlocke> lms=layoutmanagers.
+Action: jamest_ is blanking on what lms stands for?
+<madlocke> for example: box layout can do layouting horizontal or vertical
+alexey (alexey@195.151.214.34) left irc: "Client Exiting"
+<jamest_> ah
+<madlocke> other layoutmanagers may need other attributes
+<jamest_> hmmmmm
+<jamest_> we could either allow optional attributes
+<jcater> imho, it critical that we keep the number of tags to a minimum
+<jamest_> or we could provide some general attribute that takes a string of values
+<jcater> as that's helped us grow so far
+<jamest_> my goal however was for forms to be able to fall back when it hits something it didn't know how to handle
+<jamest_> for instance when curses and wxpython both worked
+<jamest_> the curses client didn't know how to do dropdowns
+<jamest_> since dropdown was an entry style it didn't matter
+<jamest_> the forms with dropdown still worked on curses and still did input validation
+<jamest_> you just couldn't pick from a list
+<jamest_> if we had done <dropdown> as it's own thing
+<jamest_> then the form would not have displayed at all
+<jamest_> same would hold true for layout mangers
+<jamest_> if the UI in question didn't know what to do then it could fall back to something basic
+<jamest_> like
+<jamest_> widget<cr>
+[10:45] Last message repeated 3 time(s).
+<jamest_> so the form may look bad but it would still be able to functoin
+Action: jamest_ hopes he's making sence
+<madlocke> to the problem with the dropdown
+<madlocke> i was thinking of something like a widget hierarchy
+<madlocke> means that these fall backs can be automated
+<madlocke> for example you define features that a ui is able to support
+<madlocke> then you ask some class to return a widget for a tag
+<madlocke> so it would be transparent
+<madlocke> so you ask a widget builder... hey give me a dropdown
+<madlocke> for uiwxpython you will get a dropdown and for curses a normal entry field
+<madlocke> if the ui does not explicitly say: i can support a tag that tag falls back until a good widget class is found
+<madlocke> hope you understand my thinkings :)
+<jamest_> which is basically what we attempt now w/o the classes
+<madlocke> thoughts.
+<jamest_> I'm still of a mind set to keep the number of tags low
+Action: jamest_ hates modern widget sets
+<madlocke> lot of people like modern widget sets
+<jcater> I don't think we are in a position to define a new modern widget set
+<jcater> as there are plenty of them
+<madlocke> not a new one but don't use only old ones
+<dneighbo> madlocke, i will say this...
+<jcater> I could foresee that taking on a life of its own and getting out of hand quickly
+<jamest_> my goal for the gfd was to describe a functionality
+<dneighbo> the more complex the widget set teh harder to support a myriad of UI's
+<dneighbo> but more importantly
+<dneighbo> the most PRODUCTIVE applications i have seen for (business)
+<dneighbo> are old curses terminals
+<dneighbo> on vt100
+<dneighbo> i.e. like unix
+<dneighbo> a little hard to 'learn' but once you learn VERY efficient to use
+<madlocke> dneighbo: may be true. but how much curses terminals are you seeing compared to other solutions
+<dneighbo> um lots
+<jcater> madlocke: a lot 
+<dneighbo> madlocke dont take this wrong
+<madlocke> i don't
+<dneighbo> but what is the biggest organization you have written software for?
+<dneighbo> my last three application domains were
+<dneighbo> 1 org - 13,000 users
+<madlocke> siemens was biggest
+<dneighbo> 100+ orgs - avg 400 users per org
+<dneighbo> 100-+ orgs - avg 100 users per org
+<madlocke> of course i understand that it is very important to have basic
+<dneighbo> all of these pretty much had thier CORE applications as curses base
+<madlocke> stuff that is working but by denying new things it is difficult to make
+<madlocke> a step forward
+<dneighbo> and auxillary lesser applicatoins in gui or combo gui/curses
+<dneighbo> now when you start talking software that serves only a fist full of orgs
+<dneighbo> that are minimum users
+<dneighbo> you rarely see gui
+<dneighbo> btw: i am NOT ANTI gui
+<dneighbo> just saying all the bells and whistles of complex widget sets dont == better software
+<jamest_> I'm not anti-gui either
+<jamest_> but
+<madlocke> i don't tell that the software gets better. i just think it attracts more users
+<jcater> I agree with jamest_, though, that we are describing a "functionality" in a GFD, not necessarily a "widget layout"
+<jamest_> what I like now is
+<jamest_> that I can show a .gfd to a non-programmer
+<jamest_> and they can "get" it
+<madlocke> so you want that people are able to create forms without designer easily
+<madlocke> if i understand correctly
+<jamest_> um, not exactly
+<jamest_> damn
+<jamest_> i have to go
+<jcater> that should always be a possibility
+<jcater> but I don't think that's the main point
+<jamest_> this meeting is with my boss
+<dneighbo> i think a primary point of gnue has always been
+<jcater> when you start tying to specific layouts/widgets/etc, you can quickly create a UI-specific application
+<madlocke> jamest_: you know how long it takes?
+<dneighbo> that its more a business analyst tool 
+<dneighbo> than a programmer tool
+<dneighbo> read you should have to be a C hacker to use gnue and extend applications
+<dneighbo> s/should/shouldnt
+<madlocke> hm
+<madlocke> i was reading about some people asking for trees and other widgets. how are you thinking about this?
+<madlocke> dneighbo, jcater?
+<madlocke> not support it, later support it?
+<jcater> I think the consensus was those would be custom widgets that we would not support
+<jcater> but would provide hooks for those who "insisted" they need them
+<jcater> iirc
+<dneighbo> btw: im not opposed to 'extended' widgets
+<dneighbo> so say a tree widget
+<dneighbo> we could have that
+<dneighbo> and support it in the ui's that can support it
+<dneighbo> but we make it a 'use at own risk'
+<dneighbo> and we dont use it for GNUe Apps that are official
+<dneighbo> i.e. i think we are willing to let widgets make it into cvs
+<dneighbo> but we would put that we dont support them so if the original author stops supporting them you are SOL
+<madlocke> ok. then we need some docs/specs about this
+<dneighbo> i.e. we arent opposed to people making gnue fit their needs
+<dneighbo> but we dont want to drag down the principals of gnue for specific usages
+<dneighbo> i.e. gnue's goal is to be 'all things to all people' ;)
+<madlocke> the widgets supported at the moment by gnuef define the standard already or is it too much/less?
+<dneighbo> the current thinking is start simple
+<dneighbo> lets get entry/label/etc working WELL
+<dneighbo> and supported on many different UI's
+<dneighbo> and used in applications
+<dneighbo> then lets see what other widgets could be really beneficial and such and look at implementing them
+<dneighbo> i.e. classic lets do a few things really well
+<dneighbo> instead of a lots of things really bad
+<madlocke> k
+<madlocke> ok
+[11:27] Last message repeated 1 time(s).
+dsmith (~dsmith@208.40.56.34) joined #gnuenterprise.
+<madlocke> bbl
+madlocke (madlocke@p50806E21.dip.t-dialin.net) left irc: "Client Exiting"
+ra3vat (ds@195.239.204.226) left irc: "Client Exiting"
+<dneighbo> jcater: you around?
+<jcater> something like that
+<dneighbo> you have navigator working in designer?
+<dneighbo> or better yet.....
+<dneighbo> can you co current cvs and tar it for me?
+<dneighbo> i cant get cvs at work
+<dneighbo> but i need navigator
+<jcater> sure
+<jcater> btw
+<jcater> I think we should do this weekly (automatically)
+<jcater> and post to website
+<dneighbo> yes
+<jcater> (with a disclaimer of course)
+<dneighbo> only i would say nightly
+<dneighbo> if i get access on ash again
+<dneighbo> i will look at setting this up
+<jcater> you don't have ash access?
+<dneighbo> or if you are up to it you can set it up :)
+<dneighbo> jcater: yes i have access, but i dont have sudo/root
+<dneighbo> so cant do many things
+<dneighbo> btw: its my own fault i tossed the password on accident
+<dneighbo> just wanted to clarify that for the logs :)
+<jcater> I'll have that in a sec
+<jcater> my internet conn is slow today
+<jamest_>  /msg jcater actually I paid his wife to toss the password but dont tell him that
+<jcater> dneighbo: http://www.gnuenterprise.org/~jcater/gnue-cvs-020118.tar.gz
+<jcater> anyone mind if I automate that on ash today???
+<jcater> I'm thinking of having gnue-cvs-<date>.tar.gz and keep the last 5 days worth
+<jamest_> jcater: please do
+<jamest_> anything to keep masta away from root
+<jamest_> :)
+<dneighbo> agree
+<dneighbo> on both the automation
+<dneighbo> and keeping me from root
+<dneighbo> please put in like downloads/nightlies/
+<dneighbo> or something
+<dneighbo> if you copy the current one there i will release a story on the home page stating that we offer them now and pointing to the official place
+<jcater> I'm automating now
+<jcater> so give me a few
+<dneighbo> one
+<dneighbo> two
+<dneighbo> three
+<dneighbo> few
+<dneighbo> ok
+<jcater> sigh
+<jcater> is there any way to stop cvs from asking for password
+<jcater> other than ssh certificate?
+<jcater> ping
+<dneighbo> um i dont think so
+<dneighbo> grdcvs
+<dneighbo> what is that?
+<dneighbo> reports daemon?
+<dneighbo> i.e. report server?
+<jcater> ah, nevermind
+<jcater> yip
+<jcater> http://www.gnuenterprise.org/snapshots/
+<dneighbo> cool
+<dneighbo> we should probably put under downloads/snapshots
+<dneighbo> as would like to get to point where you can go to downloads/
+<jcater> well, I used an Apache Alias
+<dneighbo> and get variety of things
+<jcater> lemme figure out that
+<dneighbo> ok cool
+<jcater> as it's actually in a subdirectory in my home
+<dneighbo> i think downloads/ already exists
+<jcater> ok, then I should be able to alias it there
+<jcater> http://www.gnuenterprise.org/download/snapshots/
+<jcater> how's that?
+<jcater> dneighbo: you might wanna do an index.php or something
+<dneighbo> should be downloads
+<dneighbo> as there is gnuenterprise.org/downloads/
+<dneighbo> and if possible if the file really exists under that same structure so
+<jcater> argh
+<jcater> ok
+<dneighbo> 'snapshots' show up in that listing
+<dneighbo> there is an 'option' in apache for dir listings we can turn on that will make it so you can see whole file name as well
+<jcater> your wife must be really patient
+<jcater> ;)
+<dneighbo> :)
+<dneighbo> its not high priority
+<dneighbo> you can leave as is
+<dneighbo> im happy just to have it done nightly :)
+<jcater> ok
+<jcater> I forgot downloads was there
+<jcater> so I just created a symlink
+<jcater> that way it'll show up in /downloads list
+<jcater> as an Alias won't
+<dneighbo> right
+<dneighbo> cool
+<dneighbo> jcater r0x0r
+<dneighbo> jcater: can you programmatically manipulate or tie code to navigator
+<dneighbo> ex: im writing a library management system :)
+<dneighbo> i have a menu : circulation
+<dneighbo> with option
+<dneighbo> check in
+<dneighbo> check out
+<dneighbo> well never mind i need to think about this some more, but the question would still be valid....
+<jcater> hmm
+dres_ (dres@4.18.171.42) left irc: Read error: 104 (Connection reset by peer)
+<jcater> I could only provide an invalid answer at the moment
+dres_ (~dres@4.18.171.42) joined #gnuenterprise.
+<dneighbo> actually one i see as interesting is 'sorting'
+<dneighbo> currently we dont have way to sort (other than hardcode in form)
+<dneighbo> and then via triggers
+<dneighbo> but could have a 'sort' menu
+<dneighbo> and based on selection call trigger to resort
+<dneighbo> or is there better way to handle this?
+Action: dneighbo is thinking
+<jcater> definitely
+<dneighbo> type="trigger" location="way to define trigger name"
+<dneighbo> definitely better way to handle right now?
+Action: jamest_ smacks dneighbo
+<jamest_> no more features until after next release!
+<jamest_> :)
+Action: dneighbo isnt sure why
+<dneighbo> im not saying put it in right now
+<dneighbo> i just always state everytime i go to write something i hit 'walls', so get frustrated and stop :)
+Yurik (~yrashk@gw.telcos.net.ua) joined #gnuenterprise.
+<Yurik> re
+<dneighbo> so i am asking... is there a way to do it that im not thinking of?
+<jamest_> dneighbo: I'm talking the sort
+<dneighbo> i.e. how are you doing sorting currently
+<jamest_> and I'm basically giving you crap
+<jcater> at the datasource level
+<jamest_> as I need field sorting in forms too
+<jamest_> bbias
+jamest_ (jamest@hobbes.math.ksu.edu) left irc: "[x]chat"
+<dneighbo> jcater: i mean i know sorting is 'supported'
+<dneighbo> but i mean 'dynamic' sorting
+<dneighbo> at run time
+<jcater> not there yet
+<dneighbo> only way i can think of is make buttons
+<dneighbo> and have them issue triggers
+<jcater> I think that'll tie into your lookup box
+<dneighbo> so my question was
+<dneighbo> if we put trigger calls in navigator
+<dneighbo> then you could have
+<dneighbo> Sort
+<dneighbo>   -- By something
+<dneighbo>   -- by other something
+<dneighbo> in a menu
+<dneighbo> that called the trigger to resort the form
+<dneighbo> if that makes sense
+<dneighbo> not best 'long' term solution
+<dneighbo> but would give us sorts dynamically today
+<dneighbo> and shouldnt break forms as it would be in navigator
+<dneighbo> reinhard: the release thing
+<dneighbo> er re: not reinhard 
+<dneighbo> but im just talking out loud
+<dneighbo> i see other uses of being able to call triggers from menus
+<dneighbo> like for launching external processes or such
+<jcater> but what trigger would it call?
+<jcater> as navigator would create a forms instance
+<jcater> but how would calling a trigger before hand help?
+<dneighbo> ?"
+<dneighbo> im thinking
+<dneighbo> i open a form
+<dneighbo> it has data in it
+<dneighbo> then i choose sort->by title
+<dneighbo> and it 'requeries' the open dataset by title
+<jcater> ok
+<jcater> not sure I see that as part of navigator, though
+<dneighbo> sigh
+<jcater> but that "shouldn't" be hard
+<dneighbo> it wouldnt be 'part' of navigator
+<dneighbo> im thinking navigator just calls a trigger
+<dneighbo> and the code in the trigger does the requery/sort
+<dneighbo> i.e. we add generic trigger support to navigator
+<dneighbo> so
+<dneighbo>       <step type="trigger" src="myfile.py" location="resort('title')"
+<dneighbo>             description="something"/>
+<dneighbo> might be a sample 'navigator' definition
+<dneighbo> if that makes sense?
+<dneighbo> i dont profess to understand navigator internals so maybe its way off base
+jamest_ (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+<dneighbo> but i see value to being able to call triggers from the menu system
+<dneighbo> this would just be using that feature to do sorts
+Action: dneighbo fears that the silence equates to jcater 'reloading'
+<jamest_> menus should work like buttons
+<jamest_> which just call triggers
+<Mr_You> hi guys
+Action: jamest_ is jumping into conversation w/o reading logs
+<Mr_You> any comments on the HR proposal?
+<Mr_You> guess its been a while
+<dneighbo> jamest_ that is what i am requesting (i think) ;)
+<jcater> I half agree derek :)
+<jamest_> btw - I'm talking about forms with user def menu entries
+<jcater> I'm not sure how a trigger in navigator would resort a datasource in forms
+<jamest_> the std entries on the forms program might provide hooks but I don't see then being triggers
+<jamest_> navigator supports triggers now?
+Action: jamest_ is out of touch
+<jcater> jamest_: nope
+<jcater> well, nope about triggers
+<dneighbo> couldnt you pass it the information
+<dneighbo> like you pass it datasourcename and field
+<dneighbo> so you create trigger sortit(dsName,field)
+<jcater> not nope about being out of touch
+<jamest_> ouch
+<dneighbo> jcater: well im not saying i know the answers
+<dneighbo> at this point i think calling triggers would be nice
+Action: jamest_ falls back to previous approach......reaches over and smacks derek
+<Mr_You> what is navigator?
+<dneighbo> but making them part of menuing in the 'form frame' will be more critical i think
+<Mr_You> hello?
+<jcater> navigator/ GNUe Navigator is a menuing system for GNUe Forms and Reports. It
+<jcater>            presents a consistent menuing interface (in GUI or Text) based on
+<jcater>            an XML "process definition."  GNUe Navigator uses GNUe Forms or
+<jcater>            GNUe Reports to run the actual forms and reports, so these
+<jcater>            corresponding tools must be installed (i.e., to run forms, GNUe
+<jcater>            Forms must be installed.)
+<Mr_You> sweet
+<Mr_You> its working well?
+<jcater> hehe
+<jcater> define "well"
+<jcater> it works
+<Mr_You> see the article about Linux having 45%-80% Total Cost of Ownership less than Unix on RISC?
+<Mr_You> http://www.vnunet.com/News/1128453
+<Mr_You> gotta be some RedHat spin on it I think tho ;-)
+<Mr_You> they sponsered the stufy
+<Mr_You> study
+<Mr_You> sponsored
+<dneighbo> Mr_You http://goats.gnue.org/~dneighbo/gnue/navigator.png
+<dneighbo> is a navigator i am currently playing with for a small sample library checkout program
+<jcater> dneighbo: it's not functional yet, but try gncvs -u web <file>.gpd
+<jcater> dneighbo: what theme is that?
+<jcater> oh, wait... you use gnome
+<jcater> never mind
+<Mr_You> derek: good start I guess ;-)
+<Mr_You> thats all that matters right now anyways
+<jcater> Mr_You: it's better than nothing :)
+<Mr_You> yeah
+<jcater> it's easier to build on something than to build on nothing
+<Mr_You> but in 10 years I expect GNUe to take out my trash and wash my dishes
+<Mr_You> and pretty little buttons to click on ;-)
+<dneighbo> jcater interesting
+<dneighbo> what are you using as the html viewer?
+<dneighbo> wxhtml?
+<dneighbo> it brings up the front screen but fails on any clicking ( i assume thats what you mean by not functional) :)
+jamest_ (jamest@hobbes.math.ksu.edu) got netsplit.
+jcater (jason@w202.z065105010.mem-tn.dsl.cnc.net) got netsplit.
+nickr (nick@e-172-IP28.empnet.net) got netsplit.
+ajmitch (me@p30-max5.dun.ihug.co.nz) got netsplit.
+reinhard (rm@62.47.45.2) got netsplit.
+jamest (jamest@fh-dialup-201026.flinthills.com) got netsplit.
+gnuebot (eggdrop@mail.libertydistribution.com) got netsplit.
+dres_ (dres@4.18.171.42) got netsplit.
+mdean-[zZzZ] (mdean@mkc-65-28-73-63.kc.rr.com) got netsplit.
+Mr_You (rouzer@mankind.boredom.org) got netsplit.
+derek (derek@cpe-24-221-112-50.az.sprintbbd.net) got netsplit.
+gnuebot (eggdrop@mail.libertydistribution.com) returned to #gnuenterprise.
+jamest_ (~jamest@hobbes.math.ksu.edu) returned to #gnuenterprise.
+dres_ (~dres@4.18.171.42) returned to #gnuenterprise.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) returned to #gnuenterprise.
+nickr (~nick@e-172-IP28.empnet.net) returned to #gnuenterprise.
+ajmitch (~me@p30-max5.dun.ihug.co.nz) returned to #gnuenterprise.
+reinhard (~rm@62.47.45.2) returned to #gnuenterprise.
+jamest (~jamest@fh-dialup-201026.flinthills.com) returned to #gnuenterprise.
+derek (~derek@cpe-24-221-112-50.az.sprintbbd.net) returned to #gnuenterprise.
+mdean-[zZzZ] (~mdean@mkc-65-28-73-63.kc.rr.com) returned to #gnuenterprise.
+Mr_You (rouzer@mankind.boredom.org) returned to #gnuenterprise.
+#gnuenterprise: mode change '+o gnuebot' by adams.openprojects.net
+jamest_ (jamest@hobbes.math.ksu.edu) got netsplit.
+jamest (jamest@fh-dialup-201026.flinthills.com) got netsplit.
+reinhard (rm@62.47.45.2) got netsplit.
+nickr (nick@e-172-IP28.empnet.net) got netsplit.
+jcater (jason@w202.z065105010.mem-tn.dsl.cnc.net) got netsplit.
+ajmitch (me@p30-max5.dun.ihug.co.nz) got netsplit.
+gnuebot (eggdrop@mail.libertydistribution.com) got netsplit.
+Mr_You (rouzer@mankind.boredom.org) got netsplit.
+mdean-[zZzZ] (mdean@mkc-65-28-73-63.kc.rr.com) got netsplit.
+dres_ (dres@4.18.171.42) got netsplit.
+derek (derek@cpe-24-221-112-50.az.sprintbbd.net) got netsplit.
+Mr_You (rouzer@mankind.boredom.org) returned to #gnuenterprise.
+mdean-[zZzZ] (~mdean@mkc-65-28-73-63.kc.rr.com) returned to #gnuenterprise.
+derek (~derek@cpe-24-221-112-50.az.sprintbbd.net) returned to #gnuenterprise.
+jamest (~jamest@fh-dialup-201026.flinthills.com) returned to #gnuenterprise.
+reinhard (~rm@62.47.45.2) returned to #gnuenterprise.
+ajmitch (~me@p30-max5.dun.ihug.co.nz) returned to #gnuenterprise.
+nickr (~nick@e-172-IP28.empnet.net) returned to #gnuenterprise.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) returned to #gnuenterprise.
+dres_ (~dres@4.18.171.42) returned to #gnuenterprise.
+jamest_ (~jamest@hobbes.math.ksu.edu) returned to #gnuenterprise.
+gnuebot (eggdrop@mail.libertydistribution.com) returned to #gnuenterprise.
+#gnuenterprise: mode change '+o gnuebot' by adams.openprojects.net
+<dneighbo> qty=avg(jcater.donut.consumption.count)
+<dneighbo> donuts=derek.fetchDonuts(jcater.favorites.donutshop, qty)
+<dneighbo> send.gift(dontus, jcater.location)
+<dneighbo> er
+<dneighbo> send.gift(donuts, jcater.location)
+<ajmitch> hehe
+<nickr> send.gift raised exception ETOOMANYDONUTS
+<jcater> jcater.eat(donuts[:12])
+<jcater> derek.returnDonuts(donuts[12:])
+<jcater> err...
+<jcater> jcater.eat(donuts[:12])
+<jcater> freezer.store(donuts[12:])
+dsmith (dsmith@208.40.56.34) left irc: Read error: 60 (Operation timed out)
+Action: Yurik is cruel.. f*cking rudder simulator, can't be calibrated! arghhh...
+<dneighbo> debian is funny
+<nickr> how so?
+<dneighbo> i think i have like 6 versions of python now :)
+<dneighbo> as different packages require different versions :)
+<dneighbo> so i have like
+<dneighbo> 1.5
+<dneighbo> 2
+<dneighbo> 2.1
+<dneighbo> 2.2
+<dneighbo> er so i guess only 4 not 6
+<dneighbo> how can you see packages on your system nickr?
+<dneighbo> dpkg --list
+<dneighbo> or soemthing
+<nickr> dpkg --list
+<nickr> yes
+<nickr> dpkg --list |grep python
+<nickr> the problem is packages depend on different versions
+<dneighbo> wright:/home/dneighbo/library/pyslcs# py    
+<dneighbo> pydoc              pygtk-codegen-1.2  python2            python2.2
+<dneighbo> pydoc2.1           python             python2.0          
+<dneighbo> pydoc2.2           python1.5          python2.1          
+<dneighbo> wright:/home/dneighbo/library/pyslcs# py
+<nickr> although 1.5 and 2 are probablpy disposable if you're using unstable
+<nickr> unless you need them
+<nickr> or unless gnucash depends on one of em
+<nickr> sam situation as with perl, really
+<nickr> deborphan could probably help you find what you can get rid ogf
+Action: Yurik is annoyed by this rudder joystick and thinks to hach code a little
+<Yurik> did anybody used Vesta (Configuration Management System by COMPAQ)?
+<dneighbo> nickr i actually had to go GRAB 1.5.2 to run something :)
+<dneighbo> but jcaters kick ass new cvs installer
+<jamest_> <dneighbo> qty=avg(jcater.donut.consumption.count)
+<jamest_> error: integer overflow
+<dneighbo> told me of all the other 2.x versions
+<dneighbo> jamest_ roflmao
+<dneighbo> well there for a while i had to kill my cron.d job
+<dneighbo> if jcater.gnue.commit.count < 10:
+<dneighbo>   bayonne.dial(911)
+<dneighbo> though w/ his designer exploits of late maybe i should reinstitute it
+<jamest_> dneighbo:I'm running 2.1 only debian systems just fine
+<jcater> me too
+<jcater> :)
+<dneighbo> welll arent you cool
+<dneighbo> i made mistake of getting 2.2 out of box
+<dneighbo> then wx installed 2.1 (my default)
+<dneighbo> some other package installed 2.0 (i dont recall which one)
+<dneighbo> and then i just got 1.5.2 for other purposes
+Action: Yurik is hacking on specification
+reinhard (rm@62.47.45.2) left irc: "There's always one more imbecile than you expect"
+<jamest_> yes, yes we are cool
+<jamest_> :)
+<jcater> rofl
+<jcater> I just love reinhards messages
+Action: Yurik -> smoke
+Action: Yurik is back
+gnuebot (eggdrop@mail.libertydistribution.com) got netsplit.
+jamest_ (jamest@hobbes.math.ksu.edu) got netsplit.
+jcater (jason@w202.z065105010.mem-tn.dsl.cnc.net) got netsplit.
+jamest (jamest@fh-dialup-201026.flinthills.com) got netsplit.
+nickr (nick@e-172-IP28.empnet.net) got netsplit.
+ajmitch (me@p30-max5.dun.ihug.co.nz) got netsplit.
+dres_ (dres@4.18.171.42) got netsplit.
+Mr_You (rouzer@mankind.boredom.org) got netsplit.
+mdean-[zZzZ] (mdean@mkc-65-28-73-63.kc.rr.com) got netsplit.
+derek (derek@cpe-24-221-112-50.az.sprintbbd.net) got netsplit.
+Yurik (yrashk@gw.telcos.net.ua) left irc: Read error: 54 (Connection reset by peer)
+gnuebot (eggdrop@mail.libertydistribution.com) returned to #gnuenterprise.
+Mr_You (rouzer@mankind.boredom.org) returned to #gnuenterprise.
+mdean-[zZzZ] (~mdean@mkc-65-28-73-63.kc.rr.com) returned to #gnuenterprise.
+derek (~derek@cpe-24-221-112-50.az.sprintbbd.net) returned to #gnuenterprise.
+jamest (~jamest@fh-dialup-201026.flinthills.com) returned to #gnuenterprise.
+ajmitch (~me@p30-max5.dun.ihug.co.nz) returned to #gnuenterprise.
+nickr (~nick@e-172-IP28.empnet.net) returned to #gnuenterprise.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) returned to #gnuenterprise.
+dres_ (~dres@4.18.171.42) returned to #gnuenterprise.
+jamest_ (~jamest@hobbes.math.ksu.edu) returned to #gnuenterprise.
+#gnuenterprise: mode change '+o gnuebot' by adams.openprojects.net
+chillywilly (~danielb@d15.as21.nwbl0.wi.voyager.net) joined #gnuenterprise.
+jamest_ (jamest@hobbes.math.ksu.edu) left irc: "[x]chat"
+<dneighbo> Mr_You if you wanted to look at navigator
+<dneighbo> ~/bin/gncvs http://goats.gnue.org/~dneighbo/gnue/library/library.gpd
+<dneighbo> subsitute ~/bin/gncvs w/ a binary for navigator (from cvs)
+<dneighbo> and voila you should get something
+<dneighbo> jcater: pretty cool that those run remotely :)
+<dneighbo> off to pick up cdrom drive, drugs for wife and then out to dinner, wont make it back till pretty late i imagine...
+dneighbo (dneighbo@mail.libertydistribution.com) left irc: "[BX] Time wasted: 7 millenia 5 centuries 3 decades 6 years 3 months"
+madlocke (madlocke@p50806A58.dip.t-dialin.net) joined #gnuenterprise.
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+<ajmitch> hey psu, madlocke
+<madlocke> hey ajmitch
+<psu> hi aj
+<madlocke> jamest,jcater: you should get mail soon... :)
+<psu> Kernel Cousins #12 has gone to Zack
+<psu> expect to see it up sometime over the weekend
+<ajmitch> cool
+<madlocke> you are doing great work with this! thx
+Action: ajmitch doesn't think he's read 9, 10, 11 yet ;)
+<psu> aj - I haven't quoted you for a while
+<psu> so probably no need ;-)
+<psu> madlocke - thanks for the suggestion re topics
+<ajmitch> i still need to keep up with what's happening ;)
+<psu> It turned out that Zack had been having similar thoughts
+<psu> and we got something in place fairly quickly
+<psu> http://kt.zork.net/GNUe/topics.html
+<psu> This works well for something like GNUe
+<psu> which is a significant number of sub-projects in one
+<psu> Quite how Zack's going to apply it to the main Kernel Traffic summaries
+<psu> I have no idea - I would expect topics to be all over the place
+<madlocke> cool
+<psu> Zack's been doing the main Kernel Traffic now for three years
+<psu> Got slashdotted this week
+<ajmitch> hey i was quoted in #10, no fair :)
+<madlocke> wow
+Action: ajmitch wonders whether he should just help with GNUe packaging
+jcater (jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "Client Exiting"
+<ajmitch> i should talk to jbailey when i see him next :)
+<psu> we now have a debian maintainer
+<psu> and possibly an rpm maintainer via Ximian 
+<psu> AFAIK
+<ajmitch> who's the debian maintainer?
+<ajmitch> i see someone's willing to do GEAS, what about other GNUe software?
+<nickr> I have gnue-* in my package list
+<nickr> nick@piggy:~$ apt-cache search gnue
+<nickr> gnue-common - The shared library for many items of the GNU Enterprise Framework
+<nickr> gnue-designer - A Rapid Application Development tool for GNU Enterprise.
+<nickr> gnue-forms - An XML-based forms painter
+<psu> I think he was "persuaded" to do the lot
+<ajmitch> heh cool
+<ajmitch> saves me from having to do work then ;)
+<nickr> hrm, it has a bug
+<nickr> it doesn't depend on wxpython
+<psu> You could always do some docs ;-)
+<psu> nickr - I thought the python version did
+<ajmitch> i'm currently doing some dotgnu packages & will do a dcl one, anyway
+<psu> which is all we really have at moment
+<nickr> psu: the package doesn't Depend on it like it should
+<psu> should be "Recommended" instead?
+<nickr> designer requires it
+<nickr> and it doesn't Depend: like it should
+<psu> oops
+<nickr> hrm, and pyxml
+<psu> "I'd raise a bug against the package if I were you"
+<psu> heard someone say that last week 
+<psu> sounded cool
+<psu> might even have been you
+<nickr> Yea, I'll do it
+<psu> ;-)
+<nickr> Yes I suggest that people file bugs all the tim e:
+<psu> reported bugs tend to get fixed quicker than unreported ones ;-)
+<nickr> yea
+Yurik (~yrashk@gw.telcos.net.ua) joined #gnuenterprise.
+<Yurik> re
+<ajmitch> hi
+<Yurik> ajmitch hi
+Action: chillywilly fears the ximian wrath
+<Yurik> chillywilly hi
+<nickr> kay, i just submitted like 4 bugs. :)
+<chillywilly> howdy Yurik
+Action: Yurik is sleepy (hasn't sleep for 2 days) but still is working :-)
+<chillywilly> hey wxgtk is borked in sid
+<chillywilly> you can't even run designer
+<chillywilly> there was a bug filed by a someone in #debian who I was talking to about i
+<chillywilly> it
+<madlocke> Yurik: damn 24h power supply ;)
+<psu> oops
+<psu> +0000  = time for bed
+<chillywilly> never
+<chillywilly> isn't it the weekend?
+<chillywilly> party all night
+Action: Yurik likes WEs :-)
+Action: chillywilly couls use a beer
+<madlocke> psu: where are you from?
+Action: psu has to be up in 4 hours
+<chillywilly> psu: gah, why?
+<psu> madlocke - UK, so +0000 UTC
+<psu> early train to London to see mother
+<madlocke> psu: ah... just was asking because CEST for me... germany...
+Action: Yurik is +02
+<psu> it's her birthday
+<madlocke> psu: not much people near my time zone :)
+Action: chillywilly is -4
+<chillywilly> afaik
+<chillywilly> or is it -5
+<madlocke> +1
+<chillywilly> bah,who cares
+<psu> EST is -5
+<chillywilly> time zones suck
+Action: chillywilly is CST, along with jcater and jamest
+Action: Yurik doesn't remember the exact number, but remembers that his TZ is EET :-)
+<psu> set your clocks to UTC like real hackers ;-)
+<madlocke> psu: erm.. should bit gmt+1 with daylight savings
+<nickr> chillywilly: theres a depends problem, and then theres a build problem
+<chillywilly> yup
+<nickr> chillywilly: I filed bugs for all of em, shoulda checked first though
+<nickr> but I love filing bugs
+<Yurik> btw, dudes, did anybody used BitKeeper?
+<psu> madlocke - daylight saving is Apr/May to Sep/Oct for us
+<madlocke> yep
+<psu> Used to confuse me like crazy when i used to listen to BBC World Service
+<psu> they always do time in GMT/UTC
+<ajmitch> heh
+<psu> so it was right half the year, wrong half the year for me
+<ajmitch> +1300 here
+<psu> +1300 is logically impossible
+<ajmitch> logically, yes ;)
+<psu> s/logically/theoretically
+<madlocke> grin...
+<ajmitch> or you might call it +13
+<ajmitch> good thing i'm not in NZ-CHAT timezone ;)
+<psu> anyway, really must go to bed now
+<Yurik> psu good night
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise.
+<jamest> ping
+<madlocke> Yurik: bitkeeper has this ugly "pricing" section ;)
+<madlocke> jamest: pong
+<Yurik> madlocke I know, but they do provide "free" version
+<Yurik> madlocke and I can't understand where limitations are
+<Yurik> madlocke and what are the license terms exactly means :-)
+Action: madlocke today figured out how expensive installshield license is :((
+<jamest> madlocke: inno
+<madlocke> what's "inno"?
+<Yurik> the problem is I don't want use CVS.. 
+<jamest> free windows installer
+<jamest> pretty nice
+<madlocke> ah thx... have to look for it
+<jamest> we use it to make win exe of forms/designer
+<jamest> so you can find sample config's in our cvs
+<madlocke> hey, great
+Action: Yurik is listening Rammstein
+<madlocke> Yurik: very funny... a lot of people in russia/ukraine seem to like rammstein...
+<madlocke> lot of people there asked me what the texts mean :)
+chillywilly (danielb@d15.as21.nwbl0.wi.voyager.net) left irc: Read error: 60 (Operation timed out)
+<Yurik> madlocke I don't like Rammstein really, only few songs and only in special (bad) mood
+<madlocke> Yurik: means you are in special bad mood at the moment?
+<Yurik> madlocke especially Engel, Du Hast, Buck Dich (?)..
+<Yurik> madlocke well, yes
+<madlocke> bueck dich ;)
+<madlocke> better you don't understand what  it means ;)
+<Yurik> what does it means, I really interested :-)
+<Yurik> and too lazy to go to the translate.ru or altavista :-)
+madlocke (madlocke@p50806A58.dip.t-dialin.net) left irc: "Client Exiting"
+madlocke (madlocke@p50806A58.dip.t-dialin.net) joined #gnuenterprise.
+<madlocke> ... hm was the wrong [x] button :)
+<Yurik> madlocke so what does Du Hast and Beck Dich means? :-)
+<Yurik> s/Beck/Bueck/
+Action: Yurik has Bueck Dich video :-)
+<madlocke> du hast is difficult to translate because it is playing with words...
+<madlocke> can mean: you hate or you have
+<Yurik> madlocke thanks :-) and what about bueck dich? :)
+<madlocke> bueck dich ... erm... 
+<madlocke> let me look for the full text before i translate this ;)
+<Yurik> hehe
+<Yurik> btw, is Mutter = Mother?
+<madlocke> yes it is
+Nick change: mdean-[zZzZ] -> mdean
+Action: Yurik studied deutch for ~ half-year in school (4th or 5th class)
+<madlocke> you could say bueck dich to a b*tch if you are willing to insert something ... but really a bit off topic :)
+<Yurik> madlocke hehe
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<ajmitch> yo jcater
+<jcater> 'sup my kiwi friend
+<ajmitch> at the moment, not much, just uploaded some packages
+<jcater> uni started back?
+<mdean> jcater!
+<madlocke> Yurik: trying to learn russian at the moment ;)
+<jcater> mdean!!
+<mdean> jcater!!!
+<jcater> 'sup my kansas city friend?
+<Yurik> madlocke russian? it is my native language
+<ajmitch> uni does not start til late feb ;)
+<jcater> ajmitch: wow
+<mdean> finally getting some snow :)
+<jcater> mdean: ack!
+<jcater> that means we will soon
+<ajmitch> it's summer here
+<madlocke> Yurik: i know as i was seeing your domain is .ua
+<jcater> ajmitch: oh, yeah... 
+Action: jcater is horrible w/geography
+<Yurik> madlocke yep. I speak both in Russian and Ukranian
+<Yurik> madlocke Here is a lot of people having russian as native
+<Yurik> madlocke Ukranian is my second native, since I speak ukranian fluently
+<mdean> jcater: going to send in my FSF GNUe paperwork tomorrow :)
+<madlocke> how much different is ukranian?
+<jcater> mdean: rock!
+<jcater> mwahahaha
+<Yurik> madlocke it is much closer to Polish in some issues, somewhere to Russian, but russians can understand ukranians and vice versa (well, in common lexicon)
+<Yurik> madlocke and ukranians usually can understand poles and vice versa :-))
+<madlocke> but poles can't russians and vice versa as is was figuring out ;)
+<Yurik> madlocke well, something like this :)
+jcater (jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "I hope the drive home today is drier and warmer"
+Action: Yurik started Du Hast video
+jcater (~jason@24.92.70.201) joined #gnuenterprise.
+Action: Yurik started Rammstein - Sonne video
+<madlocke> grin... this rammstein guy :)
+<Yurik> finished ;)) Du Riechst So Gut :-)
+<derek> the something is so good?
+<Yurik> derek what is so good?
+<derek> Yurik: riechst
+<derek> i assumed that me
+<derek> the riechst is so good
+<derek> but i dont knmow what riechst is
+<madlocke> ;)
+<madlocke> derek: it means: you smell so good
+<Yurik> I don't know too
+<Yurik> madlocke hehe :-)
+<derek> btw: i like rammenstein a lot
+<derek> but i have no clue of what they are saying :)
+<madlocke> derek: not every song is so nice ;)
+<Yurik> derek I listen Rammstein on a bad mood only ;-)
+Action: Yurik feels himself rotten but quite ironic 
+<derek> i listen to rammstein to put me in a good mood :)
+<derek> good programming muzak
+<Yurik> (du hast is playing)
+Action: derek grabbed chord charts for du hast
+<madlocke> a bit different of the pop bands that germany is pushing ;)
+<derek> and played the riff once or twice on guitar, but really that song doesnt have 'consistent' guitar riff
+<Yurik> derek do you play guitar?
+<madlocke> like no angels i.e. don't know if you've heard about them
+<derek> Yurik: if you use the term 'play' VERY loosely then yes i play the guitar
+<derek> im just learning, but have good teachers :)
+Action: Yurik hasn't learnt playing guitar, only flute and piano, for 5 years
+<derek> madlocke if you have german mp3's of groups similar to rammenstein please let me know
+<derek> i would love to hear some of it
+Action: madlocke tried to learn to play the guitar too... without teacher...
+Action: madlocke played the piano for about 7 years...
+<madlocke> derek: no, but could get some....
+<Yurik> madlocke and me too ;) to extend my library of such kind of music... I really have a bad habit to mope
+Action: madlocke has the long hair you need for playing the guitar ;)
+Action: Yurik cut long hairs off few years ago
+Action: derek is just looking for stuff other than the stuff i hear all the time now :)
+<madlocke> there is a interesting song from knorkator... called (translated) show me the way down...
+<madlocke> text is about going down... listening to the text you realize that the
+<madlocke> guy is digging through earth...
+Action: derek is away: dinner & movie
+<derek> bbs to test and torture muhahahaha
+<madlocke> then he sees light and a kangoroo ;)
+<Yurik> madlocke heh :) 
+<madlocke> it should be australia which is on the other side ;)
+<Yurik> the most interesting thing that I have stopped listening hard music years ago
+<Yurik> and in a good mood listens another music...
+<Yurik> more pretty ;)
+<madlocke> the music i am listening depends very much on my mood too of course.
+<Yurik> kinda art-rock...
+<Yurik> blues
+<Yurik> rock-operas (I like them very much!)
+<Yurik> and so on..
+<madlocke> unfortunately i don't have any good blues...
+<derek> away for real now :)
+<derek> bbl
+<madlocke> cu
+<Yurik> derek cu
+Yurik (yrashk@gw.telcos.net.ua) left irc: Remote closed the connection
+Yurik (~yrashk@gw.telcos.net.ua) joined #gnuenterprise.
+dsmith (~dsmith@oh-strongsville5a-64.clvhoh.adelphia.net) joined #gnuenterprise.
+Action: Yurik is listening WaterFront
+Action: ajmitch is listening to Thief
+<madlocke> don't know waterfront... what does this tell me about your mood? ;)
+<Yurik> madlocke small unknown norwegian group. just a pause between rammstein sonnes ;)
+Action: Yurik becomes feels himself more ironic than rotten. for certain amount of time :)
+Action: Yurik transforms again. ironic-rotten-melanholic.. brrhh. this transformatios... they're too fast ;)
+Isomer (~perry@210-86-58-26.jetstart.xtra.co.nz) joined #gnuenterprise.
+<ajmitch> hey Isomer
+<Isomer> mornin'
+Nick change: mdean -> mdean-[moovee]
+colonel (arun@61.1.229.172) joined #gnuenterprise.
+Action: Yurik is listening Aznavour 
+Action: Yurik started to listen the "misc" collection... Doors here :)
+<Yurik> Alabama song
+<Yurik> Frank Sinatra - Jingle Bells. god, it is cool to make the playlist unsorted :-)
+<madlocke> weird... :)
+<Yurik> hehe
+<Yurik> well, back to Rammstein, this list seems to be sentimental for me now
+Action: Yurik is taking shuff (medicated n99, snuff)
+Action: Yurik prepares cola with coffee
+<madlocke> cu
+<Yurik> vigor :-)
+madlocke (madlocke@p50806A58.dip.t-dialin.net) left irc: "Client Exiting"
+<Yurik> great swill
+<Yurik> or mash? :)
+colonel (arun@61.1.229.172) left irc: Read error: 113 (No route to host)
+Action: Yurik -> smoke
+Action: Yurik is back
+Action: Yurik got few hallucination... well, I'm really to sleepy..
+jbailey (~jbailey@HSE-Toronto-ppp317871.sympatico.ca) joined #gnuenterprise.
+jbailey (jbailey@HSE-Toronto-ppp317871.sympatico.ca) left irc: "Client Exiting"
+chillywilly (~danielb@d35.as21.nwbl0.wi.voyager.net) joined #gnuenterprise.
+<Yurik> chillywilly sup
+<chillywilly> hey
+Action: Yurik is drinking coffee and is trying not to sleep, on principle. 
+<jcater> chillywilly: 'sup, dawg?!?
+<chillywilly> just watched the bucks break out a can on the magic
+anderman (~anderman@rdu88-244-127.nc.rr.com) joined #gnuenterprise.
+anderman (~anderman@rdu88-244-127.nc.rr.com) left #gnuenterprise ("Client Exiting").
+Action: jcater needs a donut
+<jcater> +-
+<chillywilly> --+
+<jcater> +---
+<chillywilly> +------
+<Mr_You> blah blah, need to go snowboarding
+<jcater> "blah blah"
+<chillywilly> heh
+<jcater> is that NC for "Hello"?
+<chillywilly> nah that would be werchadoin'
+<Mr_You> North Cackalack
+<jcater> "blah blah"
+<jcater> oh, I know
+<Mr_You> howdy is hello 
+<jcater> that's the mating call of a 25 yr married couple
+<Mr_You> hehe
+<Mr_You> man I need a shower
+<chillywilly> yes, I can smell you from here
+<chillywilly> ;P
+<jcater> chillywilly: I think that's the dead trout
+<Mr_You> hehe
+<Mr_You> time to rotate
+<chillywilly> aaaaaaah
+<derek> holy shit
+<derek> aol is staging to buy red hat
+<derek> http://www.washtech.com/news/media/14759-1.htmlb
+<derek> makes sense tw wants them
+<ajmitch> i wonder if it'd go thru
+<derek> as m$ is creeping into media space
+<derek> so only makes sense aol/tw wants to creep into software space
+<derek> already they own aol (msn competition)
+<derek> aim (msn messenger competition)
+<jcater> hmm
+<jcater> this good or bad?
+<derek> netscape (internet explorer competition)
+<derek> jcater: aol is just as evil as ms
+<jcater> imho aol tw is a worse monopoly than m$
+<derek> however in DIFFERENT ways
+<derek> i.e. i think they would probably be PRO keeping software open source to a degree (look at netscape)
+<jamest> brb
+jamest (jamest@fh-dialup-201026.flinthills.com) left irc: "[x]chat"
+<derek> i mean redhat is linux (which is gpl) so there are limits
+<derek> however, i could see them doing things to 'lock microsoft out' :)
+<derek> who knows if they 'understand' that software is a tool and not a 'product'
+<derek> and they find ways to channel content instead it might not be 'that evil'
+jamest (~jamest@fh-dialup-201026.flinthills.com) joined #gnuenterprise.
+<derek> though admittedly its a wash
+<derek> i see it as
+<derek> pro:
+<derek> linux would have as much money as microsoft for once (between ibm, hp and aol throwing money at it)
+<derek> con:
+<derek> aol is as bad or worse than m$ when it comes to business practices 
+<Mr_You> I imagine it would be similar to how Netscape Navigator is developed.. 
+<derek> but i use debian not red hat so dont know how worried to be :)
+<derek> Mr_You: i agree
+<Mr_You> I'll take a guess.. if RedHat gets bought.. it will continue running similar.. will just be in TWs back pocket with huge potential
+<Mr_You> tho RedHat will now have to answer to all of TWs quams
+<Mr_You> which might not be bad
+<Mr_You> yeah the biz practices is the worse con :-((
+<jcater> um
+<jcater> as a publisher
+Action: jcater works in the Magazine industry
+<jcater> TW does not allow competing products to advertise in its magazines typically
+<jcater> to date, M$ Windows is not a competing product
+<jcater> The TW enterprise includes a LOT of magazines
+<jcater> Fortune
+<jcater> People
+<jcater> Time
+<jcater> ad nauseum
+<jcater> (Money, Real Simple, ...)
+<Mr_You> GPL lives off GrassRoots so it will always exist and possibly prevail ;-)
+<jcater> :)
+<Mr_You> its already beginning to prevail around the world in gov't and other orgs
+<Mr_You> I can see M$ becoming more of a niche comparative to Apple
+<Mr_You> who knows ;-)
+<jcater> crap
+<jcater> this is a good article too
+<jcater> http://www.theregister.co.uk/content/4/23736.html
+<jcater> (unrelated to derek's link)
+<jamest> we need a better installer
+<jcater> yes, we do
+<jamest> for the brave
+<jamest> http://www.gnuenterprise.org/~jamest/pre-release/
+<jamest> nevermind
+<jamest> common is broken
+<jcater> s/broken/incomplete
+<jcater> ;)
+<Mr_You> night
+<jcater> nite all
+<jamest> nite
+jcater (jason@24.92.70.201) left irc: "Client Exiting"
+<jamest> NOTE:
+<jamest> forms, designer, common 0.1.1 releases in http://www.gnuenterprise.org/~jamest/pre-release/
+<jamest> they _should_ work fine
+<jamest> nite
+jamest (jamest@fh-dialup-201026.flinthills.com) left irc: "[x]chat"
+--- Sat Jan 19 2002

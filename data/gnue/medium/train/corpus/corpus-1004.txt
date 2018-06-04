@@ -1,0 +1,1019 @@
+Action: jcater is away: sleep
+<jbailey> sheep?
+<jbailey> Baaaaaaahhh.
+Action: ajmitch kicks jbailey
+<dneighbo> jbailey: should i submit bug
+<jbailey> Whatfore?
+<jbailey> dneighbo: Probably, which package?
+<jbailey> ajmitch: What did I do this time?
+<dneighbo> for debs
+<ajmitch> sheep jokes :P
+<dneighbo> ajmitch: says gtk2 isnt in there
+Action: dneighbo was thinking we would do
+<dneighbo> gnue-forms-base
+<dneighbo> gnue-forms-gtk2
+<dneighbo> gnue-forms-curses
+<dneighbo> gnue-forms-wx
+<dneighbo> gnue-forms-curses
+<dneighbo> etc
+<dneighbo> er gnue-forms-html
+<dneighbo> and
+<dneighbo> gnue-common-basse
+<dneighbo> er base
+<dneighbo> gnue-common-pyscopg
+<dneighbo> or such
+<dneighbo> if that makes reasonable sense to you
+<dneighbo> to give people finer grain control of the install
+<jbailey> ajmitch: Nothing wrong with sheep jokes as long as I don't inflict them on NZers, right?
+<jbailey> dneighbo: Yes, I think that's the plan.
+<jbailey> certainly for forms anyway.
+<jbailey> The hard part with doing it too much is that people will never figure out what to install.
+<ajmitch> dneighbo: http://ajmitch.dhis.org/devel/classdocs/ 
+<ajmitch> i've got to find out how to fill in the summary & source, but it gives a useful hierarchy :)
+<ajmitch> hmm, why is it that everyone goes silent when i'm around? :)
+<jbailey> Dunno.  It's a usual phenominon of this channel when actual work is being done.
+<jbailey> I'm in here for 30 minutes thinking about work, no noise.
+<jbailey> I mention sheep and both you *and* derek appear out of thin air. =)
+<jbailey> I tihnk the trick is to make it look like it's not important.
+<jbailey> That way noone gets scared off. =)
+<ajmitch> i appeared a few minutes after your sheep remark ;)
+<ajmitch> i was busy looking at what inherits from what in the source
+fixe (~adam@dsl093-081-253.chi2.dsl.speakeasy.net) left irc: Read error: 110 (Connection timed out)
+<dneighbo> suck gsd importer seems broked
+<dneighbo> jbailey: couldnt we do something like task-gnue
+<dneighbo> for the people that dont want control
+<dneighbo> i was waiting for something not important :)
+Action: dneighbo skitters off again
+<ajmitch> bleh
+<ajmitch> silly derek, running off all the time
+<chillywilly> sheep
+<jbailey> Bed time! =)
+<chillywilly> sheeple even
+jbailey (~jbailey@65.48.140.35) left #gnuenterprise ("Client Exiting").
+<chillywilly> night
+<chillywilly> blah
+<chillywilly> jbailey sucks wet sheep farts
+<chillywilly> ;)
+Action: chillywilly should watch the clone wars again
+<chillywilly> that might make me feel better
+<chillywilly> :)
+Action: chillywilly goes off to read HHGG
+KeithJagrs (trilluser@63.74.24.9) left irc: "later"
+<dneighbo> yummy wet sheep farts
+rdean (~rdean@12-221-229-247.client.insightBB.com) joined #gnuenterprise.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: "Free Your Enterprise! - http://www.gnuenterprise.org"
+fixe (~adam@dsl093-081-253.chi2.dsl.speakeasy.net) joined #gnuenterprise.
+<dneighbo> woo hoo
+<dneighbo> gnue-sb has working item management !
+<ra3vat> is it committed?
+<dneighbo> yeah but not the main maint screen
+Action: dneighbo forgot that one
+<dneighbo> duh...
+<ra3vat> what gcvs is for?
+<dneighbo> it wraps common
+<dneighbo> so say you write a script myfoo.py
+<dneighbo> that usues common
+<dneighbo> instead of having to set python paths you can just do
+<dneighbo> gcvs myfoo.py
+<ra3vat> oh, good thing
+<dneighbo> which is nice since the gsd converter uses common but isnt a real script as of yet
+<dneighbo> gcvs Scripter.py mycool.gsd postgresql > newpsql.sql
+<dneighbo> anyone else using cvs?
+<dneighbo> combo boxes seem broken for me
+<dneighbo> the data shows up in the list
+<ra3vat> how to do .gsd -> .sql for postgres db?
+<dneighbo> but when you select it, the value doesnt seem to stick
+Action: dneighbo needs to debug
+fixe (~adam@dsl093-081-253.chi2.dsl.speakeasy.net) left irc: Read error: 110 (Connection timed out)
+<ra3vat> combo box = dropdown? it works here
+<ra3vat> thanks, you answered my question before i ask :)
+<dneighbo> ~/bin/gcvs ~/cvs/gnue/common/src/schema/scripter/Scripter.py schema.gsd postgresql > PgSQL/schema.sql 
+<dneighbo> ra3vat: hmmm
+<dneighbo> my form or data must be hosed but im not getting errors
+<ra3vat> dneighbo: are you saying it works badly when you use mouse to choose?
+<ra3vat> i've asked jamest about it, it is a known issue
+<dneighbo> ?
+<dneighbo> yeeehaw combobox works for me now
+<dneighbo> old designer seems have typecast some fields that dont work with new schema
+<dneighbo> fixed those up and all is well
+<dneighbo> you know how to use format masks?
+<dneighbo> if so i think i will have a pretty sweet form for item maintenance ready
+<dneighbo> woo hoo tab order fixed
+<dneighbo> format masks are about all i need
+Action: dneighbo goes to find developer doc
+<dneighbo> gack its almost 2am
+Action: dneighbo must think he is ajmitch or something
+<ra3vat> have not tried format masks yet
+<ra3vat> :)
+btami (~btami@3e70d725.dialin.enternet.hu) joined #gnuenterprise.
+<btami> good morning all
+<ra3vat> hi btami
+<btami> hi
+<dneighbo> hmm looks like masks arent quite there yet
+<dneighbo> hi btami
+<btami> hi derek
+<dneighbo> please if you have time make some windows pre releases :)
+<btami> i can, but i'm with slow modem here (at home)
+<btami> so can send on monday
+<btami> only
+<ra3vat> be back in 1 hour
+<btami> but if you want, i make a try today
+<dneighbo> ra3vat: i just committed the item_maint.gfd
+<dneighbo> that actually manages the items
+<dneighbo> so item management is now officially in gnue-sb cvs
+<dneighbo> its basic but its a start
+Action: dneighbo is away: bed
+<dneighbo> it can wait till monday i suppose
+<btami> ok
+<ra3vat> back
+Action: ra3vat is looking what btami has asked him to test
+btami (~btami@3e70d725.dialin.enternet.hu) left irc: Read error: 60 (Operation timed out)
+dimas (~ds@ics.elcom.ru) joined #gnuenterprise.
+fixe (~adam@dsl093-081-253.chi2.dsl.speakeasy.net) joined #gnuenterprise.
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+Action: psu is away: assisting essay crisis downstairs
+<psu> assisting = helping with, not adding to - potential ambiguity there
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) left irc: Read error: 60 (Operation timed out)
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) joined #gnuenterprise.
+fixe (~adam@dsl093-081-253.chi2.dsl.speakeasy.net) left irc: Read error: 110 (Connection timed out)
+siesel (jan@xdsl-213-196-192-174.netcologne.de) joined #gnuenterprise.
+<siesel> good'ay
+<ra3vat> hello siesel
+<siesel> hi ra3vat
+jbailey (~jbailey@65.48.140.35) joined #gnuenterprise.
+<siesel> morning jbailey
+<ra3vat> from common/GParser.py
+<ra3vat>         if encoding == 'ascii':
+<ra3vat>           encoding = 'iso8859-1'  # TODO: fix this when we have [common] section
+<ra3vat>         try:                    #       in gnue.conf
+<ra3vat>           encoding = gConfig('formFontEncoding')
+<ra3vat> when will we get that [common] in gnue.conf?
+<jbailey> Heya siesel.
+<siesel> jbailey: one question: should the /etc/gnue/sample.connection.conf and /etc/gnue/sample.gnue.conf be configuration files?
+<siesel> ra3vat: its just a bit hacking needed, i.e. changing all calls in form from gConfig to gformConfig and using gConfig only to access [common] values
+<ra3vat> gConfigForms?
+<jbailey> siesel: I don't think so - Because they're intended to be samples, there should be no good reason to change them.
+<jbailey> But debhelper will mark them as such automatically.
+<jbailey> I so I will probably move them into /usr/share/doc/PACKAGE/examples
+<siesel> that would be great, thanks.
+<jbailey> Is it causing you grief?
+<jbailey> (Assessing urgency)
+<siesel> ra3vat: you can set global configuration commands in GConfig.py
+<jbailey> If yes, please file a bug so that I remember it.
+<siesel> jbailey: just a question of astetics :)
+<siesel> ok, I will file a bug.
+<jbailey> Thanks.
+<siesel> do you remenber the name of the command line tool? 
+<siesel> oh, found. "reportbug"
+<jbailey> reportbug is sweet. =)
+<siesel> reportbug is really great. 
+Action: siesel can't stop using it :)
+fixe (~adam@dsl093-081-253.chi2.dsl.speakeasy.net) joined #gnuenterprise.
+<jbailey> siesel: So does that mean people might actually be using the packages?  =)
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+<siesel> jbailey: yes. 
+<chillywilly> no
+<chillywilly> ;P
+jamest (~jamest@adsl-64-216-107-182.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+<chillywilly> sup home billy
+<jamest> not much
+<chillywilly> ok...
+<chillywilly> my son is harassing me to take him to McDonalds ;)
+<jbailey> Tell him that animals get slaughtered for food there and he should be a vegan.
+<jbailey> On the down side, you won't be able to cook your usual meals for him.
+<jbailey> On the upside, he'll never ask for Macdo's again.
+Action: jcater is back (gone 09:02:49)
+<chillywilly> jbailey: uh, no
+rdean (~rdean@12-221-229-247.client.insightBB.com) left irc: "Client Exiting"
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: "Free Your Enterprise! - http://www.gnuenterprise.org"
+<dneighbo> jbailey: my daughter is going through the vegan stage i think
+<dneighbo> she still likes meat so its it
+<dneighbo> but really struggles with it.... at her slumber party they had hotdogs or something
+<dneighbo> and my daughter was like.. you know that the ground up insides of a pig
+<dneighbo> and like 9 out of 10 of the girls wouldnt believe her (which amazed me)
+<dneighbo> and then she was like yeah and a hamburger is a ground up cow and 7 of 10 didnt believe that
+Action: dneighbo is back (gone 06:38:19)
+<dneighbo> jcater: you around?
+<dneighbo> jamest: you around?
+Action: jcater waits to see if jamest responds before answering.....
+<jcater> damn, guess not
+<jcater> dneighbo: yeah
+<jcater> :)
+<dneighbo> i didnt get prereleases tested (me got busy and used cvs forgetting)
+<dneighbo> stuff looks very good
+<dneighbo> much more solid that 0.4.0
+<dneighbo> i have questions on formatmasks
+<dneighbo> actually i worked around it so the question lies in feature map
+<dneighbo> we need to add number/currency format/input masks
+<dneighbo> and documentation of masks :)
+<dneighbo> i ahve to take kids swimming
+<dneighbo> but when i get back i have a nice 5gallon drum of lube
+<dneighbo> and i plan to sit down with navigator
+<dneighbo> so expect the feature map to fall out ;)
+<jcater> input masks are a BIG todo
+<jcater> we are very close
+<jcater> but no cigar quite yet
+<jcater> (that should be in 0.5.0 plans, if not, I'll add)
+<dneighbo> again im not dictating which release :)
+<jcater> it's a biggie
+<jcater> as in, needs
+<jcater> well, and programming too I guess
+<jcater> although most of the backend is in there
+<dneighbo> it could be i didnt look
+<dneighbo> i know we talked about it in designer the other day
+<dneighbo> looks like date stuff is there and documented some
+siesel (jan@xdsl-213-196-192-174.netcologne.de) left irc: Read error: 60 (Operation timed out)
+<dneighbo> btw: you might want to check out gnue-sb
+<dneighbo> its product stuff might be getting closer to usable for the bookstore
+<dneighbo> hopefully by next sunday inventory will be there
+<jcater> cool
+<dneighbo> also i noticed something
+<dneighbo> in the import statements of the gsd
+<dneighbo> if i have
+<dneighbo>   <import-table library="item_source.gsd" name="item_source"/>
+<dneighbo> and item_source.gsd contains
+<dneighbo> <?xml version="1.0"?>
+<dneighbo> <schema><tables>
+<dneighbo> <!-- SOURCE LOOKUP TABLE -->
+<dneighbo>   <table name="item_source">
+<dneighbo>     <fields>
+<dneighbo> it works
+<dneighbo> but if contains
+<dneighbo> <?xml version="1.0"?>
+<dneighbo> <schema><tables>
+<dneighbo> <!-- SOURCE LOOKUP TABLE -->
+<dneighbo>   <table name="source_lookup">
+<dneighbo>     <fields>
+<dneighbo> it does not
+<dneighbo> and Scripter.py never gives errors
+<dneighbo> ie the import 'name' must match the table 'name'
+<dneighbo> or the .sql doesnt get created, but no errors are generated
+<dneighbo> im not sure if you meant it to force a name match or not
+<dneighbo> if not its a bug
+<jcater> um
+<dneighbo> if so, we need an error message saying the .sql isnt created
+<jcater> yes, it has to have a name to import against
+<jcater> that's the purpose of that field
+<jcater> but it is definitely a bug
+<jcater> that parser doesn't bomb off with an error
+<jcater> hmmm
+<jcater> ah, found it
+<jcater> ok, committed
+Action: dneighbo must run
+fixe (~adam@dsl093-081-253.chi2.dsl.speakeasy.net) left irc: Read error: 110 (Connection timed out)
+Action: dneighbo is away: swimming
+ColeMarcus (ColeMarcus@pD9E4E8C0.dip.t-dialin.net) joined #gnuenterprise.
+Action: jbailey is away: Taking the cat to the vet.  Wish me luck.
+Isomer (dahoose@port-219-88-247-184.jet.net.nz) left irc: Read error: 104 (Connection reset by peer)
+fixe (~adam@dsl093-081-253.chi2.dsl.speakeasy.net) joined #gnuenterprise.
+dimas (~ds@ics.elcom.ru) left irc: "Client Exiting"
+ColeMarcus (ColeMarcus@pD9E4E8C0.dip.t-dialin.net) left irc: Read error: 104 (Connection reset by peer)
+Action: dneighbo is back (gone 01:29:30)
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+<dneighbo> grrr my connection is still a little bit 'goofy'
+<chillywilly> why?
+[11:36] Last message repeated 2 time(s).
+<dneighbo> cause
+<dneighbo> i 
+<dneighbo> said
+<dneighbo> so
+<dneighbo> sigh sprint support is so much fun
+<dneighbo> at least the answered the phone with in 10 minutes
+<dneighbo> the guy says can i have your last name (me would suspect that means he is ready to recieve it)
+<dneighbo> so i say my name AND spell it out 
+<dneighbo> and he says can you repeat that slow
+<chillywilly> what's so difficult about neighbors?
+<chillywilly> any moron shold be able to spell neighbors
+<jcater> yeah
+<jcater> nabors
+<jamest> neybores
+<jamest> well...bak too kodun
+<jcater> lol
+<jcater> chillywilly: just like ANYONE should be able to spell Cater
+<chillywilly> yes, Mr. Carter ;)
+Action: jbailey is back (gone 01:28:00)
+<dneighbo> actually after the rude intro this guy is pretty good
+<dneighbo> hasnt asked me to go into microsoft networking yet
+<chillywilly> hehe
+<jbailey> neigbours is easy. =)
+<jbailey> bah.  neighbours.
+<chillywilly> did yo tell him you are running GNU/Linux?
+<chillywilly> you
+Action: jcater can see it now with the new training
+<jcater> "Is GNU/Linux like Linux?"
+<dneighbo> and ran network tests instead of assuming i was an idito
+<dneighbo> idiot
+<dneighbo> and ran same tests i have and confirms there is about 20% packet loss happening
+<dneighbo> and will be sending someone out to replace the hardware
+<dneighbo> chillywilly: no i learned the hardway to never do that :)
+<dneighbo> i told him i was running M$ Advanced Linux Pro
+<dneighbo> he said he hadnt tried that one yet...
+<dneighbo> ;)?
+<dneighbo> tech coming on monday to bring me new modem
+<dneighbo> until then i guess i suffer
+<jamest> technician shows up and notices that mr neybers has his home stereo speaker output spliced into network line because we wanted to be a webcaster
+<dneighbo> roflmao
+<dneighbo> um jamest now they have guitars that support ethernet connections
+<dneighbo> why splice ;)
+<jcater> gives new meaning to pinging a guitar
+<jbailey> Think of the hack value.
+<jbailey> 'cause next will be 802.11b
+<jcater> I'd just hate to see the DoS on that thing
+<jcater> what would happen?
+<jcater> strings break?
+<jbailey> And just *wait* until some major rock star in some major concert forgets to turn on encryption or uses an insecure password.
+<jcater> hehe
+<jcater> "Daddy, why does the guitar sound like it says, "I ownz ju"???
+<jbailey> Headline: Geek arrested today at Metallica concert for incitement to riot.  "I thought it would be a good prank", said the man who simply gave his name as "Hax0r".  Earlier today, metalica began to play, when the sound cut out and began playing a backstreet boys song.  "It was hard to find the culprit with all the blood and corpses around", said Officer Kruptpky, "but the laptop was a dead give away."
+<chillywilly> you guys are just taking this too far
+<jbailey> It's either this, hack glibc, or do homework. =)
+<chillywilly> well a wise man once said to me, "why don't you do something with your life?"
+<jcater> chillywilly: why haven't you answered?
+<dneighbo> http://www.techtv.com/news/culture/story/0,24195,3363342,00.html
+<chillywilly> jcater: I'm afraid
+<chillywilly> heheh
+<jcater> is it ethernet or not? or is it just using RJ45
+<jcater> "Gibson did this by modifying the Ethernet networking protocol...."
+Action: jcater hopes that was journalism error
+<chillywilly> that is frelling cool man
+<chillywilly> who knows
+<chillywilly> most tech articles are written by morons
+ariel_ (~ariel@ppp-217-133-240-136.dialup.tiscali.it) joined #gnuenterprise.
+<chillywilly> hehe, I like the comment about M$ mixers and amps ;P
+<dneighbo> jcater: i dont know, but its interesting none the less
+<chillywilly> hmmm, most ppl still dig analog music though
+<chillywilly> that's why we still prefer tube amps
+<dneighbo> http://magic.gibson.com/
+<dneighbo> of course its patent stuff
+<dneighbo> so it needs a free equivalent :)
+<chillywilly> thought they said it was going to be royalty free?
+<chillywilly> so the patent is a bit moot isn't it?
+<jcater> not hardly
+<jcater> I'll let you use my foobulation library royalty free, chilly
+<dneighbo> i saw the license
+<dneighbo> just now
+<dneighbo> its not even royalty free
+<jcater> what happens when you piss me off, chilly?
+<dneighbo> its royalty free for 10 years
+<dneighbo> i.e. they want people to adopt over next 10 years
+<chillywilly> jcater: yea, I know patents are still crappy
+<dneighbo> and then when they ahve everyone by the balls the royalty wears off
+<jbailey> Negotiate for royalty-free for 25 years. =)
+<jcater> funny thing though
+<psu> yeah, but with a Mickey Mouse Copyright Act, 10 years could become 100...
+<jcater> I thought patents had a 14 year shelf life?
+<dneighbo> Is there a license fee for developers?
+<dneighbo> No. We are providing a ten year royalty free license on MaGIC. 
+<psu> or 1...
+<chillywilly> This is the same BS that Henry J's been trying to force down the throats of the rest of the industry for the past two years. It's why Gibson bought and killed Opcode. It's not a patch on the ass of Yamaha's MLan standard that's based on the much faster IEEE-1394 (aka Firewire). It's another worthless ego-trip for Gibson's delusional owner.
+<chillywilly> Back to "Gibson Makes Music 'Magic'"
+<chillywilly>   
+<chillywilly> they all assume ppl would uise winders
+<chillywilly> what geek in their right mind would use winders?
+<dneighbo> a windows geek?
+<psu> Tremble wiv fear, KC is here
+<psu> http://kt.zork.net/GNUe/gnue20021116_55.html
+<chillywilly> http://www.techtv.com/tlkbck/comment/0,24009,3363342-551620,00.html?netsection_id=2100118
+<chillywilly> what's this crosstab and pivot table stuff?
+<jbailey> psu: I always fear with the new KCs.
+<jbailey> I keep being worried that you'll list cw's new homepage goatse.cx.
+<chillywilly> jbailey: grow up
+<psu> http://goats.gnue.org <- the mote in our own eye
+<jbailey> chillywilly: People have been passing the link around work, it's quite frightenening.
+Action: psu is back (gone 07:29:06)
+<chillywilly> jbailey: I have seen ppl refer to that thing so many times that it is older than dirt now ;)
+<chillywilly> it's worn out
+<chillywilly> and yes it is just plain sick
+<jcater> wtf is a prelease?
+Action: jcater must've been on crack
+<chillywilly> ?
+<chillywilly> oh, nm
+<chillywilly> hehe
+Action: chillywilly didn't even see the typo right away
+<chillywilly> so don't feel bad
+Action: psu will probably be looking to hook some people into helping on KCs
+<psu> i.e. a group-authored approach
+<psu> but I'm thinking how to do it first 
+<psu> then will look for some volunteers
+<jcater> I'll be happy to volunteer some people for you
+<psu> no volunteers == carry on solo, but not cover everything
+<psu> s/everything/as much
+<jbailey> jcater: A prerelease is like preboarding an airplane.
+<psu> since it doesn't cover *everything* even now
+<jcater> jbailey: ?
+<jbailey> jcater: It's a fiction created by marketing people to make others think something cool is happening and that they're not part of it. =)
+Action: psu would not have been able to keep up this week if he hadn't been on vacation
+<jcater> psu: I would volunteer to help, but I already spend too many hours on gnue each week :(
+<psu> ooo
+<psu> jcater: agreed
+<jcater> agreed?
+<jcater> you've been talking to my wife?
+<psu> does this mean we'll get little cocktails w/frilly umbrellas 
+<jbailey> psu: You'd know better than me if people have made the same mistake you made "How can I help?" =)_
+<psu> served by nubile flight attendants 
+<psu> whenever we d/l the prereleases?
+<jbailey> nubile?  I don't think you've seen the flight attendants on air canada these days. =)
+Action: psu has only been bumped to business class once
+<psu> but then there's not a lot of biz class on Newcastle-Heathrow
+Action: psu notes that the phrase "business class" usually occours in this channel 
+<psu> in a completely diff context
+<chillywilly> afaict we have a 2 man marketing team
+<chillywilly> psu and derek
+<chillywilly> ;)
+<jcater> hey now
+<jcater> I try
+<chillywilly> why would you *want* to be part of the marketing team?
+<jcater> isn't that how you get the chicks?
+<psu> marketing == easier than coding
+<chillywilly> but you're married
+<jcater> chillywilly: shhh!
+<jcater> don't tell my girlfriend
+<chillywilly> do you have a desth wish?
+<chillywilly> death
+<jcater> she might get jealous
+<jcater> besides, the way things currently are
+<jcater> I'm married to GNUe
+<jcater> the wife is my mistress I escape to occasionally
+<psu> chillywilly: you'll understand after 7th June 2003
+<chillywilly> heheh
+Action: psu notes that is the only 2003 date in my diary so far
+<psu> well, apart from my Feb dentist appointment
+<chillywilly> that date is "tentative" ;)
+<psu> ok
+Action: jcater hates programming in curses
+<chillywilly> jamest's analogy of the even system is funny
+<chillywilly> event
+<chillywilly> hehe, I see derek finally forced yall into roadmaps?
+<jcater> no!
+<jcater> not roadmaps!
+<jcater> feature plans, dammit
+<jcater> feature plans
+<jcater> ;)
+<jcater> anyone here have a good crockpot chili recipe?
+<jbailey> I do.
+<jcater> bah
+<jbailey> But it's all vegan, is that okay? 
+<jcater> that uses ground beef?
+<jcater> actually that might be good
+<jcater> what's in it?
+<jbailey> I always wonder when I see people put meat into crockpots.  I didn't think those things stayed warm enough to keep away bacteria.
+<jcater> I'm pretty sure they do
+<jbailey> I also have the same fear when I see those rotating slabs of meat at greek take out places.
+<psu> kebabs
+<chillywilly> a spit?
+Action: psu likes the way they call them "doner kebabs" to imply the animals were volunteers
+Action: psu guesses that "Donner kebabs" has a diff implication in USA
+<nickr>  hehe
+<nickr> said entirely differently than doner though
+<jcater> yummy
+<jcater> http://www.justcrockpotrecipes.com/chili/chil0069.shtml
+Action: jcater runs off to start ground beef
+<jcater> sigh
+<jcater> I haven't rewired my new house
+Action: psu is away: kc-ing
+<jcater> so I don't have cat5 in the kitchen for my recipe station :(
+<chillywilly> dragon ball z rocks
+<jcater> jbailey: what's in your vegan chili?
+<jbailey> a couple types of beans, fried onions, lots of tomatoe sauce.
+<jbailey> (or crushed tomatos)
+<jbailey> Carrots, spices.
+<jbailey> Trying to tihnk what else I throw in there.
+<chillywilly> sounds pretty good
+<jbailey> I like using black beans and black-eyed peas.
+<jbailey> I tried chickpeas once (garbonzo beans for the UKer), and that was a mistake. =)
+<jcater> mmmm
+<jbailey> If you're using a crockpot with chilli and you want to throw in corn or something like that, don't throw it in until near the end or it turns into mush.
+<jbailey> I'm torn between wanting to turn up the heat and wanting icecream.
+<jbailey> I probably shouldn't do both. =)
+btami (~btami@3e70d731.dialin.enternet.hu) joined #gnuenterprise.
+<btami> hi all
+<btami> i'v just  got a no DefaultUI in gnue.conf common section error
+<btami> ?
+<jamest> um
+<jamest> wtf?
+<btami> i'm testing on win98 for  packaging setup.exe
+<jamest> i added that yesterday but swore I included a default
+Isomer (dahoose@port-219-88-247-206.jet.net.nz) joined #gnuenterprise.
+<jamest> btami: how new is cvs checkout?
+<btami> updated now
+<btami> have you tried it without it ?
+<jamest> your GFConfig.py should have that config option listed.  Does it?
+<jamest> yes, i have no option in my gnue.conf files
+<btami> yes it does
+<jamest> why would this be different on windows?
+<jamest> sigh
+<btami> if i add a [common] section with DefaultUI = wx, it's OK
+<jamest> btami: please look at GFClient.py
+<jamest>     self.ui_type = self.OPTIONS['user_interface']
+<jamest>     if not self.ui_type:
+<jamest>       self.ui_type = gConfigForms('DefaultUI')
+<jamest> is that what you see?
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: "Free Your Enterprise! - http://www.gnuenterprise.org"
+<btami> yes
+<jamest> sigh
+<btami> wait
+<btami> i try again
+<btami> jamest: sorry
+<btami> it's my fault with packaging
+<btami> it's good from c:\python22\scripts
+Action: drochaid is away: out sorting a machine
+<btami> jamest: may i ask you to change formFontEncoding to reportFontEncoding in GRReport.py
+<btami> and a new one into GRConfig.py
+<jamest> shouldn't we just have a default fontEncoding for common?
+Action: jcater thinks so
+<btami> me too
+<ajmitch> morning
+<jamest> anyone care to change it now ?
+<jcater> I can
+<jamest> kewl
+<jcater> after I start the crockpot up
+<btami> back to i18n
+<jamest> btami: how well is  windows working?
+<jamest> gnue in windows
+<btami> i'v failed to put site.py/sitecustomize.py into McMillan
+<btami> so i tend to use encodings thing
+<btami> :(
+<jamest> but how does forms itself (and designer) run?
+<jamest> are they stable/usable
+<jamest> or flaky as hell
+<btami> well, they are OK
+<ra3vat> no, thay are flaky
+<btami> except the event issues
+<btami> look collected win32 bugs in DCL :)
+<jamest> ok
+<ra3vat> btami: with test you asked i've only got an error when running form from within a designer
+<jamest> i put a patch into designer yesterday
+<btami> no
+<jamest> so it'll work now but error out at the end
+<ra3vat> ok, will check again
+<jamest> part of designer outside of src/forms is still forms specific :(
+<jamest> it'll get fixed after release
+<btami> i'v failed with making forms/reports with simple wizard if i used non ascii title
+<btami> when i want to save them
+<jamest> ah, i thought he was talking about running form insdie designer via debug-run    my bad
+<ra3vat> btami: what happens when you save?
+<btami> btw. i can't run forms from designer via debug :)
+<jamest> from today's cvs?
+<btami> wait i try all my things again :)
+<jcater> wait
+<jcater> re the formFontEncoding
+<jcater> what outside of forms will use it?
+<jamest> wasn't designer going to support all languages in its menus/dialgos?
+Action: jamest runs
+<jcater> oh, yeah... designer
+<jcater> doh!
+<ajmitch> oooh, who has call center software available? :)
+Action: ajmitch just got email from boss asking about it
+<jcater> I have highly custom stuff
+<ajmitch> right, i heard you had some stuff
+<ajmitch> how custom is it? tailored exactly for the business?
+<jcater> yeah
+<ajmitch> what industry?
+<jcater> fundraising
+<ajmitch> k
+<jcater> still w/a lot of oracle-specifics, btw
+<ajmitch> the email i got was rather vague
+<ajmitch> ok
+<jcater> we are still "cleaning" it :)
+<ajmitch> big app?
+<ajmitch> i got some forms questions for you later, if you're around ;)
+<ajmitch> (not bug reports this time)
+<jcater> ok
+<ajmitch> but i gotta run off to church in the next 10 min
+<ajmitch> just about how to have a unique primary key on a record
+<ajmitch> and using that with master/detail
+<jcater> ah
+<jcater> that's easy
+<jcater> lemme know when you get back
+<ajmitch> ok
+<ajmitch> cool
+Action: ajmitch runs off :)
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+btami (~btami@3e70d731.dialin.enternet.hu) left irc: Read error: 113 (No route to host)
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: Client Quit
+btami (~btami@195.228.11.110) joined #gnuenterprise.
+<btami> huh, finally i reproduced my error :)
+<btami> grd file:
+<btami> <?xml version="1.0" encoding="cp1250"?>
+<btami> <!--  GNUe Designer (0.4.0.99)
+<btami>       Saved on: 2002-11-16 21:39:24  -->
+<btami> <report title="címe ûÛ">
+<btami>   <sources>
+<btami>     <datasource database="ugyfel" name="dtsUGYFEL" table="UGYFEL"/>
+<btami>   </sources>
+<btami>   <layout>
+<btami>     <out:report xmlns:out="GNUe:Reports:SimpleTabulation">
+<btami>       <out:reportTitle>címe ûÛ</out:reportTitle>
+<btami>       <out:section break="page">
+<btami>         <out:table width="100%">
+<btami>           <out:tablehead>
+<btami>             <out:colhead width="30">ceg</out:colhead>
+<btami>             <out:colhead width="30">ember</out:colhead>
+<btami>             <out:colhead width
+<btami> eroor is:
+<btami> C:\python22\scripts>python gnue-reports -D file -d x.html -f html x.grd
+<btami> DB000: Traceback (most recent call last):
+<btami> DB000:   File "gnue-reports", line 55, in ?
+<btami> DB000:     GRRun().run()
+<btami> DB000:   File "c:\python22\Lib\site-packages\gnue\reports\GRRun.py", line 203, i
+<btami> n run
+<btami> DB000:     runui = GRRunUI(self,reportInfo=self.getReportInformation(reportfile)
+<btami> ,
+<btami> DB000:   File "c:\python22\Lib\site-packages\gnue\reports\GRRun.py", line 310, i
+<btami> n getReportInformation
+<btami> DB000:     return GRReportInfo(location)
+<btami> DB000:   File "c:\python22\Lib\site-packages\gnue\reports\GRReportInfo.py", line
+<btami>  38, in _
+<btami> it's too long
+<btami> just the bottom:
+<btami> DB000:     AttributesNSImpl(newattrs, qnames))
+<btami> DB000:   File "c:\python22\Lib\site-packages\gnue\common\GParser.py", line 253,
+<btami> in startElementNS
+<btami> DB000:     raise MarkupError, _('Error processing <%s> tag [invalid type for "%s
+<btami> " attribute; value is "%s"]') % (name, attr, saxattrs[qattr])
+<btami> DB000: gnue.common.GParser.MarkupError
+<jcater> is that it?
+<jcater> not one more line?
+<btami> thats all
+<btami> it's without sitecustomize.py
+<jamest> it's really putting the %s in there?
+<jcater> btami: could you do me a huge favor and edit gnue/common/GParser
+<jcater> and add right before line 253:
+<jcater> print name, attr, saxattrs[qattr]
+<jcater> as I can't tell much without those 3 fields 
+Action: jcater doesn't know why the raise didn;t work properly
+<btami> ok, wait
+<btami> it's not too easy :)
+<btami> UnicodeError: ASCII encoding error: ordinal not in range(128)
+<btami> in print ...
+<btami> python always wants to convert unicode strings into ascii
+<btami> or defaulencoding
+<btami> if it was set
+<btami> but it wasn't now
+<btami> so it failed
+<btami> cose i have cp1250 (>128) chars
+<jcater> ok
+<jcater> but I just cut-n-paste from your paste
+<jcater> I have this test
+<jcater> print "ûÛ"
+<jcater> but get no error
+Action: jcater is confused
+<btami> cose python is clever
+<btami> but it allways uses unicode in XML
+<jcater> Traceback (most recent call last):
+<jcater>   File "test.py", line 1, in ?
+<jcater>     print u"ûÛ"
+<jcater> UnicodeError: ASCII encoding error: ordinal not in range(128)
+<jcater> jason@jcater:~$
+<jcater> gotcha
+<btami> my bad patch in GParser.py now uses formFontEncoding
+<btami> that is wrong
+<jcater> formFontEncoding in GParser?
+<jcater> why?
+<btami> sorry, that is not my patch, its from art
+<btami> my is in GRReport
+<btami> but as jamest said, a simple fontEncoding in [common] is a solution
+<jcater> but, but, but
+<jcater> what fonts are in GRReport?
+<jcater> this is where I'm getting lost
+<jcater> should that be
+<jcater> fileEncoding?
+<jcater> or textEncoding
+<btami> yes
+<jcater> it's the "font" part that's losing me
+<jcater> ok
+<jcater> we are on the same page now
+<btami> maybe font is needed for wx
+<jcater> which is the better name?
+<jcater> textEncoding?
+<btami> ok for me
+<btami> formFontEncoding is needed for  wx UI driver
+<jcater> but are they the same thing always?
+<btami> and this new one is for parsers
+<jcater> ok
+<jcater> so this does not replace formFontEncoding?
+<jcater> this is a new parameter?
+<jamest> did we ever get a global section working in config file?
+<btami> just if someone wants tu use different lang for forms and for reports
+<btami> s/tu/to
+Action: jamest thinks he worked on a [default] section 
+<btami> the same error will come from GRLayout.py lin #260
+<btami>            dest.write(child.getContent())
+<ra3vat> btami: have a mail from python gettext author, would you like to look?
+<jcater> is it long?
+<ra3vat> no
+<btami> yes, of course
+<ra3vat> where to post?
+<jcater> post here
+<btami> btami@freemail.hu
+jbailey (~jbailey@65.48.140.35) left #gnuenterprise ("Client Exiting").
+<ra3vat> Dmitry Sorokin <ds@ics.elcom.ru> writes:
+<ra3vat> > how to reach what GNU gettext bind_textdomain_codeset function is for
+<ra3vat> > with python gettext module?
+<ra3vat> Dmitry,
+<ra3vat> I recommend to use ugettext instead, or wrap it
+<ra3vat> appropriately. ugettext will always return Unicode objects (assuming
+<ra3vat> that the codeset of the .mo file was properly declared in the .mo
+<ra3vat> header).
+<ra3vat> > I'd like to use translation catalog which is in koi8-r encoding with gui
+<ra3vat> > that expects either koi8-r or cp1251.
+<ra3vat> Then I recommend to do something like this
+<ra3vat> catalog = gettext.translation("domainname")
+<ra3vat> runtime_charset = "cp1251"
+<ra3vat> def _(msg):
+<ra3vat>   return catalog.ugettext(msg).encode(runtime_charset)
+<ra3vat> Changing runtime_charset will then arrange for _ to return
+<ra3vat> differently-encoded messages.
+<ra3vat> > The problem is that we are trying to leave encoding = "ascii" in
+<ra3vat> > site.py as it is by default and assign needed encoding at run time.
+<ra3vat> That is a good idea.
+<ra3vat> > Without bind_textdomain_codeset we need to put something like
+<ra3vat> > _('Text String').encode(neededencoding) in too many places
+<ra3vat> Not necessarily. Even without ugettext, you could always do
+<ra3vat> def _(msg):
+<ra3vat>   gettext.dgettext(domain).decode("koi8-r").encode("cp1251")
+<ra3vat> That, of course, requires you to hard-code the codeset of the catalog,
+<ra3vat> which is undesirable - ugettext finds out the codeset of the catalog
+<ra3vat> dynamically.
+<ra3vat> Remember: _ is just a function. This function can do any computation
+<ra3vat> you want.
+<ra3vat> > Sorry for not asking in newsgroup but personally.
+<ra3vat> That is ok (in this specific case :-).
+<ra3vat> If you think bind_textdomain_codeset is a better interface than
+<ra3vat> ugettext, I encourage you to enhance gettext.py in this respect.  I
+<ra3vat> would add another dictionary, next to _localedirs; say,
+<ra3vat> _localecodesets. Then, add a gettext_codeset method to GNUTranslation,
+<ra3vat> which does recoding if necessary, and use that in dgettext if a
+<ra3vat> _localecodeset has been set for the domain.
+<ra3vat> You might also consider adding a codeset argument to install, which
+<ra3vat> would (if recoding is needed) install a lambda function like
+<ra3vat>    def install(self, unicode=0, codeset = None):
+<ra3vat>         import _
+<ra3vat> looks very bad
+<ra3vat> better to forward to maillist
+<btami> :)
+<btami> jamest/jcater: if you introdice textEncodig into parsers, please pot it into GRLayout.py line #260 too
+<btami> s/pot/put
+<dneighbo> gack
+<dneighbo> big back log
+Action: drochaid is back (gone 01:25:57)
+<btami> g'night all
+btami (~btami@195.228.11.110) left irc: "l8r"
+Action: dneighbo shudders at this i18n stuff
+<dneighbo> yeah sap-db now packaged for debian
+<jcater> you and me both
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) left irc: "Anything is good and useful if it's made of chocolate"
+<psu> dneighbo: re i18n - you should be thankful that we Brits took AZ from the Spanish, not the Russians
+<psu> although if they had, I guess computers would use cyrillic as defualt anyway
+<psu> and it'd be W Europe having the i18n problems
+<dneighbo> psu: bravo on newest KC
+Action: dneighbo enjoys reading them
+Action: dneighbo needs a print version so i can read them on the head ;)
+<dneighbo> or a tablet pc
+<psu> hmm
+<psu> problem is what if you get caught short for paper
+<psu> you might end up being blackballed by KC
+<psu> </v_old_joke>
+<psu> Actually, given that it's all XML, someone could write an XSLT to voice ogg convertor
+<psu> that someone, however, would not be me ;-)
+<psu> They could even play them on #opn as a form of syndicated content
+<psu> like broadcast radio switches to infomercials overnight or whatever 
+Action: psu needs to go and have a lie-down
+jamest (~jamest@adsl-64-216-107-182.dsl.tpkaks.swbell.net) left irc: Remote closed the connection
+jamest (~jamest@adsl-64-216-107-182.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+<jamest> whoop!
+<jamest> got designer to lock my entire UI
+<jamest> that's a good thing right?
+<dneighbo> cool
+<jamest> one step further down the path to being a dneighbo
+<dneighbo> i remember sosmething similar in the 0.0.1 days ;)
+<dneighbo> with forms
+<jamest> how goes the testing with gnue-sb forms?
+<dneighbo> i have them all working
+<dneighbo> i told jcater things look WAY more solid than 0.4.0
+<dneighbo> very impressive
+<dneighbo> i didnt use the pre-release though (my mess up) i used cvs
+<jcater> trnaslation: "I learned how to use the new stuff"
+<jcater> s/trna/tran/
+<dneighbo> i have the contact stuff to go (which is the ugly)
+<dneighbo> if you two are around for a while i will tackle now
+<dneighbo> as surely things have changed on it
+Action: jcater has an appointment w/the barber in 15 minutes
+Action: jcater is away: long-needed haircut
+<jamest> ra3vat: you need sloppyQueyr?
+Action: jamest is reading the KC
+<dneighbo> ok jamest you want bug reports?
+<jamest> yes
+<dneighbo> or you want me to submit via dcl
+<dneighbo> jamest: i might have some need for sloppy query
+<dneighbo> designer still has really _old_ bug of not properly updating forms in designer when dealing with entry w/ rows
+<dneighbo> i.e. you add an entry
+<dneighbo> then change its 'row' property to 10
+<dneighbo> it wont show on the screen until you shut the form down and reopen it
+Action: dneighbo remembers vaguely this being a wx issue
+<jamest> i can reimplement sloppy query
+<jamest> no, it's our issue
+<jamest> but it's not worth fixing at this time 
+<jamest> as that's going to change anyway
+<ra3vat> jamest: yes
+<dneighbo> jamest: 3 more forms down for testing
+<dneighbo> using designer a bit on them
+<dneighbo> moving to the big bad ugly mo-fo
+<dneighbo> and then actually gnue-sb will have product management
+<dneighbo> and contact management
+<dneighbo> pretty solid for a base starting point :)
+<dneighbo> hmmm
+<dneighbo> DB000:     self._err_handler.fatalError(exc)
+<dneighbo> DB000:   File "/usr/lib/python2.2/site-packages/_xmlplus/sax/handler.py", line 38, in fatalError
+<dneighbo> DB000:     raise exception
+<dneighbo> DB000: xml.sax._exceptions.SAXParseException: <unknown>:154:21: not well-formed (invalid token)
+Action: psu is back (gone 03:15:45)
+<jamest> dneighbo: what are you running?
+<dneighbo> hmm designer too
+<dneighbo> seems
+<dneighbo>       <entry x="2" y="13" field="phone_type_id" name="ntryPhoneContext"
+<dneighbo>              width="20" rows="1" style="dropdown"
+<dneighbo>              foreign_key="dtsrcPhoneType.phone_type_id" foreign_key_description="description"/>
+<dneighbo> isnt self healed
+<dneighbo> to fk_
+<dneighbo> might want to make a script to 'convert' these?
+<jamest> i can look at a bit later tonight
+<jamest> I'm getting ready to move my tank
+Action: psu wonders what that could be a euphemism for
+<jamest> psu: then s/tank/saltwater aquarium/ :)
+<dneighbo> hey how is your tank
+<dneighbo> im runnign contact_manager.gfd
+Action: dneighbo thinks its just foreign_key is snow
+<ra3vat> jcater: i've applied Martin's suggestion about _(msg)
+<dneighbo> fk_id= fk_datasource= fk_desc=
+<dneighbo> had to get kid out of sink
+<dneighbo> she crawled on coutner to get a bandaid and fellin sink and couldnt get down
+<dneighbo> hmm thats not it either
+<dneighbo> ok that problem fixed
+<dneighbo> dumb emacs
+<dneighbo> left an x
+<dneighbo> i.e.  C-x C-c failed on first C-x so left errant x
+<dneighbo> i thouoght that was case but missed it first time
+<jamest> so the code is OK?
+<dneighbo> yeah
+<dneighbo> but schema stuff seems broked now
+<dneighbo>     self.feed(buffer)
+<dneighbo>   File "/usr/lib/python2.2/site-packages/_xmlplus/sax/expatreader.py", line 207, in feed
+<dneighbo>     self._parser.Parse(data, isFinal)
+<dneighbo>   File "/usr/lib/python2.2/site-packages/_xmlplus/sax/expatreader.py", line 332, in start_element_ns
+<dneighbo>     AttributesNSImpl(newattrs, qnames))
+<dneighbo>   File "/home/dneighbo/cvs/gnue/.cvsdevelbase/gnue/common/GParser.py", line 276, in startElementNS
+<dneighbo>     object = self.xmlElements[name]['BaseClass']()
+<dneighbo> TypeError: __init__() takes exactly 2 arguments (1 given)
+<dneighbo> dneighbo@latitude:~/cvs/gnue-sb/schema$ 
+Action: jcater is away: Um, I'm not here
+Action: jcater is back (gone 00:00:02)
+<dneighbo> this worked yesterday
+<dneighbo> dneighbo@latitude:~/cvs/gnue-sb/schema$ ~/bin/gcvs ~/cvs/gnue/common/src/schema/scripter/Scripter.py schema.gsd postgresql > PgSQL/schema.sql
+<dneighbo> is command ran that produced that
+<dneighbo> i did edit schema.gsd to add an additional file so will research there
+<dneighbo> ok he did a script to change
+dimas (~ds@ics.elcom.ru) joined #gnuenterprise.
+<dneighbo> he didnt put this file in the import
+<dneighbo> and must have missed it in the sed scripts
+<dneighbo> as all its datatypes were wrong
+<dneighbo> fixed now
+<dneighbo> grr no its not
+<dneighbo> hmmm
+<dneighbo> jcater: hey any ideas on error above?
+<dneighbo> do its length not size ...
+<dneighbo> i think its fixed
+<dneighbo> grr nope still broked
+<dneighbo> ok missing a schema tag and the primary key tag changed a bit 
+Action: dneighbo is glad you used sed on the group :)
+<jcater> ?
+<jcater> did I miss something?
+<dneighbo> yeah i have a form
+<dneighbo> but egads
+<dneighbo> what the hell happened to spacing?
+Action: dneighbo falls over, my concat trigger still works
+<dneighbo> it has worked since i left axis pt
+dimas (~ds@ics.elcom.ru) left irc: "Client Exiting"
+<jamest> if it's worked that long why be shocked now :)
+Action: jcater thinks we need a disclaimer of some sort
+<dneighbo> s/has/hasnt
+<dneighbo> o
+<dneighbo> Database commit error:
+<dneighbo> gnueu.common.GDataObject.ConnectionError
+dimas (~ds@ics.elcom.ru) joined #gnuenterprise.
+<dneighbo> ERROR: ExecAppend: Fail to add null value in not null attribute contact_id
+<dneighbo> ah crap
+<dneighbo> i know what this 
+<dneighbo> piss
+<dneighbo> piss 
+<dneighbo> piss
+<dneighbo> we need an easy way to do transaction stamping
+<dneighbo> i.e. 
+<dneighbo> createdon/by
+<dneighbo> modifiedon/by
+<dneighbo> wait thats not it all those fields are nullable="Y"
+<dneighbo> hmmm
+<jcater> do have a REAL easy way to do transaction stamping
+<jcater> they're called Pre-Update and Pre-Insert triggers
+<jamest> no, we need a real, real way 
+<jamest> :)
+<jcater> same principle as setting the sequence value on an insert
+<jcater> jamest: ah, my bad
+<jamest> can we get date from db though?
+<jcater> yes
+<jamest> grrrrr
+<jamest> simplequery
+<jcater> just like you have getSequence
+<jcater> you also have getTimestamp
+<dneighbo> ah ok this is the classic
+<dneighbo> the parent needs to create its id in order to store in the child problem
+<dneighbo> do you have a sample form that this works in currently?
+<jcater> are they set up as master/detail?
+<jcater> as it does all that behind the scenes if so
+<dneighbo> so i can reference
+<dneighbo> you have the sample to getSequence aroudn or is in current developer guid?
+<dneighbo> er guide
+<jcater> check the recipe's chapter in the dev guide
+<jcater> in the last 5 minutes, every question you had
+<jcater> was covered by a recipe in that section
+Action: jcater sighs
+<jcater> :)
+<dneighbo>         <trigger name="getContactSequence" type="PRE-INSERT">
+<dneighbo> if self.isEmpty():
+<dneighbo>   self.autofillBySequence('sql_dcl_contact')
+<dneighbo> </trigger>
+<dneighbo> will that work?
+<dneighbo> or has syntax changed?
+<dneighbo> i knnow sql_dcl_contact is no longer valid which is likely my problem 
+<jcater> that looks right
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise ("nite...").
+<dneighbo> ?
+<dneighbo> i asked one question
+<dneighbo> well two i guess
+<dneighbo> date/time 
+<dneighbo> and
+<dneighbo> verification on sequence (and asked is it in the guide)
+Action: dneighbo has been checking guide but last three times struck out :(
+<dneighbo> i.e. the section existed but was blank, so i was asking if in guide
+<dneighbo> as my net connection sucks and i was too dumb to download the pdf when it was good
+<dneighbo> grrr 
+<jcater> dude
+<jcater> you need to get your modem fixed
+<jcater> this is painful
+<jcater> all your stuff pastes at once
+<dneighbo> im actgually fighting schema stsuff mostly
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: Remote closed the connection
+<dimas> is there any side effect of labels being inside block?
+<jcater> if you have rows=".." set on the block, they will be repeated once for each row
+<ra3vat> ok
+<ra3vat> DB000:   File "C:\PYTHON21\gnue\forms\uidrivers\_base\UIdriver.py", line 316, in
+<ra3vat>  updateEntryEditor
+<ra3vat> DB000:     widget = self._formToUIWidget[event.object]
+<ra3vat> DB000: KeyError: <gnue.forms.GFObjects.GFEntry.GFEntry instance at 01E098EC>
+<ra3vat> i have this error message when run my form under w98
+<ra3vat> what does the error mean?
+<jcater> I have no idea
+ariel_ (~ariel@ppp-217-133-240-136.dialup.tiscali.it) left irc: "Uscita dal client"
+<ra3vat> and then strange behavior when i hit "f8" right after form appeared all entries from a few tabbed pages displayed upon each other at once
+<ra3vat> and when i click on tabs one may display what other should
+<ra3vat> this same form works under linux about a week in heavy load. and works great 
+dsmith (dsmith@oh-strongsvillecadent1-1aa-105.clvhoh.adelphia.net) joined #gnuenterprise.
+dsmith (dsmith@oh-strongsvillecadent1-1aa-105.clvhoh.adelphia.net) left irc: Client Quit
+<ajmitch> back!
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) left irc: Read error: 60 (Operation timed out)
+<ra3vat> jamest: you here?
+<ajmitch> what's up all?
+<ajmitch> jcater: i see above talk of setting sequence values on insert, i presume that answers my earlier question? :)
+<ajmitch> pg 29 of the dev guide, i was just looking at that yesterday too :)
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) joined #gnuenterprise.
+<ajmitch> wb mdean
+dsmith (dsmith@oh-strongsvillecadent1-1aa-105.clvhoh.adelphia.net) joined #gnuenterprise.
+dsmith (dsmith@oh-strongsvillecadent1-1aa-105.clvhoh.adelphia.net) left irc: "later.."
+dimas (~ds@ics.elcom.ru) left irc: "Client Exiting"
+danq (~blah@adsl-64-216-85-97.dsl.hstntx.swbell.net) joined #gnuenterprise.
+fixe (~adam@dsl093-081-253.chi2.dsl.speakeasy.net) left irc: Read error: 110 (Connection timed out)
+danq (~blah@adsl-64-216-85-97.dsl.hstntx.swbell.net) left #gnuenterprise.
+fixe (~adam@dsl093-081-253.chi2.dsl.speakeasy.net) joined #gnuenterprise.
+fixe (~adam@dsl093-081-253.chi2.dsl.speakeasy.net) left irc: Read error: 110 (Connection timed out)
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<derek> jcater / jamest i had to run before
+<derek> something odd happened that needs to be researched
+<derek> i had forms or designer open (i dont recall which) 
+<derek> and when i shut it down
+<derek> X crashed and restarted
+<derek> if it were on my normal machine i would say no big deal, but on my laptop X never crashes
+<derek> add to the fact that jamest had same thing happen today (or so it seemed)
+<derek> we might want to look into this
+<derek> other than that cvs has been a dream to play with today
+<derek> responsive, stable and productive
+<derek> i hope to make it back tonight to play some more
+Action: derek is away: family
+rdean (~rdean@12-221-229-247.client.insightBB.com) joined #gnuenterprise.
+jbailey (~jbailey@CPE0060082df811.cpe.net.cable.rogers.com) joined #gnuenterprise.
+jbailey (~jbailey@CPE0060082df811.cpe.net.cable.rogers.com) left irc: Remote closed the connection
+fixe (~adam@dsl093-081-253.chi2.dsl.speakeasy.net) joined #gnuenterprise.
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: "Client Exiting"
+fixe (~adam@dsl093-081-253.chi2.dsl.speakeasy.net) left irc: Read error: 110 (Connection timed out)
+--- Sun Nov 17 2002

@@ -1,0 +1,1183 @@
+[00:08] Last message repeated 1 time(s).
+<nickr> zz
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise.
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+reinhard (~rm@N804P013.adsl.highway.telekom.at) joined #gnuenterprise.
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise.
+<reinhard> ************************************
+<reinhard> re geas compile problem:
+<reinhard> 1. easiest way to get around this is to configure (autogen.sh) with --disable-python-methods
+<reinhard> 2. other way is to set the environment variable LDFLAGS to the directory of libpython2.1.a while configuring (autogen.shing)
+<reinhard> 3. AM_PATH_PYTHON is in acinclude.m4
+<reinhard> 4. AM_PATH_PYTHON was stolen from some other project IIRC and is now included in automake 1.5, but it is highly crap.
+<reinhard> 5. We need a better python check macro. Once we have this, we can contribute it to automake IMHO
+<reinhard> ************************************
+Rafterman (tim@lister.sesgroup.net) left irc: "[x]chat"
+ajmitch (me@p4-max6.dun.ihug.co.nz) left irc: Ping timeout: 180 seconds
+ajmitch (~me@p20-max1.dun.ihug.co.nz) joined #gnuenterprise.
+janj (janj@m50-113.azn.nl) joined #gnuenterprise.
+janj (janj@m50-113.azn.nl) left irc: Client Quit
+ptke (~Shadow@c41436.carlnfd1.nsw.optusnet.com.au) joined #gnuenterprise.
+colonel (~arun@202.88.232.184) joined #gnuenterprise.
+ToyMan (stuq@c5300-3-ip137.albany.thebiz.net) left irc: Remote closed the connection
+vini (vincent@bones.kulnet.kuleuven.ac.be) left irc: Remote closed the connection
+colonel (arun@202.88.232.184) left irc: "[x]chat"
+Yurik (~yrashk@gw.telcos.net.ua) joined #gnuenterprise.
+<Yurik> re
+Demented (~none@216-210-171-162.atgi.net) joined #gnuenterprise.
+jamest (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+<jamest> reinhard: you here?
+<reinhard> yes
+<jamest> um
+<jamest> I started messing with python last night
+<jamest> embedding it in C
+ptke (~Shadow@c41436.carlnfd1.nsw.optusnet.com.au) left #gnuenterprise.
+<jamest> looked at the geas code and it uses the high level API which introduces overhead
+<reinhard> you had fun?
+<jamest> I think I want to attempt to graft the common dbdriver system into geas 
+<jamest> unless you guys object
+<jamest> actually it wasn't to bad an experience
+<reinhard> jamest: you know the term "harakiri" ?
+<jamest> it'd be delightfull if I could find some decent docs on how to do it
+<jamest> harakiri?  doesn't it involve one's sword and one's intestines?
+<reinhard> :)
+<reinhard> what docs would you need?
+<jamest> I good set of docs on embedding python
+<jamest> I = a
+<jamest> they have docs on the site
+dneighbo (dneighbo@mail.libertydistribution.com) joined #gnuenterprise.
+<jamest> however they reference back to the extending of python via C alot
+<jamest> which means I'm having troubles flipping back and forth and they don't really give a good example in the 2.0 python docs
+<reinhard> i will do the geas side if you want
+<reinhard> all you have to give me is a .h file and a -l parameter for the linker :)
+<reinhard> ah
+<reinhard> all i have is the official "extending and embedding the python interpreter"
+<reinhard> from the homepage
+<reinhard> which has no example at all iirc
+<jamest> ?
+<jamest> right
+<jamest> that is the problem
+<reinhard> ok so you have the sword (= python)
+<jamest> so if I make a common c lib interface 
+<jamest> we can graft that in to geas 
+<jamest> and you won't hurt me
+<jamest> right?
+<reinhard> you only need intestines (sp?)
+<reinhard> yes right
+<reinhard> my understanding is you have to write a c wrapper around the python lib
+<jamest> that's one way to do it yes
+<jamest> sorta
+<reinhard> is there another way?
+<jamest> the C api can manipulate the objects directly
+<jamest> so you fire up the interpreter
+<jamest> and then load the object directly
+<jamest> so you don't really need a wrapper library as you could put this directly in the geas code base
+<jamest> however then it's not of use to any other C programs :)
+<reinhard> ok
+<reinhard> what i want as a side effect is actually a reusable db abstraction library
+<reinhard> if we can get it as a waste product of gnue :)
+<reinhard> and i think the common dbdriver system would be a good start
+<jamest> i do to
+<jamest> my hope is that if I can graft this in
+<jamest> we'll gain a few things
+<jamest>   GConditional support
+<jamest>   about 15 more interfaces geas can use :)
+<jamest> i'll have a little more time to play this week with real efforts starting next week while I'm off work
+<reinhard> cool
+<reinhard> we should agree on the interface as soon as you know it's doable
+<reinhard> before you start real implementation
+<reinhard> i would *love* too see this work because
+<reinhard> i am a strong believer in "design top down but implement bottom up"
+<reinhard> and for the ongoing geas rewrite "bottom" currently means "dbdriver"
+<jamest> ok
+<reinhard> a question that now comes to my mind
+<jamest> any chance you could glance at the db docs in common to get a feel for what the interface will probably look like?
+<reinhard> the new dbdriver (shall we call it gedi?) system
+<reinhard> will support only drivers that are written in python?
+<reinhard> or will be support for drivers written in c
+<jamest> well
+<jamest> that's kind of a funny question
+<reinhard> so say we have problems with all python psql bindings - could we write a c driver for psql?
+<reinhard> s/psql/pgsql/g
+<jamest> as most the db drivers in python i believe are written in C with a python interface
+ToyMan (~stuq@c5300-3-ip137.albany.thebiz.net) joined #gnuenterprise.
+<jamest> so nothing stops us from using a C driver as long as it exports a python DB API complient interface
+<reinhard> ah
+<jamest> and supporting that interface does not look hard at all
+<reinhard> but we will always have to take the path over python?
+<dneighbo> in essence: if there is some interface lacking but has C
+<jamest> bbiam
+<dneighbo> we can wrap it in python and distribute like others do :)
+<dneighbo> independent of gnue
+<reinhard> what i mean is
+<reinhard> will we always have to use psycopg, pygresql, popy or whatever?
+<reinhard> or will we be able to do direct postgres?
+<dneighbo> dont know specifically but i dont see a problem with that
+<dneighbo> if you wanted postgres directly you would have to do everything in C
+<dneighbo> i see value in that if we are having some speed concerns
+<reinhard> or other concerns
+<dneighbo> but if we are not having speed concerns i dont see much validity
+<reinhard> from the discussions here over the last days i think i remember
+<dneighbo> i think almost all other concerns would be easier to fix the problem in python
+<reinhard> that those psycopg, pygresql etc. are always a source of trouble
+<dneighbo> i.e. if something wasnt doing what was needing doing in the 'driver' then it would be easier to 'patch' the driver than rewrite the whole thing in C
+<jamest> ok back
+<dneighbo> pygresql was source of trouble because it depended on mxDateTime
+<dneighbo> i have had no trouble with psycopg
+<dneighbo> i see as we mature we will build stable snapshots of ALL dependencies and post on our site
+<dneighbo> and bundle with our installer
+<jamest> if you wished to wrapper postgresql's native API with a python dbapi 2 interface you could use it directly
+<jamest> however you'd in essence be writting yet annother python driver
+<dneighbo> so that if you have the 'base dependencies' (say GTK or Win32) etc you could install from our disk w/ downloading anything extra
+<jamest> it might be better to write a replacement for mxDateTime (why, oh, why they don't include this in python itself amazes me)
+<reinhard> ah ok so there will be no possibility for non-python dbdriver
+<dneighbo> jamest: no crap
+<jamest> reinhard: that's a misleading statement
+<dneighbo> reinhard : sure there is the possibility but it means really rewritting common in C
+<dneighbo> you can use an existing C driver
+<dneighbo> just wrap it in python
+<dneighbo> but as jamest stated thats kind of just making another 'python' driver
+<reinhard> sorry it was not mean as statement but as a question
+<jamest> most of the drivers in python are C
+<dneighbo> i.e. if you look at pyscopg, pygresql and all they are all C
+<dneighbo> they create an .so
+<jamest> just written with a specific interface
+<dneighbo> that gets wrapped by python
+<dneighbo> iirc
+<jamest> so geas would look like 
+<jamest>  geas (c) - common (python) - dbapi 2 drivers (mixed C or python)
+<reinhard> ok i understand
+<jamest> my thoughts are that we embed the python 
+<jamest> profile
+<jamest> and if speed is lacking we profile and performance tune common
+<reinhard> will that common dbdriver system require specific python versions?
+<jamest> still lacking then we recode in C the slow parts
+<jamest> reinhard: python 2.x
+<reinhard> ok
+<reinhard> all 2.x?
+<jamest> yes
+<jamest> the lose of 1.5.2 support was a deliberate move on our part
+<jamest> lose = loss
+<reinhard> ko
+<reinhard> ok
+<jamest> a few foo += 1 inplace of foo = foo + 1
+<jamest> and then we started ripping out kludges that 1.5.2 required
+alexey (alex@techkran.vladimir.ru) left irc: "[x]chat"
+<reinhard> nevermind
+<reinhard> i am thinking more about that
+<jamest> reinhard: have you coded in python ?
+<reinhard> <reinhard> what i want as a side effect is actually a reusable db abstraction library
+<reinhard> this is what i am considering now
+<jamest> ah
+<reinhard> say i am writing another project that uses db
+<reinhard> and i want to use this driver system
+<reinhard> because i get 15 db's supported automagically
+<reinhard> but on the downside my other project will depend on python
+<jamest> yes
+<reinhard> with all the (sigh) -lpython2.0 etc. issues (double sigh)
+<reinhard> (see log)
+<jamest> i was looking at that last night
+<jamest> configure.in needs work :)
+<reinhard> sure
+<reinhard> especially the python part
+<jamest> by looking at the geas python support it seems grafted in quickly
+<jamest> so I assume not much effort was put into playing nice
+<reinhard> true
+<jamest> IIRC one comment blamed geas instabilities solely on python
+<jamest> :)
+<reinhard> hehe
+<reinhard> however
+<reinhard> as soon as we have the c api we have at least the theoretical option
+<jamest> yes
+<reinhard> to recode common in c and be compatible
+<jamest> yes
+<jamest> however I don't see much need unless performance suffers
+<jamest> our windows support in python is pretty good now
+<jamest> so a windows based project wouldn't require a python install at all
+<reinhard> if python gets too much issue
+<reinhard> no matter if issue==speed or issue==something else
+<reinhard> can you point me to the "future" api of the dbdriver system?
+<jamest> nope
+<jamest> i can point you to what we have now which is the future :)
+<reinhard> and please can we agree of a working title shorter than "gnue-common dbdriver system" ?
+<reinhard> :)
+<reinhard> that's what i meant
+<reinhard> :)
+<jamest> DataObjects.txt
+<jamest> well it's called GDataObjects
+<jamest> in the code ;)
+<jamest> GDO
+<jamest> btw - zope rocks my socks
+<reinhard> GDataObjects.py?
+<jamest> that's part of it
+<jamest> yes
+<reinhard> i can't find a DataObjects.txt?
+<jamest> in the common/doc dir
+<reinhard> ok
+<reinhard> found it
+<reinhard> is that complete?
+<dneighbo> jamest: why does zope rock your socks?
+<reinhard> or do i have to read the source, too?
+<jamest> that's the API doc as it stands :(
+<reinhard> ok
+<reinhard> await my comments :)
+<jamest> dneighbo: it's come a long way since I lasted looked at it
+<dneighbo> so should one argue why write gesa
+<dneighbo> er geas
+<dneighbo> and just use zope instead?
+<jamest> um, no
+<jamest> I don't think zope would fit well for that
+<jamest> but it seems like a pretty powerfull web site builder
+<jamest> which is what I'm needing
+Action: grib thinks zope is cool despite the fact of its python-ness
+<jamest> lol
+<dneighbo> python-ness == good thing (tm)
+<dneighbo> ;)
+reinhard (rm@N804P013.adsl.highway.telekom.at) left irc: Ping timeout: 180 seconds
+reinhard (~rm@62.47.44.109) joined #gnuenterprise.
+bullhead (~joe@h-64-105-244-252.ATLNGAHP.covad.net) joined #gnuenterprise.
+<dneighbo> man ximian is getting more desperate daily
+Action: ToyMan is liking zope much
+<dneighbo> guess that burn rate has caught up with them finally
+<dneighbo> 10 bucks a month == 120 a year
+<ToyMan> zope-cmf sucks less than any thing else i've found
+<dneighbo> even microsoft only releases new desktop every 2 years at 99 upgrade ;)
+<ToyMan> dneighbo: venture capital only goes so far
+<dneighbo> yip
+<dneighbo> what would be immensely funny
+<dneighbo> would be a hosting company
+<dneighbo> do rsync mirror every hour
+<dneighbo> and then say anyone who gets hosting space here for $6.95 a month
+<dneighbo> gets access to the updates for free
+<dneighbo> i.e. they sell space plus updates (more for money)
+<dneighbo> and dont do anything cept mirror and a bit of user management
+<dneighbo> then we will see ximian's TRUE colors
+<dneighbo> i guarantee that some redcarpet stuff would get 'closed' real quick to make it 'harder' for the competitor to do this
+<dneighbo> that or they would prevent the mirror underhandedly
+<dneighbo> ala microshaft
+<dneighbo> i read they slashdot comments some and i can wow, slashdotters are 'getting it a bit'
+<dneighbo> half the comments said (taco you are a hypocrite)
+<dneighbo> you say good luck have to make money some how
+<dneighbo> but if microsoft or virtually any other company did this
+<dneighbo> you woudl be flaming them to high heavens
+<dneighbo> rant mode off time to do some more research on missing money :)
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+alexey_home (~alexey@195.151.214.34) joined #gnuenterprise.
+Nick change: alexey_home -> alexey
+<grib> dneighbo: why all the sour grapes about ximian?  don't think they deserve to try to make some money? 
+<grib> I wouldn't guess you think they haven't paid their free-software dues?
+<gowlin> dues?
+<grib> gowlin: I just mean that an argument that they are taking advantage of the community is pretty preposterous considering the amount of free software they have generated
+<gowlin> Yes, I agree that argument is fairly weak.  Regardless of how much free software they have made.  But that doesn't make it right.
+<grib> doesn't make what right? 
+<gowlin> Them making non-free software.
+<grib> what's wrong with making non-free software? 
+<gowlin> It is non-free.
+<grib> oh, I see. 
+<gowlin> Good.
+<dneighbo> grib: hold the boat
+<dneighbo> a bad business model is bad regardless of past contribution
+<dneighbo> my sour grapes is that they are making things that are NOT free 
+<dneighbo> and the math is wrong
+<dneighbo> at 9.95 a month thats 120 a year
+<dneighbo> thats more than microsoft charges for an upgrade
+<dneighbo> now i suppose you could only update once a year and it costs you 10.00
+<dneighbo> which isnt a 'bad' deal per sya
+<dneighbo> say
+<dneighbo> the other item i have problem with is what they are charging for isnt very quantifiable
+<dneighbo> mainly you are getting 'faster downloads'
+<dneighbo> but as traffic increases or if im on a 28.8 dial up it doesnt make a lot of sense
+<dneighbo> i have ALWAYS had a problem w/ ASP or the concept of 'leasing' software
+<dneighbo> so i am not picking on XIMIAN individually
+<grib> dneighbo: I'm not going to get into that argument with you.  Don't buy it if you don't want it.  All I am saying is that they are a company that has contributed tremendously to free software, and I think it's incredibly back-biting for people to say that what they are doing is wrong or evil.  Misguided?  maybe.  Unsuccessful?  maybe. evil?  get a grip.
+<dneighbo> i have no problem w/ people making money on free sofwtware
+<dneighbo> i dont think i said evil
+<dneighbo> maybe i did
+<dneighbo> i think i said DESPERATE
+<dneighbo> and honestly ximian as a company IMHO has done more harm than good for free software
+<dneighbo> true the INDIVIDUALS at ximian have made HUGE contributions
+<dneighbo> but since they all joined ximian what exactly has been produced?
+<dneighbo> evolution is only major development i have seen
+<grib> everything in gnome for the last 2 years? 
+<dneighbo> everything else is merely add-ons to bolster their income
+<dneighbo> grib : everything in gnome?
+<dneighbo> hmmm so no one but ximian works on gnome?
+<dneighbo> i see more coming from
+<dneighbo> owen taylor, havoc pennington and daniel v. than ximian folks
+<dneighbo> especially if you look at the engineer to company ration
+<dneighbo> er ratio
+<dneighbo> plus, minor side note, i havent seen much change in gnome over past year
+<grib> you type too fast for me to argue with you.  paid developers of companies that have proprietary products have done a large part of the gnome development. 
+<dneighbo> most of 1.4 was done prior ximian forming (iirc)
+<grib> including redhat, ximian, etc.
+<grib> I look at the most active developers and projects in gnome, and I see people that are being paid by companies that have to be profitable
+<grib> and they are trying to figure out how to do that
+<grib> they make mistakes some times, they make bonehead plays sometimes
+<grib> they fail a lot
+<grib> and when they fail it hurts free software.  IMO. 
+dneighbo (dneighbo@mail.libertydistribution.com) got netsplit.
+dneighbo (dneighbo@mail.libertydistribution.com) returned to #gnuenterprise.
+dneighbo (dneighbo@mail.libertydistribution.com) got netsplit.
+dneighbo (dneighbo@mail.libertydistribution.com) returned to #gnuenterprise.
+jbailey (~jbailey@Toronto-HSE-ppp3637309.sympatico.ca) joined #gnuenterprise.
+alexey (alexey@195.151.214.34) left irc: "Client Exiting"
+<dneighbo> grib: our conversation probably got nuked eh, but to put some perspective on ximian isnt gnome isnt linux 
+<dneighbo> two critical apps for most people wanting to leave windows
+<dneighbo> quicken/msmoney replacement
+<dneighbo> browser replacement
+<dneighbo> neither one is done by ximian
+<dneighbo> the other critical app path
+<dneighbo> office replacement
+<dneighbo> outlook replacement
+<dneighbo> i think star office is much closer than the gnome office stuff (and now they are converging)
+<dneighbo> ximian has done closest to outlook overhaul in way of evolution
+<grib> actually disagree about (1) ... really not that many people actually use personal finance progs (the % of users using Quicken/msmoney as a fraction of PC owners has declined continuously)
+<dneighbo> grib: well let me put it that way 9 out 10 folks i talk to using linux today say only reason windows is still on their box is because of quicken/msmoney
+<dneighbo> so maybe the number of PC users using personal finance is low %
+<dneighbo> but i think number of people willing to 'try linux' that use personal finance is much higher than the 'average'
+<dneighbo> the bad thing (and this isnt criticism i know the issues)
+<dneighbo> is that most people say gnucash is pretty groovy but they cant ditch quicken still  because gnucash cant talk to their bank
+<grib> ya, there are lots of problems with getting gnucash to be a 100% replacement for those products.  which is why the paid gnucash developers aren't working on the personal finance aspect at all.
+<dneighbo> well to tell you the truth, gnucash has the ximian problem wrt to 'paid development'
+<dneighbo> there are not a lot of 'good business models' for it
+<dneighbo> thus its hards to justify paying developers to work on it
+<grib> dneighbo: disagree completely!  I think we have a very good business model for it. 
+<dneighbo> grib: ???
+<dneighbo> you just yourself stated that you didnt have paid developers working on it
+<dneighbo> ok let me clarify (gnucash : personal finance)
+<grib> oh, well, that's *your* definition :)
+<dneighbo> well i still consider gnucash just personal finance
+<dneighbo> i know you guys are doing some extensions beyond that
+<dneighbo> but i dont see that in the normal releases so thats why didnt make the distinction
+<dneighbo> i think you guys are on a much better path than gnumatic was
+<dneighbo> but it required ditching the concept of revenue off personal finance manager (unless im mistaken)
+<grib> that's right.  the idea of making money on any desktop app for linux is pretty ridiculous ; though if any app can do it it's the core desktop (browser + mail) 
+<grib> so I think ximian has an nth of a prayer
+<dneighbo> hmmm... i think only one that stands the chance is the 'distrubtor'
+<dneighbo> like red hat, suse etc
+<dneighbo> that bundles it all up nicely
+<dneighbo> ximian could do something, but it will be hard
+<dneighbo> as i see it as an OEM thing, that is where the money is
+<dneighbo> i.e. if the county were to switch their 6,000 desktops to linux
+<grib> we'll see.  I think the thing we can probably agree on is that the people who have a legit chance are the ones integrating for the medium+ business and the enterprise. 
+<dneighbo> they would probably pay redhat a license fee (to feel good) and then buy support
+<dneighbo> it will be MUCH harder for ximian to do that
+<dneighbo> grib: yip
+<dneighbo> i think there is value in SUPPORTING the personal user, but probably not much 'profit' in it
+<grib> gnucash fits in to that as a framework for building financial middleware
+<grib> it provides a financial API and tools for viewing, reporting, and editing, and can (now) be used strictly as a server 
+<dneighbo> but the problem i saw with ximian and eazel is that they were trying to cater to the 'end user'
+<dneighbo> i.e the home user
+<dneighbo> and trying to get money from content providers to distribute to the users
+<grib> dneighbo: there was an instant where it looked like that could legitimately be a home run play.  
+<dneighbo> which is a good 'idea' BUT users just arent buying the stuff
+<grib> it struck out, but you don't get the home run unless you swing
+<dneighbo> grib: agree, as stated i think it was a good idea....
+<dneighbo> i.e. keep the services 'free' as in libre but charge for content 
+<grib> you just have to commit everything you have if you think the market will get there at the same time your product does, and you will 0wnz it
+<dneighbo> but it didnt pan out
+<dneighbo> at least for eazel
+<dneighbo> we will see about ximian
+colonel (~arun@202.88.232.184) joined #gnuenterprise.
+<grib> ximian just got that fat $$ right at the last dribble of the vc river, and I think they've been pretty prudent about spending it (modulo trade show excess)
+<grib> once you make a decision on the play you are going for you have to really commit. 
+Yurik (yrashk@gw.telcos.net.ua) left irc: Remote closed the connection
+dsmith (~dsmith@209.81.166.138) joined #gnuenterprise.
+<dneighbo> ?? prudent ??
+<dneighbo> i think they squandered the money
+<dneighbo> the burn rate of ximian is INSANE
+<dneighbo> at least for first 9 months or so, then i think they hired REAL management and they curbed it and started pushing them in directions to try to 'actually get revenue'
+<dneighbo> the problem with VC is its SO hard to dig out of
+<grib> dneighbo: developing a new software product is incredibly expensive.  it takes money to do it.  
+<dneighbo> unless you ahve some model that gives you incredible returns you are doomed before you start
+<dneighbo> the old software modle had HUGE returns
+<dneighbo> a non licensed, service only model you can make money but will not have HUGE returns
+<dneighbo> grib: making new products is expensive but burning money with a lighter is stupid :)
+<dneighbo> im speaking mostly of the july 00 to july 01 time frame for ximian
+<grib> dneighbo: what's the difference?  *my* burn rate is ridiculous too, and I have no management at all, no office, and only a total of 4 developers including myself.  
+<dneighbo> they were IMO mismanaged rather badly during that time
+<grib> It's just stoopid expensive to have salaried developers. 
+<dneighbo> grib : but to me thats 'prudent'
+<dneighbo> it might be expensive but i dont call that BURNING money
+<reinhard> brb
+Nick change: reinhard -> rm-away
+<grib> ok :)  you should come argue with my wife :)
+<dneighbo> well i mean what it comes down to is RESOURCES
+<dneighbo> that can be
+<dneighbo> time
+<dneighbo> people
+<dneighbo> buildings
+<dneighbo> etc etc etc
+<dneighbo> some i think are mandatory others not
+<dneighbo> a place to work is mandatory
+<dneighbo> does it have to be a posh office with expensive leased furniture?
+<dneighbo> tradeshow attendence travel etc is probably a good idea
+<dneighbo> is a new booth every show with a tag of 400,000 or so prudent...
+<dneighbo> etc etc etc
+<dneighbo> in ximians defense i think you look at 15 million and you think
+<dneighbo> thats a lot of money
+<dneighbo> until you pay 50 developers a year :)
+<grib> right, I know.  and they have been guilty of a lot of excess (probably related to fact that they have to serve milk at the company happy hours because the avg age is 16 or whatever)
+<grib> the folks I've met at tradeshows are a mix of really smart and young, with really annoying and young, and some that are both
+jbailey (jbailey@Toronto-HSE-ppp3637309.sympatico.ca) left irc: "Client Exiting"
+Action: ToyMan runs *his* company on a shoestring
+Action: ToyMan <- Scrooge
+jbailey (~jbailey@Toronto-HSE-ppp3640403.sympatico.ca) joined #gnuenterprise.
+<dneighbo> grib : rofl
+<dneighbo> ToyMan being a scrooge is a good thing, in the business world IMHO
+<ToyMan> longer in business == more republican
+<dneighbo> rofl
+<grib> it's certainly true that you don't pitch business s/w on the fact that the developers are happy free software commies ... can I get a resounding chorus as to what the suits want to hear?  that's right, "it will minimize employee lossage". 
+<grib> there's an embezzler lurking inside every espresso puller, and you have to cut their heart out with software!
+<dneighbo> depends on the suits
+<dneighbo> there is the VC suit and the business suit
+<dneighbo> the business suit wants to hear it will make doing business less expensive while making them more competitive with larger margins
+<dneighbo> VC's want to hear maximum return on investment :)
+<ToyMan> VC <- evil
+<dneighbo> ToyMan i tend to agree
+<dneighbo> to me they are like music or movie industry
+<dneighbo> its playing with fire, and rarely do you escape unscathed
+<dneighbo> but when you have an idea but no cash and cant 'build slowly' then they look like a good option
+<ToyMan> you need to be a big player already to work with them successfully
+<dneighbo> well i think you put it nicely
+<dneighbo> its a 'game' like most industries :)
+<dneighbo> and the better you know the game (i.e. the bigger player you are)
+<dneighbo> the better chance you have at playing the game
+<ToyMan> VC by definition pushes you to a scale where you loose track of what's human
+Action: jbailey is away: Tree!
+<dneighbo> ToyMan being a successful business proprietor im curious as to how you got your start?
+<dneighbo> genuis, hard work, blind luck, all three?
+<dneighbo> ;)
+<ToyMan> persistence:  being too stupid to recognize when you've lost ;)
+pattieja (pattieja@www.pcxperience.com) left irc: Ping timeout: 180 seconds
+<ToyMan> luck, yes
+<ToyMan> I started in business 'cause I didn't know how hard it was
+<ToyMan> I stay in business 'cause i'm doing exactly what i want to do
+bullhead (joe@h-64-105-244-252.ATLNGAHP.covad.net) left irc: Read error: 104 (Connection reset by peer)
+joe_ (~joe@h-64-105-244-252.ATLNGAHP.covad.net) joined #gnuenterprise.
+<dneighbo> ToyMan i actually heard a great quote the other day on 'leaders'
+<dneighbo> something to effect of 
+<dneighbo> great leaders are just people that have no concept of fear and fail to realize just how greatly the odds are against them
+joe_ (joe@h-64-105-244-252.ATLNGAHP.covad.net) left irc: Client Quit
+<ToyMan> that pretty much sums it up
+<dneighbo> "Leaders are visionaries with a poorly developed sense of fear and no concept of the odds against them. They make the impossible happen." -- Dr. Robert Jarvik, 20th-century American heart surgeon
+<ToyMan> well, that's one of the aspects
+<ToyMan> the ability to envision a future that binds together a group of people is also essential
+<dneighbo> but i think business even more complex :)
+<dneighbo> as its more than 'leadership'
+<grib> ... and of course there's the aspet that every successful person wants to believe that they succeeded due to their natural abilities and their "flaw of being extraordinary" rather than just that they got lucky or had the deck stacked in their favor
+<ToyMan> grib: it's a mixed story
+<dneighbo> grib: i think 'success' is a good deal luck yes
+<ToyMan> some got there by talent, others by luck
+<dneighbo> but the best way to get lucky is persistence :)
+<grib> so you see a lot more rich white guys spouting about perseverance and intelligence than historians, who tend to take a little more circumstantial view :)
+<dneighbo> grib i agree
+<ToyMan> agreed
+<jcater> well, we're lively today
+<jcater> ;)
+fil_c (~username@host213-122-196-136.btinternet.com) joined #gnuenterprise.
+Action: grib is hoping to be a rich white guy spouting about how it was my own stupidity and inability to quit that got me to the point of accepting that genius grant
+<jcater> I could never be a rich white guy
+<jcater> ... I'd give it all away
+<ToyMan> jcater: it's hard work debating the meaning of life ;)
+<grib> you must not know too much about rich white guys.  look at Rockefeller ... he spent the entire last half of his life trying to give away everything he had and was unable to do it
+<jcater> I'm surrounded by rich white guys as we speak
+<jcater> and rockefellers are the exception
+<grib> one you get past a certain point, you are getting so much more coming in that it takes a huge staff just to burn it all :) 
+<ToyMan> actually, Rockerfeller started giving it away right away
+<ToyMan> part of how he rationalized all his nastiness
+<ToyMan> thought he was on a 'holy mission'
+<jcater> the "rich white guys" I have to deal with are actually quite generous
+<jcater> ... with their family
+<ToyMan> apply for the position
+<ToyMan> jcater: <- son in training
+<jcater> no thanks
+<jcater> I have a happy wife and child
+<jcater> and I am happy with what I have
+<jcater> except this damn mozilla-mail client
+<jcater> I'm not happy with it at the moment
+<fil_c> why not use evolution?
+<jcater> I just haven't had much luck w/evolution
+<ToyMan> jcater: kmail?
+<jcater> that's what I use most of the time
+<jcater> but it's imap support needs a little help
+<jcater> but it's my tried and true at the moment
+<ToyMan> just about to type that
+<ToyMan> you have the latest and greatest
+<ToyMan> ?
+<jcater> i have from kde 2.2.2
+<jcater> I don't have cvs or anything :)
+Action: jcater isn't that brave
+<ToyMan> hmm. I was hoping they would fix that
+<ToyMan> the evolution people pissed me off
+<ToyMan> most of it is broken in the bsd version
+<ToyMan> and they were like bsd? who gives a fsck!
+<jcater> I also have to have a light-weight email client.. kmail is fairly lightweight for a gui
+<jcater> we have like 40 ppl running on a single server w/x stations
+<ToyMan> works for me... as long as I stay with pop
+<jcater> so mozilla is a little much overhead for that
+<ToyMan> mozilla is too slow
+<ToyMan> how about mutt?
+<jcater> I might do mutt for myself
+<ToyMan> good imap support i hear
+<ToyMan> easy to use
+<jcater> but I don't think I want to train my call-center to use mutt
+<ToyMan> hmm, then there's the one by the gkrellm guy...lemme remember
+<ToyMan> starts with p
+<jcater> pygmy?
+<ToyMan> naw
+<ToyMan> on sec, i'm looking
+<jcater> what's really, really sad is the best I've used is outlook
+<jcater> and that bloated office tool runs faster on my machines than mozilla
+<ToyMan> pronto http://www.muhri.net/pronto/
+<jcater> hmmm
+<jcater> I'll have to try that one
+<ToyMan> let me know if you like it..I'd like to go back to my imap mail too
+<jamest> mutt is no where near as friendly as pine
+<jamest> I tried for a long time to go mutt as the free software people would like
+<jamest> but it's like a less crappy elm
+<ToyMan> hmm. havn't used pine in quite a few years
+<jamest> its pretty nice
+<jamest> and my users love the pc-pine version (the ones I've given it to that is)
+<ToyMan> jamest: you do zope stuff, right?
+<jamest> lol
+<jamest> as of yesterday I started trying to do zope stuff
+<ToyMan> oops, was that jcater?
+<ToyMan> ah
+<jamest> jcater does everything
+<jcater> not true...
+<jamest> he's an AI you know
+<jcater> I gave up goats
+<ToyMan> i've been looking at the zope cmf stuff
+<ToyMan> fairly nice stuff for 0 $$
+<dneighbo> jamest: i agree
+<dneighbo> i use pine even w/ evil license
+<dneighbo> and have tried to move to mutt like 5 diff times
+<dneighbo> and its just horrible interface (imho)
+dsmith (dsmith@209.81.166.138) left irc: Ping timeout: 180 seconds
+colonel (arun@202.88.232.184) left irc: "[x]chat"
+<jamest> i haven't played with the cmf stuff yet
+<jamest> but the core zope seems realy nice
+<jamest> excpet for........(drumroll please)
+<jamest>   the crappy docs
+<ToyMan> check out plone.org
+<ToyMan> very slick cmf stuff
+<ToyMan> yeah, the docs suck
+<ToyMan> zope book helps
+<ToyMan> and zope developers guide is kept up to date now..
+<ToyMan> so it's better
+<grib> I just wish it played a little nicer with php ... I wanted to import a php site under zope control, but really ended up having to go around my a** to get to my elbow
+<grib> ideally I'll migrate that site to dhtml/python but it helps if the tools provide a legay path
+<grib> legacy that is
+<ToyMan> the thing with zope is there's almost always a way to do it...
+<ToyMan> you just have to know how ;)
+<dneighbo> grib i think you are right but i understand the reason
+<dneighbo> i.e. i think its safe to assume most folks using php chose php and are not 'migrating'
+<dneighbo> so putting lots of time into a 'conversion/upgrade' tool isnt best use of 'resources'
+<dneighbo> digitial creations isnt going to make tons of money no such a beast
+<dneighbo> you will see it the first time someone needs to convert a large site and does so in an automated fashion and then relesaes the code for others
+Action: jbailey is back (gone 00:45:54)
+<dneighbo> i would see it more likely they provide an ASP(active server pages) conversion tool
+<grib> dneighbo: I'm curious about the "anointed" approach to using zope/python for web stuff ... as a programmer, I like writing procedural style code to generate web pages.  I mean just for layout, sort of parameterizing ny building blocks.  like php lets me do. 
+<dneighbo> but w/ that kind of stuff im out of touch, so maybe im wrong
+<dneighbo> grib: the problem php is UNMAINTAINABLE
+<dneighbo> i have a theory that php can create apps to a certain celiing
+<grib> bad PHP is unmaintainable. 
+<grib> all bad code is unmaintainable. 
+<dneighbo> then after that ceiling adding more is nearly impossible
+<dneighbo> grib: im saying PERFECT php code is unmaintable
+<dneighbo> after a certain growth point
+<dneighbo> i use php a LOT
+<dneighbo> so im not anti php in any way shape or form
+<ToyMan> i'm doing my new site in zope, because it's going to get very large, very quick
+<dneighbo> and that ceiling is fairly hihg (read not many people will hit it)
+<ToyMan> and I need to admin that
+<grib> <shrug> I wouldn't use it for a serious web application.  that's what zope etc are for.  But for the low level, as a way of macro-izing and parameterizing HTML generation, it's good, and I don't see a replacement for it in the zope world
+Nick change: rm-away -> reinhard
+<dneighbo> but i think that zope's approach is regardless of size it tries to do things that ENFORCE maintainability
+<dneighbo> grib: i agree php is good tool for many things
+<dneighbo> as stated i use it a LOT 
+<dneighbo> i think it is like the python vs C argument in some ways
+<nickr> what sucks about PHP is that I came up with something like it in 1997 and didn't impliment it.
+<dneighbo> bad code is bad code
+<dneighbo> but python tends to be architected in a style that makes it a lot more difficult to write bad code
+<dneighbo> not impossible but you have to work harder at it :)
+<dneighbo> i know when gnue started out we were pretty much planning on all C
+<dneighbo> then some idiot (who i wont name) found wxPython which solved something we were gonna write anyhow, so we gave it a whirl
+<dneighbo> a few months later we were preferring python more and more
+<nickr> python is highly addictive
+<dneighbo> now i think we have to 'draw straws' to see who has to fix C code :)
+<nickr> just like perl when all there was was C
+<dneighbo> but i would never say C is useless :)
+<grib> just a hint for all you guys: 
+<grib> don't shake up the hot sauce bottle unless you are fairly sure the lid is on it
+<dneighbo> rofl
+<dneighbo> grib : stains in style dont sweat it
+<nickr> I think the hotsauce in the eyes ius the real issue
+<grib> if I had been looking at the sauce bottle all this would have been avoided
+<jcater> hmm... if this was the software world, it'd be the hotsauce bottler's fault :)
+<dneighbo> not really jcater
+<jcater> hehe... it's a lack of documentation on proper use of the bottle
+<dneighbo> i think the trucking company that 'distributed' teh sauce is to blame
+<dneighbo> i called sauce maker he blamed it on bottler
+<dneighbo> i called bottler he blamed it on distributor
+<dneighbo> i call distributor he blames it on sauce maker
+<fil_c> it was open sauce when the accident occurred
+<dneighbo> so 400 dollars in sauce support calls later im no further along
+<dneighbo> so i decided to get a new hot sauce bottle off shelf and reshake
+<dneighbo> sound familiar?
+<jcater> fil_c: just shows how dangerous open sauce is as opposed to closed sauce
+<fil_c> :)
+<nickr> open sauce is the tool of commies, its unamerican
+Action: dneighbo has vision of a commerical
+<dneighbo> bunch of cowboys sitting around campfile
+<dneighbo> fire even
+<dneighbo> one holds up bottle of open sauce
+<dneighbo> turns label to read 'made in NYC'
+<dneighbo> at which point the cowboys pounce the cook
+<jamest> NYC!
+<jamest> get a rope
+<dneighbo> grib if you havent noticed gnue is a very 'productive' channel :)
+<jcater> productive? wassat?
+<jcater> I hate evolution
+<grib> it's certainly producing a steady stream of *something* :)
+<jcater> just fscked up my apt-get 
+Action: dneighbo has no comment
+<jcater> jamest!
+<jcater> help!
+<dneighbo> jcater actually ask nickr
+<dneighbo> he is a debian stud
+Action: dneighbo is being serious
+<jcater> nickr!
+<jcater> help!
+<dneighbo> he had me issuing dpkg commands that werent documented
+<jcater> libgnome-vfs0 doesn't want to install... returns error status 1
+<dneighbo> but after about 3 hours of running commands my system was back to normal
+<dneighbo> i think if you dpkg it
+<dneighbo> it will give you more verbose error
+<dneighbo> so that you can fix that error then rerun apt
+<jcater> dpkg --install told me subprocess exited with status 1
+<dneighbo> usually its a matter of 'touching' a file
+<jcater> ;)
+<nickr> thanks
+<nickr> jcater: what seems to be your problem?
+<jcater> Unpacking libgnome-vfs0 (from .../libgnome-vfs0_1.0.3-6_i386.deb) ...
+<jcater> dpkg: error processing /var/cache/apt/archives/libgnome-vfs0_1.0.3-6_i386.deb (--unpack):
+<jcater>  subprocess pre-installation script returned error exit status 1
+<jcater> Errors were encountered while processing:
+<jcater>  /var/cache/apt/archives/libgnome-vfs0_1.0.3-6_i386.deb
+<dneighbo> nickr : his problem is that debian has adopted him as its bi0tch ;)
+<nickr> yea, debian is quite a mistress
+<nickr> *smack*
+<nickr> ;)
+<jcater> dneighbo: after the urging of this channel!
+<nickr> Hmm
+<grib> that slut debian! she told me I was her bitch
+<dneighbo> grib: there seems to be enough of her to go around :)
+<nickr> jcater: well, you have two poptions, figure out why the preinst script failed or make the system think it succeeded
+<nickr> jcater: I assume you're running unstable
+<dneighbo> that sounds like a 'loaded' question :)
+<jcater> hmm
+<jcater> well I guess I am
+<jcater> ;)
+<jcater> nickr: tricking it is fine
+Action: dneighbo notes to skip 'apt-get' today :)
+<jcater> as I really didn't want any gnome-related stuff installed anyway
+<dneighbo> rofl
+<nickr> jcater: why did you do it then? :)
+<jamest> make --force-all  your default 
+<jamest> yeah, that's the answer
+<nickr> jcater: okay, you have to do something very dangerous then, you have to edit the status file
+<nickr> jcater: therres probably a better way to fix it, but this is the easier way
+<jcater> nickr: I thought (my problem :) I'd try evolution
+Action: ToyMan pats his ports on the head
+<nickr> so copy /var/lib/dpkg/status somewhere safe, then load up the real version in vi
+Action: jcater misses his ports
+<grib> jcater: you can also just edit the script that's failing to make it 'exit 0' before it gets to the crapout step
+<jcater> nickr: done
+<nickr> jcater: then search for libgnome-vfs0, it should have Status: install ok half-installed
+<jcater> -Status: install ok not-installed
+<nickr> oh wait
+<nickr> maybe not
+<nickr> hmm
+<nickr> yea poreinsat
+<nickr> duh
+<nickr> I was thinking postinst
+<nickr> ergh
+Action: jbailey is away: getting cat food.
+<nickr> if you do an apt-get -f install it does the same error over?
+<jcater> yip
+<jcater> I'd be happy having it just disappear
+<jcater> can I purge it?
+<nickr> you can get rid of its entry in the status file completely, that will cause apt to want to reinstall it though.
+<jcater> ah
+<nickr> so you get rid of its entry in the status file, then dpkg --remvoe all the things that depend on it
+<nickr> These are the sort of annoying inconsistancies you get whern running unstable.. thus the name Z)
+<jcater> lol
+<jcater> there was a reason
+<jcater> I think it was python2.1
+<jcater> but that's in woody now
+<jcater> :)
+<nickr> python2.1 yea
+Yurik (~yrashk@gw.telcos.net.ua) joined #gnuenterprise.
+<nickr> I was just gonna say that
+<Yurik> re
+<fil_c> vnc -> win95 -> vpn -> citrix -> work   ... ug slow
+pattieja (~pattieja@www.pcxperience.com) joined #gnuenterprise.
+<nickr> citrix, pew
+dsmith (~dsmith@209.81.166.138) joined #gnuenterprise.
+<fil_c> btw: One of the major areas that causes issues in ERP vendors software seems to be reconciling invoices received against purchase receipts made - 
+<fil_c> issues we are still dealing with after being live for 3 years
+<nickr> howso?>
+<fil_c> because it's a complicated area - accuring for future invoices for purchase receipts made, then receiving the invoices, then matching the receipts to the invoice.
+<fil_c> ... whe there are partial receipts, partial invoices and differing financial periods.
+<jcater> nickr: thanks! she's back to normal
+<nickr> jcater: no problemmo :)
+<ToyMan> fil_c: i'm not following you...
+<ToyMan> there's just a couple of options to handle in applying pmnts to invoices
+<ToyMan> that's all pretty standard
+<ToyMan> maybe i don't understand the problem
+<fil_c> no - I don't mean the payment of invoices
+<nickr> jcater: after all, I have to maintain my reputation abnd all
+<jcater> ;)
+Action: jcater is quickly switching back to woody
+<ToyMan> fil_c: ahh, yes, this is a problem
+<ToyMan> made all the nastier because most people CANNOT count
+<ToyMan> and verifying inventory receipts IS very time consuming
+<fil_c> Nope, I'm not talking about the physical counting of goods either.  In our system when a purchase receipt is made a financial posting is made an accural account... then when the invoice is recieved posted into a received invoices account
+<ToyMan> matching to the PO shoud be straight ahead if you use PO #'s
+<ToyMan> follow you so far...
+<fil_c> ... then the invoices need to be matched to the purchase receipts... and the purchase receipt account matched against the registered invoices account...  
+<fil_c> .. this is where we have problems.
+<ToyMan> you don't have a default accnt set up for the vendors?
+<ToyMan> default GL account..
+<dneighbo> yikes you need gnue :)
+<ToyMan> dneighbo: well, fil_c IS talking about one of the messier aspects of things, no matter what sf you use...
+<fil_c> ... we should be able to reconcile recieved invoices account ledger account balance by looking through the logistical postings..
+<ToyMan> but good software makes it better
+<fil_c> .. and this hasn't been working for us
+<ToyMan> fil_c: all transactions are dbl entry correct?
+<fil_c> yep
+<ToyMan> and you can set defaults for a specific vendor
+<ToyMan> default gl posting accounts?
+<fil_c> we use a single supplier creditor account
+<fil_c> and a single recieved invoices account
+<fil_c> which *shouldn't* be an issue
+<ToyMan> well, you'd only have to have more if you needed to break it out.
+<fil_c> and a singlie received invoices account
+<ToyMan> that could be useful to seperate, say requistions for office supplies from raw materials
+<ToyMan> recieved invoices thru the AP, correct?
+<fil_c> yes... but we would probably do that via statistics codes on the items purchased
+<fil_c> yes... via AP
+<ToyMan> I mean, this all seems pretty straight ahead, nothing that a simple query couldn't solve
+<ToyMan> statistics codes?
+<fil_c> or item groups... 
+<ToyMan> like sub-accounts?
+<fil_c> we are able to assign different ledger accounts that the each logistical integration transaction could post to - which can be selected on things like "item group"
+<fil_c> ... all this is quite a way away from gnue.
+Maniac (darryl@h24-82-132-209.wp.shawcable.net) left irc: Ping timeout: 180 seconds
+Maniac (~darryl@24.82.132.209) joined #gnuenterprise.
+<fil_c> ... which I was thinking about it is about 20 years behind (to the end user0
+<fil_c> ... i'd like to help it be less
+<ToyMan> sorry, can't decode a lot of your terms "logistical integration transaction" and such
+<ToyMan> 20 years behind what?
+<fil_c> ok... sorry.... logistical integration transaction: purchase receipt -> integration transaction (saying amount of purchase receipt) -> a ledger account in finance that is dependent on something in that purchase receipt (e.g. item code of purchased item)
+<fil_c> 20 years behind SAP and Baan... 
+<fil_c> etc
+<reinhard> fil_c: we are quite ahead compared to baan
+<reinhard> they have no money left since a year or so
+<reinhard> we haven't had any money from the start
+<reinhard> SCNR ;)
+<ToyMan> fil_c: I think I'd need a lot more background to understand this
+<fil_c> Nice :)
+<fil_c> brb
+fil_c (username@host213-122-196-136.btinternet.com) left irc: "Client Exiting"
+FilC (~Too@host213-122-196-136.btinternet.com) joined #gnuenterprise.
+Nick change: FilC -> fil_c
+nickr (nick@e-172-IP26.empnet.net) left irc: Ping timeout: 180 seconds
+Action: jbailey is back (gone 00:47:55)
+fil_c (Too@host213-122-196-136.btinternet.com) left irc: Ping timeout: 180 seconds
+fil_c (~Too@p.cole.easynet.co.uk) joined #gnuenterprise.
+fil_c (Too@p.cole.easynet.co.uk) left irc: Read error: 104 (Connection reset by peer)
+fil_c (~Too@p.cole.easynet.co.uk) joined #gnuenterprise.
+nickr (nick@e-172-IP26.empnet.net) joined #gnuenterprise.
+<dneighbo> fil_c : i dont know about the 20 years behind
+Isomer (dahoose@210-86-56-53.jetstart.xtra.co.nz) joined #gnuenterprise.
+<dneighbo> most software doesnt live 20 years :)
+<dneighbo> i think the tools are pretty advanced
+<dneighbo> as soon as we make some apps for 'public' consumption i think you will cut that 20 down to like 5 ;)
+<Yurik> dneighbo btw, hi :)
+<dneighbo> hi Yurik 
+<fil_c> I hope to help... still learning python ... and will forever be learning businesses!
+jcater (jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "rebooting"
+dsmith (dsmith@209.81.166.138) left irc: Ping timeout: 180 seconds
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+jcater (jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: 
+dsmith (~dsmith@209.81.166.138) joined #gnuenterprise.
+jcater (jason@w203.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<jcater> exit
+jcater (jason@w203.z065105010.mem-tn.dsl.cnc.net) left irc: "[BX] Size DOES matter"
+jcater (jason@w203.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<jcater> a few lines of your lilo.conf
+<reinhard> night all
+reinhard (rm@62.47.44.109) left irc: "Everything that is worth fighting for, is worthy fighting dirty for"
+<dneighbo> jcater here is some goodness for you:
+<dneighbo> 2 hours of designer only one segfault, but finding lots of polish items
+<dneighbo> here is my logfile
+<dneighbo> dneighbo@wright:~$ gfdesigner service_requests.gfd 
+<dneighbo> DB000: Traceback (most recent call last):
+<dneighbo> DB000:   File "/usr/local/gnue/lib/python/gnue/designer/PropertyEditor.py", line 179, in onSize
+<dneighbo> DB000:     self.grid.ForceRefresh()
+<dneighbo> DB000: AttributeError: wxGrid instance has no attribute 'ForceRefresh'
+<dneighbo> DB000: Traceback (most recent call last):
+<dneighbo> DB000:   File "/usr/local/gnue/lib/python/gnue/designer/PropertyEditor.py", line 179, in onSize
+<dneighbo> DB000:     self.grid.ForceRefresh()
+<dneighbo> DB000: AttributeError: wxGrid instance has no attribute 'ForceRefresh'
+<dneighbo> DB000: Traceback (most recent call last):
+<dneighbo> DB000:   File "/usr/local/gnue/lib/python/gnue/designer/PropertyEditor.py", line 179, in onSize
+<dneighbo> DB000:     self.grid.ForceRefresh()
+<dneighbo> DB000: AttributeError: wxGrid instance has no attribute 'ForceRefresh'
+<dneighbo> DB000: Traceback (most recent call last):
+<dneighbo> DB000:   File "/usr/local/gnue/lib/python/gnue/designer/PropertyEditor.py", line 179, in onSize
+<dneighbo> DB000:     self.grid.ForceRefresh()
+<dneighbo> DB000: AttributeError: wxGrid instance has no attribute 'ForceRefresh'
+<dneighbo> DB000: Traceback (most recent call last):
+<dneighbo> DB000:   File "/usr/local/gnue/lib/python/gnue/designer/PropertyEditor.py", line 179, in onSize
+<dneighbo> DB000:     self.grid.ForceRefresh()
+<dneighbo> DB000: AttributeError: wxGrid instance has no attribute 'ForceRefresh'
+dneighbo (dneighbo@mail.libertydistribution.com) left irc: Excess Flood
+dneighbo (dneighbo@mail.libertydistribution.com) joined #gnuenterprise.
+<dneighbo> DB000: AttributeError: wxGrid instance has no attribute 'ForceRefresh'
+<dneighbo> DB000: Traceback (most recent call last):
+<dneighbo> DB000:   File "/usr/local/gnue/lib/python/gnue/designer/PropertyEditor.py", line 179, in onSize
+<dneighbo> DB000:     self.grid.ForceRefresh()
+<dneighbo> DB000: AttributeError: wxGrid instance has no attribute 'ForceRefresh'
+<dneighbo> DB000: Traceback (most recent call last):
+<dneighbo> DB000:   File "/usr/local/gnue/lib/python/gnue/designer/PropertyEditor.py", line 179, in onSize
+<dneighbo> DB000:     self.grid.ForceRefresh()
+<dneighbo> DB000: AttributeError: wxGrid instance has no attribute 'ForceRefresh'
+<dneighbo> DB000: Traceback (most recent call last):
+<dneighbo> DB000:   File "/usr/local/gnue/lib/python/gnue/designer/PropertyEditor.py", line 179, in onSize
+<dneighbo> DB000:     self.grid.ForceRefresh()
+<dneighbo> DB000: AttributeError: wxGrid instance has no attribute 'ForceRefresh'
+<dneighbo> DB000: Traceback (most recent call last):
+dneighbo (dneighbo@mail.libertydistribution.com) left irc: Excess Flood
+dneighbo (dneighbo@mail.libertydistribution.com) joined #gnuenterprise.
+<dneighbo> end of torture
+<dneighbo> didnt realize was so big
+<dneighbo> or wouldnt have pasted
+<jcater> dneighbo: that's been fixed... you must be running an old version
+Action: dneighbo laughs, 'old version' == last release
+<jcater> dneighbo: I don't think so
+<dneighbo> v0.1.0 is whats on this machine
+<jcater> I'll look as soon as I have a computer again
+<dneighbo> dneighbo@wright:~$ gfdesigner -v
+<dneighbo> GNUe Designer
+<dneighbo> Version 0.1.0
+<dneighbo> Error: option -v not recognized
+<dneighbo> For help, type:
+<dneighbo>    gfdesign --help
+<dneighbo> dneighbo@wright:~$ 
+<dneighbo> note for help, type:
+<dneighbo> should read gfdesinger not gfdesign ;)
+Action: dneighbo can even find faults in the simplest of things ;)
+<dneighbo> whooo hoooo
+<dneighbo> i have gnue screen for dcl that lets you edit WorkOrders (well readonly right now)
+Action: dneighbo is going to need that date/time mask sooner than later :)
+<jcater> dneighbo: you and everyone else
+<jcater> but you'll have to wait your turn
+<dneighbo> not really
+<dneighbo> i can always implement it myself
+<jcater> dneighbo: I was trying to be realistic
+<jcater> :)
+<dneighbo> thats the beauty of open sauce ;)
+<dneighbo> when you cant find your 'favorite flavor' you can make your own
+<dneighbo> hmmm : why are fonts in multiple line entries different than those in normal entries?
+<dneighbo> hmmm: do wild cards not work anymore?
+<dneighbo> oh duh, i think wild cards only work on text fields 
+Action: dneighbo wonders what it would take to do 'ranges' for int fields for query masks
+<dneighbo> so you could do like
+ajmitch (me@p20-max1.dun.ihug.co.nz) left irc: Ping timeout: 180 seconds
+<dneighbo> 100:200
+<dneighbo> execute query
+<dneighbo> and it would bring back anyting between 100 and 200
+<fil_c> nite all - pub
+fil_c (Too@p.cole.easynet.co.uk) left irc: "Leaving"
+dsmith (dsmith@209.81.166.138) left irc: Read error: 113 (No route to host)
+<dneighbo> jcater you here?
+<dneighbo> or jamest?
+<dneighbo> im having a stupid pill moment
+<jcater> dneighbo: join the club
+<dneighbo> im trying to do a dropdown
+<dneighbo> in FK
+<dneighbo> do i put
+<dneighbo> dtsrcName.FieldName
+<dneighbo> and in FK Desc
+<dneighbo> dtsrcName.FieldName
+<dneighbo> or is it only dtrsrcNAme. for the first one
+<dneighbo> then the second 'knows' where to get the field 
+<dneighbo> or do you not use dtsrcName at all?
+Action: dneighbo always forgets this as i think at one time it changed so now i always doubt myself
+<jcater> dneighbo: try one... if it doesn't work, try the other :)
+<jcater> I think its dts.field
+<jcater> but I always forget too
+<dneighbo> :)
+<dneighbo> if debug worked i wouldnt ask
+<dneighbo> but this machine is slow so figured quicker to ask :)
+Action: Yurik is compiling python-2.2c1
+<jamest> dneighbo: debug works
+<dneighbo> ok 'if debug worked for me'
+<jcater> what do you mean, if debug worked?
+<jcater> we couldn't develop without debug
+Action: dneighbo needs to start filing bug reports :)
+<dneighbo> jcater: ok dtsrcName.FK works and you dont have to define the FKDesc datasource
+<dneighbo> so
+<dneighbo> FK = dtsrcName.FKField
+<dneighbo> FKDESC = FKDesc
+Action: dneighbo forgot how fun gnue is :)
+Action: Yurik finished installing the newest python :)
+<dneighbo> DB000: Traceback (most recent call last):
+<dneighbo> DB000:   File "/usr/local/gnue/lib/python/gnue/designer/Instance.py", line 425, in OnDebugRun
+<dneighbo> DB000:     DebugSession(self)
+<dneighbo> DB000: NameError: global name 'DebugSession' is not defined
+<dneighbo> is what i get when trying to do 'Debug' from designer
+jamest (jamest@hobbes.math.ksu.edu) left irc: "[x]chat"
+<jcater> oh
+<dneighbo> i asked about this other day
+<jcater> I though you meant -d10 
+<dneighbo> deos that mean i need to add it to the globals?
+<dneighbo> in gnue.conf/
+<dneighbo> yeah debug via -dXX works :)
+<jcater> no
+<jcater> that means debug is borked
+<jcater> part of that "we will release this weekend no matter what"
+bullhead (~joe@h-64-105-244-252.ATLNGAHP.covad.net) joined #gnuenterprise.
+ajmitch (~me@p46-max5.dun.ihug.co.nz) joined #gnuenterprise.
+<dneighbo> man nothing is easy is it
+<dneighbo> jcater can you build datasources on the fly?
+<dneighbo> by doing a complex query?
+<dneighbo> hmm in this case maybe i dont need that if i can do a complex query up front in a data source
+<dneighbo> damn mdean having to go and make dcl flexible and all :)
+<dneighbo> just shoots simple forms in the ass
+Action: dneighbo hates to admit this but i wish i could control font at the widget level
+<dneighbo> as these time stamps i would like to make readonly labels that are in a smaller font, but thats a different discussion :)
+Action: jbailey is away: I'm busy
+<jcater> dneighbo: um
+<jcater> lemme get back to you on that
+jcater_ (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<jcater_> oooo
+<jcater_> there's two of me
+<ajmitch> nooo!
+<jcater> later
+jcater (jason@w203.z065105010.mem-tn.dsl.cnc.net) left irc: "[BX] Time wasted: 6 millenia 0 centuries 8 decades 6 years 5 months"
+<jcater_> ah
+<jcater_> much better
+Nick change: jcater_ -> jcater
+<jcater> bitchx is a bitch
+<jcater> go figure
+Action: Yurik is back
+fil_c (~username@host213-122-194-200.btinternet.com) joined #gnuenterprise.
+Demented (none@216-210-171-162.atgi.net) left irc: 
+<dneighbo> jcater you said two for you?
+<dneighbo> two what?
+<jcater> huh?
+<dneighbo> -:- jcater_ [~jason@w202.z065105010.mem-tn.dsl.cnc.net] has joined
+<dneighbo>           #gnuenterprise
+<dneighbo> <jcater_> oooo
+<dneighbo> <jcater_> there's two of me
+<dneighbo> <ajmitch> nooo!
+<dneighbo> <jcater> later
+<dneighbo> doh
+<dneighbo> two OF you
+<dneighbo> not FOR you
+<dneighbo> i get it, taking jamest readin/writin class
+<jcater> :)
+<jcater> two donuts of course
+<jcater> two for me
+<jcater> :)
+<jcater> gotta run... bbs
+jcater (jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "home"
+<dneighbo> ToyMan you around?
+Action: dneighbo is looking for access limitations to inline queries
+jcater (~jason@HubA-mcr-24-92-70-201.midsouth.rr.com) joined #gnuenterprise.
+<dneighbo> dneighbo@wright:~$ gfclient service_requests.gfd
+<dneighbo> Gdk-ERROR **: BadWindow (invalid Window parameter)
+<dneighbo>   serial 3006 error_code 3 request_code 15 minor_code 0
+<dneighbo> dneighbo@wright:~$ gfclient service_requests.gfd
+<dneighbo> i get this 'occassionally'
+<nickr> mmm donuts
+<dneighbo> when running forms
+<jcater> ew
+<jcater> consistently?
+<jcater> might I get a copy of service_requests.gfd (with or without schema)?
+<jcater> btw, friday is my last day of work until January, so I hope to do some serious bugbusting
+<jcater> and wife works
+<dneighbo> http://goats.gnue.org/~dneighbo/gnue/service_requests.jpg
+<dneighbo> is a ROUGH screenshot
+<dneighbo> i.e. basically ran wizard and started arranging to be visible on single screen
+<dneighbo> got called away before could finish
+<dneighbo> .
+<dneighbo> http://goats.gnue.org/~dneighbo/gnue/service_requests.gfd
+<dneighbo> should be the form
+<dneighbo> i will check into dcl when i get home in the gnue/ dir
+<fil_c> dneigho: service orders?
+<dneighbo> its so ugly i want to cry
+<dneighbo> well dcl calls them 'work orders'
+<dneighbo> here they had a 'problem' with that
+Rafterman (tim@lister.sesgroup.net) joined #gnuenterprise.
+<dneighbo> so we call them 'service requests'
+<nickr> haha
+<nickr> well WO does imply more power than the thing has
+<fil_c> dneighbo: what does dcl stand for?
+<dneighbo> well must run will be bak later
+<dneighbo> double choco latte
+<dneighbo> but soon we will conform mdean and it will be GNUe DCL
+<fil_c> ???
+<nickr> its delish
+<dneighbo> then it will be GNUe Project Management
+<dneighbo> so dont worry about the name ;)
+Action: fil_c is still confused
+<dneighbo> muhahhahhahahahaa
+<dneighbo> http://dcl.sourceforge.net
+<nickr> will the spikes of pain be required for the re-education?
+<dneighbo> i would LOVE to explain but must run for real :(
+dneighbo (dneighbo@mail.libertydistribution.com) left irc: "BitchX: it isn't only my script, its also my client"
+<nickr> fil_c: its a project management system
+<nickr> fil_c: with issue tracking and such
+<nickr> fil_c: Its pretty snazzy
+<fil_c> nickr: thanks I'm just checking out the website
+Action: nickr nog
+<fil_c> grr... not friendly with mozilla
+Action: fil_c must get some sleep
+<nickr> the javascript thing isn't
+<nickr> if you do it in static it works fine
+<fil_c> for another day nickr:... sleep
+Action: fil_c waits until tomorrow.
+<fil_c> bye
+fil_c (~username@host213-122-194-200.btinternet.com) left #gnuenterprise ("Client Exiting").
+<nickr> latah
+dsmith (~dsmith@oh-strongsville5a-64.clvhoh.adelphia.net) joined #gnuenterprise.
+chillywilly (~danielb@d29.as10.nwbl0.wi.voyager.net) joined #gnuenterprise.
+<chillywilly> man it is a bit crowded in here
+<jcater> welcome home
+<chillywilly> thanks :)
+Action: jbailey is back (gone 02:09:13)
+<chillywilly> hi jeff
+Action: chillywilly wonders what they did with the real jcater
+<chillywilly> jcater: were you reprogrammed?
+<chillywilly> ;)
+ajmitch (me@p46-max5.dun.ihug.co.nz) left irc: Ping timeout: 180 seconds
+jamest (~jamest@fh-dialup-201020.flinthills.com) joined #gnuenterprise.
+<chillywilly> hey jamest
+<chillywilly> how's it going?
+<jamest> yo!
+<jamest> well, the dude comes over to look at the furnace in a few....ask me after that :)
+<chillywilly> :(
+<nickr> clod eh?
+<chillywilly> is it broke?
+<nickr> cold even
+<jamest> no, it's making funny noise
+<jamest> and I can barter with him
+<jamest> as his family needs PC fixed :)
+<nickr> is it going 'help me! help me!!'
+<chillywilly> just pay him in cash under the table ;)
+<jamest> well, he owns the company
+<chillywilly> that's how you deal with contractors
+<jamest> so i don't think it matters much 
+<nickr> that could mean that theres a girlscout lodged in the mechanism
+<chillywilly> jamest: yea, it don't matter in that case then
+<jamest> nah, I typically spray for girlscouts
+<nickr> lol
+<jbailey> jamest: Spray, like a cat?
+ajmitch (~me@p6-max1.dun.ihug.co.nz) joined #gnuenterprise.
+Action: jcater troutslaps chillywilly
+<jamest> that's spay 
+<jcater> feel better now?
+<jamest> i don't do that 
+<jamest> typically
+<chillywilly> jcater: oh yes baby you are the best
+Action: Yurik is back
+Action: chillywilly slaps jcater with a "scrimp"
+<chillywilly> (that's ebonics for shrimp, in case your too well educated to know that)
+<chillywilly> crazymike was saying that all day long
+<chillywilly> it was funny
+<jcater> chillywilly: I live in ebonics headquarters... I know what it means :)
+<chillywilly> ok
+<chillywilly> hehe
+<jcater> the local school system is seriously trying to get that as an approved course in elementary school
+<chillywilly> omg
+<ajmitch> heh
+<chillywilly> that's just wrong dude
+<nickr> I thought generally pidgins didn't get taught in school
+Action: chillywilly starts the "stop ebonics now" movement
+<nickr> we should all learn the quee's english, nuts to this 'american' crap
+<chillywilly> uh, no
+<chillywilly> we'll leave that to the aussies and kiwis
+<chillywilly> ;)
+Action: chillywilly ducks
+<nickr> Heh
+<nickr> At least american is better than canadian
+Action: nickr dodges
+<jamest> yeah!  screw english!  We should speak klingon!
+<chillywilly> jamest: exactly!
+Action: jamest thinks it'd help his odds at spelling things properly
+Action: jcater prefers tennessean to english
+<jcater> easier to pronounce
+Action: chillywilly contemplates doing something useful
+<nickr> I was thinking of waking a klingon terminal
+<jamest> chillywilly: why start now?
+<chillywilly> exactly
+Action: jamest dives for cover
+Action: chillywilly starts up zsnes
+Action: chillywilly loada NBA Jam
+<chillywilly> loads
+<chillywilly> NBA Jam is still one of the coolest games
+<dsmith> jcater: Yes! I used to vistiy relatives during the summmer (Virgina, N. Carolina, Tenn.) and would pick up an accent.  Defintly a much lazyier way of talking.
+<jcater> hehe
+<chillywilly> why is cvs commit list doing only context diffs?
+Action: chillywilly thinks the unified diffs are better
+<chillywilly> anyone?
+<chillywilly> I think the other diffs are easier to read
+<jcater> ask the savannah guys
+<jcater> but I agree
+<dsmith> chillywilly: I like uni diffs too. Not that is matters.
+Action: chillywilly sees rms post to free-slkyarov yet again
+<chillywilly> "The truly important issue is not one programmer, one company, or one
+<chillywilly> case; it is the DMCA and our freedom.  On this issue, I stand by what
+<chillywilly> I have said.  We must put the strongest pressure on Adobe, on movie
+<chillywilly> companies that make encrypted DVDs, and on any other companies that
+<chillywilly> now or in the future use the DMCA weapon against our freedom.  We must
+<chillywilly> teach them to regret their arrogance.
+<chillywilly> de."
+Rafterman (tim@lister.sesgroup.net) left irc: "[x]chat"
+<jbailey> chillywilly: Is free-slkyarov an email list?
+ToyMan (~stuq@c5300-3-ip137.albany.thebiz.net) left #gnuenterprise ("Client Exiting").
+<chillywilly> jbailey: yes
+<chillywilly> and it's freesklyarov ;)
+<chillywilly> er free-sklyarov
+<chillywilly> free-sklyarov@zork.net, iirc
+Yurik (yrashk@gw.telcos.net.ua) left irc: Ping timeout: 180 seconds
+Rafterman (tim@lister.sesgroup.net) joined #gnuenterprise.
+<jcater> dang
+<jcater> Krispie Kreme is trading at close to 50 points
+<jbailey> The doughnut shoppe?
+<jcater> oops
+<jcater> misread that
+<jcater> 42.90 points
+<jcater> but still that's pretty darn high for a donut shop
+<jcater> up 7.25% today
+Action: jcater keeps track of important market segments :)
+<jbailey> Mhm.
+<jbailey> Where would we be without doughnuts?
+<jcater> at the candy shop?
+<jbailey> Sounds like a project for a thinktank.  Demonstrate all of the ways in which doughnuts have shaped the world.
+<nickr> yes
+<nickr> I would invest time an effort being a test subject in that study
+alexey (alex@techkran.vladimir.ru) joined #gnuenterprise.
+jcater (jason@HubA-mcr-24-92-70-201.midsouth.rr.com) left irc: "entering suspended activity mode [sleep]"
+Action: derek is away: sleepy pooh
+chillywilly_ (~danielb@d32.as15.nwbl0.wi.voyager.net) joined #gnuenterprise.
+chillywilly (danielb@d29.as10.nwbl0.wi.voyager.net) left irc: Ping timeout: 180 seconds
+Nick change: chillywilly_ -> chillywilly
+--- Thu Dec 20 2001

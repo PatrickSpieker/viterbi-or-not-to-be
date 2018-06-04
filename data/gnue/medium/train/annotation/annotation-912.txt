@@ -1,0 +1,64 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.26May2003" author="Peter Sullivan" contact="mailto:psu@burdonvale.co.uk" enddate="26 May 2003 04:00:00 -0800" startdate="26 May 2003 04:00:00 -0800" subject="[IRC] 26 May 2003" title="Updates and inserts on multiple lists in AppServer">
+
+<topic>Application Server</topic>
+
+<p>Reinhard M&#252;ller (reinhard) noted <quote who="Reinhard M&#252;ller">in 
+appserver i can request a list of objects - i can have two lists "open" at 
+the same time for the same class</quote>. But 
+<quote who="Reinhard M&#252;ller">now our current definition is that for 
+updating and inserting data - we don't tell which list should be affected by 
+that transaction</quote>. He suggested various possibilities - no lists 
+affected, all lists affected, all lists that 'fit' affected, or 
+<quote who="Reinhard M&#252;ller">we add a parameter to tell which list 
+should be affected</quote>. Jan Ischebeck (siesel) asked what the difference 
+between the second and third options was. Reinhard gave an example - 
+<quote who="Reinhard M&#252;ller">list 1 has all german customers - and list 
+2 has all u.s. customers</quote> - if <quote who="Reinhard M&#252;ller">i 
+add a german customer</quote> then the second option 
+<quote who="Reinhard M&#252;ller">means the new record is visible in both 
+lists</quote> - the third option <quote who="Reinhard M&#252;ller">means 
+the new record is only visible in list 1</quote>.</p>
+
+<p>Jan felt that neither 
+of the first two options <quote who="Jan Ischebeck">really make 
+sense</quote>. Reinhard noted that the fourth option 
+<quote who="Reinhard M&#252;ller">is by far the easiest to implement - 
+as it is exactly what common's dbdriver's do</quote>. Reinhard and Jan 
+discussed the pros and cons of the various options.</p>
+
+<p>Reinhard felt that the first option <quote who="Reinhard M&#252;ller">is 
+close to unusable in pracice - because when i enter a new record i want 
+to see it after i'm finished entering it :)</quote> Jan disagreed, as 
+<quote who="Jan Ischebeck">the record is stored on client side till an 
+COMMIT - If a commit happens, the new record is inserted (remote) and its 
+new gnue_id should be added to its representation in the local 
+cache</quote>. However, Reinhard pointed out that 
+<quote who="Reinhard M&#252;ller">after the commit the record stays in 
+the list on client side, doesn't it? and it would disappear on server 
+side - so client list and server list will be out of sync - which could 
+lead to a mess when for example fetching further (previously unfetched) 
+records</quote>. He still preferred the fourth option, even if 
+<quote who="Reinhard M&#252;ller">form's dbdriver could "hide" the 
+drawbacks of</quote> the first option.</p>
+
+<p>Jan did not like the fourth 
+option, as <quote who="Jan Ischebeck">it makes our simple API too 
+complicated</quote>. He preferred the third option, but Reinhard felt 
+this would cause similar problems with keeping client and server 
+in sync to the first option, and <quote who="Reinhard M&#252;ller">there 
+might be states where the "original conditions" aren't even defined - for 
+example when you just opened a form and inserted a record without 
+selecting something first</quote>. Jan noted that the nearest equivalent 
+to this "multiple list" problem in a normal relational 
+database to this was a cursor - and <quote who="Jan Ischebeck">I had 
+a look in the postgres user manual and there is no way to 
+insert a record into a cursor or remove a record from a cursor</quote>. 
+Reinhard concluded that this meant the first option was 
+<quote who="Reinhard M&#252;ller">exactly what a pure database would 
+do</quote> - but he felt that <quote who="Reinhard M&#252;ller">we at 
+least want to be _better_ than a database :-)</quote>. He suggested 
+reconsidering this later.</p>
+
+</section>
+
+

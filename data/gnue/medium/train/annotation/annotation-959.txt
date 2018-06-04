@@ -1,0 +1,108 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.2006-04-13" author="Peter Sullivan" contact="mailto:psu@burdonvale.co.uk" enddate="13 Apr 2006 12:00:00 -0800" startdate="13 Apr 2006 12:00:00 -0800" subject="[IRC] 13 Apr 2006" title="Menu tags and triggers within Forms">
+
+<topic>Forms</topic>
+
+<p>Reinhard M&#252;ller (reinhard) noted that the &lt;menu&gt; tag 
+<quote who="Reinhard M&#252;ller">seems to fulfill both fuctions: menu 
+and menuitem - is that on purpose?</quote> James Thompson 
+(jamest) confessed <quote who="James Thompson">not a lot was 
+done in menus beyond playing around - there is a pretty complete 
+dynamic menu system in designer fwiw - that I was going to rip out 
+and put into common to replace the stuff started there</quote>.
+Reinhard looked at this, and noted that it <quote who="Reinhard M&#252;ller">seems 
+to deal with the UI creation for the menu - which leads to the question
+- does the menu handling actually belong to common or to forms?</quote>
+James thought that <quote who="James Thompson">the toolbar and menu 
+logic for setting up menus belongs in common</quote>, or even in 
+his new, proposed, GNUe Application Platform (GAP), as discussed in 
+<kcref subject="[IRC] 27 Mar 2006" title="GNUe Application Platform to replace Navigator?" /> - 
+<quote who="James Thompson">as it should be the same code in all 
+our gui apps</quote>. It had been a while since he had looked at 
+this code, but <quote who="James Thompson">i think the addFoo methods 
+built a in memory representation of a menu - and then the finialize 
+method mapped it to the UI widget set. what I was hoping for in common 
+was a set of classes/methods that let us build a logical menu in 
+memory</quote>. Just like a GNUe form definition, this would not 
+be specific to any particular user interface. The idea would be that 
+<quote who="James Thompson">the UI would register to listen for menu 
+update events</quote>, thus completely isolating the menu logic from 
+whatever user interface the user happened to be using.</p>
+
+<p>Reinhard asked whether this would also apply to the 'standard' 
+menu items that were actually part of the base Forms application, as well 
+as to additional menu items defined by a forms developer. James 
+thought so - this would mean that <quote who="James Thompson">1) a form 
+could extend a menu or remove items or hide them via startup triggers 
+- 2) it may be possible for an application like navigator to adjust 
+it's menu dynamically based upon the forms loaded in memory</quote>. 
+Reinhard understood - the issue then was whether to implement this as 
+UI events or as function calls by the menu code - 
+<quote who="Reinhard M&#252;ller">my experience 
+so far is that events add complexity and eat performance</quote>. 
+James agreed, and although he had been thinking originally in terms 
+of events, could see no reason not to do this as function calls 
+instead.</p>
+
+<p>Reinhard liked James' idea of allowing triggers to be switched 
+on and off. Jason Cater (jcater) wondered what should then 
+happen <quote who="Jason Cater">if a disabled trigger is called
+- does it just not run? - throw an exception?</quote> He felt the 
+latter option might be better - it represented 
+<quote who="Jason Cater">a developer error</quote>. James suggested
+<quote who="James Thompson">you could flip optional processing 
+on/off via a checkbox on a form via a trigger disabling another named 
+trigger</quote>. Reinhard felt this was bad style - it was better 
+to keep the trigger active, but make it 
+<quote who="Reinhard M&#252;ller">check the value of the check box in the 
+trigger code</quote> and simply do nothing if that was what was 
+required.</p>
+
+<p>Later, Reinhard added <quote who="Reinhard M&#252;ller">the more I 
+think about menus and toolbars, the more I see them bound rather 
+tightly to triggers - they will fire triggers, they will follow 
+trigger's enabling/disabling ... they might even get label and help 
+text from triggers (so a menu item and its corresponding toolbar 
+button will get the same label/tooltip). So I'm starting to think if 
+implementation of GMenu, GMenuItem and GToolButton would feel well 
+in the logic/ subdirectory</quote>. Jason noted that 
+<quote who="Jason Cater">fwiw, this is how designer does it - 
+and how I was moving forms to do it</quote>. And user interface 
+systems such as QT did something similar - 
+<quote who="Jason Cater">except they all have "Events" 
+instead of "Triggers"</quote> - <quote who="Jason Cater">so 
+I think having one object that represents any type of such 
+"action" makes sense</quote>. This would also automatically 
+handle the different ways of selecting something in a typical graphical 
+user interface - pressing a hot key, selecting a menu option or 
+clicking a toolbar icon <quote who="Jason Cater">are all the same 
+object - my only concern is are we overloading triggers too 
+much</quote>. In particular, all of the GNUe Tools had the 
+concept of triggers, but this more specific use of them 
+<quote who="Jason Cater">for the menu/toolbar/ui stuff</quote>
+really only made sense in <quote who="Jason Cater">forms (and maybe 
+navigator)</quote>.</p>
+
+<p>Jason and Reinhard swapped some sample XML to try to clarify 
+what they each meant. Jason suggested <quote who="Jason Cater">what 
+I now wish we had done (and might could still do without any 
+breakage)</quote> was that triggers could just be stand-alone pieces 
+of python code with a name, which could be called either by another 
+trigger bound to an object (what GNUe had, up until now, considered a 
+trigger) or called by an action. This would simplify Reinhard's 
+suggested treatment of menu items, in that these would just be a 
+specific type of action. </p>
+
+<p>Reinhard set out the options - either <quote who="Reinhard M&#252;ller">a) 
+a menu item has an ON-ACTIVATE trigger that is 
+fired when the item is clicked, and that trigger is just a trigger 
+like all other triggers, or b) there are &lt;action&gt;s, and a menu 
+item is bound to an action, and gets info like icon, label, help text 
+from that action element, and an action is, while in implementation 
+closely related to a trigger, something completely different in 
+philosophy. The more I think about it the more it seems to me these 
+are diametral concepts.</quote>. Jason liked this 
+second option - <quote who="Jason Cater">it seems like a clean 
+distiction as far as the definition of our markup</quote>.</p>
+
+</section>
+

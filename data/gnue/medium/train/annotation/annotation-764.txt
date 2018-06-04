@@ -1,0 +1,134 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.12Jul2002" enddate="16 Jul 2002 23:00:00 -0800" startdate="11 Jul 2002 23:00:00 -0800" subject="[IRC] 12 Jul 2002" title="Scrollbars and their events">
+
+<topic>Forms</topic>
+
+<p>Marcos Dione (StyXman) asked <quote who="Marcos Dione">do 
+you know the status of scrollbars? there's a rumor here that 
+they're working...</quote> James Thompson (jamest) said 
+<quote who="James Thompson">i added a &lt;tag&gt; and code to create 
+the widget and that is all - i thought someone else worked on 
+making them do something</quote>, but he did not really have 
+time to discuss ideas as of time of writing. Marcos said 
+he would <quote who="Marcos Dione">hack it here, and when it's 
+done, we'll talk about it.</quote> He asked 
+<quote who="Marcos Dione">should I implement it @ 
+uidriver level, or @ gfobject (in fact, gfscrollbar)?</quote> 
+Jason Cater (jcater) suggested <quote who="Jason Cater">gfscrollbar, 
+with any wx-specific stuff in uidriver</quote>. James said 
+<quote who="James Thompson">there should already be a gfscrollbar 
+file IIRC</quote>. Marcos said <quote who="Marcos Dione">yes, it 
+is, but is a litlle... uh, spartan :)</quote></p>
+
+<p>Marcos asked <quote who="Marcos Dione">are 
+events and triggers the same? I'm a little confused...</quote>
+James said that <quote who="James Thompson">events 
+== events internal to forms - button clicks, requests for next record, 
+etc, etc</quote> whereas <quote who="James Thompson">triggers == chunks 
+of code that are attached to certain "trigger events" that are specified 
+in the gfd, grd, etc files - pre-commit, pre-update, etc, etc</quote>. 
+Marcos asked <quote who="Marcos Dione">how are events handled by 
+gfobjects? hacking the dispatchEvent function?</quote> James explained 
+<quote who="James Thomspon">objects registers with other objects to 
+listen to events via a registerListener functoin IIRC - trigger events 
+are hard coded into the program</quote>. Marcos said he would 
+<quote who="Marcos Dione">need new 'events' on gfscrollbar [...] like 
+'scrollUp' event, which should do something..</quote> James said 
+<quote who="James Thompson">there is a dictionary of events in the 
+objects that listen for them - you can look at either GFForm or GFInstance 
+for example</quote>. He explained <quote who="James Thompson">you create 
+a entry that maps an event to a specifc handler function - and that's 
+it</quote>.</p>
+
+<p>Later, Marcos asked <quote who="Marcos Dione">how do I bind a 
+function to a event? thru a eventHandler?</quote> James gave an 
+example in the GFInstance.py code. Marcos asked whether this meant, 
+if he wanted a GNUe Forms scrollbar (gfsb) <quote who="Marcos Dione">to 
+have events, I just write the functions that handle the events and then 
+register them to listen to the new events? events are global?</quote>
+James said <quote who="James Thompson">events are only passed to 
+objects that request to listen to events - so not really global</quote>
+Marcos said <quote who="Marcos Dione">yeah, but I mean 'global' in the 
+sense that anyone can listen to certain event... or I'm misunderstandin 
+what events are for. I what the UIsb to call the GFsb's 'event' 
+handler...</quote> Jason interjected that the intent was 
+<quote who="Jason Cater">so UI* doesn't have to know about GF* internals, 
+and vice versa</quote>, but had to run before he could explain further. 
+Marcos asked <quote who="Marcos Dione">would you say that calling gfsb 
+functions from uisb is bad?</quote> James said 
+<quote who="James Thompson">yes - all that should be passed via 
+events</quote>. Marcos asked <quote who="Marcos Dione">which is the 
+difference between calling self._eventHandler and dispatchEvent?</quote> 
+James said <quote who="James Thompson">you wnat to use dispatchEvent
+99.9% of the time - that sends the event to the objects that have 
+registered to listen to it</quote>. Marcos noted that 
+<quote who="Marcos Dione">most of the examples use the other 
+one...</quote> James said <quote who="James Thompson">sigh, maybe 
+someone changed something</quote>. However, 
+<quote who="James Thompson">I'm pretty sure you'd want to use 
+dispatchEvent to send the actual events</quote>. Marcos asked
+<quote who="Marcos Dione">ok, suppose I dispatch the event. how 
+do I say the certain func in gfsb is listening? call to 
+registereventlistener in gfsb's constructor?</quote>. Jason 
+confirmed this.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.17Jul2002">
+Some days later</a>, Marcos said he was still having issues with events. 
+He was trying <quote who="Marcos Dione">to put behaviour on {gf,ui}scrollbar - 
+so, I want to make the uisb send a n event that the gfsb is listening to</quote>. 
+James asked <quote who="James Thompson">have you happened to look at UIButton 
+in the wx driver? it maps a wx event to a GF event</quote>. Marcos noted that 
+<quote who="Marcos Dione">it uses self._eventHandler instead of dispatchEvent. 
+I was told to use the latter...</quote>. James looked, and said 
+<quote who="James Thompson">this doesn't work like I remember it</quote>, 
+although it appeared <quote who="James Thompson">the confusion comes from some 
+of this being wxpython "events" and some of this being gnue "events"</quote>. 
+He explained <quote who="James Thompson">in the button code you've got 
+EVT_BUTTON() which sets the function to call when the user generates a wx button 
+click - then the next line containing the (event.eventHandler) is pushing the 
+mouse and UI event handlers onto the wx event processing stack. We used to have 
+every widget contain the duplicate code for this IIRC. The reason we're passing 
+that event.eventHandler in is that those classes (mouse and UI event) dont 
+register as event aware</quote>.</p>
+
+<p>Marcos asked <quote who="Marcos Dione">how do I tell that ceratin gfsb's 
+method should be called?</quote> James said <quote who="James Thompson">that's 
+mapped in the GFInstance - all events are processed thru there as sort of a 
+clearing house - so you'd setup a funciton in there that did the approprate calls 
+to the lower level gfobjects. You'd set your uiscrollbar to process certain events 
+like button does with EVT_BUTTON( - there it sets it up so that it's own 
+self.buttonHandler gets called when an event button is pressed - it then uses 
+_setDefaultEventHandlers to shove the standard event handler 
+classes for mouse and keyboard support onto it's event processor stack</quote>.
+The alternative, but non-standard, way would be register the handlers directly, 
+<quote who="James Thompson">which will generate a GNUE Event that is picked up 
+by GFInstance</quote>. He noted <quote who="James Thompson">its is prefectly 
+OK for GFInstance to just ignore the event if it determines the state of the 
+form is such that the event should not be honored</quote>, and remarked 
+<quote who="James Thompson">all key presses are passed back to the form for 
+processing prior to the UI changing - so if I enter a lowercase a and the field 
+is set to case="upper" then the GFInstance and friends insert an uppercase A 
+instead then tell the UI to update - it also does the focusing</quote>.</p>
+
+<p>He also said <quote who="James Thompson">you'll notice a lot of events are 
+named requestFOO - because the UI is a slave to the</quote> GNUe Forms (GF) 
+tree - <quote who="James Thompson">it can make requests from the GF tree but 
+it's not allowed to update it's own contents w/o getting events back from the 
+GF tree - it's not allowed to change focus with events from the GF tree - 
+it's a complete mindless slave to the GF tree humbly requesting that something 
+be done then waiting until it's told to do something</quote>. This was 
+<quote who="James Thompson">so that we had a single code base that handled 
+things like max length, input masks, uppercase conversion, etc, etc - 
+i didn't want to see each UI implement things in their own fashion</quote>, 
+as UI (User Interface) independance was an important goal of GNUe Forms.</p>
+
+<p>Marcos asked <quote who="Marcos Dione">would you say that I should 
+'build' a new event, like requestSCROLL?</quote>. James said 
+<quote who="James Thompson">oh yes, new events would probably be 
+required - event name are hardcoded in gfinstance yes. If we allow UI 
+plug-ins in the future we'll need some way to register them - but everything 
+so far is pretty much std behaviour so I'm not too worried about the hard 
+coding</quote></p>
+
+</section>
+
+

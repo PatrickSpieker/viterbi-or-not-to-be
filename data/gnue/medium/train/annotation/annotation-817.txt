@@ -1,0 +1,26 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.25Jun2002" enddate="24 Jun 2002 23:00:00 -0800" startdate="24 Jun 2002 23:00:00 -0800" subject="[IRC] 25 Jun 2002" title="Foreign Key drop-down boxes">
+
+<topic>Forms</topic>
+
+<p>Calum Morrell (drochaid) asked <quote who="Calum Morrell">what's 
+the fast way to populate a drop-down box with entries from a table 
+different to the one the block the box is on is attached to?</quote> 
+Derek Neighbors (dneighbo) said <quote who="Derek Neighbors">i would 
+say look at a sample BUT i think jcater took my suggestion and 
+changed how dropdowns work :)</quote> Derek explained the basic 
+scenario, with bar having foo as a foreign key. You needed to 
+add the foo look-up table as an additional datasource for the form. 
+<quote who="Derek Neighbors">Then go to tableBar.fooid entry
+and open up property inspector change its type(style) to dropdown
+then go up to foreign key seciont. In foreign key data source put 
+name of datasource you just made - in lookup/key put fooid - 
+in fk description put foodesc</quote>. This was new functionality
+<quote who="Derek Neighbors">as lookups used to only have two fields 
+not three</quote> - it had been added since the 0.3.0 releases, but 
+CVS had it. You also needed to set prequery="true" on the new 
+foreign key datasource to ensure that the look-up was 
+automatically populated whenever the form was opened.</p>
+
+</section>
+
+

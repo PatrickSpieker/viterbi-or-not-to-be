@@ -1,0 +1,143 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.09Sep2002" enddate="10 Sep 2002 23:00:00 -0800" startdate="08 Sep 2002 23:00:00 -0800" subject="[IRC] 09 Sep 2002" title="Passing parameters to Forms">
+
+<topic>Forms</topic>
+<topic>Reports</topic>
+<topic>Common</topic>
+<topic>Navigator</topic>
+
+<p>Marcos Dione (StyXman) asked <quote who="Marcos Dione">is 
+there a way to pass parameters to forms?</quote>. Jason Cater 
+(jcater) said <quote who="Jason Cater">not at the moment - 
+we have code in reports that allows for parameter passing
+that I want to move into common - so forms can use as 
+well</quote>. Marcos said he would <quote who="Marcos Dione">take 
+alook and try to port it to forms.</quote>.</p>
+
+<p>Later, he asked <quote who="Marcos Dione">what are the 
+parameters used for in reports?</quote> Jason said 
+<quote who="Jason Cater">reports can use them 2 ways - 
+1) in the conditions for datasources - so you can run 
+gnue-reports myreports begindate=09/02/02 enddate=09/03/02 - 
+2) the conditions can just appear in the output of reports
+i.e., gnue-reports myreports custom_title="My Sales Report" - 
+I would foresee forms using it similarly - i.e., it could use 
+them in datasources to limit a query or it could be values 
+that trigger code could access. Datasources inherently support 
+parameters - but only reports currently passes them. It should 
+be trivial to get forms to - it just hasn't happened 
+yet</quote>.</p> 
+
+<p>Later, Jason explained <quote who="Jason Cater">Reports 
+has a GRParameter class that subclasses common's GParameter - 
+so it all happens automatically. We just need some code in the 
+gfclient.py code that takes the parameters from the command lines
+and sets the GFParameter object with the value - then GDataSources 
+will take over from there</quote>. Marcos agreed - 
+<quote who="Marcos Dione">I saw the part where sys.argv convers 
+into self.PARAMETERS or the like an then they're copied all over 
+the code till they become GRParameters...</quote>.</p>
+
+<p>Earlier, Marcos said that the reason he was looking at 
+parameters for Forms was because <quote who="Marcos Dione">we're 
+thinking about a kind of 'app' that would integrate a lot of forms 
+into one single app. in a different way that navigator does. it would 
+also handle app config and, more specifically, users and roles.</quote> 
+It was suggested that it might be better to discuss this, as 
+Navigator was supposed to support role-based access control at 
+some point, and tools to manage things like connections.conf had 
+also been discussed previously. Peter Sullivan (psu) suggested 
+<quote who="Peter Sullivan">Actually, if connections.conf was XML, 
+we could use DEsigner to edit it ;-) - then it really would be 
+"the emacs of GNUe"...</quote> but got roundly troutslapped.</p>
+
+<p>Later, Jan Ischebeck (siesel) asked 
+<quote who="Jan Ischebeck">what do you think about a special dbdriver 
+to edit the connections.conf in gnue-forms</quote> - 
+<quote who="Jan Ischebeck">using forms itself to edit its own config 
+files?</quote> Jason said he had <quote who="Jason Cater">thought 
+about that before - /me even considered making IMAP and POP3 
+dbdrivers for gnue-common - but then the more I thought about it
+the more I thought that might be hellacious to maintain for the 
+little benefit derived</quote>. Jan asked whether 
+<quote who="Jan Ischebeck">you think that writing a seperate app, 
+or config dialog to do this is easier?</quote> Jason said 
+<quote who="Jason Cater">I think a popup dialog in Designer to do 
+this may be best - I'm honestly not sure - I'm torn in several 
+directions</quote>. </p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.10Sep2002">
+The next day</a>, Marcos said he was <quote who="Marcos Dione">still 
+fighting with the parameters. I can't find where are they handled to 
+datasources.</quote> Jason said he had <quote who="Jason Cater">just 
+added the feature you need - but I need to remerge back into 
+head</quote>. Marcos asked <quote who="Marcos Dione">how do you pass 
+params to datasources?</quote> Jason said it was already in 
+the GNUe Reports parser, and would be in the GNUe Forms parser as 
+well - <quote who="Jason Cater">search for 'cparam' in 
+GRParser</quote>.</p>
+
+<p>Later, Jan Ischebeck (siesel) asked <quote who="Jan Ischebeck">how 
+do you want to use parameters</quote> in Forms? 
+<quote who="Jan Ischebeck">Just for triggers?</quote> 
+Jason said <quote who="Jason Cater">I'm not 100% sure yet - 
+but we already have the capability w/reports - 
+and there's time in the past I've needed them</quote>. 
+Marcos said <quote who="Marcos Dione">we were thinking of calling forms 
+with data already there.</quote> Jason said <quote who="Jason Cater">I've 
+needed to do that as well - where you can change the dataset used just by 
+passing a parameter</quote>.</p>
+
+<p>Jan asked whether <quote who="Jan Ischebeck">the default 
+values for a parameter are defined in the</quote> .gfd (GNUe Forms 
+Definition) file - this did not seem to be right, as 
+<quote who="Jan Ischebeck">&lt;cparam&gt; just take a 
+"name" and no "value" attribute.</quote> Jason said 
+<quote who="Jason Cater">in reports, I had a separate &lt;parameter&gt; 
+tag that defined valid parameters and any default values</quote>. 
+He had not considered <quote who="Jason Cater">default values 
+w/forms</quote> - the cparam tag was for something else. Jan
+suggested <quote who="Jan Ischebeck">why not use the same tag in forms 
+as in reports</quote>, although he noted <quote who="Jan Ischebeck">that 
+the &lt;parameter&gt; tag in report has quite a few attributs.
+- I don't know if we could use/need/implement all of them ( 'name' 
+'required' 'limited' 'default' 'description' 'source' 'type' )</quote>. 
+Jason felt <quote who="Jason Cater">we at least need 'type' and 
+'default'</quote>.</p>
+
+<p>Jan asked what the 'limited' and 'source' options were for. 
+Jason said <quote who="Jason Cater">that is primarily for 
+reports</quote>, explaining <quote who="Jason Cater">the plan 
+was to have a gnue-reports client that would prompt for the 
+parameters - if they weren't specified on the command line - 
+and source= could point to a datasource that would give valid values
+and limited= would specify the valid values (neither of those 2 
+options are implemented)</quote> as of time of writing. 
+Jan thought <quote who="Jan Ischebeck">we still could use "source" 
+in forms</quote> as paramters <quote who="Jan Ischebeck">could be 
+f.e. provided by a database.</quote> He felt that 
+<quote who="Jan Ischebeck">using parameter tags with source attributs 
+could be a SQL less solution replacing "simpleQuery" commands in 
+triggers</quote>. Jason felt <quote who="Jason Cater">imho that's 
+making parameters too complex - i.e., then you have a datasource
+not a parameter</quote>. Jan accepted this, but felt that 
+<quote who="Jan Ischebeck">the main usage for parameters in forms is 
+to send information from a main form to a popup subform</quote>, 
+which Jason agreed with. Jan felt <quote who="Jan Ischebeck">IMHO 
+its just would be easier to share the parameter definition 
+with reports than create a new one</quote>. Jason said 
+<quote who="Jason Cater">it should be rolled into GClientApp - 
+but for the time being I'm going to leave them as they 
+are</quote>.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.11Sep2002">
+The next day</a>, Marcos asked whether <quote who="Marcos Dione">the 
+only way to pass parameters</quote> to Forms 
+<quote who="Marcos Dione">is through command line?</quote> Jason 
+said <quote who="Jason Cater">the runform() method can be passed a 
+dictionary too - and iirc gnue-navigator already had a &lt;parameter&gt; 
+tag (not sure if it's fully implemented yet, but the stub was 
+there)</quote>.</p>
+
+</section>
+
+

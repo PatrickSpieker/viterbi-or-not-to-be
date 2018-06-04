@@ -1,0 +1,67 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.28May2002" enddate="27 May 2002 23:00:00 -0800" startdate="27 May 2002 23:00:00 -0800" subject="[IRC] 28 May 2002" title="Logging into GNUe without username and password">
+
+<topic>Forms</topic>
+
+<p>John Lenton (Chipaca) asked <quote who="John Lenton">why can't 
+I specify the user in connections.conf?</quote> He was getting tired 
+of the login screen. Jason Cater (jcater) said <quote who="Jason Cater">we 
+were, um, being security conscious</quote>, adding 
+<quote who="Jason Cater">we were planning to add 
+<a href="http://www.python.org/doc/current/lib/module-netrc.html">netrc</a> 
+support iirc</quote>. John also noted <quote who="John Lenton">if you quit 
+a form before the splash has gone away it *hangs* !</quote> Jason said
+<quote who="Jason Cater">err - we know :( - it's a wx bug</quote> and 
+there was <quote who="Jason Cater">both a command line option and a 
+gnue.conf option to shut</quote> the splash screen 
+<quote who="Jason Cater">off for that very reason</quote>.</p>
+
+<p>Derek Neighbors (dneighbo) said he thought that putting user names 
+and passwords into connections.conf would be <quote who="Derek Neighbors">a 
+bad thing to do</quote>. John said he appreciated the security issues for a 
+live system, but <quote who="John Lenton">when I'm developing something and 
+I don't have a password on the database in my closed LAN</quote> it was 
+more important to be able to get in and out of test forms quickly. 
+Jason still was not convinced, but said 
+<quote who="Jason Cater"><cite>if</cite> it were added to connections.conf, 
+then GConnections.py is the place to add it</quote>. John asked about using 
+netrc instead. James said <quote who="James Thompson">i would think that 
+netrc would override connections - so the user could override the system 
+default</quote>. John said <quote who="John Lenton">I'm thinking about how 
+to specify the hostname - I think it should probably something like 
+gnue://host/provider/dbname/ - which leaves me with this ugly feeling of 
+netrc not being the right place for it :)</quote>.</p>
+
+<p>Derek siad that hardcoding usernames and passwords was better 
+done using <quote who="Derek Neighbors">command line parameters - 
+and alias you shell to always fire those</quote> - a command like 
+frmdev <quote who="Derek Neighbors">aliases gfcvs -u chipaca -p 
+mymomma</quote>. John said he did not like this. Derek said he
+<quote who="Derek Neighbors">thinks its not a good idea to hard 
+code at all</quote>, and that putting it in connections.conf was 
+just as much hard coding as his idea. John said it was 
+<quote who="John Lenton">hardconfing</quote> it - 
+<quote who="John Lenton">if you put it in your text configuration 
+file, it's the UNIX way</quote>. Derek said 
+<quote who="Derek Neighbors">i would rather see someone work on 
+integration instead - where it uses your system login first - 
+and only if that fails does it prompt</quote>. John claimed 
+<quote who="John Lenton">I'm scratching my itch :)</quote> but 
+he would look at that next. Derek said 
+<quote who="Derek Neighbors">i think with ERP type applications 
+you shoudl be challenged regardless and never trusted</quote> but 
+<quote who="Derek Neighbors">i suppose tehre is no evil in letting 
+connections.conf do it - as its optional. i just dont like to 
+encourage it</quote>.</p>
+
+<p>He felt <quote who="Derek Neighbors">i think a good compromise 
+might be 'remembered' userids by machine. So if i come in and login 
+as dneighbo - next time i fire up forms, dneighbo is automatically 
+entered into the user field - and just have to type my password - but 
+if im not dneighbo i just type my userid and password</quote>.</p>
+
+<p>John did a quick fix using netrc, which seemed to work, and 
+submitted it as a patch.</p>
+
+</section>
+
+

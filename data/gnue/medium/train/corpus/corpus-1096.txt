@@ -1,0 +1,1274 @@
+[00:13] Last message repeated 1 time(s).
+<derek> home's are like penis'
+<derek> half the world has one
+<jcater> freedom is like a house
+<jcater> you don't miss it until it's no longer there
+<jcater> hmm
+<jcater> or more appropriately
+<jcater> freedom is like sex
+<jcater> you don't miss it until it's no longer there
+<jcater> :)
+<jcater> chillywilly: you still around?
+<derek> oh, i thought you were going to say
+<derek> freedom is like sex
+<chillywilly> yes
+<derek> it disappears the day you get married
+<chillywilly> lol
+<jcater> nah
+<jcater> it slows the day you get married
+<jcater> it disappears the day you have children
+<jcater> chillywilly: you figure out the master/detail stuff?
+<chillywilly> nope
+<chillywilly> was reading the hurd mailing lists
+<jcater> oh
+<jcater> well, I'll let you read then :)
+<chillywilly> I;m done now
+<derek> jcater: actual i think you are correct
+<jcater> are you familiar with primary keys / foreign keys in relational databases?
+<jcater> derek: ?
+<chillywilly> sorta
+<derek> me
+<derek> yes
+<chillywilly> primary key is a 'unique' key right?
+<jcater> well, say I have a states table and a zipcodes table
+<chillywilly> the value there makes a record unique
+<derek> jcater: correct about the kids vs married
+<jcater> :)
+<jcater> in forms, I might create a 'states' block corresponding to the 'states' table
+<jcater> I also create a 'zipcodes' block corresponding to the 'zipcodes' table
+<jcater> but I set zipcodes to be a detail block of states
+<jcater> linked by the 'state' field
+<jcater> this means each time a new record is brought into focus in the states table, 
+<jcater> then the zipcodes block is requeried (behind the scenes) to only bring up all zipcodes in the current state
+<jcater> also, if you elect to add a new entry to the zipcodes block
+<jcater> the "state" field is automatically filled in with the value of "state" in the states block
+<jcater> that make any sense?
+<chillywilly> ummm, lemme thin about that for a sec
+Action: jcater is tired, so may be outputting gibberish :)
+Action: chillywilly is a bit tired too
+<chillywilly> I get it I think
+<jcater> it closely resembles the relational foreign key concept
+<jcater> but doesn't have to have an underlying foreign key/primary key to work
+<chillywilly> it does it in the form?
+<chillywilly> right?
+<jcater> yes
+<chillywilly> you make your own key
+<chillywilly> gotcha
+<chillywilly> hmmmm
+<chillywilly> apt-proxy looks useful ;)
+<chillywilly> where's ajmitch when I need him?
+chillywilly_ (~danielb@d21.as6.nwbl0.wi.voyager.net) joined #gnuenterprise.
+chillywilly (danielb@d127.as15.nwbl0.wi.voyager.net) left irc: Killed (NickServ (Ghost: chillywilly_!~danielb@d21.as6.nwbl0.wi.voyager.net))
+ra3vat (ds@ics.elcom.ru) left irc: Read error: 113 (No route to host)
+Nick change: chillywilly_ -> chillywilly
+jcater (jason@24.92.70.39) left irc: Read error: 110 (Connection timed out)
+chillywilly (danielb@d21.as6.nwbl0.wi.voyager.net) left irc: 
+jan (jan@dial-213-168-64-157.netcologne.de) joined #gnuenterprise.
+drochaid (user34@pc1-kirk2-0-cust128.ren.cable.ntl.com) joined #gnuenterprise.
+ra3vat (ds@ics.elcom.ru) joined #gnuenterprise.
+jan (jan@dial-213-168-64-157.netcologne.de) left irc: Read error: 113 (No route to host)
+jan (jan@dial-213-168-88-47.netcologne.de) joined #gnuenterprise.
+jan (jan@dial-213-168-88-47.netcologne.de) left #gnuenterprise.
+Yurik (yrashk@gw.telcos.net.ua) left irc: "Client Exiting"
+chillywilly (~danielb@d21.as6.nwbl0.wi.voyager.net) joined #gnuenterprise.
+chillywilly (danielb@d21.as6.nwbl0.wi.voyager.net) left irc: Client Quit
+dres (~dres@4.18.171.42) joined #gnuenterprise.
+drochaid (user34@pc1-kirk2-0-cust128.ren.cable.ntl.com) left #gnuenterprise ("Client Exiting").
+<derek> anyone here that can help with printing?
+jamest (~jamest@fh-dialup-201091.flinthills.com) joined #gnuenterprise.
+drochaid (~drochaid@pc1-kirk2-0-cust128.ren.cable.ntl.com) joined #gnuenterprise.
+<derek> ah jamest
+<derek> help
+<derek> how do you print a file?
+<derek> like a normal text file to lp0
+<jamest> um
+<jamest> lpr filename
+<jamest> if you have the printer setup
+<derek> i have printer set up via printtool and am able to print samples from print tool 
+<derek> lpr gives me error
+<derek> carpine:/home/dneighbo# lpr sample.txt 
+<derek> lpr: cannot create /var/spool/lpd/lp/.seq
+<derek> carpine:/home/dneighbo# 
+<jamest> does  /var/spool/lpd/lp exist?
+<derek> you know what it should be going to lp0
+<derek> no lp
+<derek> sigh
+Action: derek kicks debian
+<derek> let me give it some abuse
+<jamest> dpkg-reconfigure lpd
+<derek> carpine:/var/spool/lpd# dpkg-reconfigure lpd
+<derek> Package `lpd' is not installed and no info is available.
+<derek> Use dpkg --info (= dpkg-deb --info) to examine archive files,
+<derek> and dpkg --contents (= dpkg-deb --contents) to list their contents.
+<derek> /usr/sbin/dpkg-reconfigure: lpd is not fully installed
+<derek> carpine:/var/spool/lpd# apt-get install lpd
+<derek> Reading Package Lists... Done
+<derek> Building Dependency Tree... Done
+<derek> E: Couldn't find package lpd
+<derek> carpine:/var/spool/lpd# 
+<derek> darn this is killing me
+<derek> i wonder if rlpr is what i really want
+<derek> that is what i used at axis i thinmk
+<jamest> er
+<jamest> that should have been 
+<jamest> dpkg-reconfigure lpr
+<jamest> my bad
+<derek> yeah it failed on that
+<derek> so im apt-get installing it
+drochaid (~drochaid@pc1-kirk2-0-cust128.ren.cable.ntl.com) left #gnuenterprise ("Client Exiting").
+<derek> hmm its printtool that dorks things up man
+<derek> as now print tool is gone
+<derek> if i try to re get printtool
+<derek> carpine:/var/spool/lpd# apt-get install printtool
+<derek> Reading Package Lists... Done
+<derek> Building Dependency Tree... Done
+<derek> The following extra packages will be installed:
+<derek>   lpr-ppd 
+<derek> The following packages will be REMOVED:
+<derek>   lpr 
+<derek> The following NEW packages will be installed:
+<derek>   lpr-ppd printtool 
+<derek> 0 packages upgraded, 2 newly installed, 1 to remove and 405  not upgraded.
+<derek> Need to get 0B/135kB of archives. After unpacking 67.6kB will be used.
+<derek> Do you want to continue? [Y/n] 
+<derek> it tries to install lpr-ppd instead
+<jamest> i think that is ok
+Suit (~SFH@zeilers.demon.nl) joined #gnuenterprise.
+<derek> carpine:/home/dneighbo# lpr sample.txt 
+<derek> lpr: lp: lp: unknown printer
+<derek> carpine:/home/dneighbo# 
+<derek> now i dont get the error for lpr
+<derek> but its looking for lp instead of lp0
+<derek> how do i change where its going?
+<jamest> /etc/printcap file
+Suit (SFH@zeilers.demon.nl) left irc: Client Quit
+<derek> i just went and changed the printer name instead
+<derek> restarting lpd and trying
+<derek> no error this time
+<derek> but im seeing anything print
+<derek> carpine:/home/dneighbo# lpq
+<derek> Warning: no daemon present
+<derek> Rank   Owner      Job  Files                                 Total Size
+<derek> 1st    root       0    sample.txt                            547 bytes
+<derek> carpine:/home/dneighbo# 
+<derek> what gives
+<jamest> ps aux | grep lp
+<jamest> your printer daemon isn't setup
+<jamest> fwiw - how the heck have you managed to make printer setup this difficult?
+<derek> hold on just whacked things
+Action: jamest bows to your amazing ability to break things
+<derek> you response was too slow and im desparate
+drochaid (~drochaid@pc1-kirk2-0-cust128.ren.cable.ntl.com) joined #gnuenterprise.
+<derek> whew ok lpr works now
+<derek> when i changed the name of the printer from lp0 to lp
+<derek> i accident changed device too (stupid me)
+<jamest> :)
+derek (derek@cpe-24-221-112-50.az.sprintbbd.net) left irc: "um my gnue tree is bigger than your gnue tree"
+reinhard (~rm@62.47.45.2) joined #gnuenterprise.
+<jamest> good day
+<reinhard> hello
+drochaid_ (~drochaid@pc1-kirk2-0-cust128.ren.cable.ntl.com) joined #gnuenterprise.
+drochaid (drochaid@pc1-kirk2-0-cust128.ren.cable.ntl.com) left irc: Read error: 104 (Connection reset by peer)
+Nick change: drochaid_ -> drochaid
+Suit (~SFH@zeilers.demon.nl) joined #gnuenterprise.
+<jamest> did anyone have a chance to stress test cvs ?
+<Suit> I am building the dependencied for GNUe, which is preferred wxGTK 2.2.9 or 2.3.2 ?
+<jamest> which platform?
+<Suit> linux (SuSE 7.3)
+<jamest> hmmmm
+<jamest> we work w/ either
+<jamest> on debian most people use the packaged 2.2 
+<jamest> i use 2.3 on solaris
+<jamest> 2.3 is a bit nicer
+<Suit> It comse with 
+<Suit> wxgtk-config --version
+<Suit> 2.2.6
+<jamest> that should work IIRC
+<Suit> So maybe I am better of getting that wxPython version?
+<jamest> oooo
+<jamest> i see the problem
+<jamest> there is no wxpython package
+<jamest> yes, they must match the wxgtk that is installed
+<jamest> i tried running different releases and had issues
+<Suit> So do I :-)
+<Suit> Hmm, what is nicer in 2.3 ?
+<jamest> internals 
+<jamest> we'd be 2.3 only if the distro's shipped with it :)
+<jamest> I believe that the toolbar works better on win32 platforms
+<jamest> there are less memory leaks
+<jamest> but our stuff runs the exact same
+<Suit> Ok, well I am trying to get the hang of it all on linux first, will see about Win32 much later. This is just me thinking I can learn stuf about python and SQL and such by looking at what other people are doing with it.
+<jamest> looking at our code?
+Action: jamest feels sorry for Suit
+<jamest> that way lie madness
+<jamest> :)
+<Suit> Hmm, maybe not looking at all the code, just bit's and pieces
+<Suit> shoul wxPython match the subversion number too, or just the minor?
+<jamest> i had the best luck matching both
+<jamest> it's a pain i know
+<jamest> as it's hard to find older copies
+<jamest> IIRC you have to go to sourceforge
+<jamest> and search for wxpython
+<jamest> if you go to www.wxpython.org they only give links to the latest and greatest devel copy 
+<Suit> well, I just stripped the filename of the url anc got the whole archive in view
+<jamest> :)
+<Suit> seems they went from 2.2.5 straight to 2.2.7, even google can't find a 2.2.6
+<jamest> cool
+<jamest> sigh
+<jamest> looks like suse went same route as debian
+<Suit> Oh well, I'll get them both and start with the .7
+<jamest> there was an unreleased version in distros
+<jamest> i am suprised that wxpython isn't availble as a package
+<Suit> The ppl at SuSE are german, usually "Grundlich" as in dependable is all that get's on the CD
+<Suit> me also surprised IIRC seen it in earlier versions of SuSE
+<Suit> I am mearly checking out a lot of projects to get some programming experience in OOP and SQL
+<jamest> ah
+<jamest> ok
+<Suit> jamest: You ever worked with BOA-constructor?
+neilt (~neilt@dhcp64-134-54-184.chan.dca.wayport.net) joined #gnuenterprise.
+#gnuenterprise: mode change '+o neilt' by ChanServ!ChanServ@services.
+<neilt> hello all
+<jamest> a little a long time ago
+<jamest> hey neilt
+<neilt> did not expect to find folks here on Sunday
+<neilt> hey jamest
+<reinhard> hey neil
+<neilt> hello reinhard
+<neilt> I am looking at geas
+<reinhard> i saw your mail
+<neilt> you mentioned that root:: needed to be removed from something
+<neilt> which mail
+<reinhard> to geas-dev
+<neilt> ahh yes
+<reinhard> about removing sql reserved words
+<reinhard> point is
+<neilt> we need to quote the SQL when it envolves sql keywords
+<reinhard> we agreed about putting module name into column name
+<reinhard> so the column will not be named "user"
+<reinhard> but rather "lang__user"
+<neilt> i forgot about that
+<neilt> but that should happen automatically
+<reinhard> all geas generated column names would have double underscores in them
+<neilt> after you code it right
+<reinhard> yes exactly
+<reinhard> the code is already there but commented out
+<reinhard> for the phase of transition
+<neilt> its hard to make it work that way :)
+<reinhard> old parser and new parser must use the same column names
+<reinhard> however
+<reinhard> the more i think about it the more i am for a rewrite from scratch
+<reinhard> especially if i look at the pain i went through with this double parser phase
+<neilt> cool,
+<jamest> cool
+<neilt> did you change the IDL
+<neilt> i am getting an IDL error
+<neilt> Traceback (most recent call last):
+<neilt>   File "./neil_methods_test.py", line 204, in ?
+<neilt>     print "query found %i results between city starts with %s and zip starts with %s," % (result.length, city_test[x], zip2_test[x]),
+<neilt> AttributeError: 'list' object has no attribute 'length'
+<reinhard> i got the same error
+<reinhard> this is still bugs i introduced with the parser exchange
+<reinhard> it has to do with more root:: stuff that is throughout the code
+<reinhard> btw if anybody is interested:
+<reinhard> the fsf has a sister in europe, the fsf europe
+<reinhard> they have "associate organisations" in many european countries
+<neilt> reinhard: is there anything i can do to help fix current geas?
+<reinhard> and for the austrian organisation, i am an elected board member since yesterday evening :)
+<reinhard> neilt: if you have time
+<reinhard> the bug should be findable
+<reinhard> it's the table name
+<reinhard> when the sql statement is generated, oql receives "root::module::class" as the class name
+<reinhard> and it should only be "module::class"
+<reinhard> i just didn't have the time to look at it
+<reinhard> however if you don't have time or want to user your resource for the design of GEAS2 (which i think would make more sense)
+<reinhard> then i am positive i can fix within the next week
+<neilt> ok, I'll wait
+<neilt> congrats on the election
+jan (jan@dial-195-14-226-221.netcologne.de) joined #gnuenterprise.
+<Suit> neilt: FYI wxPython 2.2.7 just built and installed nicely :-)
+<neilt> Suit: cool
+<Suit> Yeah, now for the other packages and the GNUe stuff :-), oh well, BB ppl
+Suit (~SFH@zeilers.demon.nl) left #gnuenterprise.
+<neilt> Suit: btw i am using 2.3.2
+<neilt> opps missed him
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<neilt> reinhard: you still here?
+ra3vat (ds@ics.elcom.ru) left irc: "Client Exiting"
+<reinhard> more or less
+<jcater> hey reinhard/neilt
+<jcater> how's it going?
+<neilt> jcater: its going well
+<neilt> reinhard: did you see the new diagram for geas
+<neilt> and do you have any comments?
+Suit (~SFH@zeilers.demon.nl) joined #gnuenterprise.
+Action: Suit is back with another question ;-)
+<Suit> Which part of pyXML is actually used? expat, or also DOM and sgml?
+<jcater> expat/SAX
+<Suit> Ok, so I can do with the package that cam with SuSE I guess, thanks
+<reinhard> ok back
+<reinhard> jcater: i'm fine thanks
+<reinhard> although i would like to have more time available :)
+<reinhard> neilt: i didn't look yet
+<reinhard> i just put on the computer for the first time since friday morning
+<neilt> :)
+Suit (SFH@zeilers.demon.nl) left irc: "Client Exiting"
+<jamest> hey jcater
+<reinhard> ok now looked at it
+<jcater> howdy farmer james
+Action: jamest spits out some skoll 
+<jamest> y'all ain't gonna believe this
+<reinhard> my main problem is that about all the yellow boxes are things i don't understand
+<jamest> but I'm a reckon'un ta whip me up some here cattle track'un soft-a-ware in GNUe
+<jamest> my working title is
+<jamest> CATTLElog
+Action: jamest isn't joking
+Action: jcater isn't surprised
+<jcater> next, you should do a wheat seasonal logging package
+Action: jamest has to go store
+<jamest> bbiab
+<neilt> reinhard: what dont you understand?
+<reinhard> Batch Schema Compiler
+<reinhard> Transaction Processor
+<neilt> converts an object definition into initial SQL table schema
+<reinhard> Synchronisation Engine
+<neilt> the transaction processor and synchronization engine are for remote users not connected to the database but still doing processing
+<reinhard> oh what is SQL Schema Generator then?
+<neilt> this is required for anytype of real CRM solution
+<neilt> it does the interface in real time, but does not create tables
+<reinhard> sorry brb in 15 min
+<neilt> it creates SQL for querries and selects etc
+<neilt> ok
+<jan> hi neilt, hi jcater.
+jcater (jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "later"
+<neilt> hi
+<jan> looking on jcaters RPC abstraction code, i realized, there is no RPC abstraction without an object storage.
+<jan> i.e. working RPC abstraction = 20 % of GEAS
+<reinhard> back
+<reinhard> i'm sorry not having much time today
+<reinhard> sunday == family day
+<reinhard> neilt: thanks for your answers you put some light on the drawing
+<reinhard> off again
+Nick change: reinhard -> rm-away
+Yurik (~yrashk@gw.telcos.net.ua) joined #gnuenterprise.
+<Yurik> re
+Action: jan is falling asleep
+Action: neilt kicks jan
+Action: jan screams aloud.
+jbeyer (~joerg@194.162.84.65) joined #gnuenterprise.
+Action: jan thinks, that neilt is an good channel operator. Taking care of everybody.
+<jan> eeh neilt, do you also have donuts?
+<jan> ;)
+<jamest> :)
+ICJ (foobar@pD9E46530.dip.t-dialin.net) joined #gnuenterprise.
+<jamest> jan:  how goes the web client?
+<ICJ> just noticed in http://www.gnuenterprise.org/docs/GNUeObjectServer.pdf, Chapter 10:
+<ICJ> "Initially such code will be written in Python, but there is no convincing reason why other languages should be forbidden. The"
+<ICJ> there the paragraph ends
+<jan> jamest: no changes up to now. I'm waiting for an working RPC abstraction layer. ;)
+<ICJ> does Gnue have a reasonable Bug Tracking System?
+<jan> jamest: poor jcater, i've send him some patches, and hope, that i don't give him too much pressure.
+<jamest> ICJ: not a good one :(
+<jamest> jan: patches?
+<jan> some patches to make three system functions in XMLRPC work.
+<jamest> patches for the gnurpc stuff?
+<ICJ> jamest: I like Bugzilla very much ...
+<jan> but the main problem is an half implemented object storage.
+<jan> jamest: despite of PHP I understand python ;)
+<jan> _ / I un/I also un/s
+<jamest> :)
+<jamest> ICJ: We've talked about bugzilla some
+<ICJ> does that sentence continue?
+jbeyer (joerg@194.162.84.65) left irc: Read error: 104 (Connection reset by peer)
+<ICJ> or not like that from the docs?
+<ICJ> jamest: ?
+ICJ (foobar@pD9E46530.dip.t-dialin.net) left irc: "ChatZilla 0.8.5 [Mozilla rv:0.9.8+/20020214]"
+Action: neilt finally gets back from the donut store, but alas the box is empty
+<jamest> icj: sorry called away
+<jamest> we talked about it but IIRC some people didn't like it
+<jamest> we started using sourceforge site for bug submission
+<jamest> but that never panned out well
+<jamest> IIRC derek wanted to use double choc. latte for bugs
+<jamest> I'm not sure where that is at
+Action: jan is starving
+<jamest> sigh
+<jamest> i need to run for a bit
+<jamest> have a $7 fish in my tank attacking a $40 one
+<jamest> mr $7 is getting a new home :)
+<neilt> i vote for the underdog
+<neilt> go Mr $7
+<jamest> lol
+jbeyer (~joerg@62.26.70.13) joined #gnuenterprise.
+dres (dres@4.18.171.42) left irc: Connection timed out
+chillywilly (~danielb@d102.as28.nwbl0.wi.voyager.net) joined #gnuenterprise.
+<chillywilly> sup my peeps
+ra3vat (ds@ics.elcom.ru) joined #gnuenterprise.
+<neilt> hello
+jbeyer (joerg@62.26.70.13) left irc: Read error: 104 (Connection reset by peer)
+<neilt> jan: not sure i can help
+<neilt> but shoot
+<jan> first i wanna send you a small drawing. Do you have dia?
+<neilt> yes
+<jan> ok, the problem is: there three kinds of things need to bind: "static" object, "static" methods, and object which need to be created (like in GEAS)
+<chillywilly> what are we talking about here?
+<neilt> i cant get dia to load it
+<neilt> hold on
+<jan> now: speaking from the client side: should there be one manager object who can offer all three types, or should the static methods be separated
+<jan> chillywilly: GNURPC abstraction
+<chillywilly> oh
+<Yurik> anyone wanna orange juice?
+<chillywilly> sure juts dcc it to me
+<chillywilly> er, just
+<Yurik> :-)
+Action: Yurik is happy using Perforce. it rocks :)
+ra3vat (ds@ics.elcom.ru) left irc: "Client Exiting"
+<neilt> jan, my version of dia is hosed
+<neilt> sorry
+<neilt> i dont know anything about rpc anyway
+<neilt> other that it is a protocol that sits on top of http
+Action: chillywilly thwaps neilt with a trout
+<neilt> thanks
+<neilt> i needed that
+Nick change: neilt -> prc-expert
+<chillywilly> don't
+Nick change: prc-expert -> rpc-expert
+<chillywilly> mention it
+<chillywilly> ok, time to take the kids outside to play
+<chillywilly> it's a really nice day for a change
+Action: chillywilly is away: take kids outside
+<drochaid> and shoot them or just club them to death?
+Action: drochaid returns to hibernation
+<jan> neilt: i can send you PNGs. 
+<rpc-expert> ok, better i am rebuilding dia right now
+<rpc-expert> but go ahead i can read them
+jan (jan@dial-195-14-226-221.netcologne.de) left #gnuenterprise.
+jan (jan@dial-195-14-226-221.netcologne.de) joined #gnuenterprise.
+Nick change: jan -> starved_rpc_beginner
+<rpc-expert> ok, i have them
+Nick change: rpc-expert -> neilt
+Nick change: starved_rpc_beginner -> jan
+<neilt> jan: what is your question
+<jan> ok, first question: should there be one single object, as an kind of base object, which can return links to "static" methods and new objects, or should there be many of them?
+<neilt> not sure what you mean by "should be"
+<neilt> also not sure if you are talking about geas or common
+<neilt> which have different architectures
+<jan> common.
+<neilt> i don't understand common
+<neilt> there are not architecture drawings
+<neilt> so you have to read a bunch of code to understand how it all fits together
+<jan> should be = what is the best?
+<jan> the bunch is a small one.
+<neilt> the problem with common from what i have seen is that the SQL layer goes all the way back to the GUI
+<neilt> there is not real object abstraction
+<jan> the problem is the code which isn't written now, and because i dont know exactly how geas handle the thing, and if GNURPC should follow the GEAS way
+<neilt> i can explain geas
+<neilt> but it is also far from perfect in implementation, but it does a reasonable object abstraction
+<jan> the SQL thing is the next thing I have to care for to get phpgfc use common db abstraction
+<neilt> if you want a common db abstraction why not just use ODBC
+<jan> ODBC doen't have master/detail.
+<jan> I just want to reuse some common code.
+<neilt> thats the reason to have a business object layer
+<jan> yep.
+<neilt> you should have a list view and form view for each business object and then it just depends on the which view is selected by the user
+<jan> but phporbit isn't working. And its too complicated to fix it.
+<jan> you say it.
+<neilt> the business object then takes care of linking two views of the same or related business objects
+<jan> then you don't need a gfd for every buisiness object when you just want to test the framework
+<neilt> will you do need a form definition
+<neilt> of some sort
+<jamest> which would be provided by the object autho
+<jamest> are
+<jamest> author
+<neilt> yes
+<neilt> the basic ones
+Action: jamest was thinking about this in shower this morning 
+<jamest> wierd that it came up in here today
+<neilt> feel free to join in
+<neilt> jamest
+<jan> for the author it would be very easy if there is an buisness object to tabular gfd file compiler
+<jamest> i'd love to in a sec
+<neilt> the gfd should contain a link to the business object
+<neilt> and default field into should be given by the business object
+<neilt> then forms should be vary basic unless the defaults need to be over-ridden
+<neilt> s/into/info/
+<jamest> new win32 snapshots of forms/designer at http://www.gnuenterprise.org/downloads/snapshots/win32/
+<jan> jamest: are you sitting at an win32 client now?
+<jamest> yes and no
+<jamest> i have both on home network :)
+<jamest> wife pc is windows, mine in linux
+<jamest> nfs/samba/nat server is my db server to
+<jamest> so I can test win/linux networked GNUe
+<jan> the same as my home network
+<jan> just without nat. 
+<jan> can you try http://www.gnuenterprise.org/~jan/gfc.php with an Internet Explorer?
+<jan> there should be some javascript errors.
+<neilt> bbs
+Nick change: neilt -> neil-away
+<jamest> neil-away: I'm working on the docbook thing
+<jamest> jan: seems ok
+<jan> hmmm, I tested it at my parents some days ago and it just didn't work. Possibly its an IE 4.0 problem
+<jamest> i've got 6.0
+<jan> ok. Time to upgrade.
+<jan> how can I test if an python array has a special key.
+<jan> I just dont want to use try and catch KeyError
+<neil-away> jamest:  cool
+Nick change: neil-away -> neilt
+<jan> problem solverd: list.has_key()
+<jamest> neilt: you might try now
+<jamest> jan: the try: except: method is fine too depending upon what you are after
+<neilt> jamest: trying now
+<neilt> neilt@ash:~/public_html/packages/supply-chain/package-doc$ db2pdf SupplyChain.sgml
+<neilt> Using catalogs: /etc/sgml/catalog
+<neilt> Using stylesheet: /usr/share/sgml/docbook/utils-0.6.9/docbook-utils.dsl#print
+<neilt> Working on: /home/neilt/public_html/packages/supply-chain/package-doc/SupplyChain.sgml
+<neilt> This is pdfTeX, Version 3.14159-1.00a-pretest-20011114-ojmw (Web2C 7.3.7)
+<neilt> (Fatal format file error; I'm stymied)
+<neilt> neilt@ash:~/public_html/packages/supply-chain/package-doc$ db2ps SupplyChain.sgml
+<jamest> sigh
+<jamest> i missed a tex package
+<jamest> neilt: please try again
+<neilt> ok
+<neilt> same think
+<neilt> think = error
+<jamest> ?
+<neilt> jamest: it still does not work
+<neilt> same error
+<jamest> yeah
+<jamest> but i don't get it
+<jamest> hang on
+<Yurik> guys, what is the situation w/ crypto in GNUe?
+<neilt> none
+<Yurik>  absolutely none
+<Yurik> ?
+<neilt> absolutely none
+<Yurik> is it planned?
+<neilt> yes, of course
+<Yurik> ah, ok
+<neilt> the current model
+<neilt> is for internal use for a small company
+<Yurik> so adding crypto will require model changes?
+<neilt> where security is controlled by pyhsical access
+<neilt> yes
+<Yurik> clear
+<neilt> it does depend on what you are trying to crypto
+<neilt> have remote secure access is doable without model changes
+<neilt> just use an ssl or vpn tunnel
+<neilt> secure authentication is a different story
+<Yurik> yeah, I'm about secure auth
+<Yurik> say, kerberos-like
+<neilt> no one has wanted to take on the security discussion
+<neilt> because once you do that you also have to limit row access to authorized persons
+<neilt> this is rather invasive
+<Yurik> hm
+Action: jan is using XMLRPC backery. Yummy. Donuts...
+fil_c (~username@public1-cosh3-3-cust12.cosh.broadband.ntl.com) joined #gnuenterprise.
+Nick change: rm-away -> reinhard
+<neilt> welcome back
+jbailey (~jbailey@HSE-Toronto-ppp319268.sympatico.ca) joined #gnuenterprise.
+<reinhard> neilt: thanks
+<reinhard> and thanks for the definitions mail
+<neilt> your welcome
+<reinhard> if may i place some comments here
+<neilt> sure
+<reinhard> i think the "sql schema generator" (why not "sql generator"? "schema" did mislead me to the db schema)
+<reinhard> should be integrated in the database adapter
+<neilt> sounds reasonable
+<reinhard> because the sql is database dependent
+<neilt> hence its shown connected to database adapter
+<reinhard> however it could be a module where more than one adapter can share the same code
+<reinhard> ok
+<neilt> yes
+<reinhard> i see we actually mean the same :)
+<reinhard> now for a dangerous part
+<reinhard> when to create the tables and columns in the db
+<reinhard> and what to do with dynamic changes to the object definitions
+chillywilly_ (~danielb@d95.as0.nwbl0.wi.voyager.net) joined #gnuenterprise.
+<neilt> yes, thats a rough one
+<reinhard> what i would like to have but am not sure whether it is doable is:
+<reinhard> i have a table where e.g. the fields of an object are defined
+<reinhard> i want to add a new field so i open a form where i can enter that field
+<reinhard> this field is stored in the table that defines the objects
+<reinhard> and without restarting the server the field becomes available
+<Yurik> chillywilly_: hi
+<reinhard> if this is doable it is only doable IMHO when
+<reinhard> the database adapter holds a list of the schema in memory
+<neilt> its doable with some restrictions
+<reinhard> and when access to a column is requested, and the column doesn't exist in the in-memory table
+chillywilly (danielb@d102.as28.nwbl0.wi.voyager.net) left irc: Killed (NickServ (Ghost: chillywilly_!~danielb@d95.as0.nwbl0.wi.voyager.net))
+<reinhard> it first rescans the schema of the table (in case someone else has created the column meanwhile)
+Nick change: chillywilly_ -> chillywilly
+<reinhard> and if it still doesn't exist the column is created "on the fly"
+<neilt> i have some reservations about that
+<reinhard> neilt: i would have bet on that :)
+<neilt> the data base could be filled with a lot of garbage
+<neilt> if some naming error came to be
+<reinhard> sure
+<reinhard> don't think this is a big problem
+<reinhard> as you could write some "clean-up" procedure
+<neilt> I think you would want to force some manual on the fly adding of columns
+<reinhard> maybe yes
+<reinhard> not completely "invisible" for the user
+<reinhard> but triggered by a call to some procedure in geas
+<neilt> but either way could be counigurable
+<neilt> configurable
+<reinhard> sure
+<reinhard> and of course the "batch" method must exist in parallel
+<reinhard> to bootstrap a system
+<neilt> i see that batch system and the SQL generator sharing some code, maybe a lot
+<reinhard> yes in that case
+<reinhard> i see batch system being an automatisation of sql generator
+<reinhard> so to say
+<reinhard> could one say that the "object server" translates outside access on objects into calls of methods and access to the database
+<reinhard> while enforcing things like security and integrity?
+<neilt> yes, but we need to break the business object = table restriction
+<reinhard> yeah we talked about that already
+<neilt> ah, ok
+<reinhard> while travelling yesterday i made some notes on my thoughts on geas
+<reinhard> on paper
+fil_c (username@public1-cosh3-3-cust12.cosh.broadband.ntl.com) left irc: "Client Exiting"
+<reinhard> i will write down and combine with your last mail
+<reinhard> somehow to get a "whitepaper"
+<reinhard> however the train ride was long and i even thought about acronyms (yes i was bored)
+<reinhard> GNU Enterprise Data Interface = GEDI (we already had that)
+<neilt> :)
+<reinhard> GNU Enterprise Methods Adapter = GEMA
+<reinhard> GNU Enterprise Object Repository = GEOR
+<jan> rofl
+<reinhard> and what i like most
+<reinhard> what you called "object-server"
+<reinhard> Gnue Object Access Translator
+<neilt> :) :)
+<chillywilly> hehe
+<reinhard> well this is even partly serious because i think we need something like function prefixes
+Action: chillywilly is lost
+<jan> listen to your talks, i've some questions about GEAS
+<chillywilly> what are you guys talking about?
+<reinhard> about neilts drawing and his definitions
+<jan> whats about the old buissness objects, after a change of an table?
+<reinhard> i would say
+<neilt> that would have to be one of the restrictions
+<reinhard> only additions of fields would be valid
+<neilt> only adding allowed in auto fashion
+<reinhard> yes
+<reinhard> and existing business objects have NULL in the new field
+<reinhard> fields
+<reinhard> actually we would have to restrict that a new column may not be NOT NULL
+<jan> whats about the batch schema processor?
+<reinhard> you could use that to do a batch of schema changes
+<chillywilly> anyone look at the odmg notes?
+<reinhard> for example when bootstrapping a new project
+<jan> is it an batch processor who does batch jobs, like computing the sum of some objects every night?
+<reinhard> chillywilly: i forgot to print them out i wanted to read on train ride :(
+<reinhard> jan: not sure i think neilt should answer
+<reinhard> sorry i am getting too tired
+<reinhard> night all
+reinhard (rm@62.47.45.2) left irc: "Anything is good and useful if it's made of chocolate"
+<jan> n8t
+<chillywilly> man
+<neilt> jan: what batch processor are  you referring too
+<neilt> oh i understant
+<neilt> it is a batch job to parse the object repository and
+<neilt> create the necessary tables and seed data
+<neilt> should only be done when changes have been made to the repostiory
+<jan> sorry i misread you drawing: its an batch schema compiler not processor
+<jan> ok, the thing I mean should be done by a process outside of GEAS.
+derek (~derek@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<chillywilly> btw, ODMG does have some nice metadata interfaces for adding objects and such....I think it leaves open what is underneath however, like it doesn't handle whether you do a object-relational mapping, an OODBMS, or an object app server..hence they changed the name to Object Data Management Group instead of 'Database'
+<neilt> yes thats why it is yellow
+#gnuenterprise: mode change '+o derek' by ChanServ!ChanServ@services.
+<chillywilly> some controversy we have on the list here
+<neilt> ehat controversy?
+<neilt> i am not aware of any?
+<derek> neilt: its on the 'invisible' list :)
+<chillywilly> remember that Tidd guy talking about the 'other' standards groups, etc.
+<chillywilly> er, Todd
+<chillywilly> now there's a guy form the one standard group refuting hsi claim and saying he really does a great disservice to them
+<derek> i have stayed otu of that for the most part
+<derek> but gnue is many things
+<derek> one thing is a framework
+<derek> the framework itself doesnt care about 'data' standards per say
+<derek> i.e. one coudl use the framework to implement EACH standard :)
+<neilt> yes, its is interesting that kpmg is watching us
+<neilt> however
+<derek> thats why i dont get 'too worked up' about what standard X is doing
+<derek> as until we are writing the 'application' it doesnt matter much
+<neilt> our image is rising it seems
+<chillywilly> kmpg?
+<chillywilly> sounds like a KDE movie player ;)
+<chillywilly> woops, I reversed the letters
+<neilt> big accounting consulting firm
+<chillywilly> interesting
+<Yurik> guys, anybody programmed w/ openssl here? :)
+<jan> just with the frontend: ssh  ;)
+<neilt> i just a few minnutes ago reompiled postgresql with openssl
+<neilt> so i can look at how it interacts with geas
+Action: jan is getting tired....
+<jan> l8r
+jan (jan@dial-195-14-226-221.netcologne.de) left #gnuenterprise.
+rdean (rdean@chcgil2-ar2-053-033.chcgil2.dsl.gtei.net) joined #gnuenterprise.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<jcater> howdu
+<Yurik> jcater: hi
+<jcater> or, howdy even
+<derek> hi
+<jcater> dude, I'm at our callcenter doing some maintenance
+<jcater> .. the one running only KDE desktops ..
+<jcater> and I don't see how anyone can say people can't adjust to free desktops
+<jcater> looking at all their screens, they've picked up on the concept of 
+<jcater> multiple virtual desktops within KDE
+<jcater> on their own
+<jcater> they even rename the desktops from 1,2,3,4 to useful names, based on the function
+<jcater> (like Outbound Calls / Inbound Calls / Clerical-Email / Reports
+<derek> r0x0r
+jbailey (~jbailey@HSE-Toronto-ppp319268.sympatico.ca) left #gnuenterprise ("Client Exiting").
+<neilt> cool,
+<neilt> we are installing our first debian system monday at work ;)
+<chillywilly> hi jcater
+<jcater> hi chillywilly
+<derek> debian just rocks
+<jcater> neilt: I've been using it in our callcenter for 2 1/2 years now
+<jcater> (not debian specifically, but linux + either KDE or Gnome)
+<chillywilly> I see your mails now neilt
+<chillywilly> ;P
+<jcater> in a diskless setup
+<derek> neilt: i havent followed thread, but does jens have paperwork in?
+<derek> if not we need to be careful about accepting contributions
+<chillywilly> neilt: gonna have to digest it later....I will add my 2 cents evetually if that is cool
+<neilt> cool
+<chillywilly> I must go help someone move
+<neilt> derek: i understand, but his contribution was just a explaination of public law
+<neilt> I did not see the harm, he said he is sending it
+<chillywilly> (don't ask me why they waited until sunday night! I can't figure it out either!)
+Action: chillywilly is away: I'm busy
+<derek> neilt: two things 
+<neilt> does anyone know where screenshots are stored on the web site?
+<derek> a. you are correct the contribution is small enough no harm
+<derek> b. its questionable if copyright applies :)
+<derek> i.e. if someone tells me hey you need to go to 4 digits for IRS reporting starting next year
+<derek> and i add that to my software
+<derek> i dont think that person has any 'claim' to my software's functionality of doing that :)
+<derek> if they sent me the patch to change my software then yes but simply telling me my software needed no
+<neilt> if he does not send assignment then I can easily remove it
+<derek> i dont know if he sent you patch or not i guess is what im saying :)
+<neilt> no patch sent
+<neilt> dream on
+<derek> i saw that you committed it, i assumed based on his suggestion
+<neilt> just added to the docs
+<derek> which to me wouldnt require credit or copyright legally (imho) ianal however
+<neilt> his comments
+<derek> he seems agreeable to copyright assignment so regardless shouldnt be issue, just issues i like to talk about :)
+<neilt> cooll
+<neilt> has anyone else experienced problems with scp on ash?
+<neilt> i get this
+<neilt> ssh: connect to address 64.39.200.78 port 22: Operation timed out
+<neilt> lost connection
+<jamest> i use it all the time
+<jamest> however
+<jamest> I'm also updating things onthere today 
+<jamest> ssh was one of them
+<neilt> it looks like the ip changed
+<jamest> that isn't possible
+<neilt> PING ash.gnuenterprise.org (64.39.200.253): 56 data bytes
+<neilt> the old number i had was
+<jamest> ah
+<neilt> [localhost:~/desktop] ntiffin% scp GNUeNewGEASArchitecture.png neilt@64.39.200.78:public_html/
+<jamest> oooo
+<jamest> we lost that # quite a while back
+<jamest> 64.39.200.253 is the new number
+<neilt> i have been away
+<neilt> cool
+<dtm> harro all
+<neilt> crap
+Action: derek grunts feverishly
+<derek> neilt: sorry i just cant produce under pressure
+<neilt> thats a good perception to put forward
+<derek> anyone know wehre i can get redhat 5.2 (alpha processor) netscape rpms?
+<jcater> well
+<derek> i have cd and not on there :(
+<derek> appears not in powertools cd either
+<derek> suckage
+<dtm> derek: have you looked up Mozilla instead?
+<dtm> derek: of course you might hafta recompile it if you're wanting to keep that old of an OS
+<derek> honestly with fvwm and 64mb of ram this little alpha is quite usable even in gui mode it seems
+<derek> dtm: im getting ready to put woody on that box, just nephew was over and wanted to 'surf'
+<derek> i think im going to try windowmaker on it
+<derek> when woody is on it
+<derek> that or blackice or something 'light weight'
+<dtm> derek: how about a remote display then
+<derek> if its usable it will go in kitchen probably as the 'netpliance'
+<dtm> derek: start up netscape on another host
+<derek> dtm: its only machine i have other than this laptop
+<derek> so if i were to do that i would have him just use laptop :)
+<derek> less pain
+<dtm> derek: oh you dont have enough memory or something?
+<derek> thanks guys be back in a bit
+<dtm> alphas take incredible amounts of electricity :)
+<derek> no i have enough memory, just its more work than worth for one time deal
+<dtm> oh ;it'd take one command via ssh
+<dtm> or two via telnet and xhost
+<derek> um no it would take finding ssh for alpha 5.2 :)
+<dtm> which would take two commands as well :)
+<derek> ls |grep ssh from the cd (rpms)
+<derek> brings back a null
+<derek> so i assume finding ssh for it will be a pain in the butt
+<dtm> which is why God invented rpmfind
+<dtm> yeah it's too bad there's no such thing as a network transparent package manager...
+<derek> no ssh for alpha at rpmfind
+<Yurik> derek: use telnet, rcp... :)
+<derek> um nah
+<dtm> derek: then get the srpm and type yet another command, if you have a development env
+<derek> just let him use playstation its easier :)
+<dtm> rpm --rebuild openssh*
+<derek> i cant find src rpm for 5.2
+<dtm> derek: do you have a dev env?
+<derek> explain
+<derek> yes adn yes
+<derek> but a dev environment without source does little good
+jcater_ (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<dtm> derek: agreed :)
+jcater (jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "Client Exiting"
+Nick change: jcater_ -> jcater
+<dtm> derek: do you have openssl
+<dtm> derek: do you even want help on getting ssh?  would that be helpful? :)
+<dtm> derek: i just went ahead and started researching it coz i know i can
+<jcater> I know just passwd files used to work
+<jcater> ignore that
+<dtm> jcater: Done.
+<jcater> :)
+<dtm> derek: you could try getting the SRPMs of openssh and openssl from ftp://ftp.redhat.com/pub/redhat/linux/7.2/en/os/i386/SRPMS/
+<dtm> derek: and do "rpm --rebuild openss*src.rpm"
+Nick change: Yurik -> Yurik[away]
+Nick change: Yurik[away] -> Yurik
+<jamest> neilt: you still here?
+<neilt> yes
+<jamest> I'm looking at the geas drawing 
+<jamest> finally
+<neilt> cool
+<neilt> hopefully it mmirrors common
+<neilt> :)
+<jamest> :)
+<jamest> well
+<jamest> yes
+<jamest> your RPA is commons GNURPC
+<jamest> the db/sql stuff is our DataSource system
+<neilt> probably not
+[19:17] Last message repeated 1 time(s).
+<neilt> but open to discussion
+<jamest> the methods adapter is similar the trigger system 
+<jamest> starting w/ the db stuff
+<neilt> the problem that I see with current common is that there is no object abstraction and the SQL paradigm goes to the UI ( not I may not understand it all)
+<jamest> ?
+<neilt> ??
+<jamest> i think that's my naming of menu picks in forms
+<jamest> as looking at the old geas API it really wasn't OO 
+<jamest> and seems similar to what common does
+<neilt> so where do you want to start
+<jamest> hmmmm
+<jamest> first, i'm curious to know
+<jamest> is old geas no longer considered worth maintaining?
+rdean (rdean@chcgil2-ar2-053-033.chcgil2.dsl.gtei.net) left irc: "Client Exiting"
+<neilt> it depends
+<jamest> IOW...is this a new geas?
+<neilt> no one will support it with forms
+<neilt> so we are stuck
+<neilt> in limbo
+<jamest> i can't support it
+<jamest> anyone is welcome to write a driver
+<jamest> but I've tried on linux and solaris
+<jamest> w/ same resutls
+<jamest> a segfault every time I use a boolean
+<jamest> anyway
+<neilt> I dont recall us having a boolean in the IDL
+<jamest> lots of them
+<neilt> does it work with INTs
+<jamest> i think so
+<jamest> bash-2.05a$ grep boolean *.idl
+<jamest> admin.idl:    attribute boolean verbose;
+<jamest> connection.idl:    boolean supportsFeature( in Feature featureID );
+<jamest> dataobject.idl:    boolean identity( in string classname , in string oid );
+<jamest> dataobject.idl:    boolean ofclass( in string classname ) raises(ServerError);
+<jamest> dataobject.idl:    readonly attribute boolean inDatabase;
+<jamest> methodprovider.idl:    boolean verify ( in string name , in long argcount        );
+<jamest> objectlist.idl:    void resort( in string fieldname , in boolean ascending )
+<jamest> objectlist.idl:    attribute boolean delayFilter;
+<jamest> query.idl:        boolean invert;
+<jamest> query.idl:        boolean casesensitive;
+<jamest> query.idl:        attribute boolean reverse; // reverse sort order
+<jamest> schema.idl:    boolean   notnull;          // are null values forbidden?
+<jamest> schema.idl:    boolean   isreadonly;       // readonly field?
+<jamest> schema.idl:    boolean    allfields;       // TRUE if inherited fields are included
+<jamest> transaction.idl:    boolean isOpen();
+<jamest> bash-2.05a$
+<jamest> that's why forms currently can pull all data at startup
+<neilt> cool, i should not rely on memory
+<neilt> it seems
+<jamest> as that all the farther I could go w/o segfaulting
+<jamest> i honestly did take it as far as i could
+<neilt> what versions of python, orbit-python are you using
+<jamest> python 2.1
+<neilt> and what version of orbit
+<jamest> pyobit 0.3.1
+<jamest> orbit 0.5.12
+<jamest> now
+<jamest> these could be newer than my last attempts
+<jamest> as it seems woody recently updated some of there
+<jamest> these 
+<jamest> the pyorbit i believe
+<neilt>  i  orbit           0.5.12-1    The CORBA ORB used in GNOME
+<neilt>  i  python          2.2-6       Interpreted, interactive, object-oriented l...
+<jamest> what pyorbit?
+<neilt> I am using orbit-python 3.1 not pyorbit
+<jamest> sorry
+<jamest> that's what I mean
+<neilt> cool
+<neilt> right now geas is broke as reinhard is in the middle of changing the parser
+<neilt> but my test routines mostly work
+<jamest> i'm building
+<jamest> what I'd like to see 
+<jamest> is a merge in the code bases
+<jamest> and a fleshing out of the object model in forms
+<jamest> it's there as a stub
+<neilt> the object model should not be in forms
+<neilt> it should be in the middleware
+<neilt> the business object model that is
+<jamest> forms needs to understand how to interface w/ objects
+<jamest> that is what I'm calling an object model
+<neilt> ok not the business object model
+<jamest> nope
+<jamest> the interactions between forms and an object server
+<neilt> the only thing the UI needs to understand is the business object it attaches too and
+<jamest> that will require a rewrite of the geas API as it doesn't export objects
+<neilt> if the UI is a form (single entity) or list (multiple entitiy)
+<jamest> it gives me only IMHO a table view of an object
+<jamest> that i can query
+<neilt> then it should query to business object (using introspection to get the fields and other stuff.)
+<jamest> yes
+<jamest> the start of that is also in the geas driver
+<neilt> geas should not export objects
+<neilt> it should provide an interface to the UI
+Yurik (yrashk@gw.telcos.net.ua) left irc: Read error: 113 (No route to host)
+<jamest> i don't mean export to run remote
+<neilt> their is a lot of cost associated with marshalling the real objects and running them down the rail
+<jamest> i mean that right now geas doesn't give me anything postgresql doesn't
+<jamest> it's a relational view of object data 
+<neilt> correct, the big problem we have with geas is that business object should not equal database table
+<jamest> yes
+<jamest> what I wanted (while in shower)
+<neilt> we should be able to normalized data on the backend without effecting the UI
+<jamest> was a way to drill down thru objects in geas
+<neilt> and that should be hidden behind the business object
+<neilt> also the business object should provide security
+<jamest> so that a defined action on the form (say dbl clicking) would be defined by an object
+<neilt> in that only authorized people should see certain data
+<jamest> so that forms is told if user does foo than do bar
+<neilt> in this case all business objects should respond to certain UI events
+<neilt> in a consistent way
+<jamest> yes
+<jamest> that the object author defines
+<neilt> or the UI author defines
+<jamest> what I mean is that if the customer object is displayed
+<jamest> then a dbl click on the customer takes me to ??????
+<neilt> for example you should be able to say in the UI "GIve me the object pointed to by this field" 
+<neilt> the object servers should serve it up
+<jamest> where that is defined by the object itself in it's context
+<jamest> but this is way ahead of where we are today :)
+<neilt> that is why we need some new architecture
+<jamest> my biggest issues with geas as it stands
+<jamest>   performance - common trounces it currently
+<jamest>   security - none exists
+<jamest>   !@#!@# booleans in python-orbit :)
+<neilt> my biggest issues with common is that there is now central object definition
+<neilt> for business objects
+<neilt> and I agree with your assessment of geas 100%
+<jcater> I don
+<jamest> you jcater not don
+<jcater> I don't follow the central object definition thing
+Action: jcater just joined mid-conversation
+<jcater> (sorry, different keyboard and has one of those awkward L shaped enter keys)
+<neilt> what dont you follow
+<jamest> in my mind a "central object definition" can be mapped to a table def with database side triggers in a relational world
+<derek> can i please ask we only talk about new geas
+<jamest> they are basically things that have methods
+<derek> either via email or at the set meeting
+<jamest> set meeting?
+<neilt> a central
+<derek> as half conversations between one or two people just make it more laborious to unify us
+<neilt> object definition is
+<neilt> a single place to define a business object
+<derek> jamest: you got an email requesting times/days that do not work
+<derek> neilt and you are only ones not to respond :)
+<neilt> derek: I dont know any days that I cant do it
+<jcater> I follow that, but am not sure how that relates to common
+<neilt> until the day or so before then i will know
+<jcater> as common is only a library at this point
+<jamest> where did you send that mail?
+Action: jamest hasn't seen it
+<jcater> I can wait until the meeting I suppose
+<derek> if reinhard was here right now i would say lets have the conversation now
+<neilt> why wait 
+<neilt> we dont have to decide anything
+<derek> jamest i sent it to jamest@gnue.org
+<derek> neilt: because then we end up rediscussing
+<neilt> just getting people on the same subject is very positive
+<derek> and its better for feed back if everyone is there initially
+<derek> if its something that cant wait do email
+<derek> then its documented for others to participate
+<neilt> we are just answering each other questions
+<derek> i think we owe it to reinhard to make sure he is included
+<neilt> that will make the formal discussion shorter
+<neilt> i agree we need a formal discussion for deciding the future
+<neilt> but please dont stop a productive discussion
+<derek> discuss as you like
+<derek> i am very pro phases
+<derek> honestly i would like next geas to start out with no objects
+<derek> just an abstracted rpc
+<derek> that talks to a daemon that gives data access and remote method innovaction
+<derek> as that should be very simple with a large gain
+<derek> learn from it
+<derek> come back and do a real geas
+<neilt> then we drop back 2 years and dont get any benefit from what we ahve learned
+<neilt> we also extend the time to get a working enterprise system
+<neilt> if you want a db system, just use current forms
+<neilt> you should be able to use odbc for the rpc now
+<neilt> its not a real one
+<neilt> but would work in that way
+<neilt> -
+<neilt> the issues that need learning are not the RPC
+<derek> well i would use sqlrelay i think before odbc
+<neilt> that is just adapting one of the common protocols
+<neilt> agreed
+<neilt> the real issues to making a middleware werver work is the object handling and its relation to SQL
+<neilt> that is not off the shelf
+<derek> hmmm websphere seems to sell well and it doesnt have object transparency
+<derek> guess its shit though
+<neilt> i dont know websphere
+<neilt> so i dont kow
+<neilt> know
+<neilt> the value is not in objects anyway
+<derek> the big difference here is whether we make our middleware object transparent or whether we push that back to the developer
+<neilt> its in implementing a model, view, controller architecture
+<neilt> that abstracts the bloody details from the business developer
+<derek> remote methods + remote database is what 98% of the players are doing
+<derek> then they make people make their method stuff do object/sql mapping (i.e. they shove that responsibility to the developer)
+<derek> i think it makes sense to make an object transparent system
+<derek> just its VERY VERY difficult compared to the former
+<derek> and why i was suggesting a more evolutionary approach
+<neilt> we are almost there
+<neilt> now
+<neilt> sure we have some problems but so does forms
+<derek> neilt: when i look at geas we are far from there
+<derek> we have a much better idea of what is involved but i wouldnt say almost there :)
+<derek> much closer than most though :)
+<neilt> so its ok to evolve forms but not geas
+<neilt> this i dont understand
+<derek> i guess more specifically the people doing most of the coding right now are not showing extreme interest in object transparency (though they are not saying they wont support doing it in gnue)
+<neilt> on that we agree on
+<derek> which tells me we will sit with an unused half done thing for a long time, which only makes gnue look bad
+<neilt> but as a business developer I can not use forms
+<neilt> its not productive enough
+<derek> if we can get a ton of people willing to do the other i would be a lot more inclined to not do evolutionary
+<neilt> there are too many peices that have to be manually spliced togeher
+<derek> i think in doing the evolutionary way we are more inclined to get contributors and when they do, they will be encouraged at the potential and more willing to code object transparency
+<derek> but maybe i have the wrong outlook
+<neilt> there is no way to define the business concept and tie it together 
+<neilt> so it can be discussed
+<neilt> I have to have someone that understand SQL, XML etc
+<neilt> then they have to understand how they relate to each other
+<jamest> here's a thought from left field
+<neilt> and how the system works
+<jamest> inside common I've got a GTriggerNSObject
+<derek> i have to run ttfn
+Nick change: derek -> dnAway
+<jamest> among other things it lets me define internal functions that map to public things in a trigger namespace within forms
+<jamest> along w/ a set of object properties
+<jamest> this allows me to map things like
+<jamest> block1.field.doThis()
+<jamest> or
+<jamest> so if a customer block exists
+<jamest> customer.foobulate()
+<jamest> this generic object doesn't really care what it represents as it has to deal with anything you add to a gfd file
+<jamest> it might be the start of a object interface to forms
+<jamest> as forms already knows how to deal with it inside triggers
+<jcater> not might be, but is
+<jcater> forms is an object-based UI
+<jcater> that is currently using a relational backend
+<jamest> right now at run time a filter thru the form def and build a tree of these objects
+<jcater> look at all the trigger code, and the databse abstraction
+<jamest> nothing would stop me from doing the same to a geas server
+<jamest> exposing objects via their names
+<jamest> along with methods and attributes
+<jcater> forms knows NOTHING about SQL... it simply talks to n object provided by gnue-common
+<jamest> this would be instantly visible to the trigger system 
+<jamest> and with a little more effort the forms UI could be driven in a similar manner
+<jamest> by having these ojbect expose a getGFD() 
+<jamest> in geas
+<jamest> then using that to build the UI on the fly
+<jamest> hmmmm
+<jamest> doing this would keep the objects on geas
+Nick change: dnAway -> derek
+<jamest> give a 100% consistant interface to them in forms
+<derek> i have a reprieve for a few minutes
+<jamest> and i don't think would be hard 
+<jamest> if
+<neilt> i really dont care how its done, but i know the requirements
+<jamest> we can get the schema info from geas
+<derek> thats what i had mentioned as neilt wanted this i.e. build the xml on the fly
+<derek> for people not wanting xml flat file forms
+<derek> but rather forms created from GEAS
+<neilt> and those requiremts are that I can specify business objects that have data and procedures
+<neilt> in a simple manner
+<jamest> hmmmmm
+<jamest> you know
+Action: jamest is thinking
+<jcater> jamest: that can be dangerous
+<neilt> and the UI is separate from the business object
+<jamest> ow ow ow ow
+<jamest> almost there
+<derek> jamest: he meant for use not to you
+<neilt> and the SQL is separate from the business object
+<jamest> ok
+<derek> well neilt what you seem to want (not saying its wrong) is the UI to be the business object :)
+<jamest> you'll all hang me for this
+<derek> i.e. the form is created from the object
+<neilt> derek: nope
+<jamest> but GTriggerNSObject could easily become GEASObject
+<jcater> yip
+<derek> jcater: get the rope
+<derek> j/k
+<neilt> derek: the problem with that is that there are many views of the basic business object
+<derek> neilt: then you will have to store some form defintion information somewhere
+<neilt> sure I dont mind a form definition
+<jamest> as it's already letting me tie hardcoded functoins to dynamic objects
+<neilt> no hardcoded functions
+<neilt> please
+<jamest> so those methods could be stored in object and dynamic
+<jamest> neilt: absolutely
+<jamest> man
+<jamest> this could work
+<derek> for clarification, you would still work in 2 tier mode with local triggers as well this way correct
+Action: jamest is a relational man to the core
+<jcater> derek: you can guarantee I'll make sure of that :)
+<jamest> i'm the one that refuses to let 2-tier die
+<jamest> er, and jcater now
+<derek> i.e. this GEASObject struct or GTriggerNSObject
+<derek> would let you either grab GEAS objects and methods
+<derek> or let you tie hardcoded methods to GEAS objects
+<derek> or tie hardcoded functions to gnue objects
+<derek> or such
+<derek> i.e. its doing the last one currently from what i understand
+<jamest> forms already has an object system stubs in it seperate from the sql db stuff
+<derek> just functionality would be added for the others
+<jamest> my first thoughts are how to flesh that out using existing code
+<derek> so we would end up with a GEAS server and adaptor
+<jamest> my second thoughts were taking this to the next level
+<derek> or more a 'local' geas (non daemon) for 2 tier
+<jamest> and using it as a core object in geas
+<jamest> i really need to run
+<jamest> just as this was gettin fun 
+<jamest> derek: can you resend me that mail
+<jamest> about a meeting
+<derek> jamest: just send me days/times that WILL NOT work
+<jamest> ah ok
+<derek> like tae kwan do nights
+<derek> and such
+<jamest> ok
+<derek> and i will take everyones 'sacred' time
+<jamest> l8r
+<derek> and choose a day/time with a few days notice 
+jamest (~jamest@fh-dialup-201091.flinthills.com) left #gnuenterprise.
+jcater (jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "later"
+<neilt> later all
+neilt (neilt@dhcp64-134-54-184.chan.dca.wayport.net) left irc: "later"
+rdean (~rdean@chcgil2-ar2-053-033.chcgil2.dsl.gtei.net) joined #gnuenterprise.
+rdean (rdean@chcgil2-ar2-053-033.chcgil2.dsl.gtei.net) left irc: "Client Exiting"
+<derek> where o where did the people
+<derek> go
+<dtm>  *!@)_#$
+Topic changed on #gnuenterprise by derek!~derek@cpe-24-221-112-50.az.sprintbbd.net: I owe.  I owe.  So its off to look for work I go.  I owe. I owe.
+<derek> when the music fades... all is stripped away... and i simply come.... 
+<derek> man i like this song :)
+<dtm> i dont remember that in Snow White.
+<dtm> is that some alternate lyrics on a Disney DVD or somethinmg?
+<dtm> or like a porn remix/parody?
+<dtm> or hwat
+<derek> um
+<derek> its a praise and worship song :)
+<dtm> ooooh
+<derek> sonicflood - heart of worship
+<dtm> well good.   do youhave an mp3 of it?  can i steal a copy of your praise/worship song?
+<derek> well that would be illegal wouldnt it
+Action: dtm checks his confidential but highly reliable sources
+<dtm> Yes sir, stealing is still illegal.
+<dtm> ;)
+<dtm> and your decision depends not upon my whim but upon your view of whether the ends outweighs the means  :)
+<dtm> i would become aware of a group i've never heard of in a genre i'm grossly underexposed to :/
+<dtm> i do know Stryper and Creed though!  :)
+<dtm> heh
+<derek> you like stryper
+<derek> boy would i have some mp3s for you :)
+<dtm> stryper is about the coolest thing in the world
+<dtm> i have some live stryper mp3
+<derek> lots of 80 christian metal hanging around on this boxen
+<dtm> and the only cd i have is Soldiers
+<dtm> yay
+<derek> i have these 'trendsetter' volumes
+<derek> of 80 christian metal (compilations basically)
+Action: chillywilly is back (gone 05:07:46)
+<derek> sup dawg
+<dtm> chillywilly: derek and I were just talking about how he and his wife and going to adopt you and I coz he feels that we need some better role models in our lives.  except you gotta promise not to eat all his food and stink the place up.
+<dtm> and i got the first part covered, but i'll have to pay more attention to the catbox after i move in.
+<dtm> hey guys, guess what?  the IRS withheld almost $20,000 of my income from year 2000.
+<chillywilly> ummm
+<dtm> and i haven't filed taxes for that year yet
+<dtm> so i'll be getting a refund.
+<chillywilly> can my honey and scotty come with me too?
+<dtm> chillywilly: no, there's no enough room
+<dtm> not after me and the dawgz
+<chillywilly> we'll turn his house into the GNUe Commune
+<chillywilly> ;)
+<dtm> well ok it'd be alright if we built lofts
+<chillywilly> bah, that stinks then
+<chillywilly> I'm running away
+<dtm> derek: we can do that, right, Dad?
+<dtm> derek: Dad, do you have a wood shop?
+<dtm> can i borrow the keys to the SUV?
+<derek> sure
+<derek> we have a mini van
+<dtm> hey wait, that means that Dan and I are brothers then
+<dtm> derek: ok that'll do.  
+Action: derek looks to add that 'guest' house
+Action: dtm swipes derek's credit card and heads to Home Depot
+Action: dtm gives chillywilly a rug burn, calls him names, and throws him down the stairs
+<chillywilly> ouch
+<dtm> [simultaneously]
+dres (~dres@4.18.171.42) joined #gnuenterprise.
+<chillywilly> why for you do that?
+<dtm> chillywilly: well i'm just being authentic
+<chillywilly> hey now
+<dtm> chillywilly: becaus we're adopted brothers now and we have to make up for lost time
+<chillywilly> you're getting existential on me
+<chillywilly> what is an 'authentic exisistence'?
+<chillywilly> er, existence
+<dtm> you're my long lost bro.  and since we have the same first names, dad'll just have to call us our irc nicks
+<dtm> irl
+<chillywilly> haha
+<dtm> chillywilly: uh  i duunno  is that something that doesn't really exist but just thinks that it does?
+<chillywilly> derek: oh I'm sirry I missed you greeting before
+<chillywilly> derek: sup 'g'
+<dtm> chillywilly: er, i mean, the opposite thereof?
+Action: chillywilly was reading the back log
+<chillywilly> existentialism is a field of philosophy that r0x0rz
+<dtm> yeah i'm learning about existentialism in my entrepreneur class
+<chillywilly> in fact  I pasted a Soren Kiekegaard quote the other day in here
+<chillywilly> er, Kierkegaard
+<chillywilly> he was a Christian existentialist ;)
+<dtm> oh really?  that sounds fascinating
+<chillywilly> you know someone should do a UML pakcage diagram in dia of neilt's proposed architecture
+<dtm> coz existentialism seems to me to be mostly about the power of the individual
+<dtm> chillywilly: yeah go ahead and do that, dan
+<dtm> whatever that is!
+<dtm> i'm downloading movies illegally on my computer via the internet.
+<chillywilly> UML == Unified Modeling Language
+<chillywilly> bad dtm
+<dres> evening chillywilly
+<chillywilly> hi dres
+--- Mon Feb 25 2002

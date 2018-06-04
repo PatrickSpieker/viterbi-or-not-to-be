@@ -1,0 +1,27 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.12Jun2002" enddate="11 Jun 2002 23:00:00 -0800" startdate="11 Jun 2002 23:00:00 -0800" subject="[IRC] 12 Jun 2002" title="Widgets on resized forms">
+
+<topic>Forms</topic>
+
+<p>Marcos Dione (StyXman) asked <quote who="Marcos Dione">why 
+forms 'drops' widgets that would be outside the current 
+form?</quote>. <quote who="Marcos Dione">they don't appear, 
+even if I resize the form manually (i.e., with the 
+mouse)</quote>. James Thompson (jamest) explained that 
+<quote who="James Thompson">the form size is set at startup 
+time via it's height and width - it doesn't bother to create UI 
+widgets for anything outside that set size</quote>. Marcos said 
+that now he was hoping to add a scrollable widget, this might 
+need changing. James had <quote who="James Thompson">never 
+considered putting widgets inside a scrollable widget</quote>, 
+but looking at the code he could not see why this would not
+work, and explained how to test in the code whether a widget 
+was created or not. Marcos reported <quote who="Marcos Dione">the 
+widgets get created, but the ones that 'fall' off window's region 
+are not shown...</quote>. James said that the User Interface 
+driver must not be re-sizing the container widget when the form 
+was resized. It might be possible to write code to do this 
+triggered by <quote who="James Thompson">onsize event</quote>.</p>
+
+</section>
+
+

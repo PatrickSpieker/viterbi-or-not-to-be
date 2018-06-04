@@ -1,0 +1,69 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.27Feb2002" enddate="27 Feb 2002 00:00:00 -0800" startdate="27 Feb 2002 00:00:00 -0800" subject="[IRC] 27 Feb 2002" title="GNU-RPC Internals and first testing">
+<topic>Common</topic>
+
+
+<p>Jan Ischebeck (jan_) said that RPC calls involved object reference 
+IDs and asked <quote who="Jan Ischebeck">Should there be a 
+"description" of all objects to check against?</quote>
+Jason Cater (jcater) said <quote who="Jason Cater">we do pass handles 
+for object when using transports that don't support objects natively
+(i.e., the CORBA driver won't pass around references, but actual 
+objects) - the handle is used to reference a proxy object on the 
+server-side - so this was meant to be transparent to the client 
+and server - at least when using GRPC on both ends</quote>. 
+Jan said <quote who="Jan Ischebeck">A gprc is not needed to 
+comunicate with SOAP or XMLRPC. The only function it can have is to 
+be a kind of control. That means to check which parts of an object 
+should be available by RPC and which not.</quote> He added 
+<quote who="Jan Ischebeck"> If i understand it right, corba needs 
+an IDL file for client and server. So for corba there is the need of 
+an definition of the tranfered classes on both sides</quote>, which 
+SOAP and XMLRPC didn't. Derek Neighbors interjected 
+<quote who="Derek Neighbors">we are not wanting to define every 
+object - merely a wrapper to pass objects back and forth over the 
+transport</quote>. Jason said <quote who="Jason Cater">
+we very much need the grpc file to know what to expose - 
+the client may not need the grpc file but one has to exist</quote>.
+Jan suggested <quote who="Jan Ischebeck">You mean, the grpc file is 
+something like a communication standarization document. Something like
+a grammar. i.e. people can SPEAK, without everytime looking on it ;)
+</quote>.</p>
+
+<p>Jason agreed, and noted <quote who="Jason Cater">the problem is, 
+grpc is very much in the early planning stage - as in, you saw the 
+first round of my thought process (you poor soul :) - and we really 
+don't have any docs yet</quote>. Jan rephrased his original question
+as <quote who="Jan Ischebeck">Should the incoming request be checked 
+against the GRPC file by the server?</quote>. Jason said 
+<quote who="Jason Cater">I hadn't planned on it - but hadn't gotten to
+that point</quote>. Jan said <quote who="Jan Ischebeck">the basic 
+structure you've coded are quite  good. I just had to insert some 
+lines to make it working.</quote> He would document the discussions 
+as a <quote who="Jan Ischebeck">GNURPC pre alpha draft 
+docu</quote>.</p>
+
+<p>James Thompson (jamest) asked <quote who="James Thomspon">
+what do you think of python? (now that you're using it)</quote>?
+Jan said <quote who="Jan Ischebeck">its horrible... ... im getting 
+more and more addicted ;)</quote> He found it much easier to read
+than other languagues like C. Jason felt <quote who="Jason Cater">
+it says a lot about python's reablility when jan can figure out grpc 
+:)</quote> James thought <quote who="James Thompson">it says alot 
+about jan's state of mind in comparison to jcater's state of mind
+</quote> and <quote who="James Thompson">goes and cowers in terror in 
+the closet fearing a world where more that one person thinks like 
+that</quote>. Jan said <quote who="Jan Ischebeck">understanding the 
+grpc code was not very difficult. First you have to imagine a donut, 
+.... ;)</quote>. Jason said <quote who="Jason Cater">jan is right... 
+all the grpc samples are donut related - so you really DO have to 
+think "donuts"</quote> Derek hoped 
+<quote who="Derek Neighbors">that jan isnt under impression that a 
+grpc donut factory will produce EDIBLE donuts :)</quote> - he could 
+imagine some interesting help desk calls. Jan said that he had put 
+a sample GNU-RPC donut installation on the web. Jason got all 
+emotional - <quote who="Jason Cater">my baby - she's alive!</quote>
+James tried it out, and got a <quote who="James Thompson">
+super glazed!</quote> donut.</p>
+
+</section>
+

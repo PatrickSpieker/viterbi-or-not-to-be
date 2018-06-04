@@ -1,0 +1,551 @@
+*** johannesV has joined #gnuenterprise
+<johannesV> good morning
+<sacha> morning
+*** reinhard has joined #gnuenterprise
+<reinhard> good morning all
+*** btami has joined #gnuenterprise
+<johannesV> good morning again ... :)
+<btami> good morning
+<ajmitch> hi
+<btami> what package contains texi2pdf ?
+<reinhard> texinfo
+<reinhard> in debian it's tetex-bin
+<btami> thx
+*** yure has joined #gnuenterprise
+<btami> it's in tetex package here in my distro, grrrrr
+*** kilo has joined #gnuenterprise
+*** Shufla has joined #gnuenterprise
+<Shufla> hello :)
+<kilo> good morning
+*** btami_ has joined #gnuenterprise
+*** kilo has quit IRC
+*** btami has quit IRC
+*** Shufla has left #gnuenterprise
+*** kilo has joined #gnuenterprise
+*** dimas_ has joined #gnuenterprise
+*** btami_ has quit IRC
+*** kilo has left #gnuenterprise
+*** dimas__ has joined #gnuenterprise
+*** yure has quit IRC
+*** jamest has joined #gnuenterprise
+*** siesel has joined #gnuenterprise
+<johannesV> i'm in and out, so i just throw in some questions and will be back later to read your answers (if any) ...
+<johannesV> how can i access the trigger-properties of GF* objects ?
+<johannesV> like a GFEntries' navigable property ?
+<johannesV> or, just with other words, how do i access a GFEntry instance at all from withing a form's trigger-code ???
+<jamest> you should usually be able to just reference the name of the gfd object
+<jamest> as the GF* objects are mapped to the trigger namespace using the name="" attrib of the tag in the gfd
+<jamest> i thought properties mapped the same way
+<jamest> actually
+<jamest> gnue gnue-samples/testcases/trigger/trigger.gfd
+<jamest> reinhard: on that layout stuff for forms
+<jamest> are you taking out the char based placement?
+<jamest> and
+<reinhard> I think we must leave that char based placement in for compatibility
+*** johannesV_ has joined #gnuenterprise
+*** dimas__ has quit IRC
+*** johannesV has quit IRC
+<jamest> sorry, back now
+<jamest> i didn't see any type of anchoring, is that right?
+<reinhard> yes and no
+<reinhard> I think we will need some way to define which control will be resized to what extent
+<reinhard> but there will be useful defaults for most cases
+<reinhard> like all text entries can resize horizontally
+<reinhard> multi line entries can resize vertically, single line entries can't
+<reinhard> etc
+<reinhard> (is this what you were asking at all??)
+<jamest> yes
+<jamest> did you happen to look at that matsie flash demo in netbeans?
+<jamest> they use a custom layout mgr that uses anchors on top, left, right, bottom
+<reinhard> I was not able to find 20 minutes time for that yet
+<reinhard> can you explain in a nutshell how this anchoring works?
+<johannesV_> reinhard, i think that is the same concept as it was used in delphi
+<jamest> i can try :)
+<jamest> you can nest panels that contain widgets
+<jamest> typically a widget or panel can anchor at 1 or 2 side
+<jamest> which top and left would mean that the placement of that panel or widget would link to closest one to the top and closest to the left
+<jamest> IIRC this is similar to basic layout mgr I used to use in motif
+<jamest> then you can set a widget to resize
+<jamest> I *think* this means
+<jamest> if I'm anchored to the top and left and I'm set to fill vertically then i'll grow downward till i hit the next widget or a container
+<jamest> so I could anchor the top and left of a widget to the panel itself
+<jamest> anchor another on left to the panel and top to the previous widet
+<jamest> then anchor another on left to the panel and on bottom to the panel
+<jamest> then the middle widget would fill the space between
+<jamest> i'm not saying it's the way to go
+<jamest> but watching them build a UI in the flash demo's is pretty damn impressive
+<jamest> and in real life it works pretty well as I'm converting my internal widgets to java beans and have started moving my sales app to all UI being built via matsie's designer and layout mgr
+*** btami has joined #gnuenterprise
+<jamest> though doing something like that in forms would require some type of region tag
+<jamest> that you could nest
+<jamest> johannesV_: was that info on properties what you wanted?  or were you talking to someone else?
+<johannesV_> oh, my answer hasn't arrived  .... so i must have been disconnected
+<johannesV_> V ah, ok, so i have to use foo.__properties__.navigable
+<johannesV_> johannesV but, anyway, i've added a gfentry with a name tag, but it does not appear in the namespace
+<johannesV_> johannesV the GFField's are no problem, they're accessible via block
+<johannesV_> johannesV and, btw., that triggersample raises an error (if tabbed out of the last entry)
+<johannesV_> jamest, yes your answer regarding properties was that one i was looking for
+<johannesV_> but i still have a problem with accessing a GFEntry from within trigger-code
+<jamest> hmmmm
+<jamest> GFEntry was added after triggers
+<jamest> maybe it never got added in the namespace builder
+<johannesV_> that is how it looks like
+<johannesV_> i came accross this as i was checking the navigable-property of a gfentry, trying to change this via trigger-code
+<jamest> i'm looking now
+<jamest> unless you are
+<johannesV_> since a GFEntry implements a triggerproperty for navigable
+<johannesV_> so we would have to either remove the trigger-properties from GFEntry (as it isn't reachable in trigger-namespace at all) or we have to add the GFEntry to the trigger-namespace
+<jamest> i would think it should be accessable
+<jamest> also, iirc __properties__ was not meant as a long term solution
+<jamest> as it's __name__ meaning doesn't match python usage
+<jamest> i swore there was another way to get in there
+<johannesV_> you mean the properties?
+<jamest> yes
+<jamest> johannesV_: can you try something for me
+<johannesV_> yep
+<jamest> well, check something
+<jamest> in your form does the <entry> have a name=""
+<jamest> name="foo"
+*** siesel has quit IRC
+<johannesV_> of course
+<jamest> it does?
+<johannesV_> it is called "FOOBAR"
+<reinhard> jamest: in your sample, I would have a <vbox> containing 3 widgets with the middle one being vertically resizable and both others are not vertically resizable
+<johannesV_> jamest, maybe the gfentry is accessible via the GFLayout, although the layout has no name-attribute
+<johannesV_> and thus is not really accessible
+<jamest> ooo
+<jamest> that might be it
+<jamest> as the trigger system used to go thru the gobj tree
+<jamest> adding vars for any GObj based items with a name
+<jamest> i'm not sure what it did when it hit objects that were not named
+*** derek has quit IRC
+<johannesV_> ah, ...
+<jamest> it would skip them
+<jamest> NamespaceCore ignores any items without a name and their children
+<johannesV_> ok
+<johannesV_> got it
+<jamest> we could possibly instead do
+<jamest> if no name
+<johannesV_> if the layout-tag get's a name-attribute GFEntries are accessible via layoutname.pagename.entryname
+<jamest> well
+<jamest> you could hardcode the layout instance to name='layout' but I'm not sure how this would effect dialog definitions in the same gfd
+<jamest> or in the constructTriggerObject function we could say if it's a GObj
+<jamest> and then map the children's names under the last parent with a name
+<jamest> i think the risk of namespace collisions would be fairly rare
+<jamest> though it may be a bugger if anyone is using imported sections of .g*d files
+<jamest> and of course I have no clue the impact on the namespaces in reports or appserver :)
+<johannesV_> ok, will have to look at namespace stuff later ...
+<johannesV_> thanks for your help
+<johannesV_> bbl
+<jamest> i think i like the name="" tag on layout
+<jamest> with a default of layout
+<jamest> as it would really show you were accessing part of the GUI
+<jamest> vs part of the logic
+<reinhard> hmmm
+<reinhard> what would speak against making all GFObjects available by their name in the global trigger namespace?
+<reinhard> I see quite deeply nested structures coming up with layout management and grids
+<reinhard> and layout.myPage.myHbox.myVbox.myEntry might become somewhat non-intuitive
+<reinhard> and IIRC names have to unique within the whole form anyway, don't they?
+<jamest> that would require all names to be unique which currently isn't the case
+<jamest> now it's unique per parent container IIRC
+<jamest> and what would that do to the appserver namespace?  doesn't it use NamespaceCore from common?
+<jamest> though I imagine it wouldn't be too hideous to do something like
+<jamest> poolNames = true as part of a GParser definition
+<jamest> so that on the layout tag you'd set it to poolNames
+<jamest> then it'd build the namespace as normal but also flatten it out under tag
+<jamest> so both layout.myPage.myHbox.myVbox.myEntry and layout.myEntry would work
+<jamest> then we could say last defined would get precidence(sp?)
+<jamest> so that if I had
+<reinhard> appserver doesn't use NamespaceCore
+<jamest> layout.myPage.myHbox.myVbox.myEntry and layout.myOtherBox.myEntry
+<jamest> then you'd have
+<jamest> layout.myPage.myHbox.myVbox.myEntry
+<jamest> layout.myOtherBox.myEntry
+<jamest> and layout.myEntry would point to the last defined the the g*d file so layout.myOtherBox.myEntry
+<jamest> reinhard: appserver doesn't use the trigger system then?
+*** klasstek has joined #gnuenterprise
+<reinhard> no
+<reinhard> appserver "triggers" are somewhat different from forms triggers
+*** sacha has quit IRC
+<jamest> sigh
+<jamest> ok, for the moment I have added
+<jamest> layout.pageName.entryName to the trigger namespace
+<jamest> should I commit that functionality?
+<reinhard> not sure if johannesV_ was meaning to ask you for that
+<reinhard> maybe just commit it now you've done it anyway :)
+<jamest> layout defaults to a name="layout" but you could override in the gfd if some some reason it messes up dialogs (it should not)
+*** derek has joined #gnuenterprise
+<jamest> reinhard: it was good to get back in there and wonder what kind of crack we were on at the time
+*** jcater has joined #gnuenterprise
+<jcater> any of the mac users here?
+<jcater> johannes, derek?
+<johannesV_> yep
+<johannesV_> kinda
+<jcater> before I go nuts....
+<jcater> is there some shortcut button or keystroke I'm missing
+<derek> gere
+<derek> er here even
+<jcater> on the standard File | Open dialog
+<jcater> that'd let me type in a path to a file?
+<jcater> instead of pointy-clicky?
+<derek> im usually in a shell
+<johannesV_> me too
+<johannesV_> :)
+<derek> and in a shell you type open filename
+<derek> and it opens it in the right program
+<jcater> ah
+<johannesV_> but let me have a look
+<jcater> no
+<jcater> that's good enough
+<derek> also if you ever use text mate
+<derek> and do
+<derek> mate .
+<derek> it opens everything from current directory down as a "project"
+<jcater> "open" is exactly what I needed
+<johannesV_> jcater, you could use Shift+Command+G (goto folder) to open a dialog asking for a path to open in another finder window
+<jcater> sweet
+*** btami has quit IRC
+*** psu has joined #gnuenterprise
+<psu> hi jamest
+<psu> can I ask some questions re gap?
+<psu> (well, of course I can)
+<psu> (what I mean is - do you have time to answer them?)
+<jcater> he's probably at lunch... but I'd say ask them so he can read them when he gets back
+<psu> I suppose I was just trying to understand the diff between what gap will be
+<psu> and what common is already
+<psu> as both seem fairly similar
+<psu> in that trying to abstract away "messy stuff" from the tools
+<psu> just gap seems to be not just abstract away widgets and dtasources
+<psu> but absolutely everything
+<psu> Does it mean that Forms, Reports, etc.
+<psu> become just a series of calls to gap
+<psu> Since, as Common has been explained to me before
+<psu> they are already really just a series of calls to Common?
+* psu is trying to get this sorted in his head before writing GNUe Traffic
+<jcater> in my assessment, gap is providing clients a cleaner way to get at common and each other
+<psu> ok
+<jcater> each of the components has to know far too much about the other components to use them now
+* jcater is speaking out of turn, so don't take this as the gospel truth... just stating what I've learned before he gets back
+<psu> so instead of being a "switchboard" for the user like Navigator,
+<psu> gap is more like a "switchboard" for the code/apps themselves
+<jcater> yes
+<jcater> for example
+<jcater> right now, all client apps are based on GClientApp
+<jcater> GClientApp takes care of initializing some services
+<jcater> like a connections manager
+<jcater> (there are others, but take it as an example)
+<jcater> gap is providing a way for all components of a tool to get at that "service" cleanly
+<jcater> right now, you have your GFormApp (or whatever it is called)
+<jcater> it has a _connections object
+<jcater> if a class that GFormApp creates needs to get at the connections manager
+<jcater> it either needs to be passed in the GFormApp instance, creating a potential memory leak
+<jcater> and causing the access to look something like
+<jcater> self._app._connections.getConnection('...')
+<jcater> (quite ugly and hard to track what is what)
+<jcater> or it has to be passed in the connection manager itself
+<jcater> which creates a huge initialization mess
+<jcater> and refactoring code is nasty too, because you might not realize when you first create a component of a tool that it needs access to a certain service
+<jcater> that is just one example of the service gap would provide ... it would allow any component of any tool to declare what components of other tools it needs
+<jcater> without creating an __init__ nightmare
+<jcater> it would also let us test out new types of objects without breaking the existing ones
+<jcater> take for example the datasources
+<psu> ok
+<jcater> originally we abstracted datasources pretty heavily
+<jcater> reinhard et al went in and cleaned that up
+<jcater> which 1) made them much easier to understand
+<jcater> but 2) eliminated a lot of the features they originally entailed
+<jcater> (like, type="sql" can't easily be implemented now, which I found out a month ago :)
+<psu> so in effect you have to go for least common denominator in terms of functionality
+<psu> of the underlying databases?
+<psu> i.e. if sql-crap doesn't support (say) booleans
+<psu> you either have to not support booleans for all, or else
+<psu> fudge support for booleans in the sql-crap driver?
+<jcater> yeah... but that has nothing to do with gap... that is true of the datasources now
+<jcater> gap wouldn't change what datasources are
+<jamest> jcater is on the write track
+<jcater> or the primary logic of them
+<jamest> right
+<jcater> only how they are created/accessed initially
+<jcater> okay
+<jcater> he's here
+<jcater> he can correct my inaccuracies :)
+<jamest> it also enables an application to only load the components it needs
+<jamest> like in my case I have lots of GClientApp based programs
+<jamest> however not all need the command line parsing, or configuration file support
+<jamest> so in those cases I wouldn't make a request for that service and it wouldn't load
+<jcater> (to finish what I was saying about the datasources... this would provide me a clean way to write a datasource "sql" object and register it as such without having to go through all of the old subclassing nightmares that reinhard et al got rid of (rightfully so))
+*** johannesV_ has quit IRC
+<jcater> (or at least give me a way to "develop" a prototype outside of the GNUe tree and prove it, before modifying those classes)
+<jamest> eventually, if it proves out, all the other gnue apps could use gap as their base
+<jamest> and with the simple high level UI common setup you could say "I love designer, I do.  I want to use it to edit all my python apps"
+<derek> jcater: is there and easy way to find a diff in two lists? (python)
+<jcater> example?
+<jamest> you could take designer's startup config file (that says which components to load) and remove the gui layout parts, leaving only it's trigger editor component
+<jamest> then you could add your own components to the mix to add say a toolbar item that says "take what's currently in the selection buffer and run it as a ruby app" or whatever
+<derek> if i have two lists and i want to find out what has different
+<derek> in ruby i can do list1 - list2
+<derek> but im working in python
+<derek> i could swear there was a diff function/method
+*** ajmitch__ has joined #gnuenterprise
+<derek> nevermind was able to use ruby to hit the database to find out
+<jcater> I know you can do
+<jcater> import sets; sets.Set(list1) - sets.Set(list2)
+<jamest> psu: fwiw, i'll be expanding the technotes in navigator for a while yet before I start making the changes and would love questions/feedback
+<psu> no problem
+<jamest> i've got gnue time again and hope not to repeat the sins of the past in not properly documenting stuff as I know it's causing others no end of grief
+<psu> just doing a bit of "GNUe Traffic seeding"
+<jamest> speaking of documenting stuff
+<psu> i.e. get you & jcater to plan out loud
+<psu> so I can just cut & paste into GNUe Traffic
+<jamest> on the gnue-sample testcase stuff how much more should I expand the schema before populating with test data
+<jamest> i'd like to get that to a state people would actually be willing to switch to it
+<jamest> i'm also willing to scrap it if there is a better schema hidden in gnue/* somewhere :)
+<jamest> i need to step away for a bit
+<psu> np
+*** ajmitch has quit IRC
+* psu thinks he has found a bug in the GNUe Traffic code
+<psu> it doesn't seem to be able to cope with btami's given name & surname being the other way around
+* psu downloaded the source to see if I could file a more intelligent bug report
+<psu> but my chances of understanding XSLT are fairly slim
+<reinhard> jcater: FWIW, type="sql" should still work with current datasources
+<jcater> I'll look again later
+*** psu has quit IRC
+<jamest> type="sql" does work at least from the datasource wrapper
+<reinhard> anybody here can help me test something in roundup for a minute?
+<jamest> reinhard: what you need?
+*** derek has quit IRC
+<reinhard> can you please go to the roundup page and click on the "edit" button for "my queries"?
+<reinhard> do you see some predefined queries to include there?
+<jamest> ok, just a sedc
+<jamest> what?
+<jamest> yo umean the (edit) link next to Your Queries?
+<reinhard> yes
+<reinhard> your queries, my queries... i got confused ;-)
+<jamest> i see a bunch of them with a dropdown option of leave out or inlcude
+<reinhard> named after the tools plus one "deferred issues" plus one "www" ?
+<jamest> yes
+*** sjc has joined #gnuenterprise
+<reinhard> excellent
+<jamest> logged in as me
+<reinhard> you can now include them and have shortcuts for showing all open issues per tool
+<jamest> oooo
+<jamest> you mean if I start GNUe'n again I have to read bug reports too?
+<reinhard> no, just in case you want to enter bug reports
+<jamest> I never read them when I coded before, why do I have to start now?
+<jamest> :)
+<reinhard> to look up whether it's already there
+<reinhard>  ;-)
+<jamest> did you have any requests/suggestions on the test data schema
+<reinhard> thanks for testing in any case :)
+<jamest> i think i'll work on it some tonight after i go brain dead w/ GAP
+<reinhard> not other than what we've talked anyway
+<reinhard> cool
+<jamest> ok, um, i thought I added everything we talked about
+<jamest> did I miss something?
+<jamest> btw, GAP == jamest is lazy and doesn't want to type a lot, it's not really a "name"
+<jcater> what, we're not gonna have dancing and prancing 19 yr olds marketing the model?
+<jamest> though I could call it Certifably Reusable Application Platform
+<jamest> truth in advertising and all that
+<jamest> "Why doesn't this GNUe crap work!?!"
+<jamest> "You should file a bug report"
+<jcater> Compartmentalized Reusable Application Platform
+<jcater> I like it
+<jcater> or component
+<jcater> then reinhard, et al, can say... "It's not our code ... it's that GNUe CRAP from jamest and jcater"
+<jamest> poor reinhard
+<jamest> it's good timing though
+<jamest> as they just eliminated almost all of the old Common Routines And Programs we did
+<jamest> so it was to the point they couldn't blame issues on our crap
+<reinhard> lol
+<reinhard> now the code is just Cool, Right, And Perfect ;-)
+<reinhard> seriously
+<jamest> rofl
+<reinhard> I was feeling more like adding the last 10% to something
+<reinhard> than replacing something with something else
+<jamest> but what?
+<jamest> common is solid
+<jamest> navigator never moved out of proof of concept
+<jamest> appserver seems solid
+<jamest> i think forms needs so much work and cleanup it'll be a whole new app
+<jamest> reports is IMO a dead end
+<jamest> i think a solid test setup is worth some effort
+<jamest> and better docs
+<jcater> I have a lot of internal stuff
+<jcater> that I want to repurpose into a new reports
+<jamest> as for designer, i can't begin to figure out the wx issues
+<jcater> but that's a future discussion :)
+<jcater> I need to find out who is using reports currently, so I know how many people will feel the breakage
+*** derek has joined #gnuenterprise
+<jamest> yes builder and pdftable have replaced all my gnue-reports
+<reinhard> talking about breakage
+<jcater> afaik, btami is likely the only other person who might be using it
+<reinhard> I use 2 reports
+<reinhard> in house
+<reinhard> ... talking about breakage: there are currently "featuers" in forms that I'm not 100% sure we will still want in 1.0
+<reinhard> and I wonder what would be the best way to break them
+<reinhard> like maybe deprecate in 0.6 and remove in 0.7 ?
+<jamest> which features?
+<reinhard> I could, for example, imagine that a really working <grid> could completely replace the need for rows=
+<jamest> hmmmm
+<jcater> I don't think those are the same thing
+<jamest> i have forms that do
+<jamest> Field One: _________________________ Field Two: ______________________________
+<jamest> Field THree: _______________________
+<jamest> Field One: _________________________ Field Two: ______________________________
+<jamest> Field THree: _______________________
+<jamest> with 4 or 5 lines of fields
+<reinhard> I definately see new grids doing this
+<reinhard> I don't think of grids like an excel table
+<reinhard> I rather see grids like, say, gnucash entry form
+<jcater> I need to take your technote and rewrite it to show how forms is designed "now", to make sure you understand what you're changing before you actually do
+<jcater> as I really diidn't see any meaningful differences in the new format and the old
+*** btami has joined #gnuenterprise
+<jcater> oh, and this is somewhat unrelated
+<jcater> but looking at your technote reminded me
+<reinhard> I didn't mean to do any diffeerences basically except for adding <grid> and <vbox>/<hbox>
+<jcater> I wonder if we should move to Dublin Core for our G?D formats for the metadata information (author, dates, etc)
+<reinhard> what is Dublin Core?
+<jcater> http://www.dublincore.org/
+<jcater> I've seen it in use a lot
+<jcater> it's not just some theoretical, "hey, this would be cool..." proposal someone did
+<jamest> i think that would be a good idea
+<jcater> reinhard... actually, let me find another link
+<jcater> (an example)
+<jcater> as that link you'd need to dig to find anything useful
+<jamest> search engines use it
+<jamest> actually, i have a great example
+<jamest> just a sec
+<jcater> basically, it's just a standard way to include author information in any arbitrary XML file
+<jamest> the zope wiki uses it
+<jamest> http://www.zope.org/DevHome/Wikis/DevSite/Projects/ComponentArchitecture/FrontPage
+<jcater> plone uses it for everything also
+<jamest> in the upper right there is a link for every page
+<jamest> the university was moving all it's web pages to include it
+<jamest> a standardized way to tag metadata in documents that major search systems agree upon
+<reinhard> looks like it would make sense
+<reinhard> it's more or less a naming scheme for the things we already have there anyway, isn't it?
+<jcater> exactly
+<btami> librarians use for bibliographic data too
+<jamest> btami: that was one of the pushes for it at the university as well
+<reinhard> so we would have tags like <title>, <description>, <creator> etc.
+<reinhard> would these be direct children of <form>?
+<reinhard> of would we make a <dublin> or <metadata> or something that contains all those nodes?
+<jamest> reinhard: http://dublincore.org/documents/2003/04/02/dc-xml-guidelines/
+<jamest> is the std way of doing it in xml files
+<jamest> i'd imagine we'd adjust GParser to handle the metadata w/o needing to add tags to each tool
+<jcater> what GParser would do
+<jcater> is create GObjects with a ['DublinCore:author'] property
+<jcater> so GFForm['DublinCore:author'] = 'jcater'
+<jamest> why not spit out a metadata gobj tree?
+<jcater> (because it supports that now :)
+<jamest> ah, lol, perfect reason :)
+<jcater> though I'm fine with the other
+<jamest> reinhard: to answer your question, i'd be ok with rows going away if the functionality isn't lost
+<reinhard> jcater: so all <dc:author> etc tags would be direct children of the <form>?
+<jcater> doh.... wait... I was thinking in terms of attributes
+<jcater> not in terms of them all being tags
+<reinhard> jamest: I guess best is to implement the new stuff and make it work before removing other stuff :)
+<jcater> so nevermind
+<jamest> why not 2 trees?
+<jamest> from the parser
+<jamest> rather than stick it in the tree
+<jamest> as it exists outside the <form> tags
+<jcater> I think I'd rather see a rootObject.__metadata__ that is a standalone tree
+<jamest> yes
+<jcater> rather than breaking the results of GParser
+<reinhard> you mean
+<jamest> the parser hands out the std form tree
+<reinhard> <form>
+<jamest> and a second metadata tree
+<reinhard> </form>
+<reinhard> <metadata>
+<reinhard>   <dc:author>
+<reinhard> </metadata>
+<reinhard> ?
+<jamest> that's how it's supposed to be done isn't it?
+<reinhard> I'm not sure if that is valid xml
+<jcater> I was pretty sure it is
+<reinhard> my understanding was always that an XML file may only have a single root node
+<jcater> <form xmlns:dc="http://....">
+<jcater>   <dc:author>Jason Cater</dc:author>
+<jcater>  ...
+<jcater> </form>
+<jamest> ah crap
+<jamest> i was thinking in html
+<jamest> <form> is our root isn't it
+<jamest> sigh
+<reinhard> jamest: it is
+<reinhard> jcater: ok, that's what I figured kinda
+<jcater> I was just throwing the idea out
+<reinhard> but then the parser would have to sort that out somehow, right?
+<jcater> it won't hurt my feelings if we don't go that route
+<reinhard> other possibility would be
+<reinhard> <form
+<reinhard> oops
+<reinhard> <form>
+<reinhard>   <metadata>
+<reinhard>     <dc:author>Jason Cater</dc:author>
+<reinhard>   </metadata>
+<reinhard>  <datasource>....
+<reinhard>  ...
+<reinhard> </form>
+<reinhard> so we would have some kind of GMetadata object as a handle to all of that stuff
+<reinhard> which could be implemented in common and used everywhere
+<reinhard> (like the GDataSource is now)
+<jcater> yeah, I think that is what jamest was getting at
+<jamest> yes
+<jamest> it is
+<jcater> I don't know if the dc: tags have to be a child of the root tag or not
+<jcater> given that they're namespace qualified, I'd think parsers would just search the tree for them
+<jamest> other than the whole head up my arse wrt <form> being the root
+<jcater> but I don't know that
+<jamest> jcater: did you look at that link
+<jcater> I glanced at it
+<jamest> they do always show it as in the root
+<jamest> ;(
+<reinhard> but their root is always named "metadata"
+<reinhard> so I'm not sure if that's meant this way
+<jamest> later it's called record
+<jcater> "Note that it is anticipated that records will be encoded within one or more container XML element(s) of some kind. This document makes no recommendations for the name of any container element, nor for the namespace that the element should be taken from. Candidate container element names include <dc>, <dublinCore>, <resource>, <record> and <metadata>."
+<jcater> so
+<jcater> I'd say reinhard's example fits that perfectly
+<jcater> (from http://dublincore.org/documents/dc-xml-guidelines/)
+<reinhard> oh, that sounds good
+<jcater> lots of cutting and pasting for psu today
+<reinhard> I think we'll go with <metadata> then, agree?
+<jcater> it gets my vote
+<jamest> mine too
+<reinhard> so will this be another example of where we will break old XML format?
+<reinhard> or will we leave in old <author> etc for compatibility
+<reinhard> and phase out?
+<reinhard> (which means breaking anyway, but rather later than sooner)
+<jamest> why not do a few releases with designer hacks
+<jamest> that convert the old tags to new upon load
+<jamest> it's how we'd handled that breakage in the past
+<btami> night all
+*** btami has quit IRC
+*** kilo has joined #gnuenterprise
+<reinhard> good night all
+*** reinhard has quit IRC
+*** jamest has left #gnuenterprise
+*** kilo has left #gnuenterprise
+*** gaupe_ has joined #gnuenterprise
+*** gaupe has quit IRC
+*** gaupe_ is now known as gaupe
+*** derek has quit IRC
+*** sjc has quit IRC
+*** jamest has joined #gnuenterprise
+*** jcater_ has joined #gnuenterprise
+*** jcater has quit IRC
+*** jcater_ is now known as jcater
+*** jcater_ has joined #gnuenterprise
+*** jamest has quit IRC
+*** jamest has joined #gnuenterprise
+*** klasstek has quit IRC
+*** klasstek has joined #gnuenterprise
+*** klasstek has quit IRC
+*** jcater has left #gnuenterprise
+*** jamest has left #gnuenterprise
+*** sacha has joined #gnuenterprise
+*** derek has joined #gnuenterprise
+*** derek has quit IRC

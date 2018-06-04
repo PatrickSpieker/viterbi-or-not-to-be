@@ -1,0 +1,111 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.06May2002" enddate="07 May 2002 23:00:00 -0800" startdate="05 May 2002 23:00:00 -0800" subject="[IRC] 06 May 2002" title="Planning for next release">
+
+<topic>Forms</topic>
+<topic>Designer</topic>
+<topic>Common</topic>
+<topic>Reports</topic>
+
+<p>Derek Neighbors (dneighbo) said <quote who="Derek Neighbors">im 
+going to be the big devils advocate here - i see lots of commits, 
+but we still need to release :)</quote>. James Thompson (jamest) 
+said <quote who="James Thompson">the recent commits are trying to 
+fix some issues prior to release and work final bugs out - 
+as we're jumping to 0.3.0</quote>. Reinhard M&#252;ller (reinhard) 
+wondered if it was really necessary <quote who="Reinhard M&#252;ller">to 
+do even/odd before 1.0?</quote>, with odd numbers for "stable" releases.
+James said <quote who="James Thompson">i don't want even/odd at all 
+anymore - but I'm in the minority :)</quote>. He was 
+<quote who="James Thompson">1/2 tempted to say this is a 0.5.0 release 
+in alot of ways</quote>.</p>
+
+<p>James said <quote who="James Thompson">if things release today we 
+have the following issues</quote>:</p>
+
+<quote who="James Thompson">
+<ul>
+<li>setup.py still installs gnue.conf which isn't needed anymore</li>
+<li>drowdown key errors in the displayHandler</li>
+<li>database issues w/ pypgsql and 7.2.1 postgres (at least for me)</li>
+<li>no windows testing</li>
+<li>your trigger issue</li>
+</ul>
+</quote>
+
+<p>Jason Cater (jcater) added <quote who="Jason Cater">lots of untested 
+i18n changes</quote>. James didn't think would be an issue - 
+<quote who="James Thompson">the i18n is cake to disable for a release - 
+just modify GBaseApp to always call the dummy _()</quote>. Jason said
+this was what he was worried about - <quote who="Jason Cater">don't 
+know what exceptions, if thens, etc, have a _() that we haven't had code 
+run against :)</quote>. Derek picked up on James' statement that
+<quote who="Derek Neighbors">gnue.conf isnt needed?</quote> James said 
+<quote who="James Thompson">testing today shows it is - but it should 
+not be</quote> as <quote who="James Thompson">the system now has all 
+defaults in a .py file - that can be overridden by gnue.conf. When time 
+permits I'll make the new config system write config files too - it's real 
+close to that today - then our installer can create them on the fly
+if needed</quote>. Derek thought this <quote who="Derek Neighbors">sounds 
+dangerous to me</quote> as he did not <quote who="Derek Neighbors">think 
+defaults belong in a py file</quote>.</p>
+
+<p>Derek proposed <quote who="Derek Neighbors">from now on if we go into 
+a segment where we are getting ready for release we branch the code - 
+so things like rewriting the conf system and doing i18n and such 
+are in the branch and we dont have to 'wait' to do releases - as this is 
+always what kills us - is 'features' not fixes keep getting added in the 
+last push for a release - this is why we need roadmap more clearly defined - 
+so we can say xyz will be in next release - anything not xyz goes in a 
+branch</quote>. Jason said the distinction between "feature" and "fix" 
+was often <quote who="Jason Cater">murky</quote>, citing the conf system 
+changes as an example. Derek agreed - <quote who="Derek Neighbors">i 
+realize a lot is dictated by 'need' - but i think if we kept a version 
+branch to help us stay focused it would help - but wouldnt prevent people 
+from adding stuff that was 100% necessity</quote>. He noted 
+<quote who="Derek Neighbors">btw: this is the same issue debian woody is 
+having so its not a direct criticism per say - there may not be a good 
+answer</quote>.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.07May2002">
+The next day</a>, James asked <quote who="James Thompson">where 
+are we at wrt to release?</quote> Jason said 
+<quote who="Jason Cater">well, the biggies iirc were gconfig 
+support</quote> and <quote who="Jason Cater">derek's trigger troubles - 
+which are probably a lack of understanding of the new way - which 
+implies better documentation</quote>. James said 
+<quote who="James Thompson">considering I don't recall the right way 
+I'll cut him some slack :)</quote> He couldn't recall if the 
+documentation had been updated for this yet.</p>
+
+<p>Derek said <quote who="Derek Neighbors">i really think we need
+prequery support added back in before release if its not major</quote>, 
+as previously discussed in 
+<kcref startdate="29 Apr 2002 23:00:00 -0800" title="Query mode in Forms" />.
+Jason said <quote who="Jason Cater">that's not just a bug fix</quote>. 
+Derek said <quote who="Derek Neighbors">tecnically it is - as it used 
+to work - so it being broken is a bug :)</quote> Jason pointed out 
+that it had been broken for a year, and <quote who="Jason Cater">I 
+can almost promise we'll introduce bugs by doing it :)</quote> 
+James said that <quote who="James Thompson">prequery has to work or 
+dropdowns wouldn't work today</quote>. Jason said 
+<quote who="Jason Cater">prequery DOES work - but it's not doing like 
+it did last year</quote>.</p>
+
+<p>Later, Daniel Baumann (chillywilly) asked 
+<quote who="Daniel Baumann">hey when is the new forms, designer, etc. 
+release? ;)</quote> James said <quote who="James Thompson">be on the 
+lookout for airborne pork</quote> as he was 
+<quote who="James Thompson">stomping bugs now</quote>.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.08May2002">
+The next day</a>, James noted <quote who="James Thompson">dneighbo: 
+your autofillBySequence works again - it was technically never 
+broken - however I broke the preInsert trigger than ran it 
+:)</quote>. Derek said he would test this later. He asked 
+<quote who="Derek Neighbors">how did things go last night 're 
+getting ready for release?'</quote>. James said 
+<quote who="James Thompson">ok i guess - i started to work on 
+prequery - which is easy to add but messes up the UI on 
+master/detil</quote>.</p>
+
+</section>
+

@@ -1,0 +1,828 @@
+lex_airport (~alex@dup-200-64-175-160.prodigy.net.mx) left irc: "Client Exiting"
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) left irc: Read error: 54 (Connection reset by peer)
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+pattieja (~pattieja@www.pcxperience.com) left irc: Read error: 60 (Operation timed out)
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise ("end of daylight saving == go to work in the light (for a month or so)").
+dragon (~dragon@pcd350230.netvigator.com) joined #gnuenterprise.
+wayeg (~merlinx@ppp1087.qld.padsl.internode.on.net) joined #gnuenterprise.
+btami (~tamas@ip102-205.ktv.tiszanet.hu) joined #gnuenterprise.
+<dragon> hello, i need help on designer/forms
+<btami> hello dragon
+<btami> what is the problem
+<dragon> i hav a very simple gfd. it contains just 2 label
+<dragon> the forms will fail with the messages 'There are no navigable widgets in this form.  Unable to display.'
+<dragon> here's the gfd:
+<dragon>   <form>
+<dragon>   <options/>
+<dragon>   <page name="Page_1">
+<dragon>     <label name="Label_1" text="Label:" width="6" x="0" y="0"/>
+<dragon>     <label name="Label_1" text="Label:" width="9" x="10" y="10"/>
+<dragon>   </page>
+<dragon> </form>
+<btami> it's a known error IIRC
+<btami> i'v got it with placement.gfd
+<btami> from samples
+<btami> try to add some field
+<dragon> yes it will work if you add a field
+<btami> ok :)
+<dragon> but i was surprised that it could not handle a form with just labels on it
+<btami> it was ok before, but things changed :)
+<btami> i don't know the real reason
+dtm ([YdUiiN5Ft@ip66.promontory.sfo.interquest.net) got netsplit.
+dtm ([YdUiiN5Ft@ip66.promontory.sfo.interquest.net) returned to #gnuenterprise.
+<dragon> what should you do if you want to display a form containing just pure text?
+<btami> make bugreport :)
+siesel (jan@dial-195-14-254-208.netcologne.de) joined #gnuenterprise.
+<siesel> morning
+<btami> hi siesel
+<siesel> hi btami
+<siesel> how are you?
+<btami> fine, thanks
+<btami> have you som win32 at your hands for testing ?
+paci (~paci@212.94.129.20) joined #gnuenterprise.
+<siesel> yes.
+<siesel> what needs testing?
+<btami> i'v sended a ticket #156
+<btami> collected win32 bugs
+<siesel> saw it.
+<btami> i'm just curious, can you reproduce my errors
+Action: siesel thinks, that I even can reproduce these errors on linux ;)
+<btami> maybe not all :)
+<siesel> ok, I will try both, linux and win32.
+<btami> thanks
+ariel (~ariel@ppp-217-133-246-34.dialup.tiscali.it) joined #gnuenterprise.
+ninja (~rossg@ip-195-149-26-1.nildram.co.uk) joined #gnuenterprise.
+Remosi (dahoose@port-219-88-247-225.jet.net.nz) joined #gnuenterprise.
+ariel (~ariel@ppp-217-133-246-34.dialup.tiscali.it) left irc: Remote closed the connection
+IsoosI (dahoose@port-219-88-246-75.jet.net.nz) left irc: Read error: 113 (No route to host)
+ninja (~rossg@ip-195-149-26-1.nildram.co.uk) left irc: Remote closed the connection
+ninja (~rossg@ip-195-149-26-1.nildram.co.uk) joined #gnuenterprise.
+IsoosI (dahoose@port-219-88-247-89.jet.net.nz) joined #gnuenterprise.
+ariel (~ariel@ppp-217-133-246-34.dialup.tiscali.it) joined #gnuenterprise.
+Remosi (dahoose@port-219-88-247-225.jet.net.nz) left irc: Read error: 113 (No route to host)
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) left irc: Read error: 54 (Connection reset by peer)
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+<siesel> \/quit
+siesel (jan@dial-195-14-254-208.netcologne.de) left irc: "http://www.blackened.com/blackened/"
+jamest (~jamest@adsl-65-64-191-161.dsl.tpkaks.swbell.net) left irc: "[x]chat"
+btami (~tamas@ip102-205.ktv.tiszanet.hu) left irc: 
+ToyMan (~stuq@smtp.dstoys.com) joined #gnuenterprise.
+siesel (jan@dial-195-14-244-53.netcologne.de) joined #gnuenterprise.
+neilt (~neilt@66.95.5.110) joined #gnuenterprise.
+#gnuenterprise: mode change '+o neilt' by ChanServ!ChanServ@services.
+jamest (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+<neilt> hello jamest
+<neilt> hello all
+<reinhard> hello neilt
+<neilt> reinhard: hello
+<ariel> hello reinhard, wb neilt
+<neilt> ariel: hello
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+<siesel> hi Daniel
+<chillywilly> hi
+<chillywilly> man I gotta run ;P
+Nick change: chillywilly -> cwAway
+siesel (jan@dial-195-14-244-53.netcologne.de) left irc: "*monkey grin*"
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) joined #gnuenterprise.
+Remosi (dahoose@port-219-88-247-214.jet.net.nz) joined #gnuenterprise.
+IsoosI (dahoose@port-219-88-247-89.jet.net.nz) left irc: Read error: 113 (No route to host)
+revDeke (www-data@alt1.libertydistribution.com) joined #gnuenterprise.
+<revDeke> hi neilt 
+<neilt> hello
+revDeke (www-data@alt1.libertydistribution.com) left irc: Client Quit
+StyXman (~mdione@ADSL-200-59-86-17.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<StyXman> hi all
+<StyXman> maybe this is not the best place to ask this, but...
+<StyXman> is there any difference between:
+<StyXman> (suppose a is a list)
+<StyXman> a[0]= 'a'
+<StyXman> and
+<StyXman> a.pop(0)
+<StyXman> a[0:0]= ['a']
+<StyXman> ?
+Yurik_ (~yrashk@as5300.kharkov.ukrtel.net) joined #gnuenterprise.
+<StyXman> uh, forget my previous question...
+siesel (jan@dial-213-168-92-241.netcologne.de) joined #gnuenterprise.
+ninja (~rossg@ip-195-149-26-1.nildram.co.uk) left irc: Remote closed the connection
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) left irc: Read error: 104 (Connection reset by peer)
+ajmitch (~me@wlg1-port20.jetstart.maxnet.co.nz) left irc: Read error: 60 (Operation timed out)
+dtm ([YdUiiN5Ft@ip66.promontory.sfo.interquest.net) got netsplit.
+siesel (jan@dial-213-168-92-241.netcologne.de) got netsplit.
+jamest (~jamest@hobbes.math.ksu.edu) got netsplit.
+ToyMan (~stuq@smtp.dstoys.com) got netsplit.
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) got netsplit.
+wayeg (~merlinx@ppp1087.qld.padsl.internode.on.net) got netsplit.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) got netsplit.
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) got netsplit.
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) got netsplit.
+siesel (jan@dial-213-168-92-241.netcologne.de) returned to #gnuenterprise.
+jamest (~jamest@hobbes.math.ksu.edu) returned to #gnuenterprise.
+ToyMan (~stuq@smtp.dstoys.com) returned to #gnuenterprise.
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) returned to #gnuenterprise.
+dtm ([YdUiiN5Ft@ip66.promontory.sfo.interquest.net) returned to #gnuenterprise.
+wayeg (~merlinx@ppp1087.qld.padsl.internode.on.net) returned to #gnuenterprise.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) returned to #gnuenterprise.
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) returned to #gnuenterprise.
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) returned to #gnuenterprise.
+StyXman (~mdione@ADSL-200-59-86-17.cordoba.sinectis.com.ar) left irc: "ircII EPIC4-1.1.7 -- Are we there yet?"
+Yurik_ (~yrashk@as5300.kharkov.ukrtel.net) left irc: Read error: 54 (Connection reset by peer)
+revDeke (www-data@alt1.libertydistribution.com) joined #gnuenterprise.
+siesel (jan@dial-213-168-92-241.netcologne.de) left irc: "What's a script?"
+IsoosI (dahoose@port-219-88-247-195.jet.net.nz) joined #gnuenterprise.
+pattieja (~pattieja@www.pcxperience.com) joined #gnuenterprise.
+Remosi (dahoose@port-219-88-247-214.jet.net.nz) left irc: Read error: 60 (Operation timed out)
+ariel (~ariel@ppp-217-133-246-34.dialup.tiscali.it) left #gnuenterprise ("Uscita dal client").
+lawrence (~lawrence@bsd01.necessity.org) joined #gnuenterprise.
+lawrence_ (~lawrence@bsd01.necessity.org) joined #gnuenterprise.
+lawrence_ (~lawrence@bsd01.necessity.org) left irc: Remote closed the connection
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) got netsplit.
+cwAway (danielb@mke-24-167-202-50.wi.rr.com) got netsplit.
+neilt (~neilt@66.95.5.110) got netsplit.
+paq (~paq@202.155.120.221) got netsplit.
+nickr (~panphage@e-64-35-146-236.empnet.net) got netsplit.
+Mr_You (~car@gso88-217-049.triad.rr.com) got netsplit.
+gnuebot (~eggdrop@65.101.4.211) got netsplit.
+neilt (~neilt@66.95.5.110) returned to #gnuenterprise.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) returned to #gnuenterprise.
+cwAway (danielb@mke-24-167-202-50.wi.rr.com) returned to #gnuenterprise.
+paq (~paq@202.155.120.221) returned to #gnuenterprise.
+nickr (~panphage@e-64-35-146-236.empnet.net) returned to #gnuenterprise.
+Mr_You (~car@gso88-217-049.triad.rr.com) returned to #gnuenterprise.
+gnuebot (~eggdrop@65.101.4.211) returned to #gnuenterprise.
+#gnuenterprise: mode change '+oo neilt gnuebot' by calvino.freenode.net
+neilt (~neilt@66.95.5.110) left irc: Read error: 60 (Operation timed out)
+lawrence (~lawrence@bsd01.necessity.org) left irc: "I like core dumps"
+lawrence (~lawrence@bsd01.necessity.org) joined #gnuenterprise.
+IsoosI (dahoose@port-219-88-247-195.jet.net.nz) left irc: Read error: 113 (No route to host)
+siesel (jan@dial-194-8-196-39.netcologne.de) joined #gnuenterprise.
+Yurik_ (~yrashk@as5300.kharkov.ukrtel.net) joined #gnuenterprise.
+siesel (jan@dial-194-8-196-39.netcologne.de) left irc: "You forgot to do your backup 16 days ago.  Tomorrow you'll need that version."
+lawrence (~lawrence@bsd01.necessity.org) left irc: "I like core dumps"
+Yurik_ (~yrashk@as5300.kharkov.ukrtel.net) left irc: Read error: 54 (Connection reset by peer)
+siesel (jan@dial-195-14-235-88.netcologne.de) joined #gnuenterprise.
+<siesel> does anybody knows if gnue-forms runs on python1.5 too? Or why it doesn't work anymore.
+<jcater> it will not
+Yurik_ (~yrashk@as5300.kharkov.ukrtel.net) joined #gnuenterprise.
+<jcater> it requires 2.0
+<jcater> we use 2.0 features
+<jcater> such as +=
+<siesel> is there much other stuff it requires, except of +=?
+Action: siesel needs gnue running on a WIN CE 2.11 device
+<siesel> and python2.2 for CE just runs on CE 3.0 :(
+neilt (~neilt@66.95.5.110) joined #gnuenterprise.
+#gnuenterprise: mode change '+o neilt' by ChanServ!ChanServ@services.
+<siesel> the third choice would be using WABA (java for palmtops) but the jclient is very very preliminary 
+Action: jcater hopes to not see the jforms stuff revived
+<siesel> hehe, I did know that ;)
+<jamest> i don't think going back to 1.5.2 is very feasible
+<jamest> we had quite a few 1.5.2 hacks that eventually drove us to 2.0
+<jamest> putting those hacks back in would be ugly
+Action: siesel just prepared the jforms stuff for jcater'S halloween ;)
+<siesel> jamest: I didn't thought of changing cvs, just thought of a private patch :)
+<jamest> it would be rough
+<jamest> very rough
+<jamest> we had to do wierd class hacks to get cetain things to function
+<siesel> did 0.1.0 support python1.5?
+<jamest> i believe it did
+<siesel> so the switch to 2.0 was short before gnue forms 3.0, I think
+<jamest> so no python 2.x will run on ce 2.11
+<jamest> ?
+<siesel> yes. just python 1.5. and there was no activity of backporting python2.2 to ce 2.11
+esands (~nic@210.55.103.10) left irc: Remote closed the connection
+<revDeke> siesel: why CE 2.2?
+Yurik_ (~yrashk@as5300.kharkov.ukrtel.net) left irc: Read error: 104 (Connection reset by peer)
+<siesel> I have no money for a new PDA :(
+<revDeke> what pda
+Action: revDeke thinks perhaps you need to flash it and install something new on it :)
+Action: revDeke thinks gnue should be focused on architectures to where its going more than where it is
+<revDeke> that was a large part of the python 2.x decision
+<revDeke> we figured by the time GNUe 1.0 ships
+<revDeke> 2.x will be OLD
+<revDeke> and 1.5.2 probably about unsupported
+<siesel> if I get forms 0.1.0 working, its ok. The main aim is to present a working gnue on a PDA to a customer 
+<siesel> If I get the project, they can use a Linux PDA. i.e. no porting needed.
+<revDeke> well porting will be needed :)
+<revDeke> in starting iPAQ research
+<revDeke> python should work no problem
+<revDeke> but we will likely need another UI client
+<revDeke> qtopia more than likely
+<revDeke> or something similar
+<revDeke> what model PDA do you currently use?
+<siesel> LEO Freestyle (Chinese Version)
+<revDeke> gack 
+<revDeke> thats an odd beast
+<revDeke> i suggest going to 
+<siesel> the main drawback is, that the linux frame buffer does't work :(
+<siesel> (with the chinese version)
+<revDeke> #handhelds.org
+<revDeke> and seeing if anyone there has any tips/hints suggestions to getting linux in some form working there
+<revDeke> er on this pda
+<revDeke> certainly you could do a 'port' or such
+<revDeke> but it seems like such a waste
+<revDeke> i was told that sharp zaurus had a good emulator
+<revDeke> perhaps you could use that/
+<siesel> linux is working, but the framebuffer don't work, so I can just use it as an webserver :(
+<revDeke> to proof to your customer GNUe on a pda
+<revDeke> what about curses version of gnue?
+<siesel> yes, that's an idea.
+<revDeke> give another 3 months and we can probably proof it on an iPAQ for you
+<siesel> great.
+Action: siesel will search for that zarus emulator direct after dinner :)
+<revDeke> hmmm rock
+<revDeke> familiarOS for iPAQ has
+<revDeke> Integrated Python v2.0 w/ PyGtk and PyGDKImlib. 
+<revDeke> time to test out that gnue pygtk driver :)
+<jcater> that's a GTK2 driver
+<jcater> not a GTK driver
+<jcater> just fyi
+<siesel> it can be easily modified to work with GTK. 
+<siesel> but Its possibly better to just install debian unstable on the iPAQ
+<jcater> that's what I'm saying!
+<jcater> otherwise, how else do you get frozenbubbles easily?
+<revDeke> jcater: yip BUT
+<jcater> BUT?
+<jcater> how can you argue with my frozenbubbles requirement?
+<revDeke> familiar provides 100% binary compatiablity to debian dpkg w/ ipkg
+<revDeke> er the arm distribution
+<revDeke> so in theroy if arm supports pygtk2
+<revDeke> goldeness :)
+Action: siesel likes to repeat jcater.
+[13:46] Last message repeated 4 time(s).
+<revDeke> hell with some luck we can make the gnue debs available for ARM edition
+<revDeke> nice little gnue ipkg 
+Action: revDeke will crap him self if we can get designer to run on an ipaq
+Action: revDeke can see techie meetings.... 
+<revDeke> no more need to fall alseep one can design forms while in meetings, literally can have things DONE before you leave a meeting :)
+<revDeke> instead of saying... "that would only take five minutes" and end of meeting give it to them and say "that only took 5 minutes" ;)
+<jcater> what resolution do those have?
+<siesel> 320x200 ?
+Action: jcater cringes at the thought of designing w/in 320x200 :)
+<revDeke> might be slightly bigger than that but thats pretty close
+<revDeke> 320x240 16-bit color transflective LCD (electroluminiscent backlight) 
+<revDeke> if you used 'virtual desktops' and a tabbed windows manager (like fluxbox)
+<revDeke> it might be doable if you were designing forms for the iPAQ
+<revDeke> siesel: 
+<revDeke> http://qpe.sourceforge.net/sharp.html
+<revDeke> so its not even an emulator it acutally has you install the ARM packages on the x86 architecture and run natively
+<revDeke> http://qpe.sourceforge.net/
+<revDeke> i tried VERY hard to get some zaurus' on loan for development but sharp was really bad about it 
+<revDeke> stating they are only 200 thats cheap enough to 'buy'
+<revDeke> i kept stating this is for FREE not PROPRIETARY software
+<revDeke> and that likely more FREE software would only HELP Zaurus sales not HURT them
+<revDeke> but the marketing drones i had to deal with basically were clueless :(
+<revDeke> HP/COMPAQ on the other hand is much more savvy
+<revDeke> and understands the concept of symbiotic relationships
+<revDeke> which is most odd as it should really be reversed seeing how zaurus is the linux pda and ipaq the pocketpc one....
+<revDeke> go figure :)
+reinhard_ (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) left irc: Read error: 104 (Connection reset by peer)
+Nick change: reinhard_ -> reinhard
+Isomer (dahoose@port-219-88-247-195.jet.net.nz) joined #gnuenterprise.
+ToyMan (~stuq@smtp.dstoys.com) left irc: ": I'm off to make more toys..."
+Isomer (dahoose@port-219-88-247-195.jet.net.nz) left irc: Client Quit
+Isomer (dahoose@port-219-88-247-195.jet.net.nz) joined #gnuenterprise.
+Isomer (dahoose@port-219-88-247-195.jet.net.nz) left irc: "Client Exiting"
+<siesel> revDeke: thx, I will give it a try :)
+siesel (jan@dial-195-14-235-88.netcologne.de) left irc: "later"
+Isomer (dahoose@port-219-88-247-195.jet.net.nz) joined #gnuenterprise.
+<jamest> the world is ending 
+<jamest> need proof?
+<jamest> http://messenger.yahoo.com/messenger/download/unix.html#debian
+<jamest> a comercial entity actually took the time to support debian
+<jcater> the day I can grab msword_9.0.0-1_i386.deb
+<jcater> is the day I retire :)
+<jamest> well, some day you probably will be able to
+<jamest> of course Word 119 will be the version for sale
+<jamest> "see....we're open source!"
+<jamest> :)
+<jcater> that's fine w/me
+<jcater> as by Word 119, you'll need a few terabytes of main memory
+<jcater> heaven forbid, the disk space you'll need
+<revDeke> ah snap
+<revDeke> jcater you around?
+<jcater> depends
+<revDeke> is there a way in python when dealing with files to do while line + 1:
+<revDeke> or something similar
+<revDeke> i.e. i have a while line:
+<revDeke> but something in that loop needs one more 'pass'
+<jcater> line = file.readline()
+<jcater> nextLine = file.readline()
+<jcater> while nextLine: 
+<jcater>  ....
+<jcater>   line = nextLine
+<jcater>   nextLine = file.readline()
+<jcater> ????
+<revDeke> ?
+<revDeke> let me try to digest that
+<revDeke> hmmm i dont think answers what im looking for
+<revDeke> basically i have a 
+<revDeke> while line:
+<revDeke>   if (something <> last_something):
+<revDeke>   do_foo()
+<revDeke>   line= file.readline() 
+<revDeke> or what not
+<revDeke> the problem is i need to do foo
+<revDeke> one last time
+<revDeke> as a BLANK or EOF is different than the last something
+<revDeke> i.e. the only way i know to do foo is if something changes
+<revDeke> so i queue something until it changes
+<jcater> right
+<jcater> in cases like that
+<revDeke> the problem is the last something never gets 'written'
+<revDeke> it just gets queued
+<jcater> I have a supplemental:
+<jcater> if line: 
+<jcater>   do_foo()(
+<jcater> outside the while loop
+<jcater> at least, that's what I do
+<revDeke> so after the while do if line
+<revDeke> ok will try
+Action: revDeke was thinking too hard here i think :)
+<nickr> da funk
+<revDeke> of course the crappy thing is i didnt make do_foo a function
+<jcater> lol
+<jcater> now's a good time to do it :)
+<revDeke> as i didnt plan on calling it more than once
+<revDeke> and im scared crapless too
+<revDeke> because i dont know python scope rules
+<jcater> well
+<jcater> I suppose an alternate is to have a 
+<revDeke> and im doing a lot of dictionary stuff (this is thing you looked at before)
+<jcater> followThru = 1
+<jcater> while line or followThru: 
+<jcater>   ....
+<jcater>   if not line: followThru = 0
+Action: jcater didn't think that one all the way thru, but it might work
+<wayeg> revDeke: you could use a "pre-test" if condition in the while after the line= file.readline()
+<wayeg> and that way if it equals the "while test" you can write the change before the while gets tested
+<revDeke> problem is same as other solution
+<revDeke> if it was a method/function no problem
+ajmitch (~me@wlg1-port47.jetstart.maxnet.co.nz) joined #gnuenterprise.
+<revDeke> hmm it doesnt like something
+<revDeke> with teh followthough issue
+Action: jcater did it wrong
+<jcater> followthru = 0
+<jcater> while line or followthru:
+<jcater>   if (something <> last_something):
+<jcater>     do_foo()
+<jcater>   if not followthru:
+<jcater>     line= file.readline()
+<jcater>     if not line:
+<jcater>       followthru = 1
+<jcater>   else:
+<jcater>     followthru = 0
+<jcater> maybe
+ToyMan (~stuq@glvv-dsl2-191.citlink.net) joined #gnuenterprise.
+esands (~nic@mdr1-port10.jetstart.maxnet.co.nz) joined #gnuenterprise.
+<nickr> hrm, anyone know how to put a background image on a wxPanel?
+<wayeg> not i sorry nickr
+<nickr> I put a staticbitmap there, but it seems to absorb mouse clicks :(
+<jcater> clickable pr0n?
+<nickr> Naw, just a pretty background for a window
+<nickr> fie. :(
+<wayeg> revDeke: problem solved ??
+neilt (~neilt@66.95.5.110) left irc: Read error: 110 (Connection timed out)
+<ajmitch> greetings
+<wayeg> g'day ajmitch
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) left irc: "There's always one more imbecile than you expect"
+siesel (jan@dial-194-8-196-185.netcologne.de) joined #gnuenterprise.
+<jcater> anyone here used touchscreens w/linux?
+<revDeke> wayeg: no problem solved still have issues
+<revDeke> no time to fix right now
+<revDeke> cant get stupid 3com to work w/ 100bT on a server ate my lunch
+<revDeke> grrr
+ToyMan (~stuq@glvv-dsl2-191.citlink.net) left irc: Read error: 110 (Connection timed out)
+<wayeg> while line:
+<wayeg>    if (something <> last_something):
+<wayeg>       do_foo()
+<wayeg>    line= file.readline()                              
+<wayeg>    if ("test for one line after whatever test above"):
+<wayeg>       do_foo()
+<wayeg> even if do_foo() isn't a function ... "cut and paste" is a wonderful thing =) 
+<wayeg> this way the second "if" is "effectively" testing for line+1 which is what you    need right ?
+<revDeke> wayeg yeah i will likely have to cut and paste for now grrr
+<revDeke> jcater i tried last item but its not liking something
+<jcater> ah
+<jcater> :(
+<wayeg> revDeke hope you have better luck next time
+<wayeg> afk
+<revDeke> hmm i think its actually a slightly different issue
+<revDeke> just getting called away every 3 minutes so cant concentrate grrrr
+<revDeke> and i was supposed to meet the wife 20 minutes ago
+<revDeke> ok fixed now
+<revDeke> cut and pasted solved so thats  definitely problem
+<revDeke> right answer is just fixing to make a method and call method twice
+<revDeke> thats a problem for another day though
+revDeke (www-data@alt1.libertydistribution.com) left #gnuenterprise.
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) joined #gnuenterprise.
+<Yurik> re
+<Yurik> does anyone knows, is there any *good* Kerberos API reference or better tutorial?
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) left irc: "Вышел из XChat"
+<nickr> ha ha I win
+<jcater> congrats
+<nickr> its easy
+Nick change: cwAway -> chillywilly
+siesel (jan@dial-194-8-196-185.netcologne.de) left irc: "*monkey grin*"
+<jcater> **********
+<jcater> updated developer's guide at http://www.gnuenterprise.org/~jcater/Developers-Guide.pdf  
+<jcater> **********
+<jcater> (for those reviewing it)
+<chillywilly> hello guys
+<chillywilly> how's it shakin'?
+<jcater> werd
+<jcater> it's shakin
+<chillywilly> whiiird g
+<chillywilly> one of thes days I will read your developers guide ;)
+<jcater> I'm at 598 pages now
+<jcater> err
+<jcater> damn
+<jcater> that's a typo
+<chillywilly> woah
+<jcater> 58
+<chillywilly> heheh
+<chillywilly> still good work :)
+<jcater> maybe 598 if you try to print the PS to a non-PS printer
+<chillywilly> lol
+<chillywilly> I always hated that because sometimes when I would print a ps file to the ps printer from the old digital unix system school had sometimes it would print ps code instead, I dunno why it would do that but sometimes it was jst being a PITA
+Action: chillywilly said sometimes way too many frelling times...er, sometimes I say sometimes way to many times...sometimes
+<jcater> I agree
+<jcater> sheesh!
+<esands> damn 598 pages would be a book.  So who's going to write the GNue book?  I hear if you are an author with Oreilly you get all their other books for free. ;)
+<chillywilly> cool
+Action: jcater expects the Developer's Intro to be over 200 pages
+<jcater> not that I'm counting pages or anything
+<jcater> :)
+<chillywilly> never
+<chillywilly> who would accuse you of such things?
+<chillywilly> they will be trout whipped!
+Action: chillywilly dled the Developers Guide
+<esands> The DG is good stuff at the moment, on target. 
+<chillywilly> wow man you went buck nuts
+<jcater> ?
+<chillywilly> ;P
+<chillywilly> crazy, of da hizook, etc.
+<chillywilly> er, off
+<jcater> what's cool...
+<jcater> the entire Appendix B
+<jcater> was created with a python script
+<jcater> which reads the stuff in GFParser.py
+<chillywilly> hmmm, this line is the most informative:  BLAH, BLAH, BLAH... ;)
+<jcater> well, I removed the infamous
+<jcater> Whoop!
+<jcater> from this recent version
+<chillywilly> does this mean if someone asks how to build a form we can tell them, BLAH, BLAH, BLAH... ?
+<jcater> don't we already?
+<chillywilly> I dunn
+<chillywilly> o
+Action: chillywilly claims ignorance
+<chillywilly> er, sorry typo
+<chillywilly> s/claims/is/ ;)
+<chillywilly> s/ignorance/ignorant/
+jamest_ (~jamest@adsl-65-64-191-161.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+<chillywilly> captain, we need more goats milk!
+<chillywilly> what format does OO use, just it's own thing?
+<jcater> yeah, it's own XML format
+<chillywilly> it lets you save as pdf?
+<chillywilly> or you went a different route?
+<jcater> no, but ps2pdf does :)
+<chillywilly> ok
+<jcater> it actually has an Export As PDF... on the latest Developer's Release
+<jcater> but it doesn't work
+<chillywilly> oh
+<jcater> but that means they plan to have it on the next stable release
+<jcater> so that'll be cool
+<chillywilly> but you can export as ps?
+<jcater> you can print to a file
+<jcater> same thing, I guess
+<chillywilly> ah, ok
+<chillywilly> yea
+<chillywilly> OO is to frlling memory hngry
+<chillywilly> I don't like to run it on my laptop
+<chillywilly> eactually the latest install I did segfaults now :(
+<chillywilly> PoS
+<chillywilly> btw, does designer do db schemas yet?
+<jcater> um
+<chillywilly> jcater: this guide is pretty cool man :)
+<jcater> not well
+<jcater> thanks
+<esands> supposely with some xsl and you can.  pgdesigner can do the job as well
+<jcater> it still has a ways to go
+<esands> er, xsl and dia
+<chillywilly> esands: we have an xml schema format and jan was working on integrating things
+<chillywilly> it is borrowed from dcl I believe
+<esands> look forward to it.  
+ToyMan (~stuq@glvv-dsl2-191.citlink.net) joined #gnuenterprise.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "home"
+<ajmitch> hi all
+<chillywilly> hi hi
+dragon (~dragon@pcd350230.netvigator.com) left irc: "[x]chat"
+jcater (~jcater@24.165.223.104) joined #gnuenterprise.
+<ajmitch> wb mr cater
+<jcater> thanx
+paq (~paq@202.155.120.221) left irc: Read error: 60 (Operation timed out)
+KeithJagrs (trilluser@63.74.24.9) joined #gnuenterprise.
+<derek> esands: in all seriousness a gnue book is in the works not from oreilly
+<ajmitch> ooh?
+<KeithJagrs> ????
+<derek> oreilly doesnt match our principles 
+<derek> we deal with a real publisher that respects the GFDL :)
+<ajmitch> i understand that, but i did not know of a book being made
+<derek> well until its more official we generally dont discuss
+<derek> i believe our very own peter sullivan will be the primary author
+<KeithJagrs> GFDL?
+<derek> GNU Free Documentation License
+<KeithJagrs> hmm
+<KeithJagrs> what about an e-book
+<ajmitch> ok
+<KeithJagrs> derek: have you checked out erp5.org ?
+<derek> i think i did long time ago
+<derek> or maybe im thinking of erpcentral.com
+<chillywilly> yay! the ring is destroyed!
+<chillywilly> and gollum is D E D dead
+<jcater> doh!
+<jcater> don't give it away
+<chillywilly> sorry
+<derek> shame erp5 is what i had hoped the gnue.org community site could be like
+<chillywilly> I thought everyone here was geek enough to have read the whole story
+<KeithJagrs> what do you mean by that , derek?
+<jcater> chillywilly: I'm usually too busy working on GNUe to actually read anything :)
+<chillywilly> eons ago
+<chillywilly> heh
+<derek> KeithJagrs: i mean at one time i wanted to do somethign similar to erp5
+<derek> as it was needed
+<derek> and we caught major crap for posting non gnue stuff
+<KeithJagrs> similar, in what sense?
+<derek> and it was confusing
+<derek> it really needed to be a separate site
+<chillywilly> jcater: after seeing the movie I had to finally read LOTR, I couldn't help myself
+<derek> our old phpnuke site for gnue.org
+<derek> i had hoped to do more an ERP community tyep of thing
+Action: jcater thinks we need to take advantage of subdomains
+<derek> but we needed to make it a second site
+<derek> as to not confuse people
+<derek> i.e. i agree with decisions we have made
+<jcater> like kde's site
+<derek> and honestly we dont have resources to do a community site like that plus our project
+<jcater> what?
+<derek> jcater: i agree, i have pushed that for a long time
+<jcater> I heard that psu's been sneaking in 6 hrs of sleep
+<jcater> dammit!
+<derek> subdomains
+<jcater> I say we crack the whip
+<derek> but irc you and jamest were very anti subdomains
+<derek> i.e. lists.gnue.org, bugs.gnue.org
+Action: jcater is anti- name-based dns resolution for domains
+<derek> as i had wanted to do dcl.gnuenterprise.org or something
+<jcater> I'm ok with subdomains
+<derek> and was told gnuenterprise.org/dcl was better or something
+Action: jcater uses them extensively at ncs
+Action: derek could be remembering incorrectly
+neilt (~neilt@ip68-100-144-59.nv.nv.cox.net) joined #gnuenterprise.
+#gnuenterprise: mode change '+o neilt' by ChanServ!ChanServ@services.
+Action: jcater wants to get the gnue.org over to ash!?!?
+<derek> maybe it was more an anti virtual host thing
+<jcater> so we can cut down on these urls :)
+<derek> jcater: hell no :)
+<derek> im too nervous to lose my email :)
+<neilt> hello all
+<jcater> neilt: hello
+<derek> as now all my email routes through gnue.org :)
+<jcater> I see
+<jcater> so .gnue.org is being held hostage
+<jcater> because of your email account?
+<jcater> :)
+<jamest_> because gnue doesn't have any sysadmins that understand email  :)
+<jcater> oh
+<jcater> gotcha
+<derek> roflmao
+<neilt> does anyone know if pyro is working in common.commdrivers
+<jcater> I think it's really in the early stages
+<derek> well the gnue.org sysadmin says any sysadmin that lives in a state that is so incompetent they have to adjust their clocks twice a year cant be trusted with email
+<neilt> who is working on it?
+<derek> siesel
+<neilt> thanks, it looks really interesting
+<KeithJagrs> derek: taking its site aside, or its community, what do you think of their project, or their technical approach?
+<derek> KeithJagrs: ?
+<derek> i only saw it as an erp portal
+<KeithJagrs> hmmm
+<derek> and them trying to collect best of breed together
+<KeithJagrs> Its a solution
+<derek> btw: this is one of the things gnue was supposed to do
+<derek> compile stuff together in a sense
+<derek> but i digress
+<derek> KeithJagrs: i didnt see that they were actively 'coding' anything but rather consolidating/packaging existing things
+<derek> i could be wrong i only looked for 10 seconds
+<KeithJagrs> it seems to me a peer project
+<KeithJagrs> they are based on Zope as the core for the app server
+<KeithJagrs> http://www.erp5.org/
+<derek> im getting ready to go ximianschiest on applications
+<derek> like starting tonight after csi miami
+<KeithJagrs> http://www.erp5.org/wiki/whitepaper/FrontPage
+ToyMan (~stuq@glvv-dsl2-191.citlink.net) left irc: Remote closed the connection
+ToyMan (~stuq@glvv-dsl2-191.citlink.net) joined #gnuenterprise.
+ToyMan (~stuq@glvv-dsl2-191.citlink.net) got netsplit.
+jamest_ (~jamest@adsl-65-64-191-161.dsl.tpkaks.swbell.net) got netsplit.
+Mr_You (~car@gso88-217-049.triad.rr.com) got netsplit.
+gnuebot (~eggdrop@65.101.4.211) got netsplit.
+nickr (~panphage@e-64-35-146-236.empnet.net) got netsplit.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) got netsplit.
+dtm ([YdUiiN5Ft@ip66.promontory.sfo.interquest.net) got netsplit.
+neilt (~neilt@ip68-100-144-59.nv.nv.cox.net) got netsplit.
+KeithJagrs (trilluser@63.74.24.9) got netsplit.
+Isomer (dahoose@port-219-88-247-195.jet.net.nz) got netsplit.
+pattieja (~pattieja@www.pcxperience.com) got netsplit.
+wayeg (~merlinx@ppp1087.qld.padsl.internode.on.net) got netsplit.
+jamest (~jamest@hobbes.math.ksu.edu) got netsplit.
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) got netsplit.
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) got netsplit.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) got netsplit.
+neilt (~neilt@ip68-100-144-59.nv.nv.cox.net) returned to #gnuenterprise.
+ToyMan (~stuq@glvv-dsl2-191.citlink.net) returned to #gnuenterprise.
+KeithJagrs (trilluser@63.74.24.9) returned to #gnuenterprise.
+jamest_ (~jamest@adsl-65-64-191-161.dsl.tpkaks.swbell.net) returned to #gnuenterprise.
+Isomer (dahoose@port-219-88-247-195.jet.net.nz) returned to #gnuenterprise.
+gnuebot (~eggdrop@65.101.4.211) returned to #gnuenterprise.
+Mr_You (~car@gso88-217-049.triad.rr.com) returned to #gnuenterprise.
+nickr (~panphage@e-64-35-146-236.empnet.net) returned to #gnuenterprise.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) returned to #gnuenterprise.
+pattieja (~pattieja@www.pcxperience.com) returned to #gnuenterprise.
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) returned to #gnuenterprise.
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) returned to #gnuenterprise.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) returned to #gnuenterprise.
+wayeg (~merlinx@ppp1087.qld.padsl.internode.on.net) returned to #gnuenterprise.
+dtm ([YdUiiN5Ft@ip66.promontory.sfo.interquest.net) returned to #gnuenterprise.
+jamest (~jamest@hobbes.math.ksu.edu) returned to #gnuenterprise.
+#gnuenterprise: mode change '+oo neilt gnuebot' by calvino.freenode.net
+ra3vat (~ds@ics.elcom.ru) left irc: Read error: 110 (Connection timed out)
+ra3vat (~ds@ics.elcom.ru) joined #gnuenterprise.
+paqan (~paqan@202.155.120.221) joined #gnuenterprise.
+ToyMan (~stuq@glvv-dsl2-191.citlink.net) left irc: ": I'm off to make more toys..."
+KeithJagrs (trilluser@63.74.24.9) left irc: "later"
+Mr_You (~car@gso88-217-049.triad.rr.com) left irc: "changing servers"
+Mr_You (~car@gso88-217-049.triad.rr.com) joined #gnuenterprise.
+<esands> derek: I think something like wiki is needed for a good community site.  Witness erp5 is runing wiki. 
+<esands> AWP: seem to be good for publishing 'open' books. Witness the postgress book which is completely online 
+neilt (~neilt@ip68-100-144-59.nv.nv.cox.net) left irc: Read error: 110 (Connection timed out)
+jamest (~jamest@hobbes.math.ksu.edu) got netsplit.
+wayeg (~merlinx@ppp1087.qld.padsl.internode.on.net) got netsplit.
+Isomer (dahoose@port-219-88-247-195.jet.net.nz) got netsplit.
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) got netsplit.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) got netsplit.
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) got netsplit.
+pattieja (~pattieja@www.pcxperience.com) got netsplit.
+Isomer (dahoose@port-219-88-247-195.jet.net.nz) returned to #gnuenterprise.
+pattieja (~pattieja@www.pcxperience.com) returned to #gnuenterprise.
+jamest (~jamest@hobbes.math.ksu.edu) returned to #gnuenterprise.
+wayeg (~merlinx@ppp1087.qld.padsl.internode.on.net) returned to #gnuenterprise.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) returned to #gnuenterprise.
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) returned to #gnuenterprise.
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) returned to #gnuenterprise.
+lawrence (~lawrence@bsd01.necessity.org) joined #gnuenterprise.
+lawrence (~lawrence@bsd01.necessity.org) left irc: "I like core dumps"
+Mr_You (~car@gso88-217-049.triad.rr.com) left irc: Read error: 60 (Operation timed out)
+jcater (~jcater@24.165.223.104) left irc: "restarting x"
+<derek> esands: we are working with nostarch.com No Starch Press
+<derek> i dont think wiki is necessary for community, but certainly sosmeone can assemble one for gnue and we will embrace it
+jcater (~jcater@cpe-024-165-223-104.midsouth.rr.com) joined #gnuenterprise.
+<derek> hmmm daylight savings eh
+<derek> wondered why everyone was 'up so late' ;)
+<jcater> lol
+<derek> you got time donut boy
+<derek> to discuss where to put packages :)
+<derek> for gnue
+<jcater> yeah
+<jcater> I'll tell you exactly where you can
+<jcater> put your packages
+<derek> hmmm they wont fit in chillywilly's ass
+Action: jcater ducks
+<derek> i tried
+<jcater> lol
+<derek> rofl
+<derek> i just got a satellite dish looking through the manual of 'trouble shooting' tables
+<derek> each one is a table with sections 
+<derek> what is happening   -   possible reason  - what to do
+<derek> get this
+<derek> what is happening: You can not find the remote control.
+<derek> possible reason: n/a
+<jcater> rofl
+<jcater> they weren't very thorough
+<jcater> possible reason: look in the kids' room
+<nickr> possible reason: you are dumb
+<derek> what to do: Use the receiver front panel control buttons to control the receiver until you find the remote.  if the remote control is permanently lost or too DAMAGED to use, call the service center to order a replacement
+Action: jcater loved my satellite
+<derek> now how sad is that?  are there really people so damn lazy they dont realize you can get off your arse and change the channels w/o a remote?
+<jcater> I had it for 3 years
+Action: jcater misses it
+Action: derek thinks they are pretty evil, but cable was raping me
+<derek> for digital cable + hbo (2 tvs) it was costing me 66.00 a month
+<derek> which is just insane
+<derek> i dont watch but like 3 shows 
+<derek> CSI, CSI: Miami and Sportscenter
+<jcater> sicko
+<derek> i wouldnt even likely need cable if the kids didnt like disney and nickelodeon and such
+Action: jcater saw CSI: Miami for the first time tonight
+<derek> the dish seemed reasonable  no out of pocket cost and $22.99 + 6.00 (local channels) + 5.00 (second tv) = 33.99
+<derek> plus they are giving me second dish free so i can get skyangel network! w00t!
+<derek> the other major reason for the ditching of cable
+<derek>  but anyhow back to gnue
+<derek> i have to get UE stuff rolling asap
+<derek> i have the stuff in private cvs
+<derek> i would like to address what to do with that stuff
+<derek> as well as get mroe information on gear stuff
+<derek> yada yada yada
+<derek> i want to spend minimal time talking (yeah amazing eh) and roll up sleeves and get a hacking
+<derek> but im to point i need good place to put this stuff as im going to encourage others to contribute ASAP
+<derek> acclite fits in that mix as well
+<derek> a little clean up and really i think the base of 'stuff' is done
+<derek> i.e. product categories and product maintenance 
+<derek> which is the start of ordering/inventory/invoicing etc
+<derek> i.e. partnumbers woot!
+<derek> was going to consider revamping the module writers guide or such
+<derek> and start creating two tier module docs
+<derek> and merging in louis accounting stuff and comparing to nola and such
+Action: derek is gung ho
+<jcater> well
+<jcater> are you looking for opinions?
+<derek> ready for some public announcements and website updates and code committing
+<derek> yes
+<derek> mainly where to put the work
+<jcater> I'd like to see this be the start of using separate modules
+<jcater> i.e., I'd like to see gnue-accounting
+<derek> and wehere to get information on gear
+<jcater> (or whatever you want to call it)
+<derek> long term i want to know where we put on website (as discussed)
+<derek> and package management
+<derek> i would like to see this be the start of packages
+<derek> on the website
+<derek> i.e. official packages so to speak
+<derek> i am down with modules but it gets shaky on data dictionaries
+<derek> as if i make say CRM and Inovicing
+<derek> both use the contact database
+<derek> so where do i put contact data dictionary stuff
+<derek> if i put in crm then invoicing now depends on crm
+Action: derek doesnt expect easy answer here
+<derek> or a instant solution as i think its MUCH more complicated than that
+<jcater> um
+<jcater> just put it somewhere
+<derek> i.e. ulimate packaging/dependency solution
+<jcater> we'll move it around later :)
+<derek> i wouldnt be opposed to saying X depends on Y
+<derek> for NOW
+<derek> as having usable stuff will make folks so happy it shouldnt matter much
+<derek> as long as we have an eye for a better solution long term
+<derek> i also considered putting data dictionary all in one place
+<derek> and loading all tables regardless of what you install
+<jcater> firstly, what is the official stance on what you're doing?
+<jcater> these are stepping stone packages?
+<jcater> thesse are unofficial, but working solutions?
+<derek> but then you only have to get the forms, reports etc of what you want
+<derek> jcater: honestly i dont care
+<derek> you know what i have to make
+<jcater> derek: I think that might be a good solution for now
+<jcater> one big schema
+<derek> about 3 or 4 folks are wanting identical thing
+<jcater> and package reports/forms as appropriate
+<derek> whether we make this an unofficial soslution using the framework and put in speical cvs and special website
+<derek> or whether we put on gnue as official 'starter' packages to be replaced later
+<derek> or whether we say these are official packages that will grow over time
+<derek> makes no difference to me 
+<derek> i just want to be able to advertise to solict 'help'
+<jcater> I don't really care either
+<derek> i think making them officially gnue likely will help gnue's image
+<derek> look at our website, its apparent we want to offer working systems :)
+<jcater> but for political reasons, it may be best to have this as an unofficial solution using the framework
+<derek> BUT
+<jcater> it's a tricky situation :)
+<derek> its political as you state :)
+<jcater> I can tell you now, it'll be "damned if you do, damned if you don't"
+<jcater> so choose your poison now
+<jcater> and move on
+Action: jcater would probably lean towards "usable, but not quite official" solution
+<jcater> in a separate cvs
+<jcater> (but on savannah)
+<jcater> but still advertise on our website
+<derek> im cool with that
+<derek> on savannah?
+Action: derek is wondering why not just use existing ash cvs
+<derek> where we have acclite and/or UE stuff
+<jcater> well
+Action: jcater would like to see anon cvs
+Action: derek says this only cause workign with savannah to do stuff can be defeating at times with slow response time
+<derek> gack
+<jcater> neither jamest or I are ready to open up ash like that :)
+<derek> thats right no pserver there
+<ajmitch> anoncvs is easy to setup with pserver
+<ajmitch> but you don't want that :)
+<derek> ok i will start a project then on savannah
+<jcater> that's just my opinion
+<derek> make a little web page and such
+<jcater> I could probably be persuaded otherwise
+<jcater> I would name it
+<jcater> gnue-?????
+<jcater> and put on gnue website
+<ajmitch> shall i try & get access to savannah in case you need cvs problems fixed? :)
+<jcater> just be careful with wording :)
+<jcater> so it's "associated with" GNue even if not in our main cvs repos
+--- Tue Oct 29 2002

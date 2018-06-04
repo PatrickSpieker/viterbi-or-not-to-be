@@ -1,0 +1,653 @@
+lupo__ (lupo@pD9E680CF.dip.t-dialin.net) joined #gnuenterprise.
+lupo__ (lupo@pD9E680CF.dip.t-dialin.net) left irc: Remote closed the connection
+dcmwai (~dcmwai@219.95.155.138) joined #gnuenterprise.
+dimas (~dimas@195.218.177.46) joined #gnuenterprise.
+Arturas (~arturas@gsk.vtu.lt) left irc: "Bye :)"
+btami (~tamas@ip102-205.ktv.tiszanet.hu) joined #gnuenterprise.
+siesel (jan@xdsl-213-196-192-25.netcologne.de) joined #gnuenterprise.
+<siesel> morning
+<siesel> btami: the win32 ui don't work because of a dll loading problem.
+<btami> hi siesel
+<btami> what error you get?
+<siesel> something like : dll can't be loaded
+Vee (~vin@c66.169.136.41.ts46v-07.otn-c1.ftwrth.tx.charter.com) left irc: Client Quit
+<siesel> in chinese
+<btami> :)
+<siesel> it seems to find the dll, but has problems with dll format.
+<btami> can you try it on another (US) win98 ?
+<btami> i'v tried i on win98 SE hun, and it worked well
+<siesel> ok. I'll try. 
+<siesel> I hope I have some win98 US first edition around here.
+<siesel> But I will first try to update win98 chinese to second edition (hope that windows update still works)
+wtg (~merlinx@ppp190-50.lns1.bne1.internode.on.net) left irc: "Cluelessness:- There Are No Stupid Questions, But There Are A Lot Of Inquisitive Idiots."
+<btami> siesel: can you use the win32 ui from cvs on chinese win98?
+<btami> just .exe fails ?
+johannesX (~johannes@M1264P006.adsl.highway.telekom.at) left irc: "Client Exiting"
+<siesel> btami: in the installation notes for win32all they said, a com update would be needed.
+<siesel> but it still fails.
+<siesel> I will try cvs version now.
+Action: siesel switches terminals
+siesel (jan@xdsl-213-196-192-25.netcologne.de) left irc: "Client exiting"
+siesel (~jan@xdsl-213-196-192-25.netcologne.de) joined #gnuenterprise.
+dimas (~dimas@195.218.177.46) left irc: Client Quit
+<siesel> btami: I probably found the error. win32all ver. 159 can be installed. I had to install development version 161 instead.
+<siesel> btw. which win32all version did you use to build the exe?
+<btami> 159
+Action: btami is downloading 161 now
+Nick change: SachaS -> SachaAway
+<siesel> btami: forms works with 161 on windows 98
+<btami> great
+<btami> is it chinese?
+<siesel> yep.
+<btami> and a win32 ui?
+<siesel> seems like just 159 had some problems with this system
+<siesel> yes win32ui. I just tested the intro form, but I think the rest will be ok too.
+lesterb__ (~chatzilla@ash1-dsl-ws-25.dsl.airstreamcomm.net) joined #gnuenterprise.
+<btami> siesel: can you put a screenshot with that form to somewhere?
+lesterb_ (~chatzilla@ash1-dsl-ws-25.dsl.airstreamcomm.net) left irc: Read error: 104 (Connection reset by peer)
+Action: btami just curious about chinese forms
+<btami> can you type chinese input too?
+<siesel> ok, now I understand. no, its english on chin. win. 
+<btami> :(
+<siesel> but I'll try to make a chinese one ... with screenshot :)
+<btami> :)
+<btami> i'v tried it with gtk2, and got some chinese labels, but
+<btami> was no luck with input
+<btami> tried unicode
+<btami> then i'v tried unicode wx
+<btami> but it asked for a good font, and i don't know what gtk2 used
+<btami> so got no good chinese labels with wx
+<btami> i'v added utf-8 to encodings dict in wx's common.py
+<btami> don't know how win32 ui will works with utf-8/unicode...
+<siesel> it should :)
+<btami> i hope:)
+<dcmwai> btami: I know good fonts for gtk2 :)
+<dcmwai> under linux.. :)
+<btami> dcmwai: gtk2 find good fonts in win32, just it doesn't tells me
+<btami> what was that
+<dcmwai> oh... I see
+<dcmwai> But in linux there ask for it right?
+<dcmwai> s/there/they
+Action: dcmwai is away: dinner
+<btami> on win32 wx doesn't knows autamatice which font to use, and
+<btami> it asked me to chese one, but i don't know what font to chose
+<btami> gtk2 is clever than wx
+<siesel> :)
+<btami> or cleverer ? :)
+Action: btami 's englist is rather short
+Vee (~vin@c66.169.136.41.ts46v-07.otn-c1.ftwrth.tx.charter.com) joined #gnuenterprise.
+<btami> english even
+mcuria (~maxy@29-185-89-200.fibertel.com.ar) left irc: Read error: 54 (Connection reset by peer)
+<siesel> btami: do you know how to encode a string as MBCS? Mark Hammond take this as an option to display unicode: http://mail.python.org/pipermail/python-list/2002-October/125861.html
+<btami> doesn't encode() works with 'mbcs'
+<siesel> dunno, I'll try.
+mcuria (~maxy@29-185-89-200.fibertel.com.ar) joined #gnuenterprise.
+dcmwai (~dcmwai@219.95.155.138) got netsplit.
+Vee (~vin@c66.169.136.41.ts46v-07.otn-c1.ftwrth.tx.charter.com) got netsplit.
+lesterb__ (~chatzilla@ash1-dsl-ws-25.dsl.airstreamcomm.net) got netsplit.
+derek (~dneighbo@ip68-109-180-32.ph.ph.cox.net) got netsplit.
+havoc (~havoc@CPE-65-31-107-254.wi.rr.com) got netsplit.
+dtm (~dtm@r1.txwifi.com) got netsplit.
+SachaAway (~sacha@online.havanawave.com) got netsplit.
+ajmitch (~ajmitch@wlg1-port7.jetstart.maxnet.co.nz) got netsplit.
+siesel (~jan@xdsl-213-196-192-25.netcologne.de) got netsplit.
+btami (~tamas@ip102-205.ktv.tiszanet.hu) got netsplit.
+jcater (~jcater@cpe-066-061-071-147.midsouth.rr.com) got netsplit.
+LuftHans (~lufthans@wsip-68-107-221-207.ph.ph.cox.net) got netsplit.
+chillywilly (danielb@CPE-24-167-193-166.wi.rr.com) got netsplit.
+Vee (~vin@c66.169.136.41.ts46v-07.otn-c1.ftwrth.tx.charter.com) returned to #gnuenterprise.
+lesterb__ (~chatzilla@ash1-dsl-ws-25.dsl.airstreamcomm.net) returned to #gnuenterprise.
+siesel (~jan@xdsl-213-196-192-25.netcologne.de) returned to #gnuenterprise.
+btami (~tamas@ip102-205.ktv.tiszanet.hu) returned to #gnuenterprise.
+dcmwai (~dcmwai@219.95.155.138) returned to #gnuenterprise.
+derek (~dneighbo@ip68-109-180-32.ph.ph.cox.net) returned to #gnuenterprise.
+jcater (~jcater@cpe-066-061-071-147.midsouth.rr.com) returned to #gnuenterprise.
+ajmitch (~ajmitch@wlg1-port7.jetstart.maxnet.co.nz) returned to #gnuenterprise.
+LuftHans (~lufthans@wsip-68-107-221-207.ph.ph.cox.net) returned to #gnuenterprise.
+SachaAway (~sacha@online.havanawave.com) returned to #gnuenterprise.
+havoc (~havoc@CPE-65-31-107-254.wi.rr.com) returned to #gnuenterprise.
+dtm (~dtm@r1.txwifi.com) returned to #gnuenterprise.
+chillywilly (danielb@CPE-24-167-193-166.wi.rr.com) returned to #gnuenterprise.
+thierry (~thierry@marseille-2-a7-62-147-31-5.dial.proxad.net) joined #gnuenterprise.
+<thierry> hi all
+<btami> hi thierry
+<thierry> hi btami
+<siesel> btami: the login box for the win32 driver is broken, possibly due to win32all 161
+reinhard (~myriam@pD9EA13FB.dip.t-dialin.net) joined #gnuenterprise.
+<reinhard> hi all from gnu/linux world expo in frankfurt
+<reinhard> if anybody sees mdupont please tell him to call me 
+<reinhard>  0043/664/3035200
+<reinhard> i seem to have noted a wrong telephone number
+<reinhard> thanks
+reinhard (~myriam@pD9EA13FB.dip.t-dialin.net) left irc: Client Quit
+md-work (mdupont@p5080E702.dip0.t-ipconnect.de) joined #gnuenterprise.
+Nick change: md-work -> mdupont
+<btami> siesel: it works here
+<siesel> hmmm, possibly another win98 first version problem. 
+<btami> here=XP
+<mdupont> anyone going to the linuxexpo?
+dcmwai (~dcmwai@219.95.155.138) left irc: "Client exiting"
+<btami> <reinhard> hi all from gnu/linux world expo in frankfurt
+<btami> <reinhard> if anybody sees mdupont please tell him to call me 
+<btami> <reinhard>  0043/664/3035200
+<btami> <reinhard> i seem to have noted a wrong telephone number
+<btami> <reinhard> thanks
+<mdupont> thansk!
+<siesel> btami: I get the following error message
+<siesel> DB000: Traceback (most recent call last):
+<siesel> DB000:   File "C:\PYTHON23\Lib\site-packages\gnue\forms\uidrivers\win32\UILoginH
+<siesel> andler.py", line 193, in OnInitDialog
+<siesel> DB000:     bmCtrl = win32gui.GetDlgItem(self.hwnd, self.ID_BITMAP)
+<siesel> DB000: pywintypes.error: (0, 'GetDlgItem', 'No error message is available')ÿÿDB000: Traceback (most recent call last):
+<siesel> DB000:   File "C:\PYTHON23\Lib\site-packages\gnue\forms\uidrivers\win32\UILoginH
+<siesel> andler.py", line 193, in OnInitDialog
+<siesel> DB000:     bmCtrl = win32gui.GetDlgItem(self.hwnd, self.ID_BITMAP)
+<siesel> DB000: pywintypes.error: (0, 'GetDlgItem', 'No error message is available')ÿÿDB000: Traceback (most recent call last):
+<siesel> DB000:   File "C:\PYTHON23\Lib\site-packages\gnue\forms\uidrivers\win32\UILoginH
+<siesel> andler.py", line 193, in OnInitDialog
+<siesel> DB000:     bmCtrl = win32gui.GetDlgItem(self.hwnd, self.ID_BITMAP)
+<siesel> DB000: pywintypes.error: (0, 'GetDlgItem', 'No error message is available')
+<siesel> sorry: pasted 3 times
+<siesel> btami: any idea how to solve that?
+<mdupont> btami: i talked to him, thanks!!
+<btami> siesel: it seems you have to avoid the login box :)
+<btami> use netrc or direct uname/passw
+Nick change: mdupont -> md-linuxexpo
+<btami> or better we can drop win98 support, and say
+<btami> we only support nt/2000/xp line
+<siesel> ok. I've running with direct password now.
+dcmwai (~dcmwai@219.95.155.138) joined #gnuenterprise.
+<siesel> hi dcmwai
+<dcmwai> hello siesel :)
+<dcmwai> what bring you up here today?
+<btami> he likes win98 :)
+Action: btami ducks
+<siesel> yeah, trying out unicode/chinese with win32/wx uidrivers
+<siesel> First try (-u win32)http://www.gnuenterprise.org/~jan/chinese_win32.png
+<btami> wow
+<siesel> this is using default locale, i.e. converting unicode to default locale (= gb2312) here
+<dcmwai> how come so many ???
+<dcmwai> I see
+<dcmwai> siesel: Anyway to just use unicode? (Not usine unicode...)
+<siesel> I used output= unicode_string.encode('gb2312','replace')
+<dcmwai> Er Not user locale (BG/Gb)
+<dcmwai> I see...
+<siesel> that means to use wx-unicode build (for wx) or some magic win32 function (for win32 ui)
+Action: dcmwai is now trying Fpdf...
+thierry (~thierry@marseille-2-a7-62-147-31-5.dial.proxad.net) left irc: Read error: 110 (Connection timed out)
+lxf (~agus_tea@202.73.120.39) joined #gnuenterprise.
+<siesel> ok, unicode with win32 ui is working now: http://www.gnuenterprise.org/~jan/chinese_win32.png
+<btami> siesel: sorry, but what is the difference to the prior try
+<btami> ?
+<dcmwai> siesel: This is a lot more better :)
+<btami> maybe the problem i can't understand chinese :)
+<siesel> btami: no question marks anymore. 
+<dcmwai> prior try is about UTF8-->locacle code (big5, gb2312)
+<dcmwai> btami: due to to the lack of fonts/code in gb2312/big5... They turn to be "?"
+<dcmwai> so you midd informated
+<dcmwai> s/midd/miss
+<siesel> btami: gb2312 (=simpl. chinese) is just a subset of unicode, i.e traditional chinese didn't work, german umlauts not work
+<btami> i see
+<dcmwai> siesel: You are keying Your Zhung Zhi inside? :)
+<dcmwai> siesel: Do you know that someone say the Utf-8 --> big5 conveter in Unicode is wrong?
+<dcmwai> (under the unicode.org)
+<dcmwai> siesel: have a look on this page. http://firefly.idv.tw/test/Forum.php?Board=1&Article=de9b0f4a1667a3e524d75ba29786ac96&Func=view&History=0
+<dcmwai> This might solve the Utf8<=>big5 problem
+<siesel> dcmwai: thx. I try.
+<siesel> yes, zhuzibaijia are all in my local database.
+<siesel> Its quite useful :)
+<dcmwai> siesel: Nice try :)
+<dcmwai> siesel: For the test as well :)
+<siesel> :)
+<dcmwai> siesel: about the code utf-8<==>big5 did think that is usefull
+<dcmwai> ?
+<siesel> its quite useful.
+<siesel> In which code region are the big5 chars? Is it that undefined (eten space)?
+<siesel> sorry, have to look for crying children + dinner, bbl.
+<Vee> they're over here, siesel
+<dcmwai> siesel: Unsure, maybe unicode.org stete that. But it certainly have got the wrong code.
+<dcmwai> siesel: maybe you should tell the people in unicode.org after you have try it :)
+<dcmwai> Vee: help...
+<dcmwai> Vee: Need some help in PHP class...
+<dcmwai> I've 2 class I want to use.. What shoulld I do..
+<Vee> *shrug*
+Action: dcmwai is trying this question in #php, See if getting anyone score me :) 
+<Vee> I'm sure there's people more able to help, there in #php
+<dcmwai> Vee: Yea, I only start using PHP on June...
+Action: Vee is still preoccupied with a broked cvs server
+<dcmwai> Vee: Then Go with it, I'll be in #php
+s154994 (~jape@kone5.khdrive.vip.fi) joined #gnuenterprise.
+<s154994> Hi I have a problems connecting to my database
+<s154994> my connection specification is: [gnue]
+<s154994> comment = GNUe Test Database
+<s154994> aliases = dcl test
+<s154994> provider = postgresql
+<s154994> #provider = psycopg
+<s154994> host = localhost
+<s154994> dbname = gnue
+<s154994> and final errormessage is
+s154994 (~jape@kone5.khdrive.vip.fi) left irc: Excess Flood
+s154994 (~jape@kone5.khdrive.vip.fi) joined #gnuenterprise.
+<s154994> DB000: AttributeError: 'module' object has no attribute 'supportedDataObjects'
+thierry (~thierry@marseille-2-a7-62-147-29-238.dial.proxad.net) joined #gnuenterprise.
+<s154994> any ideas what to try next
+<btami> what python dbdriver you have installed?
+<btami> can you import it in python?
+<s154994> postgresql-python
+<siesel> s154994: I got the same problem some minutes ago
+<s154994> actually its PyGreSQL, version 3.3
+<btami> gnue has support for popy,psycopg,pygresql,pypgsql
+<siesel> you have to specify the exact driver for now. i.e. provider=pygresql
+<s154994> I know and it seems to work 
+<s154994> becouse It seems to log in, if I giv wrong password etc it fails as it should
+<s154994> I try that
+<s154994> thanks, it works I just copied it from README.database whithout thinking enough
+<siesel> no, you're right in copying from README.database, it seems to be a bug.
+<s154994> what's actual status of application server? should I be able to get it work
+<siesel> yes. shouldn't be a problem.
+<siesel> if you have questions about appserver, you're welcome.
+ToyMan (~stuq@smtp.dstoys.com) joined #gnuenterprise.
+<s154994> I will, I tried all these things from cvs sources until I fed up for these errors and downgraded to last release
+<s154994> errors were kept same...
+<s154994> next I try that appserver out cheers
+s154994 (~jape@kone5.khdrive.vip.fi) left irc: "bye"
+dcmwai (~dcmwai@219.95.155.138) left irc: "Client exiting"
+thierry (~thierry@marseille-2-a7-62-147-29-238.dial.proxad.net) left irc: Read error: 110 (Connection timed out)
+thierry (~thierry@marseille-2-a7-62-147-31-5.dial.proxad.net) joined #gnuenterprise.
+jcater (~jcater@cpe-066-061-071-147.midsouth.rr.com) left irc: Client Quit
+siesel (~jan@xdsl-213-196-192-25.netcologne.de) left irc: Client Quit
+thierry (~thierry@marseille-2-a7-62-147-31-5.dial.proxad.net) left irc: Read error: 60 (Operation timed out)
+lxf (~agus_tea@202.73.120.39) left irc: 
+dneighbo (~dneighbo@ip68-109-180-32.ph.ph.cox.net) joined #gnuenterprise.
+wtg (~merlinx@ppp190-50.lns1.bne1.internode.on.net) joined #gnuenterprise.
+derek (~dneighbo@ip68-109-180-32.ph.ph.cox.net) left irc: Read error: 110 (Connection timed out)
+btami (~tamas@ip102-205.ktv.tiszanet.hu) left irc: Client Quit
+dimas (~dimas@195.218.177.46) joined #gnuenterprise.
+jamest (~jamest@gw.math.ksu.edu) joined #gnuenterprise.
+lesterb__ (~chatzilla@ash1-dsl-ws-25.dsl.airstreamcomm.net) left irc: Connection timed out
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+siesel (jan@213.196.192.25) joined #gnuenterprise.
+dcmwai (~dcmwai@219.95.212.141) joined #gnuenterprise.
+Nick change: wtg -> wtg`sleep
+<dcmwai> who is here?
+<siesel> hi dcmwai :)
+siesel (jan@213.196.192.25) got netsplit.
+dcmwai (~dcmwai@219.95.212.141) got netsplit.
+Vee (~vin@c66.169.136.41.ts46v-07.otn-c1.ftwrth.tx.charter.com) got netsplit.
+havoc (~havoc@CPE-65-31-107-254.wi.rr.com) got netsplit.
+dtm (~dtm@r1.txwifi.com) got netsplit.
+SachaAway (~sacha@online.havanawave.com) got netsplit.
+ajmitch (~ajmitch@wlg1-port7.jetstart.maxnet.co.nz) got netsplit.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) got netsplit.
+ToyMan (~stuq@smtp.dstoys.com) got netsplit.
+jamest (~jamest@gw.math.ksu.edu) got netsplit.
+wtg`sleep (~merlinx@ppp190-50.lns1.bne1.internode.on.net) got netsplit.
+LuftHans (~lufthans@wsip-68-107-221-207.ph.ph.cox.net) got netsplit.
+chillywilly (danielb@CPE-24-167-193-166.wi.rr.com) got netsplit.
+md-linuxexpo (mdupont@p5080E702.dip0.t-ipconnect.de) got netsplit.
+dcmwai (~dcmwai@219.95.212.141) returned to #gnuenterprise.
+siesel (jan@213.196.192.25) returned to #gnuenterprise.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) returned to #gnuenterprise.
+jamest (~jamest@gw.math.ksu.edu) returned to #gnuenterprise.
+wtg`sleep (~merlinx@ppp190-50.lns1.bne1.internode.on.net) returned to #gnuenterprise.
+ToyMan (~stuq@smtp.dstoys.com) returned to #gnuenterprise.
+md-linuxexpo (mdupont@p5080E702.dip0.t-ipconnect.de) returned to #gnuenterprise.
+Vee (~vin@c66.169.136.41.ts46v-07.otn-c1.ftwrth.tx.charter.com) returned to #gnuenterprise.
+ajmitch (~ajmitch@wlg1-port7.jetstart.maxnet.co.nz) returned to #gnuenterprise.
+chillywilly (danielb@CPE-24-167-193-166.wi.rr.com) returned to #gnuenterprise.
+LuftHans (~lufthans@wsip-68-107-221-207.ph.ph.cox.net) returned to #gnuenterprise.
+SachaAway (~sacha@online.havanawave.com) returned to #gnuenterprise.
+havoc (~havoc@CPE-65-31-107-254.wi.rr.com) returned to #gnuenterprise.
+dtm (~dtm@r1.txwifi.com) returned to #gnuenterprise.
+<dcmwai> siesel, are you free somehow?
+<dcmwai> I'm trying to get FPDF working with unicode Fonts... 
+<dcmwai> and for what I know, you are the people that I know more about this topic
+<siesel> what is FPDF?
+mcuria (~maxy@29-185-89-200.fibertel.com.ar) left irc: Connection reset by peer
+<siesel> ok, found it: fpdf.org
+<siesel> dcmwai: so  you don't want to use gnue-reports? ;)
+<dcmwai> siesel, It is just too hard to get gnue-report to be in place.
+jbailey (~jbailey@atlas.fundserv.com) joined #gnuenterprise.
+<dcmwai> to be franke, I would really love to.. Cause using Gnue-report I'can have xml,html,ps,pdf,cvx and all format that you support with it easily.
+<dcmwai> but the intregation/interfacing/link/connection is way too Hard.
+<dcmwai> and it will be harder when I want to make it multiplatfrom.
+<siesel> dcmwai: no problem
+Action: siesel really has to have another look at the gnue-reports-server
+<jcater> dcmwai: with all due respect
+<dcmwai> siesel, Oh yes and please..
+<jcater> if you can get the ISP to let you run a gnue-reports-server
+<jcater> then why couldn't he let you exec gnue-reports?
+<dcmwai> jcater, Sure, but how if it is a windows machine?
+<Vee> that seems like a trivial issue
+<siesel> reports runs on windows too.
+<Vee> if there is some difference in how you execute it, perhaps due to a path involved or something, you can easily handle that in the code 
+<dcmwai> ok.
+<dcmwai> So did gnue-report-server run on all platfrom (from *nix,windows,Mac and etc)
+<siesel> yes.
+<dcmwai> cause it is not the report machine, it is actually the whole aria Main report system, I'll take out all html report and etc and replace with it. 
+Action: dcmwai is checkingout cvs
+<dcmwai> jcater, So the soultion will be issuing an exec(command ) and then have it send back?
+<siesel> dcmwai: the report server would be called via GNU RPC (i.e. XMLRPC) but until all functionalty is implemented the exec(gnue-reports) trick has to be used.
+<dcmwai> siesel, may I ask how the gnu rpc being called?
+<jcater> yes, long term, what siesel describes is the plan
+<jcater> but I wouldn't depend on that for anything you're wanting in the near future
+thierry (~thierry@marseille-2-a7-62-147-61-141.dial.proxad.net) joined #gnuenterprise.
+<jcater> actually, gnue-reports is the reason I started on gnue rpc :)
+<dcmwai> ooh..
+<siesel> jcater: do you have some minutes to discuss further report server design?
+<jcater> um
+<jcater> in my mind
+<jcater> reports server is a very, very low priority for me
+<dcmwai> why?
+<jcater> but I honestly don't have time to spend any time on gnue at the moment
+<dcmwai> isn't that the main presentation came out
+Action: jcater is in the middle of a bad time crunch at work
+<siesel> dcmwai: quite easy from php, just have a look gnue-common/src/rpc/test/client.php
+<dcmwai> siesel, Ok... 
+<siesel> jcater: I wondered why the db driver development stalled. Now I know.
+<dcmwai> jcater, What happen in the crunch
+<siesel> jcater: good luck with work stuff.
+mcuria (~maxy@29-185-89-200.fibertel.com.ar) joined #gnuenterprise.
+Action: dcmwai wounder how to include gnue-report and the rpc in arias in packaging.. 
+<jcater> siesel: yeah, it sucks
+Action: jcater really wants to get the dbdriver stuff in the main CVS
+<jcater> as every day I don't get it in, the more outdated my branch becomes
+<jcater> and I really like my branch
+<jcater> but I'm biased :)
+<dcmwai> siesel, I don't have that files.. are you sure it is in the cvs server?
+<siesel> Don't worry, every day you are not  logged in, the cvs commit log is quite empty
+<Vee> dcmwai: it's the end of the month so many companies face an end of the month crunch to try and get everything or as much as possible finished before the month ends
+<dcmwai> Vee, Oh.. I see That is something I don't know.
+<siesel> Don't worry, every day you are not logged in, the cvs commit log is quite empty
+Action: siesel is repeating himself.
+<dcmwai> haha
+<dcmwai> siesel, I don't have this files even it is the cvs version. gnue-common/src/rpc/test/client.php
+<siesel> dcmwai: ok, I'll check.
+<siesel> http://savannah.gnu.org/cgi-bin/viewcvs/gnue/gnue-common/src/rpc/test/client.php
+<dcmwai> why it is not in my cvs even if it is update? hum have to checkout again
+<siesel> dunno, probably you have a tagged release.
+<dcmwai> siesel, Not easy to read all :)
+Action: dcmwai think may be it is time to re-checkout all gnue
+<siesel> you can try: cvs -t HEAD update 
+<dcmwai> siesel, do you have any simple command
+<dcmwai> because gnue modules is sperated across all the DIR
+<siesel> just do a "for i in gnue*;do cd $i;cvs update; cd ..; done
+<dcmwai> siesel, Har... how come you all people got this kind of simple solution one...
+Action: dcmwai really cannot catch up with *nix people...
+thierry (~thierry@marseille-2-a7-62-147-61-141.dial.proxad.net) left irc: "Client exiting"
+<siesel> dcmwai: the client.php code is a bit old and uses a bad xmlrpc abstraction layer.
+<siesel> you should check out gnue-phpforms/src/gcomm.php
+<siesel> in the end, its just a "import xmlrpcstuff;" + "xmlrpc->exectue(host,"startreport",reportname)"
+<siesel> jbailey: is the #gnue-commits feed broken?
+<jbailey> siesel: Looks like the CIA user isn't in there.
+<Vee> I guess we gotta tell cia to join everytime it pings out or something
+<jbailey> I don't have time to troubleshoot it right now.  If someone does, the problem is that the CIA bot can apparently only connect to so many channels at once.
+<jbailey> And the freenode people need to let it connect to more.
+<jbailey> The guy who runs #commits has a note about it in his channel.
+<siesel> ok, I will look there. thx :)
+<dcmwai> CIA?
+Ogart (~chatzilla@dialup-67.73.160.223.Dial1.Chicago1.Level3.net) joined #gnuenterprise.
+Ogart (~chatzilla@dialup-67.73.160.223.Dial1.Chicago1.Level3.net) left irc: "ChatZilla 0.8.31 [Mozilla rv:1.4/20030624]"
+mouns (mouns@62.212.97.112) joined #gnuenterprise.
+chillywilly (danielb@CPE-24-167-193-166.wi.rr.com) left irc: Read error: 54 (Connection reset by peer)
+chillywilly (danielb@CPE-24-167-193-166.wi.rr.com) joined #gnuenterprise.
+chillywilly (danielb@CPE-24-167-193-166.wi.rr.com) left irc: "leaving"
+chillywi1ly (danielb@CPE-24-167-193-166.wi.rr.com) joined #gnuenterprise.
+dcmwai (~dcmwai@219.95.212.141) left irc: Read error: 110 (Connection timed out)
+siesel_ (jan@xdsl-213-196-193-27.netcologne.de) joined #gnuenterprise.
+siesel (jan@213.196.192.25) left irc: Client Quit
+<siesel_> dcmwai: if you like testing, gnue-reports-server is kind of usable now.
+dimas (~dimas@195.218.177.46) left irc: "÷ÙÛÅÌ ÉÚ XChat"
+mouns (mouns@62.212.97.112) left irc: Remote closed the connection
+damokle (~damokle@pD954D37E.dip.t-dialin.net) joined #gnuenterprise.
+damokle (~damokle@pD954D37E.dip.t-dialin.net) left #gnuenterprise.
+mcuria (~maxy@29-185-89-200.fibertel.com.ar) left irc: Connection reset by peer
+ToyMan (~stuq@smtp.dstoys.com) left irc: "Client Exiting"
+apropos (tom@wsip-68-15-205-134.ok.ok.cox.net) joined #gnuenterprise.
+mcuria (~maxy@29-185-89-200.fibertel.com.ar) joined #gnuenterprise.
+apropos (tom@wsip-68-15-205-134.ok.ok.cox.net) left irc: "[BX] Eat, drink and be merry...for tomorrow we die"
+Nick change: md-linuxexpo -> mdupont
+<mdupont> siesel_:  rheiner said i should talk to you
+mdupont (mdupont@p5080E702.dip0.t-ipconnect.de) left #gnuenterprise ("Client exiting").
+mdupont (mdupont@p5080E702.dip0.t-ipconnect.de) joined #gnuenterprise.
+<mdupont> siesel_: he said that you know about the class and memberder ?#
+ToyMan (~stuq@user-0cevdks.cable.mindspring.com) joined #gnuenterprise.
+mcuria (~maxy@29-185-89-200.fibertel.com.ar) left irc: Read error: 104 (Connection reset by peer)
+jamest (~jamest@gw.math.ksu.edu) left irc: Client Quit
+mcuria (~maxy@29-185-89-200.fibertel.com.ar) joined #gnuenterprise.
+R45 (~R45@cuscon521.tstt.net.tt) joined #gnuenterprise.
+jamest (~jamest@adsl-66-142-213-30.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: Client Quit
+<siesel_> mdupont: what class and member do you mean?
+Action: siesel_ hopes mduponts is still  around
+<dtm> siesel_: at first i read that as "siesel punts mdupont around."
+<siesel_> no, there is no punting in this channel... just trout slapping ;)
+jcater (~jcater@cpe-066-061-071-147.midsouth.rr.com) joined #gnuenterprise.
+Vee (~vin@c66.169.136.41.ts46v-07.otn-c1.ftwrth.tx.charter.com) got netsplit.
+Vee (~vin@c66.169.136.41.ts46v-07.otn-c1.ftwrth.tx.charter.com) returned to #gnuenterprise.
+Vee2d2 (~vin@c66.169.136.41.ts46v-07.otn-c1.ftwrth.tx.charter.com) joined #gnuenterprise.
+Vee (~vin@c66.169.136.41.ts46v-07.otn-c1.ftwrth.tx.charter.com) left irc: Client Quit
+Action: siesel_ hates php
+siesel_ (jan@xdsl-213-196-193-27.netcologne.de) left irc: Client Quit
+<Vee2d2> I think we're going to move to using subversions or something else instead of cvs, at work
+<Vee2d2> any of you using an alternative versioning system than cvs in production somewhere?
+<R45> what's wrong with cvs?
+<jbailey> R45: It sucks rocks.
+<jbailey> Vee2d2: I'km using subversion, but I'm still new at it.
+<R45> anything specific? :P
+<jcater> we're looking to move to subversions too
+<jcater> still very new at it
+<jcater> R45: lack of atomicity
+<jcater> lack of directory versioning
+<jbailey> R45: Expensive branch, painful merging.
+<jcater> lack of file relocation functions
+<jbailey> Incapable of tracking renames.
+<R45> I agree the branching and merging is a PITA
+<R45> ah well
+<Vee2d2> well, the main guy doesnt like it for a few reasons.. the one I recall him stating is that he thinks cvs wasnt really written for multiple developers to use
+<Vee2d2> it's all coming to surface though becuase we tried to move our repositories to a new server and havent been able to get it working in the new location (weird weird problems)
+<jbailey> Vee2d2: It wasn't really.  It's just RCS with a wrapper.
+<R45> I've never tried subversion though..
+Action: R45 checks it out
+<Vee2d2> seems like there's a number of alternative systems out there.. 
+<jbailey> Vee2d2: If you need CVS repo help, I could probably help you.  We can negotiate something to make it worth my while.
+<jbailey> Vee2d2: Bitkeeper (non-free).  Arch (Tom Lord's an ass, but it's GNU now).  and Subversion (Generally well liked and seen as the next big CVS by alot of communities)
+<Vee2d2> jbailey: I've stumped google and #cvs with it
+<Vee2d2> what about mcvs?
+<jbailey> Vee2d2: Ah?  Weird.  I haven't found anythign that stumps be, but there's always a first.
+<jbailey> Gotta do an upgrade, bbiab.
+<Vee2d2> kid's bathtime.. bbiab2
+R45 (~R45@cuscon521.tstt.net.tt) left irc: Remote closed the connection
+R45 (~R45@cuscon521.tstt.net.tt) joined #gnuenterprise.
+Nick change: SachaAway -> SachaS
+jbailey (~jbailey@atlas.fundserv.com) left irc: "Time to go home..."
+<dneighbo> is a kid's bath == to upgrade/reboot
+<chillywi1ly> uh?
+<jcater> well, I hope the kids don't core dump in the bath
+<chillywi1ly> ew
+dcmwai (~dcmwai@219.95.173.165) joined #gnuenterprise.
+<dneighbo> roflmao
+<dneighbo> i *think* im past that
+<nickr> naked
+<dneighbo> i.e. noah is not in diapers anymore (even at night) so im REALLY hoping im out of that stage
+<dneighbo> though i still have to wipe butts (on call)
+mcuria (~maxy@29-185-89-200.fibertel.com.ar) left irc: Read error: 110 (Connection timed out)
+<dtm> dneighbo: yeah good luck with that whole thing
+<dtm> it's all you buddy.
+<dneighbo> pgaccess sucks
+<dneighbo> never looked at it before
+<dneighbo> saw it in apt and figured i would look... egads
+<jamest> unless it's changed you'll find some nice new tables in your db too
+<dneighbo> yes thats what im freaking on
+<jamest> owned and only accessable by the first user of pgaccess
+<dneighbo> freaking added like 10 freaking pga_* tables
+<dneighbo> not happy camper
+<jamest> which fuxorz any other users unlucky enough to need to use it
+<dneighbo> doh
+<jamest> oh yeah
+<jamest> try loading a big table
+<jamest> it has to load every record before responding
+<jamest> at least it used to
+<jamest> absolutely brutal on response times
+<dneighbo> i already uninstalled it
+<jamest> and system resources
+<dneighbo> i was wanting a quick visual way to look at some tables another app (kmusicdb) installed
+<Vee2d2> phppgadmin isnt too bad
+<dneighbo> just to see something and was going to use GNU Enterprise and in upgrading saw pgaccess and thought.. .hmm i always wondered about that
+<dneighbo> dumb ass me
+<dneighbo> trying new things
+<dneighbo> oh jamest you know where the holiday inn is in manhattan?
+Action: dneighbo is curious if you do, have you ever eaten at the restaurant in it?
+<jcater> mmm
+<jcater> food
+<dneighbo> hi jcater
+<jcater> howdy
+<dneighbo> i think it goes by holidome?
+<dneighbo> just off the SR 81
+<dneighbo> er 18
+Action: dneighbo has a co-worker whose brother in law is a professional chef
+<dneighbo> guess he just got hired to turn around the restaurant portion 
+<dneighbo> will be heading out there in a couple of days
+<dneighbo> might be able to get you a free lunch or two ;)
+<dneighbo> but was curious to get your opinion of current dining there (if you have eaten there)
+<jcater> dneighbo: I'm not sure jamest eats anything but taco bell
+<dneighbo> taco bell has chicken fingers now?
+<dneighbo> oh wait.. you are one with chicken limitations :)
+Action: dneighbo really has been away too long
+<jamest> i eat everywhere
+<jamest> even taco bell
+<jamest> but haven't ate at holidome in years
+<Vee2d2> manhattan? thought jamest was in kansas
+<jamest> i'm a jet setter
+<jamest> spend my days in KS
+<jamest> my nights in IRC, er, I mean manhattan
+<jamest> Manhattan, KS
+<jcater> and dreams of java
+<jamest> we're known as the "little apple"
+<jcater> yes, a true man of the world
+Action: jamest wonders have many "little apple"s there are in the US
+<jcater> jamest: unless one of those tornadoes touches down again
+<jcater> then it'll be apple sauce
+<jamest> I am a man of the world!
+<jamest> i had chinese last week
+<jamest> italian last night
+<jamest> and might have tacos tomorrow
+wtg`sleep (~merlinx@ppp190-50.lns1.bne1.internode.on.net) left irc: Read error: 110 (Connection timed out)
+wtg`sleep (~merlinx@ppp190-50.lns1.bne1.internode.on.net) joined #gnuenterprise.
+<Vee2d2> aww.. it was 2fer tuesday and I forgot
+<Vee2d2> Taco Tuesday!
+<dcmwai> hihi... everyone :)
+mdupont (mdupont@p5080E702.dip0.t-ipconnect.de) left irc: Read error: 60 (Operation timed out)
+<jamest> hi
+Nick change: wtg`sleep -> wtg
+mdupont (mdupont@p5080EC0E.dip0.t-ipconnect.de) joined #gnuenterprise.
+ToyMan (~stuq@user-0cevdks.cable.mindspring.com) left irc: "Client Exiting"
+<Vee2d2> http://better-scm.berlios.de/comparison/comparison.html interesting
+<Vee2d2> version control system comparison
+<jamest> i like svn
+<jamest> a lot
+<jamest> but my experience shows it requires a tiny bit more hand holding than cvs 
+<jamest> of course I'm running 0.27 and 0.32 is out so maybe those issues are resolved
+<Vee2d2> well.. I didnt(dont!) know too much about it.. it's a java based thing? requires apache2? isnt very mature?
+<jcater> written in C
+<jcater> http://subversion.tigris.org/project_faq.html
+<jcater> lots and lots of info
+<jamest> no apache needed
+<jamest> works w/ ssh just fine
+<jcater> time for family guy and futurama
+jcater (~jcater@cpe-066-061-071-147.midsouth.rr.com) left irc: Client Quit
+<jamest> time for video games
+jamest (~jamest@adsl-66-142-213-30.dsl.tpkaks.swbell.net) left irc: "Client exiting"
+<dtm> yay video games.
+Vee2d2 (~vin@c66.169.136.41.ts46v-07.otn-c1.ftwrth.tx.charter.com) left irc: Client Quit
+Vee (~vin@c66.169.136.41.ts46v-07.otn-c1.ftwrth.tx.charter.com) joined #gnuenterprise.
+alandd (~alandd@h-69-3-76-178.PHNDAZ91.dynamic.covad.net) joined #gnuenterprise.
+alandd (~alandd@h-69-3-76-178.PHNDAZ91.dynamic.covad.net) left irc: Client Quit
+R45 (~R45@cuscon521.tstt.net.tt) left irc: "leaving"
+<dtm> hi all
+<Vee> aww hell, oh dtm!
+<dtm> !!!
+<dtm> what is your present status, Vee ?  working?
+<Vee> yea
+<dtm> yaaaaay.
+<Vee> geeg:~> scp mike@office:cvs.tbz2 .
+<Vee> cvs.tbz2                                                      64% 5216KB  88.4KB/s   00:32 ETA
+<dtm> neat.
+<Vee> gonna try to 'move' the repository to this machine for kicks to see if I can get it working here or spot the cause of problems happening there.. 
+<dtm> oic
+<Vee> got my ssh'idness all worked out.. 
+Action: Vee hearts keychain
+<dtm> Vee: huh. 
+<dtm> glad to hear it.
+<Vee> you? what you been upta? 
+<dtm> Oh man.
+<dtm> i dont even wanna think about it.
+<dtm> working nonstop as always
+<dtm> gave chillywi1ly a primer on interchange last night
+<dtm> he's become quite the ecommerce hacker
+<Vee> I've looked at that a time or two
+<dtm> and such
+<dtm> you should again.
+<dtm> OR BE DESTROYED
+<Vee> ;)
+<dtm> learn interchange.  it *just* might mean your life.
+<dtm> i would call up anyone on the phone right now to evangelize interchange.
+<dtm> BRING IT ON
+Action: dtm 4
+<Vee> it has been a while.. maybe 1.5-2 years I'd guess
+<dtm> whoa.
+<dtm> was it versoin 4.8?
+<dtm> or earlir
+<Vee> earlier I think
+<dtm> i started with 4.8
+<dtm> i dabbled with it when it was called minivend in about 1998
+<Vee> yea
+<dtm> didn't get it to work then.
+<dtm> that utterly maxed out my skill level at the time
+<Vee> I was just going to say it's funny to think that's what it use to be
+<Vee> no resemblence to minivend now
+<dtm> huh.
+<dtm> pretty much, other than the variable names!
+<dtm> minivend is to interchange as openstep is to macos
+<dtm> there's a lot of variables starting with "NS" in macos now :)
+<dtm> due to NeXTSTEP
+<dtm> coincidentally, probably the same with mozilla.
+<dtm> "NS"
+<dtm> Vee: do you have any possible interest in it now?
+<Vee> I think I'm still on for writing my own thing actually..
+<Vee> it's way out there on the todo list though
+Action: dtm explodes
+<dtm> yeah?  so you have a special section of your todo list labeled "impossible tasks"
+<dtm> ?
+<Vee> I have a system about 60-70% written somewhere in my archives.. 
+<dtm> or "grandeural delusions" perhaps
+<dtm> that sounds more fancy
+Action: ajmitch has one of those sorta lists
+<dtm> Vee: yeah.  sure you do.  :)
+<dtm> ajmitch: cool
+<ajmitch> including such tasks as learn how to write 'hello world'
+<Vee> stopped working on it when I decided to base things off gnue
+<dtm> i dont know.  i think i might.  i dont know if i wrote those particular ones down ye.t
+<dtm> ajmitch: eh?
+<dtm> ajmitch: you can write 'hello world'.
+<dtm> u sille
+<ajmitch> in INTERCAL!! ;)
+Action: ajmitch shudders
+<dtm> what's that?! 
+<ajmitch> eeevil
+<dtm> yay, evil
+<Vee> so my priorities have switched from getting an ecommerce system up and running, to getting myself using gnue-sb, then getting an ecommerce system running which interfaces with that..
+<dtm> Vee: and if you have the slightest shred of intelligence, common sense, self respect, and human decency, that system shall be Interchange.
+<dtm> ;)
+<Vee> heh
+Action: dtm hands Vee the prized interchange hot dog
+Action: ajmitch sees dtm spaketh the words of doom
+<Vee> I dont claim to have any of that
+<dtm> Vee: :-/
+Action: dtm plots Vee's destruction
+<dtm> I warned ya!
+Action: Vee is not human, afterall.
+<dtm> :-o
+Action: dtm bioscan
+<dtm> Vee: Creature!  I admonish you to interface gnue-sb and IC via SOAP!!
+--- Wed Oct 29 2003

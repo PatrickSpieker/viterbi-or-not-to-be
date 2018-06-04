@@ -1,0 +1,727 @@
+johannesX (~johannes@M1264P006.adsl.highway.telekom.at) joined #gnuenterprise.
+mdupont (mdupont@p5080E5D5.dip0.t-ipconnect.de) joined #gnuenterprise.
+reinhard (~reinhard@M1264P004.adsl.highway.telekom.at) joined #gnuenterprise.
+<mdupont> moin reinhard
+<reinhard> moin moin
+<mdupont> reinhard: i have done a short review of the database schemas of 22 packages yesterday
+<mdupont> Compier Delator FreeSide GNULedger.txt SOWAS ZBC aria bbstatus custom facturier fisterra freemoney gnucash interchange ipstat ispacct lazy8 phpgroupware sqlledger weberp xdefactor xiwa-1.4.1
+<reinhard> wow
+<mdupont> at least extracted the sql from them
+<dtm> mdupont: you were satisfied with your extraction of IC data?
+<mdupont> from those, i have to say that Compier and SqlLedger are pretty good with database design
+<dtm> heheh "weberp"   that sounds like a rude noise sometimes followed by mild regurgitation.
+<mdupont> and interchange has the best support
+<dtm> a tad of the ol' antiperistalsis, as it were
+<mdupont> :)
+<dtm> interchange support community is THROUGH THE ROOF, Y'ALL
+btami (~tamas@ip102-205.ktv.tiszanet.hu) joined #gnuenterprise.
+<mdupont> I aslo think that Compier is not really free software
+<dtm> mdupont: :/
+<btami> good morning
+<mdupont> because you need a non-free case tool to work on it, so the database model is not source
+<mdupont> but object code
+<dtm> mdupont: hey!  i found out today that Appgen went out of business, and had all their source code in escrow to be open sourced.  that's currently under debate.
+<mdupont> according to the gpl, you need to provider the source code in the preferred means of editing
+<mdupont> well they do, those are the models from some case tool
+<dtm> hmmm.
+<mdupont> but those models are only readable by this case tool
+<mdupont> and it is not free
+<mdupont> you can edit the oracle scripts, but then someone will have to edit the model 
+<mdupont> and that someone is this J?rgen guy
+<mdupont> so it might technically be gpled,
+<dtm> mdupont: it's not Jeurgen(sp?) originally from VA, is it?
+<mdupont> but realisticly, it is a closed package for any real changes
+<dtm> mdupont: coz VA bought Compiere or something about it
+<mdupont> Juergen from oracle, and unisis
+<dtm> ok
+<dtm> i worked with a Juergen at VA
+<dtm> in the IT dept.  he was a temp
+<mdupont> juergen janke
+<dtm> Hm.
+<mdupont> there are lots of j?rgens out there :)
+<dtm> yeah.
+<dtm> but only ONE of MY JUERGEN.
+<mdupont> I think compier is really well designed
+dimas_ (~dimas@195.218.177.46) joined #gnuenterprise.
+dimas (~dimas@195.218.177.46) left irc: Read error: 110 (Connection timed out)
+thierry (~thierry@marseille-4-a7-62-147-112-72.dial.proxad.net) joined #gnuenterprise.
+<thierry> morning all
+<mdupont> hi
+Action: mdupont has now 17mb of schemas
+<dtm> :-o
+<mdupont> Compier DCL Delator FreeSide GNULedger IPStat-0.9.7 SOWAS ZBC aria bayonne-1.2.8 bbstatus bw-acct custom emma-0.8 facturier fisterra freemoney gctb-0.2.1 gnucash guco interchange ipac-ng-1.25 ipstat iptacct ispacct lazy8 lefthand_2002-06-22_1 myinvoicer nola phpgroupware sqlledger weberp xdefactor xiwa-1.4.1 xoops
+<mdupont> well bayonne does not have a datbase
+<mdupont> ok, move the interchange source out of the way, not it is just 7.7mb
+<dtm> okay
+<dtm> the src for an app doesn't constitute "a schema"  ;)
+Action: mdupont uploads the schemas he has so far
+<mdupont> http://introspector.sourceforge.net/2003/10/schemas/
+Nick change: mdupont -> md-work
+<dtm> yay
+<md-work> later dudz
+<md-work> if you find any i missed,
+<dtm> md-work: you need to look at my DCL roadmap on dcl.sf.net and find the url to derek's dcl schema
+<dtm> for contact mgmr
+<dtm> mgmt
+<md-work> drop me a line on mdupont777@yahoo.com
+<md-work> ok, I will
+<md-work> i think i have some of the tables
+<md-work> are they in cvs?
+<dtm> yes i think so
+<md-work> and for schema, i mean anything that is like sql create tables
+<dtm> he had it hooked up to a javascript based schema visualizer tool
+<md-work> cool
+<dtm> so you could click and it opens up
+<md-work> well gotta run
+<md-work> gotta be at work in 15 mins
+<md-work> and am not ready yet
+<dtm> runrun
+thierry (~thierry@marseille-4-a7-62-147-112-72.dial.proxad.net) left irc: Read error: 110 (Connection timed out)
+dimas_ (~dimas@195.218.177.46) left irc: Read error: 110 (Connection timed out)
+dimas_ (~dimas@195.218.177.46) joined #gnuenterprise.
+dimas_ (~dimas@195.218.177.46) left irc: Read error: 110 (Connection timed out)
+mcuria (~maxy@29-185-89-200.fibertel.com.ar) left irc: Read error: 104 (Connection reset by peer)
+<dcmwai> md-work: aria Schema is the largest of all size.. :(
+<dcmwai> damn Schema... :)
+mcuria (~maxy@29-185-89-200.fibertel.com.ar) joined #gnuenterprise.
+dimas_ (~dimas@195.218.177.46) joined #gnuenterprise.
+dimas (~dimas@195.218.177.46) joined #gnuenterprise.
+dimas_ (~dimas@195.218.177.46) left irc: Read error: 110 (Connection timed out)
+siesel (jan@xdsl-213-168-119-172.netcologne.de) joined #gnuenterprise.
+<siesel> morning :)
+<btami> morning :)
+btami (~tamas@ip102-205.ktv.tiszanet.hu) left irc: 
+<dcmwai> siesel:  ... :)
+<dcmwai> I've read your post
+<dcmwai> get gnue-report-server up and the gcomm.php to the somewhere it need...
+<dcmwai> so I'm trying to use the test.php that located on /gnue-reports/samples/php_client/test.php It turn to be some error I don't really understand..
+<dcmwai> 6. process the report (can take longer)
+<dcmwai> XML error: not well-formed (invalid token) at line 20The server returned an error (2): Invalid return payload: enabling debugging to examine incoming payload
+<siesel> what kind of errorß
+<siesel> hmmm.
+<dcmwai> accordinft o the files line 20 is sctually $repServ = $link->request("GReportServer");
+<dcmwai> print ("<p>6. process the report (can take longer)<br>");
+<dcmwai> $engine->execute("processReport",array("Passives_WeiSuoX_SXW.grd", array(), 0, 0, 0));
+<dcmwai> I'm not sure about this "Passives_WeiSuoX_SXW.grd" array
+<siesel> Passives_... is the report you want to process.
+<dcmwai> OOp.
+<siesel> the line 20 means the line in the returned XML file.
+<dcmwai> siesel: For simeple testing. What shall I give him.
+<siesel> ehhmm, do you have tried out reports before?
+<dcmwai> siesel: Frankly NO :(
+<dcmwai> but I've try the /gnue/gnue-reports/samples/foobulations/ and it seem to be working.
+<siesel> ok, so you should go in that directory and start the reports server there
+<siesel> then pass the name of the foobulations sample to the server
+<dcmwai> siesel: have to start the report server on the Particular die?
+<dcmwai> s/die/dir
+<dcmwai> I import the foobulations sample SQL into gnue (at postgresql)
+<siesel> yes, there is no path name manipulation now,
+<dcmwai> and I run grcvs monthly.grd subtitle="April 2002" begin="04/01/2002" end="04/30/2002" on the dir is this right?
+<dcmwai> ok let try again.
+<siesel> the best way is to first run grcvs, and check if everything works.
+<siesel> then startup the gnue-reportserver in that same directory and try running gnue-reports with the same parameters as before but an additional -S option.
+<siesel> if you pass the -Z option to the gnue-reports-server you can see what happens and take the values to write you php script
+<dcmwai> siesel: OK I've start gsdcvs on the foobulations dir, Now what command should I issue?
+<siesel> first: "grcvs -S monthly.grd subtitle="April 2002" begin="04/01/2002" end="04/30/2002""
+<dcmwai> siesel:  DB000:     raise apply(Fault, (), self._stack[0])
+<dcmwai> DB000: xmlrpclib.Fault: <Fault 1: "exceptions.IOError:Default destination '-' is not supported by reports server">
+<dcmwai> default destination - is not supported?
+<siesel> oh, sorry. you have to pass an additional -d /tmp/test
+<siesel> Its not a good idea to send report's output to the server side console, so I disabled "-" 
+<dcmwai> siesel: this additional is on the grdcvs or grcvs?
+<dcmwai> ah is grcvs :)
+<dcmwai> siesel: DB000: xml.parsers.expat.ExpatError: not well-formed (invalid token): line 20, column 12
+<dcmwai>  ?
+<siesel> oops.
+<siesel> do you use pw_xmlrpc or xmlrpc rpc-drivers?
+<siesel> I'll try to get that error here too.
+<dcmwai> Not really using them... but I think pw_xmlrpc is defined on gnue.conf
+<dcmwai> it is define on the appserv
+<dcmwai> I don't really use it and can be disable.
+<md-work> dcmwai: hey
+<dcmwai> hello md-work :)
+Nick change: md-work -> mdupont
+<mdupont> back for lunch
+<siesel> hi mdupont
+<mdupont> hi siesel
+<siesel> dcmwai: I'll check how to enable extensive debbuging output :)
+<siesel> mdupont: great idea to compare the different schema tables.
+<dcmwai> siesel: I've the debug level 20 and have a log files on grdcvs :) you want it?
+<siesel> there is only one app you missed: fibusql
+<dcmwai> fibusql?
+<dcmwai> what is that for
+<mdupont> dcmwai: thanks
+<siesel> http://www.piware.de/projects.shtml, very simple double accounting solution
+<mdupont> ok, let me get it
+Nick change: reinhard -> rm-away
+<dcmwai> Web based double-entry accounting???
+<siesel> yep.
+<mdupont> grep -R -c -i 'create table' * | grep -v :0 | sort -n -t: -k2
+<mdupont> ZBC/Tables.plsql:85
+<mdupont> aria/sqlscripts/Oracle/database.sql:119
+<mdupont> nola/sqlscripts/Oracle/database.sql:119
+<mdupont> bbstatus/bbstatus.sql:123
+<mdupont> aria/sqlscripts/MySQL/database.sql:167
+<siesel> its in admin.php
+<mdupont> nola/sqlscripts/MySQL/database.sql:167
+<mdupont> aria/sqlscripts/MySQL/mysql.sql:173
+<mdupont> Compier/Compiere.sql:362
+<mdupont> looks like compier tops them all
+<dcmwai> mdupont:  like that also can :)
+<dcmwai> but compiere is running on oracle, which is much much faster then mysql (But not postgreSQL)
+<dcmwai> siesel: What do you want me to do with this fibusql?
+<mdupont> yes, well I am going to just take the table definitions and compare them against each othre
+<mdupont> and find out what can be used to defined the gnu packages as specified
+<mdupont> given of course a priority list of todos
+<mdupont> i dont want to use the tables as they are
+mcuria (~maxy@29-185-89-200.fibertel.com.ar) left irc: Read error: 104 (Connection reset by peer)
+<dcmwai> mdupont: remember to normalizzed them :)
+<dcmwai> I think aria DB wasn't normalized, causing it unexpandable and unresonable.
+<mdupont> yes
+<mdupont> to be honest
+<mdupont>  i want to make a real  OO UMl Model of them
+<dcmwai> UM1 :) ha
+<siesel> dcmwai: the hint to fibusql was for mdupont, as he is collection schemata
+<mdupont> fibusql has exactly 4 tables
+<siesel> oh, that sound like a complicated system which fits business applications ;)
+<mdupont>  accounts journal  repeated balances
+<mdupont> the idea is to make a clean repository of the schema
+<mdupont> using the gnuenterprise classdefs
+<mdupont> but expanded to model all the needed parts
+<mdupont> ok the food is burning
+<mdupont> gotta go
+Nick change: mdupont -> mdupont-lunch
+<mdupont-lunch> thanks for the link siesel
+<mdupont-lunch> more later
+<siesel> ok, cu.
+<siesel> I would propose to convert the schemata in gnue-schema format, as it will allow to import the schemata in gnue-appserver easy.
+<siesel> (when that part has written :) )
+<siesel> Which is quite easy to do with gnue-designer, but more about later. Guten Hunger.
+<siesel> dcmwai: I'll tried the report example and everything works here.
+jcater (~jcater@cpe-066-061-071-147.midsouth.rr.com) left irc: "Client exiting"
+<dcmwai> siesel: Oh... meanning that it is running...
+<dcmwai> grcvs -d /tmp/test -S monthly.grd subtitle="April 2002" begin="04/01/2002" end="04/30/2002"
+<dcmwai> isn't this right?
+<siesel> its totaly right.
+<dcmwai> DB000:     self._parser.Parse(data, 0)
+<dcmwai> DB000: xml.parsers.expat.ExpatError: not well-formed (invalid token): line 20, column 12
+<siesel> what is the line above the _parser ?
+<dcmwai> DB001: [GRFilters:106] Filters Configuration File: "/usr/local/gnue/etc/report-filters.conf"
+<dcmwai> DB001: [ServerAdapter:453] Unexpected Exception in XML-RPC code: gnue.reports.base.GRExceptions.ReportUnreadable:Unable to read the requested report definition
+<dcmwai> haha .. report filters.conf :(
+<dcmwai> siesel: There are many stuff we don't have in the report-filters.conf, should I disable it?
+<siesel> yep.
+<siesel> does it work standalone? I mean  just grcvs without the "-S" parameter?
+ToyMan (~stuq@65.167.123.238) joined #gnuenterprise.
+<dcmwai> without -s Work <type 'int'> -203
+<dcmwai> <type 'int'> -203
+<dcmwai> entering details
+<dcmwai> exiting details
+<dcmwai> exiting nameBreak
+<dcmwai> Oh yeah.....I can feel it
+<dcmwai> Haha your report message are Cute ( Oh yeah.....I can feel it) :)
+ToyMan (~stuq@65.167.123.238) left irc: Client Quit
+<siesel> hmmm, can you try to access my reportserver, just to see if  it server or client based?
+ToyMan (~stuq@65.167.123.238) joined #gnuenterprise.
+<dcmwai> ok what shell I set to the server ip.
+<siesel> you have to edit gnue-reports/src/client/GRRun.py .
+<siesel> server ip is: 213.168.119.172
+<dcmwai> Hey it is working...
+mcuria (~maxy@29-185-89-200.fibertel.com.ar) joined #gnuenterprise.
+<siesel> yes, I got a /tmp/test file :)
+<dcmwai> Hum Have to check the grdcvs...
+<siesel> so it seems to be serverbased.
+<dcmwai> anyway know where went wrong?
+<siesel> do you started grdcvs with the -Z option?
+<dcmwai> No but I do start with --debug :)
+<siesel> seems you have, but I don't remember.
+<siesel> dunno, but for me I have to pass the -Z option, because if not, all output goes into nirwana
+<dcmwai> nirwana ?
+<dcmwai> DB000: socket.error: (111, '\xb3s\xbdu\xb3Q\xa9\xda\xb5\xb4')
+<siesel> =/dev/null
+<dcmwai> This is with -Z
+<siesel> you're running on win32 or linux?
+<dcmwai> Linux :)
+<dcmwai> siesel: can I have a look on the report-filters.conf
+<siesel> ok, one moment
+<siesel> http://www.gnuenterprise.org/~jan/report-filters.conf
+<dcmwai> siesel: about the php xmlrpc, we just need one files right? The xmlrpc.inc
+<siesel> yep.
+Action: dcmwai wounder why don't add that in ...
+<dcmwai> siesel: that is very different then the one in cvs :)
+ToyMan (~stuq@65.167.123.238) left irc: Read error: 104 (Connection reset by peer)
+<siesel> We can add it, but I'm not shure about the license
+ToyMan (~stuq@65.167.123.238) joined #gnuenterprise.
+<dcmwai> siesel: something is wrong with -Z it ask for a password and If I press enter... the server don't run :(
+<siesel> strange.
+<siesel> can you try to pass the password and username via command line?
+<dcmwai> VERY STRANGE
+<dcmwai> only password... Not username
+Action: dcmwai wounder what password it is asking...
+Action: dcmwai know that it is asking ... I've sudo infromt ;(
+<siesel> do you have to enter username and password for grcvs?
+<dcmwai> Joker...
+<dcmwai> YEs
+<dcmwai>  xmlrpclib.Fault: <Fault 1: "exceptions.AttributeError:'NoneType' object has no attribute 'getLogin'">
+<siesel> ok, if I remove my .netrc file I get ... exactly
+Action: dcmwai wounder if he is still transporting files to siesel places :)
+<siesel> one second. I 'll update the authentication code.
+<dcmwai> siesel: because the grcvs this time just halt there... O_O
+<dcmwai> siesel: ah I've got my report... but gcvs halt there...
+<siesel> grcvs halts?
+<dcmwai> Not to say halts.. Just Stop and stay still ;)
+<dcmwai> This time no more /tmp/test :(
+<dcmwai> siesel: Now I see why.. multiple grdcvs running..
+<siesel> ok, so after a killall python2.3, you can startup grdcvs -Z
+<siesel> btw. you should do a cvs update , as I fixed the password and username parameters
+<dcmwai> siesel: I think we will have to continuate this later  about 2 hours or more, is that Ok for you?
+<dcmwai> and then I'll be a different machine... Different problem might be there ;)
+<siesel> I don't know if I'll have time then.
+<dcmwai> siesel: If I want to distribue gnue-report-server. What should I have?
+<dcmwai> as the cvs version sometime... :(
+<dcmwai> so better kept a Stable version :)
+<siesel> The normal reports package and gnue-common.
+<siesel> i.e. two tarballs :)
+<dcmwai> siesel: then the setting? gnue.conf and connection.conf?
+<dcmwai> Haha 2 ball.
+<siesel> :)
+<dcmwai> I think the setting is the most things that make things happen differnetly..
+<siesel> you can provide sample or base settings
+<siesel> or probably create a custom connection.conf with PHP out of the database settings of arias.
+<dcmwai> Good idea ;)
+<siesel> Vice versa would probably be better. Use connections.conf for ARIAS :)
+<dcmwai> so siesel, I still need that ...
+<dcmwai> conf... hum.. have to config a conf files again...
+<dcmwai> xmlrpclib.Fault: <Fault 1: "exceptions.AttributeError:'NoneType' object has no attribute 'getLogin'">
+<dcmwai> So this problem is about the login cvs you just commited.
+<siesel> yep. you have to pass password and username
+<dcmwai> siesel: Yes IT is done :)
+<dcmwai> yes yes ;)
+Action: dcmwai think so now what...
+<siesel> you can test it and tell me what you need improved.
+Nick change: mdupont-lunch -> md-work
+<md-work> la8ter
+<dcmwai> siesel: I still get this on the php xml-rpc
+<dcmwai> XML error: not well-formed (invalid token) at line 20The server returned an error (2): Invalid return payload: enabling debugging to examine incoming payload
+<dcmwai> but as least now I know my gnue-report server is running... :)
+<dcmwai> Thank siesel :) continuate 2 hours later... Hope you are free then.. :)
+<siesel> ok, cu 
+<dcmwai> Thank siesel ;)
+<dcmwai> bye bye :)
+dcmwai (~dcmwai@219.95.173.165) left irc: "Client exiting"
+rm-away (~reinhard@M1264P004.adsl.highway.telekom.at) left irc: Read error: 111 (Connection refused)
+rm-away (~reinhard@M1264P004.adsl.highway.telekom.at) joined #gnuenterprise.
+lxf (~agus_tea@202.73.120.39) joined #gnuenterprise.
+siesel (jan@xdsl-213-168-119-172.netcologne.de) left irc: "Client exiting"
+Nick change: wtg -> wtg`sleep
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+wendall911 (~wendallc@www2.83864.com) joined #gnuenterprise.
+lxf (~agus_tea@202.73.120.39) left irc: Read error: 104 (Connection reset by peer)
+dcmwai (~dcmwai@219.95.62.11) joined #gnuenterprise.
+thierry (~thierry@marseille-4-a7-62-147-112-18.dial.proxad.net) joined #gnuenterprise.
+mcuria (~maxy@29-185-89-200.fibertel.com.ar) left irc: Read error: 104 (Connection reset by peer)
+dodji (~dodji@bo-117-254.businessobjects.com) joined #gnuenterprise.
+thierry (~thierry@marseille-4-a7-62-147-112-18.dial.proxad.net) left irc: "Client exiting"
+<dcmwai> anyone know more about the gnue-report-server program?
+<dcmwai> why must I start it with -Z then only the client can have output else there will be an error.
+mcuria (~maxy@29-185-89-200.fibertel.com.ar) joined #gnuenterprise.
+siesel (jan@xdsl-213-168-108-173.netcologne.de) joined #gnuenterprise.
+<siesel> hi
+<siesel> dcmwai: you still here?
+Ogart (~chatzilla@dialup-67.73.167.211.Dial1.Chicago1.Level3.net) joined #gnuenterprise.
+jamest (~jamest@adsl-65-64-190-63.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+Nick change: wendall911 -> wendall911_away
+Nick change: md-work -> mdupont
+Nick change: wendall911_away -> wendall911
+<dcmwai> siesel, YES :)
+<dcmwai> Nice to have you here again :)
+<dcmwai> siesel, I wounder why the -Z must be there?
+<siesel> it prevents the server from going in daemon mode.
+<dcmwai> siesel, but that don't make sense, as -Z is success and No -Z is fail...
+<siesel> I shouldn't have any impact on the client. 
+<siesel> That's strange.
+<dcmwai> Yes that is.. VERY
+<siesel> what kind of failure do you get.
+<siesel> is it the same expat parsing error?
+<dcmwai> Yep
+<siesel> seems like the error handling is broken.
+<siesel> can you try to pass the full pathname of the report file?
+<dcmwai> DB000:
+<dcmwai> DB000: Additional Information:
+<dcmwai> DB000:   [Errno 2] ’	d
+<dcmwai> siesel, can see the Chines error message?
+<siesel> as I get this error when using -Z: Error: 1: gnue.reports.base.GRExceptions.ReportUnreadable: Unable to read the requested report definition
+<siesel>   (monthly.grd)
+<dcmwai> I do have something like that in the log files.
+<siesel> !
+<dcmwai> trying to use full path :)
+<dcmwai> haha :)
+<dcmwai> Error: (110, '\xb3s\xbdu\xb6W\xb9L\xae\xc9\xb6\xa1')
+<dcmwai> seem to be a socket error? and cannot connect..
+<siesel> try: killall python2.3
+<dcmwai> postgres 18236  0.0  1.1 11136 2840 ?        S    00:44   0:00 postgres: dcmwai gnue 127.0.0.1 idle in transaction?
+<Ogart> Greetings...I'm thinking about contributing to this project by documenting and testing. (I'm a rather poor coder). Do you guys mind if I "hang out" and listen? I belive in the project, just a bit overwhelmed by what I may be getting myself into...
+<dcmwai> this one is strange...
+<jcater> Ogart: we would *love* someone who's interested in documenting :)
+<dcmwai> Thank you Ogart 
+<siesel> Ogart: your welcome.
+<Ogart> I'm ten times the writer than I am a coder. I have NO problem saying that. 
+<Ogart> I've signed the copyright assignment too,....
+Action: dsmith wishes he could write
+<Vee> rock!
+<jamest> http://www.gnuenterprise.org/~jamest/apis
+<Vee> the channel pen is all yours, Ogart
+<jamest> i'd like to add epydoc support to our setup system 
+<jamest> if people think it would be usefull to have docs like that
+<jcater> I think so
+<siesel> jamest: good idea
+<dcmwai> siesel, I've kill it now what. :)
+<jcater> the main thing I like is it shows inherited methods
+<jamest> we'd need to switch to python docstrings to really make it shine
+<jamest> yes
+<jamest> it's inspired by javadoc
+<jamest> which i know is evil
+<Ogart> Is there a "status" page or something that says what docss are written, what need writing, etc?
+<jamest> but I really like javadoc and went searching for a python equiv
+<siesel> jamest: what about the pythondoc stuff. It's more like javadoc and use its own parser
+<dcmwai> Ogart, unluckily there isn't any.. maybe it is all written in the irc log :)
+<siesel> So you can have the documentation in comments rather than in python doc strings.
+<jamest> it hasn't been updated in 3 years
+<dcmwai> 3 Years...
+<Ogart> Is GNUe in Python or C++? 
+<jcater> Python
+<Ogart> Phew. More easily learned than C++ from a VBasic person's perspective. 
+<siesel> The One And Only :)
+<siesel> dcmwai: imho, the socket error should be gone now.
+<dcmwai> siesel, har why?
+<dcmwai> any cvs update ?
+<siesel> jamest: http://effbot.org/zone/pythondoc.htm
+<siesel> dcmwai: no, I just think that the socket error is connected to another running instance of grdcvs
+<dcmwai> siesel, I only got one grdcvs that is running...
+<jamest> siesel: i'll try it out a bit later
+<jamest> google was way off on that one :)
+<jamest> at it was at 0.7
+<jamest> but the question remains, do we want these docs in checked into cvs?
+<siesel> jamest: I just read about it in the last Dr. Dobbs Python URL :)
+<siesel> It would be convinient but it takes a lot space, so I'm unshure
+<jamest> fwiw
+<jamest> http://epydoc.sourceforge.net/index.html
+<jamest> is the one I'd found last night
+<jamest> it does have some issues though
+<jcater> I'd almost rather see it updated on ash nightly
+<jcater> instead of checked into cvs
+<jcater> but that's just me
+<jamest> that would work for me too
+Action: jcater already checks out the source to do nightly tarballs
+Action: siesel likes that.
+<jcater> although....
+<siesel> jcater, could you do this for DTDs too?
+<jcater> I bet those stopped working when we split out separate modules
+<jcater> =)
+<dcmwai> siesel, strange.. the 1st connection have problem the 2nd dont...
+<dcmwai> maybe python don't get the port yet...
+<siesel> As I would like to include a DTD ref. into all gfd's grd's etc.
+<siesel> dcmwai: Probably the connection timeout is too long, or ...  :)
+<siesel> dcmwai: have you tried it with the php client?
+<dcmwai> siesel, Not yet
+<dcmwai> will try now
+<jcater> siesel: probably
+<dcmwai> siesel, still the same XML error: not well-formed (invalid token) at line 16The server returned an error (2): Invalid return payload: enabling debugging to examine incoming payload
+<siesel> ok, I 'll check how to enable debugging.
+<dcmwai> siesel, sany gdf files that is there can be easily use?
+<dcmwai> where is Passives_WeiSuoX_SXW.grd ?
+<dcmwai> Not any under gnue...
+<siesel> hmm, sorry, that was some private file to edit classical chinese passiv sentences , uhmm...
+<dcmwai> siesel, it is your files right :)
+<siesel> can you replace it with monthly.grd?
+rm-away (~reinhard@M1264P004.adsl.highway.telekom.at) left irc: "Don't contradict a woman -- wait until she does herself."
+<dcmwai> siesel, where is this files... DB000: gnue.reports.base.GRExceptions.ReportUnreadable: Unable to read the requested report definition
+<dcmwai> oop :0
+<siesel> you have to try with -Z and run the server in the foobulations directory
+<dcmwai> ok
+<siesel> there is a setDebug(0) in gcomm.php, can you set it to setDebug(1)?
+<dcmwai> sure
+<dcmwai> siesel, about the monthly.grd.. did I need to put the full path?
+<siesel> that would be the best.
+Action: siesel needs to update PHP as the debian/unstable version is badly broken :(#
+<dcmwai> siesel, what you want to see... there is bunch of code..
+<dcmwai> and the error code is what we have saw...
+<dcmwai> <member>
+<dcmwai> 					<name>faultString</name>
+<dcmwai> 					<value><string>gnue.reports.base.GRExceptions.ReportUnreadable: Unable to read the requested report definition
+<dcmwai>   (/gnue-reports/samples/foobulations/monthly.grd)
+<dcmwai> Additional Information:
+<dcmwai>   [Errno 2] ¨S¦³¦¹¤@ÀÉ®×©Î¥Ø¿ý: '/gnue-reports/samples/foobulations/monthly.grd'</string></value>
+<dcmwai> 				</member>
+<dcmwai> wait something wrong.. that is not full path
+<siesel> puuh, I allready thought, that there is no more help. (¡	žÕ)
+<dcmwai> siesel, This time it work
+<dcmwai> :)
+<dcmwai> 	¦Õ
+<siesel> great. 
+<dcmwai> either fullpath or just the files name work..
+<dcmwai> so still -Z...
+<dcmwai> killing..
+<siesel> Today experince teachs me, that gnue-report needs a base path for grd files.
+<dcmwai> siesel, demon mode need Full path
+<dcmwai> if not it will not work..
+<dcmwai> Wah that is killing :)
+<dcmwai> So now good.. gnue-report work.. time for me to work...
+<siesel> :)
+<dcmwai> siesel, btw, what we saw all the time is xml about pdf how to make it work?
+<siesel> just use a different filter.
+Action: dcmwai think program without documenataion will just make the programer more busy answring question :)
+<siesel> do you got the "Dispatching:  [4025be5496f8314b0f2dc384055bb4b70f7471f4].setFilter ['raw', '']"
+<siesel> messages on server side?
+<dcmwai> 705c3518c96d1fc49de771d4fbc86ceea8515dc0
+<dcmwai> got ths
+<dcmwai> it is always different number...
+<siesel> after you have a working pdf creation, then you can just copy these settings seen on server side into you php script.
+<siesel> I.e. no need to check which parameters has to be at which place. 
+<siesel> the different number is the object identifier, as every report engine is a new dynamic object.
+<dcmwai> Oh I see.
+Action: siesel is searching for pdf creation examples.
+<dcmwai> something a bit confuse... gnue-report get Data from the DB engine and process them? can I just pass raw data to them as ask it to process.. Like xml?
+<siesel> ok, first an pdf creation example: grcvs --filter pdf -d /tmp/test.pdf monthly.grd subtitle="April 2002" begin="04/01/2002" end="04/30/2002"
+<siesel> dcmwai: no, gnue reports just loads data from databases.
+<dcmwai> siesel, oh... I see
+<siesel> but you can pass parameters, (begin, end ...) and you can use different types of stylessheets to process the xml output yourself.
+<dcmwai> siesel, So If I want to print a PO, I would require to put all the query statement into it?
+<dcmwai> so as long as it is xml at the end it will accpet it?
+<dcmwai> DB000:   File "/share/gnue/gnue-common/.cvsdevelbase/gnue/reports/adapters/filters/SimpleTabulation/tabulator/formatters/pdf.py", line 38, in ?
+<dcmwai> DB000:     raise "Unable to load reportlab"
+<dcmwai> DB000: Unable to load reportlab
+<siesel> using SQL directly would be so good. But you can define a <condition> with parameters.
+<siesel> apt-get install python-reportlab :)
+<dcmwai> That is a Deep Chapter.. any Doc :)
+<dcmwai> siesel, hello ... 
+<dcmwai> I'm at a redhat :)
+<siesel> ok, sorry I mean:
+Action: mdupont looks intro parsing oracle with perls SQL::Translator::Parser::Oracle
+<siesel> rpm-apt-get apt-get install python-reportlab
+<dcmwai> siesel, Just wounder who provided python-reportlab (web site0
+<siesel> mdupont: if you have oracle running, what about creating the database and use gnue-desinger to import it into a schema file :)
+<mdupont> i dont have oracle running
+<mdupont>  :)
+<dcmwai> mdupont, You can download them on the oricale site :)
+<mdupont> and I dont want to get any grey hairs installing it :(
+<siesel> or ask jcater (you NEED donuts) to do it for you :)
+<mdupont> i have the cd from the linuxworldexpo
+<mdupont> siesel: but that is a good idea
+<mdupont> if i can translate all the schemas into postgres
+<mdupont> then i can use gnue on them
+<siesel> dcmwai: http://www.reportlab.org/
+<nickr> reportlab would be nice if it included a viewer and printer too.
+<dcmwai> siesel, I wen to www.python.org to do the searching what a joke ;)
+<siesel> :)
+<siesel> mdupont: you don't want to use gnue-schema?
+<mdupont> i do
+<mdupont> want to use gnue
+<mdupont> but dont want to install oracle
+<mdupont> let me first get the schemas all into postgres format
+<mdupont> then we can import tem
+<siesel> ok.
+<mdupont> :)
+Action: siesel remembers that the support for triggers and the like in gnue-schema is still a bit retarded
+<dcmwai> siesel, sorry I've never install a python module before Just want to make sure. Where should the files be extraced and could it be remove later after the installation?
+dodji (~dodji@bo-117-254.businessobjects.com) left irc: "ChatZilla 0.9.35 [Mozilla rv:1.5/20031007]"
+<siesel> you can extract it temp,
+<siesel> normally you just call "make install" and it will be installed in the right place.
+<siesel> but you can search for it with rpmfind.net which should work too.
+<dcmwai> siesel, there isn't a make install there... don't know why.... it seem to be something like gnue :) all source.
+<dcmwai> Either unpack reportlab.zip or reportlab.tgz to some directory say
+<dcmwai> d:\ReportLab. If you can, ensure that the  line terminator style is
+<dcmwai> correct for your OS (man zip programs have a text mode option eg -a).
+<dcmwai>                                                                                                    
+<dcmwai> Create a .pth file, say reportlab.pth in your Python
+<dcmwai> home directory.  It should have one line:
+<dcmwai> d:/ReportLab.
+mouns (mouns@kali.mouns.org) joined #gnuenterprise.
+<dcmwai> does that meant I've downloaded a wrong program...
+<siesel> which redhat do you have?
+Action: dcmwai is searchign still Rh9
+Nick change: SachaS -> SachaAway
+<siesel> http://rpmfind.net/linux/rpm2html/search.php?query=python-reportlab&submit=Search+...&system=&arch=
+<siesel> no redhat, but probably the other ones work
+<siesel> dcmwai: I've downloaded the source.
+<siesel> you have to get ReportLab_1_18.tgz, untar it and go into that director
+<siesel> then a  "python setup.py install" will do the rest.
+<dcmwai> siesel, oh I see
+<dcmwai> siesel, Ah Now it is running.. I just type python setup.py all the time ... but don't know there is a python setup.py instal :)
+<dcmwai> siesel, DB000: Warn: Python Imaging Library not available 
+<dcmwai> Now have to get Python Imaging Library :)
+<dcmwai> siesel, it is so Nice :) the pdf is there ;)
+<siesel> cool. Now you just have to apply the unicode patch to get chinese characters :)
+Action: siesel will go to a halloween party now :)
+<mdupont> have fun, where do you go?
+<siesel> cu l8r
+<siesel> Siegen.
+<mdupont> am rhein?
+<siesel> Nichts ist schlimmer als "Siegen" !
+<mdupont> :)
+<siesel> Nicht ganz, eher oberhalb von Gießen/Frankfurt
+<siesel> Jedoch gibt es von Bonn aus keine direkte Autobahn. d.h. 2 Stunden Autofahrt.
+<siesel> mdupont: Where do you come from?
+<mdupont> Ahh
+<mdupont> ich Wohne in FFM
+<mdupont> Du bist ja um die Eke!
+<mdupont> Giessen? da war ich oft
+<siesel> Was ist denn FFM?
+<mdupont> Frankfurt am Main
+<siesel> Ich kenne nur "FRA" ;)
+<mdupont> hehe
+<mdupont> Wenn Du mal nach Fra kommst, ruf mich an, wir k?nnten uns auf einen Cafe treffen
+<siesel> Aber es ist gut Verstärkung hier in der Ecke zu haben, dann kommt Reinhard nicht auf die Idee das nächste Appserver Meeting in österreich zu halten ;)
+<siesel> Ja gerne.
+<dcmwai> totally cannot understand..
+<dcmwai> Germany... :)
+siesel_ (jan@xdsl-213-168-108-173.netcologne.de) joined #gnuenterprise.
+<SachaAway> Wartet mal, da ist noch einer in Liechtenstein, in der Naehe von Oesterreich ;)
+<SachaAway> also 2:23 dann
+<siesel_> Nein, bitte nicht ;)
+<SachaAway> 2:2 :)
+<siesel_> Was ist den mit Christian selig, der kommt auch aus der Ecke um Frankfurt.
+<siesel_> 2:3 :)
+<SachaAway> hmmm
+<siesel_> Ok, have to run.
+siesel_ (jan@xdsl-213-168-108-173.netcologne.de) left irc: Client Quit
+<mdupont> Christian?
+<mdupont> Doch er kommt aus Darmstadt, oder?
+<mdupont> der Ruhige vom GNU Stand?
+siesel (jan@xdsl-213-168-108-173.netcologne.de) left irc: Read error: 104 (Connection reset by peer)
+<mdupont> Ruhiger
+dcmwai (~dcmwai@219.95.62.11) left irc: "Client exiting"
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "Client exiting"
+<mdupont>  http://introspector.sourceforge.net/2003/10/schemas/Compiere.pgsql <-- compier for postgres!
+<mdupont> it works!!!
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<mdupont> jcater: !
+<derek> jcater: tell rob that i think its hilarious he flushed his teeth down the toilet
+<mdupont> i got Compiere db build  on postgres
+<derek> mdupont: keep that talk up and you will be banned from this channel. ;) (j/k)
+<mdupont> what?
+<mdupont> why?
+<mdupont> derek: this is a hostile takeover of compier
+<mdupont> soon it will be running with gnuenterprise
+<mdupont> at least the database models will be merged
+<mdupont> and consolidated
+<mdupont> http://introspector.sourceforge.net/2003/10/schemas/Compiere.pgsql 
+<mdupont> check it out
+<mdupont> i am going to try and match the compier tables against the gcd specification files tomorrow
+<mdupont> that way we can show how well it meets the requirements
+<mdupont> (of gnue)
+<jcater> derek: he doesn't find it funny
+<jcater> btw, sick picture of a mouse
+<derek> mdupont: becareful
+<derek> it is under MPL and i dont think that is GPL compatiable
+<derek> jcater: i felt 'weird' taking the mouse pictures...
+<derek> but i took 2 more this morning as i caught another mouse last night
+<mdupont> the mpl should be gpl compatible
+<jcater> our cat has been amazingly effective with our mice
+<jcater> I haven't seen any this year
+Action: jcater is a little surprised
+<jcater> since we had his front claws removed
+Action: mdupont just mailed the list
+<mdupont> please feel free to respond, gotta run
+<mdupont> bye
+Nick change: mdupont -> md-party-till-mo
+Nick change: wtg`sleep -> wtg
+<derek> This is a free software license which is not a strong copyleft; unlike the X11 license, it has some complex restrictions that make it incompatible with the GNU GPL. That is, a module covered by the GPL and a module covered by the MPL cannot legally be linked together. We urge you not to use the MPL for this reason.
+<derek> according to FSF legal team MPL is not GNU GPL compatiable for the record
+Action: derek is not certain that compiere is MPL or not (purely going by memory)
+<nickr> I thought MPL let you colicense as GPL
+<nickr> or is that just how Mozilla does it
+<Ogart> Later all. Have a great Halloween. 
+Ogart (~chatzilla@dialup-67.73.167.211.Dial1.Chicago1.Level3.net) left irc: "ChatZilla 0.8.31 [Mozilla rv:1.4/20030624]"
+<derek> nickr: it is my understanding that Mozilla Team was persauded that the MPL had "problems"
+<derek> rather than them try to change the license (see poor copyright management is a no no)
+<derek> they decided to switch to a "dual" license
+<derek> actually let me retract that i beleive they forced copyright assignment via wordingof the MPL
+<derek> but wanted to keep the MPL because of some commericial contracts already signed
+<nickr> yea.
+<derek> in any event Mozilla is dual licensed MPL/GPL
+<derek> but the MPL is incompatiable with GPL
+Action: chillywi1ly goes off to havoc's wedding
+<chillywi1ly> ;P
+<jcater> chillywi1ly: run!
+<jcater> stop him!
+<jcater> save him!
+<jamest> hmmmm
+<jamest> does brandy know you feel this way about mariage?
+<jcater> yes
+<jamest> :)
+<md-party-till-mo> derek: lets look at some scenarios :
+<md-party-till-mo> 1. you have a MPL licensed database schema included for compatiblity with this Compiere
+<md-party-till-mo> 2. you have gpled code that will connect to that database and extract data
+<md-party-till-mo> 3. we build a GNUE server that can handle that database, but still it is gpl
+<md-party-till-mo> connecting to a database is not a derivitive work
+<md-party-till-mo> 4. we can build a better model that encompasses the content of Compiere without copying its names or files into the new one
+<md-party-till-mo> i dont see a real problem
+<md-party-till-mo> we cannot just mix the compiere tables into gpled tables
+<jcater> unless your just working on a compiere-to-gnue conversion script, it would make me nervous too to borrow
+<md-party-till-mo> well, gnue does not do all this
+<md-party-till-mo> and I am not asking you to borrow
+<md-party-till-mo> i am going to do a *review* of compiere
+<md-party-till-mo>  and a match of what the db does and compare that to what we have
+<md-party-till-mo> and what the requirements are
+<md-party-till-mo> then I can plan out what needs to be implemented still
+<md-party-till-mo> the good thing about compiere are the database concepts and the design patterns
+<md-party-till-mo> those can be extracted and reimplemented via a complete rewrite
+<md-party-till-mo> there are only a handfull on concepts, many of the tables in there implement only aspects of a single table
+<md-party-till-mo> for example, asset has like 15 tables
+<md-party-till-mo> one for each transaction
+<md-party-till-mo> so there is alot for me to learn
+Action: md-party-till-mo writes to them and asks for permission to use the db under GPL
+Action: md-party-till-mo can provide the derived works from the db under the GPL and the MPL with thier permission
+<md-party-till-mo> jcater: i fwd the mail to the list
+<md-party-till-mo> did you get my mail about the dbmodels?
+<jcater> it went through, yes
+Action: jcater is at work atm
+R45 (~R45@cuscon404.tstt.net.tt) joined #gnuenterprise.
+<md-party-till-mo> ok talk to you later dude
+mcuria (~maxy@29-185-89-200.fibertel.com.ar) left irc: Read error: 104 (Connection reset by peer)
+mcuria (~maxy@29-185-89-200.fibertel.com.ar) joined #gnuenterprise.
+dsmith (~dsmith@mail.actron.com) left irc: "Later..."
+ToyMan (~stuq@65.167.123.238) left irc: Remote closed the connection
+<mouns> bonwi
+mouns (mouns@kali.mouns.org) left irc: Remote closed the connection
+Ogart (~chatzilla@dialup-67.73.160.251.Dial1.Chicago1.Level3.net) joined #gnuenterprise.
+Ogart (~chatzilla@dialup-67.73.160.251.Dial1.Chicago1.Level3.net) left irc: "ChatZilla 0.8.31 [Mozilla rv:1.4/20030624]"
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "Client exiting"
+gsoti (~gsotiroff@68.72.172.212) joined #gnuenterprise.
+dneighbo (~dneighbo@ip68-109-180-32.ph.ph.cox.net) joined #gnuenterprise.
+Nick change: gsoti -> gsoti_away
+derek (~dneighbo@ip68-109-180-32.ph.ph.cox.net) left irc: Read error: 110 (Connection timed out)
+dcmwai (~dcmwai@219.95.173.165) joined #gnuenterprise.
+gsoti_away (~gsotiroff@68.72.172.212) left irc: Read error: 110 (Connection timed out)
+jcater (~jcater@cpe-066-061-071-147.midsouth.rr.com) joined #gnuenterprise.
+<dcmwai> did someone have the grd files explainations?
+<dcmwai> How it is made and why is that way.
+<dcmwai> I know it is simple xml, but it is kind of hard to read without some documentation.
+SachaS (~Sacha@dialup-196-248.wasp.net.au) joined #gnuenterprise.
+SachaS (~Sacha@dialup-196-248.wasp.net.au) left #gnuenterprise ("Client exiting").
+ToyMan (~stuq@smtp.dstoys.com) joined #gnuenterprise.
+ToyMan (~stuq@smtp.dstoys.com) left irc: "Client Exiting"
+dyfet (~dyfet@pool-141-153-223-74.mad.east.verizon.net) joined #gnuenterprise.
+mcuria (~maxy@29-185-89-200.fibertel.com.ar) left irc: Read error: 104 (Connection reset by peer)
+gsoti_away (~gsotiroff@68.72.172.212) joined #gnuenterprise.
+gsoti_away (~gsotiroff@68.72.172.212) left irc: Client Quit
+gsoti_away (~gsotiroff@68.72.172.212) joined #gnuenterprise.
+Nick change: gsoti_away -> gsoti_zz
+mcuria (~maxy@200.89.185.29) joined #gnuenterprise.
+gsoti_zz (~gsotiroff@68.72.172.212) left #gnuenterprise.
+dyfet (~dyfet@pool-141-153-223-74.mad.east.verizon.net) left irc: "Client exiting"
+<dtm> ah!  i missed dyfet!
+<ajmitch> you did
+<dtm> :-/
+<dtm> 22:22 <dtm> i just got back from our family's annual Halloween party
+<dtm> 22:23 <dtm> uncle Paul has a cotton candy machine and we put out > 600 bags
+<dtm> 22:23 <dtm> and were interviewed by the local newspaper
+<dtm> 22:23 <dtm> so more brats and 20 year old leeches can drive in from foreign neighborhoods next year :)
+<ajmitch> haha
+<dtm> ;]
+<dtm> it's all good
+<dtm> <voice type="Homer"> aaauuughhh.... cooootton caaandyyyyy....   :-o~~~```~~
+<dcmwai> ...
+gsoti_zz (~gsotiroff@68.72.172.212) joined #gnuenterprise.
+--- Sat Nov  1 2003

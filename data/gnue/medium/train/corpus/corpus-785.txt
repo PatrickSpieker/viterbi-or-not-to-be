@@ -1,0 +1,2167 @@
+[00:17] Last message repeated 1 time(s).
+<nickr> hah
+<chillywilly> hmmm, why does reinhard count lines himself instead of using the yylineno option?
+<chillywilly> hmmm, I don;t get why he would define his own alphanum, etc. ethier when there's [:alphanum:], etc. classes that you can use
+alexey (~alexey@195.151.214.34) joined #gnuenterprise.
+chillywilly (danielb@d187.as4.nwbl0.wi.voyager.net) left irc: Read error: 113 (No route to host)
+<nickr> fwew
+<nickr> I don't like how non object oriented bison is
+chillywilly (~danielb@d99.as13.nwbl0.wi.voyager.net) joined #gnuenterprise.
+Action: nickr uploads version 0.0.2 of his mini MTA
+alexey (alexey@195.151.214.34) left irc: Read error: 113 (No route to host)
+Action: chillywilly is now reading the bison manual
+chillywilly (danielb@d99.as13.nwbl0.wi.voyager.net) left irc: 
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+alexey_ (alexey@195.151.214.34) left irc: Client Quit
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+holsch (~schurig@p5080A207.dip0.t-ipconnect.de) joined #gnuenterprise.
+<holsch> Hey, does anybody have a tip for me on how to make geas running?  It complains about geas-alias.cfg but I cannot find a template for it
+neilt (~neilt@dhcp64-134-54-175.chan.dca.wayport.net) joined #gnuenterprise.
+#gnuenterprise: mode change '+o neilt' by ChanServ!ChanServ@services.
+<holsch> Hi Neilt
+<holsch> Do you have a tip for me on how to make geas running?  It complains about geas-alias.cfg but I cannot find a template for it
+<neilt> hello
+<neilt> holsch: let me look, hold on
+<neilt> what exactly does it complain about?
+<holsch> When it does not exist: kernel segmentation fault: root file system corrupted. system terminating.
+<holsch> When I touch it (I have not found any docu on it's contents): error: Parse error in line 1 of file 'geas-alias.cfg'
+<neilt> where is geas-alias.cfg located
+<neilt> ?
+<holsch> in /usr/local/etc  (the path where it is is in /usr/local/etc/geas.conf)
+<neilt> thats real interesting
+<neilt> i have never installed geas, i run the development version out of the source dir
+<neilt> reinhard does the install stuff, but let me look around a bit
+<holsch> I could run it out of sourcedir, too. But my "find" command didn't find that file either. Is it created somehow automatically?
+<neilt> thats what i am checking
+<neilt> i dont seem to have it either
+<neilt> and my geas seems to run fine
+<holsch> What's in your geas.cfg file then?
+<holsch> BTW, in the CVS there are TWO geas.cfg's ...
+<neilt> are you running from cvs or distribution?
+<holsch> CVS
+Action: neilt goes to get current cvs and make it
+<neilt> hold on
+<neilt> i dont have that file
+<holsch> Sure, I don't have it either :-)
+<holsch> but geas/source/geas-server.c loadTableAliases want's this file
+<holsch> s/source/src/
+<neilt> [dhcp64-134-54-175:gnue/geas/src] ntiffin% ./geas-server -v
+<neilt> Trying to open config file '/usr/local/etc/geas.conf'
+<neilt> nope, so trying config file 'geas.conf'
+<neilt> Loading aliases from file 'geas-alias.cfg'
+<neilt> GNU Enterprise Application Server
+<neilt> Version 0.0.6 DEBUG
+<neilt> Database support compiled for: PostgreSQL
+<neilt> Copyright 2001 Free Software Foundation
+<neilt> seems to work fine wihtout it for me
+<neilt> -
+<neilt> seems to work for me without it
+<holsch> Aha, somehow he found an geas-alias.cfg --- where do you have it, what's in side?
+<holsch> At my system:
+<holsch> Trying to open config file '/usr/local/etc/geas.conf'
+<holsch> Loading aliases from file 'geas-alias.cfg'
+<holsch> kernel segmentation fault: root file system corrupted. system terminating.
+<holsch> (after I removed /usr/local/etc/geas.cfg)
+<neilt> dont remove geas.conf
+<neilt> that is absolutly required
+<neilt> however if removing it causes a seg fault, then we need to fix that
+<holsch> I didnt remove the two ones in the CVS, I removed my local installed one. And as you can see from above, geas found the cfg file in the current directory
+<holsch> The segfault is NOT because I remove geas.cfg --- the segfault is because there is no geas-alias.cfg !!!!!
+<neilt> [dhcp64-134-54-175:gnue/geas/src] ntiffin% ./geas-server -v
+<neilt> Trying to open config file '/usr/local/etc/geas.conf'
+<neilt> nope, so trying config file 'geas.conf'
+<neilt> Loading aliases from file 'geas-alias.cfg'
+<neilt> GNU Enterprise Application Server
+<neilt> Version 0.0.6 DEBUG
+<neilt> Database support compiled for: PostgreSQL
+<neilt> Copyright 2001 Free Software Foundation
+<neilt> -
+[06:49] Last message repeated 1 time(s).
+<neilt> sorry old paste buffer
+<neilt> [dhcp64-134-54-175:gnue/geas/src] ntiffin% ./geas-server -v
+<neilt> Trying to open config file '/usr/local/etc/geas.conf'
+<neilt> nope, so trying config file 'geas.conf'
+<neilt> Loading aliases from file 'geas-alias.cfg'
+<neilt> Never found alias file 'geas-alias.cfg'
+<neilt> GNU Enterprise Application Server
+<neilt> Version 0.0.6 DEBUG
+<neilt> Database support compiled for: PostgreSQL
+<neilt> Copyright 2001 Free Software Foundation
+<neilt> -
+<neilt> that was the real one
+<holsch> Ok, Neil, I recompiled from scratch and removed all stuff from /usr/local/etc and run it from CVS source
+<holsch> And I run it with -v as you. And now it looks different.
+<holsch> Before:
+<holsch> Loading aliases from file 'geas-alias.cfg'
+<holsch> kernel segmentation fault: root file system corrupted. system terminating.
+<holsch> Now:
+<holsch> Loading aliases from file 'geas-alias.cfg'
+<holsch> GNU Enterprise Application Server
+<holsch> Version 0.0.6
+<holsch> Database support compiled for: PostgreSQL
+<holsch> Copyright 2001 Free Software Foundation
+<holsch> See the file 'COPYING' for details of the Gnu Public License
+<holsch> that covers this program
+<holsch> http://www.gnue.org/
+<holsch> Preparing server side data handling classes
+<holsch> Initialising data monitor and log system.
+<holsch> geas.log tracks all data accesses.
+<holsch> Loading initial list of reserved words
+<holsch> Load business class definitions (old parser)
+<holsch> kernel segmentation fault: root file system corrupted. system terminating.
+Action: holsch things that only "-v" showed me that the error was unrelated to the former line
+alexey_ (alexey@195.151.214.34) left irc: "Client Exiting"
+<neilt> holsch: agreed, but not right, we need to correct that
+<holsch> Maybe I recompile with --enable-debug to see why it breaks?
+<neilt> yes then run with ./geas-server -v -d9
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+<neilt> most likely you need to revise your geas.conf file
+<holsch> Currently I was using the one in gnue/geas/src ...
+<holsch> Ok, with -d9 I get several errors:
+<holsch> ++++ Pass 1 File: ../examples/businessobjects/addrbook.gcd
+<holsch> error: file ../examples/businessobjects/addrbook.gcd, line 21:
+<holsch> Duplicate class name found.
+<holsch> class person
+<neilt> even a problem in the confg should not seg fault geas
+<holsch> And now it did no longer segfault ... it just hang ... the last msg is:
+<holsch> Initialising business class method handling.
+<holsch> error: [methods_python.c/481] [load_python_binding] Could not load ORBit-Python module
+<holsch> at: /usr/lib/python1.5/site-packages/CORBAmodule.so
+<holsch> I guess the segfault was because I had done a make install before and there have been stuff in /usr/local/share/geas that you people don't have
+<neilt> do a find for CORBAmodule.so
+<neilt> and update geas.conf with the correct locations
+<neilt> i think the current conf file is for 1.5 and we have standardized on 2.x and the conf file has not been updated.
+<neilt> reinhard has on the todo list to make the CORBA stuff self finding so we dont need this in the conf file at all
+<holsch> I don't have this file. Do you know by any chance in which debian package it is?
+<neilt> it is in ORBit
+<neilt> nope sorry
+<neilt> you need python-orbit or orbit-python
+<neilt> cant remember which
+<holsch> Thanks, already apt-getting it ...
+<holsch> By the way: once it hangs, you can't kill with with Ctrl-C. You have to do a killall geas-server from another console
+<neilt> on my systems i have to Ctrl-Z
+<neilt> then kill <pid>
+<neilt> but i am on a mac
+<holsch> Now it worked somewhat better, it terminates now with:
+<holsch> Loading file ../examples/businessobjects/methods/test.geas.py
+<holsch> Now registering methods from gcds.
+<holsch> geas-server: classdata.c:1002: odl_tree_list_classes: Assertion `tree != ((void *)0)' failed.
+<holsch> Aborted
+Action: neilt goes looking at the code
+<holsch> (And keep in mind that I have tons of error messages like "Duplicate class name found" from above or:
+<holsch> Load business class definitions (new parser)
+<holsch> addrbook.gcd:7: no format allowed for this type
+<holsch>     text name<20>;
+<holsch> )
+<neilt> that error is because no classes were defined
+<neilt> so lets look at the first error
+<holsch> Yes, I just found it out. The gnue.conf in CVS has commented out the first classdir and methoddir entries.
+<holsch> It still says:
+<holsch> ++++ Pass 1 File: ../../packages/test/gcd_pass_test.gcd
+<holsch> error: file ../../packages/test/gcd_pass_test.gcd, line 74:
+<holsch> Duplicate class name found.
+<holsch>   class c
+<neilt> do you have a line
+<neilt> Debugging output logged to 'geas.debug.log'
+<neilt> Loading initial list of reserved words
+<neilt> [function call] [geas-server.c/1428] [reserve_sql_words] 
+[07:20] Last message repeated 1 time(s).
+<neilt> Load business class definitions (old parser)
+<neilt> that shows old or new parser
+<holsch> I have old parser
+<neilt> this is really wierd, because that file works just fine on my system
+<neilt> Load business class definitions (old parser)
+<neilt> ++++ Pass 1 File: ../../packages/test/gcd_pass_test.gcd
+<neilt> ++++ Pass 1 File: ../../packages/base/acct/classes/base_acct.gcd
+<neilt>      Found include: ../../../base/currency/classes/currency.gcd, processing now.
+<neilt> ++++ Pass 1 File: ../../packages/base/currency/classes/currency.gcd
+<neilt> ++++ Pass 1 File: ../../packages/base/item/classes/base_item.gcd
+<neilt> ++++ Pass 1 File: ../../packages/base/language/classes/language.gcd
+<neilt> ++++ Pass 1 File: ../../packages/base/location/classes/address.gcd
+<holsch> In my case I get the error in the first '+++ Pass ...' line, so something is REALLY broken :-(
+<holsch> Must I start orbit somehow?
+<neilt> what is in the geas-debug.log file at the point of the error
+<neilt> no, orbit is done automagically
+<holsch> I don't have a geas-debug.log ... do you mean geas.debug.log?
+<neilt> that would be it, yes
+<holsch> That's virtually empty, it just has:
+<holsch> 02: Created 4096 oids
+<holsch> 03: [function call] [geas-server.c/1428] [reserve_sql_words]
+[07:28] Last message repeated 1 time(s).
+<holsch> (and some heading line)
+<neilt> ok can you repost the screen output from the time you start geas until the error occurs?
+<holsch> Ok, here starts the flood (I't rather long because of -v -d9 ...)
+<neilt> or you can email me if you prefer
+<neilt> neilt@gnue.org
+alexey_ (alexey@195.151.214.34) left irc: "Client Exiting"
+<holsch> I've just send it
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+alexey_ (alexey@195.151.214.34) left irc: Client Quit
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+alexey_ (alexey@195.151.214.34) left irc: Client Quit
+<neilt> holsch: ok, we have not generally tested having two classdir and two methoddir in the conf file so please comment out the second entry of both
+<neilt> and lets just work with one
+<neilt> for the time being
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+<holsch> The same error messages ...
+<neilt> what system are you running on
+<neilt> ?
+<holsch> Debian Linux woody
+sakkameuh (~chatzilla@195.202.201.22) joined #gnuenterprise.
+sakkameuh (chatzilla@195.202.201.22) left irc: Client Quit
+<neilt> i cant come up with anything
+<neilt> it is was a PC i would say, because of all of the seg faults and such to reboot and recompile geas
+<neilt> s/it/if/
+<holsch> I guess I make some debug session with GNU Debug or ddd ...
+<holsch> However, the segfaults where due to, hmm, nonexistent documentation on how to get the thing running. I had not a single error, but multiple ones in the geas.cfg, /usr/local/share/geas, /usr/local/etc/geas.cfg and so on ...
+<neilt> its too bad Reinhard is not around today,
+<neilt> he is converting geas to use new parser
+<neilt> and I suspect it is related to that
+<holsch> ... and then again I tried CVS head. I should expect problems, shouldn't I ?  :-)
+<neilt> not really
+<neilt> we try very hard to keep cvs head running
+<neilt> i am running it right now
+<neilt> so its a wierd problem, or i am just brain dead right now
+<holsch> Some other problem: in geas.cfg it says "username hacker" in the database test_postgresql section. geas does not use a password?
+<neilt> the username and password in geas.conf must match the username and password used to set up PostGreSQL
+<neilt> sorry, i meant username and tablename must match between geas.conf and how PostGreSQL was set up
+<neilt> so mine are set up as
+<neilt> [ database test_postgresql ]
+<neilt> active         true
+<neilt> type           PostgreSQL
+<neilt> dbname         ntiffin
+<neilt> username       ntiffin
+<neilt> hostname       localhost
+<neilt> port           5432
+<neilt> connections    1
+<neilt> ntiffin being my login on name
+<neilt> this makes things easier
+<neilt> as psql works with defaults
+<neilt> -
+alexey_ (alexey@195.151.214.34) left irc: "Client Exiting"
+<neilt> geas does not currently have much password protection
+<holsch> I have more problems ...    I uncommented the old parser and it works now somewhat better. But when it tries
+<holsch> to create the table geas__searchfield I get a SQL error. I tracked it down to the CREATE TABLE command. The
+<holsch> field name "constraint char(32)" is not allowed, maybe constraint is reserverd in PostgreSQL 7.1.3-5 ?
+<holsch> When I manually enter the SQL statement with a different field name it works.
+<neilt> sounds reasonable
+<neilt> you should email this to gnue-dev mail list
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+ra3vat (ds@195.239.204.226) joined #gnuenterprise.
+alexey_ (alexey@195.151.214.34) left irc: "Client Exiting"
+rdean (~rdean@chcgil2-ar2-052-243.chcgil2.dsl.gtei.net) joined #gnuenterprise.
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+alexey_ (alexey@195.151.214.34) left irc: Client Quit
+chillywilly (~danielb@d111.as7.nwbl0.wi.voyager.net) joined #gnuenterprise.
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+reinhard (~rm@62.47.44.225) joined #gnuenterprise.
+<chillywilly> hey reinhard
+<reinhard> hello
+<chillywilly> I got through reading the flex manual and your scanner last night ;)
+<reinhard> cool
+<reinhard> any comments?
+<chillywilly> well did you read the part about multiple inputs streams and their little example about how you could process include in a depth first fashion?
+<chillywilly> includes
+<chillywilly> s/about/showing
+<reinhard> i don't process includes at all
+<chillywilly> that seemed interesting
+<chillywilly> and could save a whole 2nd pass from having to happen
+<chillywilly> (mayeb)
+<chillywilly> maybe
+<reinhard> gcd will not require includes
+<chillywilly> ummm
+<chillywilly> neither does having the include processing
+<chillywilly> if there's no include tokens it cimply will nto process them
+<chillywilly> it doesn't require you to have an include
+<reinhard> sorry i guess you don't understand
+<reinhard> we will not need includes at all
+<reinhard> even if some gcd depend on others
+<chillywilly> why will you not need includes?
+<reinhard> some magic code in depend.c will decide in which order the gcd files should be processed
+<chillywilly> won't that make it harder to know what classes ppl are trying to extend?
+<chillywilly> "magic" code?
+<reinhard> :)
+<reinhard> first pass: register which symbols are defined in which file
+<reinhard> then: find an order in which the files can be processed so that every symbol is defined before it is used
+<reinhard> second pass: do the real parsing of the files, in the needed order
+<chillywilly> ok
+<reinhard> the new parser treats "include" as a comment :)
+<chillywilly> that seems to make things harder
+<reinhard> harder to code yes
+<reinhard> harder to write gcds no
+<chillywilly> so why don't we write C compilers that don't need includes?
+<chillywilly> basically the parser is a gcd compiler
+<reinhard> because we don't want the C compiler to compile all files in a directory tree at any time i compile something
+<chillywilly> just like you have an idl compiler
+<chillywilly> ;)
+<chillywilly> and when you update just one gcd file? You have to recompile them all?
+<reinhard> chillywilly: you will have to
+<reinhard> chillywilly: for example you could delete an object from a gcd file
+<reinhard> and other gcd files could reference that object
+<chillywilly> which is a modification
+<reinhard> so those other gcd files would become syntactically wrong
+<reinhard> which you wouldn't know if you didn't process all of them
+<chillywilly> I see your point
+<reinhard> actually the main point was
+<reinhard> that gcd authors will not be programmers
+<reinhard> but rather business people
+<reinhard> and you can't require business people to write includes :)
+<chillywilly> shouldn't more metadata be used to help this so you don't have to process classes that wouldn't be effected
+<chillywilly> I don't buy that
+<chillywilly> business ppl don't program
+<reinhard> exactly
+<chillywilly> they hire ppl to do it
+<reinhard> but they could write gcd's
+<reinhard> or at least change gcd's
+<reinhard> minor changes like adding a field to a class or so
+<chillywilly> hrrrrm, but the odl spec has includes though, don't we won't to be odl compliant?
+<reinhard> i still have to see the odl spec
+<reinhard> but i would say if we can be compilant to odl except that we have less constraints
+<reinhard> then it would be better than to be die-hard odl compilant
+alexey_ (alexey@195.151.214.34) left irc: Read error: 113 (No route to host)
+<chillywilly> well, I need to read some more stuff and look at your parser code
+<chillywilly> ;)
+<chillywilly> cause I want to parse things into actual objects
+<chillywilly> like GObject
+<chillywilly> if that's possible
+<chillywilly> but first
+<chillywilly> I must watch football ;P
+<reinhard> ok
+<chillywilly> Go Packers!!!
+<reinhard> i would really like to get your comments about
+<reinhard> - understandability of code
+<reinhard> - stability of code (in case of faulty input)
+<reinhard> - coding style in general
+<reinhard> etc.
+<chillywilly> why is it case-insensative?
+<chillywilly> also you knwo you can use predefined classes like
+<chillywilly> [:alphanum:]
+<chillywilly> for alpha numerics
+<chillywilly> anyway, I will go watch the game ;)
+<reinhard> re case insensitive: i think it is better to be case insensitive in gcd files
+<reinhard> otherways you will always have to remember the case how you defined the symbol
+<chillywilly> I always hated case-insensative systems
+<reinhard> it is easier
+<chillywilly> wonder what systems are like that?
+<chillywilly> ;)
+<reinhard> and it doesn't make sense IMHO to define a symbol foo and another symbol FOO and have different meanings for them
+<reinhard> this is just for confusing ppl anyway
+<reinhard> re [:alphanum:] it isn't used for 2 reasons
+<chillywilly> but it makes it hard to read
+<reinhard> 1. it wasn't documented in my copy of the flex manual :(( (i have printed version from fsf)
+<chillywilly> cause then ppl can do stupid astuff like foo.killme() FOo.HeLpThisSucksTOREAD
+<reinhard> 2. i'm not sure if non-gnu lex does have this feature too
+<chillywilly> ok
+<reinhard> chillywilly: you can do the same stupid stuff if you have case-sensitive
+<reinhard> except that you will have to use same stupid writing anywhere you reference that symbol :)
+<chillywilly> well C and C++ don't seem to bug me to much with their case sensativity ;)
+<chillywilly> but, I don't care that much about things you wrote a lot of code
+<chillywilly> and it is appreciated
+<chillywilly> :)
+<reinhard> thanks :)
+<reinhard> i am really happy to get input
+<reinhard> and to be asked questions
+<chillywilly> more questions will come ;)
+<chillywilly> now ontop the game
+<chillywilly> :)
+<reinhard> btw if you can give me a pointer 
+<reinhard> whether std lex understands [:alphanum:] or not
+<chillywilly> ok
+<reinhard> i will be likely to change it
+<reinhard> :)
+<chillywilly> I'll look into it
+<reinhard> thanks
+<chillywilly> there's a whole section on lex compatibility
+<chillywilly> and POSIX compatibility
+<reinhard> i have a lex incompatibility somewhere anyway
+<chillywilly> i c
+<reinhard> jamest wasn't able to process it through sun lex
+<chillywilly> :(
+<reinhard> and we didn't have the time (patience?) to track it
+<reinhard> as installing flex was a matter of 5 minutes for him
+<chillywilly> well he just needs to give us access to a sun box over there ay ksu ;)
+<reinhard> btw sun lex == solaris lex
+<chillywilly> a/ay/at
+<chillywilly> yea
+<chillywilly> I figured that
+<reinhard> in case you didn't figure anyway :)
+<reinhard> ok
+<reinhard> hehe
+<chillywilly> ok, nice chatting with you
+<chillywilly> cya l8r
+<chillywilly> have a great day
+<chillywilly> :)
+Action: chillywilly is away: Packers
+ra3vat (ds@195.239.204.226) left irc: "Client Exiting"
+<reinhard> holsch: you here?
+<reinhard> chillywilly: re yylineno
+<reinhard> from flex doc
+<reinhard> yylineno this is an undocumented feature of Lex that does not appear in Flex or POSIX.
+<reinhard> --
+<reinhard> holsch: sorry for the problems you are facing
+<reinhard> if you can be around tomorrow i could be able to help you maybe
+<reinhard> hopefully
+<reinhard> l8r all
+reinhard (rm@62.47.44.225) left irc: "The more often you run over a dead cat, the flatter it gets"
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+<holsch> hi psu
+<psu> hi holsch
+<psu> how's the redhat install going?
+<psu> did you and derek sort it out?
+<holsch> psu: Red Hat?  I have debian here ...    GNUe Forms is working, geas-server has problems. I just sent two mails into gnue-dev.
+<holsch> I tried to resolve them with neilt.
+<psu> ah 
+<psu> serves me right 
+<psu> for only half-reading the logs ;-)
+<holsch> why?
+<holsch> where do you read the logs?
+<psu> http://www.gnuenterprise.org/irc-logs/
+<psu> Both bigbrother and gnuebot are just loggers
+<psu> Actually, bigbrother was programmed to do some bot-like stuff a few weeks back
+<holsch> And why are two bots watching?
+<psu> basically trout-slapped chillywilly every time he signed on 
+<psu> but soon got tired of joke
+<psu> holsch - redundancy - 2 bots are better than 1
+<psu> As far as logging goes itself, 
+<psu> because we use IRC as a 
+<psu> sorta mailing list subsititute
+<psu> it's useful for everyone 
+<psu> to be able to look back and see what was said
+<holsch> Yeah, I got the impression the IRC is used far more than with other projects.
+<psu> Some of the guys are just logged in all the time 
+<psu> & can use their own irc logs
+<psu> but us poor dial-up users don't have that option
+<psu> It would be an interesting metaphysical discussion
+<psu> as to why GNUe is so IRC orientated
+<psu> as opposed to the mail list culture 
+<psu> of other projects 
+<holsch> I got my cable-modem with the almost-flat rate (5 GB are free and I'm not in MP3's) just two weeks ago.
+<psu> As a UK dial-up user
+<holsch> So I can afford to keep my system longer in IRC than ever before. I hardly used IRC before ...
+<psu> same here - just got almost-flat rate (no call charges from 18:00 to 08:00 and weekends)
+<psu> makes such a diff to how you use internet
+<neilt> irc is better for discussing ideas, and
+<holsch> Methaphysical: basically, I'd say that with IRC you get a quicker answer, with Mailinglist sometimes a better thought-thru answer.
+<neilt> email is better for documenting ideas
+<psu> PC next to me has no CD, so I just ftp-ed debian via modem - took 8 hours.
+<neilt> everything important that has been discussed re gnue is in the irc logs
+<psu> Would have freaked out doing that at 1p a minute
+<neilt> holsch: exactly
+<holsch> I've read the discussion on case-importance above. Basically I like Turbo-Pascal and Delphi and they are both case-
+<holsch> insensitive. But then again I hate to look at other's source codes because they uppercase
+<neilt> i hate upper case
+<holsch> in a different style. WRITELN vs Writeln vs writeln.
+<psu> irc is a very lower case medium as well ;-)
+<neilt> Writeln is best style
+<holsch> English is a very lower case language as well (compared to German or French)
+<neilt> in direct marketing all upper case is 15% harder to read
+<holsch> neilt: anything is best style ... it's a matter of taste
+<neilt> yes, 
+<holsch> neilt: I used mixed case for vars and uppercase for keywords in Pascal, that way the keywords did stand
+<holsch> out, even without a syntax-highlithing editor ...
+<neilt> do non-syntax-highlighting editors exist today
+<neilt> hmmmm
+<holsch> neilt: yes, sometimes. Not sure if programmers are using them for real-work.
+<neilt> the poor programmers that use those must feel like they live in the 18th century
+<neilt> :)
+<holsch> by the way: I documented the two geas-problems I had, it's should by now be in gnue-dev@gnue.org
+<neilt> j/k
+<neilt> yes i have it
+<holsch> whats 'j/k'
+<holsch> ?
+<rdean> every syntax-highlighting editor that I've come across has an option to turn it off.
+<neilt> just kidding
+<neilt> recheck out cvs
+<neilt> and try the addrbook.gcd should be fixed
+<neilt> now
+<holsch> addrbook.gcd:26: unknown type 'lookup'
+<holsch>     lookup country : addressbook::country(id).name = countrycode;
+<holsch>            ^
+<holsch> Initialising business class method handling.
+<holsch> Loading file ../examples/businessobjects/methods/addrbook.geas.py
+<holsch> Loading file ../examples/businessobjects/methods/test.geas.py
+<holsch> Now registering methods from gcds.
+<holsch> geas-server: classdata.c:1002: odl_tree_list_classes: Assertion `tree != ((void *)0)' failed.
+<holsch> Aborted
+<holsch> How comes it that my geas-server barks about "lookup" and yours is accepting it?
+<holsch> BTW i had the other errors again, like "Duplicate class name found." : "class test" 
+<neilt> lookup is not valid with new parser (or rather the syntax of lookup has changed
+<neilt> comment that out
+<neilt> and try again
+<holsch> Comment out lookup in adrbook.gcd or the call to the new parser?
+<neilt> lookup in adrbook.gcd
+ToyMan (~stuq@c5300-3-ip137.albany.thebiz.net) joined #gnuenterprise.
+<holsch> Here are the errors at the end:
+<holsch> error: file ../examples/businessobjects/test.gcd, line 54:
+<holsch> Duplicate class name found.
+<holsch> class timetest
+<holsch>       ^
+<holsch> message: Too many errors. File load failed.
+<holsch> Load business class definitions (new parser)
+<holsch> addrbook.gcd:18: unknown type 'object'
+<holsch>     object person;
+<holsch>            ^
+<holsch> Initialising business class method handling.
+<holsch> Loading file ../examples/businessobjects/methods/addrbook.geas.py
+<holsch> Loading file ../examples/businessobjects/methods/test.geas.py
+<holsch> Now registering methods from gcds.
+<holsch> geas-server: classdata.c:1002: odl_tree_list_classes: Assertion `tree != ((void *)0)' failed.
+<holsch> Aborted
+<neilt> sorry we need Reinhard
+<neilt> then
+<holsch> Hmm, I was watching TV while he was online :-(
+<neilt> me too
+<neilt> spending some time with the wife
+<neilt> and missed him
+<neilt> he is in austria and sundays are family day usually
+<holsch> same in germany (except that I don't have my own family)
+<neilt> so you are practically neighbors
+<holsch> Sort of. Maybe 5 to 8 hours by car, depends where he is living. That would be "neightbors" for Texanians, wouldn't it?
+<neilt> yep
+<neilt> what part of germany
+<neilt> are you in
+<holsch> 30 km north of Frankfurt.
+<neilt> i used to work for Bayer
+<holsch> Leverkusen?
+<neilt> yes i coordinated research with leverkusen and dormagen (?)
+<holsch> And you live near Washington?
+<neilt> i still live in Chicago and work in Washington DC
+<neilt> we should be moving shortly
+<neilt> but i never made it to germany
+<holsch> I don't have a map handy ... but sure you must be often in planes ... ?!?!
+<neilt> its a 14 hour drive
+<holsch> I made it twice to the US. Abilene/Texas and Redlands near LA.
+<neilt> what was your impression?
+<holsch> Very different. Part of your culture is very near to ours, and other parts are very far away.
+<neilt> :)
+<holsch> I disliked most the 2-3 death people a day in the LA area due to gunshoots.
+<neilt> that is a downside
+<holsch> I never saw a CompUSA store (or equivalent) here in Germany guarded.
+<neilt> i have never seen one either
+<neilt> you found a guarded one in LA
+<holsch> People told me that just the LA area has 900 gun murders a year. In Germany we 82.000.000 people and have less then 100 a year.
+<holsch> Yes, I LA they had. I found it awkward.
+<neilt> i would to
+<neilt> but then again i would not go to LA
+<neilt> long beach is another story
+<holsch> In Texas it was better, but while I was there 3 KKK people put a black american with a chain behind their pickup. Somehow I was
+<holsch> always at the wrong moment in your country ...   at least those 3 were catched. But then
+<holsch> again they also got death penalty, something that a modern country should not do.
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise.
+<neilt> thats one opinion
+<holsch> Hey, I liked the openness of the poeple an their kindness. It was not all bad.
+<holsch> But yet, I could imagine living in the UK, but I would never move to the US.
+<neilt> i spent 2 years in the UK
+<neilt> and would never like there
+<neilt> live
+<holsch> Back to GNUe --- was it ever discussed to have some domain-concept for variables?
+<neilt> Its not as bad as you think
+<holsch> I mean:
+<holsch> You define a variable type, but not just the type "char(64)", but
+<holsch> also how the label should be named, what lookup-table to use and so on.
+<holsch> Whenever you use this variable type in a table or form, it would inherit this
+<neilt> we have that
+<holsch> properties and makes life easier for forms designers.
+<neilt> but forms designers have not warmed up to it
+<holsch> I never worked with SAP, but read a book on it and found it there. I liked the idea.
+<holsch> I think it gives consistency.
+<holsch> And, as far as I know, they force it. You cannot put a field into a table before re-using an
+<neilt> we treat it as a data element
+<holsch> existing domain or creating a new one.
+<neilt> look in packages/base/language/classes/language.gcd
+<neilt> class help
+<holsch> Ok, what I mean is: you have there, for example:
+<holsch>   char  dialect<8>;
+<holsch> but I meant something like
+<holsch>   char  dialect<8>
+<holsch>   short prompt language en "Dialect"
+<holsch>   short prompt language de "Dialekt"
+<holsch>   long prompt language en "In what dialect is the help"
+<neilt> we have that but use a different stufture
+<holsch>   lookup table thisandthat;
+<neilt> our prompt is tool_tip
+<holsch> Basically the possibility to define lots of properties.
+<neilt> then we have short and long
+<neilt> labels
+<neilt> and we have help text
+<holsch> Okay, I will look further into this, right now I'm not understanding enought of GNUe.
+<neilt> all designed around the language based help calss
+<holsch> Do you know the commands to convert the *.sgml files into something legible, e.g. HTML or even TXT?
+<neilt> each field will have an entry in the help class for each language supported by geas
+<neilt> are you talking about docbook sgml files
+<neilt> ?
+<holsch> Yes
+<neilt> db2html
+<holsch> I tried several jade commands, but it seldom worked :-(
+<neilt> which file are you trying to convert
+<holsch> and dirs with *.sgml files don't have Makefiles ...
+<holsch> Basically every file, because I want to read them. Lyx files I can read directly in Lyx ...
+<holsch> s/dirs/many dirs/
+<neilt> all of the docs are built on the web site, but not in a consistent place
+<holsch> I know. I thought that the ones in the CVS might be more up-to-date.
+<neilt> the ones pertaining to geas are all up to date on the web site
+<neilt> i dont know about the others
+<neilt> i have an script that i kickoff to rebuild the docs
+<neilt> so they all get rebuilt
+<holsch> In geas you have lot's of *.txt files in doc/ ...  easy to read :-)
+<neilt> these are the ones listed at http://www.gnuenterprise.org/~neilt/sc.html
+<holsch> Ok, currently the GNU Module Guide is what I find most interesting (once geas-server works somewhat)
+<holsch> The supply_chain_math/t1.html still contains TeX-code :-)
+reinhard (~rm@62.47.44.225) joined #gnuenterprise.
+<neilt> yes, i need to remove that
+<neilt> speak of the devil
+<holsch> Guten Abend, Reinhard !
+<reinhard> huh
+<reinhard> Tach auch
+<reinhard> guess i should read the logs :)
+<neilt> reinhard: you weren't around so I blamed you for all of holsch's problems
+<neilt> :)
+<reinhard> neilt: the possibility exists that you are acutally right with that.
+<neilt> no, not that, then I will blame Andrewm
+<reinhard> lol
+<reinhard> on the reason why GNUe is so IRC oriented
+<reinhard> that has historical reasons
+<holsch> reinhard: the essence of the problem is also in gnue-dev@gnue.org
+<reinhard> GNUe was a mailing-list project for 3 years
+<reinhard> with zero implemented code
+<reinhard> then we started irc and within 1 month we had some prototyes
+<reinhard> prototypes
+<reinhard> holsch: let me look
+<holsch> neilt: even the Postscript has TeX syntax ... ;-(
+<nickr> uh
+<neilt> forget the math article
+<neilt> ariel was supposed to send a better conversion and never did,  i need to remove it
+<holsch> I was just curious because I'm sysadm in a company that makes radio-based warehouse solutions
+<neilt> cool
+<holsch> (Partly I'm looking into GNUe to releave our programmers from programming EVERYTHING in
+<holsch> C and embedded sql ...)
+<holsch> However, I would have to re-surrect the ncurses-version of gfclient. Radio terminals
+<holsch> usually have a small text-only display.
+<holsch> But it might very well that GNUe is too early (typical chicken'n'egg situation)
+<holsch> in the development process
+<neilt> two tier should be getting very close
+<neilt> geas is a little farther away
+<holsch> GNUe Forms was up and running not-so-badly, but geas-server ...  this would speak for 2-tier :-)
+<neilt> geas-server is n-tier
+<holsch> i know
+<neilt> forms directly to SQL server is 2 tier
+<neilt> exactly
+<holsch> And for 2-tier I also would have to adapt SAP DB (we use SAP DB since half a year
+<reinhard> holsch: first of all i really *love* your subject line
+<reinhard> "Adventures with geas: strange old parser?"
+<neilt> sapdb works fine in 2 tier
+<holsch> with great success, it's 24x7, no vacuum as compared to PostgreSQL)
+<holsch> Sounds good.
+<holsch> reinhard: there's a question mark at the end --- no accusation !   :-)
+<reinhard> holsch: there is a reason that i wrote a new one ;)
+<holsch> reinhard: was it ok to simply uncomment the old parser and use the new one only?
+<holsch> (as in my second e-mail?)
+<reinhard> on the status of old vs. new parser
+<reinhard> the status is the worst you could think of
+<reinhard> i.e. parts of the code use the old parser and parts use the new parser :(
+<reinhard> as i am in the middle of the transition
+<neilt> we dont call that bad we call it a challenge
+<holsch> No, I meant it technically. I saw discussions on parse run 1 and 2, so maybe the new parser might still
+<reinhard> neilt: rofl
+<holsch> use info the old parser gathered
+<reinhard> holsch: no they are independant
+<reinhard> and to _start_ geas you would only need the new parser
+<reinhard> but to do inserts/updates/selects etc. the info is taken from the old parser
+<holsch> readhard: with the new parser it was at one time actually running and not aborting :-)
+<reinhard> yeah
+<reinhard> the errors are because of postgres reserved words
+<holsch> reinhard: you have a table of reservered words. Why simply add a _ to them when it comes to the database?
+<holsch> Not sure if it is possible to omit all reservered words of all SQL engines that exist in the world.
+<reinhard> holsch: the old parser did that
+<reinhard> for the new parser we considered following
+<reinhard> we want different modules written by different persons to extend the same class (= table)
+<reinhard> so i have a table "customer"
+<reinhard> and neilt writes his xx module that introduces "customer.foo"
+<reinhard> and you write yy module that introduces "customer.foo"
+<reinhard> because you don't even know about each other
+<reinhard> if i (as the third person) want to use both xx and yy module
+<reinhard> they would not work together
+<reinhard> except we introduce namespaces in column names
+<reinhard> so we decided to prefix every column name for the database with the modulename and a double underscore
+<reinhard> so your column will be yy__foo
+<reinhard> and neilt's will be xx__foo
+<reinhard> and they will not conflict
+<reinhard> so far so good
+<reinhard> this is not yet done to keep compatibility with the old parser as long as some part of the code uses the old parser
+<reinhard> but is already marked as TODO in the new parser code
+<reinhard> and then when this is done _every_ db column will contain a __
+<reinhard> because every column will be part of a specific namespace
+<reinhard> and because no reserved word of (IMHO) no db of the world contains a double underscore
+<reinhard> we can be 100% sure that no column name of ours conflicts with a db reserved word
+<holsch> sounds good
+<reinhard> therefore i don't check for reserved words now
+<holsch> However, I read from your lines that the current CVS geas-server cannot be
+<holsch> used, not even for "finding out what it is"
+<reinhard> holsch: yeah there are some 5 or 10 minutes of thought in geas ;)
+<holsch> right?
+<reinhard> no
+<reinhard> it should run
+<reinhard> with the old and the new parser in parallel
+<holsch> But it doesn't :(
+<reinhard> this is my point now
+<reinhard> we need to find out what the errors are about with the old parser
+<holsch> One thing is strange: neilt said it runs on his mac, but it doesn't on my debian.
+<reinhard> did you configure with --enable-debug?
+<holsch> Yes
+ToyMan (~stuq@c5300-3-ip137.albany.thebiz.net) left #gnuenterprise ("Client Exiting").
+<holsch> I even sent him my geas.conf file
+<reinhard> what do you have as "classdir" in geas.conf
+<holsch> I only have the one line "classdir            ../examples/businessobjects" the other is uncommmented
+<holsch> but it breaks also with both
+<holsch> and i'm running ./geas-server in gnue/geas/src, without make install
+<reinhard> the question is why do you get a duplicate class name error
+<holsch> Agreed.
+<reinhard> hehe
+<reinhard> now we should answer the question ;)
+<holsch> When I look at the +++ lines, then I get the first error on the first file.
+<reinhard> yes
+<reinhard> but not on the first class in that file
+<holsch> Right. But look at "class contact". There is a "object person" in it. Maybe this is a trigger
+<reinhard> hmmmm
+<reinhard> wanna try to uncomment that line?
+<reinhard> however i don't get those errors either and i am using suse linux
+<holsch> Hmm, did not help.
+<reinhard> and i know for example chilly uses debian and it works for him
+<holsch> Maybe the code should not say "Duplicate class found: person", but
+<holsch> "Duplicate class 'person' found in file XYZ:20 and ABC:44"
+<holsch> At least GCC does this, that's very handy.
+<reinhard> holsch: please add in file yparser.y between line 191 and line 192
+<reinhard> g_message (fullname);
+<reinhard> (that's what i call "remote debugging")
+<reinhard> ;)
+<holsch> Message: root::addressbook::Ñ
+[15:59] Last message repeated 1 time(s).
+<holsch> error: file ../examples/businessobjects/addrbook.gcd, line 21:
+<holsch> Duplicate class name found.
+<holsch> class person
+<holsch>       ^
+<holsch> Looks like some unintialized data ...
+<holsch> at other places it reads:
+<holsch> Message: root::°þÀ@ðA)@7
+<holsch> Message: root::ÌS
+[16:00] Last message repeated 1 time(s).
+<reinhard> hmmmmm
+<reinhard> interesting
+<reinhard> rm@tigger:~/prj/gnue/geas/lib/classdefs > flex --version
+<reinhard> flex version 2.5.4
+<reinhard> rm@tigger:~/prj/gnue/geas/lib/classdefs > bison --version
+<reinhard> GNU Bison version 1.25
+<reinhard> you have same versions?
+<holsch> holger:/usr/src/gnue/geas/src# bison --version
+<holsch> bison (GNU Bison) 1.30
+<holsch> holger:/usr/src/gnue/geas/src# flex --version
+<holsch> flex version 2.5.4
+<holsch> So, should I downgrade bison?
+<reinhard> oh oh
+<reinhard> no wait
+<reinhard> please send me your yparser.c
+<reinhard> to reinhard@gnue.org
+<reinhard> i will make a diff to my copy
+<reinhard> and see what bison 1.30 changes
+<holsch> sent
+<chillywilly> danielb@obfuscation:~$ bison --version
+<chillywilly> bison (GNU Bison) 1.30
+<chillywilly> ;P
+<reinhard> chillywilly: does geas-server run for you?
+<chillywilly> ummm, it has been to long to even know
+<reinhard> can you try?
+<chillywilly> well ti will take a bit
+<holsch> chillywilly: the CVS head version
+<chillywilly> as I have setup postgres to work over my network
+<chillywilly> unless yall want to hold my hand
+<holsch> chillywilly: no, the error in question happens before PostgreSQL comes into play
+<reinhard> chillywilly: that doesn't matter, we are just interested in the error messages you get from the old parser
+<chillywilly> it is has been too long since I setup postgres
+<chillywilly> oh
+<chillywilly> alrighty
+<chillywilly> I'll compile it and give it a whirl right now
+<holsch> reinhard: does geas use other libs, e.g. glib?
+<reinhard> yes glib
+<chillywilly> glib, orbit, uuid-dev
+<reinhard> yes what chilly said
+<chillywilly> bison and flex
+<holsch> ii  orbit           0.5.12-1        A CORBA ORB (used with Gnome)
+<reinhard> holsch: our problem can't be orbit
+<holsch> holger:/usr/src/gnue/geas# glib-config --version
+<holsch> 1.2.10
+<reinhard> same for me
+<chillywilly> danielb@obfuscation:~/src/cvs/gnue/geas$ ./autogen.sh --enable-debug --prefix=/usr
+<holsch> Not sure how to find out the uuidlib version, but i guess it's not needed at this time
+<chillywilly> what other options should I pass?
+<reinhard> holsch: correct guess
+<chillywilly> that should bbe good enough now right?
+<reinhard> chilly that's ok this way
+<holsch> chillywilly: that's all you need. You don't even need to "make install" it.
+<chillywilly> I know....just that you used to have to specify a databse
+<reinhard> lol
+<reinhard> holsch: actually i thought about reinhard@gnue.org being the "To:", not the "Subject:" :)
+<reinhard> nevermind
+<reinhard> got it anyway :)
+<chillywilly> so it uses parts of the old an dnew parser right because you have not finished the migration to the new one?
+<holsch> AAAAH. Again I felt into the Kmail trap
+<reinhard> chillywilly: exactly
+<chillywilly> just use mutt ;P
+<chillywilly> we don't need a stinking gui for email ;)
+<holsch> KMail can put he mailing list address into the too field and sometimes I forget about that ...
+<holsch> chillywilly: I could use pigeons, I know ...
+<chillywilly> ok, built it
+<chillywilly> what does your geas.conf look like?
+<reinhard> chillywilly: nevermind thanks but i guess we found it
+<chillywilly> oh?
+Action: chillywilly is lost
+<holsch> chillywilly: in geas/src/geas.conf I commented out one classdir so that only the one
+<reinhard> holsch: i get similar (not identical) errors with your yparser.c
+<holsch> pointing to the ../examples is active
+<holsch> (tip from neilt)
+<reinhard> can you send me yparser.h just to be sure?
+<chillywilly> whatever
+<chillywilly> I can go bacl to reading  the bison manual now right?
+<chillywilly> back
+<chillywilly> oh another thing reinhard
+<reinhard> chillywilly: yeah till we call you again
+<chillywilly> couldn't you use yylineno
+<reinhard> chillywilly: btw who told you that you could stop coding?
+<chillywilly> to keep track of the line you are at?
+<chillywilly> or is that a global count
+<holsch> reinhard: sent
+<reinhard> <reinhard> chillywilly: re yylineno
+<reinhard> <reinhard> from flex doc
+<reinhard> <reinhard> yylineno this is an undocumented feature of Lex that does not appear in Flex or POSIX.
+<chillywilly> oh
+<chillywilly> er?
+<chillywilly> doesn't say that in my manual
+<chillywilly> I didn't think it did
+Action: chillywilly checks
+<reinhard> chillywilly: appearantly i have other version of manual than you
+<chillywilly> well at any rate that's a good reason not to use it
+<holsch> reinhard: I could install byacc and use it instead of bison ...
+<reinhard> Message: root::addressbook:: á
+[16:14] Last message repeated 1 time(s).
+<reinhard> error: file ../examples/businessobjects/addrbook.gcd, line 21:
+<reinhard> Duplicate class name found.
+<reinhard> class person
+<reinhard>       ^
+<reinhard> i think we got it
+<reinhard> good thing this happened
+<chillywilly> what classes are you loading with geas anyway?
+<holsch> reinhard: yeah, I too love reproducible bugs
+<reinhard> probably others wouldn't have believed that this is a problem t all
+Action: chillywilly wants to setup his config file
+<chillywilly> the real packages?
+<reinhard> this problem is one of the main reasons i rewrote the parser
+<chillywilly> er, no the examples?
+<holsch> chillywilly: classdir            ../examples/businessobjects
+<reinhard> chillywilly: no the examples dir
+<holsch> chillywilly: methoddir           ../examples/businessobjects/methods
+<holsch> but not the others
+<holsch> chillywilly: the ones that are in CVS.
+<chillywilly> can't you do both?
+<reinhard> the old parser relies on undocumented behaviour of geas
+<chillywilly> holsch: packages are also in cvs ;)
+<chillywilly> we can use gconf right ;)?
+Action: chillywilly ducks
+Action: chillywilly likes the new gnome 2 stuff
+Action: holsch liked KDE
+Action: holsch and does not know how to write likes
+<holsch> But I don't like religious wars :)
+Action: chillywilly cannot find why this other program segfaults
+<chillywilly> arrrrrgggghhhh!
+<reinhard> holsch: sent you working yparser.[ch]
+<reinhard> so you can try
+<reinhard> ************************************************
+<reinhard> and just another note for all the ppl that questioned
+<reinhard> whether the rewrite of the parser was worth the effort or not
+<chillywilly> who questioned it?
+<chillywilly> wasn't me
+<reinhard> the old parser relies on undocumented behaviour of bison
+<chillywilly> I didn't want to touch the old one with a ten foot pole
+<reinhard> and appearently doesn't work under bison 1.30
+<holsch> Ok, now the "Abort" at the end is gone.
+<reinhard> ************************************************
+<holsch> I still have the SQL errors about "position"
+<reinhard> what is the last line?
+<reinhard> holsch: that is ok
+<holsch> The GNU Enterprise Application Server is ready.
+<reinhard> holsch: cool that means it is working
+<chillywilly> hehe
+<chillywilly> it only thinks it is ready
+<chillywilly> ;)
+<holsch> reinhard: Huh, it's ok that two CREATE TABLE statements did not work?
+Action: chillywilly is back (gone 04:02:39)
+<reinhard> that's the reserved word issue we discussed before
+<chillywilly> I forgot to change thaty
+<chillywilly> btw, I'm back ;P
+<holsch> I know. But now my geas-server.c has both parsers enabled.
+<reinhard> yeah that's the way it is needed now
+<holsch> holsch: I misunderstood you probably. Thought
+<chillywilly> it's not a parser it's a gcd compiler ;)
+<holsch> that with the old parser it cannot happen.
+<holsch> s/holsch/reinhard/
+<reinhard> the code to create the tables already uses the new parser
+<chillywilly> objectstore right?
+<holsch> reinhard: aha. Just the tablenames by themselves are handley by the new parser
+<reinhard> chillywilly: yes
+<holsch> create table geas__searchfield ...
+<reinhard> yes exactly
+<reinhard> the tablenames and the fieldnames
+<reinhard> for creating the tables
+<reinhard> holsch: you should now be able to start
+<chillywilly> reinhard: not to change the subject but hav eyou thought about how to do replication an load balancing?
+<reinhard> geas/examples/python/addrbook.py
+<reinhard> and use at least the menu "S" (Setup"
+<holsch> chillywilly: load balancing is often done with transaction monitors ... even built in ones
+<chillywilly> the dotGNU ppl want an application server
+<chillywilly> but they were talking about writing itin C# to test out portable.net
+<chillywilly> er, their compiler
+<chillywilly> there's a good link about how IBM does load balancing with Open LDAP on the dotGNU developers list
+<chillywilly> http://www-1.ibm.com/servers/esdd/articles/linux_clust/index.html?t=gr,p=AuthClusters
+<chillywilly> this all lead to the discussion and someone saying that would head up a project to write an application server
+<holsch> reinhard: it works. I just don't like the string "US$"
+<reinhard> chillywilly: i will think about load balancing as soon as i get geas to do something like "select name from customer where number = 10" properly
+<holsch> s/US$/EUR/g   :-)
+<reinhard> holsch: i need to make my U.S. friends happy somehow ;)
+<holsch> chillywilly: it's also interesting to read how Lotus Notes does it's replication. I always wondered
+<chillywilly> reinhard: well yes, I was just bringing it up for the fun of it
+<holsch> why such a wonderful replication engine nether made it's way into open source.
+<reinhard> chillywilly: talking about fun to me is like talking about sex to the pope
+<chillywilly> ok, back to my bison manual reading
+<reinhard> j/k
+<chillywilly> lol
+<holsch> reinhard: many priest have sex :-)
+<chillywilly> hey you know there's a grammar file for oql
+<chillywilly> maybe it will make sense to me after I finish the bison manual
+<reinhard> chillywilly: hehe
+<reinhard> holsch: btw i am from vorarlberg (most western part of austria)
+<reinhard> bodensee
+<holsch> chillywilly: I have seen a similar HA solution for SAP DB.
+<holsch> chillywilly: (similar to the one from IBM). It used NBD (Network Block Device)
+<chillywilly> ok
+<holsch> chillywilly: from linux to mirror the database and log of two computers
+<holsch> chillywilly: and used also www.linux-ha.org's heartbeat for the take-over.
+<chillywilly> thsi thing looks like a c++ parser
+<chillywilly> options {
+<chillywilly>     language="Cpp";
+<chillywilly> }
+<chillywilly> class OQLLexer extends Lexer ;
+<chillywilly> options {
+<chillywilly>     k=2;
+<chillywilly>     charVocabulary = '\3'..'\377';
+<chillywilly>     testLiterals=false;     // don't automatically test for literals
+<chillywilly>     caseSensitive=true;
+<chillywilly>     caseSensitiveLiterals=true;
+<chillywilly> }
+<chillywilly> fyi, the flex manual is a lot more painful to read than the bison one ;)
+<chillywilly> probably because RMS had a hand in the latter ;)
+<reinhard> i still can't believe that i get an outdated manual from the fsf
+<chillywilly> you got a paper one?
+<reinhard> yeah
+<holsch> Byby, I have to find some sleep
+<reinhard> ordered for $$
+<chillywilly> hmmm
+<reinhard> night holsch
+holsch (~schurig@p5080A207.dip0.t-ipconnect.de) left #gnuenterprise.
+<chillywilly> are you sure it is outdated?
+<reinhard> at least it doesn't contain the [:foo:] stuff
+<chillywilly> flex
+<chillywilly> ****
+<chillywilly>    This manual documents `flex'.  It covers release 2.5.
+<reinhard> Flex
+<reinhard> --------
+<chillywilly> do you have a patterns section?
+<reinhard> The Lexical Scanner Generator
+<chillywilly> er, chapter or whatever
+<reinhard> Edition 1.03, for Version 2.3.7
+<reinhard> February 1993
+<chillywilly> hrrrm
+<reinhard> :(((
+<chillywilly> I dunno this is jsut the documentation that comes with the debian package
+<reinhard> Who is the author?
+<chillywilly> the flex guy
+<chillywilly> Author
+<chillywilly> ******
+<chillywilly>    Vern Paxson, with the help of many ideas and much inspiration from
+<chillywilly> Van Jacobson.  Original version by Jef Poskanzer.  The fast table
+<chillywilly> representation is a partial implementation of a design done by Van
+<chillywilly> Jacobson.  The implementation was done by Kevin Gong and Vern Paxson.
+<reinhard> so must be a complete different one
+<reinhard> mine is G.T.Nicol
+<chillywilly> I'm not sure who the actual manual author is
+<reinhard> ah ok
+<chillywilly> how many secitons do you have in that thing?
+<chillywilly> sections
+dres_ (~dres@4.18.171.42) joined #gnuenterprise.
+dres (dres@4.18.171.42) left irc: Read error: 104 (Connection reset by peer)
+<neilt> ok its getting scarry now
+<neilt> i have wxGTK and wsPython installed
+<neilt> and common installed without a problem
+<neilt> this cant be right
+<reinhard> must be you overlooked something
+<neilt> exactly
+<chillywilly> hehe
+<chillywilly> it's just toying with you
+<reinhard> however i _must_ go to bed now otherwise i will be dead tomorrow
+<reinhard> l8r
+reinhard (rm@62.47.44.225) left irc: "'Hardware' defines as the parts of a computer system that can be kicked"
+<neilt> later all
+neilt (neilt@dhcp64-134-54-175.chan.dca.wayport.net) left irc: 
+krieszner (~root@ppp005.alx.la.xspedius.net) joined #gnuenterprise.
+krieszner (~root@ppp005.alx.la.xspedius.net) left #gnuenterprise.
+chillywilly_ (~danielb@d17.as20.nwbl0.wi.voyager.net) joined #gnuenterprise.
+chillywilly (danielb@d111.as7.nwbl0.wi.voyager.net) left irc: Killed (NickServ (Ghost: chillywilly_!~danielb@d17.as20.nwbl0.wi.voyager.net))
+Nick change: chillywilly_ -> chillywilly
+fil_c (~username@p.cole.easynet.co.uk) joined #gnuenterprise.
+rdean (rdean@chcgil2-ar2-052-243.chcgil2.dsl.gtei.net) got netsplit.
+Mr_You (rouzer@mankind.boredom.org) got netsplit.
+gnuebot (eggdrop@mail.libertydistribution.com) got netsplit.
+mdean-[yawa] (mdean@mkc-65-28-73-63.kc.rr.com) got netsplit.
+pattieja (pattieja@www.pcxperience.com) got netsplit.
+gnuebot (eggdrop@mail.libertydistribution.com) returned to #gnuenterprise.
+#gnuenterprise: mode change '+o gnuebot' by ChanServ!ChanServ@services.
+mdean-[yawa] (~mdean@mkc-65-28-73-63.kc.rr.com) got lost in the net-split.
+pattieja (~pattieja@www.pcxperience.com) got lost in the net-split.
+Mr_You (rouzer@mankind.boredom.org) got lost in the net-split.
+rdean (~rdean@chcgil2-ar2-052-243.chcgil2.dsl.gtei.net) got lost in the net-split.
+mdean-[yawa] (~mdean@mkc-65-28-73-63.kc.rr.com) joined #gnuenterprise.
+rdean (~rdean@chcgil2-ar2-052-243.chcgil2.dsl.gtei.net) joined #gnuenterprise.
+pattieja (~pattieja@www.pcxperience.com) joined #gnuenterprise.
+chillywilly (danielb@d17.as20.nwbl0.wi.voyager.net) left irc: 
+chillywilly (~danielb@d17.as20.nwbl0.wi.voyager.net) joined #gnuenterprise.
+Nick change: mdean-[yawa] -> mdean
+chillywilly (danielb@d17.as20.nwbl0.wi.voyager.net) left irc: 
+Rafterman (tim@lister.sesgroup.net) joined #gnuenterprise.
+chillywilly (~danielb@d17.as20.nwbl0.wi.voyager.net) joined #gnuenterprise.
+rdean (rdean@chcgil2-ar2-052-243.chcgil2.dsl.gtei.net) left irc: "Client Exiting"
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<nickr> hey
+<chillywilly> ho
+<chillywilly> massa
+rdean (rdean@chcgil2-ar2-052-243.chcgil2.dsl.gtei.net) joined #gnuenterprise.
+<dneighbo> yo yo yo
+<dneighbo> say if i apt-get install blackbox
+<dneighbo> how do i use it instead of say gnome?
+<nickr> dow do you start gnome?
+<dneighbo> currently its wife pc
+<dneighbo> so i have gdm installed
+<dneighbo> as im 'expirementing'
+<dneighbo> i have kde and gnome installed
+<nickr> you could use the gnome session, and then pick blackbox as the WM and get rid of the panels and such
+<dneighbo> and have gdm kdm(?) installed
+<dneighbo> i think i have xdm
+<dneighbo> could i use xdm?
+<nickr> why?
+<dneighbo> and then not have a gnome session?
+<nickr> you can pick a non-gnome session from the gdm session list
+<dneighbo> um the point of going black box would be too get things as small as possible
+<dneighbo> ok i have black box installed dropping to gdm to see options
+<dneighbo> brb
+dneighbo (dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: "Client Exiting"
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<dneighbo> screw it, gnome w/ do i think
+<dneighbo> just have to stick to lightweight sawfish theme
+<dneighbo> i still have jacked up fonts though :(
+<dneighbo> the fonts seem really big
+<dneighbo> (which they did on other debian install)
+<dneighbo> but here if i try to pick a custom font
+<dneighbo> all looks great in the font picker box
+<dneighbo> but when i click ok it turns everything to squares :(
+<nickr> interesitng
+<nickr> do you have 100dpi or 75dpi fonts intsalled?
+<dneighbo> smaker theme for sawfish seems nice
+<dneighbo> nickr: how do i tell?
+<nickr> thats the one that I use
+<dneighbo> iirc i apt got about anything that had word font
+<nickr> dpkg --list |grep ^ii |grep xfonts-
+<dneighbo> to get the fonts to work at ALL on this machine
+<nickr> oh
+<nickr> maybe you're picking 2byte fonts then
+<dneighbo> give it a minute in process of 'upgrading'
+<nickr> the whole font situation is in the process of being worked out
+<nickr> its sort of in the middle of a transition
+<dneighbo> must get wife using debian all the time
+<dneighbo> to do that i need to use this machine all the time
+<dneighbo> to be 'fair'
+<dneighbo> her #1 complaint
+<dneighbo> a. fonts
+<dneighbo> b. speed
+<nickr> speed!?+
+<nickr> what kind of computer is it?
+<dneighbo> i even *gulp* switched her to KDE, KMAIL and KONQ for speed improvements
+<dneighbo> but still too slow for her
+<nickr> what does she normally use? Cray?
+<nickr> everyone that I turn on to linux is blown away by how fast it is
+<dneighbo> processor       : 0
+<dneighbo> vendor_id       : AuthenticAMD
+<dneighbo> cpu family      : 5
+<dneighbo> model           : 8
+<dneighbo> model name      : AMD-K6(tm) 3D processor
+<nickr> gnome, kde, enlightenment, they're like 'whoa!'
+<dneighbo> stepping        : 12
+<dneighbo> cpu MHz         : 350.797
+<dneighbo> cache size      : 64 KB
+<dneighbo>         total:    used:    free:  shared: buffers:  cached:
+<dneighbo> Mem:  155213824 150749184  4464640        0  5566464 103829504
+<dneighbo> Swap: 90472448   270336 90202112
+<dneighbo> MemTotal:       151576 kB
+<dneighbo> MemFree:          4360 kB
+<dneighbo> MemShared:           0 kB
+<nickr> that should be a pretty cookin machine
+<dneighbo> i even have custom k6 kernel installed now
+<dneighbo> dood i know it should be pretty quick but win98 kicks its ass 
+<dneighbo> on same machine same hardware
+<dneighbo> loading gnome is pretty quick
+<dneighbo> similar as windows
+<dneighbo> but email and webbrowser take about twice as long to load
+<dneighbo> as internet explorer and outlook
+<dneighbo> :(
+<dneighbo> if she used mutt and lynx
+<dneighbo> :
+<dneighbo> :)
+<dneighbo> dneighbo@grapevine:~$ dpkg --list |grep ^ii |grep xfonts-
+<dneighbo> ii  xfonts-100dpi  4.1.0-11       100 dpi fonts for X
+<dneighbo> ii  xfonts-base    4.1.0-11       standard fonts for X
+<dneighbo> dneighbo@grapevine:~$ 
+<chillywilly> win98 is a slow POS
+<chillywilly> on my mom's system that is twice as fast as this
+<nickr> which browser? emain client?
+<dneighbo> nickr: i have tried about all of them
+<nickr> evolution is an order of magnitude faster than outlook in most situations
+<dneighbo> konq, galeon, mozilla
+<dneighbo> evolution, kmail, mozilla mail
+<nickr> galeon doesn't load as fast as ie because ie loads at boot time
+<dneighbo> well what i have found is galeon is faster after intial load SO if i could get her to 'leave it open' i think she would be happy
+<dneighbo> but evolution is a dog
+<dneighbo> you get it and other things going and you can actually watch it repaint some of its folders
+<dneighbo> mozilla mail was even worse
+<chillywilly> you got a 350MHz in there?
+<dneighbo> kmail was pretty snappy, but she didnt like the 'feel' of it
+<dneighbo> <dneighbo> vendor_id       : AuthenticAMD
+<dneighbo> <dneighbo> cpu family      : 5
+<dneighbo> <dneighbo> model           : 8
+<dneighbo> <dneighbo> model name      : AMD-K6(tm) 3D processor
+<dneighbo> <dneighbo> stepping        : 12
+<dneighbo> <dneighbo> cpu MHz         : 350.797
+<dneighbo> <dneighbo> cache size      : 64 KB
+<chillywilly> yes yes
+<dneighbo> chillywilly: 350.797 to be 'exact'
+<dneighbo> ;)
+<chillywilly> heh
+<chillywilly> cpu MHz		: 451.026
+<chillywilly> ;)
+<chillywilly> this is my laptop
+<dneighbo> man you overclocking by 1.026 or what, you rebel
+<chillywilly> hehe
+<chillywilly> rebel without a clue
+<chillywilly> or a cause for that matter
+<nickr> dneighbo: there are a lot of other email clients to try
+<nickr> I really like evolution though, I've never had any speed problems
+<nickr> you might try spruce, pyne and sylpheed
+<nickr> I used sylpheed for a long time
+<chillywilly> pyne?
+<chillywilly> nothing like good ol' mutt
+<chillywilly> ;P
+<nickr> yea, its a newish gnome email
+<dneighbo> i have heard of sylpheed recently
+<nickr> I only use mh now
+<dneighbo> i think i will try evolution again
+<nickr> I've always generally only used mh
+<dneighbo> i recently went from 48mb memory to 150mb
+<chillywilly> nickr: but you're weird like that
+<dneighbo> and havent retested all options
+<nickr> except I had a pop account for a while that I used sylpheed then evolution
+<nickr> memory makes a huge difference
+<chillywilly> sure does
+<dneighbo> dag nabit are they holding back galeon AGAIN?
+Action: chillywilly has originally 64MB in this laptop and either desktop was painful to use
+<dneighbo> just like friday or so they haad it back up
+<chillywilly> then I put the max in here
+<nickr> another mozilla conflict?
+<chillywilly> 160MB
+<dneighbo> nickr: probably
+<nickr> thats the price you pay for unstable/ :)
+<nickr> try dillo, its way coo
+<dneighbo> dillo?
+<nickr> I just about shit my pants when I first tried it
+<nickr> browser
+Action: chillywilly is using galeon compiled from cvs
+<dneighbo> i htought it didnt work on most pages
+<chillywilly> wtf is dillo?
+<nickr> It does
+<nickr> its amazing
+<chillywilly> I never heard that one either
+<nickr> try it out
+<dneighbo> someone was telling me they use if for local web broswing
+<dneighbo> like reading documentation and such
+<nickr> just install it, then run it
+<chillywilly> apt-get install dillo?
+<nickr> it is a neat effect
+<nickr> yea
+<dneighbo> the good/bad thing about debian
+<dneighbo> is its SO easy to get things to try
+<chillywilly> hehe
+<dneighbo> good when you want to try stuff a lot, bad when you have a harddriver under 50megs :0
+<chillywilly> you spend too mcuhtiem playgin around?
+<chillywilly> aaaah
+<chillywilly> geta  bigger one
+<chillywilly> ;P
+<dneighbo> chillywilly: that too, i was thinking purely drive space
+<dneighbo> i used to think no way i could chew up 40gig
+<chillywilly> hehe
+<nickr> for the full effect, run dillo from the command line
+<chillywilly> then you got to dling those mp3s
+<chillywilly> right?
+<dneighbo> then became mp3 fiend and thought ah still plenty of room
+<dneighbo> then started doing own sound studio work
+<dneighbo> and was like hmmm im running out of space
+<nickr> raw pcm takes up a lot of space
+<dneighbo> then switched to debian an dplayed with apt
+<dneighbo> and am like dood time for more drives :
+<dneighbo> :)
+<nickr> anyone try dillo yet?
+<dneighbo> nickr: im still fighting my upgrade
+<dneighbo> i need to get gnucash on here, im FINALLY making the jump
+<dneighbo> no more quicken, as new years resolution
+Action: chillywilly uses gnucash for his money
+<dneighbo> vowed to get family completely off windows
+<chillywilly> kewl
+<chillywilly> f*** M$
+<nickr> gnucash is really  sweet
+<nickr> I love the account druid
+<nickr> its cute
+<dneighbo> i still need a windows box around, but will have to boot to use it
+<dneighbo> basically used for data conversion stuff
+<dneighbo> must fix this font
+<chillywilly> I have encountered that squares font thing
+<dneighbo> friggin 20inch monitor and tiny resolution and stuff is still way big
+<chillywilly> I just keep swithcing to different themes in the control center until it goes away
+<nickr> dneighbo: you might add -dpi 100 to your /etc/gdm/gdm.conf
+<chillywilly> it is annoying as hell
+<dneighbo> chillywilly: i got rid of the squares
+<dneighbo> i just want to be able to choose a smaller font
+<nickr> dneighbo: if its rendering 100dpi fonts at 75dpi they'll be big
+<chillywilly> my font is pretty small
+<dneighbo> for my gnome theme and my 'problem' will go away
+Mr_You (rouzer@mankind.boredom.org) joined #gnuenterprise.
+<chillywilly> did you get the transcoded ones?
+<dneighbo> nickr: can i apt-get install xfonts-75dpi
+<nickr> dneighbo: nah, just switch the server to 100dpi
+<chillywilly> ii  xfonts-100dpi        4.1.0-11             100 dpi fonts for X
+<chillywilly> ii  xfonts-100dpi-transc 4.1.0-11             100 dpi fonts for X (transcoded from ISO 10646-1)
+<chillywilly> ii  xfonts-75dpi         4.1.0-11             75 dpi fonts for X
+<chillywilly> ii  xfonts-75dpi-transco 4.1.0-11             75 dpi fonts for X (transcoded from ISO 10646-1)
+<chillywilly> ii  xfonts-base          4.1.0-11             standard fonts for X
+<chillywilly> ii  xfonts-base-transcod 4.1.0-11             standard fonts for X (transcoded from ISO 10646-1)
+<dneighbo> nickr: im too incompentent to do that
+<dneighbo> how do i do it
+<chillywilly> ii  xfonts-cyrillic      4.1.0-11             Cyrillic fonts for X
+<chillywilly> ii  xfonts-greek-ph-100d 1.1-5                a rich collection of X11 Greek fonts
+<chillywilly> ii  xfonts-greek-ph-75dp 1.1-5                a rich collection of X11 Greek fonts
+<chillywilly> ii  xfonts-greek-ph-misc 1.1-5                a rich collection of X11 Greek fonts
+<chillywilly> ii  xfonts-greek-ph-scal 1.1-5                a rich collection of X11 Greek fonts
+<chillywilly> i  xfonts-scalable      4.1.0-11             scalable fonts for X
+<chillywilly> those are all the ones I got
+<chillywilly> running at 100dpi too
+<nickr> dneighbo: edit /etc/gdm/gdm.conf
+rdean (rdean@chcgil2-ar2-052-243.chcgil2.dsl.gtei.net) left irc: "Client Exiting"
+<dneighbo> gdm what does that have to do with fonts?
+<nickr> dneighbo: find the line that says 0=Standard vt7
+<chillywilly> you hack the font server to do 100dpi
+<nickr> dneighbo: gdm is where X is getting started
+<dneighbo> mommie
+<chillywilly> at least i did
+<dneighbo> i need my .emacs file
+<chillywilly> hehe
+Action: dneighbo hates that he is hooked on a custom .emacs file
+<nickr> dneighbo: its the last line in the file, most likely
+<nickr> simply add -dpi 100 to it
+<nickr> save and quit
+<nickr> exit your session
+<nickr> restart gdm
+Action: chillywilly is also hooked on his .bash_profile and .bashrc files ;)
+<dneighbo> [servers]
+<dneighbo> 0=Standard vt7
+<dneighbo> #1=Standard vt8 -dpi 100
+<dneighbo> [server-Standard]
+<dneighbo> name=Standard server
+<dneighbo> command=/usr/bin/X11/X -deferglyphs 16 -nolisten tcp
+<dneighbo> flexible=true
+<nickr> 0=Standard vt7
+<nickr> becomes
+<nickr> 0=Standard vt7 -dpi 100
+<chillywilly> dneighbo: you might also want to try a couple of those true type font servers as they make your fonts purty too ;)
+<dneighbo> what is vt8?
+<dneighbo> virtual terminal?
+<nickr> dneighbo: thats a commented out line for another X server
+<dneighbo> chillywilly: i did that on my laptop
+<chillywilly> yep, virtual terminal
+<nickr> gdm can run as many as you want, but its nicer to start them on demand
+<dneighbo> and it was all groovy but then x died when i restarted
+<chillywilly> :(
+<dneighbo> [servers]
+<dneighbo> #0=Standard vt7
+<dneighbo> 0=Standard vt7 -dpi 100
+<dneighbo> #1=Standard vt8 -dpi 100
+<nickr> Yes
+<nickr> good
+<dneighbo> how do i 'restart gdm' ?
+<dneighbo> will it do it just by me logging out?
+<nickr> no, you have to do an /etc/init.d/gdm restart
+<chillywilly> or justs do
+<nickr> probably from vc0
+<dneighbo> ?
+<chillywilly> ctlatl-backspace
+<chillywilly> ctl-alt-backspace
+<dneighbo> btw i hate gdm
+<chillywilly> and force ti to restart
+<dneighbo> i normally run startx
+<chillywilly> gdm is sexy
+Action: chillywilly pets gdm
+<dneighbo> on my laptop and elsewhere so i am a total gdm newbie
+<nickr> why?
+<nickr> iiiiiiuuuu
+<nickr> gdm rocks my world
+<chillywilly> I don;t want to go to work tomorrow
+<dneighbo> nick its evil because im nmot used to it :)
+<dneighbo> i.e. i can never shut this machine down right
+<nickr> heh
+<nickr> oh thats easy
+<chillywilly> you have to enable the system menu in gdm.conf
+<dneighbo> and things like 'restarting' gdm are foreign to me
+<nickr> if you have the conf file open still, I'll tell you what do change
+<dneighbo> ok
+<nickr> in the [greeter] section
+<nickr> find the SystemMenu=false line, and change it to true
+<chillywilly> yep
+<chillywilly> I hate that debian doesn't have a better default
+<nickr> also in that section theres ConfigAvailable=false, change that to true
+<dneighbo> hmm looks like you can configure a lot here
+<chillywilly> guess they assume you will never shutdown your gnu/linux box ;)
+<nickr> dneighbo: they have a gui configurer
+<dneighbo> it was already true
+<nickr> okay
+<nickr> now save and quit
+<dneighbo> waht is 'Browser'
+<nickr> Thats the face browser
+<nickr> it shows pictures associated with local users
+<dneighbo> no way
+<nickr> users can set their face picture
+<nickr> its pretty cute
+<dneighbo> that would be kickin
+<chillywilly> hehe
+<dneighbo> i have kids and all they woudl like it
+<nickr> in the gnome menu, under settings theres a 'set my gdm face'
+<dneighbo> yeah thats the ticket
+<chillywilly> :)
+<dneighbo> my ugrade is almost finished 
+<dneighbo> then you can tell me how to restart gdm and relogin
+<nickr> okay
+<nickr> there are a lot of cute things
+<nickr> it gets better every day
+<nickr> I should start keeping notes as to where it could be smoothed out though
+<nickr> I deal with a lot of newbies, so its like testing for it :)
+fil_c (username@p.cole.easynet.co.uk) left irc: Connection timed out
+Action: dneighbo twiddles thumbs
+<dneighbo> man it takes forever if you dont 'upgrade' regularly
+<nickr> yea
+<nickr> it does
+<dneighbo> think there were like 180 packages to upgrade
+<dneighbo> and like at least 50 were held back
+<nickr> theres a lot of little scripts and tools that would make debian hugely easier
+<dneighbo> and i dont even have much installed on here and i upgraded less than a month a go
+<nickr> like a gui too to stop and start sysvinit scripts
+<nickr> not to modify then, but to just stop and start them
+<dneighbo> but thats the beauty of debian is its better than even a red carpet subscription :)
+<dneighbo> stuff is 'fresh' :)
+<nickr> yea
+<dneighbo> other reason is i have kde as well as gnome on here
+<nickr> those are big space users
+Action: chillywilly couldn't handle sucking up his disk like that so kde went bye bye
+<nickr> dneighbo: if you have kids, you should consider Debian Jr.
+<nickr> lots of kid games in it
+<nickr> edutainment
+<nickr> and junior-gnome
+<chillywilly> that's what I should install on thios little old mac classic
+<chillywilly> debian jr.
+<chillywilly> then scotty can play with it
+<chillywilly> it's a cute littel thing
+<nickr> I don't think that it'll run on a mac classic
+<nickr> it has a lot of multimedia type apps
+<chillywilly> no m68k port?
+<dneighbo> nickr: i am part of debian jr project :)
+<nickr> dneighbo: ah, then you don't need me selling to you
+<dneighbo> nickr: i think my names are even in the credits somewhere
+<chillywilly> dneighbo: what did you do to deserve that ;)?
+<nickr> we're doing lots of debian-in-schools stuff so its great for that
+<dneighbo> chillywilly: wrote junior-doc
+<chillywilly> who's "we"
+<chillywilly> wassat?
+<dneighbo> documentation for debian-jr
+<chillywilly> ok
+<dneighbo> whew apt-get install gnucash requires a lot
+<nickr> yea
+<dneighbo> let me grab dillo and then i will be ready for restart of gdm
+<dneighbo> i wonder why gnucash requires so many perl packages?
+<dneighbo> dres_: why does gnucash require so many perl packages?
+<dneighbo> Unpacking libnet-perl (from .../libnet-perl_1%3a1.09.01-1_all.deb) ...
+<dneighbo> Selecting previously deselected package libmime-base64-perl.
+<dneighbo> Unpacking libmime-base64-perl (from .../libmime-base64-perl_2.12-4_i386.deb) ...Selecting previously deselected package liburi-perl.
+<dneighbo> Unpacking liburi-perl (from .../liburi-perl_1.17-1_all.deb) ...
+<dneighbo> Selecting previously deselected package libwww-perl.
+<dneighbo> Unpacking libwww-perl (from .../libwww-perl_5.63-1_all.deb) ...
+<dneighbo> Selecting previously deselected package libhtml-tree-perl.
+<dneighbo> (Reading database ... 66262 files and directories currently installed.)
+<dneighbo> Unpacking libhtml-tree-perl (from .../libhtml-tree-perl_3.11-2_all.deb) ...
+<dneighbo> to name a few
+<dneighbo> and python2.2 ?
+<dneighbo> most odd
+<nickr> because its a wild and crazy thing
+<dneighbo> wondering if they are bolting on perl web front end to gnucash or something but if so they shoudl have it modular
+<chillywilly> bah, anyone having problems getting packages from us.debian.org?
+<dneighbo> so you could get that or not depending on if you are using it
+<nickr> chillywilly: all the time
+<nickr> I always use ftp.us.debian.org
+<dneighbo> chillywilly: nope, ive slurped about 200 in past 30 minutes
+<chillywilly> I am getting a 404 on dillo
+<dneighbo> chillywilly: i get that a lot in unstable
+<dneighbo> where it cant find a package
+<dneighbo> its like you catch them in a middle of an update or something
+<dneighbo> as other packages will work
+<nickr> you do
+<chillywilly> guess so
+<nickr> a dupdate run is going on
+<chillywilly> should update then
+<nickr> because it does the packages first and then it copies things over or whatever
+<dres_> dneighbo: stock value grabbing code.
+<dneighbo> dres_: shouldnt that be more modular?
+<dneighbo> as like me i have no interest in that (at this time)
+<dneighbo> so seems silly to get 4 or 5 packages to support it
+<dneighbo> but maybe im being overly picky, with debian its not like it made it any 'harder' :)
+Action: chillywilly grabs dres_ by his tail
+<dneighbo> and not like they are huge disk space consumers
+Nick change: dres_ -> dres
+<nickr> maybe it is modular and the debian package doesn't separate it like it should
+<nickr> that whole declining quality thing
+<chillywilly> yea, so quit your belly aching
+<dres> dneighbo: it's the debian package requiring it.  if you never used it gnucash would never run it, but better to be safe and require it.
+<dneighbo> dres: guess im not being complete in my explanation
+<dres> hrm?
+<dneighbo> im thinking you should be able to compile gnucash w/ or w/o it
+<dneighbo> and thus get debs with or with out it
+<dres> oh. no.  you can't.
+Action: dneighbo is tryinng to think of something similar
+<dneighbo> say like apache
+<dres> it's a bit of scheme code that calls a perl script that uses those libs.
+<nickr> yea thats how it should be
+<dneighbo> when i get apache it doesnt make me get every option of apache
+<chillywilly> with or without what?
+<nickr> you should be able to install that pakcage separately
+<dneighbo> so i could do
+<dneighbo> gnucash
+<dneighbo> and
+<dneighbo> gnucash-stock
+<dneighbo> or whatever
+<dneighbo> but anyhow, just an aside
+<nickr> dneighbo: file a bug against it
+<nickr> a wishlist bug
+<dres> dneighbo: file a bug on the debian package :).  You can certainly separate out the perl script, but it's tiny and the perl deps are tiny too so it seems a waste of time and overly complicated.
+<dneighbo> dres: difference of architecture opinion :
+<dneighbo> :)
+<dneighbo> my thinking is the stock piece might be small in that regard
+<dneighbo> but it lays good groundwork and habits for other things :
+<dneighbo> like say you build a small business module
+<dneighbo> etc etc etc
+<nickr>  /etc/gnucash/modules.d :)
+<dneighbo> other than that i agree its tiny so barely worth the hassle just was curious :)
+<dres> cvs is very separate, but even then it's unlikely that things will be packaged separately.
+<dneighbo> nickr: dillo was pretty cool
+<dneighbo> ready to restart gdm now
+<nickr> dneighbo: did you poop?
+<nickr> dneighbo: /etc/init.d/gdm restart . X will be killed
+<nickr> I believe.
+<dneighbo> ok if it gets killed will be back soon :)
+<nickr> okay
+<dneighbo> Stopping GNOME Display Manager: gdm not running.
+<dneighbo> Starting GNOME Display Manager: gdmgdm already running. Aborting!
+<dneighbo>  already running.
+<dneighbo> grapevine:/home/dneighbo# 
+<nickr> ah
+<nickr> c-a-backspace it, it may reload it.
+<nickr> I'm not sure if it does or not
+<dneighbo> ok bbs
+dneighbo (dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: "Client Exiting"
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<chillywilly> it does
+<dneighbo> i think that restarted it as i saw the system menu now
+<chillywilly> I do it all the time
+<dneighbo> but fonts still big
+<chillywilly> I am lazy like that
+<dneighbo> and if i try configure from the system menu it shakes the screen a bit and does nothingg
+<nickr> hrm
+<chillywilly> it "wiggles"
+<nickr> can you give us a screenshot to show us the 'big' fonts?
+<dneighbo> if i try to configure the fonts it still give sme the blocks
+<chillywilly> you need to install the configurator don't you?
+<dneighbo> chillywilly: dont know probably :)
+<nickr> dneighbo: apt-get install xfonts-75dpi*
+<chillywilly> gdmconfig
+<nickr> xfonts-scalable
+<chillywilly> or something
+<nickr> you can run gdmconfig as root from a logged in session
+<dneighbo> beyond the 'big fonts' why cant i select any fonts
+<chillywilly> maybe not
+<nickr> dneighbo: it depends on what onds you're trying to select
+<dneighbo> any one i select turns to that
+<dneighbo> which is silly
+<dneighbo> as they show up as good in the 'selector'
+<nickr> try installing all the 100dpi and 75dpi and scalable fonts
+<chillywilly> hey we should just switch to using C# for all GNUe tools ;)
+<nickr> yea
+<dneighbo> dres: whats up with gnucash in current debian?
+<dneighbo> i run it answer druid questions
+<dneighbo> then close it
+<dneighbo> asks if i want to save i say yes
+<dneighbo> type in file name click ok
+<dneighbo> and it segfaults?
+<dneighbo> nickr: ok i have apt-gotten those
+<dneighbo> anything special i should do?
+<dneighbo> s/current debian/today's unstable
+<nickr> dneighbo: Its easiest just to restart X, theres some xset trickery that you can o to get it to rehash the font lists, but I newere remember how
+<dneighbo> ok will do that
+Action: dneighbo is now nervous to use gnucash w/ that segfault as i dont want to enter 3 hours of data and have it die when i save :(
+<nickr> yow
+<nickr> well maybe wait for the next version :)
+Action: dneighbo always seems to have this happenn when i vow to get rid of quicken
+<dneighbo> nickr: sigh
+<dneighbo> i was running 1.5.x and it was 'flaky' at times so i was told switch to 1.6
+<dneighbo> i tried that on rh6.2 and it basically wanted me to upgrade to rh7.x to beable to install
+<nickr> at least versions don't take 3 year to come out.
+<dneighbo> so i figured ok will just move to debian as i can apt-get it
+<dneighbo> :(
+<dneighbo> btw im not trying to complain, i just want to use it
+<nickr> see if theres a bug filed against it
+<dneighbo> i will try to enter a few transactions and see if it totally bombs or not
+<dneighbo> as i ddint enter anything so wondering if it died as it was 'null' or something
+<nickr> hrm, there doesn't seem to be a bug that matches that behavior
+<dneighbo> brb restarting x
+dneighbo (dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: "Client Exiting"
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<dneighbo> sigh
+<dneighbo> well i looked over every font
+<dneighbo> and only courier(bitstream)(all sizes)
+<dneighbo> and a few clean (every other size)
+<dneighbo> will work
+<dneighbo> all other fonts will not work
+<dneighbo> but it shows them in the picker with a * next to them
+<nickr> you have more options now though don't you?
+<dneighbo> at least courier 10 is smaller
+<dneighbo> nickr: nope i think its same as before
+<dneighbo> i just never went through every single one
+<nickr> hrm.
+<nickr> thats odd.
+<dneighbo> btw: brb so my panel will resize to this new font
+<dneighbo> i willl have to play with installing a font server some other time
+<nickr> are you using xfs?
+<dneighbo> dunno how can i tell
+<nickr> you can set your panel size without changing a font or anyithng
+<dneighbo> dneighbo@grapevine:~$ ps -ax |grep xfs
+<dneighbo> Bad syntax, perhaps a bogus '-'?
+<dneighbo>   315 ?        S      0:09 /usr/bin/X11/xfs -daemon
+<dneighbo>  8508 pts/0    S      0:00 grep xfs
+<dneighbo> dneighbo@grapevine:~$ 
+<dneighbo> um nickr i mean it changes the font in the panel
+<dneighbo> but the spacing is horrid
+<dneighbo> like if it were still a big font
+<nickr> If the spacing is horid it means that its a truetype fonts not a bitmap font
+<dneighbo> only way to get it to fix is restart x or get the panel to redraw
+<nickr> how is it that you're having so much trouble with this?
+<dneighbo> nickr: it will fix itself on an X restart (the spacing)
+<nickr> its quite odd.
+<dneighbo> nickr: every debian install i did had similar problems
+<nickr> look at /etc/X11/XF86Config-4
+<nickr> I've never had this problem
+<dneighbo> everyone i know that installed debian around same time had the square font problem
+<dneighbo> i always seem to get this larger than i like font but normally can change it by chaning the font of the gtk theme
+<dneighbo> this is only install i have had that i havent been able to easily do that
+<dneighbo> but then again it too me a week to get x running on this box
+<dneighbo> darn little demon
+<nickr> in the files section, is there a Fontpath  for "unix:/7100" ?
+<dneighbo> Section "Files"
+<dneighbo> 	FontPath	"unix/:7100"			# local font server
+<dneighbo> 	# if the local font server has problems, we can fall back on these
+<dneighbo> 	FontPath	"/usr/lib/X11/fonts/misc"
+<dneighbo> 	FontPath	"/usr/lib/X11/fonts/cyrillic"
+<dneighbo> 	FontPath	"/usr/lib/X11/fonts/100dpi/:unscaled"
+<dneighbo> 	FontPath	"/usr/lib/X11/fonts/75dpi/:unscaled"
+<dneighbo> 	FontPath	"/usr/lib/X11/fonts/Type1"
+<dneighbo> 	FontPath	"/usr/lib/X11/fonts/Speedo"
+<dneighbo> 	FontPath	"/usr/lib/X11/fonts/100dpi"
+<dneighbo> 	FontPath	"/usr/lib/X11/fonts/75dpi"
+<dneighbo> EndSection
+<nickr> hrm, I'd comment out the first fontpath and try restarting
+<nickr> I dunno, thats how I have it at least
+<dneighbo> brb
+dneighbo (dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: "Client Exiting"
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<dneighbo> same deal
+<nickr> what the hell is wrong with your computer?
+<nickr> :)
+Action: dneighbo is just cursed w/ a horrid font that will prevent the wife from using linux
+<chillywilly> you got  a screen shot?
+<dneighbo> what do you want a screen shot of?
+<dneighbo> its a custom ugly ass courier font
+<chillywilly> fne then be that way
+Action: chillywilly puts masta in a head loc
+<chillywilly> lock
+<chillywilly> :P
+<chillywilly> dude
+<chillywilly> see if you got
+<dneighbo> hmm i cant seem to get screenshooter to work
+<chillywilly> /etc/X11/fs/config
+S11001001 (~sirian@63.64.10.190) joined #gnuenterprise.
+<chillywilly> see if the fugly 75dpi fonts are int he path first
+<nickr> chillywilly:I just had him disable xfs
+<chillywilly> whatcha do that fer?
+<chillywilly> howdy S11001001
+<nickr> because I'm not using it and my fonts look good
+<dneighbo> oh crap
+<dneighbo> nickr: i didnt do that
+<chillywilly> well I gt like 3 font servers running
+<chillywilly> ;P
+<chillywilly> er, ayeb just 2
+<chillywilly> maybe
+<nickr> dneighbo: okay smartguy, if you didn't then try doing what cw suggests and play with the xfs configu file
+<chillywilly> danielb@obfuscation:/etc/X11/fs$ ps ax | grep xfs
+<chillywilly>   540 ?        S      0:22 /usr/bin/X11/xfs -daemon
+<chillywilly>   572 ?        S      0:00 /usr/bin/X11/xfs-xtt -daemon -user nobody -port 7110
+<S11001001> just visiting the site now, trying to figure out what's going on
+<dneighbo> Section "Files"
+<dneighbo> 	FontPath	"unix/:7100"			# local font server
+<dneighbo> 	# if the local font server has problems, we can fall back on these
+<dneighbo> #	FontPath	"/usr/lib/X11/fonts/misc"
+<dneighbo> 	FontPath	"/usr/lib/X11/fonts/cyrillic"
+<dneighbo> 	FontPath	"/usr/lib/X11/fonts/100dpi/:unscaled"
+<nickr> ahaha
+<dneighbo> 	FontPath	"/usr/lib/X11/fonts/75dpi/:unscaled"
+<dneighbo> 	FontPath	"/usr/lib/X11/fonts/Type1"
+<dneighbo> 	FontPath	"/usr/lib/X11/fonts/Speedo"
+<dneighbo> 	FontPath	"/usr/lib/X11/fonts/100dpi"
+<dneighbo> 	FontPath	"/usr/lib/X11/fonts/75dpi"
+<nickr> you definitely don't want to disable misc
+<dneighbo> EndSection
+<dneighbo> you said first one
+<dneighbo> i thought you meant first 'fonts' one
+<nickr> haha
+<chillywilly> S11001001: we're helpign dneighbo screw with fonts on his X configuration
+<nickr> sorry
+<chillywilly> ;P
+<dneighbo> ok switched to not look at font server
+<dneighbo> restarting brb
+dneighbo (dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: "Client Exiting"
+<chillywilly> heheh
+Action: S11001001 has a suggestion
+<nickr> go man go
+<S11001001> um....don't?
+<S11001001> oops too late
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<chillywilly> but he doesn't like the way his fonts look
+<dneighbo> wtf wont screen shooter work?
+<nickr> dneighbo: who knows.
+Action: chillywilly shoots dneighbo with a screen
+<chillywilly> works for me
+<chillywilly> so you must be some kinda moron
+<chillywilly> j/k
+<dneighbo> chillywilly: prolly
+<dneighbo> ok disabling that didnt help
+<nickr> annoyance!
+<S11001001> miiiiiiii toooooooooo! :->
+<dneighbo> Section "Files"
+<dneighbo> #	FontPath	"unix/:7100"			# local font server
+<dneighbo> 	# if the local font server has problems, we can fall back on these
+<dneighbo> 	FontPath	"/usr/lib/X11/fonts/misc"
+<dneighbo> 	FontPath	"/usr/lib/X11/fonts/cyrillic"
+<nickr> dneighbo: dpkg --list |grep ^ii |grep xfonts
+<dneighbo> 	FontPath	"/usr/lib/X11/fonts/100dpi/:unscaled"
+<dneighbo> 	FontPath	"/usr/lib/X11/fonts/75dpi/:unscaled"
+<dneighbo> 	FontPath	"/usr/lib/X11/fonts/Type1"
+<dneighbo> 	FontPath	"/usr/lib/X11/fonts/Speedo"
+<dneighbo> 	FontPath	"/usr/lib/X11/fonts/100dpi"
+<dneighbo> 	FontPath	"/usr/lib/X11/fonts/75dpi"
+<dneighbo> EndSection
+<dneighbo> im assuming thats what you wanted
+<nickr> yea
+<dneighbo> grapevine:/home/dneighbo# dpkg --list |grep ^ii |grep xfonts
+<dneighbo> ii  xfonts-100dpi  4.1.0-11       100 dpi fonts for X
+<dneighbo> ii  xfonts-100dpi- 4.1.0-11       100 dpi fonts for X (transcoded from ISO 106
+<dneighbo> ii  xfonts-75dpi   4.1.0-11       75 dpi fonts for X
+<dneighbo> ii  xfonts-75dpi-t 4.1.0-11       75 dpi fonts for X (transcoded from ISO 1064
+<dneighbo> ii  xfonts-base    4.1.0-11       standard fonts for X
+<dneighbo> ii  xfonts-scalabl 4.1.0-11       scalable fonts for X
+<dneighbo> grapevine:/home/dneighbo# 
+Action: chillywilly is adeinstall the transcoded bizitches
+<chillywilly> doh
+<chillywilly> install the transcoded bizitches
+<chillywilly> they made mine look purtier
+<nickr> yea, get rid of the transcoded ones and see what happens
+<chillywilly> no
+<dneighbo> argh
+<chillywilly> keep them
+<chillywilly> forveer
+<dneighbo> i didtn have them before
+<chillywilly> and ever
+<nickr> oh
+<nickr> okay
+<dneighbo> i just got them because you guys said too :)
+<nickr> hrm
+<dneighbo> chillywilly: how do you do those purdy font servers?
+<dneighbo> lets just try that instead
+mdean (mdean@mkc-65-28-73-63.kc.rr.com) left irc: "Client Exiting"
+<nickr> dneighbo: you're trying to change the gtk font right?
+<chillywilly> apt-get install xfs-xtt
+<nickr> whoa, weird, I'm getting a bunch of fonts from tetex
+<dneighbo> yip
+<dneighbo> chillywilly: apt trout slapped me and said 'step off bizzy0tch'
+<dneighbo> j/k
+<chillywilly> lol
+mdean (~mdean@mkc-65-28-73-63.kc.rr.com) joined #gnuenterprise.
+<chillywilly> hey mdean
+<mdean> yo yo yo
+<chillywilly> welcome to the house that da masta built
+<dneighbo> btw: did you see the xchat script i posted here the other day for trout slapping?
+<chillywilly> i.e., help dneighbo get better font under X
+<chillywilly> fonts
+<dneighbo> werd ta md
+<dneighbo> 's mutha
+<dneighbo> sorry watched one too many episodes of mtv's cribs last night
+<mdean> good fonts depend on good font path order
+<chillywilly> exactly
+<mdean> and 75dpi
+<chillywilly> that's what I have been trying to say
+<chillywilly> 75dpi are better
+<mdean> 100dpi is crap for web pages
+<chillywilly> those are the small ones
+<mdean> throws everything off
+<dneighbo> i would settle for being able to use the ones i HAVE
+<mdean> way off
+<dneighbo> :)
+<mdean> dneighbo: seriously - they should be 75dpi - accept nothing more ;-)
+<dneighbo> xfs-xtt serves fonts using 100 dpi resolution                              
+<dneighbo>     You should be aware that, by default, xfs-xtt (the X Font Server with      
+<dneighbo>     X-TrueType) preferentially delivers fonts to clients using a resolution    
+<dneighbo>     of 100 dots per inch.  This affects the visible font size.  Another        
+<dneighbo>     common default is 75 dpi; some font rasterizers do not deal well with      
+<dneighbo>     other dpi settings.                                                        
+<dneighbo>     This setting can be changed by editing /etc/X11/fs-xtt/config.  See the    
+<chillywilly> dneighbo: you know that apt has super cow powers?
+<dneighbo>     xfs-xtt(1) manual page for more information.                               
+<dneighbo>                                                     
+<dneighbo> xfs-xtt does not listen on TCP port by default                             
+<dneighbo>     Because xfs-xtt (the X Font Server with X-TrueType) is a daemon that       
+<dneighbo>     runs with superuser privileges, by default it runs with TCP port           
+<dneighbo>     listening disabled as a security measure.  This means that, as shipped,    
+<dneighbo>     xfs-xtt is not reachable via the network and is unable to to serve         
+<dneighbo>     fonts to X servers running on remote hosts.  Most people do not need to    
+<dneighbo>     enable TCP port listening in xfs-xtt; it can serve fonts to local X        
+<dneighbo>     servers without this functionality enabled.                                
+<dneighbo>     xfs-xtt can be configured to remote X servers by appropriately editing     
+<dneighbo>     /etc/X11/fs-xtt/config.  See the xfs-xtt(1) manual page for more           
+<dneighbo>     information.           
+<dneighbo>  xfs-xtt use 7110 port insted of 7100                                       
+<dneighbo>     xfs-xtt would use 7110 insted of 7100 default, xfs-xtt does not            
+<dneighbo>     conflict original xfs. So, if you installed xfs-xtt (1.3.0.1-15 or         
+<dneighbo>     earlyer) previous and will not install xfs, you should modify font path    
+<dneighbo>     in XF86Config, like this:                                                  
+<dneighbo>     FontPath "unix/:7100" ->  FontPath "unix/:7110"                            
+<dneighbo>                                                    
+<dneighbo> ok apt got it now what?
+<chillywilly> dneighbo: you know that apt has super cow powers?
+<dneighbo> how do i tell its runnign etc
+<chillywilly> you better look out
+<chillywilly> ps ax | grep xfs
+<mdean> you don't need xfs
+<chillywilly> xfs is da bomb though
+<mdean> xfs is an unnecessary layer for fonts
+<mdean> it's unnecessary
+<chillywilly> it's damn necessary
+<dneighbo> grapevine:/home/dneighbo# ps ax |grep xfs
+<dneighbo>   315 ?        S      0:10 /usr/bin/X11/xfs -daemon
+<dneighbo>  8807 pts/0    S      0:00 grep xfs
+<dneighbo> grapevine:/home/dneighbo# 
+<chillywilly> for me
+<dneighbo> i just want fonts man
+<mdean> it doesn't provide anything more than X itself will do
+<dneighbo> something other than the shitty squares :)
+<chillywilly> hehe
+<dneighbo> help.....
+<chillywilly> mdean: you get the big WE in my book
+<dneighbo> chillywilly: i did the apt-get xfs-xtt so what the hell do i do now
+<nickr> my fonts look nice.
+<chillywilly> start dat bizotch
+<nickr> I have some really cool fonts
+Action: dneighbo is confused
+<dneighbo> doesnt it start itself?
+<chillywilly> well did it do that at postinstall?
+<dneighbo> sigh let me reiterate
+<dneighbo> i need this to be continual
+<chillywilly> otherwise you can use it's init script
+<dneighbo> so what do i need to do to make it autostart?
+<dneighbo> what do i need to add/remove from my X file?
+<dneighbo> etc etc etc
+<dneighbo> etc
+Action: dneighbo is sick of fonts at this point nearly 2 hours and getting no where fast
+<mdean> make what autostart?  X?
+<chillywilly> it will start up with the script
+<dneighbo> mdean: the font server
+<chillywilly> fonts suck
+<mdean> you don't need the font server
+<chillywilly> X sucks
+<chillywilly> Linux sucks
+<chillywilly> eveything sucks
+<dneighbo> ok chillywilly so if i restart x right now
+<dneighbo> i wont be fucked?
+<dneighbo> as when i did this on redhat i was fucked
+<dneighbo> as it couldnt find the xfs-xtt server
+<chillywilly> you should be good to go
+<S11001001> chillywilly: you're right about linux
+<chillywilly> if by some change it is horked
+<mdean> dneighbo: say no to font server
+<chillywilly> just purge it
+<dneighbo> huh?
+<dneighbo> sigh
+<dneighbo> mdean how should i do this?
+<chillywilly> apt-get --purge remove xfs-xtt
+<mdean> dneighbo: use FontPath in XF86Config-4
+<chillywilly> dneighbo: you never listen to me anyway
+<mdean> add a fontpath for each directory that contains fonts for X
+<dneighbo> chillywilly: im trying to listen to you but you wont answer me
+<dneighbo> Section "Files"
+<dneighbo> #	FontPath	"unix/:7100"			# local font server
+<dneighbo> 	# if the local font server has problems, we can fall back on these
+<dneighbo> 	FontPath	"/usr/lib/X11/fonts/misc"
+<dneighbo> 	FontPath	"/usr/lib/X11/fonts/cyrillic"
+<dneighbo> 	FontPath	"/usr/lib/X11/fonts/100dpi/:unscaled"
+<chillywilly> /etc/init.d/xfs-xtt start
+<dneighbo> 	FontPath	"/usr/lib/X11/fonts/75dpi/:unscaled"
+<chillywilly> do that
+<dneighbo> 	FontPath	"/usr/lib/X11/fonts/Type1"
+<dneighbo> 	FontPath	"/usr/lib/X11/fonts/Speedo"
+<chillywilly> then retsrat X
+<dneighbo> 	FontPath	"/usr/lib/X11/fonts/100dpi"
+<dneighbo> 	FontPath	"/usr/lib/X11/fonts/75dpi"
+<chillywilly> dawg
+<dneighbo> EndSection
+<dneighbo> is what is in there mdean
+<dneighbo> and it sucked too
+<chillywilly> or
+<chillywilly> hey
+<mdean> you have unscaled in there
+<mdean> which sucks
+<dneighbo> grapevine:/home/dneighbo# /etc/init.d/xfs-xtt start
+<dneighbo> Starting X-TT font server: xfs-xtt.
+<dneighbo> grapevine:/home/dneighbo# 
+<chillywilly> just move the 75dpi ahead of the 100dpis
+<dneighbo> sigh
+<chillywilly> that's how i got it
+<chillywilly> you can do it in bpth places
+<chillywilly> seriously
+<dneighbo> Section "Files"
+<dneighbo> #	FontPath	"unix/:7100"			# local font server
+<dneighbo> 	# if the local font server has problems, we can fall back on these
+<dneighbo> 	FontPath	"/usr/lib/X11/fonts/75dpi"
+<dneighbo> 	FontPath	"/usr/lib/X11/fonts/misc"
+<dneighbo> #	FontPath	"/usr/lib/X11/fonts/cyrillic"
+<dneighbo> #	FontPath	"/usr/lib/X11/fonts/100dpi/:unscaled"
+<dneighbo> #	FontPath	"/usr/lib/X11/fonts/75dpi/:unscaled"
+<dneighbo> #	FontPath	"/usr/lib/X11/fonts/Type1"
+<dneighbo> #	FontPath	"/usr/lib/X11/fonts/Speedo"
+<dneighbo> #	FontPath	"/usr/lib/X11/fonts/100dpi"
+<dneighbo> EndSection
+<dneighbo> how about that?
+<mdean> dneighbo: here's my order
+<chillywilly> sure
+<mdean>     FontPath   "/usr/X11R6/lib/X11/fonts/drakfont"
+<mdean>     FontPath   "/usr/share/fonts/ttf/decoratives"
+<mdean>     FontPath   "/usr/share/fonts/ttf/western"
+<mdean>     FontPath   "/usr/X11R6/lib/X11/fonts/75dpi"
+<mdean>     FontPath   "/usr/X11R6/lib/X11/fonts/100dpi"
+<mdean>     FontPath   "/usr/X11R6/lib/X11/fonts/pcf_drakfont"
+rdean (~rdean@chcgil2-ar2-052-243.chcgil2.dsl.gtei.net) joined #gnuenterprise.
+<mdean>     FontPath   "/usr/X11R6/lib/X11/fonts/Type1"
+<mdean>     FontPath   "/usr/share/fonts/default/Type1"
+<mdean>     #FontPath   "/usr/share/fonts/ISO8859-2/75dpi"
+<mdean>     #FontPath   "/usr/X11R6/lib/X11/fonts/misc:unscaled"
+<mdean>     FontPath   "/usr/X11R6/lib/X11/fonts/misc"
+<mdean>     FontPath   "/usr/X11R6/lib/X11/fonts/Speedo"
+<chillywilly> see he has 75 ahead of 100 too
+<mdean> chillywilly: damn right! ;-)
+<mdean> and ttf ahead of them all
+<chillywilly> this just goes to show you how X sucks big fat ass
+<dneighbo> Section "Files"
+<dneighbo> #	FontPath	"unix/:7100"			# local font server
+<dneighbo> 	# if the local font server has problems, we can fall back on these
+<dneighbo> 	FontPath	"/usr/lib/X11/fonts/75dpi"
+<dneighbo> 	FontPath	"/usr/lib/X11/fonts/100dpi"
+<dneighbo> 	FontPath	"/usr/lib/X11/fonts/Type1"
+<dneighbo> 	FontPath	"/usr/lib/X11/fonts/misc"
+<dneighbo> #	FontPath	"/usr/lib/X11/fonts/cyrillic"
+<dneighbo> #	FontPath	"/usr/lib/X11/fonts/100dpi/:unscaled"
+<dneighbo> #	FontPath	"/usr/lib/X11/fonts/75dpi/:unscaled"
+<dneighbo> #	FontPath	"/usr/lib/X11/fonts/Speedo"
+<dneighbo> EndSection
+<dneighbo> ok 
+<chillywilly> try it
+<dneighbo> now should i uninstall xfs and xfs-xtt then?
+<chillywilly> nah
+<chillywilly> it shouldn't matter
+<dneighbo> ok will try
+<dneighbo> brb
+dneighbo (dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: "Client Exiting"
+Action: chillywilly waits
+<chillywilly> i hope we didn;t crash his X
+<chillywilly> :P
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<dneighbo> mdean: you get the hero award
+<dneighbo> i have small fonts now :)
+<dneighbo> yeee haw
+<mdean> didn't chillywilly say 75dpi?
+<dneighbo> um i had 75dpi all along
+<chillywilly> yea, what about me?
+<mdean> 100 is pure evil
+<dneighbo> you were one that suggested ordering them
+<chillywilly> feh
+<dneighbo> chillywilly: yes amen to you too
+<chillywilly> dude it is always dependent on the ordering
+<mdean> order does matter ;-)
+<dneighbo> however i still cant select custom fonts :(
+<mdean> custom fonts?
+<chillywilly> well neither casn I half the time
+<dneighbo> i still get hte little *
+<dneighbo> if i go to my gtk theme
+<chillywilly> stupid blocks show up
+<dneighbo> and select 'custom font'
+<dneighbo> and then try to choose one
+<chillywilly> it's bullshit
+<dneighbo> i have several to 'pick from'
+<dneighbo> but they have little *'s next to the sizes
+<dneighbo> and if you pick ones with *'s you get blocks instead of a font :)
+<mdean> where did you get these fonts?
+<dneighbo> which sucks
+<dneighbo> mdean: beats me
+<dneighbo> came with debian i suppose
+<dneighbo> they are int the 'chooser dialog'
+<mdean> ah
+Nick change: S11001001 -> everyone
+Nick change: everyone -> every1
+<dneighbo> its fairly moot at this point as i just maiking the font smaller solves my immediate problem
+<chillywilly> you've spent enough time getting goat raped
+<mdean> when you add fonts to X, you have to be sure that fonts.dir is rebuilt properly
+<chillywilly> live long an prosper
+<chillywilly> the debian packages post install scripts rebuils the fonts when you install the packages
+<chillywilly> it's cool like that
+Nick change: every1 -> S11001001
+<mdean> chillywilly: yeah - it should - just good to make sure that it does
+<dneighbo> mdean: ??
+<mdean> dneighbo: each font directory in your FontPath should have a fonts.dir file - and it should be the latest timestamp in relation to the font files
+<mdean> dneighbo: but like chillywilly says, deb should have rebuilt them
+<dneighbo> ttf-openoffice - OpenOffice TrueType Fonts
+<dneighbo> how can i get this package and play with it?
+<mdean> install it and make sure the fontpath is in your XF86Config-4 file
+<dneighbo> i.e. if i apt-get it what do i do when its done and how can i verify it instealled
+<chillywilly> is that  a debian package?
+<mdean> you don't have to restart X to reset the fonts, btw
+<chillywilly> hmmm
+<chillywilly> how do you get around that?
+<dneighbo> mdean: yes, but no one could reember how to do it w/o doing so :)
+<dneighbo> so that was a quickest method deal :)
+<chillywilly> hell if I know
+<chillywilly> hey
+<chillywilly> did you knwo in the movie dogma
+<chillywilly> Milwaukee was hell
+<chillywilly> lol
+<mdean> xset fp rehash
+Action: dneighbo is debating now that i spent all night on fonts whether i should attempt gnucash or not
+<chillywilly> better quit while your ahead
+<chillywilly> you can take da masta option
+<chillywilly> and say hey man I know if I touch it bad things will happen
+<chillywilly> ;P
+<dneighbo> argh
+<dneighbo> grapevine:/home/dneighbo# locate openoffice
+<dneighbo> locate: warning: database `/var/lib/locate/locatedb' is more than 8 days old
+<dneighbo> grapevine:/home/dneighbo# 
+<chillywilly> upatedb
+<chillywilly> ;)
+<dneighbo> how do you update locatedb?
+<dneighbo> shouldnt this be an automatic thing?
+<chillywilly> yes by cron
+<chillywilly> if you leave hte machine on
+<dneighbo> ah
+<chillywilly> do this: updatedb
+<mdean> no love from "which" ?
+<dneighbo> guess this is first machine i havent 'left on for like 180 days' ;)
+<dneighbo> damn dual boot
+<chillywilly> heheh
+<dneighbo> laptop usually gets left on over night
+<chillywilly> mine too
+<S11001001> dneighbo: it'd be great to get some uptime, but alas, I am dual-boot, and every1else likes win32
+<dneighbo> mdean: i just use what i know
+<dneighbo> i learned locate before which
+<dneighbo> as i didnt like 'find'
+<chillywilly> danielb@obfuscation:/etc/X11$ uptime
+<chillywilly>  21:26:56 up 4 days, 29 min,  3 users,  load average: 0.09, 0.08, 0.08
+<chillywilly> unfortunately
+<chillywilly> my uptime would be higher
+<chillywilly> if I didn't think that my network connection was horked
+<chillywilly> and reboot my laptop
+<chillywilly> turns out
+<chillywilly> the damn cat umplugged my hub
+<chillywilly> this is why cats must die
+<dneighbo> should i make this first entry
+<chillywilly> dneighbo: cats suck
+<dneighbo> Section "Files"
+<dneighbo> #	FontPath	"unix/:7100"			# local font server
+<dneighbo> 	# if the local font server has problems, we can fall back on these
+<dneighbo> 	FontPath	"/usr/share/fonts/truetype/openoffice/"
+<dneighbo> 	FontPath	"/usr/lib/X11/fonts/75dpi"
+<dneighbo> 	FontPath	"/usr/lib/X11/fonts/100dpi"
+<dneighbo> mdean: that look kosher?
+<dneighbo> now i do a xset fp rehash?
+<mdean> dneighbo: ja
+Action: chillywilly thinks da masta likes to ignore him
+<mdean> ja
+<dneighbo> grapevine:/usr/share/fonts/truetype/openoffice# xset fp rehash
+<dneighbo> grapevine:/usr/share/fonts/truetype/openoffice# 
+<chillywilly> no one wants to joint he kill th cats crusade?
+<dneighbo> how do i know if it worked?
+<chillywilly> join the
+<dneighbo> chillywilly: my rottie agrees
+<dneighbo> re: cats suck
+<chillywilly> you have a rot?
+<chillywilly> kicks butt
+<dneighbo> used to have 3 of theem
+<chillywilly> er, kick
+<chillywilly> cool
+<dneighbo> annd professionally train them
+<dneighbo> schutzhund work
+<dneighbo> btw: mdean that seemed fruitless
+<dneighbo> i cant seem to see any new fonts
+<dneighbo> in the font picker
+<dneighbo> any ideas?
+<mdean> ah
+<mdean> have to modify the font path too, I guess
+<mdean> xset +fp /usr/share/fonts/truetype/openoffice
+<mdean> xset fp rehash
+<mdean> +fp prepends the path, fp+ appends the path
+<dneighbo> grapevine:/usr/share/fonts/truetype/openoffice# xset +fp /usr/share/fonts/truetype/openoffice
+<dneighbo> grapevine:/usr/share/fonts/truetype/openoffice# xset fp rehash
+<dneighbo> grapevine:/usr/share/fonts/truetype/openoffice# 
+<dneighbo> ok some new fonts show
+<dneighbo> and they seem to not have the *
+<mdean> beefy!
+<dneighbo> question is why do some fonts show and have the *
+<dneighbo> shouldnt they be shot?
+<mdean> I always assumed the * fonts couldn't be scaled
+<dneighbo> ah quite possible
+<chillywilly> where my buddy jc at anyway?
+<chillywilly> where's
+<dneighbo> chillywilly: he was out buying a cat when i talked to him last ;)
+<chillywilly> noooooo!
+<chillywilly> not that
+<chillywilly> anything but that
+<dneighbo> something about cheap shipping to milwaukee
+<chillywilly> aaaaaah
+<dneighbo> i kind of ignored it
+<chillywilly> on purpose I suppose?
+<chillywilly> you let the cat out of th bag now....ok that was bad
+Action: chillywilly hangs his head in shame
+Rafterman (tim@lister.sesgroup.net) left irc: Remote closed the connection
+<dneighbo> whoo hoo just got interviewed by neilsen tv rating 
+<chillywilly> wasat?
+<dneighbo> kind of funny they called and spoke spanish to start with (being in arizona we often answer phone is spanish to deter solicitors)
+<dneighbo> so i answer fon
+<dneighbo> hola commo esta estad eh?
+<dneighbo> and she responds back in spanish
+<chillywilly> lol
+<chillywilly> rofl
+<dneighbo> and im like oh shit
+<chillywilly> roflmao
+<dneighbo> so then i had to do the ole mi es gringo
+<dneighbo> no hablo espanol
+<dneighbo> and she was almost in tears laughing
+<dneighbo> then started the nielsen survey
+<dneighbo> kind of funny actually
+<dneighbo> doh! i hang w/ jamest too much
+<dneighbo> i keep typing exut to shut su down
+Action: chillywilly just uses C-d
+<nickr> thats hilarious
+<dneighbo> hmm i like gnucash layout
+<dneighbo> please pray it will be stable for me
+<nickr> Oh great Ra, please grant stability for dneighbo 
+rdean (rdean@chcgil2-ar2-052-243.chcgil2.dsl.gtei.net) left irc: "Client Exiting"
+Bill_H (~chamilto@ga-cmng-u1-c3a-384.cmngga.adelphia.net) joined #gnuenterprise.
+Bill_H (chamilto@ga-cmng-u1-c3a-384.cmngga.adelphia.net) left irc: Client Quit
+<S11001001> the wind dies...
+<dneighbo> nickr: thankyou sir
+<dneighbo> it saved my transactions all fine
+<dneighbo> and i was even able to reconcile my account
+<dneighbo> whooo hooo
+<dneighbo> btw: i found cool font called conga that looks pretty damn similar to my own handwriting
+<dneighbo> was using until i noticed just like my own handwriting the difference between caps and lowercase is almost nil unless you see them next to one another
+<dneighbo> which is fine by me until it comes to saving / locating files :)
+<chillywilly> hehe
+Action: chillywilly has never used the reconcile feature on gnucash
+<chillywilly> ba;ancing the books if for wimps
+<chillywilly> balancing even
+<chillywilly> s/if/is
+<chillywilly> bah, I nee to learn how to type one of these days ;)
+<chillywilly> need
+<chillywilly> damnit
+<chillywilly> I wuit
+<chillywilly> fsker
+Action: chillywilly types like that 1337 romeo and juliet flick ;)
+<dneighbo> rofl
+<dneighbo> that flash was classic
+<chillywilly> it had me rolling
+<chillywilly> it waz tight g
+Rafterman (tim@lister.sesgroup.net) joined #gnuenterprise.
+S11001001 (sirian@63.64.10.190) left irc: Read error: 113 (No route to host)
+<dneighbo> argh how the hell do you do splits in gnucash
+<dneighbo> dres: you around
+Nick change: dneighbo -> derek
+<dres> derek: gotta walk the dog a few minutes, but will brb.
+<chillywilly> you right click the transaction
+<chillywilly> and pick the split option
+<chillywilly> ;)
+<derek> i can see how to 'start a split'
+<derek> i can not figure out hell the hell they work
+<derek> i left the first line blank and do a split
+<derek> do income of like say 1000
+<derek> then another income of 100
+<derek> and it moves it to expense and dumps a 900 split line as well
+<derek> so im like hmm maybe i need to put my net in the first line
+<derek> tried that w/ similar results
+<derek> basically i dont 'get it'
+<derek> just want to input a pay check man :(
+<chillywilly> is this a checking account?
+Action: chillywilly only splits his ATM transactions
+<chillywilly> ;)
+<derek> oh snap im wondering......
+<derek> salary is an income account
+<derek> i wonder if you have to input your paycheck into your salary account then debit it accross.....
+<derek> as they are trying to do 'real' accounting 
+<derek> although that shouldnt be necessary it should do it behind the scenes for me
+<chillywilly> basically yes
+<chillywilly> doble accounting
+<chillywilly> you transfer form an inclome account
+<chillywilly> income
+<chillywilly> yep, real accounting there
+<chillywilly> took me some getting used to
+<chillywilly> eer, I mean tdouble entry
+<chillywilly> but I have never used a prop. accounting app anyway ;)
+<chillywilly> so it wasn't a biggie to me
+<chillywilly> although ppl in #gnucash we're VERY helpful and held my hand the first couple times
+<chillywilly> dres: you guys rock
+<chillywilly> :)
+--- Mon Jan  7 2002

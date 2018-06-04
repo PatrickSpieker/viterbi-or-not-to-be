@@ -1,0 +1,682 @@
+jcater (~jcater@cpe-024-165-223-104.midsouth.rr.com) left irc: "nite"
+Isomer (BSD@203-167-190-147.dsl.clear.net.nz) left irc: "EPIC!  Accept specific limitations on WHO"
+dres (~dres@mail.lewismoss.org) left irc: Remote closed the connection
+dres (~dres@mail.lewismoss.org) joined #gnuenterprise.
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+SachaS (~Sacha@dialup-196-145.wasp.net.au) joined #gnuenterprise.
+paq (~paq@202.155.120.221) left irc: Remote closed the connection
+paq (~paq@202.155.120.221) joined #gnuenterprise.
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise ("import witty_sign_off failed: no such module").
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+paqan (~paq@202.155.120.221) joined #gnuenterprise.
+paq (~paq@202.155.120.221) left irc: "Client Exiting"
+paqan (~paq@202.155.120.221) left irc: "Client Exiting"
+paci (~paci@212.94.129.20) joined #gnuenterprise.
+paq (~paq@202.155.120.221) joined #gnuenterprise.
+paq (~paq@202.155.120.221) left irc: Remote closed the connection
+paq (~paq@202.155.120.221) joined #gnuenterprise.
+btami (~tamas@ip102-205.ktv.tiszanet.hu) joined #gnuenterprise.
+paq (~paq@202.155.120.221) left irc: "Client Exiting"
+ninja (rossg@home.golder.org) left irc: Read error: 113 (No route to host)
+paq (~paq@202.155.120.221) joined #gnuenterprise.
+ninja (~rossg@ip-195-149-26-185.nildram.co.uk) joined #gnuenterprise.
+dhap (~pradhap@61.11.56.27) joined #gnuenterprise.
+<dhap> hi ajmitch
+<dhap> does gnue supports oracle 
+<dhap> oracle9i
+<dhap> can any one tell me abt this...
+<dhap> ???
+<btami> hi dhap
+<btami> gnue supports oracle via DCoracle2 or cxOracle
+<dhap> btami does it supports Oracle 9i
+<btami> jcater is our orecle masta IIRC
+<btami> dont know :(
+<dhap> ok
+<dhap> when will he be available
+<btami> he is in US
+<dhap> can you give some contact info .. mail address or chat id .. like that
+<btami> gnue-dev@gnu.org or jcater@gnue.org
+<dhap> thankx btami :-)
+<btami> nothing :)
+dhap (~pradhap@61.11.56.27) left irc: "Client Exiting"
+ariel_ (~ariel@ppp-217-133-243-204.dialup.tiscali.it) joined #gnuenterprise.
+Nick change: SachaS -> SachaS_away
+btami (~tamas@ip102-205.ktv.tiszanet.hu) left irc: 
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) left irc: Read error: 104 (Connection reset by peer)
+btami (~tamas@ip102-205.ktv.tiszanet.hu) joined #gnuenterprise.
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+SachaS_away (~Sacha@dialup-196-145.wasp.net.au) left irc: Read error: 54 (Connection reset by peer)
+ToyMan (~stuq@smtp.dstoys.com) joined #gnuenterprise.
+SachaS_away (~Sacha@dialup-196-231.wasp.net.au) joined #gnuenterprise.
+jamest (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+<btami> hi jamest
+<btami> jamest: one bug remained in event rework
+<btami> CreateWidet is missing from GFEvent.py
+<btami> it is referenced in designers LayoutEditor.py with "old style" GFEvent.GFEvent(...
+<btami> line #329
+<btami> s/CreateWidet/CreateWidget
+<jamest> Event rework?
+<jamest> ping
+<btami> pong
+<btami> events went to common
+<jamest> sorry, I thought you were refering to something I did last nite
+<jamest> I'm in the code now
+<jamest> how to trip the bug?
+<btami> rug gnue-designer
+<btami> run
+<jamest> ok
+<jamest> the memory error?
+<btami> yes
+<jamest> working on it
+<btami> put CreateWidget event into GFEvent.py 
+<btami> and correct the line #329 for Event(...
+<btami> in LayoutEditor.py
+<btami> s/for/to
+<btami> sorry, but i have to go now (pickup kids)
+<btami> bye
+btami (~tamas@ip102-205.ktv.tiszanet.hu) left irc: 
+<jamest> anyone here?
+<jamest> with a working copy of cvs gnue-forms
+<jamest> I need someone to test the forms/sample/intro/intro.gfd form
+<jamest> enter a year, click the button and tell me if the fortune only blinks on the screen for a second or if it stays up
+Action: jamest is trying to figure out if he broke something
+jcater (~jcater@cpe-024-165-223-104.midsouth.rr.com) joined #gnuenterprise.
+jcater (~jcater@cpe-024-165-223-104.midsouth.rr.com) left irc: "bookstore"
+<ariel_> reinhard: are you there
+<reinhard> yes
+<ariel_> is carolinestrasse far away from paststrasse (intercity hotel) ?
+<reinhard> ummm
+<reinhard> let me try to find out
+<reinhard> ariel_: sorry i don't have a map of frankfurt
+<reinhard> neither was i ever in that city
+<reinhard> and i don't find any information about carolinestrasse
+<ariel_> no matter thanks anyway
+<ariel_> jamest: fortune stays well and alive
+<jamest> when was your last update?
+<ariel_> today download from cvs but may be stup-cvs yesterday
+<ariel_> let me rebuild
+<ariel_> rebuilded and works fine.
+<jamest> sigh
+<jamest> and this cvs is less than say 8 hours old?
+paq (~paq@202.155.120.221) left irc: "Client Exiting"
+paq (~paq@202.155.120.221) joined #gnuenterprise.
+<ariel_> yes
+ariel_ (~ariel@ppp-217-133-243-204.dialup.tiscali.it) left irc: "Uscita dal client"
+ninja (~rossg@ip-195-149-26-185.nildram.co.uk) left irc: Remote closed the connection
+ninja (rossg@home.golder.org) joined #gnuenterprise.
+Arturas (~arturas@fmgs-03.vtu.lt) joined #gnuenterprise.
+<Arturas> Hello
+<nickr> Hello! You are our fourth caller! Guess what that means!?
+<jamest> Nothing?
+<jamest> A free python traceback?
+<reinhard> that three were earlier?
+<Arturas> please, i'm so young, i want to live..... :) :)
+<nickr> hehe
+<jamest> :)
+<nickr> I'm pretty sure its a free wxWindows error dialog and all you can eat in spagetti traceback
+revDeke (www-data@alt1.libertydistribution.com) joined #gnuenterprise.
+Arturas (~arturas@fmgs-03.vtu.lt) left irc: Read error: 110 (Connection timed out)
+ariel_ (~ariel@ppp-217-133-244-155.dialup.tiscali.it) joined #gnuenterprise.
+<ariel_> reinhard: it's 99% confirmed that i will be in Frankfurt the 30th evening
+<ariel_> i will be very glad to meet you
+jcater (~jcater@24.165.223.104) joined #gnuenterprise.
+<reinhard> ariel_: great
+<reinhard> at what time will you arrive
+<reinhard> (approx.)
+<reinhard> ?
+paq (~paq@202.155.120.221) left irc: Remote closed the connection
+paq (~paq@202.155.120.221) joined #gnuenterprise.
+<ariel_> reinhard: about 19.30
+<reinhard> ah ok
+<reinhard> we would have to agree on a place where we can meet
+<reinhard> or maybe
+<reinhard> well
+<reinhard> not sure if i could make it to the airport until 19.30
+<reinhard> can i find a picture of you in the web?
+<ariel_> i will be at muenchner hof hotel not far from the expo
+<reinhard> ok
+<ariel_> tomorrow i will send you an email with exact timelines and a small jpeg
+<reinhard> ok
+<reinhard> found your hotel meanwhile
+<reinhard> it seems to be about 10 minutes walking distance to the intercityhotel :)
+SachaS_away (~Sacha@dialup-196-231.wasp.net.au) left irc: Excess Flood
+SachaS_away (~Sacha@dialup-196-231.wasp.net.au) joined #gnuenterprise.
+sjc (~sjc@modem-3813.elephant.dialup.pol.co.uk) joined #gnuenterprise.
+KeithJagrs (jorgre@63.74.24.9) joined #gnuenterprise.
+<KeithJagrs> hello
+ariel__ (~ariel@ppp-217-133-244-116.dialup.tiscali.it) joined #gnuenterprise.
+ariel__ (~ariel@ppp-217-133-244-116.dialup.tiscali.it) left #gnuenterprise ("Uscita dal client").
+ariel__ (~ariel@ppp-217-133-244-116.dialup.tiscali.it) joined #gnuenterprise.
+ariel_ (~ariel@ppp-217-133-244-155.dialup.tiscali.it) left irc: Read error: 113 (No route to host)
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+btami_ (~btami@3e70d735.dialin.enternet.hu) joined #gnuenterprise.
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) left irc: Read error: 104 (Connection reset by peer)
+sjc (~sjc@modem-3813.elephant.dialup.pol.co.uk) left irc: Read error: 110 (Connection timed out)
+<btami_> hi all
+<psu> hi btami_
+<btami_> pi psu
+Nick change: btami_ -> btami
+<KeithJagrs> btami: hi
+<btami> have you got my e-mail
+<btami> hi
+<btami> psu: have you got my e-mail?
+<btami> :)
+<psu> btami: not yet. If it's what I think it is, it could easily take 
+<psu> an hour to download
+<btami> it's that
+<psu> well, KeithJagrs will be pleased ;-)
+<KeithJagrs> ????
+<psu> KeithJagrs: I managed to "persuade"ё btami to do us a 
+<psu> Win .exe without the debug window as well
+<KeithJagrs> yeah!
+<KeithJagrs> how did you manage btami?
+<psu> but given that btami has to e-mail it to me 
+<psu> and then I have to uplaod it
+<psu> on dial-up, it may take a few hours ;-)
+<btami> console=0 in *.conf files
+<btami> oh, sorry 
+<KeithJagrs> well, I've thinking about it.  Maybe its better to have the debugging console. Specially in this early stages of gnue tools.
+<KeithJagrs> so you can point  out the bugs
+<KeithJagrs> psu: you are on dial-up? why?
+<btami> this was the original reason i made it that way
+<psu> I think it depends. If, like you, you want to put it in front of end-users
+<psu> KeithJagrs: my cable company have been saying broadband is "imminent" for 18 months
+<KeithJagrs> yes. but until now I've been just playing with forms or designer.
+<psu> I'm afraid the week I finally break down &get it from the phone company instead
+<psu> will be the week they finally offer it ;-)
+<KeithJagrs> psu: where are you located?
+<psu> Great Britain
+<KeithJagrs> hmmm
+<KeithJagrs> what about cable?
+<KeithJagrs> o sorry.. i read phone company
+<psu> my cable company have been saying broadband is "imminent" for 18 months ;-)
+<KeithJagrs> then what about ISDN 
+<psu> British Telecom have a wonderful attitude to broadband
+<KeithJagrs> or ADSL or something
+<psu> You go on the waiting list, and when they get 400 people on your exchange wanting it 
+<psu> they consider it ;-)
+<KeithJagrs> ;)
+<KeithJagrs> I have cable, thankfully
+<jcater> <Phone Company Rep> Man, what are the odds of there being 400 people in this exchange with the same initials: PSU
+ariel__ (~ariel@ppp-217-133-244-116.dialup.tiscali.it) left irc: Read error: 113 (No route to host)
+<KeithJagrs> heheheh
+<btami> ooo, jcater!
+ariel__ (~ariel@ppp-217-133-247-78.dialup.tiscali.it) joined #gnuenterprise.
+<psu> Actually, I expect my exchange is set up already 
+<psu> as there's a whopping big technology park 
+<psu> within spitting distance
+<psu> but phone co broadband is expensive 
+<KeithJagrs> yeah
+<psu> compared to cable
+<jcater> btami: howdy
+<btami> jcater: my "focus nightmare" and clicking on tabs issues are still alive
+<psu> Of coure, phone broadband exists, which is a plus
+<jcater> really?
+<jcater> hrm
+<psu> I just know that O'Toole's Rule will apply and the week I finally break down 
+<psu> and ask the phone company to install 
+<btami> i'm starting intro.gfd
+<btami> then pgdn
+<KeithJagrs> where in Great Britain, psu?
+<psu> the next week the cable company will finally get their arse in gear
+<btami> then type my name + enter
+<psu> Sunderland
+<btami> then type ma year of birth
+<btami> but this goes into name field
+<btami> and cursor in the year field
+<jcater> ok, I'll look at again tonight
+Nick change: jcater -> jcErrands
+<btami> clicking on tabs issue too
+<btami> ok, thans
+<btami> s/thans/thanks
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+<reinhard> oops
+<reinhard> ok possibly my last post didn't get through
+<reinhard> so again:
+<reinhard> hi psu
+<reinhard> i have a few questions on the website
+<KeithJagrs> hey 
+<KeithJagrs> hey is there an organization chart for the GNUe project?
+<psu> since when has joining #gnuenterprise been an "oops" ;-)
+<reinhard> http://www.gnuenterprise.org/tools/geas.php
+<reinhard> seems to refer to old geasgeas
+<reinhard> if it's not too much effort
+<reinhard> i think it would be good to
+<reinhard> a) rename the page to appserver.php and
+<reinhard> b) take the text from appserver/README
+<psu> KeithJagrs: bizarlly enough, I have the www.oxymoronlist.com site open as we speak ;-)
+<reinhard> psu: lol
+<psu> reinhard: it *should* refer to the new appserver - I will check 
+<psu> I know the filename is wrong - same for /tools/gnurpc.php -> common.php
+<KeithJagrs> heeh
+<psu> no, the text is wrong too, isn't it?
+<psu> I'll get that fixed
+Action: psu will have to get the README text off the savannah web site as I don;t have
+<psu> the code CVS checked at at the moment
+<psu> My hard disc is full to bursting, so anything non-essential went 
+<psu> (inc. frozen bubbles)
+<KeithJagrs> I'd like to contribute to the gnue project. Not by coding, at first. I don't consider myself a programmer.
+<nickr> Frozen Bubble IS essential
+<psu> I need to re-partition and reduce the non-free partition on this PC
+<KeithJagrs> I'd like to help in the definition of roadmap. I think it's essential
+<psu> as I never use it any more
+<psu> I agree. Biggest problem will be that we can't realistically put dates on 
+<psu> as per mailing list
+<psu> but 
+<psu> we have cross-dependancies.
+<psu> The one that has been most significant the last year has been 
+<psu> we didn't really want to start on apps until we have a prototype app server
+<KeithJagrs> I see
+<psu> but this particular circle looks as if it is being squared 
+<psu> I'm sure there will be others as we go 
+<psu> e.g. Financials needs feature foo in Forms for feature bar
+<psu> feature bar is in Financials 0.5, feature foo is in Forms 1.2
+<KeithJagrs> yes. Maybe it is better to put efforts on tools first, then in packages
+<psu> which originally have same release date targets, but one or other slips
+<KeithJagrs> but foreseeing those needs
+<psu> KeithJagrs: that's sort of what we've done, I guess
+<KeithJagrs> well yes
+<psu> the Tools are not pefect, but I think they belie their 0.x.0 or 0.0.x version numbers
+<KeithJagrs> anyways
+<psu> in terms of kick-ass functionality
+Action: psu is learning fluent deke-speak ;-)
+<KeithJagrs> hmm
+<nickr> psu: you are good at this selling gnue thing
+<KeithJagrs> so in terms of commercial apps, what would be some more accurate version numbers for the current releases? In your opinion..
+<reinhard> psu: another point for appserver web page
+<reinhard> there are two current documents (whitepaper and api doc)
+<reinhard> IMHO it would make sense if the html version was online
+<reinhard> (at least the html version that is) :)
+<revDeke> if windows is on 2000 forms is at least at version 10.0
+<KeithJagrs> heheeheeh
+<revDeke> compared to other opensource (sic) stuff we are probably somewhere between 1.0 and 2.0
+<revDeke> it all depends
+<psu> reinhard: ok. Are these in CVS too? Or still in ~reinhard/ ?
+<KeithJagrs> I mean, on the basis that version 1.0.0 is usually the one considered ready for production
+<reinhard> they are in appserver/doc api whitepaper
+<reinhard> you just have to do
+<revDeke> apache, gtk and the likes were good about version numbering and so i think 0.4.0 is realistic if you use them as a baseline
+<reinhard> make html
+<reinhard> make ps
+<reinhard> make pdf
+<reinhard> etc.
+<revDeke> if you use other projects claiming to be version 8.0 and such we are probably similar
+<reinhard> revDeke: you refering to Exel 8.0 here?
+<nickr> HP/UX Version 14
+<reinhard> ;)
+<psu> what is nola's version number ?
+<reinhard> aehm i mean excel not exel
+<reinhard> psu: last point
+<revDeke> psu: dont know
+<revDeke> i woudl label at a 0.2.0 right now (acclite)
+<reinhard> i would like to see the "GNU Enterprise: Module Design Proposal" marked as "obsoleted"
+<revDeke> and i expect it to ramp up VERY quickly
+<reinhard> on http://www.gnuenterprise.org/docs/docs.php
+<revDeke> as the low version number is simply because its not really tested
+<revDeke> reinhard: i would not
+<revDeke> i think its still pertinent
+chillywilly (~danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+<revDeke> it needs updating but i plan to revive it very soon
+<revDeke> as i plan on pumping out a lot of modules
+<KeithJagrs> well
+<revDeke> and i want something as my template... though i might replace it with an open office version
+<KeithJagrs> what about roadmap, anyway?
+<revDeke> i have been screaming roadmap for a bit
+<revDeke> its not that simple though 
+<revDeke> in due time
+<chillywilly> reverend Deke?
+<revDeke> yes
+<chillywilly> hehe
+<KeithJagrs> revDeke: cool
+<revDeke> KeithJagrs: we have multiple things going on 
+<KeithJagrs> good effort
+<revDeke> so its hard to compile a road map
+<revDeke> as things are interdependent
+<chillywilly> well that's an excuse if I ever heard one ;
+<chillywilly> ;)
+<revDeke> so you need to do all roadmaps in a cohesive manner
+<KeithJagrs> I think roadmap should be done on concensus. not one persons effort
+<revDeke> yet thats huge task :)
+Action: psu said that 
+<revDeke> with lots of players
+<psu> ;-)
+<revDeke> i suspect someone will have to compile the TODOs of the tools and such
+<revDeke> and make a draft roadmap
+<revDeke> and solicit feedback
+<chillywilly> blah, it's garbage night
+<revDeke> and modify the feedback into the roadmaps, rinse and repeat a few times
+<revDeke> and there is something go by
+<chillywilly> I guess I should drag it out to the road
+<KeithJagrs> revDeke: good idea
+<revDeke> the other issue is getting a road map might not be too bad for the 'next' release but a good roadmap will include 2 to 3 releases out
+<KeithJagrs> what about setting up a Wiki?
+<revDeke> i dont care for wiki, but certainly folks can do so
+<revDeke> i think wiki is good for user driven content that needs minimal controls
+<revDeke> but official documentation, guides, roadmaps and such
+<chillywilly> wiki good, deke baaad
+<revDeke> that need tighter review and control are not good for wiki IMHO
+<reinhard> psu: that's all
+<reinhard> psu: if i can help you with the text (for appserver.php) or the docs please tell me
+<chillywilly> hey hey reinhard
+<nickr> most wikis these days allow you to have at least access control.
+<reinhard> psu: not sure if there is a possibility that i could update the docs on the web page myself as often as i change them
+<chillywilly> GGV has a local buffer overflow when reading corrupted
+<chillywilly>  PS and PDF documents.
+<reinhard> however it's bedtime today for me
+<reinhard> night all
+<psu> reinhard: we should have the web site in CVS real soon now
+<psu> nite reinhard
+<chillywilly> night reinhard
+<KeithJagrs> nite reinhard
+<psu> KeithJagrs: re. wiki, I refer to my post to the mailing list
+<psu> we already have 10 channels of communication
+<KeithJagrs> 10 channels?
+Action: psu would support a wiki if it replaced some of those
+<psu> rather than just became number 11
+<KeithJagrs> ok
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) left irc: ""roadmap" means to replace chance by error"
+Action: psu can't remmeber them all now - website, mailing, irc, etc.
+<psu> and reinhard still claims his quote list is random...
+<KeithJagrs> I favor a webforum for instance, instead of a mailing list. (but thats is just my opinion)
+<psu> KeithJagrs: we tried that for about a year
+Mussi (~bah@234235.bhz.virtua.com.br) joined #gnuenterprise.
+<psu> I was responsible for killing it
+<psu> as no-one was using it
+<psu> I think 
+<chillywilly> not exatly the same thing
+<chillywilly> PHPNuke is like a news site
+<psu> the real focus of this project for good or ill is IRC
+<chillywilly> PHPBB or something similar would be a forum
+<psu> mostly for good, IMHO
+<psu> chillywilly: true, dat
+<nickr> PHPBB is excellent
+<chillywilly> but we have IRC so this is our support system ;)
+<chillywilly> nickr: indeed it is :)
+<KeithJagrs> well as the user base or contributors grow, a forum is better suited than a mailing list
+<chillywilly> blah, I prefer the push method ;)
+<KeithJagrs> chillywilly: ;)
+<revDeke> webforums suck for developers
+<revDeke> i have no problem people making what works best for them
+<KeithJagrs> ok
+<revDeke> but dont expect developers (those most capable of helping) to spread accross 15 different mediums
+<nickr> mailing lists are great because they are easy to ignore
+<nickr> it takes no effortr
+<KeithJagrs> not for developers then. but for discussions on features an such.
+<KeithJagrs> and roadmaps
+<KeithJagrs> you have to ackowlede the advantages or forums for some uses
+<KeithJagrs> they are easier to browse than a mailing lists archive
+<KeithJagrs> err, the advantages OF forums
+<jamest> we did forums, long long ago at peoples insistance
+<jamest> (is that a word? :)
+<jamest> anyway, we set them up and they got used exactly ZERO times
+<chillywilly> I think so
+<jamest> kinda ticked me off to be honest :)
+<chillywilly> HEH
+Action: psu thinks the best way is to hard-wire our brains together in a neural net
+<psu> then we'd all finally understand chillywilly
+<btami> jamest:btw. thank you for correcting my bugfix ideas (GFEvent)
+<nickr> psu: Impossible. It would only lead to confusion
+<jamest> no way I want to know what goes on in chillywilly's brain man
+<jamest> i barely can keep track of the voices in my head let alone his
+<jamest> btami: no problem, hope it works ok now :)
+<jamest> bbiab
+<chillywilly> muwahahahaha
+<btami> night all
+<chillywilly> night
+btami (~btami@3e70d735.dialin.enternet.hu) left irc: 
+Action: psu is away: zzz
+<KeithJagrs> hehe
+<chillywilly> Todd Boyle is still on our list?
+<chillywilly> hmm
+Action: chillywilly vowes to finish The Two Towers tonight
+<chillywilly> only 3 chapters to go
+<KeithJagrs> is that a novel?
+<nickr> you are too slow
+<chillywilly> 2nd book of The Lord of the Rings
+<chillywilly> nickr: I don't sit there and read it all night
+<chillywilly> in fact I didn't read any at all last night
+<nickr> what is wrong with you?
+<chillywilly> I had stuff to do
+<chillywilly> went to church
+<chillywilly> etc.
+<chillywilly> the other night I cleaned p some code and committed it to my cvs repo
+<nickr> gah
+KeithJagrs (jorgre@63.74.24.9) left irc: Read error: 54 (Connection reset by peer)
+Mussi (~bah@234235.bhz.virtua.com.br) left #gnuenterprise ("Cliente IRC saindo").
+Nick change: jcErrands -> jcater
+<revDeke> sup 
+<jcater> word
+<nickr> werd
+<chillywilly> whirred
+<jcater> up
+jamest (~jamest@hobbes.math.ksu.edu) left #gnuenterprise.
+<nickr> yo
+<jcater> yoyo?
+<revDeke> frisbee
+<jcater> pizza 
+ToyMan (~stuq@smtp.dstoys.com) left irc: ": I'm off to make more toys..."
+Action: revDeke drool
+<revDeke> s
+<nickr> snz: donuts
+<nickr> er
+<nickr> donuts
+Action: jcater drool
+<jcater> s
+<nickr> KRISPY
+siesel (jan@dial-213-168-64-140.netcologne.de) joined #gnuenterprise.
+<siesel> hi
+Action: revDeke wonders what outsiders must think at times...
+<revDeke> pizza, drool, donut, drool, krispy, hi
+<nickr> krispy kreme
+<revDeke> and thats normal conversation for here :)
+<nickr> scary ain't it
+<revDeke> disturbing to say the least
+ninja (rossg@home.golder.org) left irc: Read error: 110 (Connection timed out)
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) joined #gnuenterprise.
+ninja (rossg@home.golder.org) joined #gnuenterprise.
+<revDeke> hi ross
+<revDeke> is same rossg from LONG time ago with openerp?
+<ninja> openerp?
+<ninja> probably not
+<ninja> i'm just lurking atm
+<chillywilly> done
+<chillywilly> whew I thought Frodo was dead
+siesel (jan@dial-213-168-64-140.netcologne.de) left irc: "testing new isdn packages"
+siesel (jan@dial-213-168-64-140.netcologne.de) joined #gnuenterprise.
+ToyMan (~stuq@glvv-dsl2-191.citlink.net) joined #gnuenterprise.
+<revDeke> hmmm
+Action: Yurik is thinking that developing for Windows suck a lot.. may be forget it? :-)
+<revDeke> i remember a ross from colorado (or working for coors or something) with freeerp or openerp or something i talked to via phone a LONG time ago
+<ninja> revDeke: aye, we're a rare breed :)
+<jcater> I consider myself Medium Well
+<jcater> given AZ's heat, I guess revDeke is more charbroiled
+Action: chillywilly is rare
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) left irc: "Вышел из XChat"
+<chillywilly> not enough sun up here in WI
+<revDeke> we call that 'overdone'
+<revDeke> or 'extra crispy' in chicken terms ;)
+siesel (jan@dial-213-168-64-140.netcologne.de) left irc: "Eject! Eject! Eject!"
+Action: pattieja is away: driving
+<SachaS_away> bye
+<chillywilly> bye
+SachaS_away (~Sacha@dialup-196-231.wasp.net.au) left irc: Read error: 113 (No route to host)
+SachaS (~Sacha@ark.cs.curtin.edu.au) joined #gnuenterprise.
+<chillywilly> wb
+<SachaS> me? if yes ta
+<chillywilly> yes you
+revDeke (www-data@alt1.libertydistribution.com) left #gnuenterprise.
+<ajmitch> hello all
+<chillywilly> run!
+Action: ajmitch runs away from chillywilly
+<chillywilly> :)
+<ajmitch> don't hurt me!!
+KeithJagrs (jorgre@63.74.24.9) joined #gnuenterprise.
+<KeithJagrs> talking about version numbering
+<KeithJagrs> s?
+<KeithJagrs> 19:33 <runyaga> NG
+<KeithJagrs> 19:33 <runyaga> i am not big fan of it
+<KeithJagrs> 19:33 <zz> NG is the best series
+<KeithJagrs> 19:33 <runyaga> my gf is huge fan
+<KeithJagrs> 19:33 <runyaga> not a trekkie
+<KeithJagrs> 19:33 <runyaga> but thats her "geek" thing
+<KeithJagrs> 19:33 <zz> problem is ive seen every episdoe several time
+<KeithJagrs> 19:33 <runyaga> yes
+<KeithJagrs> 19:33 <zz> my wife is a trekkie now
+<KeithJagrs> 19:33 * standblue has joined #zope
+<KeithJagrs> 19:33 <runyaga> TNN is doing good job
+<KeithJagrs> 19:34 <zz> yeah one decent show in many hours of crap
+<KeithJagrs> 19:34 * WheatGSC has quit IRC ("[x]chat")
+<KeithJagrs> sorry
+<KeithJagrs> sorry. bad pasting.
+<KeithJagrs> I mean:
+<KeithJagrs> Lindows.com has fixed a date for the "General Release" of its operating system software, promising that Lindows 3.0 will be available from mid-November. 
+<chillywilly> TNN and USA are the same network right?
+<chillywilly> and they bought scifi channel?
+<chillywilly> and killed Farscape :'(
+<chillywilly> bastards
+<KeithJagrs> scfi channel? don't have that one
+<KeithJagrs> what is/was farscape about?
+<chillywilly> man...it's only the best frelling scifi show ;)
+<KeithJagrs> hmm
+<chillywilly> John Crighton (sp?) an astronaut gets shot through a worm hole to find himself on a living ship ( a leviathon) with escaped prisoners
+<chillywilly> er, alien escaped prisoners
+<chillywilly> that's the jist but it's a little more invoved than that
+<KeithJagrs> hmmm
+<chillywilly> involved
+<KeithJagrs> living ship?
+<chillywilly> yep
+<KeithJagrs> like HAL?
+<chillywilly> a Leviathon named Moya
+<KeithJagrs> what's a leviathon
+<chillywilly> a biomechanical ship
+<chillywilly> that is a sentient being
+<chillywilly> it has a pilot that is "bonded" to the shipt
+<KeithJagrs> kind of like 2001 space odissey
+<chillywilly> they are a race of aliens whose sole purpose it to travel space
+<chillywilly> pilots that is
+<chillywilly> not really
+<chillywilly> Farscape has many stry lines
+<chillywilly> all the characters on Moya do
+<chillywilly> it is really a cool story
+<KeithJagrs> I see
+<chillywilly> but they're not going to be able to finish it
+<KeithJagrs> you sure?
+<chillywilly> case they did not renew the contract for the 5th year
+<KeithJagrs> hmmm
+<KeithJagrs> is scifi a channel like discovery?
+<chillywilly> http://www.scifi.com/farscape/
+<chillywilly> no, it's scifi ;)
+<chillywilly> http://www.savefarscape.com I think that should work too
+<ajmitch> nobody cares about farscape, chillywilly
+<ajmitch> face it, it's crap ;)
+<KeithJagrs> hehe
+<chillywilly> :'(
+<chillywilly> ajmitch: that's like saying LOTR is crap
+<esands> what
+<esands> farscape not care ?? Damn boy...
+<ajmitch> hehe
+Action: ajmitch will bbl
+Action: esands flumes...
+<esands> Anyone suggest a good data modeller? There doesn't seem to much free stuff
+<SachaS> bye
+SachaS (~Sacha@ark.cs.curtin.edu.au) left #gnuenterprise ("Client Exiting").
+<chillywilly> dia ;)
+<Mr_You> re
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) joined #gnuenterprise.
+<Yurik> re
+<Mr_You> hi yurik
+<esands> doesn't generate sql though.  I just managed to get pgdesigner compiled. Simple but looks useful
+<Mr_You> never heard of pgdesigner
+<esands> http://www.hardgeus.com/projects/pgdesigner/
+<esands> Couples others that run on linux I discover as well:
+<esands> http://www.alzabo.org/ (perl nightmare to install, needs mason)
+<Mr_You> pretty cool
+<Mr_You> I wonder if you could build that into GNUe.
+<Mr_You> maybe one day ;-)
+Yurik_ (~yrashk@as5300.kharkov.ukrtel.net) joined #gnuenterprise.
+<Mr_You> maybe GNUe Designer could have "New->Form" and "New->Schema" or somethin.
+Bill_H (~chamilto@ga-cmng-cuda2-c3b-64.cmngga.adelphia.net) joined #gnuenterprise.
+<Yurik_> Mr_You: hi
+<Mr_You> might have to mention it again.
+<Mr_You> wb yurik
+<esands> http://www.codebydesign.com/DataArchitect/ ($30, but lots of features)
+<esands> I guess someone could pgdesigner is in c++
+<Mr_You> hehe.. that picture in the corner is kinda funy
+<esands> Problem is with SQL is that different DBs have different requirements 
+<Mr_You> yeah, but you could possibly build it into the DB extraction routines.
+<Mr_You> well, I guess it would only be useful for designer.
+<Mr_You> unless you wanted to be able to create tables from a Form
+<esands> True, I'm sure someone here is up to it. 8)
+<esands> Definitely wouldn't want that from an admin pov.  
+<Mr_You> whatcha mean?
+<esands> Enough trouble keeping users safe as it is. 
+<esands> Safe from doing something nasty to the system
+<Mr_You> well.. to create/edit Forms it requires you have some sort of ability to build a database table.. as things get complicated a schema designer is a good addition to Form building.
+<Mr_You> it would fit right in with Designer.
+<Mr_You> right now I think it reads schemas
+<esands> With that yes, but not from forms
+<Mr_You> oh yeah I see ;-)
+<esands> heh
+<esands> What type of schemas does the designer read?
+<Mr_You> what DBs?
+<esands> pg
+<Mr_You> actually I guess it just reads individual tables.
+<esands> Yeah
+<Mr_You> I believe the wizard will query your datasource (db table) and help build a form 
+<Mr_You> so I mispoke.
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) left irc: Read error: 110 (Connection timed out)
+<esands> I guess in that sense, doesn't help you put together then schema though
+<Mr_You> nah the schema would mean multiple tables.. 
+<Mr_You> so now we have another wish list item ;-)
+<chillywilly> sigh
+<Mr_You> thanks to you ;-)  or if someoneelse has mentioned it I haven't heard it
+<Mr_You> what up chill?
+<chillywilly> there's multi-datasource in thw works already
+<chillywilly> j00 must sbscribe to the commit list
+Action: chillywilly works his mojo on Mr_You
+<Mr_You> ok, well that has nothing to do with schema design ;-)
+<Mr_You> or does it?
+Nick change: Yurik_ -> Yurik
+jcater (~jcater@24.165.223.104) left irc: 
+<esands> better go get lunch before its dinner...  (computers and time dont mix do they)
+<Mr_You> adios
+Action: chillywilly reads Return of the King
+<Yurik> night
+<Mr_You> night
+Action: Yurik is away: Я занят
+lawrence (~lawrence@bsd01.necessity.org) joined #gnuenterprise.
+KeithJagrs (jorgre@63.74.24.9) left irc: "later"
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) left irc: Read error: 110 (Connection timed out)
+<Mr_You> hi lawrence
+<lawrence> hi
+<lawrence> Whats up?
+<Mr_You> not much how about you?
+<lawrence> Just hangin out, doing some gnue builds
+Bill_H (~chamilto@ga-cmng-cuda2-c3b-64.cmngga.adelphia.net) left irc: "Client Exiting"
+rdean (~rdean@12-221-229-247.client.insightBB.com) joined #gnuenterprise.
+ra3vat (~ds@ics.elcom.ru) left irc: "Client Exiting"
+KeithJagrs (trilluser@63.74.24.9) joined #gnuenterprise.
+ToyMan (~stuq@glvv-dsl2-191.citlink.net) left irc: ": I'm off to make more toys..."
+jbailey (~jbailey@65.48.140.35) joined #gnuenterprise.
+wayneg (~merlinx@ppp1514.qld.padsl.internode.on.net) joined #gnuenterprise.
+ra3vat_ (~ds@ics.elcom.ru) joined #gnuenterprise.
+jbailey (~jbailey@65.48.140.35) left #gnuenterprise ("Client Exiting").
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<derek> hi lawrence
+<derek> um esands: datamodeler gnue + dia
+<derek> make dia UML
+<derek> write small xslt script to go from dia xml to gnue schema definition xml and viola you have data modeler :)
+<lawrence> hi derek
+<derek> you the lawrence from emails?
+<derek> on list recently wanting to help?
+<lawrence> yeah this me
+<lawrence> I read through the gnue docs
+<derek> and you are still here... wow im impressed ;)
+<lawrence> and am going through an install on freebsd
+<wayneg> haha
+<lawrence> so far so good not probs
+<derek> wayneg: hello, another new face :)
+<lawrence> i was fiddling with mozilla's xpserver 
+<lawrence> a very nasty build
+KeithJagrs (trilluser@63.74.24.9) left irc: "later"
+--- Fri Oct 25 2002

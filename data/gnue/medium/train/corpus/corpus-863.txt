@@ -1,0 +1,199 @@
+*** reinhard has joined #gnuenterprise
+<reinhard> good morning
+*** kilo has joined #gnuenterprise
+<reinhard> sorry if this is a stupid question, but
+<reinhard> can I print directly to a printer with gnue-reports under windows?
+*** johannesV has joined #gnuenterprise
+<johannesV> good morning
+<kilo> good morning
+<reinhard> wow, zipgrid looks very nice already
+<johannesV> yah ... although the code still needs a lot of 'lifting'
+<johannesV> and it supports only default-entries atm
+<dimas> reinhard: is there a screenshot?
+<dimas> good morning all
+<johannesV> dimas, for which os do you like to see the screenshot ?
+<kilo> DOS
+<kilo> 6.22
+<johannesV> well, curses is not yet up to date but i'll get it there ...
+<kilo> ;)
+* reinhard slaps kilo with a trout
+<reinhard> was about time
+<reinhard> ;-)
+<kilo> nooo not a fish... anything but fish
+<reinhard> chilliwilly is not as reliable as he was
+<reinhard> ;-)
+<kilo> lol
+<kilo> any chance to release soon? translator tools getting rusty :)
+<dimas> johannesV: for linux would be ok, win32 too
+<reinhard> anybody using gnue-reports on windows?
+<kilo> svn or release?
+<reinhard> either
+<reinhard> just want to know whether you can print directly
+<reinhard> or you have to generate a pdf which you then manually print
+<kilo> we use release inhouse
+<kilo> oh... we generate a txt file and print that
+<kilo> *maybe* it is possible though
+<reinhard> ok, I think I'll ask jcater later
+<reinhard> thanks anyway
+<reinhard> kilo: forms is still a highly moving target
+<reinhard> and I frankly don't expect any release before holiday season is over
+<kilo> ok, will be away from 13-29
+<kilo> ah ok
+<reinhard> we will see forms 0.6 by the end of the year
+<reinhard> but we might do something like a 0.5.90/91/92 series in between
+<kilo> would be nice
+<kilo> and appserver?
+<johannesV> http://www.gnuenterprise.org/~johannes/zipgrid-gtk.png  and http://www.gnuenterprise.org/~johannes/zipgrid-xp.png
+<reinhard> there have been nearly no changes in appserver since the last release IIRC
+<reinhard> same goes for common
+<kilo> wow johannesV... it is so 'enterprise-level-like'
+<reinhard> hmm... appserver *had* some changes regarding performance improvements
+<reinhard> kilo: you're right, we should do releases
+<reinhard> but I won't do before my holiday (which starts the day after tomorrow)
+<kilo> ok, not pushing it....
+<reinhard> lol - reading this in a mail .signature:
+<reinhard> Have you ever noticed that the Klingons are all speaking unix? 'Grep
+<reinhard> ls awk chmod.'' 'Mknod ksh tar imap.' 'Wall fsck yacc!' (that last is
+<reinhard> obviously a curse of some sort).
+<reinhard> Gandalf Parker
+<kilo> lol
+<dimas> johannesV: looks cool
+<johannesV> yes, and the best thing is it is done with just a few lines of gfd-code
+<johannesV>  <grid block="zip" rows="5">
+<johannesV>         <gridline>
+<johannesV>           <entry name="city" field="city" label="City" />
+<johannesV>           <entry name="zip" field="zip" label="ZIP" />
+<johannesV>           <entry name="state" field="state" label="State"/>
+<johannesV>         </gridline>
+<johannesV>         <gridline>
+<johannesV>           <entry name="longitude" field="longitude" label="Longitude"/>
+<johannesV>           <entry name="latitude" field="latitude" label="Latitude" s:span="2"/>
+<johannesV>         </gridline>
+<johannesV>       </grid>
+<johannesV> that's the code needed to build that zipgrid sample
+*** btami has joined #gnuenterprise
+<btami> hi all
+<kilo> llo btami
+<btami> reinhard: you can print to a printer a Char report
+<reinhard> with a proper printer selection box, or only to default printer?
+<btami> if use xml formatter, can print to a gdi printer
+<reinhard> ok, sounds good
+<reinhard> thanks
+<btami> text, html, escp,.. to a raw win32
+<btami> if you don't select a printer, it will pop up a selection dialog
+<btami> all above true with svn version of reports, released doesn't works
+<reinhard> ok
+<btami> have to say, reports is far from a polished state
+<reinhard> we are approaching a project where we would need a number of reports
+<reinhard> most of them probably being simple lists of records (maybe with master/detail, but nothing complicated)
+<btami> same here
+<kilo> M/D is... tricky
+<btami> Char not supports it yet
+<btami> iirc
+<kilo> true
+<reinhard> so the simple "click on <i want a report> - enter parameters - select printer from standard dialog - click ok" way doesn't quite work now?
+<btami> it works, but the reports filters (layouts) not there...
+<btami> universal is stalled
+<btami> char is limited
+<btami> there was no work on reports lately
+<reinhard> we'll have to decide whether we use reports or do some manual python (maybe reportlab) based solution
+<btami> just look at reports version number...
+<btami> i suggest to use/enhance gnue-reports
+<reinhard> problem is we need the program working with 1 september
+<btami> if everyone using custom report solution, it will be never finished
+<reinhard> and that might become a little tough if we have to fix reports first
+<btami> i say, try it first
+<reinhard> however I agree in principcle and we will have to look how far away we are from what we need
+<reinhard> ye
+<reinhard> yes
+<btami> :)
+<btami> as i see, the engine itself is ready, the filters need more work
+<reinhard> we might need your help with finding our way through reports
+<btami> np
+*** reinhard has quit IRC
+*** reinhard has joined #gnuenterprise
+*** SachaS has quit IRC
+<johannesV> reinhard, which debug-level is assigned for uidriver-specific thing ?=
+<johannesV> erm, things
+*** jamest has joined #gnuenterprise
+<reinhard> hmmm
+<reinhard> I thought it was 7-9
+<reinhard> but not really suer
+<reinhard> sure
+<johannesV> hm, i think that pylint is doing a mistake
+<johannesV> it argues that my abstract class UIHelper (in _base.py) isn't used anywhere ...
+<johannesV> (R0921)
+<johannesV> but if i just open entry.py the first thing is class UIEntry(_base.UIHelper): ....
+<btami> bbl
+*** btami has quit IRC
+<reinhard> johannesV: so pylint is correct, because a class beginning with an underscore is not expected to be used outside the module
+<johannesV> ah, that's it ...
+<johannesV> ok, sorry for that noise :)
+<johannesV> so maybe we should consider renaming _base.py into base.py
+<johannesV> or, just change that import line
+<reinhard> I think it must begin with an underscore to not count as a valid widget
+<johannesV> ah right ... that import-thingy
+<reinhard> so I would just leave that
+<johannesV> yes, that was what i was about to do with it ...
+*** SachaS has joined #gnuenterprise
+*** SachaS has quit IRC
+*** johannesV_ has joined #gnuenterprise
+*** johannesV has quit IRC
+*** kilo has left #gnuenterprise
+*** jcater has joined #gnuenterprise
+<johannesV_> bha, that damn svn ...
+<johannesV_> i hate it to wait for the network timeout just to reissue the same command
+*** klasstek has joined #gnuenterprise
+*** llp has joined #gnuenterprise
+<jamest> johannesV_: it does it once a day doesn't it?
+<jamest> after the initial timeout you're good for hours right?
+*** nickr has quit IRC
+*** nickr has joined #gnuenterprise
+*** sjc has joined #gnuenterprise
+<johannesV_> jamest, yes usually once a day is enough ... today i had it twice ... in the morning an svn update is almost the first command issued in the shell and once in the afternoon
+<jamest> it is the same as I see trying to get into work then
+<jamest> but I have no issues w/ getting into ash from the same machine
+<johannesV_> exactly the same here ..
+<johannesV_> which distro are you using ?
+<johannesV_> maybe it's bug in  breezy's svn
+*** llp has quit IRC
+*** llp has joined #gnuenterprise
+<jamest> at home I'm using breezy I think
+<jamest> latest kubuntu
+<johannesV_> have you tried removing and reinstalling svn ?
+<johannesV_> or even a brand-new checkout ?
+<jcater> what exactly happens?
+<reinhard> off for today
+<reinhard> cu
+*** reinhard has quit IRC
+<johannesV_> jcater, the first time each day i want to access svn the connection times out
+<johannesV_> this takes a few minutes
+<johannesV_> after the timeout error, i can just issue the same command again and it work fine imediately
+<johannesV_> it doesn't matter which command (update, commit, ...)
+<jamest> jcater: i don't have that issue with ash but it describes exactly what I see trying to login to work from home
+<jamest> i don't have issues getting from home to ash
+<johannesV_> ah, right, and it is no problem connecting to ash using ssh ...
+<jamest> ash and svn should be the exact same box
+<johannesV_> yes, of course. with ash i mean svn.gnuenterprise.org
+<jcater> is it a series of updates, like "cd gnue; svn update; cd ../gnue-contrib; svn update"
+<jcater> etc?
+<johannesV_> no, just a single one
+*** SachaS has joined #gnuenterprise
+<johannesV_> after i've turned on my computer, pushed up evo and xchat and after reading the mails i start an xterm, and do that svn update (which fails)
+<jamest> jcater: it's the initial connection attempt that fails
+<johannesV_> no other svn commands before
+<johannesV_> right
+*** sandroid has joined #gnuenterprise
+<jcater> y'all are just screwy then
+*** lupo__ has joined #gnuenterprise
+*** johannesV_ has quit IRC
+<jamest> jcater: standard IT support response eh?
+*** sandroid has left #gnuenterprise
+*** kilo has joined #gnuenterprise
+*** jamest has left #gnuenterprise
+*** lupo__ has quit IRC
+*** jcater has quit IRC
+*** kilo has quit IRC
+*** sjc has quit IRC
+*** klasstek has quit IRC
+*** llp has quit IRC

@@ -1,0 +1,519 @@
+<jbailey> in #gnue, of course. =)
+<chillywilly> hey hey ppl
+Action: chillywilly hugs Gnome 2.4
+<chillywilly> http://www.libertyetech.com/screenshots/busy-desktop.png
+<chillywilly> w00t
+<dtm> herrew
+<dtm> chillywilly: get me a guitar recordnig
+<chillywilly> ummm, a new one?
+<chillywilly> I wish I had decent equipment to record all my jamming sessions
+<dtm> i will accept even an indecent one, in any format.
+jbailey (~jbailey@CPE00062579efac-CM014260028338.cpe.net.cable.rogers.com) left irc: "Client exiting"
+sjc (~sjc@cpc2-seve3-4-0-cust112.popl.cable.ntl.com) joined #gnuenterprise.
+ajmitch (~ajmitch@202.89.56.249) left irc: Read error: 110 (Connection timed out)
+ajmitch (~ajmitch@pop11-port245.jetstart.maxnet.co.nz) joined #gnuenterprise.
+SachaS_ (~Sacha@dialup-196-134.conceptual.net.au) joined #gnuenterprise.
+SachaS_ (~Sacha@dialup-196-134.conceptual.net.au) left irc: Remote closed the connection
+SachaS_ (~Sacha@dialup-196-134.conceptual.net.au) joined #gnuenterprise.
+SachaS (~Sacha@dialup-196-246.conceptual.net.au) left irc: Read error: 110 (Connection timed out)
+johannesV (~johannes@M1563P008.adsl.highway.telekom.at) joined #gnuenterprise.
+sjc (~sjc@cpc2-seve3-4-0-cust112.popl.cable.ntl.com) left irc: "Client exiting"
+johannesV (~johannes@M1563P008.adsl.highway.telekom.at) left irc: "Client Exiting"
+Nick change: SachaS_ -> SachaS
+johannesV (~johannes@M1563P008.adsl.highway.telekom.at) joined #gnuenterprise.
+SachaS (~Sacha@dialup-196-134.conceptual.net.au) left irc: "Client exiting"
+dneighbo_ (~dneighbo@ip68-109-180-32.ph.ph.cox.net) joined #gnuenterprise.
+dneighbo (~dneighbo@ip68-109-180-32.ph.ph.cox.net) left irc: Read error: 110 (Connection timed out)
+dcmwai (~dcmwai@219.95.58.27) joined #gnuenterprise.
+sjc (~sjc@cpc2-seve3-4-0-cust112.popl.cable.ntl.com) joined #gnuenterprise.
+Nick change: dneighbo_ -> derek
+SachaS (~Sacha@dialup-196-223.conceptual.net.au) joined #gnuenterprise.
+Nick change: nickr_ -> nickr
+btami (~tamas@wrr.napnet.hu) joined #gnuenterprise.
+jamest (~jamest@adsl-65-71-168-12.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+johannesV (~johannes@M1563P008.adsl.highway.telekom.at) left irc: "Client Exiting"
+dcmwai (~dcmwai@219.95.58.27) left irc: "Client exiting"
+jcater_ (~jcater@cpe-066-061-071-147.midsouth.rr.com) joined #gnuenterprise.
+jcater (~jcater@cpe-066-061-071-147.midsouth.rr.com) left irc: Read error: 104 (Connection reset by peer)
+Nick change: jcater_ -> jcater
+btami (~tamas@wrr.napnet.hu) left irc: 
+siesel (~jan@xdsl-213-196-229-158.netcologne.de) joined #gnuenterprise.
+<siesel> hi :)
+<chillywilly> yo
+<chillywilly> anyone have an example of programitcally using the db abstraction layer in gnue common? ;P
+<siesel> there should be one in jcater's public_html dir.
+<chillywilly> ok
+<chillywilly> http://www.gnuenterprise.org/docs/common/api/ <-- sweet
+<siesel> here it is: http://www.gnuenterprise.org/~jcater/demo-datasources.py
+<siesel> cw: yeah :)
+<chillywilly> cool, thanks
+<jcater> it's even easier than that
+<jcater> let me upload the script I used to print 1099s this year
+<jcater> http://www.gnuenterprise.org/~jcater/examples/
+<jcater> print_1099s.py is read-only db access
+<jcater> print_checks.py is read and write
+<jcater> print_checks contains a lot of postscript stuff, though
+<jcater> but the db stuff is really simple
+<chillywilly> cool
+<jcater> to say the least, it's hard for me to write python apps these days
+<jcater> without using gnue-common
+<jcater> :)
+<siesel> hey, seems you're getting old and lazy ;)
+<chillywilly> cool
+<jcater> no doubt
+<chillywilly> postscript is evil
+<chillywilly> ;P
+<jcater> postscript is evil
+<jcater> pcl, epson esc/p, etc are eviler
+<chillywilly> do you have to use GClientApp?
+btami (~tamas@wrr.napnet.hu) joined #gnuenterprise.
+<chillywilly> what is someone were to want to use mod_python ;P
+<jcater> GClientApp handles init'ing the connections
+<chillywilly> they don't need arg parsing then
+<chillywilly> ok
+<chillywilly> I see
+<chillywilly> alrighty
+<jcater> look at GBaseApp though
+<jcater> it may be better for you
+<jcater> does less
+<siesel> hi btami
+<btami> hi siesel and all
+<siesel> cw: if you want to use it in mod_python, it probably make sense to do the initialisation yourself as you won't need the whole GBaseApp.
+<btami> siesel: how goes the exams?
+<siesel> I'm through, I'm through,.... YEAHH 
+<chillywilly> siesel: provided I can figure out how to do that in a reasonable amount of time ;P
+<chillywilly> siesel: w00t
+<btami> siesel: congrats
+<siesel> thx
+<chillywilly> siesel: do you have a masters degree now or something?
+<chillywilly> or whatever the foreign equivalent is ;P
+<siesel> its a magister, which is the first degree to get (i.e. like bacholor) but qualifies to write a doctor thesis. (i.e. like master)
+<chillywilly> ok
+<chillywilly> hmmm, need to finsih paperwork
+<chillywilly> finish
+<siesel> btw. about the session management, I would use some extra modules to implement it.
+<chillywilly> mod_python has a Session class
+<siesel> f.e. http://snakelets.sourceforge.net/ or something else.
+<siesel> sorry, I don't know anything about it :)
+<chillywilly> can subclass it...but the mechanism I was thinking of using was after an xmlrpc of a login() it will returna  struct of info (session id, etc.) then the  client would have to send back some http header (http basic auth?) with the session info
+<chillywilly> on every subsequent xmlrpc call
+<chillywilly> does that sound sane? ;P
+<siesel> It will work, but the more xmlrpc calls you get the worser you latency becomes
+<chillywilly> xmlrpc call of login()
+<chillywilly> how does the appserver handle authentication?
+<chillywilly> the gnue appserver
+<chillywilly> can't someone basically set any headers they want in HTTP and if the client doesn't understand them it just ignores them?
+<chillywilly> doesn't matter though as I will write a client wrapper anyway
+<chillywilly> just wondering if the spec allowed it
+<chillywilly> protocol
+<chillywilly> whatever ;P
+<chillywilly> siesel: well it's only 1 xmlrpc call then the session info will be in http headers and will have some timeout value
+<chillywilly> 1 extra
+<siesel> YOu can do authentification through http headers, or XMLRPC extra fields.
+<siesel> but this isn't supported by appserver yet.
+<chillywilly> extra method params right?
+<siesel> So if you use appserver you need this extra method.
+<chillywilly> siesel: what is the session concept in appserver used for?
+<siesel> Its like a "WWW session", i.e. someone logs in manipulates data and logs out, i.e. one user, but multiple page accesses
+<chillywilly> how do you maintain the state between client and server?
+<siesel> through a session_id
+<chillywilly> how is that passed in?
+<chillywilly> ;P
+<siesel> it is passed through as an extra attribute with each xmlrpc call.
+<chillywilly> ok
+<chillywilly> extra function paramter?
+<chillywilly> parameter
+<chillywilly> can't type
+<siesel> so you could reuse it, but it seems to be better to use the mod_python session to store it
+<chillywilly> I'd have to subclass it as I'd like to store session info in the db
+<siesel> like load(sess_id,'tablename', bla bla)
+<chillywilly> it has a MemorySession and a DbmSession
+<chillywilly> children of the Session class
+Action: btami thinks chillyilly will play in appserver team again :)
+<chillywilly> also has a locking mechanism but I fail to see what the point of that is
+<chillywilly> why would you lock a session? anyone?
+<chillywilly> my connection seems so laggy
+<chillywilly> hmmm, nope just the mod_python site is slow
+<chillywilly> la lala la la
+<siesel> slow. It's not accessible from here :(
+<chillywilly> doesn't want to load for me...bah
+<dtm> lallala.
+Action: chillywilly watches galeon sit and spin
+<chillywilly> round and round she goes
+<chillywilly> where she stops nobody knows
+<chillywilly> hey dee tee eeeemm
+<chillywilly> well I think I have docs installed locally
+<siesel> shalalala la .... seems we should create a band: "The GNUe La la LA's"
+<ajmitch> nah
+<dtm> k
+<dtm> hey chillx0r and siesel and ajmitch 
+<chillywilly> I'll play the guitart
+<chillywilly> guitar
+<chillywilly> siesel: you can be lead singer
+<chillywilly> dtm: will be on the drums
+<chillywilly> and ajmitch can play bass
+<chillywilly> derek can be our roadie
+<chillywilly> jamest: and jcater are the management
+<dtm> k
+<dtm> lol
+<dtm> derek the roadie.  yeah he's got the hard core look.
+<chillywilly> hehehe
+<dtm> does he have monster chops these days?
+<dtm> i got a buddy at google who had the monster chops
+<chillywilly> no idea
+<chillywilly> google rocks
+<chillywilly> ;P
+<chillywilly> he works at google/
+<chillywilly> ?
+<chillywilly> damnit fingers, work
+<chillywilly> type the right letters
+<dtm> hehe
+<dtm> yes he does
+<dtm> he's their python guru
+<chillywilly> w00t
+<chillywilly> google rocks cause they use python
+<siesel> hey! that's a good song text: ......brm brm ... dammit fingers work, ... work ,, work.... dammit fingers work ...
+<chillywilly> that's all anyone needs to point to, to show the powa of the snake ;P
+<chillywilly> siesel: lol
+TittyTwister (~TittyTwis@p50855F3B.dip.t-dialin.net) joined #gnuenterprise.
+<TittyTwister> Hi.
+<chillywilly> rofl
+<chillywilly> nice nick
+<TittyTwister> <-- The Name? Yeah.
+<TittyTwister> Yours 2. :-)
+<chillywilly> what's more power than a tornado?
+<chillywilly> powerful
+<TittyTwister> Dunno.
+<chillywilly> a titty twister!
+<TittyTwister> Tata Tata Tataaaa.
+<chillywilly> ;P
+<chillywilly> my dad used to say that right before he practically ripped my nipple off
+<TittyTwister> GNUe Question: What's the business with the Appserver? How far is it and WHY is it done? Why not take a finished one allready?
+<chillywilly> why is it NOT done?
+<TittyTwister> Yeah. Why build a new Appserver? ERP - that's ok. No OSS here. But OSS has Appservers a dime a dozen
+<chillywilly> because none fit the criteria?
+<siesel> althought its called appserver you can't compare it with jboss f.e. because it 
+<siesel> is much more specialized.
+<siesel> It focuses on business method + data access only and will bring a new method of defining business modules and combining them.
+<TittyTwister> @ siesel: Ok, then. WHat's the deal with the GNUe Appserver? Is it faster? Does it do special stuff? Or is it so specialized that everything else is a hideous bloat, no matter how cool the appserver may be?
+<chillywilly> other appserver don't speak gnue formats or protocols ;P
+<siesel> f.e. you can define modules which enhance basic modules by adding extra fields to standart tables.
+<chillywilly> most of the appserver work was already in gnue-common code base so it was just a matter of putting the pieces together
+<chillywilly> sire there's more stuff to be done but the core was implemnted easily by using GNUe's common code base
+<siesel> and it is written in python :)
+<chillywilly> ;P
+<TittyTwister> @ chillywilly: Errmmm... No. Nice try, but no, that's no reason. After all, that's the whole point of Appservers: Being able to latch onto whatever format or protocol you want with minimum hassle.
+<TittyTwister> PYthon. Yeah, shure. THe appserver I had in mind (the best imho) is also written in Python. Entirely, almost. (Hint, hint)
+<siesel> which one? 
+<TittyTwister> It would be way cool for prototyping too.
+<siesel> the one similar to your name?
+<TittyTwister> Wanna guess?
+<TittyTwister> No.
+<TittyTwister> ??? (simular to my Nick???)
+<TittyTwister> LOL
+<ajmitch> zope :P
+<TittyTwister> Bingo. 100 point and the washing machine go to <ajmitch>
+<dtm> was zope gpl when gnue starteD?
+<siesel> Zope is great, but its web based.
+<TittyTwister> GNUe started when? Half a year ago? (Thats when I heard of it...)
+<dtm> TittyTwister: yeah things start when TittyTwister hears of them.  the world ends on the other side of this door.
+<siesel> GNUe is older than zope. even older than the persistent web stuff zope evolved out
+<TittyTwister> I did NOT say that GNUe started last year!
+<TittyTwister> Ok. Sorry about that. THat explains alot.
+<dtm> uh, yeah.  you did.
+<TittyTwister> Actually no. I asked a question. Sorry anyway.
+jamest (~jamest@adsl-65-71-168-12.dsl.tpkaks.swbell.net) left irc: Read error: 104 (Connection reset by peer)
+<siesel> nevertheless, the reason we didn't use zope is, that zope is way too big, and it uses a ODBMS as backend, while we mostly use RDBMS
+<siesel> but I don't fully recall. everything is written down in on kernel cousins gnue.
+<chillywilly> gnue supports more dbs than zope ;P
+<chillywilly> TittyTwister: maybe I misspoke then the point I was getting is that the appserver is done the "gnue" way...it uses the common code base
+<TittyTwister> q <chillywilly>:Really? I'd say Zope supports just as much. With a littel scripting anyway. :-)
+<chillywilly> I dunno what the big deal about Zope is
+<chillywilly> I've looked at it and I am not that impressed
+<TittyTwister> The common code base being? A serious GNU thing I surpose? ... Sorry for asking, I'm a GNU n00b.
+<chillywilly> gnue-common module
+<dtm> TittyTwister: there's a module called "gnue-common"
+<TittyTwister> Ok, got it.
+<chillywilly> http://www.gnuenterprise.org/docs/common/api
+<siesel> TittyTwister: there are many gnue core developers using Zope. Me too, but I don't use it for everything :)
+jamest (~jamest@adsl-65-71-168-12.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+<chillywilly> hi jamest 
+<TittyTwister> @ chillywilly: Zope is a slowpoke and obviously hideously bloated for GNUe needs. And since GNUe - as I know now - is brewing since the dawn of manking...errr... since befor Zope was GPLd I understand that this Zope thing is a non-issue.
+<jamest> hi
+<siesel> hi j
+<TittyTwister> Hi.
+<siesel> amest 
+<siesel> oops. :)
+<TittyTwister> @ chillywilly: Yet: Zope roxxors imho. Object relational is the way to go in the future. No DB connectivity crap or that kind of stuff. You just need a solid stat disk and your in butter. :-)
+<dtm> mmmMMmmmm  .. buttah!!
+<chillywilly> I need to dump my kaddress book and import it into evolution
+<dtm> you need to use ldap.
+<dtm> set it up with me!
+<chillywilly> I could just run my own server ;P
+<chillywilly> hmmm, I should do that
+<chillywilly> a nice centralized addressbook
+<TittyTwister> A general GNUe question (new topic): How is GNUe developing speedwise and what are the current problems? Is real world use of GNUe widespread?
+<chillywilly> that would rock
+<jamest> we're slow
+<jamest> damn slow
+<jamest> slower than that actually
+<TittyTwister> I thought so.
+<chillywilly> molasses?
+<jamest> but it used daily in some locations
+<ajmitch> slower than continental drift
+<chillywilly> oozing puss outta an infected wound
+<TittyTwister> Dig this: You started before(!!) Zope was GPLd. LOL
+<chillywilly> Zope does not have the same goals as GNUe
+<chillywilly> the comparison is retarded
+<jamest> we're still slow
+<dtm> there was an authoritative company behind Zope, proper
+<TittyTwister> Yeah, yeah. I got it. I DID NOT compare the two. Promise: I won't mention the Z word here again. Deal?
+<TittyTwister> What are the current 'big issues' with the GNUe developement?
+<jamest> we need people willing to work on solutions using gnue
+<jamest> we need appserver a bit further along
+<jamest> the ui system needs expanded 
+<jamest> then polish and a little tlc
+<jamest> the tools that exist work well enough 
+<jamest> but projects like gnue-sb are going slow
+<TittyTwister> INtel: I'm working on a custom ERP / SCM solution for a customer. Compiere creeps me out and I'm a Python guy. I'm considering using an existing ERP framework, if it's easy enough getting into the code. Is GNUe messy or clean? I presume clean, since GNUes taking time. No?
+<jamest> lol
+<jamest> it's clean enough
+<TittyTwister> What's gnue-sb?
+<jamest> gnue small biz
+<jamest> we've started working on api docs internally
+<jamest> and I know jcater started going thru some old code this week and determined we were on crack or something
+<jamest> but for the most part it's pretty clean
+<jamest> but I'm bias :)
+<jcater> it is clean
+<jcater> it's just a large code base
+<jamest> gnue-common rocks IMHO
+<jcater> yes
+<TittyTwister> Ah. So small-biz module (LOL) whatever that may be - needs some help. What standards in financial tracking accounts does GNUe support? Or is it all custom?
+<jcater> was just telling chillywilly
+<jcater> how I can't write a python program these days
+<jcater> w/o using gnue-common
+<TittyTwister> So GNUe-common == large code base. How may lines aprox?
+<jamest> hang on
+<jamest> checking
+<dtm> TittyTwister: you could download it and run 'wc'
+<jamest> dtm: sloccount
+<dtm> but of course.
+<dtm> HI JAMEST
+<jamest> Total Physical Source Lines of Code (SLOC)                = 20,433
+<jamest> that's for gnue-common
+<jcater> wc returns 47K
+<jamest> it doesn't include any other gnue-* tools
+<jcater> which of course isn't accurate
+<jcater> as that's comments, included
+<jamest> i think sloccount ignores comments
+<jcater> yeah
+<jcater> just pointing it out :)
+<TittyTwister> 50K lines. That seams reasonable. That's the upside of 'being slow'. :-=
+<TittyTwister> ))
+<jamest> i'll run the count project wide :)
+<TittyTwister> Err... and it _seems_ reasonable too. Don't know about the seams, actually. Maybe they're threading. LOL.
+<TittyTwister> What about the site? Sorry, but the visual design is... well, how should I  put it? It's subobtimal.
+<jamest> Total Physical Source Lines of Code (SLOC)                = 64,726
+<jcater> well, we're not web designers
+<TittyTwister> Thx.
+<jcater> that's the only excuse I can give
+<jcater> none of us particularly love the website
+<jamest> i blame derek
+<jcater> but then again, it works
+<jcater> true
+<TittyTwister> Care if I pitch in? Who's got the sitecode?
+<TittyTwister> And the *shudder* pictures?
+<TittyTwister> Oh. No dear of Webdesigners bloat. Check out my site: www.richdale.de
+<TittyTwister> Oh. No _f_ear of Webdesigners bloat. Check out my site: www.richdale.de
+<dtm> TittyTwister: yes you need to do a CRM app on gnue.
+<TittyTwister> Eh? Me customer need no CRM. He need SCM. Comprende?
+<TittyTwister>  :-))
+<chillywilly> source code management?
+<chillywilly> too many acronyms ;P
+<TittyTwister> Supply Chain Management. You shure your developing ERP software (<-- this is a joke! Laugh!)
+<chillywilly> hehe
+<chillywilly> your site looks like a bad acid trip to me ;P
+<TittyTwister> Honestly now?
+<dtm> chillywilly: roffle
+<chillywilly> well the about page is all blurry
+<chillywilly> makes me feel like I am trippin'
+<dtm> i wouldn't know anything about that.
+<ajmitch> DEAR LORD MY EYES!!
+<TittyTwister> Well, I get eye-cancer from gnue...org. Really.
+<dtm> yeah, reading is hard
+<chillywilly> well, I have a graphics artist buddy who can kick ass
+<chillywilly> http://ui4.metalexpress.net/metal_mockup.jpg
+<dtm> yeah that's coz he's in collusion with the Ass Hospital
+<chillywilly> created by him
+<dtm> and their primary supplier, Ass Remedies, Inc.
+<dtm> how very DISINGENUOUS of him, chillywilly!!
+<dtm> just proves it's all about who ya know.
+<chillywilly> graphics artist people are good for something afterall
+<TittyTwister> "<dtm> yeah, reading is hard" My site or gue...org?
+<dtm> k
+<chillywilly> just don't ask them to create the html to produce that ;P
+<dtm> TittyTwister: gnue.org
+<dtm> chillywilly: i wouldn't dare
+<dtm> chillywilly: but i like the current one better
+<dtm> imho
+<TittyTwister> metal-mockup isn't that a good design. It looks to size and aspect ration dependent IMHO.
+<chillywilly> I don't
+<dtm> k
+<chillywilly> it's just a rough thing, you can change teh size
+<chillywilly> the
+<TittyTwister> Just for the book: I wouldn't completely redo gnue...org, but change some colors, some fonts and add a little css.
+<chillywilly> gnuenterprise.org
+<chillywilly> what's so hard about typing that ;P
+<chillywilly> gnue.org
+<TittyTwister> gnuenterprise.org... thx. No I can copy and paste. :-)
+<chillywilly> g-n-u-e-n-t-e-r-p-r-i-s-e.org
+<chillywilly> dubya dubya dubya dot gah-new enter piiiize dot org
+<TittyTwister> Here are some really good css based designs with zero eye and browser suckage: www.csszengarden.com. There you find the best designers in the world. I personally would suggest something like www.alistapart.com stylewise for gnuenterprise.org. My 2 Eurocents.
+<dtm> i'm sure we can discuss something productive :)
+<dtm> wasn't someone interested in some solution of some kind
+<chillywilly> productive?
+<chillywilly> wassat?
+<chillywilly> I am much too tired to be productive
+<dtm> that's like eating cauliflower with ranch, but with a computer instead.
+<dtm> i think
+<dtm> wait, no it's not.
+<chillywilly> soon the SB will be on then I can sit on the couch like a lump
+<dtm> k i dunno
+<TittyTwister> <dtm>: I'm starting 2 understand why GNUe takes so long. :-)
+<dtm> TittyTwister: YOU CAN'T HANDLE THE TRUTH!!!!
+<dtm> :]
+<chillywilly> it's sunday for srying out loud
+<dtm> TittyTwister: so get to it!
+<chillywilly> crying
+<siesel> TittyTwister: ccs zen garden, is a great site. I especially like the bonsai theme.
+<TittyTwister> What? Designing?
+<chillywilly> the limit of my productivity functionas sunday appropaches is equal to 0
+<siesel> TittyTwister: btw. did the scm system you plan to do, just focus on basic management, or will it include de-bottleneck optimization stuff?
+<TittyTwister> It would probably be _very_ customized. Yet right now we are considering to kick off modularization, so I thought it would be fitting to check out some ERP stuff. There are no de-bottleneck accounts or stuff like that to handle, if that's what you mean.
+<siesel> ok, so you mainly need inventory functions and specialized workflows. 
+<TittyTwister> Yes.
+<TittyTwister> Manly some heavly automized SCM stuff.
+<TittyTwister> My client is in the E-Commerce game.
+<TittyTwister> And he used Interchange.
+<TittyTwister> That over-the-top Perl based webshop.
+<dtm> haaa!!!  TittyTwister, does he still use it?
+<TittyTwister> Yes.
+<dtm> sweet
+<chillywilly> IC is pretty nifty
+<chillywilly> but complex
+<dtm> TittyTwister: what's the url if you are allowed to say
+<TittyTwister> We just startet. After ditching that Zope based insult to all software called 'bizarshop'. If you ever run into that: Run far away fast!
+<TittyTwister> www.buchelefant.de
+<chillywilly> oscommerce sucks too ;P
+<chillywilly> run far away from that
+<dtm> hahahah "bizarshop"
+<jcater> chillywilly: I tried oscommerce a few years ago
+<dtm> jcater: :-o
+Action: jcater still shudders from the experience
+<dtm> YEARS?  when it was even WORSE?
+<TittyTwister> oscommerce is cool. But Interchange is older and has more gadgets.
+<jcater> dtm: I don't think oscommerce has changed any in those years
+<dtm> yes if by "cool" you mean "horribly disfigured excuse for an application"
+<jcater> I use interchange for a site now
+<jcater> I have mixed feelings though
+<dtm> jcater: you must reduce and control your feelings.
+<dtm> Clear your mind.
+<dtm> Let the force floooowwwww.
+<dtm> Or control you, they will!!!
+<TittyTwister> YOu think oscommerce sucks? Check this: http://www.bizarsoftware.com/. THe Zope license should forbid this company to use their appserver.
+<dtm> jcater is sad coz he hasn't fixed gpg email yet
+<dtm> TittyTwister: *snortchortle*
+<dtm> hehehe
+<chillywilly> heh, stupid slogan
+<chillywilly> stupid name too
+<TittyTwister> Forget the name and the slogan. The site isn't half bad. But the product is a massive heap of BS.
+<dtm> stupidity abounds
+<dtm> ha!  
+<jcater> dtm: first and formost, I'm sad because I have yet to get my payment gateway working :-/
+Action: dtm loads  www.buchelefant.de
+Action: dtm gazes upon the glory of foundation demo
+<dtm> jcater: :/
+<TittyTwister> He
+<TittyTwister> I know. He hasn't got the time.
+<TittyTwister> But notice: THe site and shop sacutally WORKS.
+<dtm> oh i most definately noticed that.  congrats
+<dtm> that's what i was thinking
+<siesel> TittyTwister: it should be quite easy to build a SCM on the inventory stuff which is already in gnue-sb. 
+<TittyTwister> THey've got 26 metric tons of used books to sort and evaluate. They#ve got no time to make-up their site. :-)
+<TittyTwister> @ seisel: THX. I'll check into it.
+<chillywilly> where the hell does kaddressbook store the data?
+<chillywilly> bah
+<siesel> The plus of using gnue is, that gnue already has good design tools, which helps with developing custom stuff ...
+<ajmitch> chillywilly: use phpgroupware ;)
+<chillywilly> I think I will go with LDAP but that doesn't help me now
+<ajmitch> which ldap schema?
+<siesel> TT: btw. its nice to see, that art (as i.y. case Eurythmie) and art of programming goes hand in hand :)
+Action: siesel has to sleep.
+<TittyTwister> @ seisel: I suppose it's not too hard to grasp the design tools and that they are ok for building control frontends for bots? cause thats what we're doing: building 'bots.
+<chillywilly> siesel: I have no idea
+<TittyTwister> siesel: You german?
+<chillywilly> the one that evolution will use ;P
+<siesel> yeah
+<TittyTwister> Hehe. Wo wohnstn? :-9
+<siesel> Bonn 
+Action: chillywilly looks in ~/.kde/share/apps/kabc
+<siesel> Und du kommst aus Krefeld?
+<TittyTwister> Cool. We could get together sometime und'n täschen brause trinken.
+<TittyTwister> Krefeld: yepp.
+<siesel> ja gerne.
+<TittyTwister> My business E-Mail: Siehe Webseite / Impressum.
+<siesel> Ich sag einfach mal bis bald. (Muss Schlafen :)
+siesel (~jan@xdsl-213-196-229-158.netcologne.de) left irc: "Client exiting"
+sjc (~sjc@cpc2-seve3-4-0-cust112.popl.cable.ntl.com) left irc: "sleeping"
+<TittyTwister> I'm off 2 bed. CU all. Bye.
+<chillywilly> buuurp
+TittyTwister (~TittyTwis@p50855F3B.dip.t-dialin.net) left irc: "Client Exiting"
+btami (~tamas@wrr.napnet.hu) left irc: 
+ajmitch_ (~ajmitch@vodca.otago.ac.nz) joined #gnuenterprise.
+SachaS (~Sacha@dialup-196-223.conceptual.net.au) left irc: Read error: 110 (Connection timed out)
+rdean (~rdean@c-66-177-153-39.se.client2.attbi.com) joined #gnuenterprise.
+marcello (~marcello@adsl-ull-185-118.42-151.net24.it) joined #gnuenterprise.
+marcello (~marcello@adsl-ull-185-118.42-151.net24.it) left irc: "Leaving"
+jamest (~jamest@adsl-65-71-168-12.dsl.tpkaks.swbell.net) left irc: "Client exiting"
+rdean (~rdean@c-66-177-153-39.se.client2.attbi.com) left irc: "Leaving"
+Poincare (~jeff@D577A9AE.kabel.telenet.be) got netsplit.
+Vee2d2 (~vin@c66.169.136.41.ts46v-07.ftwrth.tx.charter.com) got netsplit.
+dimas (~dimas@195.218.177.46) got netsplit.
+jcater (~jcater@cpe-066-061-071-147.midsouth.rr.com) got netsplit.
+nickr (nick@e-64-35-146-235.empnet.net) got netsplit.
+chillywilly (~danielb@CPE-24-167-201-211.wi.rr.com) got netsplit.
+derek (~dneighbo@ip68-109-180-32.ph.ph.cox.net) got netsplit.
+ajmitch_ (~ajmitch@vodca.otago.ac.nz) got netsplit.
+ajmitch (~ajmitch@pop11-port245.jetstart.maxnet.co.nz) got netsplit.
+Stoke (~stoker@dpvc-141-149-254-50.buff.east.verizon.net) got netsplit.
+Vee (~mike@66.182.192.34) got netsplit.
+SachaAway (~sacha@212.243.20.213) got netsplit.
+havoc (~havoc@65.31.107.254) got netsplit.
+ajmitch_ (~ajmitch@vodca.otago.ac.nz) returned to #gnuenterprise.
+jcater (~jcater@cpe-066-061-071-147.midsouth.rr.com) returned to #gnuenterprise.
+derek (~dneighbo@ip68-109-180-32.ph.ph.cox.net) returned to #gnuenterprise.
+ajmitch (~ajmitch@pop11-port245.jetstart.maxnet.co.nz) returned to #gnuenterprise.
+Poincare (~jeff@D577A9AE.kabel.telenet.be) returned to #gnuenterprise.
+Vee2d2 (~vin@c66.169.136.41.ts46v-07.ftwrth.tx.charter.com) returned to #gnuenterprise.
+dimas (~dimas@195.218.177.46) returned to #gnuenterprise.
+nickr (nick@e-64-35-146-235.empnet.net) returned to #gnuenterprise.
+chillywilly (~danielb@CPE-24-167-201-211.wi.rr.com) returned to #gnuenterprise.
+Stoke (~stoker@dpvc-141-149-254-50.buff.east.verizon.net) returned to #gnuenterprise.
+Vee (~mike@66.182.192.34) returned to #gnuenterprise.
+SachaAway (~sacha@212.243.20.213) returned to #gnuenterprise.
+havoc (~havoc@65.31.107.254) returned to #gnuenterprise.
+ajmitch_ (~ajmitch@vodca.otago.ac.nz) left irc: "Leaving"
+jcater (~jcater@cpe-066-061-071-147.midsouth.rr.com) left irc: "Client exiting"
+Action: chillywilly pokes ajmitch 
+Action: ajmitch dies
+<chillywilly> heheh
+<ajmitch> what?
+<chillywilly> what's the best postgres driver than implements the DB-API version 2
+<chillywilly> any idea?
+<dtm> hi
+<ajmitch> no idea
+<chillywilly> sup dude
+<ajmitch> ask jcater/jamest
+<chillywilly> are they awake? ;P
+<chillywilly> hmm, need to go to bed soon
+--- Mon Feb  2 2004

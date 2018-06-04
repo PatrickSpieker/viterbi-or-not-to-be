@@ -1,0 +1,1046 @@
+[00:03] Last message repeated 1 time(s).
+Action: derek is away: sleepy time
+jcater (jason@24.92.70.201) left irc: "Client Exiting"
+MicahY ([P8c2otniL@12.225.21.221) left irc: "[x]chat"
+Remosi (isomer@210-86-56-222.jetstart.xtra.co.nz) left irc: "EPIC!  Accept specific limitations on WHO"
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+ra3vat (ds@195.239.64.144) left irc: Ping timeout: 181 seconds
+derek (derek@cpe-24-221-112-50.az.sprintbbd.net) left irc: Ping timeout: 181 seconds
+<Isomer> psu, around?
+derek (~derek@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+reinhard (~rm@62.47.45.239) joined #gnuenterprise.
+derek (derek@cpe-24-221-112-50.az.sprintbbd.net) left irc: Ping timeout: 186 seconds
+<psu> tis I
+alexey_ (alexey@195.151.214.34) left irc: "Client Exiting"
+<nickr> tis so
+<psu> Hi Isomer
+dres (dres@4.18.171.42) left irc: Ping timeout: 181 seconds
+dres (~dres@4.18.171.42) joined #gnuenterprise.
+<psu> eek
+<ajmitch> hi
+<psu> Google now has a 20-year news archive
+<psu> hi aj
+<psu> all my old posts back to 1993 are there
+<psu> Never remembered posting that much...
+Action: psu feels such an old-timer with young'uns like aj around
+<psu> ;-)
+<psu> anyway, off to earn a crust...
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise.
+Sacha (~sacha@203.190.196.127) joined #gnuenterprise.
+Nick change: Sacha -> SachaS
+<SachaS> hi ppls
+<SachaS> hi reinhard
+Action: SachaS should read the gnue docs
+<ajmitch> hi
+<SachaS> hi ajmitch
+<SachaS> i just read report 6 on linuxtoday.
+<SachaS> when i look at gnue as an application server i see gnue again different.
+<ajmitch> ok
+<SachaS> i see designer/forms as gui related things and geas as an application server
+<SachaS> can you confirm this ajmitch?
+<reinhard> SachaS: that is correct
+<ajmitch> yes
+<SachaS> and gnue-common as abstract database (whatever db is behind). is this correct?
+<SachaS> should be so. ok.
+<reinhard> SachaS: not quite
+<reinhard> gnue-common is more like a general python library
+<reinhard> it should contain not only the db abstraction but also other things
+<reinhard> but yes this is a part of it
+SachaS (sacha@203.190.196.127) left irc: Ping timeout: 185 seconds
+ajmitch (me@p24-max6.dun.ihug.co.nz) left irc: Ping timeout: 181 seconds
+Maniac (darryl@h24-82-132-209.wp.shawcable.net) left irc: Ping timeout: 181 seconds
+ajmitch (~me@p40-max2.dun.ihug.co.nz) joined #gnuenterprise.
+SachaS (~sacha@203.190.196.150) joined #gnuenterprise.
+<SachaS> hi. just got disconnected.
+<SachaS> i post my text again:
+<SachaS> <SachaS> ebxml lists "buying-selling a product or service" as the most common business collaboration
+<SachaS> <SachaS> "buying-selling a product or service" is what most businesses do with other business.
+<SachaS> <SachaS> company A supplies: wood , company B produces: furniture. So company B buys wood and company A sells wood.
+<SachaS> <SachaS> now with have the most common business collaboration: "buying and selling of a product or service"
+<SachaS> <SachaS> the most common business process is: ``order-fulfillment-payment''
+<SachaS> <SachaS> company B orders wood. company A ships the wood. company B pays the wood
+<SachaS> <SachaS> .... Business Process and Business Information Analysis Overview 1.0 at www.ebXML.org ... is the document I cite here.
+<SachaS> <SachaS> ok.
+<SachaS> <SachaS> i never new how someone can define such a process, because i thought they are very complex. 
+<SachaS> <SachaS> then i read the "ebXML Businss Process Specification Schema Version 1.01" also at www.ebxml.org
+<SachaS> ...... only the second part got pasted ....
+<SachaS> sorry guys. i just start again.
+<SachaS> i am studying ebXML (electronic business XML
+<SachaS> so today companies already use erp systems.
+<SachaS> the ebXML specifications provide a framework to get a global electronic marketplace.
+<SachaS> ebXML emphasis on collaboration (inter-enterprise business -> b2b).
+<SachaS> the most common collaboration is (after ebxml doc): "buying-selling of a product of service".
+<SachaS> and the most common business process is: "oder-fullfillment-payment"
+<SachaS> s/oder/order
+<SachaS> company A is wood seller
+<SachaS> company B is a furniture producer
+<SachaS> company B orders some wood from it supplier company A
+<SachaS> company A fullfills the oder and ships the wood
+<SachaS> company B then pays the wood.
+<SachaS> pretty easy and straight forward.
+<SachaS> the ebXML Business Process Specification Schema Version 1.01 shows how such a business process can be modelled in UML and then converted to XML.
+<SachaS> in ebXML each of these two companies will define their business processes in XML document and send this XML docuemnt to a registry.
+<SachaS> the XML document is called Collaboration Protocol Profile (CPP).
+<SachaS> so there are two CPP in the registry.
+<SachaS> When company B does not know company A yet, company B looksup the registry.
+<SachaS> In this example company B finds company A.
+<SachaS> company B then downloads the CPP of company A
+<SachaS> company B then creates a new XML docuemnt which is derived from the two CPP documents (CPP of company A and CPP of company B).
+<SachaS> in this new XML document, called Collaboration Protocol Agreement.
+<SachaS> in this new XML document the business process (which is the same for company A and company B, except that company A is the seller and company B is the buyer).
+<SachaS> is defined.
+<SachaS> now it comes:
+<SachaS> at both sides (company A and company B) the ebXML software gets configured with this CPA XML docuemnt!
+<SachaS> the ebXML software (called Business Service Interface in the ebXML docu) parses the CPA
+<SachaS> and configures itself.
+<SachaS> so the ebXML software knows the business process involved.
+<SachaS> to recall: the business process defines the roles (buyer, seller), the documents which have to be sent (order, shipment notice, bill etc) and in which order.
+<SachaS> where is gnue???
+<SachaS> lets assume at company A and company B
+<SachaS> what i need now is a gnue-ebxml convertor.
+<SachaS> i assume, that i have gnue running as my erp system.
+<SachaS> .... at company A and B
+<SachaS> the ebXML software knows which documents to send BUT not what data to put into the documents.
+<SachaS> the ebXML software knows that there is a field called: address, quantity, value etc. but the ebXML software does not know the content of these fields.
+<SachaS> ....................
+<SachaS> i think if there is a Business Process Engine within gnue (geas) where I can model business processes
+<SachaS> the gnue (erp) to ebXML convertor is straight forward.
+<SachaS> i hope i did not lose anybody, here , i appologies.
+<ajmitch> don't worry, it'll all be in the logs :)
+<SachaS> reinhard: i know there can be business objects in geas. so i guess we could get something like a business process engine.
+<SachaS> reinhard: I want to investigate here and do my masters next year in this area. I cant wait to see you in february to get insight information on how to do it.
+<reinhard> SachaS: I am reading although not too closely
+<reinhard> i am at work actually and rather busy
+<SachaS> no problem reinhard. i will see you in february and we can discuss it.
+<reinhard> however i'm not sure if individual business process modeling is practical
+<reinhard> my experience is that every company tries to have a single business process that is valid for all customers
+<reinhard> or all vendors
+<reinhard> etc.
+<reinhard> not to have their own business process for every customer
+<reinhard> which is what i understand ebXML would result in
+<SachaS> ok. ebXML allows you do have different business process. but it wants users to re-use business proceses.
+<SachaS> the idea is, that the ebXML registry is filled with COMMON business processes and that companies re-use those business processes.
+<SachaS> and there are a lot of common business processes.
+<SachaS> even ebXML targets Small to Medium Enterprises (SME) it looks like bigger companies will profit of ebXML first.
+<SachaS> ajmitch: could you understand what i wrote?
+<ajmitch> SachaS: no, because i'm not into that sort of thing
+<SachaS> but you could compile geas compared to me ..... we might be a good team. lol
+<ajmitch> heh
+<ajmitch> i'm looking at using GNUe in much smaller installations i think :)
+<SachaS> ajmitch: after compiling it, i wanna have (or program) first is a small gnue application with some sample customers and some sample products
+<SachaS> ajmitch: i will be happy when i have that first.
+<ajmitch> right
+<ajmitch> not sure how well the geas db driver works at the moment, you'll have to ask jamest when he's around
+<ajmitch> if you're wanting to use forms, that is
+<SachaS> ajmitch: did you try the forms?
+ra3vat (~ds@195.239.64.114) joined #gnuenterprise.
+<ajmitch> SachaS: yes, but not with geas
+<SachaS> ajmitch: with the designer you can select a db, table and the fields you want and place it in the gui?
+<ajmitch> yes
+<SachaS> ajmitch: ok. can you do something like this: if the user enters a value into a integer field (on the gui) multiply it by 10 before you insert it in the table?
+<ajmitch> not sure, haven't played with tose things ;)
+<SachaS> ajmitch: ok.
+neilt (~neilt@dhcp64-134-54-175.chan.dca.wayport.net) joined #gnuenterprise.
+#gnuenterprise: mode change '+o neilt' by ChanServ!ChanServ@services.
+<neilt> hello all
+<SachaS> hi
+ra3vat (ds@195.239.64.114) left irc: Ping timeout: 182 seconds
+ajmitch (me@p40-max2.dun.ihug.co.nz) left irc: Ping timeout: 181 seconds
+ajmitch (~me@p40-max2.dun.ihug.co.nz) joined #gnuenterprise.
+neilt (neilt@dhcp64-134-54-175.chan.dca.wayport.net) left irc: "later all"
+dsmith (~dsmith@oh-strongsville5a-64.clvhoh.adelphia.net) joined #gnuenterprise.
+dsmith (dsmith@oh-strongsville5a-64.clvhoh.adelphia.net) left irc: Ping timeout: 181 seconds
+SachaS (sacha@203.190.196.150) left irc: Ping timeout: 181 seconds
+chillywilly_ (danielb@d141.as14.nwbl0.wi.voyager.net) left irc: Ping timeout: 181 seconds
+chillywilly_ (~danielb@d167.as21.nwbl0.wi.voyager.net) joined #gnuenterprise.
+dsmith (~dsmith@216.214.12.193) joined #gnuenterprise.
+dsmith (dsmith@216.214.12.193) left irc: Read error: 113 (No route to host)
+<ToyMan> hey, are you guys using transaction logs or just writing straight to the table?
+<ToyMan> this just came up here at work
+<ToyMan> my Access db dumped yesterday
+<ToyMan> but, for inventory at least I used a transaction log
+dsmith (~dsmith@216.214.12.115) joined #gnuenterprise.
+<ToyMan> so we just had to go in and uncheck the 'applied' field
+<ToyMan> and voila! all data restored
+<ToyMan> not sure this would be much use in all cases
+<ToyMan> but it's been totally great for the inventroy files
+alexey (~alexey@195.151.214.34) joined #gnuenterprise.
+ra3vat (~ds@195.239.64.43) joined #gnuenterprise.
+alexey (alexey@195.151.214.34) left irc: Ping timeout: 182 seconds
+alexey (~alexey@195.151.214.34) joined #gnuenterprise.
+ra3vat (ds@195.239.64.43) left irc: Ping timeout: 181 seconds
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+alexey (alexey@195.151.214.34) left irc: "Client Exiting"
+<|darks|> hmmm, /me is confused
+jamest (jamest@fh-dialup-201191.flinthills.com) left irc: "[x]chat"
+reinhard (rm@62.47.45.239) left irc: "There's always one more imbecile than you expect"
+dneighbo (dneighbo@mail.libertydistribution.com) joined #gnuenterprise.
+<dneighbo> i love linux....
+<dneighbo> for first time my operating system outlasted the compenents :)
+<dneighbo> i installed linux on this box 16X days ago
+<dneighbo> this morning i come in and power is off, i figure cleaning ladies bumped it
+<dneighbo> instead found dead power supply...
+<dneighbo> have hot swapable drives so in about 30 seconds have machine back up and running (moved drive from one case to another)
+<jcater> :)
+<dneighbo> i have had components die on me before but NEVER before the operating system had at least crashed once :)
+<dsmith> dneighbo: bah!  I've had more crashes from hardware than an os. But I've been running linux/freebsd for about 6 years.
+<jcater> anyone know of a good backup mx provider?
+<jcater> good=cheap
+<jcater> :)
+alexey (~alexey@195.151.214.34) joined #gnuenterprise.
+<dneighbo> mx?
+<jcater> mail
+<jcater> dns record thingy
+Nick change: dsmith -> dsmithtohome
+dsmithtohome (dsmith@216.214.12.115) left irc: Ping timeout: 181 seconds
+<|darks|> hi, got a small question: how do i define integer fields with the designer ?!?
+<jcater> there should be a "typecast" attribute
+<jcater> that you can set to numeric
+Action: jcater is away: food
+alexey (alexey@195.151.214.34) left irc: "Client Exiting"
+<|darks|> hmm and how do i change that field .. except in the gfd file ?!?
+Action: jcater is back (gone 00:11:43)
+<jcater> you can right-click an entry widget and select "Properties"
+<jcater> which should bring up a property inspector
+<|darks|> yip .. sure .. but i can't change the typecast field :P
+<jcater> what OS are you running on?
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+<|darks|> linux
+<psu> GNU/Linux
+<psu> ;-)
+<|darks|> well not an embedded version :)
+<psu> couldn't resist - but i ought to know better than to jump in before reading the log
+<|darks|> designer 0.1.0 if that helps ...
+<jcater> does the property inspector not let you change values ?
+<|darks|> right ..
+<jcater> the typecast property should have a combo box
+<jcater> does it look like it's entering an "edit" mode when you double click, or does it do nothing at all
+<|darks|> it looks like a editing mode ..
+<|darks|> but i can't edit anything .. and it's not a combo box .. at least here
+<|darks|> ahh curso up/down does the trick :P
+<psu> bbl
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise.
+<|darks|> jcarter: thx for the help :)
+<jcater> sorry I couldn't be more help... you kinda helped yourself :)
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+Yurik (~yrashk@gw.telcos.net.ua) joined #gnuenterprise.
+<Yurik> re
+dsmithtohome (~dsmith@oh-strongsville5a-64.clvhoh.adelphia.net) joined #gnuenterprise.
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise.
+Nick change: dsmithtohome -> dsmith
+<|darks|> jcarter: well you said it's a combo box .. never thought of that possibility :)
+<dneighbo> |darks| i think wx has screwed up painting
+<dneighbo> so on the combo boxes it 'behaves' like a combobox, but it doesnt 'look' like one :)
+<dneighbo> screwed me up too ;)
+<|darks|> yip .. could be .. maybe the sizing is wrong ...
+<dneighbo> i think its cause its a combo box in a grid
+<|darks|> hmm, i don't know that much about wx ..
+<dneighbo> jcater if you can confirm this is a wx thing
+<dneighbo> i can send (or you can) something to the wx lists
+<dneighbo> see if we can get it fixed
+<jcater> there whole grid system is botched (and they know it :)
+<jcater> I think we are the only major project using them
+<jcater> (most others implement their own)
+<jcater> but I had them displaying right at once, 
+<jcater> so it may be something I did
+<dneighbo> its jamest fault
+<dneighbo> btw: where is the 'old man' today anyhow?
+Action: dneighbo thinks perhaps his calculus professor chewed him and spate him out yesterday.
+ToyMan (~stuq@c5300-3-ip137.albany.thebiz.net) left #gnuenterprise ("Client Exiting").
+<dneighbo> |darks| do you work with ....
+<dneighbo> crap i cant recall his name now... 
+ra3vat (~ds@195.239.64.67) joined #gnuenterprise.
+<ra3vat> hi all
+<dneighbo> |darks| do you work with jack-e (me remembered his name now)
+<dneighbo> hi ra3vat, how goes the russian arm of gnue :)
+<ra3vat> arm?
+<Yurik> ra3vat hi
+<Yurik> army?
+<dneighbo> faction
+<dneighbo> group
+<dneighbo> segment...
+<ra3vat> all those frozen I think 
+<ra3vat> winter is here
+<dneighbo> little cold there eh?
+<dneighbo> its very cold for here....
+<dneighbo> i think it might be about 18 C here :)
+<dneighbo> which is cold when during summer it gets up to about 48 or 49 C :)
+<Yurik> here is -3..-15C :-)) 
+<dneighbo> what is a - (negative) sign mean when its in 'front' of a temperature ;)
+Action: dneighbo lives in the desert negative temperatures dont exist here :)
+<Yurik> :-))
+Action: dsmith pities dneighbo
+<dneighbo> please dont, i LOVE it
+<dneighbo> if its below 70 its too darn cold out
+<dsmith> poor, poor dneighbo
+<dsmith> hah! if it's above 75, it's too hot!
+<dsmith> ;^)
+<ra3vat> we have "Feels Like: -5F" here
+<dneighbo> hot?
+<dneighbo> hot is 115 and above
+<dneighbo> 95 - 100 is about perfect
+<dsmith> bah
+<dneighbo> of course with our 5% humidity
+<dsmith> Ah well.
+<dneighbo> where are you at dsmith?
+<dsmith> Near the shores of beautiful Lake Erie.
+<dneighbo> if its a 'muggy' state i can understand why you dont like the heat :)
+<dsmith> Hinckley, OH
+<dneighbo> as 80degrees w/ 80% humidity is satan's lair
+<dneighbo> i remember going to orlando and about dying
+<dsmith> Tell me about it.
+<dneighbo> it was only like 89 degrees out but like 90% humidity
+<dneighbo> i felt like i was going to DIE
+Action: dsmith likes fall time best.
+<dsmith> the smells, the colors.
+<dsmith> Ahhh.
+<dneighbo> came back home to like 115 degree weather with 5% humidity and it felt GREAT :)
+<dneighbo> yes 'seasons' are a 'nice' concept
+<dneighbo> but you get used to only having 'hot' and 'cold' after a bit :)
+<dneighbo> actually here they have compensated
+<dneighbo> dec-jan = cold/winter
+<dsmith> I get tired of winter and snow right about the time spring starts.
+<dneighbo> feb/april = rain (cause thats the 3 days we get rain in)
+<dneighbo> april - jun = summer
+<dneighbo> jul-aug = monsoon season
+<dneighbo> aug - nov = are we in hawaii?
+<jcater> sigh
+Action: jcater lives in the humid south :(
+<jcater> maybe I should move to gilbert
+<jcater> oh, wait
+<jcater> masta's there
+<dneighbo> nah you want queen creek or casa grande
+Action: Yurik is drinking coffee
+<dneighbo> more rural, but has high speed net :)
+<jcater> broadband and cattle in same place
+<jcater> gotta love america
+<dneighbo> lots o cattle in queen creek and gilbert too
+<dneighbo> that is biggest agriculutre in my area
+<dneighbo> 'dairy farming'
+<nickr> farming fairy
+<jcater> or fairy farming :)
+<dneighbo> rofl
+ToyMan (~stuq@c5300-3-ip137.albany.thebiz.net) joined #gnuenterprise.
+reinhard (~rm@N816P015.adsl.highway.telekom.at) joined #gnuenterprise.
+<Yurik> ToyMan hi
+<Yurik> reinhard hi
+<ToyMan> hi Yurik
+<dneighbo> its toy man :)
+<dneighbo> i ended up spending time with family last night, hope to get some time tonight to start chugging away
+<jcater> ToyMan: how's the christmas season treating you?
+<jcater> busy, I hope :)
+Action: Yurik is going to reboot, will be back shortly
+Yurik (yrashk@gw.telcos.net.ua) left irc: "[BX] Time to make the donuts"
+Yurik (~yrashk@gw.telcos.net.ua) joined #gnuenterprise.
+<Yurik> re
+<ToyMan> well, yes, busy.  gotta go though
+ToyMan (~stuq@c5300-3-ip137.albany.thebiz.net) left #gnuenterprise ("Client Exiting").
+chillywilly_ (danielb@d167.as21.nwbl0.wi.voyager.net) left irc: Read error: 113 (No route to host)
+chillywilly_ (~danielb@d171.as3.nwbl0.wi.voyager.net) joined #gnuenterprise.
+Yurik (yrashk@gw.telcos.net.ua) left irc: "BitchX: the NEW form of birth control!"
+Yurik (~yrashk@gw.telcos.net.ua) joined #gnuenterprise.
+<Yurik> re
+<dneighbo> what is the prefix before run?
+<dneighbo> i'll take 'the GNU you' for 500 alex.
+Nick change: chillywilly_ -> chillywilly
+pattieja (~pattieja@www.pcxperience.com) joined #gnuenterprise.
+<pattieja> hello
+<jcater> pattieja: hellow
+<jcater> is this the pattieja from LTSP?
+<jcater> hellow = hello :)
+<pattieja> jcater: yes
+<jcater> what brings you to GNUe land?
+<pattieja> I was told to find an open source project that does Payroll
+<pattieja> hope I came to the right place?
+Action: dneighbo raises hand
+Action: jcater is away: phone
+<pattieja> hello dneighbo
+<dneighbo> pattieja where are you located?
+<dneighbo> and what are your base requirements
+<pattieja> St. Louis, MO
+<pattieja> well, we currently have written a web-based CGI application for time keeping
+<dneighbo> pattieja do you have an RFP or RFQ for what you need payroll to do
+<pattieja> nope
+<pattieja> :)
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+<dneighbo> damn users shopping w/o specs again ;)
+<pattieja> hey.
+<pattieja> I resemble that remark.
+<pattieja> if you haven't seen it, you might take a gander at SandSurfer
+<chillywilly> resent?
+<pattieja> sandsurfer.sourceforge.net
+<pattieja> it's an open source time keeping tool we wrote
+<pattieja> we were either wanting to replace it with something better or integrate a payroll system into it (or export to a payroll system)
+<pattieja> how mature is GNUe?
+<pattieja> the website looks pretty good
+<dneighbo> pattieja : we dont have payroll done
+<dneighbo> BUT
+Remosi (~isomer@210-86-56-222.jetstart.xtra.co.nz) joined #gnuenterprise.
+<dneighbo> i have customers needing it
+<dneighbo> so i would be willing to make it priority
+<pattieja> cool
+<dneighbo> you could definitely integrate or interface to your current system
+<dneighbo> we have a GPL time app too (though i dont think i have told anyone here)
+<pattieja> is timekeeping a part of GNUe currently? if not, would it fit?
+<dneighbo> yes it would fit
+<pattieja> cool
+<dneighbo> I would definitely love to look at what you have
+<dneighbo> and if it makes sense maybe make it part of gnue
+<pattieja> go for it
+<dneighbo> and start writing some gnue management utilities against it
+<dneighbo> (as i dont care for web apps)
+<pattieja> it's strictly backend CGI scripts written in Perl
+<pattieja> right
+<dneighbo> but i see value in web based 'time entry'
+<dneighbo> i.e. clock in clock out
+<dneighbo> we have somethign all done in php
+<pattieja> exactly what it does
+<dneighbo> called timekeeper
+<pattieja> so you're the ones that stole our original name, ahah!
+<dneighbo> it allows clock in clock out for a warehouse company
+<pattieja> hehe
+<dneighbo> i wrote this evil little php reporting tool
+<dneighbo> that allows you to use excel as a reporting engine
+<pattieja> ewww!
+<dneighbo> for this reason mostly is why we never released to public :)
+<dneighbo> but it was a 'requirement' at the time
+reinhard (rm@N816P015.adsl.highway.telekom.at) left irc: "All things being equal, fat people use more soap"
+<dneighbo> and it made dealing with  ADP for payroll easy
+<pattieja> hmm.  maybe you're not, then.  Cause there's already a TimeKeeper project out there.
+<pattieja> SandSurfer has client billing included and some other company related features
+<dneighbo> cool
+<dneighbo> definitely worth looking at
+<dneighbo> if of course you are open to incorporating it into GNUe
+<pattieja> I don't see why that would be a problem
+<dneighbo> or being flexible to someone adding stubs where necessary to interface to GNUe
+<dneighbo> only problem i see
+<dneighbo> is its written in perl :)
+<pattieja> we wanted to rewrite the whole thing anyway
+<pattieja> yep
+<dneighbo> python! python! python!
+<pattieja> is GNUe primarily C++?
+<pattieja> oh
+<dneighbo> sorry...
+<pattieja> ORB?  python?  wow.
+<dneighbo> python is just so friendly
+<dneighbo> we are working on a UI html driver too for gnue
+<dneighbo> so maybe rewrite it in gnue :)
+<pattieja> I saw that in the picture graph
+<pattieja> the ncurses and html frontends
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise.
+Action: jcater is back (gone 00:24:49)
+Action: dneighbo needs to see how complex this perl thing is
+<dneighbo> and see if its best to move with it or dig timekeeper out of cvs
+<dneighbo> hmmm looks pretty similar only you guys have some more 'payroll' stuff
+<dneighbo> does your stuff do any notifications?
+<dneighbo> as i recall what we had was it email notifying the payroll leader
+<dneighbo> when people had uncoupled time
+<chillywilly> hey there was a new wxWindows release
+<dneighbo> so that they could beat the person or fix it
+<dneighbo> also there was time edit request system via email
+<dneighbo> so if you needed to 'amend' your time you filled it out, and it went to a queue
+<dneighbo> where the administrator could then approve or modify it
+<dneighbo> jcater : btw: you have any need for this kind of thing?
+<chillywilly> "The biggest changes in the development version is that the Mac version is now 90% ready for production use and supports MacOS 8.6 or higher as well as MacOS X or higher.
+<chillywilly> "
+<chillywilly> http://wesley.informatik.uni-freiburg.de/~wxxt/
+<dneighbo> chillywilly 2.3.x i think is a 'development' release
+<jcater> dneighbo: not immediately at least
+<chillywilly> still OS X is almost there
+<chillywilly> ;P
+<dneighbo> jcater how do you do time cards current?
+<chillywilly> will make neilt appy at least
+<chillywilly> happy
+<dneighbo> dcl is good for tracking time, but not for 'hourly employees'
+<dneighbo> i.e. its good performance metrics tool, but not a hard core when are you at work when aren't you tool
+<jcater> we use ETC time card
+<jcater> it has credit card like things
+<jcater> w/a magnetic strip
+<dneighbo> ah
+<jcater> w/PC software
+<dneighbo> so you bought something (evil you)
+<dneighbo> well the idea was time keep instead of 'swipe' any terminal with a webbroswer could clock you in
+<jcater> hmm
+<jcater> we have a hard time getting ppl to understand
+<dneighbo> at the warehouse this worked well, BUT i was going to get a card reader and try it out at one point
+<jcater> "swiping"
+<jcater> much less web-based stuff
+<chillywilly> hwy I almost worked for the city of milwaukee here on their time keeping app for the city...it was a java app...they had 1GB ethnet netwokr
+<dneighbo> what we did for timekeeper was put a pc at front desk (running linux) that was OLD like 486
+<dneighbo> and have it with browser open to page
+<jcater> btw, the time card machine uses a text-based serial protocol
+<dneighbo> it was 'login' click the button logout
+<jcater> so it'd be easy to integrate w/another solution
+<dneighbo> which did take some time
+<jcater> dneighbo: and it you were smart, you used LTSP to run the 486 :)
+<dneighbo> but it was saviour in sense that memphis location needed something too
+<dneighbo> and needed reported to corporate
+<dneighbo> so this solved that
+<dneighbo> and even the memphis boys figured er out :)
+<dneighbo> but i still think value in making a time swiper too
+<dneighbo> to do metrics you have to have a terminal though
+<dneighbo> and everyone is starting to do metric
+<dneighbo> so i imagine slowly it will be the way
+<dneighbo> pattieja did we lose ya?
+<dneighbo> if you are serious about using gnue we can probably focus some attention to a solution
+<dneighbo> if you needed something yesterday and only want something that is ready now today out of box, then gnue wont work :)
+<pattieja> dneighbo: no.  this will be a process of growth
+<pattieja> my boss wanted to incorporate payroll into SandSurfer, but wanted to check to make sure that there weren't systems out there already so we wouldn't reinvent the wheel yet another time.
+<pattieja> We also have a web-based accounting system which is open source as well
+<pattieja> called XIWA
+<pattieja> (XIWA Is Web Accounting)
+<dneighbo> hmm havent heard of that
+<pattieja> xiwa.sourceforge.net if you want to check it out
+<dneighbo> any reason you didnt use sql-ledger/
+Action: dneighbo is just curious as it seems popular and is perl (iirc)
+<pattieja> or you can just go to pcxperience.org to see all the open source projects we're working on
+<pattieja> how long has it been around?
+<pattieja> never heard of it
+<dneighbo> dont know but its all the rage right now
+<dneighbo> people coming here generally say do we
+<dneighbo> a. use sql-ledger now
+<dneighbo> b. use gnucash and hope we get business features added later
+<dneighbo> c. contribute to gnue and grow with it
+<pattieja> hehe.  I found this project because of gnucash
+<dneighbo> http://www.sql-ledger.com/
+<pattieja> wow
+<dneighbo> i still cant imagine doing books via a web interface, but i suppose if you are low volume you could do so w/o tearing your hair out
+<pattieja> yeah.  we had to craft some pretty intricate SQL stored procedures to increase the speed that Perl wasn't giving us
+<dneighbo> its not that so much as data entry in a stateless environment has to hurt
+<pattieja> how so?
+<pattieja> it's single user at the moment  :)
+<dneighbo> well often times data is dependent on other data
+<dneighbo> with out state you have to 'refresh and submit' to get this or load a ton of stuff into javascript
+<dneighbo> example if i choose department X
+<pattieja> yep
+<dneighbo> maybe only accounts a and b are available
+<dneighbo> if i choose account a (expense codes 1 2 3 are ok) but if i choose b (only c and d are ok)
+<pattieja> then when you create account X, you have to propagate it into the dropdown or whatever
+<dneighbo> etc etc etc
+<pattieja> yep yep
+<dneighbo> when you get 'nested' validations doing in javascript is a bitch
+<dneighbo> as you have to load a ton of arrays
+<dneighbo> etc
+<pattieja> :)
+<dneighbo> so most people put on the 'next page' etc
+<dneighbo> which becomes CUMBERSOME to do data entyr
+<dneighbo> i.e. fill out the whole form and we will tell you if you had an error
+<dneighbo> opposed to telling me up front i had an error :)
+<pattieja> yep
+<pattieja> you might want to checkout XIWA
+<dneighbo> not to mention the concept of redrawing the screen after every 'action'
+<dneighbo> while no big deal at a second or two per redraw
+<dneighbo> if you enter say 10 invoices a day
+<pattieja> we're attempting to get a server going to host a demo
+<dneighbo> but at one shop here they enter approx 300-500 invoices a day between like 2 people
+<dneighbo> they would LYNCH us if they had to use a web interface :)
+<pattieja> so how do you do the html frontend in python for GNUe?
+<dneighbo> it woudl have the same issues and such and handled similar way
+<dneighbo> the difference is it become optional w/o recode
+<pattieja> hmm
+<dneighbo> so if i make a gnue form for something
+<dneighbo> it can be used web, curses, gtk, win32
+<pattieja> yep
+<dneighbo> so the folks doing 500 invoices can use gtk or such and not suffer penalty
+<pattieja> win32 ... ewww
+<pattieja> :)
+<dneighbo> but for a same disparate organization they can use the webforms 
+<dneighbo> i.e. you are tied
+<dneighbo> thats why i said are you against us making admin forms for sandsurfer in gnue :)
+<pattieja> you did
+<pattieja> I did?
+<dneighbo> like the edit/add/deletion of users
+<dneighbo> etc etc
+<dneighbo> as i could make that form in problably 10 minutes
+<dneighbo> and it would take seconds to add 20 to 30 users
+<dneighbo> compared to half a day using a web form
+<dneighbo> i have a huge list of todo's tonight
+<pattieja> unless GNUe were to use Java or Tcl on the web forms
+<dneighbo> but if i get unburied some, i might install sandsurfer
+<dneighbo> pattieja im not suggesting 'replacing' just adding a choice
+<pattieja> you can checkout the online demo, if that's easier
+<dneighbo> i looked at online demo
+<pattieja> hmm.  that too.
+<pattieja> cool  :)
+<pattieja> what'd you think?
+<dneighbo> im thinking of grabbing it writing the gnue screens for management
+<dneighbo> and having you look at them
+<pattieja> go for it
+<dneighbo> i.e. forcing you to install gnue :)
+<dneighbo> as the logic thought for me is if you are normalized enough
+<dneighbo> in your structs
+<dneighbo> i might be able to take our hr spec and whip up employee screens
+<dneighbo> which would be the basis of your user tables
+<pattieja> coolness
+<dneighbo> i.e. you create and employee and it 'autocreates' them a login
+<dneighbo> er rather their login references their hr record
+<dneighbo> for like thier name, job title etc
+<pattieja> sounds neat
+<pattieja> I'm takin' off, but I'll definitely try to install GNUe tomorrow
+Action: pattieja is away: Bible study + dinner (mmmm :)
+drahc (~pointone@24-196-85-224.jvl.wi.charter.com) joined #gnuenterprise.
+<dneighbo> er sandsurfer doesnt have downloads :(
+Action: dneighbo hates not being able to get cvs trees from work
+<chillywilly> firewall?
+<chillywilly> do you have a proxy?
+<dneighbo> both
+<chillywilly> are the cvs ports open on a the proxy?
+<chillywilly> s/a//
+<chillywilly> I think you can make cvs use a proxy'
+<dneighbo> um dont know but not open on firewall :)
+<dneighbo> only thing open (and this is funny)
+<dneighbo> 21 - ftp
+<dneighbo> 23 - telnet
+<dneighbo> 80 - http
+<dneighbo> 21 and 23 being fairly insecure applications :)
+<chillywilly> telnet?!?
+<chillywilly> yea
+<chillywilly> especially telnet
+<dneighbo> goats is listening on 23 to convert/map to ssh
+<dneighbo> so i ssh out of here on 23 to goats for translation
+<dneighbo> otherwise i couldnt use ssh either :)
+<chillywilly> fooey
+<chillywilly> you need to trout whip the admins
+<chillywilly> ;)
+drahc (pointone@24-196-85-224.jvl.wi.charter.com) left irc: Read error: 104 (Connection reset by peer)
+<chillywilly> Id it me or do the diffs on the commit list look different
+<jcater> dude
+<chillywilly> like they are not in universal format anymore
+<jcater> I'm in love
+<chillywilly> why?
+<jcater> rsync rocks my socks
+<chillywilly> heheh
+<chillywilly> that it does
+<jcater> I never paid attention to its potential
+<jcater> but my backup strategy is about to change :)
+<chillywilly> hehe
+<dneighbo> :)
+<jcater> I've been backing up some of my minor unix boxes via nfs
+Action: jcater slaps himself
+<dneighbo> oh yes i love rsync too :)
+<dneighbo> figured i woudl 'try it' to update my personal webpage
+<dneighbo> now im tempted to run two machines with huge drives
+<dneighbo> and just nightly sync some dirs
+<dneighbo> as a 60 gig drive at 80.00 is cheaper than any backup solution i can think of
+<chillywilly> jcater: you didn't even let me get it out
+<chillywilly> l8r
+Action: chillywilly is away: supper
+<jcater> I'm setting up all my machines to mirror each other :)
+<dneighbo> jcater you almost have to
+<dneighbo> i mean i think DLT machine
+<dneighbo> and how slow it is 
+<dneighbo> and what it costs
+<dneighbo> and its like take a 486 machine put a few 60gig drives in it
+<dneighbo> and you ahve a superior backup solution out of box
+<jcater> what's cool is we have a frame relay link to our other office
+<jcater> normally doing a tar across that bites the big one
+<jcater> but rsyncing is a different story
+<dneighbo> oh yeah rsync being ftp etc w/ compression is jsut like studly :)
+<dsmith> dlt drives are bad.  They just are.
+Action: dsmith get paid to do tsm consulting. dsmith knows.
+<jcater> bad as in reliability? 
+<dsmith> yes
+<dsmith> but they are common in low-end hardware (wintel boxes)
+<|darks|> so what about vxa ?
+<dsmith> Ahh. xva.
+<dsmith> The scsi interface is horrible, but the tehnology is really cool.
+<dsmith> Unsupported by tsm though. I tried.
+<|darks|> *hehe* well their lib works .. at least here :)
+<dsmith> Yes.  We use one in the office. (drive, not library)
+<|darks|> tsm .. tivol storage manager ?!?
+<dsmith> yes
+<|darks|> ahh .. we have that at the local computing center .. with some storagetek powderhorns :)
+<dsmith> I'm probably the top (non-ibm) tsm guy in the cleveland, oh area. Or so they tell me.
+jcater (jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "home"
+<dneighbo> tsm guy == the stupid masochist guy?
+<dsmith> heh
+Action: dneighbo is debating do i back up my laptop and upgrade to debian tonight.....
+<dneighbo> or do i get work done and do that another day
+<dneighbo> i think it probably needs to wait till another day, but red hats time is definitely limited
+Nick change: dsmith -> dsmith-away
+Action: chillywilly is back (gone 00:24:35)
+<chillywilly> dneighbo: hehe
+Action: chillywilly hasn't used redhat in FOREVER
+<dneighbo> well me either in one sense
+<dneighbo> put it this way i installed the current version on red hat when it was brand spanking new
+<dneighbo> that is version 6.2
+<chillywilly> ok
+<dneighbo> nearly 2 years ago?
+Action: dneighbo is trying to remember
+<chillywilly> woah ;)
+<dneighbo> so while i use red hat 'regularly' like a LOT
+<dneighbo> i do so only because upgrading is a painful thought
+<dneighbo> upgrading to anything :) even a newer red hat
+<dneighbo> im firm believer you shouldnt really have to upgrade all the time
+<dneighbo> unless there is a tool like debian apt
+<dneighbo> that lets you update VERY regularly
+<dneighbo> so you arent upgrading your whole damn system at a single time
+<dneighbo> of course apt will let you do that too :)
+<dneighbo> hey chillywilly you are mr. kernel
+<dneighbo> how come sid has kernel
+<chillywilly> yes?
+<chillywilly> er?
+<dneighbo> Linux version 2.2.19pre17 (herbert@arnor) (gcc version 2.7.2.3) #1 Tue Mar 13 22:37:59 EST 2001
+<chillywilly> because debian is like compile your own kernel
+<dneighbo> i.e. installed potato on this machine
+<chillywilly> biased
+<dneighbo> then i did dist upgrade to sid
+<dneighbo> figured it would be 2.4.x something at least
+<chillywilly> you can install one of the binaries
+<dneighbo> and was suprised it was still in 2.2.x series
+<chillywilly> one of the kernel-images
+<chillywilly> dneighbo: if you use the xfs disks
+<chillywilly> you can get a 2.4.x kernel
+<dneighbo> hmmmm
+<dneighbo> if i was more of a stud
+<chillywilly> or you should be able to install a binary
+<dneighbo> i would try xfs (or some journaling filesystem) and 2.4 kernel
+<dneighbo> probably not something i want to tackle w/ laptop upgrade, will have enough issues to fight htere :)
+<dneighbo> dont need stuff never seen on top of it
+<dneighbo> BUT 
+<dneighbo> if i get a pc at home soon, i will probably do that type of install
+<chillywilly> well doing xfs was not fun
+<chillywilly> it took too much time
+<chillywilly> :P
+<chillywilly> well not really
+<chillywilly> I made myself go down to school and use the T3
+<chillywilly> ;)
+<chillywilly> when I last reinstalled
+<chillywilly> my buddy just b0rked his kernel
+<chillywilly> the one that came over and we installed debian
+<chillywilly> on his machine
+<chillywilly> but I told him to be careful
+<chillywilly> ;)
+<chillywilly> I'll have to go help him fix it
+<chillywilly> :)
+<dneighbo> hey its SNOWING in phoenix
+<chillywilly> WOW
+<dneighbo> that only happens like every 10 to 50 years
+<chillywilly> cool
+<dneighbo> of course it melts when it hits the ground :)
+<chillywilly> heheh
+<dneighbo> cept 1 year when i was bout 12 it got like half inch and STUCK
+<dneighbo> it was kick butt
+jcater (~jason@HubA-mcr-24-92-70-201.midsouth.rr.com) joined #gnuenterprise.
+<dneighbo> seeing snow on cactus is kind of funny
+<chillywilly> dneighbo: heheh, too bad I am no stranger to snow
+<chillywilly> ;)
+<dneighbo> it was like 45 degrees earlier in the morning
+<dneighbo> must have cooled down considerably in the west valley or something
+<chillywilly> that's a warm spring day ;)
+<dneighbo> time to head home
+<dneighbo> hasta senor's
+<chillywilly> l8r
+<chillywilly> you know you will be back ;)
+<dneighbo> er au revoir mon frere's
+<dneighbo> later
+dneighbo (dneighbo@mail.libertydistribution.com) left irc: "[BX] Hey baby, come sit on my lap. We'll talk about whatever pops up."
+<chillywilly> heh
+<chillywilly> nice quit message
+Yurik (yrashk@gw.telcos.net.ua) left irc: "BitchX: cleaner, drier, protects even better"
+neilt (~neilt@dhcp64-134-54-175.chan.dca.wayport.net) joined #gnuenterprise.
+#gnuenterprise: mode change '+o neilt' by ChanServ!ChanServ@services.
+<chillywilly> howdy neilt
+<neilt> chillywilly: hello
+Action: neilt wakes up
+<neilt> doing email sorry
+Maniac (~darryl@h24-82-132-209.wp.shawcable.net) joined #gnuenterprise.
+<chillywilly> heh
+Rafterman (tim@lister.sesgroup.net) joined #gnuenterprise.
+mdean (~mdean@mkc-65-28-73-63.kc.rr.com) joined #gnuenterprise.
+<chillywilly> ello mdean
+<mdean> howdy chillywilly
+<Maniac> lo all
+ajmitch (me@p40-max2.dun.ihug.co.nz) left irc: Ping timeout: 181 seconds
+Action: mdean thwaps Maniac with the Thwap of Justice
+<nickr>  heya
+Action: Maniac thwaps mdean with the ThwapMaster 2k
+<nickr> ooh twapmaster
+<nickr> snazzy
+<Maniac> (tm)
+<Maniac> mdean knows the thwapmaster well
+<mdean> doesn't hold a candle to the BFTM10k
+<mdean> Maniac: are you sitting down?
+<Maniac> mdean snazzier acronyms but mine has more impact
+<Maniac> mdean: as a matter of fact i'm standing
+<mdean> you'd better sit
+<mdean> I have news
+<Maniac> ok i'm kneeling
+<mdean> hehe
+<mdean> I made a commit to phpgwapi
+<nickr> the snazzier the better
+<Maniac> oh, i saw the emalii to dev list
+<Maniac> mdean: this commit was for your work tho
+<Maniac> so no fair
+<mdean> hehe
+<mdean> whatever - provides no direct benefit to me, so it's fair
+<Maniac> by *direct* you mean it does or does not affect work?
+<Maniac> or you did it @work and thought you would let it filter back into the *community*
+<mdean> by direct, I mean I do not benefit from the code
+<Maniac> well, you generated good will
+<mdean> blah!  you know me better than that
+<Maniac> and some karma!
+<mdean> oooooh
+<mdean> will that carry over to my /. karma?
+<mdean> since I practically have none
+<Maniac> mdean := (mdean) + (karmapoints);
+<mdean> := ??? thought you were a .py man now?
+<Maniac> old habbit
+<mdean> :)
+<Maniac> object factories are easy in .py btw
+<mdean> are in php too
+<mdean> ever have any luck finding some apps using webware?
+<Maniac> they are a hastle in c++
+<Maniac> no
+<Maniac> there are a few sites
+<Maniac> most are not public
+<mdean> you mean pyGroupWare will be the first?
+Action: Maniac giggles
+<Maniac> ok so are you goignto help with pyGroupware?
+Action: Maniac spell checks his fingers
+<Maniac> ok i have to go do some work (tm)
+<Maniac> i'll bug you later
+<mdean> do you want to start the project?
+<Maniac> mdean: would it go anywhere/
+<Maniac> ?
+<mdean> why wouldn't it?
+<Maniac> who would participate?
+<mdean> I would
+<Maniac> on the webware devel list they go all esoteric regadring user authentication and management tons of emails but no code
+<Maniac> there's a wiki page 
+<Maniac> but i really have to go or i will get in trouble :)
+<Maniac> bbl
+Action: Maniac is away: I'm busy
+<jcater> hmm
+<jcater> pyGroupWare?
+<jcater> was he serious?
+<mdean> what's not to love? ;-)
+neilt (neilt@dhcp64-134-54-175.chan.dca.wayport.net) left irc: "later all"
+<chillywilly> object factories are easy in loosely typed languages
+<chillywilly> C++ is not loosely typed
+<chillywilly> ;P
+<jcater> well, I dunno
+<jcater> in order for me to do C++, I have to be loose from liquer or something
+<jcater> :P
+<chillywilly> heh
+<chillywilly> \/me is doing C++ right now
+<chillywilly> oops
+<jcater> so that involves "loosly typing"
+<chillywilly> see
+<chillywilly> I must be drinking ;)
+<jcater> not sure if that's the same as "loosely typed"
+<chillywilly> to be typing like that
+<chillywilly> and coding C++
+<chillywilly> :D
+<chillywilly> Dave is a real c++ guru (tm)
+<chillywilly> feh, no one laughs at my lame jokes
+Action: chillywilly thought the drinking joke was funny
+<chillywilly> ah well
+Action: jcater didn't get the Dave reference
+<chillywilly> jcater: does this mean Mr. Sugar is a drunk ;)?
+<jcater> chillywilly: only if I'm doing a C* language
+<chillywilly> you know Dave Sugar
+<chillywilly> that guy
+<chillywilly> whose code I am a using
+<chillywilly> GNU Common C++
+<chillywilly> weeeee
+<jcater> ok
+<chillywilly> our "telephony" server author
+<jcater> doh!
+<jcater> :)
+Action: jcater is not good w/names
+ajmitch (~me@p42-max4.dun.ihug.co.nz) joined #gnuenterprise.
+<chillywilly> hey ajmitch
+derek (~derek@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<chillywilly> wb derek
+<derek> thankyou
+<chillywilly> we missed you
+<chillywilly> it was too quiet ;)
+Action: chillywilly ducks
+<jcater> first it's trout
+<jcater> then it's duck
+<jcater> sigh
+<chillywilly> ducks eats trout ;)
+<jcater> maybe it should be "GNU Barnyard" instead of "GNU Enterprise"
+<chillywilly> I am moving up the evolutionary latter
+Action: jcater slaps chillywilly with a quacking duck
+<chillywilly> ouch!
+<derek> rolf
+<mdean> jcater: Peking duck packs more punch
+<derek> er rofl
+<jcater> rolling over laughing flounders?
+<derek> no rolling on laughing floor
+<derek> if thats confusing, you havent had enough crack :)
+Action: chillywilly takes a hit off his crack pipe
+<chillywilly> can never have enough crack
+Action: mdean gets his crack from php
+<chillywilly> derek: who's rolf?
+<chillywilly> ;)
+<Remosi> Mmm
+<Remosi> phpCrack
+<mdean> piano playing dog on the Muppet Show
+<chillywilly> lol
+Action: chillywilly forgot about him
+<jcater> Remosi: I prefer pyCrack
+Action: chillywilly prefers crack++
+<jcater> rofl
+<Remosi> pyCrack's much better, instead of this watered down MSCrack.
+<derek> hmmm MSCrack is extreme powerful
+<derek> but nearly as addictive as pyCrack
+<jcater> gnuCrack doesn't cause you to crash as harrd as MSCrack
+<Remosi> gnuCrack's got the recipe printed on the side
+<chillywilly> objCrack is for apples
+<jcater> yes, but any improvements to gnuCrack has to be given back to the community
+<chillywilly> lol
+<Remosi> Reused gnuCrack, Mmmmm
+<chillywilly> gnuCrack can also be freely distributed
+<chillywilly> (re)distributed even
+<jcater> problem with MSCrack is you have to take it anally
+<jcater> at least by MS's standards
+<Remosi> you're allowed to charge for gnuCrack (it comes in tape boxes), but the dealers can give it away for free
+<mdean> jcater: with a scoop of Skippy Extra Chunky
+<jcater> then there's sharedSourceCrack... you know at least part of it is real :)
+<chillywilly> with gnuCrack you are allowed 4 central freedoms: 1)     *  The freedom to use the crack, for any purpose (freedom 0).
+Action: mdean has too many copies of DCL installed...
+<derek> how hard is an upgrade
+<chillywilly> 2) * The freedom to study crack is made, and adapt it to your needs (freedom 1). Access to the crack recipe is a precondition for this.
+<chillywilly> study how
+<derek> from like 3 months ago cvs to 1209 release?
+<chillywilly> * The freedom to redistribute the crack so you can help your neighbor (freedom 2).
+<jcater> derek: such an upgrade requires massive doses of SqlCrack
+<chillywilly>     * The freedom to improve the crack, and release your improvements to the public, so that the whole community benefits. (freedom 3). Access to the source code is a precondition for this.
+<mdean> derek: as easy as running a few sql scripts, moving the new web source in place and using it as normal
+<chillywilly> er, crack recipe
+<jcater> mdean: really?
+<jcater> cool
+<mdean> derek: it's all explained poorly in the UPGRADE file ;-)
+<mdean> 1210 is the latest btw
+<mdean> and I'm readying another release for the nagging IE cookie problem
+<derek> ok
+<chillywilly> Free The crack!!!!!
+<derek> i think i need to upgrade at work
+<chillywilly> noe more crack hoarders
+<mdean> the gateway is in there too :)
+<derek> i have some date stuff with the tickets (fixed work orders)
+<derek> that im pretty sure i saw as fixed in newer release
+<derek> and i think i saw the ability to flag things as closed (i.e. instead of hardcoded to a position)
+<mdean> yup
+<mdean> statuses now have a type (open, closed, deferred)
+<derek> basic i had sent like 2 or 3 bugs and a few feature requests :)
+<derek> i think you hit those and now i need to upgrade :)
+<mdean> I should have acted like a proprietary vendor and sat on them for a couple years first ;-)
+<derek> no kidding
+<derek> fits our 'upgrade' schedule :)
+<derek> i.e. i have wanted to upgrade at every release but keep getting pulled to do other things
+Action: mdean knows the feeling...
+Action: derek is hearing an msn commericial in the background and laughing....
+<derek> have problems, msn will solve them....
+<nickr> gnue should be rewritten in varaq
+<nickr> yea
+<nickr> they have those on busses here
+ajmitch_ (~ajmitch@p42-max4.dun.ihug.co.nz) joined #gnuenterprise.
+<jcater> roflmao.. we just had chinese and this was my fortune: 
+<jcater> "Promote literacy. Buy a box of fortune cookies today."
+<jcater> it's marketing everywhere!
+<mdean> lol
+<mdean> that's like Dr. Pepper a few years ago
+<ajmitch_> hi all
+<mdean> "Try Again.  Drink more Dr. Pepper."
+<Remosi> rofl
+<chillywilly> haha
+Action: Maniac is back (gone 01:28:14)
+<Maniac> pyGW tastes great but less filling
+Nick change: dsmith-away -> dsmith
+|darks| (nobody@pD950F796.dip.t-dialin.net) left irc: Ping timeout: 181 seconds
+Remosi (isomer@210-86-56-222.jetstart.xtra.co.nz) left irc: "EPIC!  Accept specific limitations on WHO"
+ra3vat (ds@195.239.64.67) left irc: Ping timeout: 181 seconds
+dres (dres@4.18.171.42) left irc: Remote closed the connection
+dres (~dres@4.18.171.42) joined #gnuenterprise.
+chillywilly (danielb@d171.as3.nwbl0.wi.voyager.net) left irc: Ping timeout: 181 seconds
+chillywilly_ (~danielb@d178.as29.nwbl0.wi.voyager.net) joined #gnuenterprise.
+<derek> smelly trout isnt that a double something
+<derek> i mean is there such thing as a non smelly trout?
+<ajmitch> i think it means really smelly trout that has been lying dead in the sun for a day or two
+<chillywilly_> eeeew
+Nick change: chillywilly_ -> chillywilly
+ra3vat (~ds@195.239.64.43) joined #gnuenterprise.
+alexey_ (alex@techkran.vladimir.ru) joined #gnuenterprise.
+alexey_ (alex@techkran.vladimir.ru) left irc: Remote closed the connection
+jcater (jason@HubA-mcr-24-92-70-201.midsouth.rr.com) left irc: "nite"
+alexey_ (alex@ns.techkran.vladimir.ru) joined #gnuenterprise.
+<derek> nickr: you ehre?
+<nickr> yea
+<nickr> always
+<nickr> eternally
+<Mr_You> hi
+<derek> nickr: briefly looked at docustore proposal
+<derek> good start, will probably need more fleshing out as we go
+<derek> Maniac and mdean are looking for dm
+<derek> so you might have some victims here soon if we get this rolling :)
+<ajmitch> hehe
+<nickr> Heheh
+<nickr> Ah, fresh meat
+<nickr> no to speak
+<nickr> Yea, there are several areas that need things written in them
+<derek> i asked neilt to get up on  official site
+<derek> and we will blast to mailing list and web site news
+<derek> to get some feedback
+<derek> and get the ball rolling further
+<nickr> that'd be amazing
+<derek> jcater is making headway on gnurpc which should be good for the 'server' communications aspect
+<ajmitch> phpGW is looking pretty cool
+<nickr> yea, gnuprc is rather fundimental to this design
+<derek> ajmitch you been drinkiing again? ;)
+<ajmitch> would be useful
+<ajmitch> derek: :P
+<chillywilly> derek: ?
+<chillywilly> why would using phpGW require getting drunk?
+<chillywilly> eh?
+<chillywilly> ;P
+<derek> chillywilly: im teasing
+Action: chillywilly trout slaps derek hard
+<derek> thats nothing, after being attacked by the thwapmaster earlier toady :)
+<derek> today even
+Action: chillywilly ducks slaps derek
+Action: chillywilly strangles derek with the quackmaster
+<derek> chillywilly: we need to put your energy of the trout slap to work
+<derek> time to make you a dcl account and start assigning you tasks
+<nickr> Heh.
+Action: chillywilly drop kicks da masta 
+<ajmitch> derek: you got dcl setup for GNUe?
+<derek> yip
+<nickr> neat
+<nickr> Hows dcl comming?
+<ajmitch> cool
+<derek> nicely
+<nickr> It was a little rough last time I used it
+Action: derek needs to create a 'guest' account so people can see whats there then create a little page so can create an account to 'add' items
+<chillywilly> gooo heeerbieee!
+<derek> i.e. add tickets
+<ajmitch> sounds cool
+<nickr> There should be a non-login account for tickets and things or something
+Action: mdean whispers e-mail gateway...
+<ajmitch> i've got an old DCL setup here, haven't used it really
+<derek> mdean: yes to email gateway
+<derek> BUT
+<derek> tehre are issues
+<derek> i created a guest account so people can view w/o registering
+<derek> i want to allow people to register so they can have security to only create tickets
+<derek> if they dont want to register they just email bugs@gnue.org and it autocreates a ticket :)
+<derek> via gateway
+<derek> the 'advantage' to registering will be then you can get the 'status' of your ticket and status will be mailed to you etc etc etc
+<mdean> that's cool
+<derek> ultimately with the gateway it will be mailed to you from account you sent the bug from
+<mdean> may need to tighten a few things down
+<derek> for now you can see whats there by using
+<derek> user: guest
+<derek> pass: guest
+<derek> http://www.gnuenterprise.org/dclgw/
+<derek> obviously most of the people in this channel are gnue team members or core team members
+<derek> so your user/pass will be forth coming
+<derek> best way to get one is email me lots of crap that should be in dcl and i will get sick of entering it and give you an id instead and tell you to enter it :)
+<derek> that or volunteer to do things :)
+<ajmitch> hehe
+|darks| (nobody@pD950F5F1.dip.t-dialin.net) joined #gnuenterprise.
+--- Thu Dec 13 2001

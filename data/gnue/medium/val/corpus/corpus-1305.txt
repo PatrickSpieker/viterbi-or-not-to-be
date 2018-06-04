@@ -1,0 +1,895 @@
+<kac> I've installed RPMs ok it seems - any user docs around?
+<Vee2d2> I think there's almost always at least someone lurking so it's usually best to just state your questions or comments.. if not some people read the logs and may answer later on
+<kac> I need the commands to type at the console to fire things up
+<kac> oh - I see .. so monitoring the logs is the way this project ticks over...
+<Vee2d2> I'm not familiar with the RPMs.. but there should be some samples you can play with
+<kac> im running RH8 - I read on the website that the project needs testing with RedHat?
+<Vee2d2> yea, I think almost everyone here runs debian.. =/
+<Vee2d2> I've been lost the last week or so trying to recover from a dead hard drive
+<kac> ouch!
+dsmith (dsmith@oh-strongsvillecadent1-1c-203.clvhoh.adelphia.net) left irc: "later.."
+<Vee2d2> anyhow, I know if you were to grab the tarballs there should be sample directories contained within with some example forms and such to play with.. I would imagine they would be installed somewhere by the RPM, in debian they'd probably end up somewhere in /usr/share/doc/gnue*/examples
+<Vee2d2> the forms will have extension of .gfd and you can run them with the forms client, gnue-forms.. some of the examples may require a db, though I'm not completely sure of that. 
+<kac> hmm - needs mxDateTime ...
+<kac> how do i find what version of python i have installed?
+<kac> ok - im on V2.2.1
+<Vee2d2> python 
+<Vee2d2> python -V actually
+<kac> Error: no forms definition file specified ...
+<kac> im looking for one ...
+<Vee2d2> it's been a long time since I've used rpm, isnt there a way to list the package contents?
+<Vee2d2> might grep such a command for samples.. or .gfd
+<Vee2d2> to see where they might be
+<kac> im a linux newbie so please have patience ... im looking for *.gfd right? (apologies for Window$ terminology)
+<kac> some of the stuff installs to /usr/gnue
+<kac> found some ... in "/usr/share/doc/GNUe-Samples-0.4.0/...
+<Vee2d2> there ya go
+<kac> hmm...
+<Vee2d2> that's what you're looking for
+<kac> does this need a database running?
+<kac> there seems to be a script to set up PostgreSQL...
+<Vee2d2> might, might not.. I dont recall.. 
+<Vee2d2> I had a mysql db running when I first played with it so I used that.. 
+<Vee2d2> postgres seems to be the db of choice at the moment
+<kac> WHOA - back to old DOS-look-alike screens ...
+<kac> i tried the helloworld sample "gnue-forms helloworld2.gfd" and i got a screen asking for name & address
+<Vee2d2> =)
+<kac> no GUI stuff here - atually i'm not sure that's a drawback ...
+<Vee2d2> it depends on which client ya use
+<kac> there's a GUI client then?
+<kac> my GOD this need more user docs ... maybe I could volunteer for some of the work, if the project guys don't mind having dorks around them ...
+<Vee2d2> right now, I think there's a text client, and gui client done with wxpython, a gtk2 client is in the works but I havent seen it, and I think a native windows client is also in the works but I maybe mistaken.. 
+<kac> wxpython? ... mmmm ....
+<Vee2d2> a qt client is also planned in the not so distant future
+<Vee2d2> have you loaded designer yet?
+<Vee2d2> there's some docs, but they're incomplete.. 
+<kac> I actually had the wxPython RPM running around and i've installed that...
+<kac> now what do i do to fire that up?
+<Vee2d2> gnue-designer
+<kac> ok 1 sec
+<Vee2d2> the one in cvs looks a lot spiffier.. 
+<kac> YAY - actually this keeps getting better ...
+<kac> hmm ...
+<kac> now the ugly question ...
+<kac> I've never used CVS :( ...
+<Vee2d2> it's not too painful
+<Vee2d2> do you have it installed?
+<kac> yeah ...
+<kac> i've tried mucking around but no mojo ...
+<Vee2d2> actually, I dont know if I should suggest cvs.. =)
+<kac> hmm ... maybe I sould shate my intentions ...
+<Vee2d2> I'm but a gnue-newbie myself, btw. 
+<kac> <shake> then
+<kac> you actually use it to any extent?
+<Vee2d2> well.. I first bumped into the project a year or two ago.. but was too tied up with other things to really spend much time, and it really looked like things were still much in the planning stages anyway. recently I checked it out again and found they had these neat tools to play with and so I spent a couple days reading as much as I could (the web docs, kernel cousins (<-real good reads), etc..) then played with the samples and stuf
+<kac> i tried to fire up gnue-appserver but no dice ...
+<kac> Error Reported: gnue.common.GComm.AdapterInitializationError:
+<kac> DB000: Unable to load xmlrpc.  To use the XML-RPC interface,
+<kac> DB000: please install xmlrpc from:
+<kac> DB000:     http://sourceforge.net/projects/py-xmlrpc the appropriate DEBIAN package is python-xmlrpc.deb
+ddttmm (~chatzilla@adsl-67-115-151-114.dsl.snfc21.pacbell.net) joined #gnuenterprise.
+<kac> and I had just finished installing the latest RPM for XML-RPC ...
+<Vee2d2> I have a small embroidery business and have made a couple attempts to make systems using php, but they've ended up being 'clunky' and hard to maintain.. I was about half way through my latest attempt when I decided to redo it, in a more gnue friendly manner..
+<Vee2d2> so before my drive crashed, I was working on an inventory management system.. luckily I think I was able to recover that work from the dead drive
+<Vee2d2> I havent played with appserver at all
+<Vee2d2> just forms
+<ddttmm> hi guys
+<kac> hi
+<Vee2d2> heya ddttmm
+<ddttmm> kac: xmlrpc for what?
+<kac> i tried to fire up gnue-appserver...
+<Vee2d2> what drew your interest into gnue, kac?
+<kac> good question
+<kac> like this...
+<kac> I'm involved with a small but growing company that needs some integrated software to handle its affairs...
+<kac> and commercial apps either do too little or too much or at too much cost or with giving you escape routes ...
+<kac> err without ...
+<Vee2d2> hear that
+<kac> so I started looking at linux as a desktop replacement (RedHat specifically)
+<kac> desktop-wise it's all ok ...
+<kac> e-mail client, which we are mega-dependent on is FINE with evolution ...
+<kac> now we lack an accounting package and a repair-job-logging system - and they need to be integrated ...
+<kac> and if a local coding enterprise is going to take forever to do it & keep it for himself, it's more sensible to look around and use what's publically avaliable...
+<kac> or assist in changing some of that and allowing others to use / reuse / contribute ...
+<kac> (sorry for ranting on...)
+<kac> the rest sould be obvious
+<Vee2d2> sounds like a good fit to me
+<kac> comments ddttmm ?
+<kac> the only coding environment I can seem to get to grips with is the Anjuta/Glade combination, but i'm willing to try my hand at anything if it will help ...
+<ddttmm> hmm
+<ddttmm> kac: so you say a "repair job logging" system... are you talking about ticketing and helpdesk type stuff?
+<ddttmm> coz if so, then you need http://dcl.sf.net
+<ddttmm> which is part of gnue
+<ddttmm> part of the metaproject
+<kac> hmmm
+<kac> we repair photopiers ...
+<kac> our own and our clients
+<kac> so I need to log jobs, send out guys to fix, and bill clients based on time and parts consumed ...
+<kac> gimme 30 secs so I can give my toddler some milk ...
+<Vee2d2> mine are both sleeping.. *sigh*
+<kac> where are you in the world?
+<Vee2d2> hopefully for another 5 or 6 hours too.. =)
+<Vee2d2> Fort Worth, Texas here.. 
+<Vee2d2> you?
+<kac> Malta here - and its 8am ...
+<Vee2d2> 1am here
+<kac> hehe - 7hrs time gap
+<Vee2d2> people all over the world here.. =)
+<ddttmm> kac: hehe i'm in Mountain View, CA
+<ddttmm> california
+<ddttmm> kac: yeah so it sounds like you need DCL
+<kac> im looking at the demo as we speak (talk? type? chat? - boq!) ...
+<ddttmm> hehe
+<ddttmm> the demo is good
+<kac> hmmm ...
+<kac> interesting ...
+<kac> how would i know what Version of PHP i have (if at all?) ...
+<ddttmm> you need to make a file named phpinfo.php which contains this:
+<ddttmm> <?php phpinfo(); ?>
+<ddttmm> and load it in your browser, served bythe server in question
+<ddttmm> and you'll get ALL info
+<ddttmm> dont make that public :)
+<kac> if i do NOT have httpd as a service it means i do NOT have Apache - correct?
+<kac> (maybe a should call it a daemon in linux-speak) ...
+<ddttmm> correct
+<ddttmm> heh
+<ddttmm> well it means it's not turned on (running)
+<ddttmm> it may be installed
+<ddttmm> although i dont know what you're consulting in order to obtain that info :)
+<kac> i consult the service list in RH8 "Start Here/Server Settings/Services" ...
+<ddttmm> oic
+<kac> and non-running services are listed 
+<ddttmm> never seen that
+<ddttmm> well it's probably installed then.
+<ddttmm> rpm -qi apache
+<ddttmm> that would tell ya
+<kac> 1 sec ...
+<kac> nope - don't have it
+<kac> which version should i use 1.x or 2.x ?
+<ddttmm> 1.3.27
+<kac> vanilla ? or do i need to do much tweaking ?
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) joined #gnuenterprise.
+<Vee2d2> hello Yurik
+<ddttmm> at the worst, you'll need to enable the mod_php and you'll need to make sure that you've got the related RPMs
+<ddttmm> kac: like for your database and such
+<Yurik> Vee2d2: hello
+<kac> i've already got MySQL up and running
+<ajmitch> evening lads & ladies
+<ddttmm> kac: yes but you must connect php to it
+<kac> hi there
+<Vee2d2> heya ajmitch
+<kac> ddttmm: i'll give it a go and see where I end up
+<ddttmm> kac: you must install the php-to-mysql RPMs and you must enable mysql support in php.ini
+<ddttmm> kac: look for any package with 'php' and 'mysql' in the name
+<ddttmm> kac: and if you can at all help it, you should use postgresql instead of mysql
+<kac> why?
+<ddttmm> because it's better!
+<ddttmm> the simplest two answers are that because the developers prefer it and hence it has less potential issues, and because mysql is known for data corruption under high volume concurrent writes
+<ddttmm> either mysql itself, or the way people tend to use it
+<ddttmm> in their apps
+<kac> hmmm...
+<ajmitch> and because mysql isn't a full relational database
+<ajmitch> it is but a shadow! :)
+<ddttmm> yeah it's essentially a glorified SQL wrapper around a filesystem
+<ddttmm> not that there's anything specifically wrong with it; it's just not an enterprise app
+<ddttmm> i haven't heard of any other way to corrupt its data other than high volume concurrent writes to the same table
+<ddttmm> insufficient granularity
+<ddttmm> and the locking it does support is way too big and hence not used much
+<ajmitch> can't recall if it does record locking or not
+<ddttmm> last i knew, it didn't
+<ajmitch> possibly is just table locking
+<ddttmm> it was either table or row
+<ddttmm> i think table
+<kac> V3 did table locking
+<ddttmm> but i barely know what a database is.  :)
+<ddttmm> so i wont discuss much more ;>
+<kac> V4 does record locking
+<ajmitch> referential integrity, actually having relations declared between tables - fat chance :)
+<ajmitch> yeah, they have finally caught up with the developing world :)
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) left irc: Read error: 104 (Connection reset by peer)
+<kac> k guys ...
+<kac> gotta run
+<kac> cuall
+<Vee2d2> cya.. good luck!
+<kac> thnks - will need it ...!
+kac (~kevin@194.204.106.247) left irc: "Client Exiting"
+<ddttmm> ajmitch: so what's up man
+<ddttmm> i'm installing axisgw and dcl
+<ajmitch> not much, just got back from church
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) joined #gnuenterprise.
+ddttmm (~chatzilla@adsl-67-115-151-114.dsl.snfc21.pacbell.net) left irc: "ChatZilla 0.8.11 [Mozilla rv:1.2.1/20021130]"
+Vee2d2 (~vin@c66.169.136.41.ftwrth.tx.charter.com) left irc: Read error: 60 (Operation timed out)
+<aaron___> hey i tried to download a bunch of gnue stuff and get it running.. but em, well i got python errors that i coudln't decipher... should i learn a bit o python (i believe it basic) or are there still intall problems
+<aaron___> cvs isn't bad
+<aaron___> shit if you can figure gnue stuff
+<aaron___> cvs co ?
+<aaron___> um me 3
+mdupont (mdupont@p5080E84F.dip0.t-ipconnect.de) joined #gnuenterprise.
+<mdupont> Hey all, 
+Vee2d2 (~vin@c66.169.136.41.ftwrth.tx.charter.com) joined #gnuenterprise.
+<ajmitch> hello
+<ajmitch> aaron___: what errors?
+SachaS (~Sacha@dialup-196-72.wasp.net.au) left irc: Read error: 113 (No route to host)
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) left irc: Read error: 104 (Connection reset by peer)
+<mdupont> hey guys
+<mdupont> is gnue gpl or lgpl?
+<ajmitch> GPL
+<mdupont> ok, so if i were to write a statistical package for a gnue module
+<mdupont> that does graphs and reporting on it
+<mdupont> would that also have to be gpl?
+<ajmitch> ooooh, i really really need stats & graphs this next week or two ;)
+<mdupont> well, i need your support on this
+<ajmitch> well, you'd have to ask derek that one :)
+<ajmitch> i think possibly yes
+<ajmitch> not sure tho
+<mdupont> the guy, tim perdue told me to go to hell and he would see me in court!
+<ajmitch> oh lovely!
+<ajmitch> what were you suggesting/asking?
+<mdupont> i said that he should review if he is in violation of the gpl
+<mdupont> that usage of internal data structures, and having to redistribute the gpled software with his
+<mdupont> could be considered a derived work
+<mdupont> and that i have asked debian-legal about this
+<ajmitch> hmmm
+<ajmitch> nasty
+<ajmitch> what could he be violating?
+<mdupont> the same thing that a user of mysql would be violating if they make non-free clients ;)
+<ajmitch> hmm
+<ajmitch> emailed GNU about it?
+<mdupont> the same thing that a gcc developer would be violating if they make a non-free gcc frontend
+Action: ajmitch thinks you're being a bit vague :)
+<mdupont> ok, the argument is,
+<mdupont> even if you use the sql-database, or link php modules together
+<mdupont> you might be making a derived product
+<ajmitch> right
+<mdupont> if you put your compiler structures into a sql table, does that make the GPL useless?
+Action: ajmitch doesn't even want to think about that :)
+<mdupont> ajmitch: it is the same question
+<mdupont> if this guy can get away with the debian-sf module
+<mdupont> then all i have to do is put the gcc structs into a sql table
+<mdupont> and viola, no more gpl
+<ajmitch> worrying
+<mdupont> it is
+Action: chillywilly slaps mdupont around some
+Action: mdupont gives the ChillMeister a karate chop to the head
+Action: chillywilly blocks it with his trout-foo skillz and retaliates with a mighty crappie to the bridge of the nose
+Action: ajmitch watches chillywilly wake up from his dreams
+Action: chillywilly watches ajmitch become the first victim of the "stab ppl in the face over the internet" device
+Action: ajmitch thinks chillywilly is not quite awake still
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) joined #gnuenterprise.
+Action: chillywilly is off to bed
+<ajmitch> night
+<chillywilly> night
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) left irc: Read error: 54 (Connection reset by peer)
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) joined #gnuenterprise.
+Yurik_ (~yrashk@as5300.kharkov.ukrtel.net) joined #gnuenterprise.
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) left irc: Read error: 104 (Connection reset by peer)
+mdupont (mdupont@p5080E84F.dip0.t-ipconnect.de) left irc: "away"
+Yurik_ (~yrashk@as5300.kharkov.ukrtel.net) left irc: Read error: 104 (Connection reset by peer)
+ra3vat (~ds@ics.elcom.ru) left irc: Read error: 60 (Operation timed out)
+ra3vat (~ds@ics.elcom.ru) joined #gnuenterprise.
+dyfet (~dyfet@pool-141-153-147-83.mad.east.verizon.net) joined #gnuenterprise.
+dyfet (~dyfet@pool-141-153-147-83.mad.east.verizon.net) left irc: "Client Exiting"
+jbailey (~jbailey@CPE0060082df811-CM014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+<ekeko> hi people
+<ekeko> go to last record in a query of 2000 rows is fatal
+<ra3vat> hello all
+<derek> if mdupont comes back you can tell him that he is walking in grey areas
+<derek> in principle the GPL should make illegal the things he is saying
+<derek> but in practice I think even Eben Moglen would say are difficult to defend in court
+<derek> i think this is why you see the Affero GPL existing
+<derek> and furthermore one of the reasons GPL v3.0 is taking so long to surface
+rdean (~rdean@12-221-229-125.client.insightBB.com) joined #gnuenterprise.
+<jbailey> derek!
+<jbailey> How's the dcl testing?
+Action: jbailey pokes Derek with a stick.
+<derek> A study performed by an outside team appears to indicate a rough parity in performance between Java and a common implementation of another OO language called Python (see IEEE Computing, October 2000, "An Empirical Comparison of Seven Programming Languages" by Lutz Prechelt of the University of Karlsruhe). Both platforms are Object Oriented, support web applications, serialization, internet connections and native interfaces. The ke
+<derek> ence is that Python is a scripting language. This means there is no compilation to byte code so the Python runtime environment has to do two things in addition to what the Java runtime environment does. It has to perform syntax checks and it must parse the ascii text provided by the programmer. Both of those tasks are performed at compile time by Java and so that capability does not have to be in the JRE.
+<derek> Given this data, it appears that the JRE can actually be simpler than the Python RE since Java does at least some of this work at compile time. The example above of "Hello World" is a good method for getting an idea of the minimum support code required at runtime. This support code includes garbage collector, byte code interpreter, exception processor and the like. Hello World written in Java2 requires 9M for this most basic suppo
+<derek> structure. By comparison, this is slightly larger than automountd on Solaris8. The Python runtime required to execute Hello World is roughly 1.6M.
+<derek> ---
+<derek> thats for jamest
+<derek> jbailey: hopefully i can get to it today
+<derek> life has been hell :(
+<jbailey> Bah!
+<derek> i apologize for not getting to test it yet
+<derek> really
+<jbailey> =)
+<derek> i do
+<derek> jamest: the above blurbs are from internal SUN memo you can find more on slashdot
+<jbailey> derek: Stop reading slashdot and test my deb. =)
+<derek> rofl
+<derek> i actually have a minute i htink i will do so
+<jbailey> Thanks. =)
+<derek> doh seems i never tested the last one
+<derek> Error executing query!
+<derek> SELECT dcl_config_name, dcl_config_field, dcl_config_int,dcl_config_double, dcl_config_date, dcl_config_datetime,dcl_config_varchar FROM dcl_config
+<derek> ERROR: dcl_config: Permission denied. Template Error: filename: file ./templates//login.tpl does not exist.
+<derek> Halted.
+<jbailey> ./templates?  Hmmm
+<derek> well its worse than that
+<derek> the query fails
+<jbailey> Oh, I see.
+<derek> seems users is www-data
+<derek> and if i login as that user
+<derek> i dont have rights
+<derek> but i just changed config.php to something else
+<jbailey> And the templates//login.tpl just indicates that you never setup your config.php right.
+<derek> and still get errors
+<derek> right
+<derek> well no
+<derek> it indicates that it couldnt read the dcl_config table
+<derek> which in this case indicates that you have issues :)
+<derek> hmmm
+<derek> i changed /etc/dcl/config.php to have a user that does have rights
+<derek> but still get same error
+<derek> most odd
+<derek> running grant.sh
+<derek> and changing back
+<derek> will see what that does
+<derek> bingo
+<derek> yeah ok your old package works great :)
+<jbailey> The old package?  =)
+<jbailey> That's funny.
+<derek> all you have to do is setup up a db called dcl
+<jbailey> There's several missing pages. =)
+<derek> well could be
+<derek> but the basic sa login works :)
+<jbailey> The new version should fix that, though.
+<derek> going to try to upgrade now
+<derek> dcl_0.9.2-1_all.deb
+<derek> is what i am testing right?
+<jbailey> Yes, please.
+<derek> what is best way to install that from command line to upgrade package?
+<derek> dpkg --install foo.deb
+<derek> ?
+<jbailey> dpkg -i dcl_0.9.2-1_all.deb
+<jbailey> Yes.
+<derek> ok
+<jbailey> dpkg doesn't suck like RPM that way.
+<derek> didnt know if it was diff for upgrades (only install debs i cant get with apt rarely)
+<derek> well
+<derek> latitude:/home/dneighbo# dpkg -i dcl_0.9.2-1_all.deb 
+<derek> (Reading database ... 94860 files and directories currently installed.)
+<derek> Preparing to replace dcl 20020705-pre1 (using dcl_0.9.2-1_all.deb) ...
+<derek> Unpacking replacement dcl ...
+<derek> Setting up dcl (0.9.2-1) ...
+<derek> latitude:/home/dneighbo# 
+<derek> it didnt crap itself
+<jbailey> *lol*
+<derek> ouch
+<derek> what the hell happened to the fonts?
+<jbailey> In what?
+<derek> everything shrunk
+<derek> in dcl
+<derek> it was all normal size
+<derek> i hit 'refresh' on the login page
+<derek> after upgrade
+<derek> and all fonts and stuff are much smaller
+<derek> mdean: likely did
+<derek> as there are boxes that didnt exist and such
+Action: derek admits this is my first look at 0.9.x
+<jbailey> Ah lovely. =)
+<derek> as i had 0.9.x ready to go months ago
+<derek> and we never released
+<jbailey> So I'll have at least one person using my debs? =)
+<derek> mdean add some new goodies and released
+<derek> ok looks like
+<derek> you didnt execute the upgrade scripts?
+<jbailey> No.  Are there upgrade scripts to be run? =)
+<jbailey> And do these upgrade scripts determine the database version correctly?
+<jbailey> (Like, if they get run multiple times, do bad things happen?)
+<derek> jbailey: dbNames="dcl"       # Database names where DCL's stuff resides
+<derek> host="localhost"    # IP/Name of host machine running Postgres
+<derek> port="5432"         # Port on that machine that Postgres is listening on
+<derek> grantTo="nobody"
+<derek> seems that grantTo should be www-data not nobody on debian?
+<derek> yes there is scripts/ugprades/
+<derek> tehre is a shell file 'createupgrades'
+<derek> that will look at your current version and build an upgrade file
+<jbailey> Cool.
+<derek> what is really whacked
+<derek> is the version shows as  20010923
+<derek> which is REALLY old
+<derek> that is what your old deb had
+<jbailey> Huh, werid.
+<jbailey> Hmm.  I've never done automatic database setup.
+<derek> ok
+<derek> applied
+<derek> -rw-r--r--    1 root     root           89 Feb  3 20:45 20010923.sq
+<derek> -rw-r--r--    1 root     root         1253 Feb  3 20:45 20011203.sq
+<derek> -rw-r--r--    1 root     root           89 Feb  3 20:45 20011209.sq
+<derek> -rw-r--r--    1 root     root           89 Feb  3 20:45 20011210.sq
+<derek> -rw-r--r--    1 root     root          367 Feb  3 20:45 20011215.sq
+<derek> -rw-r--r--    1 root     root           89 Feb  3 20:45 20020120.sq
+<derek> -rw-r--r--    1 root     root           89 Feb  3 20:45 20020215.sq
+<derek> -rw-r--r--    1 root     root           89 Feb  3 20:45 20020706.sq
+<derek> -rw-r--r--    1 root     root          470 Feb  3 20:45 20021021.sq
+<derek> -rw-r--r--    1 root     root          844 Feb  3 20:45 20021023.sq
+<derek> dneighbo@latitude:/usr/share/dcl/scripts/upgrades/pgsql$ 
+<derek> and
+<derek> -rw-r--r--    1 root     root           86 Feb  3 20:45 0.9.0.sql
+<derek> -rw-r--r--    1 root     root           90 Feb  3 20:45 0.9.1.sql
+<derek> -rw-r--r--    1 root     root          209 Feb  3 20:45 0.9.2.sql
+<derek> things now seem up to date
+<jbailey> And it seems to generally behave the way you expect it to?
+<derek> you want me to file bug reports
+<derek> jbailey: well login and appearance seems correct
+<derek> which is a very good start
+<derek> i have to go to church now
+<jbailey> Don't file bug reports on a non-uploaded version.
+<derek> i can try to really do more than 'kick the tires'
+<jbailey> If there're showstoppers let me know before tuesday.
+<jbailey> Otherwise I will upload it then.
+<derek> and 'test drive it' later today
+<jbailey> Cool.  Just send me emails.
+<derek> but at this point it looks like its worthy of taking a spin around the block in :)
+<jbailey> Cool, thanks.
+<jbailey> Happy church'ing.
+<derek> thanks
+<derek> bbl
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: "Client Exiting"
+rdean (~rdean@12-221-229-125.client.insightBB.com) left irc: "Client Exiting"
+Vee2d2 (~vin@c66.169.136.41.ftwrth.tx.charter.com) left irc: Read error: 60 (Operation timed out)
+aaron___ (coyote@msp-24-163-193-174.mn.rr.com) left irc: "Client Exiting"
+Vee2d2 (~vin@c66.169.136.41.ftwrth.tx.charter.com) joined #gnuenterprise.
+dsmith (dsmith@oh-strongsvillecadent1-1c-203.clvhoh.adelphia.net) joined #gnuenterprise.
+<dsmith> Did you guys see that /. article about Sun not using Java?
+<dsmith> http://www.internalmemos.com/memos/memodetails.php?memo_id=1321
+<dsmith> They do a few comparisons to Python.
+<jcater> yeah
+<jcater> and some of the reader's comments make me realize ppl don't really understand python
+<jcater> "it's a scripting language... you can't write applications with that... how can you possibly compare the two!"
+<jcater> :)
+<jcater> or my favorite towards the end "anyone who's used both languages will tell you java is much faster because of its optimizations"
+<jcater> *snicker*
+<dsmith> I didn't actually read all the /. drivel, just the memo.
+jcater (~jason@cpe-066-061-083-220.midsouth.rr.com) left irc: "off to work"
+Vee2d2 (~vin@c66.169.136.41.ftwrth.tx.charter.com) left irc: Remote closed the connection
+Vee2d2 (~vin@c66.169.136.41.ftwrth.tx.charter.com) joined #gnuenterprise.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<jbailey> jcater: How good is Python's optimiser?
+ToyMan (~stuq@glvv-dsl3-188.citlink.net) joined #gnuenterprise.
+dsmith (dsmith@oh-strongsvillecadent1-1c-203.clvhoh.adelphia.net) left irc: Remote closed the connection
+ekeko (~kop@CM-lflo-31-27.cm.vtr.net) left irc: "--Hakware IRC Script v0.3--"
+<ajmitch> morning
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<ajmitch> hey derek
+<derek> hey
+<derek> so ajmitch you buy your 'america cup' gift card at your local grocery store
+<derek> to support the kiwi national team?
+<ajmitch> heh, no
+Action: derek read in the paper today that local supermarkets there have 'donation cards' for 1, 2 and 3 dollars where you can donate to the national kiwi team 
+<derek> what cracked me up was they used the term kiwi ;)
+Action: ajmitch thinks americans are odd :)
+<derek> well i tend to agree with taht
+<IsoosI> jbailey: psyco is an attempt to make python faster than c
+<IsoosI> also remember -O
+<ajmitch> hey IsoosI
+Nick change: IsoosI -> Isomer
+Action: Isomer is back: gone camping
+<ajmitch> :)
+<Isomer> :)
+<ajmitch> 'camp'ing, eh? ;)
+<jbailey> Isomer: faster than C?  Hmm.  I wouldn't have that it would be possible to make a language with a garbage collector faster than a language without one.
+jbailey (~jbailey@CPE0060082df811-CM014260028338.cpe.net.cable.rogers.com) left irc: "Client Exiting"
+ajmitch_ (~ajmitch@wlg1-port27.jetstart.maxnet.co.nz) joined #gnuenterprise.
+ajmitch (~ajmitch@wlg1-port30.jetstart.maxnet.co.nz) left irc: Killed (NickServ (Ghost: ajmitch_!~ajmitch@wlg1-port27.jetstart.maxnet.co.nz))
+<Isomer> hmm
+<Isomer> well
+<Isomer> they're talking about doing JIT
+Nick change: ajmitch_ -> ajmitch
+<Isomer> and making use of things such as lists/dicts can be implemented in ways that can be faster than the common C approaches
+Mr_You (~rouzer@gso167-138-145.triad.rr.com) joined #gnuenterprise.
+<Mr_You> hi
+<Mr_You> Curious if anyone has thought about a method of syncing disconnected clients?  know what I mean?
+<Mr_You> well I guess I'm getting ahead of myself hehe
+<Mr_You> I should be asking, is there a method being consider to provide disconnected clients.  Many apps do this.  Lets use a sales tool for example.
+<Mr_You> Salesman is out on the road and needs to input data.  Salesman connects to the Internet or corporate network to sync this data with the main databases.
+<Mr_You> Sales person! ;-)
+<chillywilly> yo
+<derek> um when we have talked about it in the past we called it 'briefcase' mode
+<derek> and we have talked about it, but not done anythign with it
+<Mr_You> any progress on web interface?
+<chillywilly> hey I need an exim expert as mails have been bouncing since reviving gandalf and now I have a shit load of them stuck in /var/spool/exim/input and I want to know how to make exim deliver them...it told me it refused to deliver them cause there were over 100 messages :(
+<Mr_You> haven't managed a exim server
+<chillywilly> I had perms fscked apparently
+Action: chillywilly needs to learn to use proper flags with cp next time (hopefully there won't be a next time)
+Action: chillywilly should've used -p
+<derek> Mr_You: i would say most core developers are not 'itching' for a web based interface
+<derek> so until someone nuts up and goes to town on one
+<derek> the answer will be the same 
+<derek> i.e. it is possible if someone took the time to write one, if they did it in python with the pluggable UI system it would be fairly easy
+<derek> most regrettably webmonkeys read this as
+<derek> 'rewrite the entire forms client in php'
+<derek> and they suffer in pain trying to do so and quickly give up
+Action: derek is away: I'm busy
+<chillywilly> HEH
+<chillywilly> so Jan is a "web monkey" now?
+<chillywilly> is tha an official title?
+<chillywilly> and if so what can I do to ascertain the "trout boy" title?
+<jcater> http://www.funfolly.com/g/mascots/cf191ndd.gifÂ
+<jcater> ^-- buy one of those costumes, and you can have that title
+dyfet (~dyfet@pool-141-153-147-83.mad.east.verizon.net) joined #gnuenterprise.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: Remote closed the connection
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<Mr_You> mmmm... seaweed salad
+<dyfet> sushi anywhere?
+<Mr_You> picked up some sushi at the grocery.. its not the best but satisfies my urge
+<dyfet> i miss my sushi chef from when i was in virginia
+<dyfet> he would personally fish in the atlantic :)
+<Mr_You> derek: I thought someone had already begun working on something.. james or jason
+<chillywilly> hmmm, som crazy shit has been going down eh?
+<chillywilly> with this eGovOS thingy
+<dyfet> lol
+Action: chillywilly is finally reading some mails
+<chillywilly> sorry
+<chillywilly> my exim was b0rked cause my HD died
+<chillywilly> aand I copied stuff without sing -p
+<chillywilly> and that caused havoc
+<chillywilly> dyfet: who won 1st place at LWE?
+<dyfet> and to think all i said was i was not attending...
+<chillywilly> M$?
+<dyfet> yes
+<chillywilly> ?!?!?
+<chillywilly> for what?
+<dyfet> "unix services for windows"
+<chillywilly> omfg
+<chillywilly> what a crock of shit
+<chillywilly> wow...that's just immensely frelling sad
+<chillywilly> didn't Reben live in WI at one time?
+<chillywilly> I think I've seen him post on the Milwaukee LUG list
+<chillywilly> Ruben
+ToyMan (~stuq@glvv-dsl3-188.citlink.net) left irc: "Client Exiting"
+<dyfet> yes he did
+<chillywilly> thought so
+<dyfet> or his wife at least comes from wi
+<chillywilly> small world :)
+<jcater> Ruben is quite, um.... 
+<jcater> well, annoying is the first word that comes to mind
+<jcater> first word == first polite word
+<chillywilly> I get along fine with him :)
+<dyfet> i think i applied the term that he can have the insticts of a poleaxe :).  but yes, once you get past the blades he has a number of interesting points
+<ajmitch> hey dudes
+<chillywilly> his spelling sucks
+<ajmitch> seems like i will need to use GNUe 
+<chillywilly> can't he do M-x ispell ;)
+<jcater> any email that contains "I <insert whatever attribute here> more than anyone on this list" is someone I automatically stop listening to
+<chillywilly> hmmm, he's getting pretty nasty now
+<jcater> I'm sure he has an outstanding resume
+<ajmitch> it's come down to a pissing match now
+<ajmitch> now we get to see the real side of politics :)
+<chillywilly> I agree jcater 
+<chillywilly> he's looking like a fool now
+<ajmitch> i gotta get this inventory thing done ASAP, will need to have printable reports (using template for purchase orders, etc)
+<ajmitch> i also need to import a fair chunk of csv data, so i'd best get out my csv parser :)
+<chillywilly> gnue reports? :)
+<chillywilly> Ruben is dead spot on about Tony, imho
+<Mr_You> sounds like code talk
+<ajmitch> chillywilly: yes, i need printable reports on windows :)
+<ajmitch> might have to do a hack & use reportlab to create pdfs, then start acroread :)
+<ajmitch> chillywilly: still playing with exim?
+<chillywilly> no
+<chillywilly> mails all flooding in
+<chillywilly> erm
+<chillywilly> well they were trying anyway
+<chillywilly> still some stuck
+<ajmitch> ok
+<chillywilly> I am still reading mail now
+<ajmitch> got some frozen in the queue?
+<chillywilly> in /var/spool/exim
+<chillywilly> yea
+<ajmitch> exim -qf 
+<dyfet> lol i am sure there is a lot of egovos stuff clogging that pipe by now :)
+<chillywilly> is that the option I want?
+<chillywilly> dyfet: yes :)
+<chillywilly> dyfet: that is the thread I am on
+<ajmitch> dunno, it gets run by /etc/ppp/ip-up.d here
+<chillywilly> well -M is supposed to free up soem messages
+<chillywilly> I think they just finally times out
+<ajmitch> ok
+<chillywilly> and exim went off trying again
+<chillywilly> timed*
+<chillywilly> there's still froen messages apparently
+<chillywilly> frozen
+<chillywilly> I have enogh to read right now ;P
+<dyfet> hey dan, do you have any other events to suggest i not attend and see what happens?! :)
+<chillywilly> heheh
+jbailey (~jbailey@CPE0060082df811-CM014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+<chillywilly> how about an event where I can finally meet some people face to face ;)
+Action: chillywilly will just have to meet jbailey in Madison ;P
+<chillywilly> right jeff?
+<jbailey> Sure. =)
+<dyfet> dark alley?
+<chillywilly> :-o
+Action: ajmitch will probably never meet any of you :)
+<ajmitch> except Isomer
+<jcater> you're not missing much
+<ajmitch> hehe
+<chillywilly> so Tony is giving GNU ppl that shaft now?
+<chillywilly> WHAT A SURPRISE
+<ajmitch> depends if you decide to interpret events that way
+Action: chillywilly keels over...the mere shock overtaking him
+<ajmitch> so when is the gnue list going to be moderated to stop this argument? :)
+<chillywilly> lol
+<jbailey> ajmitch: C'mon.  You gotta leave Australia *one* day. =)
+<chillywilly> man...the mails never end
+<jbailey> NZ, sorry
+<jbailey> Bah.
+<chillywilly> nah
+<ajmitch> yeah, but do you think it'd be safe to visit the US? :)
+<chillywilly> he has his own little island
+<chillywilly> what more could a hacker want?
+<chillywilly> ;)
+<chillywilly> ajmitch: it's safe in WI ;)
+<ajmitch> someone to deliver pizza
+<jbailey> ajmitch: No.  That's my biggest worry about having to go there in a couple weeks.
+<jbailey> ajmitch: It's tempting to cancel the trip.
+<ajmitch> chillywilly: 'safe' in what way?
+<chillywilly> safe as in no terrorist activities
+<ajmitch> safe from crime, or safe from government (same thing, really)
+<chillywilly> no one cares about WI
+<jbailey> ajmitch: I certainly expect it will be my last visit to the US for hopefully a year or two.
+<jcater> that's the truth
+<jcater> what a worhtless state
+<ajmitch> hehe
+<chillywilly> um, no
+<jcater> well, except for the beer and cheese production
+<chillywilly> whatever
+<chillywilly> I am itching to go see the country music hall of fame man....
+Action: ajmitch doesn't want to get arrested for being 'subversive' :)
+<ajmitch> i'd be itching to burn it down
+<chillywilly> I CAN HARDLY CONTAIN MYSELF
+<chillywilly> l;shalekkfjhhfk
+<chillywilly> go TN!
+<jbailey> ajmitch: Entering the US these days is supposed to be entertaining.  Fingerprints and pictures. =(
+<jcater> rock and roll hall of fame is here too
+<ajmitch> jbailey: everyone's a terrorist until proven innocent :)
+Action: ajmitch wonders what people think of that PATRIOT 2 Act 
+<jbailey> Hockey hall of fame is here. =)
+Action: derek is back (gone 01:51:09)
+<ajmitch> wb derek o grand mata
+<dyfet> hi derek
+<ajmitch> s/mata/masta/
+<jbailey> Heya derek.  How's the deb testing going? =)
+<ajmitch> jbailey: deb testing? what debs? dcl?
+<jbailey> ajmitch: Yeah.
+Action: ajmitch has gnue 0.4.3 debs for you, but you want a patch... :)
+<jbailey> Derek's going to make sure they work first. =)
+<ajmitch> hehe
+<jbailey> ajmitch: Should be easy.  I imagine you didn't change the rules file any.  So I need to know where you fetched the upstream tarball from, and then diffs to the files in debian/patches
+<derek> rofl
+<derek> jbailey: havent gotten back to computer to test
+<derek> at computer in 2 minute intervals to burn cd's
+<derek> every 10 minutes or so
+<derek> wife gave me pile of aerobics cd's she has been bugging to burn for ages before tehy get so ruined they are not worthy of backing up
+Action: derek delights that i have a very valid and real reason to back up music (though i hate the pain of doing it)
+<derek> i.e. wife has to take cds to work for aerobic classes she teaches and giong club to club etc they get 'beat up'
+<derek> if didnt make backups would be buying new cd's way too much
+<derek> on that not anyone know if there is a tool to mess with beats per minute on linux?
+<derek> so i dont have to shell out big cash
+<derek> currently i pay 20 for a 2 cd set for her :(
+<derek> that is nothing but compilation cd's remixed at higher beat per minute
+<ajmitch> jbailey: i changed one line in the rules file - tarball name
+<derek> its sick as i own most of the stuff already just not at right beats per minute :(
+<derek> dyfet: hey
+<ajmitch> also changed debian/control a little, for dependencies on wxpython
+<derek> re: the list, ruben is well, interesting
+<derek> i didnt mean to start a big hoopla
+Action: derek was just responding to you saying i agreed and might be best for GNU Enterprise to avoid eGovOS altogether
+<dyfet> lol
+<jbailey> ajmitch: Oh yeah, that's right.  I forgot that dbs doesn't autodetect that.
+<derek> didnt realize it went to gnu and other lists and then bam
+<derek> huge flame fest
+Action: derek STILL didnt realize it was on gnu list
+<derek> until i got the 'you have mail to approve' emails
+<jbailey> derek: Look at dbmix, it might do what you need.
+<derek> jbailey: thanks
+<dyfet> i dont think its anywhere near died down yet...
+<jbailey> derek: I use it at parties for turning radio mixes into dancable songs. =)
+<derek> jcater: i finally looked at that costume and you are one sick puppy
+<jcater> the french maid costume?
+<jbailey> jcater: Err..  You have a picture of you in a french maid costume?
+<derek> french trout i think
+kac (~kevin@194.204.106.247) joined #gnuenterprise.
+<ajmitch> jbailey: you'd want to see it?
+Action: ajmitch shudders
+<ajmitch> hi kac
+<jbailey> ajmitch: No, I just can't understand why he'd show it off.
+<jbailey> I mean we all have pictures like those from drunken parties we can't remember.
+<ajmitch> heh
+<ajmitch> we do?
+<jcater> jbailey: I think it shows off my beer gut really well
+<jbailey> ajmitch: Do you drink?
+<derek> Independent channel controls: volume/gain/level, pitch/speed control +/- 10%mute, cue, and pause
+<derek> that might do what i need
+<kac> hi there
+<chillywilly> seems everything has been delivered except 58 frozone messages
+<chillywilly> blah
+[21:16] Last message repeated 2 time(s).
+<chillywilly> seems everything has been delivered except 58 frozone messages
+<chillywilly> dkljf hskdjklsjdf
+<jcater> wtf?
+<jcater> you on crack or something?
+<chillywilly> YES
+<chillywilly> atmospheric crack
+<chillywilly> pretty high in WI
+<ajmitch> jbailey: i don't
+<jbailey> ajmitch: Then perhaps those pictures don't exist for you. =)
+<ajmitch> thankfully :)
+<chillywilly> jbailey: there's incentive right there to visit
+<chillywilly> jbailey: you can get a buzz by simply breathing
+<chillywilly> q00t!
+<chillywilly> w00t!
+<jbailey> chillywilly: ??
+<derek> jbailey: any tips for dbmix?
+<chillywilly> 21:16 < jcater> you on crack or something?
+<chillywilly> 21:16 < chillywilly> YES
+<chillywilly> 21:16 < chillywilly> atmospheric crack
+<chillywilly> 21:16 < chillywilly> pretty high in WI
+<jbailey> derek: Yes: Be patient.
+<derek> i see an xmms-dbmix
+Action: chillywilly slaps jbailey  with the back log
+<jbailey> derek: It's not a well designed program.
+<derek> so im not so sure how this is oging to work :)
+havoc (~havoc@mke-65-31-168-36.wi.rr.com) joined #gnuenterprise.
+<ajmitch> hello havoc
+<havoc> hiya
+<jbailey> derek: I would use xmms to feed dbmix, and then tell dbmix to output to a file once you have the speed/pitch settings right.
+<chillywilly> hi John
+<havoc> chillywilly: hi
+Action: ajmitch hits the gnue
+Action: chillywilly looks at exim
+<derek> jbailey: is dbmix commandline?
+Action: chillywilly gives it the evil eye
+<jbailey> derek: No.
+<jbailey> X
+<derek> im not sure how i run dbmix i guess
+<derek> fire up xmms and play a song?
+<derek> with output to dbmix?
+<havoc> chillywilly: you go to MLUG yesterday?
+<jbailey> derek: Yeah.  I don't have the list of the moduels handy that you'd need.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "time to go home"
+<jbailey> derek: It's all on the laptop which is packed away.
+<chillywilly> havoc: nope
+<chillywilly> havoc: did you?
+<havoc> nope
+<chillywilly> what did they do?
+<chillywilly> I forgot to tell ya the thruth but I was pretty busy
+<havoc> no idea
+<havoc> "truth"?
+<havoc> ah
+<havoc> "truth, "
+jbailey (~jbailey@CPE0060082df811-CM014260028338.cpe.net.cable.rogers.com) left irc: "Client Exiting"
+<havoc> chillywilly: It was cleaning day here yesterday
+<havoc> as the Woman is back from Hawaii
+<chillywilly> weee
+<havoc> yeah
+<havoc> at least it was a little cleaner than when she left
+<havoc> and now she's at work :(
+<chillywilly> heh
+<chillywilly> you slob ;)
+<havoc> hey, I said it was cleaner than then when she left :)
+<chillywilly> suuuure ;)
+Action: chillywilly waits for the frelling messages to be unforze
+<chillywilly> froce
+<chillywilly> froze
+[21:29] Last message repeated 3 time(s).
+<chillywilly> ;sldjh kjshdle
+SachaS (~Sacha@dialup-196-224.wasp.net.au) joined #gnuenterprise.
+<ajmitch> hi SachaS
+<SachaS> hi ajmitch. how are you?
+<ajmitch> ok
+<SachaS> network at uni is down (a switch failed) so got home. better of here :)
+<ajmitch> hehe
+jcater (~jason@66.61.83.220) joined #gnuenterprise.
+<ajmitch> wb jcater
+<jcater> thanks
+chillywilly (danielb@mke-24-167-199-83.wi.rr.com) left irc: "brb"
+<kac> can anyone brief me about integration of dcl and gnue?
+rdean (~rdean@12-221-229-125.client.insightBB.com) joined #gnuenterprise.
+<jcater> kac: how brief?
+<jcater> I can do it in 3 words: "Hasn't happened yet"
+<derek> hey now one question at a time (though you did ask in separate channels) :)
+<kac> jcater: i'm looking at dcl & it looks interesting - i need dcl (in an ideal world) to dump billing records into an accounting system...
+<jcater> next level up in briefness: "... but the details are being worked out"
+<jcater> ah
+<jcater> what accounting package are you using?
+<jcater> dcl's database schema is fairly straight forward
+<jcater> I don't even think it'd be hard to get dcl to dump that data as a CSV file
+<jcater> (if that was an option with your accounting package)
+<kac> jcater: does gnue have an accounting package available or in the works?
+<derek> i can answer.. me me me ;)
+<derek> pretty much what jcater said
+<derek> with 1.0 of dcl (dont ask for a date)
+<derek> contact management will be able to handled in gnue
+<derek> right now config tables can be handled in gnue
+<jcater> kac: gnue's accounting stuff is in the works... it woulnd't be usable for anyone looking for an accounting package to use today
+<jcater> :(
+<jcater> someday I won't have to say that anymore
+Action: jcater waits for that day :)
+<kac> jcater: can that part of the project use some help?
+<derek> and basic service requests had forms
+<derek> but its not fully integrated at this point
+<derek> as to the billing stuff
+<derek> best bet is to dump data out (hours/accounts)
+<derek> but ULTIMATELY i have plans for dcl to be used for service based billing
+Action: derek does evil laugh
+Action: derek needs junkfood
+<derek> bbiam
+<kac> jcater: can the financials part of the project use some help?
+Action: kac yawns
+<jcater> kac: absolutely
+<jcater> sorry...was grabbing some food
+<kac> jcater: how much progress has been done to now?
+<jcater> much of the focus has been on the tools to date
+<jcater> the financials are mainly in the proposal state
+<jcater> but the bulk of the work is in getting the underlying tools in shape
+dyfet (~dyfet@pool-141-153-147-83.mad.east.verizon.net) left irc: "Client Exiting"
+<jcater> so I expect to see stuff really takeoff with actual modules soon
+<kac> my background is:
+<ajmitch> quick, chain him to the channel! he's volunteering! :)
+<kac> hehehe....
+<kac> Accounts executive for some years now, some experience coding using (mainly) M$ Access, playing around with gnome/gtk/glade
+<kac> pi**ed off with commercial stuff & looking for open-source alternatives ...
+<jcater> ajmitch: do you know if subversions.gnu.org actually runs subversions, or is that just a clever name?
+<jcater> kac: we can relate
+<jcater> unfortunately, there isn't a lot to see in the free/open source world right now :(
+<jcater> wrt accounting, I mean
+<ajmitch> jcater: name was chosen before subversion was started as a project :)
+<kac> jcater: that's exactly what I would like to change ...
+<jcater> ajmitch: so that's a no?
+<ajmitch> that's a no
+<jcater> kac: then we'd like to see you stick around with us :)
+<ajmitch> it was thought about, but they found that it would be too  much work to get subversion running properly for all people
+<kac> ajmitch: handcuffs are closing on me ...
+<kac> :)
+<ajmitch> things like requireing apache2 
+<ajmitch> hehehe
+Action: ajmitch is going to be immersed in gnue for the next 2 weeks - i might need a stable forms in cvs :)
+<ajmitch> any idea on what jamest is up to at the moment?
+<jcater> yes
+<ajmitch> any inclination to tell me? :)
+chillywilly (~danielb@mke-24-167-199-83.wi.rr.com) joined #gnuenterprise.
+<derek> no
+<jcater> no?
+<ajmitch> nope
+<ajmitch> are there any nice examples of an integrated app with forms & reports yet? :)
+<jcater> <derek> no
+<jcater> <jcater> no?
+<jcater> <ajmitch> nope
+<jcater> so that's the question we were asking?
+<ajmitch> heh
+<jcater> asking=answering
+<ajmitch> dunno
+rdean (~rdean@12-221-229-125.client.insightBB.com) left irc: "Client Exiting"
+<jcater> right now, the only interaction is an os.system() call
+<jcater> or such
+<ajmitch> or loading the reports classes
+<jcater> that's possible
+<ajmitch> would be cleaner
+<jcater> but hasn't been done afaik
+<jcater> yeah
+<jcater> shouldn't be hard
+<ajmitch> i'll do it then :)
+<jcater> but I have no examples to show you
+<ajmitch> i need to do a number of simple reports that have to be viewable on the screen
+<ajmitch> might hack around with report lab & opening a pdf viewer
+<ajmitch> would give me printing
+<jcater> or output html, depending on the complexity of the reports
+<ajmitch> don't think that'd be appreciated 
+<ajmitch> clients are picky :/
+<jcater> ok
+<derek> <jcater> <derek> no
+<derek> <jcater> <jcater> no?
+<derek> <jcater> <ajmitch> nope
+<derek> <jcater> so that's the question we were asking?
+<derek> my no was an answer to
+<derek> <ajmitch> any idea on what jamest is up to at the moment? and <ajmitch> any inclination to tell me? :)
+<ajmitch> :)
+<jcater> well, I won't say publicly, because I don't think he wants everyone to know about the pet goats and what he's been up to
+<jcater> oops
+<jcater> :)=
+Action: derek is away: bedtime
+<ajmitch> night derek
+jcater (~jason@66.61.83.220) left irc: "bedtime"
+--- Mon Feb 10 2003

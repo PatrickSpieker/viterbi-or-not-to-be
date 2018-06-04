@@ -1,0 +1,1472 @@
+<derek> :)
+<derek> dneighbo@latitude:~/cvs/gnue/navigator/samples$ ~/bin/gncvs -u web sample.gpd 
+<derek> DB000: Traceback (most recent call last):
+<derek> DB000:   File "/home/dneighbo/cvs/gnue/.cvsdevelbase/gnue/navigator/GNClient.py", line 147, in ?
+<derek> DB000:     GNClient().run()
+<derek> DB000:   File "/home/dneighbo/cvs/gnue/.cvsdevelbase/gnue/navigator/GNClient.py", line 144, in run
+<derek> DB000:     interface.Instance(nav).run(self.connections)
+<derek> DB000: TypeError: run() takes exactly 1 argument (2 given)
+<derek> dneighbo@latitude:~/cvs/gnue/navigator/samples$ 
+<derek> is error when trying web version
+<derek> yummy i patched it
+<ajmitch> hi
+<ajmitch> anyone know of any small/medium business accounting software implemented using GNUe?
+<ajmitch> how feasible is it to do something like that at the moment?
+<derek> nola
+<ajmitch> ?
+<derek> its not gnue but well
+<ajmitch> ok
+Action: jcater must run
+jcater (~jason@cpe-024-165-193-024.midsouth.rr.com) left irc: "nite"
+<ajmitch> bye jcater
+<derek> its accounting that looks promising to do some gnue stuff too
+Action: ajmitch hates it when he scares ppl away
+<ajmitch> alright, was just talking to someone about doing something using GNUe
+Action: derek needs to run to bed too so i can get up at 04:00 to watch the england v argentina game
+<ajmitch> it can be done using existing tools?
+Action: ajmitch listens to the silence
+SachaS (~Sacha@dialup-196-242.wasp.net.au) left irc: Read error: 110 (Connection timed out)
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+<psu> hi aj
+<ajmitch> hey psu
+<ajmitch> how are you?
+<psu> NOLA is, iirc, definantely not GPL
+<psu> fine
+<psu> it was discussed on Kernel Cousins recently
+<psu> it's web-based
+<psu> and might have some non-free depends (java springs to mind)
+<ajmitch> ah ok
+<ajmitch> sad
+<ajmitch> it was just suggested to me as a project, since most businesses in NZ are small (< 5 employees, iirc)
+<psu> no, I'm wrong - it *is* GPL
+<psu> http://kt.zork.net/GNUe/gnue20020427_26.html#7
+<psu> It's a LAMP application (Linux, Apache, MySQL, php)
+<psu> screenshots look moderately sophisticated (but then so do ours)
+<psu> jcater downloaded for a look-see, you might want to ask him when he wakes
+<ajmitch> jcater just ducked out 20min ago :)
+<psu> well, there's an online demo
+<ajmitch> looking now
+<psu> based on 5 minutes, look and feel isn't terrible, isn't wonderful
+<psu> and being GPL gets you lots of gold stars in my book ;-)
+<ajmitch> yeah
+<ajmitch> would still like something GNUeish tho
+<ajmitch> web-based is ok but not ideal for things like printing reports, invoices, etc
+Action: psu needs to have a look at the AppServer ROADMAP
+<psu> we should be able to tell now what release we will have an AppServer
+<ajmitch> yup
+<psu> that will support releasable applications
+<ajmitch> great
+<ajmitch> are you up really early or something?
+<ajmitch> or late? ;)
+<psu> not that early - almost 7 a.m.
+<ajmitch> early for me
+<psu> as far as I can tell, I am the only person in the country going to work today
+<ajmitch> heh, why's that?
+<psu> for me, 04:45 is early
+<psu> ajmitch: an association football match, of some interest to the masses ;-)
+<psu> England v Argentina is a 10:30 am kick off our time
+<ajmitch> ah i see...
+<psu> ack
+<psu> HTML requires align=center, doesn't support align=centre
+Action: ajmitch should try & learn forms a bit better then ;)
+<ajmitch> heh
+<psu> I thought it recognised both US English and English English for most stuff
+Action: ajmitch dislikes americanisms :)
+<psu> grey/gray etc.
+<ajmitch> you mean US English & Proper English? ;)
+Action: psu goes off to change all his pages
+<ajmitch> NZ is still a lot closer to UK style than US
+Action: ajmitch doesn't like NOLA's UI that much
+<ajmitch> forms needs to be spiced up a bit, gray forms are so boring ;)
+<psu> it's LAMPish. what can I say?
+<ajmitch> heh
+<ajmitch> DCL could be called LAMPish, but i think it has a better UI
+<ajmitch> so does phpGW
+<derek> NOLA is GPL
+Action: derek decided to stay up and watch the first game and record eng v arg (no way i can wake up at 4)
+<derek> nola is far from perfect BUT
+<derek> i think its far enough that its a decent start
+<derek> and it would be worth building gnue screens for and such
+<derek> i have a need for nola
+<derek> and will probably get gnue screens for it ASAP
+<derek> as well as make it support fund accounting
+<psu> fund accounting == cash accounting == non-accruals?
+<derek> ?
+<psu> i.e. invoices go in the period they are paid, not period they are raised?
+<ajmitch> sounds good derek
+<derek> um no my question was different
+<derek> i understand cash vs accural
+<derek> fund accounting is generally for non profits
+Action: psu would record Eng v Arg, but it's 100% likely I would get told the result before watching it
+<derek> i.e. a fund is an accounting entity with self balancing set of accounts
+<derek> usually used to observe some restriction or limitation of resources
+<psu> multi-organisation
+<derek> psu: that would be a private sector use probably
+<derek> pretty much all govt's in US are required by law to do fund based accounting
+<derek> my personal need for it is 'church management software'
+<derek> i.e. church accounting
+<derek> where there are funds like
+<derek> building fund
+<derek> general fund
+<derek> missions fund
+<derek> childrens fund
+<derek> etc
+<derek> i like to think of 'fund accounting'
+<derek> as bank accounts on paper
+<derek> i.e. its like a 'strictly enforced budget'
+<derek> the 'fund balance' is like the 'account balance' at the bank
+<psu> We do much the same at work at moment - each directorate has own balance sheet
+<psu> but the "Cash" figure is not real cash
+<derek> only instead of having a ton of bank accounts you have paper (or virtual) ones
+<derek> right
+<psu> just their share of the central balance sheet
+<derek> generally every fund has
+<psu> which is part cash, part Creditors, part Debtors etc
+<derek> assests, liabilities, fund balance
+<psu> I keep wavering as to whether this is a good idea in our sitation or not
+<psu> as it's not required
+Action: derek doesnt like this talk as it reminds me of work :)
+<psu> and the control aspects can be done w/ good row security
+<derek> cant we argue about football instead :)
+<psu> derek: just put it down on your timesheet
+Action: derek shudders as mention of timesheet
+<psu> "01:00 - meeting to discuss alternative arrangements for fund accounting"
+<derek> reminds of work still needing to be done to institute cost based accounting
+<derek> now talk about fun
+<derek> cost based fund accounting
+<psu> Eng v Arg is not fun
+<psu> unless we win ;-)
+<derek> we have a saying 
+<derek> we put the fun in dysFUNctional
+<derek> oh crap missing start of sweden v nigeria
+<derek> bbl
+Action: derek is away: football hooligan holiday
+<psu> all praise Chipaca
+<psu> if he hadn't replied to jcater's email
+<psu> thus carrying that thread over to next week
+<psu> this week's KC would be > 100k
+<ajmitch> heheh
+<ajmitch> that would be impressive
+Action: ajmitch waits breathlessly for this week's KC to go online
+<ajmitch> bbl
+<derek> hot damn you see that goal by nigeria
+<derek> that just rocked
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise ("the daily commute - all 6 minutes of it").
+btami (~tamas@ip102-205.ktv.tiszanet.hu) joined #gnuenterprise.
+<btami> morning
+<derek> woooo hooo larsen nets one for sweden
+<derek> this has been best game (as far as action goes) that i have seen yet in korea
+<ajmitch> how can one use gnu-rpc from php?
+<derek> xml-rpc
+<derek> let me rephrase that
+<derek> right now you cant use gnu-rpc really from php
+<derek> but you could talk to geas from php via xml-rpc
+<derek> and the geas side would be using gnurpc
+Grantbow (~grantbow@12-233-20-180.client.attbi.com) joined #gnuenterprise.
+<ajmitch> derek: not really what i was wanting, but thanks ;)
+<ajmitch> hi Grantbow
+<Grantbow> hi.  Now I'm really going to bed.
+<Grantbow> ;-)
+<ajmitch> hehe
+Seek3r (~dankuyken@vnnyca-1-g1-s1-46.vnnyca.adelphia.net) joined #gnuenterprise.
+<ajmitch> Seek3r: good luck dragging derek away from watching soccer :)
+<btami> derek: is there any special reason navigator uses treecontrol instead of
+<btami> classic menus?
+<btami> in a main window
+<btami> ?
+madlocke (madlocke@pD9E0A578.dip.t-dialin.net) joined #gnuenterprise.
+siesel (jan@dial-213-168-89-114.netcologne.de) joined #gnuenterprise.
+<siesel> morning
+<btami> hello madlocke,siesel
+<madlocke> hello...
+ariel_ (~ariel@ppp-217-133-245-161.dialup.tiscali.it) joined #gnuenterprise.
+siesel (jan@dial-213-168-89-114.netcologne.de) left irc: "later"
+Action: madlocke is away: I'm busy
+Action: btami is away: lunch
+siesel (jan@dial-213-168-89-94.netcologne.de) joined #gnuenterprise.
+alexey_ (~Alexey@techkran.vladimir.ru) left irc: "[x]chat"
+siesel (jan@dial-213-168-89-94.netcologne.de) left irc: "Real IRC clients know "to" is a preposition, not an adverb"
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+ToyMan (~stuq@65.167.123.51) joined #gnuenterprise.
+Action: btami is back (gone 02:13:58)
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) left #gnuenterprise ("Client Exiting").
+Action: madlocke is back (gone 02:53:33)
+jamest (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+siesel (jan@dial-194-8-205-46.netcologne.de) joined #gnuenterprise.
+<siesel> hi all
+<btami> hello siesel
+<btami> siesel: is there any special reason navigator uses treecontrol instead of "classic" menus
+<btami> in a main window?
+<siesel> hmmm, you should ask jamest and jcater on that topic.
+<btami> jamest: ?
+<siesel> imho I like it, it has something of an explorer :)
+<btami> i asked derek before, but he was seeing match, and not answered
+<siesel> Yes, England <-> Argentina is a must :)
+<btami> don' tell the result !!!
+<btami> i want to see at home
+<btami> there will be a reply on M1
+<btami> i asked that navigator question, becouse
+eugeneai (~eugeneai@62.76.23.142) joined #gnuenterprise.
+<btami> some users (accountants) hate using mouse 
+<btami> and a main window with menus is maybe simpler 
+<siesel> do you think of a menu bar or of a kind of 1. 2. 3. list in the main window?
+<btami> menu bar
+<btami> with hot keys
+<siesel> and if I understand you correct, the main window will show the form
+<siesel> right?
+<btami> yes
+<jamest> um
+<jamest> the tree can be navigated via the cursor keys
+<jamest> and we're just trying things out to see what people think
+<jamest> IIRC the text mode makes you pick numbers or some such
+<btami> but there is 2 windows
+<btami> i dont want text mode :)
+<jamest> 2 windows?
+<btami> 1 navigator - 1 form
+<jamest> yip
+<jamest> as navigator can launch forms, reports, executables
+<jamest> anything you want really
+<jamest> I have mine here launching IIRC perl scripts
+<jamest> just remember though we're still very much so playing
+<jamest> so if you want to see something just describe it
+<btami> i like only 1 main window with main menubar (navigator)
+<jamest> like the old navigator?
+<btami> i don't know old navigator
+<jamest> ah
+<jamest> it was a snigle window that contained a menu
+<btami> menu=menubar?
+<jamest> no menubar
+<btami> :(
+<jamest> just a menu in the screen
+<jamest> the menubar isn't even working in the current one
+<jamest> btw - i think what you ask for is a menu that changes the form
+<jamest> and it's all in one window
+<jamest> correct?
+<btami> yes
+<jamest> this wouldn't work for me at all
+<jamest> as users have multiple forms open at same time
+<jamest> not to say we can't do it but it doesn't work in my case
+<btami> no no
+<btami> i want 1 main window with menubar(navigator)
+<btami> and forms,reports are the child windows in it
+<jamest> oh
+<jamest> interesting
+<jamest> idea
+<jamest> what would happen in cases i launch scripts?
+<btami> like excel opened with more then one xls
+<jamest> a shell window inside navigator?
+<jamest> it's an interesting idea
+<jamest> may have to do some more playing
+<jamest> btw
+<jamest> navigator takes ui drivers 
+<jamest> so nothing prevents us from making something like that in it's own UIwxmdi.py
+<siesel> jamest: I tried to embbed the forms windows in the second windows of navigator today. This could be possible, but it requires some changes to the forms code
+<jamest> the entire UI system is under reworking
+<jamest> we need to start a wishlist
+<btami> yes, mdi
+<jamest> and figure out everything we would like/require
+<jamest> as I really would like to get most the UI stuff nailed down this next release
+<jamest> i have to run for a bit
+Action: jamest is installing new systems in grad offices this morning
+<Seek3r> siesel: your the one working on on the GComm right?
+<siesel> yes
+<Seek3r> do you have any of it documented? Like what functions need to be provided by each of the drivers and such?
+<siesel> I justed started documenting it :)
+<siesel> there is a docbook proposal in cvs
+<madlocke> great.... our cellar is flooded..
+<Seek3r> I asking because I am building some code in php to support xml-rpc and soap in much the same way. if you already have things defined then I can look at doing mines much more like yours
+<Seek3r> siesel: where abouts in cvs is it?
+<Seek3r> I was looking around cvs last night. Im not sure whats what in there
+<siesel> at the moment it is too early to describe how to add new drivers, because the number of supported drivers is too small at the moment  
+<siesel> its in docbook/Proposals/GComm/
+<siesel> so I'm not quite shure which functions should be made general available for all drivers and which are private functions.
+<Seek3r> Im mostly concerned with the basic functions developers wanting to the the GComm are supposed to use. Like what they do to start the client, how they package up their params (selecting data types), and how they make the calls, and then how the return comes back.
+<Seek3r> ditto with creating a server. how they add functions, how they are documented
+<Seek3r> if I can make mine look like a port. so that it basicly matches, then it will be more generally consistant. Syntax will be a little diff because of the diffs between python and php
+<siesel> ok, thats quite easy. the only difference between python and php implementation will be, that python supports a kind of introspection, so I can just call server = GComm.attach("xmlrpc",options) and then seriveA= server.request("ServiceA") and then serviceA.serviceForMe(param1,param2)
+<Seek3r> I dont get that
+<Seek3r> php can support introspection as well... but I dont follow your example
+<siesel> ok, sorry, I try again.
+<Seek3r> :-)
+eugeneai (~eugeneai@62.76.23.142) left irc: Excess Flood
+<siesel> if you deal with python you can just request an service object and then all method call on that service object will be transparently executed on the server.
+eugeneai (~eugeneai@62.76.23.142) joined #gnuenterprise.
+<Seek3r> you mean it does that in general, or with these xmlrpc/soap calls?
+StyXman (~mdione@modem117-adsl.capfed2.sinectis.com.ar) joined #gnuenterprise.
+<siesel> It should do this in general using any protocoll which GComm provides as a transport layer.
+StyXman (~mdione@modem117-adsl.capfed2.sinectis.com.ar) left #gnuenterprise.
+<Seek3r> ok. so its something that GComm accomplishes. I can do the same with php
+<siesel> yeah, you can create service/proxy objects with php too, sorry, I forgot :)
+<Seek3r> OK. lets step thru your example from above real quick.     params = { 'host': 'myserver.mydomain',
+<Seek3r>              'port': 8765,
+<Seek3r>              'transport': 'https' }
+<Seek3r>   server = GComm.attach('xmlrpc', params)
+<Seek3r> this is from the docbook
+<siesel> a the moment the api is quite simple: client: 1. atach(interface,options) 2. request('servicename') 3. transparent calls
+<Seek3r> with GComm your not using a web server (aka apache). your opening your own socket port?
+<Seek3r> and python has its own web server lib or something?
+<siesel> yes, an own socket port is created
+<siesel> yes.
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+<Seek3r> OK. this is not something I can do with PHP. Since in PHP I am stateless. I have to wait for the web server to kick me into life
+<siesel> no problem, this should work also. It just means that you have to parse the description file one time per method call ;)
+<Seek3r> wait. I have another question now
+<siesel> or you keep a preparsed file in a php file
+Action: siesel is waiting
+<Seek3r> I see that GComm.attach needs to know what protocol its opening up for
+<Seek3r> I figured it would do some kind of detection of the incoming request
+<siesel> no, GComm.attach is for the client driver.
+<Seek3r> for opening a client request I can see doing that... but for incoming I think we can detect what kind of call it is and process from that
+<Seek3r> ah!
+<siesel> there is a GComm.bind which creates a list of servers which serve methods, objects etc. defined in a GRPC file
+<Seek3r> then that makes sense. GComm.attach would be needed by the client to open up its session with the server
+<Seek3r> ok. lets stick to client for a min. I think we are getting somewhere ;-)
+<siesel> GComm.bind would make not much sense for php
+<Seek3r> I think it might... but lets stick to the client for a sec
+<Seek3r> now I understand your example better
+<Seek3r> php cannot do that syntax as you describe.
+<Seek3r> server.DonutProvider.Factory.getDonutBakery('glazed yeast')
+<Seek3r> I might be able to do something similar tho
+<siesel> ok I think it in this way: 1. client calls gcomm_attach and gets an server object returned
+<Seek3r> $server = GComm->attach('xmlrpc', params);
+<Seek3r> $server = GComm->attach('xmlrpc', $params);
+<siesel> 2. $server->request('Donutplace'); 
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<siesel> 2b. the $server object builds an php object with eval() and returns it (possible?)
+<Seek3r> yes.... but where did Donutplace come from?
+<Seek3r> server.DonutProvider.Factory.getDonutBakery('glazed yeast')
+<siesel> there is a description of all supported methods stored in an xml file.
+<Seek3r> after my attach I can do something like    $server->execute('DonutProvider.Factory.getDonutBakery','glazed yeast');
+<siesel> in case of xmlrpc and soap there is no need for parsing that file on the client. (for CORBA there seems to be that need)
+ra3vat (ds@ics.elcom.ru) got netsplit.
+<Seek3r> you mean that description is on the server side right?
+<siesel> yes, you could do the execute stuff, which would be much faster than the "direct access" stuff I thought off.
+<siesel> yes, on the server side
+<Seek3r> ok. hang with me on the client side first. I have plenty to understand about the server side
+<Seek3r> I cant do the direct access with PHP, since I need to predefine the functions into the class. I POSSIBLY could do that by getting the WSML from the server and genning the wrapper functions.
+<Seek3r> and for xml-rpc maybe doing introspection on the server to get some wsml, but thats too  dependant on the serice haveing things setup properly for me
+<Seek3r> so the execute style would be easier
+<siesel> yes. thats what I thought off. 
+<Seek3r> kind of a bummer that ours wont match better tho...
+<Seek3r> next. I see in this:  server.DonutProvider.Factory.getDonutBakery('glazed yeast')   your passing 'glazed yeast' as the params to that function
+ra3vat (ds@ics.elcom.ru) returned to #gnuenterprise.
+<Seek3r> how are you deciding what type of param it is?
+<Seek3r> do you just make a decision that its a string, and so package it up as one?
+<siesel> yes. 
+<Seek3r> how can you always make the right descision? what if they wanted that packages as base64?
+<Seek3r> or maybe you have    server.DonutProvider.Factory.getDonutBakery(5)  and you decide its an int, but the server expected it passed as a string
+btami (~tamas@ip102-205.ktv.tiszanet.hu) left irc: "Client Exiting"
+<siesel> ok, at the moment that is the client programmers problem. There no solution for that in the driver now.
+<siesel> :(
+<Seek3r> hmmm. how does the client programmer control this?
+<Seek3r> something like server.DonutProvider.Factory.getDonutBakery(base64_encode('glazed yeast'))    ?
+<siesel> in case of string and int, by passing the types string, int. 
+<Seek3r> and then you get this string which is base64'd. how do you detect that and then slap the <base64></base64> around in in the xml packet?
+<siesel> because a GTypeCast('base64','my test') will return an object with a type attribut. so the driver can handle it.
+<siesel> but this part is not implemented at the moment.
+<Seek3r> whats GTypecast ?
+<Seek3r> OK!!
+<Seek3r> thats what I was looking for
+<Seek3r> so if they dont pass you an object, you auto-detect
+<siesel> right.
+<Seek3r> if they use this future GTypeCast, they will be giving you an object that you can then get the type and data from
+<Seek3r> perfect
+<Seek3r> that shoulds good
+<Seek3r> I can implement this in PHP
+<Seek3r> now... on the return data...
+StyXman (~mdione@modem117-adsl.capfed2.sinectis.com.ar) joined #gnuenterprise.
+<StyXman> I should not show my face
+<Seek3r> do you auto convert all of its return into python vars for them?
+<siesel> there should be an optional  'enforce RPC Definition check' mode on the client side which parses a GRPC file and cares for absolute correct types.
+<StyXman> not after what happened today
+<StyXman> we not only didn't kick ass
+<StyXman> we've also been ass-kicked
+<StyXman> god save the queen
+StyXman (~mdione@modem117-adsl.capfed2.sinectis.com.ar) left #gnuenterprise.
+<Seek3r> siesel: I dont think requiring such a thing on the client is nessesary if we use GTypeCast
+<Seek3r> do you auto convert all of its return into python vars for them?
+drochaid (~drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) joined #gnuenterprise.
+<siesel> Seek3r: ok, i change it to very optional
+<siesel> yes, the client looks at the return types (which are given in xmlrpc and soap) and converts them into python vars
+<Seek3r> perfect
+eugeneai (~eugeneai@62.76.23.142) left irc: Excess Flood
+eugeneai (~eugeneai@62.76.23.142) joined #gnuenterprise.
+<Seek3r> how do you pass multiple params to a function?   server.DonutProvider.Factory.getDonutBakery('glazed yeast', 'white bread')   or server.DonutProvider.Factory.getDonutBakery(Array('glazed yeast',whitebread))
+<siesel> the first way. should work in php too. 
+<Seek3r> not really
+<siesel> (PHP 4<)
+<Seek3r> ah. yes, but php4 isnt GPL compatible
+<siesel>    
+<Seek3r> so I need to live with PHP3
+<Seek3r> I would have to use the second for it to work properly
+<siesel> ok. So it has to be done the ARRAY way.
+<Seek3r> now. how open are you to adjusting your end so that we can match more closely?
+StyXman (~mdione@modem117-adsl.capfed2.sinectis.com.ar) joined #gnuenterprise.
+<madlocke> a was reading a bit of your chat...
+<Seek3r> as in using server.execute('DonutProvider.Factory.getDonutBakery',array('glazed yeast','whitebread'))
+<siesel> quite open. (if it doesn't means changing heaps of code)
+<madlocke> siesel: you know that with python >2.2 an int type is an object, too?
+<siesel> madlocke. cool. I really like python :) 
+<madlocke> there is a new basic type that all classes should be derived from.
+<madlocke> it's name is object.
+<madlocke> unfortunately 'object' is used as variable in some places... :(
+<madlocke> but look:
+<madlocke> >>> a=1
+<madlocke> >>> print isinstance(a,object)
+<madlocke> 1
+<Seek3r> madlocke: doh!... that could be worked out easily. if an object is detected, then it can look for some object var which the GTypeCast would always set
+<Seek3r> basicly, if an object is passed, then it would make sure its a GTypeCast object
+StyXman (~mdione@modem117-adsl.capfed2.sinectis.com.ar) left #gnuenterprise.
+<Seek3r> for other stuff like int, it would deal with it as nessesary
+<siesel> Seekr: It don't have to be that way, you could just write many a method definition like  execute($string,$par1=None,$par2=None,$par3=None,.........$par12=None...)
+<siesel> a=1 type(a) should still return integer
+<Seek3r> siesel: yes, but then we have to set an arbitrary limit on how many input params can be used by a service
+<Seek3r> aka, how many $par* do we have
+<Seek3r> be back in a few. gotta get my son up for school
+<siesel> seek3r: IÄve to go too. But will back in ~4-5 hours
+<siesel> l8r
+siesel (jan@dial-194-8-205-46.netcologne.de) left irc: "Real IRC clients know "to" is a preposition, not an adverb"
+StyXman (~mdione@modem117-adsl.capfed2.sinectis.com.ar) joined #gnuenterprise.
+alexey_ (~alexey@195.151.214.34) left irc: "Client Exiting"
+<Seek3r> darn
+eugeneai (~eugeneai@62.76.23.142) left irc: "Client Exiting"
+<Seek3r> another question. Am i right in thinking that GComm and GNUe RPC are two different things?
+<jcater> No
+<jcater> GComm was the original working name
+<jcater> before any coding was done
+<Seek3r> and now its called GNU RPC?
+<Seek3r> or GNUe RPC?
+<jcater> um
+<jcater> depends on who you ask :)
+<jcater> we don't actually have an official name yet
+<jcater> some refer to it as GNU RPC
+<jcater> some GComm
+<jcater> some GNUe RPC
+Action: jcater is the latter
+<Seek3r> I dont like GNUe RPC... because then it seems to be a GNU Enterprise thing... it should be more generic than that
+<jcater> but it is GNUe
+<jcater> it's part of GNUe Common
+<Seek3r> if we can do this right, then that is only one implementation
+<jcater> the "standard" or "proposal" can be called whatever
+<jcater> but our implementation I'
+<jcater> d think we would call GNUe-Something
+<Seek3r> I am gonna try building a PHP version today with the xml-rpc driver
+<jcater> ah
+<jcater> cool
+<jcater> I'd think "GNURPC" would be the name of the "standard"
+<Seek3r> GNURPC or GComm... I guess gnurpc is fine
+<Seek3r> I suppose I can rename my functions later if nessesary
+<Seek3r> ok. Im gonna try building the client real quick and see how it goes
+<Seek3r> Im gonna use this for the new web services I am developing for DotGNU
+<madlocke> Seek3r: you want to integrate this with GNUe Forms or is this a different solution?
+<Seek3r> madlocke: completely different
+<madlocke> ok.
+<Seek3r> this is just the RPC stuff
+<madlocke> ok that i understand it right.
+<Seek3r> from what I understand GNUe Forms is just for converting sql results to forms in some automatic way
+<jamest> GNUe's Interesting Communication Interface
+<jamest> Gic-ee
+<madlocke> Seek3r: it's more than that
+<jamest> oooo that's gicky
+<madlocke> it is rendering dialog definitions
+<Seek3r> madlocke: like XUL?
+<Seek3r> jamest: not bad
+<madlocke> and allows access via datasources to almost any input/output system
+<madlocke> Seek3r: forms can be extended via plugins
+<jcater> XUL, with a purpose :)
+ariel_ (~ariel@ppp-217-133-245-161.dialup.tiscali.it) left irc: Read error: 110 (Connection timed out)
+<madlocke> Seek3r: so you can output to anything you want.
+<madlocke> you can generate html, use qt, use wxgtk, ...
+<Seek3r> madlocke: how is the interface described? I like XUL because its a nice reusable xml file
+<madlocke> xul is binded to one widget set imho
+<madlocke> it's an xml definition, too
+<Seek3r> madlocke: only because there is one implementation so far... but I dont think its tied to mozilla at all
+<Seek3r> madlocke: can you paste a small example of the definition file?
+<madlocke> forms is able to output even to a curses termina
+<madlocke> <?xml version="1.0"?>
+<madlocke> <!--  GNUe Designer (0.1.0)
+<madlocke>       Form saved on: 2001-11-19 14:47:13  -->
+<madlocke> <form width="54" height="11">
+<madlocke>   <options>
+<madlocke>     <option value="0.0.3" name="version"/>
+<madlocke>   </options>
+<madlocke>   <datasource cache="5" name="form"/>
+<madlocke>   <page name="Page_1">
+<madlocke>     <block name="block1" datasource="form">
+<madlocke>       <label x="1" y="1" name="Label_1" text="File As"/>
+<madlocke>       <entry x="1" y="2" value="Neighbors, Derek A." field="test1"
+<madlocke>              name="field1" width="52"/>
+<madlocke>       <label x="1" y="3" name="Label_2" text="First "/>
+<madlocke> just the beginning of such a definition
+<Seek3r> sounds like what my plans for XUL are. to have it converted to various wiget sets, including html
+<Seek3r> how much of this is accomplished yet?
+<madlocke> output to curses and wxgtk is almost ready... but there is much work being done on improving things at the moment.
+Arturas (~arturas@bit.codeworks.lt) joined #gnuenterprise.
+<madlocke> at the moment i am writing a web plugin i.e.
+<madlocke> doing some work one the parser and mor...
+<Arturas> hello
+<Seek3r> I would think the html generation would be tricky.. because of how you have to submit to get the values back
+<madlocke> yes. for this i am using an existing framework. it is called webware
+<Seek3r> webware is some python thing?
+<madlocke> yes it is
+<Seek3r> k
+<madlocke> so it integrates well
+<Seek3r> for you ;-)
+<Seek3r> why didnt you use the XUL doc instead of rolling your own?
+<madlocke> the idea of forms is not mine. i joined the project later. maybe jamest could comment more on this
+<jcater> check our FAQ :)
+<jcater> there's a whole section
+<jcater> "Why not XUL?"
+Action: madlocke has to read this, too ;)
+<Seek3r> jcater: ah. ok. was a timing issue. and now you dont want to convert to the XUL doc
+<jcater> A lot was timing
+<jcater> but our main focus is data binding
+<ra3vat> Seek3r: and there is phpforms in cvs
+<jcater> so there's a little difference in targets me thinks
+<Seek3r> jcater: how so?
+<Seek3r> ra3vat: phpforms?
+Action: Seek3r finds phpforms in cvs
+<Seek3r> now we are talking...
+<Seek3r> madlocke: is this what your working on?
+Chipaca (~john@modem117-adsl.capfed2.sinectis.com.ar) joined #gnuenterprise.
+<Seek3r> oh, nope, its siesel
+<madlocke> nope it is something different...
+<madlocke> it is not checked in yet
+Action: madlocke has to do some integration work with jamest next week for this
+<Seek3r> I see that it is pretty well tied to the database
+<Seek3r> least this phpforms
+Action: madlocke has to go back to work...
+ToyMan (~stuq@65.167.123.51) left irc: Remote closed the connection
+xeroz (~chatzilla@lukio.ilomantsi.fi) joined #gnuenterprise.
+<Arturas> bye
+Arturas (~arturas@bit.codeworks.lt) left #gnuenterprise ("Client Exiting").
+<Chipaca> what's needed for nstti frontend to work?
+ToyMan (~stuq@65.167.123.51) joined #gnuenterprise.
+xeroz (~chatzilla@lukio.ilomantsi.fi) left irc: "ChatZilla 0.8.7 in Beonex Communicator"
+madlocke (madlocke@pD9E0A578.dip.t-dialin.net) left irc: "Client Exiting"
+<StyXman> good morinig. or whatever time is
+<Chipaca> StyXman: the time is 1:0
+<Chipaca> :(
+Action: Chipaca notes everything looks 1:0 today
+meow- (~meow@212.199.197.2) left irc: Read error: 104 (Connection reset by peer)
+StyXman (~mdione@modem117-adsl.capfed2.sinectis.com.ar) left irc: "ircII EPIC4-1.1.2 -- Are we there yet?"
+madlocke (madlocke@pD9E0A578.dip.t-dialin.net) joined #gnuenterprise.
+dneighbo (~dneighbo@tmp-200253.flinthills.com) joined #gnuenterprise.
+<dneighbo> hmm no psu
+Action: dneighbo thinks psu probably is more in favor in penalty kicks than ever after yesterdays match
+<dneighbo> and styxman and chipaca and friends are probably against them more than ever :)
+meow- (~meow@212.199.197.190) joined #gnuenterprise.
+<Chipaca> dneighbo: nah, it's part of the game. 
+<drochaid> shame the game does suck so much ;)
+<Chipaca> what's wrong with ntssi?
+<Chipaca> i mean nstti
+<Chipaca> DB000: NameError: global name 'container' is not defined
+StyXman (~mdione@modem117-adsl.capfed2.sinectis.com.ar) joined #gnuenterprise.
+<Chipaca> how do I start the python debugger?
+Action: Chipaca is sure he knew
+<madlocke>  /usr/lib/python/pdb.py
+<dneighbo> i only caught part of the log
+<dneighbo> my opinion is we are open but not very willing to change our style for gnurpc
+<dneighbo> as i dont see the advantage of not using good python features to match the poor feature set of php
+<dneighbo> as i dont see the value in spending time REPLICATING gnurpc for every language 
+<dneighbo> that was not what we agreed on
+<dneighbo> instead i would rather see someone wrap the python so php could use it
+<dneighbo> or swig it
+<dneighbo> 'i.e.'
+<dneighbo> but that is just my HMO
+psu (~psu@158.152.23.141) joined #gnuenterprise.
+<madlocke> dneighbo: you even convinced me to use only python :)
+<dneighbo> its not a python is right everything else is wrong thing
+<dneighbo> its a why write same code over and over in diff languages only to have to maintain it?
+Nick change: psu -> psu_smug
+<dneighbo> psu_smug: should i go to a pub in England and say that penalty kicks are pansy way to score and that the refs gave England the game?
+<madlocke> that
+<madlocke> is exactly why you convinced me ;)
+<psu_smug> dneighbo: i doubt anyone would be sober enuf to hear you
+<dneighbo> roflmao
+Nick change: psu_smug -> psu_youre_not_si
+<dneighbo> of course life is never clear cut
+<dneighbo> as the two biggest things i hear are
+<dneighbo> a. why dont you use XUL
+Nick change: psu_youre_not_si -> psu
+<dneighbo> b. why own designer use glade
+<dneighbo> what i find great about a and b
+<dneighbo> is that i was one of probably only people writing XUL applications around M7 - M10
+<dneighbo> and working directly with mozilla folks (read irc logs of mozilla chats and mozillazine for proof)
+<dneighbo> when doing sanity and it just wasnt close to ready
+<dneighbo> and was going in a non dataaware direction
+<dneighbo> b is funny because jamest originally had a glade designer/forms ui started
+<dneighbo> and it was just unbearable
+<dneighbo> we tried libGDA as well even submitted code in bucket loads
+<dneighbo> but we have had some success
+<dneighbo> wx is a good example
+<psu> there is fashion in software - who knows, in a few years, people may be going to #phpgw and asking "Why not python, like GNUe?" ;-)
+<dneighbo> our original spec we thought we were going to have to write something like wx
+<dneighbo> and of course we found wx and they saved us a lot of work :)
+<dneighbo> we have tried at least 3 different curses bases
+<dneighbo> and finally have one that while not usable today for us, is a good start
+<StyXman> I hear that, and I agree. 
+Action: dneighbo just babbling to point out that while i roast others for recoding, that im not so pompous as to say that we havent done some of that ourselves, though generally we try like hell not to
+<StyXman> I mean, dneihgo's comment about penalty kicks
+<Chipaca> using pdb.py when nstti completely fucks up the terminal is not very useful :(
+<dneighbo> StyXman though as historian i would say perhaps owed England a match
+<dneighbo> as the 'hand of god' goal was well, i gift to argentina :)
+<StyXman> dneighbo: ack
+Action: Chipaca curtseys
+<psu> StyXman: Usted no está cantando más
+<Chipaca> psu: y tu mamá también
+Action: Chipaca wonders if we'll spend the rest of the afternoon speaking in moviespeak
+Action: psu promises to shut up about football now
+<StyXman> psu: you must have seen the people singing in the streets.
+Action: StyXman agrees and bows for england's win
+<psu> StyXman: Su graciousness honra su país más que cualquier triunfo
+<psu> all praise translate.google.com, btw
+<dneighbo> there arent many good matches coming up until Korea v USA
+psu_ (~psu@manorcon.demon.co.uk) joined #gnuenterprise.
+<dtm> psu_: btw    seek3r is currently redesigning phpgw somewhat to decouple the server and client
+<dtm> and to make it language neutral
+<dtm> not requiring php
+<dtm> he's still interested in gnue
+<dtm> so far afaik his only obstacle is that he says someone in here refuses to help unless he uses gnue as his sole data store which is unfriendly and impractical :)
+<dtm> some people have major data in phpgw already, and others will just want the principle of choice
+<dtm> psu_: i just say that coz you brought up the idea of phpgw+python which is neato
+Action: dtm lurx
+<dneighbo> ?
+Action: dneighbo is curious where anyone has said one must use GNUe is a datastore seeing how GNUe owns no datastore?
+<dneighbo> we use postgres, mysql, sapdb etc just like everyone else
+<dneighbo> no one has refused help either
+<dtm> dneighbo: well i dont know that particular technical term then.  general storage, or something.
+<dneighbo> unless you call siesel/madlocke spending time explaining things as not helping
+<psu_> Is this a "wrong end of the stick" from the GNU-RPC (aka GNUe Common) discussions?
+<dneighbo> if you mean my comment, i specificially said we are open to working with others
+<dtm> well i'm just relaying a message :)
+<Chipaca> wow
+<dneighbo> but i thought that NOT using features of python to make a php port more viable seemed like a bad idea (imho)
+<StyXman> here
+<StyXman> wow
+<dtm> dneighbo: all i know is that he _thinks_ that there is resistance from the gnue crowd on _someone's_ behalf, due to where the data is located
+<dneighbo> ?
+<dneighbo> is there resistance for us to use php yes
+<dtm> dneighbo: and he's currently rearchitecting a little bit, and the business portoin will include xmlrpc/soap for interoperability
+<dneighbo> how that plays into use and data storage is beyond me
+<dtm> dneighbo: i dont know who he was referring to either
+<dneighbo> dtm: and we support xmlrpc/soap
+<dtm> dneighbo: cool
+<dneighbo> so i guss im not understanding how we are doing something bad?
+<dtm> sorry to be vague; try not to make assumptions on my vagueness
+<dneighbo> woudl we like to see phpgw using gnue-common
+<dneighbo> absolutely
+<dneighbo> it seems silly to rewrite it in php
+<dtm> dneighbo: take it as that seek3r still wants to collaborate
+<psu_> IIRC GNUe Common was named GNU-RPC precisely because it was meant to be usable by other projects 
+<dtm> and collaboration will probably be greatly enhanced by his rearchitecture
+<dneighbo> anyone not agreeing should talke to jan(siesel) and or michael(madlock)
+<dneighbo> BOTH of them were looking at php solutions
+<psu_> that also needed d/b abstraction & RPC abstraction 
+<dneighbo> and after grokking common
+<dneighbo> said 'um why i am fighting this'
+<dtm> he's separating the phpgwapi portion of phpgw into just a client app layer
+Gedanken (~schatten@dv101s49.lawrence.ks.us) joined #gnuenterprise.
+<dneighbo> madlock started UIweb.py that is using webware
+<psu_> this is probably a stupid question 
+<psu_> but 
+<dneighbo> jan went other route and said i need to get gnue-rpc workign
+<dneighbo> so i can get at your spiff data funcitons
+<dneighbo> and not rewrite them in php
+<dneighbo> iirc
+<psu_> given that php has commands to work w/every database under the sun
+<psu_> what would it take to extend php to treat GNUe Common as "another database"
+<psu_> gnurpc_connect() and so on
+<dneighbo> psu_ iirc (i should let jan talk) but he implemented a phpforms
+<dneighbo> and was like cool no sweat
+<dneighbo> then we said does it do 'master/detail'
+<dneighbo> he siad let me look at it
+<dneighbo> a day or two later came back and was like
+<dneighbo> um common kicks ass
+<dneighbo> im not rewriting that in php
+<dneighbo> where is that gnue-rpc code again
+<psu_> and that was before jan took common and improved it even more ;-)
+Action: dneighbo might be misremembering but i think thats how it went
+<psu_> itch.scratch()
+<dneighbo> well the common misperception is that common is merely data abstraction (ala PEAR or PERL DBI or libGDA)
+<dneighbo> in truth its MUCH more than that
+<dneighbo> its complete programmer abstraction
+<dneighbo> it will handle things for you that make programming ui's very easy
+<Gedanken> ?
+<dneighbo> like handling master detail relationships
+<dneighbo> adn complex queries
+<dneighbo> and foreign key look ups
+<dneighbo> and the such
+<Gedanken> hmmm
+<StyXman> jamest: ok, I have my patches. I want you to see them. where should I send them?
+<dneighbo> what product?
+<dneighbo> dtm: re, working with phpgw
+<dneighbo> i say there are several ways
+psu (~psu@158.152.23.141) left irc: Read error: 113 (No route to host)
+<dneighbo> 1. data to data (old skool data integration)
+<dneighbo> 2. service to service (i.e. rpc of sorts)
+<dneighbo> 3. tight coupling (using same middleware and such)
+<dneighbo> i dont think phpgw sees where we want to be and/or vice versa so 3 probably just wont happen
+<dneighbo> i think we seem to be suporting similar protocols and such that i dont see why 2 isnt possible
+<dneighbo> 1 certainly is doable today
+<dtm> well gravy
+<dtm> i'lll let seek3r know
+<dtm> phpgw is growing up a bit :)
+Action: dneighbo still wants to install and use phpgw some to get a better handle to have better discussion and wish they could do the same (re: gnue)
+madlocke (madlocke@pD9E0A578.dip.t-dialin.net) left irc: "Leaving"
+<dtm> he's working like crazy on it
+<dtm> noted
+<dtm> thanks :)
+<psu_> we were going to make that one-off meeting in #gnuproject a regular thing 
+<dneighbo> dtm: you always want to help, is there anyway you could proved us gnue folks
+<dneighbo> a phpgw sandbox to play with
+<psu_> but everyone is too busy
+<dneighbo> that we could even possibly ssh into
+<dneighbo> and have access to tables and such
+<dtm> dneighbo: that's a negative, big daddy, but i could install it on someone else's host if i had ssh.
+<psu_> and rightly wants to give their quality time to own project
+Action: dneighbo has just been too swamped :(
+<dneighbo> what are weekend schedules like?
+<dneighbo> maybe its time for antoehr #gnuproject meeting?
+Action: psu_ did a webpage of the first one
+<psu_> lemme find the URL
+<dneighbo> jcater: btw reports has been berthed re: freshmeat, only navigator to go :)
+<dneighbo> also if you didnt see on gnuenterprise.org there are screenshots of navigator
+<dneighbo> i got -u web to work, but it wont launch the forms when you click the link
+<dneighbo> the soccer match started before i got to play with it
+<dneighbo> i think the message you get when you click a link is
+<dneighbo> 'I did something.'
+<dneighbo> ;)
+<dneighbo> psu_ you are as slow at finding url's as england is at getting back on defense ;)
+<psu_> http://www.manorcon.demon.co.uk/gnuproject.html
+<psu_> really just a prototype 
+<psu_> belongs on www.gnu.org or www.gnuenterprise.org
+<psu_> but I'd almost forgotten about it until this discussion
+<psu_> some of it is fairly cheeky at moment 
+<psu_> "the usual format" == "how we did it the one and only time"
+<dneighbo> psu_ this is great stuff
+<dneighbo> i will look if i have time at this
+<dneighbo> and try to reconvene a meeting
+StyXman (~mdione@modem117-adsl.capfed2.sinectis.com.ar) left irc: "ircII EPIC4-1.1.2 -- Are we there yet?"
+<dneighbo> as i think there are several thigns for the agenda
+<dneighbo> i definitely dont want sour grapes
+<dneighbo> and from dtm's comment i think seeker might be feeling that way
+<psu_> we had a fairly full agenda last time & never got beyond point 2 iirc
+<psu_> not that I was there ;-)
+Action: psu_ just wants to be able to do a "Kissin' Cousins" for Kernel Cousins again ;-)
+<dtm> dneighbo: maybe mildly; not a big deal yet  :)
+<dtm> dneighbo: thanks for the concern
+<dneighbo> well i think the biggest thing that needs addressing
+<dneighbo> is where GNUe is at with its rpc abstraction
+<dneighbo> as there is definitely prototype stuff there
+<dtm> dneighbo: we all know phpgw is in a different "place" than gnue is so far, but it is "growing up" as a project
+<dtm> and as a technology
+jamest (~jamest@hobbes.math.ksu.edu) left irc: Remote closed the connection
+<dtm> as of very recently
+<dtm> like last week
+StyXman (~mdione@modem117-adsl.capfed2.sinectis.com.ar) joined #gnuenterprise.
+<dtm> dneighbo: i think it's up to them to push their tech to the next level, so they'll be more suitable for broad interoperability
+<dtm> and that might be possible very soon
+<dtm> at this rate, it will be
+<dtm> seek3r's a coding machine
+<dtm> he's nuts
+<dtm> maybe with any luck we'll have somethng special to talk about at LWCE
+<dtm> FSF has great interest in phpgw
+<dneighbo> well i guess i need to talk to Bradley again
+<dneighbo> as we were doing contact stuff for them, but i got pulled away to do a budget
+<dneighbo> i certainly dont want to waste my time if they are using something else
+<dtm> for what/
+<dtm> ?
+<dneighbo> contact manager
+<dtm> oh
+<dneighbo> and they were to use DCL as well
+<dtm> well they darn well BETTER use dcl and gnue
+<dtm> or i'ma go postal  :>
+<dneighbo> the data definitions are pretty much done and agreed on
+<dtm> especially for the reasons you'd mentioned before about that stupid CLI nonsense
+<dtm> and dropping gnue without looking at it
+<jcater> CLI?
+<dneighbo> im just merging the last of it
+<dneighbo> command line interface i imagine
+<jcater> oh, yeah
+<dneighbo> and have to get them to install postgres to test things
+<dneighbo> jcater : you housing this weekend/tonight or hacking?
+<jcater> um
+<jcater> well
+<jcater> in-laws come into town tonight
+Action: dneighbo hopes to be productive as wife is having a scrapbook party at the house, i was told
+<jcater> so possibly both
+<jcater> or neither
+<dneighbo> 'STAY IN YOUR OFFICE'
+Action: jcater may be at the office all weekend :)
+<dtm> dneighbo: :-o   hehhe
+<dneighbo> saturday i have traffic school allday (sigh)
+Action: jcater runs off to look for Tylenol
+<StyXman> tylenol?
+<dneighbo> tylenol == name brand headache medicine
+<dneighbo> acetametaphin
+<Seek3r> dneighbo: you in the states?
+<Chipaca> jcater: charlie (yogur) told me to tell you your examples don't work
+<Chipaca> jcater: (he's trying to get forms to print)
+<Chipaca> or is that reports?
+<dneighbo> yip
+<dneighbo> Arizona
+<dneighbo> nickr just rubbed off on me and i dont sleep anymore (that and it happens to be World Cup time and I dont like watching the matches on replay) so im a night owl of late :)
+jamest (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+<StyXman> Chipaca: it's reports
+<Chipaca> well, that
+<StyXman> jamest: again, I want you to see my patches. where should I send them?
+Action: Chipaca grins evily
+Nick change: StyXman -> ack
+<ack> test
+<ack> shit
+Nick change: ack -> StyXman
+<Chipaca> ack: ack
+aprono (~aprono@modem117-adsl.capfed2.sinectis.com.ar) joined #gnuenterprise.
+<Seek3r> dneighbo: you there?
+aprono (~aprono@modem117-adsl.capfed2.sinectis.com.ar) left irc: Client Quit
+aprono (~aprono@modem117-adsl.capfed2.sinectis.com.ar) joined #gnuenterprise.
+<Seek3r> dneighbo: check your priv msgs
+<dneighbo> if its reports
+<dneighbo> reports-support@gnuenterprise.org
+<dneighbo> subject should be quick description of patch
+<dneighbo> body should be what it is you are fixing
+<dneighbo> and attach the diff file(s) to the mail
+<dneighbo> you might want to cc info@gnue.org as well (because our silly little issue of attachments not binding quite right)
+<StyXman> dneighbo: you talking to me?
+<StyXman> I'm gonna start to hack a list box. eventually, it will be data-aware
+<StyXman> any sugestions, are welcome
+<Chipaca> StyXman: <suggestion>while you're at it, hack a grid</>
+<StyXman> Chipaca: one ata a time, please
+<StyXman> s/ata/at/
+<jamest> um
+<Chipaca> StyXman: s/\/at\//\/attack at\//
+<jamest> you can send to 
+<jamest> info@gnue.org 
+<jamest> IIRC
+<StyXman> jamest: ack
+<StyXman> jamest: should I just extend entry or better to add a new class?
+<psu_> "embrace and extend" ?
+<StyXman> psu_: embrace or extend
+<jamest> huh?
+<psu_> isn't "embrace and extend" what M$ do to "standards"
+<StyXman> jamest: I'm gonna do a listbox. I see that all data-aware widgets are types of entries
+<jamest> yes
+<jamest> they are all <entry> tags with a style
+<StyXman> I was asking if I should add the type to entry or just make a new class
+<jamest> that way if the UIdriver doesn't understand the style it'll just fail back to std entry
+<StyXman> aha, so I *must* extend actual <entry>
+<jamest> how is the list going to work?
+<jamest> multi-select?
+<jamest> single select?
+<StyXman> eventually...
+<jamest> ah
+<jamest> right now an <entry> = one field in one record in a db
+<StyXman> I mean, it's the target, but one thing at a time
+<jamest> that will make things different
+<StyXman> ack. I'll extend. embrace will come later :)
+<jamest> i understand the need though
+<jcater> I still say single-selection and multi-selection are two completely different beasts
+<jamest> as I could use the multi-select too
+<jamest> i'd think multiselect would be a block style 
+<jamest> i think
+Action: jamest isn't too sure
+<StyXman> yes, multi-select point to multiple records
+<StyXman> so, I'll stick to single-select. data-unaware stuff could go in a separate class, right?
+psu_ (~psu@manorcon.demon.co.uk) left #gnuenterprise.
+<StyXman> how do I get actual date?
+<dneighbo> i still think BIGGEST need for multiselect
+<dneighbo> is address in that 'dialog' i keep talking about
+<dneighbo> i see little need for multiselect out side of that
+<StyXman> dneighbo: that's why I hack listbox first
+<Chipaca> StyXman: (time.localtime()[0] + 50 ) % 100
+<dneighbo> well thats not wholly true but anyhow
+Action: Chipaca answers questions people want to ask before they ask them
+dsmith (~dsmith@216.29.133.85) joined #gnuenterprise.
+ToyMan (~stuq@65.167.123.51) left irc: Remote closed the connection
+yogurt2unge (charlie@200.43.201.185) joined #gnuenterprise.
+<Chipaca> yogurt2unge!
+<yogurt2unge> Hola
+ToyMan (~stuq@65.167.123.51) joined #gnuenterprise.
+ToyMan (~stuq@65.167.123.51) left irc: Client Quit
+<yogurt2unge> helo jcater, en the example zip-by-state.grd the xmlns:out="jcater:test1" is only raw output?
+<jcater> that was the very first proof of concept sample
+<jcater> so raw is all that was available at the time
+ToyMan (~stuq@65.167.123.51) joined #gnuenterprise.
+<yogurt2unge> corect, I'm probing it
+<jcater> probing it?
+Action: yogurt2unge I must change the font because I don't read very well
+<yogurt2unge> I'm working with it
+Action: dneighbo thinks we should keep yogurt2unge away from the sheep
+<dneighbo> er goats
+<dneighbo> btw: jcater on the fight in memphis last night they showed a guy on beale street
+<dneighbo> that had a goat that was prognosticating teh outcome of the fight
+<dneighbo> then they showed it slamming a beer :)
+<dneighbo> i about died
+<jcater> sounds about right
+<yogurt2unge> dneighbo: there is no dheep here!!!!!
+<yogurt2unge> sheep
+Action: dneighbo wonders if it made local memphis tv
+<dneighbo> the beer drinking goat that is
+<yogurt2unge> the problem is with my fingers
+<dneighbo> actually i guess one of the guys thta picked it up was Leno
+<dneighbo> so it would have been shown in memphis
+<yogurt2unge> bye
+<dneighbo> hey i stopped following the CSS discussion on layout
+yogurt2unge (charlie@200.43.201.185) left irc: "Client Exiting"
+<dneighbo> but it sounded interesting
+Action: jcater didn't follow AT ALL
+<dneighbo> at first my gut reaction was what does css have to do with layout
+<jcater> s/didn't/doesn't
+<dneighbo> but the more i thought about it, it might not be an all bad idea
+<dneighbo> as it might address my concern on how to make 'web applications'
+<dneighbo> that dont look normal forms embedded in a browser
+<dneighbo> now granted im not 'sold' on the idea
+<dneighbo> but i think it needs some discussing (where at first i was thinking man thats some good crack to think css makes any amount of sense'
+dsmith (~dsmith@216.29.133.85) left irc: "later.."
+<StyXman> hoal yog
+<Chipaca> dneighbo: thanks (I think)
+<Chipaca> dneighbo: CSS is what you're supposed to use whenever you want to separate design from content
+<Chipaca> dneighbo: if the idea is that one same form should be able to be layed out in different ways, then CSS it is.
+<jcater> well
+<jcater> define "different ways"
+Action: Chipaca ruminates a while
+<jcater> as I'm not sure we were talking same thing in the emails to the list
+<Seek3r> if the PHP guys would just change the license for php4 my life would be MUCH simplier
+<Chipaca> jcater: for example, right now all we have is absolute positioning
+<Chipaca> but if tomorrow I can't sleep so I add sine positioning, I'd like to be able to use it with the same forms
+<Gedanken> Seek3r: what is the license that PHP4 has?
+<jcater> see, I think this is completely different than what I'm after
+<Chipaca> oh?
+<StyXman> jcater: and what are you after?
+<jcater> I'm after adding layout engine support to the GFDs
+<jcater> i.e., allow developers to use GridBag layouts if they want
+<jcater> instead of absolute
+<Chipaca> jcater: I got that, but how do you choose which layout engine to use?
+<jcater> but the developer would still have to choose which engine he wanted to use
+<jcater> and code the form accordingly
+<dneighbo> jcater: i think what im thinking that CSS adds is layout separate from gfd
+<dneighbo> i.e. i slap widgets and such down in the .gfd
+<dneighbo> then let the CSS (or somethign similar) define how they are placed and such
+<jcater> I think CSS could complement what I'm after
+<jcater> but I still think they are addressing different issues
+<dneighbo> so i could have one form with widgets
+<dneighbo> but one CSS for web
+<dneighbo> and one for normal
+<dneighbo> and yes i agree it could be a 'complimentary' thing 
+<jcater> incidentally, I would really be against that kind of example
+<dneighbo> it just sparked my interest as a possible way to handle my concerns
+<jcater> doing different layouts for different targets
+<jcater> at least for official stuff
+<jcater> not necessarily saying we shouldn't support it
+<dneighbo> well layout is relative
+<dneighbo> mainly i dont want something that looks like a gnue form
+<dneighbo> in the middle of my website/ecommerce site etc
+<dneighbo> i watn it to integrate into my marketing look
+<dneighbo> so for me i think the mixed bag approache is ideal
+<dneighbo> i.e. what you are discussion handles the 'base' layout of where thigns belong
+<dneighbo> in a general sense
+<dneighbo> and a CSS allows by target to define some additional things
+<dneighbo> though part of me was thinking namespaces or such in the xml might allow for some of this
+<jcater> I'm not opposed to this
+<jcater> but I think it is separate from what I'm trying to accomplish
+<jcater> two different problem sets, imho
+<dneighbo> it very well could be
+ToyMan (~stuq@65.167.123.51) left irc: "Client Exiting"
+<dneighbo> the css thing and samples just sparked my concern about an 'html' forms
+Action: dneighbo is irked
+<dneighbo> the folks at freshmeat appear to be sitting on reports release :(
+<dneighbo> now its so late will do little good
+<Chipaca> jcater: exactly what are you trying to accomplish? (don't add the implicity 'teacher' voice to that please)
+<jcater> how do you specify a GridBag element in a GFD
+<jcater> or a BoxLayout element
+Seek3r (~dankuyken@vnnyca-1-g1-s1-46.vnnyca.adelphia.net) left irc: Read error: 113 (No route to host)
+<Chipaca> jcater: do you need elements for the layout?
+Action: dneighbo wants to reiterate
+<dneighbo> that in AZ 'bag' is equivalent to say nuts
+<dneighbo> i.e. your scrotum is your nut bag
+<dneighbo> so when i see gridbag
+<dneighbo> it just well is funny
+<jcater> um
+<jcater> well
+<dneighbo> common usage would be 'lick bag'
+<jcater> you have to layout somehow, right?
+<jcater> dneighbo: sure, I hear that here too
+<jcater> but that's not my first definition of "bag"
+<jcater> :)
+<dneighbo> i guess i just think of 'gridbaglayout' as something the doc might ask you to do before, telling you to turn your head and cough ;)
+<Chipaca> jcater: yes, you have to layout somehow. Do you need entities to do it? if so, then definitely, namespaces it has to be.
+<Chipaca> jcater: my point is that I believe you don't need entities; you can do it with attributes
+<jcater> well
+<jcater> either way
+<jcater> absolute positioning will use attributes
+<jcater> there will be no entities
+<jcater> it all depends on what engine is used, I guess
+<jcater> note that I'm not implementing any engines other than absolute :)
+<jcater> but attributes can use namespaces as well
+jamest (~jamest@hobbes.math.ksu.edu) left #gnuenterprise.
+<dneighbo> that make you absolutely for absolute?
+<jcater> citrus flavored, no doubt
+<Chipaca> thing is, if you can do it only with attributes, you can do it with css
+<Chipaca> and no need to touch gfparser
+<jcater> well, that's the exact reason I want to use namespaces
+<jcater> is so I don't have to touch GFParser
+<jcater> I don't want *any* layout logic in GFParser
+Action: Chipaca waits for the coins to drop
+<jcater> like I said, I think what you are proposing complements what I want
+<jcater> incidentally, I wander if there are any CSS parsers for Python
+<jcater> s/wander/wonder
+chillywilly (~danielb@mke-65-29-142-117.wi.rr.com) joined #gnuenterprise.
+<Chipaca> jcater: that's a good point
+<StyXman> hi chillywilly 
+<Chipaca> chillywilly: more?
+<chillywilly> less
+<chillywilly> hi StyXman
+Action: Chipaca notes chillywilly doesn't recall the classic cartoon
+Action: chillywilly notes that is where is nick originates
+<chillywilly> but yea it has been a while since I have seen it
+<Chipaca> jcater: yes, apparently XIST 
+<Gedanken> I think that CSS is going to be replaces by XSL though
+<Chipaca> or that, yes
+<chillywilly> CSS is for html
+<chillywilly> XSL is for XML
+<chillywilly> why would you use CSS on xml?
+siesel (jan@dial-194-8-195-73.netcologne.de) joined #gnuenterprise.
+<Chipaca> chillywilly: uh, nope
+<chillywilly> uh, yea...you don't care about presentation of the data in xml...that's htmls purpose
+<Chipaca> chillywilly: look at http://www.w3.org/TR/REC-CSS2/ 
+<Chipaca> section 2.2
+<Chipaca> http://www.w3.org/TR/REC-CSS2/intro.html#q2
+<chillywilly> yes, it can be done that way
+<siesel> mist, Seek3r 's gone.
+<Chipaca> quote: "CSS can be used with any structured document format, for example with applications of the eXtensible Markup Language [XML10]. In fact, XML depends more on style sheets than HTML, since authors can make up their own elements that user agents don't know how to display. "
+<chillywilly> but it is not the purpose of xml to worry about presentation
+<Chipaca> chillywilly: exactly, which is why it goes elsewhere, e.g. in CSS
+<Gedanken> well, like I said ... if you are going to be using XML, you might as well use XSL
+<chillywilly> XML is not a replacement for HTML.
+<chillywilly> XML and HTML were designed with different goals:
+<chillywilly> XML was designed to describe data and to focus on what data is.
+<chillywilly> HTML was designed to display data and to focus on how data looks.
+<chillywilly> HTML is about displaying information, XML is about describing information.
+<siesel> chipaca,chillywill: you think about extending the GFD format with CSS?
+<chillywilly> nope, not me
+<Chipaca> siesel: what I say is that the display information goes in a separate css file, not in the gfd.
+<Chipaca> siesel: in fact, I thing x and y attrs suck :)
+<chillywilly> hmmmm
+<Gedanken> I would have to agree with Chipaca on that ... the presentation should be sepperatae
+<Gedanken> er
+<jcater> Chipaca: that's what we are going to do... give you the option of using something besides x,y
+<Gedanken> seperate
+<Chipaca> OTOH, I think /chinchulines/ are delicous, so you might differ
+psu (psu@158.152.23.141) joined #gnuenterprise.
+ToyMan (~stuq@c5300-1-ip234.albany.thebiz.net) joined #gnuenterprise.
+<siesel> I understand, but I think the namespace approach is better
+<siesel> because if you define something in a separate file you have to specify names for the elements you want to define in the CSS ... in the end you get something similar to the HMTL code M$ word produce.
+<siesel> just IMHO :)
+<Chipaca> siesel: that would be a problem for layout engines that need to control each separate element
+<chillywilly> ok, and when are you going to be posting your proposal to the list?
+<chillywilly> ;)
+<Chipaca> chillywilly: uh, 'scuse me?
+<chillywilly> you want these changes in forms right?
+<StyXman> Chipaca: but that way, should one do a .css for each form and each renderer ype?
+<siesel> chipaca: I hope I didn't misunderstood you.
+Action: siesel has to read the log again :)
+<chillywilly> then write something up to propose such changes
+<StyXman> where renderer type is the equivalent class against 'same .css'
+<Chipaca> well, we were discussing something (in jcarter's words) 'from the bottom of the TODO'
+<chillywilly> what's the problem if you're willing to do the work yourselves?
+<chillywilly> it's not easy creating an xml format for a protable UI
+Action: Chipaca nods
+<StyXman> ack
+<chillywilly> portable even ;)
+<chillywilly> first thing I would ask myself are there any standards for such a thing as people have been harping about how great xml would be for such  a thing, but as you can see sometimes you just end up with the least common denominator
+<Chipaca> chillywilly: not AFAICS
+<chillywilly> what was wrong with what jcater proposed for Layout managers?
+<chillywilly> that solves one problem
+<Chipaca> chillywilly: it lets the developer choose the layout engine, but not the user (and the user is the person who usually chooses the uidriver)
+<StyXman> right.
+<jcater> but layout engine and uidriver are two different concepts
+Action: jcater isn't talking about "skinning" here
+<StyXman> if not, info for all the layout engines should be on the .gdf
+<jcater> which is a totally different topic
+<chillywilly> the user doesn't choose how the software looks usually...I mena sure they csn customize some things but those are just custimization widets that some developer wrote
+<StyXman> but anyways, the developer should do a .css for each LE he wants his app to work with
+<Chipaca> exactly, but he has just *one* gfd to maintain, not one for each LE
+<Chipaca> so the triggers don't get out of synch
+<Chipaca> (for example)
+<Chipaca> i
+<Chipaca> i've got to go
+<jcater> err
+<StyXman> the little detail is that that info goes to a different file, and that way .gfd stays clean
+<jcater> no
+<jcater> the point is getting missed here
+<jcater> layout engine != [html | wx | curses]
+<StyXman> jcater: agree
+<chillywilly> layout engine is how the widgets are placed
+<StyXman> es
+<StyXman> so?
+<jcater> so
+<chillywilly> and the developer chooses that
+<StyXman> I mean, that's what we've been talking about...
+<jcater> what developer in their right mind would do the same form using x,y AND boxlayout AND gridbag AND ....
+<StyXman> chillywilly: wrong
+<jcater> we are not talking "what color will this widget be?", "what size will this font be?"
+<StyXman> jcater: the developer just says *what* should go in the form, not *where*
+<chillywilly> sien when have you ha d a Gnome app, kde app, etc, where you can say oh here lay out these widgets using a bag instaed of absolute positionsing?
+<jcater> StyXman: that makes no sense at all
+<chillywilly> or whatever
+<jcater> my users aren't going to layout their own forms
+<jcater> they're gonna use the form
+Action: jcater is obviously lost here
+<dneighbo> jcater:  i think StyXman is coming from where im thinking we hae the problem
+<dneighbo> and that is in a web shop
+<dneighbo> a developers gives widgets and writes code
+<dneighbo> but has no say in layout
+<StyXman> jcater: why? the where can be said by, say, the designer (one could hire a graphic desiner to design the actual form layout)
+<jcater> huh?
+<dneighbo> in application development (old skool) you NEVER saw this
+Action: StyXman asks: please, don't flood
+Action: jcater thinks you are talking skinning
+<dneighbo> but it is the norm in the web application world
+<psu> we might also want to let end users customise forms within limits 
+<dneighbo> no not even skinning really
+Action: jcater has done web apps
+<jcater> and we aren't defining web apps
+<StyXman> jcater: I think that Chipaca's sentence was wrong
+<dneighbo> i really mean the ui (graphic designers) control all layout even widget placement
+<psu> eg remove "uninteresting" fields if not mandatory, or change order of cols
+<dneighbo> btw: i agree with you 
+<psu> but that's another discussion
+<StyXman> jcater: not skinning, but somewhere near.
+<jcater> psu: yes, I agree... that needs discussing
+<dneighbo> but like xul, glade, and such
+<dneighbo> this question will arise over and over
+<dneighbo> the minute we have an html forms client
+<jcater> I *still* say these are two different problem domains
+<dneighbo> i *still* agree
+<chillywilly> me too
+<jcater> dneighbo: I understand that you do
+<chillywilly> </aol>
+<StyXman> psu: may be not, but if its possible, I wouldn't say no
+<dneighbo> for me the CSS is something we need to think about
+<chillywilly> ;)
+<jcater> I'm trying to make sure everyone else agrees with that before I move on
+<dneighbo> wasnt that its the right thing for problem A
+<dneighbo> but rather it resparked that fact that problem B exists as well
+<StyXman> waiiiit! I can't read that fast...! 
+<dneighbo> and while we look at problem A we might want to think if there is a clever way to address problem B 
+<jcater> sure
+<Chipaca> jcater: I'm afraid I still don't see the two problems
+<Chipaca> jcater: unless you're counting 'skinning' and 'ui design and layout'
+<Chipaca> jcater: I'm not saying *anything* about skinning
+Action: dneighbo laughs, because i can type much faster than most english speakers can keep up with (at least if htye have to type responses) so i can only imagine if english wasnt the main language :)
+<jcater> I'm saying, even if you separate layout logic into separate files, you *have* to have a way to denote the relations between the locations of the objects
+<jcater> I'm saying, sure, we should be able to support multiple "layouts" of the same form using the same GFD
+<jcater> but I'm trying to address how to denote the layout (wherever that layout is located)
+<siesel> why should CSS influence the form code. If we have a webclient, like php-forms is one, just the web client should provides CSS, which would nothing more than an link in the header of the html page
+<StyXman> jcater: I think that's something a little difficult.
+<StyXman> determining how to do that will take a lot of chatting
+<StyXman> that's why we're here nayways
+<jcater> StyXman: err?
+<jcater> that's what my proposal was addressing
+<StyXman> ah.
+<StyXman> I see
+<StyXman> siesel: and we're talking about css in a general; form, not just html client
+<StyXman> note; html client!=web browser
+<chillywilly> http://www.15seconds.com/issue/010921.htm
+<dneighbo> StyXman the hot dog vendor on the corner is from argentina
+Action: dneighbo will have to ask him what a chipaca is
+<Chipaca> dneighbo: he'll have to be from córdoba to know the right answer
+<dneighbo> :)
+<StyXman> wow, we're a plague.
+<dneighbo> well i was gonna go up to him and ask him if he had any tit bread
+<StyXman> :)))
+Action: StyXman is reading chillywilly's link
+<chillywilly> there's lots of stuff out there
+<Chipaca> chillywilly: yah, the problem is there doesn't seem to be a standard way of doing it
+<chillywilly> create one
+<chillywilly> ;)
+<Chipaca> chillywilly: but yes, xsl is 'CSS, only more so' :)
+<dneighbo> hey stoopid question
+<StyXman> dneighbo: shoot
+<dneighbo> if argentina fails to make it to the second round (which could be possible now)
+<dneighbo> will they let the team return home?
+<dneighbo> if so will the coach be executed?
+<dneighbo> or is that only in columbia?
+<StyXman> we? they've already been back early.
+<StyXman> no excution. too simple. MB a public 
+<StyXman> ... lynching
+<dneighbo> rofl
+<dneighbo> tear their toenails off one at a time or something
+<psu> In England, we just stick them on the back page of the newspaper 
+<psu> with their head superimposed onto a root vegetable
+<StyXman> and a little each person who can go and do it. they'll do a line...
+<dneighbo> psu: there i figured it was a 'no beer for you' punishment
+<chillywilly> hrrrrm, there's XForms
+<dneighbo> maybe thats ireland im thinking of
+<psu> Sadly, this is not a joke, but literally true
+<Chipaca> psu: which root vegetable?
+<psu> dneighbo: if it's Ireland, that would be Guinness
+<StyXman> Chipaca: *any* vegetable :)
+<chillywilly> the W3C wants to work with the XUL guys and defining a xml ui
+<psu> Chipaca: well, it started when we lost to Sweden, 
+<psu> the headline was "Swedes 2, Turnip-heads 0"
+<chillywilly> well that was 2 years ago ;P
+<Chipaca> chillywilly: xul already is a w3c standard or something like that
+<chillywilly> is it?
+<chillywilly> hrrrm
+<dneighbo> standard == have enough money to publish
+<chillywilly> bah
+<StyXman> should we stick to suck kind of 'standars'? 
+<Chipaca> http://wiki.fsl.org.ar:8080/index.php/XMLUI
+<StyXman> chillywilly: has just proposed to do our own...
+<chillywilly> I know someone who is just a college kid and has contributed to many W3C standards
+<jcater> we hve our own
+<jcater> we call then "GFD"s 
+<chillywilly> he has co-written the HTML 4.01 book
+<jcater> s/then/them
+psu (psu@158.152.23.141) left #gnuenterprise ("nite").
+<Chipaca> jcater: agreed
+<StyXman> s/suck/such/
+<StyXman> or s/kind/kindly/
+<Chipaca> chillywilly: so?
+<chillywilly> so this to me does nto seem like a "good old boys club"
+<Chipaca> jcater: if someone asks you why you're not using XUL, the answer is 'ok, so you write XPFE, we'll use XUL'
+<StyXman> old==good?
+<jcater> XPFE?
+<Chipaca> jcater: XUL/XPFE
+<Chipaca> mozilla is a XPFE
+<jcater> ah
+<chillywilly> what does that acronym stand for?
+<Chipaca> cross platform something engine
+<Chipaca> 'something' in latin is with an f, maybe
+<Chipaca> Cross Platform Front End
+<Chipaca> ah, yes, that's it
+Action: Chipaca tries to get his personailties in line
+<Chipaca> actually, XUL is a very small drop in a quagmire of acronyms that make up mozilla-the-browser
+<chillywilly> er, uh
+<chillywilly> the same gauy I was just talking about gave me this link:
+<chillywilly> ttp://lists.w3.org/Archives/Public/www-talk/2002MayJun/0006
+<chillywilly> er
+<chillywilly> http://lists.w3.org/Archives/Public/www-talk/2002MayJun/0006
+Action: StyXman admires the silence
+<chillywilly> HEH
+<chillywilly> masta you are right
+<chillywilly> standards bodies sucj
+<chillywilly> suck even
+aprono (~aprono@modem117-adsl.capfed2.sinectis.com.ar) left irc: "Client Exiting"
+<Chipaca> yeah, specially if they are like 1.20, ugly, and titless
+Action: Chipaca should go home
+<chillywilly> I have not forgotten them. They are difficult problems to overcome. I do 
+<chillywilly> hope to overcome them, but first we must overcome some of the larger 
+<chillywilly> barriers to standards work at the W3C:
+<chillywilly>   - working for a Member org or paying $5000 to get member access
+Action: dneighbo is getting off his butt and emailing his city council members demanding to know whether they are entering into an enterprise agreement for microsoft prodcuts
+<dneighbo> and if so what the cost is and when they convene to adopt teh budget
+<dneighbo> and i will actually show up to dispute 
+<dneighbo> sigh im getting to be teh kind of person i made fun of as a kid
+<chillywilly> you go dude!
+<chillywilly> we need more political activism in this country
+<Gedanken> damn it, I washed my pager again 
+<Gedanken> oh well, didn't want to get paged anyway
+<Chipaca> one question OT: is 'stock' used for the availability of an item in a warehouse in business english?
+<Chipaca> as in 'nope, we're out of stock on that item'?
+<chillywilly> Gedanken: lol
+<Gedanken> Chipaca: well, it is the products that are on the shelf ready to go
+<Chipaca> thanks
+<StyXman> Gedanken: ah, not the products in store?
+<Gedanken> StyXman: well, the more I think about
+<Gedanken> I mean ... stocking the shelves = putting the product on the shelf
+<Gedanken> in stock = available to be bought
+<Gedanken> out of stock = opposite of in stock
+<Gedanken> weird word when it gets down to it
+<Gedanken> wow, dictionary.com lists 24 definitions of the word
+<StyXman> ah, here 'in stock' means 'maybe is not in the shelf, but we have in the store.
+<Gedanken> #  The total merchandise kept on hand by a merchant, commercial establishment, warehouse, or manufacturer.
+<Gedanken> that is definition number 2
+<StyXman> From The Collaborative International Dictionary of English v.0.44 [gcide]:
+<StyXman> it lists 25
+<Gedanken> sweet
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "home"
+<StyXman> 'do you dict?':)
+<Gedanken> hehe
+<Chipaca> StyXman: I wanted to know actual usage
+<StyXman> Chipaca: ack
+<Chipaca> StyXman: ack to you too, with knobs on
+Action: Chipaca waves
+<StyXman> byebye
+Chipaca (~john@modem117-adsl.capfed2.sinectis.com.ar) left irc: ":/"
+jcater (~jason@cpe-024-165-193-024.midsouth.rr.com) joined #gnuenterprise.
+<StyXman> jcater: wb
+<chillywilly> hiya jc
+<dneighbo> well i sent the death mail to town council (gulp)
+<chillywilly> heheh
+<jcater> hi all
+<chillywilly> jcater: I've never asked but do people normally call you J.C.?
+<chillywilly> or just Jason
+<siesel> hi (Jason|J.C.|jcater) !
+<siesel> does anyone have experience with docbook tables?
+<StyXman> siesel: anything like tex ones?
+<chillywilly> I think I may have an example of that somewhere
+<StyXman> or html ones?
+<chillywilly> a docbook table
+<siesel> I've created a docbook table, but db2html don't want to process it.
+<siesel> It just don't create any .html files
+<chillywilly> what's the error?
+<siesel> jade:/home/jan/Projects/gnue/gnue/docbook/Proposals/GComm/chapters/codeinsight.sgml:155:15:E: document type does not allow element "PROGRAMLISTING" here; missing one of "FOOTNOTE", "MSGTEXT" start-tag
+<jcater> chillywilly: all my friends call me Jason
+<jcater> you guys call me jcater
+<jcater> :)p
+<chillywilly> :(
+<chillywilly> :'(
+<chillywilly> :''(
+Action: chillywilly contemplates suicide
+<siesel>  /msg chillywilly: seems like he wants us to call him jcater *sniff* :'''''''''''''(
+<chillywilly>  /msg yea, well I'l always have craymike...we're buddies to the end
+Action: siesel 's getting tired
+siesel (jan@dial-194-8-195-73.netcologne.de) left irc: "t'mroW"
+<dneighbo> holy shit i got a response back already
+<chillywilly> hey is the GEAS whitepaper up on our site anywhere?
+<dneighbo> Dear Mr. Neighbors:
+<dneighbo> I have forwarded your request regarding the Enterprise Agreement to Shawn
+<dneighbo> Woolley our Technology Services Director.  If the Agreement is signed, it is
+<dneighbo> a public record, and therefore available to you.
+<dneighbo> The budget will be heard at a public hearing on June 25, 2002 at 6:30 pm in
+<chillywilly> reinhard had it in his web space at one time
+<dneighbo> the Council Chambers, 1025 S Gilbert Road as part of the Agenda that evening
+<dneighbo> George Pettit
+<dneighbo> Manager
+<dneighbo> booyah
+<chillywilly> wow
+<chillywilly> that was fast
+<chillywilly> anyone?
+<chillywilly> GEAS whitepaper location?
+<jcater> file:///dev/null
+<dneighbo> rofl
+<jcater> the new reports whitepaper is at
+<dneighbo> btw: i do strongly encourage anyone in this channel to challenge your local govt
+<jcater> file://dev/random
+<dneighbo> ASAP about enterprise agreements
+<jcater> dneighbo: I did challenge them
+<dneighbo> 9 out of 10 (city and county) governments fiscal year starts july 1st
+<chillywilly>  /ignore jcater
+<jcater> but they won't budge on the public nudity issue
+<dneighbo> and they will be adopting budgets in late june
+<dneighbo> it only takes 2 or 3 folks asking questions for them to lend an ear
+<dneighbo> at the city level especially
+<dneighbo> i.e. the squeaky wheel gets the noise
+<dneighbo> its no secret that spending is way down which means state tax revenues are in the shitter
+<dneighbo> which means your local govt has to watch its wallet for first time in a while
+<chillywilly>  /ignore jcater!*@* ALL
+<dneighbo> and dollars to donuts they probably already arent liking the 'enterprise agreement'
+<StyXman> dneighbo: well, we have a bill for using free soft in government. like peru, france and some comunities in brazil.
+<dneighbo> anyhow i will get off soapbox now, but i do encourage it will only take you 10 minutes to get their email
+<dneighbo> and contact them
+<StyXman> now comes germany and corea, I think
+<chillywilly> korea
+Action: dneighbo believes we need to start local govt not fed govt
+<dneighbo> StyXman yes im proud of ar govt :)
+<StyXman> here's corea, not korea
+<dneighbo> now only if you all could get a president :)
+<chillywilly> because lamerica is so fsking bog
+<chillywilly> s/bog/big
+<chillywilly> my bad
+<chillywilly> what's the point of GNUe Navigator?
+<chillywilly> to allow you to navigate through forms?
+<dneighbo> if you have a local LUG please encourage its members to do the same
+<StyXman> we are the local lug :)
+<chillywilly> the LUG meeting is tomorrow
+<StyXman> our are wednesdays
+<StyXman> (fscking deadkeys)
+<StyXman> # Chipaca's place
+<StyXman> s/#/@/
+<ajmitch> morning all
+<jcater> g00d evening
+<chillywilly> hi ajmitch
+Action: chillywilly trout slaps jcater
+Action: jcater ducks
+<chillywilly> sorry, 18 seconds is too slow
+Action: chillywilly observes the fish slime dripping form jcater's mug
+<chillywilly> from
+Action: jcater tries to think of a witty comeback, but decides it's not worth the effort
+<ajmitch> using irc productively, are we?
+Gedanken (~schatten@dv101s49.lawrence.ks.us) left irc: Remote closed the connection
+<ajmitch> jcater: how's navigator coming along?
+Action: jcater is happy with the basic navigator
+<jcater> why?
+<ajmitch> unless it's changed quite a bit, basic navigator is ugly (from an aesthetics POV) :)
+<dneighbo> for me i think its giong good though im not sure of two things
+<dneighbo> a. why its dual paned
+<dneighbo> b. that we cant make gpd's load into menus if we so desire
+Action: ajmitch does cvs up & tries out latest version
+<jcater> sigh
+<dneighbo> for (a) look at my 'in action' screen shot you will notice i pretty much tried to shut the pane that was empty and just lieave teh tree
+<jcater> yes
+<jcater> jamest and I noticed that
+<jcater> :-/
+<dneighbo> as i dont really see a huge usefulness of the pane
+<jcater> we thought that quite rude
+<dneighbo> i left the pane open on the other screenshot
+<dneighbo> but it was blank in the 'action' one which just didnt make sense to show (imho)
+<dneighbo> as to (b) someone else was kind of alluding to this
+<dneighbo> and that is i think that the gpd should be able to load into the forms (framework) menu as an option as well
+<dneighbo> and curses for example would use this option
+<dneighbo> or people really liking deep ugly menus :)
+<dneighbo> but all in all i think navigator is quite useful and functioning as of today
+Action: dneighbo hopes you all werent really offended that i closed the empty pane
+<dneighbo> bbl
+dneighbo (~dneighbo@tmp-200253.flinthills.com) left irc: "[BX] *SUBLIMINAL*MESSAGE* USE BITCHX *SUBLIMINAL*MESSAGE*"
+<StyXman> bye, peop. I go to home to cry for this morning happenings.
+Action: StyXman notes that his english is bad when hi has not slept well.
+StyXman (~mdione@modem117-adsl.capfed2.sinectis.com.ar) left irc: "commiting suicide"
+meow-_ (~meow@212.199.197.20) joined #gnuenterprise.
+meow- (~meow@212.199.197.190) left irc: Read error: 110 (Connection timed out)
+Action: jcater is away: pizza
+Action: jcater is away: eating pizza
+meow- (~meow@212.199.197.20) joined #gnuenterprise.
+meow-_ (~meow@212.199.197.20) left irc: Read error: 104 (Connection reset by peer)
+Action: jcater is back (gone 01:18:40)
+Action: derek slaps jcater
+<derek> actually i rescind that as i had pizza for dinner too
+Action: jcater actually had mexican
+<jcater> change of plans on the way :)
+meow-_ (~meow@212.199.197.20) joined #gnuenterprise.
+<derek> you got robbed
+meow- (~meow@212.199.197.20) left irc: Connection timed out
+ToyMan (~stuq@c5300-1-ip234.albany.thebiz.net) left irc: "Client Exiting"
+chillywilly (~danielb@mke-65-29-142-117.wi.rr.com) left irc: Read error: 104 (Connection reset by peer)
+chillywilly_ (~danielb@mke-65-29-142-117.wi.rr.com) joined #gnuenterprise.
+<derek> sigh its been so long i cant find my win98 disk anywhere
+<derek> adn dumb win95 isnt a bootable cdrom (how dumb is that)
+<derek> luckly i have a win boot disk around
+Action: derek hates fixing problems for people when its windows
+<derek> grrrrrrrrrrrrrr NTFS partition on here
+Action: derek HATES windows
+dsmith (dsmith@oh-strongsvillecadent1-1aa-222.clvhoh.adelphia.net) joined #gnuenterprise.
+meow- (~meow@212.199.197.72) joined #gnuenterprise.
+dsmith (dsmith@oh-strongsvillecadent1-1aa-222.clvhoh.adelphia.net) left irc: "later.."
+meow-_ (~meow@212.199.197.20) left irc: Read error: 110 (Connection timed out)
+jcater (~jason@cpe-024-165-193-024.midsouth.rr.com) left irc: "Client Exiting"
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<dneighbo> hey is there a way with cvs to get list of 'tags'
+<ajmitch> i usually just look at the top of 'cvs log' output for a file
+<ajmitch> eg, a top-level README or something
+<dneighbo> i think i found one but not sure how to play
+<dneighbo> i.e. there is HEAD
+<dneighbo> then last release branch
+<dneighbo> i need fix something in release as HEAD is too far gone :)
+<dneighbo> if i do a co -r tagname modulename
+<dneighbo> i get what i want
+<dneighbo> now if i make changes what do i do?
+<dneighbo> just cvs commit?
+<dneighbo> or do i have to specify some tag name when committing?
+<ajmitch> nah, commit affects the checked out branch, iirc
+<dneighbo> cool
+<ajmitch> bbl, going to discuss gnue stuff with boss :)
+jcater (~jason@cpe-024-165-193-024.midsouth.rr.com) joined #gnuenterprise.
+jcater (~jason@cpe-024-165-193-024.midsouth.rr.com) left irc: "Client Exiting"
+DrMiaow (~miaow@c16520.rivrw2.nsw.optusnet.com.au) left irc: Read error: 104 (Connection reset by peer)
+ajmitch_ (~ajmitch@wlg1-port1.jetstart.maxnet.co.nz) joined #gnuenterprise.
+<ajmitch_> hi all
+<ajmitch_> is designer broken at the moment?
+--- Sat Jun  8 2002

@@ -1,0 +1,54 @@
+<section archive="http://mail.gnu.org/pipermail/gnue-dev/2002-January/000012.html" enddate="06 Jan 2002 00:00:00 -0800" posts="1" startdate="06 Jan 2002 12:20:05 -0800" subject="[Gnue-dev] Adventures with geas: strange old parser?" title="Old and new parser for GNUe Class Definitions">
+<topic>Application Server</topic>
+
+
+<p>Holger Schurig reported problems compiling the CVS version of GNUe 
+Application Server. When running it, he was getting multiple 
+errors for <quote who="Holger Schurig">Duplicate class name found
+</quote>, and the load was aborting with too many errors.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.06Jan2002">
+On IRC</a>, Reinhard said that, at the moment 
+<quote who="Reinhard M&#252;ller">parts of the code use the old parser 
+and parts use the new parser :( as i am in the middle of the transition
+</quote> However, the parsers themselves were independant of each 
+other. He explained <quote who="Reinhard M&#252;ller">to <strong>start
+</strong> geas you would only need the new parser but to do 
+inserts/updates/selects etc. the info is taken from the old parser
+</quote> as at the time of writing.</p>
+
+<p>He explained that the old parser used a list of reserved words for 
+each supported database to avoid conflicts. Since then, it had been 
+<quote who="Reinhard M&#252;ller">decided to prefix every column name for 
+the database with the modulename and a double underscore.</quote> A 
+by-product of this was that <quote who="Reinhard M&#252;ller">because no 
+reserved word of (IMHO) no db of the world contains a double 
+underscore - we can be 100% sure that no column name of ours conflicts 
+with a db reserved word</quote>. He added that 
+<quote who="Reinhard M&#252;ller">this is not yet done to keep 
+compatibility with the old parser as long as some part of the code uses 
+the old parser- but is already marked as TODO in the new parser code
+</quote>. However, the old check on reserved words had already been 
+removed in anticipation of this.</p>
+
+<p>Holger Schurig (holsch) said this meant <quote who="Holger Schurig">
+that the current CVS geas-server cannot be used, not even for 
+"finding out what it is"</quote>. Reinhard said 
+<quote who="Reinhard M&#252;ller">it should run with the old and the new 
+parser in parallel</quote>. Reinhard and Holger did some work 
+on tracking down the problem Holger was having, and discovered that 
+Reinhard's setup worked with <quote who="Reinhard M&#252;ller">GNU Bison 
+version 1.25</quote>, but Holger's setup failed with 
+<quote who="Holger Schurig">bison (GNU Bison) 1.30</quote>. It was 
+also discovered that there was a <quote who="Reinhard M&#252;ller">Duplicate 
+class name found</quote>, as the "person" class was being 
+defined twice in different modules. Reinhard felt this vindicated the 
+decision to prefix column names with module names - 
+<quote who="Reinhard M&#252;ller">this problem is one of the main reasons 
+i rewrote the parser</quote>. He also noted that 
+<quote who="Reinhard M&#252;ller">the old parser relies on undocumented 
+behaviour of bison and appearently doesn't work under bison 1.30
+</quote>.</p>
+
+</section>
+

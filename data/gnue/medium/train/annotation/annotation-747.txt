@@ -1,0 +1,80 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.2006-03-28" author="Peter Sullivan" contact="mailto:psu@burdonvale.co.uk" enddate="29 Mar 2006 12:00:00 -0800" startdate="28 Mar 2006 12:00:00 -0800" subject="[IRC] 28 Mar 2006" title="Ideas about layout management in Forms">
+
+<topic>Forms</topic>
+
+<p>James Thompson (jamest) asked if Reinhard M&#252;ller's (reinhard) proposals 
+for layout management in Forms - to allow forms to move controls on a form 
+to reflect the amount of space available when a form was resized - would 
+mean <quote who="James Thompson">taking out the char based placement</quote>. 
+Reinhard said that he thought <quote who="Reinhard M&#252;ller">must leave that 
+char based placement in for compatibility</quote>.</p>
+
+<p>James asked how controls would be 'anchored' to the form. 
+Reinhard replied <quote who="Reinhard M&#252;ller">I think we will need some 
+way to define which control will be resized to what extent - but there 
+will be useful defaults for most cases - like all text entries can resize 
+horizontally - multi line entries can resize vertically, single line entries 
+can't, etc</quote>. James explained how he would anticipate it working - 
+<quote who="James Thompson">typically a widget or panel can anchor at 1 or 
+2 side - which top and left would mean that the placement of that panel or 
+widget would link to closest one to the top and closest to the left</quote>. 
+If a widget was allowed to resize, then <quote who="James Thompson">if I'm 
+anchored to the top and left and I'm set to fill vertically then i'll grow 
+downward till i hit the next widget or a container - so I could anchor the 
+top and left of a widget to the panel itself - anchor another on left to 
+the panel and top to the previous widet - then anchor another on left to 
+the panel and on bottom to the panel - then the middle widget would fill 
+the space between</quote>. He felt that <quote who="James Thompson">in real 
+life it works pretty well</quote> although <quote who="James Thompson">doing 
+something like that in forms would require some type of region tag that you 
+could nest</quote>.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.2006-03-29">The 
+next day</a>, Jason Cater (jcater) was <quote who="Jason Cater">nervous 
+going away from the pluggable layout system we had moved to</quote> to 
+<quote who="Jason Cater">using a single, hardcoded layout manager like 
+this</quote>. Jan Ischebeck (siesel) agreed - <quote who="Jan Ischebeck">I 
+hope to still be able to use the character based layout.</quote> Reinhard 
+explained <quote who="Reinhard M&#252;ller">actually I would be aiming at making 
+different layout systems work as opposed to the single, hardcoded x/y 
+positioning we have now</quote>.</p>
+
+<p>James noted that <quote who="James Thompson">forms lets you plug in 
+layout managers</quote> already - <quote who="James Thompson">just no other 
+layout managers have been written</quote>. Jason added that 
+<quote who="Jason Cater">the intention was to have the layout plugin system 
+in common instead of forms, too</quote> so that the other GNUe tools, not 
+just GNUe Forms, could use it.</p>
+
+<p>Reinhard asked <quote who="Reinhard M&#252;ller">how would you implement x/y 
+positioning without accessing the x/y parameters?</quote> James said that
+<quote who="James Thompson">positioning would be the job of the layout mgr 
+entirely</quote> - if the user interface had built-in layout management 
+features (which some did), these would be used, but if not, the layout 
+management routines would handle this. Reinhard asked whether this would 
+mean having and maintaining <quote who="Reinhard M&#252;ller">two complete sets 
+of uidrivers? one for x/y based and one for layout management?</quote></p>
+
+<p>Reinhard had <quote who="Reinhard M&#252;ller">not yet understood why anybody 
+should want char based positioning in a form for other reasons than to keep 
+compatibility with old forms - especially as I figure char based positioning 
+is a hell to implement in html or similar frontends</quote>. Bajusz Tam&#225;s 
+(btami) gave the example of wanting <quote who="Bajusz Tam&#225;s">forms 
+that exactly matching reports providing  by law</quote> - for example, 
+for tax purposes.</p>
+
+<p>James emphasised that <quote who="James Thompson">i don't see layout 
+management as something the UI objects should take part in - i think the 
+entry objects should provide hints to the layout manager about what they 
+want - but not participate in the</quote> layout. They could express a 
+preference <quote who="James Thompson">like now "i want to sit in 
+the 3rd chair in isle 4"</quote> or relative to other objects but 
+the layout manager would process these hints <quote who="James Thompson">and 
+stick them wherever it feels like honoring the hints</quote> - 
+<quote who="James Thompson">if it wants to do x/y positioning that would 
+be ok - but it it wants to use UI specific containers then it 
+could</quote>. Discussion continued.</p>
+
+
+</section>
+

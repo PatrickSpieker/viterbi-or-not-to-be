@@ -1,0 +1,29 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.18Nov2002" enddate="17 Nov 2002 16:00:00 -0800" startdate="17 Nov 2002 16:00:00 -0800" subject="[IRC] 18 Nov 2002" title="Multi-column unique constraints in SQL">
+
+<topic>Common</topic>
+
+<p>Nick Rusnov (nickr) asked <quote who="Nick Rusnov">theres no way 
+to express in SQL the kind of uniqueness that says 'the combination 
+of these two columns must be unique' is there?</quote> -
+<quote who="Nick Rusnov">like a constraint</quote> but 
+<quote who="Nick Rusnov">instead, this row is uniquified by two 
+columns instead of just one</quote>. Jason Cater (jcater) asked 
+<quote who="Jason Cater">isn't it just "unique (field1, 
+field2)"</quote> James Thompson (jamest) agreed - 
+<quote who="James Thompson">you can create a unique index on 2 fields
+or setup the primary key constraint at the end of the table def instead 
+of behind one field</quote>. Jason noted that there was a distinction 
+between unique and primary key - <quote who="Jason Cater">unique does 
+not enforce nullness like primary key does - so if you want "unique 
+and not null" you need to specify not null for those columns</quote>. 
+He used multi-column unique constraints quite often - 
+<quote who="Jason Cater">example, we sell magazines - so we have a 
+table that holds our offers. it contains the magazine id and the number 
+of issues - so only one combination of (magazine, issues) can exist in 
+that table</quote>. <quote who="Jason Cater">there can be plenty of 12 
+issue magazines - and plenty of offers for People magazine - but only 
+one offer for People at 12 issues</quote>.</p>
+
+</section>
+
+

@@ -1,0 +1,44 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.29Oct2002" enddate="28 Oct 2002 23:00:00 -0800" startdate="28 Oct 2002 23:00:00 -0800" subject="[IRC] 29 Oct 2002" title="Problems with PostgreSQL introspection effect Designer schema wizard">
+
+<topic>Designer</topic>
+<topic>Common</topic>
+
+<p>Derek Neighbors (derek) said the <quote who="Derek Neighbors">designer 
+schema wizard kicks some arse</quote>. He asked whether the .gsd 
+(GNUe Schema Definition) output file should be 
+<quote who="Derek Neighbors">ONE giant schema? or one per 
+table?</quote> Jason said <quote who="Jason Cater">we've had this 
+debate before</quote>, in 
+<kcref subject="[IRC] 10 Jul 2002" title="Including data in GNUe Application Server schema definitions" />.
+He said <quote who="Jason Cater">I *think* the outcome is we should 
+support some kidn of &lt;import&gt; mechanism</quote>. Derek 
+agreed - <quote who="Derek Neighbors">if we coudl 'include' (or 
+import)</quote> then <quote who="Derek Neighbors">single was probably 
+better</quote>.</p>
+
+<p>Derek said he was <quote who="Derek Neighbors">SO impressed to 
+see you could pick table listings - only thing missing is it needs 
+to pop a dialog when done - saying 'done' - i just noticed that 
+the term window stopped spitting out debug messages :)</quote>
+Jason said that this would not be an issue 
+<quote who="Jason Cater">once we have an editor :)</quote>. 
+Derek noted that the wizard had translated a postgreSQL field 
+of type numeric(12,2) to <quote who="Derek Neighbors">
+&lt;field name="amount" size="786438" type="number"/&gt;</quote>.
+Jason suggested <quote who="Jason Cater">somethings screwy with 
+the introspection</quote>. Derek did some poking around 
+inside PostgreSQL and discovered that the data dictionary 
+had a field "atttypmod" which contained the mystery 
+786438 value - obviously a look-up to another table of 
+valid numeric types - <quote who="Derek Neighbors">guess 
+we need to learn 'conversion magic'</quote>. Jason said 
+<quote who="Jason Cater">ah, crap... we are obviously 
+misinterpreting what atttypmod means</quote> - 
+<quote who="Jason Cater">postgres catalog table doesn't 
+store like I expected</quote>. Derek was convinced he 
+was <quote who="Derek Neighbors">a walking light bulb 
+(fricken bugs are attracted to me)</quote>.</p>
+
+</section>
+
+

@@ -1,0 +1,1165 @@
+[00:04] Last message repeated 1 time(s).
+andrizas (~andrizas@213.197.153.244) joined #gnuenterprise.
+andrizas (andrizas@213.197.153.244) left irc: "User pushed the X - because it's Xtra, baby"
+reinhard (~rm@62.47.45.2) joined #gnuenterprise.
+tod (tod@dialup-mo-21.stjames.fidnet.com) left irc: Read error: 113 (No route to host)
+tod (~tod@dialup-mo-95-213.stjames.fidnet.com) joined #gnuenterprise.
+ajmitch (me@p59-max3.dun.ihug.co.nz) left irc: Read error: 113 (No route to host)
+ajmitch (~me@p9-max6.dun.ihug.co.nz) joined #gnuenterprise.
+Nick change: drochaid[zZz] -> drochaid[pain]
+ra3vat (ds@195.239.204.226) joined #gnuenterprise.
+ra3vat (ds@195.239.204.226) left irc: "Client Exiting"
+FunkyTrix (~Fun@62.211.177.250) joined #gnuenterprise.
+ra3vat (ds@195.239.204.226) joined #gnuenterprise.
+reinhard (rm@62.47.45.2) left irc: "The more often you run over a dead cat, the flatter it gets"
+tod (tod@dialup-mo-95-213.stjames.fidnet.com) left irc: Read error: 113 (No route to host)
+tod (~tod@dialup-mo-25.stjames.fidnet.com) joined #gnuenterprise.
+alexey (alex@techkran.vladimir.ru) left irc: "[x]chat"
+FunkyTrix (Fun@62.211.177.250) left irc: "Client Exiting"
+jamest (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+<drochaid[pain]> hey jamest
+mdean (mdean@mkc-65-28-73-63.kc.rr.com) left irc: Read error: 113 (No route to host)
+<jamest> drochaid[pain]: don't be so hard on yourself
+<jamest> drochaid[pain]: you do find lots of bugs, but that doesn't make you a pain
+<drochaid[pain]> lol ;P
+<drochaid[pain]> I don't find bugs, I find ... iregularities in the run-time environment :)
+<jamest> lol
+<jamest> you had any time to fine any more iregularities?
+<jamest> fine = find
+<drochaid[pain]> nope, pain management came into play
+<drochaid[pain]> I'm hoping to get something done in a couple oh hours tho
+<jamest> cool
+tod (tod@dialup-mo-25.stjames.fidnet.com) left irc: Read error: 113 (No route to host)
+andrizas (~andrizas@213.197.153.244) joined #gnuenterprise.
+<jamest> hi
+<andrizas> hi
+<andrizas> jamest, I need some help
+<jamest> ok
+<jamest> what's up?
+<andrizas> i have gforms-win32-binary install
+jbailey (~jbailey@HSE-Toronto-ppp318843.sympatico.ca) joined #gnuenterprise.
+<andrizas> i have mysql driver for python
+<andrizas> when i install it, this thing is looking for python installation
+<andrizas> I don't have python 
+<andrizas> how to make this thing work for gnue
+<jamest> you shouldn't have to install the mysql driver seperately
+<jamest> the win32 install should have it included
+<andrizas> before I had python 2.1 and forms 1.0 on the same machine. Forms was working only when copied mysqldb directory from python2.1 to gnue/forms
+<andrizas> connections.conf file was ok.
+<jamest> ouch
+<jamest> hmmmm
+<jamest> i can't test forms win32 install so maybe it's messed up
+<jamest> :(
+<andrizas> :(
+<andrizas> ok . I have another problem
+<drochaid[pain]> which forms version?
+<drochaid[pain]> I can test mysql as well as postgres
+<andrizas> 1.0
+<jamest> ah
+<jamest> you'll want to move to at least 0.1.1 or better yet the win32 build from the 29th
+<jamest> (if your connection will allow for it)
+Action: jamest hates to recommend new downloads for people that have to pay by the minute
+<andrizas> I'm not sure 100%
+<drochaid[pain]> but not forms designer build from 29th .. go with forms designer 0.1.1 as it works
+<drochaid[pain]> sorry jamest ;)
+Vooch (~d@adsl-63-164-94.bna.bellsouth.net) joined #gnuenterprise.
+Vooch (d@adsl-63-164-94.bna.bellsouth.net) left irc: Remote closed the connection
+Vooch (~d@adsl-63-164-94.bna.bellsouth.net) joined #gnuenterprise.
+<andrizas> I think the same bug is in 1.1
+<andrizas> I'll try 1.1 anyway
+<jamest> sorry I'm so choppy
+<jamest> at work
+<jamest> and on phone
+<andrizas> another problem is I can't start designer on python 2.2
+<jamest> ooo
+<andrizas> it says "missing Gnue conf fileDB000 
+<jamest> nothing has been tested on python 2.2
+<andrizas> I see
+<jamest> the win32 bins are completely self contained
+<jamest> you shouldn't need anything else installed 
+<jamest> you don't need python, db driver, etc, etc
+<drochaid[pain]> jamest: I run 0.1.1 and the 29th win32 build  on python2.2 with no more probs than you currently know of
+<andrizas> i installed from src
+<jamest> andrizas: ah
+<jamest> drochaid[pain]: the 29th snapshot of forms is broken?
+<drochaid[pain]> forms designer
+<drochaid[pain]> but I've mentioned that a few times now
+<drochaid[pain]> the inability to read .gfd files?
+Brew (~a@adsl-63-164-94.bna.bellsouth.net) joined #gnuenterprise.
+<jamest> drochaid[pain]: ok i call that designer not forms
+<jamest> sorry about the confusion
+<jamest> the 29th snapshot of designer is broken, the 29th forms binaries should work
+<drochaid[pain]> sorry, so far I've used forms client and forms desinger to distinguish
+<jamest> 0.1.1 forms binary has faulty login logic for the pypgsql driver 
+<jamest> andrizas: so everything you've done is from source?
+<andrizas> yeap
+<jamest> ok
+<andrizas> 1.1
+<jamest> cool
+<drochaid[pain]> just to confirm for future use .. you use, common, forms, designer, navigator and geas ? is that the right terminology to let you know what I mean?
+<andrizas> I see confusion
+<jamest> drochaid[pain]: yip, or just say "hey james, don't be stupid"
+<jamest> andrizas: ok
+<jamest> now
+<andrizas> I run only common. forms, designer
+<andrizas> NO GEAS
+alexey (~alexey@195.151.214.34) joined #gnuenterprise.
+<jamest> in your c:\python2?\ dir you should have an etc dir
+<drochaid[pain]> lol jamest
+<andrizas> sorry gyus, I must move
+<andrizas> see you later. 
+<jamest> andrizas: i can help you later
+<jamest> sorry i'm so choppy
+<andrizas> ok
+<Vooch> jamest:  speaking of coldfusion, i set up a coldfusion room here today.
+<jamest> coldfusion room?
+Action: jamest wonders if Vooch found the secret to cheap, clean power
+<Vooch> yeah jamest, type /join #coldfusion
+Action: drochaid[pain] runs five chans on another network
+Action: drochaid[pain] grins evily
+<Vooch> jamest, on the cheap, clean power - nope
+derek (~derek@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<drochaid[pain]> hey derek
+<derek> hey
+dsmith (~dsmith@208.40.56.34) joined #gnuenterprise.
+Action: derek is away: work
+ToyMan (~stuq@c5300-1-ip138.albany.thebiz.net) joined #gnuenterprise.
+Brew2 (~a@DIALUP-155-224.TNNAS2.USIT.NET) joined #gnuenterprise.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<drochaid[pain]> feasgar math jcater
+<jcater> morning
+Brew (a@adsl-63-164-94.bna.bellsouth.net) left irc: Read error: 110 (Connection timed out)
+dres__ (dres@4.18.171.42) left irc: Read error: 104 (Connection reset by peer)
+dres_ (~dres@4.18.171.42) joined #gnuenterprise.
+dres_ (dres@4.18.171.42) left irc: Read error: 104 (Connection reset by peer)
+alexey (alexey@195.151.214.34) left irc: "Client Exiting"
+alexey (~alexey@195.151.214.34) joined #gnuenterprise.
+<ToyMan> hey guys
+Action: ToyMan was at LinuxExpo yesterday
+<ToyMan> saw the gnuenterprise booth
+<ToyMan> but no people :(
+<ToyMan> bayonne is talked about in the slashdot review of the show
+<Vooch> i think they were asking for volunteers to help with the booth.
+<ToyMan> yeah, it was sad to see an empty booth 
+<ToyMan> just a couple of computers set up
+<ToyMan> but not with gnue running on them
+dneighbo (~dneighbo@tech-200078.flinthills.com) joined #gnuenterprise.
+<dneighbo> ToyMan: yes we were bumbed that we were not able to make as well
+<dneighbo> hopefully FSF made good use of the extra booth space in some way shape or form
+<dneighbo> jamest: you are in correct in saying nothing is tested on 2.2
+<dneighbo> i run python 2.2 on my redhat 6.2 box at home
+<dneighbo> and up to 0.1.1 seems to run fine on it
+<jamest> boing!
+<dneighbo> not tested on python2.2 on windows though
+<dneighbo> but i did test on 2.1 and 2.0
+<ToyMan> hi dneighbo
+<dneighbo> for 0.1.1
+<dneighbo> i can test the mysql portion if you like as well for 0.1.1
+<dneighbo> as i have a mysql db here
+<dneighbo> though i cant do so until end of day
+<dneighbo> if someone is having issues they can always grab the ODBC driver
+<dneighbo> for their db of choice
+<dneighbo> as odbc has been tested pretty extensively by me here :)
+<dneighbo> of course the wizards wont work, but it could 'tide' them over until later
+<dneighbo> btw: did you tag cvs before you started gutting triggers?
+<dneighbo> in case we have issues with drivers we can release a 0.1.2
+<Vooch> What version of python do I need?
+mdean (~mdean@mkc-65-28-73-63.kc.rr.com) joined #gnuenterprise.
+<dneighbo> vooch 2.1 is probably most 'tested'
+<dneighbo> but 2.0, 2.1 or 2.2 should work
+<Vooch> dneighbo: thanks
+<dneighbo> if you get 2.2 you will have to 'compile' some of the dependencies
+<dneighbo> because they dont have binaries that work with 2.2
+<dneighbo> i did 2.2 and all dependencies from source and it works
+<Vooch> i suck, so i'll go with 2.0 or 2.1...hehe
+<Vooch> I'm trying to install GNUe for the first time.  Right now I'm trying to install GNUe-Designer-0.1.0 and I did "./setup.py install" and it says "Warning: modules installed to '/usr/local/gnue/lib/python/' which is not in Python's module search path (sys.path) -- you'll have to change the search path yourself".  Does anyone know what this means?
+jbailey (jbailey@HSE-Toronto-ppp318843.sympatico.ca) left irc: "Client Exiting"
+daminal (~david@2.specoinc.enterconnect.net) joined #gnuenterprise.
+<daminal> 'mornin
+<daminal> Is there something I should know about missing/corrupt png images?
+<daminal> Platform is windows.
+<Vooch> Does anyone know where I should go after I do the "make install" in the geas-0.0.6 folder?  (ie. how do I run the program)?
+<dneighbo> Vooch: on the error for designer ignore it (iirc)
+<dneighbo> daminal: i have same issue, designer i assume
+<dneighbo> designer will work, BUT the object navigator wont
+<dneighbo> iirc
+<dneighbo> i think it might be a wx thing
+<dneighbo> what versio nof wxWindows you running there?
+<dneighbo> or did you go from install?
+<dneighbo> Vooch: geas is not usable in production, i would only install if you plan on developing on it at htis point
+<dneighbo> or want to play with it
+<dneighbo> after you make geas 
+<dneighbo> you have to edit some conf files
+<dneighbo> and then you can start ./geas-server (iirc)
+<daminal> dneighbo - I don't think it's wxWindows, I just checked out a fresh cvs.
+<daminal> The images in the html directory ore ok, and display in iexplorer.
+<daminal> The images in common don't
+<mdean> if you got them out of cvs, they may not have been checked in as binary
+<dneighbo> mdean what verson of forms are you running?
+<mdean> dneighbo: I'm not currently - it has been a while
+<dneighbo> er i meant daminal :)
+<dneighbo> btw mdean snow day?
+<mdean> yup
+<mdean> 3 days now
+<dneighbo> relatives in olathe, say they have been  BOMARDED
+<mdean> ja
+<mdean> power is out @ work
+<dneighbo> daminal: i have cvs from 3 days ago on windows
+<mdean> I actually worked from home on wednesday
+<dneighbo> and i have image errors
+<dneighbo> but the files seem ok
+<dneighbo> its just my version of wx doesnt like .ico files much
+<dneighbo> and thats what object navigator uses
+<daminal> dneighbo: I've tried this with two different cvs checkouts, and with the 0.1.1 zips
+<daminal> Also, I managed to get some png's working by using images from older releases.
+<daminal> Python complains about corrupted line endings.
+<dneighbo> hmmmm
+<dneighbo> you said you were on windows right
+jcater (jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: Read error: 104 (Connection reset by peer)
+<dneighbo> if so i would download the 0.1.1 release (.exe's)
+<dneighbo> as it has all dependencies and is tested
+<dneighbo> i can walk you through cvs of windows later today but have to tend some pressing issues here now :(
+<daminal> Ok - need a pointer to the download location.
+<daminal> All I could find were snapshots.
+<mdean> dneighbo: were those checked into CVS with -kb ?
+<mdean> if they aren't, windows will have problems with them because of eol conversion
+ToyMan (stuq@c5300-1-ip138.albany.thebiz.net) left irc: "Client Exiting"
+<daminal> mdean: I think you are right.
+<daminal> The checkins from Jan 21 are the problem.
+<daminal> I downloaded through cvsweb to avoid line ending probs, and they work.
+<daminal> Earlier checkins seem to be OK.
+<mdean> cool
+alexey (alexey@195.151.214.34) left irc: "Client Exiting"
+ra3vat (ds@195.239.204.226) left irc: "Client Exiting"
+zoyd (zoyd@202.9.130.216) joined #gnuenterprise.
+<zoyd> hi there
+<zoyd> I've downloaded the GNUe-Common/Forms/Designer/geas what are snapshots ?
+reinhard (~rm@62.47.45.2) joined #gnuenterprise.
+daminal (david@2.specoinc.enterconnect.net) left irc: Read error: 104 (Connection reset by peer)
+daminal (~david@2.specoinc.enterconnect.net) joined #gnuenterprise.
+alexey (~alexey@195.151.214.34) joined #gnuenterprise.
+ToyMan (~stuq@c5300-1-ip138.albany.thebiz.net) joined #gnuenterprise.
+Vooch (d@adsl-63-164-94.bna.bellsouth.net) left irc: Read error: 104 (Connection reset by peer)
+<dneighbo> zoyd: snapshots are nightly cvs checkouts tarred up for those that cant get cvs normal way
+<dneighbo> i would avoid them unless you are a developer
+<zoyd> that means i have downloaded the correct things.
+Vooch (~d@adsl-63-164-94.bna.bellsouth.net) joined #gnuenterprise.
+<dneighbo> yip
+<dneighbo> you on windows?
+<dneighbo> or linux/bsd/solaris (*nix)
+<dneighbo> i would grab 0.1.1 release of common/designer/forms if you havent
+<dneighbo> on windows it would be only forms/designer
+<dneighbo> windows everything is contained no additional download necessary
+<dneighbo> if *nix you will need to procure the dependencies
+<dneighbo> python 2.x, wxPython, PyXML, your db adapter of choice, etc etc etc
+Brew2 (a@DIALUP-155-224.TNNAS2.USIT.NET) left irc: 
+Brew (~a@DIALUP-155-224.TNNAS2.USIT.NET) joined #gnuenterprise.
+KalleAnka (~kalle@212.116.83.246) joined #gnuenterprise.
+<KalleAnka> Good evening
+<KalleAnka> OK... Who is repsonsible for the KT issue this week? =)
+<zoyd> dneighbo: yes i did grab that. and i'm on slack8.
+Brew (a@DIALUP-155-224.TNNAS2.USIT.NET) left irc: 
+<zoyd> has anyone made an application using the GNUe tools ?
+Brew (~a@DIALUP-155-224.TNNAS2.USIT.NET) joined #gnuenterprise.
+<dneighbo> yip
+<dneighbo> several people
+<dneighbo> in fact a few companies use gnue applications in production for vital business operations
+<dneighbo> KalleAnka: psu always is why?
+<KalleAnka> denighbo: I'm quoted ... =)
+<KalleAnka> brb
+KalleAnka (kalle@212.116.83.246) left irc: 
+<zoyd> brb
+zoyd (zoyd@202.9.130.216) left #gnuenterprise.
+<Vooch> OK Folks...  I ran ./geas-server and now it says, "The GNU Enterprise Application Server is ready".  Now, what do I do?
+<drochaid[pain]> jump about with great joy? :)
+<Vooch> lol
+<Vooch> Actually, I'm trying to run the program for the first time, but I don't know what I should be looking for.
+<drochaid[pain]> I'm afraid I haven't used GEAS yet :/
+<drochaid[pain]> one of the other blokeys should wake up soon tho
+Action: reinhard lifts his head from the keyboard
+<Vooch> lol
+<reinhard> what? someone called me?
+<reinhard> *yawn*
+<reinhard> Vooch: GEAS is currently not usable for production
+<reinhard> it's pure development code
+<Vooch> ok...  Is there anything I can look at?
+<reinhard> yes
+<reinhard> did you install it or did you run from source directory?
+<Vooch> i think i installed it
+<Vooch> it's in /usr/local/bin
+<reinhard> ok
+<reinhard> if you uninstall
+<reinhard> and then run from source dir
+<reinhard> you can try samples/python/addrbook.py
+<reinhard> it is a python script that shows how geas could be used from a client
+<Vooch> do I have to uninstall it? or, can i just go to the source dir and run it from there?
+<reinhard> however this script depends on geas being run from the source directory
+<reinhard> and if you have geas installed it will possibly find some files twice and not know which ones to use
+<reinhard> you can try w/o uninstall
+<Vooch> ok
+[14:05] Last message repeated 1 time(s).
+<reinhard> and if it doesn't work try uninstall
+<Vooch> rienhard:  I went to /var/www/html/gnue/geas-0.0.6/src and ran ./geas-server and it says it's ready.  How do I run the samples/python/addrbook.py?
+<Vooch> do i simply bring it up in a web browser?
+<drochaid[pain]> hey reinhard
+<reinhard> you run geas from a web browser?
+<reinhard> drochaid[pain]: hi
+<reinhard> um
+<Vooch> reinhard:  no.  i ran it from command line.
+<reinhard> addrbook.py is an executable file
+<reinhard> just run it
+<Vooch> ok...will do!
+<Vooch> thanks
+<reinhard> ok
+<reinhard> addrbook.py is _not_ what GNUe will look like
+<reinhard> just to make sure i don't scare you away
+<reinhard> :)
+<reinhard> it's more of a simple script that we developers use to test whether everything still works after we make a change :)
+<Vooch> can i run it from telnet?  or should i be on that computer?
+<reinhard> telnet is no problem
+<Vooch> ok thanks
+KalleAnka (~kalle@212.116.83.246) joined #gnuenterprise.
+<Vooch> ok..it says i need a CORBA module, so I've gotta get that installed now.
+<Vooch> ORBit-Python i guess is part of CORBA.
+<Vooch> I'll get that.
+<reinhard> it should tell you the url where to get it anyway
+alexey (alexey@195.151.214.34) left irc: "Client Exiting"
+<Vooch> it does
+lambs (~lambs@129.255.38.108) joined #gnuenterprise.
+<Vooch> I installed orbit-python-0.3.0-1-rh7.i386.rpm and orbit-python-devel-0.3.0-1-rh7.i386.rpm and now it's still saying that it need some CORBA bindings (same error message)
+<Vooch> when i query the status of installed programs, it says, "orbit-python-0.3.0-1" and "orbit-python-devel-0.3.0-1"
+<Vooch> When i run, "./addrbook.py", it says "Failed to load CORBA module.  Please see (sourceforge url) for the required python CORBA bindings.
+<Vooch> reinhard: have any ideas on this one?
+Nick change: lambs -> slamb
+<slamb> I think I've found a bug in GNU Designer 0.1.1 on win32.
+<slamb> Looks like no one's around to hear it. I'll post to the mailing list instead. :)
+slamb (lambs@129.255.38.108) left irc: "Leaving"
+<reinhard> Vooch: hmmm
+<Vooch> i still have that other geas-server installed in /usr/bin/local
+<Vooch> maybe i really do need to uninstall that
+<reinhard> wouldn't think
+<Vooch> ok
+<Vooch> keep in mind that i don't know my head from my a$$ with this stuff...LOL
+<reinhard> what version did you download?
+<Vooch> version of what?  i've already downloaded about 25 rpms.
+<reinhard> sorry
+<reinhard> version of geas
+<Vooch> 0.0.6
+<reinhard> can you please look at the file addrbook.py
+<Vooch> ok
+<reinhard> and search for the string "load_idl"
+<reinhard> and tell me if the line looks like
+<reinhard> CORBA.load_idl(...
+<reinhard> or
+<reinhard> CORBA._load_idl(...
+<reinhard> the latter would be needed for 0.3.0 of orbit-python
+<Vooch>     CORBA._load_idl("../../idl/geas.idl")
+<reinhard> ok
+<reinhard> that's correct
+<reinhard> damn!
+<Vooch> ok
+<reinhard> :)
+<Vooch> ;)
+<Vooch> All these different flavors of Linux must give developers a huge headache.
+<Vooch> I've been working with RH Linux for about 6 months now.
+<reinhard> can you please try the following:
+<reinhard> python
+<reinhard> import CORBA
+<Vooch> ImportError:  No module named CORBA
+<reinhard> ok
+<reinhard> python doesn't find orbit-python
+<Vooch> i might have 2 different versions of python installed
+<reinhard> oh
+<Vooch> I'll do a rpm -qa | grep python and let you know what it says
+<reinhard> yes
+<Vooch> 14 items:
+<Vooch> pythonlib-1.28-1
+<Vooch> phython-devel-1.5.2-30
+<Vooch> python-docs-1.5.2-30
+<Vooch> python2-devel-2.2-2
+<Vooch> python-1.5.2-30
+<Vooch> rpm-python-4.0.2-8
+<Vooch> openssl-python-0.9.6-3
+<Vooch> orbit-python-0.3.0-1
+<Vooch> python-tools-1.5.2-30
+<Vooch> python2-tools-2.2-2
+<Vooch> python-xmlrpc-1.4-1
+<Vooch> python2-docs-2.2-2
+<Vooch> orbit-python-devel-0.3.0-1
+<Vooch> python2-2.2-2
+<Vooch> reinhard: that's it.
+<reinhard> ouch
+<reinhard> yes you have python installed twice
+<reinhard> version 1.5 and version 2.2
+<Vooch> Do you know how I can uninstall version 1.5?
+<reinhard> rpm -e python-1.5
+<Vooch> is it simply rpm -e (ver1.5 name etc)
+<reinhard> yes
+<Vooch> ok
+<reinhard> you will probably have to uninstall in right order
+<Vooch> ok.  i can uninstall all but python-1.5.2-30
+<Vooch> can i force an uninstall?
+<Vooch> and then reinstall python2-2.2-2
+<Vooch> Maybe I should list these out again so you can see what I have installed right now:
+<Vooch> pythonlib-1.28-1
+<Vooch> python2-devel-2.2-2
+<Vooch> python-1.5.2-30
+<Vooch> rpm-python-4.0.2-8
+<Vooch> openssl-python-0.9.6-3
+<Vooch> orbit-python-0.3.0-1
+<Vooch> python2-tools-2.2-2
+<Vooch> python-xmlrpc-1.4-1
+<Vooch> python2-docs-2.2-2
+<Vooch> orbit-python-devel-0.3.0-1
+<Vooch> python2-2.2-2
+<Vooch> that's it now.
+<Vooch> reinhard:  is the python-1.5.2-30 the only old program now?
+<reinhard> not sure
+ajmitch__ (~me@p60-max2.dun.ihug.co.nz) joined #gnuenterprise.
+<reinhard> why can't you uninstall python-1.5.2 ?
+<Vooch> because it says python is needed for a bunch of stuff
+<Vooch> python is need by 4Suite-0.10.1-1
+<Vooch> python >= 1.5.2 is needed by pygtk-0.6.6-7
+ajmitch (me@p9-max6.dun.ihug.co.nz) left irc: Killed (NickServ (Ghost: ajmitch__!~me@p60-max2.dun.ihug.co.nz))
+<reinhard> ok
+<reinhard> you'd better not mess around with that
+<Vooch> ok
+<Vooch> ahhh
+<Vooch> i've got an idea
+<reinhard> ok?
+<Vooch> i typed python2
+Nick change: ajmitch__ -> ajmitch
+<Vooch> and that got me into a 2.2 version of it
+<reinhard> damn
+<reinhard> you had the idea just 10 seconds before me :)
+<ajmitch> mmm, python
+<Vooch> lol
+<ajmitch> hi Vooch, reinhard
+<Vooch> ok, so it's import ....?
+<Vooch> import corba
+<reinhard> when you enter "import CORBA" in python2?
+<Vooch> ok
+<Vooch> i'll try it
+<Vooch> ack!  ImportError.  No module named CORBA
+<reinhard> ok
+<reinhard> please try
+<reinhard> python
+<reinhard> import sys
+<reinhard> print sys.version
+<reinhard> --
+<reinhard> and then you will see what version of python is loaded when you type just "python"
+<Vooch> >>> print sys.version
+<Vooch> 2.1.2 (#1, Jan 31 2002, 10:21:59)
+<Vooch> [GCC 2.96 20000731 (Red Hat Linux 7.1 2.96-81)]
+<Vooch> ---
+<reinhard> ok
+<Vooch> maybe it's a corba problem.
+<reinhard> what about
+<reinhard> :
+<reinhard> python1.5
+<reinhard> import CORBA
+<reinhard> ---
+<reinhard> ?
+<Vooch> >>> import CORBA
+<Vooch> >>>
+<Vooch> when i do the --- I get a syntax error
+<reinhard> lol
+<reinhard> sorry
+<reinhard> that was only to tell you that i am finished :)
+<Vooch> but the import CORBA did seem to work
+<Vooch> lol
+<reinhard> cool
+<reinhard> so "python" starts python2 by default
+<reinhard> but orbit-python installs where only python1.5 finds it
+<reinhard> actually "python1.5 addrbook.py" should work
+<reinhard> than
+<reinhard> then
+<Vooch> ok i'll try that
+<reinhard> bb in 30 min
+Nick change: reinhard -> rm-afk
+<Vooch> k
+<Vooch> I ran python1.5 addrbook.py and got:
+<Vooch> IOError: [Errno 2] No such file or directory: '../../src/geas-server.ior'
+<Vooch> i went into the src directory and didn't see a file called "geas-server.ior".
+<daminal> Bother. I went back to the 0.1.1 zips, and now I can't log in to postgresql.
+<Vooch> afk
+<Vooch> bbl
+Vooch (~d@adsl-63-164-94.bna.bellsouth.net) left #gnuenterprise.
+Vooch (~d@adsl-63-164-94.bna.bellsouth.net) joined #gnuenterprise.
+<daminal> Anyone had trouble with the pypgsql driver?
+<KalleAnka> I think we need to stop focus on problems... =)
+<KalleAnka> By the way, can I be the offical HR manager for the GNUe project? 
+Vooch (~d@adsl-63-164-94.bna.bellsouth.net) left #gnuenterprise.
+Vooch (~d@adsl-63-164-94.bna.bellsouth.net) joined #gnuenterprise.
+chillywilly (~danielb@d125.as21.nwbl0.wi.voyager.net) joined #gnuenterprise.
+<KalleAnka> =)
+<chillywilly> rock on!
+Vooch (~d@adsl-63-164-94.bna.bellsouth.net) left #gnuenterprise.
+<chillywilly> my ODMG book came in the mail today
+<ajmitch> cool
+Vooch (~d@adsl-63-164-94.bna.bellsouth.net) joined #gnuenterprise.
+<chillywilly> "The Object Data Standard: OMDG 3.0"
+Nick change: rm-afk -> reinhard
+<reinhard> back
+<chillywilly> sup dude
+<reinhard> hey chilly
+<chillywilly> time for some hacking?
+<chillywilly> ;)
+<reinhard> no :(
+<chillywilly> well I got some reading to do first ;)
+<reinhard> cool
+<daminal> #leave
+<daminal> whoops :-)
+<ajmitch> chillywilly: what are your GEAS plans now?
+daminal (~david@2.specoinc.enterconnect.net) left #gnuenterprise.
+<chillywilly> dunno yet
+<chillywilly> I have some material to digest first
+<ajmitch> k
+<chillywilly> but this ODMG book should help things a bit
+<reinhard> Vooch: if you read this
+<reinhard> Vooch: the "ior not found" problem can probably be solved with uninstalling geas
+<Vooch> ok
+<Vooch> thanks
+<reinhard> oh you are here
+<Vooch> aye!
+<Vooch> reinhard:  How do I uninstall geas-0.0.6?  It's not in RPM format, so I haven't a clue.
+<chillywilly> you compiled it?
+<chillywilly> make uinstall
+<chillywilly> er
+<Vooch> ok thanks
+<chillywilly> make uninstall
+<Vooch> thanks chillywilly
+<chillywilly> np
+<reinhard> thanks chillywilly for jumping in
+Action: reinhard is a bit sleepy today
+<chillywilly> 11pm eh?
+<chillywilly> er, pm
+<Vooch> ack!   I did the make uninstall, but:
+<chillywilly> it's only 4pm here
+<Vooch> IOError: [Errno 2] No such file or directory: '../../src/geas-server.ior'
+<reinhard> Vooch: geas-server is running?
+<chillywilly> you need to hack your config
+<Vooch> <--- El Stupido!
+<Vooch> lol
+<chillywilly> specify where the ior is
+<reinhard> however the default config should place the ior in the right place
+<chillywilly> hmmm
+<reinhard> i think Vooch has found the mistake ;)
+<Vooch> error: Connection to database 'gnue' failed: FATAL 1:  user "hacker" does not exist
+<reinhard> ok
+<Vooch> Before it was looking for user 'gnue'
+<Vooch> I set up a 'gnue' user in PostgreSQL
+<reinhard> NOW you have to hack your config
+<reinhard> :)
+<chillywilly> again that's int he config file ;)
+<reinhard> src/geas.conf
+<Vooch> ok
+<reinhard> near the bottom
+<reinhard> "user=hacker"
+<reinhard> or something close to tha
+<reinhard> that
+<reinhard> chillywilly: yes 11 pm
+<chillywilly> username       gnue
+<chillywilly> like that
+<Vooch> ok thanks!
+<reinhard> chillywilly: but what bites me most is
+<chillywilly> yes?
+<reinhard> i had 200% work over the last weeks
+<reinhard> euro conversion
+<reinhard> it was like i was on adrenaline all the time
+<chillywilly> eeek
+<reinhard> euro conversion is better than crack ;)
+<Vooch> AWESOME!
+<reinhard> and now i'm on cold turkey so to speak
+<Vooch> ty ty ty!
+<chillywilly> you had to hack your software to support the euro?
+<reinhard> all the sleep i missed in the last weeks falls back on me now
+<reinhard> chillywilly: sure
+<reinhard> quite a lot
+<chillywilly> heh
+<reinhard> well to be precise
+<chillywilly> must've been a pain
+<reinhard> not to support the euro per se
+<Vooch> thanks reinhard and chillywilly !
+<reinhard> but to support the _conversion_ to euro
+<chillywilly> no problem Vooch
+<chillywilly> reinhard: I see
+<reinhard> for example if you support a company with over 70.000 items
+<reinhard> they wouldn't be happy to enter the new prices manually
+<chillywilly> indeed
+<chillywilly> that would suck
+<reinhard> plus this all needs to be installed
+<reinhard> and the conversion has to be run
+<chillywilly> yay!
+<chillywilly> question is
+<reinhard> and lots of customers don't dare to do anything that is out of the normal
+<chillywilly> did you make some nice cash/
+<chillywilly> ?
+<chillywilly> ;)
+<reinhard> well i can make a living from it :)
+<Vooch> Select a country from the following list:
+<Vooch> Got any idea how I can select a country?
+<Vooch> I'm trying to add someone to the address book.
+<chillywilly> should be a list there and you type int he number
+<Vooch> Or, do I add that in Postgresql
+<reinhard> with the menu item "S" = Setup
+<Vooch> no list appears
+<Vooch> ok
+<reinhard> you can setup the available countries
+<chillywilly> maybe there is a scrupt you have to run
+<chillywilly> ah yea
+<chillywilly> you have to do setup first
+<reinhard> Vooch: please don't laugh at the silly colums of the countries table
+<reinhard> it was to test all available data formats :)
+<Vooch> hehe
+<Vooch> number of cabinetmakers within country....number of carjackings per year...
+<reinhard> lol
+<Vooch> lol
+<Vooch> ok got it to work
+<reinhard> congrats
+<reinhard> now you could try to do things like
+<reinhard> connect addrbook.py over the network to a geas-server running on another machine
+<reinhard> etc
+<reinhard> j/k
+<reinhard> in fact it _should_ work
+<reinhard> but not sure if somebody ever tried it
+<chillywilly> hrrrrm
+<reinhard> actually this is why we use corba
+<chillywilly> you need to get at the ior though
+<reinhard> IIRC i tried it with 0.0.4 or something like that
+<reinhard> yeah i ftp'd the ior before trying :)
+<chillywilly> did it work?
+<chillywilly> ok
+<reinhard> it did work IIRC but not sure
+<chillywilly> which is lame
+<chillywilly> imho
+<reinhard> it's more than a year
+<reinhard> yes it's lame
+<chillywilly> we need corba name space thingy
+<reinhard> we need something like a name server
+<reinhard> yes
+<chillywilly> orbit2 might have it
+<chillywilly> and it id getting pretty stable and usable
+<chillywilly> Gnome 2 is going to use it
+<chillywilly> I think orbit2 may also be thread safe
+<chillywilly> or getting close
+<Vooch> reinhard:  Actually, I have this installed on our web dev server and I'm telnetting into it from my computer.
+<chillywilly> I would mich rather be able to use the current rpc abstraction mechanism that jcater is writing
+<chillywilly> but it's in python
+<chillywilly> dunno how easy it is to call python code from C
+<chillywilly> then again this is the whole damn point of corba
+<chillywilly> ;P
+<chillywilly> er, one of the "features"
+<reinhard> Vooch: that's easy
+<reinhard> Vooch: but geas-server and addrbook.py run on the same machine
+<reinhard> they should be able to run on different machines
+<chillywilly> why do we call the binary geas-server?
+<reinhard> as long as addrbook.py has access to the ior file that is generated by geas-server
+<chillywilly> what's the point?
+<chillywilly> it should just be geas
+<chillywilly> server is already in the name
+<reinhard> well actually the "s" in geas already means "server"
+<reinhard> it's like you say
+<chillywilly> exactly
+<reinhard> gnue-enterprise
+<reinhard> or
+<reinhard> jamest thompson
+<chillywilly> we need a nice init script
+<chillywilly>  /etc/init.d/geas start
+<chillywilly> ;)
+<reinhard> chillywilly: we even need a nice working code
+<reinhard> before
+<chillywilly> :D
+<chillywilly> yes, of course
+<chillywilly> or do e let distros worry about making init scripts?
+<chillywilly> whatever, guess an init script is not important anyway
+<reinhard> i would guess init scripts are a distro thing
+<reinhard> we need maintainers for the different distros
+<reinhard> a redhat rpm maintainer
+<reinhard> (we have a debian maintainer)
+<reinhard> a windows maintainer
+<chillywilly> we have a debian maintainer
+<chillywilly> hehe
+<reinhard> guys
+<reinhard> yesterday i was nearly starting to cry
+<reinhard> i was on local lug meeting
+<reinhard> they presented their new homepage
+<reinhard> done with postnuke
+<reinhard> (looked quite familiar to me :) )
+<reinhard> and they told us members could upload files to the download section
+<reinhard> via scp
+<chillywilly> the apache init script is very generic and just uses apachctl program/script
+<reinhard> and then he said
+<ajmitch> heh
+<KalleAnka> brb
+KalleAnka (kalle@212.116.83.246) left irc: 
+Action: reinhard feels his voice start trembling
+<reinhard> and then he said
+<reinhard> "you can use WinScp, it's a good and comfortable program"
+<ajmitch> argh
+<ajmitch> evil!
+<dsmith> AHHH!
+<chillywilly> why would they say that in a lug?
+<chillywilly> that's retarded
+<ajmitch> our LUG demos are usually done on a slackware box :)
+<ajmitch> most ppl seem to use debian :)
+<reinhard> that's cool
+<reinhard> most of our lug members are regular win users
+<ajmitch> oh
+<reinhard> use windows for all serious things
+<reinhard> and have a linux box somewhere to play with when they are bored
+Action: dsmith admits to using windows for taxes
+<reinhard> i would bet that 50% of our lug members don't know what "ls" means
+<ajmitch> we're getting a few more win users, but most seem to be only gnu/linux (a couple of gnu/hurd users)
+<dsmith> But that's IT!
+<reinhard> virtually NOONE has understood the concept of FREE SOFTWARE
+<reinhard> the concept of freedom
+<Vooch> does ls mean 'list'?
+<chillywilly> bah, my mom bought turbo tax and offered to do my taxes but I refused as I will not use non-free software
+<dsmith> Vooch: exactly
+<ajmitch> reinhard: that seems to be lacking a bit in our LUG too
+<chillywilly> I'd rather just suffer for now
+<reinhard> as opposed to the fact that gnu/linux is more stable, more secure etc.
+<Vooch> anyone here with nashville lug?
+<ajmitch> only meeting i missed was based around demoing vmware & compupic
+<chillywilly> nope
+<chillywilly> http://www.mlug.net
+<chillywilly> that's our LUG
+<ajmitch> i know noone else here is with dunlug :)
+<reinhard> i would use a free alternative even if it was LESS stable than the ms program
+<Vooch> nlug.org
+<reinhard> s/would/do actually :)
+<reinhard> (see gnome)
+<chillywilly> reinhard: me too, but if there's no alternative at all I;ll just have to do it the old fashioned way
+<ajmitch> http://dunedin.lug.net.nz/
+<reinhard> chillywilly: sure
+<dsmith> http://cleveland.lug.net
+<chillywilly> I have principles
+<chillywilly> ;)
+<reinhard> yeah
+<Vooch> dsmith:  u live in cleveland, OH?
+<chillywilly> and I am damn stubborn about them
+<reinhard> i have principles, too
+<reinhard> but i also have needs
+<dsmith> Vooch: Yeah, well Hinckley
+<chillywilly> yes, you do :)
+<Vooch> dsmith:  Know where Hudson, OH is?
+<chillywilly> reinhard: well you do what you can
+<Vooch> Hinckley sounds like it's on I-71
+<chillywilly> it will not kill me to do tele-file
+<chillywilly> for my taxes
+<dsmith> Vooch: Oh yes.  I did some work for Flexalloy in streetsborogh.  Passed through there all the time.
+<chillywilly> and I don't sell out
+<dsmith> Vooch: Both on 303
+<Vooch> dsmith:  that's cool.  my parents live up in hudson
+ToyMan (stuq@c5300-1-ip138.albany.thebiz.net) left irc: "Client Exiting"
+<Vooch> i live in Tennessee
+<dsmith> Vooch: I was looking at houses in Hudson.  Taxes are high.
+<dsmith> http://cleveland.lug.net/installfest2002/026.jpg
+<Vooch> dsmith: yep - because of the schools
+<chillywilly> jcater lives in memphis
+<chillywilly> iir
+<chillywilly> c
+<dsmith> Picture of me.
+<Vooch> that's cool
+<chillywilly> you're the old man?
+<dsmith> <-- the Old man
+<chillywilly> http://goats.gnue.org/~chillywilly/photos/, yes I know they are friggin huge
+<chillywilly> you can tell they were sitting in my wallet
+<chillywilly> they're all beat up
+<Vooch> hmm..  can't find my photo's location
+<Vooch> lol
+<Vooch> that's the problem when you write so much stuff
+<chillywilly> stuff as in what?
+<chillywilly> software?
+<Vooch> i write alot of websites
+<Vooch> and i forgot where my photo is
+<reinhard> lol
+<chillywilly> :P
+<reinhard> i have to go to bed
+<ajmitch> i've got a photo online, but i'm not gonna share it :)
+<reinhard> night all
+reinhard (rm@62.47.45.2) left irc: "'Hardware' defines as the parts of a computer system that can be kicked"
+<Vooch> http://www.chatroom501.com/rockit.jpg
+<Vooch> there we go
+<chillywilly> hehe
+<chillywilly> I love reinhard's quit messages
+<Vooch> hehe
+<Vooch> that link above is in front of a booth i had
+<Vooch> at a fair.
+<Vooch> and http://www.chatroom501.com is one of my websites.
+<Vooch> Have a good night folks!
+Vooch (~d@adsl-63-164-94.bna.bellsouth.net) left #gnuenterprise.
+Brew (~a@DIALUP-155-224.TNNAS2.USIT.NET) left #gnuenterprise.
+Kan (~kalle@212.116.83.246) joined #gnuenterprise.
+Nick change: Kan -> KalleAnka
+KalleAnka (kalle@212.116.83.246) left irc: 
+<dneighbo> jamest: if you are around another perosn complained about postgres bug
+<dneighbo> we really should rerelease
+<dneighbo> anyone know if jcater will be returning?
+<chillywilly> dunno
+<dneighbo> chillywilly: poor scotty he looks like you ;)
+Nick change: drochaid[pain] -> drochaid[zZz]
+<dneighbo> since we are exchanging fotos
+<ajmitch> haha
+<dneighbo> here is me on my 1 year birthday (according to the cnadles)
+<dneighbo> http://goats.gnue.org/~dneighbo/photos/deke_photo.jpg
+Action: dsmith is away: Going Home!
+<chillywilly> poor scotty?
+<chillywilly> boy aren't we nice today
+Action: chillywilly thwaps dneighbo with a trout
+<chillywilly> dneighbo: I've seen that picture befor
+<chillywilly> before even
+dsmith (dsmith@208.40.56.34) left irc: Read error: 113 (No route to host)
+<dneighbo> yeah nutin noo
+<dneighbo> um i meant
+<dneighbo> poor scotty he looks like yoo == the poor lad will be spending his life fighting off hordes of beautiful buxom babes dying to unravel his shorts because of his dapper look thus breaking the concentration of his studies
+<dneighbo> yeah thats it
+dsmith (dsmith@oh-strongsville5a-64.clvhoh.adelphia.net) joined #gnuenterprise.
+<chillywilly> heh
+<chillywilly> suuuuure
+<dneighbo> well yo unever know
+<dneighbo> i didnt say why poor him
+<dneighbo> you simply 'assumed'
+<chillywilly> well excuse me
+<chillywilly> :P
+<chillywilly> man this sucks
+<dneighbo> yeah vaccum's tend to do that
+<chillywilly> my bank does not let you sign up for online banking by submitting a form
+<chillywilly> you have to print it out and mail it
+<chillywilly> and then wait 7-10 days
+<chillywilly> that's LAME
+jamest_ (~jamest@fh-dialup-201069.flinthills.com) joined #gnuenterprise.
+<chillywilly> I think I will email support and complain
+<jamest_> which derek is real?
+<dneighbo> um this one
+<dneighbo> btw: anyhone have thoughts on miguel claiming gnome will be based on .net
+Action: dneighbo fears its time to move to KDE now
+<chillywilly> there's already gtk#
+<jamest_> ??????
+<dsmith> As long as they dont take gtk away..
+<chillywilly> as long ss the C apis and stuff are there, I don't care if they make C# bindings
+<chillywilly> it wasgiven that this was going to happen
+<chillywilly> I mean they are a Gnome company
+<chillywilly> a/ss/as
+<dneighbo> http://www.theregister.co.uk/content/4/23919.html
+<chillywilly> that's really no big surprise
+<jamest_> gnome was first to be based upon something i forgot, then upon bonobo, now net
+<jamest_> hmmmm
+<dsmith> jamest
+<chillywilly> it will still be corba and bonobo
+<dneighbo> im sorry but this line tells me billy is shoving his prick up miggies ass
+<dneighbo> He also had praise for the new Microsoft security model, dismissed the notion that Redmond was employing embrace and extend to its web services protocols, and put the message that the community should get over its beef with The Beast.
+<dsmith> jamest_: guile scheme
+<chillywilly> dneighbo: well that's going a bit too far
+<dneighbo> and miggie is liking it
+<jamest_> wonder what flavor 2003 gnome will be available in 
+<dneighbo> or more likely he is getting paid to like it
+<jamest_> oooooo
+<chillywilly> I wouldn't shed a tear if ximian failed as a compan
+<dneighbo> i.e. read that ximian's stake holders
+<chillywilly> company
+<dneighbo> are microsoft invenstors
+<jamest_> a .net/bonobo
+<dneighbo> and whats good for microsoft is good for their wallet
+<jamest_> .fusion
+<chillywilly> well that just conforms what we have known for too long
+<chillywilly> confirms
+<jamest_> .net-bon(e)
+<chillywilly> they are in bed with M$
+<dneighbo> jamest_ rofl
+<jamest_> hey
+<jamest_> menus in forms
+<jamest_> i need custom menus soon (before the 15th of this month :( )
+<chillywilly> has anyone looked at the XForms  standard?
+<chillywilly> I am just curious
+<jamest_> long ago
+<chillywilly> it's not any good?
+<jamest_> it didn't (at that time) fit forms target
+<jamest_> and IIRC was pretty complex
+<chillywilly> man, freakin' miguel is smoking great crack
+<dneighbo> "But .NET has another security system on top. It's designed to have same sort of security as Java. Instead of the application being the unit of security - you trust the whole app or you don't trust any of it - each portion of the program can be running on a separate trust domain.
+<dneighbo> "So you can have Gnumeric running and you import a file from 1-2-3. Gnumeric asks the network or service do you have a plug-in for 123 - but the problem is you cannot trust this code, right? So you give it limited permissions. You're not going to let them write to the file, just read, populate the spreadsheet. If they try anything else the plug-in is killed, it throws an exception.
+<dneighbo> It's a sandbox?
+<chillywilly> wish he would come around so I could tell him to his face
+<dneighbo> this is scary
+<dneighbo> basically its a good thing 'security wise' to lock WHOLE APPLICATIONS OUT?
+<dneighbo> sounds like predatory behavior to me
+<dneighbo> just an FYI
+<jamest_> well
+<dneighbo> change his sample
+<jamest_> what gnome does doesn't bother me much
+<dneighbo> you are running word and you get a file from star office
+<dneighbo> and the plugin dont let you do shit cept convert it to word or die
+<dneighbo> :)
+<dneighbo> jamest_ im just curious because redhat has a lot of money tied into gnome
+<dneighbo> as does now sun
+<jamest_> well, star office is too well known for macro viri to be trusted by word
+<dneighbo> how do they FEEL about this
+<jamest_> :)
+<dneighbo> i.e. sun was going to (is) shipping gnome on all its desktops (iirc)
+<jamest_> they're proud, card carrrying members of the .net-bon(e) project
+<dneighbo> jamest_: i need menus too :)
+<jamest_> anyway
+<dneighbo> i hit jcater up on it as navigator is neat and all
+<jamest_> on menus
+<dneighbo> but it wont work for production stuff imho
+<dneighbo> i think the basis is right
+<jamest_> what do people need
+<dneighbo> its a matter of reading that file into a gfd
+<dneighbo> as a menu
+<dneighbo> not a separate thing that hangs off the side
+<jamest_> btw - I'm talking menus on the top of the form app
+<jamest_> not embeded in the app
+<jamest_> er
+<jamest_> not embeded in the form
+<dneighbo> im not saying there is NO value to the side
+<dneighbo> what i would like to see
+<jamest_> that's a far more complicated issue
+<dneighbo> is gpd file loaded into existing menu
+<dneighbo> so you have
+<dneighbo> file data help
+<dneighbo> or whatever currently
+<dneighbo> and that the gpd file at load time
+<dneighbo> loads
+<chillywilly> jamest: how the3 fuck do you know what sun, readhat, etc, feels about ximian's .NET bs initiative?
+<dneighbo> after that
+<dneighbo> so you woudl have
+<dneighbo> file data help accounting humanresources 
+<dneighbo> or whatever
+<jamest_> chillywilly: I was joking....would you like to be a member of a club proclaiming to be "boned"
+<dneighbo> and then loads a 'blank' or 'default' gfd
+<chillywilly> in fact i think the whole reason for the umteen flame wars with reaqdhat folk and ximian folk on gnome-hackers was because of these differences
+<dneighbo> jamest_ is that making any sense?
+<jamest_> i think so
+<jamest_> you want a .gpd to sit inside a data sub menu on forms menus
+<dneighbo> yeah
+<jamest_> forms menus = forms file menu
+<dneighbo> then we can argue is is better to
+<dneighbo> a. only have one form in the framework open at a time
+<dneighbo> b. allow multiple to be open 
+<dneighbo> c. allow multiples but contain them like an MDI app all within the 'container'
+<dneighbo> i think a or c make most sense
+<dneighbo> and a is probably easies to do right away
+<dneighbo> and would perform more like traditional app
+<dneighbo> and make easiest for 'curses' or other limited UI's
+<dneighbo> again have no idea if im making sense
+<jamest_> yes
+neilt (~neilt@user-2ivekk6.dialup.mindspring.com) joined #gnuenterprise.
+#gnuenterprise: mode change '+o neilt' by ChanServ!ChanServ@services.
+<chillywilly> gawd
+<chillywilly> Mono has already slayed one of the holy cows of the Gnome project - the insistence that all code be released under the GPL. The decision to change to an MIT X11 license for some libraries passed off without too much protest this week, and Miguel said it was to avoid fragmentation, as it allowed the project to use Intel's optimizing run time:- 
+neilt (neilt@user-2ivekk6.dialup.mindspring.com) left irc: 
+<dneighbo> bbl 
+dneighbo (dneighbo@tech-200078.flinthills.com) left irc: "Client Exiting"
+jcater (~jason@24.92.70.7) joined #gnuenterprise.
+<jcater> 'sup all?
+<Mr_You> hi jason
+<Mr_You> + everyone
+<jcater> hmm
+<jcater> for the record, I disagree w/derek's analysis of navigator menus
+<jcater> I think b has as much value as a or b in his example
+<jcater> to me, option "a" (and in general having GPDs loaded as submenus) are a "gee-whiz" feature that is only practical for small subsystems
+<jcater> not entire production systems
+<jcater> I'd prefer to see "Submenu items" that are attached to "triggers"
+<jcater> and leave navigator as a separate tool
+<jcater> Oracle does it this way
+<jcater> SAP does it this way
+Action: jcater guesses Delphi does not ;)
+<jamest_> hey
+<jcater> howdy
+<jamest_> what I was wanting to do in menu system
+<jamest_> GMenu
+<jcater> I was out sick today :(
+<jamest_> :(
+<jamest_> GMenu's make a tree
+<jamest_> they have thinks
+<jamest_> things
+<jamest_> like Text, HotKey, Trigger
+<jamest_> so that all menu items fire triggers
+<jamest_> and that these triggers have default names
+<jamest_> so that a form could overwrite the std trigger with a custom onw
+<jamest_> one
+<Mr_You> hope you feel better jason
+<jcater> I do
+<jamest_> also on menu item placement
+Action: jcater got lots of rest today
+<jcater> I see where you're going, and I like that :)
+<jamest_> I _think_ we'd need to be able to find menu entries
+<jamest_> somehow
+<jamest_> so that my <menu> tags
+<jamest_> can somehow place themselves like this
+<jamest_>   find File.Save and put me after it
+Action: jamest_ has not thought about this much
+<jamest_> also
+<jamest_> GMenu would be based upon GObj
+<jamest_> and thus the entire default system menu and form customizations would be exposed to the trigger system
+<jamest_> so that we could do menu.file.save.disable = Ture
+<jamest_> True even
+<jamest_> overview might look like this
+<jamest_> menu - top level menu object
+<jamest_>   file
+<jamest_>   data
+<jamest_>   foo
+<jamest_>   bar
+<jamest_>     item1
+<jamest_>     item2
+<jamest_> anyway
+<jamest_> my initial thoughts are to put this in common
+<jamest_> so that eventually any gnue app could define it's menus this way
+Action: jamest_ worries that everyone is laughing too hard at the design to type on their keyboards
+<jamest_> btw - this should allow for derek's custom gpd loader
+Action: dsmith is busy watching funny home videos.
+<jcater> nah
+<jcater> doing my taxes
+<jcater> dude
+<jcater> I'm using TaxSlayer this year
+<jcater> and I swear they used a form generation program a lot (in concept) like GNUe Forms
+<jamest_> TaxSlayer?
+<jcater> .com
+<dsmith> jcater: What platform is TaxSlayer ?
+<jcater> pc only :(
+<dsmith> :P
+<jcater> and you know "pc" == Win32
+Action: dsmith is away: Picking up my daughter at school
+<jcater> I used turbotax for the web last 2 years
+<jcater> but they are getting expensive
+<jcater> used SecureTax.com before that
+<jcater> but they were bought out by TurboTax :(
+<jcater> (they were good)
+Action: jamest_ is too mainstream
+Action: jamest_ always buys TurboTax
+<Mr_You> I think thats what I usually end up using also.. 
+Action: dsmith is back (gone 00:05:12)
+<jcater> jamest_: did you see the pic of SAP Easy Access screenshot someone posted?
+<jamest_> no
+<jcater> that's what I'd like to have ;)
+<jcater> lemme see if I can find my bookmark
+<jamest_> i wonder
+<jamest_> should the menu system be entirely seprate from the toolbar system
+<jamest_> I'm pretty sure that I don't want a toolbar entry that isn't on the menu
+<jcater> http://help.sap.com/saphelp_46c/helpdata/en/49/2dfe88088b11d396a9006094b9867b/content.htm
+<jamest_> so I think the toolbar system should just contain links to menu entries
+<jamest_> but what I wonder
+<jamest_> is if menu items should have a toolbarPosition and toolbarIcon attribute
+<jamest_> that if filled add to the toolbar
+Action: jamest_ has little thought in this
+<jcater> hmm
+<jcater> are you talking custom stuff? or built-in toolbar/menu stufF?
+<jcater> or both?
+<jamest_> all toolbar entries must be on the menu, they can't exist without a menu pick
+<jcater> I definitely agree w/that statement
+<jcater> as imho a mouse is "always" optional equipment :)
+<jamest_> good
+<jcater> if you allow toolbar options w/o a corresponding menu option, it's easy to "forget" that aspect
+<jamest_> yip
+<jamest_> what I guess I'm asking
+<jamest_> is should we include the toolbar def as part of the menu def
+<jamest_> or have a completely seperate GToolBar that sits seperate but acts to only "fire" the menu picks
+<jcater> imho, the former
+<jcater> (that would also allow us to provide "custom" toolbars in that the end user can add to/remove tools from the toolbar
+<jcater> "These actions (from the menu system) are the default toolbar, but you can add other "Actions")
+<jcater> btw, I'm saying that would provide the framework for that; not that we should do it :)
+<jamest_> um
+<jamest_> i'm confused
+<jamest_> the former was the one tied directly into the menu def
+<jcater> ah, well pay no attention to me, then
+<jamest_> um
+<jamest_> help
+Action: jamest_ is confused
+<jamest_> which did you want?
+<jamest_> or better yet
+<jcater> that one
+<jamest_> tied direct?
+<jcater> are you talking about "defining" menus?
+Action: jcater thinks maybe jcater is confused
+<jamest_> <menu blah="" toolbarPos="2" toolbarIcon="Goat.png"/>
+<jamest_>   <menu .....>
+<jamest_> <menu>
+<jamest_> or
+<jamest_> <menu .......>
+<jamest_>   <menu ......>
+<jamest_> <menu ....>
+<jamest_> <toolbar>
+<jamest_>   <link>menu.file.save</link>
+<jamest_>   <link>menu.file.goatrape</link>
+<jamest_> </toolbar>
+<jcater> ah, I was confused... I'd think the latter
+<jamest_> btw - that was on the fly so the struct sucks
+<jamest_> ok
+<jcater> except goatrape should go under "View" not "File"
+<jamest_> rofl
+chillywilly_ (~danielb@d120.as20.nwbl0.wi.voyager.net) joined #gnuenterprise.
+chillywilly_ (danielb@d120.as20.nwbl0.wi.voyager.net) left irc: Read error: 104 (Connection reset by peer)
+chillywilly (danielb@d125.as21.nwbl0.wi.voyager.net) left irc: Read error: 113 (No route to host)
+lambert (~lambert@dialup-209.246.72.251.Dial1.NewYork1.Level3.net) joined #gnuenterprise.
+SachaS (~sacha@203.190.196.191) joined #gnuenterprise.
+ajmitch (me@p60-max2.dun.ihug.co.nz) left irc: Read error: 113 (No route to host)
+ajmitch (~me@p34-max5.dun.ihug.co.nz) joined #gnuenterprise.
+lambert (lambert@dialup-209.246.72.251.Dial1.NewYork1.Level3.net) left irc: "Client Exiting"
+dsmith (dsmith@oh-strongsville5a-64.clvhoh.adelphia.net) left irc: "later.."
+<derek> i think i get misunderstood at times
+<derek> btw: jcater delphi doesnt do menus
+<jcater> that was a joke ;)
+<derek> not in this context as delphi is a different type of tool than forms
+<derek> the sap thing is ok, if the current navigator was cleaned up to that kind of polish it might be pretty cool
+<derek> in fact if we made navigator a tree
+<derek> instead of the clicks that it currently is
+<jcater> well, it functions the same way... I said early on it was ugly ;)
+<derek> it might substitute for menus for the short term
+<derek> i still think we will need ability to load gpd's as menus directly into the 'framework'
+<derek> but i see value in a 'pretty' navigator as well
+<derek> :)
+<derek> its not so much navigator is ugly is that its not super easy to use
+<derek> i.e. navigator is hard to navigate for complex menus :)
+<jcater> well, this is a difference in perspective, obviously ;)
+Action: jcater comes fomr a curses world
+<jcater> but this is why we support many options w/all the tools :)
+<derek> i.e. unless you know exactly where things are under the current navigator they are hard to find
+<jcater> so we can make everyone happy
+<derek> yes
+<derek> the current navigator is perfect for curses world almost untouched :)
+<derek> as it performs like classical navigation system in curses
+<derek> i think menus will be important though (as many people like them)
+<derek> i got 'gagged' by them at omega as they had more menu options than you could shake a stick at :)
+<jcater> that's my fear
+<jcater> as at ncs, we have hundreds of forms
+<jcater> (just ask jamest some time how many we have ;)
+<derek> how would jamest know
+<derek> i dont get gmenu
+<derek> it appears to be what gpd's already are
+<jcater> err, we're discussing internals now
+<jcater> GMenu would be a python object
+<jcater> (memphis!oracle)$ ls -l *.inp|wc -l
+<jcater>    1319
+<jcater> (memphis!oracle)$ ls -l *.rep|wc -l
+<derek> ok so <menu> is merely an 'internal' DOM object
+<jcater>    1641
+<jcater> 1319 forms and 1641 reports
+<jcater> please don't ask why
+<jcater> ;)
+<derek> not a physical file containing <menu>
+<derek> why?
+<derek> also did you all see conversation here that
+<derek> images are done incorrectly in cvs?
+<derek> i.e. they got checked in as other than binary
+<jcater> oops
+<jcater> hmm
+<jcater> how do we fix that
+<derek> and cvs chewed them up so they are bad on windows boxen
+Action: jcater didn't know cvs made the distinction
+Action: jcater is still learning cvs
+<derek> grab the good copy and check in
+<derek> jcater: a good admin sets image types to AUTO do binary so the user doesnt have to
+<derek> i.e. you can set on the server certain extensions to ALWAYS do binary check in
+<derek> so things like .png, .jpg etc we should have set like
+<derek> dneighbo@latitude:~/cvs/gnue/www/images$ man cvs |grep binary
+<derek>               binary  files),  and  -kv  which  is  useful for an
+<derek>               CVSROOT if your cvs binary has the right path  com­
+<derek> dneighbo@latitude:~/cvs/gnue/www/images$ 
+<derek> time to saunter off for a bit.....
+SachaS (~sacha@203.190.196.191) left #gnuenterprise ("Client Exiting").
+rdean (rdean@chcgil2-ar2-053-033.chcgil2.dsl.gtei.net) joined #gnuenterprise.
+jamest_ (jamest@fh-dialup-201069.flinthills.com) left irc: "[x]chat"
+jcater (jason@24.92.70.7) left irc: "nite"
+--- Sat Feb  2 2002

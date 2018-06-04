@@ -1,0 +1,66 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.17Dec2001" enddate="17 Dec 2001 00:00:00 -0800" startdate="17 Dec 2001 00:00:00 -0800" subject="[IRC] 17 Dec 2001" title="Support for multiple languagues">
+
+<topic>Forms</topic>
+<topic>Application Server</topic>
+
+<p>After getting GNUe Forms working, Phil Cole (fil_c) had 
+<quote who="Phil Cole">Some questions:  How about multiple languages?  
+Each .gfd file is language specific. And how to cater for different 
+lengths of text for each language?</quote> Jason Cater (jcater) said 
+<quote who="Jason Cater">the next release of GNUe Forms intends to address 
+several of these [...] we are going to try to better incorporate i18n into 
+the next release but we are still up in arms about how to do it.</quote>
+At the time of writing, you did need a seperate GNUe Forms Definition
+(.gfd) for each language, although it might be possible to 
+<quote who="Jason Cater">dynamically generate</quote> them from GNUe 
+Application Server in the future. i18n support was an important issue for 
+GNUe, as <quote who="Jason Cater">we have quite a few international users 
+who keep reminding us of where we're lacking :)</quote> Phil said this sort 
+of functionality could also be used for <quote who="Phil Cole">end user 
+personalisation (e.g. (re)moving the fields on a form</quote>. Jason said 
+this was <quote who="Jason Cater">definitely worth considering</quote>.</p> 
+
+<p>Phil said you could split off the triggers - <quote who="Phil Cole">
+still leave the xml definition but the action occurs in a trigger file
+</quote>. Jason said <quote who="Jason Cater">we can do that now with 
+&lt;import-trigger&gt;</quote> - you could re-use most objects, including 
+datasources, <quote who="Jason Cater">but that certainly doesn't solve the 
+multi-language problem</quote>.</p>
+
+<p>Phil suggested <quote who="Phil Cole">one way could be to move all 
+"language" to just be labels. Then the actual text for the 
+labels be defined multiple times</quote>. This would also cope with 
+different lengths of text even within the same language, e.g. 
+<quote who="Phil Cole">'Purchase Order' and 'Pur. Ord.'</quote> 
+Or you could have different .gfd files for each language, 
+<quote who="Phil Cole">or both of the above</quote>. Jason said 
+<quote who="Jason Cater">I'm not sure if that's the ideal long-term 
+solution</quote>. Phil asked how to <quote who="Phil Cole">cater for 
+different positioning of form objects due to differing language 
+lengths.</quote> Jason said <quote who="Jason Cater">we currently only 
+support absolute positioning</quote> and asked <quote who="Jason Cater">
+how would you do dynamic length labels in an absolute system</quote>?
+Phil said <quote who="Phil Cole">I dont think that's possible.  
+It would require a separate .gfd for each language</quote>. 
+Jason said <quote who="Jason Cater">the main drawback to this 
+method is that if a form is changed (rearranged) you have to modify every 
+language file, instead of changing just one [...] or that the translator 
+would also have to worry about positioning as well as translation</quote>.
+Phil agreed, and suggested <quote who="Phil Cole">perhaps we could make 
+the alternate language forms optional - treat english as a master and use 
+it and it's position but with foriegn labels if a specific foriegn form 
+doesn't exist.</quote></p>
+
+<p>Later, Derek Neighbors (derek) said <quote who="Derek Neighbors">
+as for muliti language i still think we shoudl use 'entities' so you can 
+define entity files for incluces then do substitute</quote>. This would mean
+<quote who="Derek Neighbors">all you have to do is change the entity tag in 
+the form to your country code</quote>.</p>
+
+<p>See also previous discussions about i18n in
+<kcref startdate="18 Nov 2001 01:23:21 -0800" subject="[gnue-discuss] many-many relations" />
+.</p>
+
+</section>
+
+

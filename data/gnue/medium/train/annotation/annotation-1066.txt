@@ -1,0 +1,105 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.03May2002" enddate="02 May 2002 23:00:00 -0800" startdate="02 May 2002 23:00:00 -0800" subject="[IRC] 03 May 2002" title="Using GNUe Common with Application Server">
+
+<topic>Common</topic>
+<topic>Application Server</topic>
+
+<p>Reinhard M&#252;ller (reinhard) asked for a quick summary of 
+<quote who="Reinhard M&#252;ller">if i have a database and i want 
+to read data out of it what do i have to do? (using common of 
+course)</quote>. James Thompson (jamest) said 
+<quote who="James Thompson">first you have to initialize a 
+datasource - this will require setting a few vars in a datasource 
+instance then calling it's initialize function IIRC. You'll also 
+need to create a connection manager - and tell the datasource to 
+use it (this gives you connection pooling)</quote>. Reinhard 
+asked <quote who="Reinhard M&#252;ller">where can i see the instance 
+vars of datasource?</quote>. James thought 
+<quote who="James Thompson">probably the best place to look is 
+in GDataSource.py</quote> - <quote who="James Thompson">look at 
+the bottom of the file in the xmlElements - the attributes are 
+the things that can be set from an xml file</quote>. </p>
+
+<p>He said <quote who="James Thompson">if this is for geas2 and if we 
+use xml files</quote> to define the datasources
+<quote who="James Thompson">then you don't really need to worry 
+much about this - as the xml parser does the right thing</quote>. 
+Reinhard said <quote who="Reinhard M&#252;ller">geas will define the 
+datasources dynamically i think</quote> -  
+<quote who="Reinhard M&#252;ller">_if_ we use xml files - i don't 
+think the parsing of the file will be at the same time as the 
+creation of the datasource object in memory</quote>.He would 
+expect it to work like this: <quote who="Reinhard M&#252;ller">client 
+requests an object from appserver - appserver checks if class name 
+is valid (needs xml definition for that) - if valid then appserver 
+translates classname into table name - then appserver creates 
+datasource object and fetches the data</quote>. This would need 
+<quote who="Reinhard M&#252;ller">some translation between the xml 
+definitions (= object definitions) and the database access 
+(= table definitions)</quote>. He explained 
+<quote who="Reinhard M&#252;ller">the ideas is that appserver shows 
+an object oriented interface to the client - most important 
+translation here is namespace - i.e. we will have "modules" 
+with own namespace - to avoid naming conflicts between parts of 
+the application created by different people</quote>. In the 
+actual database, <quote who="Reinhard M&#252;ller">all tables of a 
+module will be prefixed by the module name in the db 
+table</quote>.</p>
+
+<p>James could <quote who="James Thompson">see where you are 
+going - you're not wanting to tie up memory with unused 
+datasources</quote>. Reinhard agreed, saying 
+<quote who="Reinhard M&#252;ller">i think a final gnue install 
+could have some 100 tables</quote>, and sometimes there 
+would need to be multiple datasources pointing at the same 
+table, <quote who="Reinhard M&#252;ller">for example 2 users 
+access the same table at the same time</quote>.</p>
+
+<p>Reinhard said <quote who="Reinhard M&#252;ller">actually 
+another reason is that i want appserver to be very modular - 
+i.e. to separate the object repository (where the objects are 
+defined) from the database access part</quote>. 
+Jan Ischebeck (sledge_) asked how to link 
+<quote who="Jan Ischebeck">two tables (master/detail)</quote>
+at <quote who="Jan Ischebeck">the appserver level</quote>. 
+Reinhard said that <quote who="Reinhard M&#252;ller">we have 
+objectlists - objects - and every object has fields - a 
+field can be a text or a number - or another 
+objectlist</quote>. Jan asked if a field could also be 
+<quote who="Jan Ischebeck">a tree? (in the more general 
+sense of the word)</quote>. Reinhard said it could be 
+<quote who="Reinhard M&#252;ller">even more a web - you can 
+have customer.orders -&gt; returns a list of all orders of 
+this customer and at the same time have order.customer 
+-&gt; returns a single object, the customer of 
+_this_ order</quote>.</p>
+
+<p>James said <quote who="James Thompson">i need to study 
+geas more but most of what you require is _almost_ in common - 
+objects have custom namespaces, executable code can be attached 
+to events etc, - however most if it is based upon idea that the 
+parser builds the initial structure of the app - so we'll have 
+to make some adjustments in common to do it differently</quote>. 
+He had <quote who="James Thompson">started working on making 
+common more general now</quote>. He explained 
+<quote who="James Thompson">the parser builds an inverted tree 
+of app objects - then the GClientApp system callings a 
+phasedInitialization system that lets each object set itself 
+up - the datasystem makes just such an assumption - as there 
+is no clean API to set this up outside the parse</quote>. 
+Jason Cater (jcater) pointed out that 
+<quote who="Jason Cater">Objects can be created/added to a 
+parser tree without GParser - just look at designer/Incubator</quote>. 
+James agreed, <quote who="James Thompson">but is it 
+clean?</quote>.</p>
+
+<p>Reinhard asked what was next after getting the datasource. 
+James said <quote who="James Thompson">you use it to create 
+resultSets - which contain recordSets - which contains your 
+data</quote>. He said <quote who="James Thompson">you should 
+be able to call createResultSet - if you pass it a condition 
+tree from GConditions then that'll alter the query to match what 
+you require</quote>, and gave some pointers to examples of how 
+it was used in Forms and Reports.</p>
+
+</section>
+

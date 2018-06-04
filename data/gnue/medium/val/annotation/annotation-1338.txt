@@ -1,0 +1,52 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.21Jul2003" author="Peter Sullivan" contact="mailto:psu@burdonvale.co.uk" enddate="22 Jul 2003 04:00:00 -0800" startdate="21 Jul 2003 04:00:00 -0800" subject="[IRC] 21 Jul 2003" title="Fixing problems with popy driver with GNUe">
+
+<topic>Common</topic>
+
+<p>Further to 
+<kcref subject="[IRC] 15 Jul 2003" title="popy and psycopg as alternative python drivers for PostgreSQL" />, 
+Mike Vincent (Vee2d2) reported <quote who="Mike Vincent">I tried popy last week but 
+had to revert back to psycopg because it breaks designer's schema navigator.. 
+apparently because of the way it returns types.. like it was expecting</quote> 
+Object IDs (oid) <quote who="Mike Vincent">to be returned as a int type but was 
+getting a str, I think.. *shrug*</quote>. 
+Thierry Michel (thierry), one of the popy developers, said 
+<quote who="Thierry Michel">it's complex 
+to deal w/ oid type - each table has an oid and lob are also using 
+oid</quote>. He asked whether people had seen <quote who="Thierry Michel">the 
+announce about pygresql/popy project merging ?</quote>. He offered to fix 
+the problem with the popy driver if he could - <quote who="Thierry Michel">popy 
+tries to detect LOB and handles them transparently - but as oid is used by tables, 
+the automatic detection is impossible IMHO - so, LOB are not handled by default by 
+popy and oid too...</quote></p>
+
+<p>James Thompson (jamest) asked 
+<quote who="James Thompson">just out of curiosity does popy deal with ' 
+properly?</quote> - he had <quote who="James Thompson">tested out some of my forms 
+with pygresql and it did the right thing wrt strings that contained ' - however 
+one of my users told me the other day that strings with ' in them choaked the form
+- the only change I recall was going to popy</quote>. He had had 
+<quote who="James Thompson">0 time to look at gnue's code, the users example, or 
+anything - so it could be user error but I figured since the popy author was here 
+for abuse - it was too good to pass up</quote>. Thierry admitted that 
+<quote who="Thierry Michel">popy has problem with quoting - we are working on 
+it and a better types converter</quote>.</p>
+
+<p>Later, Thierry announced a <quote who="Thierry Michel">new version of popy 
+2.0.10 available on <a href="http://sourceforge.net/projects/popy/">sf's cvs</a></quote>. 
+Mike noted that this <quote who="Mike Vincent">fixes the schema navigator breakage 
+in designer while using popy</quote>.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.22Jul2003">
+The next day</a>, Thierry confirmed <quote who="Thierry Michel">the popy team 
+decided to continue the development of PoPy until the 2.1 which will be the last 
+stable and mature release - in parallel, we'll begin to develop the new merging 
+pygresql project</quote> with the psycopg developers. Meanwhile, 
+<quote who="Thierry Michel">2.1 will correct all bugs of PoPy</quote>. 
+James asked <quote who="James Thompson">any timeline for 2.1?</quote> 
+Thierry said <quote who="Thierry Michel">until we receive bugs :/ - we planned 
+5 (max) pre-release for the 2.1. we have already begin the pre1 (which includes 
+bugs I fixed in the 2.0.11, and some code cleaning)</quote>.</p>
+
+</section>
+
+

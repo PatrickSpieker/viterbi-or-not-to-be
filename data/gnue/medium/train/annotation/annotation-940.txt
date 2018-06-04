@@ -1,0 +1,99 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.05Jul2002" enddate="06 Jul 2002 23:00:00 -0800" startdate="04 Jul 2002 23:00:00 -0800" subject="[IRC] 05 Jul 2002" title="Debian packages for DCL">
+
+<topic>DCL</topic>
+
+<p>Andrew Mitchell (ajmitch) mentioned that 
+<quote who="Andrew Mitchell">derek seems to be worried about
+dcl &amp; gnue debs</quote> (as discussed in 
+<kcref subject="[IRC] 30 May 2002" title="Debian packages for GNUe and DCL" /> 
+and previously) - 
+<quote who="Andrew Mitchell">especially as there's a security release 
+of DCL due out</quote>. Jeff Bailey (jbailey) said he believed 
+<quote who="Jeff Bailey">there's 0 people using the old DCL 
+debs now.  So at least the annoyance of making it upgrade friendly 
+is gone.</quote></p>
+
+<p>Later, Derek Neighbors (dneighbo) asked Jeff 
+<quote who="Derek Neighbors">to check in what he had for dcl 
+debs</quote>. Jeff explained his current debs for DCL were a 
+quick fix for himself, <quote who="Jeff Bailey">So it's not 
+suitable for checking in</quote> to CVS. He could 
+<quote who="Jeff Bailey">just upload them</quote> if necessary. 
+Derek said <quote who="Derek Neighbors">basically i need debs 
+for dcl (and i know you are busy) - but rather than start from 
+scratch i was hoping to pick up where ever you left off if 
+possible. I have a security release i hope to bundle tonight in 
+tar/gz format and would be killer if i could offer debs at that 
+time as well</quote>. Jeff said he would 
+<quote who="Jeff Bailey">probably have a bit of time tonight to 
+putit together for you.  IT's easier than explaining what I've 
+done. Then you're welcome to update yourself after, or have me or 
+another DD do it.</quote>. Derek said he would get a tarball to 
+him soon - <quote who="Derek Neighbors">i have to do some testing 
+still on faq/project sections but if you can package that and feel 
+comfortable giving me something to commit to cvs would be 
+great</quote>.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.07Jul2002">
+Two days later</a>, Jeff wondered <quote who="Jeff Bailey">Why 
+doesn't dcl use a makefile like every other project out there? 
+=)</quote>. Derek said he was not keen on make, but 
+<quote who="Derek Neighbors">certainly if you need a make file 
+create one</quote>. Jeff said <quote who="Jeff Bailey">Lemme 
+throw a simple one together. I'll cheerfully maintain it ongoing.
+Since otherwise I'd pretty much be doing so for the package 
+anyway.</quote>.</p>
+
+<p>Jeff and Andrew tried to work out where the various DCL files 
+needed to go to comply with Debian guidelines. 
+Jeff noted that the Debian guidelines said 
+<quote who="Jeff Bailey">that web apps go somewhere under 
+/usr/share/doc/PACKAGE/ - That doesn't seem right, though.</quote>
+He had a look at the Debian package for Sourceforge, but 
+that did not seem to be a good model. He decided 
+<quote who="Jeff Bailey">/usr/share/dcl/www for the web root - 
+scripts under /usr/share/dcl - docs under /usr/share/doc/dcl/ - 
+config file in /etc</quote>.</p>
+
+<p>He was not sure what to do with the 
+<quote who="Jeff Bailey">attachments directory</quote> 
+as the DCL application <quote who="Jeff Bailey">wants to *Write* 
+there</quote>. Andrew said this was <quote who="Andrew Mitchell">for 
+email attachments sent thru - eg, submitting stuff to 
+designer-support@gnuenterprise.org, with a patch attached</quote>. 
+Jeff considered various possible locations, and wondered about 
+using /var/spool - <quote who="Jeff Bailey">Esp. if it's a temp 
+holding pen, and not permanent storage</quote>, quoting the 
+guidelines that <quote who="Jeff Bailey">Data in /var/spool 
+represents work to be done in the future (by a program, user, or 
+administrator); often data is deleted after it has been 
+processed</quote>. Andrew noted that squirrelmail did something 
+similar.</p>
+
+<p>Jeff also wondered about <quote who="Jeff Bailey">The 
+templates/custom</quote> as <quote who="Jeff Bailey">if 
+it's not in /etc or /var, it's going to get overwritten on 
+upgrade.</quote> Andrew said that 
+<quote who="Andrew Mitchell">templates/custom looks like it 
+is for site-customisation</quote> and suggested
+<quote who="Andrew Mitchell">so perhaps put it in var, and 
+symlink it into the webroot?</quote>. However, 
+<quote who="Andrew Mitchell">that'd require apache to follow 
+symlinks</quote>. Jeff suggested /etc - 
+<quote who="Jeff Bailey">I guess the question is it more state 
+data or configuration file? =)</quote>.</p>
+
+<p>Jeff tried to compile the Debian package, and 
+reported <quote who="Jeff Bailey">No errors</quote>, but some 
+warnings - <quote who="Jeff Bailey">6 of which are that upstream 
+appears to have made some files gratuitously execuatble.</quote>
+He reported <quote who="Jeff Bailey">Right, first cut DCL debs 
+available</quote>, adding <quote who="Jeff Bailey">Bug reports 
+should just be emailed to me, and I'll get them through as quick 
+as I can.</quote> Later, Derek thanked Jeff and said he 
+<quote who="Derek Neighbors">will try to test today and will put 
+a call out on the home pages and announce for testing</quote>.</p>
+
+</section>
+
+

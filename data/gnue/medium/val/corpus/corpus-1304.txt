@@ -1,0 +1,275 @@
+<derek> .
+<Vee2d2> exactly!
+<chillywilly> ..
+<chillywilly> ...
+<chillywilly> ....
+<chillywilly> .....
+<chillywilly> ......
+<chillywilly> .......
+aaron___ (coyote@msp-24-163-193-174.mn.rr.com) joined #gnuenterprise.
+psu (psu@81.98.44.32) joined #gnuenterprise.
+<Vee2d2> mornin psu
+<psu> good morning
+<aaron___> forms depends on a called mx.DateTime it looks like, the site mentioned to download it doesn't seem to be functioning, is there somewhere else to get this? 
+<Vee2d2> not running debian, I guess? 
+<psu> i must admin i though we had removed that dependency
+<psu> which version are you using? CVS, 0.4.x?
+ninja (rossg@203.146.54.196) joined #gnuenterprise.
+ninja (rossg@203.146.54.196) left irc: Client Quit
+Vee2d2 (~vin@c66.169.136.41.ftwrth.tx.charter.com) left irc: Remote closed the connection
+Vee2d2 (~vin@c66.169.136.41.ftwrth.tx.charter.com) joined #gnuenterprise.
+Vee2d2 (~vin@c66.169.136.41.ftwrth.tx.charter.com) left irc: Remote closed the connection
+btami (~btami@3e70d734.dialin.enternet.hu) joined #gnuenterprise.
+<btami> hello
+<ra3vat> hello
+<btami> there is a "<$ tabs () >" appears in some places in our web site
+<btami> http://www.gnuenterprise.org/downloads/depends.php
+<btami> youe see this too ?
+<ra3vat> yes
+<btami> ok:)
+Vee2d2 (~vin@c66.169.136.41.ftwrth.tx.charter.com) joined #gnuenterprise.
+<btami> so it's a "bugreport" for psu :)
+Vee2d2 (~vin@c66.169.136.41.ftwrth.tx.charter.com) left irc: Remote closed the connection
+btami (~btami@3e70d734.dialin.enternet.hu) left irc: 
+Vee2d2 (~vin@c66.169.136.41.ftwrth.tx.charter.com) joined #gnuenterprise.
+<psu> btami: it's a "known bug"
+<psu> basically, the web site is currently a bit of a hybrid
+<psu> most of it is generated from some nifty python scripts that generate static html
+<psu> but the downloads pages are still using php as the code to do the file listings in python is currently in "pre-alpha"
+<psu> (i.e. doesn't work)
+<psu> the <? tabs () > is a tag for the python which php can't grok
+<psu> I have taken an executive decision that this is less of a problem than having a broken downloads listing ;-)
+<psu> I probably won't have time to fix it this weekend, as I have the chuch year end accounts to get finished
+<psu> If anyone has nothing better to do, and can stand the sight of my baby-python coding style
+<psu> you could always send me a patch
+<psu> it's the def filelist (directory) function that's b()rked
+<psu> http://savannah.gnu.org/cgi-bin/viewcvs//software/gnue/admin/makesite.py?cvsroot=www.gnu.org
+Vee2d2 (~vin@c66.169.136.41.ftwrth.tx.charter.com) left irc: Remote closed the connection
+Vee2d2 (~vin@c66.169.136.41.ftwrth.tx.charter.com) joined #gnuenterprise.
+johannes_ (~johannes@M697P006.adsl.highway.telekom.at) left irc: "Client Exiting"
+<psu> BTW, I don't think we've had a gratitous rant about how good python is for a while, so here goes
+<psu> I found doing the site in python so much easier than with php
+<psu> What the man said about python being "the most powerful computer language you can still read" is spot on
+<psu> And bear in mind that php is actually designed as a web apps lang, unlike python
+<psu> (I know I could/should have used Zope, but that would have involved persuading FSF to install Zope on www.gnu.org
+<psu> which they probably would have done, but we would have been stuck maintaining it)
+<psu> Of course, I guess "GNU Enterprise supporter says python is great" is up there with other non-stories like
+<psu> "Pope condemns sin" or "Trouble in Middle East"
+<psu> or "chillywilly seen with trout"
+<psu> ...#
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) joined #gnuenterprise.
+<Yurik> re
+<psu> hi Yurik
+<Yurik> psu: hi
+<Yurik> psu: how are you ?
+<psu> i'm fine
+<psu> doing the accounts for the local church this weekend 
+<psu> but still got #gnuenterprise logged on in the background ;-)
+<Yurik> :)
+Action: Yurik reads Akesnov and likes that he reworked "how are you doing" to "how are you dieing" :-) (or how this form of 'die' writes ;)
+<Yurik> s/Akesnov/Aksenov/
+jbailey (~jbailey@CPE0060082df811-CM014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) left irc: Read error: 104 (Connection reset by peer)
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) joined #gnuenterprise.
+<Yurik> re
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) left irc: Read error: 104 (Connection reset by peer)
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) joined #gnuenterprise.
+<Yurik> re
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) left irc: Read error: 54 (Connection reset by peer)
+Vee2d2 (~vin@c66.169.136.41.ftwrth.tx.charter.com) left irc: Read error: 60 (Operation timed out)
+tam0 (blah@user-323.bbd02tcl.dsl.pol.co.uk) joined #gnuenterprise.
+tam (blah@user-321.bbd07tcl.dsl.pol.co.uk) left irc: Read error: 110 (Connection timed out)
+tam0 (blah@user-323.bbd02tcl.dsl.pol.co.uk) left irc: Connection reset by peer
+Vee2d2 (~vin@c66.169.136.41.ftwrth.tx.charter.com) joined #gnuenterprise.
+dsmith (dsmith@oh-strongsvillecadent1-1c-203.clvhoh.adelphia.net) joined #gnuenterprise.
+jbailey (~jbailey@CPE0060082df811-CM014260028338.cpe.net.cable.rogers.com) left irc: "Client Exiting"
+jamest (~jamest@adsl-65-71-168-170.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+Nick change: dsmith -> ds|away
+Nick change: ds|away -> ds|lunch
+Nick change: ds|lunch -> dsmith
+StyXman (~mdione@ADSL-200-59-86-121.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<StyXman> hi there
+jbailey (~jbailey@CPE0060082df811-CM014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+StyXman (~mdione@ADSL-200-59-86-121.cordoba.sinectis.com.ar) left #gnuenterprise.
+Vee2d2 (~vin@c66.169.136.41.ftwrth.tx.charter.com) left irc: Remote closed the connection
+Vee2d2 (~vin@c66.169.136.41.ftwrth.tx.charter.com) joined #gnuenterprise.
+Action: jbailey pokes derek.
+jbailey (~jbailey@CPE0060082df811-CM014260028338.cpe.net.cable.rogers.com) left irc: "Client Exiting"
+psu (psu@81.98.44.32) left #gnuenterprise.
+aaron___ (coyote@msp-24-163-193-174.mn.rr.com) left irc: Remote closed the connection
+darion (darion@h24n2fls20o999.telia.com) joined #gnuenterprise.
+aaron___ (coyote@msp-24-163-193-174.mn.rr.com) joined #gnuenterprise.
+M4rc0 (~user@cr2006818562.cable.net.co) joined #gnuenterprise.
+M4rc0 (~user@cr2006818562.cable.net.co) left irc: Client Quit
+dsmith (dsmith@oh-strongsvillecadent1-1c-203.clvhoh.adelphia.net) left irc: "later.."
+dyfet (~dyfet@pool-141-153-147-83.mad.east.verizon.net) joined #gnuenterprise.
+<dyfet> is derek about?
+darion (darion@h24n2fls20o999.telia.com) left irc: 
+dyfet (~dyfet@pool-141-153-147-83.mad.east.verizon.net) left irc: "Client Exiting"
+<derek> here
+<derek> poop
+<derek> missed him
+<ajmitch> yep
+ekeko (~kop@CM-lflo-31-27.cm.vtr.net) joined #gnuenterprise.
+<ekeko> hello people, anybody here?
+<ajmitch> yes
+<ekeko> is my first time with gnue forms
+<ekeko> where can i get examples?
+<ajmitch> there are a number of examples with the source, iirc
+<ekeko> i like to do a multirows form for a mysql table
+<ajmitch> and in cvs, there are a few
+<ajmitch> right
+<ekeko> how can i to get some example?
+<ekeko> every i do is one row form
+<ajmitch> yes, you are using designer to build these forms?
+<ekeko> yes
+<ajmitch> in the block properties, there's a 'rows' attribute, iirc
+<ekeko> where is this documented?, or not?
+<ajmitch> there's the forms developer's guide
+<ekeko> i read a very incomplete document from www.gnue.org
+<ajmitch> are you using forms & designer 0.4.3?
+<ekeko> 0.4.1
+<ekeko> .99
+<ekeko> 2002/11
+<ajmitch> ok, debian packages i guess
+<ajmitch> http://www.gnuenterprise.org/~jcater/docs/forms-0.4.x/Developers-Guide.html <-- is this the doc you read?
+<ekeko> yes, full TODO
+<ajmitch> yep
+<ekeko> txs for your help
+<ekeko> i'm using rows="#"
+<ajmitch> ok
+<ekeko> do you know a more complete documentation?
+<ajmitch> not that i know of
+<ekeko> how is this project?, activity
+<ajmitch> quite active
+<ajmitch> there are quite a few developers 
+<ekeko> could to be important, RAD is necessary
+<ajmitch> yup
+Action: ajmitch pokes derek
+<derek> ouch
+<ekeko> can i to run gtk2 interface for form in debian sid?
+<ajmitch> yup
+<ajmitch> it needs some work - it's not enabled in the debian packages tho
+<ekeko> ok
+<ekeko> i can to wait
+Action: ajmitch has to get 0.4.3 stuff to jeff
+<ekeko> copy/paste, is not ready
+<ajmitch> hmm?
+<ekeko> copy and paste in form
+<ekeko> i cannot
+dsmith (dsmith@oh-strongsvillecadent1-1c-203.clvhoh.adelphia.net) joined #gnuenterprise.
+<ekeko> i can not to do copy and paste into form running
+SachaS (~Sacha@dialup-196-72.wasp.net.au) joined #gnuenterprise.
+<ekeko> can i change fonts in forms?
+<ajmitch> yeah, in the gnue.conf, iirc
+<ekeko> ok!
+<ekeko> wow!, without fixed fonts!
+<ekeko> i need copy-paste text into running form, some idea?
+<ajmitch> it doesn't work for you?
+<ajmitch> select & middle click?
+<ekeko> not, when i do something after middle click, pasted text disappears
+<ekeko> (babelfish helpme with english)
+<ajmitch> hmm
+<ekeko> i select text of a field in a row, then i do middle click in others rows, but when i do left click or tab or up or down or anything, pasted texts disappears
+Action: ajmitch has not seen that happen, sorry
+<ajmitch> i can't recall if that's been reported as a bug or not - if you want, sned an email about it to forms-support@gnuenterprise.org, with details about what packages you're using (wxpython version, etc)
+<chillywilly> hi
+<ajmitch> hello chillywilly
+<chillywilly> yo ajmitch 
+<chillywilly> how are you?
+<ajmitch> i'm fine
+<chillywilly> kewl
+<chillywilly> listening to WOPN?
+<chillywilly> sorry, "reenode Radio"
+<chillywilly> Freenode even
+<ajmitch> would you advise someone to upgrade from woody to sid via ssh? :)
+<chillywilly> hmmm
+<chillywilly> no
+<chillywilly> cause a lot of time sshd doesn't start back up for and I have to smack it around some
+<ajmitch> right
+<ajmitch> that's not good
+<ajmitch> ah well, he'll find out soon enough ;
+<chillywilly> HEH
+Action: ajmitch did paste your comment to him
+<aaron___> i was trying to get gnue-designer to work yesterday i keep getting - No module named forms.GFConfig
+<aaron___> i don't know python so i'm kinda lost
+<ajmitch> installed gnue forms?
+<SachaS> chillywilly: how can i listen to freenode radio ???
+<ajmitch> [17:22:10] <ajmitch> [17:20:36] <chillywilly> cause a lot of time sshd doesn't start back up for and I have to smack it around some
+<ajmitch> [17:22:33] <skwashd> yeah .... i can drive on site if i really need to
+<chillywilly> SachaS: http://stream.us.wopn.org:10000/{broadband,modem}.ogg
+<chillywilly> erm, maybe you wannt try the .au sevrers
+<dsmith> ajmitch: I don't think I would ever upgrade a box non-localy. Especially going to unstable.
+<chillywilly> nm sounds like the show is ending
+<chillywilly> :(
+<SachaS> chillywilly thats http://stream.au.wopn.org ?
+<ajmitch> dsmith: depends on atmospheric crack levels
+<chillywilly> right
+<chillywilly> and ajmitch is also right
+<chillywilly> ;P
+<chillywilly> EOS right now though
+<chillywilly> one more song
+<SachaS> chillywilly what player do i need to listen to it?
+<chillywilly> xmms with ogg plugin or ogg123
+<ajmitch> i use ogg123 or xmms
+<ajmitch> ogg123 seems to work a little better
+<chillywilly> noatun will work too
+<chillywilly> I think
+<chillywilly> ajmitch: can you use gstreamer?
+Action: ajmitch would refuse to use noatun on principle
+<ajmitch> :)
+<ajmitch> yeah
+<chillywilly> ajmitch: Njaard not your favorite person?
+<chillywilly> or non-copyleft license
+<ajmitch> surely you recall his views on GNU, GPL, and anything starting with G?
+<chillywilly> yea...
+<ajmitch> noatun is also pretty crap, i've found ;)
+<chillywilly> sucks though it seems all kde media players are BSD/X licensed
+<chillywilly> it's not the greatest
+<chillywilly> imho
+<SachaS> chillywilly whats playing on freenode radio?
+<chillywilly> cool songs...not right now though the stream is over now
+<chillywilly> I caught the very end
+<SachaS> free songs ???
+<chillywilly> some of them are
+<chillywilly> others they have got permission to play them
+<SachaS> is there a program?
+<chillywilly> radio program?
+<SachaS> yep
+<SachaS> to know what they play
+<chillywilly> various oggjays have their shows
+<chillywilly> there's a schedle
+<chillywilly> http://www.wopn.org
+<SachaS> cool
+<chillywilly> http://www.wopn.org/schedule/
+<SachaS> another strange site ? :)
+<chillywilly> that's the schedule
+<SachaS> lol
+<chillywilly> I love their site design
+<chillywilly> ChipX86 designed it
+<SachaS> http://www.wopn.org/music
+<chillywilly> yep
+<SachaS> ah that are only the artists
+<SachaS> hmmmm
+<SachaS> chillywilly whats a jay
+<SachaS> like a gig?
+<SachaS> nevermind.
+<chillywilly> oggjay == dj
+<chillywilly> but better
+<chillywilly> :)
+<jcater> geeze
+<jcater> our mailing list is getting a bit heated this weekend
+<jcater> me thinks ruben et al needs to take a chill pill
+<ajmitch> hehe yeah
+kevin (~kevin@194.204.106.247) joined #gnuenterprise.
+Nick change: kevin -> kac
+<kac> anyone listening?
+kac (~kevin@194.204.106.247) left #gnuenterprise ("Client Exiting").
+kevin (~kevin@194.204.106.247) joined #gnuenterprise.
+kevin (~kevin@194.204.106.247) left irc: Client Quit
+kac (~kevin@194.204.106.247) joined #gnuenterprise.
+<kac> anyone alive here?
+<Vee2d2> that's a silly question. =)
+<kac> hehe
+<kac> need some assistance to evaluate gnue...
+--- Sun Feb  9 2003

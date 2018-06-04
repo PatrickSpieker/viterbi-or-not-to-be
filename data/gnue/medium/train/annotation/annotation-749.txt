@@ -1,0 +1,53 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.2006-03-30" author="Peter Sullivan" contact="mailto:psu@burdonvale.co.uk" enddate="30 Mar 2006 12:00:00 -0800" startdate="30 Mar 2006 12:00:00 -0800" subject="[IRC] 30 Mar 2006" title="Timezones in GNUe Application Server">
+
+<topic>Application Server</topic>
+
+<p>It was asked how GNUe dealt with different time zones - in a three-tier 
+set up (forms talks to Application Server talks to back-end database), 
+the users of a forms could be in different time zones to each other, and 
+different to the time zone of the Application Server and/or the database 
+server. This could create problems sorting entries by date/time order. 
+Reinhard M&#252;ller (reinhard) noted that, as of time of writing, 
+<quote who="Reinhard M&#252;ller">there is no timezone handling currently - 
+so appserver just takes time values like you give it - so if you use 
+gnue_createdate etc it's all in the timezone appserver is running 
+in</quote>. Johannes Vetter (johannesV) noted that 
+<quote who="Johannes Vetter">well, actuall python's datetime.datetime 
+has no 'native' timezone either - instead one would have to implement 
+timezone-support if needed</quote>. Reinhard noted that 
+<quote who="Reinhard M&#252;ller">converting times values to UTC before 
+storing in the db might not be what most users would expect - still 
+somebody searching in the db directly via sql might be surprised to 
+find "wrong" values</quote>.</p>
+
+<p>Reinhard noted that the specification for XML-PRC (the XML 
+specification for Remote Procedure Calls, which GNUe Application 
+Server was intended to be compatible with) said that 
+<quote who="Reinhard M&#252;ller">It should be specified by the server 
+in its documentation what assumptions it makes about 
+timezones. so it looks like you can't pass a timezone there by 
+definition - and that we can define, for example, that all dates 
+must be the timezone which appserver runs in</quote>.</p>
+
+<p>Reinhard agreed <quote who="Reinhard M&#252;ller">100% that timezone 
+handling is a missing feature in appserver - which would have to be 
+implemented by either documenting something, or some changes in 
+appserver itself, or (most probably) both. I think it would make 
+most sense to make the client responsible to send only UTC time 
+values to the server - but then appserver would have to convert 
+all automatically set times to UTC, too - like gnue_createdate etc
+- which currently is in appserver's local time zone - and I figure 
+there's a whole bunch of other problems we might run into if we 
+look closer, for example the fact that the date part of a 
+datetime value can change when you convert timezones</quote>.</p>
+
+<p>Reinhard concluded <quote who="Reinhard M&#252;ller">I think this 
+really needs more thinking - also regarding different backends and 
+how *they* are able to handle timezones</quote>. Later on, he 
+<a href="http://www.gnuenterprise.org/roundup/gnue/issue94">documented</a> 
+the issue <quote who="Reinhard M&#252;ller">as a wishlist item for 
+appserver</quote>.</p>
+
+</section>
+
+

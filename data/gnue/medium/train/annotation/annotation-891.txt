@@ -1,0 +1,26 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.06Nov2002" enddate="05 Nov 2002 23:00:00 -0800" startdate="05 Nov 2002 23:00:00 -0800" subject="[IRC] 06 Nov 2002" title="Primary keys in GNUe Schema Definition (.gsd) files">
+
+<topic>Common</topic>
+
+<p>Ariel Cal&#242; (ariel_) said <quote who="Ariel Cal&#242;">i've seen the 
+new documentation of schema (gsd) - we have a type 'key' (old a
+uto) that is translated to a db specific type, may be serial, 
+int4 or whatsoever. Now a primary key has 2 functions: 1) enforce 
+uniqueness of rows - 2) be referenced by foreign keys of other 
+databases. Suppose i have a table with a field that references 
+the primary key of another table - i want that field to have the 
+same type of the pk in the other table. If i declare it of type 
+key may be this is translated to serial (that i don't want since 
+it is only a foreign key). i cannot declare it int4 (or similar) 
+since i don't know how key is translated. i think a solution is 
+another type fkey that is automatically translated by the specific 
+driver to whatever is appropriate for the specific db 
+backend</quote>. Jason Cater (jcater) pointed out that 
+<quote who="Jason Cater">key != serial - there should be an 
+auto="" that makes it serial. So in the primary table you might 
+have mykey --&gt;   type="key" auto="y" - then in the referencing table
+pointerToKey --&gt; type="key"</quote>.</p>
+
+</section>
+
+

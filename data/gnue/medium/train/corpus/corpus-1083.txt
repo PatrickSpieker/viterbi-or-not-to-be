@@ -1,0 +1,628 @@
+wilco ([lBcZCC5MY@haus.nakedape.cc) joined #gnuenterprise.
+gontran (~gontran@ip68-3-244-71.ph.ph.cox.net) joined #gnuenterprise.
+ra3vat (ds@ics.elcom.ru) joined #gnuenterprise.
+gontran (~gontran@ip68-3-244-71.ph.ph.cox.net) left irc: Read error: 104 (Connection reset by peer)
+<ra3vat> hi all
+reinhard (~rm@N816P023.adsl.highway.telekom.at) joined #gnuenterprise.
+btami (~tamas@ip102-205.ktv.tiszanet.hu) joined #gnuenterprise.
+<btami> good morning
+<ra3vat> hello
+ra3vat (ds@ics.elcom.ru) left irc: Read error: 104 (Connection reset by peer)
+ra3vat (ds@195.239.204.226) joined #gnuenterprise.
+btami (~tamas@ip102-205.ktv.tiszanet.hu) left irc: Remote closed the connection
+Yurik (~yrashk@gw.telcos.net.ua) joined #gnuenterprise.
+drochaid (~drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) left irc: Read error: 104 (Connection reset by peer)
+drochaid (~drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) joined #gnuenterprise.
+josejavier_worki (~josejavie@dinamic2-133.drago.net) joined #gnuenterprise.
+Yurik_ (~yrashk@gw.telcos.net.ua) joined #gnuenterprise.
+Yurik (~yrashk@gw.telcos.net.ua) left irc: Read error: 104 (Connection reset by peer)
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+dsmith (~dsmith@199.106.220.89) left irc: "later.."
+josejavier_worki (~josejavie@dinamic2-133.drago.net) left irc: "Aplicación Saliendo"
+alexey_ (~alexey@195.151.214.34) left irc: "Client Exiting"
+ToyMan (~stuq@65.167.123.51) joined #gnuenterprise.
+jamest (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+dsmith (firewall-u@cherry7.comerica.com) joined #gnuenterprise.
+<reinhard> good morning usa!
+<jamest> morning
+<jamest> is that commit traffic I see coming from reinhard in the appserver folder?
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+reinhard (~rm@N816P023.adsl.highway.telekom.at) left irc: Read error: 110 (Connection timed out)
+reinhard (~rm@M693P012.adsl.highway.telekom.at) joined #gnuenterprise.
+<jamest> welcome back reinhard
+<jamest> you appserver'n again?
+<reinhard> not sure about today
+<reinhard> at the moment i work for my job
+<reinhard> tomorrow possibly yes
+<reinhard> btw in case you didn't hear until now
+<reinhard> microsoft is going to buy navision
+<drochaid> navision?
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) left irc: "Client Exiting"
+<reinhard> one of GNUe's biggest competitors
+<reinhard> so to speak :)
+<drochaid> ah
+<drochaid> maybe their scared of GNUe ;)
+btami (~tamas@ip102-205.ktv.tiszanet.hu) joined #gnuenterprise.
+<btami> hi all
+<reinhard> hi btami
+<btami> is jamest around?
+<drochaid> he was recently, probably look in soonish
+Action: jamest looks in
+Action: drochaid is proved right ;)
+<btami> i'm praying for pdf docs
+<jamest> argh!
+<jamest> dude, I'm sorry
+<drochaid> PDF PDF PDF!!! :-D
+<btami> i can't print from lyx :(
+<jamest> was working on i18n issues last nite
+<jamest> sigh
+<jamest> let me see what I can do
+<jamest> which doc you after?
+<btami> techref-common
+<drochaid> jamest: I know very little about linux doc formats, but if I can read them on Windows, I'd be happy to write them to pdf
+<btami> i can read it on linux, but want print :)
+<drochaid> what format are the docs in btami?
+<btami> lyx
+<drochaid> erk
+<drochaid> can I read that with anything on windows?
+<jamest> yes
+<jamest> lyx
+<btami> db2dvi always fails here
+<drochaid> heh
+<jamest> btami: prepare to be underwhelmed
+<jamest> www.math.ksu.edu/~jamest/common-techref.pdf
+<jamest> but this is very, very rough and incomplete
+<btami> thanks
+<drochaid> ah, I see setting up lyx on win32 isn't quite straightforward
+<btami> jamest: the requested URL ... not found
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+Arturas (~arturas@gsk.vtu.lt) joined #gnuenterprise.
+<Arturas> Hello :)
+<btami> hello
+<jamest> try again
+<btami> now ok
+<jamest> Arturas: i fixed the gettext issue i believe
+<btami> jcater: i fixed the record jumping problem (in ticket #32)
+<jamest> btami: lemme look at that ticket
+<jamest> ah cool
+<jamest> bbias
+<btami> bbias?
+<jamest> be back in a second
+<btami> ok :)
+<jamest> btw: maybe this will fix another record jump issue we have
+<jamest> :)
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: "Client Exiting"
+<btami> jamest: the tables in pdf are cut off on right side :(
+<btami> in lyx too
+Arturas (~arturas@gsk.vtu.lt) left irc: Remote closed the connection
+<btami> i know it's rough and incomplete :)
+Arturas (~arturas@gsk.vtu.lt) joined #gnuenterprise.
+<btami> Arturas: hi
+<Arturas> :)
+<btami> i like your i18 working
+<btami> it's essential for me
+<Arturas> most of the work did jamest
+<jamest> huh?
+<btami> i just started to make hu_HU
+<jamest> i don't have a clue how to do i18n
+<btami> not huh, hu_HU :)
+<Arturas> he has, he is too shy to admit :)  (=> jamest)
+<jamest> i just move code around to make it fit a bit better 
+<Arturas> btami: it a bit to early - in about a week it should be ready
+<Arturas> is
+<Arturas> it's
+<btami> i'v just tried it with some hu strings 
+<btami> and it works !
+<Arturas> :)
+<derek> dont be decieved
+<derek> working is 'relative'
+<Arturas> what is decieved?
+<derek> fooled
+<derek> tricked
+<derek> lied to
+<Arturas> mhm, thank you :)
+<btami> working is not so 'relative' for me :)
+<btami> i'v used "Szerkeszt" in place of "Edit" in wx menu
+<btami> and it worked
+<jamest> Szerkeszt = Edit?
+<btami> yesss
+<Arturas> btami: what was text encoding?
+<btami> cp1250
+^chewie (~chewie@flemingi.dsl.visi.com) joined #gnuenterprise.
+derek (~derek@cpe-24-221-112-50.az.sprintbbd.net) left irc: "um my gnue tree is bigger than your gnue tree"
+Nick change: reinhard -> reinhard|away
+StyXman (~mdione@modem26-adsl.capfed2.sinectis.com.ar) joined #gnuenterprise.
+<StyXman> good morning...
+<^chewie> morning
+<StyXman> uh, who is responsible of designer, again?
+<StyXman> (sorry, I sometimes have bad memory)
+<StyXman> could be jamest or jcater?
+<btami> maybe jcater :)
+<StyXman> ack
+<StyXman> ok, I've been poking into designer' code. 'vrything looks good, except for Incubator. I can't fond where elemwnts is defined.
+<StyXman> s/fond/find/
+<StyXman> s/elemwnts/elements/
+<jamest> which elements
+<jamest> the entry, box, etc?
+<StyXman> elements as in Incubator.py:46
+<jamest> hang on
+<StyXman>   try:
+<StyXman>     objclass = elements[tag]['BaseClass']
+<StyXman>                 ^that one.
+<jamest> same file line 133 i think
+<StyXman> oh, shit. yes, there. tnx
+<jcater> those are pulled directly from forms/src/GFParser.py
+<jcater> iirc
+<jamest> they are 
+jbrite (~jbrite@65.216.32.46) joined #gnuenterprise.
+jbrite (~jbrite@65.216.32.46) left irc: Client Quit
+<StyXman> jamest: it's me, or all the available widgets are *hardcoded* in that file? I thought you loaded from some xml file...
+<jamest> That file is the xml to internal widget mapping so is hard coded
+<jamest> but that file is only the parser mapping
+<StyXman> uh, I'm rather lost. gimme a sec.
+<Arturas> what does it do:
+<Arturas> self.handleStartupError('Error ..... ')
+<Arturas> (from gfclient)
+<Arturas> does it only prints error on screen
+<Arturas> or does it take additional actions according to the string?
+<jcater> no actions based on the string
+<jcater> it just displays the string in a fancy format
+<Arturas> thank you :)
+<jcater> (i.e., neatly on the screen or, in the future, using a popup box)
+<StyXman> ok, whar does that big structure mean? I see that Attributes list the valid attributes, and some mappings, but what do the rest of keys mean?
+<jamest> hmmm
+<jamest> i thought that was documented somewhere
+Action: jamest looks
+<jamest> guess not
+<jamest> BaseClass = python class to map to
+<jamest> Required = must exist in file
+<jamest> SingleInstance = only create one
+<jamest> ParentTags = container object in the xml file (example block can contain entry but entry cannot contain block)
+sledge_ (~sledge@B2bbe.pppool.de) joined #gnuenterprise.
+<StyXman> and where are the available widgets defined? I see that those are just for loading already built forms...
+<sledge_> Incubator.py worries me
+<StyXman> sledge_: me too. why exactly?
+<sledge_> it is not OO, beside that fact that it functionality would fit quite nicely in an object
+<sledge_> s/in/into/
+<sledge_> btw, it is defined in line 133
+<jcater> why?
+<sledge_> why, why?
+<jcater> <sledge_> Incubator.py worries me
+<sledge_> the functionality is here, but i miss the readability :)
+<StyXman> which why?
+<StyXman> (just kidding)
+<sledge_> which what -> /usr/bin/what
+<jamest> StyXman: all publicly available (via the gfd) widgets are defined in there
+<jamest> they are implemented in forms/src
+<jamest> sledge_: not OO != bad
+<sledge_> jamest: yep, i just mean that it could have been written more clearly; i don't say the code is bad!
+<jamest> Incubator does something that will eventually be cleaned up but it works for now
+<sledge_> then, i'm happy
+<jamest> we have no clean API for designer to work with a form yet
+<sledge_> is gnue.common documented?
+<jamest> starting to be
+<sledge_> you mean, an api which allows for the manipulation of forms? and designer as a front-end to that api?
+<sledge_> great (docs rule!)
+gontran (~gontran@ip68-3-244-71.ph.ph.cox.net) joined #gnuenterprise.
+btami (~tamas@ip102-205.ktv.tiszanet.hu) left irc: "Client Exiting"
+<StyXman> jamest: what you mean '(via the gfd)'
+<StyXman> (remember I'm truly new, and that I already warned you about me :)
+<jcater> well, I'm not sure that's a fair statement, jamest
+<jcater> I think designer plays nicely with forms objects
+<jcater> the big API deficiency
+<jcater> is in drawing the objects
+<sledge_> gfd: gnue forms definition, an xml file which contains the definition of a gnue form, created by designer (or by hand) and processed by the forms client
+<jcater> i.e., the wx driver needs a better designer-compat api
+<wilco> Have you guys looked at using HappyDoc for generating API docs?
+<jcater> but I don't foresee Incubator changing too terribly much
+<jcater> (as it works w/forms, reports, ....)
+<jcater> wilco: yes, I think someone has HappyDoc's of Common somewhere
+<jcater> but I'm not sure where
+<jcater> we were looking into that last week as a matter of fact :)
+<wilco> I noticed there was talk in KC about it
+<wilco> Er, about documentation with DB
+<jamest> jcater: my bad, i was speaking of the hacks to draw things
+<sledge_> well, my problems with designer are (a) few comments (b) the data processed by designer has very implicitly-seeming structures
+<jcater> (b) is an extension of (a)
+<jcater> as I don't see (b) changing due to the nature of designer
+<jamest> i guess that's layoutEditor though isn't it
+<jcater> but more of (a) would certainly help aleviate it
+<sledge_> damn :)
+<jcater> the beauty of designer is that if jamest adds a l33t new widget to the Forms client, 
+<jamest> sledge_: we accept patches :)
+<jcater> then designer can create/modify that widget without any programming in designer
+<sledge_> i see
+<jcater> but, I do agree that the interactions need to be better documented
+<jcater> s/better/
+<gontran> who can i speak with about nstti?
+<jcater> that'd be jamest 
+<gontran> :)
+<sledge_> jcater: if i wanted to document designer's code, (a) how to do (doc strings sufficient?) (b) simply submit as a patch?
+<jcater> sure
+<jcater> works for me
+Action: jcater is away: lunch
+<sledge_> well :)
+<gontran> jamest: is nstti dusty?  would you mind if i mucked about adding doc strings (for happydoc:) and cleaning up --
+<gontran> right now the test script fails in numerous ways
+<sledge_> what's nstti?
+<sledge_> (sorry for my ignorance)
+<jamest> nstti has barely started
+<gontran> sledge_: curses implementation
+<jcater> gontran: I'd imagine dusty is the wrong word... perhaps "is nstti still swimming in embryonic juices?"
+<sledge_> ah. terminal stuff :)
+<jamest> it's working w/ a copy of nstti that isn't even availble to the public
+<gontran> heh
+<gontran> well, i dloaded from viewcvs the tarball and have been cleaning up -- in order to understand and document. From there
+<gontran> i'd like to , you know, fix it. :)
+<jamest> that would be wonderfull
+<jamest> however where are you getting nstti from ?
+Action: gontran coughs
+<gontran> from view cvs
+<gontran> at gnue.org
+<gontran> :)
+<jamest> um
+<gontran> got a fresher tball?
+<jamest> we link to that somewhere?
+<gontran> must have
+<gontran> maybe in the docs on cvs
+<gontran> speaking of -- where's the directory reinhard referred to on gnue-dev?
+<Arturas> what GFConfig.py (from /forms/src) is responsible for?
+<jamest> it takes the place of gnue.conf for providing defaults to an app
+<jamest> gontran: nstti status 
+<jamest> the author let me put in our cvs as he doesn't have time to work on
+Action: gontran nods
+<jamest> i started looking at what it would take to make an nstti driver for forms
+<jamest> nstti is going to need work before it'll work properly
+<gontran> looked a bit like wxUidriver copied over and commented .. yeah.
+<gontran> that's what i figured
+Action: gontran ADORES curses
+<gontran> um, as a user.:)
+<sledge_> bye, gotta go.
+<Arturas> bye
+<gontran> jamest: just wanted to make sure i wasn't duplicating work
+<sledge_> Arturas: hey, and have fun with i18n :)
+<Arturas> thanks :)
+<jamest> gontran: we'd love the help
+<gontran> i'll send you patches as soon as things starts getting fixed. :) 
+Yurik_ (~yrashk@gw.telcos.net.ua) left irc: "reboot"
+sledge_ (~sledge@B2bbe.pppool.de) left irc: "using sirc version 2.211+KSIRC/981227-pre0.9"
+<jamest> gontran: cool
+Action: gontran looks for pen
+Nick change: reinhard|away -> reinhard
+<gontran> reinhard: thx for working on documentation
+<gontran> reinhard: i can't find it in cvs :)
+<reinhard> gontran: what you're looking for?
+<gontran> gnue/appserver/docs/Makefile
+<reinhard> that file doesn't exist
+<reinhard> there is a
+<gontran> i seem to be missing the doc directory
+<reinhard> gnue/appserver/doc/api/Makefile
+<reinhard> and a
+<reinhard> gnue/appserver/doc/whitepaper/Makefile
+<reinhard> you have to do cvs update -d
+<reinhard> to scan the server for new directories
+<gontran> ok.  lemme check
+<reinhard> even better cvs -z3 update -Pd
+<gontran> will that delete anything?
+<reinhard> yes
+<reinhard> empty directories :)
+<gontran> ok :)
+dneighbo (~dneighbo@tmp-200253.flinthills.com) joined #gnuenterprise.
+<reinhard> -z3 is for compression (you get more speed in updating)
+<reinhard> -P means Purge empty directories
+<reinhard> -d means create new directories as needed
+<gontran> thx
+<reinhard> without -d only existing directories are scanned
+dres__ (~dres@mail.lewismoss.org) joined #gnuenterprise.
+dres_ (~dres@mail.lewismoss.org) left irc: Read error: 104 (Connection reset by peer)
+Yurik (~yrashk@gw.telcos.net.ua) joined #gnuenterprise.
+<reinhard> off for today
+reinhard (~rm@M693P012.adsl.highway.telekom.at) left irc: "The more often you run over a dead cat, the flatter it gets"
+Action: Yurik is away: I'm busy
+[12:45] Last message repeated 1 time(s).
+Action: Yurik is back (gone 00:00:00)
+gontran (~gontran@ip68-3-244-71.ph.ph.cox.net) left irc: Read error: 104 (Connection reset by peer)
+StyXman (~mdione@modem26-adsl.capfed2.sinectis.com.ar) left irc: "ircII EPIC4-1.1.2 -- Are we there yet?"
+wilco ([lBcZCC5MY@haus.nakedape.cc) left #gnuenterprise.
+Yurik (~yrashk@gw.telcos.net.ua) left irc: "Client Exiting"
+<Arturas> bye :)
+Arturas (~arturas@gsk.vtu.lt) left irc: "ircII/tkirc"
+gontran (~gontran@ip68-3-244-71.ph.ph.cox.net) joined #gnuenterprise.
+ToyMan (~stuq@65.167.123.51) left irc: "Client Exiting"
+the_grunf (~grunf@217.129.58.55) left irc: "KVIrc 2.1.1 'Monolith'"
+gontran_ (~gontran@ip68-3-244-71.ph.ph.cox.net) joined #gnuenterprise.
+gontran (~gontran@ip68-3-244-71.ph.ph.cox.net) left irc: Read error: 104 (Connection reset by peer)
+gontran_ (~gontran@ip68-3-244-71.ph.ph.cox.net) left irc: Client Quit
+gontran (~gontran@ip68-3-244-71.ph.ph.cox.net) joined #gnuenterprise.
+gontran (~gontran@ip68-3-244-71.ph.ph.cox.net) left irc: Read error: 104 (Connection reset by peer)
+dsmith (firewall-u@cherry7.comerica.com) left irc: "later.."
+chillywilly (~danielb@mke-65-29-142-117.wi.rr.com) joined #gnuenterprise.
+gontran (~gontran@ip68-3-244-71.ph.ph.cox.net) joined #gnuenterprise.
+dsmith (firewall-u@cherry7.comerica.com) joined #gnuenterprise.
+gontran (~gontran@ip68-3-244-71.ph.ph.cox.net) left irc: Read error: 104 (Connection reset by peer)
+dsmith (firewall-u@cherry7.comerica.com) left irc: "later.."
+jamest (~jamest@hobbes.math.ksu.edu) left #gnuenterprise.
+siesel (jan@dial-213-168-95-35.netcologne.de) joined #gnuenterprise.
+<siesel> hi!
+<chillywilly> yo
+<Mr_You> yo
+<chillywilly> should I work on the GEAS architecture? ;)
+<chillywilly> hmmm
+<chillywilly> or figure out how to lock my thread-safe c++ streams?
+<chillywilly> decisions, decisions
+<Mr_You> we needed GEAS v2 yesterday
+<Mr_You> ;-)
+<chillywilly> whatever
+<chillywilly> you're not happy with reinhard's API?
+<chillywilly> ;P
+<Mr_You> I haven't messed with cvs 
+<chillywilly> siesel: you look at the Transaction and Database APIs?
+<chillywilly> from odmg.txt
+<siesel> cw: I just gave it a "small?/ bit?" look.  I 've to look at it again.
+<chillywilly> ok, well you need to join me and help sway reinhard into adopting these things ;)
+<chillywilly> muwahahahha
+<jcater> chillywilly: sorry, but the best I can tell, siesel likes the KISS principle like the rest of us :)
+<chillywilly> there's nothing compicated about it
+<siesel> KISS?
+<chillywilly> it's just a freakin' api
+<jcater> Keep It Simple, Stupid
+<jcater> a principle that says, if you CAN do it simply, then why overcomplicate
+<Mr_You> I prefer KISS and dislike over engineering ;-)
+<siesel> I thought KISS=Keep it super! Siesel
+<Mr_You> heh, nick with a slogan! ;-)
+<jcater> well, that too!
+<chillywilly> hey if I can undertsand it, it IS simple
+<chillywilly> I don't know what is so "complicated" about it
+<jcater> too many prerequisites to get started using it
+<chillywilly> how do you figure?
+<jcater> nevermind
+<chillywilly> that's like saying forms has too many prerquisites in forcing me to learn XML or something ;)
+<chillywilly> oh an python
+<chillywilly> s/an/and
+<chillywilly> etc.
+<jcater> sigh
+<jcater> nevermind chillywilly
+<chillywilly> why?
+<siesel> pooh, ....
+Action: siesel has read allmost 60% of odmg.txt ...
+gontran (~gontran@ip68-3-244-71.ph.ph.cox.net) joined #gnuenterprise.
+gontran (~gontran@ip68-3-244-71.ph.ph.cox.net) left irc: Client Quit
+<siesel> cw: I think defined in odmg.txt is a superset of the reinhards api.
+<siesel> cw: I think the api defined in odmg.txt is a superset of the reinhards api.
+<chillywilly> possibly, I;m not discounting his work at all ;), I was teasing
+<chillywilly> I plan to look at how to fit them together
+<siesel> Their is much good stuff in odmg.txt. f.e. I really like the transaction idea, and the spliting in objects and literals.
+<ajmitch> hello
+<siesel> hi ajmitch. breakfast time?
+<ajmitch> yeah ;)
+<siesel> cool.  I still have to wait some hours for breakfast... :(
+<ajmitch> i'm a few hours late for breakfast
+<siesel> cw: the only problem with odmg.txt is, that its too much stuff in one long text file. And its not quite clear how to implement the stuff.
+<ajmitch> chillywilly: managed to convince siesel yet?
+<siesel> so, if we could add some code, f.e. some example transaction code, to the example, it would be easier to understand for others, and we could decide if it makes sense or not.
+<ajmitch> yeah
+<ajmitch> could be a good idea to get something working
+<siesel> the way to an ODMG compatible GNU application server is long.  so let us first implement GEASv2 and then continue
+<ajmitch> implement GEASv2 0.0.1? ;)
+<Mr_You> bbl
+Action: Mr_You &
+Action: ajmitch sees the AI are coding again
+drochaid (~drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) left irc: Read error: 104 (Connection reset by peer)
+drochaid (~drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) joined #gnuenterprise.
+<chillywilly> well at least I know I am not crazy
+<ajmitch> yes you are
+<chillywilly> :'(
+<drochaid> am I crazy?
+<ajmitch> definitely
+<chillywilly> absolutely
+<chillywilly> certifiable
+<drochaid> oh good, I'd hate to think I was sane
+<ajmitch> it's a scary thought, being sane
+<drochaid> it is
+<drochaid> it would be enough to drive a sane man insane!!
+Action: ajmitch leaves for the real(so they say) world
+<drochaid> heh
+jamest (~jamest@fh-dialup-201016.flinthills.com) joined #gnuenterprise.
+<chillywilly> 8=}
+<chillywilly> 8-}
+^chewie (~chewie@flemingi.dsl.visi.com) left irc: "ircII EPIC4-1.1.2 -- Are we there yet?"
+<dneighbo> N  16 May  7 eToys.com            (18K) Kiddie Pools Starting at $19.99
+Action: dneighbo wonders if the pee comes included for free?
+<chillywilly> heheh
+<jcater> "Hey, j0hn. Wassup!  so, y0u a script kiddie like me yet?"
+<jcater> "Hell, no, man.... I'm a p00l kiddie... I pee in ppl's p00ls!"
+<chillywilly> boooo...
+Action: chillywilly hurls tomatoes at jcater
+Action: jcater likes tomatoes
+<chillywilly> did I mention they're rotten?
+<chillywilly> ;P
+<dneighbo> rolfmao
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "homebound"
+<chillywilly> what are you laughing at dneighbo?
+jcater (~jason@HubA-mcr-24-165-193-24.midsouth.rr.com) joined #gnuenterprise.
+Action: jamest is away: tank maint
+<chillywilly> wb jcater
+<jcater> thanks
+<jcater> tank maint?
+<jcater> is that your old 486 monstrosity?
+<dneighbo> i hate our lug list
+<dneighbo> thier answer to 90% of thigns is non free software
+<dneighbo> sigh
+<siesel> cw: do you like a docbook'ed odmg.txt?
+<siesel> l8r
+siesel (jan@dial-213-168-95-35.netcologne.de) left irc: "KVIrc 2.1.2-pre2 'Monolith'"
+<jamest> where are we at wrt to release?
+Action: jamest is back (gone 00:32:35)
+<jcater> well
+<jcater> jamest would probably know best
+<jcater> might want to ask hi....
+<jcater> oh, hi jamest
+<jamest> hi
+<jcater> well, the biggies iirc were gconfig support
+<jcater> derek's trigger troubles
+<jcater> which are probably a lack of understanding of the new way
+<jamest> i'd say if our development team were not so worthless then we'd be done by now
+<jcater> which implies better documentation
+<jamest> considering I don't recall the right way I'll cut him some slack :)
+<jcater> have we updated docs to reflect trigger support yet?
+<jamest> um
+<jcater> I don't recall
+<jamest> better ask jame....er
+<jamest> i don't recall
+<jcater> hey
+<jcater> that's my line
+<jamest> sigh
+<jamest> ask jcater
+<jamest> that's my line
+<dneighbo> i really think we need
+<jamest> sounds like we have release issues covers
+<jamest> jamest: ask jcater
+<dneighbo> prequery support added back in boer release if its not major
+<jamest> jcater: I dont recall
+<jcater> rofl
+<dneighbo> s/boer/before
+Action: dneighbo insertints 'total recal' disk to jcater's onboard memory
+<jcater> um
+<jcater> prequery support
+<dneighbo> wtf: general protection fault?
+<jcater> well
+<jcater> tjat'
+<jamest> old arnold flicks will only confuse him
+Action: dneighbo smacke jcater
+<dneighbo> hmmm
+<jcater> that's not just a bug fix
+Action: dneighbo calls AI bot support
+<dneighbo> darn line is busy
+<dneighbo> jcater: tecnically it is
+<dneighbo> as it used to work
+<dneighbo> so it being broken is a bug :)
+<jcater> well
+<jcater> last time it worked was one year ago this month
+<dneighbo> but as stated only if its not major
+<dneighbo> i dont want to hold a release for it
+<jamest> i don't recall (tm jcater) the issue
+<jcater> it's probably not major
+<jcater> but I can almost promise we'll introduce bugs by doing it :)
+<jamest> but prequery has to work or dropdowns wouldn't work today
+<dneighbo> jcater: ive been complaining about it for 7 months
+<jcater> prequery DOES work
+<dneighbo> so i was only 5 months slow in noticing it :)
+<jamest> jcater: did you hear something?
+<jcater> but it's not doing like it did last year
+<dneighbo> jcater: just not for ui :)
+<jcater> jamest: no?
+<jamest> neither did I
+<jamest> damn we're good
+<jamest> i'm looking at the sequence thing now
+<jcater> we will need to remove the
+<jcater> if os.environ['LOGNAME'] in ('dneighbo','derek'): self._prequerySupport = None
+<jcater> line
+<jcater> because that's buggy
+<jcater> we really need
+<jcater> if os.environ['HOSTNAME'] == 'latitude': self._prequerySupport = None
+<jcater> as we may attract other "derek"'s with the next release
+<ajmitch> ah
+<jamest> yeah
+<ajmitch> that's a good idea
+<jamest> man that's all done with ordnals and lambadas though isn't it 
+<jamest> so it'll be a pain
+<jamest> sigh
+<ajmitch> what do you have in place for chillywilly?
+<jamest> can you can care of that part jcater
+<jcater> if os.environ['LOGNAME'] == 'chillywilly': 
+<jcater>   print "Oh my gawd, hell froze over and chilly's running our programs!"
+<jamest> rofl
+<jcater>   raise "Unexpected Fault"
+<jamest> oooo
+<jamest> typo
+<jcater> err
+<jcater>   raise _("Unexpected Fault")
+<ajmitch> he uses 'danielb' as username
+<jamest> raise _("TotallyUnexpected Fault")
+<jamest> this sucks
+<jamest> i've lost my autofillBySequence test form
+<jamest> and I don't recall how it works :)
+Action: jamest jumps into .py files
+<dneighbo> rofl
+<jcater> well
+<dneighbo> to the things
+<jcater> autoFillBySequence is overkill imho
+Action: dneighbo is nice and submits patches
+<jcater> as you should simply be able to create a block-level "pre-insert"
+<jamest> with 
+<dneighbo> a. its ['HOSTNAME'] == 'latitude' OR ['HOSTNAME'] == 'aegagrus'
+<jamest> entryname.autofillBySequence('sequencename')
+<jamest> by the looks of the code
+<dneighbo> b. definitely dneighbo/derek wont work as i use 'laurie' account way to much
+<dneighbo> jaemst: that is what you told me :)
+<jcater> and have self.myfield = dtsMine.extensions.getSequence('sequenceName')
+<jamest> ?????
+<dneighbo> jcater: hmmm
+<jcater> but I think jamest is rught
+<dneighbo> perhaps this is why my form doesnt work :)
+<jamest> that's old school jcater
+<dneighbo> ah
+<dneighbo> i ahve autofillbySequence
+<dneighbo> and it no working
+<jcater> jamest: no, it uses my l33t pre-insert
+<dneighbo> anyhow will be back later
+dneighbo (~dneighbo@tmp-200253.flinthills.com) left irc: "[BX] *PHEAR MY BITCHX-NESS!* BOW TO ME!"
+<jcater> so it's a combination of old-skewl and l33t new code
+<jcater> he really should find a better solution than bitchx
+<chillywilly> hardy har har
+<chillywilly> I am just a wannabe GNUer
+<chillywilly> some day when I grow up I'll GNUe
+<chillywilly> some day...
+Action: chillywilly weeps
+<ajmitch> some day chillywilly
+<chillywilly> how about today?
+<chillywilly> :)
+<chillywilly> muwahahahahaha
+<ajmitch> go on then chillywilly, hack away
+<chillywilly> this fuckin templated i/o shit is giving me a headache I think
+<ajmitch> watch yer language, mr chillywilly sir :P
+<chillywilly> I keep debating back and forth whther I want to make my class a template or not
+<chillywilly> c++ licks balls
+<chillywilly> I suppose if I make it a template I will support both char and wchar....yipeee
+<chillywilly> screw this, time for a GNUe break ;)
+dres__ (~dres@mail.lewismoss.org) left irc: Read error: 104 (Connection reset by peer)
+dres (~dres@mail.lewismoss.org) joined #gnuenterprise.
+ToyMan (~stuq@c5300-4-ip7.albany.thebiz.net) joined #gnuenterprise.
+<chillywilly> hey when is the new forms, designer, etc. release? ;)
+<jamest> be on the lookout for airborne pork
+<chillywilly> heheh
+<jamest> we're trying
+<jamest> honest
+Action: jamest is stomping bugs now
+<chillywilly> yea, I see
+<jamest> ?
+<chillywilly> freakin' subversions bitch slapped me
+<chillywilly> commit-gnue@gnu.org ;)
+<chillywilly> that's how I see ;)
+<ajmitch> heh
+<ajmitch> chillywilly: haven't seen much of you on that list lately
+<chillywilly> well that's going to change tonight ;)
+<ajmitch> cool
+Action: ajmitch has to head off to the bank
+<chillywilly> oh crud I am midssing this show
+<chillywilly> bbiab
+rdean (rdean@chcgil2-ar2-052-050.chcgil2.dsl-verizon.net) joined #gnuenterprise.
+ToyMan (~stuq@c5300-4-ip7.albany.thebiz.net) left irc: "Client Exiting"
+<chillywilly> back
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+dsmith (~dsmith@p254.usnyc7.stsn.com) joined #gnuenterprise.
+jamest (~jamest@fh-dialup-201016.flinthills.com) left irc: "[x]chat"
+jcater (~jason@HubA-mcr-24-165-193-24.midsouth.rr.com) left irc: "Client Exiting"
+dsmith (~dsmith@p254.usnyc7.stsn.com) left irc: "later.."
+<chillywilly> anyone home?
+<chillywilly> cool mxdatetime has classes for ODMG
+rdean (rdean@chcgil2-ar2-052-050.chcgil2.dsl-verizon.net) left irc: "Client Exiting"
+drochaid (~drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) left irc: Read error: 104 (Connection reset by peer)
+drochaid (~drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) joined #gnuenterprise.
+Maniac (~User@h24-82-132-209.wp.shawcable.net) joined #gnuenterprise.
+gontran (~gontran@ip68-3-244-71.ph.ph.cox.net) joined #gnuenterprise.
+chillywilly (~danielb@mke-65-29-142-117.wi.rr.com) left irc: "Philosophers and plow men, each must know his part, to sow a new mentality closer to the heart..."
+gontran (~gontran@ip68-3-244-71.ph.ph.cox.net) left irc: Read error: 104 (Connection reset by peer)
+gontran (~gontran@ip68-3-244-71.ph.ph.cox.net) joined #gnuenterprise.
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) left #gnuenterprise ("Client Exiting").
+--- Wed May  8 2002

@@ -1,0 +1,32 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.26May2003" author="Peter Sullivan" contact="mailto:psu@burdonvale.co.uk" enddate="26 May 2003 04:00:00 -0800" startdate="26 May 2003 04:00:00 -0800" subject="[IRC] 26 May 2003" title="Default RPC type for Application Server">
+
+<topic>Application Server</topic>
+
+<p>Reinhard M&#252;ller (reinhard) noted that, in the Application 
+Server code, <quote who="Reinhard M&#252;ller">currently, the default 
+for rpctype is "pw_xmlrpc" - could we change that to "xmlrpc"?</quote>
+This was the normal Remote Procedure Call (RPC) method in the Debian 
+stable distribution of GNU/Linux. He noted that this defult would only 
+apply where <quote who="Reinhard M&#252;ller">no config file exists (or 
+the option is not mentioned in config file)</quote>. Jan Ischebeck (siesel) 
+recommended leaving <quote who="Jan Ischebeck">the pw_xmlrpc driver as 
+default option, because its the only one working on windows in server 
+mode and its included in the default python distro</quote> - 
+<quote who="Jan Ischebeck">new in python 2.2 ;)</quote>. Reinhard 
+noted he was currently using python 2.1 - he was torn between having 
+a default that did not work on Debian stable and having a default that 
+did not work on Microsoft Windows. Jan suggested 
+<quote who="Jan Ischebeck">what about a fall back list</quote>? 
+Reinhard was not sure how this would work. Jan said that this would be 
+similar to the fall back mechanism already in the database drivers.
+Jason Cater (jcater) explained <quote who="Jason Cater">0.5.0 introduced 
+a fallback mechanism - if you say provider=oracle it tries the</quote>
+various Oracle database drivers in turn - <quote who="Jason Cater">likewise 
+w/postgres, etc - it may not be working perfectly as this was the first 
+release</quote>. Reinhard thought it sounded like this could be used 
+<quote who="Reinhard M&#252;ller">for rpc driver fallback</quote> as 
+well.</p>
+
+</section>
+
+

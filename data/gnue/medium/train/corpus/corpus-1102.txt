@@ -1,0 +1,322 @@
+chillywilly (danielb@CPE-24-167-197-5.wi.rr.com) left irc: "booting out of knoppix and into regular debian unstable"
+chillywilly (danielb@CPE-24-167-197-5.wi.rr.com) joined #gnuenterprise.
+Vee (~vin@c66.169.136.41.ts46v-07.otn-c1.ftwrth.tx.charter.com) joined #gnuenterprise.
+Vee (~vin@c66.169.136.41.ts46v-07.otn-c1.ftwrth.tx.charter.com) left irc: Remote closed the connection
+SachaS (~Sacha@dialup-196-139.wasp.net.au) left irc: "Client exiting"
+reinhard (~reinhard@M1255P019.adsl.highway.telekom.at) joined #gnuenterprise.
+reinhard_ (~reinhard@M1255P019.adsl.highway.telekom.at) joined #gnuenterprise.
+reinhard (~reinhard@M1255P019.adsl.highway.telekom.at) left irc: Read error: 111 (Connection refused)
+someon (~some1@h24-81-151-173.vf.shawcable.net) left irc: Remote closed the connection
+zoyd (zoyd@dialpool-210-214-66-29.maa.sify.net) joined #gnuenterprise.
+<zoyd> hi
+<wt-afk> hello zoyd
+Nick change: wt-afk -> wt
+<zoyd> after about 1 and half year i'll be evaluating GNUe in the next few days. i'm excited already.
+<wt> what you been doing for a year and a 1/2 ?
+<zoyd> wt: toying with the semantic web.
+<wt> semantic web ? is that another app ?
+<zoyd> it's a concept that suggests the use of standardised markup formats for use in apps.
+<zoyd> more on the line of web services.
+<ajmitch> hi
+<wt> sounds cool
+<zoyd> hi ajmitch
+<ajmitch> zoyd: have I seen you in #dotgnu?
+<zoyd> ajmitch: yup :)
+Action: ajmitch thought so :)
+<zoyd> wt: the idea is simply to use RDF/XML, which will help to rope together apps.
+Action: zoyd thinks he has to look at GNUe Common more closely
+<zoyd> I believe if all GNUe Packages could use HTTP(REST'ically) as it's underlying app. protocol, their design could be significantly simplified.
+<ajmitch> I don't see how it would help
+<zoyd> I see the current arch. seems to be inclined towards RPC/SOAP.
+<zoyd> that is if i'm not wrong.
+<ajmitch> for communication with the appserver & a seprate reports server, I guess
+<zoyd> GNUe client interfaces and tools would actually be HTTP clients that request and understand a .gfd and other markups.
+<zoyd> SOAP complicates matters w/o any sufficient advantage.
+Action: ajmitch hasn't seen SOAP used in GNUe yet
+<zoyd> if we forget about a web browser and HTML, then it's easy to imagine such an arch.
+<zoyd> currently, how are .gfd's served?
+<ajmitch> mainly read from the local disk
+<ajmitch> but can be loaded from a webserver 
+Action: zoyd looks at the GEAS diagram
+<ajmitch> if it's called GEAS, it is probably very out of date
+<zoyd> oh.
+<zoyd> ajmitch: where is it then?
+Action: ajmitch doesn't know
+<ajmitch> but the server called geas is an old design
+<zoyd> hmm
+<zoyd> anyway, i'll get back when i'm actually playing with it. the website doesn't seem to help much.
+Nick change: reinhard_ -> reinhard
+<ajmitch> hi reinhard
+Nick change: wt -> wt-afk
+<zoyd> bbl
+zoyd (zoyd@dialpool-210-214-66-29.maa.sify.net) left #gnuenterprise.
+Sacha (~Sacha@dialup-196-139.wasp.net.au) joined #gnuenterprise.
+ToyMan (~stuq@170-215-241-148.bras01.mdl.ny.frontiernet.net) joined #gnuenterprise.
+Sacha (~Sacha@dialup-196-139.wasp.net.au) left irc: "Client exiting"
+R45 (~rastabeen@cuscon6846.tstt.net.tt) joined #gnuenterprise.
+Sacha (~Sacha@dialup-196-147.wasp.net.au) joined #gnuenterprise.
+dimas (~dimas@195.218.177.46) left irc: Read error: 60 (Operation timed out)
+dimas (~dimas@195.218.177.46) joined #gnuenterprise.
+ToyMan (~stuq@170-215-241-148.bras01.mdl.ny.frontiernet.net) left irc: "Client Exiting"
+lxf (~agus_tea@202.73.120.115) joined #gnuenterprise.
+Sacha (~Sacha@dialup-196-147.wasp.net.au) left irc: Killed (NickServ (Nickname Enforcement))
+Sacha (~Sacha@dialup-196-147.wasp.net.au) joined #gnuenterprise.
+Sacha (~Sacha@dialup-196-147.wasp.net.au) left irc: Killed (NickServ (Nickname Enforcement))
+SachaS (~Sacha@dialup-196-147.wasp.net.au) joined #gnuenterprise.
+jamest (~jamest@gw.math.ksu.edu) joined #gnuenterprise.
+<chillywilly> hey youse guys ever look at twisted?
+<chillywilly> http://www-106.ibm.com/developerworks/linux/library/l-twist1.html?ca=dgr-lnxw02TwistedNet
+<wt-afk> no not me chillywilly
+Nick change: wt-afk -> wt-sleep
+<wt-sleep> night all
+<wt-sleep> afk
+<chillywilly> knight
+<chillywilly> looks cool, I wonder what license it's under
+lxf (~agus_tea@202.73.120.115) left irc: Connection timed out
+jamest (~jamest@gw.math.ksu.edu) got netsplit.
+jamest (~jamest@gw.math.ksu.edu) got lost in the net-split.
+dimas (~dimas@195.218.177.46) left irc: "Вышел из XChat"
+jamest (~jamest@gw.math.ksu.edu) joined #gnuenterprise.
+fishfart (~fishfart@cs6669210-53.austin.rr.com) joined #gnuenterprise.
+<reinhard> fishfart: nice nick :)
+<fishfart> thanks, my momma gave it to me. :)
+dcmwai (~dcmwai@219.95.58.49) joined #gnuenterprise.
+<jcater> hey dcmwai
+<dcmwai> hello
+<dcmwai> Oh damn.. mozilla .. <tab><tab> not working :(
+<dcmwai> jcater: I see there are alot of changes on gnue...
+<dcmwai> I'm about to get the last part of my inventory done and it is damn.... damn time taking when you have to get something out of nothing at all. (and with restriction some more)
+<dcmwai> jcater, any good news?
+<jcater> um
+<jcater> I've ported your database schema to our XML format
+<jcater> which means we can spit out mysql, interbase, and postgresql code
+<jcater> i.e., create table scripts
+<dcmwai> oh good...
+<dcmwai> Where can i have a look on it..
+<dcmwai> jcater, mind if I ask the cvs setup function is not complete yes on all modules?
+<jcater> which ones?
+<dcmwai> appserv and designer didn't have cvs setup
+<jcater> http://savannah.gnu.org/cgi-bin/viewcvs/gnue-sb/arias/schema/schema.gsd?rev=1.5&content-type=text/vnd.viewcvs-markup
+<jcater> http://savannah.gnu.org/cgi-bin/viewcvs/gnue-sb/arias/schema/PostgreSQL.sql?rev=1.5&content-type=text/vnd.viewcvs-markup
+<jcater> is the resulting postgres code
+<jcater> I created a temporary repository as I didn't have access to yours
+<jcater> and I needed to work on this at home and at the office
+<dcmwai> jcater, Give me your username at sourceforge..
+<jcater> jcater
+<dcmwai> I'll give you full access
+<dcmwai> hum... the RH9 I'm using turn out to be wierd... :(
+<dcmwai> hum something wrong :( bad news.. :9
+jcater (~jcater@cpe-066-061-083-220.midsouth.rr.com) left irc: "off to work"
+dcmwai (~dcmwai@219.95.58.49) left irc: Read error: 60 (Operation timed out)
+dcmwai (~dcmwai@219.94.82.134) joined #gnuenterprise.
+<dcmwai> damn... disc again... I hate that
+reinhard_ (~reinhard@M1255P019.adsl.highway.telekom.at) joined #gnuenterprise.
+dcmwai (~dcmwai@219.94.82.134) left irc: Read error: 54 (Connection reset by peer)
+reinhard (~reinhard@M1255P019.adsl.highway.telekom.at) left irc: Read error: 111 (Connection refused)
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+Action: Vee2d2 is finishing setting up his first ltsp workstation
+<fishfart> Vee2d2: I use ltsp for POS terminals.  They are wonderful.   I found that I had issues with the XFS filesystem and file-locking. ext3 fs fixed that though. 
+<Vee2d2> I'm using ext3 here
+<fishfart> Nice to have local hardware access for a green-screen app. 
+dcmwai (~dcmwai@219.94.80.118) joined #gnuenterprise.
+havoc (~havoc@CPE-65-31-171-97.wi.rr.com) joined #gnuenterprise.
+dcmwai (~dcmwai@219.94.80.118) left irc: Read error: 104 (Connection reset by peer)
+dcmwai (~dcmwai@219.95.59.180) joined #gnuenterprise.
+dimas (~dimas@195.218.177.46) joined #gnuenterprise.
+jbailey (~jbailey@atlas.fundserv.com) joined #gnuenterprise.
+lxf (~agus_tea@202.73.120.115) joined #gnuenterprise.
+lxf (~agus_tea@202.73.120.115) left irc: 
+dcmwai (~dcmwai@219.95.59.180) left irc: "ChatZilla 0.8.31 [Mozilla rv:1.4/20030611]"
+fishfart (~fishfart@cs6669210-53.austin.rr.com) left irc: Read error: 54 (Connection reset by peer)
+Action: jbailey is away: Errands.
+Action: jbailey is back (gone 00:41:42)
+Nick change: R45 -> Draegon1s
+Nick change: Draegon1s -> R45
+dimas (~dimas@195.218.177.46) left irc: "Вышел из XChat"
+siesel (jan@xdsl-195-14-204-71.netcologne.de) joined #gnuenterprise.
+steveb (~steveb@202-0-63-186.adsl.paradise.net.nz) left irc: Read error: 54 (Connection reset by peer)
+siesel (jan@xdsl-195-14-204-71.netcologne.de) left irc: Client Quit
+siesel (jan@xdsl-195-14-204-71.netcologne.de) joined #gnuenterprise.
+<siesel> hi :)
+<Vee2d2> howdy!
+<siesel> seems like gnue-sb/arias is improving with speed
+Action: Vee2d2 hopes so
+<siesel> hoho :)
+Action: siesel converted old cvs tree to new one with: sed -i  "s/^\(gnue\/\)\(.*\)/gnue-\2/" */...*/CVS/Repository
+Nick change: reinhard_ -> reinhard
+<reinhard> isn't sed a great program?
+<siesel> yes, its great. 
+<jbailey> Ah, I didn't know about sed -i.  Is that a GNU extension?
+<siesel> dunno, but it changes files on the fly, -> quite useful
+<reinhard> oh uh
+<reinhard> cool option
+<reinhard> i would have needed it like 50 times before
+<jcater> wow
+<reinhard> why don't i read manpages !
+<jcater> I do a for loop almost daily
+<jcater> that simulates -i
+<jcater> siesel: well, you've made at least 3 people's days better :)
+<jbailey> =)
+<Vee2d2> I used sed -i in my script to convert my php files to html
+<jbailey> Ouch.
+<jbailey> I usually use the commnad line php client and just do php -qC foo.php >foo.html
+<reinhard> sed 3.02 doesn't seem to know -i option :(
+<reinhard> siesel: you use debian unstable?
+<siesel> yes, I used 4.07
+<reinhard> ok
+<jbailey> ah, okay.  So it probably is a new GNU extension.
+<jbailey> Nice, though.
+<reinhard> yes. good idea
+<reinhard> btw found a quite interesting shell script:
+<reinhard> while ping -c 1 $1; do sleep 1; done; echo "Alarm."
+<reinhard> this script violates 8 (eight) patent claims of european patents
+<havoc> WTF?
+<reinhard> the patent is about checking whether a machine is up with periodic network requests
+<reinhard> if the machine doesn't answer the ping, then it is down and alarm starts
+<reinhard> patent number EP0850441
+<havoc> geez
+<havoc> and I thought the USPTO was out of control
+Action: reinhard is currently busy fighting software patents in europe
+<reinhard> havoc: funny thing is software patents are not allowed in europe
+<havoc> just more prood that idiocy knows no cultural or political borders
+<havoc> proof
+<reinhard> however we have about 30000 software patents currently
+<jcater> proof? or greed?
+<reinhard> where the patent office simply didn't recognize that it's actually about software
+<jcater> I think your sentence fits well if s/proof/greed/
+<havoc> reinhard: nice to see you have your fair share of dumbasses in the EU too ;)
+<havoc> jcater: yes, greed is the root of the vast majority of all our problems
+<siesel> reinhard: how do you fight them ? I just know the FFII
+<reinhard> currently, we do a DDOS attack on the austrian MEP's
+<reinhard> that is
+<reinhard> we had an email campaign where we asked people (business people)
+<reinhard> to contact any member of the eu parliament of their choice
+<reinhard> and tell them that they should vote against software patents
+<siesel> cool.
+<reinhard> austria has about 15 members in the eu parliament
+<reinhard> we got the info that some of them got about 20 mails per day
+<reinhard> for over a week now
+<reinhard> so they will start thinking about the issue
+<reinhard> the main problem is that most MEP's aren't aware of the issue at all
+<reinhard> they just would do what others tell them
+<siesel> great, no wonder that Arlene McCarthy is postponig the issue again.
+<reinhard> but now they start to make up their own opinion
+<reinhard> we had our first victory already
+<siesel> what kind of?
+<reinhard> because the vote was originally planned for june 30
+<reinhard> and now it is in september
+<reinhard> the vote on june 30 would have been pro patents
+<siesel> yes, thats what I meant with "postponing"
+<reinhard> because it would have been too short to change their minds
+<reinhard> mccarthy was pressing very much _for_ june 30
+<reinhard> (that is today actually)
+<reinhard> but due to our (and others) information campaign many MEP's said
+<reinhard> "we want to think it over again"
+<reinhard> you can look at our page at http://www.ffs.or.at/projekte/anti-swpat/
+<reinhard> of course we work together with the FFII
+<chillywilly> siesel: you ever looj at the twisted python framework?
+<chillywilly> look*
+<siesel> chillywilly: I did, but from a eagles perspective ;)
+<chillywilly> so, briefly then?
+<siesel> yes, but I can remeber that it had any outstanding feature
+<siesel> why do you ask? what do you like about it? where could we need it for?
+<chillywilly> I like the fact that it is asynchronous non0blocking I/O and that is uses some interesting design patterns like Reactor
+<chillywilly> non-blocking
+<chillywilly> could make a nice server base for any type of networking/app server
+<chillywilly> but I haven't looked at its license
+Action: siesel is taking a second look
+ajmitch (~ajmitch@wlg1-port47.jetstart.maxnet.co.nz) got netsplit.
+ajmitch (~ajmitch@wlg1-port47.jetstart.maxnet.co.nz) returned to #gnuenterprise.
+<jamest> if anyone needs mozilla1.4 for win32
+<jamest> http://www.math.ksu.edu/~jamest/downloads/
+<jamest> linux sea there as well
+<chillywilly> sea?
+<jamest> self extractive archive
+<chillywilly> oh
+<chillywilly> what's the point?
+<jamest> i need moz for windows and figured i'd share since /. was nice enough to DoS them
+<chillywilly> if it's not in sid yet it's not worth getting ;)
+<jamest> i didn't need the linux one, only the windows one
+<jamest> unless someone is nice enough to port konqueror to windows
+<chillywilly> nope
+<jcater> yip
+<jcater> it's called Knoppix
+<jcater> =)
+<jamest> :)
+<jamest> anyone using redhat9?
+<chillywilly> nope
+<chillywilly> this is a dead-cat free zone
+<Vee2d2> jcater: you have sound working on any of your ltsp rigs?
+Action: Vee2d2 has bruise marks on his forehead
+<Vee2d2> for some reason when using the Gnome session in gdm, /etc/profile never gets sourced.. so I changed it to source it explicitly.. but even still.. when I log in with a client and change the volume on the panel, it changes the volume on my server (this machine) too.. =/ using esd.. if I try something like esdplay -s workstation:16001 somefile.wav it acts like it plays it but no sound.. 
+Action: Vee2d2 ponders trying nasd
+<jcater> NOPEW
+<jcater> err
+<jcater> nope
+<jcater> never tried sound
+<jcater> I've seen lots of discussion about doing networked sound in their mailing lists, though
+<Vee2d2> yea, that's what I'm doing now is poking through the archives.. 
+<Vee2d2> oh no I'm not.. I'm poking through the gnome archives.. heh.. 
+chillywilly (danielb@CPE-24-167-197-5.wi.rr.com) left irc: "leaving"
+reinhard (~reinhard@M1255P019.adsl.highway.telekom.at) left irc: "No problem is so interesting that you can't just walk away from it"
+jamest (~jamest@gw.math.ksu.edu) left irc: "Client exiting"
+chillywilly (danielb@CPE-24-167-197-5.wi.rr.com) joined #gnuenterprise.
+siesel (jan@xdsl-195-14-204-71.netcologne.de) left irc: Remote closed the connection
+jamest (~jamest@adsl-64-216-107-90.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+Action: jbailey is away: food.
+R45 (~rastabeen@cuscon6846.tstt.net.tt) left irc: "ta ta"
+dsmith (ujsj0t2ejm@oh-strongsvillecadent1-1d-165.clvhoh.adelphia.net) joined #gnuenterprise.
+havoc (~havoc@CPE-65-31-171-97.wi.rr.com) left irc: Read error: 104 (Connection reset by peer)
+havoc (~havoc@CPE-65-31-171-97.wi.rr.com) joined #gnuenterprise.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "home"
+SachaS (~Sacha@dialup-196-147.wasp.net.au) left irc: Read error: 110 (Connection timed out)
+R45 (~rastabeen@cuscon3729.tstt.net.tt) joined #gnuenterprise.
+Action: jbailey is back (gone 01:26:56)
+<chillywilly> wb
+<jbailey> tx
+<dsmith> chillywilly: Howdy
+<chillywilly> hi
+Nick change: wt-sleep -> wt-afk
+jbailey (~jbailey@atlas.fundserv.com) left irc: "Client exiting"
+George (~gsotiroff@adsl-68-72-98-17.dsl.chcgil.ameritech.net) joined #gnuenterprise.
+<George> hello
+<George> anybodyhome?
+<dsmith> Nope
+<George> chuckle :-)
+<George> Off topic okay?
+<George> Okay Wayne,  what brought you into GNUe?
+<chillywilly> hi George 
+<George> chilly what is your interest in GNUe?
+<chillywilly> the irc channel is interesting? ;)
+<chillywilly> haha
+<dsmith> heh
+<chillywilly> oh and I suppose the software is pretty cool too
+<George> Nope
+<chillywilly> Nope?
+<chillywilly> don't make me kick your ass
+<chillywilly> ;P
+<George> :P
+jamest (~jamest@adsl-64-216-107-90.dsl.tpkaks.swbell.net) left irc: "Client Exiting"
+<George> 8-P
+<chillywilly> brb
+chillywilly (danielb@CPE-24-167-197-5.wi.rr.com) left irc: "leaving"
+<George> you got a coupla more logins to go....
+chillywilly (danielb@CPE-24-167-197-5.wi.rr.com) joined #gnuenterprise.
+<George> 9, 8, 7, 6, 5, 4, 3, 2, .....
+George (~gsotiroff@adsl-68-72-98-17.dsl.chcgil.ameritech.net) left #gnuenterprise.
+George (~gsotiroff@adsl-68-72-98-17.dsl.chcgil.ameritech.net) joined #gnuenterprise.
+George (~gsotiroff@adsl-68-72-98-17.dsl.chcgil.ameritech.net) left #gnuenterprise.
+George (~gsotiroff@adsl-68-72-98-17.dsl.chcgil.ameritech.net) joined #gnuenterprise.
+George (~gsotiroff@adsl-68-72-98-17.dsl.chcgil.ameritech.net) left #gnuenterprise.
+<R45> 0_0
+Nick change: wt-afk -> fwt
+Nick change: fwt -> wt
+<wt> how much of a dip shit is George ? asking someone with a nick like wt-afk a question?
+R45 (~rastabeen@cuscon3729.tstt.net.tt) left irc: 
+<wt> what was it that you were saying about 'idiocy' havoc ?
+<wt> =)
+<havoc> heh, oh well
+<wt> =) i love that einstein quote, that goes something like:
+<wt> There are only two things that are inifinite, the universe and human stupidity and the former i'm not certain about.
+<wt> haha busts me up
+--- Tue Jul  1 2003

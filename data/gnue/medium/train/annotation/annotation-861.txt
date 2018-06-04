@@ -1,0 +1,44 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.2006-06-28" author="Peter Sullivan" contact="mailto:psu@burdonvale.co.uk" enddate="29 Jun 2006 12:00:00 -0800" startdate="28 Jun 2006 12:00:00 -0800" subject="[IRC] 28 Jun 2006" title="Problem with dropdowns validation fixed">
+
+<topic>Forms</topic>
+
+<p>Reinhard M&#252;ller (reinhard) reported a problem with 
+<quote who="Reinhard M&#252;ller">dropdowns (or other entries with 
+a list of allowed values)</quote> - 
+<quote who="Reinhard M&#252;ller">currently when a wrong value is 
+entered, the complete entry is deleted and the field is set back 
+to empty - and the cursor moves out of the entry - and no error 
+message is displayed. I consider this a bug and would think the 
+correct behaviour would be - display error message in status line, 
+beep, leave the input as it was (so I can just correct my typo) 
+and leave the focus in the entry</quote>. This was agreed.</p>
+
+<p>Later, Reinhard reported an 
+<quote who="Reinhard M&#252;ller">interesting problem - 
+I've managed to block tabbing out of a control as long as the 
+entered value is invalid - so when you hit tab or enter gnue-forms 
+just beeps and shows an error message. However I seem to have no 
+means to block moving the focus to another widget with the mouse - 
+so you can still click out of a control even when the value is 
+invalid - does anybody have any idea about this?</quote> Later, 
+he thought he had <quote who="Reinhard M&#252;ller">found a solution 
+that behaves fairly reasonable - but I guess it needs testing on 
+different</quote> user interfaces.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.2006-06-28">The 
+next day</a>, Johannes Vetter did some testing of this fix on other user 
+interfaces. He reported that using the wx 2.6 user interface driver 
+in GNU/Linux seemed to work -  <quote who="Johannes Vetter">clicking 
+into another entry moves the UI-focus to that entry, but keeps GF-focus 
+in the dropdown. entering new text goes still into the dropdown - the 
+errormessage appears in the statusline.</quote> But the same 
+form using the native Microsoft Windows 32 user interface driver was not 
+working as intended - <quote who="Johannes Vetter">On win32, clicking 
+into another entry moves both ui- and gf-focus into the new field, no 
+message, no error. the value of the dropdown is the first one 
+which was available depending on my input</quote>. However, using 
+the wx 2.6 user interface driver in Microsoft Windows worked fine.</p>
+
+</section>
+
+

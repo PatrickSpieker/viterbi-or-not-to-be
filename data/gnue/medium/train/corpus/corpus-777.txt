@@ -1,0 +1,570 @@
+<jemfinch> functor% cd src/my/python/supybot
+<jemfinch> functor% ls
+<jemfinch> ACKS  CHANGELOG  README  conf  docs      logs  others   sandbox  src   tools
+<jemfinch> BUGS  LICENSE    TODO    data  examples  old   plugins  scripts  test
+<jemfinch> functor% grep eval **/*.py | wc -l
+<jemfinch>       35
+<jemfinch> functor%
+Action: derek was thinking jcater showed me a way to do what you want w/o using eval
+<derek> he is rather crafty with the snake
+<wtg> =) 
+Action: jcater is back (gone 01:05:44)
+<jcater> locals()[variable] = 'some value'
+<jcater> (or globals() if it's in the global namespace)
+<jemfinch> ah, that should also work.
+Action: derek is away: sleeping
+chillywilly (danielb@mke-24-167-199-83.wi.rr.com) left irc: Read error: 54 (Connection reset by peer)
+jcater (~jason@cpe-066-061-083-220.midsouth.rr.com) left irc: "Client Exiting"
+Action: Vee2d2 goes to bed
+chillywilly (danielb@mke-24-167-199-83.wi.rr.com) joined #gnuenterprise.
+reinhard (~reinhard@M1271P030.adsl.highway.telekom.at) joined #gnuenterprise.
+chillywilly (danielb@mke-24-167-199-83.wi.rr.com) left irc: "lets see if X likes me..."
+johannes (~johannes@M691P030.adsl.highway.telekom.at) joined #gnuenterprise.
+chillywilly (danielb@mke-24-167-199-83.wi.rr.com) joined #gnuenterprise.
+alex_k (~alex@195.54.196.227) joined #gnuenterprise.
+jemfinch (~jfincher@ts23-5.homenet.ohio-state.edu) left irc: Read error: 104 (Connection reset by peer)
+jemfinch (~jfincher@ts22-6.homenet.ohio-state.edu) joined #gnuenterprise.
+suny (~zll_sy@210.83.202.175) left #gnuenterprise.
+lekma (~lekma@node1142c.a2000.nl) joined #gnuenterprise.
+alex_k (~alex@195.54.196.227) left irc: "Client Exiting"
+jemfinch (~jfincher@ts22-6.homenet.ohio-state.edu) got netsplit.
+Isomer (dahoose@port-210-54-58-151.jet.net.nz) got netsplit.
+Arturas (~arturas@gsk.vtu.lt) joined #gnuenterprise.
+jemfinch (~jfincher@ts22-6.homenet.ohio-state.edu) returned to #gnuenterprise.
+Isomer (dahoose@port-210-54-58-151.jet.net.nz) returned to #gnuenterprise.
+<Arturas> Hello
+Nick change: SachaS -> SachaS_away
+Arturas (~arturas@gsk.vtu.lt) left irc: "Bye :)"
+johannes_ (~johannes@M691P030.adsl.highway.telekom.at) joined #gnuenterprise.
+johannes (~johannes@M691P030.adsl.highway.telekom.at) left irc: Read error: 111 (Connection refused)
+ToyMan (~stuq@smtp.dstoys.com) joined #gnuenterprise.
+Arturas (~arturas@gsk.vtu.lt) joined #gnuenterprise.
+lekma (~lekma@node1142c.a2000.nl) left irc: Read error: 110 (Connection timed out)
+ninja (rossg@203.146.54.179) joined #gnuenterprise.
+ninja (rossg@203.146.54.179) left irc: Client Quit
+jamest (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+jemfinch (~jfincher@ts22-6.homenet.ohio-state.edu) left irc: Read error: 104 (Connection reset by peer)
+jemfinch (~jfincher@ts23-14.homenet.ohio-state.edu) joined #gnuenterprise.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: "Client Exiting"
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+siesel (jan@xdsl-213-168-110-225.netcologne.de) joined #gnuenterprise.
+<siesel> hi all
+<jcater> howdy
+<siesel> how are you? 
+<jcater> overworked
+<jcater> underpaid
+<jcater> and hungry
+<jcater> same old thing :)
+<siesel> sounds familiar
+<siesel> btw. do you know why cvs is SOOOOO slow?
+<jcater> yes
+<jcater> some project on savannah hosted a p2p mldonkey server file
+<jcater> so in a short period of time
+<jcater> a multitude of distributed p2p clients have been pounding on savannah
+<jcater> savannah is blocking that traffic, but the traffic is still taking up bandwidth before being dropped
+<jcater> :(
+<jcater> someone should take that project leader out back and cane him
+<jcater> and hurt him really badles
+<jcater> badly
+Action: siesel thinks of using a 2000 kg trout 
+<siesel> to slap him a bit
+<siesel> where would you put an LDAP dbdriver? common/datasource/driver/ldap 
+<siesel> or common/datasource/driver/special/ldap
+<jcater> the first
+<jcater> special/ is for stuff that's internal to gnue that the user wouldn't explicitly choose
+<jcater> or such
+<siesel> ok. I will put it at common/datasource/driver/ldap. 
+Action: siesel hopes to get it working till the weekend
+<jcater> that is cool
+<jcater> an LDAP driver is something I've been dreaming of
+<jcater> as I could use it too
+<siesel> I will use it to manage samba-tng accounts in OpenLDAP. 
+<siesel> for which purpose do you want to use it? 
+<siesel>  /want/could/
+<Vee2d2> sign reads: "If you're smoking, you better be on fire!"
+<jcater> siesel: well, for one long term thing, I have all my contact information in an Oracle database
+<jcater> I'd like for our LDAP clients (email, etc) to be able to access that info
+<jcater> so to transfer that data would be nice
+Action: jcater forgets the other stuff... but I remember thinking "boy, an LDAP driver would make this easier"
+dsmith (~dsmith@borg.altus.cc) joined #gnuenterprise.
+jamest (~jamest@hobbes.math.ksu.edu) left irc: Remote closed the connection
+Arturas (~arturas@gsk.vtu.lt) left irc: "Bye :)"
+jamest (~jamest@leibniz.math.ksu.edu) joined #gnuenterprise.
+fixe (~fixe@dsl093-081-253.chi2.dsl.speakeasy.net) joined #gnuenterprise.
+chillywilly (danielb@mke-24-167-199-83.wi.rr.com) left irc: "Lost terminal"
+vin_ (~vin@c66.169.136.41.ts46v-07.otn-c1.ftwrth.tx.charter.com) joined #gnuenterprise.
+Vee2d2 (~vin@c66.169.136.41.ts46v-07.otn-c1.ftwrth.tx.charter.com) left irc: Read error: 54 (Connection reset by peer)
+Nick change: vin_ -> Vee2d2
+chillywilly (~danielb@mke-65-31-168-36.wi.rr.com) joined #gnuenterprise.
+jemfinch (~jfincher@ts23-14.homenet.ohio-state.edu) left irc: Read error: 104 (Connection reset by peer)
+jbailey (~jbailey@atlas.fundserv.com) joined #gnuenterprise.
+revDeke (www-data@alt1.libertydistribution.com) joined #gnuenterprise.
+<revDeke> jbailey: we need to 'enhance' the deb's
+<revDeke> people are having trouble with them :(
+<revDeke> at least 5 people have made comments like
+<revDeke> i did apt-get install dcl
+<revDeke> now what the hell do i do?
+Action: revDeke loves them personally, believe me when its someone other than me complaining... its well odd ;)
+<jbailey> Ah, joy.
+<jbailey> Perhaps this weekend.
+Action: revDeke is thinking if you dont have time to do config stuff can i provide you like a one paragraph post install instruction list?
+<revDeke> and have the deb pop up that blue deb screen that says ... you need to to the following <insert steps here> you can find this list at /usr/share/docs/dcl/install.html or something
+<revDeke> i.e. so during the install it points them somewhere to get more information
+Action: revDeke notes the deb is in production on at least 4 production sites
+<revDeke> one of which gets hard daily
+<revDeke> jamest: are you about or jcater do you know anything about date configurations on postgres?
+<revDeke> actually i need to be on another machine bbiab
+revDeke (www-data@alt1.libertydistribution.com) left #gnuenterprise.
+revDeke (www-data@alt1.libertydistribution.com) joined #gnuenterprise.
+siesel (jan@xdsl-213-168-110-225.netcologne.de) left irc: Read error: 104 (Connection reset by peer)
+ra3vat (~ds@ics.elcom.ru) left irc: "Client Exiting"
+esv (~esv@dsl-200-67-32-146.prodigy.net.mx) joined #gnuenterprise.
+<esv> howdy
+Action: esv is happy to get its system back
+<esv> s/its/it/
+<esv> ooopps
+<esv> s/it/his/
+<esv> hehehehe
+<revDeke> any postgres date field wizards around?
+<esv> not me
+Action: revDeke vaguely fougth this battle in 6.5 about 2 years ago
+<revDeke> and its raising its ugly head again, but i dont recall the specifics :)
+Action: esv is not wizard anymore  :(
+<jcater> no wizard
+<jcater> but what's the question?
+<revDeke> in a nutshell i think the problem is that postgres install A has date format of
+<revDeke> YYYY-MM-DD
+ra3vat (~ds@ics.elcom.ru) joined #gnuenterprise.
+<revDeke> and install B has date format of
+<esv> same as MySQL
+<revDeke> YYYY-DD-MM
+<revDeke> and so doing a dump B to A has issues
+<revDeke> as 2003-28-02 is valid in B
+<revDeke> but wont load into A as 28 isnt a valid month
+<esv> hehehe, isnt that a locale problem? no it does not look like a locale problem
+Action: revDeke thinks this is the problem
+<revDeke> i know at install of postgres you can 'configure' this
+<revDeke> i think i chose default of SQL_ASCII
+<jbailey> How depresing.  I just figured out that I will spend 10 days and 10 hours walking to and from work this year.
+<revDeke> but i have no clue how to change after the fact
+<esv> quick and dirty: use sed/perl/awk to convert :)
+<esv> rev: but you can create a database with different locales , cant you?
+<revDeke> dont know :)
+chillywilly (~danielb@mke-65-31-168-36.wi.rr.com) left irc: "leaving"
+<esv> rev: is this the pgsql db?
+ra3vat (~ds@ics.elcom.ru) left irc: Read error: 60 (Operation timed out)
+<revDeke> yes psql db
+ra3vat (~ds@ics.elcom.ru) joined #gnuenterprise.
+<esv> well, I was confused, you can create different instances with diferent character encodin, but I dont think this is related.
+<esv> s/encodin/encodings/
+<ra3vat> am i missed something?
+<revDeke> not related
+<revDeke> its a datestyle thing
+<esv> ok, check the LC_TIME setting 
+<esv> and to "initdb" for example the manual says to use --locale=fr_CA --lc-monetary=en_US, to set the locale to canadian french and use USA monetary system.
+<esv> hope this helps have to run.
+esv (~esv@dsl-200-67-32-146.prodigy.net.mx) left irc: "Leaving"
+<jamest> revDeke: how are you importing the data?
+<jamest> how did you export the data to begin with?
+ToyMan (~stuq@smtp.dstoys.com) left irc: "Client Exiting"
+<jamest> some of the date field types are depreciated in the 7.3.x series
+<jamest> they warned about this happening back in 7.0 IIRC
+lupo (~lupo@pD9542108.dip.t-dialin.net) joined #gnuenterprise.
+<jamest> the database itself can handle input date in just about any std format
+<jamest> try it on a test table
+<revDeke> jamest: its a DATESTYLE problem
+<jamest> insert '2002-28-01' into foo;
+<jamest> insert 'Jan 01 2002' into foo;
+<revDeke> 6.5 db has US (non european) conventions
+<revDeke> 7.2 db has ISO with european conventions
+<revDeke> i pg_dump'ed out of 6.5 using proper insert strings
+<reinhard> jamest: insert 'Mothers Day 2002' into foo; ?
+<reinhard> ;-)
+<revDeke> and am doing a psql dbname < sqldump.out to import into 7.2
+<revDeke> you can change DATESTYLE on the fly
+<revDeke> just cant find someone that knows how to on command line
+<lupo> hi
+Action: revDeke thinks maybe i will do the 'load' from a psql session
+<jamest> set DATESTYLE ?
+<jamest> from the psql prompt?
+<revDeke> jamest:
+<revDeke> export PGDATESTYLE=us
+<revDeke> then
+<revDeke> psql -U user dbname < sqlfile.out looks like it just might work
+<lupo> revDeke: yes, iirc that works
+<revDeke> seems to be working
+<revDeke> this is good real world postgres experience
+<revDeke> i.e. having to migrate an app with lots of data from one distro to another going from 6.5 to 7.2 ;)
+<revDeke> and upgrading the application that uses the data at same time
+<revDeke> its almost liek work ;)
+<revDeke> oh wait it is
+<revDeke> ouchie
+<revDeke> ERROR:  TIMESTAMP WITH TIME ZONE 'invalid' no longer supported
+<revDeke> that will be fun to try to fix
+<revDeke> getting darn close though
+dsmith (~dsmith@borg.altus.cc) left irc: "later.."
+<revDeke> hmm good news is looks like this only ONE entry
+chillywilly (danielb@mke-24-167-199-83.wi.rr.com) joined #gnuenterprise.
+<lupo> daniel!
+ToyMan (~stuq@smtp.dstoys.com) joined #gnuenterprise.
+jamest (~jamest@leibniz.math.ksu.edu) left #gnuenterprise.
+jamest (~jamest@leibniz.math.ksu.edu) joined #gnuenterprise.
+reinhard (~reinhard@M1271P030.adsl.highway.telekom.at) left irc: "War causes terrorism."
+<revDeke> hey jamest in a .sql file
+<revDeke> can you use # as comments?
+<jbailey> Yuo can with mysql
+<revDeke> cool
+<revDeke> alter table statuses add column dcl_status_type int4 not null default '1';
+<revDeke> now fails as you cant do defaults or constraints on an 'alter table'
+<revDeke> so i changed to
+<revDeke> ALTER TABLE statuses ADD COLUMN dcl_status_type int4;
+<revDeke> ALTER TABLE statuses ALTER COLUMN SET DEFAULT '1';
+<revDeke> but i cant find a fix to add the NOT NULL constrait
+<revDeke> er constraint
+<revDeke> the docs say its possible, but dont show the syntax :(
+<chillywilly> using mysql?
+<revDeke> chillywilly: i have standards..... what do you think?
+<chillywilly> pfft
+<chillywilly> use what gets the job done
+<jcater> alter table statuses modify dcl_status_type not null;
+<jcater> ?
+<chillywilly> that's my new motto
+<chillywilly> reinhard is on some kind of political high horse
+<jbailey> chillywilly: Going all pragmatic on us?
+<chillywilly> yep...I've already got me some religion
+<chillywilly> nah
+<chillywilly> you know me
+<chillywilly> I AM a zealot
+Action: chillywilly pokes havoc with a stick
+<havoc> :)
+<chillywilly> ok, this time I really am gonna shovel the driveway some
+<chillywilly> honest! :)
+<jbailey> More snow, Dan?
+<jamest> revDeke: sure they do
+ToyMan (~stuq@smtp.dstoys.com) left irc: "Client Exiting"
+<jamest> http://www.postgresql.org/docs/view.php?version=7.3&idoc=0&file=sql-altertable.html
+<jamest> you define a table level constraint which references that column
+<jamest> or
+<jamest> ALTER TABLE distributors ALTER COLUMN street SET NOT NULL;
+<revDeke> hm im looking at 7.2 docs adn i didnt see it
+<jamest> you upgraded to 7.2?
+<jamest> not 7.3?
+<revDeke> http://www.postgresql.org/docs/view.php?version=7.2&idoc=1&file=sql-altertable.html
+<revDeke> i cant find it in there
+<revDeke> jamest: i am running what apt-get install postgres got me as of yesterday afternoon
+<revDeke> ii  postgresql     7.2.1-2woody2  Object-relational SQL database, descended fr
+<revDeke> dcl=# ALTER TABLE statuses ALTER COLUMN dcl_status_type SET NOT NULL;
+<revDeke> ERROR:  parser: parse error at or near "NOT"
+<chillywilly> jbailey: no, there's just some left around and it is melting so I though I'd get it off
+<chillywilly> plus I've been sick and not really up for shoveling and we got some last night and the day before or so...
+<jbailey> g'night all
+jamest (~jamest@leibniz.math.ksu.edu) left #gnuenterprise.
+jbailey (~jbailey@atlas.fundserv.com) left #gnuenterprise ("Client Exiting").
+<revDeke> jcater are there 7.3 debs for woody?
+<jcater> beats me
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "home"
+jamest (~jamest@adsl-64-216-111-42.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+<jamest> cvs still slow?
+<lupo> yes
+<lupo> yeupou said the problem persists
+<lupo> stupid default values in mldonkey are the reason
+chillywilly (danielb@mke-24-167-199-83.wi.rr.com) left irc: "leaving"
+<jamest> :(
+<jamest> so any idea on when it'll clear up?
+<lupo> when people change settings or update
+<lupo> pitily, mldonkey has become popular among illiterate idiots
+<lupo> sorry
+<lupo> i mean
+<lupo> computer newbies
+<lupo> the number of "wrong connects" decreases every day
+<lupo> so we have a good chance of having normal defcon in a couple of days
+<lupo> provided things continue like this
+<jamest> good
+<jamest> thanks for the info
+jcater (~jason@cpe-066-061-083-220.midsouth.rr.com) joined #gnuenterprise.
+<lupo> 3/7: 102000
+<lupo> 11/7: 75000
+<lupo> erm
+<lupo> 3/11: 75000
+<lupo> 3/12: 60000
+<lupo> so it's decreasing
+<lupo> hey jcater
+<lupo> slow cvs? :)
+<jcater> yeah
+<lupo> it'll get better in the next days
+chillywilly (danielb@mke-24-167-199-83.wi.rr.com) joined #gnuenterprise.
+<lupo> at least if one expects a linear decrease in wrong connections by mldonkey
+lupo (~lupo@pD9542108.dip.t-dialin.net) left irc: Remote closed the connection
+lupo (~lupo@pD9542108.dip.t-dialin.net) joined #gnuenterprise.
+<lupo> argh
+<revDeke> i can not get this to work in postgres
+<revDeke> n oone in the postgres channel can either
+<revDeke> i think postgres 7.2 has a bug 
+<revDeke> jamest how did you get 7.3 on woody?
+<revDeke> oh got it to work
+<revDeke> YES
+<jamest> cd software
+<jamest> tar zxvf postgresql-7.3.2.tar.gz
+<jamest> cd postgresql-7.3.2
+<jamest> ./configure
+<jamest> make 
+<jamest> make install
+<jcater> what?!?!?!?!?
+<jcater> no "make test" ??
+<jamest> after having done a pg_dumpall > db.out
+<jamest> no make test
+<revDeke> sigh
+<revDeke> i am trying to run packages only
+<revDeke> i got it to work FINALLY
+<jamest> regression test has sucsessfully completed 0 times for me
+<jamest> i gave up on it in the 6.5.x days
+<jamest> postgresql is worth installing from source
+<jamest> the .debs have a nice habit of mad goat raping your data during an upgrade
+Action: jamest has successfully done a .deb postgresql upgrade 0 times too
+<jcater> deb http://people.debian.org/~elphick/debian woody main
+<jcater> Postgres 7.3.2
+<jamest> i won't do it
+<jamest> having it spit our online database out at me in little pieces was the last straw
+<jcater> I have yet to do a successful .deb upgrade w/postgres either
+<jamest> building from source is simple and works exactly as advertised
+<jamest> plus I like controlling when my db upgrades 
+<jamest> that said I think ash postgresql is .deb installed
+<jcater> my only issue w/that
+<jcater> is all the postgres support libraries I ahve to dick with 
+<jcater> like python, zope, etc
+<jamest> i've not had much issue with that
+Action: revDeke had 7.2 upgrade to 7.3 last week on debian work in sid
+<jamest> WHAT!
+<revDeke> but i have had it fail lots too 
+<jamest>  /msg jcater something worked for HIM?
+<jamest>  /msg jcater nothing works for him.....didn't we plan it that way?
+<jcater>  /msg jamest doubtful... my guess is he doesn't yet realize it dropped the timestamp columns
+<jamest> lol
+<revDeke> as evidenced by fact im running 6.5 in production still, i dont plan on upgrading DB at every release :)
+<jamest> I think 7.3.2 is worth it
+<revDeke> jcater actually i did as dcl has lots of them, and its going to be 'fun' to fix
+<revDeke> another reason 7.2 is fine for me right now :)
+<jamest> actually every 7.x has been worth it
+<jamest> just not the x.0 releases :)
+<revDeke> jamest: i totally agree with that
+<revDeke> postgres release team has act together
+<lupo> cvs server: [19:33:50] waiting for jamest's lock in /cvsroot/gnue/gnue/common/src/dbdrivers/appserver
+<lupo> cvs server: [19:34:20] obtained lock in /cvsroot/gnue/gnue/common/src/dbdrivers/appserver
+<jamest> wait yer turn!
+<lupo> nasty guy
+<revDeke> jamest: thats a creative way to keep them from getting cvs ;)
+Action: jamest ponders killing the mp3 stream to beat lupo to the next file
+<jamest> actually i'm editing my cvs tree as it updates
+<jamest> otherwise I couldn't code till midnight
+<lupo> it's after midnight
+<lupo> and today, i couldn't care less
+<lupo> i made my first debian package
+<lupo> and it worked
+<lupo> i
+<lupo> i'm so proud
+<lupo> common/utils/xml2sql/schema.sxw is not a valid document here
+suny (~zll_sy@210.83.202.175) joined #gnuenterprise.
+<lupo> doesn't open with oo 1.0
+<lupo> can anyone verify this?
+<jamest> trying
+<jamest> doesn't work here either
+<revDeke> sigh likely the 'binary' nature hosed us
+<lupo> last checkin from btami
+Action: revDeke loves openoffice but they need way to uncompress/compress for things like cvs
+revDeke (www-data@alt1.libertydistribution.com) left irc: "CGI:IRC 0.5"
+<jcater> I doubt it's a 1.0 document
+<jcater> probably 643
+<jamest> it didn't load for me
+Action: jcater thwaps jamest
+<jcater> did I ask you?
+<jamest> um
+Action: jamest returns to his corner
+<chillywilly> now children...
+Action: jcater pops chillywilly
+<chillywilly> didn't your mommy's teach you to play nice?
+<jcater> um
+<jcater> no
+<jcater> my mom always said
+<jcater> If you can't say something nice
+<chillywilly> jcater: I have a trout and I am not afraid to use it
+<jcater> beat the crap out of 'em instead
+<lupo> its 222 bytes big
+<lupo> i doubt it's a valid document at all
+<chillywilly> can't you tell OOo to not compress the document?
+<chillywilly> so it is just a plain xml file?
+<chillywilly> s/?//
+<jamest> no
+<jamest> as it's not a file
+<chillywilly> bah
+<chillywilly> it's not xml?
+<jamest> it's a fscking directory more or less
+<chillywilly> lame
+<jamest> which contains an xml file
+<jamest> IIRC
+<jcater> yip
+<chillywilly> oh
+<chillywilly> hmmm
+<lupo> the idea is unsexy, but works normally
+<chillywilly> can you uncompress it with gzip or somethin'?
+Action: jcater thwaps chillywilly
+<jcater> stop annoying the coders
+<chillywilly> shutup
+<chillywilly> sometimes you take thing a little too far...I was just curious
+<chillywilly> freak
+Action: chillywilly sicks the rabid trout on jcater 
+<jcater> future versions of openoffice support "Save as XML"
+<jcater> but that does us about >< this much good right now
+<jamest> about 1 pixel worth! rock!
+<lupo> that's not much, right?
+<chillywilly> future versions of jcater AI come with a "nice guy" plugin
+<chillywilly> I hope
+<jamest> dude
+<jamest> I'm not going to attempt to plug it in
+<jcater> future versions of chillywilly come with a "productive" plugin
+<lupo> lol
+<chillywilly> jcater: stop being an asshole
+<jcater> make my cvs update go faster
+<jcater> and I can start coding
+<jcater> and stop being a chilly-hole
+<jcater> err
+<jcater> asshole
+<chillywilly> fuck you
+<jcater> (typo)
+InsanitY (insanity@co58147-a.olden1.ov.home.nl) left irc: Read error: 110 (Connection timed out)
+<lupo> argh
+<lupo> i'm trying to get guile 1.6 to compile as a debian package on woody
+<lupo> horrible
+derek (~dneighbo@filter.sequoia.net) joined #gnuenterprise.
+InsanitY (insanity@co58147-a.olden1.ov.home.nl) joined #gnuenterprise.
+<chillywilly> hi derek 
+<derek> sup chillywilly
+<derek> jamest how bad off is cvs?
+<derek> 2 4 6 8 10 hours?
+Action: derek is offsite and has about 2 hours
+<jamest> update only the directories you need
+<derek> will cvs drop that quickly
+<jamest> it seems to hang the most in docbook for me
+<jamest> forms and common are about 5 minutes
+<chillywilly> what is Sequoia Scholls, LLC?
+<chillywilly> Schools
+<derek> LUG meeting
+<chillywilly> oh
+<derek> Vee2d2: you around?
+<derek> migh thave some time to work tonight
+<lupo> any news from the papo people?
+Nick change: SachaS_away -> SachaS
+<derek> they must be eating tit bread ;)
+<lupo> yawn
+<lupo> 3:50am local time
+<derek> you werent kidding that cvs is slooooooooooooooooow
+jbailey (~jbailey@CPE0060082df811-CM014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+<derek> jbailey: do you know if you can get source code for opera?
+<jbailey> I don't know.
+<jbailey> Is it something worth looking for?
+<derek> no
+<derek> just curious
+<lupo> derek: i doubt that very much. you'd have to negotiate a source license with Opera
+<lupo> if you want to see a well-written free browser, look at khtml :)
+Nick change: SachaS -> Sacha_lunch
+<Vee2d2> derek: here
+jbailey (~jbailey@CPE0060082df811-CM014260028338.cpe.net.cable.rogers.com) left irc: "Client Exiting"
+jbailey (~jbailey@CPE0060082df811-CM014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+<chillywilly> opera is non-free IIRC
+<chillywilly> why does CSS suck so much in konq then lupo ?
+chillywilly (danielb@mke-24-167-199-83.wi.rr.com) left irc: "brb"
+<derek> wow cvs finished
+chillywilly (danielb@mke-24-167-199-83.wi.rr.com) joined #gnuenterprise.
+fixe (~fixe@dsl093-081-253.chi2.dsl.speakeasy.net) left irc: Read error: 104 (Connection reset by peer)
+<Vee2d2> heh..
+<Vee2d2> my eyes must be tired.. =/
+<Vee2d2> Subject: Three ways to embroider your profits
+<Vee2d2> wont tell you what I thought the last word was at first glance, but I did cringe
+<chillywilly> HEH
+chillywilly (danielb@mke-24-167-199-83.wi.rr.com) left irc: "restart X"
+chillywilly (danielb@mke-24-167-199-83.wi.rr.com) joined #gnuenterprise.
+jamest (~jamest@adsl-64-216-111-42.dsl.tpkaks.swbell.net) left #gnuenterprise.
+<lupo> chillywilly: CSS sucks in konq?
+<lupo> i hear that for the first time
+<lupo> css has always worked fine for me
+<lupo> the only browser that fucked up my style sheets was IE
+<lupo> as I could have expected before i wrote my CSS stuff
+<Vee2d2> baby, bbiab
+<jbailey> lupo: IIRC, konq has some weird trouble with valid CSS2.
+<jbailey> Positioning and all that.
+<jbailey> Been awhile since I looked at it, though.
+<chillywilly> konq does not handle CSS properly
+<jbailey> Probably fixed now, since that would mean that wired's site would be screwed, among others.
+<chillywilly> it's not
+<chillywilly> heck I was developing a web site the last few days and konq sure doesn't honor padding or borders in divs
+<chillywilly> nor did it handle image margins, IIRC
+<chillywilly> needs some more work
+<derek> jbailey: have an apache quesiton for you
+<derek> i am using virtual hosts and symlinking some directories into them, but apaache logs those accesses to the default host? is there a workaround?
+<lupo> derek: ... a buuuuug?
+<derek> dont know asking you :)
+<derek> is jamest coming back?
+<derek> he would likely know
+<derek> how about you jcater
+<chillywilly> don't annoy the coders derek
+<chillywilly> they're cranky
+<chillywilly> subversions has got their undies all in a bunch
+<derek> that happens when close to a release ;)
+<derek> no crap
+<derek> took me about 2 hours to update
+<derek> btw: apache question is from someone at lug
+<chillywilly> I forgive them though...
+<chillywilly> I suppose
+<jbailey> derek: Dunno off hand.  Is it going to the wrong logfile or being logged incorrectly?
+<lupo> derek: if i had his config file, i could say something
+<derek> wrong log file
+<jbailey> I'd have to look at the config file to eliminate human error.
+<derek> i have customlogs on the vhosts but because of the symlink the dire resolves to the documentroot of the default host
+<lupo> because such a behavior seems odd. at the company i work for they have multiple setups of vhosts this way and it works there.
+<jbailey> Shouldn't matter if the logging is happening through the vhost.
+<derek> i will bring the logfile back some other day, but thanks though
+<jbailey> I need to go to bed.
+<jbailey> g'night all
+Action: chillywilly has done apache vhosting, but doesn't play with that box anymore (vhosting on crazymike's box)
+jbailey (~jbailey@CPE0060082df811-CM014260028338.cpe.net.cable.rogers.com) left irc: "Client Exiting"
+<lupo> jbailey: gnight
+derek (~dneighbo@filter.sequoia.net) left irc: "Client Exiting"
+jcater (~jason@cpe-066-061-083-220.midsouth.rr.com) left irc: "Client Exiting"
+dsmith (dsmith@oh-strongsvillecadent1-1c-203.clvhoh.adelphia.net) joined #gnuenterprise.
+<chillywilly> hi dsmith 
+<dsmith> Good Evening, chillywilly
+<dsmith> galeon is borken in sid
+<dsmith> :(
+<chillywilly> apt-get install galeon-snapshot
+<chillywilly> is that the one that is broke?
+<chillywilly> nope, it works
+<chillywilly> grab the gtk2 version
+<dsmith> Hmm.  I thought it was just galeon.  It broke when mozilla-* upgraded recently.
+<chillywilly> mine isn't broke I I upgraded like a few mins ago
+<chillywilly> s/I I/I/
+<dsmith> dsmith@sparky:~$ galeon
+<dsmith> /usr/bin/galeon-bin: relocation error: /usr/bin/galeon-bin: undefined symbol: begin_assignment__13nsCOMPtr_base
+<chillywilly> got mozilla-snapshot?
+<dsmith> chillywilly: Do you have the aa-font mozilla package installed (fo you get aa fonts in moz and galeon?)
+<dsmith> installing snapshot
+<chillywilly> yea I have aa fonts
+<chillywilly> I dunno if I have any special package for that
+<chillywilly> I set that one env varibale to '1'
+<chillywilly> GDK_XFT....something
+<dsmith> Cool.  galeon-snapshot works!  It's a gtk2 thing alright.
+<dsmith> All my bookmarks aren't in it though.
+<dsmith> chillywilly: Thanks!
+<chillywilly> cause it uses a diff dir
+<chillywilly> ~/.galeon-snapshot
+<chillywilly> so just copy them over
+<chillywilly> no dsmith 
+<chillywilly> s/no/np/
+<chillywilly> oops
+<dsmith> chillywilly: Yeah, I got em.
+Action: dsmith was having galeon withdrawl
+<chillywilly> heheh
+Action: chillywilly is now running Gnome 2 again but basically cause the KDE debs I had installed were now dependent on some experimentl version of X that wasn't working here
+<chillywilly> but I did miss Gnome in a way
+<chillywilly> it's not so bad when you have a bit more RAM ;P
+<dsmith> I don't use gnome. (I did install mrproject, which sucked in a lot of gnome though)
+lupo (~lupo@pD9542108.dip.t-dialin.net) left irc: Read error: 60 (Operation timed out)
+--- Fri Mar 14 2003

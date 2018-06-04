@@ -1,0 +1,412 @@
+suny (~zll_sy@210.83.202.175) left irc: 
+Nick change: Sacha_lunch -> SachaS
+fixe (~fixe@dsl093-081-253.chi2.dsl.speakeasy.net) joined #gnuenterprise.
+jemfinch (~jfincher@ts26-6.homenet.ohio-state.edu) joined #gnuenterprise.
+siesel (jan@xdsl-195-14-207-91.netcologne.de) joined #gnuenterprise.
+<siesel> morning
+<Vee2d2> mornin
+reinhard (~reinhard@M1271P030.adsl.highway.telekom.at) joined #gnuenterprise.
+suny (~zll_sy@210.83.202.175) joined #gnuenterprise.
+<siesel> Hallo Reinhard
+<reinhard> good morning
+<reinhard> hallo
+<siesel> do you have any ideas to change the API to make it XMLRPC conform?
+<reinhard> sadly i don't know what xmlrpc defines and what not
+<reinhard> what data types xmlrpc knows
+<reinhard> if all else fails we could
+<reinhard> concatenate all strings of the table together and define column dividors, row dividors and an escape character
+<reinhard> and pass it as a single string like
+<siesel> I hope that we don't have to go that far 
+<reinhard> reinhard;lustenau;austria|siesel;bonn;germany
+Action: siesel is looking at the specs at xmlrpc.org
+<siesel> seems that there is a struct type. that would mean, that we could still use our api. 
+<reinhard> well a quick question
+<reinhard> we defined the result of fetch being a 2-dimensional array
+<reinhard> but you impelemented it as an array of dictionaries
+<reinhard> i guess we must at least switch to the 2-dimensional array for xmlrpc conformance
+<reinhard> i'm not sure if a struct helps us
+<reinhard> for those writng the kc
+<reinhard> this is about how to access the new appserver api over xmlrpc
+<reinhard> we have some functions in that api that return a 2-dimensional array of strings
+<reinhard> which seems to be a problem for xmlrpc
+<reinhard> --
+Nick change: SachaS -> SachaS_away
+<siesel> reinhard: in my understanding, the problem with XMLRPC is that the API transfers everything as array, and don't create struct types
+<siesel> so we have to use arrays or we need to change the RPC abstraction layer to be able to pass dictionaries as structs
+Action: siesel is finally realizing that difference between API documentation: (2dim array) and implementation (2dim dictionary)
+Action: siesel will check what will be easier to implement :)
+<reinhard> i'd say we should rather look what is easier to transport (over rpc)
+<reinhard> because implementation will be no big difference
+suny (~zll_sy@210.83.202.175) left irc: 
+siesel (jan@xdsl-195-14-207-91.netcologne.de) left irc: "later"
+paqan (whaq@202.155.9.177) joined #gnuenterprise.
+reinhard_ (~reinhard@M1271P030.adsl.highway.telekom.at) joined #gnuenterprise.
+<reinhard_> bbl
+reinhard_ (~reinhard@M1271P030.adsl.highway.telekom.at) left irc: Client Quit
+reinhard (~reinhard@M1271P030.adsl.highway.telekom.at) left irc: Read error: 111 (Connection refused)
+Arturas (~arturas@gsk.vtu.lt) joined #gnuenterprise.
+jemfinch (~jfincher@ts26-6.homenet.ohio-state.edu) left irc: Read error: 54 (Connection reset by peer)
+jemfinch (~jfincher@ts26-9.homenet.ohio-state.edu) joined #gnuenterprise.
+<Arturas> hello
+lupo (~lupo@p5085FB79.dip.t-dialin.net) joined #gnuenterprise.
+<lupo> hi Arturas
+<Arturas> hi lupo :)
+<lupo> does cvs work for you?
+<Arturas> one moment
+<Arturas> it seems that no
+ToyMan (~stuq@65.167.123.51) joined #gnuenterprise.
+dsmith (dsmith@oh-strongsvillecadent1-1c-203.clvhoh.adelphia.net) left irc: "later.."
+<lupo> great
+<lupo> because the last few days CVS was a real bitch
+<lupo> and i can't check today's situation, because i'm on a really bad line
+<lupo> 30% package loss
+<Arturas> ouch
+<lupo> it's sufficient for irc and mail, so it doesn't bothers me too much
+<lupo> i just have to develop some stuff for the company i work for and we use an own cvs for devel work
+<lupo> i'm making "debian/" so that we have debs for the rollout
+<lupo> btw, who's the maintainer of gnue debs?
+stuq_ (~stuq@65.167.123.51) joined #gnuenterprise.
+<Arturas> don't know this
+<lupo> "unknown host subversions.gnu.org" 
+<lupo> damnit
+ToyMan (~stuq@65.167.123.51) left irc: Read error: 60 (Operation timed out)
+jamest (~jamest@leibniz.math.ksu.edu) joined #gnuenterprise.
+<lupo> hi jamest
+jbailey (~jbailey@CPE0060082df811-CM014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+stuq_ (~stuq@65.167.123.51) left irc: "Client Exiting"
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+jbailey (~jbailey@CPE0060082df811-CM014260028338.cpe.net.cable.rogers.com) left irc: "Client Exiting"
+jemfinch (~jfincher@ts26-9.homenet.ohio-state.edu) left irc: Read error: 60 (Operation timed out)
+wtg (~merlinx@ppp384.qld.padsl.internode.on.net) left irc: Read error: 110 (Connection timed out)
+dsmith (~dsmith@borg.altus.cc) joined #gnuenterprise.
+<jamest> hello
+<ra3vat> jamest: hello
+<Vee2d2> 'lo hey
+<ra3vat> what is the status of curses driver?
+<ra3vat> anyone test it?
+Action: jcater was working on it last night actually
+<jcater> it's broken
+<jcater> it did not survive the UIDriver reorganization
+<jcater> but I hope to slap it into shape tonight
+<ra3vat> i'd like to test it and help where possible
+<ra3vat> help=blame someone hardly until it gets shape
+Tesla (~jascha+ir@pD9EBBB80.dip.t-dialin.net) joined #gnuenterprise.
+<Tesla> hi, can you tell me what 2-tier and n-tier means ?
+<lupo> Tesla: yes
+<lupo> quite simple
+<lupo> in two-tier mode, you have layout and software logic on the client side and the database on the server side
+<lupo> in three-tier, you have layout on the client, software logic stored in an application server and the database on a server
+<Tesla> due to the mini-faq 2-tier mode is already useabel but 3-tier not, is that still correct ?
+<lupo> through an intelligent driver model, gnue is able to operate in both modes
+<lupo> which enables MS Access-like operation as well as true multi-tier architecturing
+<lupo> right now, yes
+<lupo> but this is being worked on
+<lupo> from what i see it's a question of connecting gnue forms with the appserver
+<lupo> there are some issues
+<lupo> appserver itself is supposed to run quite fine
+<lupo> i hope this will be resolved before the 0.5.0 release of gnue
+<lupo> then you can enjoy 3-tier mode with an official release :)
+<jcater> I wouldn't expect that for 0.5.0
+<Tesla> do you think its already possible to use it as something like an customer db, with addressbook schedule and document managment ?
+<lupo> Tesla: this is quite realistic
+<lupo> of course, right now you have to write the application for yourself, based on the gnue tools
+<lupo> the packages for these tasks are not yet ready
+<Tesla> this means creating the forms and the logic 
+<lupo> yep
+<lupo> whereas i think that such an application shouldn't require too much logic
+<Tesla> can you add custom widgest in the forms designer (e.g. for a schedule) ?
+<ra3vat> tools provide a lot of internal logic for select, search create update db entries 
+<lupo> what do you mean by "custom widget"?
+esv (~esv@dsl-200-67-32-146.prodigy.net.mx) joined #gnuenterprise.
+<Tesla> in the GNUe Designer there are only labels, textfields, drop-downs and buttons. I now want to have an date selector or something else more complex
+<lupo> okay
+<lupo> yes, in theory. actually, you would rather use a report for that in gnue
+<lupo> which means, you have forms for data input and querying, and reports for output, be it a nice screen output or print or mail etc
+<lupo> concerning dates, there are (will be? jcater!) facilities for input masks
+<Tesla> so to get really new input masks you need to write them in c or whatever
+<lupo> gnue is not intended as an all-purpose application framework
+<lupo> it is quite specific in solving business related tasks
+<Tesla> sure, that also what i need it for
+<lupo> the idea is not to have an intuitive package, but one which increases productivity
+<Tesla> ok ;)
+<ra3vat> Tesla: need of date selector was discussed but not yet implemented
+<lupo> writing new widgets needs python, not c
+<lupo> so it's a bit more user-friendly imho
+<jcater> we are working on input masks, yes
+<jcater> and there is no C code
+<jcater> zip
+<jcater> nada
+<jcater> :)
+<lupo> (i have to read your messages from the logfile because my net connection is too slow, so don't wonder about strange replies)
+revDeke (www-data@alt1.libertydistribution.com) joined #gnuenterprise.
+<revDeke> Tesla: some clarifications to what Lupo said
+<revDeke> custom widgets are possible, they would be in python not C
+<revDeke> the team is trying to make it more plausible to 'easily' plug in new custom widgets
+<revDeke> however, there are plans for entry boxes that do more than 'raw entry'
+<lupo> new widgets in Python
+<lupo> new input masks are a functionality of forms
+<revDeke> like 'search' boxes
+<revDeke> date pickers
+<jcater> one clarification to revDeke's clarifications: custom widgets are *not encouraged
+<lupo> which means they are written as part of gnue forms definition files
+<jcater> but will be supported at some point
+<revDeke> input masks would deal with date formatting, but not date picking
+<revDeke> jcater: absolutely you just didnt let me finish
+<revDeke> the idea is that custom widgets would be 'easier' to add
+<revDeke> but we do not encourage them, because it puts you in a bad position of having a 'custom' (read non supported) framework
+<lupo> jcater should know the most about that
+<revDeke> what we generally ask is if there is somethign you do not see ask
+<Tesla> so right now there are no custom widgets, but you can add new widgets by writing them in python
+<revDeke> i think in most cases there is sufficient comprimise made to get 'functionality' into the framework
+<revDeke> that avoids the need for 'custom' components
+<revDeke> Tesla: yes, but as jcater stated we strongly discourage it
+<jcater> GNUe is not a GUI framework... it's a data manipulation and reporting framework
+<revDeke> we instead courage asking the developers 'how can i do 'X'
+<revDeke> and see if they can provide an answer by extending existing widgets 
+<revDeke> sometimes the answer will be 'we have no intention to support X'
+<revDeke> in which case likely gnue isnt a good choice for the application at hand
+<revDeke> but to re-iterate what jcater and lupo have both touched on
+<revDeke> gnue is not glade
+<revDeke> it is specific to database productivity applications
+Action: revDeke wouldnt write a cdplayer, webbrowser or image editor with gnue framework :)
+<revDeke> the fact we choose to support a myriad of platforms from curses to gtk to qt to html to you name it
+<revDeke> we limit ourselves to a much more concise 'widget' catalog
+<Tesla> well i dont want to do that ;) its just we have an existing app here (combit) and I think they wouldnt accpet it, if it had less useability...
+<revDeke> we dont specialize in 'pretty' whiz bang widgets
+<Tesla> true i right now havent thought of curses and hmtl
+<revDeke> i think customer db is a 'no brainer' gnue type application
+<revDeke> i.e. its kind of thing gnue was made for
+<revDeke> i think you mentioned 'calendar' program?
+<revDeke> that is where i get a little uneasy
+<Tesla> yeah a need something like there is an apointment with this customer at this date
+<revDeke> i think its reasonable for us to support 'calendar' date picker entry fields
+Action: revDeke notes we dont currently, but i think it would be feasible request
+<revDeke> but writing a 'calendar' application that is like calendar in outlook, gets a little shakey
+<revDeke> we could support the 'functionality', but i dont think there are plans to support calendar widgets 
+Action: revDeke could be wrong
+<revDeke> its never been discussed and at this point i dont think is high on the list with pending 0.5.0 list
+<Tesla> well, that would be just a part i need ;)
+Action: revDeke doesnt want to scare you away from GNUe, but i want to be honest
+<revDeke> like all tools we have strengths and weaknesses
+<esv> revDake: wouldn't Telsa's request be part of a CRM module app?
+<revDeke> yes
+<revDeke> i would suggest she/he look at gnue-sb
+<revDeke> it has contact manager that functions with 0.4.3 (currently)
+<Tesla> yes i think so, i found a list on www.linas.org that said ERP can do everything ;)
+<revDeke> that probably fits to a small degree the first part of the question in being a customer database
+dsmith (~dsmith@borg.altus.cc) left irc: "later.."
+<revDeke> if not their style, certainly it provides a reference to how one can do a customer database
+<revDeke> Tesla: what format is the data from Combit in?
+<esv> btw, I have a question regarding the translation
+<Tesla> i think its some dbase database .db files
+<revDeke> if its .dbf format
+<Tesla> why you want to know ?
+<revDeke> you could likely fashion a driver (or if you have odbc driver (windows)
+wtg (~merlinx@ppp836.qld.padsl.internode.on.net) joined #gnuenterprise.
+<revDeke> you could basically just build gnue forms front ends to the existing structures
+<revDeke> and make things quite quickly
+<revDeke> looks like it uses foxpro
+Action: revDeke assumes gnue is a suitable replacement to foxpro, access, filemaker applications
+<Tesla> well yeah, but the goal is to find an exchange for combit and so its no problem to convert all the data to whatever
+<revDeke> i.e. the framework shoudl support about anything they do
+lupo (~lupo@p5085FB79.dip.t-dialin.net) left irc: Operation timed out
+lupo (~lupo@p5085FB79.dip.t-dialin.net) joined #gnuenterprise.
+<lupo> args
+<lupo> damn connection
+<Tesla> ok were going to have coffee and cake now, thank you very much for your help I will have a look at gnue-sb asap 
+<Tesla> cu 
+<lupo> guten appetit
+revDeke (www-data@alt1.libertydistribution.com) left irc: "CGI:IRC 0.5 (EOF)"
+dimas (~Administr@ics.elcom.ru) joined #gnuenterprise.
+Administrator_ (~Administr@ics.elcom.ru) joined #gnuenterprise.
+dimas (~Administr@ics.elcom.ru) left #gnuenterprise ("Client Exiting").
+Administrator_ (~Administr@ics.elcom.ru) left #gnuenterprise ("Client Exiting").
+<lupo> hm
+<lupo> delicious
+<lupo> goose liver
+<Vee2d2> isnt that fois gras?
+<Vee2d2> It's on my list of things to try sometime.. 
+Action: Vee2d2 remains content with his coffee in the mean time.
+lupo_ (~lupo@pD9E68880.dip.t-dialin.net) joined #gnuenterprise.
+reinhard (~reinhard@M1271P030.adsl.highway.telekom.at) joined #gnuenterprise.
+<lupo_> hi reinhard
+lupo (~lupo@p5085FB79.dip.t-dialin.net) left irc: Read error: 60 (Operation timed out)
+KeaponLaffin (~You@66.227.186.23.tvc.mi.chartermi.net) joined #gnuenterprise.
+<KeaponLaffin> hmm
+Action: KeaponLaffin calls out
+<KeaponLaffin> hellooooooooo
+<Vee2d2> MrYou?
+<KeaponLaffin> err
+<KeaponLaffin> hrm
+<KeaponLaffin> I have a question
+<KeaponLaffin> I need to either get QuickBooks running in Linux, or something that can read it's company files
+<KeaponLaffin> and suggestions?
+<lupo_> KeaponLaffin: any chances of exporting data?
+<KeaponLaffin> from QuickBooks?
+<KeaponLaffin> yeah
+<KeaponLaffin> lupo_: what now?
+<lupo_> try to get it into a proprietary ERP?
+<KeaponLaffin> ?
+<KeaponLaffin> ERP?
+<Vee2d2> I've seen the issue come up on the sql-ledger list a number of times and I seem to recall someone had written a script to help migrate data from qb to sl, but I lost all references to it in my drive crash. 
+KeaponLaffin (~You@66.227.186.23.tvc.mi.chartermi.net) left irc: "Client Exiting"
+<Vee2d2> http://www.sql-ledger.org/cgi-bin/nav.pl?page=source/index.html&title=Download has the script.. maybe after gnue-sb's schema stabalizes I can attempt to write something similar in python
+Tesla (~jascha+ir@pD9EBBB80.dip.t-dialin.net) left irc: 
+lupo_ (~lupo@pD9E68880.dip.t-dialin.net) left irc: "lupo_ #gnuenterprise whaq 202.155.9.177 irc.freenode.net paqan H :0 paqan"
+Arturas (~arturas@gsk.vtu.lt) left irc: "Bye :)"
+sub_pop_culture (~link@129.210.184.56) joined #gnuenterprise.
+johannes_ (~johannes@M691P030.adsl.highway.telekom.at) left #gnuenterprise ("Client Exiting").
+reinhard (~reinhard@M1271P030.adsl.highway.telekom.at) left irc: "There is no war against terrorism. War is always against people."
+aa (~anthony@ADSL-200-59-86-193.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<Vee2d2> heya aa
+<aa> hi all
+<aa> hi Vee2d2
+<aa> has anybody noticed something wrong with the cvs lately (since day before yesterday, more or less)
+<aa> there seems to be a stale lock file in docbook
+<Vee2d2> yea, some dolt used savanah as a server in a p2p network
+<aa> it has been like that for some time now... dont those things go away after some time?
+<Vee2d2> well, they're blocking that traffic but that doesnt keep it from coming in.. I think it will take some time to dissipate
+<jcater> we are seeing the stale lock too
+<jcater> but I can't find where the actual lock is stored on the cvs server
+<jcater> we thought it would be in /var/lock/cvs, but can't find any files there
+<jcater> :-(
+<aa> hm, i 
+<aa> ill see if someone around here knows...
+<chillywilly> some guy posed about there being a stale lock in the hurd cvs
+<chillywilly> too
+<chillywilly> posted even
+<chillywilly> dunno if that's some weird coincidence or something else
+<Vee2d2> hmm.. I wonder if there should be a redirection or something when hitting http://www.nongnu.org/gnue-sb/ to go to http://www.gnu.org/software/gnue-sb/ instead
+<jcater> probably not a coincidence
+<jcater> the load in savannah is ridiculous
+<jcater> so I'm sure all kinds of weird timeouts happened to other projects too
+<aa> well, we can still checkout the directories one by one (except docbook)
+<jcater> yeah, that's what we're having to do too
+revDeke (www-data@alt1.libertydistribution.com) joined #gnuenterprise.
+<revDeke> i was able to get cvs last night about 11pm my time 
+<revDeke> w/o lock issues (though horribly slow)
+<revDeke> so lock must have happened after thta
+<jcater> lock has been around for 4-5 days
+<jcater> on docbook/shared
+<revDeke> i 'suspect' they are seeing it a lot because people get sick of waiting (cvs update -Pd on gnue took nearly 3 hours)
+<revDeke> jcater: hmmm it didnt show up for me (the lock)
+<revDeke> and then people 'stop' mid stream
+<aa> i had that problem day before yesterday (maybe another one, but exactly the same)
+<revDeke> and lockfile gets left out there
+<jcater> cvs server: Updating .
+<jcater> cvs server: [14:20:23] waiting for anoncvs's lock in /cvsroot/gnue/gnue/docbook/shared
+Action: jcater still gets it
+<revDeke> has anyone talked FSF folks
+<jcater> I accidentally left mine running all night one night
+<jcater> same thing next morning
+<revDeke> i.e. we know what 'caused' the problem
+<revDeke> and somewhat know what they are doing about it
+<revDeke> but would be nice to see ETA or some solution
+<revDeke> as if this is going to continue for more than a month i seriously wonder if its worth moving our CVS to ash
+<revDeke> and moving it back when they get the issues resolved
+<jcater> then we lose anonymous cvs
+<revDeke> jcater: no offense i think its gone anyhow
+Action: revDeke doesnt know too many that will wait 4 hours for an anon cvs update :)
+<revDeke> and if they will, we probably owe them an account ;)
+Action: revDeke isnt heavily advocating this btw
+<revDeke> its more a question of how long is it going to continue
+<revDeke> as based on what all have said here is that FSF has done everything they can
+<revDeke> and basically it boils down to a DDoS
+sub_pop_culture (~link@129.210.184.56) left #gnuenterprise ("Client exiting").
+<aa> now things are coming quite fast, i checked out (everything except docbook) in about 15min
+<aa> maybe less if i had stood over it
+dsmith (~dsmith@borg.altus.cc) joined #gnuenterprise.
+jbailey (~jbailey@atlas.fundserv.com) joined #gnuenterprise.
+revDeke (www-data@alt1.libertydistribution.com) got netsplit.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) got netsplit.
+paqan (whaq@202.155.9.177) got netsplit.
+revDeke (www-data@alt1.libertydistribution.com) returned to #gnuenterprise.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) returned to #gnuenterprise.
+paqan (whaq@202.155.9.177) returned to #gnuenterprise.
+<aa> calvino flipped?
+aa (~anthony@ADSL-200-59-86-193.cordoba.sinectis.com.ar) left irc: "ircII EPIC4-1.1.2 -- Are we there yet?"
+revDeke (www-data@alt1.libertydistribution.com) left irc: "CGI:IRC 0.5 (EOF)"
+dsmith (~dsmith@borg.altus.cc) left irc: "later.."
+<jcater> cool
+<jcater> I think savannah-hackers took care of the stale cvs lock
+<chillywilly> so?
+esv (~esv@dsl-200-67-32-146.prodigy.net.mx) left irc: "Leaving"
+ra3vat (~ds@ics.elcom.ru) left irc: Read error: 110 (Connection timed out)
+ra3vat (~ds@ics.elcom.ru) joined #gnuenterprise.
+ra3vat (~ds@ics.elcom.ru) left irc: Read error: 60 (Operation timed out)
+jamest (~jamest@leibniz.math.ksu.edu) left irc: Read error: 104 (Connection reset by peer)
+jamest (~jamest@leibniz.math.ksu.edu) joined #gnuenterprise.
+ra3vat (~ds@ics.elcom.ru) joined #gnuenterprise.
+ra3vat (~ds@ics.elcom.ru) left irc: Remote closed the connection
+ra3vat__ (~ds@ics.elcom.ru) joined #gnuenterprise.
+jbailey (~jbailey@atlas.fundserv.com) left irc: "Client Exiting"
+<chillywilly> anyone know how to make mysql read sql statements from a file?
+<jcater> I always use < myfile
+<jcater> I don't know how to do it once in the mysql shell
+<jcater> :(
+<chillywilly> that's fine
+<wtg> SOURCE file
+<chillywilly> yea I just looked in google and it told me to do that
+<chillywilly> heh, didn't give me any output :P
+<chillywilly> but the data is there
+jamest (~jamest@leibniz.math.ksu.edu) left #gnuenterprise.
+jemfinch (~jfincher@ts19-7.homenet.ohio-state.edu) joined #gnuenterprise.
+ToyMan (~stuq@65-73-50-15.bras01.glv.ny.frontiernet.net) joined #gnuenterprise.
+jcater_ (~jason@cpe-066-061-083-220.midsouth.rr.com) joined #gnuenterprise.
+paqan (whaq@202.155.9.177) left irc: Read error: 60 (Operation timed out)
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: Remote closed the connection
+Nick change: jcater_ -> jcater
+Action: jcater thought there was a debian-jr project
+<jcater> was that renamed?
+jemfinch (~jfincher@ts19-7.homenet.ohio-state.edu) left irc: "Client Exiting"
+jemfinch (~jfincher@ts7-16.homenet.ohio-state.edu) joined #gnuenterprise.
+<jcater> ah, meta packages are prefixed w/junior-* now
+<jcater> doh!
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+Action: drochaid sneezes
+<wtg> bless you drochaid
+<drochaid> ty
+Action: jcater hands drochaid a tissue
+<chillywilly> ack
+<chillywilly> who let that thing in?
+<drochaid> bwahahaha
+<drochaid> I got bored .. and had a few mins spare :)
+<chillywilly> you know there's a solution for boredom
+<chillywilly> it's called work ;)
+<chillywilly> maybe you've heard of it?
+<drochaid> yeah, and I had a 23min break about 4hrs ago
+<drochaid> that was the first one since 9am [now nearly 1am]
+<chillywilly> jeeze ppl can't take a joke anymore
+<drochaid> try me again when I'm not so tired :)
+<drochaid> chillywilly: got your potential business running yet?
+<chillywilly> well not but I am "subcontracting"
+<chillywilly> or somethin'
+<chillywilly> working with someone who has their business going
+<drochaid> cool
+jcater (~jason@cpe-066-061-083-220.midsouth.rr.com) left irc: Remote closed the connection
+jemfinch (~jfincher@ts7-16.homenet.ohio-state.edu) left irc: Read error: 104 (Connection reset by peer)
+Nick change: SachaS_away -> SachaS
+jcater (~jason@cpe-066-061-083-220.midsouth.rr.com) joined #gnuenterprise.
+<drochaid> wb jcater
+<jcater> thx
+sub_pop_culture (~link@129.210.184.56) joined #gnuenterprise.
+ToyMan (~stuq@65-73-50-15.bras01.glv.ny.frontiernet.net) left irc: "Client Exiting"
+jcater (~jason@cpe-066-061-083-220.midsouth.rr.com) left irc: Remote closed the connection
+jcater (~jason@cpe-066-061-083-220.midsouth.rr.com) joined #gnuenterprise.
+<drochaid> wb jcater
+<jcater> thx
+<jcater> setting up ltsp at home
+<drochaid> ah cool
+<drochaid> I got that working a few months ago, then didn't have time to actually do anything with it :-/
+<jcater> I use it at my offices
+<jcater> but have been meaning to get it working at home
+<jcater> so the little kid can use one of my old pcs
+<jcater> to play on
+<drochaid> heh
+<drochaid> oh well, I've spoken enough here for another month or two .. off to sleep now ;)
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: "Client exiting"
+roche (~roche@200.9.45.19) joined #gnuenterprise.
+Nick change: SachaS -> SacahS_away
+roche (~roche@200.9.45.19) left #gnuenterprise ("Client Exiting").
+sub_pop_culture (~link@129.210.184.56) left #gnuenterprise ("Client exiting").
+--- Sat Mar 15 2003

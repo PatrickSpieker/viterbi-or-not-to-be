@@ -1,0 +1,47 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.04Nov2002" enddate="03 Nov 2002 23:00:00 -0800" startdate="03 Nov 2002 23:00:00 -0800" subject="[IRC] 04 Nov 2002" title="Checking user input before allowing a page switch">
+
+<topic>Forms</topic>
+
+<mention>James Thompson</mention>
+
+<p>John Lenton (Chipaca) asked <quote who="John Lenton">is 
+there a way to abort a page switch? i.e. the guy clicked on 
+a different page but he left this one in an illegal state</quote>. 
+Jason Cater (jcater) said <quote who="Jason Cater">you 
+could do a form.setFocus(some widget on the bad 
+page)</quote>. John reported <quote who="John Lenton">form.
+setFocus(widget) changes the focus back to the page, but 
+it then changes back to the page the user clicked on - 
+i.e. with debug-level set to 5 I get one "changing focus" 
+when I clicked on the page tag, and two when I press 
+"Cancel"</quote>. He asked <quote who="John Lenton">shouldn't 
+the pre-focusout trigger get called *before* the actual switch 
+of focus?</quote> James Thompson (jamest) agreed.</p>
+
+<p>John asked how to cancel a page flip, 
+<quote who="John Lenton">without writing one trigger per 
+page</quote>. This would allow the form to check user input 
+amd <quote who="John Lenton">go back to the page the user was 
+on if she forgot to fill something in</quote>. Jason Cater 
+(jcater) said <quote who="Jason Cater">the goal was to allow 
+triggers to return a true or false based on success/failure
+- so if a failure was returned everything stops</quote>. 
+John said <quote who="John Lenton">yeah, but the page has 
+already changed, even</quote> at the point the pre-focusout
+trigger was called. Jason said <quote who="Jason Cater">then 
+that's a bug w/page changing</quote>. John expressed some 
+frustration with the wxpython GUI toolkit, but recognised 
+why GNUe used it, as it allowed cross-platform GUI so easily. 
+<quote who="John Lenton">the worst bug is the 
+widget-seems-to-get-focus-but-doesn't - that confuses the 
+hell out of people</quote>. This was 
+<quote who="John Lenton">the one where you point at 
+an entry but just on the border so the cursor isn't acutally 
+I-shaped, click, and the | cursor appears in the entry, but 
+the focus isn't there - it's amazingly simple to trigger 
+that one by accident</quote>. Jason said he had never 
+seen this.</p>
+
+</section>
+
+

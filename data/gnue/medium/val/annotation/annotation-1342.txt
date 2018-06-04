@@ -1,0 +1,122 @@
+<section archive="http://mail.gnu.org/pipermail/gnue-dev/2002-Jun/000198.html" enddate="06 Jun 2002 23:00:00 -0800" posts="4" startdate="05 Jun 2002 14:53:36 -0800" subject="[gnue-dev] Layout Management and Forms" title="Layout manager for GNUe Forms">
+
+<topic>Forms</topic>
+<topic>Designer</topic>
+<topic>Reports</topic>
+
+<p>Jason Cater said that layout management was not a priority 
+issue for the <quote who="Jason Cater">core forms team (myself 
+included)</quote>, as they were happy to use absolute 
+<quote who="Jason Cater">x,y positioning</quote>. However, 
+other people were interested in layout management, so there needed 
+to be discussion about the best way of supporting this without 
+cluttering <quote who="Jason Cater">up the forms code or the 
+forms GFParser with support for all the different layout 
+management styles.</quote> His proposal was to 
+<quote who="Jason Cater">Remove ANY positioning tags/attributes
+from the basic Forms XML schema and implement all positioning using
+Layout Adapters, qualified by an XML namespace in the XML file</quote>, 
+and he gave some examples. He suggested <quote who="Jason Cater">A 
+few layout engine adapters would be part of the
+core GNUe distribution and would always be available.  Official apps
+could only use these core adapters, which of course initially would only
+be Character (x,y) positioning.</quote>. This approach:</p>
+
+<ul>
+<li><quote who="Jason Cater">removes positioning ugliness
+from the forms code and puts it in the Layout Adapter code.</quote></li>
+<li><quote who="Jason Cater">allows us to keep our current absolute 
+positioning that has worked so well.</quote></li>
+<li><quote who="Jason Cater">allows anyone who feels they need more 
+than absolute positioning to write an adapter for their positioning 
+logic without needing access to the forms internals.</quote></li>
+</ul>
+
+<p>It would, however, <quote who="Jason Cater">break any existing forms.  
+This could be alleviated by adding code in GFObjects that implicitly 
+converts</quote> from the old to the new format, both in Forms and  
+Designer.</p>
+
+<p>He also suggested that the Layout manager concept 
+<quote who="Jason Cater">might also be useful in 
+Reports</quote>  but he had not really thought that through yet.</p>
+
+<p>John Lenton suggested using Cascading Style Sheets (CSS), 
+<quote who="John Lenton">because they give us a separate, orthogonal 
+namespace in which to talk about attributes of the widgets and
+stuff we define in the XML. So do namespaces, but IMHO CSS is
+cleaner</quote>. He gave several possible file formats. Also, 
+if a designer did use <quote who="John Lenton">the 'old-style' 
+absolute positioning attributes</quote>, this would need to be 
+handled consistently too. However, he understood why layout 
+managers was not a priority at the moment.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.07Jun2002">
+On IRC</a>, Derek Neighbors (dneighbo) said <quote who="Derek Neighbors">at 
+first my gut reaction was what does css have to do with layout - 
+but the more i thought about it, it might not be an all bad idea - 
+as it might address my concern on how to make 'web applications'
+that dont look normal forms embedded in a browser</quote>.
+John (Chipaca) said that the whole point of CSS was 
+<quote who="John Lenton">to separate design from content - if 
+the idea is that one same form should be able to be layed out in 
+different ways, then CSS it is.</quote> Jason (jcater) 
+said <quote who="Jason Cater">define "different ways" - 
+as I'm not sure we were talking same thing in the emails to the 
+list</quote>. What he was looking for was 
+<quote who="Jason Cater">adding layout engine support to the 
+GFDs - i.e., allow developers to use GridBag layouts if they want
+instead of absolute</quote> but <quote who="Jason Cater">the 
+developer would still have to choose which engine he wanted to 
+use - and code the form accordingly</quote>. Derek said 
+<quote who="Derek Neighbors">i think what im thinking that CSS 
+adds is layout separate from gfd - i.e. i slap widgets and such 
+down in the .gfd then let the CSS (or somethign similar) define 
+how they are placed and such</quote>. Jason said he thought
+<quote who="Jason Cater">CSS could complement what I'm 
+after - but I still think they are addressing different 
+issues</quote>. Derek said <quote who="Derek Neighbors">well 
+layout is relative - mainly i dont want something that looks like 
+a gnue form in the middle of my website/ecommerce site etc - 
+i watn it to integrate into my marketing look</quote>. The 
+GNUe Forms Definition and Jason's layout manager 
+<quote who="Derek Neighbors">handles the 'base' layout of where 
+thigns belong in a general sense - and a CSS allows by target to 
+define some additional things</quote>. Jason said he was 
+<quote who="Jason Cater">not opposed to this - but I think it 
+is separate from what I'm trying to accomplish</quote>.</p>
+
+<p>John asked how the layout manager would work - 
+<quote who="John Lenton">Do you need entities to do it?</quote> 
+If so, then XML namespaces would be needed. Jason said that 
+<quote who="Jason Cater">absolute positioning will use 
+attributes</quote> as at present - other layout managers might 
+need to use entities, but he personally was only interested in 
+the absolute positioning layout manager. He emphasised that 
+<quote who="Jason Cater">I don't want <cite>any</cite> layout 
+logic in</quote> the GNUe Forms parser code. He wondered 
+<quote who="Jason Cater">if there are any CSS parsers for 
+Python</quote>. John mentioned 
+<quote who="John Lenton">XIST</quote>.</p>
+
+<p>Later, John noted that Jason's proposal would allow the 
+developer to change layouts, but not the end user. Jason said 
+that was a different topic - <quote who="Jason Cater">we are not 
+talking "what color will this widget be?", "what size will this 
+font be?"</quote> but the fundamental underlying layout of the 
+form, which had to be the developer's responsibility. 
+Derek said that, with web-enabled applications, you might 
+want to split form/logical design from layout design. He agreed with 
+Jason that there were two separate issues here, but hoped 
+there might be a clever way of resolving both of them together or in 
+similar ways. Jason said <quote who="Jason Cater">even if you separate 
+layout logic into separate files, you <cite>have</cite> to have 
+a way to denote the relations between the locations of the 
+objects</quote>. He agreed <quote who="Jason Cater">we should 
+be able to support multiple "layouts" of the same form using the 
+same GFD - but I'm trying to address how to denote the layout 
+(wherever that layout is located)</quote>.</p>
+
+</section>
+
+

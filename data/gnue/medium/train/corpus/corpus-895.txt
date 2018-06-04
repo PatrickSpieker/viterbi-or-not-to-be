@@ -1,0 +1,87 @@
+*** reinhard has joined #gnuenterprise
+<reinhard> good morning all
+*** btami has joined #gnuenterprise
+*** kilo has joined #gnuenterprise
+<btami> good morning
+*** SachaS has joined #gnuenterprise
+*** johannesV has joined #gnuenterprise
+<kilo> good morning
+<johannesV> good morning
+<SachaS> morning
+<derek> SachaS: you still in Az or back in liechenstein?
+<SachaS> hi derek ... back in Liechtenstein
+<SachaS> und guess what ;) getting paid to do some ruby on rails work ;) at least for now
+<derek> cool
+<SachaS> pretty much
+*** dimas__ has quit IRC
+*** dimas__ has joined #gnuenterprise
+*** johannesV_ has joined #gnuenterprise
+*** johannesV has quit IRC
+*** dimas__ has quit IRC
+*** derek has quit IRC
+*** johannesV_ has quit IRC
+*** johannesV has joined #gnuenterprise
+*** SachaS has quit IRC
+*** btami has quit IRC
+*** SachaS has joined #gnuenterprise
+*** kilo has left #gnuenterprise
+*** SachaS has quit IRC
+*** jamest has joined #gnuenterprise
+*** SachaS has joined #gnuenterprise
+*** johannesV_ has joined #gnuenterprise
+*** johannesV has quit IRC
+*** klasstek has joined #gnuenterprise
+*** derek has joined #gnuenterprise
+*** jcater has joined #gnuenterprise
+*** derek has quit IRC
+*** derek has joined #gnuenterprise
+*** chillywi1ly has joined #gnuenterprise
+*** jamest has quit IRC
+*** jamest has joined #gnuenterprise
+*** jamest has quit IRC
+*** chillywilly has quit IRC
+*** jamest has joined #gnuenterprise
+*** jcater has quit IRC
+*** jcater has joined #gnuenterprise
+*** SachaS is now known as SachaAway
+*** johannesV_ has quit IRC
+*** SachaAway has quit IRC
+*** jamest has left #gnuenterprise
+*** dimas has quit IRC
+*** dimas has joined #gnuenterprise
+<reinhard> just some further info about performance issues in appserver and in gnue in general
+<reinhard> over the weekend I was having a talk with another developer that was fighting performance issues in python, and this developer had the very same problem that garbage collection is *the* performance killer in python and close to impossible to optimize as it runs just at random times and it can't be easily found out which function causes which garbage
+<reinhard> good night all
+*** reinhard has quit IRC
+<jcater> most of my functions produce a lot of garbage
+<derek> cant python hire a better sanitation engineer?
+<derek> sometime back i read a good article on this subject
+* derek thinks it was python specific and gave examples on how to avoid object churning
+<derek> http://utcc.utoronto.ca/~cks/space/blog/python/MinimizingObjectChurn
+<derek> but then again... when we chose python the primary reason was
+<derek> python values productivity over performance :)
+<derek> is gnue to a point where it needs to consider optimization?
+*** dimas__ has joined #gnuenterprise
+<jcater> probably not
+<jcater> I think the question just came up in the context of some tests someone was doing with a new comm backend
+<jcater> hmm
+<jcater> I was dismissing that article
+<jcater> until it pointed to the intern() builtin
+<jcater> which I'd never seen
+<jcater> Enter string in the table of ``interned'' strings and return the interned string - which is string itself or a copy. Interning strings is useful to gain a little performance on dictionary lookup - if the keys in a dictionary are interned, and the lookup key is interned, the key comparisons (after hashing) can be done by a pointer compare instead of a string compare. Normally, the names used in Python programs are automatically interned, and the di
+<jcater> ctionaries used to hold module, class or instance attributes have interned keys. Changed in version 2.3: Interned strings are not immortal (like they used to be in Python 2.2 and before); you must keep a reference to the return value of intern()  around to benefit from it.
+<jcater> that sounds like a perfect candidate for our event system
+<jcater> as event names are strings
+<jcater> and our event dispatcher maps events to functions using a dictionary
+<jcater> vewy, vewy interesting
+<jcater> well, except for that last part about the python 2.3 change... guess I need to read up on it some more
+*** klasstek has quit IRC
+<chillywi1ly> wassup?
+*** chillywi1ly is now known as chillywilly
+<jcater> werd
+*** jcater has quit IRC
+*** derek has quit IRC
+*** jcater has joined #gnuenterprise
+*** derek_ has joined #gnuenterprise
+*** dimas__ has quit IRC
+*** derek_ is now known as derek

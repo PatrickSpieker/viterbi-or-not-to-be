@@ -1,0 +1,432 @@
+<derek> guile wrap
+<derek> a C guile wrapper iirc written by gnucash team for gnucash but other projects use it too (i think)
+Action: derek cant get gtoaster to work for non direct cd stuff
+<derek> it looked VERY promising in that i could drag and .ogg file and it woudl appear to conver to an audio file on the fly for me
+<derek> but it locks up burning no matter what i do
+<ajmitch> how irritating
+<derek> i switched to precaching things and it actually locks there, so its not a 'burn' issue
+<derek> is a gtoaster conversion issue
+Action: ajmitch can burn at 4x!!
+<derek> as i appear to be able to make a data cd of .ogg/.mp3 directly
+<derek> jsut not letting gtoaster convert to cdaudio
+<ajmitch> hmm
+<derek> i might just steal their command line syntax
+<derek> and try to do the conversion myself
+<derek> and then burn the wav files to cd
+<derek> and see if it works
+<derek> luckly i have lots and lots of free media or i might be pissed by now :)
+<derek> but cd 2 cd seems to go very nicely (knock on wood)
+<derek> got most of daughters cds archived
+<derek> so originals no longer have to take beatings
+Action: derek wishes dvds were easy to archive
+Action: ajmitch has a slow drive
+<ajmitch> someone pass me some caffiene, please
+<derek> chillywilly: you here punk
+rdean (~rdean@12-221-229-247.client.insightBB.com) joined #gnuenterprise.
+<chillywilly> yea
+<chillywilly> punk
+Nick change: chillywilly -> cw-zzzZZZ
+rdean (~rdean@12-221-229-247.client.insightBB.com) left irc: "Client Exiting"
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+rossg_ (rossg@home.golder.org) left irc: Read error: 113 (No route to host)
+<ajmitch> hello all
+<psu> hi aj
+<psu> ajmitch: futureboy
+<psu> now back at +1300 relative to me
+<ajmitch> :)
+Action: psu is back on good ol' GMT/UTC now
+<ajmitch> strange to think that it could be monday here but saturday somewhere else
+<psu> somewhere else == not that far away from you, either
+<psu> as I would guess only a few mid-pacific islands
+<psu> would be -1200
+<ajmitch> yup
+<ajmitch> very few
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+<ajmitch> morning reinhard
+<psu> hi reinhard
+Action: psu had better get to work
+<psu> oh no, that's right, it's Sunday ;-)
+<psu> in which case, I'd better get to church
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise ("prayer == the orginal RPC ? ;-)").
+SachaS (~Sacha@dialup-196-147.wasp.net.au) left irc: Read error: 113 (No route to host)
+siesel (~chatzilla@port198.waldbroel.ndh.net) joined #gnuenterprise.
+<siesel> morning
+siesel (~chatzilla@port198.waldbroel.ndh.net) left irc: "ChatZilla 0.8.9 [Mozilla rv:1.1/20020826]"
+rossg_ (rossg@home.golder.org) joined #gnuenterprise.
+ninja (rossg@home.golder.org) joined #gnuenterprise.
+rossg_ (rossg@home.golder.org) left irc: Read error: 104 (Connection reset by peer)
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) left irc: "The chance of forgetting something is directly proportional to ... to ... aehm ..."
+paq (~paq@202.155.120.221) left irc: Read error: 60 (Operation timed out)
+lupo_ (~lupo@p50845D63.dip.t-dialin.net) joined #gnuenterprise.
+<lupo_> hi
+<lupo_> nobody here ..
+<lupo_> hm, psu: this is for KC
+<lupo_> european GNUe devel meeting is organized
+<lupo_> there will be a separate room, sponsored by reinhard
+<lupo_> jan and I will bring laptops with us and keep everyone on track via IRC (except we have no net access, which I doubt)
+<lupo_> I will try to make some dia drawings when it makes sense
+<lupo_> main topic will be appserver design
+<lupo_> I think that's the piece of GNUe which currently needs the most work
+<lupo_> When I understand appserver, I can try to write a crash-course for developers who want to use it, because it was an opaque technology to me
+lupo_ (~lupo@p50845D63.dip.t-dialin.net) got netsplit.
+cw-zzzZZZ (danielb@mke-24-167-202-50.wi.rr.com) got netsplit.
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) got netsplit.
+lupo_ (~lupo@p50845D63.dip.t-dialin.net) returned to #gnuenterprise.
+cw-zzzZZZ (danielb@mke-24-167-202-50.wi.rr.com) returned to #gnuenterprise.
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) returned to #gnuenterprise.
+lupo_ (~lupo@p50845D63.dip.t-dialin.net) left irc: "using sirc version 2.211+KSIRC/1.1"
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) joined #gnuenterprise.
+Nick change: cw-zzzZZZ -> chillywilly
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) joined #gnuenterprise.
+<Yurik> re
+<chillywilly> hird
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) left irc: "later"
+Nick change: chillywilly -> cwChurch
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) left irc: Read error: 113 (No route to host)
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) joined #gnuenterprise.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left #gnuenterprise ("Client Exiting").
+paq (~paq@202.155.120.221) joined #gnuenterprise.
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+Nick change: reinhard -> rm-away
+<Mr_You> man big increase in debian developers and packages between 2.2 and 3.0
+ninja (rossg@home.golder.org) left irc: "Client Exiting"
+<Mr_You> its a monster! haha
+<Mr_You> soon we'll have AI Debian programmers coding Debian hehe
+<Mr_You> http://telemetrybox.org/tokyo/
+<jcater> cool
+<jcater> that was rather well-written
+rm-away (~reinhard@M693P020.adsl.highway.telekom.at) left irc: Read error: 104 (Connection reset by peer)
+rm-away (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+Nick change: cwChurch -> chillywilly
+<chillywilly> except they call it the GNU Public License
+Action: jcater missed that
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) joined #gnuenterprise.
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) got netsplit.
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) got netsplit.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) got netsplit.
+dtm ([YdUiiN5Ft@ip66.promontory.sfo.interquest.net) got netsplit.
+dtm ([YdUiiN5Ft@ip66.promontory.sfo.interquest.net) returned to #gnuenterprise.
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) returned to #gnuenterprise.
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) returned to #gnuenterprise.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) returned to #gnuenterprise.
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) left irc: Read error: 104 (Connection reset by peer)
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) got netsplit.
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) got netsplit.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) got netsplit.
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) returned to #gnuenterprise.
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) returned to #gnuenterprise.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) returned to #gnuenterprise.
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) joined #gnuenterprise.
+<Yurik> hi all
+<psu> hi Yurik
+<chillywilly> hi
+<psu> woohoo
+<psu> cable modem finally available in my area
+<psu> just in time for my birthday, too
+<psu> No mention of GNU/Linux support, natch
+<psu> but that shouldn't be a problem
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) left irc: "later"
+<psu> Now, do I want 128kbit, 600kbit or 1Mbit
+<jcater> probably should go with 1<Mb
+<jcater> considering how large the KCs are getting
+<jcater> :)
+<chillywilly> yeam 1Mb! 1Mb!
+<psu> hmm
+<chillywilly> get the "fat" pipe yo
+<psu> 1Mbit - a fat pipe for a fat hacker ;-)
+<chillywilly> sure :)
+<chillywilly> spin it hwever you like ;)
+<chillywilly> however, even
+siesel (jan@dial-213-168-98-11.netcologne.de) joined #gnuenterprise.
+<siesel> hi all
+<Mr_You> hi siesel
+<Mr_You> and all
+<ajmitch> morning people
+Nitronium (tntlabs@modem-1248.monkey.dialup.pol.co.uk) joined #gnuenterprise.
+Nitronium (tntlabs@modem-1248.monkey.dialup.pol.co.uk) left #gnuenterprise.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<Mr_You> http://www.aikidofaq.com/history/story.html
+<Mr_You> "Avoiding the concentrated fire of revolvers"
+<Mr_You> hi andrew
+<ajmitch> ugh, evil spam
+<Mr_You> me?
+<ajmitch> no
+<chillywilly> sup aj
+<Mr_You> best not ;-)
+<ajmitch> i went to check my email & saw a lot of misdirected messages
+<chillywilly> yes Mr_You stop spamming the channel already I grow tired of such tactics ;)
+<ajmitch> someone screwed up freeciv's bug tracker ;)
+<chillywilly> oh, ajmitch I saw the two towers movie trailer
+<chillywilly> looks very cool man :)
+Action: chillywilly can't wait
+<derek> man i think FD list is well getting fun to watch ;)
+<ajmitch> hehehe
+Action: ajmitch watches the catfights from afar
+<ajmitch> tony show 
+Action: chillywilly is not subscribed anymore
+<chillywilly> what's going on?
+<chillywilly> hrrrm, I can view tyhe archives via topica right?
+<ajmitch> a number of people moving on, tony throwing a hissy fit, with ad hominem attacks left & right :)
+<chillywilly> cool :P
+<chillywilly> maybe he should treat ppl like human beings
+<ajmitch> fitzix having a few strong words
+<chillywilly> I dunno call me crazy ;)
+<chillywilly> cool
+<chillywilly> ;P
+<psu> hmm, according to my cable provider I need 
+<psu> 64MB of RAM
+<psu> but they assume I am using Win98 or higher, which probably explains why
+<chillywilly> ajmitch: can you point me at the archives or do you think I would need a topica account again?
+<chillywilly> psu: HEH :P
+<ajmitch> chillywilly: do what you feel is right
+<chillywilly> :)
+Action: psu wonders if a 233 w/32MB or even the vey old 100 w/16 MB would be usable
+<psu> as a gateway/firewall
+<chillywilly> psu: YES
+<jcater> psu: DEFINTIELY
+<psu> assuming I stick to GNU/Linux
+<jcater> psu: honestly, I'd recommend you try ipcop
+<jcater> it's gnu/linux
+<chillywilly> psu: my gateway/firewall is a P166 w/80MB RAM running Debian
+<jcater> but you basically burn an ISO, put it in an old machine
+<jcater> then reboot
+<chillywilly> with my cable connection
+<jcater> I use it here at home
+<psu> sounds good
+<jcater> provides firewall, nat, dhcp
+<jcater> and it's on a P133 w/32
+Action: jcater was planning on moving it to my 486/33 w/16Mb soon
+<jcater> as it's a waste of clock cycles
+<jcater> and electricity
+<siesel> Mr_You: trigger in case of javascript clients wouldn't be much more insecure then the javascript client itself. 
+Action: jcater thinks the 486s consume less
+<psu> jcater: aren;t they steam-driven? ;-)
+Action: chillywilly found the FD list
+<ajmitch> i can't use any that's too old
+<jcater> chillywilly: url?
+Action: jcater is curious now :)
+<ajmitch> since my ADSL modem uses USB to connect to the computer :)
+<jcater> ah
+<chillywilly> how far back should I go
+<chillywilly> ?
+<jcater> well, yes
+<chillywilly> jcater: one sec
+<jcater> this assumes their modem uses Ethernet
+<chillywilly> jcater: http://www.topica.com/lists/FreeDevelopers
+<jcater> chillywilly: thx
+<siesel> the important trigger/business logic/consitence checking etc. should be done i appserver, in case of javascript AND python clients.
+<jcater> bah
+jbailey (~jbailey@CPE014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+<jcater> that'
+<chillywilly> hrrrm?
+<jcater> that's one big point of failure
+Action: siesel is speaking of 3-tier setup only.
+<ajmitch> hey jbailey
+<chillywilly> man there's a big gap from Jne to October
+<chillywilly> er, June
+<ajmitch> chillywilly: well yeah
+<chillywilly> I suppose this month is when all the fn started?
+<ajmitch> FD is dead, what do you expect?
+<chillywilly> ;)
+<ajmitch> yes
+Action: chillywilly thinks this will be fun to read
+Action: ajmitch didn't realise that the eGOVOS project was originally fitzix' before he got tangled up in FD
+<jbailey> Heya Andrew and everyone.
+<chillywilly> what's this eGovOS.org thing?
+<chillywilly> it was his while being tangled
+<chillywilly> or something
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise ("nite - off to dream sweet dreams of cable modems").
+<chillywilly> who the heck is to-@freedevelopers.net?
+<chillywilly> nm
+<ajmitch> :P
+<chillywilly> oh no Tim Rue
+<chillywilly> ack
+<ajmitch> yup, your friend
+<chillywilly> heh, site "mitosis" wtf kinda crack is he smoking?
+ToyMan (~stuq@glvv-dsl2-191.citlink.net) joined #gnuenterprise.
+<chillywilly> and what's up with "don't infringe on our trademark"
+<chillywilly> it's not even sed in commerce anyway
+<chillywilly> er, used
+rm-away (~reinhard@M693P020.adsl.highway.telekom.at) left irc: "Never wrestle with a pig. You both get dirty and the pig likes it"
+<chillywilly> how do you have democracy with someone dictating to you some rules for you to "self organize"?
+Action: chillywilly wonders why he is even bothering to care
+<chillywilly> hehe, davi is telling him how it is ;)
+lex_ (~alex@dup-200-64-174-3.prodigy.net.mx) joined #gnuenterprise.
+<lex_> Hey.... ne1  live?
+<jbailey> lex_: I can't parse that, sorry.
+<lex_> :)
+<chillywilly> wow, it is getting heated
+<chillywilly> Barry went off
+<chillywilly> heheh, that was a nice distraction ;)
+<chillywilly> now back to the things that I have been putting off :(
+dres (~dres@mail.lewismoss.org) left irc: Read error: 54 (Connection reset by peer)
+<ajmitch> hello mr borges
+<lex_> ajmitch: lo
+<lex_> farks.... im trying to build a deb for a lingerd patched apache... tough job
+<ajmitch> ooh
+<lex_> its like... i apt-get source, apt-get build dep, copy the lingerd patch to debian/patches and all the patching goes well .... until debian tries to apply a so called eapi patch, which breaks (gets rejected) cause of the aplinger patch
+<ajmitch> yeah
+<ajmitch> i've seen the likes of that :)
+<lex_> id hate it if i had to go dl the apache source and have a non-standard installation....
+<ajmitch> remove the eapi patch? :)
+<lex_> ajmitch: it looks important....not even in the patches directory...
+siesel (jan@dial-213-168-98-11.netcologne.de) left irc: "BitchX sucks"
+<esands> lex_: sounds like you have to hack the patch to fit the debian version of apache.  Have fun. ;)
+<lex_> buahaha
+<esands> Usually I don't find it too hard.  Even if you don't know C its usually obvious how to join the pieces of string 
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) joined #gnuenterprise.
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) left irc: "develop!"
+Action: jbailey is away: dinner
+<Mr_You> anyone around?
+<ajmitch> yup
+<Mr_You> does trigger code get executed on clients and appserver or both?
+<ajmitch> mostly clients, depends on the form
+<ajmitch> not sure how well appserver does triggers at the moment, would have to ask siesel or reinhard
+<Mr_You> ok, well siesel mentioned this:
+<Mr_You> p<siesel> the important trigger/business logic/consitence checking etc. should
+<Mr_You>          be done i appserver, in case of javascript AND python clients.
+<ajmitch> right, so that'd be remote triggers in appserver
+<ajmitch> there might be some stub code for calling that within the forms - i am not certain
+<Mr_You> ok, well that solves a problem of javascript and python
+<ajmitch> yup
+<Mr_You> you had me worried :-P
+<ajmitch> just requires a simple xml-rpc call, i guess
+<ajmitch> hehe
+<Mr_You> yeah
+<ajmitch> as i said, it depends on the forms - most forms now have inline python triggers
+<ajmitch> but hopefully they'll move away from that
+<Mr_You> well, atleast there is some trigger flexibility with remote triggers
+<ajmitch> yep
+<ajmitch> i think i'd prefer remote triggers
+<Mr_You> it seems the best route for the javascript client will be XMLRPC only.
+<Mr_You> you seen the latest tablet PCs?
+<ajmitch> nope
+<ajmitch> nice compact units?
+<Mr_You> microsoft demoed some to some linux developers and they were cheering hehe ;-)
+<ajmitch> hehe
+<Mr_You> mainly cause its leading edge technology
+<Mr_You> basicly its a PC that can be used with a pen in tablet mode and be docked with a keyboard for laptop/desktop mode
+<jcater> that's going to be sooo damn much overhead
+<jcater> having remote-only triggers
+<jcater> can you imagine the communications
+<jcater> between client and server
+<jcater> for every single keystroke, etc
+<ajmitch> ouch?
+<Mr_You> I dunno.. lets test it out?  ;-)
+<jcater> I'm not
+<jcater> y'all can
+<Mr_You> X has high overhead  but people still use it ;-)
+<jcater> yunno
+<jcater> all my workstations at my callcenter
+<jcater> also aren't dependent on a single X server either
+<Mr_You> yeah hardware is cheap enough you don't need to
+<Mr_You> but admins still use remote X
+<jcater> sigh
+<jcater> you miss my point
+<jcater> of a SINGLE point of failure
+<jcater> I will never run such a setup at NCS
+<jcater> I've had way too much experience
+<jcater> with stuff like that failing 
+<jcater> but to each his own :)
+<Mr_You> so how do you propose high avaibility appserver?  ;-)
+<jcater> why do you assume I'd ever use appserver?
+<jcater> I think it's great people are wanting it and writing it
+<Mr_You> how are you providing HA database service?
+<jcater> but that doesn't translate into me ever using it
+<jcater> you think appserver will provide that?
+<jcater> appserver is yet another point of contact
+<Mr_You> how are you providing HA database service?
+Action: jcater uses Oracle with HA hardware
+<jcater> and real-time backups
+Action: jcater is never down
+<Mr_You> ok
+Action: jcater went the route of having middleware
+<ajmitch> so eventually we'll have 2 classes of forms - those that are appserver-dependant, and those that are not
+<jcater> and my HA went <poop>
+<jcater> :)
+<Mr_You> HA  is spensive
+<jcater> ajmitch: I'm talking about my custom stuff
+<ajmitch> jcater: yeah
+<jcater> I'm not thrilled about GNUe requiring an appserver for all the accounting stuff
+<Mr_You> it really just comes down to flexibility
+<jcater> not thrilled at all
+<jcater> but that's not my call
+<jcater> Mr_You: I've been there, done that
+<jcater> like I said, to each his own
+<Mr_You> well I want business logic.
+<Mr_You> done what?
+<jcater> middleware
+<Mr_You> you mean HA middleware software right?
+<jcater> I mean application servers
+<Mr_You> basicly a hack ;-)
+<Mr_You> ahh well you just use triggers for business logic?
+<jcater> "just" ?
+<jcater> yeah, I use triggers
+<Mr_You> well triggers is a broad description
+<Mr_You> GNUe Triggers ;-)
+<Mr_You> bottom line is HA is expensive until PostgreSQL has production quality replication.
+<Mr_You> which I think is in the works
+Action: jcater is curious as to how this deals with appserver, as appserver isn't exactly HA
+<Mr_You> it doesn't, you just took the appserver conversation into single point of failure ;-)
+<Mr_You> appserver could provide HA capabilities at some point
+<Mr_You> more network traffic
+<jcater> are you trying to convince me or yourself about application servers?
+<Mr_You> nope
+<Mr_You> I'm just making a point that HA is expensive and not normally available to small biz.
+<jcater> my point is that, for a small business, you are adding yet one more layer that can, and at some point will, go wrong
+Action: jcater works for a small biz
+<jcater> it's a statistics game
+<jcater> the more layers you add that can go down
+<jcater> the more often you go down
+<jcater> in my mind
+<jcater> until you have multiple database servers
+<jcater> something like an application server
+<ajmitch> the more you get annoyed with the crap software you're using :)
+<jcater> isn't gaining you anyhing
+<jcater> but rather costing you
+<Mr_You> you aren't suppose to go down with HA
+<Mr_You> I understand your point
+Action: jcater isn't discouraging anyone
+<Mr_You> its a cost and risk vs benefit
+<jcater> but there's a current trend toward middleware
+<jcater> without looking at historical evidence
+<jcater> and case studies
+<jcater> for some, middleware makes sense
+<jcater> but I see more times than not these days, "if it's not N-tier, how on earth am I supposed to use it"
+<jcater> enterprises were successfully doing n-tier (and even 1-tier) long before n-tier
+<jcater> but, I digress
+<jcater> :)
+<jcater> ...time for dinner
+<Mr_You> you provide all your GNUe users with a single/shared database user account or it is "anonymous" or what?
+jbailey (~jbailey@CPE014260028338.cpe.net.cable.rogers.com) left irc: "Client Exiting"
+<chillywilly> appserver should only have object/business rles in it not "triggers" as in ui events imho
+<chillywilly> that's just stupid
+<chillywilly> wtf is HA?
+<ajmitch> high availability
+<chillywilly> triggers for forms is not necessarily methods/triggers for the appserver
+<chillywilly> as I agree with jcater you don't want frelling rcp calls for every little ui interaction
+<chillywilly> ajmitch: thanks
+<chillywilly> er, rpc
+<chillywilly> then again how often does a form hit the db?
+<chillywilly> not on every single trigger does it? I don't think it works that way...
+lawrence (~lawrence@bsd01.necessity.org) joined #gnuenterprise.
+lawrence (~lawrence@bsd01.necessity.org) left irc: Remote closed the connection
+debUgo- (debUgo-@200.69.122.154) joined #gnuenterprise.
+ToyMan (~stuq@glvv-dsl2-191.citlink.net) left irc: Remote closed the connection
+lex_ (~alex@dup-200-64-174-3.prodigy.net.mx) left irc: Read error: 113 (No route to host)
+lex_ (~alex@dup-200-64-175-160.prodigy.net.mx) joined #gnuenterprise.
+debUgo- (debUgo-@200.69.122.154) left irc: 
+jcater (~jcater@24.165.223.104) left irc: 
+IsoosI (dahoose@port-219-88-246-75.jet.net.nz) joined #gnuenterprise.
+Remosi (dahoose@219.88.247.104) left irc: Read error: 54 (Connection reset by peer)
+<derek> dtm: you alive
+<derek> and up
+<dtm> hi
+Nick change: derek -> xdemo
+<xdemo> muhahaha
+Nick change: xdemo -> derek
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: "Free Your Enterprise! - http://www.gnuenterprise.org"
+Nick change: lex_ -> lex_airport
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) joined #gnuenterprise.
+--- Mon Oct 28 2002

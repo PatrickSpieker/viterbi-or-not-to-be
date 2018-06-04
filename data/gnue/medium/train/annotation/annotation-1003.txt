@@ -1,0 +1,49 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.16Nov2002" enddate="16 Nov 2002 16:00:00 -0800" startdate="15 Nov 2002 16:00:00 -0800" subject="[IRC] 16 Nov 2002" title="Transaction stamping and getSequence">
+
+<topic>Forms</topic>
+<topic>Common</topic>
+
+<p>Derek Neighbors (dneighbors) said <quote who="Derek Neighbors">we 
+need an easy way to do transaction stamping i.e. createdon/by, 
+modifiedon/by</quote>. Jason Cater (jcater) said there was 
+<quote who="Jason Cater">a REAL easy way to do transaction 
+stamping - they're called Pre-Update and Pre-Insert triggers</quote>
+- <quote who="Jason Cater">same principle as setting the sequence 
+value on an insert</quote>. James Thompson (jamest) said 
+<quote who="James Thompson">no, we need a real, real way :)</quote> 
+- just like the getSequence function, <quote who="James Thompson">you 
+also have getTimestamp</quote>.</p>
+
+<p>Coincidentally, Derek then came up against a case where he 
+needed to use getSequence - <quote who="Derek Neighbors">the classic
+'the parent needs to create its id in order to store in the child' 
+problem - do you have a sample form that this works in 
+currently?</quote> Jason asked <quote who="Jason Cater">are they 
+set up as master/detail? as it does all that behind the scenes if 
+so</quote>. Otherwise, <quote who="Jason Cater">check the recipe's 
+chapter in the dev guide</quote>.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.17Nov2002">
+The next day</a>, Jason said <quote who="Jason Cater">we have 
+a createdon recipe - but createdby - who is "by" ?</quote> 
+James said <quote who="James Thompson">i think he wants the 
+username of the logged in user</quote>. Derek agreed - he
+<quote who="Derek Neighbors">wasnt sure how to get that info 
+via trigger</quote>. Jason said <quote who="Jason Cater">I 
+know we can do that via triggers - but we probably need to add 
+a convenience method</quote>. Derek asked 
+<quote who="Derek Neighbors">what if you are using a custom 
+'authenicator'</quote>? He had <quote who="Derek Neighbors">had 
+to make all my 'transactional' stuff like that nullable for now 
+in gnue-sb - until i get good trigger way to do it (or a 
+convenience method) - then i will add it back in. /me thinks 
+the date part is taken care of - if the db is setup properly</quote>
+then the "created on" field <quote who="Derek Neighbors">should 
+use function that posts timestamp if null else 
+nothing if there - and the modified should use function that 
+posts timestamp no matter what - though it would be better to 
+amke it in application i think</quote>.</p>
+
+</section>
+
+

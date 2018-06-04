@@ -1,0 +1,2491 @@
+[01:40] Last message repeated 1 time(s).
+alexey (~alexey@195.151.214.34) joined #gnuenterprise.
+alexey (alexey@195.151.214.34) left irc: "Client Exiting"
+alexey (~alexey@195.151.214.34) joined #gnuenterprise.
+dtm (dtm@ip225.promontory.sfo.interquest.net) joined #gnuenterprise.
+<dtm> haddo
+reinhard (~rm@N809P002.adsl.highway.telekom.at) joined #gnuenterprise.
+reinhard (rm@N809P002.adsl.highway.telekom.at) left irc: Client Quit
+reinhard (~rm@62.47.45.2) joined #gnuenterprise.
+alexey (alexey@195.151.214.34) left irc: "Client Exiting"
+Nick change: drochaid[zZz] -> drochaid
+tod (tod@dialup-mo-31.stjames.fidnet.com) left irc: Read error: 113 (No route to host)
+tod (~tod@dialup-mo-95-227.stjames.fidnet.com) joined #gnuenterprise.
+reinhard (rm@62.47.45.2) left irc: "If you think there is good in everybody, you haven't met everybody"
+alexey (~alexey@195.151.214.34) joined #gnuenterprise.
+tod (~tod@dialup-mo-95-227.stjames.fidnet.com) left #gnuenterprise ("Client Exiting").
+Yurik (~yrashk@gw.telcos.net.ua) joined #gnuenterprise.
+<Yurik> re
+nickr (nick@e-172-IP28.empnet.net) left irc: Read error: 113 (No route to host)
+alexey (alexey@195.151.214.34) left irc: "Client Exiting"
+nickr (~nick@e-172-IP28.empnet.net) joined #gnuenterprise.
+Yurik (~yrashk@gw.telcos.net.ua) left #gnuenterprise.
+ra3vat (ds@195.239.204.226) joined #gnuenterprise.
+chillywilly (~danielb@d73.as15.nwbl0.wi.voyager.net) joined #gnuenterprise.
+chillywilly (danielb@d73.as15.nwbl0.wi.voyager.net) left irc: "church"
+tttt (~tobias@B9309.pppool.de) joined #gnuenterprise.
+tttt (~tobias@B9309.pppool.de) left #gnuenterprise.
+<derek> slamb: you get things working?
+Action: derek thinks you are one of the ones w/ the postgres problem on win32
+<derek> bye bye
+derek (derek@cpe-24-221-112-50.az.sprintbbd.net) left irc: "um my gnue tree is bigger than your gnue tree"
+alexey (~alexey@195.151.214.34) joined #gnuenterprise.
+ra3vat (ds@195.239.204.226) left irc: "Client Exiting"
+jamest_ (~jamest@fh-dialup-201069.flinthills.com) joined #gnuenterprise.
+<drochaid> hey jamest_
+<jamest_> hey
+<slamb> derek: yeah, it logs in fine now with the 29 Jan 2002 snapshot :)
+<slamb> oops, he logged off
+<jamest_> slamb
+<jamest_> we can't blame the pypgsql driver as derek stated
+<jamest_> it was my bug in our pypgsql interface 
+ra3vat (ds@195.239.204.226) joined #gnuenterprise.
+<slamb> ahh *nod* well, in any case that does work
+<jamest_> as for not being able to edit properties
+<jamest_> there is a bug that if you have a scrollbar on the property editor then you can't edit anything
+<slamb> ahh, okay
+<jamest_> i was under the impression this was a wxwin bug
+<jamest_> but I noticed on Fri that the wxpython demo doesn't suffer from this
+<jamest_> i hope to look at it in the very near future
+<slamb> ooh, yeah. I expanded it and can edit now
+<jamest_> yip
+<jamest_> too bad the designer snapshot is screwed up
+<jamest_> it allows you to drag and drop fields from the table view onto the form
+<slamb> nice
+<drochaid> drag'n'drop? cool
+<jamest_> yip
+<jamest_> we've went to drag and drop for everything in cvs designer
+<jamest_> well
+<jamest_> almost everything
+<jamest_> widget placement was a big one though
+<slamb> how are those win32 builds made, anyway?
+<jamest_> um
+<jamest_> you do a complete install of all dependencies on windows
+<jamest_> add pypgsql, mysql, and pywin 
+<jamest_> then run it thru msmillian installer version 4.x
+<jamest_> ms=mc
+<jamest_> then use inno to package it up
+<jamest_> we've got a doc in forms/doc/installer
+<jamest_> and designer/doc/installer
+<slamb> cool
+<jamest_> i may try and make snapshots today if jason fixed the designer windows issues
+<drochaid> :D
+<drochaid> I'm going to be flat out getting ready to launch for the next month .. an early snapshot would be good ;)
+alexey (alexey@195.151.214.34) left irc: "Client Exiting"
+ra3vat (ds@195.239.204.226) left irc: "Client Exiting"
+alexey (~alexey@195.151.214.34) joined #gnuenterprise.
+<jamest_> drochaid: what are you launching?
+<drochaid> my new business
+<jamest_> cool
+<jamest_> part time or full time
+<drochaid> full time
+<jamest_> IIRC you were injured on last job ?
+<drochaid> aye
+<drochaid> and combination of it job market in Scotland being depressed, and I've wanted my own business for 10 years ...
+<drochaid> I think it's time to do it instead of dreaming ;)
+<jamest_> you can't go back to old job?
+<drochaid> nope
+<drochaid> they waited until I was just about to return, the dismissed me
+<drochaid> *then
+<jamest_> i think that's against the law here
+<drochaid> here as well
+<drochaid> that's why I've got two legal actions against them
+ra3vat (ds@195.239.204.226) joined #gnuenterprise.
+<slamb> Hmm. Current Linux CVS, made new form, querying doesn't show anything.
+<slamb> It adds new stuff fine, though.
+<jamest_> hmmmmmm
+<jamest_> lemme test
+<jamest_> latest cvs is working fine for me
+<jamest_> what db driver are you using?
+<slamb> pypgsql 2.0
+<slamb> hmm. maybe I should turn on query logging on the server.
+<jamest_> same db driver
+<jamest_> however I think i've seen what youre talking about
+<jamest_> tell me
+<jamest_> if you hit f8 then f
+<jamest_> er
+<jamest_> if you hit f8 then f9
+<jamest_> does the record counter on the form update
+<jamest_> to show how many records it should be displaying
+<slamb> hmm. there it worked. I see entries in the form.
+<slamb> yeah, the menu entries just don't do anything.
+<slamb> but the accelerator keys do
+alexey (alexey@195.151.214.34) left irc: "Client Exiting"
+<jamest_> ok
+<jamest_> ouch
+<jamest_> you are right
+<jamest_> sigh
+<slamb> It kinda makes sense that no one else would notice, though. You never use those once you know your way around the program.
+<drochaid> doh!! I've only used f8/9 and the icons ... never the menus
+<jamest_> well
+<jamest_> the keyboard input routine are being worked on
+<jamest_> i imagine that the event system changed and the menu/toolbar entries didn't 
+<jamest_> ok, i'm uploading a new snapshot of designer that "works for me" on win32
+<jamest_> I'm on 56K modem and the ETA reported by scp is ~ 11 minutes
+<jamest_> i need to run for a while
+<jamest_> I'll try and fix the forms menus later today
+<slamb> cool. :)
+Action: drochaid waits with baited breath
+Action: drochaid looses conciousness
+slamb (slamb@c1905024-a.iowact1.ia.home.com) left irc: "Leaving"
+ra3vat (ds@195.239.204.226) left irc: "Client Exiting"
+psu (peter@manorcon.demon.co.uk) joined #gnuenterprise.
+<psu> hi
+<drochaid> hey psu
+<psu> hu drochaid
+<psu> how your advebtures with forms?
+<psu> ack, my typing is going to pot
+<drochaid> heh
+<drochaid> going okish so far
+<drochaid> there may be a new build up for designer by now
+Action: drochaid goes off to check
+<psu> i believe the daily cvs builds are done at midnight CST time
+<psu> = 06:00 am GMT
+<drochaid> not cvs, win32 build
+<drochaid> there is .. but I can't access the pre-release files :(
+<drochaid> jamest_: if you're around .. is there a way for me to get the latest designer build?
+<psu> they're probably all off prepping for their superbowl parties ;-)
+<drochaid> hmm, a joyous event I don't need to put up with here ;)
+<psu> i used to actually follow AmFoot when it first started on CHannel 4
+<psu> they used to have all the "weird" sports
+<psu> AmFoot, Aussie Rules Football, even Sumo ;-)
+<drochaid> lol
+<drochaid> channel 4 ... hmm ... well at least they do time time :)
+<jamest_> no football for me
+Action: jamest_ gets ill thinking about what those people make to toss a ball around
+<drochaid> wb dood
+<drochaid> lol
+<psu> we smoked him out ;-)
+<jamest_> not for long
+<jamest_> my son is calling me
+<jamest_> but I fixed the downloads page
+<drochaid> ta
+<jamest_> soory about that
+<jamest_> really wierd
+<jamest_> chmod o+rx filename wouldn't work
+<jamest_> i had to do that to group
+<jamest_> be back after a while
+<drochaid> 3.9meg? excellent
+<drochaid> should take about 20 secs :)
+<drochaid> cya jamest_
+<psu> drochaid - you can really go off people, you know
+<psu> I've had my name down for a cable modem for 18 months
+<drochaid> lol
+Action: drochaid hides
+<drochaid> the first day I got the cable modem, I downloaded 3 isos that would normally take me nearly 2 weeks :D
+<psu> humph
+Action: ajmitch hits drochaid with his modem
+<drochaid> lol
+<drochaid> <cough>CABLE modem</cough>
+<drochaid> how you doing ajmitch?
+<ajmitch> i'm doing just fine here with my 33.6k modem :P
+<psu> yeah, us dial-up weenies have to stick together
+<drochaid> 33.6k??? :o
+<drochaid> I've only been on cable for about 3 weeks now ... I feel your pain ;)
+<ajmitch> sure you do...
+Action: drochaid works hard to hide his grin
+<psu> if you don;t watch it, we'll cast a curse to make GNUe keep crashing on you
+<psu> if you really upset us, we'll go back in time & make it retrospective
+<psu> hmm, would explain a lot...
+<psu> ;-)
+<drochaid> lol
+<nickr> huh, that'd be a neat trick
+<nickr> and useful if for example you were doing a job and the person didn't pay you everything he owed you
+<psu> never need an "UNDO" button again...
+ajmitch__ (~me@p54-max11.dun.ihug.co.nz) joined #gnuenterprise.
+ajmitch (me@p13-max5.dun.ihug.co.nz) left irc: Killed (NickServ (Ghost: ajmitch__!~me@p54-max11.dun.ihug.co.nz))
+<psu> bbl
+psu (peter@manorcon.demon.co.uk) left irc: "TinyIRC 1.1"
+Nick change: ajmitch__ -> ajmitch
+<drochaid> wb ajmitch
+<ajmitch> :P
+<jamest_> drochaid: did it work for you?
+<drochaid> gah .. got side tracked
+<drochaid> just checking now
+<drochaid> well ....
+<drochaid> the postgres login now works properly [as with forms] ...
+<drochaid> it loaded the .gfd ...
+<drochaid> but "Whaddaya mean 'Baa! B-Baa! ! Baa!'?....'Sheep ya dern fool!'" .... uhm?
+<jamest_> that's always been there
+<ajmitch> yeah
+<ajmitch> some crazy person put that in
+Action: jamest_ hides
+Action: drochaid wonders about the excess caffeine levels in GNUe people ;)
+<drochaid> I hadn't noticed it before ... the bugs must have taken too much of my attention
+Action: drochaid hides
+<drochaid> schema navigator? that's new ... I like it :D
+<drochaid> the 'Show tables/views' selector doesn't function tho
+<jamest_> you have to connect to a datasource first
+<jamest_> under the file menu
+<drochaid> *ahem*
+<drochaid> I have :P
+<drochaid> I have the schema up .. that's how I know the 'Show tables/views' isn't working
+<jamest_> ?
+<drochaid> it shows everything regardless
+<jamest_> ah
+<jamest_> no, that selector doesn't work
+<jamest_> dang
+<jamest_> drag and drop from the fields isn't working now
+psu (peter@manorcon.demon.co.uk) joined #gnuenterprise.
+<drochaid> :o
+<drochaid> wb psu
+<psu> back
+<jamest_> cvs forms menu/toolbar queries work again
+neilt (~neilt@66.95.5.110) joined #gnuenterprise.
+#gnuenterprise: mode change '+o neilt' by ChanServ!ChanServ@services.
+psu (peter@manorcon.demon.co.uk) left irc: Read error: 113 (No route to host)
+neilt (neilt@66.95.5.110) left irc: 
+rdean (rdean@chcgil2-ar2-053-033.chcgil2.dsl.gtei.net) joined #gnuenterprise.
+chillywilly (~danielb@d106.as21.nwbl0.wi.voyager.net) joined #gnuenterprise.
+rdean (rdean@chcgil2-ar2-053-033.chcgil2.dsl.gtei.net) left irc: Read error: 104 (Connection reset by peer)
+<chillywilly> anyone home?
+<chillywilly> hey dtm
+<chillywilly> you live
+<chillywilly> :)
+<chillywilly> anyway this looks cool: http://www.omg.org/technology/cwm/
+<nickr> wow, that certainly is buzzmword compliant
+<nickr> no one is interested in teco :(
+<chillywilly> http://www.eaijournal.com/Article.asp?ArticleID=208
+<chillywilly> teco?
+<chillywilly> your creation?
+<nickr> No
+<chillywilly> one thing I hate about OMG is they use such buzz words that I really have no idea wtf they are really talking about half the time....it's like what is this standrda really about
+<nickr> yea
+<nickr> http://www.tuxedo.org/~esr/jargon/html/entry/TECO.html
+<chillywilly> esr?
+Action: chillywilly backs away ;)
+<chillywilly> j/k
+Nick change: drochaid -> drochaid[zZz]
+<chillywilly> I think basically that CWMI stuff is a set if standards that say how business can share and intergrate data, like EDI stuff
+<chillywilly> EDI ==Enterprise Data Integration
+<chillywilly> definitely worth looking at
+drochaid[zZz] (user34@pc1-kirk2-0-cust128.ren.cable.ntl.com) left irc: "Client Exiting"
+<chillywilly> where's da masta anyway?
+<chillywilly> he's always talking about "warehousing"
+ajmitch (me@p54-max11.dun.ihug.co.nz) left irc: Read error: 113 (No route to host)
+<chillywilly> http://www.omg.org/news/releases/pr2000/cwm/whitepaper.htm
+<nickr> All I know is I took the data warehousing test on Brainbench (back when it was free) and cthey used words that I'd never heard before and it was all very buzzwordy and dumb like that
+<chillywilly> well I see OLAP and multidimensional database in there so I know this is the stuff that derek was harping about ;)
+<chillywilly> I think it is a way for data modelers and object modelers to work together
+ajmitch (~me@p54-max4.dun.ihug.co.nz) joined #gnuenterprise.
+rdean (~rdean@chcgil2-ar2-053-033.chcgil2.dsl.gtei.net) joined #gnuenterprise.
+dsmith (dsmith@oh-strongsville5a-64.clvhoh.adelphia.net) joined #gnuenterprise.
+<chillywilly> sup old man
+<chillywilly> :P
+<chillywilly> I have to give you shit now
+<chillywilly> it's in my job description as resident #gnu lurker
+<chillywilly> er, #gnue
+<dsmith> Ahh, foey.
+<dsmith> Are you a true geek, or are you watching "the game"?
+<chillywilly> I have been going back and forth
+<chillywilly> but am not that interested since the Packers aren't in it
+<dsmith> My boys are watching the commercials, and the first down line.
+Action: chillywilly is a WI boy
+<chillywilly> I have been reading this too: http://www.omg.org/news/releases/pr2000/cwm/whitepaper.htm
+Action: dsmith is vaguely aware that there is a "sports event" happening today.
+<chillywilly> plz, there's nothing wrong with being a football fan, hell if I had any athletic ability I would be playing in the NFL ;)
+<nickr> sports event? you mean like battle bots?
+<chillywilly> hehe
+<chillywilly> lol
+<dsmith> Actually, I'm waiting to be picked up.  Going to Michigan till Thursday.
+<chillywilly> that's a good one nickr
+<chillywilly> why?
+<nickr> football? isn't that the game with all the uys in short shorts and the black and white checked ball?
+<nickr> I watched that once, brazil vs guatemala I think
+jcater (~jason@24.92.70.39) joined #gnuenterprise.
+<chillywilly> heh
+<chillywilly> hey jcater
+<chillywilly> see here's a real geek
+<chillywilly> only sport he's good at is donut eating
+<chillywilly> :P
+<jcater> :)
+<jcater> not true
+<jcater> I'm improving my trout-swinging arm
+<chillywilly> :D
+<dsmith> Actually, I was pretty good at foosball when I was in highschool.
+<chillywilly> when was that during the jurassic period?
+<nickr> trout swinging, now theres a real man's sport
+<dsmith> Got first place is the championship.
+<jcater> I was too... people loved to toss me around
+<jcater> 'course, after years of donuts plus all the finger excercises I get w/the keyboard, I'm bigger than they are
+<jcater> I can take them all down now ;)
+<dsmith> We played with stone balls and bone men.
+<chillywilly> and the captain of the team was frederick flinstone?
+<dsmith> :)
+<dsmith> Lets's see.  that was wayyy back in 1977.
+Action: chillywilly is actually trying to update his resume
+<chillywilly> and apply for a few jobs
+<chillywilly> damn
+<chillywilly> I was born in 1977
+<jamest_> lol
+<dsmith> Hey, is anyone from the gnue team in the detroit area?
+<jamest_> what a topic
+<jamest_> not me
+<chillywilly> uh, nope
+Action: chillywilly doesn't even like going to Chicago
+<nickr> I was born in -77 too
+<dsmith> Children everywhere.
+<chillywilly> jamest_ is pretty old too
+<chillywilly> ;P
+<chillywilly> well actualy neilt is the old man
+<chillywilly> iirc
+Action: chillywilly is away: dinner
+<dsmith> G'night folks.
+dsmith (dsmith@oh-strongsville5a-64.clvhoh.adelphia.net) left irc: "later.."
+<dtm> whirred
+<dtm> greetifications, all
+<dtm> chillywilly: chill0r
+<dtm> chillywilly: hey i was born in 1977.  the year of the Star Wars
+<dtm> and pretty close to the Apple //
+<dtm> i was on May 19, which was the release of Episode II
+<dtm> what was your date?
+<nickr> domo arigato mr. roboto
+<dtm> nickr: si si
+Action: chillywilly is back (gone 00:38:52)
+<chillywilly> haha
+<chillywilly> rmas are losing
+<chillywilly> er, rams
+<dtm> CHILLYWILLY.
+Action: chillywilly recalls the first star wars trilogoy to be episodes IV, V, and VI
+<dtm> that is correct sir
+<chillywilly> the just did I
+<chillywilly> er, episode I
+<dtm> II was on may 19, 1999
+<dtm> er not II!  it was I!
+<dtm> my bad
+Action: jcater is away: store
+<dtm> episode I was on may19, 1999
+Action: chillywilly just watched thr star wars trilogy this weekend with his son
+<chillywilly> ;P
+<dtm> i was working at VA and i invited SuSE and Linus to a viewing party, with no response
+<dtm> chillywilly: hey i just watched it this weekend with my mom!!!!!
+<chillywilly> hehe
+<chillywilly> special editio?
+<chillywilly> er, edition
+<dtm> yeah oh vhs!
+<chillywilly> yep
+<chillywilly> me too
+<dtm> well we got IV, V.  haven't watch VI lately
+<chillywilly> wow
+<dtm> we're fixin to though
+<chillywilly> that's freaky
+<dtm> yeah!
+<dtm> we have no tv signal so we have to watch videos if anything
+<chillywilly> well it's good to see you again dude
+<chillywilly> I thought you may have sropped off the face of the earth
+<chillywilly> er, dropped
+<dtm> yeah good to see you and the team here
+<dtm> no i started another company and joined an entrepreneurial training course
+<dtm> so i'm mad wicked bizzy
+<dtm> except this time it's going somehwere
+<chillywilly> really
+<dtm> FCC is on the back burner
+<dtm> yeah i have one client, with product to be completed and delivered and paid for this week
+<chillywilly> cool
+<dtm> i'll get into detail later when i send you the url when the site is done! ;0
+<dtm> :)
+<chillywilly> ok
+<dtm> about exactly what the bidness is
+<chillywilly> why you all up in my bidness?
+<chillywilly> ;P
+<dtm> har
+Action: chillywilly made a stupid little song about that one day
+<chillywilly> it's my "bidness" song
+<chillywilly> gotta do something to make work fun
+<dtm> heh
+<dtm> yeah
+<dtm> well let's hear it
+<chillywilly> bah, it's not worth repeating
+<dtm> btw i want all your urls regarding the building of church management web sites
+<dtm> has anyone specialized in that
+<dtm> you showed me some bible research stuff
+<chillywilly> http://www.geeks4christ.com
+<dtm> oh yeah
+<chillywilly> this is da masta's
+<dtm> l;kjfskld
+<chillywilly> main project is a using GNUe tools to write chruch management software
+<chillywilly> iirc
+<dtm> i want to make a hierarchy of portals, at least one level deep.  like http://church.org/singleparents, http://church.org/youngadults, etc
+<dtm> i'm assuming that a major common flow of any of those sites, would be the posting of news articles and the ensuing discussions.  like slashcode or phpnuke does.
+<chillywilly> I think g4c uses phpnuke
+<dtm> and with a menu on the sides
+<chillywilly> or slashcode
+<chillywilly> I don't remember
+<dtm> but i've never managed a church site bfore
+<dtm> i have a meeting tomorrrow with the webmaster who has merely static content being uploaded to one site maintainer, on behalf of a several-thousand-member congregation
+<dtm> and he's going "uh oh"
+<dtm> plus this is the official launch of any sort of change for the first time in years
+<chillywilly> kewl
+<chillywilly> I should talk to the church ppl about our web site as it is lame
+<chillywilly> I don't think we even have our own domain name
+<dtm> yep
+<dtm> whoa
+<chillywilly> what?
+mdean (mdean@mkc-65-28-73-63.kc.rr.com) left irc: Remote closed the connection
+ajmitch (me@p54-max4.dun.ihug.co.nz) left irc: No route to host
+ajmitch (~me@p24-max4.dun.ihug.co.nz) joined #gnuenterprise.
+<chillywilly> damn
+<chillywilly> I ned to make gnu-dev an actual mailbox in mutt
+<chillywilly> I have all this new email in there that I did not see beofre
+<chillywilly> heh
+<chillywilly> er, gnue-dev
+<chillywilly> s/ned/need
+<nickr> I should switch to mh-e
+<nickr> my mh client is cheesy.
+<chillywilly> heh
+<chillywilly> dman this mail is from christmas
+<chillywilly> damn
+<chillywilly> gah!
+<chillywilly> I hate editing so many damned files
+<chillywilly> and this is why
+<chillywilly> holy
+<chillywilly> shit
+<chillywilly> more gnue email that I missed
+<chillywilly> I should've figured this out thwy the lists were so quiet
+<chillywilly> fuck
+<chillywilly> damn, damn, damn
+<chillywilly> all because I didn't have mailbox entires in my muttrc
+<chillywilly> for the new gnue lists
+<chillywilly> how gay
+chillywilly_ (~danielb@d170.as2.nwbl0.wi.voyager.net) joined #gnuenterprise.
+chillywilly (danielb@d106.as21.nwbl0.wi.voyager.net) left irc: Killed (NickServ (Ghost: chillywilly_!~danielb@d170.as2.nwbl0.wi.voyager.net))
+Nick change: chillywilly_ -> chillywilly
+<chillywilly> no one answered that guy about a paying GNUe consulting gig?
+<chillywilly> er, did anyone
+fil_c (~username@public1-cosh1-6-cust141.cosh.broadband.ntl.com) joined #gnuenterprise.
+Action: jcater is back (gone 01:32:26)
+phil_c (~username@public1-cosh1-6-cust141.cosh.broadband.ntl.com) joined #gnuenterprise.
+jbailey (~jbailey@HSE-Toronto-ppp317777.sympatico.ca) joined #gnuenterprise.
+<chillywilly> hi jeff
+<jbailey> Heya Daniel.
+<chillywilly> haha, patriots won
+<chillywilly> what happened to the greatest show on turf?
+<jbailey> Patriots?  Like afghanistan?
+<chillywilly> like the New England Patriots of the NFL
+<chillywilly> they just won the superbowl
+<jbailey> Superbowl is American Football?
+<chillywilly> yes
+<jbailey> Cool.  Did you bet?
+<chillywilly> npoex
+<chillywilly> er, nope
+<chillywilly> I don't gamble
+<chillywilly> I got this cool new book though
+<chillywilly> "The Object Data Standard: ODMG 3.0"
+<chillywilly> http://www.odmg.org
+<chillywilly> time to start reading ;)
+<dtm> ok i return now to check the scrollback to see if anyone here has solved all of my problems for me.
+<chillywilly> no such luck eh?
+<dtm> *NO* they most certainly have not.
+<chillywilly> damn
+<dtm> and i can't see why not
+<chillywilly> wait!
+<dtm> chillywilly: so how's it going?  how's da fam?
+Action: dtm freezes
+<chillywilly> I have a solution?
+<dtm> oh?
+<chillywilly> WWJD ;)
+<dtm> HEH
+<dtm> JESUS WOULD MAKE WEBMASTERS OF MEN.
+<chillywilly> er? 
+<chillywilly> I thought it was "fishers" ;)
+<dtm> he sayeth so unto me, "Do you edit your html with 'vi'?  Cannot the cgi produce far more output faithfully, than by you directing each line of code yourself?  Who was there when http was invented?  Was not I?!?!  I tell you!  I shall show you the content management system, and you shall make webmasters of men."
+<dtm> he then denies my request for an entry in /etc/sudoers
+<dtm> adding, "give a hoot.  dont reboot"
+<dtm> etc
+<chillywilly> lol
+<dtm> hahhaha
+<dtm> that was pretty weird there, huh buddy
+mdean (~mdean@mkc-65-28-73-63.kc.rr.com) joined #gnuenterprise.
+<dtm> hey mike
+<chillywilly> don't so that
+<chillywilly> s/so/do
+<dtm> dont do what
+<chillywilly> he'll drop dead of pure shock
+<mdean> hey d00d!
+<dtm> who will?
+<dtm> jesus already closed out my workorder anyway
+<chillywilly> no mdean will
+<chillywilly> fewl
+<chillywilly> just like I did
+<chillywilly> he probably thought you fell off the face of the earth
+<chillywilly> anyway, time to dig into my ODMG book
+<dtm> mdean: hey i was axing chillywilly about the doc mgmt question i sent you and he said "WWJD?"
+<dtm> so i said this:
+<dtm> he sayeth so unto me, "Do you edit your html with 'vi'?  Cannot the cgi produce far more output faithfully, than by you directing each line of code yourself?  Who was there when http was invented?  Was not I?!?!  I tell you!  I shall show you the content management system, and you shall make webmasters of men."
+<dtm> he then denies my request for an entry in /etc/sudoers
+<dtm> and he closed my WO
+<chillywilly> you didn't say anything about a doc mgmt thing dtm
+<dtm> chillywilly: yeah i did in the beginning
+<chillywilly> hmmm
+<dtm> that was the problem i was demanding that everyone else solve for me
+<dtm> oh wait
+<mdean> you looking for doc or content mgmt?
+<dtm> sorry
+<dtm> it was about a church content management which i mentioned to you, chillywilly.  you're righ
+<dtm> t
+<chillywilly> well nickr is supposed to be writing something
+<dtm> i axed mdean about doc mgmt
+Action: chillywilly prods nickr witha  cattle poker
+<mdean> yes - nickr is writing the holy grail of doc mgmt
+<chillywilly> you needsta step off and stop xing me foo
+<chillywilly> er, axing
+<dtm> lskjdkf
+<dtm> is nickr da bomb or something?
+<chillywilly> nickr is like the freak object molester
+<chillywilly> er, freaky
+Action: chillywilly thwaps nickr with a trout innocently
+<chillywilly> s/innocently/playfully
+<chillywilly> I guess he's away or something
+<dtm> he likes those objects, does he?
+<chillywilly> ah well
+Action: chillywilly thwaps jcater with a tuna
+<dtm> what does he think about protrusions or dongles
+<dtm> hey i have some tuna here
+<chillywilly> this is a fresh tuna
+<chillywilly> no canned crap
+<chillywilly> I mean heck I don't use canned trout so why would I use canned tuna?
+<chillywilly> I want to "wake" ppl up not knock them out
+<dtm> furthermore i am microwaving this morning's leftover pancakes.
+<chillywilly> that's good to know
+<chillywilly> I think....
+<dtm> that's knowledge which you can take, and run with
+<chillywilly> I am attempting to read my odmg book, but I haven't even opened it yet
+<dtm> be yourself.  be free.  go.  do.
+<dtm> chillywilly: it's all about the baby steps
+<chillywilly> heheh
+<dtm> baby step #1:  dont tell us about it on irc.  just read the thing.
+<dtm> ;)
+<dtm> hahah
+<dtm> lol
+Action: chillywilly trout-slaps dtm
+<chillywilly> you shall be smitten
+<chillywilly> by the power of the trout
+<chillywilly> take that!
+Action: chillywilly is going to name the next GNUe module he writes 'trout'
+<chillywilly> thus spoke zarathusa
+<chillywilly> anyway...
+<chillywilly> anyone ever read that?
+<chillywilly> it's by neitzsche
+<dtm> nope.  i dont read!
+<dtm> zeitasche?  you heathen!  ;)
+<chillywilly> umm, no
+<chillywilly> neitzsche
+<dtm> yeah that too!
+<dtm> i dont know how that 'z' got there.
+<dtm> pancake status:  consumed
+<chillywilly> he was a German philospher
+<dtm> gentlemen, pancakes away.
+<dtm> we have confirmation of pancake deployment
+<chillywilly> whatever
+<chillywilly> feed your face then
+<dtm> yeah i've read some of his quotes
+<dtm> seems to be a real pessimist, eh?
+<chillywilly> no
+<chillywilly> he's an existentialist
+<dtm> yeah 
+<chillywilly> ;)
+<chillywilly> get it right ;)
+<dtm> where such values are meaningless eh?  ;)
+<dtm> yeah but it sounds lke he has a negative bias
+<chillywilly> existentialism is definitely interesting
+<chillywilly> in fact I sorta like it
+<dtm> si si
+<chillywilly> Camus is one of my favorites
+<dtm> i have read Descartes a bit
+<dtm> long ago
+<dtm> in PHIL101 or whatever
+<chillywilly> but I don'
+<dtm> chillywilly: so what's your job situation dood?
+<chillywilly> t take it as the end all
+<dtm> doin ok with that?
+<chillywilly> working at SimplexGrinnell
+<chillywilly> same shit
+<chillywilly> er, stuff
+<dtm> yeah i like how Descartes first proved his own existance and then proved the existance of God
+<chillywilly> ;)
+<dtm> allegedly
+<dtm> hehe
+<dtm> that was handy of him
+<chillywilly> I guess
+<chillywilly> Kierkegaard is a Christian Existentialist
+<chillywilly> he's bery interesting to read
+<chillywilly> er, very
+<chillywilly> wasn't descartes a mathemetician too?
+<chillywilly> ok, read ODMG book
+<dtm> dunno
+<chillywilly> pretty sure he was
+<dtm> coz like i didn't really study in school
+<chillywilly> feh
+<dtm> i got C's on my PHIL homework because it was good work but completely offtopics
+<dtm> i was just bursting with love to give
+<dtm> i read those papers now and describe them as frenetic
+<chillywilly> well it is nmot love until you give it away
+<dtm> HEHHEHE
+<chillywilly> seriously
+<dtm> yeah, true
+<chillywilly> it's about sacrifice ;), that's what life is all about being a living sacrifice
+<chillywilly> christ-like even'
+<chillywilly> we studied the sermon on the mount today
+<chillywilly> so I am in that sorta mood
+<chillywilly> "blessed are those who morn..."
+<chillywilly> "blessed are the meek, for they shall inherit the earth"
+<chillywilly> good stuff
+skeeter (~skeeter@cs666916-91.satx.rr.com) joined #gnuenterprise.
+<chillywilly> quick squash that skeeter
+<chillywilly> ;P
+<skeeter> heheheh
+<chillywilly> j/k
+<skeeter> no you weren't...
+<chillywilly> what is satx.rr.com?
+<chillywilly> texas?
+<skeeter> san antonio, texas - Road Runner
+<chillywilly> ah
+<skeeter> good old AOL time warner..
+<chillywilly> blech
+<chillywilly> they are about as good as M$
+<mdean> they're better than M$ - M$ never sent me free floppies in the mail
+<chillywilly> hehe
+<chillywilly> or put them in your grocery store aisle, let's not forget that
+<chillywilly> s/grocery//
+<skeeter> luckily Road Runner has a few more partners than just AOL Time Warner..
+<skeeter> M$ for one.. only about 5%...
+Action: chillywilly saw them at walmart and target
+<chillywilly> oh great...
+<chillywilly> I think I'll sign up right now!
+<chillywilly> it's so easy!
+<skeeter> hehehe
+<mdean> no wonder it's #1!
+<skeeter> mdean: yeah.... so you get those wonderful disks in the mail...
+<chillywilly> ppl are so clueless
+<chillywilly> they are just amazed that they can have AOL broadband
+<nickr> woee
+<chillywilly> hello, it's the same company
+<skeeter> I'm just amazed I still have a choice to NOT have them..
+<chillywilly> hey nickr
+<nickr> maybe I should actially produce some docustore code
+<mdean> nickr: hey - dtm was asking about your holy grail doc mgmt stuffs
+<nickr> When I finish ratmaze and poplar I'll work on docustore
+<chillywilly> nickr: yes, maybe you should ;)
+<chillywilly> feh
+<chillywilly> GNUe is life
+<chillywilly> all other projects are insignnificant
+<chillywilly> you will obey your masta
+<chillywilly> s/your/the
+<chillywilly> ;P
+Action: chillywilly really needs ops in this channel
+<chillywilly> or someone needs to turn the topic lock off
+<chillywilly> heh
+<nickr> Heh
+<chillywilly> http://goats.gnue.org/~chillywilly/masta.txt
+<chillywilly> darn
+<nickr> ratmaze is sort of like docustore actually
+<chillywilly> what happened to it
+<nickr> more like 'projectstore'
+<chillywilly> guess I'll have to find it
+<nickr> 404
+<chillywilly> doh!
+<chillywilly> where is my masta song?!?
+<chillywilly> boy it sucks when you loose your masta song
+<nickr> holy cow
+<nickr> i just realized hov I can save a lot of time with diplicated work
+<chillywilly> heheh
+<chillywilly> that's the best thing to do
+<chillywilly> find things that overlap
+<chillywilly> ;)
+<nickr> i'll rewrite the docustore spec to use ratmaze's metadata structure
+<nickr> and then use ratmaze as a prototype
+<nickr> muah ah ah
+<mdean> nickr: what do you mean by "projectstore"?
+<chillywilly> only id you name a module 'trout'
+<chillywilly> s/id/if
+<chillywilly> we need something with that name
+<chillywilly> hehe
+<nickr> mdean: well, you see I keep all my projects and data and such in a directory tree like proj/blah/blah
+<nickr> mdean: ratmaze basically adds metadata to this structure as separately stored xml files
+<nickr> also enables journal entries and thumbnails and such
+<chillywilly> I think mdean was just curious if it was project management software as that's his domain
+<mdean> ah
+<mdean> well - it sounds useful nonetheless
+<chillywilly> nickr: so we can use it ina  GNUe ide?
+<nickr> its basically so that I can have 'homepages' for my projects
+<nickr> and have them all browsable
+<nickr> maintaining the same directory structure as the projects and allowing other info to be associated with them
+<mdean> nickr: cool - I wonder if it could be implemented within DCL to some extent
+<chillywilly> ok, this time I am really going to read my book
+<nickr> well it follows my project structure ethic
+<nickr> the metadata will be managed like the proj/ and data/ dirs with rsync
+<mdean> but that is customizable, right?
+<nickr> so locally I have the cananical copy, and remotely I have 'mirrors' of it
+<nickr> so I work on my cananical copy and rsync it to my web-accessable place
+<nickr> the metadata will be managed the same way
+<nickr> as files rather than in a true dbms
+<mdean> right
+<nickr> it'd be much more streamlined if it were in a dbms
+<mdean> files in db can drag down the server
+<nickr> but its cooler this way for my way of doing things
+<chillywilly> I really should get spam assassin working
+<nickr> well i mean the metadata is in xml files rather than database tables
+<mdean> dcl can attach files to projects, but it doesn't allow you to place a structure for storage into the project
+<nickr> which allows me to make all sorts of local tools to manipulate the metadata and keep it 'up to date' on my publication site
+<chillywilly> anyone see those urls I posted to the gnu=dev@gnu.org?
+<chillywilly> er, gnue-dev
+<mdean> so, I already have a "root" dir for each project
+<nickr> mdean: if you want we can coordianet xml or table specs
+<mdean> nickr: sure - if you have some docs/specs, just send them to me
+<nickr> What ratmaze will do is chase down all the constituant parts of an index and then transform them with an xslt
+<mdean> nice
+<nickr> well I have a working draft of the DTD for the end-result-xml
+<mdean> what are you implementing this in?  psp?
+<nickr> and the constituants will be just sub parts of that
+<dtm> nickr: hi
+<nickr> python, it'll be a cgi script
+<nickr> actually it already is a cgi script ;)
+<mdean> ah
+<nickr> and using DOM to manipulate the page as I assemble it
+<nickr> then using 4Front to transform it
+<nickr> dtm: Hi
+<mdean> haven't tried 4front - only Sablotron
+<nickr> I just went with what had a debian package :)
+<mdean> hehe
+<nickr> Sablotron looks simpler, but 4front lets you do basically the same thing with very little extra work
+<chillywilly> apt-get install I-am-damn-lazy
+<nickr> exacto.
+<mdean> isn't part of 4front in the official Pyton distribution anyway?
+<mdean> python, even
+<dtm> apt-get install I-am-a-sysadmin
+<mdean> apt-get install rpm
+<chillywilly> apt-get install real-sysadmins-use-debian
+<dtm> hahah
+<dtm> mdean: :)
+<nickr> mdean: maybe so :)
+<chillywilly> plz
+<nickr> chillywilly:: yea.
+<dtm> nickr: so you're doing document mgmt, eh?
+<chillywilly> apt-get install rpm-is-for-weenies
+<mdean> rpm -ivh real-sysadmins-use-vi
+<dtm> nickr: are you primarily with the gnue team or phpgroupware or dcl or what?  :)
+Action: dtm uses vi
+<chillywilly> he's with us
+<chillywilly> we claim him as aour code slave
+<nickr> dtm: I'm mostly a lone wolf
+<dtm> rpm -Uvh real-sysadmins-code-all-docs-in-html-with-vi
+<mdean> we're all one big happy family - only slightly dysfunctional because of chillywilly ;-)
+<nickr> dtm: the gnue people pretty much ignore me
+<dtm> nickr: oh so your'e also an alternate species, eh?
+<chillywilly> because of me?!?
+<dtm> _only_ because of chillywilly?
+<chillywilly> heh
+<mdean> :)
+<dtm> well i think we can find or create a better reason than that!
+<dtm> or an additional reason
+<chillywilly> jamest comes to mind
+<dtm> nickr: so what tools currently exist which you may be modeling after
+<chillywilly> he's pretty dysfunctional
+<chillywilly> and jcater is a donut addict
+<chillywilly> he'll do just about anythign for a donut
+<dtm> ok is it jcater or jamest who's in KS?  it's jamest, right?
+<mdean> jcater accepts them via DCC too
+<chillywilly> and masta, welll....doesn't his little nick name say it all?
+<mdean> jamest
+<jamest_> I'm in ks
+<mdean> speak of the jamest
+<chillywilly> captin jamest of the GNU Enterpise
+<chillywilly> er, captain
+<dtm> AHAHAHS;lwjeks
+<dtm> THAT WAS FUNNY.
+<nickr> dtm: I'm creating a system based on my experiences mostly, not on any document management system that currently exists. I should probably look at those.
+Action: mdean wonders if S;lwjeks was dtm's head hitting the keyboard...
+<dtm> negative
+<nickr> With this new idea to unify docustore and ratmaze I have a little to think about
+<dtm> nickr: yeah you might do that :)
+<dtm> nickr: i hear ya
+<nickr> My main problem right now is that there hasn't been a lot of interest or encouragement.
+<dtm> nickr: so do you have anythinjg functioning right now
+<mdean> nickr: less think!  more code! ;-)
+<dtm> nickr: well i can help you fix that
+<dtm> mdean: isn't that right?
+<nickr> dtm: I have an oldish proposal, pre-ratmaze
+<dtm> i can supply the encouragement and interest
+<chillywilly> To bold write code that no one has written before
+<chillywilly> er, boldly
+<mdean> nickr: well, I'd like to have a look at what you're doing and see if I can implement something compatible within DCL
+<dtm> chillywilly: yeah coz we _have_ to  :)
+<nickr> http://green.zorcat.com/~nick/proj/document-store/gnue/spec/DocumentStore/documentstorespec.html I think
+<mdean> good lord!  check out the size of that URL!
+<nickr> h
+<nickr> that all correct except for the hyphen in Document-Store
+<chillywilly> is that the lazy man's 'heh'?
+<chillywilly> h
+<nickr> http://green.zorcat.com/~nick/proj/document-store/gnue/spec/Document-Store/documentstorespec.html
+<chillywilly> I know it's the unix admins 'heh'
+<dtm> h
+<chillywilly> shorter the command the better
+<mdean> hh
+<chillywilly> right?
+<mdean> chillywilly: you said it!
+<dtm> h&&h&&h
+<dtm> while true; do h ; done
+<dtm> there we go.  that sounds like fun.
+<dtm> kinda like 'yes'
+<chillywilly> y
+<chillywilly> sheesh
+<chillywilly> I would've thought you learned by now
+<dtm> fyi:  itunes rules
+<chillywilly> mv dtm /dev/null
+<mdean> nickr: do you have a dtd or schema for your xml data?
+<jamest_> nite
+<mdean> or is it still being influenced by implementation? ;-)
+<dtm> HEH
+<dtm> jamest later
+<mdean> jamest_: nite d00d
+jamest_ (jamest@fh-dialup-201069.flinthills.com) left irc: "[x]chat"
+<chillywilly> bah
+<chillywilly> he's suchs a hoser
+<dtm> heheh
+<chillywilly> ok, this time I will actually open my book
+<chillywilly> there's no turning back now
+<nickr> mdean: I have a preliminary dtd for ratmaze and some very ancient dtds for an old version of the docustore idea
+Action: dtm hacks +o and kickbans chillywilly, to help motivate him
+<nickr> mdean: If I want to merge all of this into one metadata management system, then I'll have to come up with some new stuff
+<chillywilly> ummm
+<nickr> mdean: http://green.zorcat.com/~nick/proj/ratmaze/ratmaze.dtd
+<chillywilly> why not use that ODMG standard for metadata management
+<chillywilly> wtf is it called
+<chillywilly> CWM
+<chillywilly> CWMI
+<chillywilly> nevermind...I am stupid
+<nickr> htttp://green.zorcat.com/~nick/proj/document-store/grawk/prototype2/dtd/document-store-document.dtd
+<nickr> although I woret that one when I knew nothing about how to write dnds
+<nickr> dtds
+<nickr> chillywilly: there are several metadata standards, none suit my personal needs as far as I've seen
+<nickr> for example theres 'dublin core metadata1'
+<nickr> which is an XML spec
+<nickr> its yucky imho though
+<chillywilly> well the standard I was talking about was for EAI stuff
+<chillywilly> Enterprise Apllication Intergration
+<chillywilly> Enterprise Application Integration
+<chillywilly> uses XMI
+<chillywilly> XML Metadata Interchange
+<nickr> hrm.
+<chillywilly> I dunno how good it is
+<chillywilly> just stumbled on it today
+<mdean> nickr: funny how you say "think of documents as molecules" and then use element names like atom and nucleus ;-)
+<nickr> different kind of metadata
+<nickr> mdean: note that the spec and proposal was written significantly later than the dtd
+<nickr> the terminology is consistant in the spec
+<nickr> I think. :)
+<chillywilly> well I think my main point is that CWMI standard would be good for GNU Integrator
+<chillywilly> whenever that gets written
+<nickr> chillywilly: yea, thats true, this is referring to object metadata, while when I talk about metadata its basically 'document metadata'
+<mdean> does well formed xml include using hyphens in element names?
+<mdean> I thought there was some rule about that
+<nickr> mdean: it doesn't
+<mdean> trying to make sure I'm not going crazy yet :)
+<nickr> as I've said several times, I wrote this when I was an idiot.
+<nickr> I'm no longer an idiot, I think.
+<nickr> :)
+<mdean> lol - alrighty then :)
+<dtm> nickr: yeah you dont sound like an idiot
+<dtm> thanks for that
+<nickr> you'll notice the ratmaze dtd is much nicer looking :)
+<dtm> nickr: here's what i wnated for doc mgmt, ok?
+<dtm> <dtm>  I want fully online document mgmt _and_ editing with revision control.  I wanna have multiple people be able to edit a doc either inside their browser on the doc mgmt site, or locally in any given app, then submit it to the doc mgmt site, and have it cvs the thing.  Then when you wanna view it you go to the web site, it'll have a default html view of course in the web page, but with links to dl any other format of the doc like how
+<dtm> the LyX
+<dtm> <dtm>  system outputs .ps, .text, .html, etc.  As the Emperor 
+<dtm> says, "Can it be done?"
+<ajmitch> yo dtm, nickr, mdean, chillywilly
+<dtm> ajmitch: hi
+<chillywilly> hi ajmitchie
+<nickr> hey
+<mdean> hey ajmitch!
+<nickr> dtm: my system would basically be the backend infrastructure to support that
+<nickr> dtm: well, ratmaze is basically sort of that, also. :)
+<dtm> nickr: so one suggestion i got in #phpgroupware for right now, is to edit all docs locally, check em each into something like cvsweb, and use another app to possibly produce multiple output formats and browsing like a plain web filemanager like something that's already in phpgroupware
+<chillywilly> hmmm
+<chillywilly> so anyone know what the OMG core object model consists of?
+<dtm> nickr: ok
+<nickr> dtm: thats very, very similar to ratmaze :)
+<ajmitch> nope
+<ajmitch> at the moment, i don't know anything - brain has stopped functioning ;)
+<dtm> nickr: which is?  the second blurb about cvsweb?  or the first one?
+<nickr> the second blurb
+<nickr> sort of
+<nickr> I mean the blrowsing/filemanagement part
+<dtm> nickr: oh   and you haven't looked at phpgroupware yet then?
+<nickr> No.
+<dtm> oh
+<dtm> well i encourage you to do so
+<nickr> but you could make the structure of ratmaze use cvs instead of rsync
+<nickr> so it'd be bidirectional.
+<mdean> dtm: have you looked at http://sourceforge.net/projects/cvswebclient/ ?
+<dtm> and you might look at phpgwapi if you haven't
+<nickr> okay,.
+<mdean> dtm: he's doing the Python thang
+<nickr> the docustore platform is more of a database engine for document management than a direct document management system.. something like phpgroupware or dcl or gaes or whatever would call upon it for document storage needs.
+<nickr> and yea, I'm prtty into python, although I envision docustore bing in C eventually.
+<nickr> well I gfuess it doesn't matter what the componants are written in because it'll use gnurpc to communicate
+<nickr> but perhaps I'm just smoking it.
+<dtm> nickr: i respect architectural and implementational uniquenesses, but there is also a value in collaborating rather than reinventing the wheel as much
+<dtm> mdean: does phpgw have python interfaces?
+<mdean> dtm: he's inventing, not reinventing
+<dtm> ok
+<dtm> well then in that case it would still be keen if it worked within phpgw
+<mdean> no python interface
+<dtm> unless phpgw can't handle it
+<mdean> not needed
+<mdean> there is value in sharing specification, tho
+<dtm> hey i could use some hostess fruit pies
+<mdean> if not the implemented lang
+<dtm> but i have only ramen , chicken flavored
+<nickr> I would work with php groupware or emacs or whatever you want if you wrote a bridge for it
+<nickr> since its rpc based
+<nickr> The Library could act just like a filesystem so you could browse it that way
+<mdean> nickr: what kind of rpc you building in there?  corba?  xml?
+<nickr> mdean: It was suggested since it could be part of gnue to use gnurpc wihch abstractizes rpc
+<nickr> mdean: so theoreticly it'd be whatever you want
+<mdean> ok
+<nickr> of course my original concept was based on CORBA
+<nickr> and if you look at the spec, its all IDL
+<mdean> IDL, UDL, we all DL!
+<nickr> har har
+<chillywilly> I'd rather have ice scream
+<chillywilly> you can keep you DLs
+<chillywilly> :P
+<nickr> so anyway, now you'r all up to date on what I haven't been working on.
+<ajmitch> ah right
+Action: ajmitch should scrollback & actually read it
+<nickr> Now I'll go back to not working on it and working on something else entirely. :)
+<chillywilly> feh
+<chillywilly> what good are you?
+<ajmitch> better than i
+<chillywilly> da masta will hear of this! He will have your head!
+<nickr> chillywilly: Heh, well I'm good at doing things that theres cohesive demand for
+<nickr> anyway, heres a link for all you document people: http://dublincore.org/
+Action: dtm cohesively demands the completion of nickr's project
+<dtm> nickr: if you dont do it, i'm coming after you
+<dtm> nickr: and you dont want that
+<dtm> NOBODY wants that.
+<dtm> !!
+<chillywilly> I also cohesively demand for the docustore
+Action: dtm just demands
+<ajmitch> cohesively demands?
+<nickr> Heh
+<chillywilly> just shutup and demand ajmitch
+<mdean> I cohesively demand that I connect docustore to DCL
+<chillywilly> ;P
+<nickr> maybe I shoul've said demand and motivation! :)
+<ajmitch> i incoherently demand that everyone pay ajmitch $1000
+<nickr> and participation
+<nickr> anyway
+Action: chillywilly throws grinades at nickr
+<chillywilly> will that get you going?
+<nickr> whats a grinade?
+<dtm> hehhe
+<nickr> is that like a drink made fro grins?
+<dtm> lol
+<chillywilly> I dunno how 2 spel
+Action: nickr abuses chillywilly 
+Action: chillywilly likes it
+<chillywilly> I want more
+<nickr> gross
+<chillywilly> feh, you can't handle me big boy
+<chillywilly> only my masta can satisfy my cravings
+alexey (alex@techkran.vladimir.ru) joined #gnuenterprise.
+<chillywilly> anyway....
+<nickr> everyone should send me a list of requirements and I'll work on a top-to-bottom spec
+<nickr> and what kind of integration they are looking at
+<dtm> nickr:  i sent you mine!
+<dtm> nickr: integrated with phpgw!  :)
+<nickr> huh
+<nickr> heh
+<nickr> yea I see your reqs
+<chillywilly> geas integration plz
+<nickr> hrm
+<chillywilly> I want docustore to rock my world
+<mdean> pluggable vc and vc for metadata
+<chillywilly> also it must make coffeee
+<nickr> vc?
+<nickr> version control
+<nickr> yea
+<mdean> :)
+<chillywilly> it also must whip da masta back when he gets too rough
+<nickr> 'pluggable vc' is hard for me to grasp
+<chillywilly> oh and of course it must "rock my socks"
+<nickr> the docustore platform only enforces the concept of grouped documents with immutable subd-documents, actual versioning is a layer up I think
+<mdean> nickr: you just have to abstract vc operations - ci, co, get, rm, annotate
+<chillywilly> just do cvs but better ;P
+<nickr> heh
+<chillywilly> we want an extensible cvs
+<nickr> might as well just use cvs
+<chillywilly> no
+<chillywilly> cvs sucks
+<mdean> well, there's other vc sw out there that people may be using
+<mdean> you can build for cvs specifically, but abstract the functionality you use
+<mdean> then others can write plugins for other vc sw
+derek (~derek@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<mdean> gah!
+<nickr> hrm
+<nickr> I still have to adapt the ideas behind ratmaze into the over all design
+<nickr> I'm not sure hov to do that yet
+<mdean> we'll get there ;-)
+<ajmitch> yo derek
+<chillywilly> masta!
+<chillywilly> look out now
+<chillywilly> da masta is in da house
+<ajmitch> sigh
+<chillywilly> :P
+<nickr> heh.
+<nickr> sigh indeed, robin.
+<ajmitch> DSL is _hugely_ expensive here unless i get 128kbit
+<chillywilly> :(
+<nickr> you're lucky you have the ability to pay for DSL at all
+<chillywilly> ajmitch: your flat mates won't split the bill with you?
+<ajmitch> eg $0.20NZ/MB if i went over the paltry 400MB that i'd pay $50NZ for (per month)
+<ajmitch> chillywilly: sure, but we'll only get 128k
+<chillywilly> why?
+<ajmitch> just checked with the telco (telecom), and i can get about 6Mbit/sec to this flat
+<chillywilly> what's $50NZ in $US
+<chillywilly> ?
+<ajmitch> if i downloaded at that speed i could run up to $8000NZ in one *day*
+<ajmitch> $20US
+Isomer (dahoose@210-86-56-176.jetstart.xtra.co.nz) joined #gnuenterprise.
+<nickr> I download over 400mb a week on my 56k modem.
+<ajmitch> chillywilly: see the 'jetstart' in Isomer's address? that's the 128kbit plan
+<chillywilly> bandwidth charging is gay
+<ajmitch> hey Isomer
+<ajmitch> i'm just complaining about DSL prices ;)
+<chillywilly> you should demand a flat fee per month ;)
+<ajmitch> chillywilly: jetstart (128kbit) is flat fee
+<chillywilly> unlimited bandwidth
+<chillywilly> yea, but not very fast
+<Isomer> hmm
+<ajmitch> telecom essentially has a nationwide monopoly
+<Isomer> Telecom is evil
+<ajmitch> yes
+<chillywilly> indeed
+<chillywilly> bastards
+<Isomer> Jetstream is just a problem waiting to happen!
+<nickr> blah.
+<ajmitch> Isomer: just looked at the webpage, they say lower probable limit of 5.7MBit/sec for this flat
+<ajmitch> Isomer: at that rate, i could get a very impressive bill :)
+<Isomer> yeah
+<chillywilly> that's highway robbery man
+<ajmitch> worse
+<nickr> free wireless
+<ajmitch> nickr: we're setting that up btw :)
+<chillywilly> that's like hey I'll bend over and you can cram that brick up my ass
+<nickr> no no, forget the lube, I can take it
+<nickr> erk.
+<ajmitch> chillywilly: imagine the bill when script kids flood you
+<chillywilly> yikes
+<chillywilly> yea, you guys need to get your free community wireless network going
+<chillywilly> ;)
+<ajmitch> with jetstart, telecom will not supply a static IP
+<nickr> I wish more hax0rz would attack my site, I love watching the logs when that happens
+<nickr> better than TV
+<ajmitch> i'd need to get a static ip over a tunnel to my isp
+<chillywilly> man they really do screw ppl
+<nickr> someone do a stealth portscan and os fingerprinting of svetlost.net so I have something to look at
+<ajmitch> yep
+<ajmitch> chillywilly: the joys of being in the middle of the south pacific ;)
+<chillywilly> yea, that's crap
+<nickr> I imagine the backbones to there sorta suck
+<ajmitch> nickr: nah
+<chillywilly> so if you do get your own wireless network wouldn't you guys still need to connect to stinking telecom somehow or would you get a satellite link?
+<nickr> share the cost of a T1
+rdean (rdean@chcgil2-ar2-053-033.chcgil2.dsl.gtei.net) left irc: "Client Exiting"
+<ajmitch> nickr: they installed a fibre-optic link to the US in the last few years - went active last year iirc
+<nickr> theres still lag, the speed of light isn't fast enough. Not as much lag as a sat link though.
+Nick change: mdean -> mdean-[idle]
+<chillywilly> there's plenty of bandwidth, it's just that telecom is greedy, right?
+<ajmitch> chillywilly: it cost a lot to lay a few thousand miles of fibre
+<nickr> I want some raisin cake
+<nickr> or something
+<ajmitch> and telecom are greedy ;)
+<chillywilly> I know it does, but NZ has a nice fat pipe to the US doesn't it?
+<ajmitch> not that fat
+<ajmitch> a few hundred GBit i think
+<nickr> I need some minions.
+<chillywilly> pick me!
+[23:19] Last message repeated 1 time(s).
+<nickr> heh.
+<chillywilly> derek: I choose you!
+<nickr> You're not the high quality kind
+<chillywilly> ouch
+<chillywilly> you bitch
+<chillywilly> I'll get you
+<nickr> I need the kind that'll work tirelessly under my direction for months at a time with great pride and skill
+<nickr> hard core minions
+<chillywilly> you need code slaves
+<nickr> No
+<nickr> slaves don't think
+<chillywilly> says who?
+<chillywilly> dats not what da masta tells me
+<nickr> uh huh
+<dtm> BIOTECH IS GODZILLA.
+<ajmitch> slaves have to think enough to code
+<nickr> I'm thinking more along the lines of proteges
+<chillywilly> nickr: you just need to talk to derek and get some mastaing lessons
+<ajmitch> pick me!
+<nickr> In my code dojo
+<nickr> and they'll be like 'I know perl-fu' and I'll be like 'Show me!'
+<nickr> hehe
+<nickr> um, yea
+<chillywilly> heh
+<chillywilly> python-fu os far superior
+<chillywilly> s/os/id
+Action: ajmitch bows down to the python-fu master chillywilly
+<chillywilly> it's style is clear and concise
+<ajmitch> the Way of the Python...
+<chillywilly> that'd be jcater
+<ajmitch> crouching coder, hidden python
+Action: ajmitch has been hacking python all day
+<chillywilly> hehe
+<chillywilly> you have learned well grasshopper
+Action: nickr is skilled in many styles
+Action: chillywilly also knows many -fu styles ;P
+jcater (jason@24.92.70.39) left irc: "Client Exiting"
+Action: derek slaps skeeter with a smelly old crappie
+Action: derek slaps phil_c with a smelly old crappie
+Action: derek slaps nickr with a smelly old crappie
+Action: derek slaps Mr_You with a smelly old crappie
+Action: derek slaps mdean-[idle] with a smelly old crappie
+Action: derek slaps jbailey with a smelly old crappie
+Action: derek slaps jamest with a smelly old crappie
+Action: derek slaps Isomer with a smelly old crappie
+Action: derek slaps fil_c with a smelly old crappie
+Action: derek slaps derek with a smelly old crappie
+Action: derek slaps dtm with a smelly old crappie
+Action: derek slaps chillywilly with a smelly old crappie
+Action: derek slaps bigbrother with a smelly old crappie
+Action: derek slaps alexey with a smelly old crappie
+Action: derek slaps ajmitch with a smelly old crappie
+Action: derek slaps gnuebot with a smelly old crappie
+<derek> MASTA  has perfected the crappie slap down to being able to slap a whole channel....
+<derek> aint xchat great ;)
+<Isomer> oh dear
+<derek> nickr: btw slaves arent dumb sometimes you just have to slap the crappie out of dem ;)
+<nickr> hehe
+<nickr> derek: your slapfu skill is impressive
+<chillywilly> kewl
+<chillywilly> way to go masta
+Action: ajmitch bows down to derek the crappie masta
+<chillywilly> umm
+<chillywilly> calling all db gurus
+<derek> oooo oooo
+<chillywilly> wtf is ACID wrt database stuffs
+Action: derek is a db guru
+<derek> acid makes your database 'trip' man
+<chillywilly> I have seen this acronym before
+<chillywilly> hehe
+<chillywilly> this is in my ODMG book and they talk about ACID and transactions
+<chillywilly> and mutli-threading
+<derek> Another Crappy Idiots Database
+<chillywilly> heheh
+<chillywilly> do you know masta?
+<nickr> acid like totally dissolves the connection of your database to reality, man, farout
+<chillywilly> gah
+<chillywilly> http://www.odbmsfacts.com/articles/acid_properties.html
+Action: chillywilly breaks out the url-fu
+<derek> isnt it a 'test' of sorts for the 'robustness' of dbs?
+<chillywilly> no
+Action: derek remembers hearing about it when dealing with different 
+<chillywilly> ACID properties are an important concept for databases. The acronym stands for Atomicity, Consistency, Isolation, and Durability. The ACID properties apply to both ODBMSs and RDBMSs.
+<derek> transisolation levels with in Interbase
+<nickr> I've heard about it too, now that I see the expansion of the acronym
+<chillywilly> he ACID properties of a DBMS allow safe sharing of data. Without these ACID properties, everyday occurrences such using computer systems to buy products would be difficult and the potential for inaccuracy would be huge. Imagine more than one person trying to buy the same size and color of a sweater at the same time -- a regular occurrence. The ACID properties make it possible for the merchant to keep these sweater purchasing trans
+<chillywilly> from overlapping each other -- saving the merchant from erroneous inventory and account balances.
+<derek> chillywilly: yeah thats what im saying
+<derek> :)
+<chillywilly> it's about locking and crap like that
+<derek> in interbase there was thing about 'transisolation'
+<derek> there are different types
+<chillywilly> ah, yea
+<chillywilly> same thing
+<derek> access and most 'file system' dbs only do two types
+<derek> oracle and other bigger dbs do like 3 some 4 types
+<derek> interbase at the time was the only one that supported
+<derek> writable reread
+<derek> or something funky
+<chillywilly> The amount of data that can be locked with the single instance or groups of instances defines the granularity of the lock. The types of granularity are illustrated here are:
+<chillywilly> [bullet] Page locking
+<chillywilly> [bullet] Cluster locking
+<chillywilly> [bullet] Class or table locking
+<chillywilly> [bullet] Object or instance locking
+<derek> yes btw this is MAJOR flaw in mysql
+<derek> TABLE level locking
+<derek> where most even filesystem dbs do 'page' level locking
+<derek> and highend dbs generally let you optionally move down to 'row' level locking
+<chillywilly> well now I know wtf they are talking about
+<nickr> filesystem dbs?
+<derek> degree 0 - a transaction does not overwrite data updated by another user or process ("dirty data") of other transactions  [bullet] degree 1 - degree 0 plus a transaction does not commit any writes until it completes all its writes (until the end of transaction)  [bullet] degree 2 - degree 1 plus a transaction does not read dirty data from other transactions  [bullet] degree 3 - degree 2 plus other transactions do not dirty data read 
+<derek> transaction before the transaction commits
+<derek> is what i mean by 'transisolation' levels
+<nickr> doesn't postgres have row locking?
+<derek> dirty read
+<derek> dirty reread etc etc etc ;)
+<derek> filesystem dbs nickr are ones that dont 'listen'
+<derek> i.e. you are constraint to accessing them via a files system
+<derek> like
+<nickr> oh like .db ones?
+<derek> paradox, foxpro, access, etc
+<derek> dbase
+<nickr> hrm
+<chillywilly> .mdb
+<derek> at least thats what i consider a 'filesystem' db (whether thats technically correct i dont know) :)
+<chillywilly> derek: you see my url on gnue-dev?
+<chillywilly> mailing list
+<derek> gnue-dev?
+<chillywilly> yes
+<derek> um no
+<derek> been gone all day
+<chillywilly> gnue-dev@gnu.org
+<derek> now trying to fix computers :(
+<chillywilly> oh
+<derek> inherited k6 333mhz w/ motherboard
+<derek> p200 overdrive 128mb w/ motherboard
+<derek> p133mhz 48mb w/ motherboard
+--- Mon Feb  4 2002
+<chillywilly> nice
+--- Mon Feb  4 2002
+<chillywilly> more toys :)
+<derek> was hoping to have the k6 333 replace my jacked k6 350
+<nickr> sweet
+<derek> but it dont fit in my case :(
+<nickr> jacked?
+<chillywilly> he b0rked his mobo
+<derek> i have an old case was able to put the p200 in but i dont have old sytle (AT) keyboard so have to pick up adaptor
+<nickr> horked
+<derek> that one will go to church when it gets 'rebuilt'
+<derek> need to get case for the k6 (hopefully under 30 bucks)
+<derek> whoo hooo
+<derek> for now have to play with the 'unstable' box to try to get it revived 
+Action: derek wishes he had two nickels to rub together to fix these damn things
+Action: nickr wishes he had two nickles to rub together to buy food with.
+<chillywilly> what exactly happens during a db transaction? a series of db accesses/modifications? Do they commonly model a real world transaction of some kind?
+<nickr> isn't a transaction anything that interacts with the data?
+<derek> i like to think of it as 'complex' record locking
+<derek> er file locking
+<derek> i think of table level locking like normal file system locking
+<derek> if nickr has the file open
+<derek> chilly cant open it for write
+<derek> then page level is only the segment chilly is actually playing with is locked instead of the whole file
+<chillywilly> ok
+<derek> etc
+<nickr> normal file locking
+<derek> then there are COMPLEX locking
+<nickr> yea
+<derek> where it doesnt reall 'lock'
+<derek> but rather buffers to memory and HOPES no one dicks w/
+<derek> if someone does it does a 'dirty' read/write or such
+<nickr> hrm
+<nickr> dirty read?
+<nickr> dirty write?
+<derek> yeah you know those darn pornographic dbs
+<nickr> hey meeester, wanna uby some feeeelthy tables?
+<chillywilly> so can all transactions be committed and rolled back?
+<derek> um no
+<nickr> thats the idea behind transactions isn't it?
+Action: chillywilly thought a transaction was more like a series of steps
+<derek> well kind of
+<derek> if i do
+<nickr> a transaction is an 'atomic' operation that does complex manipulations
+<chillywilly> select this...update this...etc.
+<derek> UPDATE myTable set foo='fooey';
+<derek> i cant 'roll' that back
+<derek> but ISOLATION levels still exist
+<derek> iirc
+<derek> then you have TRANSACTIONS
+<derek> where you can say somethign like 
+<derek> START TRANSACTION
+<derek> then you can do 
+<derek> UPDATE myTable set foo='fooey';
+<derek> UPDATE myTable set sloo='fooey';
+<derek> UPDATE myTable set doo='fooey';
+<derek> COMMIT
+<derek> or
+<derek> ROLLBACK
+<derek> and those 'updates' dont 'really' take effect until that COMMIT
+<chillywilly> yea
+<derek> thats where they were getting into
+<nickr> locking is less important in that sort of inteaction, no?
+<derek> when you smack COMMIT
+<derek> does update a really happen
+<derek> if update c fails
+Action: chillywilly looks at the degrees of isolation
+<derek> sigh that was fruitless that machine really is dead :(
+Isomer (dahoose@210-86-56-176.jetstart.xtra.co.nz) left irc: "Client Exiting"
+Isomer (dahoose@210-86-56-176.jetstart.xtra.co.nz) joined #gnuenterprise.
+<nickr> you need more fruin.
+<derek> chillywilly:  what list did you send things too?
+<derek> i dont see anything
+<chillywilly> gnue-dev@gnu.org
+<derek> does that even exist?
+<chillywilly> Date: Sun, 3 Feb 2002 20:02:21 -0600^M
+<chillywilly> From: Daniel E Baumann <danielb@freedevelopers.net>^M
+<chillywilly> User-Agent: Mutt/1.3.27i^M
+<chillywilly> To: gnue-dev@gnu.org^M
+<chillywilly> Subject: [Gnue-dev] Standard For Enterprise Application Intergration^M
+<chillywilly> Some links that you guys might find interesting:
+<chillywilly> http://www.omg.org/technology/cwm/
+<chillywilly> http://www.cwmforum.org/
+<chillywilly> Some pretty interesting stuff on EDI/Data Warehousing/Metadata
+<chillywilly> exchange. This makes me thing of GNUe Intergrator, OLAP, etc. Perhaps
+<chillywilly> Derek could comment on this?
+<chillywilly> Dan
+<chillywilly> -- 
+<chillywilly> common warehouse metamodel
+<chillywilly> or something
+<derek> wtf i must not be on that list or something
+<chillywilly> for like EAI and B2B stuffs
+<chillywilly> (sorry about the FD addy, but I am damn lazy ;) )
+Action: chillywilly hasn't gotten around to futzing with that crud
+<chillywilly> I have to resubscribe to many lists
+<chillywilly> in order to shed that email address
+<chillywilly> :(
+ra3vat (ds@195.239.204.226) joined #gnuenterprise.
+<derek> rofl
+<derek> ok im an administer of that list
+<derek> BUT im not subscribed to it :)
+<chillywilly> heheh
+<chillywilly> woops
+<chillywilly> dude
+<chillywilly> I just realized that there were a bunch of emails to gnue-dev and gnue @gnu.org
+<chillywilly> the reason I didn't see them before is that they were not made to be mailboxes in my muttrc file
+<derek> wonder how much more i have missed
+<chillywilly> so when I hti 'c' for mutt to go to the next mailbox with new messages it never went to the other 2 gnue lists
+<chillywilly> s/hti/hit
+<chillywilly> seems there was quite a bit of discussion there
+<derek> sigh
+<derek> ok well im subscribed now
+<chillywilly> I'll send you my archive
+<derek> suppose i will hit the 'archives'
+<chillywilly> ok?
+<derek> can you just send me that mail to derek@gnue.org dan
+<chillywilly> sure
+<derek> when i reply i will send to gnue-dev as well
+<chillywilly> alrighty
+<chillywilly> done
+jbailey (jbailey@HSE-Toronto-ppp317777.sympatico.ca) left irc: "Client Exiting"
+<chillywilly> *  Silent Night Keyboard (Brittany Neighbors)
+<derek> ?
+<chillywilly> who is that? your honey?
+Action: chillywilly got that off of: http://www.praise-fellowship.com/musicals.php
+<derek> my daughter :)
+<chillywilly> ok
+<derek> she jams for a 7 year old
+<chillywilly> ;P
+<chillywilly> man you are old
+<chillywilly> you have a 7 year  old
+<chillywilly> j/k
+<chillywilly> are you 30 yet?
+<derek> um close 27 going on 28 (i think)
+<derek> born 7/1974
+<derek> so however old that makes me
+<chillywilly> caroline is same age as you
+<chillywilly> her birthday is 4/11/74
+<derek> my wife turned 30 though on jan 8th :)
+<chillywilly> hehe
+phil_c (username@public1-cosh1-6-cust141.cosh.broadband.ntl.com) left irc: Connection timed out
+<chillywilly> she robbed the cradle too eh?
+<chillywilly> ;)
+<derek> yip
+<chillywilly> i think?
+<chillywilly> you fogrget how old you are?
+<chillywilly> er, forget
+fil_c (username@public1-cosh1-6-cust141.cosh.broadband.ntl.com) left irc: Ping timeout: 14400 seconds
+Action: chillywilly does that too sometimes ;P
+<chillywilly> man
+<chillywilly> I have to sleep
+<chillywilly> you guys have a prayer mailing list?
+<chillywilly> we should get one of those
+Action: chillywilly should host it on his box
+<derek> um i havent set it up yet
+<derek> but yeah we will have such things :)
+<derek> this mornign i was to meet w/ the mayor about getting permission from city to put 802.11b on water tower
+<derek> to broadcast to city :)
+<chillywilly> ah yea
+<derek> but other issues came up so didnt get to talk to him
+<chillywilly> oh bummer
+<chillywilly> dude
+<chillywilly> you ever hear of ISO XA standard for distributed transactions?
+<derek> would love to see them move to 802.11b and for starters have 'intranet' for gilbert businesses and govt to use
+Action: chillywilly is going to have to check that out
+<derek> then look to providing one or two t1s and be first city in arizona to offer free internet to its citizens
+<derek> for as little as like 1200 a month they could be 'cutting' edge :)
+<derek> hey on debian i had found a real tight little application for doing foto album 
+<chillywilly> yea?
+<derek> i.e. it would scan a directory tree and build an album
+<derek> my debian box is dead
+<derek> can someone do a cache search for me and give me hint at what it might have been ?
+<derek> :(
+<derek> maybe
+<derek> apt-cache search photo album
+<derek> and paste results here?
+Action: derek cries that he doesnt ahve debian here ...
+<chillywilly> ok
+<chillywilly> danielb@obfuscation:~$ apt-cache search 'photo album'
+<chillywilly> gallery - a web-based photo album written in php
+<chillywilly> libroxen-photoalbum - Photo album module for the Roxen Challenger web server
+<derek> thats it
+<derek> hmmmm
+<chillywilly> which one?
+<derek> maybe
+<chillywilly> gallery?
+<derek> apt-cache gallery
+<derek> instead
+<chillywilly> ok
+<nickr> I use igal
+<derek> er
+<derek> apt-cache search gallery
+<derek> nickr: that might be it
+Action: ajmitch wonders why derek wants to index his pr0n collection
+<nickr> igal is cool
+<derek> it wsa REALLY simple
+<nickr> yeua
+<nickr> you go to the directory, type igal and it does it
+<derek> yet produced good formed html pages
+<chillywilly> danielb@obfuscation:~$ apt-cache search gallery
+<chillywilly> gallery - a web-based photo album written in php
+<chillywilly> galrey - Command line image gallery generator. It also makes thumbnails.
+<chillywilly> igal - online image gallery generator
+<chillywilly> ktuberling - Potato Guy for KDE
+<chillywilly> konq-plugins - plugins for Konqueror, the KDE file/web/doc browser
+<derek> and did thumbnails too
+<chillywilly> webmagick - create gallery thumbnails for website
+<derek> ok it was iether
+<derek> igal or galrey
+<nickr> http://green.zorcat.com/~nick/data/pictures is igal output
+<ajmitch> hrmm, we've got plans for 802.11b here as well derek
+<derek> it was igal
+<derek> can tell by the header :)
+<chillywilly> ok
+<nickr> you have to edit the .index_template.html to link it to other pages though
+<nickr> or wahtevr
+<nickr> which is mildly annoying but not too bad
+<nickr> I wrote a script to do it
+<chillywilly> hmmm
+<chillywilly> I wonder where I cna get my hands on the XA spec
+<derek> nickr: submit it to author as patch
+<derek> if its mildly annoying to you its probably annoying to others as well :)
+<nickr> well they chose simplicyt and flexibility over overfeaturedness
+<chillywilly> hrrm, authors seems to be the Open Group
+<chillywilly> probably means shelling out some dough
+<chillywilly> :(
+<nickr> XA?
+<chillywilly> yea
+<chillywilly> distributes transaction processing
+<chillywilly> er, distributed
+<chillywilly> i.e., load balancing using multiple databases
+reinhard (~rm@62.47.45.2) joined #gnuenterprise.
+<chillywilly> sup reinhard
+<reinhard> mornin
+<chillywilly> actually XA is just generic TP
+<chillywilly> and XA+ is distributed TP
+<chillywilly> http://www.dtais.mod.uk/jwid/dtais/jsp450/issue3/v3c11si.htm
+<chillywilly> you might find this interesting reinhard
+<chillywilly> a way to do load balancing in geas
+<chillywilly> (yea, yea I know you want it to work first)
+<chillywilly> ;P
+<derek> nickr: how do you make igal do recursion?
+<derek> or can you
+Action: derek is too lazy to read man pages right now :)
+<nickr> you can't
+<nickr> thats what I mean
+<nickr> its simplistic
+<nickr> it does one directory at a time
+<derek> can you 'tie' the directories together?
+<derek> sigh this looked too good to be true
+<chillywilly> write a script
+<nickr> yea, just write a shell script to do it
+<derek> i wanted to upload and do something 'quickly'
+<nickr> when you do igal it makes some .files
+<nickr> one of them is the template it'll use to generate the index next time you run it
+<nickr> you add links to the other directories to it
+<nickr> and run igal again
+<nickr> and then do that down the tree as deep as you want
+<nickr> thats what I did
+<chillywilly> whddaya know
+<chillywilly> Java uses this same model for transactions
+<chillywilly> J2EE that is
+<derek> nickr cool
+Action: derek will have to rewrite igal in python someday
+<derek> and add -r feature :)
+<nickr> way ahead of you.
+<Mr_You> what ya'll think about Miguels comments?
+<derek> which ones where?
+<Mr_You> about .NET .. lemme find
+<chillywilly> we know what you are talking about
+<chillywilly> his latest interview
+<derek> oh old stuff i think :)
+<chillywilly> I think he's amoron
+<chillywilly> ;P
+<Mr_You> http://www.theregister.co.uk/content/4/23919.html
+<Mr_You> old stuff?  :-P
+<chillywilly> plus, I don't see Gnome shifting to C#
+<Mr_You> oh it is, wonder why it just now was posted
+<chillywilly> there's too much invested in a redesign and a lot fo the code is (c) FSF
+<chillywilly> ok, I must sleep now
+<chillywilly> have fun ppl
+<ajmitch> night
+chillywilly (danielb@d170.as2.nwbl0.wi.voyager.net) left irc: "sleep(1000);"
+zoyd (zoyd@202.9.131.33) joined #gnuenterprise.
+<zoyd> hello
+<nickr> hi
+<zoyd> I just installed GNUe-Designer how do i edit $PYTHONPATH and add the new module search path ?
+<ra3vat> hello zoyd
+<zoyd> ra3vat: hi :)
+<zoyd> I found GNUe very intereseting.
+<ra3vat> I think you can do 
+<ra3vat> export PYTHONPATH=$PYTHONPATH:/usr/local/gnue/....
+<ra3vat> from shell
+zoyd (zoyd@202.9.131.33) left irc: Remote closed the connection
+zoyd (zoyd@202.9.130.198) joined #gnuenterprise.
+Action: derek is away: zzzz
+<derek> zoyd: you can ignore that editing the path statement in the install
+<derek> iirc
+<zoyd> ok.
+Action: zoyd now looks for wxpython for slackware 8
+<zoyd> bbl
+zoyd (zoyd@202.9.130.198) left #gnuenterprise.
+<dtm> derek: hi
+drochaid (user34@pc1-kirk2-0-cust128.ren.cable.ntl.com) joined #gnuenterprise.
+Action: dtm is away: sleep
+fil_c (~username@public1-cosh1-6-cust141.cosh.broadband.ntl.com) joined #gnuenterprise.
+<fil_c> test
+FunkyTrix (~Fun@62.211.176.231) joined #gnuenterprise.
+ToyMan (~stuq@c5300-1-ip36.albany.thebiz.net) joined #gnuenterprise.
+<jamest> morning
+<jamest> at least here
+<drochaid> afternoon jamest
+<jamest> did that snapshot work out for you?
+<drochaid> other than the lack of drag'n'drop fields and the table/view selector ... it seems to be fairly happy so far
+<jamest> cool
+alexey (alex@techkran.vladimir.ru) left irc: "[x]chat"
+Nick change: drochaid -> drochaid[out]
+Vooch (~d@adsl-63-164-88.bna.bellsouth.net) joined #gnuenterprise.
+ToyMan_ (~stuq@c5300-1-ip216.albany.thebiz.net) joined #gnuenterprise.
+stuq_ (~stuq@c5300-4-ip195.albany.thebiz.net) joined #gnuenterprise.
+ToyMan (stuq@c5300-1-ip36.albany.thebiz.net) left irc: Read error: 113 (No route to host)
+Nick change: stuq_ -> ToyMan
+alexey (~alexey@195.151.214.34) joined #gnuenterprise.
+ToyMan_ (stuq@c5300-1-ip216.albany.thebiz.net) left irc: Read error: 113 (No route to host)
+fil_c (username@public1-cosh1-6-cust141.cosh.broadband.ntl.com) left irc: Ping timeout: 14400 seconds
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+jbailey (~jbailey@HSE-Toronto-ppp318996.sympatico.ca) joined #gnuenterprise.
+dneighbo (~dneighbo@tech-200078.flinthills.com) joined #gnuenterprise.
+ToyMan (stuq@c5300-4-ip195.albany.thebiz.net) left irc: "Client Exiting"
+ToyMan (~stuq@c5300-4-ip195.albany.thebiz.net) joined #gnuenterprise.
+jbailey (jbailey@HSE-Toronto-ppp318996.sympatico.ca) left irc: "Client Exiting"
+FunkyTrix (Fun@62.211.176.231) left irc: "Client Exiting"
+Nick change: drochaid[out] -> drochaid
+alexey (alexey@195.151.214.34) left irc: "Client Exiting"
+zoyd (zoyd@202.9.130.232) joined #gnuenterprise.
+<zoyd> hi .. i was trying to install GNUe-Forms and GNUe-Designer ...
+<zoyd> but it needs wxPython ... I'm running Slackware 8 and i can't find that package.
+<zoyd> I'm not able to run gfdesigner, please help.
+<jamest> um
+<jamest> slackware does packages?
+Action: jamest is not a slackware user
+<zoyd> yes it does they're simply binary tarballs.
+<zoyd> 'ImportError: No module named wxPython.wx'
+<drochaid> WOO life :)
+<drochaid> zoyd: is it still using pkgtool?
+<drochaid> or whatever it was '_
+<zoyd> yes.
+<zoyd> :)
+<drochaid> do you have pyton installed, or is that where the problem is?
+<zoyd> yes, i have python installed and running.
+<drochaid> apologise, not typing properly ... same question, but subsitute python with wxPython
+<zoyd> that i don't have.
+<drochaid> hmm .. I see what you mean, I can only find .rpm bins for it
+<drochaid> the source looks fairly easy to compile if you're okay with that tho?
+<zoyd> where's the source ?
+<drochaid> http://www.wxpython.org/download.php#sources
+<zoyd> i wonder what's that -> http://www.linuxpackages.net/details.php?name=wxGTK
+<drochaid> and the build instructions are just a little down the page from there
+<drochaid> you need gtk and wxgtk to build wxpython
+zoyd_ (zoyd@202.9.130.97) joined #gnuenterprise.
+zoyd (zoyd@202.9.130.232) left irc: "Client Exiting"
+<zoyd_> sorry, bad link here.
+<drochaid> wb zoyd_
+Nick change: zoyd_ -> zoyd
+<drochaid> did you get my last two lines on wxGTK and wxPython?
+<zoyd> would i also need the wxgtk sources to compile wxpython ?
+<drochaid> yep
+<zoyd> last line: '<drochaid> you need gtk and wxgtk to build wxpython'
+<drochaid> yep, that's all I said
+<zoyd> fine.
+Action: zoyd movese over to his browser
+<zoyd> drochaid: another thing: i got python2.0.1, hope i don't have to upgrade that.
+<drochaid> uhm ...
+Action: drochaid stays quiet
+<zoyd> hehe
+<zoyd> drochaid: what does GNUe recommend ?
+<drochaid> for that I'll defer to jamest, but I *think* your version of python is ok for it
+<zoyd> I'll give it a shot then :)
+<drochaid> and I'm sure he'll confirm it/attack me with a claymore in a minute ;)
+<zoyd> drochaid: btw, would i need the python sources to build wxpython ?
+<drochaid> uhm, err, uhm .. I honestly don't know
+<drochaid> if it doesn't mention it in the wxPython build docs .. I'd give it a go without the python source
+<zoyd> fine, i'll do the same then.
+<drochaid> k
+<drochaid> g/l
+Vooch (d@adsl-63-164-88.bna.bellsouth.net) left irc: Connection timed out
+reinhard (rm@62.47.45.2) left irc: "Optimist: the glass is half full.  Pessimist: the glass is half empty.  Engineer: the glass is double as big as it would have "
+zwiskle (~zwiskle@194-183-130-080.TELE.NET) joined #gnuenterprise.
+<jamest> zoyd: python 2.0.1 should work, if not it's a bug
+<jamest> IIRC you don't need the python sources
+<jamest> there may be header files you require
+<jamest> but those should have installed with python itself
+<drochaid> heh, wb jamest :)
+<jcater> I ran python 2.0 + wxPython both from source on Slackware 8
+<jcater> both built no problem
+<zoyd> jcater: that sounded nice :D
+<zoyd> jamest: thanks for the confirmation.
+<jcater> you found a packaged python for slack 8?
+<jcater> cool
+<jcater> and yet weird
+<zoyd> it's there on the first install cd.
+<zoyd> 2.0.1
+<zoyd> jcater: 'weird', why ?
+<jcater> ah, included with the slack distro?
+<zoyd> yes.
+<jcater> oops, I missed that
+<zoyd> jcater: do you have wxpython running ?
+<jcater> I've since replaced that machine w/debian
+<jcater> but I did
+<zoyd> oh. guess what, i moved from debian back to slack8 recently.
+<zoyd> So, are there any serious users of GNUe ?
+<zoyd> some nice applications developed using all these beautiful tools.
+<jcater> yes, but inhouse stuff
+<zoyd> 'inhouse' as in ?
+<dneighbo> not availalbe under gpl :)
+<dneighbo> i.e. custom solutions
+<zoyd> custom solutions could be gpl'ed too, isn't it ?
+<jcater> well, they "could" be, but gpl covers redistribution and inhouse solutions typically aren't redistributed
+<jcater> not would there be must advantage to that
+<jcater> if its an app written around a single business' idiosyncracies
+<drochaid> also the aspect of businesses using ERP for a 'competitive edge' ... if they then make their solutions available to all, they're effectively paying for their competitors to have that competitive edge
+<zoyd> hmmmm
+drochaid_ (user34@pc1-kirk2-0-cust128.ren.cable.ntl.com) joined #gnuenterprise.
+<drochaid_> hmm .. that was fun
+<jcater> well, I was specifically referring to highly customized apps
+<jcater> not necessarily ERP style stuff
+drochaid (user34@pc1-kirk2-0-cust128.ren.cable.ntl.com) left irc: Read error: 104 (Connection reset by peer)
+<drochaid_> I was referring to the overall system rather than a single app
+Nick change: drochaid_ -> drochaid
+<jcater> e.g., we are a magazine fundraising company... our magazine clearinghouse code is irrelevant to anyone else
+<zoyd> drochaid: but making the soltution available would still remain in the hands of the businesses using this ERP.
+<jcater> so that is what I meant wrt "inhouse" 
+sjc (~sjc@modem-858.aardvark.dialup.pol.co.uk) joined #gnuenterprise.
+<jcater> but like a custom contact system, or custom payables system, or custom supply/inventory system
+<jcater> wouldn't make much sense
+<zoyd> jcater: fine i understand the thing with an application usefull for general use.
+<jcater> zoyd: I was primarily disagreeing w/ drochaid's ERP example :)
+<zoyd> heh
+<jcater> unfortunately, aside from our samples/ directory, all the real-world uses of forms right now are in-house stuff
+<jcater> this is of course not the way we want it
+<jcater> of course, early adopters are a GOOD thing :)
+<zoyd> there are going to be industry specific components, isn't it ?
+<jcater> yes
+<jcater> I have not played much in the packages area, but
+<zoyd> and i think the samples would significantly influence those components.
+<drochaid> jcater: indeed, but what having the apps available would do, would be to allow your competitors to see how you do it and potentially modify there own system with some improvements gained from knowledge of yours
+<jcater> our goal is to have a set of comprehensive base packages
+<jcater> and then have industry-specific "templates" that extend the functionality
+<jcater> of these base packages
+<jcater> drochaid: true enough... of course, I wouldn't put out my inhouse stuff because I'd also be afraid of our competitors seeing it
+<jcater> HOWEVER
+<jcater> I'd be afraid they'd laugh at our system
+<jcater> ;
+<jcater> ;)
+<drochaid> lol
+<zoyd> heh
+<drochaid> I used to work for IBM Global Services ... I'm *trying* to imagine convincing a client like Lloyds or ICI to release in depth info about their business logic
+<drochaid> their competitors would have a field day :)
+reinhard (~rm@62.47.45.2) joined #gnuenterprise.
+<drochaid> mmmm
+Action: drochaid phones some friends still with IBM to get them to have that conversation and record it
+<jcater> I imagine its not as secret as most companies would like to think
+<jcater> ;)
+ICJ (foobar@pD9E46FAF.dip.t-dialin.net) joined #gnuenterprise.
+<ICJ> Hi!
+<jcater> hello
+<jcater> bbiaf
+<drochaid> jcater: I've got NDAs that last for the next 20 years
+<ICJ> I am Jens Müueller
+<ICJ> I am Jens Mueller
+<drochaid> hey ICJ
+<ICJ> I wrote a few mails on the lists recently
+<dneighbo> hmmm you related to reinhard mueller :)
+<ICJ> no ... ;-)
+<ICJ> args ...
+<dneighbo> ok we will let you stay then :)
+<ICJ> My X-Chat does not support umlauts ...
+<dneighbo> neither does mine
+<ICJ> who is that?
+<dneighbo> reinhard uses .. umlauts as well
+<zwiskle> an austrian
+<dneighbo> yip
+<dneighbo> btw: re releasing code
+<dneighbo> like ERP stuff
+<ICJ> well ...
+<ICJ> a bug in the IRC protocol ...
+<dneighbo> i see most people will take the 'base'
+<dneighbo> then extend and not give back
+<ICJ> should support MIME ;-)
+<dneighbo> which is fine, though over time i think they will realize the computer system is only a small advantage
+<ICJ> I yesterday filed a bug against the Debian package gead
+<ICJ> geas, of course
+<dneighbo> that really the 'logistics' and such will be more important
+<ICJ> what is really important are different tax laws in diff. countries
+<ICJ> they have an heavy impact on accounting
+<ICJ> You have to be able to say write-off according to article xy, and the system should do it
+<ICJ> am I talking to much?
+<dneighbo> no
+<ICJ> ok :-)
+<dneighbo> i agree but am not too worried
+<dneighbo> i see us 'templating' things by region/location
+<dneighbo> to handle tax specifics and such
+<dneighbo> one goal of gnue is to avoid the SAP idea of
+<dneighbo> you get shipped with 80,000 tables
+<ICJ> *g*
+<dneighbo> of which 60,000 of them you have to go 'configure' (ie. populate remove etc)
+<dneighbo> but rather you get a small base
+<ICJ> and modules, yes
+<dneighbo> then 'apply' things based on 'country, tax laws, etc etc etc)
+<ICJ> together with a goog package management, that would be fine
+<dneighbo> so you might get base accounting package
+<dneighbo> gl module
+<dneighbo> then apply austrian tax template
+<dneighbo> or what not
+<ICJ> anyone using Debian package of geas?
+<drochaid> just to confirm ... do you want more or less than 80,000 tables? [no, not my usual, uhm, humour, serious question]
+<ICJ> depends ...
+<zoyd> it's way past midnight here .. goodnight, c ya folks later.
+<ICJ> more than 80,000 possible tables with less than 1,000 normally in active use?
+zoyd (zoyd@202.9.130.97) left #gnuenterprise ("bye").
+<dneighbo> um
+<dneighbo> drochaid: i want to avoid as ICJ says
+<dneighbo> 80,000 tables of which only 1000 have ANYTHING to do with your system
+<drochaid> ahh .. hmm
+<drochaid> yes, I missed the 'but only need 1000' before
+<dneighbo> instead i see gnue having the 80,000 in 'concept'
+<dneighbo> but it installs like 100 to start
+<dneighbo> and you 'apply' the others as you need them
+<dneighbo> think of how 'apache' on debian works
+<dneighbo> you get
+<dneighbo> apt-get install apache
+<dneighbo> then you can 
+<dneighbo> apg-get install php4
+<dneighbo> apt-get install php4-pgsql
+<dneighbo> etc etc
+<drochaid> yep ... makes sense
+<dneighbo> so you might have
+<dneighbo> apt-get gnue-accounting
+<dneighbo> apt-get gnue-accounting-austrian-tax
+<dneighbo> apt-get gnue-accounting-euro-conversions
+<dneighbo> or soemthing
+<dneighbo> only wont be apt-get
+<dneighbo> probably gnue-get
+<dneighbo> or something similar
+<ICJ> debian:~# apt-get gnue-accounting
+<ICJ> E: Invalid operation gnue-accounting
+<ICJ> debian:~# apt-get install gnue-accounting
+<ICJ> Reading Package Lists... Done
+<ICJ> Building Dependency Tree... Done
+<ICJ> E: Couldn't find package gnue-accounting
+<ICJ> *g*
+<drochaid> lol
+<dneighbo> rofl
+<ICJ> well, .debs are ok
+<dneighbo> um you have to have your sources.list set to
+<ICJ> Debian will then have a Gnue policy
+<dneighbo> deb http://http.us.debian.org/debian im_a_fscking_idiot main contrib non-free
+<dneighbo> then you can get gnue-accounting ;)
+<jcater> more like   deb http://http.us.debian.org/debian purgatory main contrib non-free
+<dneighbo> rofl
+<ICJ> are the mailing lists still in use?
+<ICJ> or is everything discussed in this channel?
+<ICJ> there are so little postings ...
+<jamest> they are still in use
+<ICJ> but seldom used ...
+<jamest> it goes in spurts
+<jamest> IRC usually gives faster feedback
+FunkyTrix (~Fun@62.211.177.150) joined #gnuenterprise.
+<ICJ> but less broad discussions ...
+<ICJ> with fewer people
+<jamest> yes
+<jamest> one way to look at it
+<jamest> mail does the big items
+<ICJ> because its syncronous communication
+<ICJ> ic
+[14:07] Last message repeated 1 time(s).
+<jamest> irc is good for getting problems you are having adressed
+<jamest> we really try to respond to both but in my case I know mail gets missed at times due to the amount I get
+<jamest> it's much harder to not notice someone in here going "help me"
+<jamest> "help me"
+[14:08] Last message repeated 1 time(s).
+<jamest> :)
+<drochaid> you need help jamest? ;)
+<Isomer> drochaid: we're not qualified to help jamest and prescribe those kinds of drugs!
+<nickr> Is it possible to make some sort of thing to migrate or at least dump the data from access so that it can be moved to a real database?
+Yurik (~yrashk@gw.telcos.net.ua) joined #gnuenterprise.
+<Yurik> re
+<ICJ> nickr: what data?
+<ICJ> the tables?
+<ICJ> or the forms?
+<nickr> yea, tables and contents
+<ICJ> ODBC?
+<drochaid> lol Isomer
+<ICJ> http://bugs.debian.org/geas
+Yurik (~yrashk@gw.telcos.net.ua) left #gnuenterprise.
+<nickr> IU think so
+<nickr> hrm, is it possible to link one of those credit terminal things to a computer?
+Nick change: mdean-[idle] -> mdean
+<ICJ> what terminal to you mean?
+sjc (sjc@modem-858.aardvark.dialup.pol.co.uk) left irc: "Client Exiting"
+<drochaid> nickr: most of them are by default
+<nickr> a credt processing terminal
+<ICJ> in a shop, for credit cards and these things?
+<ICJ> (in Europe: Eurocheque cards, using different functions integrated on these cards)
+<ICJ> certainly, often a card reader is integrated into the terminal
+reinhard (rm@62.47.45.2) left irc: "All things being equal, fat people use more soap"
+<ICJ> In Germany, a common method is to read the account number and bank routing number from the Eurocheque card, let the customer sign a direct debit agreement and then give the collected debits electronically (with formats like EDIFACT) to the company's bank.
+<ICJ> The payment is not guaranteed, so the company has to store the data in its system if the debit is being returned
+<ICJ> See http://www.zahlungsverkehr-faq.de (German language) for further details.
+jamest (jamest@hobbes.math.ksu.edu) left irc: "[x]chat"
+FunkyTrix (Fun@62.211.177.150) left irc: "Client Exiting"
+Vooch (~d@adsl-63-164-67.bna.bellsouth.net) joined #gnuenterprise.
+<nickr> dpm
+<nickr> hrm
+<dtm> hi
+<dtm> hey nickr   do you know pgsql?
+<dtm> like, basic setup?
+<nickr> not really
+<nickr> I mean I've sort of done it
+<nickr> but the authentication stuff bothers me
+<nickr> bothers/mystifies
+Vooch (~d@adsl-63-164-67.bna.bellsouth.net) left #gnuenterprise.
+zwiskle (zwiskle@194-183-130-080.TELE.NET) left irc: Remote closed the connection
+Vooch (~d@adsl-63-164-67.bna.bellsouth.net) joined #gnuenterprise.
+Vooch (~d@adsl-63-164-67.bna.bellsouth.net) left #gnuenterprise.
+chillywilly (~danielb@d122.as4.nwbl0.wi.voyager.net) joined #gnuenterprise.
+<chillywilly> sup my peeps
+Nick change: chillywilly -> chillywilly-odmg
+jbailey (~jbailey@HSE-Toronto-ppp318996.sympatico.ca) joined #gnuenterprise.
+<chillywilly-odmg> hi jeff
+<jbailey> odmg?
+<jbailey> Overload dogs - Mighty Goats?
+<chillywilly-odmg> http://www.odmg.org
+<chillywilly-odmg> I pruchased the book that has the standard in it
+<chillywilly-odmg> and I am reading it some more now
+<dneighbo> odmg = onery devil mad goats
+lambert (~lambert@dialup-209.246.94.7.Dial1.NewYork1.Level3.net) joined #gnuenterprise.
+<jbailey> dneighbo: delicious..  =)
+<chillywilly-odmg> whatever
+lambert (~lambert@dialup-209.246.94.7.Dial1.NewYork1.Level3.net) left #gnuenterprise ("Client Exiting").
+<chillywilly-odmg> why do I even bother
+<dneighbo> chillywilly-odmg: its da goats dats why joo botter
+<chillywilly-odmg> hehe
+<chillywilly-odmg> btw, I am making notes on all the goodies in my book, which I plan to make available to some GNUe hackers....ummm within limits of copyright ;) (*hint*, *hint*)
+<chillywilly-odmg> copyright this
+<chillywilly-odmg> beotch
+<chillywilly-odmg> s/some/interested/
+fil_c (~username@public1-cosh1-6-cust141.cosh.broadband.ntl.com) joined #gnuenterprise.
+<nickr> odmg: occult devil magic gnomes
+<chillywilly-odmg> gah
+Nick change: chillywilly-odmg -> chillywilly
+<chillywilly> ODMG: Object Data Management Group....damnit :P
+<nickr> official dumb malarchy, greg
+Action: chillywilly puts a trout slapin' on nickr
+jamest (~jamest@fh-dialup-201069.flinthills.com) joined #gnuenterprise.
+<jamest> wow
+<chillywilly> dude
+<jamest> full house
+<chillywilly> what's the dilly yo?
+Action: chillywilly is reading about metadata and the ODL Schema repository
+<chillywilly> in hopes of making a GEAS that doesn't suck
+<jamest> Merriam-Webster defines a dilly as ......
+<jamest> one that is remarkable or outstanding <had a dilly of a storm> <for a practical joke, that was a dilly>
+<jamest> Merriam-Webster defines yo as ......
+<chillywilly> don't you know your ebonics?
+<chillywilly> sheeet
+<chillywilly> I'll hafta bussa cap in yo ass
+<jamest> an interjection used especially to call attention, to indicate attentiveness, or to express affirmation 
+<chillywilly> heheh
+<chillywilly> ooooh, ODLMetaObjects
+<chillywilly> rock!
+<chillywilly> kewl a built-in design for introspection
+<jcater> what's the remarkable call to attention, all?
+<jamest> jcater?
+<chillywilly> er?
+<jamest> um what are you doing here?
+Action: jcater is not here
+Action: jcater is a figment of your overworked imagination
+<jamest> he's at class
+<jamest> scaring the cute coeds
+<jcater> hehe
+<jcater> only a person who worked at a university would call them "coeds"
+rdean (~rdean@chcgil2-ar2-053-033.chcgil2.dsl.gtei.net) joined #gnuenterprise.
+rdean (~rdean@chcgil2-ar2-053-033.chcgil2.dsl.gtei.net) left #gnuenterprise.
+<chillywilly> hehe
+<dtm> hi
+<dtm> i have just had a meeting with our church's webmaster about redesigning the whole site and instating a beta period for some dynamic content
+<dtm> to see how they like it
+<dtm> a la phpnuke and phpgroupware
+<chillywilly> okey dokey somkey
+Action: chillywilly thinks the ODMG metadata stuff is confusing
+<dtm> ;alkjdsf
+Action: dtm shows chillywilly how it all works
+Action: chillywilly takes a hit off his crack pipe
+dneighbo (dneighbo@tech-200078.flinthills.com) left irc: "Client Exiting"
+Action: dtm presents it in a vision
+<chillywilly> I see it now!
+<chillywilly> it has all become clear
+<chillywilly> thanks dtm
+<dtm> sho' 'nuff
+<dtm> friggin ODMG!
+<dtm> aint enough to keep us down
+<dtm> word is bond
+<chillywilly> sheeeet
+<dtm> h0h0
+<dtm> lallalalallaa!
+<chillywilly> let's bounce
+<chillywilly> hehe, mike said that when we were leaving the job site
+<jcater> chillywilly: what d'ya expect with objects? something simple????
+<chillywilly> plz
+<chillywilly> objects rock
+<chillywilly> it's not that complicated 
+<chillywilly> I dun figured it out
+<dtm> yay cheeleywheeley
+<chillywilly> the whole point is that I don't have to design this hairy shit, but just write a Free implementation
+<chillywilly> fun part will be converting all those gcds and doing a proper design there ;P
+<jcater> hmm
+<jcater> I don't want to be around when you tell reinhard his gcd lexer is shit
+<chillywilly> it's not
+<chillywilly> the lexer will provide a good base
+<chillywilly> what it parses things into might change though
+<chillywilly> we need some real objects
+<chillywilly> not hacked up andrewm C structs ;P
+<dtm> who here knows basic pgsql setup?
+<chillywilly> like eveyone
+<dtm> ok
+<chillywilly> practically
+<dtm> if i wanna migrate a pgsql setup to another host, do i need only install pgsql on the target and then copy over /var/lib/pgsql?  coz i did that and it wont start.
+<chillywilly> except I haven't done it in eons
+<chillywilly> just install the cleint package
+<chillywilly> you build it form source?
+<chillywilly> er, from
+<dtm> no i installed from rpms from ydl
+<chillywilly> install postgresql-client or whatever they call it
+<dtm> oh , there's a client?  :}  i installed postgresql and postgresql-server   stand by
+rdean (~rdean@chcgil2-ar2-053-033.chcgil2.dsl.gtei.net) joined #gnuenterprise.
+<chillywilly> first one is probably the client
+<dtm> there's nothing called "client"
+<dtm> rdean: hi
+<chillywilly> psql is athe client
+<dtm> chillywilly: that's what i thought.
+<chillywilly> psql -h <host> <database>, iirc
+<dtm> i did this:
+<dtm> sudo sh -c "su -l postgres -c \"/usr/bin/pg_ctl -D /var/lib/pgsql/data -p /usr/bin/postmaster start\" "
+<dtm> which is directly from the rc script
+<chillywilly> that starts the server
+<dtm> pg_ctl: Can't find /var/lib/pgsql/data/postmaster.opts.default
+<dtm> that's what it says
+<dtm> in response
+<dtm> oh wait
+<dtm> hold up
+<chillywilly> just isntall the packages
+Nick change: rdean -> rdean-[rtcw]
+<chillywilly> shouldn't be hard
+<chillywilly> then you can copy the data if you need to
+<dtm> [dtm@Datums /]$ sudo sh -c "su -l postgres -c \"/usr/bin/pg_ctl -D /var/lib/pgsql/data -p /usr/bin/postmaster start\" "
+<dtm> that's waht it says after i simply copied /var/lib/pgsql
+<dtm> both hosts were running pgsql 7
+<chillywilly> oh
+<chillywilly> you copied the data?
+<mdean> dtm: you're best bet is to 1) pg_dumpall the source server, 2) initdb the new system, 3) psql -e < dump.sql
+<mdean> s/you're/your/
+<chillywilly> yea
+<dtm> mdean: so how come what i did, didn't work?
+Action: chillywilly new there was a sane way
+<dtm> what else is there to my db's
+<chillywilly> er, knew
+<dtm> how else are the db's represented on the filesystem
+<mdean> I don't know enough of pgsql internals to give you an answer ;-)
+<dtm> goll durnint
+<chillywilly> you need da masta
+<mdean> just that if you need to move data, use pg_dump dbname or pg_dumpall
+<dtm> mdean knows all!
+<chillywilly> or jcater might know
+<dtm> mdean: and that results in a simple delimited text file, right?
+<chillywilly> masta is postgres expert
+Action: jcater is da oracle man, not da postgres man
+<chillywilly> ok
+<chillywilly> well derek would know
+<mdean> dtm: no, it is a sql dump
+<chillywilly> masta!!!
+<mdean> pg_dumpall > dump.sql
+<dtm> mdean: what type of data is that
+<mdean> pgsql creates new OIDs whenever you do initdb or add anything (which is why you never use OID for a fk ;-)
+<mdean> it is a sql text file
+<chillywilly> mmmm, steak
+<dtm> mdean: what is "FK"
+<chillywilly> fk?
+<mdean> foreign key
+<chillywilly> ah
+<dtm> mdean: ok i have no idea what that is, or the significance of it!
+<dtm> :)
+<chillywilly> or you just use a nice object abstraction ;P
+<mdean> everything in pg has a OID (object ID)
+<chillywilly> OIDs shouldn't be done in the db, imho
+<mdean> pg is an object db ;-)
+<jcater> chillywilly: that only means you are putting your faith in the designer of the abstraction level
+<chillywilly> not really
+<dtm> i gotchur objects right here
+<jcater> :)
+<chillywilly> plz
+<dtm> DONT HURT EM CHILLY.
+<chillywilly> why do you use python is objects are so evil?
+<chillywilly> s/is/if
+<mdean> dtm: a fk is a relationship between two tables - usually based of the primary key of one of the tables, so it creates a "lookup"
+<jcater> chillywilly: well, I like python's objects
+<chillywilly> E/R bs mostly :P
+<nickr> hurt me chilly!
+<jcater> and using a scripting language's objects are different than storing your data as objects
+<mdean> chillywilly: bah!
+Action: chillywilly beats nickr with a whale
+Action: jcater can't imagine how slowly an object database must perform
+<chillywilly> it's not that slow
+Action: jcater hugs his pure relational play
+<chillywilly> well I prefer object-relational mappings
+<mdean> I prefer !mysql
+<chillywilly> that too
+fil_c (username@public1-cosh1-6-cust141.cosh.broadband.ntl.com) left irc: Read error: 104 (Connection reset by peer)
+fil_c (~username@public1-cosh1-6-cust141.cosh.broadband.ntl.com) joined #gnuenterprise.
+<dtm> chillywilly has intimate relations with his db
+<chillywilly> uh, no
+<nickr> whoa baby
+<chillywilly> you sick bastard
+<dtm> me, i've had my heart broken too many times
+<jcater> o2r scares me
+<nickr> I like r2o
+Action: jcater likes h2o, though
+<chillywilly> what the difference it is essentially the same thing bu objects, you define schema to store ht eobjects and then you put that schema in the tables of the relational db
+<chillywilly> you want to add a new object you just add to the "repository"
+<chillywilly> ODL == DDL + OO stuff
+<chillywilly> the point being you write it once and forget about the damn db and just use objects
+<chillywilly> doe sit take longer to design such a thing, you bet....but not if you just use an already made standard ;)
+<chillywilly> ODMG is pretty language neutral, you even do python bindings
+<chillywilly> if you wanted to
+<nickr> I'm sick and tired of stupid acronymes
+<drochaid> go bye bye
+<nickr> I want things named after animals
+<chillywilly> heh
+<chillywilly> go for it
+Action: chillywilly votes for 'trout'
+<jcater> chillywilly: it's yet another layer
+<chillywilly> ;P
+<jcater> no sense in arguing w/me as you won't change my stance :)
+Nick change: drochaid -> drochaid[zZz]
+<chillywilly> one in which will not change
+<drochaid[zZz]> nite all
+<nickr> I vote for salmon
+<nickr> Or swordfish
+<nickr> sweet and delicious
+<nickr> rawr
+<nickr> boredom.
+fil_c (username@public1-cosh1-6-cust141.cosh.broadband.ntl.com) left irc: "Client Exiting"
+ajmitch (me@p24-max4.dun.ihug.co.nz) left irc: Read error: 113 (No route to host)
+ajmitch (~me@p51-max5.dun.ihug.co.nz) joined #gnuenterprise.
+Nick change: rdean-[rtcw] -> rdean-[oksickofdying]
+Nick change: rdean-[oksickofdying] -> rdean
+chillywilly_ (~danielb@d128.as20.nwbl0.wi.voyager.net) joined #gnuenterprise.
+chillywilly (danielb@d122.as4.nwbl0.wi.voyager.net) left irc: Read error: 113 (No route to host)
+jcater (jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "home"
+rdean (~rdean@chcgil2-ar2-053-033.chcgil2.dsl.gtei.net) left #gnuenterprise.
+jbailey (jbailey@HSE-Toronto-ppp318996.sympatico.ca) left irc: "Client Exiting"
+dsmith (~dsmith@p23.usnyc4.stsn.com) joined #gnuenterprise.
+dsmith (dsmith@p23.usnyc4.stsn.com) left irc: Read error: 104 (Connection reset by peer)
+slamb (~slamb@c1905024-a.iowact1.ia.home.com) joined #gnuenterprise.
+jcater (~jason@24.92.70.39) joined #gnuenterprise.
+<ajmitch> yo jcater
+<jcater> howdy
+<slamb> Hmm. So I think I've run into a bug.
+<slamb> When a commit fails (a referential integrity violation), it pops up a dialog box as expected.
+<slamb> but apparently doesn't tell the database server to rollback
+<slamb> because anything in the future (whether I hit "commit" or "rollback" next
+<slamb> says this
+<slamb> libpq.Warning: NOTICE:  current transaction is aborted, queries ignored until end of transaction block
+<slamb> and that transaction block never ends
+<jamest> what db?
+<slamb> pypgsql
+<jamest> what ver of forms/common?
+<slamb> latest cvs
+<slamb> (on Linux)
+<jamest> ack!
+<jamest> ok
+<jamest> just a sec
+<jamest> hmmm
+<jamest> is this a custom form?
+<jamest> or one of the samples
+<slamb> custom
+<jamest> any chance you have the zipcode sample installed?
+<slamb> I could install it now
+<jamest> well
+<jamest> i tried to reproduce
+<jamest> with samples/zipcode.gfd
+<jamest> queried all existin records
+<jamest> added one w/ a duplicate zip
+<jamest> comited, got error
+<jamest> changed zip
+<jamest> commited without error
+<slamb> Hmm. What I did was change a foreign key reference to an ID that wasn't valid.
+<jamest> so I'm trying to figure out how it's getting tripped on your form
+<slamb> okay.
+<slamb> I took zipcode.gfd
+<slamb> and removed the style="dropdown" attribute from the state field
+<slamb> so I could point it to something invalid
+<slamb> the commit fails, of course.
+<jamest> same error?
+<slamb> I change it to something valid and it still fails.
+<slamb> yeah, same errors
+<jamest> ok
+<jamest> lemme test
+<slamb> I'd guess removing a state from the db after the "validator" data source is populated would give the same error
+<jamest> ok
+<jamest> i can reproduce
+<slamb> cool
+<chillywilly_> nick chillywilly
+Nick change: chillywilly_ -> chillywilly
+<chillywilly> doh
+<chillywilly> that's the scary part jamest, that you can reproduce ;P
+<slamb> ooh, ouch
+Action: jcater acts as a proxy jamest and troutslaps chillywilly
+<chillywilly> heh, what's a matta no witty come backs?
+Action: chillywilly smacks jcater with a crappie
+<nickr> crappy?
+<chillywilly> gah
+<chillywilly> get of the city some day ;P
+<nickr> you are crappy
+<chillywilly> a crappie is a type of pan fish
+<nickr> I've almost never lived in the city
+<nickr> I lived for 1 year in portland, and 2 years here
+<nickr> Portland isn't really a 'city'
+<chillywilly> you should know what a crappie is then
+Action: chillywilly was in portland when he was very littlw
+<chillywilly> er, little
+<nickr> i've heard the name, but maybe its just a midwest crazyfish
+<chillywilly>   Crappie \Crap"pie\ (kr?p"p?), n. (Zo["o]l.)
+<chillywilly>      A kind of fresh-water bass of the genus {Pomoxys}, found in
+<chillywilly>      the rivers of the Southern United States and Mississippi
+<chillywilly>      valley. There are several species. [Written also {croppie}.]
+<nickr> yea
+<nickr> midwest crazyfish
+<chillywilly>  crappie
+<chillywilly>        n 1: small sunfishes of the genus Pomoxis of central United
+<chillywilly>             States rivers
+<chillywilly>        2: small sunfishes of central United States rivers
+<jcater> it's a very mild-tasking, tender fish
+<jcater> err, tasting
+<jcater> my favorite freshwater fish
+<nickr> tasking
+<nickr> hehe
+Action: jcater has an excellent recipe for deep-fried battered crappie
+<jcater> and beer hushpuppies
+<jcater> it's a local favorite
+<chillywilly> well being a hick does have its advantages
+<chillywilly> ;P
+<jcater> yip
+<nickr> Yea,
+<nickr> you get to merry that sexy sister 
+<chillywilly> haha
+<jcater> nah, dude
+<jcater> not past the first cousin
+alexey (alex@techkran.vladimir.ru) joined #gnuenterprise.
+<chillywilly> wouldn't like the first humans have to inbreed to spread the species?
+<jcater> naw, man
+<jcater> why else would there be apes?
+<nickr> apes!
+<chillywilly> gah
+<chillywilly> evolution is the biggest joke
+<chillywilly> (the mail software too ;P)
+<nickr> I don't want to get into it because its a really irritating argument.
+<jcater> aren't all chillywilly-induced arguments irritating?
+<nickr> yes.
+<nickr> I avoid them.
+<nickr> Always.
+Action: mdean pets his Evolution 1.0.1 window...
+<chillywilly> fuck off
+<nickr> yeesh, touchy there
+<jcater> chillywilly: wrong window
+<mdean> feel it's supple contours...touch the inbox....it is there for you to touch...
+<nickr> do you suppose robots would enjoy listening to music?
+<nickr> mdean: mm sexy
+<mdean> just a little SGC2C reference ;-)
+Gunfighter{Ni} (GunAndGiz@ip68-10-44-170.rn.hr.cox.net) joined #gnuenterprise.
+Nick change: Gunfighter{Ni} -> stbain
+<chillywilly> jcater: whatever
+<nickr> dawn is raging
+<nickr> oooh yea
+<jamest> dude
+<jamest> argh!
+<nickr> what?
+<jamest> that commit bug is pypgsql dependent
+<nickr> oh
+<slamb> do you not normally use pypgql, out of curiosity?
+<jamest> um
+<jamest> it's our primary windows driver
+<jamest> however
+<jamest> if you run it thru and duplicate a zip
+<jamest> she'll recover
+<jamest> unique key error
+<slamb> *nod*
+<jamest> do a ref integ violation
+<jamest> she'll not recove
+<jamest> they call the exact same error routines
+<jamest> on our end
+<jamest> in fact
+<jamest> all our postgresql drivers use the same base class
+<jamest> so that psycopg works w/ same code that pypgsql dies on
+<slamb> heh. yeah, I downloaded psycopg...it works.
+<stbain> so jamest
+<stbain> now that I know python
+<stbain> how can I help?
+Action: slamb should learn Python, too.
+<jamest> bwahahahaha
+<jamest> er, i mean
+<jamest> you want to help....that's wonderfull.
+<stbain> I still have the project assignment docs
+<stbain> I guess I should actually sign them and mail them back
+<jamest> yip
+<jamest> that's a prereq. to getting cvs write
+<chillywilly> don't do it, it is a trap ;P
+<chillywilly> masta will own you then
+<jamest> stbain: what you interested in?
+<stbain> well...
+<stbain> hrmmm
+<stbain> ok
+<stbain> I don't know if you remember my background or not
+<stbain> I've been programming for quite some time
+<jamest> i can't remember if i are supper
+<stbain> mostly small stuff
+<jamest> ate
+<stbain> some scripts here and there
+<stbain> a little gui
+<stbain> however, I am now finishing up my CS degree at accis.edu
+<stbain> I wanted to contribute a while back to GNUe, but didn't know Python
+<stbain> now I do
+<derek>  we dont discuss java here.
+[23:23] Last message repeated 2 time(s).
+<derek> sorry
+<stbain> uhhh
+<stbain> ok
+<derek> hit wrong button
+<nickr> java is satan!
+<stbain> what's the current status of the project?
+<chillywilly> everything is satan!
+Action: derek is back (gone 20:53:54)
+<stbain> I mean, can I walk into my new job and replace QAD w/ GNUe?
+<ajmitch> sure, but it might not remain your job for long ;)
+Action: ajmitch ducks
+<nickr> haha
+<nickr> ajmitch: better put on your anti-crappie sheild
+<stbain> that's what I thought
+<ajmitch> stbain: but i know nothing
+<stbain> I've been trying to read the mailing list
+<stbain> from what I gather, the parts are all there, but they don't fit together very well right now
+<ajmitch> stbain: i'm not a GNUe-affiliated coder or anythin
+<derek> stbain: depends on what QAD is :)
+<derek> the architecture is highly usable
+<stbain> www.qad.com
+<derek> in 2 tier mode
+<stbain> heh
+<derek> n tier doesnt play nicely yet
+<stbain> forms on top of a database?
+<derek> and applications arent 'shrinkwrapped'
+<derek> but several people use for production stuff
+<stbain> so you don't have... say... a base accounting module ready for download?
+<derek> correct
+<stbain> QAD is manufacturing ERP on steroids
+<nickr> funny
+<derek> but if you wanted to use gnue to write a base accounting module
+<derek> you could probably do so
+<nickr> they use a buzzword mission statement right on their frontpage
+<stbain> "QAD Delivers Customer Value Through Collaborative Commerce for Manufacturers"
+<nickr> 'qad delivers customer value'
+<stbain> LOL
+<nickr> blah
+<stbain> hehe
+<nickr> I hate that
+<nickr> hehe
+<stbain> hrmmm
+<stbain> is it GEAS that needs work or the hooks?
+<stbain> or both
+<derek> both
+<stbain> :/
+<derek> the hooks were being worked on
+<derek> and there was a hurdle jamest ran into with corba that needs fixing
+<derek> and of course as we put it to more and more use we see more and more inadequecies :)
+<stbain> doh
+<derek> as one always finds in course of such things
+<derek> stbain: you could use GEAS today
+<jamest> inadequecies?!?!?!
+<derek> if you wanted to write your own front ends to it
+<stbain> just not with the latest forms
+<stbain> right
+<derek> but its not 'production' quality
+<jamest> we should call them incomplete feature sets
+<jamest> :)
+<stbain> LOL
+<derek> i just want to make sure im not saying geas doesnt do anything
+<derek> as it does
+<stbain> jamest is jamest!billg@llama.microsoft.com
+<stbain> j/k
+<nickr> It runs
+<stbain> but it does sound like something slick willy would say
+<stbain> heh
+Action: chillywilly pets poor geas
+<nickr> i don't see it do anything though
+<stbain> hrmmm
+<chillywilly> I still love you
+<chillywilly> don't listen to them
+<chillywilly> geas juts needs more lovin'
+<stbain> probably a bit more codin' too
+<chillywilly> ummm, that's how it likes it
+Action: nickr listens to chillywilly sing 'lovin you' to GEAS
+Action: derek jaunts off for a bit
+<stbain> so...
+<stbain> the question is
+<stbain> what needs the most work?
+<jamest> wow
+<jamest> um
+<jamest> all of it
+<stbain> what is in the most need of an entry-to-mid level programmer?
+<jamest> i'd say pick your poison
+<chillywilly> loooooovin yooooooou
+<jamest> that's a weak answer I know
+<chillywilly> oo oo o o oo o ooooooooooo
+<nickr> is easy cause your beautiful
+<chillywilly> la la la laaaa alaaaaaa
+<jamest> if I were beautifull like you
+<jamest> stbain: you more interested in tools, apps?
+<chillywilly> la la la laaaa laaaaaaaaa
+<chillywilly> oo oo o o oo o ooooooooooo
+<nickr> stbain: I've got some minion job openings..
+<stbain> well... in the long run, I'm interested in making millions installing this to replace every ERP package in my region
+<stbain> but...
+<nickr> sounds like a plan
+<chillywilly> money is evil
+<chillywilly> give all your money to the poor
+<stbain> for the mean time, it would be nice to have a system I can look at and say, "You know what? I can replace that monster AIX box w/ one little Linux PC that will run your entire operation."
+<chillywilly> ;P
+<nickr> I need money to support this eating habit I have
+<stbain> or three boxes
+<stbain> ;)
+<nickr> Its horrible I know, but food is so addictive
+<stbain> DB, GEAS, Terminal Server
+<chillywilly> bah
+<stbain> so nickr,
+<stbain> what are your minion tasks?
+<jamest> stbain: but are you more into final apps made w/ the tools
+<jamest> or working on the tools themselves
+<stbain> jamest: apps
+<stbain> but I want to know the ins and outs of the tools to
+<stbain> tools == means to end(apps)
+<jamest> yeeeeehaw!
+<jamest> that was a bug in our system
+<chillywilly> raid kill bugs dead
+<chillywilly> kills
+<nickr> stbain: well there appears to be a demand for this document management system that I was working on
+<stbain> hehe
+<chillywilly> slaughter the goat!
+<nickr> stbain: I need several minions to help me design and build it
+<stbain> that's funny... I work for a company that offers document management systems
+<chillywilly> heheh
+<stbain> I'd love to help you so that after I quit I can shove it up their arse
+<stbain> whoops... did I say that outloud?
+<chillywilly> hehe
+<stbain> getting late
+<nickr> hahaha
+<stbain> groggy ;)
+<stbain> so... document management system
+<stbain> build w/ 2-tier Forms/Database?
+<nickr> No
+<jamest> there's that
+<stbain> or is this a different projecT?
+<jamest> forms wouldn't work good for it
+<nickr> you could use forms as a sort of front end to various parts of it
+<stbain> web frontend to GEAS w/ GEAS providing the workflow?
+<nickr> No
+<stbain> ok... gimme the punchline, because I'm running out of ideas here
+<jamest> we could use some good demo apps of forms
+<stbain> Zope?
+<jamest> showing the various features
+<jamest> that are more realistic than we have now
+<nickr> jamest: In the near future I'm doing a little personnel app thing
+<jamest> and these forms could be useful in real life things
+<nickr> as a test of various things
+<nickr> stbain: Hah. Zope. Haha.
+<nickr> stbain: http://green.zorcat.com/~nick/proj/document-store/gnue/spec/Document-Store/documentstorespec.html
+<jamest> um
+<nickr> la
+<stbain> nickr: I take it you don't like Zope
+<nickr> I have nothing against zope.
+<stbain> hrmmm
+<stbain> looks interesting
+<nickr> well this is the lowest layer, I need minions to help update this design and develope the other layers.
+<nickr> Or motivation. :)
+<jamest> stbain: if you could help nickr that'd be cool
+<stbain> sounds like a plan
+<jamest> IIRC nickr you were going to do under GNUe anyway is that right?
+<stbain> I'll sign the assignment forms tonight and get them in the mail (so I can get my cool GNU stickers)
+<nickr> jamest: tThat was the plan
+<stbain> nickr: you considered an imaging interface to go w/ that?
+<stbain> that way you can have a document imaging and management architecture under one roof
+<nickr> stbain: I had envisioned having any 'object' able to be managed under the same storegae system
+<nickr> stbain: if my imaging you mean simply scanning things
+<nickr> stbain: if yoeu mean OCR that'd be fine, another input method.
+<stbain> combination of both
+<nickr> you could use the instances with special identifiers to have both the scanned document and the OCR'd result
+<stbain> yah
+<nickr> or we can work on overloading instances with different mime types with the same identifier
+<stbain> well, I'm thinking about the end-game here... many of the doc imaging/doc mgmt systems we install are for HR departments
+<nickr> yea
+<stbain> they are simply document repositories for the immense amount of paperwork companies have to process to keep up w/ their hundreds of employees
+<stbain> if they want to look up my docs, they punch in my SSN and scroll through the descriptions
+<stbain> they would _love_ to have it integrated right into their ERP software
+<stbain> alas... no dice
+<nickr> Well, that'd be a metadata extension, witha  library interface.
+<stbain> right
+<nickr> The Library that is
+<stbain> and all good document management systems have that extension
+<stbain> at least, the ones we sell do
+<nickr> yea.
+<nickr> Its pretty trivial, really.
+<nickr> the key is making it abstract
+<stbain> right
+<stbain> we sell lexign products where I work now
+<stbain> info @ www.lexign.com
+<stbain> pretty slick stuff, but stuck in a Windows world
+<nickr> yea
+<nickr> my general plan for DocuSTore and whatever it mutates into wrt management is platform nutrality through RPC
+<stbain> XML-RPC?
+<stbain> >:)
+<nickr> no, the plan is to use gnurpc (whatever its called) which is a wrapper for any rpc system you want to use
+<nickr> the original design uses CORBA
+<stbain> any code yet?
+<nickr> No
+<stbain> hehe
+<nickr> Still design stage
+<stbain> ok
+<stbain> sounds like fun
+<jamest> um
+<stbain> something to cut my teeth on
+<nickr> there are some early rough stabs at stuff in the document-store/grawk directory
+<jamest> you might be able to use a fair amout of common
+<nickr> jamest: this has been recommended to me
+<nickr> particlularly database abstraction stuff
+--- Tue Feb  5 2002

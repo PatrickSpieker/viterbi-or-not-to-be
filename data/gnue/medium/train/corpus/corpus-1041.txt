@@ -1,0 +1,275 @@
+bigbrother joined #gnuenterprise.
+<drochaid> psu_: I'm not sure ... what did he look like? ;)
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+psu_ (~psu@manorcon.demon.co.uk) left irc: Read error: 113 (No route to host)
+reinhard (~rm@M693P012.adsl.highway.telekom.at) joined #gnuenterprise.
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) left #gnuenterprise ("Client Exiting").
+reinhard (~rm@M693P012.adsl.highway.telekom.at) left irc: Remote closed the connection
+reinhard (~rm@M693P012.adsl.highway.telekom.at) joined #gnuenterprise.
+dres (~dres@mail.lewismoss.org) left irc: Read error: 104 (Connection reset by peer)
+reinhard (~rm@M693P012.adsl.highway.telekom.at) left irc: "There are two types of people: those who divide people into two types, and those who don't"
+reinhard (~reinhard@62.47.246.140) joined #gnuenterprise.
+<chillywilly> ello
+<chillywilly> wassup dudes
+<chillywilly> reinhard: you ever get an answer for your destructor problem?
+<chillywilly> for a builtin-in method in python to destroy resources
+<chillywilly> (close db connection)
+<chillywilly> I think you can use __del__
+<chillywilly> that method is called before the object is garbage collected, afaik
+Action: chillywilly checks reinhard's pulse ;)
+Action: Isomer calls an ambulance
+<chillywilly> also, for private attributes starting with "__" is sorta private in that they get mangled like self.__attribute is mangled to self._Class__attribute
+<chillywilly> attributes like _attribute are just a convention that means hey don't use this directly....I sort of think of them as "protected" attributes
+Action: chillywilly has no idea if reinhard is listening, but perhaps he will read the log
+<chillywilly> of course there's no real protection in python objects
+siesel (jan@dial-195-14-226-56.netcologne.de) joined #gnuenterprise.
+<siesel> hi all
+<chillywilly> hey
+<reinhard> chillywilly: thanks i am back now
+<reinhard> hey siesel
+Action: reinhard was reading the python tutorial :)
+<chillywilly> ;)
+<siesel> hi reinhard, hi chillywilly.
+Action: chillywilly has the python ref manual that neilt mailed him
+Action: chillywilly has also been reading dive into python
+<reinhard> siesel: you tried test.py lately?
+<reinhard> it traceback's on ORDER BY clause
+<reinhard> because the "setSort" is documented to take a list as argument
+<reinhard> so it gets passed ["zip"]
+<reinhard> then geasList assigns this to _datasource._order_by
+<reinhard> which seems to expect a string
+<chillywilly> hey has xml been deemed the thing that is going to be used for object descriptions?
+<siesel> oh, thats right. I forgot to check test.py
+<reinhard> imho this is nyd
+<chillywilly> btw, could someone explian what liek 0.0.1 description in ROADMAP means by "pass through"
+<reinhard> siesel: i would like to keep it the way that setSort accepts a list
+<chillywilly> why do we need special fields?
+<siesel> ok, I will patch it.
+<chillywilly> no one wants to do odl or odlml
+<reinhard> chillywilly: pass through means that we have no object description
+<siesel> I just wasn't shure if it makes sense to convert a string into an array and back into a string again.
+<reinhard> siesel: why string->array? (i understand array->string)
+<siesel> chillywilly: please add you're feature requests to ROADMAP.
+<chillywilly> okey dokey
+<chillywilly> well I am going to run
+<siesel> because: <datasource name="xxx" table="yyyy" order_by="zip,street">
+Nick change: chillywilly -> cw-away
+<reinhard> ah
+<reinhard> gotcha
+<reinhard> in the appserver driver in common
+<reinhard> however it makes sense IMHO because there will be the translation from field name to column name in between
+<reinhard> not to mention that someday appserver will support order by calculated fields or by indirect fields :)
+<reinhard> siesel: if you agree i would like to not use the term "geasv2" and rather use "appserver"
+<reinhard> i don't like to be reminded of our failed experiment so often :)
+<siesel> hehe
+<siesel> but what is the abbrivation of appserver ? GEAPS? GAS? AS? APS?
+<reinhard> geas
+<reinhard> ah
+<reinhard> a "geas" driver already exists
+<reinhard> can't that one be deactivated
+<reinhard> and the new one called "geas"
+<reinhard> ?
+<reinhard> btw i am talking about common/src/dbdriver in case you didn't figure :)
+<siesel> this could be done.
+<reinhard> no pressure
+<reinhard> was just a thought :)
+<siesel> Possibly we should change dbdriver/geas to dbdriver/oldgeas and dbdriver/appserver to dbdriver/geas.
+<reinhard> agree
+<siesel> did the forms example work?
+<reinhard> did not test yet :(
+<reinhard> i tried to run the geas server and the geas client on two different machines
+<siesel> and ?
+<reinhard> where i found out that i can't do this because i don't have 2 machines w/ python 2.x :(
+<siesel> ok. we could do a test. I start an appserver. give your host access through the firewall and you can test the example.
+<reinhard> ok
+<siesel> a sample connections.conf for use with dbdriver/appserver:
+<siesel> [geasv2]
+<siesel> comment = geas v2
+<siesel> provider = appserver
+<siesel> rpctype = xmlrpc
+<siesel> host = localhost
+<siesel> port = 8765
+<siesel> transport = http
+<reinhard> which implementation of xmlrpc is "xmlrpc"
+<reinhard> is it the one that comes with woody?
+<siesel> yes.
+<siesel> if you want the variant which will support "https" then you should enter "rpctype = pw_xmlrpc" (pw = Python works)
+<reinhard> DB000:   File "/home/rm/prj/gnue/.cvsdevelbase/gnue/common/GComm.py", line 50, in attach
+<reinhard> DB000:     adapter = driver.ClientAdapter(params)
+<reinhard> DB000:   File "/home/rm/prj/gnue/.cvsdevelbase/gnue/common/commdrivers/xmlrpc/ClientAdapter.py", line 139, in __init__
+<reinhard> DB000:     raise GComm.AdapterInitializationError, \
+<reinhard> DB000: gnue.common.GComm.AdapterInitializationError: Unable to initialize the XML-RPC interface at http://195.14.226.56:8765/
+<reinhard> DB000: Exception exceptions.AttributeError: "ClientAdapter instance has no attribute '_client'" in <method ClientAdapter.__del__ of ClientAdapter instance at 0x8568864> ignored
+<siesel> sorry. I thought I commit the ClientAdapter if its a bit more complete. one second.. beam(cvs) me up.... 
+<reinhard> please tell me when commit is done (i don't have mail on this machine)
+<siesel> ok. now 8765 will passed as integer instead of type=string. commit done
+<reinhard> thanks
+<reinhard> test 1 localhost...
+<reinhard> works great
+<reinhard> test 2...
+<siesel> after loading all records adding records, changing records etc. should be done in cache.  the commit will write it back to appserver
+<reinhard> siesel: you should have my address in your database now
+<siesel> yes. got it.
+Action: reinhard can't believe it
+<reinhard> not sure if jamest believes this if we tell him
+<reinhard> iirc geasv1 took over a year until it worked with forms this way
+<siesel> :) :) :)
+<reinhard> maybe he could set up a demo server on ash
+<siesel> yes, I thought so too. But its a 'little' security risk.
+<reinhard> just a question
+<reinhard> if i start gacvs then 3 processes show up in "ps -ef"
+<reinhard> why is this?
+<reinhard> just want to understand
+<siesel> because gacvs forks two time -> 4 processes. the first process is still bound to the shell, so it will be killed to move gacvs into background. 
+<reinhard> why does it do that?
+<siesel> It would work with two processes too, but then the real gacvs process would be a direct child of the shell too, so it has to be forked again to be more stable... something like that... you should ask jcater
+<reinhard> ok
+Action: reinhard was just curious
+<siesel>  # For an overview of what we're doing here,
+<siesel>     # check out the Unix Programmer's FAQ at:
+<siesel>     # http://www.erlenstar.demon.co.uk/unix/faq_2.html#SEC16
+<siesel> can be found in GServerApp.daemonize
+<reinhard> thanks
+<siesel> do you have any ideas how to send conditions to the appserver?
+<reinhard> i think i have to look at GConditions first
+<siesel> if I understand it right the actual conditions which will passed to GDataObject are some kind of object tree. 
+<reinhard> yes
+<siesel> which would be a bit complicated to transfer over RPC.
+<reinhard> which is the only usable idea i saw until now to put conditions into a data structure
+<reinhard> other than a string that has to be parsed
+<reinhard> oh i see
+Action: siesel has to look at GConditions too
+Action: siesel has an idea
+<siesel> GConditions are single statements which are connected with "AND"s and "OR"s
+esands (~nic@mdr1-port5.jetstart.win.co.nz) joined #gnuenterprise.
+<siesel> why not transform this conditions in a standart form (a^b^c)v(d^e^f) going this way we would just transfer a table instead of an object tree (a AND (b AND (c OR d)))
+<reinhard> oops
+<reinhard> you think this transformation is doable automatically?
+<reinhard> and what will we pass to the database then?
+<siesel> principaly no problem. and in our case also no problem, because forms is using this (a AND (b AND (c OR d))) form.
+<siesel> we take this table and transform it back into a GConditions object tree.
+<reinhard> ((a OR b) AND c) can be different in performance than ((a AND b) OR (a AND c))
+<reinhard> however in business applications i found most of the queries being only (a AND b AND c AND d)
+<siesel> yes. but to my knowledge forms is just building ANDs,
+<siesel> lol
+<reinhard> yes what you said :)
+<reinhard> i have another question
+<siesel> btw. the other way would be a separate geasQuery or geasConditions object which.... 
+Action: siesel is listening
+<reinhard> if we have a list that is generated with a condition
+<reinhard> say "zip = 1000"
+<reinhard> and then we can do a "insertNewInstance" into that list
+<reinhard> and let zip = 2000 for that instance
+<reinhard> is that correct?
+<reinhard> will that instance then still be in this list?
+<siesel> this depends on our implementation.
+<siesel> I would prefer to allow this as a default.
+<siesel> And have an optional constrain for a list, where I can say. zip has to be "1000"
+<reinhard> my thinking was to make the method to create a new instance of a class
+<reinhard> not be a method of geasList
+<reinhard> but of geasSession
+<reinhard> but now i see that it makes sense to put it into geasList
+<reinhard> when i think about how forms works
+mumpf (seb@modem-166.bicolor-angel.dialup.pol.co.uk) joined #gnuenterprise.
+<siesel> to be honest, I don't like to have it in geasList too. 
+<reinhard> i think it makes sense
+<siesel> but geasSession isn't good either.
+<reinhard> because geasList is the list of instances that can be scrolled through in the form
+<reinhard> maybe the correct thing would be
+<reinhard> the new instance is a member of the list as long as it is not committed
+<siesel> I would like to have a geasClass in between, which also holds the class definition and can create new instances
+<reinhard> and as soon as it is committed it disappears if it doesn't match the condition
+<siesel> yes
+ToyMan (~stuq@c5300-4-ip68.albany.thebiz.net) joined #gnuenterprise.
+<siesel> it doesn't have to be a member of geasList, because every new record in forms stores an pointer to the new created geasInstance,
+<siesel> but I still would seperate the functions which are in geasList now into two classes. 
+<reinhard> i really want to keep the interface clean and simple
+<siesel> If I create a new list, just by executing a query. then it really should be a new List and not the same list populated with new values. 
+<mumpf> hi, i'm trying to get to grips with gnue forms-designer. the "properties inspector" for an "Entry" does not let me edit things like i can for other objects. bug or feature?
+<siesel> mumpf: this is a bug. You have to make the windows so big, that there is no scrollbar anymore. then you can edit things.
+<reinhard> siesel: sorry i didn't understand what you mean with your last sentence
+<mumpf> siesel: thanks, that's fine now! keep the good work up!
+mumpf (seb@modem-166.bicolor-angel.dialup.pol.co.uk) left #gnuenterprise (""bye "").
+<siesel> dbdriver doesn't delete an geasList object after a new query is builded and executed. It just populates the list with new values.  
+<reinhard> ah
+<reinhard> it only re-calls populate?
+<siesel> yes. setQuery and then populate.
+<reinhard> ok
+<reinhard> i don't think this is wrong though
+<reinhard> um let me rephrase
+<reinhard> why do you think this is wrong?
+<siesel> it is ok, if you have just one client which access only one table at one time.
+<siesel> I would prefer a geasClass which could generate Iterators, or something like that.
+<siesel> But geasClass vs. geasList("className") is a Streitfrage.
+<reinhard> hehe
+<reinhard> something like docbook vs texinfo ?
+<siesel>  /Streitfrage/something everybody has differnt opinions on/
+<reinhard> ;)
+<siesel> something like odmg.txt and just datasource+RPC ;)
+<reinhard> lol
+<reinhard> btw we need to change INSTALL for the release
+<reinhard> as current INSTALL file explains how to run samples from cvs
+<siesel> yes. and there should be a setup.py.
+<reinhard> however running samples in installed version will be different
+<reinhard> you ever played with distutils?
+<siesel> never ever
+<siesel> the next thing on my todo list is a debian subdir (which makes me frighten)
+<reinhard> you got any clue what the stuff in __init__.py is for?
+<reinhard> making binary packages (for debian, for redhat, for win[ouch]) is something that can be delegated easily IMHO
+<reinhard> once we have a source release
+<siesel> yes. 1. __init__.py is a marker that the directory is a module. 2. the code in __init__.py is a kind of main part of the module.
+<reinhard> yeah found out that already
+<reinhard> however the appserver/src/__init__.py contains a lot of variables that are set there
+<reinhard> you know where they are used?
+<siesel> its a copy form forms/src/__init__.py
+<reinhard> ah
+<siesel> its mainly setting version numbers
+<siesel>  /mainly/only/
+<reinhard> rm@roo:~/prj/gnue/appserver$ find . -name GEAS.grpc 
+<reinhard> ./src/GEAS.grpc
+<reinhard> ./grpc/GEAS.grpc
+<reinhard> is that correct?
+<reinhard> or is src/GEAS.grpc obsolete?
+<siesel> yes src/GEAS.grpc is obsolete
+Action: siesel slaps himself
+<reinhard> ok done :)
+<siesel> you've been faster. ;)
+<reinhard> in c the construct "if x" is identical to "if x != 0"
+<reinhard> is this the same for python or not?
+<siesel> hmmm
+<siesel> should be.
+dsmith (dsmith@oh-strongsville5b-143.clvhoh.adelphia.net) joined #gnuenterprise.
+<reinhard> ok
+<reinhard> todo before 0.0.1:
+<reinhard> * test, try to make appserver so stable that it doesn't traceback at all
+<reinhard> * find out what the variables in __init__.py are for
+<reinhard> * write a "setup.py"
+<reinhard> * write an "INSTALL"
+<reinhard> * release gnue-common
+<reinhard> ---
+<reinhard> i will continue with the first point tomorrow
+<reinhard> ah yes and
+<siesel> ok, I'm modifieing forms/setup.py at the moment.
+<reinhard> * extend test.py to show more features
+<siesel> the variables in __init.py__ are used to setup the version which is shown at appserver startuo
+<siesel>  startup
+<reinhard> bed.call(reinhard)
+<reinhard> ah
+<siesel> ok. 
+<reinhard> night all
+<reinhard> siesel: thanks for your great work :)
+reinhard (~reinhard@62.47.246.140) left irc: "Client Exiting"
+dsmith (dsmith@oh-strongsville5b-143.clvhoh.adelphia.net) left irc: Remote closed the connection
+rdean (rdean@chcgil2-ar2-4-64-030-076.chcgil2.dsl-verizon.net) joined #gnuenterprise.
+rdean (rdean@chcgil2-ar2-4-64-030-076.chcgil2.dsl-verizon.net) left irc: Read error: 104 (Connection reset by peer)
+siesel (jan@dial-195-14-226-56.netcologne.de) left irc: "Eject! Eject! Eject!"
+esands (~nic@mdr1-port5.jetstart.win.co.nz) left irc: "[BX] Time wasted: -11 days 12 hours 2 minutes -37 seconds -70 milliseconds"
+ToyMan (~stuq@c5300-4-ip68.albany.thebiz.net) left irc: "Client Exiting"
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+Maniac (~User@h24-82-132-209.wp.shawcable.net) joined #gnuenterprise.
+riandouglas (~Rian@205.252.49.10) joined #gnuenterprise.
+alexey_ (~Alexey@techkran.vladimir.ru) joined #gnuenterprise.
+jcater_ (~jason@HubA-mcr-24-165-193-24.midsouth.rr.com) left irc: "Client Exiting"
+dtm ([QE7R9+LmT@ip55.promontory.sfo.interquest.net) left irc: Remote closed the connection
+dtm ([sdWcP6766@ip55.promontory.sfo.interquest.net) joined #gnuenterprise.
+--- Mon May 27 2002

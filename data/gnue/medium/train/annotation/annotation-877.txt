@@ -1,0 +1,97 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.01Nov2002" enddate="01 Nov 2002 23:00:00 -0800" startdate="31 Oct 2002 23:00:00 -0800" subject="[IRC] 01 Nov 2002" title="Multi-currency in General Ledger">
+
+<topic>Financials (Accounting)</topic>
+
+<p>Nicholas Lee (esands) asked about multi-currency General 
+Ledger functionality. Peter Sullivan (psu) said 
+<quote who="Peter Sullivan">you decide on a base currency - 
+then wherever you have an "amount" field normally -  
+you have 3 - base amount, foreign amount, and foreign currency. 
+Foreign currency AP &amp; AR are the real funsters - 
+as you have to hack gain/loss on settlement of open transactions.
+e.g. raise AR invoice for USD 100 ( = GBP 64) - 
+eventually you get paid USD 100, but by then it is GBP 63 - 
+so you have to write off the missing GBP 1 as a forex loss</quote>. 
+Nick Rusnov (nickr) suggested <quote who="Nick Rusnov">see, if 
+we had One World Currency we wouldn't have this problem</quote>. 
+Jason Cater (jcater) suggested <quote who="Jason Cater">I vote on 
+donuts - of course, currency that can spoil might make saving 
+interesting :)</quote>.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.02Nov2002">
+The next day</a>, Nicholas said <quote who="Nicholas Lee">For reconcilations 
+I assume most multi-currency GLs keep a seperate ledger of (rate, amount) 
+figures. What's the general practice for pricing a currency account on a 
+given balance date? given that the base currency figure in that account 
+represents and average of the prior exchanges, but the rate to realise the 
+monies on a balance rate might result in a fx loss or gain.</quote>
+Peter, said <quote who="Peter Sullivan">To me, the key principle is that you 
+define a base currency - and then all transactions in GL store amount in base 
+currency, amount in foreign currency, name of foreign currency. To get "true" 
+trial balance you do select sum (base_amt) from balances ;</quote>
+Nicholas said <quote who="Nicholas Lee">That's need for tax purposes and need 
+for in order to rationalise transactions within the GL.  From a business 
+management point of view though you need reconcile transactions and deal 
+with making profit over multiple currencies</quote> Peter felt 
+<quote who="Peter Sullivan">only if that's useful management information to 
+you - I could imagine a biz not caring how much profit they made in Aussie 
+dollars, just how much they made on product category X</quote>.</p>
+
+<p>Nicholas asked <quote who="Nicholas Lee">What's the general rule of thumb 
+in the UK regarding balance date base currency valutions of a foreign bank 
+account?</quote> Peter disclaimed <quote who="Peter Sullivan">I'm not an 
+expert on forex, but I believe this is where unrealised gain/loss on forex 
+comes in</quote> - <quote who="Peter Sullivan">for balance sheet purposes 
+you convert at prevailing exchnage rate at 31st Decembefr - The difference 
+between this and what the amount in your books is constitues (IIRC) the 
+unrelised gain or loss</quote>. He gave a simple example of an unrealised 
+gain. The <quote who="Peter Sullivan">main issue (i am not a lawyer, 
+especially a tax lawyer) is how taxman wants you to treat this</quote>.</p>
+
+<p>Nicholas asked what exchange rate to use - 
+<quote who="Nicholas Lee">the given rate on that day? or by the internal 
+rate of sumif(GBP)/sumif(USD)</quote>? Peter said 
+<quote who="Peter Sullivan">I would always go far a "daily" rate in this 
+day and age - with computers to do the work for us - monthly rates are less 
+accurate - taxman might have a view too</quote>. Nicholas said 
+<quote who="Nicholas Lee">I'll have to think how to use that in the context 
+of hedging your transactions.</quote> Peter said 
+<quote who="Peter Sullivan">hedging if used properly is just a way of 
+realising the potential gain/loss - i.e. take a forward position for when 
+you expect the transaction to settle (for an invoice, typically 30 
+days)</quote>. Nicholas said <quote who="Nicholas Lee">Depends on the terms, 
+for instance many of our transactions are 90 day - foreign exchanges ones 
+that is</quote>.</p>
+
+<p>Nicholas asked <quote who="Nicholas Lee">I assume a form of that triple 
+is used</quote> in the Accounts Payable and Accounts Receivable ledgers 
+as well. Peter agreed - <quote who="Peter Sullivan">once the transaction 
+is settled (i.e. paid) you'd have a trigger to work out the *realised* 
+gain/loss and post that right away</quote>. Nicholas said 
+<quote who="Nicholas Lee">Actually the commerical system we use, generates 
+the variances both on posting (month end) and payment</quote>.</p>
+
+<p>Reinhard M&#252;ller (reinhard) noted that, in Austria and Germany, 
+<quote who="Reinhard M&#252;ller">for the balance, you may not consider unrealized 
+forex gains - and you _have_to_ consider unrealized forex losses - 
+so you always have to use the "worst case" in the balance</quote>. 
+Nicholas was surprised <quote who="Nicholas Lee">they don't try get more 
+tax by requiring realisation of gains though. Must be nicer now you have 
+the euro.</quote> Reinhard said the aim was to ensure 
+<quote who="Reinhard M&#252;ller">that the balance shouldn't look better 
+than it really should be</quote>. Nicholas said 
+<quote who="Nicholas Lee">Doesn't that depend on your point of view?  
+Although the balance in both currencies in the balance sheet is an average 
+of past transactions.  At given moment it can be realised into the base 
+currency. All past rates are in the past and all future rates unknown.  
+Thus there is no true better or worse. Still I agree its better just 
+realising fx losses. Otherwise it could cause undue hardship on a businesses 
+cashflow.</quote> Reinhard agreed, but said 
+<quote who="Reinhard M&#252;ller">with the worst case view it's shure the 
+balance doesn't look better than the real future outcome will be - 
+it might probably look worse - but that's actually the point of a worst 
+case view :)</quote>.</p>
+
+</section>
+
+

@@ -1,0 +1,108 @@
+*** dimas_ has quit IRC
+*** reinhard has joined #gnuenterprise
+*** johannesV has joined #gnuenterprise
+<johannesV> good morning
+*** kilo has joined #gnuenterprise
+<kilo> good morning
+*** dimas_ has joined #gnuenterprise
+*** jcater has joined #gnuenterprise
+*** jcater has left #gnuenterprise
+*** kilo has left #gnuenterprise
+*** kilo has joined #gnuenterprise
+*** kilo has left #gnuenterprise
+*** kilo1 has joined #gnuenterprise
+*** kilo1 is now known as kilo
+*** jamest has joined #gnuenterprise
+*** lupo__ has joined #gnuenterprise
+*** Factotum has joined #gnuenterprise
+<Factotum> Ye flippin' gods!
+<Factotum> I used to work a bit with Oracle Forms. I finally get GNU Enterprise running, and I expect to be able to dive in. Not so. Fair enough... but where's the documentation?
+<lupo__> pitily, there is very little documentation
+<Factotum> Is there any documentation that could actually help me get started? The Wiki seems like a mere skeleton, and the various guides are much the same.
+<reinhard> http://www.gnuenterprise.org/tools/forms/docs/
+<reinhard> is the best we can offer so far
+<Factotum> Ah, it's the Developer's _Intro_ I've been looking at.
+<Factotum> How long have you guys been working on this?
+<Factotum> By the way, I'm using PostgreSQL for my backend. Are OID's really necessary? If not, how do I get around them?
+<Factotum> That is, when I try to run a test form, I get an error to the effect of 'SELECT oid, foo, bar FROM baz.
+<reinhard> we currently depend on oids
+<Factotum> Oh poo! Scratch the DB layout, then.
+<Factotum> That seems rather odd to me, though.
+<reinhard> because they are the only way of safely identifying a new record that has just been inserted and the primary key has been set by a db trigger
+<Factotum> Ah, that's true, of course.
+<Factotum> Just out of curiosity, are there any plans to try to circumvent this dependency?
+<reinhard> you are the first person to ask for this, it will probably depend on how many will follow ;-)
+<reinhard> I'm a bit worried that it might break stuff if we stop using the oid
+<Factotum> I'm just satisfying my curiosity and trying to understand what's going on. But it does seem unsafe. In Oracle, at least, OID's are not guaranteed to be consistent.
+<Factotum> Understandably.
+<Factotum> What I mean by inconsistent OID's, by the way, is that the OID for a row can change.
+<reinhard> while a connection is open??
+<Factotum> I expect that the consequences for an application like this would be fairly minor. Nothing that couldn't be handled by a requery. The absolute worst scenario would be a change going to the wrong row.
+<jamest> when can an OID change?
+<Factotum> I'm not sure, now that you mention it. I've just heard that they are not guaranteed to remain the same over time.
+<jamest> i know they can wraparound
+<Factotum> I'm not talking wraparound; I'm talking about OID=1 becoming OID=2.
+<jamest> so it is possible to dupe an oid at some obscenely huge number
+<jamest> but i've never heard about oids changing
+<jamest> though fwiw, postgresql 8.1 has depreciated the OID and no longer created them on tables unless specifically told too during the create table statemnet
+<jamest> this burns me quite a bit :)
+<jamest> though i thought our datasources only used the OID if a PK field wasn't defined for that table
+<jamest> to get your test form to work
+<jamest> without an oid
+<Factotum> The obvious work-around, it seems to me, would be to require a sequence to use when the primary key of a row is not required.
+<jamest> on the <datasource> definition add a primarykey="field1,field2,field3"
+<jamest> which tells the datasource not to use the OID default
+<Factotum> I.e., where you would normally identify a row by its OID, just get the next value from the sequence and use it explicitly in the INSERT statement.
+<Factotum> Right. Could try that.
+<Factotum> Does my suggestion sound doable?
+<jamest> we don't assume you want a sequence for every table
+<jamest> and I'm not sure this would be possible in all backends anyway
+<Factotum> No, but that's the typical scenario where you don't have a primary key value beforehand, no?
+<jamest> on inserts the system will not force the OID to be inserted and will pull the values back from the backend after the insert
+<jamest> so any backend altered fields (sequences, triggers, etc) are correct
+<jamest> i use this all the time for things like rma numbers
+<jamest> po, invoice, etc
+<jamest> so my field is something like
+<jamest> rma_id   integer not null default verhoeff_checksum(nextval('seq_rma_id'))
+<jamest> and the user doesn't enter the PK value nor does the form
+<jamest> they save the new record and then the rma number assigned just pops up on their screen in the uneditable field :)
+<Factotum> I assume you get the OID from the INSERT statement, or how does that work?
+<jamest> i don't know how the current datasources do it
+<jamest> there is a requery pass
+<jamest> but I also seem to recall some dbsig drivers returning info from the execute of the insert
+<Factotum> Righty.
+*** johannesV has quit IRC
+*** johannesV has joined #gnuenterprise
+*** kilo has quit IRC
+*** Factotum has quit IRC
+<reinhard> yes
+<reinhard> insert statement returns the oid that was generated
+*** jcater has joined #gnuenterprise
+*** lupo__ has quit IRC
+*** xp_ has quit IRC
+*** ajmitch__ has joined #gnuenterprise
+*** ajmitch has quit IRC
+<reinhard> cu all
+*** reinhard has quit IRC
+*** llp has joined #gnuenterprise
+*** derek has joined #gnuenterprise
+*** derek has quit IRC
+*** derek has joined #gnuenterprise
+*** jamest has left #gnuenterprise
+*** bigbrother` has quit IRC
+*** bigbrother` has joined #gnuenterprise
+*** jamest has joined #gnuenterprise
+*** dimas has joined #gnuenterprise
+*** johannesV has quit IRC
+*** jamest has left #gnuenterprise
+*** kilo has joined #gnuenterprise
+*** kilo has quit IRC
+*** llp has quit IRC
+*** llp has joined #gnuenterprise
+*** derek has quit IRC
+*** jamest has joined #gnuenterprise
+*** jcater has quit IRC
+*** jamest has quit IRC
+*** llp has left #gnuenterprise
+*** jcater has joined #gnuenterprise
+*** jcater has left #gnuenterprise

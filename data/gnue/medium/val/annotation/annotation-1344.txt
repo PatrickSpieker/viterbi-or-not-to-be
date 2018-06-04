@@ -1,0 +1,66 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.06Jun2002" enddate="05 Jun 2002 23:00:00 -0800" startdate="05 Jun 2002 23:00:00 -0800" subject="[IRC] 06 Jun 2002" title="Using &lt;option&gt; tags to support optional widgets">
+
+<topic>Forms</topic>
+
+<p>Reprising 
+<kcref subject="[IRC] 05 Jun 2002" title="Maintaining UI independance whilst allowing custom widgets" />, 
+Marcos Dione (StyXman) said he was not keen on using the &lt;option&gt; XML tag to 
+hook in non-standard widgets - he would prefer to use attributes on tags, or even 
+allow new tags for new widgets. James Thompson (jamest) said that GNUe 
+Form Definition (.gfd) files used to support <quote who="James Thompson">attributes 
+in several different</quote> ways - both <quote who="James Thompson">&lt;tagname 
+attr="foo"&gt; or &lt;tagname&gt; &lt;option name='attr'&gt;foo&lt;/option&gt;</quote> 
+had been supported - however, <quote who="James Thompson">we ended up scrapping that 
+old way</quote>. Also, the &lt;option&gt; tag had at one stage been used for 
+multi-line code like triggers <quote who="James Thompson">however triggers ended 
+up different anyway :)</quote>. Jason Cater (jcater) noted, however, that 
+&lt;option&gt; tags were still used to <quote who="Jason Cater">assign 
+non-standard properties to objects in forms that can be retrieved in triggers 
+- that's why I don't want to get rid of options</quote> completely. 
+He agreed, however, that <quote who="Jason Cater">in the cases where an option 
+replaced a standard tag, I've never been really thrilled</quote>.</p>
+
+<p>Marcos understood the need to keep the &lt;option&gt; tag for this, but 
+did not see how it would link to the GFOption object that would handle it - 
+as there was usually a one-to-one relationship between Forms XML tags and 
+Forms objects. Jason said the &lt;option&gt; tag worked differently - 
+<quote who="Jason Cater">all objects have a getOption() method that retrieves 
+any &lt;option&gt;s set on it - so basically, any non-standard attributes 
+would be options</quote>. However, <quote who="Jason Cater">there will 
+actually be a GFOption object implicitly created</quote>.</p>
+
+<p>Marcos asked how the &lt;options&gt; and &lt;option&gt; tags would 
+interact - <quote who="Marcos Dione">I realize that &lt;options&gt; is for 
+gouping &lt;option&gt;s together - but how does a &lt;options&gt; gets related 
+to its parent?</quote>. The GNUe Forms Parser code implied that all &lt;option&gt; 
+tags were children of the &lt;options&gt; tag, which was a child of the overall 
+&lt;forms&gt; tag. Jason said <quote who="Jason Cater">the GFParser file isn't 
+quite correct.</quote></p>
+
+<p>Michael Maluck (madlocke) re-expressed his preference for 
+<quote who="Michael Maluck">a way to add new tags</quote> for new widgets
+<quote who="Michael Maluck"> but still being able to create valid dtds</quote>,
+as this would make the XML more understandable. He was not sure how this 
+would work, however - it might be better to <quote who="Michael Maluck">delete 
+all options, because options force men to make up decisions ;)</quote>
+He said <quote who="Michael Maluck">it's like with mirrors... when you look 
+into it, it will always show you. you can't tell the mirror to show something 
+you want to see. there is actually no option ;) - but ok you have the option 
+to destroy the mirror ;)</quote> Marcos felt <quote who="Marcos Dione">wowo, 
+that was deep. you'll teach me zen?</quote>.</p>
+
+<p>Later, Marcos said that, for common &lt;option&gt;s such as tooltips, 
+having to re-write the code to handle it each time would be a pain - 
+<quote who="Marcos Dione">you'll try to move the tooltip code to a 
+class</quote>, and part of the core widgets. Other &lt;option&gt;s 
+would be more one-offs. <quote who="Marcos Dione">I guess the answer is: 
+no, don't do it in general. that's what jcater or jamest said yesterday
+- do it case by case</quote>. Michael said <quote who="Michael Maluck">i 
+understand their complaints about new tags/attrs that are not in the core 
+very good</quote>, and he needed to give some more thought to the best 
+way of allowing optional widgets - he did not want to end up with 
+unofficial patches or an unsupported fork.</p>
+
+</section>
+
+

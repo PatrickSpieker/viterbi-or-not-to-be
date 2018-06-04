@@ -1,0 +1,300 @@
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+<Sacha_dinner> hi chillywilly
+<chillywilly> ello
+<Sacha_dinner> you are talking about 4suite. i wonder why they did not take libxml and libxslt and enhanced those :( 
+<chillywilly> I dunno
+<chillywilly> what license do those libs have
+<chillywilly> ?
+<Sacha_dinner> i think gpl
+<Sacha_dinner> but not sure.
+<chillywilly> I told them the advertising clase was lame because it makes it GPL cmpatible, then thy main guy proceeded to tell me he thinks the GPL is lame...
+<chillywilly> er incompatible
+<chillywilly> then I left the channel shortly after
+<chillywilly> they use their version of the Apache 1.1 license which is VERY similar to the original BSD license
+<chillywilly> has the same advertising clause problems
+<Sacha_dinner> i read your discussion.
+<chillywilly> ok
+Action: chillywilly needs t make a grub boot disk for the computer upstairs
+Grantbow (~grantbow@12-233-20-180.client.attbi.com) joined #gnuenterprise.
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+Action: chillywilly is away: fixing winders for someone...*sigh*
+<psu> "fixing" == c:\loadlin.exe ?
+Action: chillywilly is back (gone 00:02:38)
+<chillywilly> unfortunately, no :(
+Action: chillywilly hugs GRUB
+<chillywilly> I love grub
+<chillywilly> it rawks
+Action: chillywilly notes GRUB boot disk saved his butt
+<ajmitch> that's nice
+<psu> saw the linuxtoday announcement about bayonne 1.0
+<psu> but there's nothing on their own website www.gnu.org/software/bayonne yet
+<psu> how "official" is this?
+Action: psu ought to put a "Congrats to our friends at Bayonne" notice on website if appropriate
+<chillywilly> I remember Dave telling me he was going t release soon
+<chillywilly> this week he's in Macedonia
+<chillywilly> iirc
+<chillywilly> Date: Tue, 3 Sep 2002 12:05:49 -0400 (EDT)    
+<chillywilly> From: David Sugar <dyfet@ostel.com>
+<chillywilly> ToyMan: bayonne-devel@lists.sourceforge.net
+<chillywilly> cc: bug-commoncpp@gnu.org, <hangout@nylxs.com>, <ruben@mrbrklyn.com>,
+<chillywilly>    <simion.pruna@telemed.ro>, <greve@gnu.org>
+<chillywilly> Subject: This week I will be in Macedonia...
+<chillywilly> This week I am going to be in Macedonia.  I am speaking this Saturday,
+<chillywilly> September 7th, at Expocom (http://www.expocenter.com.mk) being held at the
+<chillywilly> Tiffany Expo Center, in Skopje, Macedonia, starting at 14:00.  I will be
+<chillywilly> speaking primarily about "Software Literacy and the right to study".
+<chillywilly> This event is open to the general public.  I will also be holding several
+<chillywilly> discussions with different groups and will be in Macedonia in total from
+<chillywilly> the 5th through the 9th of September.
+<chillywilly> David
+<ajmitch> lucky fella
+<chillywilly> he gets t go everywhere
+Action: psu suspects that the linuxtoday article was a bit premature
+<ajmitch> yeah
+<ajmitch> psu: i don't think so
+<chillywilly> people want him to come speak about Bayonne and/or FS
+<ajmitch> might have been
+Action: ajmitch checks the bayonne lists
+<psu> to be fair, there has been a pre-release of 1.0 for some weeks 
+<psu> and you know how easy 
+<psu> it is to confuse journalists ;-)
+<ajmitch> wow bayonne-devel is *dead*
+<psu> maybe they've all moved to IRC ;-)
+<ajmitch> it said it was announced tuesday
+<psu> hmm
+Action: psu will prepare a "Congrats to Bayonne" item but hold off posting it
+JohannesV (~jve@M700P003.adsl.highway.telekom.at) left irc: Read error: 110 (Connection timed out)
+Action: psu was never in the Boy Scouts, but "Be prepared" is still a good motto ;-)
+Nick change: Sacha_dinner -> SachaS
+<chillywilly> hrrrm, this is not the type of grub boot disk I want
+<chillywilly> I need the one that looks on the floppy for the config file
+<chillywilly> blah
+<chillywilly> oh found it
+<ajmitch> chillywilly: build your own?
+<ajmitch> that's what i did
+<chillywilly> you can se the script and tell it where to look and write
+<chillywilly> # mke2fs /dev/fd0
+<chillywilly>      # mount -t ext2 /dev/fd0 /mnt
+<chillywilly>      # grub-install --root-directory=/mnt '(fd0)'
+<chillywilly>      # umount /mnt
+<ajmitch> yeah
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise.
+lh-cookies (~lufthans@68.14.212.29) left irc: Read error: 110 (Connection timed out)
+LuftHans (~lufthans@wsip68-14-212-29.ph.ph.cox.net) left irc: Read error: 110 (Connection timed out)
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: "woooooosh!"
+jbailey (~jbailey@CPE014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+siesel (jan@dial-213-168-88-168.netcologne.de) joined #gnuenterprise.
+<siesel> hi all :)
+jbailey (~jbailey@CPE014260028338.cpe.net.cable.rogers.com) left #gnuenterprise ("Client Exiting").
+jcater (~jcater@cpe-024-165-223-104.midsouth.rr.com) joined #gnuenterprise.
+jcater (~jcater@cpe-024-165-223-104.midsouth.rr.com) left irc: Remote closed the connection
+jcater (~jcater@cpe-024-165-223-104.midsouth.rr.com) joined #gnuenterprise.
+Nick change: SachaS -> Sacha_away
+filc (~filc@public1-cosh3-3-cust111.cosh.broadband.ntl.com) joined #gnuenterprise.
+bt (~btami@3e70d72e.dialin.enternet.hu) joined #gnuenterprise.
+<bt> hi all
+<bt> is jcater around?
+<jcater> yip
+<bt> thanks for applying patches
+<bt> but some notices:
+<bt> 1. fo.xsl some ">" chars missing
+<bt> 2. this fo.xsl was written for a modifyed monthly.grd
+<bt> 3. i sended a little patch for sablotron adapter.py before
+<bt> it needs 'file://' in PySablot.Processfiles(...) line
+<bt>     PySablot.ProcessFiles('file://'+xslfile,'file://'+self.infile,outfile)
+<jcater> oooo
+<jcater> that breaks http:// references
+<jcater> hmm
+Action: jcater will look into that
+<jcater> I'm guessing without the file://
+<bt> ok
+<jcater> that c:\whatever references break?
+<jcater> is that the issue?
+<bt> yes
+<jcater> ok
+<jcater> I have some code somewhere else 
+<jcater> that deals with that
+<jcater> I'll track it down
+<jcater> and add here too
+<bt> ok, thanks again
+Nick change: bt -> btami
+<filc> any news with the app server?
+<btami> jcater: have you got any ideas about standard output tags for reports?
+<jcater> filc: ?
+<btami> i'm always asking this :)
+<jcater> btami: formatting-type tags?
+<btami> yes
+<btami> last question was: why not FO
+<filc> jcater: the replacement for geas
+<jcater> filc: it's being worked on
+<jcater> siesel is main coder for that at the moment
+<jcater> I can't really say where it is
+<jcater> I know he's making tremendous strides, though
+<filc> do you know what the new geas is called, and if it is in cvs
+<jcater> yes, is in cvs
+<jcater> as /appserver/
+<btami> and chilly is working on some odmg thing
+<jcater> btami: do you have a good link for FO
+<filc> jcater: thanks I'll take a look into it... currently reading Learning Python!!!
+<jcater> cool
+<jcater> good book
+<btami> http://www.w3.org/TR/xsl/ 
+<btami> filc: read diveintopython.org too
+<btami> jcater: i'v read a tutorial in http://www.antennahouse.com
+<jcater> have you used FO much?
+<btami> no, i'm just learning
+<btami> i'm learning python, xml, linux, oop :)
+<btami> i'm just a matematik, not a real programmer :)
+<jcater> hmm
+<jcater> best I can tell, FO specifies physical formatting properties (much like an XML version of PCL or Postscript) such as fonts, margins, font sizes, colors, etc
+<jcater> as opposed to a functional markup (like docbook, latex, etc)
+<jcater> is that fair?
+<jcater> (that's from me reading 5 minutes)
+<btami> yes, i know this
+<jcater> ok
+<jcater> just making sure I'm understanding FO correctly
+<btami> yes, it is for "cosmetics" formatting
+<btami> but reports needs this too
+<btami> and <reporthead>, <grouphead> ... too
+<btami> i think the decision is missing about this tags
+<btami> i want to write another report wizard, but with this tags
+<jcater> so are you thinking we take the FO elements that we need and add them to our spec
+<jcater> or just use all of FO as it sits?
+<jcater> i.e., "borrow" their ideas
+<jcater> or use exactly their speciifcation?
+<btami> i don't know, maybe it's too complex for a business report
+<jcater> I'm torn
+<jcater> of course
+<jcater> the GNUe Reports engine could output FO markups right now
+<jcater> currently, we have the SimpleTabulation style
+<jcater> we could easily add a FormattingObjects style
+<jcater> that is nothing but XSL-FO
+<jcater> so the out: tags would actually be
+<jcater> FO tags
+<btami> i can't imagine how designer will work with complexity of FO...
+<jcater> nor can I 
+<jcater> of course, I can't imagine how designer's going to handle any reports yet :)
+<btami> :) :)
+<derek> did the papo patches get applied?
+<btami> maybe derek can :)
+<btami> hi derek
+<derek> hi btami
+<btami> derek: what is your opinion about these reports issues?
+ToyMan (~stuq@smtp.dstoys.com) left irc: "Client Exiting"
+<jcater> btami: one thing about using FO
+<jcater> if we go that route
+<jcater> I'd want us to commit resources to doing a free python-based implementation
+<jcater> I have issues with depending on a java program
+<derek> i wont depend on FO from java (end of story)
+<derek> i will write my own python FO 
+<derek> or i will use reportlabs or such and go straight from xml to native pdf or such
+<derek> sorry im just picky, i wont use java :)
+<btami> if we go xml -> whatever, we need some formatting tags again
+<btami> and this decision is missing
+jbailey (~jbailey@CPE014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+<derek> btami: i thought we had some
+<derek> as i had to have that to make the HTML reports
+<derek>    <out:report>
+<derek>     <out:reportTitle>Monthly Accounting Foobulation Report</out:reportTitle>
+<derek>     <out:section break="page">
+<derek>       <out:sectionTitle><param name="subtitle"/></out:sectionTitle>
+<derek>       <out:table width="100%">
+<derek>         <out:tablehead>
+<derek>           <out:colhead width="30">Name</out:colhead>
+<derek>           <out:colhead width="22" align="center">Date</out:colhead>
+<derek>           <out:colhead width="10" align="right">Foobs</out:colhead>
+<derek>         </out:tablehead>
+<derek>         <section source="dtsFoo" name="nameBreak">
+<derek>            <section name="details">
+<derek>              <out:row>
+<derek>                 <firstrow><out:col><field name="name" section="nameBreak"/></out:col></firstrow>
+<derek>                 <notfirstrow><out:col/></notfirstrow>
+<derek>                 <out:col align="center"><field name="foodate"/></out:col>
+<derek>                 <out:col align="right"><field name="foobs"/></out:col>
+<derek>             </out:row>
+<derek>           </section>
+<derek> looks liek you have things like
+<derek> report
+jbailey (~jbailey@CPE014260028338.cpe.net.cable.rogers.com) left #gnuenterprise ("Client Exiting").
+<derek> reportTitle
+<derek> section
+<derek> table
+<derek> tablehead
+<derek> colhead
+<derek> row
+ToyMan (~stuq@smtp.dstoys.com) joined #gnuenterprise.
+<derek> speak of the devil
+<derek> er the toyman
+<btami> yes, we have some, but these far from complete for GNUe:Reports:Standard
+<btami> jcater wrote this before:
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+<btami>    5. This leaves the door open for the Reports Engine to "proxy"     output formatting logic. In other words, this would allow, if     we ever so desired, to write a PDF (or HTML or TeX) formatting     engine (instead of an external XSLT script) for reports of type     GNUe:Reports:Standard that the engine could load.  Instead of     physically creating an XML output stream, it creates a stream     of events to this engine, which would und
+<btami> but this needs "standardize" these tags
+<btami> the original monthly.grd was good enough for a sample, but wasn't declared as a gnue standard
+<btami> as forms has "standard" tags
+<btami> sorry for my poor english :)
+<btami> i'm just making a bit pressure to make reports better :)
+<derek> your english is better than jamest :)
+<chillywilly> :-/
+<btami> :)
+<chillywilly> man we got a full house today
+<chillywilly> what the heck
+<chillywilly> this python program is b0rked
+siesel (jan@dial-213-168-88-168.netcologne.de) left irc: "later"
+reinhard (~rm@M704P000.adsl.highway.telekom.at) joined #gnuenterprise.
+<chillywilly> hi reinhard
+<btami> hi chillywilly, hi reinhard
+<reinhard> hi all
+<chillywilly> howdy
+btami (~btami@3e70d72e.dialin.enternet.hu) left irc: 
+Nick change: jcater -> jcAway
+jcAway (~jcater@cpe-024-165-223-104.midsouth.rr.com) left irc: 
+jcater (~jcater@cpe-024-165-223-104.midsouth.rr.com) joined #gnuenterprise.
+Nick change: jcater -> jcAway
+LuftHans (~lufthans@wsip68-14-212-29.ph.ph.cox.net) joined #gnuenterprise.
+<filc> that's all my pesos spent on gnue!!!
+stbain (GunAndGiz@ip68-10-44-170.rn.hr.cox.net) left irc: Read error: 104 (Connection reset by peer)
+filc (~filc@public1-cosh3-3-cust111.cosh.broadband.ntl.com) left irc: "Client Exiting"
+mdean (~mike@mkc-65-28-72-76.kc.rr.com) left irc: Remote closed the connection
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: "woooooosh!"
+reinhard (~rm@M704P000.adsl.highway.telekom.at) left irc: "Real programmers don't comment their code. If it was hard to write, it should be hard to understand"
+<derek> hi LuftHans
+<derek> brb 
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: "trying wireless AGAIN"
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<dneighbo> guess we will see how long it lasts
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: Read error: 104 (Connection reset by peer)
+Bobacus (~rob@pc2-cmbg2-5-cust191.cam.cable.ntl.com) joined #gnuenterprise.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<chillywilly> hey dewd
+<chillywilly> are you being interviewed in 2 days?
+<chillywilly> in wopn
+<chillywilly> s/in/on/
+<Mr_You> hi
+<chillywilly> howdy
+Bobacus (~rob@pc2-cmbg2-5-cust191.cam.cable.ntl.com) got netsplit.
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: Read error: 110 (Connection timed out)
+Bobacus (~rob@pc2-cmbg2-5-cust191.cam.cable.ntl.com) got lost in the net-split.
+Bobacus (~rob@pc2-cmbg2-5-cust191.cam.cable.ntl.com) joined #gnuenterprise.
+Nick change: jcAway -> jcater
+<chillywilly> hi
+<chillywilly> how goes it jc?
+<chillywilly> crap shadow conflict is right on our tail
+<chillywilly> on linuxfund
+<chillywilly> less than 1500 away
+<chillywilly> all he needs is someone to drop all their pesos on him
+<ajmitch> silly person
+<ajmitch> then again, the rankings might just be an indicator for the board
+<ajmitch> a few projects get $$, i think
+<chillywilly> ok
+<chillywilly> diablo-d3 is smething else ;)
+<chillywilly> hi ajmitch
+<ajmitch> diablo-d3 is an arrogant fool :)
+<chillywilly> whatcha been up to ajmitch?
+<ajmitch> stuff
+<chillywilly> how descriptive
+<chillywilly> *stuff*
+<ajmitch> yup
+<chillywilly> bah
+--- Sun Sep  8 2002

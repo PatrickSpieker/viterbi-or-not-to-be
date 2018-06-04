@@ -1,0 +1,136 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.13Feb2002" enddate="13 Feb 2002 00:00:00 -0800" startdate="13 Feb 2002 00:00:00 -0800" subject="[IRC] 13 Feb 2002" title="PHP client for GNUe Forms">
+
+<topic>Forms</topic>
+<topic>Common</topic>
+
+
+<p>Jan Ischebeck (jan) said he had been working on block support, 
+<quote who="Jan Ischebeck">but the biggest problem, i've spared up 
+;) for later: master-detail relationship</quote>. James Thompson
+(jamest) wished <quote who="James Thompson">you could interface to 
+our python stuff</quote> in the normal GNUe Forms client. He 
+<quote who="James Thompson">haven't seen a php/python bridge though :(
+</quote>. Jan suggested <quote who="Jan Ischebeck">We could do it by 
+SOAP. [...] I'm not shure how to write the python part, but if there 
+would be a gnue-common webservice, possibly with a similar interface 
+like GEAS....</quote>. James said <quote who="James Thompson">
+there was work done on gnue-rpc</quote>, but Jason Cater had had to 
+deal with more pressing issues. Jason (jcater) said 
+<quote who="Jason Cater">the real issue is that gcommon is a library, 
+not necessarily a service - so I'm not sure how that would work - 
+it's as easy to do XML-RPC in Python as in PHP, though</quote>. 
+Jan said he would particularly like access to
+<quote who="Jan Ischebeck">the db abstraction layer</quote> in 
+GNUe Common.</p>
+
+<p>James said he was thinking of adding to Forms 
+<quote who="James Thompson">the ability to say that forms pages are 
+steps - so that I could rapidly design a web form that is one or more 
+steps - then on the last page a commit is done - as personally I 
+<cite>hate</cite> making html forms</quote>. Jan said that was 
+possible - <quote who="Jan Ischebeck">Whats about a "WIZARD"
+attribut in the &lt;form..&gt; tag?</quote>. James said he had not 
+given this a lot of thought, and <quote who="James Thompson">
+i'm not sure how the normal client would deal with this type of form
+</quote> or even if it was desirable functionality. It wouldn't be a 
+problem if it required a change to the XML definitions, as 
+<quote who="James Thompson">I don't think the DTD is stable 
+yet</quote>.</p>
+
+<p>Jan said the PHP forms client was very slow at the moment, 
+as <quote who="Jan Ischebeck">Every time php parses the xml file and 
+load session data.</quote>, but was faster if cached. 
+He would look at improving the caching once 
+<quote who="Jan Ischebeck">the basic features are in</quote>.</p>
+
+<p>Jan started to think about James' wizard idea, and said 
+<quote who="Jan Ischebeck">every page needs back and forth 
+buttons and the last one needs the commit button.</quote>. 
+James explained how to do this in python. He said the wizard 
+would be <quote who="James Thompson">usefull in 2 places - 
+html forms are #1</quote>. They could also be useful for 
+situations like <quote who="James Thompson">say you want your 
+reps to always ask the same things in a specific order</quote>. 
+Jason Cater (jcater) noted <quote who="Jason Cater">if we had 
+multipage blocks this would be easy to do using existing 
+"pages" concepts</quote>. Jan thought that however 
+the wizard worked, it needed to work for <quote who="Jan Ischebeck">
+the standart client</quote> as well, and wondered 
+<quote who="Jan Ischebeck">Whats about using the 
+normal pages and some triggers to implement it?</quote>.
+James said that <quote who="James Thompson">
+right now forms are of type="tabbed" iirc which makes the pages 
+become notebook tabs</quote> - a <quote who="James Thompson">
+type="stepthru"</quote> could be added. It was important to
+<quote who="James Thompson">hide all the extras - 
+query, print, next/prev foo, jump to record</quote> so that there 
+was only one route through the wizard with <quote who="James Thompson">
+and gave a next, back, cancel button</quote>. Multiple blocks wouldn't 
+do this. Jason agreed, but said <quote who="Jason Cater">
+multipage blocks are probably a prerequisite - and if you had multipage 
+blocks, you could easily simulate such a system without a special tag
+</quote>.</p>
+
+<p>Later, Jan asked <quote who="Jan Ischebeck">
+why shouldn't two blocks share on datasource?</quote>. James said
+<quote who="James Thompson">our datasources implement master/detail - 
+so they have a concept of current record</quote>. This allowed 
+users to <quote who="James Thompson">cruse thru a master/detail 
+set of data changing masters and children at will - then commit 
+the whole mess</quote>. Jason said this was a key feature - 
+<quote who="Jason Cater">I don't know of another forms implementation 
+that can do master/detail like GNUe can</quote>. Jan did a 
+simple <quote who="Jan Ischebeck">master detail implementation 
+in one single block</quote> and decided <quote who="Jan Ischebeck">. 
+Ok, thats enough master detail for tonight. :)</quote>.</p>
+
+<p>James said that he had now put Jan's PHP Forms client 
+<a href="www.gnuenterprise.org/~jan/gfc.php">on the GNUe 
+website</a> - <quote who="James Thompson">i set him up an 
+account so we can always show this stuff off :)</quote>. 
+He had already publicised it to several contacts by e-mail. 
+He tried Jan's 'pre-alpha' wizard. Jan noted 
+<quote who="Jan Ischebeck">only thing is form cannot send mail
+to you</quote>. James suggested using triggers, but Jason 
+thought <quote who="Jason Cater">conceptually, it wouldn't be 
+a problem to have a "write-only" database driver that 
+actually sends an email :)</quote>. Jan said his PHP client 
+needed some more debugging, and currently didn't support
+<quote who="Jan Ischebeck">RPC, SOAP, orbit,.... just 
+postgres.....</quote>. However, James said he thought it was 
+really useful, especially as the same GNUe Forms Definitions 
+(.gfd) could be used with the normal Forms client. Jan 
+added e-mail forwarding as well.</p>
+
+<p>James was <cite>very</cite> enthusisatic, but emphasised 
+the need <quote who="James Thompson">to be carefull
+and figure out how to wrap this into common</quote> and the 
+main Forms client as well. <quote who="James Thompson">
+we need to get php and python playing together</quote>, so 
+they could feed some of Jan's work on the PHP client back 
+into the main Forms client. Jason said that, 
+<quote who="Jason Cater">if we don't mind restricting this to 
+apache for the near future we might want to look at mod_python 
+or mod_snake</quote>. He cut-and-pasted <quote who="Jason Cater">
+Mod_python is an Apache module that embeds the Python interpreter 
+within the server. With mod_python you can write web-based applications in 
+Python that will run many times faster than traditional CGI and will have 
+access to advanced features such as ability to retain database connections 
+and other data between hits and access to Apache internals.</quote>.
+James thought this sounded promising.</p>
+
+<p>Later, James emphasised that they were trying to merge 
+Jan's work into the core product, <quote who="James Thompson">
+so that the python forms core and common can be used</quote>.
+Derek Neighbors (derek) wondered whether a PHP Forms client was 
+worth it - <quote who="Derek Neighbors">in the same amount of time
+he could probably learn one of the python embeded deals</quote>, but 
+he admitted he wasn't keen on web-based forms generally. James said 
+the whole focus was <quote who="James Thompson">ways to reuse what 
+we have</quote>, and the lessons learned could be useful in 
+developing an HTML forms client. He thought <quote who="James Thompson">
+what was demo'd tonight was nothing short of 
+breathtaking</quote>.</p>
+
+</section>
+

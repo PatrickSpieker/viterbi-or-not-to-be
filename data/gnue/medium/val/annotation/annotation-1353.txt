@@ -1,0 +1,107 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.10Jun2002" enddate="11 Jun 2002 23:00:00 -0800" startdate="09 Jun 2002 23:00:00 -0800" subject="[IRC] 10 Jun 2002" title="Problems with floating point fields in PostgreSQL">
+
+<topic>Common</topic>
+
+<p>Catching Derek Neighbors (dneighbo) on a late night
+rush after Team USA got a lucky draw against South 
+Korea in the soccer World Cup, Marius Gedminas (mgedmin) asked 
+<quote who="Marius Gedminas">if someone's working on problems 
+with PostgreSQL numeric types - (SQL errors like "operator = not 
+defined for numeric and double") (when trying to update a 
+record containing a numeric field)</quote> using the 
+psycopg database driver. He reported 
+<quote who="Marius Gedminas">basically postgres wants explicit 
+typecasts in statements like UPDATE employee SET foo=bar WHERE 
+numericfield=123.4::numeric</quote>. Derek was able to reproduce 
+the bug - <quote who="Derek Neighbors">someone has introduced a 
+bug in cvs OR the pyscopg driver in sid has been changed - as 
+when i ran this form before</quote> the form had worked. 
+They both tried various alternatives, including 
+=1, ='1' and =1:numeric. Marius confirmed that his 
+PostgreSQL reference book implied that it 
+<quote who="Marius Gedminas">wants a typecast when it sees 
+a numeric type in the WHERE part</quote>. He confirmed that 
+<quote who="Marius Gedminas">it works fine when you try to 
+add new records - it fails when you try to update them - 
+or perform a query (no error messages, but no results either in 
+that case)</quote>. He gave the workaround he had developed - 
+<quote who="Marius Gedminas">I don't like that though</quote>. 
+Derek agreed - <quote who="Derek Neighbors">if it chokes other db's 
+it needs to be in the postgres driver</quote> and not in the GNUe 
+code. He asked Marius to submit it as a bug, and the workaround 
+as a possible patch, pending an <quote who="Derek Neighbors">official 
+patch</quote>.</p>
+
+<p>He noted that there was no problem with integer fields, which 
+had previously been the case - fixing this had apparently 
+<quote who="Derek Neighbors">fried the float numeric type</quote>, 
+but only for PostgreSQL. It also seemed to matter whether floating 
+point fields were referred to as 100 or 100.0. He could see several 
+issues emerging here, and felt it was <quote who="Derek Neighbors">best 
+to address</quote> the next day - or more, accurately, later in the 
+same day after some sleep!</p>
+
+<p>Later, Jason Cater (jcater) said he was not impressed that 
+PostgreSQL could not <quote who="Jason Cater">handle implicit 
+numeric conversions</quote>. He felt that getting the database 
+driver code to check for specific numeric types and do the 
+conversion itself if necessary 
+<quote who="Jason Cater"><cite>may</cite> 
+not be too hard</quote> but if it meant <quote who="Jason Cater">we 
+have to do full-on introspection at form load time</quote> to check 
+the types of all numeric fields <quote who="Jason Cater">that 
+could be a big performance hit</quote>. Derek said he 
+<quote who="Derek Neighbors">hopes this is a postgres bug, but doubts 
+it - as i have postgres 6.5.x here and it does same thing</quote>. 
+Jason felt <quote who="Jason Cater">any "reason" they can provide is 
+a technical one that <cite>should</cite> be hidden from SQL 
+users</quote>.</p>
+
+<p>Marius pointed out that <quote who="Marius Gedminas">forms 
+currently perform the updates by constructing an SQL statement 
+and listing <cite>all</cite> fields in WHERE clause.  Is there 
+a way to use only the primary key instead?</quote> Jason said 
+<quote who="Jason Cater">that's something we need to look 
+at</quote>. For most databases, <quote who="Jason Cater">the 
+database's "row id" is used - IF the database supports such a 
+thing</quote>. However, in PostgreSQL 7.2 and higher, 
+<quote who="Jason Cater">oid's are optional</quote>.</p>
+
+<p>There was some discussion about whether this, and the 
+numeric conversion problem, were desirable or not. But, 
+as Derek noted, <quote who="Derek Neighbors">postgres is 
+a db people will be using, we need to support their quirks 
+whether we agree or disagree with them</quote>. He 
+suggested changing Forms to identify different types of 
+numeric field separately. Jason said he 
+<quote who="Jason Cater">was trying <cite>really</cite> 
+hard to avoid that - as it goes into support issues I didn't 
+want to deal with</quote>. Derek said he did not like it either, 
+but the only other way of resolving the issue was to use database
+introspection to check the exact type of numeric fields every 
+time they were used.</p>
+
+<p><a href="12Jun2002">
+Some days later</a>, Marius suggested resolving the issue of 
+having to list all of the fields in the WHERE clause of an 
+update query by having a 'key' attribute against each entry 
+field on a form - <quote who="Marius Gedminas">and the SQL query 
+should only list fields with key==TRUE in the WHERE part</quote>. 
+Derek said he was not sure of this - <quote who="Derek Neighbors">all 
+too often people dont make proper keys</quote>. Marius felt that 
+<quote who="Marius Gedminas">imho the union of all fields in a block 
+is less likely to be a proper key than a developer defined set of 
+fields</quote>. Jason said he had <quote who="Jason Cater">purposely 
+avoided that approach</quote> in the past. Given that 
+<quote who="Jason Cater">we're gonna have to do a quick schema 
+lookup on form startup</quote> anyway <quote who="Jason Cater">so 
+we can solve these numeric issues</quote>, the code might 
+<quote who="Jason Cater">as well as get the primary keys if 
+defined - and fall back to using the whole record if a table has 
+no primary key</quote>. This was not ideal, but 
+<quote who="Jason Cater">would solve several issues at 
+once</quote>.</p>
+
+</section>
+
+

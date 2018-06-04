@@ -1,0 +1,446 @@
+*** derek has quit IRC
+*** sacha has joined #gnuenterprise
+*** sacha has quit IRC
+*** sacha has joined #gnuenterprise
+*** btami has joined #gnuenterprise
+<btami> good morning
+*** johannesV has joined #gnuenterprise
+<johannesV> good morning
+<btami> for the logs (re date/time formats)
+<btami> >>> locale.setlocale(locale.LC_ALL, '')
+<btami> 'hu_HU'
+<btami> >>> locale.nl_langinfo(locale.D_FMT)
+<btami> '%Y-%m-%d'
+<btami> so hardcoding separators (":" and "/") not the best choice
+<johannesV> hm, right ... :)
+*** reinhard has joined #gnuenterprise
+*** yure has joined #gnuenterprise
+*** yure has quit IRC
+*** yure has joined #gnuenterprise
+*** btami has quit IRC
+*** jamest has joined #gnuenterprise
+<jamest> i saw btami posted what his date string looks like and it seems like I could get away with the first char not a date format character
+<reinhard> hi jamest
+<reinhard> I'm not sure if all date formats have a single date format character
+<reinhard> maybe some countries have evil formats like 2006-04/13
+<reinhard> (not that I would know of any)
+<reinhard> jamest: I've started working on menus
+<reinhard> <menu> seems to fulfill both fuctions: menu and menuitem
+<reinhard> is that on purpose?
+<jamest> i don't recall
+<jamest> not a lot was done in menus beyond playing around
+<jamest> there is a pretty complete dynamic menu system in designer fwiw
+<jamest> that I was going to rip out and put into common to replace the stuff started there
+<reinhard> ok, I'll have a look at that
+<jamest> it only required de-caterification
+<jamest> :)
+<reinhard> do you remember offhand where this was in designer?
+<jamest> let me look
+<jamest> iirc it was in src/base
+<jamest> in the MenuBar.py and IIRC ToolBar.py
+<reinhard> MenuBar.py?
+<jamest> i'm svn up'n now
+<reinhard> found that
+<reinhard> that seems to deal with the UI creation for the menu
+<jamest> the only example of how it works is in designers menus
+<reinhard> which leads to the question
+<reinhard> does the menu handling actually belong to common or to forms?
+<jamest> i think the toolbar and menu logic for setting up menus belongs in common (or gap)
+<jamest> as it should be the same code in all our gui apps
+<jamest> i would think
+<jamest> damn, it's been to long
+<jamest> base/Document.py is setting up a menu
+<jamest> and shows the mru adding recently used items to the file menu
+<reinhard> so exactly which part would you want to see in common?
+<jamest> i think the addFoo methods built a in memory representation of a menu
+<jamest> and then the finialize method mapped it to the UI widget set
+<reinhard> yeah, that's how I see it, too
+<jamest> what I was hoping for in common was a set of classes/methods that let us build a logical menu in memory
+<jamest> like our forms
+<reinhard> my understanding now would be that we have an xml structure representing the menu
+<jamest> it would include methods that let us extend menus, disable items, etc
+<jamest> all without using any UI widget specific code
+<reinhard> and then we would somehow pass a pointer to a "uimenu" implementation into those classes?
+<reinhard> so when the GCMenu is told "disable" it can call the uimenu.disable?
+<jamest> yes, more or less
+<jamest> or the UI would register to listen for menu update events
+<jamest> then the virtual menu wouldn't need to know anything about the uimenu classes
+<jamest> just emit a "disable menu uid 812"
+<jamest> and the ui would get that event and say "ooooo" that's my save menu
+<reinhard> hmmm
+<reinhard> so we would also replace the standard menu in say forms with such classes?
+<jamest> yes
+<reinhard> ok
+<reinhard> I see
+<jamest> the reasoning is that if we do this
+<jamest> then
+<jamest> 1) a form could extend a menu or remove items or hide them via startup triggers
+<jamest> 2) it may be possible for an application like navigator to adjust it's menu dynamically based upon the forms loaded in memory
+<reinhard> ok
+<reinhard> I think I got it more or less
+<reinhard> as to the events vs. function calls
+<reinhard> with events, we require the uimenu handler to register an event listener
+<reinhard> with function calls, we require the uimenu handler to have a function "disable"
+<reinhard> my experience so far is that events add complexity and eat performance
+<reinhard> how strong would you feel about using events here?
+<jamest> our events definately do :)
+<jamest> well
+<jamest> hmmmm
+<jamest> originally i was thinking that events would allow the toolbar to only be links to menu entries
+<jamest> so they'd hit the same events
+<jamest> however things like say the google search toolbar app for IE wouldn't work in that type of environment
+<jamest> so with the toolbar being separate I have to reason to stick with events :)
+<jamest> er, no reason
+*** jcater has joined #gnuenterprise
+<jamest> but like I said, it's all jcater's fault
+<jamest> (or derek's)
+<jcater> I try
+<jcater> (what did I do?)
+<jamest> oh jcater, you're here
+<jamest> um,
+<jamest> we were talking about menus and I suggested reinhard look at the one in designer
+<reinhard> jamest: as to linking toolbar and menu
+<reinhard> I think that's a good idea
+<reinhard> what about adding a "enabled" property to GTrigger?
+<reinhard> then you can disable a named trigger
+<reinhard> and all menu items, toobar buttons and buttons bound to that trigger could be disabled by simply disabling the trigger?
+<jcater> I need to read the IRC logs
+<jcater> but that seems like it could cause confusion with (new) forms designers
+<reinhard> jcater: that == ?
+<jcater> enabled property
+<reinhard> disabling the trigger?
+<reinhard> ah
+<reinhard> just because of the name?
+<jcater> from the standpoint of what happens if a disabled trigger is called
+<jcater> does it just not run?
+<jcater> throw an exception?
+<reinhard> what would you think would be best?
+<jcater> (not run == the calling trigger thinks it successed)
+<jcater> well, I dunno
+<jcater> hence the confusion :)
+<jcater> I'd probably lean toward that being a developer error though
+<jcater> (which would mean throwing an exception)
+<reinhard> same here
+<reinhard> but the main point was to allow for a single point of disabling
+<jcater> right
+<reinhard> everything toolbar, button, menu
+<jamest> if we do that with the toolbar I think maybe it souldn't be required though
+<jamest> as originally i was of the mindset that toolbar had to link to a menu item
+<jamest> thus the events
+<jamest> but I think it bad form now
+<jamest> i think the enable/disable of a trigger would be handy
+<jamest> in more than just those cases
+<jamest> as you could flip optional processing on/off via a checkbox on a form via a trigger disabling another named trigger
+<jamest> but in that case an exception would be unwanted
+<reinhard> I wouldn't consider that clean style actually
+<reinhard> I'd rather check the value of the check box in the trigger code
+<jamest> ok
+<jamest> makes sense
+*** johannesV_ has joined #gnuenterprise
+*** johannesV has quit IRC
+*** yure has quit IRC
+*** yure has joined #gnuenterprise
+*** derek has joined #gnuenterprise
+*** yure has quit IRC
+*** jcater has left #gnuenterprise
+*** dimas has joined #gnuenterprise
+*** jcater has joined #gnuenterprise
+*** klasstek has joined #gnuenterprise
+*** yure has joined #gnuenterprise
+*** derek has quit IRC
+*** derek has joined #gnuenterprise
+*** johannesV_ has quit IRC
+<reinhard> jamest: the more I think about menus and toolbars, the more I see them bound rather tightly to triggers
+*** sacha has quit IRC
+<jcater> I may have a slightly damaged mac mini soon up for grabs
+<jcater> and by "slightly" I mean, it'll have a sledge hammer in the middle of it
+<reinhard> they will fire triggers, they will follow trigger's enabling/disabling
+<reinhard> jcater: lol
+<reinhard> ... they might even get label and help text from triggers (so a menu item and its corresponding toolbar button will get the same label/tooltip)
+<reinhard> so I'm starting to think if implementation of GMenu, GMenuItem and GToolButton would feel well in the logic/ subdirectory
+<reinhard> what do you think, jamest/jcater?
+<jcater> fwiw, this is how designer does it
+<jcater> and how I was moving forms to do it
+<reinhard> is the full moon night already doing harm on my brain?
+<jcater> with it's Actions
+<jcater> and basically is how QT does it
+<jcater> (except they all have "Events" instead of "Triggers")
+<reinhard> yeah I think I remember good ol' Delphi having "Actions" where we have named triggers
+<jcater> so I think having one object that represents any type of such "action" makes sense
+<jamest> reinhard: and a form will be able to override a trigger to replace say the "commit" action
+<reinhard> but other than that, it was the same system
+<jamest> that would be handy in my case
+<jcater> it also handles "hot keys"
+<jcater> so Alt-F2 or the Menu option or the Toolbar icon
+<jcater> are all the same object
+<jcater> my only concern is are we overloading triggers too much
+<jcater> do we need something that is to triggers
+<jcater> like blocks are to datasources
+<reinhard> I don't think so
+<jcater> I'm not as convinced
+<reinhard> actually I stumble over block vs. datasources issues quite often :-)
+<jcater> but could be swayed
+<jcater> (i.e., I don't feel so strongly about it I'm going to argue and get in any one's way :)
+<reinhard> I see no need to add a GAction or something like that in between if that is what you mean
+<reinhard> but then I probably don't have the same experiences as you
+<jcater> that is basically what I was meaning, yes
+<reinhard> so if you think something could be helpful for me to understand the potential issues
+<reinhard> you see
+<jcater> mine is that it seems to not be a very clean design decision moreso than it'd be hard to implement
+<jcater> lots of apps have triggers
+<jcater> but only forms (and maybe navigator)
+<jcater> would it make sense for the menu/toolbar/ui stuff to appear
+<jcater> I'm not sure if I'm making sense
+<jcater> hang on .... users
+<chillywilly> slap 'em
+<jcater> chilly: OSHA seems to have a problem with that
+<jcater> unsafe environment and all
+<jcater> I told them I would wear wrist supports if I get too sore, though
+<jamest> lol
+<reinhard> hmmmm
+<reinhard> maybe our common handling of named and event-based triggers is the confusing thing
+<reinhard> not sure if I make sense either, but
+<reinhard> a straightforward logic might have been
+<reinhard> <action name="myproc">
+<reinhard>   ... python code ...
+<reinhard> </action>
+<reinhard> <entry>
+<reinhard>   <trigger type="ON-FOCUSOUT" action="myproc" />
+<reinhard> </entry>
+<reinhard> <menu>
+<reinhard>   <menuitem label="do it" action="myproc" />
+<reinhard> <menu>
+<jcater> hmm, maybe we have different views of what a named trigger is... to me it's shared trigger code, but still a trigger
+<jcater> in essence, a trigger tied to a custom event
+<reinhard> ok
+<reinhard> to me it was a random function called at different events
+<jcater> wait
+<jcater> going back to your example though
+<reinhard> possibly also influenced by numerous questions asked here about "how can I call a named trigger within the python code of another trigger"
+<jcater> maybe I was misunderstanding what you were after
+<jcater> can you add to your example how a toolbar would be defined, if you were to define it?
+<reinhard> <toolbar>
+<reinhard>   <toolbutton icon="foo.jpg" action="myproc" />
+<reinhard> <toolbar>
+<jcater> okay, then forget I ever said anything... we are on the same wavelength
+<reinhard> sure?
+<jcater> what I misinterpreted you to want
+<jcater> (I made too many assuptions, I guess :)
+<jcater> was something like:>?
+<jcater> like:
+<jcater> <trigger name="mytrigger" label="Tool Label" toolbar_location="some markup" menu_location="some markup">
+<jcater>    ....
+<jcater> </trigger>
+<jcater> which is why I was arguing against overloading the "trigger" so much
+<reinhard> ah no
+<reinhard> wel
+<reinhard> well
+<reinhard> if we ditch the <action> (which was more like a thought experiment) it would be like
+<reinhard> <trigger name="mytrigger" label="Print invoice" icon="print.jpg">
+<reinhard>   ... python code ...
+<reinhard> </trigger>
+<reinhard> <menu>
+<reinhard>   <menu trigger="mytrigger" />
+<reinhard>   menu trigger="othertrigger" />
+<reinhard> </menu>
+<reinhard> <toolbar>
+<reinhard>   <toolbutton trigger="firstbuttontrigger" />
+<reinhard>   <toolbutton trigger="mytrigger" />
+<reinhard>   <toolbutton trigger="othertrigger" />
+<reinhard> </toolbar>
+<reinhard> but then again, I think I might even feel better too if the first was <action> instead of <trigger>
+<reinhard> but that would possibly mean replacing the concept of named triggers by <action>s
+<reinhard> could someone please slap me?
+<reinhard> also we might want simple ways of doing quick'n dirty menu items like
+<reinhard> <menu label="Print invoice">
+<reinhard>   ... python code ...
+<reinhard> </menu>
+<reinhard> ?
+<jcater> well
+<jcater> what I would foresee
+<jcater> is that menu/toolbars, etc, fire an on-action trigger
+<jcater> so
+<jcater> <menu label="Print Invoice">
+<jcater>   <trigger action="on-action">
+<jcater>    ...
+<jcater> but
+<jcater> <menu label="Print Invoice" action="mytrigger"/>
+<jcater> would be shorthand for
+<jcater> <menu label="...">
+<jcater>   <trigger action="on-action" src="mytrigger"/>
+<jcater> taking that philosophy gives menus/toolbars all the same functionality/options as anything else that can have a trigger assigned to it
+<jcater> I wanted buttons to work the same way, but not sure if it got that far in implementation
+<reinhard> and what about named triggers getting label and icon attributes?
+<reinhard> that will be "inherited" by the menu items and toobar buttons?
+<reinhard> do you think this is a good idea?
+<jcater> I have mixed feelings
+<jcater> it sure would simplify coding
+<jcater> both for developers and when hand-writing XML :)
+<reinhard> hmmm.... maybe decide that later
+<reinhard> and what I originally wanted to ask
+<reinhard> would you consider it a good idea to put this menu/toolbar handling code into gnue-common/src/logic ?
+<reinhard> as the ties between menu/toolbar and triggers are rather tight
+*** sjc has joined #gnuenterprise
+<jcater> okay
+<jcater> you've gotten my mind going in 100 different directions now
+<reinhard> nice
+<reinhard> so you're finally following me ;-)
+<jcater> what I now wish we had done
+<jcater> (and might could still do without any breakage)
+<jcater> any trigger should be able to be named
+<jcater> without having to be a "named" trigger
+<jcater> if you take that one step further
+<jcater> and trigger that doesn't have an action
+<jcater> is just an unbound trigger
+<jcater> a trigger that does have an action
+<jcater> is a bound trigger
+<jcater> since names are supposed to be unique
+<jcater> in any trigger I should be able to fire any other trigger with a name by that name
+<jcater> not just by using the "fireTrigger(form.block.field,'on-new-record')" (I forget how a trigger can fire another trigger on a specific object, but I know there's a way)
+<jcater> but as far as how this relates to what you're talking about with menus/toolbars/actions/etc
+<jcater> I'm not sure those don't deserve their own object tag/type (action?) that subclasses the same "logic" code that a trigger uses
+<jcater> so you would have actions, which appear at the root level of the object
+<jcater> or triggers that are code tied to events
+<jcater> (even if indirectly when two events need to share the same code)
+<jcater> um
+<jcater> I was going somewhere with all of that
+<jcater> but I forget where
+<reinhard> but then, what would be the difference between a named trigger and an action?
+<jcater> scope/relationship to the logical document
+<jcater> implentation-wise? very little
+<jcater> they'd share mostly the same code base
+<reinhard> named triggers appear at the root of the document, too
+<jcater> yes, but they wouldn't have to (though in most cases it would make sense)
+<jcater> let me do an example
+<jcater> (those speak 1,000 words)
+<reinhard> ok
+<jcater> (I'm just thinking outloud, btw... I hadn't given this a lot of thought)
+<jcater> (writing examples is hard)
+<reinhard> :)
+<reinhard> thinking again
+<jcater> http://www.gnuenterprise.org/~jcater/sample-trigger.txt
+<jcater> (damn users... will explain in a second)
+<reinhard> thinking about it... separating <trigger> and <action> is actually against the concept that "action" of a menu item is nothing more than a shortcut for an "ON-ACTIVATE" trigger
+<reinhard> what is a nice umbrella term for "menus" and "toolbars"?
+<jcater> user actions?
+<jcater> no
+<jcater> dunno
+<reinhard> commanders?
+<jcater> UI action elements?
+<jcater> cows?
+<reinhard> goats?
+<jcater> reinhard: I get the feeling we're the only ones here
+<jcater> crap, bbi1s
+<reinhard> user_actions
+<reinhard> I think that's best
+<reinhard> user_actions.py
+<reinhard> useractions.py
+<reinhard> actions.py
+<reinhard> hmmm..... now did we actually agree on *anything* afterall this discussion?
+<reinhard> ... reading the backlog...
+<reinhard> we agreed that we want the possibility to enable/disable triggers, which would enable/disable all buttons/toolbar buttons/menu items bound to that trigger [still pending whether that will be a trigger or an "action"]
+<jamest> i'll try and catch the logs on this tonight
+*** jamest has left #gnuenterprise
+<reinhard> and we somehow run in circles around the question whether
+<reinhard> a) a menu item has an ON-ACTIVATE trigger that is fired when the item is clicked, and that trigger is just a trigger like all other triggers, or
+<reinhard> b) there are <action>s, and a menu item is bound to an action, and gets info like icon, label, help text from that action element, and an action is, while in implementation closely related to a trigger, something completely different in philosophy
+<reinhard> the more I think about it the more it seems to me these are diametral concepts
+<reinhard> I tend to lean towards b), as there are some conceptual differences indeed, like icon/label/helptext, possibility to enable/disable
+<reinhard> and consequently buttons would be bound to an <action> rather than having an ON-ACTIVATE trigger (which would of course be supported for compatibility)
+<reinhard> ---
+<reinhard> ok, committed what I have so far, which is not much as I spend most of the time discussing and thinking instead of coding...
+<jcater> holy crap
+* jcater starts reading
+<jcater> reinhard: b is what I was describing
+<jcater> which, yes, is diametrically opposed to my first description of (a)
+<jcater> (I should've said that earlier)
+<jcater> the more I think about it
+<jcater> the more I really like (b)
+<jcater> it seems like a clean distiction as far as the definition of our markup
+<reinhard> ok
+<reinhard> I also lean towards b)
+<reinhard> but I would also like to see the possibility of a trigger pointing to an action
+<reinhard> and also a possibility to do "myAction.run()" in any trigger code (i.e. add actions to the global trigger namespace and give them a "run" trigger function)
+<reinhard> does this still match your concept?
+<jcater> definitely
+<reinhard> excellent
+<reinhard> I think we are on the same page then
+<reinhard> and I will move forward in that direction
+<jcater> reinhard: but you realize in a week I will have changed my mind again, right?
+<reinhard> :)
+<jcater> reinhard... this is completely off the subject
+<jcater> and I'm sure it's been discussed ad nauseum while I was preoccupied with work
+<jcater> but how far are we featurewise from considering a 1.0 release?
+<jcater> forms is getting a lot of work by you and johannes, so obviously that would need to happen first
+<jcater> I only ask because I see so many projects where our 0.6 is comparable to their 1.6 or even 2.6
+<jcater> I'm not sure if I care if we ever make it to 1.0, since as a developer it doesn't affect me on whether I'm using it or not
+<reinhard> there is one psychological thing here for me
+<reinhard> as long as we are 0.x I feel like having the right to break compatibility
+<reinhard> as soon as we are 1.0 I think we morally have the obligation to stay compatible with every single feature or misfeature that is in the code
+<reinhard> I seriously would like to see a 0.9 or comparable being in use for > 6 months without much happening
+<reinhard> so we know it's stable enough
+<reinhard> stable as in "no bugs" and stable as in "no features about to be added that would break things"
+<reinhard> but then again, I've always taken a highly conservative approach on such things
+<jcater> okay
+*** yure has quit IRC
+<reinhard> good night all
+*** reinhard has quit IRC
+*** jcater has quit IRC
+*** jamest has joined #gnuenterprise
+*** bigbrother_ has joined #gnuenterprise
+*** chillywilly has quit IRC
+*** derek has quit IRC
+*** klasstek has quit IRC
+*** ajmitch has quit IRC
+*** nickr has quit IRC
+*** bigbrother has quit IRC
+*** ncjp has quit IRC
+*** bigbrother` has quit IRC
+*** derek has joined #gnuenterprise
+*** klasstek has joined #gnuenterprise
+*** chillywilly has joined #gnuenterprise
+*** ajmitch has joined #gnuenterprise
+*** bigbrother has joined #gnuenterprise
+*** ncjp has joined #gnuenterprise
+*** nickr has joined #gnuenterprise
+*** bigbrother` has joined #gnuenterprise
+*** chillywilly has quit IRC
+*** klasstek has quit IRC
+*** ajmitch has quit IRC
+*** nickr has quit IRC
+*** derek has quit IRC
+*** bigbrother` has quit IRC
+*** bigbrother has quit IRC
+*** ncjp has quit IRC
+*** derek has joined #gnuenterprise
+*** klasstek has joined #gnuenterprise
+*** chillywilly has joined #gnuenterprise
+*** ajmitch has joined #gnuenterprise
+*** bigbrother has joined #gnuenterprise
+*** ncjp has joined #gnuenterprise
+*** nickr has joined #gnuenterprise
+*** bigbrother` has joined #gnuenterprise
+*** chillywilly has quit IRC
+*** klasstek has quit IRC
+*** ajmitch has quit IRC
+*** nickr has quit IRC
+*** derek has quit IRC
+*** bigbrother` has quit IRC
+*** bigbrother has quit IRC
+*** ncjp has quit IRC
+*** derek has joined #gnuenterprise
+*** klasstek has joined #gnuenterprise
+*** chillywilly has joined #gnuenterprise
+*** ajmitch has joined #gnuenterprise
+*** bigbrother has joined #gnuenterprise
+*** ncjp has joined #gnuenterprise
+*** nickr has joined #gnuenterprise
+*** bigbrother` has joined #gnuenterprise
+*** chillywilly has quit IRC
+*** chillywilly has joined #gnuenterprise
+*** sjc has quit IRC
+*** derek has quit IRC
+*** derek has joined #gnuenterprise
+*** klasstek has quit IRC
+*** jamest has quit IRC
+*** klasstek has joined #gnuenterprise

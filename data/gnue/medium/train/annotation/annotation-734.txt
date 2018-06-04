@@ -1,0 +1,82 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.27Oct2002" enddate="26 Oct 2002 23:00:00 -0800" startdate="26 Oct 2002 23:00:00 -0800" subject="[IRC] 27 Oct 2002" title="n-tier vs. 2-tier - when not to use Application Server?">
+
+<topic>Application Server</topic>
+<topic>Why GNUe?</topic>
+
+<p>Thinking further about some of the issues from 
+<kcref subject="[IRC] 21 Oct 2002" title="Javascript forms client" />, 
+Charles Rouzer (Mr_You) asked <quote who="Charles Rouzer">does 
+trigger code get executed on clients and appserver or 
+both?</quote>. Andrew Mitchell (ajmitch) said 
+<quote who="Andrew Mitchell">mostly clients, depends on the form - 
+not sure how well appserver does triggers at the moment, would 
+have to ask siesel or reinhard</quote>. Charles noted that 
+Jan Ischebeck (siesel) had said that <quote who="Jan Ischebeck">the 
+important trigger/business logic/consitence checking etc. should
+be done in appserver, in case of javascript AND python 
+clients.</quote> Andrew agreed - <quote who="Andrew Mitchell">so 
+that'd be remote triggers in appserver - there might be some stub 
+code for calling that within the forms - i am not certain - just 
+requires a simple xml-rpc call, i guess.</quote> However, 
+<quote who="Andrew Mitchell">it depends on the forms - most forms 
+now have inline python triggers - but hopefully they'll move away 
+from that</quote>. Charles said that <quote who="Charles Rouzer">the 
+best route for the javascript client will be XMLRPC only</quote>.</p>
+
+<p>Jason Cater (jcater) said <quote who="Jason Cater">that's going to 
+be sooo damn much overhead - having remote-only triggers - can you 
+imagine the communications between client and server for every 
+single keystroke, etc</quote>. Charles said 
+<quote who="Charles Rouzer">X has high overhead  but people still 
+use it ;-)</quote>. Jason said that, where an X server was 
+shared among many clients, it was normal to have multiple/back-up
+servers to avoid <quote who="Jason Cater">a SINGLE point of 
+failure</quote>. Charles asked <quote who="Charles Rouzer">so how 
+do you propose high avaibility appserver?  ;-)</quote> Jason said 
+<quote who="Jason Cater">why do you assume I'd ever use appserver?
+I think it's great people are wanting it and writing it - 
+but that doesn't translate into me ever using it</quote>. 
+Using an application server simply added another point of failure 
+to the system. The same argument could in extremis be applied to 
+the database server as well, but database servers added more value 
+and there were hardware and software solutions for high-availablity 
+of database servers already. He <quote who="Jason Cater">went the 
+route of having middleware and my</quote> High Availability (HA) 
+<quote who="Jason Cater">went &lt;poop&gt; :)</quote>. 
+He was <quote who="Jason Cater">not thrilled about GNUe requiring 
+an appserver for all the accounting stuff - not thrilled at all
+but that's not my call</quote>. Charles said 
+<quote who="Charles Rouzer">ahh well you just use triggers for 
+business logic?</quote> Jason felt this was part of what triggers 
+were for in the first place. Charles said that 
+<quote who="Charles Rouzer">appserver could provide HA capabilities 
+at some point</quote>, but that was not the point - high-availability 
+<quote who="Charles Rouzer">is expensive and not normally available 
+to small biz</quote>, so avoiding Application Server to maintain 
+HA was unnecessary. Jason said <quote who="Jason Cater">for a small 
+business, you are adding yet one more layer that can, and at some 
+point will, go wrong - /me works for a small biz - it's a statistics 
+game - the more layers you add that can go down, the more often you 
+go down. In my mind - until you have multiple database servers - 
+something like an application server isn't gaining you anyhing
+but rather costing you</quote>. He felt that the 
+<quote who="Jason Cater">current trend toward middleware</quote> 
+was not <quote who="Jason Cater">looking at historical evidence
+and case studies. For some, middleware makes sense. But I see more 
+times than not these days, "if it's not N-tier, how on earth am I 
+supposed to use it" - Enterprises were successfully doing 2-tier 
+(and even 1-tier) long before n-tier</quote>.</p>
+
+<p>Daniel Baumann (chillywilly) said 
+<quote who="Daniel Baumann">appserver should only have 
+object/business rules in it not "triggers" as in ui events 
+imho</quote> - <quote who="Daniel Baumann">triggers for forms is 
+not necessarily methods/triggers for the appserver - as I agree 
+with jcater you don't want frelling rpc calls for every little ui 
+interaction</quote>. <quote who="Daniel Baumann">then again how 
+often does a form hit the db? not on every single trigger does 
+it? I don't think it works that way...</quote>.</p>
+
+</section>
+
+

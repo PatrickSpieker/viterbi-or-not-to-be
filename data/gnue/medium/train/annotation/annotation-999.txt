@@ -1,0 +1,250 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.15Nov2002" enddate="19 Nov 2002 16:00:00 -0800" startdate="14 Nov 2002 16:00:00 -0800" subject="[IRC] 15 Nov 2002" title="Merging GNUe and Papo CVS code">
+
+<topic>Common</topic>
+<topic>Forms</topic>
+
+<p>Marcos Dione (StyXman) was <quote who="Marcos Dione">finishing 
+the merge</quote> to include all the changes to GNUe's CVS in 
+Papo's CVS. <quote who="Marcos Dione">but I want to be sure we 
+didn't break anything. should I use the samples to test, and that 
+would be enough, or are better test somewhere else?</quote> 
+James Thompson (jamest) said <quote who="James Thompson">i think the 
+samples are fine - once you've merged can you get us a list of 
+differences between your code and ours</quote>.</p>
+
+<p>Later, Marcos noted that <quote who="Marcos Dione">almost all the 
+DBdirver.py's have the same $driver_DataObject_Object._buildQuery 
+method - they're all the same (ok, just the first few ones)</quote>. 
+Derek Neighbors (derek) commented <quote who="Derek Neighbors">good 
+eyesight you have young jedi</quote>. Marcos suggested 
+<quote who="Marcos Dione">why not move it to DBSIG_DataObject_Object 
+or above?</quote> Jason Cater (jcater) said <quote who="Jason Cater">if 
+you look closer, they can't be moved up - this is forcing the DO to not run 
+the parent's DO, but a second parent's one</quote> - 
+<quote who="Jason Cater">/me remembers hating to do that, but it was 
+necessary</quote>. Marcos noted he had to change this in each of the 
+16 database drivers.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.18Nov2002">
+Some days later</a>, 
+Marcos asked <quote who="Marcos Dione">what would 
+be that 'kstructural changes'that you tal about in (one of) your last 
+commit?</quote> Derek Neighbors (dneighbo) speculated 
+<quote who="Derek Neighbors">evil doings :)</quote>, mainly the 
+<quote who="Derek Neighbors">seperation of logic and layout</quote>, 
+as discussed in <kcref subject="[IRC] 15 Nov 2002" title="Feature plans for 0.5.0 and later" />. This made it even 
+urgent to <quote who="Derek Neighbors">merge our trees (i had hoped 
+you would have merged for 0.4.1 release) - but if you guys dont hop on 
+it in next day or two it will likely be really BAD - i.e. the guts will 
+change significantly and merging will be near impossible</quote>. 
+Marcos said <quote who="Marcos Dione">I can send the big patch 
+*now*</quote>. James asked 
+<quote who="James Thompson">does it have to be one huge patch?</quote> 
+Marcos said he could <quote who="Marcos Dione">(try to) separate it in 
+functional patches</quote> but that would take some time. James said to 
+send it anyway. Marcos disclaimed <quote who="Marcos Dione">some features 
+added are maybe deprecated. those you think are ugly, pleasse feel fre 
+to discuss them either in your mailing list or in ours.</quote> Marcos 
+sent the main large patch as a single 143k diff file to James for 
+review.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.19Nov3003">
+The next day</a>, Marcos noted that <quote who="Marcos Dione">the 
+simplest of our patches</quote> had now been applied to the main 
+GNUe code tree. James said he had some queries on the other 
+parts of the patch. Marcos explained that 
+<quote who="Marcos Dione">genericBox is for asking questions with 
+more options than 'yrs' and 'no'</quote>, whilst 
+<quote who="Marcos Dione">atomic* is to make sure only one person 
+can modify a what-would-be-called database register at a 
+time</quote>. James asked <quote who="James Thompson">could the same 
+result be accomplished by adding an atomic="" to the datasource 
+tag</quote>? Marcos said it was more subtle that that - by applying it 
+to an individual entry, <quote who="Marcos Dione">only that entry must 
+be atromic. the others may not be midified atomically</quote>. 
+This was called from a trigger - he pasted an example.
+James explained <quote who="James Thompson">the reason I ask this is 
+that we want datasources to support record locking which this appears 
+to be - if we were to add a atomic or locking="" attribute to a 
+datasource that locked records after they were modified - would that 
+serve the same purpose? and I think it may require less work on the 
+trigger writters part :)</quote>.</p>
+
+<p>Earlier, James noted that 
+<quote who="James Thompson">function calls in python are a hideous 
+performance hit - we switched from a getFoo() to self._foo with the 
+_ meaning private</quote>. They had not realised this at first 
+either! Later, John Lenton (Chipaca) said 
+<quote who="John Lenton">how is less than 10% a 
+major performance hit? or, how is less than 10% reason enough to 
+through the whole OO thing out the window?</quote> James 
+said <quote who="James Thompson">that 10% isn't much on 
+occasional calls but our UI system had lots of such things going 
+on</quote>. Jason felt that 
+<quote who="Jason Cater">self._form is as much OO as 
+self.getForm() - just maybe not by the java definition</quote>. 
+John said <quote who="John Lenton">I have no problem wiht self.form, 
+in fact, I kind of like it. It's the /^_/ that bothers us, as that 
+is always an indication of "this is private" - and in fact you agree
+- but then you expect people to call that, so it's no longer 
+private</quote>. Jason said that the underscore prefix in code was used 
+to indicated that something <quote who="Jason Cater">is considered 
+to be a settable attribute - ala XML files</quote>. It was only 
+in the context of the connections.conf config file that it meant 
+"private." James said <quote who="James Thompson">i don't think we 
+have a hardfast rule on private</quote>.</p>
+
+<p>Earlier, James asked whether they had got scrollbars 
+<quote who="James Thompson">working with gridlayouts now?</quote>.
+Marcos explained <quote who="Marcos Dione">scrollbars associate to 
+its surrounding block. - they 'register' to them - so, when the data 
+source is updated, and the block is notified, the scrollbar gets 
+updated too. what I can't make work is 'free scrolling'. wx is very 
+ugly reporting these ind of events</quote>.</p>
+
+<p>James also noted <quote who="James Thompson">you exposed some gnue 
+internals via some of those trigger functions - i was wondering why?
+i know we did hacks like this at one time - but started to try to move 
+away from them as internals can change and will alot :) So if we can 
+figure out what is making you have to drop to internal levels we can 
+adust the code - every time I've done this the workaround makes the 
+triggers easier to maintain :)</quote> He was aiming to 
+<quote who="James Thompson">get a fair bit of this in for 0.4.2 but 
+not all of it - as I'm pressed for time and have other bugzzz to 
+address ;)</quote></p>
+
+<p>Marcos said <quote who="Marcos Dione">I guess you're also puzzled 
+by that history tables thing...</quote> Derek Neighbors (revDeke) said
+<quote who="Derek Neighbors">i think your history tables need to be 
+implemented as tables and triggers and not embedded in forms (read 
+hardcoded) - i had same need for gnue-sb - was going to do all in 
+triggers though there has been talk of making some 
+'convience functions' for such things so triggers would be nice and 
+clean</quote>. To save recoding the trigger for every field, 
+<quote who="Derek Neighbors">you should be able to make it a shared 
+trigger and just reuse it</quote>. Jason said that 
+they had not wanted to use papo's solution as the general GNUe 
+solution for transaction/history tables because 
+<quote who="Jason Cater">we can't have harcoded schemas in 
+common</quote>. Derek agreed - <quote who="Derek Neighbors">not 
+everyone wants it - and HARDCODING it is not a solution</quote>. 
+Marcos said <quote who="Marcos Dione">we done it that way because 
+appserver (what would like to use) was not available when we 
+started coding things</quote> in a stable version. But he felt 
+papo <quote who="Marcos Dione">we can live with an external patch 
+'till we recode, I gues...</quote>.</p>
+
+<p>Derek said that <quote who="Derek Neighbors">after this merge 
+there will need to be some ground rules</quote>. He wanted to avoid 
+papo having to maintain a seperate CVS, and would prefer patches 
+function-by-function, rather than mega-patches like the current 
+one. Marcos agreed - <quote who="Marcos Dione">remember that the 
+patch was sent 'as is', as I had no time to filter out what I 
+thought it won't get anyways.</quote> Derek said 
+<quote who="Derek Neighbors">we are willing to do what it takes 
+to merge the repositories best we can - but we dont want 
+'resyncing' to be a regular thing... we want one repository and 
+patches :)</quote> Marcos, as the person responsible for 
+re-syncing, was fully in agreement!</p>
+
+<p>Later, John said <quote who="John Lenton">We really, really 
+need some way to tell when it's ok to go in and use 
+the stuff and when we must write an accessor for it</quote>. 
+Jason said <quote who="Jason Cater">if there's not an accessor 
+now, then we didn't intend for it to have one</quote>. 
+James said <quote who="James Thompson">if it requires any type 
+of logic at all to get what you require then you need an 
+accessor</quote>.</p>
+
+<p>Earlier, Derek emphasised that quibbles like this 
+on papo's patch was not a rejection of the functionality - just some 
+concerns over how it had been implemented. James agreed - 
+<quote who="James Thompson">dude, there's some cool stuff in that 
+patch</quote> - <quote who="James Thompson">I'm happy to see a 
+working scrollbar setup</quote> for example, and 
+<quote who="James Thompson">you're menubar patches inspired jcater 
+to add trigger to flip them off and on (I think)</quote>. 
+Also, <quote who="James Thompson">the whole atomic* stuff has me 
+seriously looking at replacing the TODO lock record here crap in 
+datasources</quote>.</p>
+
+<p>Earlier, Derek wondered if some of the issues with the patch were 
+just a matter of personal coding style - like where to put braces or 
+how much indentation to use. John asked about indentation. Jason said 
+<quote who="Jason Cater">we are actually *very* standardized on 
+indentation... any variancies are oddities that someone likely 
+committed - we do two space indents, with no tabs</quote> - 
+<quote who="Jason Cater">I don't think we want patches that do 
+nothing but fix indentation levels - but that is what we try to 
+code at</quote>. John said he would make this the standard for 
+future papo patches.</p>
+
+<p>Later, Jason asked what the new <quote who="Jason Cater">&lt;entry 
+style="textlookup"&gt;</quote> was for - it seemed to be just the 
+sames a label. John explained <quote who="John Lenton">textlookup _is_ 
+a label, except that it goes and fetches the labelee in a dictionary 
+table - rather like a cross between label and dropdown - the name 
+might be less than perfect... but we couldn't find anything better 
+:)</quote>. James asked <quote who="James Thompson">how large are the 
+dictionaries this thing is pulling from ?</quote> John said 
+it was typically used where doing a normal query would involve 
+bringing back many rows of un-needed data. James agreed - 
+<quote who="James Thompson">if we did this via a normal datasource 
+with prequery="" and the result set it huge we kill memory (a 
+shortcomming on our end)</quote> - but <quote who="James Thompson">if 
+we're scrolling thru a partlist and it's having to pull 
+the values each time from the backend the UI would get choppy 
+(a shortcomming of the way you've set it up, i think)</quote>. 
+However, <quote who="James Thompson">our datasources already have a 
+very stupid cache system built in</quote> which could help. 
+Alternatively, <quote who="James Thompson">this could easily be 
+accomplished as a post-change trigger via the simpleQuery function 
+(i think)</quote> or <quote who="James Thompson">could we merge the 
+concepts and use the datasources for now and concentrate on improving 
+the cache system in datasources</quote> long term. Jason said that, 
+<quote who="Jason Cater">for *this* particular case</quote>, the 
+first way of doing it was the best <quote who="Jason Cater">although 
+I do want to see cache system improvements</quote>.</p>
+
+<p>Jason also suggested using the "foreign key refresh" 
+functionality recently added for dropdowns, triggered by the 
+on-change trigger. John asked how this would work. James 
+suggested <quote who="James Thompson">it'd be a style=label with 
+the same attribs as a dropdown?</quote> John asked 
+<quote who="John Lenton">wouldn't that amount to overloading of 
+label?</quote> - not that overloading was necessarily bad. 
+James said this <quote who="James Thompson">allows a uidriver that 
+doesn't know how to deal w/ style=dropdown to still display a 
+normal entry</quote> - such as <quote who="James Thompson">the old, 
+forgotten curses driver - it didn't do dropdowns but it did handle 
+entries - our sample form had a dropdown where I could select Kansas 
+in the dropdown - the text client let me type ks</quote>, degrading 
+gracefully.</p>
+
+<p>John said that <quote who="John Lenton">another reason for not 
+fetching everything is that these things might change between the 
+first fetch and the time one wants to display them, so in effect you 
+have to fetch it every time anyway</quote>. James agreed -
+<quote who="James Thompson">/me understands that you want the field 
+to update if the backend data changes</quote>. John said 
+<quote who="John Lenton">this is taking one more step down the road 
+of "dropdowns need their own datasource"</quote>. Jason said this 
+was the case anyway - <quote who="Jason Cater">all references to a 
+database are done via a datasource - when you consider what all else 
+datasources can do this opens up a lot of possibilities - e.g., with 
+our static datasources - we can have combo boxes that pull from a 
+static set of values defined within the form, not pulled from a 
+table - that's just one example - remember we are abstracted from a 
+relational database</quote>.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.20Nov2002">
+The next day</a>, James apologised for not getting more patches 
+applied yet. Marcos was not worried - he said he had printed off 
+James' comment about "some cool stuff in that patch" 
+<quote who="Marcos Dione">in big black letters</quote> -
+<quote who="Marcos Dione">we're gonna get that sheet of paper 
+framed :)</quote>.</p>
+
+</section>
+
+

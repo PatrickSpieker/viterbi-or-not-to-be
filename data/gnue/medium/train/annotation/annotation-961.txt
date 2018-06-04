@@ -1,0 +1,48 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.2006-04-14" author="Peter Sullivan" contact="mailto:psu@burdonvale.co.uk" enddate="15 Apr 2006 12:00:00 -0800" startdate="14 Apr 2006 12:00:00 -0800" subject="[IRC] 14 Apr 2006" title="Trigger namespace in Forms">
+
+<topic>Forms</topic>
+
+<p>Reinhard M&#252;ller (reinhard) noted that 
+<quote who="Reinhard M&#252;ller">each object in the trigger 
+namespace has a _parent property - do you make use of that 
+in any way?</quote> James Thompson (jamest) said that he 
+did not use this when coding his triggers - 
+<quote who="James Thompson">i believe i always use absolute 
+reference from form</quote> in the format 
+<quote who="James Thompson">form.block.field</quote>. 
+Reinhard also asked <quote who="Reinhard M&#252;ller">I 
+figure that you also don't make use of the _object property 
+of trigger objects that let you directly access the GObj 
+object that should actually be hidden behind it</quote>. 
+James confirmed this - he personally had never 
+been keen on this, but it had been <quote who="James Thompson">added 
+for papo folks</quote>, as previously discussed in several threads, including 
+<kcref subject="[IRC] 02 Jan 2003" title="Project PAPO and GNUe" />.
+</p>
+
+<p>James explained that <quote who="James Thompson">i see the trigger 
+namespace as ideally being a restricted python environment with 
+control over imports</quote>, with code for triggers 
+<quote who="James Thompson">having no access to the GObjs, only to 
+instances of the class that implements the namespace representation 
+of that object in the trigger</quote>. He added 
+<quote who="James Thompson">there is a class that maps a var name 
+in the trigger to an object - and controlls access to that object 
+via the exposed properties - methods, etc</quote>. Reinhard 
+identified this as <quote who="Reinhard M&#252;ller">GObjNamespace - 
+exactly the class I'm cleaning up</quote> as of time of writing - 
+<quote who="Reinhard M&#252;ller">thus all these questions</quote>.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.2006-04-15">The 
+next day</a>, Reinhard noted that, previously, <quote who="Reinhard M&#252;ller">any 
+trigger got a copy of the __dict__ of the "self" object into its local 
+namespace - so for a block trigger, you could do either self.firstRecord() or 
+just firstRecord(). I removed that as I considered it a bug, but now I'm not 
+sure if it is wanted behaviour. In any case I don't like it very much as it 
+allows for sloppy programming - and it will most probably hurt the "support 
+for self in named triggers" todo item. Anyway, if anybody knows some 
+background why this was done, I'd be happy to know :)</quote></p>
+
+</section>
+
+

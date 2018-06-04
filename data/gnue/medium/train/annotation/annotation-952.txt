@@ -1,0 +1,40 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.27Feb2003" author="Arturas Kriukovas" contact="mailto:arturas@gsk.vtu.lt" enddate="27 Feb 2003 04:00:00 -0800" startdate="27 Feb 2003 04:00:00 -0800" subject="[IRC] 27 Feb 2003" title="Release plans and Case-Insensitive Queries">
+
+<topic>Common</topic>
+<topic>Small Business</topic>
+
+<p>Derek Neighbors (revDeke) asked whether there were going to be 
+Debian packages (debs) for 0.4.3 of gnue <quote who="Derek Neighbors">as 
+0.5.0 will probably be in the cooker a bit before its announced as stable 
+and we are getting ready to dig into gnue-sb pretty hard and it will 
+target 0.4.3 until 0.5.0 is stable</quote>.</p>
+
+<p>Derek was interested whether case insensitive queries in 0.4.3 would be
+implemented. James Thompson (jamest) answered negatively. Derek asked 
+<quote who="Derek Neighbors">will this be in 0.5.x? Or would it be too 
+rough to back port into 0.4.3</quote>? James was 
+<quote who="James Thompson">pretty sure it's a trivial addition - ilike 
+support needs added to the GCondition/Datasource</quote>. Derek thought 
+it probably should be <quote who="Derek Neighbors">a property in the 
+entry or datasource (or both)</quote>. Easier to implement should be 
+by form with a gnue.conf option (so it sets it for all forms). This would 
+be almost enough for now, and would work well with gnue-sb. Jeff Bailey 
+(jbailey) said <quote who="Jeff Bailey">my needs are mostly case 
+insensitive matches to company names and people's names.</quote> It 
+should be in the whole framework. Jason Cater (jcater) noticed that ilike 
+(case insensitive like) is not sql92 (<quote who="Jason Cater">it might 
+be sql99</quote>). Also, <quote who="Jason Cater">we can't just throw 
+in upper() into the queries</quote>. James said he had 
+<quote who="James Thompson">no issue with forms doing it as my own 
+users use mixed case data</quote>. Jeff offered pushing down to the DB 
+layer a flag so that each DB could do this it's own way. James had to 
+think about this more. Mike Vincent (Vee2d2) found the only solution for 
+oracle - <quote who="Mike Vincent">the use of lower() or upper() in 
+the query</quote>.</p>
+
+<p>Later, Derek asked what was the <quote who="Derek Neighbors">eta's 
+on 0.5.0</quote>. Jason said it would not be within 3 weeks.</p>
+
+</section>
+
+

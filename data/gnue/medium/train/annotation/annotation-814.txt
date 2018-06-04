@@ -1,0 +1,94 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.24Jun2002" enddate="23 Jun 2002 23:00:00 -0800" startdate="23 Jun 2002 23:00:00 -0800" subject="[IRC] 24 Jun 2002" title="Testing the 0.3.0 releases on Microsoft Windows">
+
+<topic>Designer</topic>
+<topic>Common</topic>
+
+<p>Andrew Mitchell (gnukiwi) and Stuart Bain (stbain) did some testing of 
+the *.exe versions of the 0.3.0 releases on Microsoft Windows. 
+Jason Cater (jcater) confimed there was not a common 0.3.0 exe, as it 
+was <quote who="Jason Cater">included in designer.exe and forms.exe</quote>. 
+Stuart reported that Designer <quote who="Stuart Bain">likes to save me the 
+trouble of closing designer whenever I</quote> tried to select a connection. 
+Derek Neighbors (dneighbo) suggested running Designer from the command line 
+<quote who="Derek Neighbors">and pass it --debug-level=10</quote> to see 
+what the error message was. Jason asked <quote who="Jason Cater">are you sure 
+it's a valid connections.conf entry?</quote> Derek said that Stuart's 
+connections.conf <quote who="Derek Neighbors">seemed somewhat sane - 
+but regardless even with a hosed connections.conf it shouldnt just crash 
+:)</quote> Stuart reported that the error message was 
+<quote who="Stuart Bain">Could not load MySQLdb</quote> - he had 
+<quote who="Stuart Bain">tried it with both 'localhost' and the IP 
+address</quote>. Jason said that the Windows executables should have support
+for <quote who="Jason Cater">odbc, mysql, pypgsql</quote> compiled in.</p>
+
+<p>Derek said <quote who="Derek Neighbors">fwiw we have had lots o issues with 
+mysql driver</quote>. Stuart suggested trying the ODBC driver in the meantime.
+Andrew reported that <quote who="Andrew Mitchell">mysql odbc driver has 
+issues on current debian</quote>. Jason noted that the README for the 
+ODBC driver, <quote who="Jason Cater">written by Marc-Andr&#233; Lemburg</quote> 
+advised that <quote who="Jason Cater">1. This driver has not been fully 
+tested.  If you are successfully using this driver, please let us know.
+2. This driver does not yet support schema introspection, so you will not
+be able to use Wizards in GNUe Designer.</quote> Stuart confirmed 
+<quote who="Stuart Bain">you're right... no Wizards</quote>. Andrew 
+asked <quote who="Andrew Mitchell">so who's going to add introspection 
+support to the ODBC driver then?</quote>. However, standard ODBC did not 
+support introspection at all, and Jason said that <quote who="Jason Cater">the 
+underlying odbc driver (C driver)</quote> that was being used 
+<quote who="Jason Cater">doesn't support the ODBC extensions</quote> to 
+support introspection - <quote who="Jason Cater">so until someone sends them 
+a patch, not much we can do :)</quote> This might be a good project for 
+any fans of C who had been put off contributing to GNUe by its python-based 
+culture.</p>
+
+<p>Stuart said <quote who="Stuart Bain">I Think I may see the 
+problem</quote> - he had python already installed, 
+<quote who="Stuart Bain">and it looks like it's picking up the Python in 
+c:\Python21 and trying to use the MySQL driver from there</quote>. 
+Jason said that the <quote who="Jason Cater">McMillan installer should pickup 
+our drivers before searching the python path</quote>. Stuart said he had
+<quote who="Stuart Bain">no PYTHONPATH set - but I'm betting there are 
+some registry entries</quote>. Andrew reported <quote who="Andrew Mitchell">the 
+same 'Cannot load MySQLdb' error - and this is on a clean box, no other python 
+stuff installed</quote>. Stuart wondered if <quote who="Stuart Bain">py2exe 
+embedded that path somehow</quote> as <quote who="Stuart Bain">it's 
+referencing libraries in c:\python21\gnue\ that I uninstalled before I 
+downloaded the .exe installers today</quote>.</p>
+
+<p>Stuart said that the ODBC drivers were working fine, but Designer 
+without introspection was a bit pointless. Derek said that the 
+<quote who="Derek Neighbors">other option is to install from source - 
+please remember these are developer releases and none of the developers 
+use windows - we put up preleases and begged people to test - you just 
+happen to be one of the first to test mysql on windows for 0.3.0 
+:)</quote></p>
+
+<p>Stuart reported that <quote who="Stuart Bain">I can't 
+even edit the properties of any widgets</quote>. Derek said 
+<quote who="Derek Neighbors">i believe that is a wxwindows scrollbox 
+issue - if you move the property editor to upper left of your screen
+then make it large enough that all scrollbars disappear - 
+i will bet you can edit properties</quote>. He noted 
+<quote who="Derek Neighbors">this behavior is pretty erratic
+and so its hard for us to submit bugs to wx on it i.e. we are trying ot 
+isolate to see if its us being stupid or real bugs in wx - fwiw: windows 
+and certain themes in linux seem to make it more consistent :)</quote>.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.25Jun2002">
+The next day</a>, Andrew reported the same problem -
+<quote who="Andrew Mitchell">none of the text widgets seem editable, so i 
+can't change labels, names, etc :) - (this only on winXP, on a decent OS it 
+works fine)</quote>. Derek siad <quote who="Derek Neighbors">take your property 
+editor - move it to upper left corner of your desktop - then make it big enough 
+that all scrollbars disappear</quote>. He added <quote who="Derek Neighbors">even 
+decent OS's see this problem though not as consistently as windoze</quote>. 
+Andrew reported <quote who="Andrew Mitchell">it fixed that part of it, but the 
+entry widgets down the bottom of the main screen still don't like me</quote>. 
+Derek said that most items in this section could be edited graphically 
+rather than having to type in the properties box - 
+<quote who="Derek Neighbors">its far from perfect, but once you learn the 
+quirks it can make you pretty darn productive :)</quote></p>
+ 
+</section>
+
+

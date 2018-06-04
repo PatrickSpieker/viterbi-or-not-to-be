@@ -1,0 +1,511 @@
+jcater (~jcater@cpe-024-165-223-104.midsouth.rr.com) left irc: 
+Action: dneighbo is back (gone 22:51:20)
+Action: dneighbo is away: sleep
+Nick change: dneighbo -> dnSleep
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+<ajmitch> hi psu
+<psu> hi
+<psu> a small (but perfectly formed) new KC is at 
+<psu> http://kt.zork.net/GNUe/gnue20020830_44.html
+<ajmitch> cool
+<psu> Smallest issue since April
+<ajmitch> Derek said "um i have a feeling the tools are going to get"  a lot more use and development "in the next two months :)" 
+<ajmitch> ROFL
+<ajmitch> decided to skip the actual text used? ;)
+<psu> the goats can rest safe in their beds tonight...
+<ajmitch> heh
+<Isomer> heh
+<Isomer> I saw that
+reinhard (~rm@M690P020.adsl.highway.telekom.at) joined #gnuenterprise.
+btami (~tamas@ip102-205.ktv.tiszanet.hu) joined #gnuenterprise.
+<btami> good morning
+<psu> hi btami
+<btami> hi psu
+<btami> any news about tickets in dclgw?
+<btami> why not simply take the working backup
+<psu> I know there were some tech problems, because of conflicts between restoring backup 
+<psu> and moving to new (dneighbo-security-patch) version
+<psu> I am guessing that no-one has had time to resolve this yet
+Action: psu misses his DCL, too
+<btami> :) :(
+<psu> I'm having to use TODO.txt files or even (yuk) paper to list things
+<reinhard> paper?
+<btami> another TODO is a daily CVS snapshot
+<reinhard> isn't that a classic optical WORM device?
+<psu> yep, quite a good one actually
+<psu> Random access, refresh cycle of up to 100 years
+<reinhard> sounds good :)
+<psu> & no need for non-free reader software ;-)
+<reinhard> lol
+<btami> i like read, but dont like handwrite
+<psu> btamu: apt-get typewriter
+<btami> :)
+<reinhard> you have to add "store around the corner" to your sources.list before that IIRC
+<btami> i had a Robotron before :)
+<psu> but note that typewriter is depreciated by its maintainers - they recommend upgrade to basicwp 1.0
+<btami> Robotron comes from DDR if someone can remember
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise ("work time").
+Action: ra3vat remembers
+<ra3vat> hello btami
+<ra3vat> hello all
+<btami> hi ra3vat :)
+<ra3vat> :)
+ariel_ (~ariel@ppp-217-133-240-48.dialup.tiscali.it) joined #gnuenterprise.
+dtm ([3YtE0tQl8@ip55.promontory.sfo.interquest.net) joined #gnuenterprise.
+<dtm> http://openacs.org/bboard/q-and-a-fetch-msg.tcl?msg_id=0003yv&topic_id=OpenACS&topic=  <--  i submit to the Kernel Cousins archives, a good set of discussions and definitions on the meaning of "enterprise class".
+<dtm> if gnue.org doesn't have a definition of it, it should get one from here or something.
+siesel (jan@xunzi.sinologie.uni-bonn.de) joined #gnuenterprise.
+<dtm> http://eltoday.com/  <-- also here's an interesting site
+<dtm> Enterprise Linux Today
+siesel (jan@xunzi.sinologie.uni-bonn.de) left irc: "Eject! Eject! Eject!"
+SachaS (~Sacha@dialup-196-131.wasp.net.au) joined #gnuenterprise.
+siesel (jan@xunzi.sinologie.uni-bonn.de) joined #gnuenterprise.
+<siesel> hi all :)
+ToyMan (~stuq@smtp.dstoys.com) joined #gnuenterprise.
+siesel (jan@xunzi.sinologie.uni-bonn.de) left #gnuenterprise.
+siesel (jan@xunzi.sinologie.uni-bonn.de) joined #gnuenterprise.
+<SachaS> hi everyone.
+<siesel> hi SachaS
+<SachaS> are the gnue dependencies fine with python2.2?
+<SachaS> hi siesel
+<SachaS> siesel i am about to install designer on a gnu/debian testing machine
+Action: siesel is using gnue on debian testing at the moment :)
+<SachaS> siesel! excellent!
+<siesel> there is a problem with the wxpython package, which only exist for python 2.1 at the moment
+<SachaS> do you use the debian packages (of python, orbit etc) or from source?
+<siesel> debian packages.
+<SachaS> oh did you solve the problem with wxpython package?
+<siesel> yes. I use python2.1 and install wxpython per dpkg -i --force-depends
+<siesel> I tried to build wxpython from source, but it didn't worked... :(
+<SachaS> so you suggest to not install python2.2. do you have a list of debian packages I need ?
+<SachaS> ok.
+<siesel> python2.1-xml python2.1-egenix-* python2.1-postgresql ...
+<siesel> I try again: python2.1-egenix-mxdatetime python2.1-egenix-mxtools python2.1-xml python2.1-mysqldb python2.1-pgsql python2.1-psycopg  should be sufficient
+<siesel> If you want to use appserver you have to install python2.1-xmlrpc too.
+<SachaS> ok. if i use mysql i only need python2.1-mysqldb, no python2.1-g*
+<SachaS> sorry
+<SachaS> ok. if i use mysql i only need python2.1-mysqldb, no python2.1-p*
+<siesel> yep.
+<SachaS> thanks.
+<SachaS> doing a apt-get now
+<siesel> btw. do you remeber how to do a query in a trigger? 
+<SachaS> sorry no
+<siesel> Hmmm, found it: datasource.simpleQuery({attr:val}) 
+<SachaS> siesel: which debian package is for wxpython ?
+jamest (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+<SachaS> libwxgtk2.2-python ?
+<siesel> SachaS: sorry, I forgot the most important one: libwxgtk2.2-python
+<siesel> hi jamest, can you help me with a trigger problem?
+<jamest> maybe, i haven't been in the code in months
+<siesel> I have a list of entries and I want to press a button fill the list with records 
+<siesel> the records should be selected with a condition like "fieldname==NULL"
+<siesel> now I've used the datasource.simpleQuery({"fieldname":None}) command
+<siesel> but it just creates a query like SELECT * FROM DTSRC WHERE fieldname='None';
+<siesel> so what to do? Is simpleQuery the right command, and if it is how should I call it, or how should I modify it? 
+<jamest> the button performs a query on the form w/ specific values in the query mask?
+<jamest> is that what you are saying?
+<siesel> yes. 
+<siesel> But the button should build the query mask. not the user
+<jamest> hmmmm
+<jamest> are you going to have multiple buttons each w/ different query....if not queryDefault attrib on entry fields may get you want you want
+<jamest> if that isn't the case we'll need to add trigger functions for putting the form in query mode and executing the query, probably to the form object
+<jamest> i don't think it'll be hard to do, but i'm pretty out of touch w/ the code
+<jamest> i'm going to be bug hunting today in there so I can take a look
+<siesel> can I send you the form I'm actualy developing?
+<jamest> sure
+<ra3vat> hi all
+<ra3vat> jamest: can you tell how costly is win4lin terminal server?
+<jamest> it was 499 for a 5 user license (plus the cost of the 5 windows licenses)
+<jamest> that was a sale price
+<ra3vat> costly enough, how it helps then to save money on licenses, or what another advantages?
+<ariel_> hi siesel
+<SachaS> siesel: also needed python2.1-dev
+<ariel_> this issue of updating a query (i.e. a dropdown list) was previosly discussed with derek and others
+<SachaS> siesel: common installed without problems.
+<ariel_> try to search in kernel cousin
+<ariel_> is a feature that also the guys of papo are waiting for
+siesel (jan@xunzi.sinologie.uni-bonn.de) left irc: "has to run :)"
+<jamest> it allows me to migrate users to just about any platform
+<jamest> one of my win4lin users is running on a 486 w/ 16MB of ram and no hard drive
+<jamest> it is vastly more stable for some reason
+<jamest> and it allows my windows only users to migrate to *nix solutions yet still keep the win software they need today to get work done
+<jamest> another reason I did it was security
+<jamest> i looked at upgrading to winXP to get users to stop installing crap on their PC
+<jamest> that required major hardware upgrades and a fair cost for the XP liceneses (you have to pay extra for the privilage of upgrading past XP when something new comes out)
+<jamest> with my current setup my receptionists log in via a diskless terminal and type win
+<jamest> i wrote a script that figures out which group they belong to then uses rsync to create a fresh windows install just for them
+<jamest> the next time they log in it gives them a fresh install, they can no longer install whatever crap they wanted on the system
+Action: ra3vat keeps listening :)
+<jamest> I'd tried to use security features in NT once to prevent those kind of things from happening
+<jamest> but that was a nitemare
+<SachaS> anyone: installed common, forms, desinger (its a breeze) 
+<SachaS> anyone: gnue-designer runs! Congratulations. Damn you are good! 
+<jamest> you installed everything, hardened the machine (a major task), put it in place 
+<jamest> over time new software installs and security patches would undo the hardening (it seems)
+<jamest> once I logged in and found a web server and the gimp installed on a system we'd done nothing to except for windows update
+<jamest> those systems now run KDE and I'd be impressed if the grads can install crap on them now
+<jamest> :)
+<jamest> anyway, on win4lin, short term cost savings wasn't the issue
+<jamest> my office needs windows software today to work
+<jamest> the two full time windows users now w/ win4lin setups think KDE rocks
+<jamest> and both are slowly finding replacements for their windows software in KDE
+<jamest> last week one switched from Corel Calendar to Korginizer
+<jamest> the newest one said "So, anything I can do in unix I'll quit doing in windows"
+<jamest> I'm still working thru the new setup pains but all in all I'm having less support issues now
+<ra3vat> jamest: oh, two users, it deserves to spend any money
+<jamest> i mis stated that
+Arturas (~arturas@gsk.vtu.lt) joined #gnuenterprise.
+<jamest> i have 9 pcs in the main office
+btami (~tamas@ip102-205.ktv.tiszanet.hu) left irc: "Client Exiting"
+<Arturas> Hello
+<jamest> start of the year 9 of them were windows
+<jamest> er
+<jamest> 8 of them
+<ra3vat> very interesting, thanks for explaining
+<jamest> 4 of them are dedicated to a single user
+<jamest> the rest have multiple users
+<jamest> 2 of those 4 are now linux boxes
+<jamest> those were the 2 full time windows users
+<jamest> the other 2 would switch but we use peoplesoft and the setup requires IPX which win4lin won't do
+<jamest> anyway, hideously off topic but it's great software
+<jamest> oooooo
+<jamest> one last major advantage
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<jamest> every time you have to reboot windows you're not having to go thru the power up self test of the PC
+<ra3vat> :)
+<jamest> so windows crashes which require reboot, or installing updates which require something like 15 reboots per MS guidelines are much less painful
+<SachaS> tried designer tonight. started designer. tried text and input. 
+<ra3vat> good reason to pay for
+<SachaS> good night
+Nick change: SachaS -> Sacha_away
+Sacha_away (~Sacha@dialup-196-131.wasp.net.au) left #gnuenterprise ("Client Exiting").
+ariel_ (~ariel@ppp-217-133-240-48.dialup.tiscali.it) left irc: "Uscita dal client"
+<dnSleep> dtm: fwiw i have sent articles to eltoday before and i think some were even published
+<dnSleep> all our press releases go there as well
+Nick change: dnSleep -> derek
+Action: derek is back (gone 09:34:19)
+siesel (jan@dial-213-168-72-224.netcologne.de) joined #gnuenterprise.
+Action: derek is away: work
+Nick change: derek -> dnWork
+ToyMan (~stuq@smtp.dstoys.com) left irc: "Client Exiting"
+ToyMan (~stuq@smtp.dstoys.com) joined #gnuenterprise.
+Arturas (~arturas@gsk.vtu.lt) left irc: "Client Exiting"
+ToyMan (~stuq@smtp.dstoys.com) left irc: "Client Exiting"
+ToyMan (~stuq@smtp.dstoys.com) joined #gnuenterprise.
+ToyMan (~stuq@smtp.dstoys.com) left irc: "Client Exiting"
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+<chillywilly> ello
+siesel (jan@dial-213-168-72-224.netcologne.de) left irc: Read error: 104 (Connection reset by peer)
+ToyMan (~stuq@smtp.dstoys.com) joined #gnuenterprise.
+<chillywilly> hi ToyMan 
+<chillywilly> what's the dilly yo?
+<ToyMan> hey chilly
+<ToyMan> was up your way a few weeks back
+ToyMan (~stuq@smtp.dstoys.com) left irc: "Client Exiting"
+<chillywilly> oh really?
+<chillywilly> and you didn't eben bother too look me up ? ;)
+<chillywilly> er, even
+ToyMan (~stuq@smtp.dstoys.com) joined #gnuenterprise.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: "BitchX-1.0c19 -- just do it."
+dj_mad_goat (www-data@alt1.libertydistribution.com) joined #gnuenterprise.
+<dj_mad_goat> anyone know how to get an address of a raid controller?
+Action: dj_mad_goat is fighting a compaq proliant 1500
+<dj_mad_goat> unfortunately Debian is the odd duck out for support of this thing (SMART2) controller
+<dj_mad_goat> their kernel doesnt natively support it, but they have some rescue disks that do
+<dj_mad_goat> the problem is in order to boot them you need to give the address of the controller
+<dj_mad_goat> and i cant find any where the hell you can find that
+<jcater> dj_mad_goat: http://www.wicca.com/celtic/divination/cball.htm
+<jcater> is this a [E]ISA card?
+<jcater> if so, you'll probably need the utility disk for the controller
+<jcater> if not, then I'm not sure why you'd need to pass an address
+<jcater> hmm
+<jcater> you know what model of raid controller?
+Action: jcater is thinking back
+<jcater> a lot of them had a "Press Ctrl+<some character> for setup" prompt
+<jcater> before doing the bus-scan
+<jcater> those screens would usually tell you
+<jcater> aside from that, you're gonna have to get more specific wrt what raid controller you have
+<dj_mad_goat> for edification of others
+<dj_mad_goat> its a direct map = EISA slot = location
+<dj_mad_goat> i.e.
+<dj_mad_goat> slot1 = 0x1000
+<dj_mad_goat> slot2 = 0x2000
+<dj_mad_goat> and so on
+<dj_mad_goat> only problem is cracked case to see what slot we were on and lo and behold our card is PCI not EISA
+<dj_mad_goat> gack and i cant find instructions for how to do PCI instead of EISA
+<dj_mad_goat> we have all tools for the controller
+<dj_mad_goat> and configured according to specs (however that was when we thought it was EISA)
+<dj_mad_goat> http://www.joelschneider.net/compaq_proliant_1500_debian_potato.html
+<dj_mad_goat> is doc we were going from
+<dj_mad_goat> if we try to do it without passing anything
+<dj_mad_goat> it fails to find it
+<dj_mad_goat> let me get exact model number and such
+<jcater> do you have woody isos?
+<dj_mad_goat> yes
+<jcater> you may need to do what I had to do with my ALR
+<jcater> install woody, not debian
+<jcater> but at the boot: prompt
+<jcater> don't press <enter> or type install
+<jcater> but type bf24 <enter>
+<jcater> instead
+<jcater> and it will ask for a preload floppy
+<jcater> http://people.debian.org/~blade/install/preload/
+<jcater> grab the image there and put on a floppy
+<jcater> if this combination works, then it'll ease installation
+<jcater> (that's a 2.4.18 kernel, btw, so it probably has better support for Compaq SMART/2 than the 2.2 kernels)
+<jcater> actually, if you look at that link I just gave
+<jcater> it lists all the SCSI chipsets it supports
+<dj_mad_goat> hmmm
+<dj_mad_goat> i dont think it supports smart2
+<dj_mad_goat> will give it a whirl
+<dj_mad_goat> maybe i will just send the tech to this channel :)
+<jcater> it might support smart2
+<jcater> there's only so many scsi chipsets out there
+jamest (~jamest@hobbes.math.ksu.edu) left irc: Remote closed the connection
+<dj_mad_goat> grrr i need to find chipset for smart2 to see if jcaters back door works
+<jcater> hey, now
+<jcater> no talking about my backdoor in public
+<dj_mad_goat> this is so frustrating only place i see debian supporting it via google is 'compact' disk
+<dj_mad_goat> but there it just says SMART2 support
+<dj_mad_goat> and doesnt tell what friggin module
+<dj_mad_goat> is there some kernel spot where i coudl find what   dumbdriver.o it uses :)
+<dj_mad_goat> all references via google point to zdnet
+<jcater> sym3cxx
+<dj_mad_goat> which is having SERIOUS mysql issues
+<jcater> http://groups.google.com/groups?hl=en&lr=&ie=UTF-8&threadm=listgate20020802132006%2454a1%40attila.bofh.it&rnum=1&prev=/groups%3Fq%3Dcompaq%2Bproliant%2B1500%2Bdebian%26hl%3Den%26lr%3D%26ie%3DUTF-8%26selm%3Dlistgate20020802132006%252454a1%2540attila.bofh.it%26rnum%3D1
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+<dj_mad_goat> no sym3xxx available
+<dj_mad_goat> i tried sym5xxx which was availiable and it failed to load
+siesel (jan@dial-213-168-89-130.netcologne.de) joined #gnuenterprise.
+reinhard (~rm@M690P020.adsl.highway.telekom.at) left irc: "When all else fails, read the instructions"
+<chillywilly> hi jan
+<chillywilly> somehow I am not surprised that we didn't get select for the eGov thing as look who the email is from ;)
+<jcater> dj_mad_goat: is it picking up the onboard scsi?
+<jcater> if so, you might wanna consider
+<jcater> err, scratch that
+Action: jcater wouldn't want to support that config for you :)
+<chillywilly> >From: stanco <stanco@seas.gwu.edu>
+<chillywilly> >Tony Stanco, Esq.
+<chillywilly> >Senior Policy Analyst
+<chillywilly> >Open Source and e-Gov
+<chillywilly> >Cyberspace Policy Institute
+<chillywilly> >George Washington University
+<chillywilly> >2033 K Street N.W., Suite 340
+<chillywilly> >Washington, DC 20006
+<chillywilly> >202-994-5513  Fax:202-994-5505
+<chillywilly> >Stanco@seas.gwu.edu
+<chillywilly> >http://www.egovos.org
+<chillywilly> >http://www.cpi.seas.gwu.edu
+<chillywilly> blah
+<dj_mad_goat> oh yeah i win :)
+<dj_mad_goat> i pulled machine apart and wrote down all the numbers off all the chips
+<dj_mad_goat> one was like 53c87something
+<dj_mad_goat> and there was similar module in that list for bf24
+<dj_mad_goat> i choose it and it no failed :)
+Action: jcater thought I already said try bf24
+<jcater> like an hour ago
+<dj_mad_goat> and it sees the disk in partitiion hard disk :)
+<dj_mad_goat> you did
+<dj_mad_goat> but that is not much help w/o know what module to load :)
+<dj_mad_goat> i.e. thats what i was trying to get help from in here :)
+<dj_mad_goat> you had suggested a similar one
+<chillywilly> is there any documentation the xmlElements parser dict?
+<dj_mad_goat> which failed
+<dj_mad_goat> but the bf24 suggestion was gold
+<jcater> chillywilly: the code
+<chillywilly> blah
+<dj_mad_goat> hopefully the rest goes well
+Action: jcater is afraid to know what you're designing
+<chillywilly> ?
+<chillywilly> me?
+ToyMan (~stuq@smtp.dstoys.com) left irc: "Client Exiting"
+<jcater> ya, you
+<chillywilly> don't you get the commit list?
+<jcater> I see a kitchen sink
+<chillywilly> there's a parser for the ODL xml format that I started
+<jcater> ODL?
+aprono (~aprono@modem80-adsl1.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<chillywilly> thekicthensink.godl is a big xml file
+<chillywilly> Object Definition Language
+<jcater> ya, I know that
+<dj_mad_goat> jcater wouldnt know about the ODL = Only Dumb Users stuff
+<jcater> he should've called it Ye Ole Definition Language
+<jcater> then it'd be a YODL file
+<jcater> :)
+<chillywilly> heh
+<chillywilly> I don't like your parser
+<chillywilly> why not se xml.dom?
+<chillywilly> s/se/use/
+<chillywilly> I think that lives in pyxml
+<chillywilly> and/or xml.minidom
+Action: chillywilly looks into the python dom api
+<jcater> um
+<jcater> many reasons
+<jcater> first of which
+<jcater> dom requires you to load the entire thing into memory before using
+<jcater> which could become a biggie for really big projects
+<jcater> and 2
+<jcater> and this is really important, so listen carefully
+<jcater> DOM licks the bag
+<jcater> any questions?
+<chillywilly> eh...
+<chillywilly> I know about the reading in the document thing, why does it lick the bag though?
+<chillywilly> just becase of that?
+Action: jcater is more an event-driven guy
+<jcater> not a tree-driven one
+<jcater> it just works out better that way
+<chillywilly> aren't you building your own tree?
+<jcater> exactly
+<jcater> but we do more than that
+<jcater> what do you have against SAX?
+<chillywilly> oh well...it's not a big deal I'll just see which is easier to use ;)
+<chillywilly> making this dictionary and forcing my xml to be flatter is what I don't like
+<jcater> that has nothing to do with SAX or DOM
+<jcater> that has to do with us keeping our stuff simple
+<jcater> we made up that dictionary thing
+<jcater> to serve our needs
+<chillywilly> what else does it do?
+<chillywilly> initialization?
+<jcater> ya
+<jcater> default values
+<jcater> initialization
+<jcater> conversion from old, deprecated formats to current format
+<jcater> importing
+<jcater> oh
+<jcater> and all Designer needs is that dictionary
+<jcater> to be able to support the basics of a product
+<jcater> that was the biggie
+<chillywilly> ok
+<jcater> as I don't want to have to code a product twice
+<jcater> once for the actual runtime and once for the designer module
+<jcater> that's why I cringe everytime I hear "why not use DTD instead of the GFParser.py dictionary?"
+<jcater> um, because our dictionary is doing more than parsing XML
+<jcater> :)
+Action: chillywilly actually likes schemas better
+<chillywilly> DTDs are old skewl
+<chillywilly> but anyway
+<chillywilly> I don;t want to make life harde fr designer
+<chillywilly> but I figure appserver will have an metaobject api (operations to add classes, methods to existing classes, etc.) and/or you can modify the xml files directly
+<chillywilly> brb
+Action: chillywilly is away: dinner
+Action: jcater is cornfused
+<jcater> as I didn't think we were starting out w/ODL
+Action: chillywilly is back (gone 00:06:32)
+<chillywilly> we used gcd
+<chillywilly> which was IDL + some stuff wanting t be ODL
+<chillywilly> ODL == IDL + classes, attributes, relationships, and collections
+<jcater> ya
+<jcater> sure
+<jcater> but how far did we get w/IDL ?
+<jcater> :)
+<jcater> err, GCD
+<jcater> well, I'm going home
+<jcater> ta ta
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "home"
+<chillywilly> hmmmph
+acm (~Andy@hax0r-9600bps-analog-modem-pool.3solv.net) joined #gnuenterprise.
+<chillywilly> IDL was used in making corba interfaces to the old geas
+<chillywilly> imho, corba was the old geas's problem and the fact it was writtin in C did help with intergration with existing code
+<chillywilly> did not
+Action: acm plucks up courage
+<acm> ermmm...is gnuenterprise the same as gnue ?
+<chillywilly> yessiree
+<chillywilly> gnue is short for gnu enterprise
+<acm> wow...I bet you wish all questions were that easy! ;)
+<chillywilly> yes :)
+Nick change: acm -> acmZzzzzzzzz
+Action: acmZzzzzzzzz is away: sleeping
+Bobacus (~rob@pc2-cmbg2-5-cust191.cam.cable.ntl.com) joined #gnuenterprise.
+<dj_mad_goat> i like SAX
+<chillywilly> DOM is just an API...
+<siesel> hi chillywilly :)
+Action: siesel is a bit slow today :)
+<chillywilly> ello
+siesel (jan@dial-213-168-89-130.netcologne.de) left irc: "BitchX sucks"
+<chillywilly> k, I have no reason to use DOM
+<chillywilly> wold require parsing a tree twice
+<chillywilly> waste of time
+<nickr> I like DOM better than SAX
+<chillywilly> yes, bt the way the gnue tools works is you don't have to create a DOM tree representing xml and then create a tree of objects that access the other cde like the rpc stuff, the db layer, etc.
+<chillywilly> s/cde/code/
+<chillywilly> ths we can als use the SAX parser to create metaobjects straight from the xml
+<chillywilly> for the appserver
+<nickr> yea
+<chillywilly> otherwise yo have to create 2 trees
+<nickr> Or you could use DOM internally for the objects :)
+<chillywilly> which is how it is
+<chillywilly> er..well
+<chillywilly> we create a tree of GObjs directly
+<chillywilly> so they are like an internal DOM
+<nickr> yea
+<nickr> I mean, using dom, it creates the objects for you
+<chillywilly> using SAX we build them....
+<chillywilly> but I see your point
+<chillywilly> hmmm
+<nickr> sax is good if your object model isn't much like the XML tree, or you don't want to deal with the overhead in your model
+<chillywilly> and ours is exactly like an xml tree
+<chillywilly> HEH
+<chillywilly> at least from what I am told
+<chillywilly> I haven't looked deeply into the code
+<nickr> well why not use dom then
+<nickr> serialization and loading is trivial then
+<chillywilly> maybe jc will come back
+<nickr> Indeed there are likely to be lots of reasons not to
+<chillywilly> then I can harass him some more ;)
+<chillywilly> well the reasons he gave were not quite adiquate
+<chillywilly> becase if they build their own tree
+<chillywilly> what's the point in not using the DOM?
+<nickr> yep
+<nickr> maybe less control over the objects in the dom tree?
+<chillywilly> well when you build a tree of arbitrary objects they can do lts of different things can't they?
+<chillywilly> don't you normally derive from Node though?
+aprono (~aprono@modem80-adsl1.cordoba.sinectis.com.ar) left irc: "Client Exiting"
+<chillywilly> All of the components of an XML document are subclasses of Node.
+jcater (~jcater@cpe-024-165-223-104.midsouth.rr.com) joined #gnuenterprise.
+<ajmitch> hi jcater
+<jcater> hi\
+Bobacus (~rob@pc2-cmbg2-5-cust191.cam.cable.ntl.com) left irc: "[x]chat"
+<ajmitch> chillywilly: see one of the latest posts on the GNUe list? ;)
+<chillywilly> nope
+<chillywilly> er, you mean abot e-gov?
+<chillywilly> or something else?
+<ajmitch> yeah
+<ajmitch> see Mr Stanco's name mentioned there? ;)
+Action: ajmitch is not surprised at all that GNUe is left out
+Action: chillywilly either
+<chillywilly> I commented n it earlier when I first got home
+<chillywilly> in this here channel
+<ajmitch> ok
+<dj_mad_goat> hey is there  an smp kernel for p133's
+<dj_mad_goat> but its mad slow
+<dj_mad_goat> i.e. its dual p133 w/ 160mb RAM
+<dj_mad_goat> compared to a p233MMX w/ 64mb RAN
+<dj_mad_goat> er RAM
+<dj_mad_goat> one has X and tons of stuff installed (the p233)
+<dj_mad_goat> the dual has only postgres/apache and basic install from debian (like 80 packages or such)
+<dj_mad_goat> tomorrow i imagine i will solict some performance tuning :)
+<dj_mad_goat> or some way to get that smp to be used efficiently
+Action: dj_mad_goat suspects its only using 1 cpu or something
+dj_mad_goat (www-data@alt1.libertydistribution.com) left irc: "CGI:IRC 0.5 (EOF)"
+dres (~dres@mail.lewismoss.org) joined #gnuenterprise.
+<Mr_You> re
+<Mr_You> hi
+<Mr_You> bblm
+Action: Mr_You &
+paq (~paq@202.155.120.221) left irc: Read error: 104 (Connection reset by peer)
+paq (~paq@202.155.120.221) joined #gnuenterprise.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: "woooooosh!"
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+paq (~paq@202.155.120.221) got netsplit.
+acmZzzzzzzzz (~Andy@hax0r-9600bps-analog-modem-pool.3solv.net) got netsplit.
+ajmitch (~me@wlg1-port13.jetstart.maxnet.co.nz) got netsplit.
+paq (~paq@202.155.120.221) returned to #gnuenterprise.
+acmZzzzzzzzz (~Andy@hax0r-9600bps-analog-modem-pool.3solv.net) returned to #gnuenterprise.
+ajmitch (~me@wlg1-port13.jetstart.maxnet.co.nz) returned to #gnuenterprise.
+paq (~paq@202.155.120.221) left irc: Connection timed out
+jcater (~jcater@cpe-024-165-223-104.midsouth.rr.com) left irc: "nite"
+Action: dnWork is back (gone 13:18:12)
+Nick change: dnWork -> derek
+#gnuenterprise: mode change '+o derek' by ChanServ!ChanServ@services.
+<chillywilly> hi
+--- Thu Sep  5 2002

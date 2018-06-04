@@ -1,0 +1,95 @@
+<section archive="http://mail.gnu.org/pipermail/gnue-dev/2002-March/000078.html" enddate="27 Mar 2002 12:28:32 -0800" startdate="22 Mar 2002 00:00:00 -0800" subject="[Gnue-dev] Re: [gnue-discuss] utf-8?" title="i18n support in Forms">
+<topic>Forms</topic>
+
+
+<mention>ra3vat</mention>
+
+<p>Further to 
+<kcref startdate="18 Mar 2002 00:00:00 -0800" title="International support for GNUe" />,
+Arturas Kriukovas (Arturas) reported 
+<a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.22Mar2002">on 
+IRC</a> that Dmitry Sorokin (ra3vat) had had 
+even more problems with i18n than he had had when trying to reproduce the 
+bug. Arturas couldn't find <quote who="Arturas Kriukovas">where in forms 
+font is set up?</quote>. Derek Neighbors (dneighbo) suggested 
+<quote who="Derek Neighbors">if set anywhere would be gnue.conf</quote> - 
+otherwise <quote who="Derek Neighbors">its coming from 
+your theme of either gnome/kde or windowmanager</quote>. 
+Dmitry confirmed that he was receiving i18n e-mails from Arturas, 
+but the GNUe Forms attatchments were showing 
+<quote who="Dmitry Sorokin">as one-byte character string</quote>.
+Derek confirmed that some documentation he found for wxPython 
+implied <quote who="Derek Neighbors">that the THEME font is used</quote>
+unless over-ridden. He suggested <quote who="Derek Neighbors">change your 
+theme to a really ODD and DISTINGUISHING FONT - then open up forms - 
+if it has that same odd font you know its using the theme</quote>. 
+Arturas did so, and confirmed there were 
+<quote who="Arturas Kriukovas">no changes in forms, although kde 
+looked really awfully</quote>.</p> 
+
+<p>Arturas said the default enoding in Forms was ASCII, but 
+<quote who="Arturas Kriukovas">if i enforce strings as unicode</quote> 
+then <quote who="Arturas Kriukovas">you'll get nice i18n data</quote>, 
+but it would only display on the form header, not in the data. 
+James Thompson (jamest) confirmed <quote who="James Thompson">the 
+font encoding is in UIwxpython</quote>, but 
+<quote who="James Thompson">i haven't messed with fonts in forms 
+in a long, long time</quote>.</p>
+
+<p>Derek said his preferred solution would be to set the font 
+<quote who="Derek Neighbors">in gnue.conf - allow people to set the font
+like we do other font options</quote>. Arturas said 
+<quote who="Arturas Kriukovas">i hope adding something like 
+'encoding="utf8"' should be enough</quote>.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.25Mar2002">
+Three days later</a>, Derek confirmed that using _SYSTEM or _DEFAULT instead 
+of _UTF8 <quote who="Derek Neighbors">worked here - 
+(ie designer/forms run fine) but i could not test to see if made difference</quote> 
+to the actual display. Arturas said none of these options 
+had made any difference for him, <quote who="Arturas Kriukovas">but i start to believe
+that's my linux configuration problem</quote>. Dmitry Sorokin (ra3vat) posted 
+a general appeal for people to test some python imports 
+<quote who="Dmitry Sorokin">and give output back here or to my 
+email</quote> to help track the problem down.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.26Mar2002">
+The next day</a>, Dmitry got various volunteers to try the python imports for him, 
+and some progress was made.</p>
+
+<p>On the mailing list the next day, he referred back to 
+<kcref startdate="01 Feb 2002 23:39:54 -0800" subject="[gnue-discuss] utf-8?" />,
+and said that although <quote who="Dmitry Sorokin">it 
+would be more dependable someday to have all string represented
+in unicode and use specific functions to handle them</quote>, in 
+the meantime <quote who="Dmitry Sorokin">str() also _does handle_ 
+strings with chars beyond ascii if desired encoding is
+provided via setdefaultencoding()</quote>. However, 
+<quote who="Dmitry Sorokin">that function is not available at run 
+time.</quote> This could either be fixed by 
+<quote who="Dmitry Sorokin">a. manually changes in 
+PYTHONPATH/site.py</quote> or <quote who="Dmitry Sorokin">b. 
+adding custom module named sitecustomize</quote>. 
+Previously, when GNUe had used python 1.5.2 rather than 
+2.x, <quote who="Dmitry Sorokin">I was able to run
+my customized (non-ascii) forms only after adding</quote> 
+specific calls for Russian fonts, similar to what Derek had 
+suggested earlier in the thread. But with python 2.x, 
+<quote who="Dmitry Sorokin">it works without modification when
+you first provide that getdefaultencoding() gives non
+'ascii' in output.</quote> He quoted some material from 
+the <a href="http://diveintopython.org/kgp_unicode.html">Dive 
+Into Python</a> website that implied that the sitecustomize.py 
+file determined this. Likewise, 
+<a href="http://www.lemburg.com/files/python/unicode-proposal.txt">
+www.lemburg.com</a> said that <quote who="Dmitry Sorokin">the 
+default site.py startup module contains disabled
+optional code which can set the &lt;default encoding&gt; according to 
+the encoding defined by the current locale.</quote> He wondered if 
+GNUe could <quote who="Dmitry Sorokin">try to build at least binary 
+snapshot with default encoding set according to the current locale?
+I did not find how to do required settings after the 
+installation.</quote></p>
+
+</section>
+

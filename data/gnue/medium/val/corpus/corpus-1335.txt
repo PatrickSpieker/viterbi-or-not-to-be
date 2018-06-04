@@ -1,0 +1,395 @@
+<alandd> LuftHans: still too late for you?
+<alandd> that's when they had the room available.
+<LuftHans> still too late for the current project, they need something ASAP ( isn't that always the case? )
+<LuftHans> I'll work through docs and figure stuff out on my own for now, but will be bugging derek and other #gnuenterp denizens :)
+Action: alandd ASAP.  I ahve been hearing that all week.  always the week before vacation.
+<LuftHans> alandd: well, since you're leaving on vacation remind them that asap is at the earliest in two weeks ;-)
+<alandd> well, it's just one week this time but, yea, they know, i got the emergency stuff done today but my main project is now suffering a 3 day deficit.
+<LuftHans> alandd: well the week of vaca and this week, when you'll be preparing for time off not for new projects 
+Action: LuftHans even switched to KDE to get GNUe working
+<alandd> GNUe doesn't like GNOME?
+Action: alandd i use kde anyway
+<LuftHans> not when GNOME in testing is borken such that you can't resize windows
+<alandd> i figure gnue is a "debian based" project.  How well does it do on Redhat
+Action: alandd getting ready to duck.
+<LuftHans> gute nacht alan
+<alandd> no, really.  We have redhat servers at Adtron.  they know the name.  could I expect gnue to run on it?
+<LuftHans> ah, I thought you meant go to bed :)
+<LuftHans> alandd: I got gnue running from cvs because the debian packages are borken, the same should work on other GNU/Linux distros
+<alandd> i hope to try it before the class.  the database on the back end will be new to me too.  fun! fun!
+<LuftHans> I think that mysql is better setup using RH than postgresql
+<LuftHans> derek will probably encourage the latter, though :)
+<alandd> that will be my first learning curve.
+<LuftHans> db stuff isn't too hard, even I can get them setup
+SachaS (~Sacha@dialup-196-126.wasp.net.au) joined #gnuenterprise.
+Action: LuftHans restarts gfdes to get it in english
+<LuftHans> lots of errors :(
+<alandd> i'm not really worried about it. just new stuff.
+<alandd> sorry im distracted.  still researching my trip.
+<LuftHans> enjoy it
+Action: LuftHans is working on a demo GNUe XML form. Good thing there's a 'using a text editor' section since gfdes isn't working
+<alandd> gfdes is a german translator?  you are working on a german project?
+<LuftHans> gnue form designer, the starting point for GNUe
+<alandd> ok. Im getting in deep here in the maps of kansas city.  I better go.  Im excited about this class!
+alandd (~alandd@h-66-167-42-94.PHNDAZ91.covad.net) left irc: " good night!"
+<dneighbo> alan run off to bed already
+<LuftHans> he's off checking out KC
+<LuftHans> is there an XML syntax checker that will indicate what's wrong without all this traceback crap?
+<dneighbo> mysql is a piece of crap
+<dneighbo> seriously
+<LuftHans> mysql? this is a python problem
+mouns (mouns@62.212.97.112) joined #gnuenterprise.
+<LuftHans> I need to know what the supposed syntax error was, not what fx() begat what fx() begat what fx()...
+<dneighbo> what is wrong with designer
+<dneighbo> last i heard it pretty close to having most bugs fixed
+<dneighbo> plese note you need wxPython 2.4
+<dneighbo> er please
+<dneighbo> need the error to be of help
+<LuftHans> designer throws errors when trying to 'continue' when choosing a data source, it's borking on the sample xml form. I think I have it done w/o typos
+<dneighbo> did you make the xml file from hand
+<LuftHans>  DB000: AttributeError: 'module' object has no attribute 'supportedDataObjects'
+Action: dneighbo isnt sure what exactly you have or havent done
+<LuftHans> that's the last error from trying to continue after choosing a data source
+Action: dneighbo truthfully hasnt done GNU Enterprise stuff for nearly a month :(
+<LuftHans> created form by hand per the forms docs since designer isn't working
+<dneighbo> probably your form is toast
+Action: LuftHans is following the zipcodes example in the forms doc
+<dneighbo> doing xml by hand is less than optimal (way easy to hose up)
+<dneighbo> also if you copied something out of the docs likely they are inaccurate
+<dneighbo> try as we might... development happens faster than documentation
+<LuftHans> "DB000: KeyError: zipcode" is the open the gfd error, don't know what it means, the entries with zipcode seem to be correct per the forms doc
+<LuftHans> well, I need a starting point :)
+<dneighbo> do you have  a database 
+<dneighbo> do you have a table
+<dneighbo> does the table have zipcode field?
+<LuftHans> wxPython 2.4.0.7
+<LuftHans> yup, yup, yup
+<LuftHans> select * from zipcodes;
+<LuftHans>  zipcode | city | state
+<dneighbo> can you /msg me the form
+Action: LuftHans just tried a dcc send of the form.
+<LuftHans> save that as /vmlinuz and reboot to get it to take effect ;-)
+<dneighbo> dcc is evil will try it
+<dneighbo> no luck with the dcc
+<dneighbo> please email it
+<LuftHans> it's in the mail :)
+<LuftHans> doesn't the PHP thingy have a validator?
+<dneighbo> ?
+<dneighbo> php thingy
+<LuftHans> the PHP parser for gfd docs
+<dneighbo> stay away from that
+<dneighbo> its not usuable for anything remotely close to production
+<LuftHans> why? is it borken?
+<dneighbo> unless you want to contribute code to make it work :)
+<dneighbo> web apps are shite anyhow ;)
+<LuftHans> hmm, I need web-based for this app, that's more important than stand-along
+<LuftHans> s/ong/one/
+<LuftHans> well, I can help with PHP :)
+<dneighbo> is this the error you get
+<dneighbo> DB000:   File "/home/dneighbo/cvs/gnue/.cvsdevelbase/gnue/forms/GFObjects/GFEntry.py", line 94, in initialize
+<dneighbo> DB000:     raise "Entry references non-existent field '%s'" % self.field
+<dneighbo> DB000: Entry references non-existent field 'zipcode'
+<dneighbo> ah gack
+<dneighbo> form spec has changed radically
+<LuftHans> nope
+<ajmitch> g'evning
+<dneighbo> stopped editing dumb files by hand when designer got better
+<dneighbo> forgot about the namespacing
+<dneighbo> hans
+<dneighbo> run
+<dneighbo> cvs/gnue/forms/samples/zipcode/zipcode.gfd
+<dneighbo> does that work?
+<dneighbo> if not your setup is messed
+<LuftHans> ok, that one opens *and* only a few Gdk-CRITICAL errors
+<LuftHans> gc == garbage collection?
+<dneighbo> that is wx stuff
+<dneighbo> the Gdk-CRITICAL errors
+<dneighbo> cause GNOME sux ass lately :(
+<LuftHans> GNOME?
+Action: LuftHans is running KDE because GNOME was borky, borky.
+<dneighbo> hmm your first form has something goofy
+<dneighbo> researching
+<LuftHans> DB000: AttributeError: GFLabel instance has no attribute 'text'
+<dneighbo> ok figured it out
+<dneighbo> you still have original form you sent me?
+<LuftHans> yup
+<dneighbo> silly error
+Action: dneighbo is not a huge block fan
+<dneighbo> change
+<dneighbo> <entry c:x="13" c:y="1" c:width="5" block="ZipBlock" field="zipcode"/>
+<dneighbo> to be
+<dneighbo> <entry c:x="13" c:y="1" c:width="5" block="ZipBlock" field="zipentry"/>
+<dneighbo> <entry c:x="13" c:y="3" c:width="30" block="ZipBlock" field="city"/>
+<dneighbo> to be
+<dneighbo> <entry c:x="13" c:y="3" c:width="30" block="ZipBlock" field="cityentry"/>
+<dneighbo> and
+<dneighbo> <entry c:x="13" c:y="5" c:width="2" block="ZipBlock" field="state"/>
+<dneighbo> to be
+<dneighbo> <entry c:x="13" c:y="5" c:width="2" block="ZipBlock" field="stateentry"/>
+<dneighbo> save form then try to run
+<LuftHans> oooh, it opens :)
+<LuftHans> how do I 'run' it?
+<LuftHans> found a 'run form' under tools, whcih gives a bunch of errors
+<LuftHans> gnue.common.datasources.drivers.postgresql.psycopg does not contain dbdrivers
+<dneighbo> ?
+<dneighbo> gnue-forms formname.gfd
+<dneighbo> or
+<LuftHans> that seems bad
+<dneighbo> gfcvs formname.gfd
+<dneighbo> or what ever it takes to 'run' it
+<dneighbo> im not sure what you mean by RUN it
+<dneighbo> i thought you were running it
+<dneighbo> otherwise how did you get errors?
+<LuftHans> no db driver for psycopg
+<LuftHans> I've been in gfdes and looking at layout editor
+<Vee2d2> apt-get -uf install python2.2-psycopg
+<dneighbo> what Vee2d2 said
+<dneighbo> Vee2d2: i just played with designer found 2 major bugs
+Action: Vee2d2 -uf's out of habbit.. 
+<Vee2d2> dneighbo: dont touch the trigger drop down on the code editor.. :) 
+<dneighbo> a. in schema editor there is no 'scrollbar' so if you have say 100 tables no way to scroll down, if you use the keys it REALLY fubars things
+<Vee2d2> and if you make an entry hidden, then touch the property editor you'll probably discover segfault or something.. but I think he fixed that one
+<dneighbo> b. if you use the wizard it saves height attributes as "1.0" intead of "1" which errors out when running the form
+<dneighbo> hans your form here is working like a little champ
+<dneighbo> after those three lines of editing
+<Vee2d2> dneighbo: is the schema nav a tree style widget?
+<Vee2d2> dneighbo: because that should be fixed in cvs, I think. 
+<LuftHans> user/passwd for GNUe is the user/passwd combo for the db?
+<dneighbo> it is tree style widget
+<dneighbo> i just updated cvs to no avail....
+<dneighbo> LuftHans: yeah
+<Vee2d2> dneighbo: I get a scroll bar.. weird
+<dneighbo> i think my cvs is fooed
+<dneighbo> i think i accidently got it as 'root' a few cycles back
+<Vee2d2> tsh tsh
+<dneighbo> no kidding
+<dneighbo> crap
+<dneighbo> did they turn cvs into modules?
+<dneighbo> i.e. how do you checkout the whole mess now
+<Vee2d2> yip
+<LuftHans> ok, got the form to start and made an entry
+Action: dneighbo goes to look at site
+Action: dneighbo hates not being around
+<Vee2d2> you dont read the list, or what? :)
+<dneighbo> ah i knew i saw something somewhere
+<dneighbo> too many list (er projects)
+<LuftHans> for i in blah blah blah blah blah; do cvs co $i; done
+<Vee2d2> #!/bin/sh
+<Vee2d2> export CVS_RSH=ssh;
+<Vee2d2> export CVSROOT='Vee2d2@subversions.gnu.org:/cvsroot/gnue';
+<Vee2d2> export WHAT='up -Pd';
+<Vee2d2> #export WHAT='co';
+<Vee2d2>  
+<Vee2d2> cvs ${WHAT} gnue-common
+<Vee2d2> cvs ${WHAT} gnue-appserver
+<Vee2d2> cvs ${WHAT} gnue-forms
+<Vee2d2> cvs ${WHAT} gnue-reports
+<Vee2d2> cvs ${WHAT} gnue-designer
+<Vee2d2> cvs ${WHAT} gnue-navigator
+<Vee2d2> cvs ${WHAT} gnue-integrator
+<Vee2d2> cvs ${WHAT} gnue-pos
+<Vee2d2> but whatever.. ;)
+Action: Vee2d2 gets back to work.. 
+<dneighbo> grrr i pull hair out
+<dneighbo> they changed directory of base cvs
+<dneighbo> and with it they munged my frelling pserver file
+Action: dneighbo goes to dig around for ssh keys
+Action: dneighbo put this off for last 3 years out of laziness :)
+dimas (~dimas@195.218.177.46) joined #gnuenterprise.
+<dneighbo> woohoo using ssh now after 3 years for GNU Enterprise :)
+<dneighbo> about time
+bigerbrother joined #gnuenterprise.
+<Vee2d2> heh
+bigbrother (eggdrop@209.234.155.8) left irc: Read error: 104 (Connection reset by peer)
+Nick change: bigerbrother -> bigbrother
+<dneighbo> ouchie didnt have wx2.4
+<dneighbo> guess gnue-forms-wx was holding back the upgrade :)
+<Vee2d2> IIRC there's like a "wowiee wow! wow!" difference between 5.0 designer and cvs
+<Vee2d2> I dont remember if that happened prior to the cvs restructuring or not though
+<LuftHans> did you get gnue-forms-wx to install from the unofficial deb?
+<Vee2d2> s/5.0/0.5/ :)
+Action: Vee2d2 envisions designer 5.0.. "wowiee wow! wow!"
+<dneighbo> some before
+<dneighbo> to answer Vee2d2
+<dneighbo> hans our packages are screwed
+<dneighbo> wait till next version
+<dneighbo> cvs best option for now
+<dneighbo> egads the fonts are horrible in deisgner now
+<dneighbo> for some things
+Action: dneighbo wonders where it is picking those up form
+<dneighbo> yeah one of my bugs fixed :)
+<dneighbo> the scrollbar is there now
+<dneighbo> second bug fixed
+<dneighbo> YEAH
+<dneighbo> jcater you are my hero
+<dneighbo> two bugs fixed and you didnt even have to be here
+<dneighbo> thats what i call AI
+Action: dneighbo runs off to bed
+SachaS (~Sacha@dialup-196-126.wasp.net.au) left irc: Read error: 110 (Connection timed out)
+jbailey (~jbailey@s100.ifi.uio.no) joined #gnuenterprise.
+<ajmitch> morning jeff
+<jbailey> Heya Andrew
+<LuftHans> jbailey:where do you get libwxgtk2.3-python for gnue-forms-wxgtk?
+<jbailey> Erm.  Isn't it in unstable?
+<LuftHans> I only show 2.2 and 2.4 available, I have stable, testing and unstable in my sources ( viva la /etc/apt/preferences :)
+<LuftHans> does it have to =2.3, could it =>2.3?
+<jbailey> I don't know off hand.
+<jbailey> If it needs to be changed to 2.4, I can certainly update it.
+<LuftHans> it looks like it needs to be =2.4 or >=2.3
+chillywilly (danielb@CPE-24-167-197-5.wi.rr.com) joined #gnuenterprise.
+Action: LuftHans passes out.
+lxf (~agus_tea@202.73.120.115) left irc: Connection timed out
+throat (~login@zux006-024-254.adsl.green.ch) joined #gnuenterprise.
+throat (~login@zux006-024-254.adsl.green.ch) left #gnuenterprise ("Client exiting").
+tripz__ (~ville@as13-5-6.ld.bonet.se) left irc: "using sirc version 2.211+KSIRC/1.2.4"
+R45 (~rastabeen@cuscon3528.tstt.net.tt) joined #gnuenterprise.
+ToyMan (~stuq@smtp.dstoys.com) joined #gnuenterprise.
+jbailey (~jbailey@s100.ifi.uio.no) left irc: "Client exiting"
+jamest (~jamest@gw.math.ksu.edu) joined #gnuenterprise.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<dneighbo> must be 2.4
+jbailey (~jbailey@s100.ifi.uio.no) joined #gnuenterprise.
+jbailey (~jbailey@s100.ifi.uio.no) left irc: "Client exiting"
+dcmwai (~dcmwai@219.95.60.87) joined #gnuenterprise.
+jbailey (~jbailey@s100.ifi.uio.no) joined #gnuenterprise.
+chillywilly (danielb@CPE-24-167-197-5.wi.rr.com) left irc: "Lost terminal"
+chillywilly (danielb@CPE-24-167-197-5.wi.rr.com) joined #gnuenterprise.
+chillywilly (danielb@CPE-24-167-197-5.wi.rr.com) left irc: Client Quit
+dsmith (~dsmith@mail.actron.com) joined #gnuenterprise.
+chillywilly (danielb@CPE-24-167-197-5.wi.rr.com) joined #gnuenterprise.
+lxf (~agus_tea@202.73.120.115) joined #gnuenterprise.
+<jamest> http://bash.cx/?today
+<jamest> lol
+<jamest> i love the one about the copper case
+<chillywilly> lol
+<chillywilly> that's a nice one
+<chillywilly> Comment: the fuse box in his house was fried. knocked the power out.
+<jamest> read the top 50
+<jamest> i'm in tears
+<chillywilly> #28507 (9)
+<chillywilly> <@John> why does there have to be sunlight
+<chillywilly> <@Luster> so us geeks know when to go to bed
+<chillywilly> [Derek PING]
+<chillywilly> [Derek PING reply]: Your connection is horrible get DSL you fucking hobo
+<chillywilly> <Derek> :(
+<chillywilly> <Macphisto> That'll do frenchman, that'll do.
+<chillywilly> <grinder> that's freedom-man to you, thank-you very much
+<chillywilly> <xunker> I was totally freedom'ing this chick last weekend...
+<chillywilly> * Macphisto sits down to watch "French Willy"
+<chillywilly> <Macphisto> It's about a whale in captivity.
+<chillywilly> <Macphisto> But all he does is smoke import cigarettes and curse at the viewer in french.
+Action: dcmwai is away: Clean up...
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: Read error: 110 (Connection timed out)
+R45 (~rastabeen@cuscon3528.tstt.net.tt) left irc: No route to host
+lxf (~agus_tea@202.73.120.115) left irc: Read error: 54 (Connection reset by peer)
+<jamest> man
+<jamest> i'm still crying
+<chillywilly> haha
+lxf (~agus_tea@202.73.120.115) joined #gnuenterprise.
+<jamest> <cSk|Sperry> There were 2 people on a boat: /hop and /quit. /hop got off, who's still on the boat?
+<jamest>  * nipple_frog has quit IRC
+<chillywilly> rofl
+<dcmwai> haha
+<dcmwai> jamest, you guys are funny...
+<dcmwai> I can't really think of anyone will do that... but if that is real... it is realy funny :)
+<chillywilly> it's from bash.cx or bash.org
+<chillywilly> irc quotes people have submitted
+<jamest> and I do believe people would do some of these
+<chillywilly> yea
+<chillywilly> I think you get a smelly trout upside the head if you fake it ;)
+<chillywilly> submit a fake quote that is
+R45 (~rastabeen@209.94.210.176) joined #gnuenterprise.
+<chillywilly> hello
+chillywilly (danielb@CPE-24-167-197-5.wi.rr.com) left irc: "leaving"
+chillywilly (danielb@CPE-24-167-197-5.wi.rr.com) joined #gnuenterprise.
+chillywilly (danielb@CPE-24-167-197-5.wi.rr.com) left irc: "leaving"
+chillywilly (danielb@CPE-24-167-197-5.wi.rr.com) joined #gnuenterprise.
+<chillywilly> anyone have recommendations for a good NIC that works with linux the cheap one I have sucks with this new driver and the old one times out all the time but it is faster
+<dsmith> chillywilly: I've had good experiences with those nics that come up as dc0 in *bsd.  
+<dsmith> chillywilly: Linksys perhaps?  One of the cheap ones you can get at compusa.
+<chillywilly> havoc says geta Linksys LNE100TX
+<dcmwai> chillywilly, Just get the one wit RTL8139 Chipset... it is widel use, cheap and work on linux :)
+<dsmith> chillywilly: Yeah, that sounds about right.
+<Vee2d2> I've only bought a 'good' net card once, plopped down $100+ for it and it died about a year after I started using it.. was 3com, dont recall which.. 
+<chillywilly> I don't mean expensive
+<chillywilly> just soemthing that works better than this myson803 card that likes to timeout and now it seems they crippled it with the newer drivers so it'll only do 30k/s
+<dcmwai> chillywilly, May be compex will suit your need...
+<dcmwai> Compex have a range of product, one of them are value... get It, 
+jamest (~jamest@gw.math.ksu.edu) got netsplit.
+paq_ (~paq@202.155.9.188) got netsplit.
+jamest (~jamest@gw.math.ksu.edu) returned to #gnuenterprise.
+paq_ (~paq@202.155.9.188) returned to #gnuenterprise.
+Action: dcmwai is away: Sleep Time, See you tomorrow :)
+ToyMan (~stuq@smtp.dstoys.com) got netsplit.
+steveb_ (~steveb@202-0-63-225.adsl.paradise.net.nz) got netsplit.
+ToyMan (~stuq@smtp.dstoys.com) returned to #gnuenterprise.
+steveb_ (~steveb@202-0-63-225.adsl.paradise.net.nz) returned to #gnuenterprise.
+dsmith (~dsmith@mail.actron.com) left irc: "Client exiting"
+zoyd (~zoyd@dialpool-210-214-64-109.maa.sify.net) joined #gnuenterprise.
+<zoyd> hi
+zoyd (~zoyd@dialpool-210-214-64-109.maa.sify.net) left irc: Read error: 60 (Operation timed out)
+steveb_ (~steveb@202-0-63-225.adsl.paradise.net.nz) left irc: Read error: 110 (Connection timed out)
+dimas (~dimas@195.218.177.46) left irc: "Вышел из XChat"
+jbailey (~jbailey@s100.ifi.uio.no) left irc: "Client exiting"
+<jamest> hi
+<Vee2d2> heyaz
+<jcater> howdy
+mouns (mouns@62.212.97.112) left irc: Remote closed the connection
+R45 (~rastabeen@209.94.210.176) left irc: 
+ToyMan (~stuq@smtp.dstoys.com) got netsplit.
+jbailey (~jbailey@193.156.250.2) joined #gnuenterprise.
+ToyMan (~stuq@smtp.dstoys.com) returned to #gnuenterprise.
+ToyMan (~stuq@smtp.dstoys.com) left irc: "Client Exiting"
+chillywilly (danielb@CPE-24-167-197-5.wi.rr.com) left irc: "leaving"
+R45 (~rastabeen@cuscon3177.tstt.net.tt) joined #gnuenterprise.
+<Vee2d2> http://users3.ev1.net/~fkuykendall/images/surfer.jpg
+<Vee2d2> that would definately be a brown panty moment for me.. 
+Action: jcater won't ask why Vee2d2 is in panties
+<jamest> lol
+jamest (~jamest@gw.math.ksu.edu) left #gnuenterprise ("Client exiting").
+ToyMan (~stuq@65-73-213-229.bras01.mdl.ny.frontiernet.net) joined #gnuenterprise.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "Client exiting"
+chillywilly (danielb@CPE-24-167-197-5.wi.rr.com) joined #gnuenterprise.
+chillywilly (danielb@CPE-24-167-197-5.wi.rr.com) left irc: "trying different driver...sigh"
+pr0c (~pr0c@208.44.104.1) joined #gnuenterprise.
+pr0c_ (~pr0c@208.44.104.1) joined #gnuenterprise.
+pr0c_ (~pr0c@208.44.104.1) left irc: Read error: 104 (Connection reset by peer)
+R46 (~rastabeen@cuscon1644.tstt.net.tt) joined #gnuenterprise.
+R45 (~rastabeen@cuscon3177.tstt.net.tt) left irc: Killed (NickServ (ghosted: R46!~rastabeen@cuscon1644.tstt.net.tt))
+Nick change: R46 -> R45
+Action: dcmwai is back (gone 07:22:53)
+ToyMan (~stuq@65-73-213-229.bras01.mdl.ny.frontiernet.net) left irc: "Client Exiting"
+R46 (~rastabeen@cuscon3115.tstt.net.tt) joined #gnuenterprise.
+R45 (~rastabeen@cuscon1644.tstt.net.tt) left irc: Killed (NickServ (ghosted: R46!~rastabeen@cuscon3115.tstt.net.tt))
+Nick change: R46 -> R45
+pr0c (~pr0c@208.44.104.1) left irc: "Client exiting"
+lxf (~agus_tea@202.73.120.115) left irc: Operation timed out
+dcmwai (~dcmwai@219.95.60.87) left irc: "Client exiting"
+jbailey (~jbailey@193.156.250.2) left irc: "Client exiting"
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+lxf (~agus_tea@202.73.120.115) joined #gnuenterprise.
+jamest (~jamest@64.216.107.165) joined #gnuenterprise.
+R45 (~rastabeen@cuscon3115.tstt.net.tt) left irc: 
+<Vee2d2> ETA before Vee2d2's GNUe'n time begins ~30+mins and counting down.
+jamest (~jamest@64.216.107.165) left irc: Remote closed the connection
+paq_ (~paq@202.155.9.188) got netsplit.
+lxf (~agus_tea@202.73.120.115) got netsplit.
+Vee2d2 (~vin@c66.169.136.41.ts46v-07.otn-c1.ftwrth.tx.charter.com) got netsplit.
+LuftHans (~lufthans@wsip-68-107-221-207.ph.ph.cox.net) got netsplit.
+icltlfatppl (~icltlfatp@iphone5.VIA.NET) got netsplit.
+Stoke_ (~stoker@141.149.254.50) got netsplit.
+havoc (~havoc@CPE-65-31-122-112.wi.rr.com) got netsplit.
+lxf (~agus_tea@202.73.120.115) returned to #gnuenterprise.
+paq_ (~paq@202.155.9.188) returned to #gnuenterprise.
+Stoke_ (~stoker@141.149.254.50) returned to #gnuenterprise.
+havoc (~havoc@CPE-65-31-122-112.wi.rr.com) returned to #gnuenterprise.
+icltlfatppl (~icltlfatp@iphone5.VIA.NET) returned to #gnuenterprise.
+LuftHans (~lufthans@wsip-68-107-221-207.ph.ph.cox.net) returned to #gnuenterprise.
+Vee2d2 (~vin@c66.169.136.41.ts46v-07.otn-c1.ftwrth.tx.charter.com) returned to #gnuenterprise.
+<Vee2d2> weee
+lxf (~agus_tea@202.73.120.115) left irc: 
+LuftHans (~lufthans@wsip-68-107-221-207.ph.ph.cox.net) got netsplit.
+icltlfatppl (~icltlfatp@iphone5.VIA.NET) got netsplit.
+LuftHans (~lufthans@wsip-68-107-221-207.ph.ph.cox.net) returned to #gnuenterprise.
+icltlfatppl (~icltlfatp@iphone5.VIA.NET) returned to #gnuenterprise.
+--- Sat Jul 19 2003

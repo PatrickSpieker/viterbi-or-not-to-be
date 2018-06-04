@@ -1,0 +1,83 @@
+<section archive="http://mail.gnu.org/pipermail/gnue-dev/2002-March/000067.html" enddate="27 Mar 2002 11:12:04 -0800" posts="9" startdate="26 Mar 2002 14:36:22 -0800" subject="[Gnue-dev] GNUe Reports Output Markup" title="GNUe Reports Output">
+
+
+<p>Jason Cater said that, after the discussions in 
+<kcref startdate="19 Mar 2002 18:38:20 -0800" subject="[Gnue-dev] GNUe Reports and xmlns, oh my!" />, 
+he had decided to use <quote who="Jason Cater">XML namespaces in Reports</quote>, 
+and now wanted to discuss <quote who="Jason Cater">*what* these tags will be 
+:)</quote>.</p>
+
+<p>Jason suggested <quote who="Jason Cater">The report definition shouldn't 
+contain references to page sizes, etc</quote>, but might 
+<quote who="Jason Cater">provide *hints* (e.g., this report looks best in a 
+landscape format, etc)</quote>.</p>
+
+<p>He added <quote who="Jason Cater">I'm thinking in terms of a "logical" 
+formatting markup, similar to HTML, DocBook, or TeX, as opposed to an 
+"absolute" formatting</quote>. This would make it easier to create 
+different types of output from the same source. 
+John Lenton said that using "logical" formatting markup 
+<quote who="John Lenton">makes it from hard to impossible
+to work with preprinted stuff</quote>, and suggested 
+<quote who="John Lenton">you should at least allow xpos and ypos 
+attributes, as hints if you want</quote> which the report engine
+could either ignore or heed depending on the final output format.
+He also added <quote who="John Lenton">raw text</quote> as a 
+suggested output format <quote who="John Lenton">For dotmatrix 
+printers printing onto preprinted fanfold</quote>, which were 
+still common for things like invoices. Jason said that 
+<quote who="Jason Cater">pre-printed stock reports</quote> were 
+<quote who="Jason Cater">a completely different breed of
+animal. :)</quote> Derek Neighbors agreed - 
+<quote who="Derek Neighbors">Since they are more 
+specialized they should probably be addressed after we have a civil model 
+for normal reporting. :)</quote></p>
+
+<p>Jason suggested that a wide range of output formats should be supported, 
+including postscript, PDF, HTML, RTF, CSV and TeX/LaTeX. Other formats, such 
+as for specific printers, could be derived from these. Derek suggested supporting 
+output for <quote who="Derek Neighbors">say staroffice/excel/word (in native xml 
+format)</quote>. This would be <quote who="Derek Neighbors">SOOO much better 
+than exporting to csv then opening in excel.</quote> Jason said 
+<quote who="Jason Cater">Actually, Excel (or at least OpenOffice's scalc) 
+is a *big* need for me. CSV is very limited in it's usefulness. I was just 
+apprehensive about mentioning a non-free file format as a "necessity" :) 
+I included RTF because I figured it'd meet most of the "Word Processor"
+needs. For the most part, RTF would do everything we need for this class
+of output. (Or will it? how well are tables supported in RTF?)</quote>.
+He was <quote who="Jason Cater">not sure of the practicality of saving the
+formulas, but having them show up in Excel would rock a few socks.</quote>
+He could use the debugging 'hints' field already in the format to implement 
+this. Derek said <quote who="Derek Neighbors">
+Um in forecasting / staffing and similar situations it just kicks butt.  
+As if you bring over the forumlas opposed to the cacluated number, they 
+can key into the report and have formulated fields calcuated on the fly it 
+might sound dumb but give it to an accountant and expect donuts in the 
+morning. :)</quote>.</p>
+
+<p>Jason also said <quote who="Jason Cater">I would like to see a generic 
+report "skin", or template</quote> which would apply 
+<quote who="Jason Cater">site-specific conventions (e.g., paper size, logos, 
+standard header styles, etc)</quote>.Derek said it might be possible to do 
+this either using <quote who="Derek Neighbors">'entities' in the .xsl files 
+or use multiple .xsl files.</quote>.</p>
+
+<p>Stan Klein suggested supporting <quote who="Stan Klein">AbiWord native 
+format.</quote> He felt <quote who="Stan Klein">this will probably cover 
+mail merging.  It isn't overprinting of pre-printed forms, but covers 
+formatted, templated forms.</quote> He suggested GNUe could 
+<quote who="Stan Klein">Not cast any tags in concrete within GNUe Reports
+</quote> unless they were necessary for the logic of the application, 
+with as much as possible derived from <quote who="Stan Klein">a 
+user-definable file of tags.</quote>. He thought the initial output 
+parser should output a single standard format <quote who="Stan Klein">like 
+DocBook with a GNUe Reports DTD that can produce all the other formats.  
+I don't see a need for *developing* a GNUe-Reports-specific
+output format conversion program.  In fact, I think it would be best to use
+as much as possible of what's out there already before we even consider
+rolling our own.  It might turn out that a minor fix to something already
+existing would do everything we need.  That's the Innovation Commons of
+Free Software at it's best</quote></p>
+
+</section>
+

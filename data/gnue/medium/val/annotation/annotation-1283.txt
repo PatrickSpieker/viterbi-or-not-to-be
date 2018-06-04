@@ -1,0 +1,71 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.04Jan2003" author="Peter Sullivan" contact="mailto:psu@burdonvale.co.uk" enddate="03 Jan 2003 16:00:00 -0800" startdate="03 Jan 2003 16:00:00 -0800" subject="[IRC] 04 Jan 2003" title="Converting forms to new .gfd format">
+
+
+<mention>ra3vat</mention>
+
+<p>Marcos Dione (StyXman) asked <quote who="Marcos Dione">how should 
+I use the .04to0.5 conversor?</quote> Dmitry Sorokin (ra3vat) said 
+<quote who="Dmitry Sorokin">run it with your form as param - old form 
+will be saved with &lt;name&gt;-PRE050 name</quote>. The conversion
+routine, which was designed to convert GNUe Form Definitions (.gfd) 
+from the format used in version 0.4.x and earlier to the new format 
+that split the logic and the display, was not completely automatic, 
+but <quote who="Dmitry Sorokin">in most cases mine worked</quote>. 
+Marcos said <quote who="Marcos Dione">ok, I'll finish the file by 
+hand</quote>. Later, Jason Cater explained that the syntax for the 
+conversion script was <quote who="Jason Cater"><code>gfd04to05.py 
+&lt;source.gfd&gt; [&lt;destination.gfd&gt;]</code> - if you specify 
+two names on the command line, then the second one is the output name 
+and the first one is left unchanged - if you only specify one form, 
+then the original is renamed and the new one is created in its 
+place</quote>.</p>
+
+<p>Earlier, Marcos reported various errors trying to run a converted 
+form, most of which seemed to be caused by the convertor putting 
+<quote who="Marcos Dione">all my buttons in the logic part</quote>. 
+This was a very simple form, just with a few buttons. He 
+wondered if this was the problem - <quote who="Marcos Dione">can a 
+form have no logic?</quote> Jason asked 
+<quote who="Jason Cater">do you have a &lt;button&gt; as a child of 
+a &lt;block&gt; ??</quote>. Marcos said this was true of 
+<quote who="Marcos Dione">all the buttons</quote>. Jason said that 
+the conversion script was not <quote who="Jason Cater">accounting for 
+buttons in blocks</quote>. Marcos confessed <quote who="Marcos Dione">we 
+have more complicated things like that. boxes inside boxes inside blocks 
+and so on. would that be 'wrong'?</quote> Jason said 
+<quote who="Jason Cater">well, the converter won't support it - nor 
+will</quote> the CVS head version of GNUe Forms - 
+<quote who="Jason Cater">I'm not sure what it will do</quote>.</p>
+
+<p>Dmitry and Marcos concluded that the new format .gfds always had to 
+have a &lt;logic&gt; section - at a minimum, this had to contain a 
+&lt;block&gt; tag to specify which datasource to use. The conversion 
+script would fail with very simple forms that had no datasource, but 
+converted forms could then be made to work by manually adding a dummy 
+datasource - Marcos noted that <quote who="Marcos Dione">tmpDataSource 
+is valid</quote>.</p>
+
+<p>Marcos asked about containers for widgets. Jason said 
+<quote who="Marcos Dione">we haven't implemented containers yet - in 
+the old version or the new - with the exception of a 
+&lt;page&gt;</quote>. Marcos said <quote who="Marcos Dione">I sent a 
+patch for that one a looong time ago and it almos got in, but it was 
+disabled for 0.4.0 release, AFAIK</quote>. Jason explained 
+<quote who="Jason Cater">it broke a lot of existing forms - when 
+applying I thought it was backward compatable - but I haven't had time 
+to correct it</quote>. He thought <quote who="Jason Cater">we are 
+leaning to not having a dual function &lt;box&gt; tag, but an actual 
+container tag of sorts - but I'm not 100% sure what we want to do there 
+yet</quote>.</p>
+
+<p>Dmitry asked <quote who="Dmitry Sorokin">where should trigger be tied 
+to field tag in logic or entry tag in layout? what's the difference if 
+both ways are possible?</quote> Jason said <quote who="Jason Cater">there's 
+not a 1:1 relationship between a field (logic) and an entry (layout)... 
+there's a 1:many. most of the time you'd probably want to do a &lt;field&gt; 
+trigger</quote>. He confirmed that on-change triggers should exist for 
+field tags, as for entry tags.</p>
+
+</section>
+
+

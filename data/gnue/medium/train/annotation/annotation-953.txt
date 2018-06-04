@@ -1,0 +1,66 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.28Feb2003" author="Arturas Kriukovas" contact="mailto:arturas@gsk.vtu.lt" enddate="28 Feb 2003 04:00:00 -0800" startdate="28 Feb 2003 04:00:00 -0800" subject="[IRC] 28 Feb 2003" title="Multi-part delimited Stock-Keeping Units in gnue-sb">
+
+<topic>Small Business</topic>
+
+<p>Derek Neighbors (derek) asked Mike Vincent (Vee2d2): 
+<quote who="Derek Neighbors">you have 5 look up tables, i was going to make 
+6. My question is - do you really have your sku as  C.14.4.20.1 or is it 
+represented as C144201</quote>? Mike told <quote who="Mike Vincent">it's 
+really delimited. That way I didnt literally lock myself into 2 digits per 
+segment as I designed it to be.</quote> Derek offered starting with what 
+was needed and adjusting form later. <quote who="Derek Neighbors">Im thinking 
+that the delimiter will be really evil for invoicing and such, i.e. i dont 
+see delimiters for much of anything on invoices and such i encounter. Maybe 
+i just see them as - instead of .</quote> Mike explained since he has 
+<quote who="Mike Vincent">opted to make my cross references mfg.model &lt;-&gt; 
+ref, there's a much more likely need for that segment to be 3 digits</quote>. 
+Derek noticed <quote who="Derek Neighbors">now it seems like this will need 
+to be a choice 'delimiter' or no delimiter. Im planning on making the 
+categories be 6 character varchar, so if you want to use 1 digit or 6 you 
+can. Im giong to make the fields big enough, but will plan on delimiting 
+(not doing optoin not to) and NOT padding</quote> - non-delimited and padded
+stock-keeping units <quote who="Derek Neighbors">can be 'second 
+pass' type items :)</quote>.</p>
+
+<p>Derek asked 
+<quote who="Derek Neighbors">are you trying to build in some filter 
+mechanism here? Very generically im thinking - six category tables with a 
+segment and a desc (As well as id). Then you have your item and it has 
+<b>id cat1 cat2 cat3 cat4 cat5 cat6</b> which holds the segments (/me 
+suspects will 'build' the number form the segments as well and store it 
+in a field) even though it could be calculated (for flexibility) later on. 
+I imagine some folks will want free form ability its the cross reference 
+table here that is throughing me for a loop. I think i get what your 
+driving at just not sure how to make it generic</quote>. Mike agreed - 
+<quote who="Mike Vincent">I can see this as being specific to my needs. 
+But I need to have a way to correlate my #'s to my vendor's #'s. Each 
+vendor has their own system but the one thing that remains true is the 
+mfg's #. So I rely on that.</quote> Derek asked if he 
+<quote who="Derek Neighbors">can clarify what you are trying to do - 
+basically take manufacturer and manufacturer number and condense it to 
+a smaller number, to include as a part of your sku</quote>. Mike confirmed 
+that. <quote who="Derek Neighbors">Ok, here is what im thinking - family, 
+manufacturer, mfg model are probably going to be universal. That is people 
+will probably want to 'group' product types and everyone's product is 
+manufactured by someone (even if its yourself). This way we can create a 
+xref table as if all tables are generic we dont want to make 6 xref 
+tables. Actually i guess family could still be generic. So what if i 
+make manufacturer table and mfg model number (which is really an Xref 
+table), then 4 generic 'category' tables - will this work for you? Of 
+course manufacturer table should be more than - id, segment, desc - but 
+i want to get something usable quick.</quote></p>
+
+<p>He did not fancy <quote who="Derek Neighbors">doing full contact 
+tables for manufacturer at this point</quote> and asked 
+<quote who="Derek Neighbors">are your manufacturers and vendors one 
+in the same</quote>? Mike said <quote who="Mike Vincent">not at 
+all..</quote> - he could source the same manufacturer's goods 
+from multiple vendors. Derek said that, in that case, there was 
+probably no need to record contact details for 
+the manufacturers, at least at first. <quote who="Derek Neighbors">/me 
+has to keep telling self - something is better than nothing, dont over 
+engineer thats what gnue 'proper' will be for ;)</quote></p>
+
+</section>
+
+

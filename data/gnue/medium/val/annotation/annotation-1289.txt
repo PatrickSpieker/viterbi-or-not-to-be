@@ -1,0 +1,53 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.08Jan2003" author="Peter Sullivan" contact="mailto:psu@burdonvale.co.uk" enddate="07 Jan 2003 16:00:00 -0800" startdate="07 Jan 2003 16:00:00 -0800" subject="[IRC] 08 Jan 2003" title="Getting started with GNUe Forms">
+
+<topic>Forms</topic>
+<topic>Designer</topic>
+
+<mention>ra3vat</mention>
+
+<p>Anthony Lenton (aa_) queried an entry in the XML DTD for GNUe Forms, which 
+did not seem to work when he tried it. He was using the latest CVS version. 
+Jason Cater (jcater) said <quote who="Jason Cater">in cvs, the gfd format is 
+changing somewhat - I guess the DTD needs to be regenerated</quote>. He 
+explained <quote who="Jason Cater">we have moved the layout management to use a 
+separate namespace - this is so we can migrate to supporting multiple layout 
+mechanisms w/in the same form i.e., absolute positioning, grid layout, gridbag, 
+etc. I think the "creating your first form" chapter in that pdf shows this - 
+but because the layout stuff (x,y,width, height) is now in a separate 
+namespace a separate dtd would be needed</quote>.</p>
+
+<p>Anthony read the Developers' Guide, with details of the new format, and 
+typed in the sample, which he could not get to work. 
+<quote who="Anthony Lenton">It exits with ' Entry references non-existent 
+field 'zipcode' I set up the db as is suggested.  The field really honestly 
+does exist</quote>. Dmitry Sorokin (ra3vat) suggested 
+<quote who="Dmitry Sorokin">start with more simple example that does not 
+require db</quote>. Anthony <quote who="Anthony Lenton">tried to remove all 
+entries from the same example. It exited with 'There are no navigable widgets 
+in this form.  Unable to display.</quote> Later, Derek Neighbors (revDeke) 
+confirmed this error message was as expected - a form had to have at least 
+one entry field, but not necessarily tied to a database. John Lenton (Chipaca) 
+confirmed that Anthony's connections.conf settings were correct, 
+<quote who="John Lenton">and with --debug-level it says it's reading the right 
+connections.conf</quote>.</p>
+
+<p>Dmitry suggested <quote who="Dmitry Sorokin">if desingner is not broken 
+you can easily build a simple form with wizard - and wizard will allow you 
+explore your conncetions.conf file (choose datasource or db) and db tables 
+when choosing particular columns</quote>. Anthony reported that the 
+Designer seemed to work fine, but the Run-Form menu option from within 
+Designer bombed out. Dmitry suggested saving the form, and running it 
+from GNUe Forms directly. Derek said <quote who="Derek Neighbors">have you 
+confirmed that forms works at all? If not, please run samples/intro/intro.gfd 
+first to confirm that it functions properly - if it does then lets get a 
+database form working</quote>. Anthony confirmed that 
+<quote who="Anthony Lenton">ok! intro.gfd works fine - i'll take a look at 
+how that works and move on from there</quote>. Derek explained that 
+<quote who="Derek Neighbors">there is a HUGE jump from non datasource to 
+datasource forms - and fortunately or unfortunately a lot can go wrong with 
+datasource forms that have NOTHING to do with gnue - i.e. database or database 
+driver misconfiguration - so we like to use a dataless form to get a 'quick' 
+view of whether forms itself is working</quote>.</p>
+
+</section>
+

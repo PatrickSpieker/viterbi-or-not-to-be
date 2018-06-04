@@ -1,0 +1,1347 @@
+Varadhan (~Varadhan@61.11.56.27) joined #gnuenterprise.
+<derek> hi Varadhan
+btami (~tamas@ip102-205.ktv.tiszanet.hu) joined #gnuenterprise.
+<btami> good morning
+<derek> hi btami
+Action: derek wanders off to bed its late here
+Action: derek is away: sleep
+<Varadhan> hi derek.. sorry was not on my desk...
+<ajmitch> ah well
+<ajmitch> derek gone bed, i shall go off to sleep here as well
+<Varadhan> bye ajmitch...
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+lawrence (~lawrence@h24-84-197-16.wk.shawcable.net) joined #gnuenterprise.
+lawrence (~lawrence@h24-84-197-16.wk.shawcable.net) left irc: "I like core dumps"
+ariel_ (~ariel@ppp-217-133-242-73.dialup.tiscali.it) joined #gnuenterprise.
+<ariel_> does anyone knows where common.openResource is?
+<btami> ariel_: common/src/FileUtils.py
+<ariel_> why setup-cvs does not install it ?
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) left irc: Read error: 113 (No route to host)
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) joined #gnuenterprise.
+<btami> it installs
+SachaS (~Sacha@dialup-196-5.wasp.net.au) left irc: Read error: 54 (Connection reset by peer)
+<ariel_> when i run gncvs i get:
+<ariel_> cannot import name OpenResource
+<ariel_> with gnue-navigator is the same but i haven't installed 0.4 since i ever use cvs
+<btami> its correct name is openResource
+<ariel_> i typed not cut&paste it gave me openResource
+<ariel_> do i need to do a setup-cvs root installation?
+<btami> i don't think so
+<btami> do you use latest CVS ?
+<ariel_> the same within a python session:
+<ariel_> from gnue.common import openResource
+<btami> and rerun setup-cvs.py ?
+ariel__ (~ariel@ppp-217-133-242-73.dialup.tiscali.it) joined #gnuenterprise.
+ariel_ (~ariel@ppp-217-133-242-73.dialup.tiscali.it) left irc: Read error: 110 (Connection timed out)
+ariel__ (~ariel@ppp-217-133-242-73.dialup.tiscali.it) left irc: Client Quit
+ariel__ (~ariel@ppp-217-133-242-73.dialup.tiscali.it) joined #gnuenterprise.
+hjibds2 (~henderson@host62-7-105-56.in-addr.btopenworld.com) joined #gnuenterprise.
+<hjibds2> hi
+<btami> hi
+<hjibds2> I was told the last time that I was on someone was writing a kinda small business version of GNUe - do you know anything about it?
+<btami> not too much
+<btami> it's gnue-sb on savannah
+<btami> and Varadhan has wrote some demo app for oracle-show IIRC
+<hjibds2> do you know what the current status of the project is
+<btami> what project, gnue or gnue-sb ?
+<btami> i know nothing more about gnue-sb
+<btami> it comes :)
+<btami> ask derek
+<hjibds2> what kind of status is gnue at then? i.e. how long before it is ready for production use
+<btami> a: 0.4.1 coming soon
+<btami> b: don't know
+<hjibds2> hmmm - anything else similar at a further stage - had a dig about the net but this was the only project that i could find
+<btami> yes, this IS the best project :)
+<ra3vat> hjibds2: the tools is very useful already
+<btami> hi ra3vat
+<ra3vat> hello btami
+<hjibds2> ready for use as an ERP system?
+<ra3vat> hjibds2: forms, reports are tools to build your own application
+<btami> ra3vat:i have i18n problems remaining in reports
+<hjibds2> how hard is it to build your own apps? - I have very little programming knowledge
+<hjibds2> downloaded the software yesturady but never had time to install it last night to have a look at it myself
+<ra3vat> hjibds2: it may depends on application you need but mostly you do not need programming knowledge
+<hjibds2> excellent
+<hjibds2> It says it works with PostgreSQL so I assume it will work with RHDB2 ?
+<ra3vat> hjibds2: you design form and create db and then iyt works
+<hjibds2> hmmm didn't realise that it was at that stage - hopefully I'll get a chance to install it tonight
+<btami> ra3vat: 1. there is only formFontEncoding in forms section
+<btami> and reports read only reports section
+<btami> so reportFontEncoding is needed
+<btami> is gnue.conf
+<btami> s/is/in
+<btami> 2. dest.write fails with _content_ type data
+<ra3vat> btami: i just changed encoding where header for dest.write is defined
+<btami> so .encode(encoding) needed to in some place in GRLayout.py
+<ra3vat> it helped to see right data, but source is still wrong with references of UTF-8
+<btami> try a <out:ReportTitle> with non ascii title
+<ra3vat> btami: it worked 
+<ra3vat> have no time right now, sorry
+dsmith (dsmith@oh-strongsvillecadent1-1aa-105.clvhoh.adelphia.net) joined #gnuenterprise.
+hjibds2 (~henderson@host62-7-105-56.in-addr.btopenworld.com) left irc: 
+<Varadhan> btami: thanx a lot for referring this small app too... :)
+<Varadhan> actually we didn't do any sort of validations in it... because of the lack of time to put it in the show... ;)
+<btami> Varadhan: nothing :)
+<Varadhan> anyway.. we will soon be able to post the application to the gnue samples directory...
+<Varadhan> btw... i need some help regarding "schema"s...
+<Varadhan> what is a schema?  How it is used?
+<Varadhan> ra3vat: hi.. 
+<btami> its an XML markup for database definition
+<Varadhan> is it compulsory for an application to define schema?
+roblimo (~roblimo@pcp281688pcs.elkrdg01.md.comcast.net) joined #gnuenterprise.
+<Varadhan> How will it be useful for an application?
+<btami> no, it's not neessary for an app
+<btami> it is useful for transferring data from one database to another
+<btami> or filling a database with tables/data
+<Varadhan> could you pls explain this more?
+<grib> Varadhan: if you define the database structure with XML, you can translate it into idiomatic SQL for a specific database variety.  don't know if that's how gnue schemas are used but it's a pretty standard technique. 
+Action: drochaid is back (gone 10:29:17)
+<btami> you can find a good example in zipcode sample
+<btami> in samples/tutorials/forms/zipcode.gsd
+<btami> and there is an ooO doc around, but i can't recall where :)
+<grib> infrastructure question: are there any plans to provide a gnue transaction processing server, or queueing system?  or are most gnue apps tied to synchronous database semantics (i.e. client actions block until complete)
+<ariel__> grib: there are plans for this in the appserver
+<ariel__> see the hallowen mail in gnue-dev mailing list
+<grib> ariel__: cool, thanks.
+<ra3vat> btami: i'm looking into last patches
+<btami> some imports are missing jet
+jamest (~jamest@adsl-64-216-107-182.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+<btami> hi jamest
+<jamest> hello
+<btami> jamest: have you a little time to fix SimpleReport
+<jamest> what's wrong?
+<btami> 2 import lines are missing from designer.report.TemplateSupport.py
+<btami> from gnue.common import GParserHelpers
+<btami> from gnue.reports import GRLayout
+<jamest> ah, designer not reports itself
+<jamest> lemme look
+<Varadhan> btami: i will check that.. thanx for your info....
+Action: jamest didn't even know designer had reports templates yet :)
+imoz (~jmozelesk@user216-178-90-228.netcarrier.net) joined #gnuenterprise.
+<imoz> Hi, I can't seem to get to the mailing list links on the gnue.org site.  Did they move?
+<jamest> btami: how do you trigger the bug?
+<jamest> imoz: our lists are on gnu.org now....i'll find you url to them
+<imoz> thanks
+<grib> jamest: for some reason the gnu ML pages aren't accessible atm
+<imoz> hmm..
+<jamest> yip, same here, they be down
+<jamest> btami: I can't trigger the bug
+<imoz> Gnue is entirely written in Python, right?
+<btami> jamest: SimpleReport wizard in designer doesn't creates a good SimpleTabulation report
+<jamest> yip
+<imoz> so conceivably one could compile it to run on .NET?
+<jamest> i know nothing about .net so I don't know
+<jamest> almost everything  should run anywhere a python interpreter is avaliable
+<imoz> I had this idea to create a GPL'd clone of Great Plains Dynamics on .NET in C#...and then I found Gnue.org :-)
+<btami> jamest: you have to save the report (created by wizard) in designer
+<btami> jamest: label-specs.dat isn't in reports setup.py too
+<jamest> lol, 1 at a time please :)
+<btami> but i have to go home right now :)
+<imoz> It looks like Gnue's reporting tool generates reports as HTML output...  Does this work effectively for printing say an invoice on a pre-printed form?
+<jamest> btami: is there more to the reports fix?
+<jamest> as that file never references those libs
+<jamest> imoz: gnues reporting tool outputs an XML markup 
+<jamest> that can be converted to text, html, ps, pdf, whatever
+<imoz> ok
+<jamest> I've had people write letters in word processor of their choice
+<jamest> same as PS file via windows apple laserwriter 
+<jamest> then reports can merge data in 
+<btami> jamest: some i18n issues i'm fighting with
+<jamest> sent out about 600 faxes this way a few months back
+<imoz> sweet
+<jamest> btami: those imports don't fix it
+<btami> jamest: please read backlog
+<jamest> ok
+<btami> ?
+<jamest> i put them in templatesupport but they are never referenced in the code
+<jamest> hang on
+<jamest> btami: I'll read the logs and get to reports a bit later
+<jamest> I'll fix setup.py
+<jamest> what's up with i18n
+<btami> huh
+Action: jamest was suppossed to be doing work for client on his "day off" but prefers to GNUe :)
+<btami> l8r, i have to go really now
+<btami> bye
+<jamest> <btami> jamest: some i18n issues i'm fighting with
+btami (~tamas@ip102-205.ktv.tiszanet.hu) left irc: 
+Action: jamest needs more caffine as he's lagging in that conversation 
+<imoz> I just downloaded the Win32 binaries and I'm playing with the Designer... this reminds me a lot of the Great Plains "Modifier"
+<jamest> imoz: a huge word of warning
+<imoz> ?
+<jamest> our win32 support in GNUe Forms via wxPython has issues, we're writting a win32 API ui driver during the next release cycle because we can't get what we need from wx
+<jamest> it works, but it's a bit odd
+<jamest> i just don't want you running a form and saying WTF!?!?!? 
+<grib> jamest: so is wx not quite the x-platform miracle it was thought to be? 
+<jamest> well, you can still say it but know we're working on it :)
+<imoz> hehehe
+<imoz> well its a lot further along than other projects so :-)
+<jamest> grib: i think it's the underlying widget set for the platform
+Action: grib hates thinking about windows but has to
+<jamest> on X we can get ahold of certain events, in windows those events never make it to the wx level
+<grib> jamest: is gtk on win32 too far from usability? 
+<imoz> how did Gnue get started?  I mean, what kind of background did the core developers come from?
+<jamest> imoz: http://www.gnuenterprise.org/faq.html#GNUe-FAQ-1.14
+<jamest> grib: I haven't tried it yet, client of mine was nice enough to promise customer online system by 1st week of Dec
+<jamest> I got the specs for that system this week and told to implement it
+<jamest> but my understanding is that the gtk2 client is missing some features but is moving along nicely
+<imoz> so the core mentioned in that document came from a JBOPS background?
+<jamest> a what?
+<imoz> JD Edwards/Baan/Oracle/Peoplesoft/SAP
+<imoz> high end ERP background
+<jamest> a little of everything, my experiece is with a home grown erp at a mfg plant
+<jamest> using oracle and their old sql*tools
+<imoz> I come from the middle-market... I used to work for a Great Plains VAR writing custom enhancements for clients, and I was working for a company called BusinessVision until they closed our office in the US.
+<jamest> GNUe Forms is somewhat based upon the way Oracle SQL*Forms worked
+<jamest> as both myself and jcater like that tool, however we've altered things we hated about it
+<imoz> so I think an open source mid-market solution comparable to Accpac/Solomon/Dynamics would be interesting, but after finding Gnue I'm thinking instead of creating something from scratch I could use your toolset to do this?  Except I would have to learn Python :-)
+<jamest> sorta
+<jamest> our trigger system currently only supports python 
+<jamest> but quite a bit can be done via designer w/o writting any triggers
+<jamest> even learning python you'd only have to learn a small part of it
+<jamest> we have a doc in cvs that give a little tutorial on it too
+<jamest> should be in the next release due out any day now
+<imoz> Great Plains works virtually identical to this.  They have a custom scripting language called Dexterity and a similar forms designer, etc.  Same concept of triggers, etc.
+<jamest> i didn't know that 
+<imoz> of course then they got bought by M$ and are now porting to .NET...
+<imoz> yeah it works very similarly.  Of course you have to buy a very expensive site license to use the modified code and only dealers get access to the Dexterity tools.
+<ra3vat> jamest: i did rerun setup-cvs.py and now have issue
+<jamest> grib: we're getting lots of win32 patches it seems and gtk2 patches so it may work better than I think
+<jamest> ra3vat?
+<ra3vat> .cvsdevelbase/gnue/__init__.py is a broken link and reference gnue/common/gnue/__init__.py
+<grib> jamest: good to know
+<jamest> pwd
+<jamest> ra3vat: could you blow away your .cvsdevelbase dir and rerun
+<jamest> the setup-cvs.py
+<ra3vat> did that already, the same thing
+<jamest> i had jcater working on some stuff for me last nite (the fool asked what needed done.)
+<jamest> i didn't think he'd chack it in though :)
+<jamest> ra3vat: hang on, i'll look at it in a sec
+<jamest> gotta commit btami's designer fix
+<ra3vat>  /.cvsdevelbase/gnue/gnue empty dir
+<jamest> alrighty then, lets see wazzup
+<jamest> that's not a good thing
+<ra3vat> the link points to  gnue/common/gnue/__init__.py instead of  gnue/common/src/__init__.py
+<imoz> Ok, I just did File-->New-->from Wizard, picked multi-block, page form; and then put in a title "CUSTOMER MASTER",  I click next and its asking me to log in to the development database.
+<jamest> yip
+<imoz> Can I install the "AppServer" on Win32?
+<jamest> imoz: the appserver isn't ready for real use yet
+<imoz> but then, how do I access the "development database"?  I have MySQL running, but it didn't create a new database when I installed the Gnue-Tools
+<jamest> those database optoins are setup in your connections.conf file
+<jamest> you can put as many as you like and connect to various databases, appserver, etc
+<jamest> then they are available in that dropdown you're looking at
+<imoz> will it create the database for me?
+<jamest> no
+<jamest> well maybe
+<jamest> last release == no
+<imoz> ok, I looked at the sample config file in program files\gnue\etc
+<imoz> if I create a blank developer database
+<jamest> cvs has the start of gsd files (gnue schema definition)
+<imoz> it should work?
+<jamest> the wizards all build from existing table structures
+<jamest> so you'd have to have the database and tables already there
+<imoz> oh
+<jamest> the table creation options are starting to appear in designer
+<jamest> you'l l find a create schema from form option on one of the menus now
+<jamest> but I have no clue how well it works
+<jamest> or if it works
+<imoz> trying now...
+<jamest> ra3vat: than's odd
+<jamest> that's
+<jamest> it's actually not changed 
+<jamest> something else has
+<ra3vat> jamest: do you see the problem or it is only on my side?
+<jamest> i see it on todays cvs
+<jamest> but my install from  a few days ago has same structure and works fine
+<jamest> right down to the empty gnue dir :)
+<ra3vat> jamest: and after i correct the link - simple forms work, mine no
+<ra3vat> DB000:   File "/usr/local/src/cvs/gnue/gnue/.cvsdevelbase/gnue/forms/GFDisplayHandler.py", line 690,
+<ra3vat> in _buildDisplayHelper
+<ra3vat> DB000:     return self.entry._allowedValues[str(value)]
+<ra3vat> DB000: TypeError: unsubscriptable object
+<jamest> sigh
+<ra3vat> seems the same i had in w98 yesterday but had no time to look closer
+<jamest> i assume that self.entry._allowedValues is set to None
+dsmith (dsmith@oh-strongsvillecadent1-1aa-105.clvhoh.adelphia.net) left irc: Remote closed the connection
+<jamest> wow, i just don't see where that changed
+<imoz> well I didn't have any tables in developer, so I hooked it to my postnuke database :-)  this is pretty powerful
+Action: derek is back (gone 07:35:36)
+<imoz> I can't complete the wizard for a 'multipage' form but the simple form wizard works
+<imoz> when i do Debug->Run it tells me there is no attribute "runFormFromTrigger"
+<jamest> imoz: what fails the the multipage?
+<jamest> debug->run i think is toast
+<imoz> yeah the multipage
+<jamest> i can try and fix it a bit
+<jamest> ooo, wait
+<jamest> you mean you can't run the multipage form after it completes, or that it never completes?
+<imoz> I am able to put in the title of the form, specify the table I want to use, then it asks me if I want to add another table and if I want it on a new page
+dimas (~ds@ics.elcom.ru) joined #gnuenterprise.
+<imoz> clicking Continue generates an error in the console window
+<jamest> can you give me error?
+<jamest> imoz: you are running cvs right?
+<imoz> I am running "GNUe-Tools-0.4.0a-setup-debug-on.exe"
+<imoz> :-)
+<imoz> I downloaded it this morning to have a look
+<jamest> ooooo
+<jamest> damn
+<jamest> um, wizards in 0.4.0 IIRC had issues that slipped by us
+<jamest> lemme scrounge up some 0.4.1prereleases for you
+<jamest> or make some :)
+<dimas> how one can paste from damn dos window?
+<jamest> dimas: from inside windows?
+<imoz> can I just download the latest scripts from CVS and then copy them to the appropriate folders?
+<jamest> dimas: there is a toolbar with a dottted box on it.....jamest can't recall if XP is the same
+<jamest> imoz: no, our tools typically undergo major internal changes between 0.0.1 releases :)
+<imoz> oh... :-)
+<jamest> i'll have to build some as only source are availabe
+<jamest> which means I need to install the windows tools here
+<imoz> hmm
+<jamest> it'll take me a bit
+<imoz> I have ActivePython installed
+<imoz> can I build it myself?
+<derek> jamest: i think wx is pretty good xplatform if you have limited resources (i.e. better than anything else)
+<derek> however its not perfect
+<jamest> you might not even need to build it, someone added a run from cvs tree for windows a few days back
+<derek> i think it has done us well... i.e. quick xplatform to get people interested and get us supported with little effort
+<jamest> but, yes, you can build yourself
+<derek> now that we have a bigger base i think it will be nice to see naitve, win32, gtk, qt 
+<jamest> if you do that then I suggest you grab cvs copy 
+<jamest> derek: the forms feature plan page has changed
+<derek> yeah i noticed :)
+<jamest> you'll find win32api next
+<derek> i think its a good change
+<imoz> ok I am looking at the 0.4.0.99-pre2 tarballs on the CVS browser on the website right now
+<imoz> should that work?
+<jamest> imoz: yes
+<derek> i think you are sick for being eager to write one, but its a good thing(tm) ;)
+<jamest> derek: i wanted to rework the gfd format to seperate layout from logic 
+<jamest> btami asked for a feature that would be easy once seperated
+<jamest> so i spoke w/ jcater about it
+<jamest> we decided that the forms documentation wouldn't be that good if we changed the file format right after we release the docs
+<jamest> :)
+<jamest> btw - I'm writting a GNUe Common usage guide that shows you how to write non-gnue apps with common
+<derek> grib: do you or linas still maintain gnucash or have you given it over to derek atkins?
+<jamest> should make it into 0.4.1
+<derek> jamest: yummy gcvs script is nice for such things
+<jamest> imoz: if you can run cvs however I can (attempt) to fix issues for you in real time
+<jamest> derek: yeah, but that'll probably  go away too 
+<jamest> the code exists to make gnue self aware of it's install 
+<jamest> however we're having issues with distutils
+<jamest> ra3vat: you here?
+<dimas> yes
+<jamest> try replaceing that sym link to __init__.py
+<derek> dimas: multi personality like moi now a days :)
+<jamest> with just an empty __init__.py via touch
+<dimas> jamest: can't find how to paste into xchat now
+<grib> derek: linas still has nominal control (and is sentimentally attached to it :) but derek is really the main guy these days.  honestly I don't even have gnucash installed on my machines -- wife wants to use quicken/mac :/
+<jamest> middle mouse button on the line you type on
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<jamest> derek: you get around
+<jamest> dimas: I'm pretty sure you want that .cvsdevelbase/gnue/__init__.py to not link into the src dir
+<jamest> as it's just a placeholder
+<jamest> i have no idea when we lost common/gnue/__init__.py as my copy is ancient
+<jcater> last night
+<jamest> but it's just an empty file
+Action: jcater will fix
+<jamest> jcater: i already did
+<jamest> replaced with a touch 
+<grib> derek: my developers made lots and lots of contributions a while back, but we are in the process of starting over for our stuff -- too much cruft in gnucash
+<jcater> oh
+<grib> derek: which is why i've been hanging around here more lately :)
+<jamest> jcater: that OK?
+<jcater> if it works, I guess so :)
+<dimas> jamest: middle button work that way under w98?
+<derek> why start over, use gnue ;)
+<jamest> dimas: depends on the x server
+<jamest> try both buttons to simulate middle click
+<imoz> ok, I am confused.  I downloaded GNUe-Designer-0.4.0.99-pre2.zip, then from a console window ran setup.py install.  It put everything in C:\Python22
+<derek> jamest have you had psu integrate your feature maps into the website?
+<jamest> no, as I don't think they're ready
+<imoz> I guess I need to do this for all of the source packages for this to work?
+<imoz> :-)
+<jamest> imoz: if you run the cvs copy there is a script
+<jamest> i think that fakes the install on windows
+<grib> derek: it's possible.  there's a lot of overlap, and some of the stuff you guys have done looks really nice.  
+grib (~grib@grib.customer.jump.net) left irc: Remote closed the connection
+grib (~grib@grib.customer.jump.net) joined #gnuenterprise.
+<jamest> ra3vat: any luck?
+<derek> grib: we have a ways to go, but i think we have some solid stuff 
+<imoz> I don't have a CVS client for windows
+<ra3vat> jamest: and what about  _allowedValues? how is that my form require something to define?
+<jamest> ra3vat: i'm looking now
+<imoz> ok, using the web access I see a script in the root of the cvs, setup-cvs-win.py
+<imoz> is that the script?
+<jamest> yeah
+<jamest> but you have to have the whole cvs tree
+<derek> imoz: be warned that is VERY new
+<derek> and likely could have buglets :)
+<jamest> jcater: you happen to have your windows setup there to do exe's?
+<derek> but several people have used it successfully
+<jcater> jamest: not really
+<derek> jamest: i can create a setup farm for windows at work
+<derek> if someone tells me the stuff i need
+<jamest> derek: don't touch it
+<jamest> derek: don't you dare
+<jamest> derek: as we both know what will happen
+<imoz> ok, how can I easily download the entire CVS tree from Windows? :-)
+<jcater> imoz: one of two things
+<jamest> <derek>: um, is the thing supposed to blow the monitor, set off the burger alarm, and cause my cat to get zits?
+<jcater> grab wincvs or something similar and download
+<jcater> or you can grab a snapshot of last night's cvs at
+<jcater> http://www.gnuenterprise.org/downloads/snapshots.php
+<jcater> (there are .ZIP files there)
+<imoz> well I just downloaded all the -0.4.0.99pre2 .ZIP files, will this script work with those?
+<jcater> I don't know much about the setup-cvs-win script
+<jamest> ra3vat: you have a dropdown on your form?
+<ra3vat> jamest: many of the sample forms work mine complains about allowedValues (see above) but it worked yesterday. what inside a form may cause this?
+<ra3vat> yes i have
+<jamest> that's where things are going bad
+<jamest> as dropdowns do define the _allowedValues
+<imoz> ok much easier, I am downloading gnue-cvs-current.zip
+<jamest> is your dropdown values being puleed from a query or a static datasource?
+<ra3vat> i have both
+<jamest> ra3vat: have you tried replacing that __init__.py yet?
+Action: jamest doesn't think having the common __init__.py would effect the install in any way but wants to make sure
+<ra3vat> yes, without that form did not start at all
+<jamest> i mean with a blank file not a link into common/src
+<ra3vat> i did blank
+<jamest> can you confirm that the tables you're pulling dropdowns from contain data?
+<jamest> better yet
+<jamest> let me find a sample dropdown form here and see if I can reproduce
+<ra3vat> i have simple form with one entry. i get the same error as only add style="dropdown" to it
+<jamest> ra3vat: you need to have on that entry the attributes
+<jamest> fk_description , fk_key, fk_source
+<ra3vat> what attibutes?
+<jamest> without them it won't populate the allowedValues IIRC
+<jamest> try this form
+<jamest> gnue/common/utils/connection.gfd
+<ra3vat> ok, but i have all this in main form and it worked, checking now
+<imoz> ugg, PythonDotNet won't build on the v1 framework sdk.  I suppose there won't be a way to compile Gnue for .NET unless wxWindows is ported anyway
+<jamest> well, until we get the win32 ui driver up
+<jamest> but i doubt we'll see designer redone in win32 api :(
+<ra3vat> jamest: sorry, it was my fault, i've added one more entry wanting it to be dropdown but without needed attibutes
+<jamest> ra3vat: I will add check for this
+ariel__ (~ariel@ppp-217-133-242-73.dialup.tiscali.it) left irc: "Uscita dal client"
+<imoz> does the Reports designer work in the latest cvs snapshot?
+<derek> no
+grib (~grib@grib.customer.jump.net) left irc: Connection reset by peer
+grib (~grib@grib.customer.jump.net) joined #gnuenterprise.
+<jamest> it does in cvs
+<jamest> but that's as of like 8:15AM today
+<imoz> I am downloading the latest "hourly" snapshot
+<jcater> jamest???
+<jcater> we don't have a reports designer yet
+<jcater> unless someone was a coding machine last night :)
+<jamest> not graphically
+<jcater> we have a report wizard
+<jcater> but no visual designer
+<jamest> but the wizard will spit out a basic report
+<jamest> sorry, i was mis-stating our support
+<derek> jcater: you have to watch him, i think im rubbing off on him :)
+<jcater> no shit
+<jamest> not intentionally
+<imoz> well here's what I was thinking of doing to try this out
+Action: jcater was about to ask if there were two dereks here today :)
+Action: jamest is multitasking
+<imoz> on my desktop I was going to load up my demo version of Great Plains Dynamics Release 6, dump out the customer master tables from MS SQL Server
+<imoz> load them into MySQL
+<imoz> and try and duplicate the customer maintenance screen
+<derek> bahhhh bhahhhh
+Action: derek is plugging his ears
+<jamest> imoz: the odbc driver may allow a direct connection to ms sql
+<jamest> i'm not using it but I believe it still works
+<derek> imoz: certainly you can do this, please please make sure none of it makes it upstream into gnue packages
+<jcater> yes, that will kill us
+<derek> as surely we would be in trouble
+<imoz> hehehe
+<derek> if you want to 'study' great plains
+<derek> and learn from it great
+<derek> if you want to rip and gut and use for personal stuff great
+<imoz> this is just a test for myself :-)
+<derek> just dont submit back as proposals to gnue (as we dont want to slapped later) ;)
+<derek> imoz: cool
+<derek> i think its a good idea
+<derek> just making it publicly known we keep the code clean :)
+<imoz> I am totally new to gnue as of like 4 am this morning so... I just want to try it out and see how far I can get with it at this point
+<imoz> I also have a demo version of Visual AccountMate
+<imoz> but that's FoxPro based.
+<imoz> My initial idea before I even discovered new was to write an open source middle-market accounting package in .NET using C#, and hope it will run on Mono when that is further along.
+<imoz> err new=gnue
+<jamest> but if you write an open source middle-market accounting package in gnue then you can just hope it'll run
+<jamest> :)
+<imoz> hehehe
+<imoz> What I would like to see is an open source QuickBooks like app that imports a QBB file and interoperates with the qbXML API so all the 3rd party add-ons for QB would work
+<imoz> then a seamless upgrade path to something on the level of ACCPAC/SBT/etc.
+<nickr_> gah, great plains
+Nick change: nickr_ -> nickr
+<imoz> Quickbooks-like-app + Goldmine-like-app + OpenOffice + Evolution + seamless website content manager/e-commerce = could be a powerful motivator for small businesses to use Linux
+<derek> hmmm
+<imoz> I have a DLL that I bought a year ago with a sample app, it opens a QBB file and dumps the entire database structure + data into MS Access
+<derek> gnue-sb = quickbooks + manufacturing + goldmine + ecommerce
+<imoz> :-)
+<derek> w/ open office integration
+<nickr> SB?
+<imoz> I just searched gnue-sb on google and the only thing that comes up is the irc logs :-)  and a "kernel buddy" guide with some esoteric discussion about licensing issues
+<jamest> it's something derek's been working on 
+<jamest> i don't know details as I was playing hookie from gnue when it was started
+<ra3vat> may i add ConnectString to connections.conf definition?
+<jamest> what's it do?
+<imoz> Will you be able to add images etc. to a Gnue or Gnue-sb form to make the forms look pretty for idiot users?  Kind of how quickbooks is dumbed down for the lowest common denominator user?
+<jamest> eventually we plan to support image boxes
+<jamest> however we're not going to be a full widget set
+<derek> http://www.nongnu.org/gnue-sb/
+<jamest> you'll never create quickbooks or quicken in a gnue form
+<jamest> er, create that look
+<jamest> my personal outlook on this is that widget sets are too complex for most issues
+<jamest> and that I'm always amazed at the number of windows "registers" that basically has a telnet box open to an app running in text mode
+<jamest> at the bank, the hardware store, the county office, etc, etc
+<imoz> hehehe yeah
+<imoz> Compiere apparently has a POS system, but it's Java and...I dunno there's something about it that I can't put my finger on
+<jcater> imoz: perhaps that it requires jdk and Oracle licenses?
+<jcater> :)
+<imoz> so at this stage, no work has been done on the actual 'modules' of Gnue, just the tools?
+<imoz> i.e. Gnue Financials etc.
+<ra3vat> jamest: i'm looking into code that checks encoding from gnue.conf for additional connection command
+<jamest> and this command would do what?
+Action: jamest isn't sure what you're trying to achieve
+<dimas> it's a local crap
+<nickr> ahh, small buisness
+<nickr> BIDNESS
+<dimas> sometimes i need to pass "SET CLIENT ENCODING TO WIN" for postgres
+<nickr> gnue has sqlite support no?
+<jamest> gnue has sqlite support yes
+<nickr> hmm
+<nickr> no debian package for python-psqlite
+<jamest> dimas: i don't have a prblem with it
+<derek> nickr: mush mush boy, get it done ;)
+<jamest> jcater: do you?
+<jcater> um
+<dimas> jamest: w98, prerelease-1 tabbed form started, i hit f8, f9 and data from all pages comes upon each other
+<jcater> I thought that was settable in connections.conf
+<jcater> you could add an 
+<jcater> encoding = win
+<jcater> to your connections.conf entry
+<jcater> is that no longer there?
+<dimas> yes, it works
+<dimas> i forgot it should be win not cp1251
+<dimas> jamest: then i clicks on tabs and all looks great but first time it all mixed
+<nickr> I have have a local connections.conf right?
+<nickr> *can* have.
+<jamest> i believe so
+<nickr> hrm, how do I specifiy a sqlite database?
+<jamest> provider = sqlite
+<nickr> right
+<nickr> tehn?
+<jamest> ah, hang on
+<nickr> dbname = file ?
+<jamest> i think so
+<jamest> I'm looking
+<nickr> hmm, it doesn't seem to find it
+<nickr> er, it doesn't appear in the connections menu item in designer at l/east
+<jamest> nickr what's the entry look like?
+<nickr> [sps]
+<nickr> comment = SPSnet Database
+<nickr> provider = sqlite
+<nickr> dbname = /home/nick/spsnetdata.sqlite
+<nickr> thats in ~/.gnue/connections.conf
+<nickr> I can import sqlite in python, also. Just as an aside. So I'm pretty sure its working.
+<jamest> let me verify the connections.ocnf thing
+<jamest> as I think it uses same conf as gnue.conf which means you can have local 
+<nickr> it'd be cool if gnue had some sort of integration with glabels
+<jcater> glabels?
+<jamest> nickr try running designer like
+<jamest> gfdes ----connections ~/.gnue/connections.conf
+<nickr> jcater: its this ultra slick little label generator, with barcodes and data merging. If you could give it a gnue connection to merge from.. it'd be sweet :)
+<jamest> we do not currently seem to support more than one connectoins.conf file merged together
+<nickr> DB000: gnue.common.GDataObjects.ProviderNotSupportedError: No database driver found for provider type 'sqlite'
+<jamest> however I think this could be added and modeled about the gnue.conf loading code
+<nickr> doh.
+<jcater> nickr: we're already there :)
+<nickr> jcater: ?
+<dimas> how to cleanly updates to prerelease2 under win32? should i remote pre-1 first?
+<jamest> i would
+<imoz> Where can I download this linkd.exe file that is needed by setup-cvs-win.py?  I am on Windows XP Home Edition and have fsutils.exe but not linkd.exe.
+<derek> ok time to run to work
+<derek> at least i got something done this morning
+<derek> dcl is dangerous, you can find stuff to do you never planned on doing :)
+<ra3vat> imoz: /common/utils/win-links.txt
+<ra3vat> imoz: soory there are no links there
+<imoz> my search on google says it is in the Win2k resource kit, which I don't own
+Action: derek is away: work
+<nickr> so what do I do about the no database driver found?
+<jamest> nickr: that's a sign that something in that driver is broken
+<jamest> our try except there sucks
+<jamest> any error loading == no provider found :(
+<jamest> give me a bit
+<nickr> okee
+<nickr> thanks
+<imoz> when I search for linkd.exe on google the first thing that comes up is the IRC logs for this channel on nov 12th
+<imoz> where it says it was in CVS but was removed because it is 'nonfree'
+<imoz> i find it odd GNU makes all this fuss about stuff like that, yet there site Savannah is running sourceforge and gives no credit to them
+<nickr> jamest: btw, I only needed two dashes in --connection, not four
+<jamest> imoz: it was closed code that we were not allowed to distribute
+<dimas> imoz: it is known feature for many other things :)
+<nickr> --connections rather.
+<jamest> imoz: it's on the developers page.....talks about being a fork of sourceforge
+<jamest> imoz: as for the code, i'm not sure MS would have liked finding pieces of XP in our cvs
+<jamest> nickr: sorry
+<imoz> uggh
+<imoz> is there another version of the script that doesn't require linkd?
+<nickr> not a problem. :)
+<jamest> that reminds me
+<jamest> if they were just cvs deleted then they'd still be available via the cvs web site
+<jamest> deleted files get moved from the dir they were in into a dir called attic in the same directory
+<jamest> that way any previous image of cvs can be checked out at in time in the future
+<jamest> I'd better go manually remove those files from the repository before someone finds them
+<derek> imoz: if you have seen their code, its barely sourceforge at all
+<derek> it might 'look' like sourceforge but it aint sourceforge
+<jamest> derek: I'm going to fix the gateway
+<derek> also nothing in the gpl states you need give credit to anyone other than via copyright
+<derek> jamest: sucker :)
+<derek> its ticket 150
+<jamest> but I'll need you to test as I have no clue how things are submitted
+<derek> ok let me know when its fixed
+<jamest> but first I have to remove those exes from cvs
+<derek> i have to run to work
+<jamest> as anyone that visits http://subversions.gnu.org/cgi-bin/cvsweb/gnue/common/utils/Attic/ could grab a copy
+<derek> might not be able to test until tonight
+<jamest> imoz: you here?
+<imoz> hehehe
+<imoz> :-)
+<jamest> any luck finding a workaround yet?
+<derek> gack its 10:30
+Action: derek RUNS to work ;)
+<imoz> worked great :-)
+<jamest> i'm glad you found a workaround
+<jamest> those files are now gone, hope nobody got them
+<imoz> hmm.  the script tells me that it cannot find db2html
+<jamest> does it fail?
+<jamest> as that's docbook 2 html
+<jamest> which isn't really needed to run the thing
+<imoz> it tells me "Cannot generate documentation, could not find db2html in path"  then 'C:\Documents' is not recognized as an internal command...blah blah
+<jamest> sigh
+<jamest> i wish ra3vat was here
+<jamest> i think he wrote that, or was it art
+<imoz> I think its because I am trying to install it from My Documents\gnue-cvs-current\
+<imoz> the path has a space in it
+<ra3vat> no it is Arturas thing
+<imoz> I'm trying to install it to simply C:\GNUe
+<imoz> yeah that was it
+<imoz> I moved it to C:\gnue-cvs-current
+<imoz> however the script says "Installation finished successfully" however just above it I see the output as if linkd were run with no arguments/parameters
+<jamest> this is really out of my league, i don't have XP at the house and haven't used linkd before
+<jamest> so I don't know what's normal
+<jamest> imoz: I'm really sorry you're having these issues
+<imoz> well it seems to have installed correctly
+<jamest> by next week we'll have a 0.4.x release (we hope) 
+<jamest> with exes
+<imoz> :-)
+<imoz> i could probably make this a lot easier on myself if I reboot my desktop into Linux but... ahh..then I can't watch TV on my desktop :-)
+<jamest> anyone here no dcl?
+<jamest> s/no/know
+<imoz> ok, so if I cd into \gnue-cvs-current\.cvsdevelbase\gnue\designer and run Designer.py
+<imoz> I get an error line 61 no module named wxPython.wx
+<jamest> you have to install the wx package
+<jamest> www.wxpython.org
+<jamest> our exes bundle everything together
+Action: jamest really, really, REALLY hopes that after all this, the cvs wizard works from imoz
+<jamest> s/from/for
+<imoz> :-)
+<jamest> i have to go pick up the wife for lunch...we're a 1 car family
+<jamest> bbia1h
+<imoz> ok
+dneighbo (www-data@alt1.libertydistribution.com) joined #gnuenterprise.
+<ajmitch> morning all
+imoz (~jmozelesk@user216-178-90-228.netcarrier.net) left irc: 
+<jamest> dneighbo: where are the logs for that error?
+<dneighbo> what logs?
+<dneighbo> someone sent me email of the return email
+<dneighbo> which i posted with the ticket
+<dneighbo> im not sure the gateway has a log;
+<dneighbo> if it does you would see it in the code :)
+Action: dneighbo thinks that might be an option
+<jamest> what was the ticket #
+Yurik_ (~yrashk@as5300.kharkov.ukrtel.net) joined #gnuenterprise.
+<dneighbo> 150
+<dneighbo> iirc
+Yurik_ (~yrashk@as5300.kharkov.ukrtel.net) left irc: Remote closed the connection
+<dneighbo> jamest: you get the info you needed
+Action: dneighbo wonders if jcater has finally gotten his final python ordination
+<dneighbo> thus he can not touch perl code or he loses his 'purity' ;)
+<dneighbo> so he must hand down to jamest ;)
+btami (~btami@3e70d738.dialin.enternet.hu) joined #gnuenterprise.
+ratmice (matt@vespertine.pc.ashlandfiber.net) joined #gnuenterprise.
+btami (~btami@3e70d738.dialin.enternet.hu) left irc: Client Quit
+<ratmice> g'day
+btami (~btami@3e70d738.dialin.enternet.hu) joined #gnuenterprise.
+<btami> hi all
+dsmith (dsmith@oh-strongsvillecadent1-1aa-105.clvhoh.adelphia.net) joined #gnuenterprise.
+<jcater> purity>?
+<jcater> python?>
+<jcater> you obviously haven't been looking at my code
+<jcater> :)
+<ajmitch> :)
+<ajmitch> jcater: what should getSchemaByName return? :)
+<jcater> um
+<ajmitch> for csv driver
+<jcater> oh
+<jcater> it should probably just call the other getSchema function
+<ajmitch> right
+<jcater> as one returns all tables, the other one table
+<ajmitch> k
+<jcater> but i *think* getSchemaByName doesn't return a list
+<jcater> just one object
+<jcater> I'm not 100
+<jcater> 100% sure about that last part
+<ajmitch> it returns a GDataObjects.Schema
+<ajmitch> of which i guess i just set the parameters to whatever i feel suits :)
+<ra3vat> i've got a screenshot of screwed form on w98. anyone want to look at?
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+<ajmitch> wrote a simple csv parser last night that handles quoted strings & newlines
+Action: ajmitch couldn't sleep :)
+<ajmitch> hey psu
+<psu> hi
+<ajmitch> ah, __getFieldSchema
+<ajmitch> here's where i get to make up field names, or read them from the first row :)
+btami (~btami@3e70d738.dialin.enternet.hu) left irc: Read error: 60 (Operation timed out)
+<ajmitch> psu: what's new?
+<psu> "Always comment code that you write at 3am, as not even you will understand it the next day"
+<psu> not much
+<nickr> It sucks when you do something really cool and clever at 3am, but don't know how it works the next day.
+<jcater> yeah
+<psu> I call it a "Xanadu moment" 
+<jcater> reminds me of Designer 0.0.1
+<psu> as per Samuel Taylor Coleridge
+<psu> & the man from Porlock
+<dneighbo> ajmitch i suppose there should be 3 ways (at least to do schema introspection on csv)
+<nickr> psu: a stately pleasure dome decree'd?
+<dneighbo> one is the header row(s) define the 'table'
+<dneighbo> two is a separate flat file defines the 'table'
+<dneighbo> three is an separate xml flat file defines teh 'table'
+<psu> nickr: if the caverns really were measureless to man, that would be a practical use for infitine precision maths module
+<nickr> Indeed
+<jcater> four is it could be part of the datasource definition
+<ajmitch> dneighbo: i thought you didn't want this to be complex :)
+<jcater> ajmitch: he just says that to get someone to volunteer
+Action: jcater ducks
+<ajmitch> actually i did comment my code
+<dneighbo> roflmao
+<ajmitch> and i even understand how it works this morning
+<dneighbo> i dont want it complex
+<dneighbo> im cool with simple
+<dneighbo> and growing it
+<ajmitch> :)
+<ajmitch> spread 'fertiliser' on it & watch it grow :)
+<psu> how is ash mail fwd done?
+<psu> is it simple .forward?
+<psu> or something only root can do?
+<ajmitch> perhaps it's .procmailrc or .forward?
+dsmith (dsmith@oh-strongsvillecadent1-1aa-105.clvhoh.adelphia.net) left irc: "later.."
+Action: psu is having a look
+Action: psu had forgotten how much rubbish was in his $HOME
+<psu> several tarballs of the website & similar
+<ratmice> um, why does samples/testcases/datasource contain a form definition and datasources and complicates?
+<jcater> psu: .forward works
+<ratmice> er datasource/static.gfd
+<jcater> ratmice: I didn't follow your question
+<jcater> complicates what?
+ariel_ (~ariel@ppp-217-133-242-105.dialup.tiscali.it) joined #gnuenterprise.
+siesel (jan@dial-213-168-72-7.netcologne.de) joined #gnuenterprise.
+<siesel> evening :)
+<ratmice> er um it has 2 points of entry
+<ratmice> like <staticset> </staticset> and guessing <form></form>
+<ratmice> it would be much easier if they were seperated
+<ajmitch> hi siesel
+<ratmice> so that a single form could work with multiple static sets
+<ratmice> hey siesel
+<ratmice> i want to talk to you, have to leave soon
+<jcater> ratmice: I'm sorry, but I don't follow
+<ratmice> it's like a .c file with 2 mains
+<siesel> hi ajmitch, hi ratmice
+<ratmice> so in order to write a staticset file I *think* i'd have to write out he form which generated it
+<jcater> a staticset is just that, static
+Action: siesel don't think that we need to write to a staticset, but could be wrong
+<jcater> it isn't updated by a form
+Action: ratmice is actually working on a dynamicset
+<jcater> ratmice: for?
+<siesel> you can use sqllite for that.
+<ratmice> offline 
+<jcater> or, if you really wanted something even simpler than sqlite
+<jcater> you could use csv files
+Action: jcater shudders at the thought of doing that with forms
+<jcater> but you could
+Action: psu is away: I'm busy
+<ajmitch> jcater: so i'm wrong to be using STATIC_DataObject? :)
+<jcater> ajmitch: as your base?
+<ajmitch> yeah
+<ajmitch> class CSV_DataObject(STATIC_DataObject):
+<jcater> probably not
+<jcater> at least for now
+<ajmitch> ok
+<jcater> when I was thinking about it
+<jcater> that was my plans too :)
+<ajmitch> it seemed more suitable than the DBSIG driver :)
+Action: jcater has happy ajmitch is doing it instead, though
+<jcater> definitely
+<ajmitch> i been lurking around here long enough
+Action: ajmitch wonders why file.readline() didn't throw an exception at EOF
+<jcater> returns None iirc
+<ajmitch> right
+<dneighbo> well cause python is smart
+<dneighbo> if its the end your done 
+<dneighbo> why give you back an exception :)
+<siesel> dneighbo, jcater: short question about GSD: Should all strings be a varchar (in case of postgres)?
+<siesel> or a char? 
+<ajmitch> varchar
+<ajmitch> imho :)
+<dneighbo> no char
+<dneighbo> varchar
+<dneighbo> or text
+<dneighbo> string(length) should be varchar(length)
+<dneighbo> text should be text
+<dneighbo> binary should be blob
+Action: dneighbo doesnt have cvs or doc near by
+<dneighbo> can i ask what you are doing in gsd?
+<dneighbo> we are EXTREMELY overhauling it
+<dneighbo> so its probably better to stay out until its reasonably done
+<dneighbo> or work very closely with us on it
+<dneighbo> as if its broke mid stream i will get really ticked :)
+<dneighbo> i have deadlines depending on its current course
+Action: siesel tried to do the later
+<dneighbo> plus i dont want you doing work that will be overwritten if its not going same direction :)
+<siesel> that's the reason why I want to talk about it.
+<dneighbo> cool, just clarifying
+<dneighbo> we are moving away from xslt to a large degree (as you probably gathered)
+<ajmitch> whereas i can play with stuff that nobody else wants to touch :)
+<dneighbo> certainly it will be supported if someone wants to maintain it
+Action: siesel thought that xslt was just the option for all the guys who want to have GSD but don't want to use python
+<jcater> GSD is still a standard markup
+<jcater> no more no less
+<jcater> and we didn't want gnue-common as a requirement, not necessarily python
+<jcater> even though, to get it working quickly, I am using gnue-common
+<jcater> but that can be removed later on
+<siesel> the only thing I'm not shure about is: why did you decided to make GSD using less datatypes.
+<jcater> it was never intended to support those
+<jcater> somewhere along the line
+<jcater> it got goat-raped
+<jcater> and all those things added
+<dneighbo> um it didnt support a bunch to begin with
+<dneighbo> the original dcl spec had one or two more than we have now
+<dneighbo> but what wsa in cvs got trashed
+<dneighbo> i.e. lots of datatypes added and support in designer broke
+<dneighbo> i was in a pinch so discussed with jcater and we documented and revamped back to original vision
+<dneighbo> i went to make new style sheets for XSLT and decided they were more cumbersome to maintain than a program
+<dneighbo> so we are making a program
+<dneighbo> certainly any XSLT stud could come and modify the XSL to make it a viable alternative
+<dneighbo> not only do we encourage it, we hope it happens
+<dneighbo> GNUe is about choice after all
+<dneighbo> as for tying to common, im not wholly against that as with XSLT one can break that dependency
+<siesel> so, if I understand it right, then the scripter thing is the replacement for the xslt scripts.
+<jcater> for our internal use, at least
+<siesel> I just try to look to the future behind that deadline :)
+<dneighbo> yes
+<jcater> our first priority has to be our tools
+<dneighbo> but dont forget that doesnt mean someone cant or shouldnt fix the XSLT stuff (or that we wont down the road)
+<dneighbo> we are not _closing_ that door
+<dneighbo> we just choose to not walk through it
+<jcater> I want to design stuff that other projects can use
+<jcater> e.g., formats, etc
+<jamest> w/o common?
+<jcater> but that doesn't mean I can put that objective ahead of it being usable for GNUe
+<jcater> that's just mho
+<siesel> no, thats right.
+<siesel> I don't really like the xslt's 
+<psu> it's like the appserver for dotGNU issue
+<ajmitch> hmm?
+<jcater> psu: exactly!
+<psu> we won;t discourage it
+<psu> but 
+<psu> we won;t compromise making AppServer the best possible business application server
+<psu> for our purposes
+<ajmitch> but we won't go out of our way to do stuff for those lazy dotgnu beggars
+<ajmitch> right?
+<jamest> ajmitch: the only person we won't go out of our way for is dneighbo
+<ajmitch> http://story.news.yahoo.com/news?tmpl=story&u=/021114/161/2oheh.html
+<ajmitch> SCARY
+<jamest> in fact i think we go out of our way to get in his way
+<siesel> I just have two concerns: 1. how abstract will GSD be? I.e. will it still be usable for appserver? 2. what about gsd->sql generation in dbdriver and gsd->sql driver in scripter.
+<jcater> we wanted GSD to be abstract
+<jcater> not to be an XML version of postgres sql
+<jcater> with some translators for other dbs
+<jcater> well, scripter is in common
+btami (~btami@3e70d730.dialin.enternet.hu) joined #gnuenterprise.
+<jcater> so the dbdrivers can certainly use it
+<ajmitch> how would dbdrivers use it?
+<jcater> ajmitch: are you asking me or siesel?
+<ajmitch> either
+<ajmitch> whoever can answer my question in a lucid manner
+<jcater> eventually, a dbdriver can take a schema def and actually create the underlying tables
+<jcater> schema scripter (the scripts in debate here)
+<jcater> create SQL statements
+<jcater> so the dbdrivers could just call scripter to get the SQL statements to run
+<ajmitch> ooh fancy
+<jcater> once again, though, in the scheme of things, is not a huge priority
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise.
+<siesel> jcater: If I understand you right, it means to remove the schema writing code which is allready in dbdriver, and replace it with a link to scripter. 
+<jcater> I see no schema writing code in dbdriver
+<jcater> where's that at?
+<siesel> there is some in pgsql
+<jcater> I see a dict
+<siesel> the code could be in dbsig too.
+Action: siesel has a look
+<dneighbo> i will be first to pipe up
+<dneighbo> i still have issues with appserver being all about objects
+Action: dneighbo still thinks appserver should be remote data/logic 
+<dneighbo> not necessarily relational2object
+Action: dneighbo realizes this is an entirely different discussion that likely will erupt wars
+<siesel> its in common/src/dbdriver/_dbsig/DBdriver.py: _buildTableDefinition etc.
+<jcater> hmmm
+<jcater> imho this is putting a lot of stuff in dataobjects
+<jcater> I was hoping they wouldn;t get too much more complex
+<dneighbo> is there a reason we have that in the drivers?
+Action: dneighbo can see some advantages but worries about bloat
+Action: siesel sees raping goat running over him
+<dneighbo> raping goats dont run over, they well....make good salesmen for lube...
+Action: ajmitch wonders if DotGNU should have it's own appserver compatible with GNUe? :)
+<dneighbo> well im not against object2relational and vice versa
+<dneighbo> but i would rather see us start small and work way up
+<dneighbo> i see very valuable use of remote db and trigger access
+<dneighbo> w/o ever dealing with an object
+<btami> may i ask you (python mastas) something about i18n in general ?
+<btami> i have a dilemma
+<btami> 1. use sitecuspomize.py for setdefaultencoding()
+<btami> 2. use uncoding in every place where it needed
+<ajmitch> jcater / dneighbo: as an idea, specify a directory in connections.conf & have *.csv be a set of tables? (extension configurable, i guess)
+<ajmitch> for CSV
+<btami> s/uncoding/encoding
+<btami> i myself used 1. before ,and i was happy
+gilbertbsd (~gilbertbs@67.97.122.14) joined #gnuenterprise.
+<btami> but today i remowed my sitecustomize.py
+<gilbertbsd> so how is GNUe?
+<btami> to test for release
+<ajmitch> GNUe is GNUe :)
+<btami> and got errors from several places
+<ajmitch> it is lurching along as usual (another release soon)
+<btami> jamest/jcater ?
+<btami> the problem with 1. there is only one place (sitecustomize.py) where setdefaultencoding() is callable
+<gilbertbsd> so has GNUe been tried anywhere yet?
+<gilbertbsd> ie deployed?
+<ajmitch> yep
+<ajmitch> afaik it's being used quite a bit by the main developers in production
+<ajmitch> at least forms, designer, and reports
+psu (psu@81.98.44.42) joined #gnuenterprise.
+<ajmitch> wb psu
+<psu> thnx
+<ajmitch> np
+<jamest> btami: 
+<jamest> btami: are you saying we need a way to modify sitecustomize.py during setup?
+<btami> i don't know, arturas doesn't liked that
+<btami> becouse it's not a place only for GNUe
+<jcater> well
+<jcater> imho
+<jcater> in production environments, we will probably have a "custom" python install
+<jcater> in which it wouldn't make a difference
+<jcater> I don't know what else to do though
+<jcater> without changing all file open() commands to a codec.open(file, encoding='unicode')
+<jcater> which will suck
+<jamest> i don't think a small alteration to the file (prompted for of course) is that big an issue
+roblimo (~roblimo@pcp281688pcs.elkrdg01.md.comcast.net) left irc: "Client Exiting"
+<btami> if we can use our sitecustomize.py with setdefaultencoding()
+<btami> then no need for many *.encode(encoding)
+<btami> and python do the rest
+<btami> the remaining problem, how an install process gets the correct encoding
+<btami> maybe a popup like in a debian install
+<jamest> i think it'd have to be
+<jamest> as this is different from the locale setting isn't it?
+<btami> yes
+<btami> LC_ALL=hu_HU
+<btami> encoding in python is ISO8859-2
+<btami> or cp1250
+<btami> for me
+<btami> s/ISO/iso
+pattieja (~pattieja@www.pcxperience.com) joined #gnuenterprise.
+<btami> python can grab encoding from XP/2000 and from LC_ALL in *nix
+<jcater> btami: can, or does by default?
+Action: jcater is curious
+<btami> my sitecustomize.py in XP/2000:
+<btami> import sys, locale
+<btami> loc = locale.getdefaultlocale()
+<btami> if loc[1]:
+<btami>   sys.setdefaultencoding(loc[1])
+<btami> locale.setlocale(locale.LC_ALL, '')
+<btami> print 'Default encoding: %s' %sys.getdefaultencoding()
+<btami> print 'Locale conventions: %s' %locale.localeconv()
+<btami> it does
+<btami> i don't know how about win9x
+<jcater> is that your custom sitecustomize.py, or the one installed by default?
+<btami> it's my custom
+<jcater> I really hate that you can't change encoding in your app
+<btami> there no sitecustomize.py exist per default
+<jcater> that is a really bizarre design decision for python to make
+<jcater> :(
+<btami> s/there/there is
+<dneighbo> upgrade tiem bbl
+dneighbo (www-data@alt1.libertydistribution.com) left #gnuenterprise.
+<btami> so i don't no what is the best way to go
+<btami> sitesustomize.py or use of .encode(encoding)
+StyXman (~mdione@ADSL-200-59-86-17.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<btami> hi StyXman
+<StyXman> jcater: do you remember what I did to 'fix' the bug that prevented to use parameters in 'on-startup' trigger?
+<StyXman> (hi btami)
+<jcater> StyXman: yes
+<jcater> and as it turns out, we had to use that isntead of what I wanted to do
+<StyXman> jcater: you siad there was another way to do it.
+<StyXman> ah. did it get into cvs?
+<StyXman> 'cause I'm (still :( merging trees
+lupo (~lupo@pD95428AC.dip.t-dialin.net) joined #gnuenterprise.
+<lupo> good evening
+<StyXman> and I hit my solution, but I don't know if I can take out and hope i'll find it elsewhere
+<StyXman> hi lupo 
+<lupo> hi StyXman
+<lupo> what's up in argentina?
+<StyXman> rains
+<btami> StyXman: sorry for question, but what is your sys.getdefaultencoding() ?
+<StyXman> floods from the sky
+<StyXman> btami: _my_ ... ah!
+<StyXman> btami: just a sec
+<StyXman> our server reports ISO-8859-1, but it could (should) be ISO-8859-15, I guess
+<ajmitch> hi StyXman, lupo
+<StyXman> jcater: so?
+<jamest> btami: i'd hate to see it everywhere
+<jamest> vs in one location
+<jcater> StyXman: I had to go with your solution
+<jcater> mine didn't work liek I thought
+<StyXman> but it didn't went into cvs?
+<jcater> no?
+Action: jcater looks
+<StyXman> btami: no, I missed it. ISO-8859-1 is the right one
+<btami> :(
+<lupo> hi ajmitch, jcater
+<StyXman> why?
+<StyXman> I mean, why that face?
+<lupo> StyXman: because it rains at his location too? :)
+<btami> i want to see someone with non ascii and non iso8859-1
+<StyXman> btami: chipaca uses utf
+<btami> and not utf :)
+<StyXman> ah
+<StyXman> any russioan here? no european?
+Action: siesel , lupo, reinhard, johannes are european
+<lupo> StyXman: here, i have iso-8859-1 or -15 (locale is de_DE@euro)
+<btami> but all isoxxxx-1
+<lupo> what do you need? KOI-8?
+<jcater> StyXman: 
+<jcater> def loadFile(buffer, app, initialize=1):
+<jcater>   return GParser.loadXMLObject (buffer, xmlFormsHandler, 'GFForm', 'form',
+<jcater>            initialize, attributes={"_app": app,
+<jcater>                                "_parameters": app._parameters,
+<jcater>                                "_connections": app.connections })
+<jcater> it appears to be in cvs
+<siesel> lupo: did you tried de_DE@utf8
+<lupo> hi siesel
+<siesel> hi Christian
+<lupo> siesel: nope. what's special about that / what's the difference?
+<StyXman> jcater: in GFForm?
+<btami> i want someone testing forms/reports/designer(vizards) with other than ascii/iso8859-1
+<siesel> it seems to work only in uxterm, /me hasn't tried it with forms yer.
+<siesel>  /yer/yet/
+<btami> jamest: are you voteing for sitecustomize ?
+<StyXman> jcater: no, forget it. I remembered it.
+<StyXman> jcater: zanxs
+<lupo> jcater: i see you fixed the setup-cvs2.py to setup-cvs-win.py
+<btami> sorry, but west-europeans arn't good candidates for testing i18n :)
+<btami> wish ra3vat/arturas here
+<lupo> btami: arturas is iirc latvian and they use iirc western charsets
+<lupo> btami: do you use iso-8859-2?
+<btami> yes
+<btami> and cp1250 in win
+<lupo> ah
+<btami> nevermind, i will fight tomorrow again :)
+<btami> night
+btami (~btami@3e70d730.dialin.enternet.hu) left irc: "l8r"
+<lupo> okay
+<lupo> next test run for gnue!
+<lupo> today, i'll do a simple master/detail
+<lupo> hold on and have me test it!
+Action: jamest grabs the desk
+<lupo> okay, i've created a new table
+<lupo> waiting for gfdes to start ...
+<lupo> erm, after login, the wizard is sent to background. is this a bug or a feature?
+<jamest> it's tradition
+jbailey (~jbailey@atlas.fundserv.com) joined #gnuenterprise.
+<lupo> DB000:     self._triggerns['runForm'] = self._app.manager.runFormFromTrigger
+<lupo> DB000: AttributeError: Designer instance has no attribute 'runFormFromTrigger'
+<lupo> DB000: ./gfdes: line 22:   514 Speicherzugriffsfehler  /usr/bin/python2.1 /home/lupo/cvs/gnue/.cvsdevelbase/gnue/${SCRIPT} "$@"
+<lupo> Speicherzugriffsfehler = segmentation fault
+<StyXman> wow
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) left irc: "This sentence no verb"
+<jamest> lupo: a segfault?
+<lupo> yep
+<lupo> i tried debug -> run on a wizard-generated form
+<lupo> hey cool, i can select all buttons in the designer main window :)
+<jbailey> I lvoe the german word for segfault.
+<jbailey> Pronounced in English, it really *sounds* like something bad has happened.
+<lupo> lol
+<jbailey> I got Marcus to pronounce it for me when he was here. =)
+<lupo> it has been translated badly :/
+<lupo> it literally means "memory access error", which is not even close to the coolness of "segmentation fault"
+psu (psu@81.98.44.42) left irc: Read error: 110 (Connection timed out)
+<nickr> is there like a standard XML database dump format? Like if Iwere to export all the contents of a database into an XML file ...
+<jbailey> I can't see there being.
+<jbailey> I would just imagine that you'd give each field name to an element and dump.
+<jbailey> XML is really bad for representing databases, though.
+<jbailey> You'd have to dump a Schema at the same time to give you characteristics of each field.
+<jbailey> And XML implies that order is important.
+<nickr> hmm, a normal overly-complicated xml solution.
+<jbailey> Hardly.
+<jbailey> It's exactly the right level of complexity.
+<jbailey> The problem with tab or CSV is that it's lossy.
+<jbailey> You lose the details that you've asked for about structural requirements in the cell.
+<jbailey> If you didn't care about that, then tab delimited is probably a better choice anyway.  It's easier to parse.
+<nickr> Uh huh.
+<jbailey> The other two cases where using XML is worthwhile is:
+<jbailey> 1) Occasional Binary data, or data that uses the intended separators.
+<jbailey> 2) Where you want to remove the relationships and build up complete records.
+lupo (~lupo@pD95428AC.dip.t-dialin.net) left irc: "using sirc version 2.211+KSIRC/1.1"
+dimas (~ds@ics.elcom.ru) left irc: "Client Exiting"
+gilbertbsd (~gilbertbs@67.97.122.14) left irc: Remote closed the connection
+psu (psu@81.98.44.42) joined #gnuenterprise.
+ariel_ (~ariel@ppp-217-133-242-105.dialup.tiscali.it) left irc: "Uscita dal client"
+StyXman (~mdione@ADSL-200-59-86-17.cordoba.sinectis.com.ar) left irc: "ircII EPIC4-1.1.7 -- Are we there yet?"
+psu (psu@81.98.44.42) left irc: Read error: 104 (Connection reset by peer)
+dsmith (dsmith@oh-strongsvillecadent1-1aa-105.clvhoh.adelphia.net) joined #gnuenterprise.
+siesel (jan@dial-213-168-72-7.netcologne.de) left irc: Read error: 110 (Connection timed out)
+dsmith (dsmith@oh-strongsvillecadent1-1aa-105.clvhoh.adelphia.net) left irc: "later.."
+dsmith (dsmith@oh-strongsvillecadent1-1aa-105.clvhoh.adelphia.net) joined #gnuenterprise.
+dsmith (dsmith@oh-strongsvillecadent1-1aa-105.clvhoh.adelphia.net) left irc: Client Quit
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) left irc: Read error: 113 (No route to host)
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) joined #gnuenterprise.
+<ajmitch> hello boys & girls
+Action: ajmitch has returned!
+<nickr> huzzah!
+jbailey (~jbailey@atlas.fundserv.com) left irc: "Client Exiting"
+ratmice (matt@vespertine.pc.ashlandfiber.net) left irc: Remote closed the connection
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: "Client Exiting"
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "home"
+derek (~dneighbo@filter.sequoia.net) joined #gnuenterprise.
+<derek> sup 
+jcater (~jcater@66.61.83.220) joined #gnuenterprise.
+<derek> has the gateway been fixed?
+<derek> i didnt see anything on ticket
+<derek> jcater that was for jamest not you :)
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: "Client Exiting"
+<jamest> derek: nope, the code looked good in the gateway script
+<jamest> i'm talking to mdean about it now
+<jamest> we're not supposed to put 'dneighbo' flags in any code that runs on ash
+<jamest> but I think one musta slipped in
+<derek> roflmao
+<derek> mdean: are you here
+<mdean>    $sql = sprintf "SELECT foo FROM bar WHERE baz = %s",
+<mdean>                            $dbh->quote("Don't");
+<mdean>            For most database types, quote would return 'Don''t' (including the
+<mdean>            outer quotation marks).
+<mdean> ja
+Action: jcater thinks its the \ still
+<mdean> it is
+<derek> \?
+<mdean> '' is b0rking it
+<derek> where was \
+<mdean> I thought quote was db aware
+<mdean> if you look at the tickets, they're escaped as ''
+Action: derek didnt look at the code only the fact it's bombing
+Action: mdean is shocked
+<mdean> '' works via psql
+<derek> ?
+<mdean> quoting doesn't look like the problem
+Action: derek got lost here somewhere
+<mdean> I just submitted a quick one (ticket 167)
+<derek> look at ticket 150
+<mdean> I did
+<jcater> did 167 go thru?
+<mdean> ja
+<jcater> try submitting one with \ in the text
+<jcater> e.g., 
+<jcater> "You can escape a line with \n at the end"
+<mdean> ah - gimme a sec
+<jcater> I swear when I was looking at the example earlier
+<jcater> it was bitching about \
+<derek> jcater: yeah probably you are right
+<jcater> probably?
+Action: jcater thwaps derek
+<mdean> 168 went in
+<mdean> with \n
+<jcater> oh
+<jcater> bugger
+Action: jcater shuts up now
+<derek> cut and paste the ticket from 150
+<derek> it fails at
+<derek> I'm
+<mdean> ticket 150 has a lot of cruft
+<derek> i cant sent mail from here
+<derek> but let me get one to fail
+<jcater> yeah, 150 is hard to follow
+Action: derek thinks you punks need to learn how to break stuff
+<jcater> I know how to break stuff!
+<jcater> "Derek, can you try this"
+Action: mdean thinks you need to learn how to give small examples of breakage :-P
+<jcater> why would I need anything else?
+<derek> roflmao
+<derek> mdean: i do 
+<derek> actually im pretty good at that
+<derek> my pasting was of things that were broken
+<derek> i.e. those were real failed tickets
+<mdean> did you paste the msg directly into psql?
+<derek> no
+<derek> i did minor clean up first
+<mdean> do you have a copy of the original you could forward to me?
+<derek> yeah 
+<derek> grr i cant email well from here
+<mdean> you have an im client?
+<mdean> or /msg me
+<derek> grr yeah to both
+<derek> ok msged you
+<derek> hey is website in cvs for dcl
+<derek> i.e. i was going to modify roadmap some so we can get on same page and get .9 out door
+<mdean> old version was locally, but not now
+<mdean> templates/default/roadmap.tpl is the file to modify iirc
+<mdean> derek: paste buffer overrun?
+<derek> ?
+<derek> doing more than one thing
+<mdean> the last line I got was
+<mdean>  Proprietary ERP vendors are unusual amongst proprietary software vendors, in that they often allow you some access to some
+<derek> mdean thats all there is
+<mdean> just making sure :)
+<derek> that is multiple email
+<derek> the mail to the gateway is within that
+<derek> and it had an attachment
+<mdean> DBD::Pg::st execute failed: ERROR:  Unicode >= 0x10000 is not
+<mdean>     supoorted at /etc/postfix/dcl-gateway.pl line 445
+<derek> you get that from a log somewhere?
+<mdean> from the returned mail
+<mdean> yup - that's it
+<mdean> his sig
+<mdean> Linköping universit
+<mdean> special char
+<mdean> I removed that and it went in
+<derek> can we support unicode?
+<derek> as we have LOTS of non us folks submitting tickets
+<jcater> derek: ha!
+<mdean> I know - never tried it personally with pgsql/DBI/PERL, so I'm not sure what all is involved
+Action: jcater chants, "I told you so"
+Action: jcater goes back to his little corner and plays quietly again
+<mdean> hehe
+<derek> jcater: i couldnt find a unicode piece in there
+<derek> even if we could 'find' them and remove them
+<derek> or such
+<derek> mdean: if you are bored want to fix attachments too :)
+<mdean> I told you what was wrong when we talked about it last, but you didn't respond
+<mdean> it still broke?
+<derek> attachments work for normal system but not gateway
+<derek> i dont recall what you suggested or if i did it
+Action: derek thinks it was in a bad place
+<mdean> ah - yes, it was a dcl configuration config
+<derek> and needed to be moved
+<derek> or something
+<derek> i think anything we find needs to be addressed by jbailey in the debian install
+<derek> as by default it should setup correct directories for attachments when installing the deb
+<mdean> what's the server addy again?
+<derek> gnuenterprise.org
+<mdean> now I remember - you need to set the Path For Files to the absolute path under System Configuration
+<mdean> it's currently a . iirc
+<mdean> which won't fly well when the script is running
+<derek> ah
+<derek> ok
+<derek> shoudl it be
+<derek> http://domain/path/to/place
+<derek> or susch
+<derek> or /path/to/place
+<mdean> according to your filesystem
+<mdean> ja
+<derek> i put
+<derek>  /usr/share/dcl/www/attachments/
+<derek> for (path to files)
+<derek> and still tickets dont show up
+<mdean> just to the www 
+<derek> ah
+<mdean> it automatically adds attachments
+<derek> with / or w/o /
+<mdean> cause there are other types of files, like project templates
+<mdean> without
+<derek> at least we are positioning dcl to get ready for the beating 0.4.1 and 0.5.0 will produce ;)
+<mdean> ja
+<mdean> as soon as you get it upgraded, I'm going to make a 1.0 dcl project
+<derek> hmmm still doesnt seem to work
+<mdean> does your delivery agent user have write access to that directory?
+<derek>  /usr/share/dcl/www
+<derek> beats me :)
+<derek> i dont know what delivery agent runs as
+<derek> jamest / jcater
+<jcater> ya
+<jcater> um
+<jcater> but what about subdirectories in that dir?
+<mdean> [21:30:16] <derek> drw-rw-rwx    4 root     root         4096 Sep 19 23:54 attachments
+<mdean> [21:30:43] <derek> drwxr-x---    5 www-data www-data     4096 Nov 14 21:25 tck
+<mdean> [21:30:43] <derek> drwxr-x---    4 www-data www-data     4096 Sep 16 22:53 wo
+chillywilly (~danielb@24.167.202.50) joined #gnuenterprise.
+<mdean> tck and wo don't look hopeful
+Action: jcater just changed their group to "mail"
+<jcater> and set them g+w
+<jcater> and am testing now
+<mdean> groovy
+<derek> jcater do you have new .exe's for the prerelease stuff
+<jcater> um
+<jcater> no
+<derek> when will we have it ready
+<jcater> I dunno
+<chillywilly> foo
+<jcater> when will you have your test machines up?
+<jcater> grrrr
+<jcater> that wasn't enough
+<chillywilly> hmmm, even with spamd my poor little server can't hang :(
+<chillywilly> frelling bloated ass perl ;)
+<jcater> oh, buggy
+<jcater> bugger even
+<jcater> I guess dcl-gateway doesn't run as mail user
+<jcater> but as nobody
+<jcater> grrrrrrrr
+<chillywilly> how's it going dewds?
+<jcater> woohooo!
+<jcater> mdean / derek ... she's a workin
+<mdean> sweet
+jamest (~jamest@adsl-64-216-107-182.dsl.tpkaks.swbell.net) left #gnuenterprise.
+<derek> cool
+<derek> sorry at lug meeting
+<derek> getting ready to leave
+Action: derek wanted to test more but getting to talk about gnue some
+<derek> reports are that 0.4.0 windows version on win2000 is very broked (i experienced same)
+<derek> so if we can get some prelease of 0.4.1 for windows it would be great
+Action: derek realizes we are doing native win32 for 0.5.0
+<derek> but still we need an interim
+<jcater> bug btami when you see him
+<jcater> he's completely set up to do it
+<jcater> fairly quickly
+<jcater> it'd take me a while to get back set up
+<derek> ok cool
+<derek> bbs
+<derek> jcater: you around more tonight or jogging off to bed?
+<jcater> I'll be up probably for another 2 hrs
+<derek> ok
+<jcater> well
+derek (~dneighbo@filter.sequoia.net) left irc: "Client Exiting"
+<jcater> unless wife says differently
+<jcater> bah
+<jcater> he's gone
+<chillywilly> the spamassassin authro should be goat raped to death
+<chillywilly> author*
+<jcater> ?
+<chillywilly> it's going nuts agian sucking all my memory
+<jcater> chillywilly: I guess some one should've warned you....
+<chillywilly> even with spamd
+<jcater> it stops pr0n email too
+<chillywilly> yea, yea
+Action: chillywilly grumbles
+Action: chillywilly goes to get ice cream or cake or both
+KeithJagrs (trilluser@63.74.24.9) joined #gnuenterprise.
+<KeithJagrs> hello
+<KeithJagrs> hmmm
+KeithJagrs (trilluser@63.74.24.9) left irc: "later"
+chillywilly (~danielb@24.167.202.50) left irc: "Free Your Enterprise! - http://www.gnuenterprise.org"
+--- Fri Nov 15 2002

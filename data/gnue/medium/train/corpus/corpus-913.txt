@@ -1,0 +1,538 @@
+jcater (~jcater@cpe-066-061-083-220.midsouth.rr.com) left irc: "Client exiting"
+reinhard (~reinhard@M1259P028.adsl.highway.telekom.at) joined #gnuenterprise.
+<SachaS> hallo reinhard ;)
+btami (~tamas@ip102-205.ktv.tiszanet.hu) joined #gnuenterprise.
+Arturas (~arturas@gsk.vtu.lt) joined #gnuenterprise.
+<Arturas> Hello
+<btami> hello Arturas
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: "Client exiting"
+ra3vat (~ds@ics.elcom.ru) joined #gnuenterprise.
+<btami> hi all
+<btami> please test this, if you have time
+<btami> http://www.gnuenterprise.org/~btami/UNOFFICIAL-Native-Win32-Forms-2003-05-27.exe
+<btami> non US users don't forget to set the correct textEncoding in gnue.conf, if
+<btami> that differs from iso8859-1 and translations exist for your locale
+<btami> thanks
+Action: btami is away: lunch
+mistofdoom (~ks@p50814614.dip0.t-ipconnect.de) joined #gnuenterprise.
+mistofdoom (~ks@p50814614.dip0.t-ipconnect.de) left irc: "Download Gaim [http://gaim.sourceforge.net/]"
+SachaS (~SachaS@dialup-196-61.wasp.net.au) left irc: Read error: 60 (Operation timed out)
+dimas (~dimas@195.218.177.46) joined #gnuenterprise.
+mistofdoom (~ks@p50814614.dip0.t-ipconnect.de) joined #gnuenterprise.
+lxf (~trillian@202.73.120.115) joined #gnuenterprise.
+lupo__ (~lupo@pD95421CA.dip.t-dialin.net) left irc: Read error: 110 (Connection timed out)
+madness1_ (~mng@lobsang.informationintelligence.net) joined #gnuenterprise.
+mistofdoom (~ks@p50814614.dip0.t-ipconnect.de) got netsplit.
+dimas (~dimas@195.218.177.46) got netsplit.
+mdean (~mike@CPE-65-28-72-76.kc.rr.com) got netsplit.
+madness1 (~mng@lobsang.informationintelligence.net) got netsplit.
+mistofdoom (~ks@p50814614.dip0.t-ipconnect.de) returned to #gnuenterprise.
+dimas (~dimas@195.218.177.46) returned to #gnuenterprise.
+mdean (~mike@CPE-65-28-72-76.kc.rr.com) returned to #gnuenterprise.
+madness1 (~mng@lobsang.informationintelligence.net) got lost in the net-split.
+ToyMan (~stuq@smtp.dstoys.com) joined #gnuenterprise.
+<ToyMan> morning all
+Action: btami is back (gone 01:51:39)
+SachaS (~SachaS@dialup-196-45.wasp.net.au) joined #gnuenterprise.
+botsie (~botsie@202.88.170.105) joined #gnuenterprise.
+<lxf> ToyMan, morning. Night, from indo
+<botsie> hi all
+<botsie> just been trying out the forms tutorial
+<botsie> using forms 0.5.0 with firebird 1.5 on Win32
+<botsie> I got the example form working
+<dimas> good
+<botsie> it displays data from the DB but displays an error when I commit changes
+<dimas> bad
+<botsie> yep ... :-)
+<botsie> I guess I'm doing something obviously wrong
+<dimas> :)
+<botsie> I'll paste the error if y'all don't mind
+<dimas> yes
+<botsie> 'execute.isc_dsql_prepare: Dynamic SQL Error. SQL error code = -104. Token unknown - line 1, char 18. ). ') 
+<botsie> whoops that just seems to be the end of the error
+<btami> wow
+<btami> hi dimas,botsie
+<botsie> Database commit error:
+<botsie> gnue.common.datasources.GDataObjects.ConnectionError
+<botsie> (-104, 'execute.isc_dsql_prepare: Dynamic SQL Error. SQL error code = -104. Token unknown - line 1, char 18. ). ') 
+Action: dimas is out for half an hour
+<btami> botsie: please try --debug-level=10 from command line
+<botsie> will that work under Win32? And I think I got the packages marked 'no-debug'
+<botsie> :-)
+<btami> then  http://www.gnuenterprise.org/~btami/UNOFFICIAL-Native-Win32-Forms-2003-05-27.exe
+<botsie> ok lemme try the other first. brb
+<btami> and you will be my first tester :)
+Arturas (~arturas@gsk.vtu.lt) left irc: "Bye :)"
+<botsie> ok -- *that* didn't work
+<botsie> hmmm ... will your packages co-exist with the existing client?
+<btami> yes, i think
+<btami> but *that* has packaged for firebird 1.0
+<botsie> ok
+<btami> from what install you use?
+<botsie> btw, the documentation is buggy
+<botsie> gnue?
+<botsie> official release
+<btami> the exe ?
+<botsie> yes
+<botsie> I decided to try it under Win 'cos I was too lazy to download all the dependencies under linux
+<botsie> am pulling down your package
+jamest_ (~jamest@gw.math.ksu.edu) joined #gnuenterprise.
+lxf (~trillian@202.73.120.115) left irc: "Trillian (http://www.ceruleanstudios.com)"
+<botsie> btami: getting the same error with your client
+<botsie> but the extra debug level displays the SQL statement
+<btami> what is that statement?
+<botsie> DB005: [c:\python22\Lib\site-packages\gnue\common\datasources\drivers\DBSIG2\Dri
+<botsie> ver:50] _postChanges: statement=INSERT INTO emp () VALUES ()
+<SachaS> which python version does gnue depend on today? 2.1,2.2 or 2.3 ?
+<botsie> btami: as you can see the sql is goofy
+<btami> >2.0 IIRC
+<SachaS> ta btami
+<btami> hi SachaS
+<btami> what is "ta" means?
+<botsie> btami: thanks probably
+<SachaS> btami ta = thanks
+<btami> SachaS: for what ? 
+<SachaS> <btami> >2.0 IIRC
+<btami> oh :)
+<SachaS> :) thought that was the anser to my question on which python version gnue depends on
+<SachaS> version > 2.0
+<SachaS> btami: you comment wasnt ment to be for me?
+<btami> ok, sorry :)
+<botsie> SachaS: I don't think he was expecting to be thanked
+<SachaS> ok.
+<botsie> ummm ... so had I done something wrong or is this a bug in the firebird driver?
+<btami> botsie: how you can get that error?
+<botsie> btami: type in something to the form (valid data) and press save
+<btami> anyway, i'v never tested GNUe with firebird 1.5
+Action: dimas is back
+<btami> but that statement has created by gnue, anyhow...
+<botsie> could I be making a mistake somewhere?
+Action: SachaS did add debian source into apt-get sources file.
+Action: SachaS has to get rid of a previous version first.
+<SachaS> last update was in december 2002
+<botsie> ok ... I don't have any other supported dbms handy. How do I connect to ODBC?
+<jamest_> should be 2.0
+<btami> botsie: i think the official release had a bug in odbf driver, but
+<jamest_> if it's > 2.0 then I think it's a problem
+<btami> you can try with *that* unofficial
+<btami> hi jamest_
+<botsie> btami: ok
+<btami> botsie: i'm trying to reproduce your error above...
+<botsie> btami: would you like my gfd?
+<btami> yes, please
+<botsie> dammit, under windows -- no webserver
+<botsie> one sec 
+silent_whisper (Fire@veri530-a071.otenet.gr) joined #gnuenterprise.
+Action: SachaS does apt-get install gnue-forms-wxgtk 
+silent_whisper (Fire@veri530-a071.otenet.gr) left irc: Client Quit
+Action: botsie downloads ssh client for windows
+<SachaS> botsie do you use putty  for windows?
+<botsie> SachaS: yes.
+<SachaS> ok
+<btami> botsie: can you send me your gfd with error output generated with --debug-level=10 --debug-file=anyfile
+<btami> to btami@freemail.hu
+<botsie> btami: http://www.symonds.net/~botsie/test.gfd
+<botsie> ok
+<btami> thanks
+<botsie> will get error output
+<botsie> btami: http://www.symonds.net/~botsie/debug.log
+<btami> ta
+<botsie> btami: trying out the new word? :-)
+<btami> hehe :)
+<botsie> btami: BTW, your client looks a lot better than the official one.
+<btami> the official is wx, the unofficial is native win32 API
+<botsie> ok
+<botsie> I notice that the official packages come with both wx and tk dlls
+<botsie> why is that?
+<btami> tha packages made with McMillan , and that fallows all imports
+dsmith (fsttsx4b8r@oh-strongsvillecadent1-1d-165.clvhoh.adelphia.net) joined #gnuenterprise.
+<btami> i think the python passwd module brings tk
+<botsie> btami: I don't understand
+<botsie> oh .. ok
+<btami> maybe i'm wrong :)
+<botsie> I hope I can get it to work ... gnue looks *real* good. Very simple to work with. 
+<botsie> and I'm a former VB programmer
+<SachaS> apt-get install did not work 100%
+<SachaS> where shall i sent comments to?
+<btami> botsie: sorry, but can you send me your test gdb file ?
+<btami> i'm lazy to create...
+<botsie> ok ... one sec
+<botsie> http://www.symonds.net/~botsie/test.fdb
+<botsie> 280K
+<btami> ta again
+<botsie> btami: connections.conf?
+<btami> no, thanks
+<botsie> :-)
+<botsie> SachaS: what do you say in reply to 'ta'?
+<btami> error with fbd url
+<SachaS> botsie nothing
+<botsie> http://www.symonds.net/~botsie/TEST.FDB
+<reinhard> botsie: np
+<reinhard> ;-)
+<botsie> reinhard: ta. ;-)
+<botsie> just improving my english
+<botsie> :-)
+<SachaS> botsie btami: in australia the guys say ta in real world!
+<botsie> SachaS: you an aussie?
+<btami> wish i go to australia to hear a ta :)
+<jamest_> btami: win32 driver is fully functional right?
+<btami> yes
+<jamest_> if so then we ought to make it the official driver on win32
+<jamest_> the wx one sucks on win32
+<btami> i think so
+<botsie> BTW, who is maintaining the documentation?
+<botsie> I found some bugs in it
+<btami> botsie: i got your error :(
+<botsie> well ... at least it's not due to something specific to my setup
+<jamest_> which docs?
+<jamest_> it's all pretty much whoever feels like diving into the docs
+<botsie> Form Developer's Guide
+<botsie> noticed some errors in the gfd examples
+Nick change: botsie -> botsie|away
+<jamest_> ok, if you could describe them
+<jamest_> or patch them :)
+<jamest_> either way works for me
+<botsie|away> I can send a patch ... but I'm not under Linux
+Nick change: botsie|away -> botsie
+<jamest_> well, the docs are in openoffice
+<jamest_> which is a 70MB download IIRC
+<jamest_> so if you could just point them out I can probably patch them up quick here
+<botsie> ok ... you do not have a hope of getting a patch then. :-)
+<btami> botsie|away: i will try to solve your error at home
+<btami> have to go, by
+btami (~tamas@ip102-205.ktv.tiszanet.hu) left irc: 
+<botsie> let me explain ... in the example zipcode form
+<botsie> the <entry> tags 'field attributes are wrong
+<botsie> they should use the name of the <field> tags ... instead they are referring to the actual databse field names
+<botsie> am I making sense?
+dyfet (~dyfet@pool-138-89-45-96.mad.east.verizon.net) joined #gnuenterprise.
+<dimas> botsie: yes, field should describe all db column names
+<jamest_> looking
+<dimas> may be that is why sql shows empty column list
+<botsie> no ... I corrected that in my gfd
+<botsie> the form would not run at all at first
+<SachaS> who is doing the debs? assume jbailey
+<botsie> jamest_: why not use DocBook? Difficult to use 'diff' and 'patch' on binary formats.
+<jamest_> well, we should use docbook
+<jamest_> but docbook tools suck
+<jamest_> i could never get them to work
+<jamest_> jcater could never get them to work
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<jamest_> they'd work, some upgrade would break them
+<botsie> work out of the box on RH
+<jamest_> so at least a few of us started using OO
+<botsie> but yes ... the toolchain is fragile
+<jamest_> as that gave us time to write docs and not screw with things messing up
+<jamest_> in any case it's a re-occuring question
+<jamest_> and the next version of OO should do flat file xml
+<jamest_> i believe it's in the 1.1 beta now if you install all the options
+<botsie> that should help
+<botsie> Actually ... I heard something about 'Save As Docbook' being planned
+<jamest_> yip
+<jamest_> i think that's in there too
+<botsie> well ... it's easy for ppl who aren't actually doing the work to talk ... so I'll gratefully accept docs in any format and shut up. :-)
+<SachaS> just sent a bugreport to config-support
+<jcater> morning all
+<botsie> jcater: good evening
+<jcater> botsie: this isn't a good place to complain about docs :)
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "Client exiting"
+Action: botsie looks around for something to hide behind
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<jcater> oops
+<botsie> jcater: wasn't complaining. please don't hurt me. ;-)
+<jamest_> botsie: you have to leave jcater alone until after his morning dozen
+Action: jcater puts down the baseball bat
+<jamest_> (donuts)
+<jamest_> the sugar rush usually makes him more pleasent
+Nick change: derek -> inflammatory_but
+<inflammatory_but> so you guys ever think of using java2 for gnue?
+Action: botsie pulls out his copy of 'Kissing Ass for Dummies'
+<inflammatory_but> j2ee kicks butt
+<inflammatory_but> you could use jboss and tomcat and stuff
+Nick change: inflammatory_but -> derek
+Action: jamest_ grabs jcater's bat and heads for AZ
+Action: derek was wondering if he could make jcater pick back up that bat
+<derek> rofl
+<derek> was just going to type 'i suspect jamest will pick it up first'
+<chillywilly> anyone ever upgrade postgres 7.2.x to 7.3.x manually?
+<chillywilly> I have my old database and I want to try and upgrade manually
+<chillywilly> hmmm
+<jcater> afaik, just use pg_dumpall
+<chillywilly> well, I tried that but my own backup sucks
+<chillywilly> hoever
+<chillywilly> there's db.out and reload.trace and also the file system backup under 'preserve'
+<chillywilly> oh I can try and use db.out I think
+<chillywilly> -- postgresql-dump on Fri May 23 14:46:58 CDT 2003 from version 7.2
+<chillywilly> --
+<chillywilly> -- pg_dumpall (7.2.1)
+<chillywilly> --
+<jamest_> you have to pg_dumpall
+<jamest_> which makes all the sql statements you need to reload into 7.3
+<chillywilly> which was done by the package and stuck in that file afaict
+<chillywilly> I tried to do it by hand and seems that file is fscked up soem
+<jamest_> debian postgresql packages have never upgraded properly
+<jamest_> i don't run them anymore
+<jamest_> log in as the postgres user
+<SachaS> gnue-designer just segfaulted ...
+<jamest_> and do
+<jcater> SachaS: release or cvs?
+<chillywilly> turn automatic upgrades off ;)?
+<SachaS> jcater relese, deb package
+<jamest_> pg_dumpall > backup.sql
+<jcater> hmm
+<jcater> well, don't do that anymore
+<SachaS> was playing with properties in a simple form
+Action: botsie hears loud growling noises from his middle
+<chillywilly> jamest: for the 3rd time I did do that but it was mnissing time cards abd stuff for my dcl database...I dunno wtf I did wrong but my own hand pg_dumpall is not a good backup
+<SachaS> set the required for a text element....
+<jcater> actually, I'm working on changing the way the property editor works
+botsie (~botsie@202.88.170.105) left irc: "Dinner Time!"
+<jamest_> chillywilly: that's wack, you can't screw up pg_dumpall without major effort on your part
+<jamest_> you must have hit a bug or something
+<chillywilly> jamest_: well maybe I did it at the wrong time
+<chillywilly> jamest_: doesn't matter as I think the debian package did a proper pg_dumpall and I should be able to recover
+<jamest_> chillywilly: iirc the autoupgrade also moves the old binaries 
+<jamest_> so worse case you can manually fire up the old install 
+<jamest_> do a good backup and restore
+<chillywilly> yes....I think it also might be something to do with freakin' dcl's upgrade sucking ass
+<SachaS> gnue-designer segfaulted again
+<jamest_> not that I ever was foolish enough to not do a proper backup on a production system, not notice that the db was upgrading, and destroy my install.  Thus forcing me to figure that out.
+<jamest_> nope.  not me.  never
+Action: jamest_ tries to look innocent
+<chillywilly> :P
+<chillywilly> well if I loose this info it won't be the end of the world
+<jamest_> btw - it's not on the web site
+<jamest_> but postgresql 7.3.3 is out
+<chillywilly> great
+<chillywilly> something else to fsck it all up ;)
+<jamest_> you have to manually get the tarball as current still points at 7.3.2 last I read
+Action: jcater notes he's still on 7.2.1
+<SachaS> gnue-designer segfaulted again
+<jcater> geeze
+<jcater> are you doing the same thing each time?
+<jamest_> i thought the 0.5.0 designer had issues
+<jamest_> that cvs fixed
+<SachaS> its designer 0.4. something 
+<SachaS> the debs
+<jcater> oh, geeze
+<jcater> yeah
+<jcater> lots has been fixed since then
+<SachaS> you guys prefer people trying cvs version ....
+<jamest_> well, we need to probably release again
+<SachaS> i did a gnue-designer --debug-level=10 --debug-file=second-test
+lupo_ (~lupo@pD9E684ED.dip.t-dialin.net) joined #gnuenterprise.
+<SachaS> shall i sent the output somewhere? bug email? or shall I send it to /dev/null ?
+<SachaS> dont need gnue atm, just playing around with it
+dsmith (fsttsx4b8r@oh-strongsvillecadent1-1d-165.clvhoh.adelphia.net) left irc: "later.."
+<jcater> well
+dsmith (~dsmith@oh-strongsvillecadent1-1d-165.clvhoh.adelphia.net) joined #gnuenterprise.
+<jcater> if that's 0.4.x, I'm not sure we really want bug reports
+<jcater> unless it's in the 0.5.0 release
+<jcater> as 0.5.0 fixed/changed a *lot* of stuff
+<SachaS> wow 0.4.1 is 25 november 2002
+<SachaS> yep i see your point
+<jamest_> SachaS: you'll want the 0.5.x series as it does alot more
+<SachaS> thought i just get the debs so i dont have to mess around with dependencies
+<jamest_> but 0.5.0 is the first release with a lot of major changes under the hood
+<jcater> jamest_: I was contemplating a 0.5.1 release of common + forms + designer maybe this week or next
+<jcater> SachaS: woody or sid?
+<SachaS> jcater: unstable
+<jcater> there's new packages for sid iirc (look at channel topic)
+<jamest_> those are buggy aren't they?
+<SachaS> jcater yep got those
+<jcater> beats me
+<jcater> I think you're right though
+<jcater> I've seen complaints
+<jamest_> jbailey wanted to sit down and work through some of them with me on a thursday
+<jamest_> but for some reason we were both here and didn't do it
+<SachaS> sent a bug report to config-support as the paths were wrong in the gnue-forms, gnue-designer
+<SachaS> did not realise that the debs are that old (2002)
+<SachaS> so must have been fixed by now
+<SachaS> mv bug-0.4.1 /dev/null
+<SachaS> good night
+<SachaS> bye
+Nick change: SachaS -> SachaZzz
+wtg (~merlinx@ppp902.qld.padsl.internode.on.net) left irc: Remote closed the connection
+dimas (~dimas@195.218.177.46) left #gnuenterprise ("Вышел из XChat").
+dsmith (~dsmith@oh-strongsvillecadent1-1d-165.clvhoh.adelphia.net) left irc: "later.."
+dsmith (bi146v4t65@oh-strongsvillecadent1-1d-165.clvhoh.adelphia.net) joined #gnuenterprise.
+dsmith (bi146v4t65@oh-strongsvillecadent1-1d-165.clvhoh.adelphia.net) left irc: Client Quit
+dsmith (vyrx20bpnv@oh-strongsvillecadent1-1d-165.clvhoh.adelphia.net) joined #gnuenterprise.
+dsmith (vyrx20bpnv@oh-strongsvillecadent1-1d-165.clvhoh.adelphia.net) left irc: Read error: 104 (Connection reset by peer)
+dsmith (sfndjajbw8@oh-strongsvillecadent1-1d-165.clvhoh.adelphia.net) joined #gnuenterprise.
+mistofdoom (~ks@p50814614.dip0.t-ipconnect.de) left #gnuenterprise.
+mistofdoom (~ks@p50814614.dip0.t-ipconnect.de) joined #gnuenterprise.
+mistofdoom (~ks@p50814614.dip0.t-ipconnect.de) left #gnuenterprise.
+btami (~btami@3e70d728.dialin.enternet.hu) joined #gnuenterprise.
+<btami> hi all
+<btami> if botsie comes back, please tell him not to use capital letters in his gfd
+<btami> like field="emp_ID"
+<btami> thanks, and bye
+btami (~btami@3e70d728.dialin.enternet.hu) left irc: Client Quit
+dsmith (sfndjajbw8@oh-strongsvillecadent1-1d-165.clvhoh.adelphia.net) left irc: "later.."
+fixe (~fixe@dsl017-020-123.chi1.dsl.speakeasy.net) joined #gnuenterprise.
+dyfet (~dyfet@pool-138-89-45-96.mad.east.verizon.net) left irc: "Client exiting"
+dsmith (ksq85w0sc2@oh-strongsvillecadent1-1d-165.clvhoh.adelphia.net) joined #gnuenterprise.
+systems (systems@62.12.124.120) joined #gnuenterprise.
+systems (systems@62.12.124.120) left #gnuenterprise ("Client Exiting").
+dsmith (ksq85w0sc2@oh-strongsvillecadent1-1d-165.clvhoh.adelphia.net) left irc: "later.."
+jbailey (~jbailey@atlas.fundserv.com) joined #gnuenterprise.
+siesel (jan@xdsl-213-196-210-244.netcologne.de) joined #gnuenterprise.
+<siesel> Hi all
+ToyMan (~stuq@smtp.dstoys.com) left irc: "Client Exiting"
+SachaZzz (~SachaS@dialup-196-45.wasp.net.au) left irc: Read error: 60 (Operation timed out)
+<lupo_> hi
+<siesel> hi lupo_
+<siesel> do you have tested openoffice beta2 allready?
+Action: siesel wants to use docbook import/export, but I can't get the jdk detected :(
+<jbailey> Is openoffice still painfully slow?
+<jbailey> I keep seeing that Ximian is spending time on it, and I haven't figured out why, since abiword and gnumeric seem to have all the features that most offices would need.
+<siesel> Its improving. The 1.1beta loads much faster than 1.0
+<jbailey> Ah, nice.
+<siesel> btw, there are some pysablot packages which are required for gnue reports
+<jbailey> Hmm.
+<jbailey> Need ajmitch to finish his bloody NM process so that someone else can do these. =)
+<siesel> jcater had made some debian packages, do you think you could add them to debian unstable (if jcater agrees?)
+Action: siesel hopes that ajmitch can finish that NM process soon
+<jcater> those are nickr's, actually
+<jcater> whom I haven't seen in ages
+<jcater> we were waiting for license clarification upstream, iirc
+<siesel> hmmm, that's bad. Because I think that it will take another "while" :(
+<jcater> pysablot is only required for the demo stuff
+<jcater> all the new stuff doesn't need it
+<siesel> what about the other sablotron wrappers for python?
+Action: siesel tried reports doing pdf export with reportlab, great stuff :)
+<siesel> jcater: you think that we should use XSLT at all?
+<siesel>  /should/shouldn't/
+<jbailey> What did the license look like?
+<jbailey> http://sourceforge.net/projects/pysablot/ claims that its GPLd
+<jcater> siesel: nope
+<jcater> we tried it
+<jcater> it was a disaster
+<jcater> jbailey: yeah, but iirc there was no copy of the license in the tarball
+<jcater> and the sourcefiles weren't clearly marked
+<jcater> (this is what I was told... I'm not a maintainer so don't know if all that matters or not)
+<jbailey> Hmm..  Yeah, generally it does. =(
+<jbailey> Stupid upstream maintainers.
+<jcater> sadly, derek actually did a patch for them that applied their license
+<jcater> I think even sent a tarball w/only changes being license
+<jcater> asking them to release this
+<jbailey> Have you folks considered using something else like http://xmlsoft.org/XSLT/python.html ?
+<jcater> or patch their cvs
+<jcater> I don't remember seeing that
+<jcater> but the xslt processor for reports is pluggable
+<jcater> i.e., someone just needs to wrap that package and reports supports it
+<jbailey> I wonder if that's the same as libxslt1-python2.2
+<jbailey> In which case it's even already in Debian.
+<jbailey> Hmm, maybe not.  xsltproc comes from the same sources.
+<jbailey> Isn't that part of mozilla?
+<jbailey> Nope.  My mistake.
+<jbailey> They are the same.
+<jbailey> So yeah, use that one. =)
+<jbailey> then it'll be all good.
+<siesel> jcater: does it make sense to have a fallback mechanism for XSLT processors?
+Action: siesel isn't shure about the priority of XSLT for Reports nowadays.
+<lupo_> jcater: what's the point against XSLT?
+ToyMan (~stuq@170-215-239-195.bras01.mdl.ny.frontiernet.net) joined #gnuenterprise.
+<siesel> support for libxslt is in CVS now
+<jbailey> Sweet. =)
+Action: jbailey pokes jamest_
+<jcater> lupo_: the idea behind using xslt in the first place
+<jcater> was that non-programmers could do their own report translations
+<jcater> after doing several ourselves, I don't think that's a reasonable goal
+<jcater> report translations == output filters
+<jbailey> It should be fine - but you need a decent interface for creating the report things.
+<jcater> ?
+<jcater> the things we were using xslt for were too low level to be of a concern to non-programmers anyway
+<jcater> basically gnue-reports --> text
+<jcater> or gnue-reports --> postscript
+<jcater> xslt is great for going from xml --> some other xml-like format
+<jcater> but going from xml to text, postscript, pcl, etc
+<jcater> is using the wrong tool imho
+<jcater> which is what was happening
+<siesel> jcater: btw. is the native pdf / ps creation of reports working already?
+Action: siesel wants to printout some tables with chinese characters, and its possibly easier to tweak the native ps creation algorithm than to tweak reportlab 
+<jcater> um
+<jcater> for SimpleTabulation, I'm not sure
+<jcater> I think btami added some native ps generation
+<jcater> I'm working on the next generation markup
+<jcater> based on styles, etc
+<jcater> it's got a ways to go
+<jcater> before useful
+<jcater> and I'm stuck in designer hell at the moment
+<jcater> but I'm not maintaining SimpleTabulation any longer
+Action: siesel hopes that hell turns to heaven soon :)
+<jcater> yeah
+<jcater> I'm working on a big forms project
+<jcater> and am determined to use only Designer to do the forms
+<jcater> no vi
+<jcater> so designer is getting a lot of stuff fixed, to put it mildly :)
+<siesel> yes, I mostly miss the widget resize feature :(
+Action: siesel has to restart designer multiple times to design one form
+<siesel> so you think SimpleTabulation is doomed? Is there another way to get a table printed out?
+<jcater> SimpleTabulation is it for the moment
+<jcater> although reports can output docbook directly
+<jcater> I've been meaning to add an example report to that effect
+<jcater> but I'm having to learn docbook at the same time
+<siesel> that's multitasking !
+<jcater> I doubt SimpleTabulation will go away any time soon
+<jcater> but it won't get any more complex than it is now
+<siesel> I think if Universal has table support SimpleTabulation isn't needed anymore
+<jcater> exactly
+<jcater> but I won't remove simpletabulation any time soon
+<jcater> as several people are using it in production
+<siesel> ok. 
+<jcater> I was just saying I won't be putting any more effort into it
+<siesel> Is there any example for the ps creation with "Universal"?
+Action: siesel wants to give it a try
+<jcater> it's no where near usable
+<jcater> or runnable for that matter
+<siesel> seems that I can't avoid hacking reportlab :(
+jamest_ (~jamest@gw.math.ksu.edu) left irc: "Client exiting"
+chillywilly (~danielb@CPE-24-167-199-51.wi.rr.com) got netsplit.
+chillywilly (~danielb@CPE-24-167-199-51.wi.rr.com) got lost in the net-split.
+chillywilly (~danielb@CPE-24-167-199-51.wi.rr.com) joined #gnuenterprise.
+reinhard (~reinhard@M1259P028.adsl.highway.telekom.at) left irc: "Don't believe in miracles -- rely on them"
+chillywilly (~danielb@CPE-24-167-199-51.wi.rr.com) got netsplit.
+chillywilly (~danielb@CPE-24-167-199-51.wi.rr.com) returned to #gnuenterprise.
+jbailey (~jbailey@atlas.fundserv.com) left irc: "Client exiting"
+jcater_ (~jcater@cpe-066-061-083-220.midsouth.rr.com) joined #gnuenterprise.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: Remote closed the connection
+Nick change: jcater_ -> jcater
+siesel (jan@xdsl-213-196-210-244.netcologne.de) left irc: "Client exiting"
+ToyMan (~stuq@170-215-239-195.bras01.mdl.ny.frontiernet.net) left irc: "Client Exiting"
+SachaZzz (~SachaS@dialup-196-16.wasp.net.au) joined #gnuenterprise.
+Nick change: SachaZzz -> Sacha
+dsmith (ojnkhr9vju@oh-strongsvillecadent1-1d-165.clvhoh.adelphia.net) joined #gnuenterprise.
+dsmith (ojnkhr9vju@oh-strongsvillecadent1-1d-165.clvhoh.adelphia.net) left irc: "later.."
+botsie (~botsie@202.88.170.105) joined #gnuenterprise.
+<botsie> 'morning
+<Sacha> morning botsie
+<Sacha> <btami> if botsie comes back, please tell him not to use capital letters in his gfd
+<Sacha> <btami> like field="emp_ID"
+<Sacha> <btami> thanks, and bye
+<botsie> Sacha: that was it???
+<botsie> who would have thought it?
+Action: botsie wants to test this
+mdean (~mike@CPE-65-28-72-76.kc.rr.com) left irc: Remote closed the connection
+botsie (~botsie@202.88.170.105) left irc: "booting windows"
+<chillywilly> bah
+<jcater> bah
+<jcater> black
+<jcater> sheep
+<jcater> have you any wool
+<jcater> yes sir, yes sir, three bags full
+<chillywilly> yes sir
+[21:50] Last message repeated 1 time(s).
+botsie (~botsie@202.88.170.105) joined #gnuenterprise.
+<botsie> Sacha: it worked.
+<botsie> *that* was bizarre
+rdean (~rdean@c-66-177-158-116.se.client2.attbi.com) joined #gnuenterprise.
+Nick change: botsie -> botsie|breakfast
+<Sacha> bye
+Sacha (~SachaS@dialup-196-16.wasp.net.au) left #gnuenterprise ("Client exiting").
+Nick change: botsie|breakfast -> botsie
+rdean (~rdean@c-66-177-158-116.se.client2.attbi.com) left irc: "Client exiting"
+_Maniac (~User@h24-77-230-121.wp.shawcable.net) left irc: "Client Exiting"
+jcater (~jcater@cpe-066-061-083-220.midsouth.rr.com) left irc: "Client exiting"
+--- Wed May 28 2003

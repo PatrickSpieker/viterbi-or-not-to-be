@@ -1,0 +1,121 @@
+*** deke has joined #gnuenterprise
+*** deke has quit IRC
+*** btami has joined #gnuenterprise
+<btami> good morning
+*** reinhard has joined #gnuenterprise
+*** johannesV has joined #gnuenterprise
+<johannesV> good morning
+<reinhard> good morning everybody
+*** kilo has joined #gnuenterprise
+<kilo> good morning
+*** btami has quit IRC
+*** jamest has joined #gnuenterprise
+*** kilo has quit IRC
+*** johannesV_ has joined #gnuenterprise
+*** johannesV has quit IRC
+*** johannesV_ has quit IRC
+*** ajmitch has quit IRC
+*** ajmitch has joined #gnuenterprise
+*** johannesV has joined #gnuenterprise
+*** derek has joined #gnuenterprise
+*** derek has quit IRC
+*** jcater has joined #gnuenterprise
+*** coldfront has joined #gnuenterprise
+<coldfront> anyone around?
+<coldfront> just got some few questions.
+<coldfront> anyone tried integrating or working projects with peachtree and integrated to GNUe?
+<reinhard> not that I know of
+<coldfront> is this project still going on?
+<reinhard> yes
+<coldfront> coz in the history, the latest was 2002.
+<reinhard> where do you look?
+<coldfront> http://www.gnu.org/software/gnue/community/history.html
+<reinhard> oops
+<coldfront> and this too
+<coldfront> http://www.gnu.org/software/gnue/news/old.html
+<reinhard> dammit, we are still on gnu.org with that old page :(
+<reinhard> jamest: you have good connections to the gnu hackers, don't you?
+<coldfront> is there a new site?
+<reinhard> could you manage to make www.gnu.org/software/gnue a redirect to www.gnuenterprise.org?
+<reinhard> http://www.gnuenterprise.org/
+<reinhard> is what we use for years now
+<jamest> reinhard: i have no connections anymore
+<jamest> but I can try
+<coldfront> this site looks better. hehehe
+<jamest> i don't even think my account still works
+<jamest> it only makes for a good spam relay now
+<coldfront> id like to contribute coding.
+<reinhard> jamest: quick, get me the chains for coldfront!
+<reinhard> ;-)
+<jamest> lol
+<coldfront> lolz
+<reinhard> coldfront: seriously, this is highly appreciated
+<coldfront> i was googling when i crashed to your old site
+<reinhard> please have a look at what's there
+<coldfront> ok.
+<reinhard> and then decide which field does interest you most
+<coldfront> we currently have peachtree in our system
+<reinhard> if you have any questions ask here
+<coldfront> ok
+<reinhard> ah
+<reinhard> peachtree is an accounting system?
+<jamest> yes
+<reinhard> gnue is *not* an accounting system
+<coldfront> yea. we're looking for an erp solution that's open source
+<reinhard> coldfront: you should know that gnue is more or less 2 projects
+<reinhard> 1 create a set of tools that makes it very easy to create database applications
+<reinhard> 2 create an erp system using these tools
+<reinhard> we are very far in process regarding 1
+<reinhard> but we're still ver much at the starting point regarding 2
+<coldfront> i see
+<jamest> we've had a few false starts with 2
+<jamest> but some of us use the tools created every day
+<jamest> and have internal systems, or customers systems based upon them
+<coldfront> im looking for an erp sytem thats open source.
+*** derek has joined #gnuenterprise
+<coldfront> and still checking out gnue how i can work with it.
+<coldfront> integrating accounting system, inventory and all sorts of stuffs into one software.
+<coldfront> looking forward to contribute to this promising project. will try to keep in touch.
+*** coldfront has quit IRC
+*** ra3vat has joined #gnuenterprise
+*** SachaS has joined #gnuenterprise
+*** SachaS is now known as SachaZzz
+*** johannesV has quit IRC
+*** jamest has left #gnuenterprise
+*** ra3vat has quit IRC
+*** kilo has joined #gnuenterprise
+*** reinhard has quit IRC
+*** curt has quit IRC
+*** bigbrother has quit IRC
+*** reinhard has joined #gnuenterprise
+*** curt has joined #gnuenterprise
+*** bigbrother has joined #gnuenterprise
+*** klasstek has joined #gnuenterprise
+<reinhard> psu is our hero
+<reinhard> but for the logs and the sake of completeness
+<reinhard> "Reinhard noted that "the dream of building a form at  runtime", whilst theoretically possible in a two-tier environment (GNUe Forms  client talks directly to a database), wasn't really practicable in a three-tier  environment (GNUe Forms client talks to GNUe Application Server talks to  database), as there would be no mechanism for triggers in the GNUe Forms client  to dynamically "create new objects" on the  GNUe Application Server."
+<reinhard> I think this is a misinterpretation
+<reinhard> I didn't intend to talk about appserver at all
+<reinhard> the point is that it is (was) possible to change all kinds of properties of, say, a block object
+<reinhard> but it is not possible to create a new block object
+<reinhard> so it will never be possible to create new forms at runtime
+<reinhard> but only to change behaviour of existing forms in limited manner
+<jcater> at least without major reworking, which wouldn't be worth the gain
+<reinhard> yes
+<jcater> come to think of it, if someone really needed to create a form completely at runtime, they could create their own .py file that imports the GNUe Forms Objects, and create a form that way, then activate it
+<jcater> :)
+<reinhard> well, I just wanted to make that clear because it seems that psu misunderstood
+<jcater> and a startup trigger could just import that .py file
+<jcater> but I can't imagine real-world situations where that'd really be necessary
+<reinhard> jcater: seriously, I already considered something like a gnue-forms --auto <connectionname> <tablename>
+<reinhard> to get some kind of "raw database editor"
+<reinhard> it could use db introspection to get the schema of the table, and then create a form on the fly containing all fields
+<reinhard> good night all
+*** reinhard has quit IRC
+*** derek has quit IRC
+*** kilo has quit IRC
+*** klasstek has quit IRC
+*** jcater has quit IRC
+*** kmk has joined #gnuenterprise
+<chillywilly> hi
+*** dimas has joined #gnuenterprise

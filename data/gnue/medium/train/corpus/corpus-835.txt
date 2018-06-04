@@ -1,0 +1,778 @@
+*** reinhard has joined #gnuenterprise
+<reinhard> good morning all
+<sacha> morning reinhard
+*** btami has joined #gnuenterprise
+*** kilo has joined #gnuenterprise
+<btami> good morning
+<reinhard> kilo: did I miss the hu.po commit mails?
+<reinhard> I didn't see anything, but an svn up gave me new versions of hu.po
+<reinhard> is hu translation ready?
+<kilo> good morning
+<kilo> translation is ready
+<kilo> i havent received any commit mails recently for some days now
+<kilo> http://www.gnuenterprise.org/cgi-bin/viewcvs.cgi/trunk/?root=gnue
+<kilo> show the updates though
+<kilo> s/show/shows
+<kilo> btw please check german translations, last night after a clean svn checkout setup-cvs.py showed 6 errors
+<reinhard> for which package?
+<kilo> dunno, was quite sleepy...
+<reinhard> ok, will have a look
+<reinhard> thanks
+<kilo> all i remember is at the end of the setup process it showed the errors
+*** johannesV has joined #gnuenterprise
+<johannesV> good morning
+<kilo> hi johannesV
+<kilo> gauntlet...
+<kilo> doesnt work for me
+<kilo> Traceback (most recent call last):
+<kilo>    File "<unknown_executioncontext>", line 11, in __main___ON_STARTUP_trgStartup
+<kilo>    File "/home/gabor/SVN/gnue/.cvsdevelbase/gnue/common/logic/NamespaceCore.py", line 324, in __call__
+<kilo>     return self._objectFunction(*args, **kwargs)
+<kilo>    File "/home/gabor/SVN/gnue/.cvsdevelbase/gnue/forms/GFForm.py", line 241, in getParameter
+<kilo>     return self._parameters [parameter]
+<kilo>  AttributeError: GFForm instance has no attribute '_parameters'
+*** lekma has joined #gnuenterprise
+<lekma> morning everyone
+<kilo> hi lekma
+<lekma> do any of you have one of those new mac/intel laptops
+<lekma> ?
+<lekma> i'm considering bying 2 of those...
+<reinhard> kilo: can you please try again?
+<reinhard> hmmm.... commit messages in #gnue-commits don't work either?
+<johannesV> kilo, ah, i thought jamest has removed that bug (he introduced accidentally)
+<kilo> reinhard: you mean the gauntlet?
+* reinhard introduced that bug, FWIW
+<reinhard> kilo: yes
+<kilo> lol
+<johannesV> no, it was jamest (look at a svn blame :)
+<johannesV> btw, i've just added a default-collation function to our pysqlite2-driver (which is activated automatically if the connection object supports it)
+<johannesV> and yes, #gnue-commit seems to hang
+<johannesV> (as well as the commit-mails)
+<kilo> nice, works fine. thx reinhard
+<lekma> johannesV, reinhard: did you guys found the time to talk about null boolean?
+<reinhard> we didn't talk, but
+<reinhard> FWIW, I think at least for postgres NULL == False for booleans
+<reinhard> erm that is of course nonsense if I think about it twice, because postgres has no booleans
+<johannesV> well, you could issue a create table foobar (somebool boolean not null)
+<reinhard> .... pushing out the releases now
+<johannesV> reinhard, have you updated svn before ?
+<reinhard> yes
+<johannesV> ok
+<johannesV> as my last commit is about 10 minutes ago
+<reinhard> (and even if I hadn't, the release script would do so automatically)
+<reinhard> :-)
+<lekma> reinhard erm that is of course nonsense if I think about it twice, because postgres has no booleans
+* lekma is confused
+<lekma> there are no booleans in postgres?
+<kilo> erm after svn up my appserver seems to not work...
+<kilo>  File "/home/gabor/SVN/gnue/.cvsdevelbase/gnue/appserver/language/Object.py", line 87, in __getattr__     [name]) [0][0]   File "/home/gabor/SVN/gnue/.cvsdevelbase/gnue/common/rpc/drivers/xmlrpc/ClientAdapter.py", line 330, in __call__     return self._adapter._callMethod_ ('_call', *nargs, **params)   File "/home/gabor/SVN/gnue/.cvsdevelbase/gnue/common/rpc/drivers/xmlrpc/ClientAdapter.py", line 201, in _callMethod_     raise errors.RemoteErr
+<johannesV> where's the rest of that traceback ?
+<reinhard> lekma: you're right, there *is* a boolean in postgres
+<johannesV> kilo, what about your traceback ... ?
+<johannesV> what were you doin ?
+<kilo> a session.find
+<kilo> userId = session.find('AAA_User', {'name':userName, 'pass':password}, [],[])[0]
+<kilo> (what a nice module name i have...)
+<johannesV> and what about the traceback ?
+<kilo> this is the traceback, just no linebreaks somehow...
+<kilo> File "Main.py", line 141, in evalLogin
+<kilo>     user = IF.evalLoginPage(userName=userName, password=password)
+<kilo>   File "/home/gabor/SVN/gnue/.cvsdevelbase/gnue/appserver/language/Object.py", line 87, in __getattr__
+<kilo>     [name]) [0][0]
+<kilo>   File "/home/gabor/SVN/gnue/.cvsdevelbase/gnue/common/rpc/drivers/xmlrpc/ClientAdapter.py", line 330, in __call__
+<kilo>     return self._adapter._callMethod_ ('_call', *nargs, **params)
+<kilo>   File "/home/gabor/SVN/gnue/.cvsdevelbase/gnue/common/rpc/drivers/xmlrpc/ClientAdapter.py", line 201, in _callMethod_
+<kilo>     raise errors.RemoteError, (exType, exName, exMessage, exDetail)
+<kilo> RemoteError: Procedure instance has no attribute 'repository'
+<kilo> hah got them \o/
+<johannesV> hm
+<johannesV> looks like it's one of mine, doesn't it ...
+<johannesV> damn, we really need unittests
+* johannesV starting database-server ...
+<kilo> well the moment I see something like 'ClientAdapter' I immediately think of Austria... :)
+<johannesV> hm, strange, calling procedures works fine here ...
+<johannesV> ok, now i can reproduce it (although)
+<kilo> rev 8247 worked ok
+<johannesV> erm, although it's a bit different
+<johannesV> yeah, it's all cause of that findItem stuff ....
+<kilo> so must be something since then
+<johannesV> ah, it's a typeo
+<johannesV> i see it
+<kilo> \o/
+<johannesV> ok, now for another one ... :)
+<kilo> ?
+<johannesV> since i've fixed that one, anotherone seems to appear ...
+<johannesV> reinhard, please wait for another 15 minutes with the release ... (maybe we could do it on afternoon, so kilo could do some more testing)
+<johannesV> kilo, please svn up and retry
+<kilo> ok
+<kilo> seems to work fine now
+<kilo> thx for the fix
+<kilo> at least it was caught before release :)
+<reinhard> so I should wait with release until afternoon?
+<reinhard> should I wait with forms release, too, or only appserver?
+<kilo> well... green lamp from me
+<reinhard> doing forms release now
+<kilo> CIA returned from coma...
+<johannesV> ok, if kilo is fine with appserver you can do that release too
+<lekma> johannesV: i can't seem to find, in source,  a reference to "isnull" condition you showed me yesterday, where is it?
+* lekma must be blind
+<lekma> or is it ["null" ["Field", "bla_bla"]]?
+<johannesV> lekma, let me have a look
+<johannesV> yeah
+<johannesV> that could be
+<lekma> :)
+<johannesV> so add another ["not", ["null" ...
+<johannesV> no
+<johannesV> there is a "notnull" condition
+<lekma> "notnull" seem to be here as well
+<lekma> :)
+<johannesV> yes, just look into gnue-common/src/datasources/GConditions.py
+<reinhard> ok, doing appserver release now, too
+<lekma> yay!! \o/
+<sacha> hi reinhard. on the gnuenterprise website if I check for the versions of appserver i see the last 0.4.3 september 2005
+<sacha> reinhard: must be the site.
+<reinhard> sacha: no, that's correct
+<reinhard> I'm doing the release right now, so it can't show on the site already
+<reinhard> :-)
+<sacha> so big release then
+<reinhard> yep
+<reinhard> 0.5
+<sacha> sweet
+<sacha> i will be working for my own company again
+<sacha> will see if I can use gnue again
+<sacha> eventhough I must admit i did some ruby on rails work.
+<sacha> maybe once I am closer to the Austria gnue powerhouse things will change again
+<sacha> hi kilo
+<kilo> hi sacha
+<sacha> how are you?
+<kilo> wow 2 sachas :)
+<SachaS> hi kilo
+<kilo> :)
+<kilo> your secret twin? :D
+<SachaS> if I need to blame someone, I can blame sacha
+<sacha> if I need to blame someone, I can blame SachaS
+<kilo> lol
+<dimas_> sacha: SachaS: hello guys
+<kilo> derek needs a twin then too :)
+<sacha> hi dimas_
+<johannesV> ok, so we can now go for a branch of gnue-forms then ?
+<reinhard> yes
+*** Shufla has joined #gnuenterprise
+<Shufla> hello
+*** yure has joined #gnuenterprise
+<reinhard> hi Shufla
+<Shufla> reinhard: huh :) We've been trying to convince Fabien to share his code & API docs withour success :(
+*** dimas_ has quit IRC
+<lekma> the max for a number(4,1) is 999,9?
+<lekma> correct?
+<reinhard> yes
+<lekma> thx for reassuring me, i got strange result from Math.pow(10, length - scale) in javascript...
+<lekma> so there must be a bug somewhere
+*** btami has quit IRC
+<reinhard> wow
+<reinhard> I wasn't aware that we have a 82 page developer's guide for forms
+<kilo> lol weren't you???
+*** sacha_ has joined #gnuenterprise
+*** sacha has quit IRC
+*** kilo has quit IRC
+*** kilo has joined #gnuenterprise
+*** kilo has left #gnuenterprise
+*** sjc has joined #gnuenterprise
+*** jamest has joined #gnuenterprise
+<jamest> reinhard: congrats on the release today
+*** jamest has left #gnuenterprise
+*** jamest has joined #gnuenterprise
+*** siesel has joined #gnuenterprise
+*** jcater has quit IRC
+<jamest> ok, so about a year ago I talked about expanding navigator
+<jamest> now I'd like to actually start working on it
+*** johannesV_ has joined #gnuenterprise
+<jamest> my initial goal was a framework the other gui apps could build from
+<jamest> and netbeans does this quite well
+*** jcater has joined #gnuenterprise
+<jamest> for a quick look at what I'm trying
+<jamest> http://www.javalobby.org/eps/netbeans_platform/
+<jamest> a flash presentation building custom apps using netbeans
+*** derek has quit IRC
+*** johannesV has quit IRC
+<jamest> this has moved a bit from just navigator now though so I figure I'll spit out some stuff here and see if people scream
+<jcater> *argh!!!!!*
+<jamest> just a sec
+<jamest> ok
+<jamest> i use gclientapp a lot
+<jamest> but most of the time I don't need all it has to offer
+<jamest> the since we've stuck a lot of crap in the constructor it comes along for the ride
+<jamest> my rough notes from friday
+<jamest> not complete but to give a mind set
+<jamest> Features apps need:
+<jamest>   Non-GUI
+<jamest>     configuration
+<jamest>     debugging
+<jamest>     profiling
+<jamest>     file storage
+<jamest>     authentication
+<jamest>   GUI
+<jamest>     menus
+<jamest>     toolbars
+<jamest>     status bars
+<jamest>     windows
+<jamest> which I started to break down into
+<jamest> App
+<jamest>   * Should require no arguments to it's constructor
+<jamest>   * No functionality beyond the registry
+<jamest>   * Configuration via code for simple apps
+<jamest>   * Configutation via an xml stream
+<jamest>       - so we can create a base GUI app and developers can remove things
+<jamest>         from it and add things to it.  Like netbeans
+<jamest>   Registry
+<jamest>     * Manages the loading of components
+<jamest>     * Should also provide a service to reload components upon demand
+<jamest>       (optional auto look for updates?)
+<jamest>   Components
+<jamest>     * Components provide services to the application
+<jamest>     * They should not require args to their constructors, instead an
+<jamest>       api should exist to let them register services.
+<jamest>     * Constructors should be able to list dependencies of constructor types
+<jamest>     * Every component should have a primary interface defined via
+<jamest>       zope.interface
+<jamest> I've called this thing in my notes gap (GNUe application platform) but the name is whatever
+<jamest> so gap would end up being
+<jamest> somehting like
+<jamest> gap.foundation             # The primary application
+<jamest> gap.service.registry       # Manages components (always loaded)
+<jamest> then components like
+*** Shufla has quit IRC
+<reinhard> hmmmm
+<jamest> gap.utility.logging        # Loging support
+<jamest> gap.utility.config         # Configuration processing
+<jamest> gap.utility.debug          # Debug support
+<jamest> gap.utility.profile        # Profiler
+<jamest> gap.utility.clp            # Command line processor
+<jamest> gap.utility.datasources    # Datasources
+<reinhard> indeed this sounds interesting and useful as a development platform
+<jamest> etc
+<reinhard> I think I understand what you mean
+<jamest> so, and this isn't "real" code
+<jamest> class GoatHerder(gnue.appcliation.foundation):
+<jamest>   addComponent('gap.utility.config')
+<jamest>   addComponent('gap.utility.datasources')
+<jamest> etc
+<jamest> or that could be populated by some type of configuration file linked to the app (maybe in a python egg)
+<jamest> so that we could distribute a complete framework and then you could pull the parts you don't require
+<jamest> i could also see the base UI framwork being part of gap
+<jamest> so then navigator, forms, designer, appserver would all derive from gap and only load the components they need
+<jcater> am I right in this doesn't require a complete rewrite of everything, as much as a reorganization?
+<jamest> jcater: yes
+<reinhard> what exactly would be the advantage of "addComponent('gap.utility.datasources')" against "from gnue.common import datasources" ?
+<jamest> just a sec
+<jcater> reinhard: I was wondering the same thing
+<jcater> glad you asked :)
+<reinhard> seriously
+<reinhard> I always thought we have one or two abstraction levels too much, not too little ;-)
+<reinhard> so I'm wondering where the benefits are
+<jamest> ok
+<jamest> several
+<jamest> you'll note those are strings
+<jamest> and honestly I see the addComponent() option as only for simple scripts
+<jamest> the from foo import is hardcoded into your app
+<jamest> the latter can be loaded from a config file at runtime
+*** derek has joined #gnuenterprise
+<jamest> so you could replace components in the app without changing the app at all
+<jamest> or lets say I want to add something to forms specific for ajrs
+<jamest> i could extend my app with forms "add-ons" without changing the code
+<jamest> components would also be registered
+<reinhard> as to loading at runtime from string, we do the same with our plugin loader
+<jamest> yes
+<reinhard> please elaborate on "add something to forms specific for ajrs"
+<reinhard> what do you mean?
+<reinhard> a new control?
+<jcater> oh, I think I see
+<jamest> i'm trying to think of some concrete samples
+<reinhard> a new valid XML tag for the gfd?
+<jcater> so addComponent('gap.utility.datasources')
+<jcater> may or may not coincide with a gap.utility.datasources?
+<jcater> it could be any class registering itself as providing that "service"
+<jamest> jcater: right
+<jcater> or am I off base?
+<jamest> right
+<jamest> then the other components of forms wouldn't be looking for say gDebug specifically
+<jamest> they'd say "give me whatever provides gap.application.debug"
+<jamest> and use that
+<jamest> if it's loaded
+<jamest> you'd no longer have hard coded dependency between the various sections of gnue
+<jamest> actually, i was looking at zope3 interfaces and they are really close to this now
+<jamest> when you add in their components system
+<jamest> oooooo
+<jamest> they give some examples too I think
+<jamest> hang on
+<jamest> http://svn.zope.org/Zope3/trunk/src/zope/
+*** dimas has joined #gnuenterprise
+<jamest> everything in the app subdir there is zope3 specific, the other dirs have stuff that you can slap into non zope apps
+<jamest> http://svn.zope.org/Zope3/trunk/src/zope/interface/README.txt?rev=65911&view=markup
+<jamest> and
+<jamest> http://svn.zope.org/Zope3/trunk/src/zope/component/socketexample.txt?rev=39510&view=markup
+<jamest> so where we'd end up is
+<jamest> a system made of components with a well defined API via an interface
+<jamest> loaded components would register with some type of manager
+<jamest> components could ask for the component that provided the "Foo Service" then use that service without hard coded links between components
+<jamest> and with enough thought into the UI part we'd end up close to what that netbeans demo does
+<jamest> for those without flash
+<jamest> create new netbeans project module
+<jamest> run it and by default it *is* the netbeans editor
+<jamest> open the loaded components dialog and uncheck all the crap you don't want
+<jamest> add a few new components
+<jamest> and you have a new app using most the underlying framework of netbeans
+<jamest> then also demo adding a google style search bar to the existing applications toolbar by creating a new component
+<jamest> i know there is a lot to digest in those links above
+<reinhard> I'm still trying to understand how we would use this in gnue-forms
+<reinhard> I can't imagine a situation where I would want to, say, replace the GDebug system with something different
+<reinhard> (not to think about the possible performance implications when replacing GDebug with something highly dynamical)
+<reinhard> I could really imagine something like this useful for adding new GF* elements to forms
+<jamest> ok
+<reinhard> like we have no tree view, so I can write my own and plug it in
+<jcater> actually, that is one of my questions...
+<jcater> class MyFoo():
+<jcater> addComponent('gap.utility.datasources')
+<reinhard> but I think that could be done with python's abilities to dynamically load modules
+<jcater> how does MyFoo then reference whatever gap.utilitiy.datasources provides?
+<jamest> jcater:
+<jamest>   def initOne():
+<jamest>     # I need the connection mgr
+<jamest>     conMgr = getComponent('gap.utility.datasource').getConnectionMgr()
+<jcater> ah
+<jamest> so the object would request links to instances that already exist via a global pool of components
+<jamest> then if we want to get fance
+<jamest> fany
+<jamest> fancy
+<jamest> refreshComponent('gap.foo.bar')
+<jcater> your first example made it look like
+<jcater> class foo:
+<jcater>   addComponent('foo.bar')
+<jcater> somehow had addComponent creating a dynamic class
+<jamest> i'm making up examples as I type them :)
+<jamest> reinhard:
+<jcater> so foo was somehow being extended (like with python's support for property() things
+<jamest>   ok, before I try to example forms lets pull back
+<jamest>   gap
+<jamest> eventually forms, designer, appserver, navigator all use this system
+<jamest> so instead of saying "what can I do in forms"
+<jamest> we pull back and say, what can I do in the app
+<jamest> here I have lots of GClientApp stuff
+<jamest> lots
+<jamest> but in app1 I don't use logging, or debugging, or command line options, or configuration options
+<jamest> but I have to load them
+<jamest> as GCLientApp does that
+<jamest> then in the game i was working on I didn't need datasources
+<jamest> but it has to load them
+<jamest> now lets say I really, really like forms
+<jamest> but I want all logins to any form monitored in real time
+<jamest> i would create that component, add it to forms configuration, and as part of it's startup it would ask for a handle to the whatever datasouce mgr was loaded and register with it to get certain events,
+<jamest> i would change a bit of the forms code
+<jamest> but now all login username/passwords are emailed to bigbrother@mycompany.com
+*** siesel has quit IRC
+<jamest> or lets say I want real time monitoring of calls in my call queue here
+<jamest> and I want that in the toolbar of every form a user has open
+<jamest> I'd create a component that displays the # of calls waiting on a button that launches our call center monitoring app
+<jamest> modify my copy of forms configuration file to include that button on the toolbar, and away I go
+<jamest> currently everyone in the call center here opens the full monitoring app
+<jamest> nagivator would really grow just to be a enhanced component manager of sorts
+<jamest> and eventually could load the "forms" component and display it's output in a general window handle provided by the gap generic ui system
+<jamest> or it could load jcatersWickedModule2k component that monitors the current inventory levels of the snack machine in the breakroom in real-time
+*** btami has joined #gnuenterprise
+<jcater> reports could be embedded in forms more easily
+<jcater> I guess all of this could be done without the component system jamest is describing, going on like we're doing now
+<jcater> but I do see true value in this direction
+<jamest> fwiw
+<jamest> i spent some time digging after I thought about going the netbeans route
+<jamest> and zope3, twisted, and peak all do something like it, most based on zope3 interfaces
+<jamest> well
+<jamest> z3 and twisted use z3 interfaces and components (twisted enhanced it)
+<jamest> peak i think is compatible at some level
+<jamest> i can see the compents at the app level being useful
+<jamest> and interfaces useful anywhere in gnue
+<reinhard> well I won't stop you anyway
+<reinhard> but I'm slightly worried about the overhead this adds to gnue
+<jamest> reinhard: where do you see it added?
+<jamest> i see startup time possibly
+<reinhard> I see it in complexity and number of abstraction levels
+<reinhard> which probably means higher learning curve for people wanting to hack gnue
+<reinhard> more bugs
+<reinhard> less performance
+<reinhard> more dependencies
+<reinhard> and less time to code that stuff that we *actually* want to see in gnue-forms
+<jamest> odd, i'd have thought the oposite
+<jcater> actually, I got the opposite on most of those points
+<reinhard> as I said
+<jcater> imho, one of the bad things about gnue's code base (which I claim a good bit of responsibility for) is the complexity and number of abstraction levels and the learning curve needed
+<reinhard> I won't stop you anyway
+<reinhard> probably a proof of concept code will help decide in which direction to go
+<jamest> reinhard: i'm wanted to do proof of concept anyway, but wanted to know if that was ok with you before I started
+<jamest> i see navigator as the place I could do this
+<reinhard> both johannes and me probably won't touch navigator in a year from now
+<reinhard> so there's no risk of interfering with each other
+<jamest> i figured that was the safe place
+<reinhard> as long as you are ok with us working on forms
+<jamest> i'm fine with it
+<reinhard> FWIW
+<reinhard> I've committed forms technote 00006.txt with a proposal for changes in gfd format
+<reinhard> regarding layout management and grids
+<reinhard> it's not much yet, but I'd like to get some early feedback
+<reinhard> jcater: did you generate the xml description in the forms developer's guide?
+<jcater> yes
+<reinhard> or did you just copy & paste from the dtd file?
+*** sacha_ has left #gnuenterprise
+<reinhard> you directly did generate an openoffice file?
+<jcater> there is a script somewhere in there that generates it
+<reinhard> cool
+<jamest> comon/utils iirc
+<reinhard> ok
+<reinhard> nice
+<reinhard> must run for birthday party, will be back tomorrow
+<reinhard> cu all
+*** reinhard has quit IRC
+*** lekma has quit IRC
+<jamest> another interesting read from this weekend
+<jamest> http://twistedmatrix.com/projects/core/documentation/howto/components.html
+<derek> twisted is broked BAD
+<derek> like REALLY bad
+<derek> we just got contracted to fix a twisted implementation for a major online learning facility
+<derek> twisted is full of memory leaks in the worst kind of way :)
+<derek> just an fyi
+<jamest> wha?
+<jamest> isn't twisted now the default communications interface of zope3?
+<jcater> twisted is used for a LOT of application development these days
+<jcater> from apt-proxy to zope (and many others)
+* jcater wonders if you're replacing a really bad implementation of twisted
+<jcater> moreso than an implementation of a bad twisted library
+<jamest> that's what I was thinking myself
+<jamest> so far in reading the zope3 docs i'm really impressed at what they've done
+<jamest> all files pretty much require unit testing, interface.py files
+<jamest> most dirs I've hit have a DEPENDENCIES.cfg that list all imports in that dir
+<jamest> a README.txt explaining what it's for
+<jamest> I can't imagine they'd ditch zserver for twisted without some solid testing
+<btami> jamest: as i see, this component/lego system is similar to Delpy component, and very useful for writing custom gnue based app (different than gnue packages, using standard gnue .gfd .grd)
+<btami> am i right ?
+<jamest> yes
+<jamest> well
+<jamest> i don't know about the Delpy
+<jamest> but for custom apps, and gnue apps themselves
+<btami> s/Delpy/Delphi
+<jamest> if it proves itself I think we could migrate most the guts of our gui apps to this
+<derek> jamest/jcater : we used twisted at ldc as well
+<derek> it has major issues (again just FYI)
+<derek> it is good for some stuff, business application development isnt its strong suit per say
+<jamest> are you sure you didn't just get your derek all over it
+<derek> also in fairness i always thought zope had several production quality issues
+<jamest> zope2 or zope3?
+<derek> so zope using it isn't a vote of confidence in my book :)
+<jamest> zope2 is a known mess
+<jcater> but pretty stable
+<derek> on twisted i was not at ldc when they used it, so that didnt have my "evil touch"
+<jamest> zope3 is a from the ground up rewrite
+<jamest> using forced good coding practices
+<jamest> i'm not saying that it's quality
+<derek> and the group we were asked to consult for that had twisted implemention we had nothing to do with coding at all
+<derek> they actually called us in for "postgres" performance problems
+<jamest> but what i've been digging thru is nice
+<derek> we got in and looked around and they had like 8gig database on a monster of a machine
+<derek> and it was crashing because of memory consumption
+<derek> as we all know postgres on a SMP machine with 4gig of RAM and an 8gig data set doesnt die because of  memory problems
+<derek> in research all memory consumption was coming from twisted :)
+<derek> again limited exposure.. twisted could be greatest thing since sliced bread
+<derek> i wish active record was written in python
+<derek> as i think active record would be a great thing for gnue
+<derek> i would really consider having especially those working on app server looking at activerecord
+<derek> as a basis for an ORM
+<derek> and doing a python implementation
+*** dimas has quit IRC
+*** johannesV_ has quit IRC
+<jamest> derek: maybe I'm missing something
+<jamest> but the active record tuts I'm looking at are huge
+<derek> tuts?
+<derek> tutorials?
+<jamest> tutorials
+<jamest> did you see objectWrapper in gnue-contrib?
+<derek> i havent seen it
+<derek> im just saying after using active record a lot
+<derek> its quite mature and does what i wanted app server to always do w/o much fuss
+<derek> it lets me treat sql tables like objects
+<jamest> do you have gnue-contrib checked out?
+<derek> but not make them gross sql tables
+<derek> and provides functionality to use sql directly against them w/o much fuss
+<jamest> here
+<jamest> from gnue.common.contrib.objectWrapper.ObjectWrapper \
+<jamest>   import ObjectWrapper, Field, \
+<jamest>          _getDecimal, _setDecimal, \
+<jamest>          _getDatetime, _setDatetime
+<jamest> class Item(ObjectWrapper):
+<jamest>   _tableName = 'items'
+<jamest>   _primaryKeys = 'item_id'
+<jamest>   _properties  = (
+<jamest>     Field('item_id'     , typecheck=int),
+<jamest>     Field('created'     , typecheck=datetime),
+<jamest>     Field('sku'         , typecheck=basestring),
+<jamest>     Field('make'        , typecheck=basestring),
+<jamest>     Field('model'       , typecheck=basestring),
+<jamest>     Field('description' , typecheck=basestring),
+<jamest>     Field('unit_price'  , typecheck=Decimal),
+<jamest>     )
+<jamest>   created = CommonProperty('_created', _getDatetime, _setDatetime)
+<jamest>   unit_price = CommonProperty('_unit_price', _getDecimal, _setDecimal)
+<jamest> that is a completely usable object
+<derek> i dont have gnue checked out on this machine (mostly because i dont have any non OSX boxes i use regularly, other than servers)
+<jamest> using the default gnue connection
+<derek> but do you define that somewhere?
+<derek> or is done for you?
+<jamest> what?
+<jamest> I wrote that class to access a table created by gsd
+<jamest> then if I want to do a join
+<jamest>   _properties = (Field('invoice_id'    , typecheck=int),
+<jamest> <snip>
+<jamest>                  Join('items', className=InvoiceItem,
+<jamest>                        masterLink ='invoice_id', detailLink='invoice_id',
+<jamest>                        ),
+<jamest> then you have load(), post()
+<derek> but all that is in gsd? gfd? ...
+<jamest> pure python
+<derek> but where do you define it
+<jcater> that is the definition
+<jamest> define what?
+<jamest> that is the definition of a data aware object in python
+<jamest> it's a regular python class that I can do what I want with
+<derek> but where does that code go
+<jamest> in my app
+<jamest> jamest@hal:~/svn/gnue-contrib/objectWrapper/tests/objects$ ls
+<jamest> address.py  baseAddress.py  __init__.py  invoiceAddress.py  invoiceItem.py  invoice.py  item.py  state.py
+<derek> currently in active record i can define a model (which is similar to say a gsd)
+<derek> and then that object is available anywhere i instantiate it
+<jamest> i have a dir here at work that contains all those models
+<derek> i can have inheritance on tables as well as polymorphic associations
+<jamest> inheritance isn't an issue
+<derek> validations can also exist directly in a model
+<jamest> though I'd have to se a polymorphic association sample to grok it
+<jamest> validations are in that model above
+<jamest> created = CommonProperty('_created', _getDatetime, _setDatetime)
+<jamest> so instance.created('1/1/2006') converts automatically
+<jamest> the typecheck arg is used to verify the end result is what you expect
+<jamest> it's not as powerful as appserver
+<derek> http://wiki.rubyonrails.org/rails/pages/HowToUsePolymorphicAssociations
+<jamest> but it's a pretty easy to use method of mapping objects to databases
+<derek> is a sample of polymorphic
+<jamest> and it'd be fairly simple to build these from the gsd directly
+<jcater> looks like foreign keys jamest... which you do
+<derek> jcater: poly is much more than foreign keys
+<derek> foreign keys is : belongs_to, has_many and has_to_belongs_to_many (hatbm)
+<derek> STI is way to inherit from a base an object using the type colum
+<derek> so you could have Person table with a type column
+<derek> and then have
+<derek> Employee << Person
+<derek> Contractor << Person
+<derek> etc
+<derek> poly is much more involved
+<derek> its like a has to and belongs to many on steriods
+<jamest> gack
+<jamest> What about foreign keys? Because the _id field can reference records in different tables you can never use a foreign key in the database.
+<jamest> So you can create a less ?stable? database environment.
+<jamest> Answer
+<jamest> If you need to guarantee referential integrity you can always use a trigger (if your database supports it). This is obviously non-portable though.
+<derek> jamest?  we use FK in database
+<jamest> I'll admit I'm an old dog
+<jamest> http://wiki.rubyonrails.org/rails/pages/UnderstandingPolymorphicAssociations (see the questions at the bottom)
+<jamest> But if they want me to ditch referential integrity I'm not sure this is a trick i'd learn
+<derek> it simplifies code enough it is worth it for reusability.. for us its non issue is we are not concerned with portability of db
+<derek> so we work around with triggers
+<jcater> so like gnue appserver, it is only useful for new projects
+<derek> jcater: for a large part yes
+<derek> i think thats somewhat par for the course
+<derek> if a legacy application had structures that dont take advantage of a new framework...its hard for a framework to cope with that
+<derek> however, activerecord has some ways around it
+<jcater> true
+<derek> you can "map" things
+<jcater> of course, I'm of the old school mentality that a database schema should be designed to outlive the shiny new framework
+<derek> but if they dont exist you can't do it
+<derek> so say STI relies on a column called type
+<derek> if you dont have something to represent that type there isnt much you can do
+<derek> if you have something that represents type but is called mud
+<derek> you could make it use mud
+* derek is not stating that active record is the end all
+<derek> i just think that it does a LOT of what the goals of appserver were (once upon a time)
+<derek> and does so fairly well
+<derek> the things i dont like about it
+<derek> are the same things i didnt like about appserver being too object minded :)
+* derek really enjoys rails as a framework, but still think that something like a gfd... has serious merit
+* derek debates daily about trying to write something to allow gfds to be used as rails applications
+<derek> i used to loathe web applications because they were so limiting, but with all the new javascript and AJAX stuff available its not as true anymore
+<jamest> one of our major customers did an IE upgrade nationwide
+<derek> before i would say 5% of applications were suited for web and 95% not
+<jamest> it happened to break every usage of pre-AJAX-hype custom javascript I have
+<derek> now i would say its more 40% to 60%
+<jamest> seeing as how it works fine in all versions of IE i have access to
+<jamest> and how their corp tech support is baffled
+<derek> IE is satan
+<derek> plain and simple
+<jamest> my enthusiasm for ajax based apps has been somewhat tempered
+<jamest> as I have no way to debug this issue (which is the same hell java based web apps gave me when I was in math)
+<jamest> i'm hoping a move to prototype for the com channel will magically make things work again as it's wider spread
+<jamest> but I'm still of the mindset that rich client apps are here to stay for the forseeable future
+<derek> with rails we have scriptaculous and protoype all built in
+<derek> so we write very little javascript
+<derek> its all rails method calls
+<derek> and all the xplatform stuff is just magically handled
+<derek> again not end all of end alls
+<derek> we try to stay away from JavaScript/AJAX except where it really brings value
+<derek> as supporting it is suck
+*** klasstek has joined #gnuenterprise
+*** btami has quit IRC
+*** psu has joined #gnuenterprise
+<jamest> hey psu
+<jamest> did I see you restart the kernel cousins
+<derek> jamest: he did!!!
+<derek> and you guys are giving him tons of new content to put in there
+*** psu has quit IRC
+*** psu has joined #gnuenterprise
+<psu> back
+<psu> as is GNUe Traffic - #108 now on line
+<jcater> cool
+<jcater> where?
+<jcater> ah
+<jcater> if I checked gnue-announce, I'd know
+<psu> http://www.kernel-traffic.org/GNUe/gnue20060320_108.html
+<psu> or, if you prefer original XML goodness
+<psu> http://www.kernel-traffic.org/GNUe/gnue20060320_108.xml
+* derek wants to see the firefox plugin :0
+* psu wonders if he should use GNUe Designer to do GNUe Traffic
+<psu> as "all" Designer is, is a big XML editor
+<psu> of course, by same logic, "all" that emacs is, is a text editor
+<psu> s/emacs/vi
+<psu> or whatever
+<jcater> designer is not currently an xml editor
+<jcater> it is currently an elegant way to generate a python exception
+<psu> well, an xml generator anyway
+<jcater> (traceback)
+<jamest> elegant?
+<jamest> don't you mean convoluted?
+<jcater> yeah
+<jcater> that's what I meant
+<chillywilly> if that's an RSS feed than you can already monitor it with firefox :)
+<chillywilly> psu: where's the RSS feed eh?
+<psu> www.kerneltraffic.org/GNUe/rss.rdf
+<psu> but not working for me at the moment
+<psu> Next question?
+<chillywilly> why does RoR and AcvtiveRecord kick so much ass? :)
+<psu> It just does, OK?
+<psu> Actually, I thought that derek was the Ruby on Rails fanboy around here
+<chillywilly> me to!
+<chillywilly> me too!
+<chillywilly> me tooo!
+<psu> <aol>me too</aol>
+<chillywilly> :)
+<jamest> it's all about the ration of l33t to suck
+<derek> it doesn't "kick so much ass"
+<jamest> rails is new and full of l33t
+<jamest> GNUe and the python upon which it is based is old and full of suck
+* derek thinks my comment of "look at AR" to get ideas for appserver ORM turned into "use rails"
+<derek> which was not the intent of the comment at all
+<jamest> though reinhard and johannes have tried really, really hard
+<jamest> jcater and myself once put code into GNUe and that kind of taint runs deep
+<derek> gnue is doing so much more than something like rails it would be impossible to compare the two
+<psu> To me, there have always been wonder Rapid Deployment Framworks
+<jamest> but I just did compare them
+<derek> jamest: sadly that is how a lot of people think
+<derek> new buzzword == better product
+<psu> that are, as well as flavour of month, actually good at some things
+<chillywilly> the thing I like most is the integrated unit and functional testing
+* psu seems to remember a regular feature of old GNUe Traffics 
+<jamest> i love unit testing
+<derek> chillywilly: java has a lot of that built in
+<psu> where people would come on line and say "why not use FOO?"
+<derek> wouldnt make me use java :)
+<chillywilly> I know it's nothing new
+<psu> (where FOO = current flavour of month)
+<psu> derek's std reply was
+<jamest> i dislike java, but netbeans destroys any editor I've used hands down
+<derek> psu: i think its always important to research whats out there, but that doesnt mean ditch what you are doing and i adopt it
+<psu> "FOO is generic framework, GNUe is explicitly a toolkit for database-driven biz apps"
+<derek> jamest: textmate is good, but you need mac to use it :(
+<psu> derek: agree
+<jcater> textmate sucks poo
+<jamest> can it let me right click on a say a class var and say go to def
+<jamest> er
+<jamest> click on a class var, go to source
+<derek> psu: my other famous comment is ... framework X is all the rage right now, but in 2 years gnue will be here and foox.com will be a non resolving url :)
+<jamest> then right click, refactor->rename
+<jamest> change the name
+<psu> derek: yes
+<derek> james it can pretty much do anything you want it to do
+<jamest> and it fixes all references to that var or class name in *all* loaded projects
+* derek notes that it is a great editor for ruby (rails)
+<derek> not sure what its support for python or such is like
+<jcater> oh, wait
+<jcater> I tried textwranger, not textmate
+<jcater> textmate is non-free
+<jamest> i'd kill (or blame derek) for an editor like that for python
+<jcater> which is sadly the typical case on mac
+<derek> yes textmate is non free (which is evil)
+* jcater is learning
+<jamest> plus the matise gui builder in netbeans is the shit
+<derek> but it does its job amazingly well.. the guys we have still working with a lot of python like it for python as well
+<derek> jamest: i have heard good things about netbeans
+<jamest> it makes java worth coding
+<derek> but visual studio is the bomb to many people as well :)
+<psu> is it time to remind jcater of his pre-GNUe forms client written in java?
+<derek> in fact all C# developers i encounter actually dislike C# the language
+<derek> BUT
+<derek> all love visual studio
+<psu> Or doesn't he deserve a painful flashback?
+<derek> and basically say they like C# because of visual studio not because of c#
+* derek personally didnt like visual studio too much
+<derek> i did very much like delphi's IDE
+<derek> but then again i like gnue designer so my sense of development tool is skewed ;)
+* psu though you liked designer *because* it reminded you of delphi
+<derek> prolly
+<derek> mostly i liked it because it made me more productive
+<chillywilly> emacs is all you need
+<nickr> in 13
+<nickr> oops
+<derek> textmate actually has eliminated my emacs addiction
+<nickr> that is impossible
+<jamest> http://wwwf.centos.org/127_story.html?storyid=127
+<jamest> a friend sent me that but i notice it's on /. too
+<chillywilly> is that the moron from Tuttle, OK?
+<jamest> yeah
+<chillywilly> yep, it is
+<derek> totally forget CentOS
+<derek> imagine the poor chumps who are the Tuttle, OK IT staff
+<derek> how bad does it have to suck to report to that fellow?
+<chillywilly> I think the CentOS guy really needs to invoice them for his consulting services
+<derek> good thing tehy werent using debian
+<derek> or there would be no one to blame for installing that damn spyware!
+<jamest> and that kind of issue would only crop up every 3 years between new releases
+<derek> roflmao
+<derek> i thought it was every 5 years
+<derek> if they are going to speed up that release cycle im switching back to windows where im guaranteed a decade between releases :)
+* chillywilly is on the Ubuntu bandwagon now
+* derek slowly using more and more BSD (not even of the OSX variety)
+<derek> not really by choice though
+<derek> we were the first ubuntu affiliate though :)
+*** psu has quit IRC
+*** kilo has joined #gnuenterprise
+*** krizz has joined #gnuenterprise
+*** yure has quit IRC
+*** sjc has quit IRC
+*** klasstek has quit IRC
+*** jamest has left #gnuenterprise
+*** kilo has quit IRC
+*** jamest has joined #gnuenterprise
+*** jcater has quit IRC
+*** derek has quit IRC
+*** jcater has joined #gnuenterprise
+*** jamest has quit IRC
+*** jamest has joined #gnuenterprise
+*** derek has joined #gnuenterprise
+*** derek has quit IRC
+*** derek has joined #gnuenterprise
+*** jamest has quit IRC
+*** jcater has left #gnuenterprise
+*** sacha has joined #gnuenterprise
+*** krizz has joined #gnuenterprise
+*** krizz has quit IRC

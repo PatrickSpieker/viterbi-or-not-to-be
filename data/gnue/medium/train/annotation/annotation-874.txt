@@ -1,0 +1,30 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.01Nov2002" enddate="31 Oct 2002 23:00:00 -0800" startdate="31 Oct 2002 23:00:00 -0800" subject="[IRC] 01 Nov 2002" title="Symbolic link bug in CVS">
+
+<topic>Application Server</topic>
+
+<mention>Derek Neighbors</mention>
+<mention>ra3vat</mention>
+
+<p>Dmitry Sorokin (ra3vat) asked <quote who="Dmitry Sorokin">what 
+is the cause of cvs [checkout aborted]: 
+reading gnue/appserver/grpc/GEAS.grpc: Too many levels of symbolic 
+links - it was discussed earlier</quote>. Jason Cater said 
+<quote who="Jason Cater">I have no idea what that's from - 
+I removed that file from my directory when it happened to me - 
+and updated again - but I have no idea what's causing it</quote>. 
+Andrew Mitchell (ajmitch) said <quote who="Andrew Mitchell">derek 
+&amp; i also got that error</quote>. Derek Neighbors (derek) said 
+he had asked savannah-hackers if they knew what the problem was in 
+<kcref archive="http://mail.gnu.org/pipermail/gnue-dev/2002-October/000283.html" subject="[Gnue-dev] CVS Errors" />, 
+but they had not been able to help. Derek also said that 
+Jan Ischebeck (siesel) had told him he knew what the problem was, 
+but he was not sure whether Jan had actually fixed it yet. 
+The issue was that <quote who="Jan Ischebeck">"GEAS.grpc" was 
+replaced by a symbolic link pointing to itself</quote>, 
+causing an infinite loop. <quote who="Jan Ischebeck">The actual 
+CVS version of setup-cvs.py now provides both an upgrade path AND
+removes the recursive symbolic link "GEAS.grpc".</quote></p>
+
+</section>
+
+

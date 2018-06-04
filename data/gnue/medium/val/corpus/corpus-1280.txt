@@ -1,0 +1,892 @@
+<Vee2d2> they had me wait as they still dont have room for me yet.. ;)
+<Vee2d2> playing tomorrow by ear as well
+<Vee2d2> noticed new docs so I'm up'ing to check 'm out.. 
+<jcater> yeah
+<jcater> just uploaded latest pdfs, as a matter of fact
+<jcater> ( http://www.gnuenterprise.org/~jcater/docs/forms/ for our irc-log viewers)
+<ajmitch> :)
+jcater (~jcater@cpe-066-061-071-129.midsouth.rr.com) left irc: "sleep"
+<SachaS> sku = stock keeping unit right?
+<SachaS> yep must be.
+<SachaS> and each item in stock has a sku number.
+derek (~dneighbo@ip68-109-180-32.ph.ph.cox.net) joined #gnuenterprise.
+<SachaS> hi derek
+<derek> hi SachaS
+<LuftHans> derek: we've been spreading rumors about you
+<SachaS> hi LuftHans
+<derek> hopefully they were nice and gushy
+<derek> as the real me is quite boring
+<derek> hmmm i love when clients pass me windows virii that don't affect me
+<LuftHans> hallo SachaS
+<LuftHans> derek: announced the workshop at the devel mtg
+<derek> cool
+<derek> i just sent you an email on it
+<chillywilly> w00t, got the hurd installed on this lappy in a spare partition
+Action: derek notes the tone is probably nasty sounding (though not meant to be overtly so)
+Action: derek is not in a good mood in general right now
+<derek> probably should go vent in blog
+<SachaS> LuftHans: yesterday you told me you are going to get involved in an inventory project.
+Action: LuftHans goes and checks his email again
+<SachaS> LuftHans: I am curious. How do you know, how an inventory system works?
+<LuftHans> SachaS: I don't, but I won't let that stand in my way :)
+<LuftHans> derek: got your mail, will respond in a few
+<LuftHans> SachaS: they currently are using vb and m$access, it seems to be a fairly simple setup with some somewhat complex forms
+<LuftHans> I figure I can reimpliment what they have. I'll fix a couple of UI probs ( dual-entry in several places ) and give them a more stable environment
+<SachaS> LuftHans: I see :) I see.
+<LuftHans> hopefully it leads to further work, some of which might be in actually developing GNUe/GNUe SB
+<SachaS> eg. i have to implement an inventory system. so my first question is: what is an inventory system.
+<SachaS> and then you have 10 people and 10 different views of what an inventory system is :)
+<derek> it really depends
+<derek> that is like asking what is 'position control'
+<derek> it means different things to different people
+<derek> depending on vertical industry
+<SachaS> exactly
+<derek> and size of business
+<derek> a retail business thinks of inventory a bit differently than say a manufacturer
+<SachaS> yes
+<derek> and a manufacturer that only 'assembles' things bought from other people might think of inventory different from the manufacturer that actually fabricates their own products from raw material
+<derek> or such
+<derek> though i think they are all very similar
+<SachaS> yes
+<SachaS> what do you suggest how to deal with this problem ?
+<SachaS> find the similarities. and then the specialties ?
+<derek> depends
+<derek> the best way to learn is by doing
+<derek> the problem is to get "learned" you have to be exposed to large numbers of installations
+<SachaS> yeah good answer
+<derek> if you were to do the gnue-proper way
+<derek> you would study every business you could find
+<derek> write lots of white papers
+<derek> and ask any and everyone to comment
+<derek> and try to build the largest tome of knowledge you could to begin an implemenation with
+<derek> if you do it the gnue-sb way
+<derek> you find one customer willing to use it TODAY
+<derek> implement for them
+<derek> and then when the next guy comes along learn the differences add them to your package and refine
+<derek> rinse and repeat with every customer until you have something that appears to be working for 80% of the people untouched
+<derek> i.e. SAP and friends didnt get where they were over night 
+<derek> it took 25 years of 'soap, lather, rinse, repeat' for them too :)
+<SachaS> true
+<SachaS> your doing both ways ;) sb and proper gnue
+<SachaS> ok. back to some reading.
+<LuftHans> http://www.cnn.com/2003/TECH/industry/08/05/linux.software.ap/index.html
+<LuftHans> $500,000 for a test, though :(
+<derek> SachaS: yes as both ways have merit
+<derek> one is faster than the other
+<derek> one is probably a "cleaner" way
+reinhard (~reinhard@M1249P021.adsl.highway.telekom.at) joined #gnuenterprise.
+<LuftHans> griassle reinhard
+<derek> reinhard: says he refuses to speak german with you unless you use that cool austrian "hick" accent like arnold has ;)
+<derek> so reinhard, what would the austrian papers write if Arnold was elected the first austrian born governor of california ;)
+<reinhard> they would be mostly proud
+<reinhard> i fear ;-)
+<LuftHans> "better them than us" :)
+<LuftHans> what'll they write if Larry Flynt wins?
+<reinhard> lol
+johannesX (~johannes@M1263P013.adsl.highway.telekom.at) joined #gnuenterprise.
+<SachaS> warning: install: modules installed to '/usr/local/gnue/lib/python/', which is not in Python's module search path (sys.path) -- you'll have to change the search path yourself
+<SachaS> where is sys.path on debian unstable with python 2.2 ?
+<ajmitch> sys.path is a python variable
+<SachaS> ajmitch where do I have to set the variable? 
+<ajmitch> in python :)
+<ajmitch> but if you're starting gnue apps with the scripts, you don't need it afaik
+<SachaS> :) ajmitch.
+<SachaS> thanks
+<LuftHans> hey, is there a non-gui interface for running the forms?
+<derek>  -u curses
+Action: LuftHans is looking at the new Developers-Guide
+<derek> oh way non gui as no interaction?
+<derek> you could make python scripts that use common
+<derek> and have them be unattended
+<LuftHans> ooh, wow, fun blowup...
+<LuftHans> curses is what I wanted
+<derek> curses was poorly maintained for a long time
+<derek> then it got a lot of attention just before 0.5.0 and was brought to a nearly working state
+<derek> but likely with the changes in cvs it has fallen to less than maintained again
+<LuftHans> scripted would be cool too, but right now in an xterm over ssh would be mucho awesome :)
+<derek> but shouldnt need a ton of work to get it going again
+<derek> LuftHans: i regularly make ssh tunnels to postgres db
+<derek> and run gtk client locally to ssh tunnelled postgres over net
+<LuftHans> not putting it in the background helps too :)
+<derek> and honestly its so seamless i dont notice that its not on my local net
+<derek> LuftHans: yeah kind of hard to do data entry in a curses& mode ;)
+<LuftHans> derek: yeah, but I like options, options are good :)
+<LuftHans> options for failed companies, however, are worthless :(
+<derek> well they pay for recyclable paper dont they :)
+<LuftHans> I don't even have paper copies
+<LuftHans> BTW, I'm one bug away from being able to do this in PHP
+Action: LuftHans turns up the heat ;-).
+<ajmitch> evil
+<derek> if you want to use php thats fine with me
+<derek> i dont have time to help get you up to speed with GNU Enterprise right away
+<SachaS> DB000:   File "/usr/local/gnue/lib/python/gnue/designer/base/tools/SchemaNavigator.py", line 52, in ?
+<SachaS> DB000:     from wxPython.gizmos import *
+<SachaS> DB000: ImportError: No module named gizmos
+<SachaS> whats the magic package to install here?
+<ajmitch> using wxpython 2.4?
+<SachaS> using gnue-cvs hourly snapshot
+<SachaS> ajmitch have installed both ??? 2.4 and 2.2
+<SachaS> oh acutaly 2.2
+<SachaS> libwxgtk2.2-python
+<ajmitch> you need 2.4
+<SachaS> ok ;)
+<ajmitch> iirc there were backports to woody that jcater did
+<ajmitch> but you're using debian unstable anyway...
+<ajmitch> so apt-get install libwxgtk2.4-python 
+<ajmitch> :)
+<SachaS> :) thanks yep thats it
+<SachaS> designer gets nicer and nicer 
+<ajmitch> sure
+<LuftHans> python dictionary?
+<ajmitch> hmm?
+<LuftHans> assoc array?
+<ajmitch> I guess, a dictionary is key-value pairs
+<LuftHans> yup, assoc array, hash, named list
+<derek> LuftHans: if you dont know what python dictionary is
+<derek> no wonder you dont like python
+Vee2d2 (~vin@c66.169.136.41.ts46v-07.otn-c1.ftwrth.tx.charter.com) got netsplit.
+reinhard (~reinhard@M1249P021.adsl.highway.telekom.at) got netsplit.
+derek (~dneighbo@ip68-109-180-32.ph.ph.cox.net) got netsplit.
+havoc (~havoc@CPE-65-31-122-112.wi.rr.com) got netsplit.
+ajmitch (~ajmitch@wlg1-port30.jetstart.maxnet.co.nz) got netsplit.
+SachaS (~sacha@online.havanawave.com) got netsplit.
+tripz__ (~ville@as13-5-6.ld.bonet.se) got netsplit.
+johannesX (~johannes@M1263P013.adsl.highway.telekom.at) got netsplit.
+chillywilly (danielb@CPE-24-167-193-95.wi.rr.com) got netsplit.
+LuftHans (~lufthans@wsip-68-107-221-207.ph.ph.cox.net) got netsplit.
+Vee2d2 (~vin@c66.169.136.41.ts46v-07.otn-c1.ftwrth.tx.charter.com) returned to #gnuenterprise.
+havoc (~havoc@CPE-65-31-122-112.wi.rr.com) returned to #gnuenterprise.
+ajmitch (~ajmitch@wlg1-port30.jetstart.maxnet.co.nz) returned to #gnuenterprise.
+derek (~dneighbo@ip68-109-180-32.ph.ph.cox.net) returned to #gnuenterprise.
+reinhard (~reinhard@M1249P021.adsl.highway.telekom.at) returned to #gnuenterprise.
+johannesX (~johannes@M1263P013.adsl.highway.telekom.at) returned to #gnuenterprise.
+chillywilly (danielb@CPE-24-167-193-95.wi.rr.com) returned to #gnuenterprise.
+SachaS (~sacha@online.havanawave.com) returned to #gnuenterprise.
+tripz__ (~ville@as13-5-6.ld.bonet.se) returned to #gnuenterprise.
+LuftHans (~lufthans@wsip-68-107-221-207.ph.ph.cox.net) returned to #gnuenterprise.
+<LuftHans> hey, why use a term used elsewhere when you can make up your own term
+Arturas (~arturas@gsk.vtu.lt) joined #gnuenterprise.
+<Arturas> Hello
+<LuftHans> moin, moin Arturas
+Vee2d2 (~vin@c66.169.136.41.ts46v-07.otn-c1.ftwrth.tx.charter.com) got netsplit.
+Arturas (~arturas@gsk.vtu.lt) got netsplit.
+reinhard (~reinhard@M1249P021.adsl.highway.telekom.at) got netsplit.
+ajmitch (~ajmitch@wlg1-port30.jetstart.maxnet.co.nz) got netsplit.
+havoc (~havoc@CPE-65-31-122-112.wi.rr.com) got netsplit.
+derek (~dneighbo@ip68-109-180-32.ph.ph.cox.net) got netsplit.
+tripz__ (~ville@as13-5-6.ld.bonet.se) got netsplit.
+SachaS (~sacha@online.havanawave.com) got netsplit.
+LuftHans (~lufthans@wsip-68-107-221-207.ph.ph.cox.net) got netsplit.
+johannesX (~johannes@M1263P013.adsl.highway.telekom.at) got netsplit.
+chillywilly (danielb@CPE-24-167-193-95.wi.rr.com) got netsplit.
+johannesX (~johannes@M1263P013.adsl.highway.telekom.at) returned to #gnuenterprise.
+chillywilly (danielb@CPE-24-167-193-95.wi.rr.com) returned to #gnuenterprise.
+SachaS (~sacha@online.havanawave.com) returned to #gnuenterprise.
+tripz__ (~ville@as13-5-6.ld.bonet.se) returned to #gnuenterprise.
+LuftHans (~lufthans@wsip-68-107-221-207.ph.ph.cox.net) returned to #gnuenterprise.
+Arturas (~arturas@gsk.vtu.lt) returned to #gnuenterprise.
+reinhard (~reinhard@M1249P021.adsl.highway.telekom.at) returned to #gnuenterprise.
+derek (~dneighbo@ip68-109-180-32.ph.ph.cox.net) returned to #gnuenterprise.
+ajmitch (~ajmitch@wlg1-port30.jetstart.maxnet.co.nz) returned to #gnuenterprise.
+havoc (~havoc@CPE-65-31-122-112.wi.rr.com) returned to #gnuenterprise.
+Vee2d2 (~vin@c66.169.136.41.ts46v-07.otn-c1.ftwrth.tx.charter.com) returned to #gnuenterprise.
+dneighbo (~dneighbo@ip68-109-180-32.ph.ph.cox.net) joined #gnuenterprise.
+reinhard_ (~reinhard@M1249P021.adsl.highway.telekom.at) joined #gnuenterprise.
+derek (~dneighbo@ip68-109-180-32.ph.ph.cox.net) left irc: Read error: 110 (Connection timed out)
+seb_ (www-data@209.234.155.8) joined #gnuenterprise.
+reinhard (~reinhard@M1249P021.adsl.highway.telekom.at) left irc: Read error: 111 (Connection refused)
+seb_ (www-data@209.234.155.8) left irc: "CGI:IRC 0.5"
+Nick change: reinhard_ -> reinhard
+<SachaS> hallo reinhard
+<reinhard> hallo SachaS
+mouns (mouns@62.210.163.161) joined #gnuenterprise.
+<mouns> boo
+palmtree (~palmtree@ca-westla-cuda6-c9a-27.stmnca.adelphia.net) joined #gnuenterprise.
+palmtree (~palmtree@ca-westla-cuda6-c9a-27.stmnca.adelphia.net) left irc: Client Quit
+<mouns> ++
+mouns (mouns@62.210.163.161) left #gnuenterprise.
+Nick change: SachaS -> Sacha_away
+Sacha_away (~sacha@online.havanawave.com) got netsplit.
+tripz__ (~ville@as13-5-6.ld.bonet.se) got netsplit.
+Vee2d2 (~vin@c66.169.136.41.ts46v-07.otn-c1.ftwrth.tx.charter.com) got netsplit.
+LuftHans (~lufthans@wsip-68-107-221-207.ph.ph.cox.net) got netsplit.
+johannesX (~johannes@M1263P013.adsl.highway.telekom.at) got netsplit.
+chillywilly (danielb@CPE-24-167-193-95.wi.rr.com) got netsplit.
+LuftHans (~lufthans@wsip-68-107-221-207.ph.ph.cox.net) returned to #gnuenterprise.
+chillywilly (danielb@CPE-24-167-193-95.wi.rr.com) returned to #gnuenterprise.
+johannesX (~johannes@M1263P013.adsl.highway.telekom.at) returned to #gnuenterprise.
+Vee2d2 (~vin@c66.169.136.41.ts46v-07.otn-c1.ftwrth.tx.charter.com) returned to #gnuenterprise.
+ToyMan (~stuq@170-215-241-28.bras01.mdl.ny.frontiernet.net) joined #gnuenterprise.
+Sacha_away (~sacha@online.havanawave.com) returned to #gnuenterprise.
+tripz__ (~ville@as13-5-6.ld.bonet.se) returned to #gnuenterprise.
+ToyMan (~stuq@170-215-241-28.bras01.mdl.ny.frontiernet.net) left irc: Client Quit
+ToyMan (~stuq@170-215-241-28.bras01.mdl.ny.frontiernet.net) joined #gnuenterprise.
+Arturas (~arturas@gsk.vtu.lt) left irc: "Client exiting"
+lxf (~knoppix@202.73.120.115) joined #gnuenterprise.
+Nick change: Sacha_away -> SachaS
+lupo__ (~lupo@pD954249D.dip.t-dialin.net) joined #gnuenterprise.
+R45 (~rastabeen@cuscon204.tstt.net.tt) joined #gnuenterprise.
+dcmwai (~dcmwai@219.95.58.1) joined #gnuenterprise.
+R45 (~rastabeen@cuscon204.tstt.net.tt) left irc: 
+dneighbo (~dneighbo@ip68-109-180-32.ph.ph.cox.net) got netsplit.
+havoc (~havoc@CPE-65-31-122-112.wi.rr.com) got netsplit.
+ajmitch (~ajmitch@wlg1-port30.jetstart.maxnet.co.nz) got netsplit.
+dneighbo (~dneighbo@ip68-109-180-32.ph.ph.cox.net) returned to #gnuenterprise.
+ajmitch (~ajmitch@wlg1-port30.jetstart.maxnet.co.nz) returned to #gnuenterprise.
+havoc (~havoc@CPE-65-31-122-112.wi.rr.com) returned to #gnuenterprise.
+jamest (~jamest@gw.math.ksu.edu) joined #gnuenterprise.
+<SachaS> hi Vee2d2 i see you are active in building/discussing an inventory system (plus-minus)
+<Vee2d2> sure
+<SachaS> cool.
+<SachaS> you guys doing arias/gnue-sb at moment. integration of arias into gnue-sb?
+<SachaS> or checking how things are done in arias and aking the good things and forgetting the bad things?
+<Vee2d2> I'm not, in particular, but I believe jcater is working on that to some extent
+<jamest> jcater works on everything, he's not human
+<Vee2d2> I intend to do some of that when I get moving again
+<Vee2d2> ;)
+<jamest> but no one believes me
+<Vee2d2> donut powered codebot
+<jamest> exactly
+<jamest> have people tested the pre-releases?
+Action: SachaS installed cvs-hourly snapshot today.
+<jamest> if we follow gnue tradition then the answer should be "no, i use cvs"
+<SachaS> install process was fine :)
+<lupo__> subversions sucks today.
+Action: SachaS just found Mikes gnue-sb feature list
+<Vee2d2> jamest: I looked for them breifly last night with that intent but didnt find them
+<jamest> http://www.gnuenterprise.org/downloads/downloads.php
+<jamest> the pre-releases link
+<SachaS> Vee2d2 i like your list
+<Vee2d2> SachaS: it'd be nice to embellish it some more.. 
+<SachaS> Vee2d2 I downloaded the tarball from gnue-sb today, they are the cvs files ...
+<SachaS> Vee2d2 guess I have to put it into my cvs server, and then check them out locally
+<Vee2d2> SachaS: I think that's not working properly, it'd be best to just check it out
+<lupo__> damnit
+<lupo__> now subversions refuses ssh and rsh connections
+<lupo__> a.k.a. "no updates"
+<Vee2d2> lupo__: yea, seems to be afu atm. ;)
+<lupo__> Vee2d2: i need uuuuupdates! fast! *dyingfromoldversions*
+<lupo__> oh
+<lupo__> wait
+<lupo__> i think it's working again. WHOHO!
+<jamest> lol
+<jamest> what you cvs up'n?
+<SachaS> Vee2d2 you got the two liner for cvs checkout of gnue-sb?
+<lupo__> jamest: whaddayamean?
+<SachaS> Vee2d2 got it.
+<Vee2d2> SachaS: https://savannah.gnu.org/cvs/?group=gnue-sb gives you the skinny, I think
+<jamest> <lupo__> Vee2d2: i need uuuuupdates! fast! *dyingfromoldversions*
+<lupo__> jamest: /me wants new versions from gnue and wants to up fsfe/projects/education stuff.
+<SachaS> Vee2d2 you guys working against gnue cvs in gnue-sb?
+<jamest> what is arias?
+<Vee2d2> SachaS: I am, but I think anyone useing 0.5.x should be ok
+<SachaS> cool.
+<SachaS> Vee2d2 the schema describes the database, eg tables etc?
+<SachaS> wow designer can read schemas.
+<Vee2d2> SachaS: yip
+<jamest> SachaS: what distro you running?
+<SachaS> jamest: debian unstable
+<SachaS> gnue-schema, i think i am impressed :9
+<SachaS> i think i am excited
+<Vee2d2> SachaS: are you talking about the schema navigator in designer?
+<SachaS> Vee2d2 yes and the gnue-schema tool
+<SachaS> Vee2d2 schema navigator .. actually object navigator when i open a gsd file
+<SachaS> just inserted a table, guess i cannot add a field yet to that new table ?
+<SachaS> no problem
+<Vee2d2> interesting.. I've never used this aspect of designer
+<Vee2d2> I have been using things like psql, phppgadmin, phpmyadmin and the like to manage the actual tables and then use designer to bring them into the gnue world
+<SachaS> :)
+lxf (~knoppix@202.73.120.115) left irc: Read error: 54 (Connection reset by peer)
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<Vee2d2> morning jcater
+<jcater> morning
+<dneighbo> jamest you get your what tis arias question answered?
+Action: Vee2d2 missed that
+<Vee2d2> oh, heh.. I see it now
+Action: Vee2d2 is doing too many things at once
+<jamest> dneighbo: no
+<Vee2d2> arias.sf.net
+<Vee2d2> reincarnation of nola
+<jamest> why's it in gnue-sb cvs?
+<jamest> and what's it's status?
+<jcater> hey dneighbo
+<jcater> jamest: they are merging w/gnue-sb
+<jamest> the foolz!
+<jamest> er, i mean good
+<jcater> we are taking their AP/GL/AR schema and combining w/our Contacts and Item management
+<jamest> what's the status of all this?
+<jcater> same as the status of all our stuff
+<jcater> "Started"
+Action: jcater ducks :)
+<jamest> started as in gnue-desginer started
+<jcater> I've done a few forms
+<jamest> or as in gnue-nav started
+<jcater> not sure if I've committed them or not
+<jcater> ah
+<jcater> more like gnue-reports started
+<jcater> some usable stuff
+<jcater> but not ready for the masses
+<jamest> well, i need inv control/shipping dept stuff ASAP
+<jcater> ooooo
+<jamest> with barcoding
+<jamest> picklists
+<jamest> etc
+<jcater> well, that's outside of the arias merge
+<jcater> that's what Vee2d2 has been working on
+<jcater> pester him
+<jamest> i'm willing to bet alot of this i can put into gnue-sb 
+<Vee2d2> mommy!
+<jamest> here Vee2d2, Vee2d2, Vee2d2
+<jamest> nice Vee2d2
+<jamest> net? what net?
+<Vee2d2> I'm somewhat in the same boat as LuftHans, trying to get myself up to a useable speed. Hoping I might have a chance to kick it some more one or more of the evenings this week, will be going out of town again this weekend... wish I had a useable laptop :(
+<dneighbo> yeah i think that needs are similar across the board
+<lupo__> is arias a bit closer to international usage than initial gnue-sb design?
+<dneighbo> jcater: is there schema stuff in designer in cvs to 'create' tables?
+<jcater> ?
+Action: dneighbo is going to whip up a "registration" database for GNU Enterprise training classes
+<dneighbo> needing to know if designer will let me make a table or if i need to emacs up an xml file ;)
+<jcater> there are designer wizards that extract a schema from a database
+<jcater> this works reasonably well
+<jcater> but aside from that, no
+<Vee2d2> dneighbo: appears so.. file->new->schema
+<SachaS> I could add a table but ... no fields for that table.
+dsmith (~dsmith@mail.actron.com) joined #gnuenterprise.
+<jcater> yeah, I've been so focused on forms support in designer
+<jcater> i haven't done much on schema support
+<dneighbo> was not a complaint, just a question
+<SachaS> when i generate sql code thats all naked tables without any functions and the like; because you want to have the functions in triggers (not down in the database)?
+<SachaS> to be able to support several databases?
+<dcmwai> hello SachaS I see you talking about inventory :)
+<SachaS> dcmwai a little
+<dcmwai> any suggestion/comment 
+<Vee2d2> it's a hot topic lately
+<dcmwai> DB000:   File "/share/gnue/.cvsdevelbase/gnue/forms/uidrivers/wx/MenuBar.py", line 84, in addAction
+<dcmwai> DB000:     parent.AppendItem(item)
+<dcmwai> DB000:   File "/usr/lib/python2.2/site-packages/wxPython/windows.py", line 815, in AppendItem
+<dcmwai> DB000:     val = apply(windowsc.wxMenu_AppendItem,(self,) + _args, _kwargs)
+<dcmwai> DB000: wxPython.wxc.wxPyAssertionError: C++ assertion "wxAssertFailure" failed in /usr/src/redhat/BUILD/wxPythonSrc-2.4.0.7/src/gtk/menu.cpp(1460): unknown keyboard accel
+<dcmwai> Vee2d2, That is your problem isn't :)
+<dcmwai> damn... 
+<dcmwai> SachaS, I've been wroking with arias to change it db so that a work order can be done when doing a PO
+<dcmwai> wxPythonSrc-2.4.0.7 ??? I'm only using pyton 2.2 why use 2.4???
+<Vee2d2> 2 different things
+Action: Vee2d2 gets something to eat
+<jcater> dcmwai: cvs update and try again
+<dcmwai> jcater, Just did that update before I post the problem..
+<lupo__> dcmwai: 2.4 is the wxPython version, not the required Python version!
+<jcater> dcmwai: update again
+Action: dcmwai supect that this is cause by python... will do update
+<jcater> it's actually caused by GTK
+<jcater> not wx or python
+<jcater> which is what makes it so hard to fix
+<jcater> as we don't deal w/GTK directly
+Action: dcmwai feel programming in Linux (under GUI) is Very Hard
+<jcater> is it fixed?
+<dcmwai> still a NO :(
+<jcater> what are you getting now?
+<dcmwai> jcater, Which line you want.. last :)
+<dcmwai> DB000:     self.__actionMap[userAction.event] = self.addAction(name, parent, userAction)
+<dcmwai> DB000:   File "/share/gnue/.cvsdevelbase/gnue/forms/uidrivers/wx/MenuBar.py", line 83, in addAction
+<dcmwai> DB000:     parent.AppendItem(item)
+<dcmwai> DB000:   File "/usr/lib/python2.2/site-packages/wxPython/windows.py", line 815, in AppendItem
+<dcmwai> DB000:     val = apply(windowsc.wxMenu_AppendItem,(self,) + _args, _kwargs)
+<dcmwai> DB000: wxPython.wxc.wxPyAssertionError: C++ assertion "wxAssertFailure" failed in /usr/src/redhat/BUILD/wxPythonSrc-2.4.0.7/src/gtk/menu.cpp(1460): unknown keyboard accel
+<dcmwai> jcater, Guess what...
+<dcmwai> jcater, I finnaly solve this damn problem...
+<jcater> cvs update again
+<jcater> how?
+<dcmwai> gnue-forms/src/uidrivers/wx/MenuBar.py" Line 59 -60 the keys
+<dcmwai> comment them and jobs done.. :)
+<jcater> um
+<jcater> no
+<jcater> cvs update and try aggain
+<dcmwai> Damn ... Python... why don't they say so in the first place..
+<dcmwai> jcater, Yes it does..
+<jcater> yes it does what?
+<dcmwai> jcater, should I remove the files I modified as it will me merge.
+<jcater> I'm sure that stops the bug
+<jcater> but I don't think that's an acceptable fix
+<dcmwai> s/me/be
+<jcater> yeah, remove your files
+<jcater> or file
+<dcmwai> jcater, Let try..
+<dcmwai> jcater, did we have any there choices? other then python?
+<jcater> ?
+<jcater> you are talking to a big fan of python
+<jcater> so that's a loaded question
+<dcmwai> jcater, NAN.. not working..
+<jcater> what error now?
+<dcmwai> DB000:     self.__actionMap[userAction.event] = self.addAction(name, parent, userAction)
+<dcmwai> DB000:   File "/share/gnue/.cvsdevelbase/gnue/forms/uidrivers/wx/MenuBar.py", line 88, in addAction
+<dcmwai> DB000:     item.SetLabel(altlabel)
+<dcmwai> DB000: AttributeError: wxMenuItem instance has no attribute 'SetLabel'
+<jcater> hang on....
+Action: dcmwai bag, please don't hang me :)
+<dcmwai> beg///
+<dcmwai> jcater, did we have any other better gui? or ... 
+<jcater> well
+<dcmwai> hum... nan that is not an options..
+<jcater> we're workong on native GTK, curses, native Win32, QT 3
+<jcater> so, yeah
+<jcater> but wx has given us the biggest bang for the buck initially
+<dcmwai> on great ... but it will be so lot more harder isn't it?
+<dcmwai> biggest bang for for buck?
+<dcmwai> s/on/Oh ...
+<jcater> it got us on the most possible platforms with the least amount of effort
+<jcater> cvs update and try again
+<jamest> wx works on windows, *nix, and MacOS X 
+<dcmwai> oh great.
+<lupo__> "Run Form" doesn't work this week?
+<dcmwai> DB000:   File "/share/gnue/.cvsdevelbase/gnue/forms/uidrivers/_commonGuiToolkit/MenuBar.py", line 107, in __createmenu
+<dcmwai> DB000:     self.__actionMap[userAction.event] = self.addAction(name, parent, userAction)
+<dcmwai> DB000:   File "/share/gnue/.cvsdevelbase/gnue/forms/uidrivers/wx/MenuBar.py", line 88, in addAction
+<dcmwai> DB000:     item.SetName(altlabel)
+<dcmwai> DB000: AttributeError: wxMenuItem instance has no attribute 'SetName'
+<jcater> wtf?
+<jcater> yes it does
+<Vee2d2> damn.. did they just change the ssh keys again? ;)
+<lupo__> Vee2d2: yep.
+<lupo__> jcater: Do I have to save the file first?
+<jcater> save what file?
+<Vee2d2> does the 'Run Form' in designer read the file from disk or designer?
+<lupo__> before calling the "Run Form" menu item
+<jcater> oh
+<jcater> the Run Form menu item may or may not work
+<jcater> I was working on it recently trying to get it to work again
+<Vee2d2> :)
+<lupo__> ah
+<lupo__> okay :)
+<jcater> dcmwai: forth time's a charm? cvs update and try again
+<lupo__> hey, you've done some error checking in forms. looks good :)
+<dcmwai> jcater, Best way to quit gnue without error, click on the link that don't have the files :)
+ToyMan (~stuq@170-215-241-28.bras01.mdl.ny.frontiernet.net) left irc: "Client Exiting"
+<dcmwai> DB000:     self.__actionMap[userAction.event] = self.addAction(name, parent, userAction)
+<dcmwai> DB000:   File "/share/gnue/.cvsdevelbase/gnue/forms/uidrivers/wx/MenuBar.py", line 89, in addAction
+<dcmwai> DB000:     parent.AppendItem(item)
+<dcmwai> DB000:   File "/usr/lib/python2.2/site-packages/wxPython/windows.py", line 815, in AppendItem
+<dcmwai> DB000:     val = apply(windowsc.wxMenu_AppendItem,(self,) + _args, _kwargs)
+<dcmwai> DB000: wxPython.wxc.wxPyAssertionError: C++ assertion "wxAssertFailure" failed in /usr/src/redhat/BUILD/wxPythonSrc-2.4.0.7/src/gtk/menu.cpp(1460): unknown keyboard accel
+<dcmwai> jcater, you are in a loop...
+<jcater> damn
+<jcater> I hate GTK
+[11:17] Last message repeated 4 time(s).
+<jcater> piece of crap toolkit
+<Vee2d2> love is in the air.. 
+<dcmwai> Even if you hate it I'm or We are still using it.
+<jcater> cvs update, try again
+<jcater> ah, hang on
+<jcater> I see a typo
+<jcater> ok, now cvs update and try again
+Action: dcmwai today jobs... cvs update :)
+<jcater> well, I don't have a machine to repeat this bug on
+<jcater> :(
+<jcater> so you are my machine today
+<dcmwai> Ah....
+<dcmwai> DB000:     self.__actionMap[userAction.event] = self.addAction(name, parent, userAction)
+<dcmwai> DB000:   File "/share/gnue/.cvsdevelbase/gnue/forms/uidrivers/wx/MenuBar.py", line 85, in addAction
+<dcmwai> DB000:     self.addAction(name, parent, userAction, _skipHotkey=1)
+<dcmwai> DB000:   File "/share/gnue/.cvsdevelbase/gnue/forms/uidrivers/wx/MenuBar.py", line 79, in addAction
+<dcmwai> DB000:     parent.AppendItem(item)
+<dcmwai> DB000:   File "/usr/lib/python2.2/site-packages/wxPython/windows.py", line 815, in AppendItem
+<dcmwai> DB000:     val = apply(windowsc.wxMenu_AppendItem,(self,) + _args, _kwargs)
+<dcmwai> DB000: wxPython.wxc.wxPyAssertionError: C++ assertion "wxAssertFailure" failed in /usr/src/redhat/BUILD/wxPythonSrc-2.4.0.7/src/gtk/menu.cpp(1460): unknown keyboard accel
+<dcmwai> Well I do..
+<dcmwai> jcater, you mind I give you an ssh account to have fun with it :)
+<jcater> sure
+<jcater> just set my pass word to: GTKmustDieDieDIeDie
+<jcater> (just joking)
+<havoc> QT is much better, from a development standpoint
+<havoc> *much* better
+<jcater> GTK likes to second guess what I'm doing
+<jcater> which is very frustrating
+<havoc> QT is designed very well
+<havoc> IMHO anyway
+<jcater> I agree
+<havoc> (having used both QT and GTK)
+<havoc> porting to win32 is also much easier w/ QT
+tacodog (~ahulaton@dsl093-077-251.sea2.dsl.speakeasy.net) joined #gnuenterprise.
+<SachaS> does schema-navigator in designer look at the database tables and create the schema accordingly?
+<SachaS> or simply list the fields of the tables it gets from the db ..inspections?
+<SachaS> damn it looks like gnue is coming along
+btami (~tamas@ip102-205.ktv.tiszanet.hu) joined #gnuenterprise.
+<btami> hi
+<jcater> btami: hello
+<jcater> SachaS: right now, only the forms module uses the Schema Navigator
+<jcater> you can click and drag from schema navigator onto the page grid
+<jcater> and automatically create fields, blocks, datasources, etc
+<btami> jcater: i have to say it doesn't works on win32
+<dcmwai> jcater, any hints?
+<btami> :(
+<jcater> :(
+<jcater> dcmwai: cvs update and try again
+<jcater> it appears to work now
+<dcmwai> oh
+<dcmwai> what is the main problem then
+<jcater> gtk sucks
+<dcmwai> Ah.. finally.. it work..
+<dcmwai> Oh yea....
+<jcater> off to lunch...
+<btami> jcater: is there any reason simple wizard limits field length to 25 ?
+<dcmwai> jcater, ok enjoy..
+<jcater> btami: to keep the size of the form reasonable
+<btami> but i have length 30 in my tables
+<jcater> it doesn't actually limit the user to 25 characters
+<jcater> just only displays 25 at a time
+<jcater> we can up the default to 30
+<jcater> but we needed some display limit
+<jcater> as we don't want to display 2000 length strings as a width of 2000
+<btami> 80 ?
+<btami> :)
+<jcater> bbiab
+ToyMan (~stuq@smtp.dstoys.com) joined #gnuenterprise.
+btami (~tamas@ip102-205.ktv.tiszanet.hu) left irc: Read error: 60 (Operation timed out)
+<SachaS> dcmwai: your into inventory atm ?
+<SachaS> dcmwai your active in gnue-sb or another project?
+<dcmwai> SachaS, what atm? again
+<dcmwai> SachaS, I'm a developer in arias :)
+<SachaS> :( i never followed what aria, and nola were ...
+<SachaS> guess two projects which had some parts of an small ERP working
+<dcmwai> SachaS, Yes.. too small that take too much time to make change ...
+<SachaS> so you bring your knowledge, experience from arias to gnue/gnue-sb?
+<dcmwai> SachaS, I bring myself to gnue-sb :) after I know that gnue-sb is actually doing something similar on nola.
+<dcmwai> change so that it support postgresql.
+<dcmwai> make a framework that follow gnue-sb and test if that break :)
+<SachaS> ??
+<SachaS> i dont understand what you mean.
+<dcmwai> SachaS, i bring all things I've to gnue-sb until I've got a working version (web) of gnue-sb then arias development may be stop :)
+<SachaS> ok.
+<dcmwai> SachaS, any comment about inventory...
+<dcmwai> SachaS, Are you an Expert or with experiences on that fileds.. I do need some help.
+<SachaS> i wish i were expert
+<SachaS> my background is banking and computer science and ebXML (electronic business XML)
+<SachaS> one day I want to look at gnue communicating to gnue
+<dcmwai> SachaS, Oh you are a xml expert that is good.. try XUL before?
+<SachaS> dcmwai sorry never used XUL myself
+<dcmwai> nvm but i did love it UI :)
+<dcmwai> there was a time I was thinking of changing arias to XUL base and force people to use mozilla with Aria :)
+<SachaS> dcmwai I checked out cvs from gnue-sb
+<dcmwai> SachaS, there are still nothing much...
+<SachaS> dcmwai and I can open the schemas in gnue-designer
+<dcmwai> so...
+<SachaS> so ... you are designing/converting the schemas at the moment?
+<dcmwai> that not me, jcater did that.. 
+<dcmwai> I'm now still finding a place to fit myself in ;)
+<SachaS> ok. i dont have a place either :)
+<dcmwai> Vee2d2 do ask me to start to design from that will be use for gnue-sb later using aria (way)
+tacodog (~ahulaton@dsl093-077-251.sea2.dsl.speakeasy.net) left #gnuenterprise.
+R45 (~rastabeen@cuscon2287.tstt.net.tt) joined #gnuenterprise.
+<SachaS> dcmwai: do you have test data for gnue-sb?
+<dcmwai> SachaS, I've just get the form running today ... what do you think :)
+<SachaS> haha
+<SachaS> ok. ask you tomorrow again :)
+<SachaS> designer looks awesome!
+<dcmwai> SachaS, Tomorrow, I'm not a god can't fly, give me a few days times...
+<SachaS> contact manager in gnue-sb is working :)
+<SachaS> just added two person from form...
+<SachaS> and query in from for the two persons
+<dcmwai> there is something about this contact I've try... something not really make sense.. but work...
+<dcmwai> Will tell you guys tomorrow if i can remember that,
+<SachaS> with printing is something wrong but wow.
+dcmwai (~dcmwai@219.95.58.1) left irc: "Client exiting"
+dcmwai (~dcmwai@219.95.58.1) joined #gnuenterprise.
+dcmwai (~dcmwai@219.95.58.1) left irc: Read error: 104 (Connection reset by peer)
+<jcater> SachaS: Are you talking about File | Print in Forms?
+<jcater> if so, ironically I was just looking at that
+<jcater> and just committed a fix
+dcmwai (~dcmwai@219.95.58.1) joined #gnuenterprise.
+<jamest> SachaS: wow?
+<SachaS> jcater File | Print in Forms yes.
+<SachaS> jamest: gnue made a lot of progress!
+<SachaS> :)
+<SachaS> i did not realise that from lurking here :)
+<dcmwai> Good Night buddy...
+<dcmwai> Time to sleep... can hold any longer..
+<dcmwai> 07is now playing: 10(011/012) [Beethoven Radio on iM Radio - www.beethoven.com The Worlds Classical Radio Station] (stream/64kbps/22.1kHz)
+<dcmwai> :)
+Action: jcater is now playing: the lullaby sounds of an Epson DFX-5000 dot matrix printer
+<jcater> :(
+<dcmwai>  /xmms_help
+<dcmwai> jcater, HAHA that is good.. titititdadadadatititititdadadada :)
+<dcmwai> Night everyone :)
+Action: jamest is playing Pain from the Xenosaga (video game) soundtrack.  So I win biggest dork award!
+<jamest> nite dcmwai
+dcmwai (~dcmwai@219.95.58.1) left irc: "Client exiting"
+<SachaS> also good night
+Nick change: SachaS -> SachaZzz
+<Vee2d2> boy.. 0.5.1 is gonna rock, all these small fixes will be included I s'pose?
+<jcater> ja
+<jcater> by order of my wife
+<jcater> (she's using forms now)
+<jcater> =)
+<Vee2d2> :)
+<jcater> now we just need to get lindsay using forms regularly
+<jcater> and it will really rock
+<jcater> oooo
+<jcater> we should set up a "sample" form that keeps track of honey-do's
+<Vee2d2> you sure about that?
+<Vee2d2> talk about putting a db to a test
+R45 (~rastabeen@cuscon2287.tstt.net.tt) left irc: 
+<jamest> gack!!!!!!!!!!!!!!!!!!!!!!!!!!1
+<jamest> oh wait, that'd be self defeating
+<jamest> as if she could efficently organize all the stuff I need to be doing
+<jamest> then I wouldn't have time for gnue
+dsmith (~dsmith@mail.actron.com) left irc: Read error: 54 (Connection reset by peer)
+<Vee2d2> I was just imagining my wife sitting here with an input form typing in one thing after another.. 
+<Vee2d2> it'd be a freakishly long list for sure.
+reinhard (~reinhard@M1249P021.adsl.highway.telekom.at) left irc: "Never wrestle with a pig. You both get dirty and the pig likes it."
+ToyMan (~stuq@smtp.dstoys.com) left irc: "Client Exiting"
+siesel_ (~chatzilla@port1159.duesseldorf.ndh.net) joined #gnuenterprise.
+<siesel_> hi all
+<lupo__> hi siesel
+<siesel_> did you try gtk2 ?
+<siesel_> if not there are backported python-gtk2 packages at:: http://people.debian.org/~nobse/debian/woody/backported/python2.2-gtk2/
+<lupo__> ah
+<lupo__> great
+<lupo__> i wrote myself a note
+<lupo__> good night all
+lupo__ (~lupo@pD954249D.dip.t-dialin.net) left irc: "using sirc version 2.211+KSIRC/1.1"
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "home"
+siesel_ (~chatzilla@port1159.duesseldorf.ndh.net) got netsplit.
+johannesX (~johannes@M1263P013.adsl.highway.telekom.at) got netsplit.
+LuftHans (~lufthans@wsip-68-107-221-207.ph.ph.cox.net) got netsplit.
+chillywilly (danielb@CPE-24-167-193-95.wi.rr.com) got netsplit.
+siesel_ (~chatzilla@port1159.duesseldorf.ndh.net) returned to #gnuenterprise.
+johannesX (~johannes@M1263P013.adsl.highway.telekom.at) returned to #gnuenterprise.
+chillywilly (danielb@CPE-24-167-193-95.wi.rr.com) returned to #gnuenterprise.
+LuftHans (~lufthans@wsip-68-107-221-207.ph.ph.cox.net) returned to #gnuenterprise.
+LuftHans (~lufthans@wsip-68-107-221-207.ph.ph.cox.net) got netsplit.
+johannesX (~johannes@M1263P013.adsl.highway.telekom.at) got netsplit.
+siesel_ (~chatzilla@port1159.duesseldorf.ndh.net) got netsplit.
+chillywilly (danielb@CPE-24-167-193-95.wi.rr.com) got netsplit.
+jamest_ (~jamest@adsl-208-191-39-86.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+siesel_ (~chatzilla@port1159.duesseldorf.ndh.net) returned to #gnuenterprise.
+johannesX (~johannes@M1263P013.adsl.highway.telekom.at) returned to #gnuenterprise.
+chillywilly (danielb@CPE-24-167-193-95.wi.rr.com) returned to #gnuenterprise.
+LuftHans (~lufthans@wsip-68-107-221-207.ph.ph.cox.net) returned to #gnuenterprise.
+jamest (~jamest@gw.math.ksu.edu) left irc: Remote closed the connection
+Nick change: jamest_ -> jamest
+<siesel_> night
+siesel_ (~chatzilla@port1159.duesseldorf.ndh.net) left irc: "ChatZilla 0.8.9 [Mozilla rv:1.1/20020826]"
+jamest (~jamest@adsl-208-191-39-86.dsl.tpkaks.swbell.net) got netsplit.
+tripz__ (~ville@as13-5-6.ld.bonet.se) got netsplit.
+SachaZzz (~sacha@online.havanawave.com) got netsplit.
+Vee2d2 (~vin@c66.169.136.41.ts46v-07.otn-c1.ftwrth.tx.charter.com) got netsplit.
+LuftHans (~lufthans@wsip-68-107-221-207.ph.ph.cox.net) got netsplit.
+johannesX (~johannes@M1263P013.adsl.highway.telekom.at) got netsplit.
+chillywilly (danielb@CPE-24-167-193-95.wi.rr.com) got netsplit.
+havoc (~havoc@CPE-65-31-122-112.wi.rr.com) got netsplit.
+ajmitch (~ajmitch@wlg1-port30.jetstart.maxnet.co.nz) got netsplit.
+dneighbo (~dneighbo@ip68-109-180-32.ph.ph.cox.net) got netsplit.
+LuftHans (~lufthans@wsip-68-107-221-207.ph.ph.cox.net) returned to #gnuenterprise.
+chillywilly (danielb@CPE-24-167-193-95.wi.rr.com) returned to #gnuenterprise.
+johannesX (~johannes@M1263P013.adsl.highway.telekom.at) returned to #gnuenterprise.
+jamest (~jamest@adsl-208-191-39-86.dsl.tpkaks.swbell.net) returned to #gnuenterprise.
+havoc (~havoc@CPE-65-31-122-112.wi.rr.com) returned to #gnuenterprise.
+ajmitch (~ajmitch@wlg1-port30.jetstart.maxnet.co.nz) returned to #gnuenterprise.
+dneighbo (~dneighbo@ip68-109-180-32.ph.ph.cox.net) returned to #gnuenterprise.
+tripz__ (~ville@as13-5-6.ld.bonet.se) returned to #gnuenterprise.
+SachaZzz (~sacha@online.havanawave.com) returned to #gnuenterprise.
+Vee2d2 (~vin@c66.169.136.41.ts46v-07.otn-c1.ftwrth.tx.charter.com) returned to #gnuenterprise.
+R45 (~rastabeen@cuscon520.tstt.net.tt) joined #gnuenterprise.
+dcmwai (~dcmwai@219.94.83.40) joined #gnuenterprise.
+dcmwai (~dcmwai@219.94.83.40) left irc: Client Quit
+dcmwai (~dcmwai@219.94.83.40) joined #gnuenterprise.
+dozek (~dozek@65.209.120.2) joined #gnuenterprise.
+johannesX (~johannes@M1263P013.adsl.highway.telekom.at) left irc: Read error: 60 (Operation timed out)
+dozek (~dozek@65.209.120.2) left #gnuenterprise.
+ToyMan (~stuq@65-73-36-85.bras01.mdl.ny.frontiernet.net) joined #gnuenterprise.
+johannesX (~johannes@M1263P013.adsl.highway.telekom.at) joined #gnuenterprise.
+dcmwai (~dcmwai@219.94.83.40) left irc: "WORK WORK DOUBLE SHIFT DOUBLE TIME"
+ToyMan (~stuq@65-73-36-85.bras01.mdl.ny.frontiernet.net) left irc: "Client Exiting"
+jamest (~jamest@adsl-208-191-39-86.dsl.tpkaks.swbell.net) left irc: "Client exiting"
+R45 (~rastabeen@cuscon520.tstt.net.tt) left irc: 
+Nick change: SachaZzz -> SachaS
+<SachaS> after last nights play with gnue I will update my slides for the next linux presentation (coming tuesday)
+<Vee2d2> cool
+<SachaS> i will remeove a line similar to "gnue is not yet ready" to "let me show a little demo" :)
+<SachaS> hi Vee2d2 i played with contact in gnue-sb last night
+<Vee2d2> that's derek's baby
+<SachaS> the user interface is not intuitive, eg the behaviour of the gui is not obvious; at first. But user do adopt :)
+alandd (~alandd@h-68-165-192-191.PHNDAZ91.covad.net) joined #gnuenterprise.
+<SachaS> i had a quick look at the source of contact.
+<SachaS> the schema seem straight forward
+<dneighbo> remember that form is nearly 3 years old
+<dneighbo> er 2.5 years old (iirc)
+<Vee2d2> heya derek
+<dneighbo> so some of the stuff was due to limitations of forms
+<Vee2d2> I'm sure it'll receive a good massaging at some point
+<SachaS> the forms ... layout is ok, logic and triggers need a little more time to understand
+<dneighbo> hi Vee2d2
+<dneighbo> so does full time work onsite mean no more embrodiery?
+<SachaS> hi dneighbo. played with gnue-sb last night.
+<Vee2d2> no, I've just kicked it into a part time operation as it had been
+<alandd> SachaS: gnue-sb?
+<SachaS> i hope i can play a little more with gnue in the future
+<SachaS> alandd gnue-sb = gnue for small business
+<Vee2d2> alandd: http://www.gnu.org/software/gnue-sb/
+<alandd> dneighbo: i alerted elitepc to the workshop hours and asked them about the system image thing.  Have not heard back yet.
+<alandd> Vee2d2: thanks.  i'll check it.
+<SachaS> dneighbo from far away and not followed discussions on here i thought that you will need some methodology how to go ahead and ... designe modules
+<SachaS> dneighbo like when i am reading a book on inventory with all the diagrams and examples ... thats very helpful (to me) to understand what they are talking about.
+<SachaS> its like Vee2d2 gnue-sb features list with support of diagrams
+<SachaS> oh i dont know
+<SachaS> just a way to communicate/discuss/illustrate the ideas you guys have
+<SachaS> :)
+<SachaS> all i want to say is: i am excited haha
+<Vee2d2> SachaS: if you have extra material you can contribute, I'd be glad to integrate it in
+<SachaS> Vee2d2 I h I will yes.
+<SachaS> have to write this thesis first!
+<Vee2d2> :)
+dcmwai (~chatzilla@219.95.155.208) joined #gnuenterprise.
+<Vee2d2> morning dcmwai
+<dcmwai> Vee2d2: I'm at the death end..
+<SachaS> hi dcmwai
+<dneighbo> alandd: sorry was goofing off
+Action: dneighbo goes to read backlog
+<SachaS> dcmwai: what happened?
+<dcmwai> now Only I see that arias inventory having a problem on the Item packing count...
+<dneighbo> sup dcmwai
+Action: dcmwai is not sure he is "Saying" right.
+<dcmwai> the situation is like this..
+Action: dneighbo needs to get coding again ...
+<dneighbo> its been an ETERNITY
+<dneighbo> i think i forgot how :(
+<dneighbo> new office is making it feel peachy
+<dneighbo> large enough for wifey to sit in here while i hack
+<dneighbo> so there is a good chance we will get more computer time
+<Vee2d2> dneighbo: it's definately something that must be kept in practice.. a shared thing with any language I guess.. 
+<dcmwai> If I order something in packing for example (350 Pcs/Pack) then in my inventory I should have N x 350 But in arias the (N x) is missing..
+<dneighbo> that sucks for you :)
+<dneighbo> sorry im teasing
+<dcmwai> damn have to hack the code somewhere so that it work.. damn.. Any suggestion?
+<SachaS> dcmwai: why dont you just trash aria and start again in gnue-sb?
+<alandd> Question: I downloaded the CVS with the gnuecheckout.sh script.  slick.  now, why would I want to install with setup-cvs.py instead of setup.py?  I just want to start playing and learning.
+<SachaS> alandd: have you downloaded gnue? or gnue-sb?
+<alandd> gnue
+<alandd> should I have gone with gnue-sb?
+<SachaS> alandd: yesterday I installed gnue from cvs and it wais working (gnue-common, gnue-designer, gnue-forms is all i used so far)
+<SachaS> alandd: what distribution are you using?
+<dneighbo> alandd: how was vacation?
+<dneighbo> gnuecheckout.sh?
+<Vee2d2> gnuecheckout.sh ? 
+<dneighbo> that is new eh?
+<Vee2d2> jinx
+<dneighbo> 1 2 3 4 5 6...
+<alandd> good grief!  Talking all a once.  Let's see...
+<alandd> SachaS redhat 9
+<dneighbo> alandd: setup-cvs.py is for cvs installs 
+<dneighbo> it does 3 things really
+<dneighbo> 1. it allows you to 'self contain an install'
+<alandd> dneighbo vacation was great!  3700 miles traveled with 4 kids but they are good kids.
+<dneighbo> 2. it allows you keep development conf files separate from production ones
+<dneighbo> 3. it allows you to have multiple devel installs by name
+<dneighbo> i.e. when you run setup-cvs.py it asks for an 'extension'
+<dneighbo> generally i run cvs head
+<dcmwai> SachaS: Not to say not going to gnue-sb but because I need something working real fast.... (on the Orgnazation I'm working with)
+<dneighbo> and a few pre-releases at run time
+<dcmwai> and Gnue-sb recode need some time...
+<alandd> gnuecheckout.sh is a script that LuftHans sent me.  logs in an does a 'cvs -up P' on each of the gnue modules.
+<dneighbo> because often times people ask
+<dneighbo> was it broken in XXXX
+<dneighbo> and having to install another copy is a pain
+<SachaS> dcmwai: ok. 
+<Vee2d2> dcmwai: *shrug* I always counted things as 1ea, unless we only ever sold the 'Pack' of 350ea, in which case I counted that as 1ea. So the problem didnt lay in inventory but in the manner in which the ordering was handled
+<dneighbo> easier to just keep some snapshots aroudn as a developer
+<dneighbo> then if you break crap you can see if its broken in other versions :)
+<dneighbo> but thats just me
+<dneighbo> then i keep a production installed in all default locations
+<dcmwai> and also I don't want gnue-sb suffer from the problem I'm having so... We need a framwork that is to avoid all these kind of problem and being better
+<dneighbo> LuftHans: keeps telling me he cant get GNU Enterprise to work :)
+<SachaS> alandd: dneighboo helps you how to install gnue :) have to say with debian unstable i had all dependencies as debian packages so I had no real issues to first meet the dependencies.
+<dcmwai> Vee2d2: Yea... something like that and I hate it...
+<dcmwai> alandd: gnue-sb run well on my redhat 9 :)
+<alandd> dneighbo I talked to him last night at the devel meeting.  he's frustrated but I don't remember which tools is giving him problems.  Needs to put out a solution ASAP for a customer and was threatening to go with PHP.
+<alandd> dcmwai: gnue-sb is the framework along with the beginings of some apps, correct?
+<dcmwai> alandd: Yes it
+<SachaS> alandd oops. if you need a solution asap ... hope you get it with gnue ... from what i see it would take time (for a newbie) to write up a biz app based on gnue.
+<SachaS> but on the other hand somebody has to start it
+<alandd> SachaS: LuftHans is the one that wants something right away and has been playing with gnue for a couple of weeks.  I'm just playing and learning on my own before the workshop on the 30th.
+<Vee2d2> that'll no longer be the case with gnue-sb as you will have a working framework there to beat up as you please
+<dneighbo> alandd: you get it installed and working?
+Action: dneighbo thinks GNU Enterprise is pretty easy to install on debian unstable 
+<Vee2d2> quite
+<dneighbo> even using cvs
+<dneighbo> infact i thikn cvs might be easier than packages :)
+<Vee2d2> just apt-get this and that and cvs co the modules, setup-cvs.py weeee..
+<SachaS> alandd oh cool. LuftHans is under pressure
+<alandd> Have not run the script yet.  I'll go do common cvs setup right now.  Please stand by...
+Action: dneighbo hears david bowie under pressure in background
+<dneighbo> gets a mental image of hans
+<dneighbo> and then brains freaks w/ a "does not compute" ;)
+<SachaS> dneighbo true. was a smooth. most time I needed was to get the permissions right with the postgresql database
+Action: Vee2d2 should hurry up and finish his php'n for the night and see if he can get some gnue'n in 'fore crashtime
+<dneighbo> SachaS: thats what i find funny
+<dneighbo> when we had a lot of people installing early on
+<dneighbo> they would piss and moan GNU Enterprise sucked
+<dneighbo> and 99.8% it was a mysql or postgres setup issue
+<dneighbo> the problem is GNU Enterprise is a framework
+<ajmitch> hi
+<Vee2d2> 'sup ajmitch
+<dneighbo> we except GNU Enterprise users to business application developers to the point where they can handle the db stuff 
+Action: ajmitch wanders in & collapses :)
+<dneighbo> i suscept as time moves on we will make that more and more visual and wizard based as we integrate tighter with different vendors
+Action: Vee2d2 props ajmitch up in the corner 
+Action: ajmitch thanks Vee2d2
+<dcmwai> I think they are asking for roo much during this developing times..
+<SachaS> hi ajmitch. how are you?
+<ajmitch> alive, I think :)
+<ajmitch> how is everyone here?
+<SachaS> ajmitch: what happened? dotgnu overdoes?
+<ajmitch> busy hacking away? :)
+<ajmitch> nah, just ill :)
+<SachaS> oh ok.
+<SachaS> who was from the east coast of australia???
+<ajmitch> hmm?
+<SachaS> i remember a guy lives north of sydney (way north)
+<Vee2d2> SachaS: maybe wt, who I havent seen in a while
+<SachaS> and as i am going to Sydney we might have a gnue beer
+<alandd> setup-cvs.py barfed because I don't have the docbook directory.  I'll try it without the docs requested...
+<SachaS> wt ok will check when is is coming
+Nick change: SachaS -> Sacha-away
+<alandd> OK. setup-cvs.ph in common was mostly successful.  I got one error:
+<alandd> ln: creating symbolic link `/home/alandd/GNUe/source/common/src/.GDTD.py' to `/home/alandd/GNUe/source/gnue-common/scripts/gnuedtd': No such file or directory
+<alandd> the /source/common/ directory does not exist.  Am I missing something?
+<alandd> gfcvs says I need mxDateTime.  I'll hunt that down another time.  Must go care for kids.  Thanks for the tips!
+<alandd> dneighbo: let me know if i can help more with the workshop.
+Action: alandd is away: Children, gotta love 'em
+dcmwai (~chatzilla@219.95.155.208) left irc: Read error: 104 (Connection reset by peer)
+jcater (~jcater@cpe-066-061-071-129.midsouth.rr.com) joined #gnuenterprise.
+<Vee2d2> wb jcater
+<jcater> howdy
+<dneighbo> alandd: cool.. sorry was oding bills
+<dneighbo> hi jcater long time no see
+<dneighbo> how bidness, life and such going?
+<dneighbo> saw you committing things like m4d m4n today
+<Vee2d2> think that was his stint of bug bashing that burried the dcmwai bug ;)
+<Vee2d2> this release is sure gonna rock
+<jcater> dneighbo: busy
+<jcater> dneighbo: I was getting a little, um, sick of hearing about the hotkey bug
+<jcater> I really didn't have time to code today
+<jcater> but, eh
+<jcater> a man can only take so much
+<jcater> =)
+<Vee2d2> ;)
+<jcater> (don't get any ideas)
+<jcater> I'm off again
+jcater (~jcater@cpe-066-061-071-129.midsouth.rr.com) left irc: "nite"
+Action: Vee2d2 toodles off to load a new kernel
+Vee2d2 (~vin@c66.169.136.41.ts46v-07.otn-c1.ftwrth.tx.charter.com) left irc: Remote closed the connection
+Vee2d2 (~vin@c66.169.136.41.ts46v-07.otn-c1.ftwrth.tx.charter.com) joined #gnuenterprise.
+dcmwai (~dcmwai@219.95.155.208) joined #gnuenterprise.
+Action: dneighbo doesnt know what the hotkey bug is 
+<dneighbo> but looks like it pissed people off :)
+<Vee2d2> jcater and dcmwai mainly ;)
+<dneighbo> makes me jealous
+<dneighbo> i wnat to find bugs to piss jamest and jcater with ;)
+<Vee2d2> I'm sure there's a few left for ya
+<Vee2d2> :)
+<dcmwai> Vee2d2, anything about me I dont know?
+Action: dcmwai is starting to like xchat... why... 
+<Vee2d2> dcmwai: cant imagine. 
+--- Wed Aug  6 2003

@@ -1,0 +1,584 @@
+[00:00] Last message repeated 1 time(s).
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+<dneighbo> hi LuftHans
+jcater (~jason@cpe-024-165-193-024.midsouth.rr.com) joined #gnuenterprise.
+<dneighbo> trouble sleeping?
+<dneighbo> or just getting up early jcater ?
+<jcater> um
+<jcater> just got back into town actually
+<jcater> :(
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+jcater (~jason@cpe-024-165-193-024.midsouth.rr.com) left irc: "Client Exiting"
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise.
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+Sacha (~Sacha@dialup-196-102.wasp.net.au) joined #gnuenterprise.
+<LuftHans> hey Derek
+<LuftHans> http://traxel.com/maricopa/results.html
+<LuftHans> that's going on http://greplaw.org/ tomorrow, send suggestions to Robert Bushman <bob@traxel.com>
+SachaS_ (~Sacha@dialup-196-98.wasp.net.au) left irc: Read error: 110 (Connection timed out)
+Sacha (~Sacha@dialup-196-102.wasp.net.au) left #gnuenterprise ("Client Exiting").
+Arturas (arturas@bit.codeworks.lt) joined #gnuenterprise.
+<Arturas> Hello
+<ajmitch> hi
+<ra3vat> hello Arturas
+<ra3vat> hello ajmitch
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+<Arturas> hi Dmitry
+<Arturas> hi ajmitch
+Action: ajmitch waits for the hellos to die down :)
+<Arturas> it's echo :)
+<ajmitch> :)
+SachaS (~Sacha@dialup-196-102.wasp.net.au) joined #gnuenterprise.
+SachaS (~Sacha@dialup-196-102.wasp.net.au) left #gnuenterprise ("Client Exiting").
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+kemitix (~chatzilla@proxy1.lauder.ac.uk) joined #gnuenterprise.
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+LuftHans (~lufthans@wsip68-14-212-27.ph.ph.cox.net) left irc: Read error: 110 (Connection timed out)
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+ToyMan (~stuq@smtp.dstoys.com) joined #gnuenterprise.
+kemitix (~chatzilla@proxy1.lauder.ac.uk) left irc: Remote closed the connection
+Action: drochaid is back (gone 11:03:59)
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+alexey_ (~Alexey@techkran.vladimir.ru) left irc: "[x]chat"
+jamest (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+<ra3vat> hello jamest
+<Arturas> hi jamest :)
+<jamest> hi
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+siesel (jan@dial-195-14-226-62.netcologne.de) joined #gnuenterprise.
+<siesel> hi all
+<Arturas> hi
+<Arturas> see you tomorrow :)
+<Arturas> bye
+Arturas (arturas@bit.codeworks.lt) left #gnuenterprise ("Client Exiting").
+<drochaid> who's the documentation manager for GNUe?
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+siesel (jan@dial-195-14-226-62.netcologne.de) left irc: "Real programmers code it into the client"
+jamest (~jamest@hobbes.math.ksu.edu) got netsplit.
+jamest (~jamest@hobbes.math.ksu.edu) returned to #gnuenterprise.
+siesel (jan@dial-194-8-209-78.netcologne.de) joined #gnuenterprise.
+<siesel> anyone knows, which command line to use to login + checkout acclite?
+<jcater> we don't have anon cvs for that yet
+<jcater> but snapshots are at http://www.gnuenterprise.org/~jcater/snapshots/acclite/
+<siesel> jcater: I remeber to have an account on ash :)
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+siesel (jan@dial-194-8-209-78.netcologne.de) left irc: "later"
+kemitix (~chatzilla@proxy1.lauder.ac.uk) joined #gnuenterprise.
+ToyMan (~stuq@smtp.dstoys.com) left irc: Remote closed the connection
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+ToyMan (~stuq@smtp.dstoys.com) joined #gnuenterprise.
+fil_c (~username@public1-cosh3-3-cust12.cosh.broadband.ntl.com) joined #gnuenterprise.
+kemitix (~chatzilla@proxy1.lauder.ac.uk) left irc: "ChatZilla 0.8.7 [Mozilla rv:1.0.0/20020618]"
+ariel_ (~ariel@ppp-217-133-244-30.dialup.tiscali.it) joined #gnuenterprise.
+siesel (jan@dial-213-168-97-107.netcologne.de) joined #gnuenterprise.
+kemitix (~chatzilla@proxy1.lauder.ac.uk) joined #gnuenterprise.
+<siesel> dneigbo: you here?
+<siesel> I saw that 'data' and 'database schema' is split into two sql files in acclite. 
+<siesel> and the GNUe Schema Definition file has no way to put some base data into it.
+<siesel> (quite ok for a SCHEMA definition ;) )
+<siesel> but data should be stored in an XML representation too. 
+<siesel> for ease of use I would like to put schema and data into ONE file. any objections, ideas?
+dneighbo_ (~dneighbo@tmp-200253.flinthills.com) joined #gnuenterprise.
+<siesel> hi dneighbo_, can you read the backlog?
+<dneighbo_> um in a second
+Action: drochaid raises a hand tentatively to object ...
+fil_c (~username@public1-cosh3-3-cust12.cosh.broadband.ntl.com) left irc: "Client Exiting"
+<dneighbo_> siesel you still here
+<dneighbo_> Remosi: backlog
+<dneighbo_> grr re :
+<dneighbo_> acclite split was from NOLA
+<dneighbo_> definitely we need to have the 'data' statements as part of our schema spec
+<dneighbo_> its just a matter of definining and making xslt xsl for it
+<dneighbo_> about putting together or separating
+<dneighbo_> i like to work in sizeable chunks so i like them separate
+<dneighbo_> im one of these wierdos that would actually like every table or grouping of tables to be own file (but i know im in the minority there)
+<dneighbo_> im open to debate though
+<dneighbo_> btw: jcater has added in designer ability to make our 'xml schema' off existing databases
+<dneighbo_> so if you have a postgres database
+<dneighbo_> you can from designer run a tool that will create a 'gnue xml schema' :)
+<siesel> I think puting every table into a seperate file is ok, if there is ONE comand to create a whole table, or if there is one gsd file which includes the other ones :)
+<dneighbo_> siesel well xml/xslt supports includes
+<siesel>  /a whole table/a whole table set/
+<dneighbo_> so way i figured it was you would do granular (to what level i have no consensus)
+<dneighbo_> then you make a 'initial install' xml file
+<jcater> let's back up a second
+<jcater> I see xslt as a means to an end
+<jcater> not the end itself
+<jcater> in the not-so-distant future
+<jcater> GNUe-COmmon's dbdrivers will accept a schema tree
+<dneighbo_> that simply includes the whole enchalada (sp)
+<jcater> and each driver will be able to create the schema natively
+<dneighbo_> thats fine
+Action: dneighbo_ sees it similar way
+<jcater> so I'm just saying, let's not say "sure, we can do that as xslt supports xxxxxxx"
+<jcater> btw, I like sizable chinks too
+<jcater> s/chinks/chunks/
+<dneighbo_> in fact for designer and some other things i almost would like to have it go off the schema opposed to the db
+<siesel> jcater, dneighbo: does the way xslt includes files differ from the GParser way?
+Action: jcater knows nothing about xslt includes :(
+Action: dneighbo_ notices that visual studio .NET has gone that route and it made for some trick features in their 'designer' stuff
+<dneighbo_> but thats another discussion
+<dneighbo_> siesel : i cant answer that
+<dneighbo_> i specifically called out xslt can do 'x' because currently we are using xslt
+<dneighbo_> i assume when we go to internally doing it, that its not a huge issue
+<dneighbo_> in that we have control so we can make it do includes :)
+<dneighbo_> jcater : i see this functionality as being important also for integrator as well as designer :)
+<dneighbo_> btw: xslt iirc does include as
+<dneighbo_> <xsl:include href = uri />
+<dneighbo_> so very simplistic
+<dneighbo_> though technically its not on teh stylesheet side but on the source side where they include would happen which would follow normal xml include rules (iirc)
+<siesel> back to that xml format for data: I think it, 1. should be outside of that <schema> tag 2. possibly could look like...
+<siesel> <data>
+<siesel>   <tabledata name="basic_persons" tablename="person">
+<siesel>         </row>
+<siesel>   </tabledata>
+<siesel> oops, I don't know why, but most of the stuff was send to nickserv :(
+<siesel> <data><tabledata name="basic_persons" tablename="person">
+<siesel> <row>
+<siesel> <value>Peter Miller</value>
+<siesel> <value>GNUe street</value>
+<siesel> <value>9393</value>
+<siesel> <value>GNU town</value>
+<siesel> </row>
+<siesel>  </tabledata></data>
+<siesel> (that would be simple initialisation without fieldnames. There should be a mode for initialisation with fieldnames too.)
+<jcater> no
+<jcater> not outside of schema tag
+<jcater> but outside of tables tag
+<jcater> GParser depends on there being a single enclosing tag around an entire file
+<jcater> (i.e., the "root" element)
+<jcater> so you'd have
+<jcater> <schema>
+<jcater>   <tables>
+<jcater>     ....
+<jcater>   </tables>
+<jcater>   <data>
+<jcater>     ....
+<jcater>   </data>
+<jcater> </schema>
+<jcater> at least, this is what I was imagining
+<siesel> Just asking, if we do it that way, is <schema> still the right name for the root tag?
+Action: jcater thinks so
+<jcater> as to me required datasets are still part of a schema definition
+<siesel> ok, but, because I want to use GSD as a dump format for the appserver, would you object to put "non-required" datasets into it?
+<dneighbo_> jcater: i agree keeping in schema root
+<dneighbo_> im not sure i follow
+<jcater> dump format?
+<siesel> like pg_dump writes the contents of a db into one file. a appserver_dump would create a ?.GSD? file.
+<jcater> I see no problem with that
+<jcater> most tools like that include an option to dump only schema or schema + data anyway
+<dneighbo_> works for me
+<siesel> great. now to the details, is <data><tabledata name="basic_persons" tablename="person"><row>...</row><row>...</row>tabledata><data> ok?
+<jcater> works for me
+<siesel> ok, last question before modifing xslt's: do we need type's for <value> definitions?
+<siesel> I would like <value>Peter<value><value>22.4.1999<value>. 
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+<siesel> and would make <value field="Name" type="string">Peter<value><value field="date_of_birth" type="date">22.4.1999<value> optional?
+<siesel> ok, I will provide appserver/samples/sample.gfd as an example
+<siesel> dneighbo: how can I select a value between two tags <tag>my_value</tag> using xslt?
+yogurt2unge (~charlie@modem117-adsl.capfed2.sinectis.com.ar) joined #gnuenterprise.
+<kemitix> can someone help me?  I'm struggling with the sample forms in GNUe-Forms.
+<siesel> I will try :)
+<siesel> which sample are you running?
+<kemitix> thanks.
+<kemitix> inventory/forms/company.gfd
+<kemitix> I've added the sql for inventory and location
+<kemitix> the traceback claims 'DB000: gnue.common.GComm.DistantError: Error 'gnue.common.GDataObjects.ProviderNotSupportedError: No database driver found for provider type 'pygresql'' occured on server connected by XMLRPC'
+<kemitix> i've installed pygresql
+<siesel> ok, seems like you are using appserver to provide the data :)
+<kemitix> yup
+<kemitix> or atleast i'm trying to
+<siesel> there is no provider called pygresql. The GNUe name for the PyGreSQL based driver is called "postgresql"
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+<kemitix> okay, i'll try changing that
+<siesel> (common/README.databases), so you have to edit your connection.conf
+<kemitix> getting further but still not getting the form to appear
+<kemitix> I'll have to leave it for now - the buildings about to close
+<kemitix> don't feel like getting locked in.
+<siesel> :)
+<kemitix> thanks for your help
+<siesel> no problem 
+kemitix (~chatzilla@proxy1.lauder.ac.uk) left #gnuenterprise.
+siesel (jan@dial-213-168-97-107.netcologne.de) left irc: "(figuring out XSLT during dinner :))"
+<dneighbo_> i dont like it
+<dneighbo_> crap seisel is gone
+<dneighbo_> must run
+dneighbo_ (~dneighbo@tmp-200253.flinthills.com) left irc: "home"
+ToyMan (~stuq@smtp.dstoys.com) left irc: "Client Exiting"
+siesel (jan@dial-213-168-92-142.netcologne.de) joined #gnuenterprise.
+<ajmitch> hi again siesel :)
+<siesel> crap dneigbo is gone
+<ajmitch> yeah
+<ajmitch> ran away about 40min ago
+<ajmitch> [07:14:37] <dneighbo_> i dont like it
+<ajmitch> [07:15:08] <dneighbo_> crap seisel is gone
+<ajmitch> [07:42:30] <dneighbo_> must run
+<siesel> hi ajmitch
+<ajmitch> sigh, seems like i need to throw something together this afternoon so as to avoid other people's messy designs :)
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+<siesel> what do you want to THROW TOGETHER?
+<ajmitch> bsic accounting forms
+<ajmitch> and a nice UI to access them :)
+<siesel> for acclite?
+<ajmitch> nah, something far smaller at the moment
+<ajmitch> anyway, must have breakfast now, cya :)
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+Gun[around] (GunAndGiz@ip68-10-44-170.rn.hr.cox.net) joined #gnuenterprise.
+<Gun[around]> greetz
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+Nick change: Gun[around] -> stbain
+<siesel> hi chillywilly
+<chillywilly> hi
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise ("switching logins").
+jamest (~jamest@hobbes.math.ksu.edu) left #gnuenterprise.
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+siesel (jan@dial-213-168-92-142.netcologne.de) left irc: "later"
+<dneighbo> hi stbain
+<dneighbo> crap siesel is gone :)
+<dneighbo> we just missed one another
+<ajmitch> yes :)
+<ajmitch> and both ssaid 'crap $x is gone'
+Action: jcater will change the vicious cycle
+<jcater> crap dneighbo is here
+<jcater> how's that?
+<dneighbo> jcater: you here?
+<jcater> yes
+<dneighbo> you running woody?
+<dneighbo> its most odd i did apt-get install of postgresql this am 
+<jcater> well, the cute one just left
+<dneighbo> however i cant get it to run
+<dneighbo> i do /etc/init.d/postgresql start
+<dneighbo> and it says it restarts 
+<ajmitch> morning jcater, dneighbo
+<dneighbo> latitude:/home/dneighbo# su - postgres
+<dneighbo> postgres@latitude:~$ createuser
+<dneighbo> Enter name of user to add: dneighbo
+<dneighbo> Shall the new user be allowed to create databases? (y/n) y
+<dneighbo> Shall the new user be allowed to create more new users? (y/n) y
+<dneighbo> psql: could not connect to server: No such file or directory
+<dneighbo> 	Is the server running locally and accepting
+<dneighbo> 	connections on Unix domain socket "/var/run/postgresql/.s.PGSQL.5432"?
+<dneighbo> createuser: creation of user "dneighbo" failed
+<dneighbo> postgres@latitude:~$ 
+<dneighbo> and ps ax |grep post shows its NOT running
+<dneighbo> even after
+<dneighbo> latitude:/home/dneighbo# /etc/init.d/postgresql start
+<dneighbo> Starting PostgreSQL postmaster.
+<dneighbo> postmaster successfully started
+<dneighbo> latitude:/home/dneighbo# ps ax|grep post
+<dneighbo>  6779 pts/2    S      0:00 grep post
+<dneighbo> latitude:/home/dneighbo# 
+<ajmitch> hmm, looks broken, check logs
+<ajmitch> ajmitch:/opt# ps axu |grep post
+<ajmitch> postgres  5207  0.0  0.0  8552  280 pts/5    S    May17   0:07 /usr/lib/postgresql/bin/postmaster
+<ajmitch> postgres  5209  0.0  0.0  9544  192 pts/5    S    May17   0:00 postgres: stats buffer process    
+<ajmitch> postgres  5210  0.0  0.0  8668  228 pts/5    S    May17   0:00 postgres: stats collector process   
+<ajmitch> postgres 14595  0.0  0.2  8976  856 pts/5    S    Jul10   0:00 postgres: ajmitch gnue 127.0.0.1 idle in transaction
+<jcater> do a dpkg-reconfigure postgresql
+<dneighbo> i do a dpkg-reconfigure and now it makes SOME sense
+<dneighbo> i recall it asking me if i wanted to upgrade my version of postgres(which is odd as i didnt have one) unless some dependency installed 6.5
+<dneighbo> as this is FRESH install of woody
+<dneighbo> i chose (y) and ran out door
+<dneighbo> it appears that the binary to do the conversion is missing
+<dneighbo> so now i choose N
+<dneighbo> and its says everything goes smooth but it doesnt
+<dneighbo> sigh crappy packaging i assume
+<dneighbo> which is so odd as i have yet to have issues really with postgres on debian
+<dneighbo> doing an upgrade
+<dneighbo> nothing to upgrade sigh
+<ariel_> dneighbo: check postgresql.conf
+<ariel_> in data directory
+<ariel_> in <prefix>
+<ariel_> mine is /var/lib/pgsql
+<dneighbo> postgresql has found a pre-existing database, and believes that it will be
+<dneighbo> able to update it automatically to the new version.  There is some risk to
+<dneighbo> your data in this.  If you have not got an up-to-date backup of
+<dneighbo> /var/lib/postgres/data, you should say no at this point.
+<dneighbo> In the course of the update, your existing /var/lib/postgres/data
+<dneighbo> will be moved to a parallel directory and a new directory created in
+<dneighbo> its place.  The saved dump of your existing database will then be loaded
+<dneighbo> into the new database.  If you have a lot of data, this may take a
+<dneighbo> considerable time; if your database is sufficiently large, it may fail
+<dneighbo> for lack of disk space.
+<dneighbo> The backup of /var/lib/postgres/data will be on the same filesystem;
+<dneighbo> the dump file will be in /usr/lib/postgresql/dumpall/.
+<dneighbo> Do you want me to continue with the automatic update? [y/N] y
+<dneighbo> The upgrade will now be done; the time taken will depend on the
+<dneighbo> size of your database(s).
+<dneighbo> There are no binaries for dumping database format 7.2
+<ariel_> check the tcpip_socket variable 
+<dneighbo> Sorry; the automatic database upgrade failed.
+<dneighbo> latitude:/home/dneighbo# 
+<chillywilly> it just uses pg_dump
+<ariel_> this must be true for pg  server to accept connections via tcp/ip
+<chillywilly> tcp/ip is turned ON by default IIRC
+<ariel_> not sure
+<dneighbo> all that is fine
+<dneighbo> this is im certain a package problem
+<chillywilly> # TCP/IP access is allowed by default, but the default access given in
+<chillywilly> # pg_hba.conf will permit it only from localhost, not other machines.
+<chillywilly> tcpip_socket = 1
+<dneighbo> im getting postgres-contrib and postgresql-dev
+<dneighbo> doods im telling you thats NOT it
+<dneighbo> its not a CONNECTION problem
+<dneighbo> the damn thing wont even START
+<chillywilly> no shit
+<nickr> http://www.komotv.com/stories/19291.htm
+<dneighbo> roflmao
+<chillywilly> is that for real?
+Action: dneighbo forgets how do you do an initdb
+<dneighbo> i think this might solve my issues
+<dneighbo> where would i find postgres logs?
+<dneighbo> doesnt seem to be in syslog and cant find any postgres logging
+<drochaid> initdb -D /<path to data>
+<dneighbo> initdb command not found
+<drochaid> explicity state path
+<drochaid> *explicitly
+StyXman (~mdione@modem117-adsl.capfed2.sinectis.com.ar) joined #gnuenterprise.
+<dneighbo> im uninstalling postgres anything
+<dneighbo> and deleting all postgres dirs
+<StyXman> hi. why aren't no data-unaware widgets?
+<chillywilly> dneighbo: rtfm
+<chillywilly> ;)
+<dneighbo> then trying again
+<dneighbo> the tfm sucks
+<chillywilly> no it does not
+<dneighbo> again this is a packaging issue
+<chillywilly> posgres has excellent documentation
+<drochaid> dneighbo: tfm ?
+<dneighbo> as im running 8.2
+<drochaid> ah the manual
+<drochaid> the docs are bloody excellent
+<dneighbo> er 7.2
+<drochaid> 7.2.1 I would hope dneighbo
+<dneighbo> er installing 7.2 and it says (found an OLD db)
+<dneighbo> let me upgrade
+<dneighbo> and the upgrade fails saying there is no upgrade tool for 7.2.1
+<dneighbo> which im like NO DUH
+<drochaid> reinstall the version the db was for
+<drochaid> pg_dumpall
+<drochaid> remove old install and install 7.2.1
+<drochaid> pg_restore
+<drochaid> [after initdb of course]
+<dneighbo> it wont let me initdb
+<drochaid> not yet
+<dneighbo> so im wiping ALL references to postgers
+<dneighbo> and starting over
+<drochaid> bulding from source or deb/rpm?
+<dneighbo> grrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
+<dneighbo> i think i found the problem now that i finally found the log
+Action: drochaid backs off and runs to the corner
+<dneighbo> using dhcp here and home im static
+<chillywilly> syntax for initb -> http://chillywilly.dyndns.org/postgres/installation.html
+<chillywilly> initdb even
+<dneighbo> so my hosts file had static ip for me
+<drochaid> :o
+<drochaid> that would be a problem
+<nickr> chillywilly: yea, thats real
+<chillywilly> heheh
+<chillywilly> funky
+<chillywilly> a fish that can breathe air and walk on land
+<chillywilly> cool
+yogurt2unge (~charlie@modem117-adsl.capfed2.sinectis.com.ar) left irc: "Client Exiting"
+<dneighbo> grr that still didnt do it
+siesel (jan@dial-195-14-235-132.netcologne.de) joined #gnuenterprise.
+<chillywilly> wb siesel
+<drochaid> dneighbo: did you rehash the postmaster?
+Action: drochaid plays Counting Crows, Hard Candy album to relax dneighbo
+<dneighbo> latitude:/var/log# /etc/init.d/postgresql start
+<dneighbo> Starting PostgreSQL postmaster.
+<dneighbo> postmaster successfully started
+<dneighbo> latitude:/var/log# less postgres.log 
+<dneighbo> PGSTAT: bind(2): Cannot assign requested address
+<dneighbo> i dont get it still
+<chillywilly> anyone ever see fight club?
+<dneighbo> latitude:/var/log# less /etc/hosts
+<dneighbo> 127.0.0.1       localhost
+<dneighbo> 127.0.0.1       latitude
+<dneighbo> 192.168.100.90  carpine.com             carpine
+<dneighbo> # The following lines are desirable for IPv6 capable hosts
+<dneighbo> # (added automatically by netbase upgrade)
+<dneighbo> ::1     ip6-localhost ip6-loopback
+<dneighbo> fe00::0 ip6-localnet
+<dneighbo> ff00::0 ip6-mcastprefix
+<dneighbo> ff02::1 ip6-allnodes
+<dneighbo> ff02::2 ip6-allrouters
+<dneighbo> ff02::3 ip6-allhosts
+<siesel> cw: yes
+<drochaid> dneighbo: what's in your pg_hba.conf ?
+<chillywilly> crazymike let me borrow it
+<dneighbo> gack
+<dneighbo> WTF
+<dneighbo> how come pump didnt bring up lo?
+<chillywilly> settle down mister
+<chillywilly> why would you want it to?
+<dneighbo> latitude:/var/log# ps ax |grep post
+<dneighbo>  8459 pts/2    S      0:00 /usr/lib/postgresql/bin/postmaster
+<dneighbo>  8461 pts/2    S      0:00 postgres: stats buffer process    
+<dneighbo>  8463 pts/2    S      0:00 postgres: stats collector process   
+<dneighbo>  8473 pts/2    S      0:00 grep post
+<dneighbo> latitude:/var/log# 
+<dneighbo> sigh that WAS the problem
+Action: dneighbo has never had lo not start before
+<chillywilly> shouod be setup in your interfaces file
+<chillywilly> then when the networking inti script runs it should come up at least
+<chillywilly> init
+<dneighbo> its a long story
+<chillywilly> you can also setup 'interfaces' file to use dhcp
+<chillywilly> for the ethx interface
+Action: chillywilly 's server does this
+<siesel> dneigbo: what didn't you like
+<chillywilly> hey dneighbo what does { } do in XSLT?
+<chillywilly> I was told you are da xsl masta
+<dneighbo> i dont have my xsl bible
+<chillywilly> darn
+<dneighbo> i remember briefly about it but not enough
+<chillywilly> what book is that?
+<dneighbo> um fact that you were doing 
+<chillywilly> what is you "xsl bible"?
+<dneighbo> <row>data</row> or something
+<dneighbo> where i think it should be
+<dneighbo> <row>
+<dneighbo>   <field name="foo">data</field>
+<dneighbo>   <field name="bar">data</field>
+<dneighbo> </row>
+<dneighbo> or the like
+<dneighbo> later you then seemed to reference something like this even including a datatype
+^chewie (~chad@cyan.ima.umn.edu) joined #gnuenterprise.
+<dneighbo> but i wasnt sure
+<jcater> sorry
+<jcater> I was away
+<dneighbo> im fixed up now
+<jcater> did you do the dpkg-reconfigure?
+<dneighbo> i think
+<dneighbo> yeah lo wasnt up
+<jcater> as I imagine it had to do with a failed dump
+<jcater> ah
+<dneighbo> was problem, but still the package has an issue
+Action: jcater had hell upgrading to 7.2
+<dneighbo> as it SHOULD NOT try to upgrade when there is no postgres :)
+<dneighbo> i.e. a fresh install and apt-get install postgresql
+<dneighbo> should say we found a database want to upgrade it
+<dneighbo> er shouldnt
+<chillywilly> <div id="{@name}" style="display: none;">
+<chillywilly> so you have no idea what the { } do?
+<dneighbo> btw: im trying to get desktop tools more eval'd
+<siesel> dneighbo: at the moment I have a <row> <value>one</value><value>two</value></row>
+<dneighbo> i tried pharmacy, lincvs and gcvs (sigh they all have issues) short of cvs co readonly with pserver :(
+<chillywilly> @attrib gives you the value of an attribute right?
+<dneighbo> chillywilly: i believe that is correct
+<siesel> do I understand you right, that you want fieldnames in?
+<dneighbo> also tried tora and sqlsomething and they both suck
+<siesel> <xsl:value-of select="@attribute"/>
+<jcater> desktop tools?
+<chillywilly> siesel: are you well versed in XSL?
+<siesel> cw: in the W3C docs they say {@attribute} should work the same way, but it didn't worked for me.
+<chillywilly> oh?
+<chillywilly> hmmph
+<siesel> cw: I just changed the pgsql.xslt files. i.e. I'm a XSLT rookie
+<chillywilly> k
+<chillywilly> I was ist reading them for some practice ;)
+<chillywilly> just
+<chillywilly> see how well I could remember this tutorial I read...of course my memory sucks
+<siesel> possibly you should upgrade another 16kbytes ;)
+<chillywilly> heh, yea
+<chillywilly> I want to be able to download stuff into my head like in the matrix
+<chillywilly> that would rock
+<siesel> dneighbo: just to ask again, do you want fieldsnames to be required? i.e. don't have a <value>j</value> but an <field name="bla">j</field> or an <value field="bla">j<value>?
+<siesel> IHMO there are many pro's and con's for requiring fieldnames, so what do you think
+Action: jcater personally thinks the pro's outweigh any and all cons
+<jcater> but that's just mho
+<siesel> ok, so <field name="bla">j</field> would be the choice right? Its just 10-20 bytes more per row per column.
+StyXman (~mdione@modem117-adsl.capfed2.sinectis.com.ar) left irc: "ircII EPIC4-1.1.5 -- Are we there yet?"
+<siesel> ok, I will first commit my version and change it to the field way tomorow, or sometimes not beeing so tired 
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "Client Exiting"
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+<dneighbo> siesel: can we not change things till we are all in agreement
+<dneighbo> i think jcater had input
+<dneighbo> mainly im concerned as im wanting to do stuff with acclite and it dependent on some of this stuff and designer
+<dneighbo> so i dont want it broken for long periods of time :)
+<dneighbo> i like the value field="bla"
+<dneighbo> but i havent thought really hard on ti
+<dneighbo> it
+<siesel> I wont commit something breaking designer (I hope so)
+<siesel> that <value field stuff is in cvs now, and it should not interfere with designer capabilitys to create .gsd out of databases
+<dneighbo> well you cant break xsd to postgres either :)
+<dneighbo> or rather it would be preferred to not be broken long :)
+Action: ariel_ is away: zzz...
+<dneighbo> grr i hate savannah at times
+<siesel> btw. gsd to postgres was broken till today, because it doesn't accept that global schema tag. 
+siesel (jan@dial-195-14-235-132.netcologne.de) left irc: "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+dres_ (~dres@mail.lewismoss.org) joined #gnuenterprise.
+dres (~dres@mail.lewismoss.org) left irc: Connection reset by peer
+dres__ (~dres@mail.lewismoss.org) joined #gnuenterprise.
+dres_ (~dres@mail.lewismoss.org) left irc: Remote closed the connection
+dres__ (~dres@mail.lewismoss.org) left irc: Remote closed the connection
+dres_ (~dres@mail.lewismoss.org) joined #gnuenterprise.
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+dres__ (~dres@mail.lewismoss.org) joined #gnuenterprise.
+dres_ (~dres@mail.lewismoss.org) left irc: Remote closed the connection
+dres_ (~dres@mail.lewismoss.org) joined #gnuenterprise.
+dres__ (~dres@mail.lewismoss.org) left irc: Remote closed the connection
+dres_ (~dres@mail.lewismoss.org) left irc: Remote closed the connection
+jcater (~jason@cpe-024-165-193-024.midsouth.rr.com) joined #gnuenterprise.
+<dneighbo> jcater: by desktop i meant GUI applications
+<dneighbo> i.e. if one were afraid of command line how would they use CVS and Postgres and the likes
+<dneighbo> its and interesting experience actually looking at the gui tools (as they are rather pitiful) :(
+<dneighbo> hmmm synaptic (apt-get gui) looks pretty decent though
+<jcater> uggh
+<jcater>  /me understands gui postgres tools
+<jcater> but not cvs
+<jcater> unless it were integrated into an IDE suite
+<dneighbo> ?
+<dneighbo> no im an evangelist remember
+<dneighbo> im trying to see what linux looks like for someone scared of the command line (not necessary a gnue person)
+<dneighbo> so am trying to find gui ways to do anything i do from a command line (just to see the experience)
+<dneighbo> i see our designer eventaully supporting postgres gui and cvs gui (cvs functionality)
+<dneighbo> but in no high order of magnitude
+<dneighbo> i.e. im not looking at existing gui tools for that purpose
+Action: dneighbo is away: church and things
+<jcater> so, evangelist is the word we're using now?
+<jcater> :>
+Action: jcater ducks
+Action: drochaid is away: Do not meddle in the affairs of dragons, because you are crunchy and taste good with ketchup.
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+<stbain> dneighbo: it's official now
+<stbain> I'll start in the next few days
+<ajmitch> hi all
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) left irc: Read error: 104 (Connection reset by peer)
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+<jcater> hi ajmitch
+<ajmitch> yo jcater
+Action: ajmitch is just starting designer to see how far along schema stuff is :)
+<jcater> not very
+<ajmitch> ok
+<ajmitch> will put together a db manually then
+<jcater> well
+<jcater> is the db already in postgres or such?
+<jcater> or are you starting from scratch?
+<ajmitch> starting from scratch
+<ajmitch> will only be a few tables
+<jcater> ah
+<jcater> then the current designer is of no use to you
+<jcater> :(
+<ajmitch> no, it is, i'm building froms as well :)
+<ajmitch> s/froms/forms/
+<ajmitch> hmm, wxpython stuff suffers from performance issues when the cpu is busy ;)
+<chillywilly> wow, fight club is one fucked up movie
+<ajmitch> hehe
+Action: ajmitch just cheated & grabbed pre-existing db dump
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+Action: ajmitch wonders why navigator isn't picking up files in the current dir
+Action: ajmitch thinks designer hates him
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+Nick change: stbain -> stbain|zzz
+<stbain|zzz> designer loves you and wants to spend more time with you, thus it has decided to prolong your programming efforts
+<stbain|zzz> nite all
+jcater (~jason@cpe-024-165-193-024.midsouth.rr.com) left irc: "Client Exiting"
+<chillywilly> I love you though
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+--- Thu Jul 11 2002

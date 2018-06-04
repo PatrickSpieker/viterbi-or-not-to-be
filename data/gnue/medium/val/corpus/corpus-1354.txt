@@ -1,0 +1,384 @@
+[01:18] Last message repeated 1 time(s).
+<dneighbo> fwiw: jcater: dcl does do attachments right just its not binding them right :)
+<dneighbo> i.e. the patch is out in the /tmp dir :)
+<dneighbo> just an fyi
+<ajmitch> heh
+<ajmitch> hi dneighbo
+<chillywilly> howdy masta
+<dtm> whirred, gentlemen.
+<chillywilly> jcater went bye bye
+<chillywilly> hi dtm
+<dtm> chillywilly: @#*)
+<dtm> hi there
+<ajmitch> argh, dtm
+<dtm> chillywilly: nice of you to recommend our advice on fd-discuss ;)
+<dtm> ajmitch: :-o
+<ajmitch> dtm: you have to slap psu round a bit iirc
+<dtm> ajmitch: whuh
+<ajmitch> look at latest KC GNUe
+<chillywilly> dtm: er, oh well you'll juts have to suffer the load of people lining up for your advice
+<dtm> chillywilly: yay
+<dtm> ajmitch: what's the url
+<ajmitch> http://kw.zork.net/GNUe/latest.html
+<ajmitch> sigh
+<ajmitch> http://kt.zork.net/GNUe/latest.html
+<chillywilly> dtm: was I in error in making such a suggestion?
+<chillywilly> will I be beaten?
+<dtm> chillywilly: no that's fine  :)  thanks
+<dtm> ajmitch: what's the problem in specific sir?
+Gedanken (~schatten@dv101s49.lawrence.ks.us) joined #gnuenterprise.
+<ajmitch> dtm: see section 20
+<dtm> oh i just clicked on that  :)
+<dtm> i see
+<ajmitch> what do you see, good sir?
+<dtm> this must be a REALLY tedious hobby of his  :)
+<ajmitch> hehe
+<dtm> i've never met David McWherter
+<dtm> psu, fyi i'm Dan Bethe   thanks though :)
+<chillywilly> ah, yea
+<chillywilly> I noticed that too
+<dtm> do you guys think my answer was at all coherent?
+<chillywilly> ah well he tries his best
+<dtm> i was really raeching :)
+<chillywilly> I bet he will not call you by the wrong name again
+<dtm> yeah i would definately not consider that a fun pastime at this juncture
+<ajmitch> seems understandable
+<chillywilly> he's good at ficing up things
+<chillywilly> fixing
+<dtm> oh i'm sure
+<ajmitch> imagine reading thru all those logs....
+Action: ajmitch will bbl
+Action: chillywilly doesn't even read them anyway
+<dtm> so what does this have to do with a kernel or a cousin?
+<chillywilly> neither although some people here look like they have been spending too much time kissing their cousin(s)
+Action: chillywilly runs away
+<dtm> YAY
+Action: chillywilly troutslaps dtm
+<dtm> i done read me some storeys about tha-yat onna innurweb!!!! huhuhuhuhuh.
+<chillywilly> rofl
+<dtm> Huh.  huhuh.  huh.  huh huh.
+<chillywilly> gown se my some naked lasies...www.com...clickity click click click
+<chillywilly> ladies
+Action: chillywilly 's best King of The Hill impersonation
+<dtm> ever see that awesome Ren & Stimpy episode where the old boys sittin on the porch go "HAY!!  where done Sister Mama go at?"   "uhhhhhh   Ahhhh thank she done got et up by tha pigs!"
+<dtm> that was some lad talkin to Brother Daddy
+<dtm> or something
+<dtm> etc
+<chillywilly> Ren & Stimpy rules
+<chillywilly> that is all...
+<dtm> there was an awesome "kids in the hall" where one of em got kicked in the head by a cow or something
+<dtm> that rewld
+<chillywilly> hehe
+<dtm> and he couldn't grab anything at the dinner table
+<chillywilly> I likes the kids in the hall
+<dtm> that was AWESOME
+<chillywilly> liked
+<dtm> until i moved into this apartment and disavowed cable tv, i watched it ever-day on Comedy Central
+<chillywilly> I thought you had a house?
+<Gedanken> The only reason why I have cable is because it is required to have a cable modem
+Action: chillywilly had cable first
+<chillywilly> then I got a cable modem connection
+<Gedanken> well, I don't *have* have cable t.v. ... but if you don't you pay a $10 or $15 line fee ... 
+<Gedanken> I have a really love/hate relationship with xml
+<chillywilly> you love it and xml hates you? ;)
+<chillywilly> s/it/xml
+<Gedanken> working with XForms at the momment, trying to get a perl module to help ease the creation of them
+<chillywilly> yea
+<chillywilly> I have been meaning to read the XForms spec
+<Gedanken> it is interesting, the goal is to have it generic enough to render well on most everything
+<Gedanken> in theory it would work for general application forms ... not just web
+siesel (jan@dial-195-14-251-253.netcologne.de) joined #gnuenterprise.
+<chillywilly> hi siesel
+<siesel> hi chillywilly, hi all
+<siesel> cw: are you still working on the IRC commdriver ?
+<chillywilly> well yes
+<chillywilly> slowly
+<chillywilly> read all the relevant RFCs for kicks and downloaded python-irclib
+<chillywilly> trying to make sense of the RPC stuff in common
+<Gedanken> I really wish RPC had never been thought of ... as well as RMI
+<siesel> if you have questions, please ask, I even thought of creating a commdriver stub where you can add the IRC things
+Action: siesel really has to improve the documentation
+<chillywilly> well I am reading a few things and going to try and make sense of xmlrpc first in order to get a jandle on the rest of it
+<siesel> great!
+Gedanken (~schatten@dv101s49.lawrence.ks.us) left irc: "sleep"
+<chillywilly> am I correct in that SocketServer is synchronous and async_chat/async(whatever) is asynchronous?
+<siesel> SocketServer is asynchronous too, (I think)
+<siesel> if not its easy to make it asynchronous
+<siesel> for IRC I think you need a dispatcher listening to IRC and starting up a new thread per method call (async)
+<siesel> i dunno if there is already a function for that in the IRC lib
+<chillywilly> the ssyncore/asynchat stuff uses select
+<chillywilly> asyncore
+<chillywilly> irclib is synchronous and blocking
+<siesel> select ?
+<chillywilly> yea, haven't you ever seen someone use select with non-blocking sockets to do i/o multiplexing?
+<chillywilly> it has mostly the same advantages as threads
+<chillywilly> without the added complexity
+<chillywilly> man 2 select
+<chillywilly> for the glibc function
+<chillywilly> http://www.nightmare.com/medusa/medusa.html
+<chillywilly> ttp://www.nightmare.com/medusa/programming.html
+<chillywilly> er
+<chillywilly> http://www.nightmare.com/medusa/programming.html
+<chillywilly> even winders has a select() function
+<chillywilly> but it onyl work with socets and nothing else
+<chillywilly> er, sockets
+<chillywilly> Beej's Guide to Network Programming has examples of usign select() in C too ;)
+Action: chillywilly has all the bases covered
+<chillywilly> btw, Medusa is now in the core python lib
+<siesel> wow.
+<chillywilly> you can always use threads though
+<chillywilly> however, threads are claimed to be better for CPU bound operations
+<siesel> you make me understand all the stuff I tried to use.
+<chillywilly> not I/o bound
+<siesel> at the moment pw_xmlrpc uses ThreadingTCPServer
+<chillywilly> ah
+<chillywilly> so the xmlrpc lib only handels doing the xml type stuff?
+<siesel> yes.
+<chillywilly> you implemented the networking stuff yourself?
+<chillywilly> I would be curious to try the Ayncronous stuff once and compare performance
+<siesel> one half of it, jcater begun it and i finished it.
+<chillywilly> in _helpers?
+<siesel> chillywilly. yes, it would be easy to switch it on per connections.conf option
+<chillywilly> seems he started implementing an Async one too
+<siesel> no, _helpers/Async... is not needed. There are 3-4 lines creating a MyHTMLServer at the top of ServerAdapter.py
+<chillywilly> oh, ok ThreadingTCPServer is in the pythin lib
+<chillywilly> python
+<chillywilly> what is the point of the directory server?
+<chillywilly> is this the methods repsitory thing that others have implemented?
+<siesel> the GRPC file is parsed by the Parser and is building an object tree without binding information
+<chillywilly> ok
+<siesel> so directory server creates a dictonary indexed by method names containing binding, signature and helptext.
+<chillywilly> ah yea
+<chillywilly> like what the introspection methods return
+<chillywilly> go on...
+<siesel> yes.
+<chillywilly> anything else?
+<siesel> every server has a method call(..) or dispatch ... which checks for the method in the directory and calls it.
+<chillywilly> ok
+<siesel> at the moment this method is not in GCommbase or in DirectoryServer, but I think that it should go there, because it is similar in pw_xmlrpc and xmlrpc
+<siesel> At the moment I try to implement dispatch handlers, to make the code more flexible and more readable
+<chillywilly> the call method should go there?
+<chillywilly> at any rate thanks for the info
+<siesel> the server_loop receives a method request and calls the function "call" which is calling the requested function
+<chillywilly> ok
+<siesel> your welcome
+<chillywilly> what is the pruprose of the Proxy object?
+<chillywilly> to sit in the middle?
+<siesel> its client side right?
+<chillywilly> providing no network traffic
+<chillywilly> ?
+<chillywilly> I think it's like a short circuit thing
+<chillywilly> but I'm not sure
+<siesel> its the glue to make Donutspace.Backery.getStuff() working.
+<chillywilly> btw
+<chillywilly> hmmmm
+<chillywilly> that's confusing
+<chillywilly> ;P
+<chillywilly> # NOTES:
+<chillywilly> # This will be replaced with _helpers/AsyncSocketServer as soon
+<chillywilly> # as it is operational. This SocketServer is not suitable for
+<chillywilly> # production use -- it is a synchronous, blocking SocketServer
+<chillywilly> # (i.e., it can handle one client at a time :)
+<chillywilly> this is in DebugSocketServer.py
+<chillywilly> seems like someone should hack on the Aysnc socket server
+<chillywilly> ;)
+Action: chillywilly just might have to play with that :)
+<siesel> it builds up an object tree based on the request of the user. i.e. Donutspace.Backery.getStuff() will create a Backery object below that Donutspace object and a getStuff object at the bottom. getStuff will then call the method 'Donutspace.Backery.getStuff' using ClientAdapter.runMethod
+<siesel> cw: I just forgot to remove DebugSocketServer.py from the repository :)
+Action: chillywilly blinks
+<chillywilly> hrrrm
+<chillywilly> object tree?
+<siesel> yes. a) server.request('Donutspace') will create an ProxyObject with the attrpath Donutspace.
+<chillywilly> attrpath? you mean an atrribute? like ProxyObject.Donutspace?
+<siesel> b) if you request Donutspace.sdfsdfsd the method ProxyObject.__getattr__ will be called, which is creating another proxyObject with the path 'Donutspace.sdfsdfsd' ...
+<chillywilly> hmmm
+<siesel> c) at the moment you call 'Donutspace.sdfsdfsd()' the method __call__ of that Proxyobject is executed. This method calls adapter.runMethod(attrpath) i.e. adapter.runMethod('Donutspace.sdfsdfsd') 
+<chillywilly> k
+<chillywilly> when you say below do you mean as an attribute of that object?
+<chillywilly> i.e, it makes up the object/becomes a member of it
+<chillywilly> proxy objects have to do with the bindings right?
+<chillywilly> # bindings   A dictionary containing binding definitions. The dictionary
+<chillywilly> #            is of the form: {server:handler} where:
+<chillywilly> #              1) service: Name of the service being bound/exposed
+<chillywilly> #              2) handler: Method that when called returns a class
+<chillywilly> #                 instance i.e. {'DonutPlace',getDonutPlaceObj}
+<chillywilly> #
+<chillywilly> def bind(rpcdef, drivers, bindings):
+<siesel> eeh, no, proxy objects just live on the client side
+<chillywilly> oh sorry
+<siesel> and do the 'direct access' to string mapping
+<chillywilly> string mapping?
+<chillywilly> you know what I should go to bed right now before it gets any later
+<siesel> the binding stuff is all in directoryServer mapObjects
+<chillywilly> ok
+<chillywilly> Sun Jun  9 03:10:02 CDT 2002
+<chillywilly> ;P
+<siesel> 'direct access' to 'string' mapping 
+<chillywilly> ah
+<chillywilly> and the string is the whatever.whatever.whatever type thing?
+<siesel> yes 
+<chillywilly> Donutspace.kickOutJcater()
+<chillywilly> Donutspace.beforeHeEatsAllTheProfits()
+<chillywilly> ;P
+<chillywilly> hey now if you wanted geas ona  different machine than forms you would need common installed on both machines wouldn't you?
+<siesel> chillywilly: ok, lets share the leftover Donuts
+<chillywilly> :)
+<siesel> yes, because common provides a) DB abstraction b) RPC abstraction
+<chillywilly> and other utilities
+<chillywilly> Parser, etc,
+<siesel> GServerApp
+<chillywilly> so proxy object is really like it sounds it is a proxy or "reference" to an object?
+<chillywilly> like in the remote proxy design pattern
+<chillywilly> where does the method call get marshalled out?
+<chillywilly> er, that happens in the xmlrpc lib eh?
+<chillywilly> nevermind, I keep answering my own questions
+<siesel> it has two functions, a) Service to object mapping (started by the clientapp by parsing the Donutspace) b) stores information for dynamic objects. 
+<siesel> cw: I like that. Continue answering ;)
+<chillywilly> sorry, I know I ask too many questions
+<siesel> in case of b its a kind of remote proxy object
+<chillywilly> oh
+<chillywilly> it's not a remote handle is it
+<chillywilly> bah
+<siesel> hmm, don't know how to name it, but it just holds the object handle information.
+<chillywilly> why is it needed?
+<siesel> i.e. if you receive a dyn. object it returns a proxy Object with an attr like '[asdgadfgadfgdfhsdfg]'
+<siesel> so if you call a method of that object like myObj.doSomething the following steps happen.
+<siesel> 1. __getattr__('doSomething') creates a new proxyobject with the path '[asdgadfgadfgdfhsdfg].doSomething'
+<chillywilly> oooooh
+<siesel> 2. newproxyobj.__call__(params) execute adapter.runMethod(doSomething)
+<chillywilly> ok
+<chillywilly> would somethgin like corba need a proxy object?
+<chillywilly> shit dude
+<chillywilly> I am going to bed now
+<chillywilly> we can talk some other time
+<chillywilly> or I'll email gnue-dev if it's that urgent ;)
+<chillywilly> cya
+<siesel> btw. appserver will need some functions in GNUeRPC to indicate which method call belongs to which session. So if you have some function in IRC for that please remeber them, or directly add some methods  
+<siesel> ok, night
+<chillywilly> hmmm
+<chillywilly> ok
+<chillywilly> I'll keep it in mind
+<chillywilly> night
+chillywilly (~danielb@mke-65-29-142-117.wi.rr.com) left irc: Remote closed the connection
+<siesel> thx
+<siesel> l8r
+siesel (jan@dial-195-14-251-253.netcologne.de) left irc: "What's a script?"
+ghunt (xavier@ppp-62-235-230-28.tiscali.be) joined #gnuenterprise.
+<esands> dneighbo: sorry about that, but the cvs command I gave you "cvs rtag -b -r [oldtag] [newtag] [module]" required oldtag and newtag to be different.  Basically it was say, make all the files in module [module] with version at [oldtag] part of branch [newtag].  
+<esands> That URL I mentioned explained it all.
+ghunt (xavier@ppp-62-235-230-28.tiscali.be) left irc: Client Quit
+<esands> If you wanted to change it so newtag was the same as oldtag, but a branch instead of non-branch tag, first you had to rename oldtag then create a branch (old)newtag (with the wanted old oldtag 8) on (-r) the (new)oldtag. 
+<esands> The main difference between a tag and a branch tag is that branch adds a 1.rev.0.branch(... etc) version to the server RCS file.
+<esands> you probably can 'fix' (change) things by removing the first xxx-stable tag and then renaming the xxx-branch to xxx-stable
+<esands> ajmitch: Here an example of the state of the art for 'free' SME accounting in linux at the moment http://www.ncsysadmin.org/july2001/ncsa-gnucash-talk-4.html.  I use a method like this for my consulating company and its a damn chore at times compared to a proper 4GL system.
+Action: ajmitch looks then goes to sleep :)
+<ajmitch> 404
+<esands> remove the trailing dot?
+<ajmitch> ah didn't notice
+<ajmitch> useful page
+Action: ajmitch must sleep tho - night all
+<esands> Hmm, this review (http://www.linuxjournal.com//article.php?sid=5669) meants a web interface for gnucash.  That might make things more accessiable.  Have to go hunting for it
+<esands> The one good thing about gnucash is that it taught me how to deal with double entry and the accountants equation
+<esands> night
+fajun (james@61.154.11.41) left irc: Read error: 110 (Connection timed out)
+fajun (~fajun@61.154.11.41) joined #gnuenterprise.
+ra3vat (ds@ics.elcom.ru) left irc: Read error: 104 (Connection reset by peer)
+siesel (jan@dial-213-168-88-48.netcologne.de) joined #gnuenterprise.
+<siesel> hi all
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+fajun (~fajun@61.154.11.41) left irc: Read error: 104 (Connection reset by peer)
+ra3vat (ds@ics.elcom.ru) joined #gnuenterprise.
+<ra3vat> huh
+alexey_ (~alexey@195.151.214.34) left irc: "Client Exiting"
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+ToyMan (~stuq@pm3-7-ip25.albany.thebiz.net) joined #gnuenterprise.
+siesel (jan@dial-213-168-88-48.netcologne.de) left irc: "later"
+ToyMan (~stuq@pm3-7-ip25.albany.thebiz.net) left irc: Read error: 113 (No route to host)
+fajun (james@61.154.11.118) joined #gnuenterprise.
+alexey_ (~alexey@195.151.214.34) left irc: Remote closed the connection
+StyXman (~mdione@modem117-adsl.capfed2.sinectis.com.ar) joined #gnuenterprise.
+sledge_ (~sledge@B2c02.pppool.de) joined #gnuenterprise.
+<sledge_> hi there
+sledge_ (~sledge@B2c02.pppool.de) left #gnuenterprise.
+<dneighbo> esands: thanks for your help wasnt criticizing you was criticizing me for not reading :)
+Topic changed on #gnuenterprise by derek!~derek@cpe-24-221-112-50.az.sprintbbd.net: The Glorious Release Party - More Releases Than You Can Shake a Stick At!
+derek (~derek@cpe-24-221-112-50.az.sprintbbd.net) left #gnuenterprise.
+meow- (~meow@212.199.197.2) left irc: Read error: 104 (Connection reset by peer)
+meow- (~meow@212.199.197.56) joined #gnuenterprise.
+robbie (~I@dg-1-p43.winshop.com.au) joined #gnuenterprise.
+<robbie> hola
+<robbie> hmm gnu enterprise looks like just the ticket for my bro in laws factory
+<StyXman> robbie: eh?
+<robbie> howdy
+<StyXman> english, please?
+<robbie> he came to see me tonight, he has a factory that makes attachments for earth moving equipment
+<StyXman> and.. what does it to do with gnue?
+<robbie> MRP
+<StyXman> translate to simple english, please
+<robbie> ahh, well i only found you website a minute ago, he needs some materials requirements planning software
+<StyXman> we don't plan software, we just make software :)
+<robbie> basicaly the manufacturing package looks along his lines
+siesel (jan@dial-195-14-226-140.netcologne.de) joined #gnuenterprise.
+<dtm> hi all
+<siesel> hi dtm
+<StyXman> hi
+Gedanken (~schatten@dv101s49.lawrence.ks.us) joined #gnuenterprise.
+<siesel> hi Gedanken
+<Gedanken> good afternoon
+siesel (jan@dial-195-14-226-140.netcologne.de) left irc: "Real IRC clients know "to" is a preposition, not an adverb"
+psu_ (~psu@manorcon.demon.co.uk) joined #gnuenterprise.
+<psu_> hi
+<StyXman> hi
+<psu_> how goes papo?
+<StyXman> fine. slow, but fine
+<StyXman> a question. any chances anyone can tell me why mi mail to gnue-dev@gnu.org didn't made it?
+<StyXman> s/mi/my/
+<psu_> no idea
+<psu_> sorry
+crazymike (~crazymike@65.31.133.230) joined #gnuenterprise.
+crazymike (~crazymike@65.31.133.230) left irc: Read error: 104 (Connection reset by peer)
+<StyXman> :(
+chillywilly (~danielb@mke-65-29-142-117.wi.rr.com) joined #gnuenterprise.
+StyXman (~mdione@modem117-adsl.capfed2.sinectis.com.ar) left irc: "ircII EPIC4-1.1.2 -- Are we there yet?"
+meow- (~meow@212.199.197.56) left irc: Read error: 104 (Connection reset by peer)
+meow- (~meow@212.199.197.143) joined #gnuenterprise.
+meow- (~meow@212.199.197.143) left irc: Read error: 104 (Connection reset by peer)
+meow- (~meow@212.199.197.160) joined #gnuenterprise.
+chillywilly (~danielb@mke-65-29-142-117.wi.rr.com) left irc: "Philosophers and plow men each must know his part to sow a new mentality closer to the heart..."
+meow- (~meow@212.199.197.160) left irc: Read error: 104 (Connection reset by peer)
+robbie (~I@dg-1-p43.winshop.com.au) left irc: Read error: 113 (No route to host)
+meow- (~meow@212.199.197.123) joined #gnuenterprise.
+robbie (~I@dg-1-p18.winshop.com.au) joined #gnuenterprise.
+Gedanken (~schatten@dv101s49.lawrence.ks.us) left irc: Remote closed the connection
+psu_ (~psu@manorcon.demon.co.uk) left #gnuenterprise.
+Flori (x@pD9EBE249.dip.t-dialin.net) joined #gnuenterprise.
+Flori (x@pD9EBE249.dip.t-dialin.net) left irc: Client Quit
+StyXman (~mdione@modem117-adsl.capfed2.sinectis.com.ar) joined #gnuenterprise.
+Grantbow (~grantbow@12-233-20-180.client.attbi.com) joined #gnuenterprise.
+StyXman (~mdione@modem117-adsl.capfed2.sinectis.com.ar) left irc: Client Quit
+sledge_ (~sledge@B9662.pppool.de) joined #gnuenterprise.
+<sledge_> hi there
+sledge_ (~sledge@B9662.pppool.de) left irc: Client Quit
+Gedanken (~schatten@dv101s49.lawrence.ks.us) joined #gnuenterprise.
+jcater (~jason@cpe-024-165-193-024.midsouth.rr.com) joined #gnuenterprise.
+robbie (~I@dg-1-p18.winshop.com.au) got netsplit.
+robbie (~I@dg-1-p18.winshop.com.au) got lost in the net-split.
+robbie (~I@dg-1-p18.winshop.com.au) joined #gnuenterprise.
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+fajun (james@61.154.11.118) left irc: Read error: 110 (Connection timed out)
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) left #gnuenterprise ("Client Exiting").
+Grantbow (~grantbow@12-233-20-180.client.attbi.com) left irc: "Download Gaim [http://gaim.sourceforge.net/]"
+Grantbow (~grantbow@12-233-20-180.client.attbi.com) joined #gnuenterprise.
+Grantbow (~grantbow@12-233-20-180.client.attbi.com) left irc: Client Quit
+Grantbow (~grantbow@12-233-20-180.client.attbi.com) joined #gnuenterprise.
+dsmith (dsmith@oh-strongsvillecadent1-1aa-222.clvhoh.adelphia.net) joined #gnuenterprise.
+robbie (~I@dg-1-p18.winshop.com.au) left irc: Read error: 113 (No route to host)
+robbie (~I@dg-5-p32.winshop.com.au) joined #gnuenterprise.
+dsmith (dsmith@oh-strongsvillecadent1-1aa-222.clvhoh.adelphia.net) left irc: Client Quit
+Gedanken (~schatten@dv101s49.lawrence.ks.us) left irc: Remote closed the connection
+chillywilly (~danielb@mke-65-29-142-117.wi.rr.com) joined #gnuenterprise.
+alexey_ (~Alexey@195.151.214.33) joined #gnuenterprise.
+jcater (~jason@cpe-024-165-193-024.midsouth.rr.com) left irc: "Client Exiting"
+Nick change: nickr_ -> nickr
+chillywilly (~danielb@mke-65-29-142-117.wi.rr.com) left irc: Remote closed the connection
+--- Mon Jun 10 2002

@@ -1,0 +1,58 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.15Jul2002" enddate="16 Jul 2002 23:00:00 -0800" startdate="14 Jul 2002 23:00:00 -0800" subject="[IRC] 15 Jul 2002" title="Font size and ISO encoding issues in Forms">
+
+<topic>Forms</topic>
+
+<p>Federico Heinz (perlhead) asked <quote who="Federico Heinz">Any pointer 
+on where forms gets its fonts?</quote> He found <quote who="Federico Heinz">the 
+font is hideously large. And the encoding is not ISO-8859-1, which sucks 
+too.</quote> He noted that the gnue.conf had a setting to choose monospaced 
+or proportional fonts, but the comment in the file stated 
+<quote who="Federico Heinz"># Normally, default font style and size is used, 
+according to the active theme - But it doesn't mention which "theme" we're 
+talking about. It sure doesn't use my gtk theme's settings...</quote>
+Jason Cater (jcater) said <quote who="Jason Cater">you probably wanna change 
+pointSize=10 (or so) in your gnue.conf - somehow the default was increased and 
+got passed us the last release</quote>. Federico pointed out that 
+<quote who="Federico Heinz">gnue.conf says pointSize is for fixed with 
+only...</quote> Jason said he <quote who="Jason Cater">didn't know forms worked 
+properly w/o fixed width fonts - I haven't tested it that way</quote>. 
+Federico reported <quote who="Federico Heinz">It worked for the size.</quote>
+He felt <quote who="Federico Heinz">The comments in gnue.conf are misleading</quote> 
+as they gave <quote who="Federico Heinz">the impression that the default is 
+fixedWidthFont=0</quote>. Jason agreed and said <quote who="Jason Cater">/me 
+will change that</quote>.</p>
+
+<p>On the encoding, Federico reported that <quote who="Federico Heinz">the form 
+I'm executing begins with "&lt;?xml version="1.0" encoding="ISO-8859-1"?&gt;"</quote> 
+but <quote who="Federico Heinz">I get ciryllic characters instead of accented 
+ones.</quote> He suspected <quote who="Federico Heinz">it's because forms is picking 
+a font with the wrong encoding... but I can't find out which.</quote> He went off 
+to check.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.17Jul2002">
+Two days later</a>, Federico reported <quote who="Federico Heinz">by 
+fiddling in the forms source, I fixed my encoding problem!</quote>
+He had added ISO-8859-1 as an option to the widget.SetFont 
+parameters - <quote who="Federico Heinz">It seems the problem is 
+that wx (or the python wx bindings, or *something*) does not get the 
+encoding right unless you force it.</quote> Arturas Kriukovas 
+(Arturas) confirmed <quote who="Arturas Kriukovas">about a 3 days ago 
+this was fixed</quote> in CVS - <quote who="Arturas Kriukovas">was 
+added option in gnue.conf</quote>. Marcos Dione (StyXman) confirmed 
+that Project papo was currently using its own forked CVS -
+<quote who="Marcos Dione">I'll tell our cvsmaster to sync if he 
+finds it suitable...</quote> The reason for the fork was 
+<quote who="Marcos Dione">we are hacking some things we need into 
+gnue, but we can't send patches yet because we hadn't give the 
+copyright to gnu yet. So, we 'forked' till we cand send our 
+'improvements' to the gnue's guys.</quote> Federico wondered 
+whether there was a need for a further gnue.conf option - 
+<quote who="Federico Heinz">The configuration file site.py has 
+an "encoding" option, which would work pretty well for 
+this.</quote>. Arturas pointed out that this 
+<quote who="Arturas Kriukovas">encoding option is for database</quote>, 
+not the Forms client display.</p>
+
+</section>
+
+

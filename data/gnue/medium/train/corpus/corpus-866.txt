@@ -1,0 +1,134 @@
+*** johannesV has joined #gnuenterprise
+<johannesV> good morning
+*** reinhard has joined #gnuenterprise
+*** btami has joined #gnuenterprise
+<btami> good morning
+<reinhard> good morning
+*** johannesV_ has joined #gnuenterprise
+*** johannesV has quit IRC
+*** kilo has joined #gnuenterprise
+*** johannesV_ has quit IRC
+*** johannesV has joined #gnuenterprise
+*** jamest has joined #gnuenterprise
+*** kilo has left #gnuenterprise
+*** btami has quit IRC
+<jamest> how stable is forms head?
+<jamest> and the wx driver in particular
+<jamest> 2.6
+<jamest> the dropdowns the the old wx driver have started causing us lots of issues
+*** klasstek has joined #gnuenterprise
+<reinhard> apart from the fact that I'm messing with forms a little right now
+<reinhard> head should be perfectly usable, and wx26 should be possibly the most stable driver of all
+<reinhard> (which shouldn't mean that you *won't* hit bugs...)
+<jamest> :)
+*** SachaS has quit IRC
+<jamest> hmmmm
+<jamest> 2.6 computes spacing a bit different than 2.4 did doesn't it
+<reinhard> yes it does
+<reinhard> ah, and I think you might hit the same problems as you did with the gtk2 driver
+<reinhard> spacing depends on the biggest control of the form, IIRC
+<johannesV> reinhard, no
+<johannesV> spacing depends on the biggest control possibel
+<johannesV> erm possible
+<johannesV> depending on the platform used
+<reinhard> ah ok
+<jamest> it's odd
+<jamest> looks like spacing might not take pages into account?
+<jamest> so it's global for all tabs on a form?
+<johannesV> ?
+<reinhard> what johannesV said: it does not depend on what controls are there on the form
+*** derek has quit IRC
+<reinhard> it just takes standard entry size, standard button size, standard dropdown size
+<reinhard> and takes the biggest of them
+<reinhard> so no control will get chopped
+<johannesV> and no control gets streched ....
+<johannesV> (which looks as ugly as well :)
+<jamest> it really increases the horizontal space usage though
+<jamest> like on a rows=10
+<jamest> it looking like whitespace is doubled
+<reinhard> yes
+<johannesV> hm, in the horizontal the space depends on the current app-font (taking in account the average character-width)
+<reinhard> wx driver used to chop for example dropdowns and buttons
+<reinhard> oh
+* reinhard mixed up horizontal and vertical ;-)
+<jamest> ok, i was going to mention vertical too :)
+*** johannesV_ has joined #gnuenterprise
+<reinhard> johannesV_: I wonder whether widgetWidth and widgetHeight point sizes could be a configuration option
+<reinhard> and if set override the auto dectected widget sizes
+<johannesV_> hm
+<jamest> that doesn't work well
+<jamest> as for whatever reason themes effect forms here
+<johannesV_> should be handled quite well if there are layoutmanagers ...
+<johannesV_> right
+<jamest> a form that fits on user A's screen doesn't on User B's
+<reinhard> ok, I agree that the only real solution is layout management
+<jamest> i'm not reporting this as a bug, just confirming behaviour
+<reinhard> a button simply *isn't* of the same size as an entry
+<jamest> i have a list of real bugs/feature issues i'll bring up after test opening all the forms
+<jamest> :)
+<reinhard> :)
+<jamest> but I guess I could start :)
+<jamest> the two biggest things stopping me from opening forms are
+<jamest> 'integer' is not valid for typecast-attribute which allows these values only: 'date','text','number'
+<jamest> 'boolean' is not valid for typecast-attribute which allows these values only: 'date','text','number'
+<johannesV_> hm , but that should have been fixed ... quite some time ago
+<johannesV_> ah, no, not at all ... that was the thing with ValueSet
+<johannesV_> is svn working ?
+<jamest> I'm running svn head from this AM
+<johannesV_> seems as if my svn update is hanging ...
+<jamest> checking
+<jamest> wtf?
+<jamest> it's updating
+<jamest> ah, ok, didn't see the commits from this morning
+<jamest> yeah, worked fine
+<johannesV_> johannes@chicago:~/prj/gnue$ svn update
+<johannesV_> ssh: connect to host svn.gnuenterprise.org port 22: Connection timed out
+<johannesV_> svn: Netzwerkverbindung wurde unerwartet geschlossen.
+<johannesV_> i'm not able to update svn ...
+<jamest> probably getting blocked in the AT&T closests we're not supposed to know about
+<johannesV_> :)
+<johannesV_> ok, i've to run now ... bbl
+<jamest> can you ssh in to the server at all?
+<jamest> ok, l8r
+<johannesV_> yes, login in via ssh is ok
+<reinhard> bbl
+*** reinhard has quit IRC
+*** johannesV has quit IRC
+*** lupo__ has joined #gnuenterprise
+*** jcater has joined #gnuenterprise
+*** lupo__ has quit IRC
+*** derek has joined #gnuenterprise
+*** reinhard has joined #gnuenterprise
+*** flock- has joined #gnuenterprise
+<jamest> reinhard: is there a reason we don't don't support typecast= boolean or integer in gfd fields?
+<reinhard> I have no idea, the set of possible values was defined ages ago
+<reinhard> but it was never checked
+<reinhard> I am no opposed at all to add any other values to the list as you see fit
+*** klasstek has quit IRC
+*** bigbrother` has quit IRC
+*** nickr has quit IRC
+*** klasstek has joined #gnuenterprise
+*** bigbrother` has joined #gnuenterprise
+*** nickr has joined #gnuenterprise
+*** SachaS has joined #gnuenterprise
+*** sjc has joined #gnuenterprise
+*** johannesV_ has quit IRC
+*** SachaS is now known as SachaZzz
+<reinhard> good night all
+*** reinhard has quit IRC
+*** jamest has left #gnuenterprise
+*** derek__ has joined #gnuenterprise
+*** bigbrother_ has joined #gnuenterprise
+*** derek has quit IRC
+*** bigbrother` has quit IRC
+*** derek__ is now known as derek
+*** klasstek has quit IRC
+*** jamest has joined #gnuenterprise
+*** derek has quit IRC
+*** derek has joined #gnuenterprise
+*** derek has quit IRC
+*** jcater has quit IRC
+*** jcater has joined #gnuenterprise
+*** jamest has quit IRC
+*** sjc has quit IRC
+*** jcater has left #gnuenterprise

@@ -1,0 +1,76 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.20Jun2002" enddate="19 Jun 2002 23:00:00 -0800" startdate="19 Jun 2002 23:00:00 -0800" subject="[IRC] 20 Jun 2002" title="Application Server triggers">
+
+<topic>Application Server</topic>
+<topic>Forms</topic>
+
+<mention>Reinhard M&#252;ller</mention>
+
+<p>Daniel Baumann (chillywilly) asked <quote who="Daniel Baumann">what
+do you think about doing an xml markup of ODL?</quote> (Object Definition
+Languague). Jan Ischebeck (siesel) said he did not think it was necessary. 
+Daniel said <quote who="Daniel Baumann">so just use straight ODL?</quote>, 
+which was a standard. Jan said he thought <quote who="Jan Ischebeck">we 
+should take the things we need to create our own XML format</quote>.
+Daniel noted that Reinhard M&#252;ller wanted support for non-XML mark-up as 
+well. Jan said <quote who="Jan Ischebeck">I just think that it is easier 
+(for the first step) to have an own XML format, which is quite similar to 
+the internal appserver structures</quote> for things like 
+<quote who="Jan Ischebeck">the (still has to come) class definitions</quote> 
+and <quote who="Jan Ischebeck">the (still has to come) method 
+definitions</quote>. Daniel wondered <quote who="Daniel Baumann">how 
+do you base your own format on something that does not exist?</quote>
+Jan said <quote who="Jan Ischebeck">thats the point which makes me get 
+headakes ;)</quote>.</p>
+
+<p>Later, Derek Neighbors (dneighbo) said <quote who="Derek Neighbors">i 
+think it should be mandatory our</quote> GNUe Class Definitions (.gcd) 
+for the Application Server <quote who="Derek Neighbors">is xml - as from xml we 
+can make it ANYTHING else easily</quote>. Daniel agreed - 
+<quote who="Daniel Baumann">XSLT is cool</quote>. Jan also agreed, but noted 
+that both the old .gcd format and ODL had the drawback that 
+<quote who="Jan Ischebeck">the method code has to be separatly defined</quote>. 
+Derek said that <quote who="Derek Neighbors">remote methods(triggers) and normal 
+db wuold be HUGE to start with</quote> - none of the existing .gcds had any methods 
+defined in them anyway. Jan said that was <quote who="Jan Ischebeck">not quite right: 
+there is ONE full coded method in there ;)</quote> Daniel said 
+<quote who="Daniel Baumann">so the idea is to include the method code in the 
+object description? does this rule out supporting other languages in a decent 
+way?</quote> Jason Cater (jcater) said <quote who="Jason Cater">I think the 
+idea is to just get method code out there - regardless of an object description 
+:)</quote>. Derek said <quote who="Derek Neighbors">basically what that gives 
+us is xplatform db triggers</quote>. He was <quote who="Derek Neighbors">not 
+against object to relational mappers in any way shape or form</quote> in the 
+future <quote who="Derek Neighbors">but i want best bang for buck</quote> in 
+the short term. He said <quote who="Derek Neighbors">if we do remote triggers/ 
+remote db - we are n-tier as advertised - and gain the benefits from 
+that</quote>.</p>
+
+<p>Jan asked how triggers would be defined - would they be 
+<quote who="Jan Ischebeck"> stored in a datastructure (i.e. in the database, 
+i.e. in a table) - and if a form wants to call a trigger it calls it</quote>? 
+Daniel said this implied that <quote who="Daniel Baumann">appserver would need 
+to know something about the forms definition right? assuming you keep the 
+trigger declarations in the gfd</quote>. Jason said that the aim was to 
+avoid actually defining the triggers in the .gfd (GNUe Forms Definition) - 
+<quote who="Jason Cater">the form would access triggers via the common 
+"appserver" driver - which would use grpc</quote>.</p>
+ 
+<p>Later, Derek said that the remote application server triggers would 
+replace the database-level triggers - <quote who="Derek Neighbors">im thinking 
+in the client you define 'trigger' spaces to import or include - then you can 
+call triggers in those spaces</quote>. A trigger might be something like 
+validating a bank account number - the Form could just call something like 
+<quote who="Derek Neighbors">accounts.isValid</quote>, which the Application 
+Server would then execute and return the result. He added 
+<quote who="Derek Neighbors">personally i see data going remotely too - 
+this was part of my problems with putting data functionality in blocks - 
+as my long term goal was that you would have local datasources or 
+remote datasources  so in an n-tier application you would point your 
+datasource to a remote datasource</quote>. Jan said that 
+<quote who="Jan Ischebeck">if you have local and remote triggers, then in 
+case of remote triggers you should distinguish between data bound triggers 
+and gui bound triggers</quote>.</p>
+
+</section>
+
+

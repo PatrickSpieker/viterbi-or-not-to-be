@@ -1,0 +1,28 @@
+<section archive="http://mail.gnu.org/pipermail/gnue/2002-September/003242.html" enddate="09 Sep 2002 06:45:34 -0800" posts="2" startdate="09 Sep 2002 01:29:56 -0800" subject="Connection for Postgres from Designer" title="connections.conf file for GNUe">
+
+<topic>Designer</topic>
+
+<p>David Goodenough reported <quote who="David Goodenough">Now 
+Forms and Designer install and run properly</quote> but he 
+could not find out how to define a connection to a postgreSQL 
+database. Jason Cater said <quote who="Jason Cater">You will 
+need to modify /usr/local/gnue/etc/connections.conf and add an
+entry for each database you will use.</quote> He explained 
+<quote who="Jason Cater">If you have a production PostgreSQL 
+database database called "tiger", your connections.conf file 
+might look like:</quote></p>
+
+<p><quote who="Jason Cater">
+  [prod]<br />
+  provider = psycopg<br />
+  host = localhost<br />
+  dbname = tiger</quote></p>
+
+<p>Then <quote who="Jason Cater">in your forms definitions, 
+your datasources will have a database="prod" property.</quote> 
+This example assumed that the psycopg driver was being used to 
+connect python to PostgreSQL.</p>
+
+</section>
+
+

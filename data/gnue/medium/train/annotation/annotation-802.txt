@@ -1,0 +1,74 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.22Mar2002" enddate="23 Mar 2002 00:00:00 -0800" startdate="22 Mar 2002 00:00:00 -0800" subject="[IRC] 22 Mar 2002" title="Bug-testing Designer and Forms">
+<topic>Designer</topic>
+<topic>Forms</topic>
+
+
+<p>Harald Meyer (Harald1) reported a crash using GNUe Forms on Windows, using 
+python 2.2. Derek suggested <quote who="Derek Neighbors">2.2 you dont want - 
+drop to 2.1 - 2.2 is buggy - you can use it but you wont be able to save forms 
+in designer because of a streamIO bug in unicode support w/ 2.2 (still unfixed 
+even in last candidate release)</quote>, as previously discussed in
+<kcref startdate="09 Feb 2002 00:00:00 -0800" title="Occasional unicode problems with Designer" />. 
+This meant <quote who="Derek Neighbors">
+if you save them - reopen them - and save them</quote> then a null (^@) 
+character would be inserted <quote who="Derek Neighbors">after EVERY character - 
+so you get ^@o^@u^@t^@p^@u^@t^@ like that :) - if you have someone one staff you 
+want to 'joke' with - this is one of thsoe good 'joke' bugs :)</quote>. Some editors
+wouldn't display the null characters, but <quote who="Derek Neighbors">in emacs its 
+visible</quote>. Harald reported he didn't seem to be having this problem, 
+<quote who="Harald Meyer">but if i do save-&gt;load it crashes</quote>. Derek suggested 
+<quote who="Derek Neighbors">is there way you can install python2.1 on that machine 
+as well? -  or better yet just grab the 0.1.1 release -  it has all dependencies 
+compiled in so to speak</quote>. James Thompson (jamest) was impressed that Harald 
+had installed GNUe and all the dependancies on Windows from source - 
+<quote who="James Thompson">that's cool, most people use the bins</quote>. Derek 
+said that Harald's coolness had already been established, 
+<quote who="Derek Neighbors">as he actually submits bug reports :)</quote>. 
+Harald said <quote who="Harald Meyer">my win is mostly unix: apache, mysql, 
+perl, php, xemacs, gcc, ...</quote> Jason Cater (jcater) suggested that Harald was 
+effectively running <quote who="Jason Cater">GNU/Win ?</quote>. Derek said that 
+<quote who="Derek Neighbors">its scary but i hear pretell that
+Debian/Windows is close via cygwin i.e. apt and much of debian is getting tooled 
+to be usable via cygwin</quote>.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.23Mar2002">
+The next day</a>, harald reported <quote who="Harald Meyer">
+I completed the tests</quote> with different versions of Designer and python -
+<quote who="Harald Meyer">should I post the complete results to dcl, as there 
+were some more problems with the exe-releases ?</quote> Derek requested 
+<quote who="Derek Neighbors">please file the bug - it exists in linux as well 
+- i.e. my current cvs does the exact same thing</quote>. He 
+<quote who="Derek Neighbors">loves that we have another bug hunter, i was feeling 
+so lonely</quote>. Harald said that the 0.1.0 <quote who="Harald Meyer">gfdesigner 
+exe release</quote> had several further bugs that the CVS version did not have, 
+and <quote who="Harald Meyer">It seems that the saving bug is even worse. It 
+crashes on other files, too, after one file was saved and closed - but it does 
+not crash, when the first file is not closed</quote>.</p>
+
+<p>Later, Harald asked <quote who="Harald Meyer">which trigger events are 
+implemented, just those from 
+<a href="http://www.gnuenterprise.org/docs/techref/x81.html">
+http://www.gnuenterprise.org/docs/techref/x81.html</a> or all?</quote>. 
+Derek said <quote who="Derek Neighbors">the ones in the techref 'should' be 
+implemented -  but these are things that unless one of the developers are 
+using them, probably are not getting properly regression tested</quote>. 
+He suggested for the moment testing or looking at the source code to find out - 
+<quote who="Derek Neighbors">(bad answer i know)</quote>. If 
+<quote who="Derek Neighbors">you use one that is the tech ref and it doesnt 
+work please file a bug against it</quote></p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.25Mar2002">
+Two days later</a>, Harald Meyer (Harald1) reported a further bug with Designer, 
+which was happening with the CVS version, but not the official 0.1.1 release - 
+<quote who="Harald Meyer">try making any object in designer, and delete it via 
+the context menu</quote>. Daniel Baumann (chillywilly) updated his version to 
+CVS, and confirmed <quote who="Daniel Baumann">it crashed</quote>. 
+Harald said he had <quote who="Harald Meyer">already tracked the bug so far down, 
+that it happens,if LayoutDesigner's OnDelete is called - though it doesn't crash 
+right in there, but sometime later</quote>. Daniel asked 
+<quote who="Daniel Baumann">does it crash if you delete a widget a different way?</quote>.
+Harald said <quote who="Harald Meyer">it doesn't crash if I replace the Destroy() with 
+Show(false) and designer works a expected. Just a waste of resources</quote>.</p>
+
+</section>
+

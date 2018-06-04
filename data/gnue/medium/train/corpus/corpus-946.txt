@@ -1,0 +1,833 @@
+[00:19] Last message repeated 1 time(s).
+Bill_H (~chatzilla@ga-cmng-cuda2-c3a-a-143.cmngga.adelphia.net) joined #gnuenterprise.
+Bill_H (~chatzilla@ga-cmng-cuda2-c3a-a-143.cmngga.adelphia.net) left irc: Read error: 104 (Connection reset by peer)
+Nick change: nickr_ -> nickr
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) left irc: "Client Exiting"
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: "sleeep"
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+alexey_ (~alexey@195.151.214.34) left irc: "Client Exiting"
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+alexey_ (~alexey@195.151.214.34) left irc: Read error: 113 (No route to host)
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+kemitix (~chatzilla@kemitix.demon.co.uk) joined #gnuenterprise.
+kemitix (~chatzilla@kemitix.demon.co.uk) left irc: Remote closed the connection
+kemitix (~chatzilla@kemitix.demon.co.uk) joined #gnuenterprise.
+alexey_ (~alexey@195.151.214.34) left irc: "Client Exiting"
+kemitix (~chatzilla@kemitix.demon.co.uk) left irc: 
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+<chillywilly> ello
+rdean (~rdean@chcgil2-ar2-4-64-030-076.chcgil2.dsl-verizon.net) joined #gnuenterprise.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: "woooooosh!"
+SachaS_ (~Sacha@dialup-196-186.wasp.net.au) joined #gnuenterprise.
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) left #gnuenterprise ("Client Exiting").
+ToyMan (~stuq@pm3-14-ip8.albany.thebiz.net) joined #gnuenterprise.
+<derek> sup ToyMan
+<ToyMan> hey derek
+<ToyMan> not much
+<ToyMan> got your email
+<ToyMan> i'll look into this on mon
+<derek> works for me
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+lupo_ (~lupo@pD950543B.dip.t-dialin.net) joined #gnuenterprise.
+lupo_ (~lupo@pD950543B.dip.t-dialin.net) left irc: Client Quit
+<derek> hi jhs
+<jhs> hi
+[11:00] Last message repeated 1 time(s).
+<jhs> sorry bx swapped out on me
+<jhs> anybody here know the relative merits of GNU Enterprise vs. compiere?
+<jhs> does downloading the stable release entail grabbing the 30 or so latest packages from the download page?  Is there a consolidated package or such?
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: "BitchX-1.0c19 -- just do it."
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+fitzix (~fitzix@122.128.252.64.snet.net) joined #gnuenterprise.
+<derek> sigh missed him
+<fitzix> hey there Derek - how are ya?
+<derek> good getting ready to leave for church
+<derek> bummed to miss jhs story :(
+<derek> er question
+Action: derek gets bummed when questions get asked but not answered here and no email or anything exists to get back with them
+<ajmitch> hi
+<fitzix> i hate that
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+<jbailey> Blech.  Why doesn't dcl use a makefile like every other project out there? =)
+<derek> jbailey: make sucks
+<derek> certainly if you need a make file create one
+<derek> as at this point debs are more important than how they are created :)
+<ajmitch> hi
+<ajmitch> jbailey :)
+<jbailey> Lemme throw a simple one together.
+<jbailey> I'll cheerfully maintain it ongoing.
+<jbailey> Since otherwise I'd pretty much be doing so for the package anyway.
+<derek> :)
+<derek> im off to church be back in a bit
+derek (~derek@cpe-24-221-112-50.az.sprintbbd.net) left irc: "um my gnue tree is bigger than your gnue tree"
+<jbailey> how long, in case I have questions?
+<jbailey> or not.
+<jbailey> fine.
+<jbailey> be that way.
+<jbailey> see if I noted.
+<ajmitch> heh
+<jbailey> notice even.
+<jbailey> I should also package flite, since dyfet asked for it.
+<ajmitch> alroght
+<ajmitch> gadfly is packaged, ableit quite badly :)
+<jbailey> Want me to review it?
+<ajmitch> certainly not, it has things like CVS dirs in it :)
+Action: ajmitch just went fr a working package, not a pretty one :)
+<jbailey> Another thing I like about DBS builds.  You can blame it on upstream.
+<ajmitch> since distutils was going to force me to install in /usr anyway
+<jbailey> distutils is not only annoying, but it's ugly too.
+<ajmitch> very
+<ajmitch> gadfly had been orphaned, i inly did enough to make it installable again for me
+<jbailey> Well.  LEmme know when you've uploaded it so I can file RC bugs just for fun. =)
+<ajmitch> hehe
+<ajmitch> also got to get the GNUe db driver working
+<jbailey> Hmm.. Debian policy appears to still suck for web apps.
+<ajmitch> not surprising
+<jbailey> Why do the instructions not include the best way to get the sources to where they need to go?
+<jbailey> *sigh*
+<jbailey> I need a drink I think =)
+<ajmitch> :)
+Action: ajmitch needs coffee
+<jbailey> Lesse.
+<jbailey> the config file needs to be in /etc
+<jbailey> docs stuff should be in /usr/share/doc/dcl/
+<jbailey> Install helpers should go where?
+<ajmitch> hmm, what sort of helpers? db scritps?
+<jbailey> Yeah
+ra3vat (~ds@ics.elcom.ru) left irc: "Client Exiting"
+<ajmitch> maybe /usr/share/dcl?
+Action: ajmitch has not clue
+<jbailey> I think /usr/share/dcl becomes the web root.
+<jbailey> And I'm fairly certain that's not the right place.
+<ajmitch> alright, /etc/dcl doesn't suit for executable scripts
+<jbailey> I guess I could just not install them,.
+<jbailey> That doesn't seem right though.
+<jbailey> (digging through policy)
+<ajmitch> users may want to run these again
+reinhard (~rm@62.47.247.52) joined #gnuenterprise.
+<ajmitch> hi reinhard
+<reinhard> hello
+<jbailey> Oh interesting.
+<jbailey> 12.5.2 says that web apps go somewhere under /usr/share/doc/PACKAGE/
+<ajmitch> hmm?
+<jbailey> That doesn't seem right, though.
+Action: ajmitch has seen scripts & stuff in there
+<jbailey> Bah.
+<jbailey> I guess I'll take a look at how sourceforge is done.
+<ajmitch> but it still doesn't seem right
+ra3vat (~ds@ics.elcom.ru) joined #gnuenterprise.
+<jbailey> sourceforge does it wrong.
+<jbailey> it's all under /usrlib/
+<jbailey> there's no way that php files are arch specific.
+<jbailey> So I guess /usr/share/dcl/www for the web root
+<jbailey> scripts under /usr/share/dcl
+<jbailey> docs under /usr/share/doc/dcl/
+<jbailey> config file in /etc\
+<ajmitch> that would work
+<ajmitch> maybe try & push thru a policy change? ;)
+<jbailey> No time for that.
+<jbailey> Maybe in September.
+<ajmitch> didn't mean now
+<jbailey> Well, and they're supposed to be doing a bunch of stuff with virtual host support in apache2.
+<jbailey> I haven't really followed all of that.
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+<ajmitch> hello psu
+<jbailey> hmm
+<jbailey> contrib directory
+<jbailey> what to do with that?
+<psu> hi
+<ajmitch> /usr/share/doc/dcl
+<ajmitch> or a -contrib package if you really want
+<jbailey> I havent' even started thinking baout how to split this up. =)
+<jbailey> I'll worry about a separate package after someone files a bug. =)
+Action: ajmitch warms up reportbug :)
+<jbailey> Sure.  There's a new version out even. =)
+<psu> http://kt.zork.net/GNUe/gnue20020706_36.html
+<ajmitch> wasn't that up yesterday? :)
+<jbailey> attachments directory.
+<jbailey> It wants to *Write* there?
+<jbailey> Ugh
+<jbailey> Hopefully that can change in the config file.
+<jbailey> Otherwise there's sed magic to be had. =)
+<ajmitch> for email attachments sent thru 
+<jbailey> *puke*
+<ajmitch> eg, submitting stuff to designer-support@gnuenterprise.org, with a patch attached
+<jbailey> So, hmm.
+<jbailey>  /var/lib
+<ajmitch> right
+<jbailey> or /var/cache? =)
+<ajmitch> hmmm
+<jbailey> lib probably
+<psu> jbailey: yep, but not everyone here subscribes to kcgnueannounce ;-)
+<jbailey> psu: Errr. what? =)
+<ajmitch>  /var/lib
+<jbailey> Oy.
+<jbailey> I should look up what /var/cache is for.
+<jbailey> er, not cache
+<jbailey> spool
+<jbailey>  /var/spool
+<jbailey> Esp. if it's a temp holding pen, and not permanent storage.
+<ajmitch> maybe /var/lib/dcl for the install helpers? :)
+<ajmitch> yes
+<jbailey> Data in /var/spool represents work to be done in the future (by a program, user, or administrator); often data is deleted after it has been processed
+<ajmitch> there's a /var/spool/squirrelmail/attach
+<jbailey> The /var/lib hierarchy holds state information pertaining to an application or the system. State information is data that programs modify while they run, and that pertains to one specific host.
+<ajmitch> ok then
+<jbailey> Install helpers never change, so shouldn't be under var
+<jbailey> I think it looks like /var/spool.
+<ajmitch> yup
+<jbailey> I wonder how bad this will break things. =)
+<ajmitch> not at all, i'm sure ;)
+<jbailey> I suppose with psu hanging around I should cuss and swear at the upstream, should I? =)
+<ajmitch> s/should/shouldn't/ ? :)
+<jbailey> yes, shouldn't =)
+<psu> a little bit of mild swearing is probably one of the better ways of getting into headquote
+<psu> provided it is amusing ;-)
+<ajmitch> hehe
+<jbailey> psu: Sort of like threatening lawyers at the RBL folks? =)
+Action: psu doesn'y grok the reference, but probably doesn't want to 
+<jbailey> RBL are the spam-blocking folks.
+<jbailey> Large corporations used to have a habit of threatening to sue them.   And they would normally post verbatum the messages to prominent web sites.
+Action: ajmitch should possibly clean out his debian-devel mail folder
+<ajmitch> it's only a 100MB mbox file tho :)
+alexey_ (~alexey@195.151.214.34) left irc: No route to host
+<jbailey> http://www.mail-abuse.org/anti-rbl.html
+<jbailey> If you're interested.
+<jbailey> I'm going for a stretch before I start hacking on this DCL package.
+<jbailey> Damnit, I *will* have beauty when I'm done!
+Action: jbailey is away: I'm busy
+<psu> does beauty know?
+Action: jbailey is back (gone 00:15:49)
+<jbailey> psu: We'll find out ;)
+<jbailey> The templates/custom is more what I'm wondering about.
+<jbailey> Basically, if it's not in /etc or /var, it's going to get overwritten on upgrade.
+<ajmitch> templates/custom looks like it is for site-customisation
+<psu> bbl
+<ajmitch> k
+<jbailey> bye psu
+<jbailey> Yeah.
+<ajmitch> so perhaps put it in var, and symlink it into the webroot? that'd require apache to follow symlinks
+<jbailey> It's just going to be pretty invasive to get some of these in there.
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise ("cool quit msg").
+<jbailey> Not etc?
+<ajmitch> hmm, it's not really configuration tho, do you think it suits etc?
+<ajmitch> since it's mainly just editing html pages
+<jbailey> I guess the question is it more state data or configuration file? =)
+<ajmitch> hmmm
+Action: ajmitch ponders
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+<jbailey> Bah.
+<jbailey> Why is the base directory now dclgw?
+<ajmitch> because they decided to change it & be annoying
+<jbailey> Gotcha
+<jhs> Hm.  I installed Forms release version, and I'm getting import problems, although setup.py said that this isn't a problem.  Any hints?
+<ajmitch> what problems?
+<jhs> ImportError: No module named gnue.common.GClientApp from GFClient.py
+<jhs> The docs in the source tarball said to run 'gfclient' but it doesn't seem to exist, so I tried running GFClient.py manually.
+<ajmitch> run gnue-forms
+<ajmitch> there was a name change that didn't get into the docs
+<jhs> cool.  gnue-forms is in scripts/gnue-forms and build/scripts/gnue-forms -- all in src dirs.  Nothing in /usr/local/gnue.  Is that right?
+<ajmitch> hmm, setup.py install should have installed something i think
+<ajmitch> looked in /usr/local/bin for symlinks?
+<jhs> oh.  My mistake.  I assumed everything was --prefix=/usr/local/gnue essentially
+<jhs> found it.. thanks
+<ajmitch> np
+<jbailey> getting this one lintian clean will be nasty I think.
+<ajmitch> that could be a hassle
+<jbailey> Ah.
+<jbailey> No errors and down to 2 pages of warnings.
+<ajmitch> ouch
+<jbailey> 15 warnings now.
+<jbailey> 6 of which are that upstream appears to have made some files gratuitously execuatble.
+<ajmitch> hmm, i wonder how much progress has been made on DCL lately?
+<jbailey> Dunno
+Action: ajmitch runs cvs2cl
+<jbailey> I've never figured out why GNUe took it on.  It's not like there's an easy migration path to forms.
+<ajmitch> ah well, derek's doing it
+<ajmitch> dunno if it needs to be forms-based to be GNUeish :)
+<jbailey> I'm just thinking 'core technology' type of thing.
+<jbailey> Sort of like taking on bayonne.
+<ajmitch> looks like most of the action lately has been by dneighbo
+<jbailey> Right, first cut DCL debs available.
+<ajmitch> great
+<ajmitch> derek will be happy
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+<ajmitch> wb psu
+<jbailey> Oh, hmm.  I haven't fixed the moved attachments directory yet.
+<jbailey> Then i'll have snapshot debs.
+<ajmitch> ok
+<psu> hi ajmitch
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+<jbailey> For the brave,
+<jbailey> the wild
+<jbailey> the crazy:
+<jbailey> http://people.debian.org/~jbailey/dcl_20020705-pre1_all.deb
+<jbailey> Note that attachments are probably buggered.
+<jbailey> And I've only tested it through a local interpretor.
+<jbailey> Bug reports should just be emailed to me, and I'll get them through as quick as I can.
+<ajmitch> alright
+<jbailey> So hopefully derek reads the irc logs.
+<ajmitch> will let you know if it screws my box up
+<jbailey> *lol* =)
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) left #gnuenterprise ("Client Exiting").
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise ("nite").
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+reinhard (~rm@62.47.247.52) left irc: "'Hardware' defines as the parts of a computer system that can be kicked"
+siesel (jan@dial-195-14-251-64.netcologne.de) joined #gnuenterprise.
+<siesel> hi !
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+<dneighbo> bugger missed jhs AGAIN
+<dneighbo> jbailey : read logs and killer that debs are there, will try to test today and will put a call out on the home pages and announce for testing
+fitzix (~fitzix@122.128.252.64.snet.net) left irc: "Client Exiting"
+<dneighbo> oh debian ghods do you exist?
+<dneighbo> ajmitch: you around?
+rdean (~rdean@chcgil2-ar2-4-64-030-076.chcgil2.dsl-verizon.net) left irc: Remote closed the connection
+<dneighbo> debian docs suck
+siesel (jan@dial-195-14-251-64.netcologne.de) left irc: Read error: 113 (No route to host)
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+<dneighbo> finally i meet jhs to answer questions :)
+<dneighbo> i keep missing you
+<dneighbo> do your prior questions still stand?
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+<nickr> deedle deedle deedle
+<dneighbo> hey nickr do you know if woody boot disks for net install bf2.4
+<dneighbo> do grub or lilo by default?
+<dneighbo> and do you know how to do ext3 from them?
+Action: dneighbo is wiping my rh6.2 laptop FINALLY and putting woody on it
+<nickr> lilo
+<nickr> yes, if you boot bf2.4 if gives you the option of selecting ext3 or reiser
+<nickr> when formatting
+<nickr> if you can boot a woody cd, like one of the unofficial images, you can boot bf2.4 by typing bf24 at the boot prompt
+<dneighbo> nickr i downloaded bf2.4 rescue.bin and root.bin
+<dneighbo> and put htem on CD
+<dneighbo> i was going to insert the rescue and reboot
+<dneighbo> hoping the instrcutions from there would be sufficient?
+<dneighbo> is this silly to assume?
+<nickr> uh
+<nickr> did you like roll your own cd or something?
+<dneighbo> ?
+<nickr> 16:49 < dneighbo> nickr i downloaded bf2.4 rescue.bin and root.bin
+<nickr> 16:49 < dneighbo> and put htem on CD
+<nickr> 16:49 < dneighbo> nickr i downloaded bf2.4 rescue.bin and root.bin
+<nickr> 16:49 < dneighbo> and put htem on CD
+<dneighbo> no i simply downloaded the rescue and root floppies as instructions state
+<nickr> that sounds like insanity to me
+<dneighbo> doh
+<dneighbo> i mean floppy
+<nickr> oh
+<nickr> you also need the three driver floppies
+<dneighbo> ?
+<nickr> OR you can download the unofficial CD image for woody disk 1 and use that instead
+<dneighbo> the instructions said i shouldnt need that if i have reasonably supported ethernet card
+<nickr> well follow the instrucgtions then
+<jcater> it's trivial to convert an ext2 partition to ext3
+Action: jcater never does it during the install
+<dneighbo> If you have a working Ethernet connection on the computer, and your Ethernet card is of one of the types compiled into the installation kernel, you may only need the install system boot files. The installer is capable of installing the kernel and drivers over the network for many common Ethernet cards. 
+<jcater> of course, that's because I usually install potato and upgrade to woody :)
+<dneighbo> jcater: im starting to think that is way to go
+<dneighbo> as i have potato disks and always did it that way prior
+<nickr> Its not
+<dneighbo> was thinking rather than have to redo kernel and file system
+<nickr> Its madness to install potato these days
+<dneighbo> would do via woody and net install
+<dneighbo> but the instructions blow and #debian is about well as helpful as depends after your shorts are already soiled
+<nickr> why not just try it and if it doesn't work as it says in the instructions, then come back for help?
+<dneighbo> thats what im doing
+<dneighbo> hopefully you will be around tonight :)
+<dneighbo> i will be at parents for a week and frankly ive come to point i cant live w/o debian
+<dneighbo> so having to upgrade my laptop before i leave :)
+<dneighbo> nickr: so at boot:
+<dneighbo> do i need to do that bf2.4 thing?
+<dneighbo> instructions dont say anything
+<nickr> No
+<nickr> that was only for booting from CD#1
+<dneighbo> ok i just hit enter
+<nickr> yep
+<dneighbo> and am waiting for the fun to begin
+<dneighbo> i love new installs
+<dneighbo> kind of like putting live ammo in a machine gun for the first time
+<dneighbo> nervous as hell but you know someething getting damaged and hopefully its only what you are aiming at ;)
+MicahY ([2UP+f8Xac@12-225-21-62.client.attbi.com) joined #gnuenterprise.
+<dneighbo> sup MicahY
+<dneighbo> nickr: stupid questions
+<dneighbo> i had 3 partitions on here before iirc
+<dneighbo> 1 linux, 1 linux swap and 1 windows
+<dneighbo> will i be allowed to blow the windows partition away?
+<dneighbo> grr is there a way in the install program to see sizes instead of just names
+Action: dneighbo thinks the red hat tool is much better at this part
+<MicahY> well my site http://EradicateWindowsNow.com is probably about ready for an announce
+<MicahY> but if anyone wants to check it out and make suggestions that would be cool. :)
+<dneighbo> is there a tool to reparition disks
+<dneighbo> as debian is sucking hard at this
+<jcater> cfdisk
+<dneighbo> well im guessing at things
+<dneighbo> as all information i can get is /hda1 and such
+<dneighbo> but im dumb and didnt write down size and such on all those before hand as in redhat (and i thought other debian cd install) let me see that kind of info
+<dneighbo> and create new partitions and such
+<ajmitch> hi all
+<ajmitch> how are you all today?
+SachaS_ (~Sacha@dialup-196-186.wasp.net.au) left #gnuenterprise ("Client Exiting").
+<jcater> 'sup, aj?
+<ajmitch> not much
+Action: ajmitch has a gadfly driver partly working, but it dies with forms
+<ajmitch> ie, i can use the wizard to build a form by introspection
+<jcater> rock!
+<jcater> well, not the dying part
+<ajmitch> yeah, dies in the gadfly module itself
+<ajmitch> also packaged latest gadfly cvs for debian
+Action: ajmitch might need it for a job
+<ajmitch> and jbailey has some dcl debs
+<dneighbo> i think jamest can use this for cow food
+<dneighbo> pun intended
+<ajmitch> ?
+Action: ajmitch just got back from uni - brain is in disconnected state
+<dneighbo> jamest at one point was looking at his father in laws system
+<dneighbo> to maintain cows
+<dneighbo> i.e. breeding records, values, milk production and the likes (iirc)
+<dneighbo> and was saying forms could replace it pretty easy if had local db (like gadfly or such)
+<dneighbo> and easy installer
+<jcater> well
+<jcater> apt-get install gadfly will be pretty easy
+<jcater> :)
+<dneighbo> not on windows :)
+<dneighbo> which i think was the target for this application
+<dneighbo> but certainly gadfly support is big
+<dneighbo> as i have some stuff i would like to do like cd library, movie library management and the likes
+<dneighbo> where greater adoption will only occur w/ a zero admin type db like gadly or such
+Action: jcater hopes gadfly
+<jcater> is up to the task
+Action: jcater was hoping for a metakit or such implementation
+<ajmitch> m
+<jcater> but will take whatever I can get :)
+<ajmitch> how do i avoid the login dialog for gadfly?
+<jcater> eh?
+<jcater> our login dialog?
+<ajmitch> yup
+<jcater> hang on...
+<ajmitch> the gadfly driver only needs dbname & directory in connections.conf
+<jcater>   # This should be over-ridden only if driver needs more than user/pass
+<jcater>   def getLoginFields(self):
+<jcater>     return [['_username', 'User Name',0],['_password', 'Password',1]]
+<jcater> over-ride that to return an empty list
+<jcater> note that this is the first driver not requiring any such parameters, so we may have to add a check to the UIloginhandler
+Action: jcater can't remember if that check is already there or not
+<ajmitch> alright
+<ajmitch> btw the driver is full of ugly hacks
+<dneighbo> nickr: you around
+<dneighbo> i have pcmcia ethernet card 
+<ajmitch> like setting datatype to 'text' on introspection, because the gadfly module only returns name
+<dneighbo> debian dont seem to be finding it, whats the magic voodoo?
+<nickr> There isn't any.
+<nickr> Install redhat.
+<ajmitch> and implementing the DBSig error classes :)
+<ajmitch> nickr: you're sick
+<ajmitch> jcater: would you like me to send you a copy?
+<jcater> let's get it in cvs
+<jcater> if you are ok with releasing it to GNUe :)
+<dneighbo> um it does stupid thing of
+<dneighbo> doing kernel modules before pcmcia
+<dneighbo> i went back and found pcmcia and enabled
+<dneighbo> trying again
+<ajmitch> i have no issues, but derek will probably want assignment papers for this :)
+<jcater> gah!
+<jcater> we don't have assignment papers from you?
+<ajmitch> nope, haven't needed them
+<ajmitch> you think i've actually contributed? :)
+<jcater> egads
+<jcater> derek
+<jcater> can we get those out to him?
+<jcater> err, dneighbo
+<dneighbo> grr it still fails
+<dneighbo> jcater: pelt him with kiwi's until he gives in
+<jcater> grr?
+<ajmitch> dneighbo: umm?
+<nickr> damn, dirty apes!
+<dneighbo> sigh
+<dneighbo> nickr: ok now i get
+<dneighbo> An error encountered while trying to load and configure the PCMCIA modules.
+<dneighbo> As soon as you configure the PCMCIA support, your network configuration will be automatically activated.
+<dneighbo> help?
+<nickr> does it allow you to choose your PCIC?
+<dneighbo> yeah what i dont get is i ran that no errors and it beeped twice like it loaded the card
+<dneighbo> and the card light came on and all
+<dneighbo> but now its dead
+<nickr> what is dead?
+<dneighbo> sigh i feared this would be the problem :(
+<dneighbo> debian sucks hard at installing this kind of stuff 
+<dneighbo> the pcmcia card wont configure
+<nickr> does the thing have a cd drive it can boot? do you have a cdr?
+<dneighbo> originally it configured and didnt
+<dneighbo> nickr yes i has a cd drive
+<dneighbo>  i dont have a cdr right now so burning new disks isnt worth it
+<dneighbo> im giving it another 10 minutes then i will just install potato
+<dneighbo> and dist upgrade
+<dneighbo> though its likely potato will blow chunks at installing pcmcia as well
+<nickr> isn't 'worth it'?
+<nickr> hrm.
+<nickr> potato will be worse
+<nickr> I've never personally installed via pccard, but I have a system here I could try it on
+<jcater> dneighbo: hang on
+Action: jcater boots up his debian laptop w/pcmcia to play along
+<dneighbo> http://www.geocrawler.com/archives/3/242/2001/10/100/6928489/
+<jcater> iirc I had to add my pcmcia card details to the pcmcia database
+<dneighbo> seems i always find the fun bugs
+<dneighbo> so do i have to restart cardmgr or something
+<nickr> ou could try it
+<dneighbo> sigh
+<dneighbo> it beeps and seems to restart and running network configure doesnt fail with 
+<dneighbo> same message as before but after config
+<dneighbo> it says
+<ajmitch> jcater: email gadfly crap to jcater@gnuenterprise.org?
+<jcater> surely
+<dneighbo> Your network is configured but not activated.  This may be caused by a broken previous installation attempt, or because you are installing over another installation.
+<dneighbo> It is ok to skip this step if you do not need to use the network for the rest of the installation, since youur network will become active after reboot (assuming it is setup properly)
+<jcater> dneighbo: is this right after a reboot?
+<dneighbo> sigh no
+<dneighbo> but i might seriously kill my child in the next thirty seconds
+<dneighbo> im going to start the process over again
+<dneighbo> as its pure evil
+<nickr> it'd be easier if you had a CD burner
+<dneighbo> nickr: you are starting to sound like #debian
+<dneighbo> is there a tool from a shell i can see partition information?
+<ajmitch> jcater: sent
+<nickr> why don't you partition it the way you want with the Partition a Disk option? 
+<dneighbo> what partition disk option?
+Action: dneighbo wishes they had that
+<dneighbo> found
+<nickr> yea
+<nickr> so
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+<nickr> I know you skipped it because it helpfully positioned the swap stuff before that because you already had linux partitions
+<dneighbo> is there any harm in one fat / parition?
+<dneighbo> i.e. i hate trying assume sizes for /home and /usr and /var and such
+<nickr> Not really
+<nickr> although reccently..
+<nickr> we've found it convenient to have /home on a separate partition so you can blow away the system any time you want and your data is still there
+<nickr> good if you hork something but have stuff you want to keep
+<nickr> usually I've been commiting like 30% to / and the rest to home
+<dneighbo> nickr: im trying to get to where my 'stuff' is on the file server
+<nickr> yea, that works too :)
+<ajmitch> dneighbo: btw how should i go about assignment stuff?
+<dneighbo> i will have to send you stuff
+<dneighbo> can you email www-support@gnuenterprise.org requesting it?
+<ajmitch> ok will do
+ToyMan (~stuq@pm3-14-ip8.albany.thebiz.net) left irc: "Client Exiting"
+<ajmitch> hmmm
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+<MicahY> derek or anyone: ok, how well does forms deal with multiple-table forms?
+<MicahY> 1. can it do a drop down list based on a numeric key where the list items come from another table?
+<MicahY> 2. can a form have a join query and know which table each field should go in when updated?
+<MicahY> both are important for acclite I think
+Action: MicahY doesn't know how to do either but hopes they are possible
+<dneighbo> 1. it does superbly via FK
+<dneighbo> i walked drochaid through #1 a while back and he was going to do a quickguide i think
+crazymike (~crazymike@mke-65-29-140-82.wi.rr.com) joined #gnuenterprise.
+crazymike (~crazymike@mke-65-29-140-82.wi.rr.com) left irc: Client Quit
+<MicahY> good
+<dneighbo> as to number 2 we dont do joins persay in that fashion but we do master/detail type things that might surrogate
+Action: dneighbo is fighting debian networking right now
+<MicahY> master/detail is a different thing I think....
+<dneighbo> nickr: i installed potato
+<dneighbo> and it finds the network card
+<dneighbo> and it brings up eth0
+<MicahY> just use red hat. :)
+<dneighbo> i can ping localhost and my ip address
+<dneighbo> just fine but cant find anything on the network or vice versa
+<dneighbo> MicahY: i cant stomach it much anymore
+<nickr> does the cable work? does the upstream work?
+<dneighbo> initial install is nice but maintenance and upgrade is unbearable
+<nickr> what does route -n output?
+<dneighbo> nickr: the cable worked 2 hours ago when it was a redhat box
+<dneighbo> route -n
+<dneighbo> dest: 192.168.100.0
+<dneighbo> gateway: 0.0.0.0
+<dneighbo> gnemask: 255.255.255.0
+<dneighbo> Flags: U
+<dneighbo> Metric: 0
+<dneighbo> Ref: 0
+<dneighbo> Use: 0
+<dneighbo> Iface: eth0
+<dneighbo> ---
+<dneighbo> dest: 0.0.0.0
+<dneighbo> gateway: 192.168.100.90
+<dneighbo> gnemask: 0.0.0.0
+<dneighbo> Flags: UC
+<dneighbo> Metric: 0
+<dneighbo> Ref: 0
+<nickr> thats route -n?
+<dneighbo> Use: 0
+<dneighbo> Iface: eth0
+<dneighbo> yip route -n
+<nickr> oh, you're still in the installer
+<dneighbo> two entries listed in order i gave you
+<dneighbo> no im not installer best i can tell
+<nickr> is that gateway correct?
+<nickr> uh
+<dneighbo> i rebooted machine w/o disks in
+<dneighbo> yeah that is valid gateway (my other machines are using it fine right now)
+<nickr> I'm confused as to where you are
+<nickr> and what you're doing
+<dneighbo> i installed potato
+<dneighbo> it gave same errors
+<dneighbo> skipped networking and installed base from cd
+<dneighbo> went in and edited interfaces file
+<dneighbo> and ifup eth0
+<dneighbo> and it came up just fine
+<dneighbo> but cant see anyone but itself
+<dneighbo> now odd thing is...
+<dneighbo> i did lsmod on redhat before wiping (and i have an image on server)
+<dneighbo> and it showed
+<dneighbo> tulip AND
+<dneighbo> 3c509
+<dneighbo> i do insmod now and it shows like tulip_c
+<dneighbo> or something odd
+<dneighbo> so im wondering if its a driver issue
+<dneighbo> i didnt SELECT any driver it just magically did it on its own
+<nickr> pccard stuff does that
+<nickr> tulip_cs
+<dneighbo> ide-floppy
+<dneighbo> 3c509
+<dneighbo> tulip
+<dneighbo> was in my old modules file on rh
+<dneighbo> current modules is blank
+<dneighbo> if i try modconf to install tulip or 3c509 it 'fails'
+<nickr> dude
+<nickr> with a pc card you never install the driver by hand
+<dneighbo> ok
+<dneighbo> so tell me how to make it work
+<dneighbo> im just telling you how it worked on another linux
+<nickr> its really weird that it worked that way
+<nickr> whats ifconfig eth0 show you
+<dneighbo> ok WTF
+<dneighbo> i popped out pcmcia card
+<dneighbo> and popped back in
+<dneighbo> and now can ping my network just fine
+<dneighbo> no config chagnes at all
+<nickr> okay well
+<dneighbo> no not ok
+<dneighbo> now ifdown eth0
+<dneighbo> ifup eth0
+<dneighbo> and i cant ping anything again
+<nickr> don't do that
+<dneighbo> pop card and retry and it works
+<dneighbo> but i think only 'temporarily'
+<jcater> MicahY: the papo guys were working  on "join"-style datasources
+<jcater> but they would be read-only
+<dneighbo> i cant get out to net still though
+<jcater> you'd need to do master/detail to get read/write
+<dneighbo> so what kind of setting am i missing for the gateway?
+<nickr> dneighbo: I don't use /etc/network/interfaces to configure my pccard netwvork dewvice, I inherited the old method of configuring them, so I've no experience with that
+<dneighbo> its listed properly
+<jcater> dneighbo: you have /etc/resolv.conf setup?
+<dneighbo> and i can ping it
+<dneighbo> yeah but i cant even ping those servers listed in /etc/resolv.conf
+<dneighbo> :(
+<dneighbo> netstat -r still hangs
+<nickr> it hangs on reverse lookup
+<nickr> try netstat -rn
+<dneighbo> ok wtf
+<dneighbo> netstat -rn shows gate way as 192.168.100.1
+<dneighbo> but in interfaces file its CLEARLY 192.168.100.90
+<dneighbo> its reading this info from some foreign source
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+<dneighbo> grr
+<dneighbo> ok im cool now
+<dneighbo> pcmcia is odd
+<jbailey> grr?
+<dneighbo> i had to chage
+<jbailey> I need assistance on dcl
+<dneighbo>  /etc/pcmcia/network.opts
+<dneighbo> pop network card reinsert and im golden
+Action: dneighbo shakes head and moves along, nothing to see here
+<dneighbo> jbailey: shoot
+<dneighbo> literally i need to be releived of my misery
+<jbailey> I'm a canadian, we're not allowed guns. =)
+<jbailey> attachments needs to be in /var/spool/dcl
+<jbailey> However, there doesn't appear to be an easy way (without a massive sed) to specify a state directory
+<dneighbo> im phoencian (you're deemed queer if you arent packing)
+<MicahY> jcater: hmmm thanks.  But eventually we will need read/write joins
+<dneighbo> ?
+<dneighbo> jbailey: its a db setting
+<MicahY> you can do them with Borland Kylix, but they take a little more work than "normal" tables
+<jcater> nah
+<MicahY> it seems like we should be able to make it so they work fairly seamlessly
+<jcater> sounds like a basic master/detail to me
+<jbailey> dneighbo: But if I change $dcl_info['DCL_FILE_PATH'] to point to /var/spool/dcl/ won't that bork other things?
+<MicahY> I'm thinking the vendor form
+<MicahY> there's a company table and a vendor table which references companyid
+<MicahY> yeah I guess m/d would work
+<MicahY> BUT it might require "mixing" fields from different tables in the same part of theform
+<MicahY> I dunno if m/d allows that
+<MicahY> but then maybe it doesn't matter much. :)
+<jcater> I have to run
+jcater (~jason@cpe-024-165-193-024.midsouth.rr.com) left irc: "nite all"
+<dneighbo> select * from dcl_config WHERE dcl_config_name='DCL_FILE_PATH';
+<dneighbo> jbailey: it shouldnt
+<dneighbo> in fact in the readme its RECOMMENDED
+<dneighbo> to change it from .
+<dneighbo> to something outside the dcl tree
+<jbailey> dneighbo: Ah, okay.  It's not just clear that "attachments" is the only thing that depends on that.
+<dneighbo> as one issue is 'upgrades' blow out attachments tree if they are in the path
+<dneighbo> there is a SECOND attachments dir for the dcl gateway as well
+<dneighbo> its default is /tmp
+<dneighbo> basically thats where the 'message' is dumped until its parsed out and put in the right path
+<dneighbo> btw: another motive of this nice clean debian install is to test dcl debs :)
+<jbailey> Did you see my note earlier where I posted the dcl deb?
+<jbailey> It's a prelim one, because of things like this attachment dir that I wasn't sure about.
+<ajmitch> ello
+<dneighbo> yeah saw but was going to wait until this install was done to test :)
+<dneighbo> woohoo dist-upgrade
+<dneighbo> um anyone here know how to convert to ext3 from ext2?
+<ajmitch> tune2fs -j /dev/hdx
+<ajmitch> edit /etc/fstab
+<ajmitch> remount
+<dneighbo> what do you edit in /etc/fstab?
+<dneighbo> and what do you do to remount?
+<dneighbo> mount -a
+<dneighbo> ?
+<ajmitch> in fstab, change ext2 to ext3 for the partition
+<ajmitch> and mount...
+<dneighbo> is it that easy ?
+<jbailey> ajmitch: You also want to turn off periodic fscks
+<ajmitch> jbailey: i guess
+<dneighbo> jbailey: how do you do that?
+<ajmitch> i don't reboot so i don't notice :)
+<ajmitch> but for a laptop you would
+Action: ajmitch isn't sure if 'tune2fs -c 0' is right or not
+<jbailey> tune2fs -c0 -i0 /dev/hdx
+<dneighbo> im running to gas station while this finishes?
+<dneighbo> so which is it
+<dneighbo> tune2fs -c 0?
+<jbailey> ajmitch: The piss off is that when you *do* have to reboot, it can take an hour
+<ajmitch> doesn't take long to create the journal
+<jbailey> You want to set both -c 0 and -i 0
+<dneighbo> tune2fs -c0 i0 /dev/hdx
+<dneighbo> or
+<ajmitch> jbailey: true
+<dneighbo> tune2fs -j /dev/hdx
+<ajmitch> dneighbo: they do different things
+<dneighbo> ok so do the -j first
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+<dneighbo> and get it all finished up
+<ajmitch> -j creates journal (changes to ext3)
+<dneighbo> then do the -c0 -i0
+<dneighbo> to shut off the fscking thing :)
+<dneighbo> pun intended
+<ajmitch> -c0 -i0 turns off fscking :)
+Action: ajmitch is running all ext3 here, iirc
+<ajmitch> nope, one reiserfs
+<dneighbo> i can see this as new nerd lingo
+<dneighbo> dood i got c0i0'ed tonight
+<dneighbo> i.e. i didnt get lucking there was no fscking going on
+<ajmitch> heh
+<jbailey> =)
+<jbailey> I use ext3 so far everywhere.
+<dneighbo> i hope to soon
+<jbailey> my next installs will probably be reiser.
+<dneighbo> can other stuff be up and running when you do it?
+<dneighbo> as i should do it on this machine
+<ajmitch> would take too long for me to switch from reiser->ext3 :)
+<ajmitch> hmm, i think it's safe to do so
+<ajmitch> read man page first to make sure :)
+<ajmitch> you have ext3 support compiled in, i hope?
+<dneighbo> um that took like 3 seconds
+<dneighbo> is there a way to verify all the steps worked?
+<dneighbo> aegagrus:/home/dneighbo# tune2fs -j /dev/hda2
+<dneighbo> tune2fs 1.27 (8-Mar-2002)
+<dneighbo> Creating journal inode: done
+<dneighbo> This filesystem will be automatically checked every 20 mounts or
+<dneighbo> 180 days, whichever comes first.  Use tune2fs -c or -i to override.
+<dneighbo> aegagrus:/home/dneighbo# emacs /etc/fstab    
+<dneighbo> aegagrus:/home/dneighbo# mount -a
+<dneighbo> aegagrus:/home/dneighbo# tune2fs -c0 -i0 /dev/hd2
+<dneighbo> tune2fs 1.27 (8-Mar-2002)
+<dneighbo> tune2fs: No such file or directory while trying to open /dev/hd2
+<dneighbo> Couldn't find valid filesystem superblock.
+<dneighbo> aegagrus:/home/dneighbo# tune2fs -c0 -i0 /dev/hda2
+<dneighbo> tune2fs 1.27 (8-Mar-2002)
+<dneighbo> Setting maximal mount count to -1
+<dneighbo> Setting interval between check 0 seconds
+<dneighbo> aegagrus:/home/dneighbo# 
+<dneighbo> seems too damn easy
+<dneighbo> s/damn/darned (trying to get better)
+<ajmitch> of course it's easy
+<jbailey> reboot and do a df -T
+<dneighbo> reboot?
+dres (~dres@mail.lewismoss.org) joined #gnuenterprise.
+<dneighbo> thats a foreign word, how do youdo that?
+<ajmitch> you can even reboot with an ext2-only kernel, and it'll still work
+<jbailey> dneighbo: Well, after this you hit the reset switch. =)
+<ajmitch> dneighbo: kick the laptop
+<ajmitch> jbailey: no! not until it's been booted once with ext3 :)
+<dneighbo> shouldnt i wait for that blue screen first?
+<dneighbo> i havent seen it yet under linnux
+<ajmitch> heh
+<dneighbo> it was great the other day my X server locked (crappy 4.1.0 is painful for trident cyberblade)
+Action: ajmitch thinks that GNU is a little unstable still
+<dneighbo> and wife said ctrl-alt-del wasnt 'working' to fix it
+<dneighbo> funny thing is this is 90 day uptime her using
+<ajmitch> x server locked? heh, i've been logged in for a few months now
+<dneighbo> so basically it took 90 days for her to question how to stop something that was 'locked up'
+Action: ajmitch recalls the days of unstable x servers
+<dneighbo> and she uses computer daily
+<ajmitch> pretty good :)
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+Action: ajmitch sighs
+<jbailey> I'm using the 4.2 pre debs and they've fixed a number of problems for me.
+<chillywilly> hello
+<chillywilly> 8)
+<jbailey> Heya Dan
+<chillywilly> hi sir
+<chillywilly> hiya ajmitchie
+<dneighbo> jbailey: im too chicken to use them
+<dneighbo> do you happen to know how long till they hit sid?
+<chillywilly> hi dneighbo
+<dneighbo> actually s/chicken/lazy
+<chillywilly> how's it going all?
+<dneighbo> hi chillywilly
+<dneighbo> going to allstar game ?
+<ajmitch> dneighbo: they won't without testing by people like you ;)
+<chillywilly> dneighbo: nope
+<jbailey> dneighbo: Branden's been at debconf this weekend, so I'd be surprised if it was sooner than mid or near the end of the month.
+<chillywilly> but yes it is allstar madness here in the "dairy" state
+<chillywilly> pre 4.2 X debs is the discussion?
+<jbailey> 'dairy' state?
+<jbailey> lactating again, Dan? =)
+<chillywilly> uh, no that is the commonly accepted name for WI ;)
+<chillywilly> even though it may not really hold true today
+<jbailey> Wisconson?  Wyoming? Wichitah?
+<dneighbo> well 'girlie man' state just doesnt sound any better
+<dneighbo> so they stuck with 'dairy'
+<jbailey> Canada: The soymilk state. =)
+<jbailey> BC: The Canabis province.
+<chillywilly> dneighbo: better than the "we use cacti for T.P." state ;-)
+<jbailey> Ontario: Collecting polution from Detroit for 100 years!
+<chillywilly> jbailey: Wisconsin of course
+<jbailey> 'of course'? 
+<chillywilly> certainly
+<chillywilly> ;P
+Action: chillywilly thinks dneighbo is jealous because we can actually grow grass here ;) (if you know what I mean ;) )
+<ajmitch> no we don't
+<chillywilly> too bad for you then kiwi boy
+<ajmitch> why does it seem to me that you're using 'kiwi boy' as an insult?
+<chillywilly> heheh
+<chillywilly> how does water stay in a glass down there being upside down and all? I don't get it you defy the laws of gravity ;P
+<chillywilly> you people must've made a deal with the devil ;)
+<jbailey> Where does the term 'kiwi' come from, anyway?
+<ajmitch> native bird of NZ, a national symbol
+<jbailey> Ah, okay.
+<dneighbo> so rock i have ext3 on new box
+<dneighbo> just need a 2.4 kernel and i have a nice woody laptop :)
+<chillywilly> blah
+<dneighbo> of course then its time to battle X
+<chillywilly> XFS!
+<jbailey> apt-get install kernel-image-2.4.18-686 works just lovely for me.
+<jbailey> g'night all
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) left irc: "Client Exiting"
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: "woooooosh!"
+<dneighbo> rockin have new kernel
+Action: dneighbo hugs debian now
+<ajmitch> great
+--- Mon Jul  8 2002

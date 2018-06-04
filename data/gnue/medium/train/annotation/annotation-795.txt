@@ -1,0 +1,152 @@
+<section archive="http://mail.gnu.org/pipermail/gnue-dev/2002-March/000052.html" enddate="25 Mar 2002 10:43:51 -0800" posts="10" startdate="19 Mar 2002 18:38:20 -0800" subject="[Gnue-dev] GNUe Reports and xmlns, oh my!" title="GNUe Reports proposal">
+<topic>Reports</topic>
+
+
+<p>Jason Cater said <quote who="Jason Cater">After 
+much time off from GNUe Reports, I'm finally able to tackle it
+once again.</quote> Most of the reporting engine was done, 
+but he now wondered how to do <quote who="Jason Cater">
+layout codes</quote>. The reporting engine could just ignore 
+these tags and they would <quote who="Jason Cater">just be passed 
+through to the output stream</quote>. After considering various 
+ugly ways of splitting the two types of tag, he 
+<quote who="Jason Cater">saw the light: XML Namespaces!</quote> 
+Layout tags could be given a namespace qualifier such as 
+'output:'. This would mean:</p>
+
+<ol>
+<li>The two different types of tag could be easily identified.</li>
+<li>It was compatible with how the XML parser already used in GNUe Reports
+worked.</li>
+<li>GNUe Designer could make use of the layout tags to graphically display how 
+reports would look</li>
+<li>Other layouts could also be implemented as different namespaces</li>
+<li>Engines to produce other types of output (such as PDF, HTML or TeX) 
+could be done directly rather than going via an XML stylesheet if desired.</li>
+</ol>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.20Mar2002">
+On IRC</a>, Derek said <quote who="Derek Neighbors">you stole my 
+thunder - reading your mail about half way through im thinking why 
+not namespaces :)</quote>. However, <quote who="Derek Neighbors">you 
+may have lost me on the formatting eninge -  i think i would 
+still see it as xslt - just the sytlesheet would be inline 
+and would work with streams rather than files</quote>, 
+at least eventually. Jason Cater (jcater) said 
+<quote who="Jason Cater">the point of the "formatting 
+engine" was options that this would allow IN THE FUTURE 
+:) -  i.e., going this route would leave room for other 
+formatting options besides using external XSLT scripts -
+not that I wanted to pursue that at this time</quote>. 
+He would write further on <quote who="Jason Cater">what we 
+actually want the output xml stream to look like - I looked 
+at datavision.sf.net - and it has some merit - but isn't 
+exactly what I was envisioning</quote> as it hard-coded 
+positioning. He confirmed he was <quote who="Jason Cater">
+not against internal XSLT - but I would write that as 
+pluggable (with the default plug being the XSLT 
+transformer)</quote>.</p>
+
+<p>Later, John Lenton (Chipaca) suggested that the XML tags 
+for Reports should <quote who="John Lenton">look like the ones 
+from forms - in fact if possible validate against the same DTDs</quote>.
+Jason wasn't sure - <quote who="Jason Cater">the datasources, 
+et al will of course use the same markup - and I could see us 
+creating a Designer wizard that basically asks for a Forms definition
+and creates a report based on the forms definition. But I'm not 
+sure reports should be defined the same as forms</quote>. James 
+Thompson (jamest) said <quote who="James Thompson">i don't think 
+they could be the same</quote> as he would need some concepts 
+in Reports (such as <quote who="James Thompson">grouping of fields</quote>)
+that weren't even valid concepts in Forms.</p>
+
+<p>On the mailing list, 
+Peter Sullivan suggested an alternative approach, using 
+<quote who="Peter Sullivan"><cite>two</cite> XML streams</quote>, 
+one for the formatting and one for the data. Later, he expanded 
+his idea, giving some sample XML. <quote who="Peter Sullivan">
+A GNUe report would be built up from two XML documents - 
+the GNUe Report Format and the GNUe Report Data.</quote>. 
+<quote who="Peter Sullivan">The GNUe Reports 'engine' would 
+transform these two documents into 
+a composite XML document, processing and discarding all the 
+"semantic" attributes, and leaving the formatting attributes</quote>. 
+This could then be <quote who="Peter Sullivan">transformed again by 
+the "Format Engine"</quote> into the final presentation format. 
+<quote who="Peter Sullivan">you can start with a fairly small 
+set of supported</quote> format attributes and then expand them.</p>
+
+<p>Jason said <quote who="Jason Cater">this parallels 
+one of my wishlist items: "skinnable" (or templated) reports.</quote> 
+This would enable organisations to quickly apply corporate layout 
+standards to the standard reports available with the packages, 
+without having <quote who="Jason Cater">to touch any of the actual
+Financial Reports (unless I actually want to modify the underlying
+reporting model.)</quote> Peter said that <quote who="Peter Sullivan">
+I <cite>think</cite> we are talking about slightly different levels of abstraction. 
+I am initially talking about abstracting the dataset/results of the query 
+from the output/formatting - which to an extent Reports must do already, no? 
+(I'm assuming you don't have to redesign a report from scratch every 
+time you want to refresh the data.) You seemed to have moved on to the next 
+level of abstracting the 'cosmetic' formatting from the 'semantic' 
+formatting.</quote> However, he thought <quote who="Peter Sullivan">
+this would be a killer feature</quote>.</p>
+
+<p>Stan Klein said he had been thinking about various reporting 
+tasks for GNUe, and suggested getting <quote who="Stan Klein">
+the GNUe Reports output into a format appropriate for one of 
+the word processors that use XML as their native format.</quote>
+Derek Neighbors said <quote who="Derek Neighbors">
+This locks into that.  The idea is that you simply export to xml and use 
+xslt to transform into the xml of choice.</quote>. Jason said this 
+was part of why he wanted to use XML namespaces. He already had 
+<quote who="Jason Cater">some mailmerge examples in the
+reports/samples/mailmerge directory, but these are klunky and use RTF
+instead of the word processor's native XML format. They are a hack, and
+not a graceful one at that.</quote>.</p>
+
+<p>Earlier, Derek thought 
+<quote who="Derek Neighbors">the merge thing is much 
+larger for document solutions like loan documents, medical forms and legal 
+forms, but I think that should be a different tool perhaps.</quote>
+Jason said <quote who="Jason Cater">I don't follow why this would be 
+a separate tool.  This is the <cite>exact</cite>
+kind of flexibility I'm looking for in Reports.  The examples that Stan
+has given are actually the exact same needs I'm facing.
+If you see a repeating theme in all my Reports email, it is 
+"flexibility."</quote></p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.21Mar2002">
+On IRC</a>, Derek explained <quote who="Derek Neighbors">
+what im thinking and what legal documents need are SMART forms</quote>
+that could cope with multiple mortgage holders or addresses with 
+a variable number of lines. Jason Cater (jcater) said 
+<quote who="Jason Cater">those are common reporting requirements - 
+I have to account for multiline addresses in a lot of our customer 
+service reports that mail letters to customers</quote>. Derek said 
+he was thinking of something more advanced, where
+<quote who="Derek Neighbors">i have a lots of verbiage following 
+that that is NOT in the database that is conditionally printed</quote>
+depending on data in the database, such as U.S. state. - 
+<quote who="Derek Neighbors">you wouldnt want to necessarily make 
+a custom DEED for each state - but rather dynamically build the 
+form based on some rules</quote>. Jason said <quote who="Jason Cater">I 
+do conditional reports all the time; that's a basic requirement
+as far as I'm concerned - so I don't follow</quote>. Derek said 
+<quote who="Derek Neighbors">as long it will support a complex 
+version of this fine - most reporting tools do not</quote>. 
+Jason said <quote who="Jason Cater">it'll support triggers</quote>. 
+Derek said <quote who="Derek Neighbors">if it supports triggers it 
+will do what im thinking</quote>, but he still wondered if it 
+should be <quote who="Derek Neighbors">a separate tool</quote>. 
+Lawyers and medical professionals <quote who="Derek Neighbors">
+need similar as well</quote> Jason said he <quote who="Jason Cater">
+really don't see a justification for doing a separate tool - 
+as if a reporting package can't handle that then it needs to be 
+rethunk</quote>. Derek said <quote who="Derek Neighbors">im not saying 
+it has to be a spearate package - im just saying if people say that the 
+functionality is stupid and doesnt belong in reports (too specialized) - 
+then we should offere as a separate tool</quote>.</p>
+
+</section>
+

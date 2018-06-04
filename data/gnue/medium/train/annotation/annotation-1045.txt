@@ -1,0 +1,69 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.29May2002" enddate="28 May 2002 23:00:00 -0800" startdate="28 May 2002 23:00:00 -0800" subject="[IRC] 29 May 2002" title="Supporting different database back-ends in GNUe Application Server">
+
+<topic>Application Server</topic>
+
+<p>Bajusz Tam&#225;s (btami) asked <quote who="Bajusz Tam&#225;s">can i use 
+firebird or just postgresql</quote> as the back-end database with 
+GNUe Application Server (GEAS). Reinhard M&#252;ller (reinhard) said 
+that <quote who="Reinhard M&#252;ller">you should be able to use 
+firebird</quote> as GEAS now used the database drivers in GNUe Common - 
+<quote who="Reinhard M&#252;ller">however the sql script to load the inital 
+test data into the database does only exist for postgres</quote> as of 
+time of writing, although it could be easily re-written for any 
+SQL-92 compliant database. Bajusz asked <quote who="Bajusz Tam&#225;s">how 
+appserver knows wich db i use</quote>? Reinhard said that 
+the connections.conf file needed an entry adding for [gnue] - 
+this is what made GNUe Forms talk to the Application Server 
+(n-tier) rather than directly to the database (2-tier). 
+Bajusz and Reinhard did some more testing, sorting out various 
+error messages along the way. Jan Ischebeck (siesel) said 
+<quote who="Jan Ischebeck">we need a appserver.conf file soon. 
+I will add some command line options as a first step</quote>.
+The setting to tell GEAS which database driver to use was 
+<quote who="Jan Ischebeck">in geasList.py - but there will be a 
+command line option soon.</quote></p>
+
+<p>Later, Jan asked <quote who="Jan Ischebeck">does appserver needs 
+a special configuration file or should it use gnue.conf?</quote> 
+Reinhard said <quote who="Reinhard M&#252;ller">we have to take into 
+consideration that on most installs that use appserver forms/reports 
+will run on different machine than appserver - so i would think it 
+makes sense for appserver to have own config file</quote>. Jan 
+suggested putting it into the roadmap for version 0.0.2.</p>
+
+<p>He was <quote who="Jan Ischebeck">not quite happy with the 
+appserver/INSTALL file in its current state. Whats about adding a 
+SETUP, TESTING file or should it be in the 
+appserver/doc/appserver_user_manual ?</quote> Reinhard said 
+<quote who="Reinhard M&#252;ller">i think it's ok to have instructions 
+for basic tests in INSTALL - for example say 1. setup.py 2. run 
+test.py 3. run geasRpcServer.py and geasRpcClient.py just as a part 
+of the install procedure to see if the install was successful - 
+anything further should go into doc/manual IMHO.</quote> There 
+might also be specific install documentation for CVS versions 
+<quote who="Reinhard M&#252;ller">that is not distributed in releases
+and explains the g*cvs commands</quote>.</p>
+
+<p>Later, Derek Neighbors suggested <quote who="Derek Neighbors">please 
+make the sql script to load the initial test data as xml under our data 
+definition markup and then it would support more than postgresql 
+:)</quote> Reinhard said he had not been aware of this. 
+Derek said it was <quote who="Derek Neighbors">not fully documented and 
+i dont remember if its in GNUe cvs - as we started it for DCL and adopted 
+it</quote>. It used <quote who="Derek Neighbors">pysablot and 
+sabolotron</quote> to convert from XML to a database-specific script using
+XML style sheets. He explained <quote who="Derek Neighbors">basically 
+this way you only have to write the table definitions 1 time (in xml) 
+- and the create scripts for all the dbs are created automagically for 
+you</quote>. He believed that you could also use it to fill test data 
+or standing data into tables. Reinhard 
+suggested that, for official releases, as well as the source XML, the 
+post-processing version for the main supported databases should be 
+included <quote who="Reinhard M&#252;ller">so one wouldn't need 
+sablotron to test appserver release</quote>. Derek agreed - 
+<quote who="Derek Neighbors">in dcl we even put them in 
+cvs</quote> for the same reason.</p>
+
+</section>
+
+

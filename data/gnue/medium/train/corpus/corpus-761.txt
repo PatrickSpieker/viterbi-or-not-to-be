@@ -1,0 +1,3202 @@
+[00:00] Last message repeated 1 time(s).
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+<dneighbo> hi LuftHans
+jcater (~jason@cpe-024-165-193-024.midsouth.rr.com) joined #gnuenterprise.
+<dneighbo> trouble sleeping?
+<dneighbo> or just getting up early jcater ?
+<jcater> um
+<jcater> just got back into town actually
+<jcater> :(
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+jcater (~jason@cpe-024-165-193-024.midsouth.rr.com) left irc: "Client Exiting"
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise.
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+Sacha (~Sacha@dialup-196-102.wasp.net.au) joined #gnuenterprise.
+<LuftHans> hey Derek
+<LuftHans> http://traxel.com/maricopa/results.html
+<LuftHans> that's going on http://greplaw.org/ tomorrow, send suggestions to Robert Bushman <bob@traxel.com>
+SachaS_ (~Sacha@dialup-196-98.wasp.net.au) left irc: Read error: 110 (Connection timed out)
+Sacha (~Sacha@dialup-196-102.wasp.net.au) left #gnuenterprise ("Client Exiting").
+Arturas (arturas@bit.codeworks.lt) joined #gnuenterprise.
+<Arturas> Hello
+<ajmitch> hi
+<ra3vat> hello Arturas
+<ra3vat> hello ajmitch
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+<Arturas> hi Dmitry
+<Arturas> hi ajmitch
+Action: ajmitch waits for the hellos to die down :)
+<Arturas> it's echo :)
+<ajmitch> :)
+SachaS (~Sacha@dialup-196-102.wasp.net.au) joined #gnuenterprise.
+SachaS (~Sacha@dialup-196-102.wasp.net.au) left #gnuenterprise ("Client Exiting").
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+kemitix (~chatzilla@proxy1.lauder.ac.uk) joined #gnuenterprise.
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+LuftHans (~lufthans@wsip68-14-212-27.ph.ph.cox.net) left irc: Read error: 110 (Connection timed out)
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+ToyMan (~stuq@smtp.dstoys.com) joined #gnuenterprise.
+kemitix (~chatzilla@proxy1.lauder.ac.uk) left irc: Remote closed the connection
+Action: drochaid is back (gone 11:03:59)
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+alexey_ (~Alexey@techkran.vladimir.ru) left irc: "[x]chat"
+jamest (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+<ra3vat> hello jamest
+<Arturas> hi jamest :)
+<jamest> hi
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+siesel (jan@dial-195-14-226-62.netcologne.de) joined #gnuenterprise.
+<siesel> hi all
+<Arturas> hi
+<Arturas> see you tomorrow :)
+<Arturas> bye
+Arturas (arturas@bit.codeworks.lt) left #gnuenterprise ("Client Exiting").
+<drochaid> who's the documentation manager for GNUe?
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+siesel (jan@dial-195-14-226-62.netcologne.de) left irc: "Real programmers code it into the client"
+jamest (~jamest@hobbes.math.ksu.edu) got netsplit.
+jamest (~jamest@hobbes.math.ksu.edu) returned to #gnuenterprise.
+siesel (jan@dial-194-8-209-78.netcologne.de) joined #gnuenterprise.
+<siesel> anyone knows, which command line to use to login + checkout acclite?
+<jcater> we don't have anon cvs for that yet
+<jcater> but snapshots are at http://www.gnuenterprise.org/~jcater/snapshots/acclite/
+<siesel> jcater: I remeber to have an account on ash :)
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+siesel (jan@dial-194-8-209-78.netcologne.de) left irc: "later"
+kemitix (~chatzilla@proxy1.lauder.ac.uk) joined #gnuenterprise.
+ToyMan (~stuq@smtp.dstoys.com) left irc: Remote closed the connection
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+ToyMan (~stuq@smtp.dstoys.com) joined #gnuenterprise.
+fil_c (~username@public1-cosh3-3-cust12.cosh.broadband.ntl.com) joined #gnuenterprise.
+kemitix (~chatzilla@proxy1.lauder.ac.uk) left irc: "ChatZilla 0.8.7 [Mozilla rv:1.0.0/20020618]"
+ariel_ (~ariel@ppp-217-133-244-30.dialup.tiscali.it) joined #gnuenterprise.
+siesel (jan@dial-213-168-97-107.netcologne.de) joined #gnuenterprise.
+kemitix (~chatzilla@proxy1.lauder.ac.uk) joined #gnuenterprise.
+<siesel> dneigbo: you here?
+<siesel> I saw that 'data' and 'database schema' is split into two sql files in acclite. 
+<siesel> and the GNUe Schema Definition file has no way to put some base data into it.
+<siesel> (quite ok for a SCHEMA definition ;) )
+<siesel> but data should be stored in an XML representation too. 
+<siesel> for ease of use I would like to put schema and data into ONE file. any objections, ideas?
+dneighbo_ (~dneighbo@tmp-200253.flinthills.com) joined #gnuenterprise.
+<siesel> hi dneighbo_, can you read the backlog?
+<dneighbo_> um in a second
+Action: drochaid raises a hand tentatively to object ...
+fil_c (~username@public1-cosh3-3-cust12.cosh.broadband.ntl.com) left irc: "Client Exiting"
+<dneighbo_> siesel you still here
+<dneighbo_> Remosi: backlog
+<dneighbo_> grr re :
+<dneighbo_> acclite split was from NOLA
+<dneighbo_> definitely we need to have the 'data' statements as part of our schema spec
+<dneighbo_> its just a matter of definining and making xslt xsl for it
+<dneighbo_> about putting together or separating
+<dneighbo_> i like to work in sizeable chunks so i like them separate
+<dneighbo_> im one of these wierdos that would actually like every table or grouping of tables to be own file (but i know im in the minority there)
+<dneighbo_> im open to debate though
+<dneighbo_> btw: jcater has added in designer ability to make our 'xml schema' off existing databases
+<dneighbo_> so if you have a postgres database
+<dneighbo_> you can from designer run a tool that will create a 'gnue xml schema' :)
+<siesel> I think puting every table into a seperate file is ok, if there is ONE comand to create a whole table, or if there is one gsd file which includes the other ones :)
+<dneighbo_> siesel well xml/xslt supports includes
+<siesel>  /a whole table/a whole table set/
+<dneighbo_> so way i figured it was you would do granular (to what level i have no consensus)
+<dneighbo_> then you make a 'initial install' xml file
+<jcater> let's back up a second
+<jcater> I see xslt as a means to an end
+<jcater> not the end itself
+<jcater> in the not-so-distant future
+<jcater> GNUe-COmmon's dbdrivers will accept a schema tree
+<dneighbo_> that simply includes the whole enchalada (sp)
+<jcater> and each driver will be able to create the schema natively
+<dneighbo_> thats fine
+Action: dneighbo_ sees it similar way
+<jcater> so I'm just saying, let's not say "sure, we can do that as xslt supports xxxxxxx"
+<jcater> btw, I like sizable chinks too
+<jcater> s/chinks/chunks/
+<dneighbo_> in fact for designer and some other things i almost would like to have it go off the schema opposed to the db
+<siesel> jcater, dneighbo: does the way xslt includes files differ from the GParser way?
+Action: jcater knows nothing about xslt includes :(
+Action: dneighbo_ notices that visual studio .NET has gone that route and it made for some trick features in their 'designer' stuff
+<dneighbo_> but thats another discussion
+<dneighbo_> siesel : i cant answer that
+<dneighbo_> i specifically called out xslt can do 'x' because currently we are using xslt
+<dneighbo_> i assume when we go to internally doing it, that its not a huge issue
+<dneighbo_> in that we have control so we can make it do includes :)
+<dneighbo_> jcater : i see this functionality as being important also for integrator as well as designer :)
+<dneighbo_> btw: xslt iirc does include as
+<dneighbo_> <xsl:include href = uri />
+<dneighbo_> so very simplistic
+<dneighbo_> though technically its not on teh stylesheet side but on the source side where they include would happen which would follow normal xml include rules (iirc)
+<siesel> back to that xml format for data: I think it, 1. should be outside of that <schema> tag 2. possibly could look like...
+<siesel> <data>
+<siesel>   <tabledata name="basic_persons" tablename="person">
+<siesel>         </row>
+<siesel>   </tabledata>
+<siesel> oops, I don't know why, but most of the stuff was send to nickserv :(
+<siesel> <data><tabledata name="basic_persons" tablename="person">
+<siesel> <row>
+<siesel> <value>Peter Miller</value>
+<siesel> <value>GNUe street</value>
+<siesel> <value>9393</value>
+<siesel> <value>GNU town</value>
+<siesel> </row>
+<siesel>  </tabledata></data>
+<siesel> (that would be simple initialisation without fieldnames. There should be a mode for initialisation with fieldnames too.)
+<jcater> no
+<jcater> not outside of schema tag
+<jcater> but outside of tables tag
+<jcater> GParser depends on there being a single enclosing tag around an entire file
+<jcater> (i.e., the "root" element)
+<jcater> so you'd have
+<jcater> <schema>
+<jcater>   <tables>
+<jcater>     ....
+<jcater>   </tables>
+<jcater>   <data>
+<jcater>     ....
+<jcater>   </data>
+<jcater> </schema>
+<jcater> at least, this is what I was imagining
+<siesel> Just asking, if we do it that way, is <schema> still the right name for the root tag?
+Action: jcater thinks so
+<jcater> as to me required datasets are still part of a schema definition
+<siesel> ok, but, because I want to use GSD as a dump format for the appserver, would you object to put "non-required" datasets into it?
+<dneighbo_> jcater: i agree keeping in schema root
+<dneighbo_> im not sure i follow
+<jcater> dump format?
+<siesel> like pg_dump writes the contents of a db into one file. a appserver_dump would create a ?.GSD? file.
+<jcater> I see no problem with that
+<jcater> most tools like that include an option to dump only schema or schema + data anyway
+<dneighbo_> works for me
+<siesel> great. now to the details, is <data><tabledata name="basic_persons" tablename="person"><row>...</row><row>...</row>tabledata><data> ok?
+<jcater> works for me
+<siesel> ok, last question before modifing xslt's: do we need type's for <value> definitions?
+<siesel> I would like <value>Peter<value><value>22.4.1999<value>. 
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+<siesel> and would make <value field="Name" type="string">Peter<value><value field="date_of_birth" type="date">22.4.1999<value> optional?
+<siesel> ok, I will provide appserver/samples/sample.gfd as an example
+<siesel> dneighbo: how can I select a value between two tags <tag>my_value</tag> using xslt?
+yogurt2unge (~charlie@modem117-adsl.capfed2.sinectis.com.ar) joined #gnuenterprise.
+<kemitix> can someone help me?  I'm struggling with the sample forms in GNUe-Forms.
+<siesel> I will try :)
+<siesel> which sample are you running?
+<kemitix> thanks.
+<kemitix> inventory/forms/company.gfd
+<kemitix> I've added the sql for inventory and location
+<kemitix> the traceback claims 'DB000: gnue.common.GComm.DistantError: Error 'gnue.common.GDataObjects.ProviderNotSupportedError: No database driver found for provider type 'pygresql'' occured on server connected by XMLRPC'
+<kemitix> i've installed pygresql
+<siesel> ok, seems like you are using appserver to provide the data :)
+<kemitix> yup
+<kemitix> or atleast i'm trying to
+<siesel> there is no provider called pygresql. The GNUe name for the PyGreSQL based driver is called "postgresql"
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+<kemitix> okay, i'll try changing that
+<siesel> (common/README.databases), so you have to edit your connection.conf
+<kemitix> getting further but still not getting the form to appear
+<kemitix> I'll have to leave it for now - the buildings about to close
+<kemitix> don't feel like getting locked in.
+<siesel> :)
+<kemitix> thanks for your help
+<siesel> no problem 
+kemitix (~chatzilla@proxy1.lauder.ac.uk) left #gnuenterprise.
+siesel (jan@dial-213-168-97-107.netcologne.de) left irc: "(figuring out XSLT during dinner :))"
+<dneighbo_> i dont like it
+<dneighbo_> crap seisel is gone
+<dneighbo_> must run
+dneighbo_ (~dneighbo@tmp-200253.flinthills.com) left irc: "home"
+ToyMan (~stuq@smtp.dstoys.com) left irc: "Client Exiting"
+siesel (jan@dial-213-168-92-142.netcologne.de) joined #gnuenterprise.
+<ajmitch> hi again siesel :)
+<siesel> crap dneigbo is gone
+<ajmitch> yeah
+<ajmitch> ran away about 40min ago
+<ajmitch> [07:14:37] <dneighbo_> i dont like it
+<ajmitch> [07:15:08] <dneighbo_> crap seisel is gone
+<ajmitch> [07:42:30] <dneighbo_> must run
+<siesel> hi ajmitch
+<ajmitch> sigh, seems like i need to throw something together this afternoon so as to avoid other people's messy designs :)
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+<siesel> what do you want to THROW TOGETHER?
+<ajmitch> bsic accounting forms
+<ajmitch> and a nice UI to access them :)
+<siesel> for acclite?
+<ajmitch> nah, something far smaller at the moment
+<ajmitch> anyway, must have breakfast now, cya :)
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+Gun[around] (GunAndGiz@ip68-10-44-170.rn.hr.cox.net) joined #gnuenterprise.
+<Gun[around]> greetz
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+Nick change: Gun[around] -> stbain
+<siesel> hi chillywilly
+<chillywilly> hi
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise ("switching logins").
+jamest (~jamest@hobbes.math.ksu.edu) left #gnuenterprise.
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+siesel (jan@dial-213-168-92-142.netcologne.de) left irc: "later"
+<dneighbo> hi stbain
+<dneighbo> crap siesel is gone :)
+<dneighbo> we just missed one another
+<ajmitch> yes :)
+<ajmitch> and both ssaid 'crap $x is gone'
+Action: jcater will change the vicious cycle
+<jcater> crap dneighbo is here
+<jcater> how's that?
+<dneighbo> jcater: you here?
+<jcater> yes
+<dneighbo> you running woody?
+<dneighbo> its most odd i did apt-get install of postgresql this am 
+<jcater> well, the cute one just left
+<dneighbo> however i cant get it to run
+<dneighbo> i do /etc/init.d/postgresql start
+<dneighbo> and it says it restarts 
+<ajmitch> morning jcater, dneighbo
+<dneighbo> latitude:/home/dneighbo# su - postgres
+<dneighbo> postgres@latitude:~$ createuser
+<dneighbo> Enter name of user to add: dneighbo
+<dneighbo> Shall the new user be allowed to create databases? (y/n) y
+<dneighbo> Shall the new user be allowed to create more new users? (y/n) y
+<dneighbo> psql: could not connect to server: No such file or directory
+<dneighbo> 	Is the server running locally and accepting
+<dneighbo> 	connections on Unix domain socket "/var/run/postgresql/.s.PGSQL.5432"?
+<dneighbo> createuser: creation of user "dneighbo" failed
+<dneighbo> postgres@latitude:~$ 
+<dneighbo> and ps ax |grep post shows its NOT running
+<dneighbo> even after
+<dneighbo> latitude:/home/dneighbo# /etc/init.d/postgresql start
+<dneighbo> Starting PostgreSQL postmaster.
+<dneighbo> postmaster successfully started
+<dneighbo> latitude:/home/dneighbo# ps ax|grep post
+<dneighbo>  6779 pts/2    S      0:00 grep post
+<dneighbo> latitude:/home/dneighbo# 
+<ajmitch> hmm, looks broken, check logs
+<ajmitch> ajmitch:/opt# ps axu |grep post
+<ajmitch> postgres  5207  0.0  0.0  8552  280 pts/5    S    May17   0:07 /usr/lib/postgresql/bin/postmaster
+<ajmitch> postgres  5209  0.0  0.0  9544  192 pts/5    S    May17   0:00 postgres: stats buffer process    
+<ajmitch> postgres  5210  0.0  0.0  8668  228 pts/5    S    May17   0:00 postgres: stats collector process   
+<ajmitch> postgres 14595  0.0  0.2  8976  856 pts/5    S    Jul10   0:00 postgres: ajmitch gnue 127.0.0.1 idle in transaction
+<jcater> do a dpkg-reconfigure postgresql
+<dneighbo> i do a dpkg-reconfigure and now it makes SOME sense
+<dneighbo> i recall it asking me if i wanted to upgrade my version of postgres(which is odd as i didnt have one) unless some dependency installed 6.5
+<dneighbo> as this is FRESH install of woody
+<dneighbo> i chose (y) and ran out door
+<dneighbo> it appears that the binary to do the conversion is missing
+<dneighbo> so now i choose N
+<dneighbo> and its says everything goes smooth but it doesnt
+<dneighbo> sigh crappy packaging i assume
+<dneighbo> which is so odd as i have yet to have issues really with postgres on debian
+<dneighbo> doing an upgrade
+<dneighbo> nothing to upgrade sigh
+<ariel_> dneighbo: check postgresql.conf
+<ariel_> in data directory
+<ariel_> in <prefix>
+<ariel_> mine is /var/lib/pgsql
+<dneighbo> postgresql has found a pre-existing database, and believes that it will be
+<dneighbo> able to update it automatically to the new version.  There is some risk to
+<dneighbo> your data in this.  If you have not got an up-to-date backup of
+<dneighbo> /var/lib/postgres/data, you should say no at this point.
+<dneighbo> In the course of the update, your existing /var/lib/postgres/data
+<dneighbo> will be moved to a parallel directory and a new directory created in
+<dneighbo> its place.  The saved dump of your existing database will then be loaded
+<dneighbo> into the new database.  If you have a lot of data, this may take a
+<dneighbo> considerable time; if your database is sufficiently large, it may fail
+<dneighbo> for lack of disk space.
+<dneighbo> The backup of /var/lib/postgres/data will be on the same filesystem;
+<dneighbo> the dump file will be in /usr/lib/postgresql/dumpall/.
+<dneighbo> Do you want me to continue with the automatic update? [y/N] y
+<dneighbo> The upgrade will now be done; the time taken will depend on the
+<dneighbo> size of your database(s).
+<dneighbo> There are no binaries for dumping database format 7.2
+<ariel_> check the tcpip_socket variable 
+<dneighbo> Sorry; the automatic database upgrade failed.
+<dneighbo> latitude:/home/dneighbo# 
+<chillywilly> it just uses pg_dump
+<ariel_> this must be true for pg  server to accept connections via tcp/ip
+<chillywilly> tcp/ip is turned ON by default IIRC
+<ariel_> not sure
+<dneighbo> all that is fine
+<dneighbo> this is im certain a package problem
+<chillywilly> # TCP/IP access is allowed by default, but the default access given in
+<chillywilly> # pg_hba.conf will permit it only from localhost, not other machines.
+<chillywilly> tcpip_socket = 1
+<dneighbo> im getting postgres-contrib and postgresql-dev
+<dneighbo> doods im telling you thats NOT it
+<dneighbo> its not a CONNECTION problem
+<dneighbo> the damn thing wont even START
+<chillywilly> no shit
+<nickr> http://www.komotv.com/stories/19291.htm
+<dneighbo> roflmao
+<chillywilly> is that for real?
+Action: dneighbo forgets how do you do an initdb
+<dneighbo> i think this might solve my issues
+<dneighbo> where would i find postgres logs?
+<dneighbo> doesnt seem to be in syslog and cant find any postgres logging
+<drochaid> initdb -D /<path to data>
+<dneighbo> initdb command not found
+<drochaid> explicity state path
+<drochaid> *explicitly
+StyXman (~mdione@modem117-adsl.capfed2.sinectis.com.ar) joined #gnuenterprise.
+<dneighbo> im uninstalling postgres anything
+<dneighbo> and deleting all postgres dirs
+<StyXman> hi. why aren't no data-unaware widgets?
+<chillywilly> dneighbo: rtfm
+<chillywilly> ;)
+<dneighbo> then trying again
+<dneighbo> the tfm sucks
+<chillywilly> no it does not
+<dneighbo> again this is a packaging issue
+<chillywilly> posgres has excellent documentation
+<drochaid> dneighbo: tfm ?
+<dneighbo> as im running 8.2
+<drochaid> ah the manual
+<drochaid> the docs are bloody excellent
+<dneighbo> er 7.2
+<drochaid> 7.2.1 I would hope dneighbo
+<dneighbo> er installing 7.2 and it says (found an OLD db)
+<dneighbo> let me upgrade
+<dneighbo> and the upgrade fails saying there is no upgrade tool for 7.2.1
+<dneighbo> which im like NO DUH
+<drochaid> reinstall the version the db was for
+<drochaid> pg_dumpall
+<drochaid> remove old install and install 7.2.1
+<drochaid> pg_restore
+<drochaid> [after initdb of course]
+<dneighbo> it wont let me initdb
+<drochaid> not yet
+<dneighbo> so im wiping ALL references to postgers
+<dneighbo> and starting over
+<drochaid> bulding from source or deb/rpm?
+<dneighbo> grrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
+<dneighbo> i think i found the problem now that i finally found the log
+Action: drochaid backs off and runs to the corner
+<dneighbo> using dhcp here and home im static
+<chillywilly> syntax for initb -> http://chillywilly.dyndns.org/postgres/installation.html
+<chillywilly> initdb even
+<dneighbo> so my hosts file had static ip for me
+<drochaid> :o
+<drochaid> that would be a problem
+<nickr> chillywilly: yea, thats real
+<chillywilly> heheh
+<chillywilly> funky
+<chillywilly> a fish that can breathe air and walk on land
+<chillywilly> cool
+yogurt2unge (~charlie@modem117-adsl.capfed2.sinectis.com.ar) left irc: "Client Exiting"
+<dneighbo> grr that still didnt do it
+siesel (jan@dial-195-14-235-132.netcologne.de) joined #gnuenterprise.
+<chillywilly> wb siesel
+<drochaid> dneighbo: did you rehash the postmaster?
+Action: drochaid plays Counting Crows, Hard Candy album to relax dneighbo
+<dneighbo> latitude:/var/log# /etc/init.d/postgresql start
+<dneighbo> Starting PostgreSQL postmaster.
+<dneighbo> postmaster successfully started
+<dneighbo> latitude:/var/log# less postgres.log 
+<dneighbo> PGSTAT: bind(2): Cannot assign requested address
+<dneighbo> i dont get it still
+<chillywilly> anyone ever see fight club?
+<dneighbo> latitude:/var/log# less /etc/hosts
+<dneighbo> 127.0.0.1       localhost
+<dneighbo> 127.0.0.1       latitude
+<dneighbo> 192.168.100.90  carpine.com             carpine
+<dneighbo> # The following lines are desirable for IPv6 capable hosts
+<dneighbo> # (added automatically by netbase upgrade)
+<dneighbo> ::1     ip6-localhost ip6-loopback
+<dneighbo> fe00::0 ip6-localnet
+<dneighbo> ff00::0 ip6-mcastprefix
+<dneighbo> ff02::1 ip6-allnodes
+<dneighbo> ff02::2 ip6-allrouters
+<dneighbo> ff02::3 ip6-allhosts
+<siesel> cw: yes
+<drochaid> dneighbo: what's in your pg_hba.conf ?
+<chillywilly> crazymike let me borrow it
+<dneighbo> gack
+<dneighbo> WTF
+<dneighbo> how come pump didnt bring up lo?
+<chillywilly> settle down mister
+<chillywilly> why would you want it to?
+<dneighbo> latitude:/var/log# ps ax |grep post
+<dneighbo>  8459 pts/2    S      0:00 /usr/lib/postgresql/bin/postmaster
+<dneighbo>  8461 pts/2    S      0:00 postgres: stats buffer process    
+<dneighbo>  8463 pts/2    S      0:00 postgres: stats collector process   
+<dneighbo>  8473 pts/2    S      0:00 grep post
+<dneighbo> latitude:/var/log# 
+<dneighbo> sigh that WAS the problem
+Action: dneighbo has never had lo not start before
+<chillywilly> shouod be setup in your interfaces file
+<chillywilly> then when the networking inti script runs it should come up at least
+<chillywilly> init
+<dneighbo> its a long story
+<chillywilly> you can also setup 'interfaces' file to use dhcp
+<chillywilly> for the ethx interface
+Action: chillywilly 's server does this
+<siesel> dneigbo: what didn't you like
+<chillywilly> hey dneighbo what does { } do in XSLT?
+<chillywilly> I was told you are da xsl masta
+<dneighbo> i dont have my xsl bible
+<chillywilly> darn
+<dneighbo> i remember briefly about it but not enough
+<chillywilly> what book is that?
+<dneighbo> um fact that you were doing 
+<chillywilly> what is you "xsl bible"?
+<dneighbo> <row>data</row> or something
+<dneighbo> where i think it should be
+<dneighbo> <row>
+<dneighbo>   <field name="foo">data</field>
+<dneighbo>   <field name="bar">data</field>
+<dneighbo> </row>
+<dneighbo> or the like
+<dneighbo> later you then seemed to reference something like this even including a datatype
+^chewie (~chad@cyan.ima.umn.edu) joined #gnuenterprise.
+<dneighbo> but i wasnt sure
+<jcater> sorry
+<jcater> I was away
+<dneighbo> im fixed up now
+<jcater> did you do the dpkg-reconfigure?
+<dneighbo> i think
+<dneighbo> yeah lo wasnt up
+<jcater> as I imagine it had to do with a failed dump
+<jcater> ah
+<dneighbo> was problem, but still the package has an issue
+Action: jcater had hell upgrading to 7.2
+<dneighbo> as it SHOULD NOT try to upgrade when there is no postgres :)
+<dneighbo> i.e. a fresh install and apt-get install postgresql
+<dneighbo> should say we found a database want to upgrade it
+<dneighbo> er shouldnt
+<chillywilly> <div id="{@name}" style="display: none;">
+<chillywilly> so you have no idea what the { } do?
+<dneighbo> btw: im trying to get desktop tools more eval'd
+<siesel> dneighbo: at the moment I have a <row> <value>one</value><value>two</value></row>
+<dneighbo> i tried pharmacy, lincvs and gcvs (sigh they all have issues) short of cvs co readonly with pserver :(
+<chillywilly> @attrib gives you the value of an attribute right?
+<dneighbo> chillywilly: i believe that is correct
+<siesel> do I understand you right, that you want fieldnames in?
+<dneighbo> also tried tora and sqlsomething and they both suck
+<siesel> <xsl:value-of select="@attribute"/>
+<jcater> desktop tools?
+<chillywilly> siesel: are you well versed in XSL?
+<siesel> cw: in the W3C docs they say {@attribute} should work the same way, but it didn't worked for me.
+<chillywilly> oh?
+<chillywilly> hmmph
+<siesel> cw: I just changed the pgsql.xslt files. i.e. I'm a XSLT rookie
+<chillywilly> k
+<chillywilly> I was ist reading them for some practice ;)
+<chillywilly> just
+<chillywilly> see how well I could remember this tutorial I read...of course my memory sucks
+<siesel> possibly you should upgrade another 16kbytes ;)
+<chillywilly> heh, yea
+<chillywilly> I want to be able to download stuff into my head like in the matrix
+<chillywilly> that would rock
+<siesel> dneighbo: just to ask again, do you want fieldsnames to be required? i.e. don't have a <value>j</value> but an <field name="bla">j</field> or an <value field="bla">j<value>?
+<siesel> IHMO there are many pro's and con's for requiring fieldnames, so what do you think
+Action: jcater personally thinks the pro's outweigh any and all cons
+<jcater> but that's just mho
+<siesel> ok, so <field name="bla">j</field> would be the choice right? Its just 10-20 bytes more per row per column.
+StyXman (~mdione@modem117-adsl.capfed2.sinectis.com.ar) left irc: "ircII EPIC4-1.1.5 -- Are we there yet?"
+<siesel> ok, I will first commit my version and change it to the field way tomorow, or sometimes not beeing so tired 
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "Client Exiting"
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+<dneighbo> siesel: can we not change things till we are all in agreement
+<dneighbo> i think jcater had input
+<dneighbo> mainly im concerned as im wanting to do stuff with acclite and it dependent on some of this stuff and designer
+<dneighbo> so i dont want it broken for long periods of time :)
+<dneighbo> i like the value field="bla"
+<dneighbo> but i havent thought really hard on ti
+<dneighbo> it
+<siesel> I wont commit something breaking designer (I hope so)
+<siesel> that <value field stuff is in cvs now, and it should not interfere with designer capabilitys to create .gsd out of databases
+<dneighbo> well you cant break xsd to postgres either :)
+<dneighbo> or rather it would be preferred to not be broken long :)
+Action: ariel_ is away: zzz...
+<dneighbo> grr i hate savannah at times
+<siesel> btw. gsd to postgres was broken till today, because it doesn't accept that global schema tag. 
+siesel (jan@dial-195-14-235-132.netcologne.de) left irc: "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+dres_ (~dres@mail.lewismoss.org) joined #gnuenterprise.
+dres (~dres@mail.lewismoss.org) left irc: Connection reset by peer
+dres__ (~dres@mail.lewismoss.org) joined #gnuenterprise.
+dres_ (~dres@mail.lewismoss.org) left irc: Remote closed the connection
+dres__ (~dres@mail.lewismoss.org) left irc: Remote closed the connection
+dres_ (~dres@mail.lewismoss.org) joined #gnuenterprise.
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+dres__ (~dres@mail.lewismoss.org) joined #gnuenterprise.
+dres_ (~dres@mail.lewismoss.org) left irc: Remote closed the connection
+dres_ (~dres@mail.lewismoss.org) joined #gnuenterprise.
+dres__ (~dres@mail.lewismoss.org) left irc: Remote closed the connection
+dres_ (~dres@mail.lewismoss.org) left irc: Remote closed the connection
+jcater (~jason@cpe-024-165-193-024.midsouth.rr.com) joined #gnuenterprise.
+<dneighbo> jcater: by desktop i meant GUI applications
+<dneighbo> i.e. if one were afraid of command line how would they use CVS and Postgres and the likes
+<dneighbo> its and interesting experience actually looking at the gui tools (as they are rather pitiful) :(
+<dneighbo> hmmm synaptic (apt-get gui) looks pretty decent though
+<jcater> uggh
+<jcater>  /me understands gui postgres tools
+<jcater> but not cvs
+<jcater> unless it were integrated into an IDE suite
+<dneighbo> ?
+<dneighbo> no im an evangelist remember
+<dneighbo> im trying to see what linux looks like for someone scared of the command line (not necessary a gnue person)
+<dneighbo> so am trying to find gui ways to do anything i do from a command line (just to see the experience)
+<dneighbo> i see our designer eventaully supporting postgres gui and cvs gui (cvs functionality)
+<dneighbo> but in no high order of magnitude
+<dneighbo> i.e. im not looking at existing gui tools for that purpose
+Action: dneighbo is away: church and things
+<jcater> so, evangelist is the word we're using now?
+<jcater> :>
+Action: jcater ducks
+Action: drochaid is away: Do not meddle in the affairs of dragons, because you are crunchy and taste good with ketchup.
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+<stbain> dneighbo: it's official now
+<stbain> I'll start in the next few days
+<ajmitch> hi all
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) left irc: Read error: 104 (Connection reset by peer)
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+<jcater> hi ajmitch
+<ajmitch> yo jcater
+Action: ajmitch is just starting designer to see how far along schema stuff is :)
+<jcater> not very
+<ajmitch> ok
+<ajmitch> will put together a db manually then
+<jcater> well
+<jcater> is the db already in postgres or such?
+<jcater> or are you starting from scratch?
+<ajmitch> starting from scratch
+<ajmitch> will only be a few tables
+<jcater> ah
+<jcater> then the current designer is of no use to you
+<jcater> :(
+<ajmitch> no, it is, i'm building froms as well :)
+<ajmitch> s/froms/forms/
+<ajmitch> hmm, wxpython stuff suffers from performance issues when the cpu is busy ;)
+<chillywilly> wow, fight club is one fucked up movie
+<ajmitch> hehe
+Action: ajmitch just cheated & grabbed pre-existing db dump
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+Action: ajmitch wonders why navigator isn't picking up files in the current dir
+Action: ajmitch thinks designer hates him
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+Nick change: stbain -> stbain|zzz
+<stbain|zzz> designer loves you and wants to spend more time with you, thus it has decided to prolong your programming efforts
+<stbain|zzz> nite all
+jcater (~jason@cpe-024-165-193-024.midsouth.rr.com) left irc: "Client Exiting"
+<chillywilly> I love you though
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+--- Thu Jul 11 2002
+[00:30] Last message repeated 1 time(s).
+Action: ariel_ is back (gone 06:55:16)
+ariel_ (~ariel@ppp-217-133-244-30.dialup.tiscali.it) left #gnuenterprise ("Uscita dal client").
+pattieja (~pattieja@sc2-24.217.184.48.charter-stl.com) got netsplit.
+pattieja (~pattieja@sc2-24.217.184.48.charter-stl.com) got lost in the net-split.
+dneighbo (~dneighbo@phnxdslgw4poolc175.phnx.uswest.net) left irc: Read error: 110 (Connection timed out)
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+alexey_ (~Alexey@195.151.214.33) joined #gnuenterprise.
+pattieja (~pattieja@sc2-24.217.184.48.charter-stl.com) joined #gnuenterprise.
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: "woooooosh!"
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+<ajmitch> hi
+<psu> hi
+Action: psu is closing some jobs in DCL
+Action: psu notes a worrying tendancy to use IRCspeak in the Description fields
+<ajmitch> such as?
+<psu> my bad, iirc, etc.
+<psu> as long as I don;t start referring to 3ll1t3 h4z0r patches, I suppose
+Action: ajmitch doesn't see anything wrong with things like that in DCL :)
+<psu> well, work time
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise ("bbl").
+siesel (jan@xunzi.sinologie.uni-bonn.de) joined #gnuenterprise.
+<siesel> morning
+Gangster (~Patrickde@a215101.upc-a.chello.nl) joined #gnuenterprise.
+<Gangster> :/server irc.cyber-cops.org 
+Gangster (~Patrickde@a215101.upc-a.chello.nl) left #gnuenterprise.
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+Arturas (arturas@bit.codeworks.lt) joined #gnuenterprise.
+<Arturas> Hello
+<siesel> Hi Arturas
+<Arturas> hi Jan :)
+ariel_ (~ariel@ppp-217-133-242-135.dialup.tiscali.it) joined #gnuenterprise.
+<siesel> hi ariel_
+<ariel_> hi
+<ariel_> siesel: do you want that i put the trigger stuff in the digrams or is it a temporary hack 
+<ariel_> that will eventually disappear?
+<siesel> I think that GTrigger will stay, its likely to change a bit. (like much of the rest of appserver) 
+<siesel> The only thing which is really a hack is, a) the way triggers are called, and the way methods are implemented (methods are using triggers at the moment)
+<ariel_> that's ok, for i need only the signature of a method and not the implementation.
+<siesel> Arturas: I fount out that a wxFONTENCODING_UTF8 exists in the source code of wxwindows. I just don't know if wxpython support it. (the only place to find it in documentation is: http://biolpc22.york.ac.uk/wx/docs/html/wx/wx159.htm#wxfont . 
+<ra3vat> hello all
+<siesel> Hi ra3vat.
+<ra3vat> hello siesel
+Action: ariel_ is away: busy
+kemitix (~chatzilla@proxy1.lauder.ac.uk) joined #gnuenterprise.
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+kemitix (~chatzilla@proxy1.lauder.ac.uk) left irc: Remote closed the connection
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+Action: drochaid is back (gone 09:30:21)
+Action: ariel_ is back (gone 01:36:18)
+<ra3vat> Arturas: you here?
+<Arturas> yep
+<ra3vat> do you remember idea to assign trigger to first field of the form? If form tabbed and I click on second tab then first one again - it is fired, simply run form - is not
+ajmitch (~me@wlg1-port2.jetstart.maxnet.co.nz) got netsplit.
+ra3vat (~ds@ics.elcom.ru) got netsplit.
+ra3vat (~ds@ics.elcom.ru) returned to #gnuenterprise.
+ajmitch (~me@wlg1-port2.jetstart.maxnet.co.nz) returned to #gnuenterprise.
+<Arturas> welcome back, Dmitry :)
+<Arturas> yes, i remember the idea
+<Arturas> i don't know why the trigger isn't fired when the form is opened
+<Arturas> the focus is set in that field
+<Arturas> nevertheless you get there from another tab or from form start
+<ajmitch> wb Arturas :)
+<Arturas> hi ajmitch :)
+<ra3vat>  tested again with all PRE POST FOCUSIN FOCUSOUT combinations, all as i said :(
+kemitix (~chatzilla@proxy1.lauder.ac.uk) joined #gnuenterprise.
+<ra3vat> hi ajmitch :)
+kemitix (~chatzilla@proxy1.lauder.ac.uk) left irc: Remote closed the connection
+<ajmitch> hi 
+kemitix (~chatzilla@proxy1.lauder.ac.uk) joined #gnuenterprise.
+kemitix (~chatzilla@proxy1.lauder.ac.uk) left irc: Remote closed the connection
+kemitix (~chatzilla@proxy1.lauder.ac.uk) joined #gnuenterprise.
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+kemitix (~chatzilla@proxy1.lauder.ac.uk) left irc: Remote closed the connection
+kemitix (~chatzilla@proxy1.lauder.ac.uk) joined #gnuenterprise.
+ajmitch (~me@wlg1-port2.jetstart.maxnet.co.nz) got netsplit.
+ra3vat (~ds@ics.elcom.ru) got netsplit.
+ajmitch (~me@wlg1-port2.jetstart.maxnet.co.nz) returned to #gnuenterprise.
+ra3vat (~ds@ics.elcom.ru) returned to #gnuenterprise.
+ajmitch (~me@wlg1-port2.jetstart.maxnet.co.nz) got netsplit.
+ra3vat (~ds@ics.elcom.ru) got netsplit.
+ajmitch (~me@wlg1-port2.jetstart.maxnet.co.nz) returned to #gnuenterprise.
+ra3vat (~ds@ics.elcom.ru) returned to #gnuenterprise.
+^chewie (~chad@cyan.ima.umn.edu) got netsplit.
+Mr_You (rouzer@207.124.144.13) got netsplit.
+^chewie (~chad@cyan.ima.umn.edu) returned to #gnuenterprise.
+Mr_You (rouzer@207.124.144.13) returned to #gnuenterprise.
+kemitix (~chatzilla@proxy1.lauder.ac.uk) got netsplit.
+ariel_ (~ariel@ppp-217-133-242-135.dialup.tiscali.it) got netsplit.
+pattieja (~pattieja@sc2-24.217.184.48.charter-stl.com) got netsplit.
+alexey_ (~Alexey@195.151.214.33) got netsplit.
+kemitix (~chatzilla@proxy1.lauder.ac.uk) returned to #gnuenterprise.
+ariel_ (~ariel@ppp-217-133-242-135.dialup.tiscali.it) returned to #gnuenterprise.
+alexey_ (~Alexey@195.151.214.33) returned to #gnuenterprise.
+pattieja (~pattieja@sc2-24.217.184.48.charter-stl.com) returned to #gnuenterprise.
+Arturas (arturas@bit.codeworks.lt) got netsplit.
+stbain|zzz (GunAndGiz@ip68-10-44-170.rn.hr.cox.net) got netsplit.
+Remosi (dahoose@port-62-148.jet.net.nz) got netsplit.
+nickr (~panphage@e-172-IP28.empnet.net) got netsplit.
+gnuebot (eggdrop@mail.libertydistribution.com) got netsplit.
+gnuebot (eggdrop@mail.libertydistribution.com) returned to #gnuenterprise.
+Arturas (arturas@bit.codeworks.lt) returned to #gnuenterprise.
+stbain|zzz (GunAndGiz@ip68-10-44-170.rn.hr.cox.net) returned to #gnuenterprise.
+Remosi (dahoose@port-62-148.jet.net.nz) returned to #gnuenterprise.
+nickr (~panphage@e-172-IP28.empnet.net) returned to #gnuenterprise.
+#gnuenterprise: mode change '+o gnuebot' by bear.openprojects.net
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+eugene_beast (~eugene@195.239.203.11) joined #gnuenterprise.
+<ra3vat> hi eugene_beast
+<eugene_beast> ra3vat: hello
+Action: drochaid is away: Do not meddle in the affairs of dragons, because you are crunchy and taste good with ketchup.
+Action: drochaid is back (gone 00:00:10)
+siesel (jan@xunzi.sinologie.uni-bonn.de) left irc: "starting up blackend (I hate ircii)"
+siesel (jan@xunzi.sinologie.uni-bonn.de) joined #gnuenterprise.
+ToyMan (~stuq@smtp.dstoys.com) joined #gnuenterprise.
+siesel (jan@xunzi.sinologie.uni-bonn.de) left irc: "later"
+eugene_beast (~eugene@195.239.203.11) left irc: "÷ÙÛÅÌ ÉÚ XChat"
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+dres (~dres@mail.lewismoss.org) joined #gnuenterprise.
+alexey_ (~Alexey@195.151.214.33) left irc: "[x]chat"
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+gregorash (greg@195.239.64.79) joined #gnuenterprise.
+jamest (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+<ra3vat> hello gregorash
+<ra3vat> hello jamest
+<gregorash> hello ra3vat
+<ra3vat> jamest: you said it is quite easy tio add those triggers how can the proceed with this
+gregorash (greg@195.239.64.79) left irc: "Client Exiting"
+gregorash (greg@195.239.64.79) joined #gnuenterprise.
+<Arturas> Hi jamest
+<jamest> hi
+<gregorash> hi aLL
+<Arturas> hi
+gregorash (greg@195.239.64.79) left irc: "Client Exiting"
+kemitix (~chatzilla@proxy1.lauder.ac.uk) left irc: Remote closed the connection
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+siesel (jan@dial-213-168-73-234.netcologne.de) joined #gnuenterprise.
+ariel_ (~ariel@ppp-217-133-242-135.dialup.tiscali.it) left irc: "Uscita dal client"
+^chewie (~chad@cyan.ima.umn.edu) left irc: "leaving"
+siesel (jan@dial-213-168-73-234.netcologne.de) left irc: "Wo feichang hao, wan yi dian zai huilai"
+dneighbo (~dneighbo@phnxdslgw4poolc175.phnx.uswest.net) joined #gnuenterprise.
+<dneighbo> holy smokes
+<dneighbo> people
+<Arturas> hi
+<ra3vat> hello dneighbo
+<dneighbo> hi ra3vat Arturas
+<dneighbo> jcater: how goes the marketing and cd?
+Action: dneighbo remembers at one time we dicussed cd's
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+<jcater> dneighbo: I close tomorrow morning on the house
+<jcater> so I'll give you 3 guesses on the state of the marketing and cd
+<jcater> and the first 2 don't count
+<dneighbo> :)
+<dneighbo> ok we do install fests here regularly and lsat one demos and such
+<dneighbo> next one is in october i think
+<dneighbo> and we are almost doing a mini tradeshow
+<dneighbo> i wanted to GNUe to be able to 'sponsor' it
+<dneighbo> in that we would demo, have setup and such
+<dneighbo> also of course there is SF
+<dneighbo> :)
+Action: jcater has worked on cd's
+<jcater> there are scripts/how-to's in CVS detailing how to do a staticly compiled install of all the prereqs
+<jcater> so literally everything the user needs (except X) is in a tarball
+<jcater> well, X and glibc
+yogurt2unge (~charlie@modem117-adsl.capfed2.sinectis.com.ar) joined #gnuenterprise.
+<dneighbo> :)
+alexey_ (~alexey@195.151.214.34) left irc: Read error: 113 (No route to host)
+<dneighbo> jcater: re earlier desktop discussion synaptic isnt all bad
+<dneighbo> stbain|zzz: have you played with acclite?
+<dneighbo> micah fixed much of the postgres woe
+<dneighbo> though he inadvertently created a new one with is data export :)
+<dneighbo> i got much further on testing, but ran into issue posting journal vouchers that i will need to research
+dneighbo (~dneighbo@phnxdslgw4poolc175.phnx.uswest.net) left irc: Remote closed the connection
+<Arturas> bye
+Arturas (arturas@bit.codeworks.lt) left #gnuenterprise (""See you tomorrow :)"").
+siesel (jan@dial-195-14-250-153.netcologne.de) joined #gnuenterprise.
+gregor (greg@195.239.64.176) joined #gnuenterprise.
+dneighbo (~dneighbo@tmp-200253.flinthills.com) joined #gnuenterprise.
+siesel (jan@dial-195-14-250-153.netcologne.de) left irc: Read error: 113 (No route to host)
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+StyXman (~mdione@modem117-adsl.capfed2.sinectis.com.ar) joined #gnuenterprise.
+<StyXman> hi...
+klog (~locked@modemcable145.226-201-24.mtl.mc.videotron.ca) joined #gnuenterprise.
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+gregor (greg@195.239.64.176) left irc: "Client Exiting"
+Nick change: stbain|zzz -> stbain[away]
+ToyMan (~stuq@smtp.dstoys.com) left irc: Remote closed the connection
+btami (~tamas@ip102-205.ktv.tiszanet.hu) joined #gnuenterprise.
+<btami> hi all
+ToyMan (~stuq@smtp.dstoys.com) joined #gnuenterprise.
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+yogurt2unge (~charlie@modem117-adsl.capfed2.sinectis.com.ar) left irc: "Client Exiting"
+kemitix (~chatzilla@kemitix.demon.co.uk) joined #gnuenterprise.
+btami (~tamas@ip102-205.ktv.tiszanet.hu) left irc: "Client Exiting"
+<dneighbo> http://www.worldtrademag.com/CDA/ArticleInformation/coverstory/BNPCoverStoryItem/0,3481,76659,00.html
+<dneighbo> most interesting read i have had in a while
+<klog> wow
+<klog> yes
+<klog> BSmafiA
+StyXman (~mdione@modem117-adsl.capfed2.sinectis.com.ar) left irc: "study"
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+kemitix (~chatzilla@kemitix.demon.co.uk) left irc: Read error: 113 (No route to host)
+kemitix_ (~chatzilla@kemitix.demon.co.uk) joined #gnuenterprise.
+psu (psu@manorcon.demon.co.uk) left irc: "[x]chat"
+ToyMan (~stuq@smtp.dstoys.com) left irc: "Client Exiting"
+psu (peter@manorcon.demon.co.uk) joined #gnuenterprise.
+kemitix_ (~chatzilla@kemitix.demon.co.uk) left irc: Remote closed the connection
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+ariel_ (~ariel@ppp-217-133-241-169.dialup.tiscali.it) joined #gnuenterprise.
+siesel (jan@dial-194-8-196-20.netcologne.de) joined #gnuenterprise.
+klog (~locked@modemcable145.226-201-24.mtl.mc.videotron.ca) left #gnuenterprise.
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+ToyMan (~stuq@c5300-1-ip178.albany.thebiz.net) joined #gnuenterprise.
+<dneighbo> its da ToyMan 
+yogurt2unge (~charlie@modem117-adsl.capfed2.sinectis.com.ar) joined #gnuenterprise.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "home"
+psu (peter@manorcon.demon.co.uk) left #gnuenterprise ("bed").
+jamest (~jamest@hobbes.math.ksu.edu) left irc: "[x]chat"
+siesel (jan@dial-194-8-196-20.netcologne.de) left irc: "l8r"
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+siesel (jan@dial-213-168-95-236.netcologne.de) joined #gnuenterprise.
+siesel (jan@dial-213-168-95-236.netcologne.de) left irc: "Kiss your keyboard goodbye!"
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+<chillywilly> howdy
+yogurt2unge (~charlie@modem117-adsl.capfed2.sinectis.com.ar) left irc: "Client Exiting"
+Ford_ (~times@pD9E2C14B.dip.t-dialin.net) joined #gnuenterprise.
+<Ford_> good morninh
+<dneighbo> hello
+<chillywilly> yo
+<dneighbo> im out
+dneighbo (~dneighbo@tmp-200253.flinthills.com) left irc: "[BX] The Borg use BitchX. It will be assimilated. Shouldn't you?"
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+jbailey (~jbailey@atlas.fundserv.com) joined #gnuenterprise.
+<chillywilly> hi jbailey :)
+<jbailey> Heya Dan./
+<ajmitch> hi
+mdean (~mdean@mkc-65-28-72-183.kc.rr.com) joined #gnuenterprise.
+<ajmitch> mdean!
+<ajmitch> is it truly you?
+<mdean> yup
+<mdean> still a ghost tho :(
+<ajmitch> rather busy?
+<mdean> ja - got quite a bit of work to do still
+stbain (GunAndGiz@ip68-10-44-170.rn.hr.cox.net) joined #gnuenterprise.
+stbain[away] (GunAndGiz@ip68-10-44-170.rn.hr.cox.net) left irc: Read error: 104 (Connection reset by peer)
+<mdean> hopefully it will slow down by september
+<chillywilly> hi mdean
+<stbain> ok
+<stbain> I need to draw on some Linux experience
+<stbain> don't feel like delving into the chaos of #linux
+<jbailey> with body paint?
+<jbailey> hmmm
+<jbailey> I could maybe enjoy that.
+<stbain> I just started a new job
+<jbailey> and i *do8 have linux experience!
+<stbain> picked my computer out of a pile
+<stbain> old PII 266
+<stbain> tried Red Hat 7.3 install
+<stbain> took forever and runs slow
+<stbain> I'd like to try Debian
+<stbain> should I shoot for woody or potato?
+<jbailey> Debian good.
+<jbailey> I like Debian.
+<jbailey> Woody
+<jbailey> There's no good reason to install potato now.
+<stbain> okie dokie
+<chillywilly> sid! ;)
+<chillywilly> go for broke man ;)
+<jbailey> I wasn't given that option to choose from.
+<chillywilly> boohoo
+<ajmitch> sid is good
+<stbain> sid is...
+<stbain> what?
+<jbailey> the 'unstable' distribution of Debian
+<stbain> hrmm
+<stbain> but the woody release isn't even finalized yet
+<ajmitch> sid is the last distribution you'll ever use ;)
+<stbain> I don't even see sid on the website
+<stbain> I'm assuming sid is stable enough for production use?
+<ajmitch> umm
+rdean (rdean@chcgil2-ar2-4-64-030-076.chcgil2.dsl-verizon.net) joined #gnuenterprise.
+<jbailey> Depends what you're doing.
+<ajmitch> i'd go for woody for production use
+<jbailey> I use it on my desk at work.
+<stbain> woody gonna outperform Red Hat on my PII 266?
+<jbailey> I wouldn't anticipate a speed increase at all.
+<stbain> anyone tried gentoo?
+<ajmitch> no
+<jbailey> Isn't that a parot?
+<jbailey> You're in the gnue channel.  Think "goats"
+<stbain> hrmm... gentoo install instructions almost read like "Linux from scratch"
+<ajmitch> it just about is LFS :)
+<jbailey> Wrose.
+<jbailey> It's trying to be bsd!
+<ajmitch> that's a worry
+<ajmitch> LFS with ports?
+<stbain> LordSutch.com ISOLINUX test
+<stbain> image/mini-ISO for Debian 3.0
+<stbain> that where I start?
+<jbailey> Sounds good, assume you have decent net connectivity.
+<stbain> DSL
+<jbailey> good 'nug
+<jbailey> 'nuf even.
+<chillywilly> nah
+<chillywilly> gett he XFS netinst CD
+<chillywilly> get the
+<chillywilly> er, iso that is
+<chillywilly> 30MB in size with the newer installer and XFS file system support
+<chillywilly> 2.4.x kernel
+<ajmitch> why would he want to use xfs?
+<stbain> yah, what if I'm an ext3 freak
+<jbailey> Especially with Reiser is the Path To Rightness. =)
+<ajmitch> on a production box? :)
+<jbailey> Sure.  I know lots of people using Reiser on mail servers and what not.
+<jbailey> It minimizes craziness.
+<jbailey> At least compare to xfs, reiser made it into the kernel. =)
+<chillywilly> http://people.debian.org/~blade/XFS-Install/download/bootbf2.4-xfs.iso
+<ajmitch> xfs has it's own vfs layer, right? :)
+<chillywilly> xfs rocks, I don't care if it is in the kernel or not
+<rdean> my observation on xfs vs. ReiserFS is that XFS will occasionally gobble up CPU cycles (journaling activity?) and lead to lack of UI responsiveness...
+<rdean> ReiserFS doesn't appear prone to that (my experiences are that when I install ReiserFS, the UI is less prone to fits of unresponsiveness)
+<jbailey> My observation is that yelling "XFS Sucks" in a channel with chillywilly in it tends to get him going. =)
+<rdean> OTOH, if you've got a server, XFS rules
+<chillywilly> my ui is nice and snappy, but I alos have a little extra help with that in the preemption patch
+<ajmitch> jbailey: yes, that's true ;)
+<chillywilly> heh, yea I also find this sooo truuuuue.....not!
+Action: ajmitch uses ext3 on all partitions but one
+<jbailey> ajmitch: The one with vfat? =)
+Action: rdean tried ext3 and didn't like what it did to my system
+<jbailey> or is it the swap partition?
+<ajmitch> the reiserfs /opt :)
+<ajmitch> ah yeah, i have a 500MB swap partition also
+<jbailey> I use ext3 because it took awhile to get angie out of the habit of hitting the reset button when the system froze.
+<chillywilly> reiser might be a bit better...you can probably find  nice netinst iso containing all 3 of those journaling file systems
+<jbailey> And I'm too lazy to reformat.
+Action: rdean is too lazy to do an upgrade
+<ajmitch> that was the main reason for me using ext3
+Action: rdean wipes and reinstalls
+<stbain> wow... the debian website sux0rs
+<jbailey> When Debian's installer supports reiserfs (it might now, but who the heck ever reinstalls debian? *g*) I'll probably setup my boxes with it.
+<stbain> that XFS netinst image is coming down at a whopping 4.6K/s
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+Action: ajmitch vehemently dislikes reinstalling
+<chillywilly> http://asdfnews.org/files/reiserfs_netinst.iso
+<ajmitch> only time i'd consider it would be if a hard drive went down or a system partition was corrupted :)
+<chillywilly> blah that url is no good
+Action: rdean doesn't have enough production "data" built up in Linux yet to warrant saving...easier to wipe and reinstall.  The benefit was that I've been able to try all the filesystems (even tried JFS, but that was when it was still buggy (don't know if that's still true or not)
+Action: ajmitch is doing a dist-upgrade at a massive 15KB/sec
+<chillywilly> woooo
+<ajmitch> better than the 4KB/sec i used to get ;)
+rdean (rdean@chcgil2-ar2-4-64-030-076.chcgil2.dsl-verizon.net) left irc: "Client Exiting"
+Action: chillywilly is getting 300KB/sec
+<chillywilly> eh, now it is down to 80kB/s
+fitzix (~fitzix@27.133.252.64.snet.net) joined #gnuenterprise.
+<chillywilly> woah!
+<fitzix> hello
+<fitzix> heh
+<chillywilly> massive join flood from fitzix on all channls ;)
+<fitzix> lol
+<fitzix> I'm really a robot
+<chillywilly> yea...that explains a lot actually 8)
+<fitzix> now - to really excite you, I'll simultaneously recite war and piece, verbatim, on all channels simulteneously
+<fitzix> including redundant text :)
+<chillywilly> k
+<stbain> I'm trying a jigdo woody image
+<stbain> iso image 1
+<stbain> for some reason its pulling some non-us stuff
+<stbain> is that normal?
+dneighbo (~dneighbo@filter.sequoia.net) joined #gnuenterprise.
+<dneighbo> mdean: is that really you?
+<jbailey> --> mdean (~mdean@mkc-65-28-72-183.kc.rr.com) has joined #gnuenterprise
+<jbailey> <ajmitch> mdean!
+<jbailey> <ajmitch> is it truly you?
+<jbailey> That's funny!
+<chillywilly> stbain: yea, that's just software that was hindered byt he US encryption laws...I don't think it is really relevant anymore (the law that is)
+<ajmitch> hehe
+<stbain> ok
+<stbain> jigdo a good option? that netinst download was taking forever
+<chillywilly> jigdo will give you a big ass iso image
+<jbailey> Isn't there a netinst jigdo option?
+<stbain> and save me some download time later once I start the install?
+<chillywilly> possibly...
+<chillywilly> yea
+<dneighbo> jbailey: im going to post your debs
+<jbailey> Ah, I take it they're good enough then?
+<dneighbo> honestly i havent tested yet :)
+<dneighbo> i think perhaps i should no
+<jbailey> Yeah, probably.
+<dneighbo> btw: let me point you to two bugs submitted on the old ones to see if you addressed in yours
+<jbailey> Sure.
+<dneighbo> http://sourceforge.net/tracker/index.php?func=detail&aid=574322&group_id=1424&atid=101424
+<dneighbo> http://sourceforge.net/tracker/index.php?func=detail&aid=574321&group_id=1424&atid=101424
+<jbailey> Those bugs don't apply because I don't automatically setup the database. =)
+<dneighbo> ok
+<jbailey> I want feedback first whether the basic setup is right before I start coding in extra stuff like that.
+<dneighbo> guess mike isnt really here
+Action: dneighbo goes to test that deb
+<ajmitch> dneighbo: he was before
+<jbailey> Can you email me any feedback?  I'm headed home pretty soon.
+<dneighbo> jbailey: 
+<dneighbo> latitude:/home/dneighbo/downloads# dpkg --install dcl_20020705-pre1_all.deb 
+<dneighbo> Selecting previously deselected package dcl.
+<dneighbo> (Reading database ... 49970 files and directories currently installed.)
+<dneighbo> Unpacking dcl (from dcl_20020705-pre1_all.deb) ...
+<dneighbo> dpkg: dependency problems prevent configuration of dcl:
+<dneighbo>  dcl depends on wwwconfig-common (>= 0.0.4-1); however:
+<dneighbo>   Package wwwconfig-common is not installed.
+<dneighbo> dpkg: error processing dcl (--install):
+<dneighbo>  dependency problems - leaving unconfigured
+<dneighbo> Errors were encountered while processing:
+<dneighbo>  dcl
+<dneighbo> latitude:/home/dneighbo/downloads# 
+<ajmitch> that's why you use apt-get to install :)
+<dneighbo> shouldn't it try to download this depend
+<dneighbo> ok so its becasue using dpkg
+<ajmitch> yeah
+<jbailey> Yeah.  I thought of removing that dep, but I'll use it when I start putting in the automatic-virutal-host-creation stuff.
+<ajmitch> jbailey: so does your deb setup the database?
+<jbailey> no, not at all.
+<jbailey> There's a whole lot of work I'll have to do with debconf to do that right.
+<ajmitch> alright
+<ajmitch> then i won't complain about it not doing so :)
+<jbailey> If derek says that this is 'good enough' then I'll upload it to Debian.
+<jbailey> and slowly add features and such.
+<ajmitch> ok then
+ToyMan (~stuq@c5300-1-ip178.albany.thebiz.net) left irc: "Client Exiting"
+<dneighbo> um where is the config file
+<dneighbo> its looking good right now, but i cant find the config file
+<dneighbo> i got db installed and such
+<jbailey>  /etc/dcl/
+<dneighbo> found 
+<dneighbo> deb seems to work for me get it in sid :)
+<dneighbo> we should work on it configuring the db
+<dneighbo> i.e.
+<dneighbo> dcl
+<dneighbo> dcl-pgsql
+<jbailey> The debconf page will give you the choice of what database (with some sanity checks, like needing the libraries installed)
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: Read error: 104 (Connection reset by peer)
+fitzix (~fitzix@27.133.252.64.snet.net) left irc: "Client Exiting"
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+<dneighbo> jbailey: things are officially released (debs) wooo hoo
+Action: dneighbo runs before mdean beats me for bastardizing his child
+<jbailey> Was that english?
+<ajmitch> heh
+<dneighbo> no not english
+<dneighbo> deke speak
+<stbain> is there one of those i18n po things for easily using both English and Deke into the same project?
+<jbailey> Probably
+<jbailey> g'night
+jbailey (~jbailey@atlas.fundserv.com) left irc: "Client Exiting"
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: "night"
+stbain (GunAndGiz@ip68-10-44-170.rn.hr.cox.net) left irc: Read error: 104 (Connection reset by peer)
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+ariel__ (~ariel@ppp-217-133-244-77.dialup.tiscali.it) joined #gnuenterprise.
+fajun (~fajun@61.131.82.144) joined #gnuenterprise.
+ariel_ (~ariel@ppp-217-133-241-169.dialup.tiscali.it) left irc: Read error: 110 (Connection timed out)
+dneighbo (~dneighbo@filter.sequoia.net) left irc: "Client Exiting"
+alexey_ (~Alexey@techkran.vladimir.ru) joined #gnuenterprise.
+--- Fri Jul 12 2002
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+fajun (~fajun@61.131.82.144) left irc: Read error: 104 (Connection reset by peer)
+ariel__ (~ariel@ppp-217-133-244-77.dialup.tiscali.it) left irc: "Uscita dal client"
+jcater (~jason@cpe-024-165-193-024.midsouth.rr.com) joined #gnuenterprise.
+<ajmitch> hi jcater
+<jcater> hi
+<ajmitch> hmm designer doesn't start
+<jcater> grrr
+Action: ajmitch does cvs up
+<ajmitch> i could have caught a cvs copy between commits
+<jcater> hmm
+<jcater> what's the error
+<jcater> maybe I forgot to cvs add a file
+<jcater> as it comes up here
+<ajmitch> DB000:     GDebug.printMesg(2,"%s.%s doesn't appear to be a valid wizard" % (package.__name, base))
+<ajmitch> DB000: AttributeError: 'forms.wizards' module has no attribute '_BaseInstance__name'
+<ajmitch> but you've committed since then
+<jcater> oh, yeah
+<jcater> that's old
+<ajmitch> master/detail wizard died on me yesterday, i'll see if it does today
+<ajmitch> i've got to figure out that stuff too
+<ajmitch> eg i have a customer table, a cnotes table, & a notes table here
+<ajmitch> where cnotes has id from the other two tables (associative entity)
+<jcater> shared notes?
+<ajmitch> something like that i think
+Action: ajmitch didn't do the db :)
+<ajmitch> appears to have worked today
+<ajmitch> (the wizard, on another pair of tables)
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+<ajmitch> i need to print/read the userguide i think :)
+<ajmitch> designer is turning out quite well, you're doing a good job :)
+<jcater> just wait
+<jcater> in a week or so, you will see some major improvements
+<ajmitch> excellent
+Action: jcater is using designer for a big project at the moment
+<ajmitch> ah
+<jcater> so I'm having to deal with all it's oddities
+<jcater> and if I have to deal with an oddity more than two or three times, 
+<ajmitch> navigator doesn't currently get forms from the current dir, does it?
+<jcater> I get p*ssed off
+<ajmitch> understandable
+<jcater> no
+<ajmitch> ok, am wondering if i should let it do that
+<jcater> but since I'm the main designer coder, if I get p'd off, then I end up fixing it :)
+<ajmitch> it seems like each UI driver in navigator has form loading code
+<jcater> yeah
+Action: jcater wouldn't really recommend anything but the UIwxpython right now
+<jcater> the others need to be subclassed from it
+<ajmitch> it's what i'm using
+<ajmitch> hmm, how to do master-detail when there's a many-many relationship?
+<jcater> egads
+<jcater> are you trying to make me think or something?
+<jcater> :)
+<ajmitch> my apologies, it must be late there :)
+<ajmitch> then again, it's friday night here
+Action: jcater has spent last 6 hrs filling a moving truck
+<ajmitch> ugh
+<jcater> yip
+<jcater> that describes how I feel
+<ajmitch> now i have to try & figure out labels from cryptic field names
+<ajmitch> hmm, from a describe statement:
+<ajmitch> | status   | enum('open','posted','printed','emailed') |
+<jcater> um
+<jcater> yuck
+<ajmitch> will have to limit combo box to those, i guess :)
+Action: ajmitch is building forms from a very simple web-based accounting system
+<jcater> which one?
+<ajmitch> custom one written by boss which only he uses :)
+<jcater> lol
+<ajmitch> this is mainly just a way for me to learn forms & designer
+<ajmitch> oh dear, now this is a screwup
+<ajmitch> customer.id is numbered starting at 10000, invoice.cid is numbered from 0, the php code must mangle that before a query
+<ajmitch> how ugly
+<ajmitch> perhaps not
+Action: ajmitch takes a blunt object to the database
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+<ajmitch> yo psu
+<ajmitch> how are you?
+<psu> fine
+<psu> and
+<psu> as a special treat just for you
+<psu> http://kt.zork.net/GNUe/gnue20020713_37.html
+<ajmitch> wooo!
+<jcater> woohoo
+<jcater> late night reading material
+Action: ajmitch will have to look out for assignment papers sometime soon
+<ajmitch> takes awhile for mail to get here :)
+siesel (jan@dial-195-14-233-100.netcologne.de) joined #gnuenterprise.
+<siesel> morning
+<siesel> psu: thanks for you great work
+Action: siesel is reading KC GNUe #37 
+<psu> thanks
+<psu> not sure how many name checks I gave you this time ;-)
+<psu> ajmitch got several
+<jcater> psu: as always, thanks for doing the GNUe KC
+<jcater> I'd like to make one coment re: 5. Security release of DCL
+<jcater> s/coment/comment
+Action: jcater thinks that statements like dneighbo's should be qualified
+<psu> i did wonder about that
+<jcater> i.e., "It is HIGHLY suggested that you update." --> "..if you run DCL on an untrusted network"
+<jcater> as I hate scare tactics like that
+Action: jcater imagines we are one of the only ppl running a "public" dcl instance
+<jcater> s/only/few
+<psu> I assume the exploits discovered are theoretical rather than actual?
+Action: ajmitch was just on phone
+<jcater> yes
+<ajmitch> hi siesel
+<ajmitch> psu: yeah, i do tend to talk a bit on irc :)
+<jcater> but it's just like that NOLA notice last week
+Action: ajmitch needs to code more, talk less
+<jcater> if you are running on an untrusted network, then the package has issues
+<ajmitch> yes
+<jcater> but of course the question then has to be raised, why are you running it on an untrusted network??
+<jcater> but that's just my $0.02
+<ajmitch> stupidity? :)
+<jcater> oh, also
+<jcater> well, you know
+<jcater> I don't mean to sound elitist or anything
+<jcater> but, seriously
+<jcater> the first question my accounting ppl at work always ask is
+<jcater> can anyone access their systems
+<jcater> and we are a small company
+<jcater> if someone's installing an accounting package for someone
+<jcater> and makes it publicly accessible
+<jcater> well, they better either be a well-intentioned family member
+<jcater> or fired one
+<jcater> ok, I'll stop ranting
+<jcater> about security
+<jcater> I would like to make one comment regarding CVS designer
+<jcater> (that maybe psu could put in the next KC)
+<jcater> The cvs version of designer is undergoing some needed restructuring... if cvs is broken and you are relying on cvs designer to get your work done, then you might want to tag your gnue/designer module as the 0.3.x branch
+<psu> duly noted
+<jcater> That branch is only for bug-fixes
+<jcater> the outcome will be worth the frustration.
+<jcater> thanks
+Action: jcater took great care not to get any typos in that statement :)
+Action: ajmitch will probably still play with cvs designer, but keep an old copy around :)
+<jcater> that would be advisable
+Action: jcater tries not to break designer when he commits
+<jcater> but sometimes they slip by me
+<ajmitch> i'll try & catch bugs
+<ajmitch> and staple them to the wall until you've fixed them
+Action: siesel likes searching typos ;)
+<jcater> lol
+<jcater> to both
+siesel (jan@dial-195-14-233-100.netcologne.de) left irc: "(work)"
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise ("work also").
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+Arturas (arturas@bit.codeworks.lt) joined #gnuenterprise.
+<Arturas> Hello
+<jcater> hi
+<jcater> nite
+jcater (~jason@cpe-024-165-193-024.midsouth.rr.com) left irc: "waaayyyy past my bedtime"
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+<ajmitch> hi Arturas
+<Arturas> Hi ajmitch :)
+Arturas (arturas@bit.codeworks.lt) left #gnuenterprise ("reboot...").
+Arturas (arturas@bit.codeworks.lt) joined #gnuenterprise.
+<ajmitch> running windows? ;)
+<Arturas> hei!
+<Arturas> no - linux, but this other machine and i finished configuring my window manager & login shell  :)
+<ajmitch> reboot??
+Action: ajmitch would think that a reboot is completely unnecessary :)
+<Arturas> well,..... 'reboot' is shorter that 'i will logout and then login and then i'll be here again'    :)
+<ajmitch> hehe
+<ajmitch> 'relogin' then :)
+<ajmitch> a shame jcater left
+<ajmitch> [ajmitch @ ajmitch src] gfcvs invoices.gfd 
+<ajmitch> Gdk-ERROR **: BadWindow (invalid Window parameter)
+<ajmitch>   serial 4178 error_code 3 request_code 15 minor_code 0
+<ajmitch> window appeared for 1/2 a second & then disappeared
+<Arturas> for me this error looks not like GNUe error
+<ajmitch> no, it's something with wxWindows
+<Arturas> can you see any other form?
+<Arturas> maybe the border is 100000px or something like that...
+<ajmitch> yes, i can see other forms
+<ajmitch> i made that broken form in designer 
+ariel_ (~ariel@ppp-217-133-243-142.dialup.tiscali.it) joined #gnuenterprise.
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+<Arturas> it seems we have bug while trying to load any numeric record from database
+<Arturas> if source of the form is:
+<Arturas>   <page name="pgTimesheet">
+<Arturas>     <block datasource="dtsTime" name="blkTime">
+<Arturas>       <label name="lblItemID" text="Item ID:" width="20" x="1" y="1"/>
+<Arturas>       <entry field="item_id" name="inpItemID" width="10" height="1" 
+<Arturas>         x="1" y="2"/>
+<Arturas>       <label name="lblAssignmID" text="AssignmID:" width="20" x="1" y="3"/>
+<Arturas>       <entry field="assignment_id" name="inpAssignmID" width="10" height="1" 
+<Arturas>         x="1" y="4"/>
+<Arturas>       <label name="lblDate" text="Date:" width="20" x="1" y="5"/>
+<Arturas>       <entry field="day" name="inpDay" width="10" height="1" 
+<Arturas>         x="1" y="6"/>
+<Arturas>       <label name="lblHours" text="Hours:" width="20" x="1" y="7"/>
+<Arturas>       <entry field="hours" name="inpHours" width="10" height="1"
+<Arturas>         x="1" y="8"/>
+<Arturas>       <label name="lblNotes" text="Notes:" width="20" x="1" y="9"/>
+<Arturas>       <entry field="notes" name="inpNotes" width="20" height="4"
+<Arturas>         x="1" y="10" typecast="text"/>
+<Arturas>     </block>
+<Arturas>   </page>
+<Arturas> --
+<Arturas> and data in table is:
+<Arturas>  item_id | assignment_id |    day     | hours |        notes         
+<Arturas> ---------+---------------+------------+-------+----------------------
+<Arturas>      337 |          1279 | 2002-07-01 |   0.0 | 
+<Arturas>      338 |          1282 | 2002-07-01 |   0.0 | 
+<Arturas>      339 |           739 | 2002-07-01 |   0.0 | 
+<Arturas>      340 |          1368 | 2002-07-01 |   0.0 | 
+<Arturas>      341 |          2879 | 2002-07-01 |   0.0 | 
+<Arturas> ----
+<Arturas> error is:
+<Arturas> DB000:   File "/home/users/arturas/gnue/gnue-ro-3/gnue/.cvsdevelbase/gnue/common/GDataSource.py", line 208, in createResultSet
+<Arturas> DB000:     self.__setResultSet( resultSet )
+<Arturas> DB000:   File "/home/users/arturas/gnue/gnue-ro-3/gnue/.cvsdevelbase/gnue/common/GDataSource.py", line 232, in __setResultSet
+<Arturas> DB000:     listener(resultSet)
+<Arturas> DB000:   File "/home/users/arturas/gnue/gnue-ro-3/gnue/.cvsdevelbase/gnue/forms/GFObjects/GFBlock.py", line 175, in _loadResultSet
+<Arturas> DB000:     if self._resultSet.firstRecord():
+<Arturas> DB000:   File "/home/users/arturas/gnue/gnue-ro-3/gnue/.cvsdevelbase/gnue/common/GDataObjects.py", line 364, in firstRecord
+<Arturas> DB000:     if not self._loadNextRecord():
+<Arturas> DB000:   File "/home/users/arturas/gnue/gnue-ro-3/gnue/.cvsdevelbase/gnue/common/dbdrivers/_dbsig/DBdriver.py", line 159, in _loadNextRecord
+<Arturas> DB000:     rsets = self._cursor.fetchmany()
+<Arturas> DB000: ValueError: invalid literal for float(): 0.0
+<Arturas> ---
+<Arturas> while trying execute query in the form
+<Arturas> tried to fix it, but all i managed was to find exact place where error raises
+<Arturas> file common/src/dbdrivers/_dbsig/DBdriver.py
+<Arturas> def _loadNextRecord(self):
+<Arturas>   .....
+<Arturas>   try:
+<Arturas>     rsets = self._cursor.fetchmany()
+<Arturas> --
+<Arturas> maybe this is my system\database error
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+vakYpollo (~higopico@151.Red-80-36-135.pooles.rima-tde.net) joined #gnuenterprise.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+<Arturas> hi chillywilly :)
+<chillywilly> hi
+<vakYpollo> just a question about reports.
+<vakYpollo> I have considered TeX/LaTeX as a report engine, but I have som etrouble.
+<vakYpollo> I have seen some GNUeR code to check what technology is being used.
+<chillywilly> the reports guru is not present, unfortunately
+<vakYpollo> who is he?
+<vakYpollo> (or she
+<vakYpollo> )
+<vakYpollo> (him?)
+<vakYpollo> :P
+<chillywilly> neither one of them...if you happen to see jcater (main author) or dneighbo I would ask one of them
+<chillywilly> or just "derek" (dneighbo in disguise)
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+Action: chillywilly heads off to work now
+<vakYpollo> thanks then
+<chillywilly> welcome
+<chillywilly> cya
+lupo_ (~lupo@62.225.210.176) joined #gnuenterprise.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: "woooooosh!"
+<lupo_> hi there
+Action: Arturas is away: Lunch :)
+lupo_ (~lupo@62.225.210.176) left irc: "using sirc version 2.211+KSIRC/1.1"
+alexey_ (~Alexey@techkran.vladimir.ru) left irc: "[x]chat"
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+drochaid (~drochaid@pc2-kirk1-2-cust175.ren.cable.ntl.com) left irc: "Do not meddle in the affairs of dragons, because you are crunchy and taste good with ketchup."
+<ariel_> su
+<mdean> Password:
+ToyMan (~stuq@smtp.dstoys.com) joined #gnuenterprise.
+vakYpollo (~higopico@151.Red-80-36-135.pooles.rima-tde.net) left irc: "[x]chat"
+Action: Arturas is back (gone 01:17:02)
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+<jbailey> ajmitch: You there?
+Action: jbailey is away: shower
+jamest (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+Action: jamest may actually get to GNUe sometime today
+<Arturas> hi jamest
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) left irc: "Client Exiting"
+StyXman (~mdione@modem117-adsl.capfed2.sinectis.com.ar) joined #gnuenterprise.
+<jamest> hi
+<StyXman> hi peop
+<StyXman> hey, jamest, do you know the status of scrollbars?
+<StyXman> there's a rumor here that they're working...
+jcater (~jason@cpe-024-165-193-024.midsouth.rr.com) joined #gnuenterprise.
+<jamest> um
+<StyXman> hi jcater 
+<jamest> i'm so out of the loop
+<jamest> i wouldn't know
+<StyXman> oh, ack, I'll ping jcater 
+<jamest> jcater?
+<StyXman> hey, jcater, do you know about scrollbars?
+<StyXman> there's a rumor here that they're working...
+<jcater> somewhat
+<jamest> I thought you were loafing around this weekend and wouldn't be back till monday.
+<jcater> they were introduced many decades ago
+<jcater> as a graphical element for "modern" guis
+<jcater> oh, our scrollbars
+<jcater> I haven't touched them
+<jamest> introduced is a really crappy word
+<jcater> jamest: I am loafing around :)
+<jamest> i added a <tag> and code to create the widget
+<jamest> and that is all
+<jamest> i thought someone else worked on making them do something
+Action: jcater too
+<StyXman> ah, so they had not changed
+<jcater> but don't recall any details
+<jcater> I don't use them
+<jamest> someone was doing something somewhere
+<jcater> so wouldn't know
+<StyXman> I have some ideas, wanna hear them?
+<jamest> I have 0 time right now, my mail system is partially fried, !@#!@# sysadmin is changing the system over live this morning
+<jcater> I'm not really here today
+<StyXman> :)
+<StyXman> ok, I'll hack it here, and when it's done, we'll talk about it.
+<jamest> sorry man
+<jamest> someone needs to come up with a way to hook one's brain to several bodies
+<jamest> as I swear I'll never do everything in life I want to do
+<Arturas> i have found that in common/src/FormatMasks we have at least 3 files (DateMask.py, NumberMask.py, TextMask.py) that each of them defines things like monthNames, weekdayNames over and over - wouldn't it be simplier to define all them once in BaseMask.py?
+<jcater> Arturas: I would stay out of those files
+<jcater> as you are wasting your time
+<StyXman> jcater: is that a threat? :)
+<jcater> NumberMask and TextMask aren't even implemented
+<jcater> so the code you see there is
+<jcater> a cut and paste from DateMask
+<jcater> and DateMask isn't even finished
+<StyXman> say I want to make scrollbars have some functionality. should I implement it @ uidriver level, or @ gfobject (in fact, gfscrollbar)?
+Action: Arturas sometimes hates those differences in time.... a whole day.... :/
+<Arturas> jcater: thanks :)
+Action: jcater would imagine gfscrollbar, with any wx-specific stuff in uidriver
+<StyXman> are events and triggers the same? I'm a little confused...
+<jamest> there should already be a gfscrollbar file IIRC
+<StyXman> jamest: yes, it is, but is a litlle... uh, spartan :)
+<StyXman> I mean, I see code like this in a form's trigger:
+<StyXman>       self._object.dispatchEvent(GFEvent('requestCOMMIT'))
+<StyXman> and things like this in GF files:
+<StyXman>     self._triggerFunctions={'allowedValues':{'function':self.allowedValues,},
+<StyXman> are they 'connected'?
+<jamest> events == events internal to forms - 
+<jamest>   button clicks, requests for next record, etc, etc
+<jamest> triggers == chunks of code that are attached to certain "trigger events" that are specified in the gfd, grd, etc files
+<jamest>   pre-commit, pre-update, etc, etc
+<StyXman> aha, but how are events handled by gfobjects? hacking the dispatchEvent function?
+<jamest> objects registers with other objects to listen to events
+<jamest> via a registerListener functoin IIRC
+<jamest> trigger events are hard coded into the program
+<StyXman> no, I need new 'events' on gfscrollbar...
+<StyXman> (I think)
+<jamest> so that a internal requestNEXTRECORD event would make the form attempt to switch to the next record
+<StyXman> like 'scrollUp' event, which should do something..
+<jamest> part of that switching logic fires triggers like pre-focusout, pre-focusin, etc, etc
+<jamest> oooo
+<jamest> there is a dictionary of events in the objects that listen for them
+<jamest> you can look at either GFForm or GFInstance for example 
+Action: jamest can't recall off top of head which file has them
+<jamest> you create a entry that maps an event to a specifc handler function
+<jamest> and that's it
+<jamest> i have to run for a bit
+ariel_ (~ariel@ppp-217-133-243-142.dialup.tiscali.it) left irc: "Uscita dal client"
+<Arturas> more about DateTime:
+<Arturas> in common/src/dbdrivers/_dbsig/DBdriver.py
+<Arturas> found
+<Arturas> return value.strftime(self._dateTimeFormat)
+ge (~george@207.245.39.226) joined #gnuenterprise.
+<Arturas> as far as i understand 'strftime' function gives date\time string formatted  according to locale settings
+<Arturas> but do i need localized SQL queries for database?
+<Arturas> i guess it shouldn't be there
+<Arturas> function 'strptime' should be used
+<Arturas> (if no one says anything against, i'll correct it and commit into cvs in about an hour)
+<ge> hi, i am touching gnu enterprise since yesterday. but i don't how to build up the application. could any guru tell me more?
+<StyXman> ge: you don't build, just run. 
+<StyXman> ge: you using cvs or release?
+<ge> hi, StyXman. i installed the forms in windows
+stbain (~stbain@66.207.65.76) joined #gnuenterprise.
+<ge> if i want to use financial package, i have to install Geas, right?
+<Arturas> ge: you should be able simply to click on .gfd file and open it
+<Arturas> ge: Geas: i'm afraid i don't know this
+<ge> geas is an app. server
+<ge> i think it is neccessary if i want to run in 3-tier infrastructure
+<ge> how can use the financial package, any thread?
+<ge> actually, i can't find the pachage for download
+<jamest> hi george
+<ge> hi jamest
+<jamest> the financial package doesn't exist yet
+<ge> how r u
+<jamest> well
+<jamest> we've specs on one
+<ge> ah?
+<jamest> but we've been working on the tools
+<jamest> there is also work being done on porting an accounting package to gnue
+<jcater> Arturas: self._dateTimeFormat should be set to whatever postgresql needs
+<jcater> Arturas: apparently, it is currently set with the "locale" mask
+<ge> i see
+<jamest> jcater: am I correct in saying that
+<ge> so far, i can only download and use tools ,right?
+<ge> any other packages released?
+<ge> how about CRM?
+<ge> ok, buddies, i have to go outside for a while
+<jcater> jamest: yes
+<ge> thank you so much. see you later
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+<jamest> ge: no user ready packages have been released
+<jamest> the tools are getting most the focus at this time
+<jamest> a lot of planning has been done on packages for the old GEAS
+<StyXman> so, how do I bind a function to a event? thru a eventHandler?
+<jamest> and I think someone was looking at making the new app server work with them, if it doesn't do so all ready
+<jamest> StyXman: in GFInstance.py
+<jamest>     # Incoming events
+<jamest>     self.registerEventListeners( {
+<jamest>                            # Datasource trigger events
+<jamest> is example of binding GFInstance functions to events
+<StyXman> so, if I want gfsb to have events, I just write the functions that handle the events and then register them to listen to the new events? events are global?
+<jamest> events are only passed to objects that request to listen to events
+<jamest> so not really global
+<StyXman> yeah, but I mean 'global' in the sense that anyone can listen to certain event...
+<StyXman> or I'm misunderstandin what events are for. I what the UIsb to call the GFsb's 'event' handler...
+<jcater> so UI* doesn't have to know about GF* internals, and vice versa
+<StyXman> jcater: uh?
+<jcater> yes?
+<StyXman> I don't parse your comment...
+<jcater> err
+<jcater> I have to run an errand
+<jcater> bbs
+Action: jcater is away: um, I'm away
+pirate1962 (~neighbor@phnxdslgw4poolc175.phnx.uswest.net) joined #gnuenterprise.
+Nick change: pirate1962 -> derek
+<StyXman> hi derek 
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+<derek> hello
+derek (~neighbor@phnxdslgw4poolc175.phnx.uswest.net) left irc: 
+ge (~george@207.245.39.226) left #gnuenterprise.
+<Arturas> hi Derek
+<Arturas> well, "hi" was a bit too late :/
+<StyXman> jcater: let me know when you're back, please :-/
+<Arturas> bye
+Arturas (arturas@bit.codeworks.lt) left #gnuenterprise ("Client Exiting").
+alexey_ (~alexey@195.151.214.34) left irc: "Client Exiting"
+<StyXman> j's: would you say that calling gfsb functions from uisb is bad?
+<jamest> yes
+<jamest> all that should be passed via events
+yogurt2unge (~charlie@modem117-adsl.capfed2.sinectis.com.ar) joined #gnuenterprise.
+<StyXman> but I don't get how to link events...
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+<StyXman> say, which is the difference between calling self._eventHandler and dispatchEvent?
+<jamest> you wnat to use dispatchEvent
+<jamest> 99.9% of the time
+<jamest> that sends the event to the objects that have registered to listen to it
+<StyXman> but most of the examples use the other one...
+<StyXman> aha, but the other does not?
+<jamest> huh?
+<StyXman> calling eventHandler...
+<jamest> sigh, maybe someone changed something
+<jamest> IIRC _eventHandler was a dictionary right?
+Action: jamest doesn't have time to dig into code
+<StyXman> jamest: wx/uidriver.py:710
+<StyXman> there's the wxbuttons event handler...
+<StyXman> it calls eventhandler
+<StyXman> (sorry, typing with one hand, eating with the other :)
+<jamest> ok, that's in the initialization of the widget
+Action: jcater is back (gone 01:32:47)
+<jamest> which is IIRC setting the event handler for newly created widgets
+<jamest> I'm pretty sure you'd want to use dispatchEvent to send the actual events 
+<StyXman> ok, suppose I dispatch the event. how do I say the certain func in gfsb is listening? 
+<StyXman> call to registereventlistener in gfsb's constructor?
+<jcater> yes
+dneighbo (~dneighbo@tmp-200253.flinthills.com) joined #gnuenterprise.
+<dneighbo> jcater you see on SAP list that EDS is putting coders on SAP-DB
+<dneighbo> specifically they are looking at doing an OS/390 on Linux implementation :)
+<dneighbo> umm yummy
+stbain (~stbain@66.207.65.76) left irc: "off to work I go"
+Ford_ (~times@pD9E2C14B.dip.t-dialin.net) left irc: Read error: 110 (Connection timed out)
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+yogurt2unge (~charlie@modem117-adsl.capfed2.sinectis.com.ar) left irc: "Client Exiting"
+jcater (~jason@cpe-024-165-193-024.midsouth.rr.com) left irc: "Client Exiting"
+Ford_ (~times@pD954B0A8.dip.t-dialin.net) joined #gnuenterprise.
+StyXman (~mdione@modem117-adsl.capfed2.sinectis.com.ar) left irc: Read error: 113 (No route to host)
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+reinhard (~rm@M698P020.adsl.highway.telekom.at) joined #gnuenterprise.
+ToyMan (~stuq@smtp.dstoys.com) left irc: "Client Exiting"
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+siesel (jan@dial-213-168-91-110.netcologne.de) joined #gnuenterprise.
+<siesel> Hi all!
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+<chillywilly> hi jan
+<chillywilly> wassup?
+Ford_ (~times@pD954B0A8.dip.t-dialin.net) left irc: "[x]chat"
+siesel (jan@dial-213-168-91-110.netcologne.de) left irc: Read error: 113 (No route to host)
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: "woooooosh!"
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+jbailey (~jbailey@atlas.fundserv.com) joined #gnuenterprise.
+<jbailey> dneighbo: *ping*
+<ajmitch> morning
+<jbailey> g'day to you Mr. Mitchell.
+<jbailey> Derek appears to be asleep again.
+<jbailey> Sheesh. =)
+<ajmitch> surely not
+<jamest> sigh
+<jamest> so much for gnue today
+<ajmitch> hi jamest
+<jbailey> jamest: No hacking today?
+perlhead (~fheinz@modem117-adsl.capfed2.sinectis.com.ar) joined #gnuenterprise.
+<perlhead> Any ideas where gfcvs gets its font?
+<perlhead> It gives me a big, ugly font whith some weird encoding which does not match my locale.
+<perlhead> Tried resetting the GTK theme font... no change.
+perlhead (~fheinz@modem117-adsl.capfed2.sinectis.com.ar) left irc: "Client Exiting"
+Chipaca (~john@modem117-adsl.capfed2.sinectis.com.ar) joined #gnuenterprise.
+<Chipaca> hi all
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+<ajmitch> hi
+<chillywilly> howdy
+jamest (~jamest@hobbes.math.ksu.edu) left irc: Remote closed the connection
+reinhard (~rm@M698P020.adsl.highway.telekom.at) left irc: "Everything that is worth fighting for, is worthy fighting dirty for"
+Action: Chipaca notes # is slow today
+<ajmitch> perhaps
+<chillywilly> ?
+Action: Chipaca looks at chillywilly 
+Action: Chipaca tries not to vomit
+Action: Chipaca fails
+Action: Chipaca looks again
+<ajmitch> rofl
+<chillywilly> fuck off
+Action: Chipaca whistles innocently
+Action: chillywilly troutslaps Chipaca into oblivion
+Action: dneighbo raises hand
+<dneighbo> can i get a free trout slap
+<dneighbo> admin question for cvs
+<dneighbo> someone at user group is asking how to share 'cvs' files
+<dneighbo> i.e. say i have 5 products
+<dneighbo> myfoo, yourfoo, ourfoo, thefoo, somefoo
+<dneighbo> and i have a file foo.c
+<jbailey> symlink them.
+Action: chillywilly troutslaps dneighbo *hard*
+<dneighbo> it is used by myfoo and yourfoo
+<jbailey> Or use a library.
+<dneighbo> ok thats what i was thinking
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+<jbailey> a library is better.
+<dneighbo> well gut reaction was code right
+<jbailey> Since that's the Right Thing in all cases.
+<dneighbo> and make it a library silly
+<jbailey> but a symlink works.
+<dneighbo> but say this is legacy
+<dneighbo> how do you symlink in cvs?
+<dneighbo> i.e. how does that work
+<dneighbo> is it a file system symlink on the repository side
+<dneighbo> or is a cvs symlink
+<jbailey> you haave to go into the repository and symlink in the filesystem
+<dneighbo> ok
+<dneighbo> then if someone cheecks out foo.c from myfoo
+<dneighbo> and commits it
+<dneighbo> the other 4 projects repositories auto get updated?
+<dneighbo> if they are symlinked
+<dneighbo> and then one of them can do the same?
+<jbailey> yes
+<ajmitch> sounds ugly
+<jbailey> it is
+<jbailey> it's certainly the wrong thing.
+<jbailey> But it works, and people like it. =)
+<dneighbo> well lots of people have done bad design
+<dneighbo> so im sure this fellow isnt the first to have to address the problem :)
+<chillywilly> say you are *hypothetically* doing an xml markup of an object description language
+<chillywilly> and you wanted tp specify operation parameters
+<chillywilly> what would yo do
+<dneighbo> that would be dumb who would do that
+<chillywilly> ths way: parameter name="element" mode="in" type="Object"/>
+<chillywilly> er, <parameter
+<chillywilly> or
+<chillywilly> <paramater mode="in" type="Object">element</parameter>
+<chillywilly> cause xml is easier to parse and there's already and existing parser code base to use ;)
+jbailey (~jbailey@atlas.fundserv.com) left #gnuenterprise ("Client Exiting").
+<chillywilly> s/and/an/
+<chillywilly> defining a new on consists of creating a dict and setting up a derived class for the "handler" (a.k.a. GParser.py) ;)
+<chillywilly> s/on/one/
+<Chipaca> chillywilly: the first one
+<chillywilly> ok
+<Chipaca> chillywilly: of the two; I'd probably do neither :)
+perlhead (~fheinz@modem117-adsl.capfed2.sinectis.com.ar) joined #gnuenterprise.
+<chillywilly> Chipaca: what's that mean?
+perlhead (~fheinz@modem117-adsl.capfed2.sinectis.com.ar) left irc: Client Quit
+<Chipaca> chillywilly: I dunno what 'parameter' is, but I'd probably have it more entity-oriented (less attributes)
+<Chipaca> chillywilly: but i dunno what parameter is, so I'm probably off base
+<chillywilly> ok
+<chillywilly> it is a paramter to an operation call of an object
+<Chipaca> perlhead here says he's getting russian fonts instead of iso8859-1 in gnue, why can that be?
+<chillywilly> <operation name="insert_element" result="void">
+<chillywilly>   <parameters>
+<chillywilly>     <parameter name="element" mode="in" type="Object"/>
+<ajmitch> Chipaca: maybe arturas' latest changes to forms
+<chillywilly>     <!-- Perhaps parameters should be in this format?
+<chillywilly>     <paramater mode="in" type="Object">element</parameter>
+<chillywilly>     -->
+<chillywilly>   </paramaters>
+<chillywilly> </operation>
+<chillywilly> or, void insert_element(in Object element);
+<chillywilly> so Chipaca you would make them tags with content like:
+<chillywilly> <operation>
+<chillywilly>   <name>insert_element</name>
+<chillywilly> ...
+<chillywilly> less attributes...
+<Chipaca> yes, my xml tends to be more like that
+<Chipaca> both are equivalent, of course
+<chillywilly> well I read that a general rule it to use attributes for metadata
+<chillywilly> data about the tag
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+Action: Remosi reads KC
+<Chipaca> pah! I shpit on da metadata
+<Chipaca> :)
+Action: Remosi gets to "internationalised dates in Forms"
+Action: Remosi discovers that you guys suggest the worst possible solution "mm/dd/yy"
+<Remosi> for internal representation
+Action: Remosi goes and finds a shotgun to preform some reeducation
+Action: chillywilly listens to the new chili peppers song
+Action: Remosi ponders if cw had any say in this diabolical date mangling plan
+<chillywilly> nope
+<chillywilly> forms markup seems attribute heavy
+<chillywilly> <form width="35" height="15" title="Input Validation Test"> wouldn't you want to dot his like <form width="35" height="15><title>Input Validation Test</title>...</form
+<chillywilly> s/his/this/
+<chillywilly> eh...I suppose this is all just splitting hairs and a matter of style
+<Remosi> the one true date format is "YYYY-MM-DD" 
+<Remosi> the dateformat in KC is "mm/dd/yy", it's not y2k compliant, it's ambigious with the european "dd/mm/yy"
+<Chipaca> oh, and it sucks
+<chillywilly> KC?
+<Chipaca> s/european/non-USAean/
+<Chipaca> no, mm/dd/yy
+<chillywilly> Kansas City?
+<chillywilly> Kernel Cousins?
+<chillywilly> ;)
+<Chipaca> kernel traffic
+<Chipaca> kt.zork.net
+<chillywilly> Kernel Cousin
+<chillywilly> ok
+<chillywilly> crap only half hour to scifi bliss :)
+<Chipaca> ag! 20:30!
+Action: Chipaca runs
+Chipaca (~john@modem117-adsl.capfed2.sinectis.com.ar) left irc: "pant, pant"
+<dneighbo> chillywilly you still around oh cvs guru
+<dneighbo> guess he is out getting scifi bliss
+dneighbo (~dneighbo@tmp-200253.flinthills.com) left irc: "bye bye"
+ToyMan (~stuq@216.238.228.151) joined #gnuenterprise.
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+ToyMan (~stuq@216.238.228.151) left irc: "Client Exiting"
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+dres_ (~dres@mail.lewismoss.org) joined #gnuenterprise.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) got netsplit.
+dres (~dres@mail.lewismoss.org) got netsplit.
+Remosi (dahoose@port-62-148.jet.net.nz) got netsplit.
+nickr (~panphage@e-172-IP28.empnet.net) got netsplit.
+gnuebot (eggdrop@mail.libertydistribution.com) got netsplit.
+nickr (~panphage@e-172-IP28.empnet.net) returned to #gnuenterprise.
+gnuebot (eggdrop@mail.libertydistribution.com) returned to #gnuenterprise.
+#gnuenterprise: mode change '+o gnuebot' by ChanServ!ChanServ@services.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) returned to #gnuenterprise.
+dres (~dres@mail.lewismoss.org) returned to #gnuenterprise.
+Remosi (dahoose@port-62-148.jet.net.nz) returned to #gnuenterprise.
+dres (~dres@mail.lewismoss.org) left irc: No route to host
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+--- Sat Jul 13 2002
+[00:18] Last message repeated 1 time(s).
+fitzix (~fitzix@27.133.252.64.snet.net) joined #gnuenterprise.
+fitzix (~fitzix@27.133.252.64.snet.net) left irc: "Client Exiting"
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+reinhard (~rm@62.47.247.52) joined #gnuenterprise.
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+<ajmitch> hi
+siesel (jan@dial-195-14-254-148.netcologne.de) joined #gnuenterprise.
+<siesel> hi
+<ajmitch> hey siesl
+<ajmitch> how's phpforms coming along?
+<siesel> hi ajmitch
+<ajmitch> it's been decided that appserver probably isn't necessary for the accounting app i'm helping with, since it's for small businesses
+<ajmitch> a web forms client may be tho :)
+<siesel> I hope to bring phpforms to a stable state soon, but there are too many small problems, and I don't have a good debugger :(
+<ajmitch> ok
+<siesel> and after using python I don't like PHP anymore ;)
+Action: ajmitch would really prefer a python implementation, like madlocke's webware client :)
+<ajmitch> i'd imagine handling python triggers in php would have been fun
+<siesel> this is the reason for using phpforms with appserver, so triggers can be moved into appserver
+<ajmitch> yes, understandable
+Action: ajmitch is currently learning forms
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+gnuebot (eggdrop@mail.libertydistribution.com) left irc: Read error: 113 (No route to host)
+sledge_ (~sledge@B922e.pppool.de) joined #gnuenterprise.
+<sledge_> hi
+<sledge_> anyone of you familiar with xml2sql?
+<ajmitch> not i, sledge_
+<ajmitch> perhaps siesel :)
+<ajmitch> hi, btw
+<sledge_> do we have a list of other free ERP projects?
+<siesel> sledge: xml2sql: yes
+<siesel> you should have a look in appserver/samples/Makefile
+<sledge_> thx
+<sledge_> i just found a bug in pgsql.xsl in gnue cvs
+<siesel> oh, which bug?
+<sledge_> all scripts make a match="/", pgsql.xsl has match="/schema"
+<sledge_> which is wrong when you try it with dcl.xml
+<sledge_> i removed it and it worked
+<sledge_> all others worked before
+<siesel> yes, because pgsql.xsl is the only one which supports the new GNUe schema file format ( *.GSD )
+<sledge_> so it is a new feature that the others haven't, not a bug?
+<siesel> yep. and pgsql.xsl is the only one which can create insert statemenets out of the <data> part of an .GSD
+<sledge_> ah
+<sledge_> great
+<siesel> i think i should remove dcl.xml or convert it to dcl.gsd
+<sledge_> is gsd already defined / is there doc?
+<siesel> there is DTD in designer/src/schema
+<siesel> and you can create it with designer
+<sledge_> ok
+<sledge_> but i can safely assume that the old format can simply be converted to the new one by wrapping everything in <schema>?
+<siesel> yes
+<sledge_> wtf is a constraint?
+<sledge_> (sorry for the stupid question)
+<siesel> constrains = NOT NULL, UNIQUE, ...
+<sledge_> ah, okay
+<siesel> a foreign key is an constrain too. (also I don't know how to write a constraint in the .GSD format :(
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+<sledge_> doesn't matter
+<sledge_> i just want to look a bit through :)
+Action: ajmitch wonders how to use the FK properties of a form widget :)
+<sledge_> siesel: perhaps you have use for it :)
+Action: ajmitch ought to print out the techref.lyx & userguide.lyx for forms
+<sledge_> does techref.lyx contain information on gsd?
+<siesel> ajmitch: you can use fk_... to fill a dropdown entry.
+<siesel> sledge_: no, but if you want the ultimate information you should ask derek, because he has written it (if I'm right informed ) :)
+<ajmitch> siesel: that's *exactly* what i want
+<sledge_> okay
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+<siesel> sledge_: your example is quite good.
+<siesel> we should add it to CVS, or what do you think? 
+<siesel> oh, I've to run, shopping ...
+siesel (jan@dial-195-14-254-148.netcologne.de) left irc: "What's a script?"
+<sledge_> i go now too, bye
+sledge_ (~sledge@B922e.pppool.de) left irc: "using sirc version 2.211+KSIRC/981227-pre0.9"
+alexey_ (~alexey@195.151.214.34) left irc: "Client Exiting"
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+sledge_ (~sledge@B2e4a.pppool.de) joined #gnuenterprise.
+sledge_ (~sledge@B2e4a.pppool.de) left irc: "using sirc version 2.211+KSIRC/981227-pre0.9"
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) left irc: "Client Exiting"
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) left irc: Client Quit
+siesel (jan@dial-194-8-195-253.netcologne.de) joined #gnuenterprise.
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+<chillywilly> hi jan
+<chillywilly> all...
+<chillywilly> anyone awake in here?
+<ra3vat> hello Daniel
+<chillywilly> hi :)
+<siesel> hi chillywilly
+<chillywilly> howdy
+<siesel>  
+kemitix_ (~chatzilla@kemitix.demon.co.uk) joined #gnuenterprise.
+<siesel> :)
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<siesel> hi Derek
+<dneighbo> hi siesel
+<chillywilly> wassup g'money?
+<dneighbo> not much
+siesel (jan@dial-194-8-195-253.netcologne.de) left irc: "Real programmers code it into the client"
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+<dneighbo> chillywilly: you here? oh cvs master
+<chillywilly> yes I am here
+<dneighbo> can you answer this
+<dneighbo> After importing a project into the CVS repository, the CVS directory in my 
+<dneighbo> working directory was not created.  The work directory was in my home 
+<dneighbo> directory.
+<dneighbo> Is there a permissions issue where the CVS server cannot write to my home 
+<dneighbo> directory?
+<dneighbo> According to Webmin, the box does not have a cvs user (not a user that uses 
+<dneighbo> cvs but a user for the cvs server).  Does it need one?
+<chillywilly> I thought you just need to setup 'writers' file
+<chillywilly> in the CVSROOT module
+<chillywilly> you have to remove the original source tree ans then check it out according to the docs
+<chillywilly> or mv it out of the way if you are paranoid ;)
+<chillywilly> ah but you do want to have proper perms on the repository
+<chillywilly> I think I have a cvs group
+<chillywilly> for my personal repository
+<chillywilly> perms are owner=root, group=cvs dirs are chmod 775 files are chmod 664
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+<chillywilly> lemme know if this helps
+<dneighbo> will do its for a lug person here
+<chillywilly> i.e, it won't create the CVS dir until you check it out...which requires pulling a fresh copy
+kemitix_ (~chatzilla@kemitix.demon.co.uk) left irc: Remote closed the connection
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: "Client Exiting"
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+jamest (~jamest@fh-dialup-201188.flinthills.com) joined #gnuenterprise.
+jamest (~jamest@fh-dialup-201188.flinthills.com) left irc: Client Quit
+siesel (jan@dial-213-168-72-36.netcologne.de) joined #gnuenterprise.
+<siesel> can anyone give me hint, where I can find a comparison between different accounting systems? like german<->american?
+siesel (jan@dial-213-168-72-36.netcologne.de) left irc: "_"
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+reinhard (~rm@62.47.247.52) left irc: "Don't contradict a woman -- wait until she does herself"
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: "woooooosh!"
+jbailey (adoerkse@CPE014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+jbailey (adoerkse@CPE014260028338.cpe.net.cable.rogers.com) left #gnuenterprise ("Client Exiting").
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+debUgo- (debUgo-@sler7555-86.pool.007mundo.com) joined #gnuenterprise.
+rdean (rdean@chcgil2-ar2-4-64-030-076.chcgil2.dsl-verizon.net) joined #gnuenterprise.
+rdean (rdean@chcgil2-ar2-4-64-030-076.chcgil2.dsl-verizon.net) left irc: Client Quit
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+debUgo- (debUgo-@sler7555-86.pool.007mundo.com) left irc: No route to host
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<ajmitch> hi dneighbo
+<chillywilly> ello derek
+<dneighbo> anyone know if there is an open office channel?
+<dneighbo> or is anyone running an open office not from debian packaging?
+<dneighbo> as there is missing feature from star office i cant live w/o 
+<ajmitch> i've got OO.o here
+Action: chillywilly installed form tar ball
+<dneighbo> and i could have sworn it existed in OO 1.0
+<chillywilly> from
+<ajmitch> what is it?
+<dneighbo> can one you open up impress (power point)
+<dneighbo> and create a new slide show create two slides
+<ajmitch> yeah, give me 15min for it to open
+<dneighbo> and then go to
+<dneighbo> Slide Show
+<chillywilly> ajmitch: hehe
+<dneighbo> and tell me if you have a 'custom slideshow' as an option under that menu?
+<dneighbo> it used to be there and the DOCUMENTATION says it should be there
+<dneighbo> but it aint there :(
+<dneighbo> i will drop the debs and go to binaries if i can verify the binaries have it
+<ajmitch> still waiting for splash screen to go away & app to appear
+<dneighbo> darn you running that on a palm or what?
+<dneighbo> even my p233 64mb is quicker than that
+<dneighbo> have you considered trying fluxbox?
+<dneighbo> for desktop? it will improve the speed of your applications considerably (or at least it did for me)
+<ajmitch> compiling
+<ajmitch> that functionality does exist here
+<ajmitch> my computer is not much faster than a p233 :)
+<ajmitch> as in, i can create a custom slideshow
+<dneighbo> sigh
+<dneighbo> did you get it with debian packages?
+<dneighbo> or from openoffice tar ball
+<dneighbo> er binary
+<ajmitch> binary tarball
+<dneighbo> im downloading the openoffice binary from the site
+<dneighbo> ok cool (me was having minor panic)
+<dneighbo> as that feature ROCKS for church worship :)
+<dneighbo> i can have one powerpoint file that has all the songs
+<dneighbo> then just select the ones for a particular service as a custom show
+<ajmitch> have been asked to deb-package GNUe tools, so will try & do that as i fugre out how
+<ajmitch> excelltn
+<dneighbo> the old power point people were like NO WAY (as i guess office powerpoint doesnt do this)
+Action: ajmitch must need new keyboard - typing sucks
+<dneighbo> so they would number every slide to every song and maintain a db of them
+<dneighbo> then write down the numbers for a song set on paper
+<ajmitch> ah, this way is much better?
+<dneighbo> and use the 'go to' slide feature
+<dneighbo> i.e. key in the number of the slide
+<ajmitch> that way sucks :)
+<dneighbo> why do you think im freaking that the deb packages dont have custom slide show :)
+<dneighbo> sigh my connection is getting slower
+<dneighbo> took almost 2 minutes for open office to download this time :(
+Action: dneighbo forgets we have some dial up folks here, i shouldnt be saying that
+<ajmitch> hehe
+<ajmitch> there is a branch for 0.3.0, right?
+<dneighbo> yes
+Action: ajmitch wonders what to number cvs packages as
+<dneighbo> im the maintainer of that, but havent done anything with it :)
+<ajmitch> 0.3.0.$DATE ?
+<dneighbo> please do package 0.3.0
+<dneighbo> as 0.3.0
+<ajmitch> ah ok, will just take 0.3.0
+<dneighbo> then if you its easy we can do a -cvs (no?)
+<dneighbo> and update it regularly
+<ajmitch> yes, that's what i'd do
+<ajmitch> where regularly == nightly cron build if possible :)
+<ajmitch> don't think i can simply do that with python packages
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+<ajmitch> will need to touch up documentation on branch to reflect new binary names :)
+<dneighbo> ajmitch: certainly we could do that if the debian packaging can support it
+<ajmitch> will try, need to fuind out how to package distutils stuff (nickr said some of it wasn't nice)
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+<dneighbo> You may only copy and distribute this program consistent with the requirements and distribute this Program consistent with the requirements of either the GNU General Public License (GPL) and GNU Lesser General Public License (LGPL) or the Sun Industry Standards Source License (SISSL), respectively, depending on whether you elected to obtain access to this program via the GPL/LGPL Option or the SISSL Option. Copies of the GPL, L
+<dneighbo> SL licenses can be found http://www.openoffice.org/project/www/license.html
+<dneighbo> its so beautiful to see this as the EULA
+<chillywilly> what dialup folks?
+<dneighbo> in a product that IMHO is better than MS office :)
+<ajmitch> dneighbo: it's not an EULA tho :)
+<dneighbo> ajmitch: true dat
+<dneighbo> i mean so nice to see this wehre the EULA normally is
+<ajmitch> yeah, is much better
+<ajmitch> you can click 'accept' with a clear conscience :)
+<ajmitch> hmm, need to get up at 5:30am again
+<dneighbo> ajmitch: its bad for your health to rise that early
+<dneighbo> early to bed early to wise makes a man healthy wealthy and wise
+<ajmitch> dneighbo: i know, but there's another dotgnu meet on
+<dneighbo> is well a wives tale (i.e. only a wife would think of it)
+<ajmitch> hehe
+<dneighbo> hey i think this openoffice is broken
+<dneighbo> it cant be good
+<dneighbo> it doesnt want me to rebbot
+<dneighbo> oh crap i forgot
+<chillywilly> reboot?
+<dneighbo> GNU\Linux is winning BIG time
+<dneighbo> i was at softball
+<dneighbo> lets say the guys on our team cant spell computer much less literate with one
+<chillywilly> you play softball?
+<dneighbo> one of the guys gets a call from his girlfriend
+<dneighbo> and he asks one of the other guys, do you know if linux is any good
+<ajmitch> hmm, my uptime isn't too bad here for my main desktop box
+<dneighbo> im like (did you say linux?) (this is not type of guy i would expect to know what windows is, much less linux)
+<dneighbo> he said yeah, you know what it is
+<dneighbo> i said yeah
+<dneighbo> he said is it good
+<dneighbo> i said, yeah it kicks crap out of windows
+<dneighbo> then i had to go to bat
+<dneighbo> came back and asked him why he wanted to know
+--- Sun Jul 14 2002
+<chillywilly> struck out eh? ;)
+<dneighbo> he said his wife/girlfriend was at the store shopping for computer
+<chillywilly> (that's why you came back so fast ;) )
+<dneighbo> and they had a celeron machine for 299.99 and it had linux
+<ajmitch> v. nice
+<dneighbo> and they didnt know if it was any good, but he thought she was gonna buy it
+<dneighbo> chillywilly: no i hit into fielders choice that scored run
+<chillywilly> cool, preinstalled with it?
+<chillywilly> dneighbo: sure you did ;)
+<dneighbo> and then stayed on base until third out (dont strike out in slow pitch) but i dont claim to be worth a crap
+<dneighbo> chillywilly: i assume pre installed
+<dneighbo> i didnt ask him
+<dneighbo> but i would presume its Lindows on a Walmart pc
+<chillywilly> ah
+<dneighbo> as only place else i have seen them is at Fry's and i dont think that they shop there
+<dneighbo> as stated this is not a 'computer guru' type guy
+<chillywilly> do you know that they run everything as root on Lindows?
+<ajmitch> i thought the walmart ones were online-only?
+<dneighbo> but thats why i say 'we are winning'
+<ajmitch> and walmart also agreed to pre-load mandrake
+<dneighbo> chillywilly: i didnt get into all that
+<dneighbo> im not good friends with the guy
+Action: ajmitch would take mandrake over lindows any day :)
+<chillywilly> just saying...it is so much like windows ;)
+<dneighbo> he comes with one of the guys that goes to our church (its church league)
+<chillywilly> yea
+<dneighbo> i figure i tell him, let me get you some customer support action and go over there with a woody disk :)
+<chillywilly> crazymike plays the church and work league
+Action: chillywilly doesn't play softball
+<dneighbo> i wont play on the other league (they are too cut throat)
+<dneighbo> all the other guys play like 3 nights a week
+<chillywilly> well between the 2 teams that he plays on they have a total of 1 win
+<ajmitch> hehe
+<chillywilly> e was pissed when they won because he told me he wanted to either be really good or suck really bad
+<chillywilly> s/e/he/
+<chillywilly> btw, it si very cool that they are bringin gnu/linux to the masses ;)
+<chillywilly> s/si/is/
+<dneighbo> crap the other one has same problem
+<dneighbo> BUT i realized the file i have is readonly
+<dneighbo> i wonder if thats why
+<chillywilly> heh
+<ajmitch> chillywilly: they're bringing the linux but hiding the gnu, if ya know what i mean
+<chillywilly> yea, well...you get them using it then we can edumacate them about GNU :)
+<dneighbo> bah crap
+<chillywilly> it's hard to relate to the home user why Free Software is important sometimes
+<dneighbo> thats what it was i think
+<dneighbo> im going back to the debian
+<dneighbo> to try
+Action: dneighbo slaps himself
+<chillywilly> hehe
+<chillywilly> where'd you get the deb from?
+<dneighbo> the magic deb dwarf
+<chillywilly> cool
+<ajmitch> chillywilly: lindows is a sizable proprietary chunk hiding the free internals
+<ajmitch> although the desktop is kde afaik
+Action: ajmitch considers whether to get an MCSE
+<chillywilly> no!
+<chillywilly> resist!
+<ajmitch> cannot resist the allure of big $$
+<dneighbo> ajmitch: new zealand really that low on fire wood you would have to do that?
+<dneighbo> gack
+<chillywilly> lies and deceit are the way of the dark side
+<Remosi> ajmitch: CCNE?
+<Remosi> RHCE?
+<ajmitch> Remosi: now that would be worth something, the CCNE
+<dneighbo> its 22:30 at ists still 100 degrees out side and like 30% humidity
+<chillywilly> yick
+<ajmitch> have heard that it's an actual qualification, unlike MCSE
+<Remosi> yes
+<ajmitch> dunno much about RHCE
+<Remosi> people respect CCNE's
+<Remosi> RHCE's mean you know how RH works
+<ajmitch> yeah
+<ajmitch> and i'm a debian person :)
+<ajmitch> RH isn't too bad tho
+<Remosi> and MSCE means that you know how to load minesweeper, and your certification will expire after 2 years at which point you may no longer be able to find minesweeper :)
+<Remosi> agreed
+<Remosi> the most annoying thing about rh boxen is how to upgrade them?
+<ajmitch> rm -rf 
+<dneighbo> deb ftp://ftp.vpn-junkies.de/openoffice testing main contrib
+<Remosi> well yes
+<dneighbo> chillywilly: thats where openoffice is
+<chillywilly> k
+<dneighbo> you can s/testing/unstable
+<dneighbo> and it will work too if you are on sid
+<chillywilly> german eh?
+Action: Remosi has to install mysql
+<Remosi> bletch
+<dneighbo> yeah but they have all the i10n english stuff packaged
+<dneighbo> just not the dictionary :(
+<dneighbo> only german/austrian dictionaries
+<ajmitch> mysql, now that's a fun db
+<dneighbo> Remosi: that is punishable by flogging in Gilbert
+<dneighbo> at least if you are near me
+Action: ajmitch has mysql installed & running
+<Remosi> dneighbo: I usually abuse people who install mysql horribly
+<dneighbo> ajmitch: God forgives even the most horrible of sinners
+<Remosi> problem is that I'm experimenting with some software that although it has postgres support, the postgres support isn't in debian 
+<ajmitch> dneighbo: mysql is ok for toy databases
+<ajmitch> eg, nothing fancy required, a simple db backend to a website
+<dneighbo> roflmao 
+<dneighbo> this is best error message i have seen in some time
+<dneighbo> ==========
+<dneighbo> dneighbo@latitude:~$ openoffice 
+<dneighbo> I'm confused because I can't find OpenOffice's user files.
+<dneighbo> Your ~/.sversionrc file tells they should be under /home/dneighbo/OpenOffice.org1.0,
+<dneighbo> but they are not. Please fix the situation manually.
+<dneighbo> You may want to edit ~/.sversionrc to indicate where is OO
+<dneighbo> installed, or remove it if you did remove your installation
+<dneighbo> directory manually (you bad one).
+<dneighbo> dneighbo@latitude:~$ rm ~/.sversionrc 
+<dneighbo> ==========
+<dneighbo> (you bad one) rofl
+<ajmitch> haha
+<chillywilly> heheh
+<chillywilly> bad bad masta
+Action: dneighbo couldnt stop laughing as it made me think of ...
+<dneighbo> "you're a bad one mister grinch"
+Action: dneighbo hugs his deb and his custom slide show
+<dneighbo> and then goes to tend to laundry before mrs. masta comes home and thumps the snot out of me
+<ajmitch> lol
+<chillywilly> you are now reduced to laundry slave ;)
+<chillywilly> your masta status is in limbo
+Action: dneighbo returns
+<dneighbo> ajmitch: re 'ok for toy databases'
+<dneighbo> soon very soon jbailey will show his true debian diety status
+<dneighbo> and you will just apt-get install db-bliss
+<dneighbo> and SAP-DB will be on your debian machine ;)
+<ajmitch> *cough*
+<ajmitch> why would i want to infect my box with that? :)
+<chillywilly> I thought SAP was the enemy? ;)
+<chillywilly> er, one of them anyway
+<Remosi> can anyone tell me why (At least in the KC) it was agreed to use "mm/dd/yy"?
+<Remosi> for internal date formats?
+Action: chillywilly is not guilty on all counts of internal date format
+<ajmitch> Remosi: probably because of the unhealthy american influence
+<Remosi> yeah
+<Remosi> well, it's not y2k compliant, it's ambigious compared to the european format of dd/mm/yyyy, and it doesn't sort properly :)
+<Remosi> yyyy-mm-dd seems to be a much more logical system to use
+<ajmitch> yes
+<Remosi> theres even a ISO standard about it
+Action: ajmitch certainly prefers it
+<ajmitch> makes sorting in a list much simpler
+<Remosi> well, if american's persist to use their silly systems we'll have to buy a few plane tickets and go and beat them around the head with a large, wet, and slightly smelly trout.
+<dneighbo> um cause americans are the best
+<Remosi> http://www.cl.cam.ac.uk/~mgk25/iso-time.html
+<Remosi> dneighbo: uh, sure :P
+<dneighbo> and we dont want your puking metric system or messed up concept of date formatting
+<ajmitch> the trout will no doubt be a bit smelly after that plane trip
+<dneighbo> you can even take your stinking celsius too
+Action: Remosi goes and prepares the fish
+<dneighbo> btw im completely kidding
+<dneighbo> only the french would use that as a reason ;)
+<dneighbo> i mean after the dateline was stolen from them, who would blame them for their ire
+<ajmitch> heh
+<Remosi> true :)
+<chillywilly> lol
+<chillywilly> notes form our LUG meeting...
+<chillywilly> *********
+<chillywilly> Help Desk
+<chillywilly> *********
+<chillywilly> Josh has girl problems.  We're not sure MLUG is really the proper
+<chillywilly> forum for solving this problem.  However, if someone has suggestions, 
+<chillywilly> he's open to them.
+<Remosi> rofl
+<Remosi> sounds like one of our local lug's discussions
+<chillywilly> hehe, :)
+<Remosi> however "Josh" may, or may not, have been participating in the discussion ;)
+<chillywilly> how's this for am example:
+<chillywilly> / Exception declarations                                                                                                  exception WhoSaidYouCouldStopCoding{string code_slave_name; };      
+<chillywilly> er
+<chillywilly> / Exception declarations
+<chillywilly> exception WhoSaidYouCouldStopCoding{string code_slave_name; };
+<chillywilly> this is going into my "kitchen sink" odl file
+<chillywilly> :)
+<Remosi> heh
+<Remosi> cw, did you hear about my amazing .so->idl idea?
+<chillywilly> nope
+<Remosi> dang
+<Remosi> you know how nm can tell you all the symbols in a .so (or .o for that matter) right?
+<chillywilly> yes
+<Remosi> and how "stabs" can tell you the type of a symbol if it was compiled with -g, or, alternatively, c++filt will tell you if it was compiled using gcc, right? :)
+<chillywilly> never used that before
+<Remosi> nm ~/irc/gnuworld/src/msg_W.o | c++filt
+<Remosi> grab your favourite c++ .o, .so, or executable and tryt hat ;)
+<chillywilly> is c++filt apt-gettable?
+Action: ajmitch doesn't knoew where it is :)
+<chillywilly> I don't see it either
+<Remosi> it's in binutils
+<Remosi> apt-get install binutils ?
+<chillywilly> doh
+<chillywilly> I have it installed
+<Remosi> dpkg -S c++filt
+<Remosi> binutils: /usr/bin/c++filt
+<Remosi> binutils: /usr/share/man/man1/c++filt.1.gz
+<Remosi> (you have a box without binutils?!)
+<Remosi> :)
+<chillywilly> nope, I have c++filt
+<ajmitch> ah no, i see what i did
+Action: ajmitch tried c++-filt for some reason
+<Remosi> ajmitch: doh!
+Action: chillywilly tries the command on libccgnu2
+<Remosi> givin that type information you should be able to write an idl file (for gnurpc for instance)
+<chillywilly> that shows every symbol right?
+Action: ajmitch imagines it *could* be done
+<Remosi> right
+<Remosi> nm lists all symbols
+<Remosi> eg: nm /lib/ld-linux.so.2
+<Remosi> c++filt takes a mangled symbol and demangles it
+<chillywilly> yea, yea...I knwo just saying why would I want to expose every symbol....er, or you saying expose all "functions"
+<Remosi> eg:
+<Remosi> echo 00000000 W validSubscript__CQ28gnuworld11xParametersRCUi | c++filt
+<Remosi> produces:
+<Remosi> 00000000 W gnuworld::xParameters::validSubscript(unsigned int const &) const
+<Remosi> you need to of course figure out which symbols are actually defined in the .so/.a/.o that you're linking
+<Remosi> but it could be a really easy way to automatically load, say, openssl into python
+<Remosi> you could take the openssl.so file generate some idl for it, then use gnurpc to use openssl as if it was a python module
+<Remosi> without having to spend ages defining all the normal glue logic
+<Remosi> if you did it right python could catch the import function and do all of that automatically
+<Remosi> so you could have a .so (eg openssl.so) and then just go "import openssl" in python and have it do all the work for you ;)
+<ajmitch> also may open up licensing holes :)
+<Remosi> well true
+<Remosi> but so does allowing multiple .c files in a gcc invocation :)
+<Remosi> anyway
+<Remosi> I've gotta go have dinner
+<Remosi> BBL
+Action: Remosi has to go read up on stabs :)
+<chillywilly> I want to know how gnurpc loads the .so?
+<chillywilly> s/?//
+<ajmitch> bbl
+<dneighbo> hgmmm search features in open office presentor are MUCH improved
+<dneighbo> im impressed
+<dneighbo> one thing thats always nice about this channel with aj here is taht we can tell if the world will still be here tomorrow ;)
+<chillywilly> this is fun
+<ajmitch> dneighbo: got openoffice 1.0.1?
+Action: ajmitch really away now :)
+<chillywilly> interface Masta
+<chillywilly> enum Beating_Type{mild, profuse };
+<chillywilly> typedef Beating_Type beating_t;
+<chillywilly> void beatCodeSlave(beating_t severity);
+<chillywilly> };
+<dneighbo> away?
+<chillywilly> forgot opening brace
+<dneighbo> i do not understand this
+<dneighbo> time to haul groceries
+<dneighbo> grr trying to commit changes for acclite
+<chillywilly> const boolean madgoats = TRUE;
+<chillywilly> void beatCodeSlave(CodeSlave cslave, beating_t severity) raises(CodeSlaveAway);
+<chillywilly> :P
+<chillywilly>   module Goats
+<chillywilly>   {
+<chillywilly>     class Goat: GNUe::CodeSlave
+<chillywilly>     {
+<chillywilly>       // some stuff here
+<chillywilly>     };
+<chillywilly>     class Chillywilly extends Goat
+<chillywilly>     ( extent goats)
+<chillywilly>     {
+<chillywilly>       void troutslap(in Goat slapee);
+<chillywilly>     };
+<chillywilly>     class Jcater extends Goat
+<chillywilly>     ( extent goats)
+<chillywilly>     {
+<chillywilly>       void consumeDonut(DonutType donut);
+<chillywilly>     }
+<chillywilly>   };
+<chillywilly> };
+<chillywilly> woooo :)
+<chillywilly> fun with ODL!
+Action: chillywilly fixes up the Jcater class
+<chillywilly>     class Jcater extends Goat
+<chillywilly>     ( extent goats)
+<chillywilly>     {
+<chillywilly>       void consumeDonut(in DonutType donut);
+<chillywilly>     };
+<chillywilly> I need to go to bed
+<chillywilly> class Dneighbo extends Goat: Masta {...};
+<chillywilly> relationship Goat beats inverse Goat::is_beaten;
+<chillywilly> ok, I am enjoying this too much
+<chillywilly> class Dneighbo extends Goat: Masta
+<chillywilly> {
+<chillywilly>    relationship Goat beats inverse Goat::is_beaten;
+<chillywilly> };
+<chillywilly> class Dneighbo extends Goat: Masta
+<chillywilly> {
+<chillywilly>    relationship Goat beats inverse Goat::is_beaten_by;
+<chillywilly> };
+<chillywilly> night code slaves
+<chillywilly> masta...
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: "woooooosh!"
+<dneighbo> belated good night chilly
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+<Remosi> hmm
+reinhard (~rm@62.47.247.52) joined #gnuenterprise.
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+reinhard (~rm@62.47.247.52) left irc: "There are two types of people: those who divide people into two types, and those who don't"
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+reinhard (~rm@M698P020.adsl.highway.telekom.at) joined #gnuenterprise.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+rdean (rdean@chcgil2-ar2-4-64-030-076.chcgil2.dsl-verizon.net) joined #gnuenterprise.
+rdean (rdean@chcgil2-ar2-4-64-030-076.chcgil2.dsl-verizon.net) left irc: Read error: 104 (Connection reset by peer)
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: "Client Exiting"
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+fitzix (~fitzix@64.252.133.27) joined #gnuenterprise.
+Action: fitzix is away: phone
+Action: fitzix is back (gone 00:11:42)
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+Action: fitzix is away: phone again
+Action: fitzix is back (gone 00:12:06)
+kemitix (~chatzilla@194.222.210.37) joined #gnuenterprise.
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+Action: fitzix is away: nature calls
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+kemitix (~chatzilla@194.222.210.37) left irc: "ChatZilla 0.8.8 [Mozilla rv:1.1a/20020610]"
+Action: fitzix is back (gone 00:24:21)
+Action: fitzix is away: phone
+Action: fitzix is back (gone 00:08:25)
+fitzix (~fitzix@64.252.133.27) left irc: "Client Exiting"
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+drochaid (~drochaid@pc2-kirk1-2-cust175.ren.cable.ntl.com) joined #gnuenterprise.
+siesel (jan@dial-195-14-251-66.netcologne.de) joined #gnuenterprise.
+<drochaid> hey siesel
+<siesel> hi drochaid :)
+<siesel> seems that is has been quite silent here during the last hours
+<drochaid> I only got in 5 mins before you
+<drochaid> no one welcomed me </sniff>
+<siesel> oh, drochaid, I feel with you <a tear is falling down>
+<siesel> btw. do you know something about accounting?
+<reinhard> hey
+<reinhard> hello drochaid
+<reinhard> and welcome
+Action: reinhard hugs drochaid
+<drochaid> lol
+<drochaid> allo reinhard :)
+<reinhard> :)
+<siesel> hi reinhard
+<drochaid> siesel: I know very very little about accounting .. I tend to leave that to my bro [a chartered accountant and auditor ;)]
+<reinhard> siesel: you have questions about accounting?
+<reinhard> i might be able to help
+<siesel> yes, especialy about the differences between german and american accounting.
+<reinhard> uh
+<reinhard> oh
+<reinhard> i'm happy that i've learned the basic differences between austrian and german accounting :)
+<siesel> lol
+<reinhard> from what i understand american accounting serves a different purpose
+Action: drochaid uses Scots Business law when it comes to accounting
+<reinhard> read: austrian/german accounting is done mainly to satisfy the tax authority
+<reinhard> and to calculate the taxes to pay
+<siesel> A friend told me that I should write my master thesis about the difference between chinese (quite similar to american) and german accounting
+<reinhard> us american accounting seems to me to replace what we have in german "controlling" or "kostenrechnung" as well
+<reinhard> i.e. it serves as a source of information for the management and/or the investors
+<siesel> i.e. american accounting is just a kind of GuV ?
+<reinhard> don't think that
+<siesel> GuV = Gewinn & Verlust Rechnung ( don't know the english equivalence)
+<reinhard> i would believe us accounting does _more_ than german accounting
+<reinhard> sometimes i also get the feeling that us accounting doesn't have the strict concept of systematic account numbers
+<siesel> hmmm, I thought german accounting would allready be kind of too much (especial for lasy students who have to understand it ;) )
+<reinhard> lol
+<reinhard> night all
+<siesel> but if you say they have _more_, what is it us accounting has more?
+<reinhard> siesel: probably dneighbo is the one here knowing most about accounting
+<reinhard> the are more detailed
+<reinhard> (at least that is my understanding)
+<reinhard> they do "kostenstellen" and "kostenarten" and "kostenträger" etc. all in accounting
+<siesel> ok, I will ask dneighbo, 
+<reinhard> although i could misunderstand that
+Action: reinhard goes to sleep
+<reinhard> night all
+reinhard (~rm@M698P020.adsl.highway.telekom.at) left irc: "There's always one more imbecile than you expect"
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+siesel (jan@dial-195-14-251-66.netcologne.de) left irc: "night"
+perlhead (~fheinz@200.43.144.248) joined #gnuenterprise.
+perlhead (~fheinz@200.43.144.248) left irc: Client Quit
+rdean (rdean@4.64.30.76) joined #gnuenterprise.
+rdean (rdean@4.64.30.76) left irc: Client Quit
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<chillywilly> hi
+Action: chillywilly is away: mow the lawn
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+<drochaid> chillywilly: it's 1:10am .. why are you mowing the lawn?
+<ajmitch> hi 
+<drochaid> allo ajmitch
+Action: chillywilly is back (gone 00:57:35)
+<chillywilly> no, it is 7pm
+<chillywilly> Sun Jul 14 19:23:31 CDT 2002
+<chillywilly> 7pm-ish
+<chillywilly> anyone know how to change the font in emacs?
+<chillywilly> it's too damn big
+<chillywilly> and I am sick of using the console one
+<nickr> the console one has identical functionality ot the X one
+<chillywilly> so?
+<chillywilly> the console one doesn't paste as nicely
+<chillywilly> dude the key bindings int he gui one are b0rked :(
+<chillywilly> M-v doesn't do a page up and M-> or M-< doesn't jump to the beginning or end of the buffer
+<nickr> does for me
+<nickr> your meta key is horked
+<chillywilly> probably a meta key binding problem
+<nickr> its producing Super instead of Meta
+<chillywilly> yeop
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: Read error: 113 (No route to host)
+<nickr> I didn't have that problem because I learned using Esc instead of Alt
+<chillywilly> esc is too far away
+<chillywilly> I can fix this with gnome right?
+<chillywilly> er, wait
+<chillywilly> te window manager config stuff?....I know I set the meta key properly in there somewhere...at least I though
+<chillywilly> thought
+<chillywilly> nickr: do you know how to fix it?
+<nickr> the meta thing is X keymap related
+<chillywilly> yea
+<chillywilly> ok
+<nickr> has nothing to do with Gnome
+<chillywilly> now I remember
+<chillywilly> some shitty xkeymap...something program
+<chillywilly> you know the name?
+<chillywilly> yea, cause emacs uses the x toolit...ok, yes that makes sense :)
+<chillywilly> xkeymaps?
+Action: chillywilly looks for it
+<chillywilly> xkeycaps
+<chillywilly> I think that be it
+crazymike (~crazymike@mke-65-29-140-82.wi.rr.com) joined #gnuenterprise.
+<crazymike> chillywilly: you there???
+<chillywilly> hi
+<chillywilly> nickr: fyi, xkeycpas did it
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+crazymike (~crazymike@mke-65-29-140-82.wi.rr.com) left irc: "Client Exiting"
+Action: drochaid is away: Do not meddle in the affairs of dragons, because you are crunchy and taste good with ketchup.
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+<chillywilly> I wonder if derek knew about this: http://newsforge.com/newsforge/02/07/15/0018214.shtml?tid=22
+<chillywilly> since he works for said county
+<nickr> chillywilly: has nothing to do with what toolkit emacs uses
+<nickr> chillywilly: regardless of toolkit, programs get certain events from the X server
+<chillywilly> yes, I was going to say that but I didn't bother
+<ajmitch> nickr: you get anywhere with deb packaging? i've been asked to package them in the next few days
+<nickr> ajmitch: no, I didn,t get anywhere tangible because whenever we taled about it I was told that setup.py can't be made to do that and it was dropped
+<ajmitch> nickr: how useful, i guess you have a standing hatred for distutils now? :)
+<nickr> booja
+<nickr> so basically you'll have to let it install in its fgake root, then move everything into place
+<nickr> which I found annoying but I guess its acceptable if you're into it
+<ajmitch> ugly as hell
+<ajmitch> oh yeah, i'm right into S-M ;)
+<nickr> but if you need any help, I'd be glad to *help* ;)
+Action: ajmitch anticipates long hours of pain
+<nickr> hehe
+<nickr> its not so bad, I'm just a perfectionist
+<ajmitch> alright
+<ajmitch> i'll probably get you & jbailey to sponsor them :)
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+ymablr (hello@203.195.204.197) joined #gnuenterprise.
+ymablr (hello@203.195.204.197) left #gnuenterprise.
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<ajmitch> hi dneighbo
+<dneighbo> hi
+<dneighbo> playing with more gui tools, im pretty impressed with the progress, shame i dont really find value in them for most things
+<dneighbo> but its good to know when evangelizing
+<ajmitch> great
+<dneighbo> jbailey: you really here
+<jbailey> dneighbo: Maybe. =)
+<dneighbo> btw: woody is really solid (many kudos) if only they would release it
+<jbailey> What'cha need?
+<dneighbo> wondering how SAP-DB was going
+<dneighbo> and whether dcl made it in to sid or not
+<dneighbo> i.e. just being a pain :)
+<ajmitch> dneighbo: i'm getting complaints about the install instructions & stuff with gnue forms, etc :)
+<jbailey> sap-db was untouched this weekend.  It's all on my work machine.
+<jbailey> I haven't seen the ACCEPTED message for dcl yet, but I did see the NEW notification, so I know it was received.
+<jbailey> I except sap-db to be in a reasonable first-snapshot state by next weekend.
+<dneighbo> ajmitch: complaints from where on what
+<dneighbo> jbailey: yummy
+<jbailey> So, basically with sapdb-client, sapdb-server, and maybe a sapdb-docs packages
+<dneighbo> well you know where to find a tester :)
+<jbailey> dneighbo: I'm kvitching again. =)
+<ajmitch> dneighbo: not allowed to say where, he didn't give much detail ;)
+<dneighbo> i can test on woody and sid for you
+<dneighbo> jbailey: as stated before if one must make makefiles for the debs certainly do so
+<jbailey> dneighbo: Cool.  It'll all be targetted at sid.
+<jbailey> dneighbo: It would be nice to have a clean 'make install' target.  Right now I'm copying files by hand into the right place, so I worry that I'll miss things in upgrades.
+<ajmitch> talked to nickr about making gnue debs, could require a certain love of s-m
+Action: ajmitch wonders why each component is in it's own dir for downloads
+<jbailey> dneighbo: Perhaps once Andrew finishes the GNUe debs, I can work from that example to still build you your cross-platform installer.
+<dneighbo> jbailey: i think we plan to make that python and part of gnue-common
+<dneighbo> an installer that is
+<dneighbo> eventually we will have to mimic something like apt for our actual packages(applications) not tools
+<jbailey> Ah okay.  I was thinking with that installed I had showed you before on sourceforge.
+<jbailey> It looked like it would do a nice job (and was already written)
+<jbailey> Whatever works best for you, obviously. =)
+<dneighbo> i dont remember the other
+<dneighbo> best to ask jamest
+<dneighbo> as i think he pretty much has the internals done for a xplatform installer
+<dneighbo> i.e. to make the linux installer like the windows one (visual and such) for those silly enough to not use debian :)
+<jbailey> Ah, cool.
+<jbailey> *lol*
+<jbailey> BTW, remember you can also use alien to generate rpms. =)
+<dneighbo> that would be very cool
+<dneighbo> i no longer have a red hat or windows system to test things :)
+<jbailey> No windows system.  Nice!
+Action: dneighbo is 100% debianite now
+<dneighbo> no windows for about 6 months now
+<dneighbo> no red hat as of last weekend
+<dneighbo> now im hooked on my laptop again :)
+<jbailey> I still have windows for the games.
+<dneighbo> with new kernel, shiny new journaling file system and a brand spanking new grub loader
+<dneighbo> yummy
+<dneighbo> i plan on using win4lin for some things
+<dneighbo> mainly kids games
+<dneighbo> i have railroad tycoon 2, civ CTP and some other linux games from loki that keep me fairly entertained in limited game time i do have
+Action: ajmitch doesn't play many games
+<ajmitch> have been windows free for about 3 years
+<ajmitch> only been hooked on debian for 18 months tho
+<chillywilly> dneighbo: did you see the article about the plug and Marcopia county?
+<chillywilly> on LT
+<dneighbo> which one
+<chillywilly> one sec...
+<dneighbo> its been on source forge
+<dneighbo> and slashdot (more than once)
+<chillywilly> maybe it was newsforge that I saw it on
+<dneighbo> the newsforge one was ok
+<dneighbo> the comments were bs
+<dneighbo> and could EASILY be disputed, but politically it would be wrong for me to do so
+<ajmitch> since you work for them?
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) left irc: "Client Exiting"
+<dneighbo> yip
+<dneighbo> gack its storming so bad my net connection (satelilite) is starting to crawl a bit
+<chillywilly> satellite
+Action: ajmitch dislikes uppercase names in tarballs
+<chillywilly> speaking of which
+<chillywilly> our buddy Goran is thinking about naming his band "satellite down"
+<chillywilly> what do you guys think?
+<dneighbo> um what ever floats their boat :)
+<chillywilly> crazymike has live recordings of The Gufs (Goran's "former" band) and Goran's new stuff at http://crazymike.dyndns.org
+<chillywilly> you need the xmms-shn plugin though (trying to switch him to flac - http://flac.sourceforge.net)
+<chillywilly> it doesn't believe in lossy compression for audio ;)
+<ajmitch> hmm, how to package gnue-common with it's myriad deps? ;)
+<chillywilly> s/it/he/,  :o
+Action: chillywilly is sneezing and his nose is running this means sleep is definitely needed
+<ajmitch> designer will be fairly simple compared to common
+<dneighbo> what is flac
+<dneighbo> shn is a lossless format
+<chillywilly> we also put up ths board - http://goran.kicks-ass.org...I am running apache as a virtual server answering that previous url and the board one
+<chillywilly> flac is Free Software
+<chillywilly> shorten is not
+<chillywilly> ;)
+<dneighbo> shn is the format all the tape traders use
+<dneighbo> its basically a compressed wav
+<chillywilly> yep
+<chillywilly> I know
+<dneighbo> cuts wav in half without lossing any quality
+<chillywilly> so does flac
+<chillywilly> I hear it gets better compression
+Action: dneighbo still think that losing quality is ok (human ear is only so good) to preserve space
+<chillywilly> hehe, ;)
+<dneighbo> also its little known fact but the ogg vorbis spec states that you can do lossless compression/encoding in .ogg
+<chillywilly> cool
+<chillywilly> I'll have to let mikey know
+<chillywilly> btw, we are setting up somehting to stream Goran's music on WOPN ;)
+<dneighbo> i.e. master sources should be highest quality possible but unless you are doing studio work or professional work the quality of bitrates by .mp3(sic) are functional (better than FM radio)
+<chillywilly> dneighbo: WOPN is in dire need of good tunes that are freely available
+<chillywilly> ;)
+<chillywilly> they seem to play a LOT of techno crap
+<chillywilly> or whatever they can broadcast for free
+<chillywilly> (megman remixes and goofy shit like that)
+<dneighbo> These two general mechanisms are particularly well suited to coupling due to the structure of Vorbis encoding, as we'll explore below, and using both we can implement both totally lossless stereo image coupling [bit-for-bit decode-identical to uncoupled modes], as well as various lossy models that seek to eliminate inaudible or unimportant aspects of the stereo image in order to enhance bitrate. 
+<chillywilly> megaman
+<dneighbo> from
+<dneighbo> http://www.xiph.org/ogg/vorbis/doc/stereo.html
+<chillywilly> uhuh
+<chillywilly> thanks
+gnuebot (eggdrop@mail.libertydistribution.com) joined #gnuenterprise.
+<dneighbo> same document
+<dneighbo> under stereo models
+<dneighbo> Using polar mapping and/or channel interleaving, it's possible to couple Vorbis channels losslessly, that is, construct a stereo coupling encoding that both saves space but also decodes bit-identically to dual stereo. OggEnc 1.0 and later uses this mode in all high-bitrate encoding.
+<dneighbo> Overall, this stereo mode is overkill; however, it offers a safe alternative to users concerned about the slightest possible degredation to the stereo image or archival quality audio.
+#gnuenterprise: mode change '+o gnuebot' by ChanServ!ChanServ@services.
+<chillywilly> lol
+<dneighbo> i like how they add the last paragraph about OVERKILL
+<chillywilly> people like mike and all the tapers
+<dneighbo> but safe alternative for the stereo freaks
+<chillywilly> :)
+<dneighbo> btw: i have a cubemate that is hardcore tape trader 
+<dneighbo> that is way into shn
+<chillywilly> kewl
+<chillywilly> and mike is my "partner"
+<chillywilly> we work as a team
+<chillywilly> the tapers are *everywhere*
+<nickr> heterosexual life partner
+<dneighbo> bbs 'dead zone'
+<chillywilly> nickr: indeed ;)
+<chillywilly> dneighbo: that series is cool
+<nickr> Monk is quite excellent, I have to say.
+<chillywilly> don't laugh but I just saw fght club for the first time the other day
+<chillywilly> that is a wacked movie
+<chillywilly> er, fight club
+Action: chillywilly doesn't see may movies
+<nickr> Its based on a lot of true things, which is the scary part
+<chillywilly> heh
+<chillywilly> the scary thing is how he gets so many followers who he leads like sheep, imho
+<chillywilly> this reminded me of hitler or something like that
+<chillywilly> people really are this desparate to "belong" to something
+<chillywilly> I dunno that movie had some really deep philosphical overtones
+<nickr> I think his motives were essentially good, though
+<chillywilly> it was pretty cool
+<nickr> if not his methods
+<chillywilly> I should watch it again
+<nickr> yea
+<nickr> its much better thes second time
+<nickr> cause you see tyler very early on many times
+<ajmitch> ok
+<chillywilly> tell you the truth at first viewing, until the little twist came in, I wasn't really diggin it all that much
+<nickr> Heh.
+<nickr> I dug it even the first viewing
+<ajmitch> nickr: got any hints on how i should do gnue-common? ;)
+<chillywilly> well tyler was just a jag and seemed to be picking on eddy norton too much for my tastes...but I'm a softie
+<nickr> ajmitch: well it'll involve several chickens.
+<ajmitch> nickr: ooh, sounds fun
+<chillywilly> and the removing of their heads
+<chillywilly> the slatterning of chicken blood
+<chillywilly> and voodoo curses
+<chillywilly> rituals even
+<nickr> ajmitch: lets see, theres a certain argument that you pass to setup.py that'll make a directory the 'fake /'
+<nickr> ajmitch: so do that with a temp directory, then move all the files in there to their right spots
+<ajmitch> nickr: yup, caught that, i'm just wondering about all the db dirvers
+<nickr> oh
+<nickr> iirc they aren't 'required' at build time
+<chillywilly> nickr: btw, how's life treating you?
+<nickr> if thats the case, make them recommended, and let it pick them up automatically
+<nickr> chillywilly: pretty good
+Action: ajmitch could try for record package counts & split each into a separate package :)
+<nickr> ajmitch: yea, I'd recommend against that
+<chillywilly> heheh
+<chillywilly> go for it man!
+<nickr> ajmitch: because its all runtime, not compile time, I thikn
+<ajmitch> nickr: it'd be a pain to have a package with a single .py file in it :)
+<ajmitch> certainly
+<nickr> should I drop 180$ on headphones?
+<chillywilly> yea, live a little
+--- Mon Jul 15 2002
+<nickr> I already dropped like 1000 on a camera
+<nickr> but it IS a very nice one..
+<chillywilly> poor baby...
+Action: ajmitch is flat broke & then some :)
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+Action: chillywilly has had $600 in the savings account and holding steady...w00000 :(
+<nickr> its crazy the disparity in our world
+<chillywilly> yea
+alexey_ (~Alexey@techkran.vladimir.ru) joined #gnuenterprise.
+Action: Remosi reads bugtraq
+Action: Remosi scowls at dcl developers :)
+<ajmitch> hi Remosi
+<Remosi> aj!
+Action: Remosi been experimenting with my idea
+<ajmitch> don't look at dneighbo & mdean like that :)
+<Remosi> heh
+<ajmitch> how's it working?
+<Remosi> so so
+<Remosi> needs some hand hacking at the moment
+<Remosi> and I'm only doing c<->c and no RPC inbetween
+<Remosi> but proof-of-concept is functional :)
+<ajmitch> yep
+<chillywilly> is this the loading .so via rpc idea?
+<chillywilly> Remosi: I'm not sure I unstood how that is supposed to work
+<chillywilly> perhaps you can email me at chillywilly@gnuenterprise.org as I need to got o bed now
+<chillywilly> night all
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: "woooooosh!"
+<dneighbo> Remosi: why scowl at us?
+<dneighbo> we fixed the problem
+<Remosi> Well thats true :)
+<Remosi> better than most :)
+<dneighbo> we even provided debs so its easier for people to fix the problem :)
+<Remosi> no insult intended :)
+<dneighbo> you have homepage for bugtraq?
+<Remosi> http://www.securityfocus.com/ IIRC
+<dneighbo> cool i was there but not seeing link
+<dneighbo> i found link now
+<dneighbo> btw: in some ways dcl isnt even on real 'version' numbers so releasing it to bugtraq seems kind of odd
+<Remosi> yeah
+<Remosi> oh well
+<Remosi> I guess they used it
+<dneighbo> but there are people using it in production so its understandable i guess
+<Remosi> http://online.securityfocus.com/archive/1/282193/2002-07-12/2002-07-18/0
+<Remosi> thats the posting
+<dneighbo> yeah Ulf sent it to me
+<dneighbo> he was actually really great to work with
+<dneighbo> provided samples of how to exploit
+<Remosi> php is a b'stard of a thing to get secure
+<Remosi> yeah
+<dneighbo> and gave us a month before releasing publicly so we could fix
+<Remosi> Yeah, those kinds of people are really nice
+<Remosi> it's the people that post bugs to bugtraq first
+<dneighbo> w/o totally leaving our users in the hole
+<Remosi> that are irritating
+<dneighbo> well for once i was on other side of fence
+<Remosi> although, better than the ones that just expoit them and don't tell you at all :)
+<dneighbo> it was a catch 22
+<dneighbo> i wanted to notify all dcl users immediately
+<dneighbo> BUT
+<dneighbo> to do so 'overly' publicly would be remiss as no patch was available
+<Remosi> you have to patch the hole first :)
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+<Remosi> and by the email it sounds like that there were serveral :)
+<dneighbo> well i did say in commit list and irc we were closing security holes
+<dneighbo> i just didnt specifically say what they were
+<dneighbo> until i had committed the fix for each one
+<Remosi> yeah, I saw you guys mention it on here
+<dneighbo> then bundled when all were done and did full blow release
+<dneighbo> to freshmeat, all announce lists and such and ulf gave us like a week after release to let the users patch
+<dneighbo> which i think was fair
+<Remosi> thats very nice in fact
+<ajmitch> yes, you'd be happy that he was the one to handle it :)
+reinhard (~rm@62.47.247.52) joined #gnuenterprise.
+<ajmitch> hi Re
+<ajmitch> oops
+<ajmitch> hi reinhard
+<Remosi> anyway
+<Remosi> must go 
+<Remosi> BBIAB :)
+<ajmitch> bye :)
+<reinhard> morning
+<dneighbo> you know what synaptic is pretty cool
+<dneighbo> BUT
+<dneighbo> it has an ugly interface
+<nickr> its NeXTish
+<nickr> I like it.
+<nickr> but Its annoying to USE
+<dneighbo> i wasnt complaining about the 'visuals'
+<dneighbo> as much as some of the layout and such isnt highly intuitive
+<dneighbo> for say someone that Lindows or Lycoris is targeting
+<dneighbo> i like it as it uses raw debian names for things and such
+<dneighbo> but it would be cool to see a very 'stupid user' interface
+<dneighbo> with categories of software
+<dneighbo> and little pretty icon pictures
+<dneighbo> and good descriptions and the likes
+<dneighbo> if you have it already its in your 'installed bucket'
+<dneighbo> and an update will show if new version is avaiable and you check if you want to upgrade or not
+<dneighbo> and new packages you check if you want
+<dneighbo> dont get me wrong its a good start
+<dneighbo> but i think most people that it would be useful for probably would be as well off with command line
+<dneighbo> and | grep :)
+<dneighbo> hmmm wow long time no listen to my playlist (seems like weeks)
+<dneighbo> and some suicidal tendencies comes on
+<dneighbo> i remember listening to this once upon a time and people were like who the heck is that?
+<dneighbo> and thought i was nuts
+<nickr> you don't have to grep aynmore, you can use multiple keywords with apt-cache search
+<dneighbo> then at one point mike muir actually achieved some success
+<dneighbo> nickr: i generally use dpkg --list |grep mybliss
+<nickr> ah.
+<dneighbo> though slowly i have started using apt-cache more and more
+<dneighbo> why is it any time i 'upgrade' within 10 seconds of doing so i have the need to apt-get something
+<dneighbo> and end up twiddling thumbs until the upgrade is done :)
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+siesel (jan@dial-194-8-205-101.netcologne.de) joined #gnuenterprise.
+<siesel> morning
+<ajmitch> morning siesel
+<dneighbo> morning?
+<dneighbo> you all are sick
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: "Client Exiting"
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<ajmitch> wb
+<dneighbo> thanks
+Arturas (arturas@213.226.153.20) joined #gnuenterprise.
+<Arturas> Hello
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+mdean (~mdean@mkc-65-28-72-183.kc.rr.com) got netsplit.
+Mr_You (rouzer@207.124.144.13) got netsplit.
+<siesel> Hi Arturas
+ariel_ (~ariel@ppp-217-133-242-71.dialup.tiscali.it) joined #gnuenterprise.
+mdean (~mdean@mkc-65-28-72-183.kc.rr.com) returned to #gnuenterprise.
+Mr_You (rouzer@207.124.144.13) returned to #gnuenterprise.
+<Arturas> Hi Jan :)
+ra3vat (~ds@ics.elcom.ru) got netsplit.
+ariel_ (~ariel@ppp-217-133-242-71.dialup.tiscali.it) got netsplit.
+mdean (~mdean@mkc-65-28-72-183.kc.rr.com) got netsplit.
+Mr_You (rouzer@207.124.144.13) got netsplit.
+ra3vat (~ds@ics.elcom.ru) returned to #gnuenterprise.
+ariel_ (~ariel@ppp-217-133-242-71.dialup.tiscali.it) returned to #gnuenterprise.
+mdean (~mdean@mkc-65-28-72-183.kc.rr.com) returned to #gnuenterprise.
+Mr_You (rouzer@207.124.144.13) returned to #gnuenterprise.
+ariel_ (~ariel@ppp-217-133-242-71.dialup.tiscali.it) left irc: Read error: 110 (Connection timed out)
+mdean (~mdean@mkc-65-28-72-183.kc.rr.com) got netsplit.
+Mr_You (rouzer@207.124.144.13) got netsplit.
+mdean (~mdean@mkc-65-28-72-183.kc.rr.com) returned to #gnuenterprise.
+Mr_You (rouzer@207.124.144.13) returned to #gnuenterprise.
+JohannesV (~jve@62.47.246.218) joined #gnuenterprise.
+mdean (~mdean@mkc-65-28-72-183.kc.rr.com) got netsplit.
+Mr_You (rouzer@207.124.144.13) got netsplit.
+mdean (~mdean@mkc-65-28-72-183.kc.rr.com) returned to #gnuenterprise.
+Mr_You (rouzer@207.124.144.13) returned to #gnuenterprise.
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+JohannesV (~jve@62.47.246.218) left irc: 
+JohannesV (~jve@62.47.246.218) joined #gnuenterprise.
+gnuebot (eggdrop@mail.libertydistribution.com) left irc: Ping timeout: 14400 seconds
+jhs (~jhs@cs6668105-78.austin.rr.com) got netsplit.
+mdean (~mdean@mkc-65-28-72-183.kc.rr.com) got netsplit.
+Mr_You (rouzer@207.124.144.13) got netsplit.
+jhs (~jhs@cs6668105-78.austin.rr.com) returned to #gnuenterprise.
+mdean (~mdean@mkc-65-28-72-183.kc.rr.com) returned to #gnuenterprise.
+Mr_You (rouzer@207.124.144.13) returned to #gnuenterprise.
+jhs (~jhs@cs6668105-78.austin.rr.com) got netsplit.
+mdean (~mdean@mkc-65-28-72-183.kc.rr.com) got netsplit.
+Mr_You (rouzer@207.124.144.13) got netsplit.
+ra3vat (~ds@ics.elcom.ru) got netsplit.
+Mr_You (rouzer@207.124.144.13) got lost in the net-split.
+mdean (~mdean@mkc-65-28-72-183.kc.rr.com) got lost in the net-split.
+jhs (~jhs@cs6668105-78.austin.rr.com) got lost in the net-split.
+alexey_ (~Alexey@techkran.vladimir.ru) left irc: "[x]chat"
+ra3vat (~ds@ics.elcom.ru) got lost in the net-split.
+Mr_You (rouzer@207.124.144.13) joined #gnuenterprise.
+mdean (~mdean@65.28.72.183) joined #gnuenterprise.
+<siesel> \quit 
+siesel (jan@dial-194-8-205-101.netcologne.de) left irc: " * Blackened *"
+ra3vat (~ds@ics.elcom.ru) joined #gnuenterprise.
+Action: drochaid is back (gone 08:27:50)
+<Arturas> is CVS alive?
+JohannesV (~jve@62.47.246.218) left irc: Read error: 104 (Connection reset by peer)
+<ra3vat> Arturas: hello, works via pserver for me
+<Arturas> ra3vat: Hi, now it works for me (downloading the whole tree now), but a bit earlier it refused to commit a file
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+Action: Arturas is away: working...
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+ToyMan (~stuq@smtp.dstoys.com) joined #gnuenterprise.
+Action: Arturas is back (gone 01:08:32)
+SachaS (~Sacha@dialup-196-163.wasp.net.au) joined #gnuenterprise.
+Nick change: SachaS -> SachaS_away
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<Arturas> Hi Jason
+<ra3vat> jcater: hi
+<Arturas> I have just changed common/src/dbdrivers/_dbsig/DBdriver.py file - could
+<Arturas> someone please review change - maybe you'll have some ideas how to 
+<Arturas> improve source - it's a bit problematic now (function
+<Arturas> _buildUpdateStatement)
+<Arturas> ?
+<Arturas> thank you
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+<jcater> z`um
+<jcater> um
+<jcater> what kinda changes?
+<Arturas>       # To convert date from format '2002-12-31 23:59:59,99'
+<Arturas>       # into '2002-12-31 23:59:59' format.
+<Arturas>       # We have to determine whether given string is date\time
+<Arturas>       # maybe it's the most stupid way, but it should work.
+<Arturas>       # TODO: if in ANY other field data of this format and comma in
+<Arturas>       # place will exist, the remaining string from first ',' will be
+<Arturas>       # eaten.
+<Arturas>       # If you know better decision - please, modify this code.
+<Arturas>       tmpDate = self._fields[field]
+<Arturas>       if ((len(tmpDate)==22) and (tmpDate[-3]==',')):
+<Arturas>         tmpDate = tmpDate.split(',')
+<Arturas>         tmpDate = tmpDate[0]
+<Arturas>       updates.append ("%s=%s" % (field,
+<Arturas>          self._parent._dataObject._toSqlString(tmpDate)))
+dres_ (~dres@mail.lewismoss.org) left irc: Read error: 104 (Connection reset by peer)
+dres__ (~dres@mail.lewismoss.org) joined #gnuenterprise.
+<jcater> um
+<jcater> hrm
+SachaS_away (~Sacha@dialup-196-163.wasp.net.au) left irc: Read error: 113 (No route to host)
+<Arturas> jcater: no comments? :)
+<ra3vat> Arturas:  i will test it now as before i had a problem with date/time
+<Arturas> ra3vat: thanks! :)
+Action: drochaid is away: sun is shining .. so I'm not working .. off walking :-)
+jamest (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+<Arturas> Hi jamest :)
+<jcater> Arturas: I just don't understand what's going on
+<jcater> I'll need to look at the code in context of the file
+<ra3vat> jcater: datetime is represented in long format and in localized form is not accepted by db backend
+<jcater>  sure
+<ra3vat> Arturas: am i right?
+<jcater> that's the purpose of _dateTimeFOrmat
+<jcater> that string needs to be changed from the "localisation" code to whatever explicit format is needed
+<jcater> besides
+<jcater> you shouldn't be making postgres-specific changes in _dbsig
+<jcater> or you'll break all the other drivers
+<Arturas> mhm
+<Arturas> it was a problem in SQL query like "...WHERE month='May'..." works fine
+<Arturas> but "...WHERE month='Geguþë'..." breaks everything
+<Arturas> that's why localised query is bad
+<jcater> sigh
+<jcater> I get that
+<jcater> I understand the problem
+<jcater> I just don't agree with the solution
+<jcater> that was the purpose of _dateTimeFormat
+<jcater> (or whatever it is called)
+<jcater> right now that is producing localized dates
+<jcater> and it shouldn't
+<jcater> which means it should be changes
+<jcater> s/changes/changed
+<Arturas> mm
+<Arturas> i changed it so that now it gives fixed 'YEAR-MONTH-DAY HOUR:MINUTE:SECOND' format
+<Arturas> not the localised one
+Action: Arturas does not understand something here
+<jcater> why the string.split code then?
+<Arturas> that's another story :)
+<Arturas> postgress can't handle date\time format '2002-12-31 23:59:59,99'
+<Arturas> so i cut away last 3 chars
+<Arturas> but i chose wrong file :(
+Action: jcater then thinks the _dateTimeFormat is wrong then
+<Arturas> rrrrrrrrrrrrrr
+<Arturas> postgress database date\time format is with ....,99 
+<Arturas> it holds date\time with ...,99
+<Arturas> but it does now accept such format in queries :/
+<Arturas> but it does not accept such format in queries :/
+<jcater> ok
+<jcater> so are you saying the ,99 is required when updating or inserting
+<jcater> but must be omitted in WHERE clauses?
+<Arturas> the ,99 is not required in queries at all, but postgress adds them to data type 'date\time'. If i add ,99 somewhere in query, i get an error about typecasting
+<Arturas> when form reads data from database, it reads all ,99
+<Arturas> and when update/delete query is formulated, it has '... ,99..... ,99...' and it does not work
+<Arturas> i guess i chose a wrong file for this change
+<Arturas> and buggy decission
+<Arturas> :/
+Nick change: dres__ -> dres
+gnuebot (~eggdrop@mail.libertydistribution.com) joined #gnuenterprise.
+#gnuenterprise: mode change '+o gnuebot' by ChanServ!ChanServ@services.
+jeffsw110 (~kopeteuse@146.145.164.54) joined #gnuenterprise.
+<Arturas> bye
+Arturas (arturas@213.226.153.20) left irc: "Client Exiting"
+<ra3vat> if i have multitabbed form and i do query on one tab (data looks great) then go to another tab, run query there, data looks great also on that tab but cleared on the first one
+<ra3vat> how to change that?
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+<dneighbo> fwiw: if anyone every wants 'armament' to take to their boss
+<dneighbo> why one should be leary of microsoft
+<dneighbo> Let Ernie tell them how the federal marshall's kicked down his door
+<dneighbo> http://www.worldtrademag.com/wt/cda/articleinformation/coverstory/bnpcoverstoryitem/0,3481,76659,00.html
+<dneighbo> must run bbl
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: "Client Exiting"
+<nickr> yow
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+jeffsw110 (~kopeteuse@146.145.164.54) left irc: "Using Kopete IRC Plugin"
+gnuebot2 (eggdrop@65.101.4.210) joined #gnuenterprise.
+gnuebot (~eggdrop@mail.libertydistribution.com) left irc: Read error: 110 (Connection timed out)
+Nick change: gnuebot2 -> gnuebot
+#gnuenterprise: mode change '+o gnuebot' by ChanServ!ChanServ@services.
+dneighbo (~dneighbo@tmp-200253.flinthills.com) joined #gnuenterprise.
+stbain (~stbain@66.207.65.76) joined #gnuenterprise.
+<stbain> greetz
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: Read error: 110 (Connection timed out)
+ra3vat (~ds@ics.elcom.ru) got netsplit.
+Mr_You (rouzer@207.124.144.13) got netsplit.
+reinhard (~rm@62.47.247.52) got netsplit.
+drochaid (~drochaid@pc2-kirk1-2-cust175.ren.cable.ntl.com) got netsplit.
+Remosi (dahoose@port-62-148.jet.net.nz) got netsplit.
+ra3vat (~ds@ics.elcom.ru) returned to #gnuenterprise.
+Mr_You (rouzer@207.124.144.13) returned to #gnuenterprise.
+reinhard (~rm@62.47.247.52) returned to #gnuenterprise.
+drochaid (~drochaid@pc2-kirk1-2-cust175.ren.cable.ntl.com) returned to #gnuenterprise.
+Remosi (dahoose@port-62-148.jet.net.nz) returned to #gnuenterprise.
+jamest (~jamest@hobbes.math.ksu.edu) left irc: "[x]chat"
+ariel_ (~ariel@ppp-217-133-241-47.dialup.tiscali.it) joined #gnuenterprise.
+<ariel_> hi all
+<ariel_> who is maintaining GParser?
+<ariel_> i' ve discovered 2 bugs
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+Action: drochaid is back (gone 03:17:02)
+fil_c (~username@public1-cosh3-3-cust12.cosh.broadband.ntl.com) joined #gnuenterprise.
+jeffsw110 (~kopeteuse@146.145.164.54) joined #gnuenterprise.
+perlhead (~fheinz@modem117-adsl.capfed2.sinectis.com.ar) joined #gnuenterprise.
+Action: ariel_ is away: busy
+<perlhead> Hi all! Any pointer on where forms gets its fonts?
+<perlhead> Just installed PAPO. Everything looks good, but the font is hideously large.
+<perlhead> And the encoding is not ISO-8859-1, which sucks too.
+yogurt2unge (~charlie@modem117-adsl.capfed2.sinectis.com.ar) joined #gnuenterprise.
+<ra3vat> perlhead: there are a few font parameters in gnue.conf
+<perlhead> ra3vat: yep, but they only let you choose whether you want monospaced fonts.
+<perlhead> There's even a comment in the gnue.conf:
+<perlhead> # Normally, default font style and size is used, according to the active theme
+<perlhead> But it doesn't mention which "theme" we're talking about. It sure doesn't use my gtk theme's settings...
+<ra3vat> perlhead: but at least size you can change there :) 
+<ra3vat> <perlhead> Just installed PAPO. Everything looks good, but the font is hideously large.
+<ra3vat> :)
+<perlhead> Not really: "# Font size if fixedWidthFont = 1 (ignored otherwise)"
+<perlhead> It doesn't work if fixedWidthFont == 0
+<ra3vat> may be monospaced is best for now, do not know about theme 
+<ra3vat> other encodings should work also
+jcater (~jason@65.105.10.202) joined #gnuenterprise.
+<perlhead> The default is proportional... I guess that indicates that it works.
+<perlhead> jcater: Hi! you're the forms man here, right?
+<perlhead> Having some trouble with my fonts...
+<perlhead> Just installed PAPO. Everything looks good, but the font is hideously large.
+<perlhead> And the encoding is not ISO-8859-1, which sucks too.
+<jcater> PAPO's encoding is not ISO-8859-1
+<jcater> ?
+<jcater> btw, you probably wanna change pointSize=10 (or so) in your gnue.conf
+<jcater> somehow the default was increased and got passed us the last release
+<perlhead> It's not ISO-8859-1???
+<jcater> I am not too familiar with PAPO
+<jcater> but it is written specifically for Argentina iirc
+<jcater> and I'm not sure what encoding they used
+<jcater> btw, the ISO-8859-1 line was a question :)
+<jcater> i.e., PAPO's encoding is not ISO-8859-1?
+<perlhead> yogurt2unge is sitting next to me, he tells me it's ISO-8859-1
+<perlhead> gnue.conf says pointSize is for fixed with only...
+<jcater> um
+Action: jcater didn't know forms worked properly w/o fixed width fonts
+<jcater> I haven't tested it that way
+<perlhead> It worked for the size. The comments in gnue.conf are misleading:
+<perlhead> # The next 2 options are only used by the wxPython clients
+<perlhead> # Normally, default font style and size is used, according to the active theme
+<perlhead> # Set this to 1 if you want fixed width fonts
+<perlhead> #fixedWidthFont = 1
+<perlhead> Gives the impression that the default is fixedWidthFont=0
+<jcater> true
+Action: jcater will change that
+<ra3vat> jcater: if i have multitabbed form and i do query on one tab (data looks great) then go to another tab, run query there, data looks great also on that tab but cleared on the first one
+<ra3vat> how to change that?
+<jcater> not sure
+<perlhead> jcater: great.
+<perlhead> jcater: As to the encoding: the form I'm executing begins with "<?xml version="1.0" encoding="ISO-8859-1"?>"
+<jcater> so, what's the issue?
+<perlhead> Weird thing is, it yogurt2unge's machine it works fine, but not in mine.
+<perlhead> I get ciryllic characters instead of accented ones.
+<ra3vat> perlhead: how it behave on yours?
+<perlhead> I suspect it's because forms is picking a font with the wrong encoding... but I can't find out which.
+<perlhead> Wait ! idea striking! Let me check...
+<ra3vat> jcater: not sure - was it for me? it should not work that way or what?
+gnuebot (eggdrop@65.101.4.210) left irc: Remote closed the connection
+<ra3vat> be back in 30 minutes
+gnuebot (eggdrop@mail.libertydistribution.com) joined #gnuenterprise.
+#gnuenterprise: mode change '+o gnuebot' by ChanServ!ChanServ@services.
+gnuebot2 (~eggdrop@65.101.4.211) joined #gnuenterprise.
+gnuebot (eggdrop@mail.libertydistribution.com) left irc: Remote closed the connection
+Nick change: gnuebot2 -> gnuebot
+#gnuenterprise: mode change '+o gnuebot' by ChanServ!ChanServ@services.
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+jeffsw110 (~kopeteuse@146.145.164.54) left irc: "Using Kopete IRC Plugin"
+gnuebot (~eggdrop@65.101.4.211) left irc: Remote closed the connection
+<perlhead> jcater: no luck... I thought it might have been my wmaker configuration... but I didn't find any default monospace font there...
+gnuebot (~eggdrop@65.101.4.211) joined #gnuenterprise.
+#gnuenterprise: mode change '+o gnuebot' by ChanServ!ChanServ@services.
+jcater (~jason@65.105.10.202) left irc: Remote closed the connection
+jcater (~jason@65.105.10.202) joined #gnuenterprise.
+Action: drochaid is away: Do not meddle in the affairs of dragons, because you are crunchy and taste good with ketchup.
+Action: drochaid is back (gone 00:00:01)
+<ariel_> who is maintaining gnuedtd?
+<jcater> me, sort of
+<jcater> I'm not sure "maintaining" is a good word :)
+<jcater> patches are welcome
+ThreeSeas (3seas@user-38lc4fm.dialup.mindspring.com) joined #gnuenterprise.
+<ra3vat> back
+<ariel_> jcater: i generated a gnue-schema.dtd and found some bugs.
+fil_c (~username@public1-cosh3-3-cust12.cosh.broadband.ntl.com) left irc: "Client Exiting"
+<ariel_> 1) the nice boxes around the comments are not recognized by nsglms ( and other parsers i think)
+<ariel_> 2) an entity that must be further referenced must be defined as <!ENTITY % foo "bar"> and not <!ENTITY foo "bar">
+<ariel_> 3) %true and %false are declared AFTER %boolean.
+<jcater> ok
+Action: jcater was wondering about #2
+<jcater> as the sample dtd's I was learning from didn't have them
+<jcater> but other ones I saw later did have them
+<jcater> hmm
+<jcater> wrt #1, how do you do comments in dtd's ?
+<jcater> will <!-- --> not work?
+<jcater> err
+<jcater> I just committed fixes to #2 and #3
+<jcater> but am still not sure about #1
+<ra3vat> jcater: can you answer my question i've asked above?
+<jcater> ra3vat: I'm not sure
+<ra3vat> not sure what?
+<ra3vat> is it expected behavior?
+<ra3vat> where some mistakes unproper (settings) may exist? in my .gfd?
+<jcater> I'm not sure if pages can be queried separately
+<ra3vat> ok
+<ra3vat> but if i hit f8,f9 on first tab(block), so getting all data why other datasources not queried with the same pattern (to get all data)? 
+<ra3vat> or i should provide filter for each block before query would be raised?
+<ariel_> try to generate gnue_schema.dtd
+<ariel_> then open in emacs foo.xml
+<ariel_> that contains only:
+<ariel_> <? xml version 1.0 ?>
+<ariel_> <!DOCTYPE schema SYSTEM "/foo/bar/gnue-schema.dtd">
+<ariel_> <schema></schema>
+<ariel_> then when xml-mode tries to parse the dtd complaints about the errors.
+<ariel_> if you fix them by hand it parses it well
+<jcater> sigh
+<jcater> so I have to install emacs?
+<jcater> grr
+<ariel_> jcater: i'm also not sure on #1 but it seems me that is desturbing also sabcmd
+<ariel_> i created a schema for a simple table that has the !DOCTYPE row
+<ariel_> then when i run sabcmd with pgsql.xsl to get a .sql batch file it complaints about nested comments
+<ariel_> may be changhing all the minuses with pluses will work.
+<ariel_> let me check..
+<ariel_> with all pluses it works
+<ariel_> jcater: i don't think that you have to install emacs
+<ariel_> altougth it is not a bad idea
+<dneighbo> ra3vat i brought up same issue i think
+<dneighbo> about pages being separate query wise
+<dneighbo> i think jcater/jamest were 'split' on how to approach
+<dneighbo> as some tiems you want the query to span pages other times you dont
+<ariel_> the point is: until we have a working designer for schemas
+<dneighbo> my particular sampel was i had like 5 table maint forms
+<dneighbo> i was going to make into one form with 5 tabs
+<dneighbo> and it caused grief :)
+<jcater> well, yeah
+<jcater> because you are trying to do 5 forms within one form
+<ariel_> the best way to write xml documents is using emacs.
+<dneighbo> what are we fussing trying to make a dtd for again?
+<ariel_> and if you want from emacs all the nice features like inserting the elements semi-automatically
+siesel (jan@dial-213-168-72-116.netcologne.de) joined #gnuenterprise.
+<ariel_> you have to specify the DOCTYPE (i.e the dtd) in the xml (or gsd,gfd...) file
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+<siesel> hi all :)
+<ariel_> hi siesel
+stbain (~stbain@66.207.65.76) left irc: "Ni!"
+<ariel_> for example sample.gsd in appserver/samples works fine because it does not have the DOCTYPE directive
+<ra3vat> dneighbo: thanks, and how would you prefer it to behave?
+debUgo- (~i@cr209886072.cable.net.co) joined #gnuenterprise.
+<ariel_> jcater: another thing:
+<ariel_> in designer/src/schema/parser/GSParser.py line 144:
+<ariel_> parenttags of pkfield is 'table' :( , must be 'primarykey.
+<jcater> ok
+perlhead (~fheinz@modem117-adsl.capfed2.sinectis.com.ar) left irc: "Client Exiting"
+<ariel_> jcater: thank you :)
+ToyMan (~stuq@smtp.dstoys.com) left irc: "Client Exiting"
+ThreeSeas (3seas@user-38lc4fm.dialup.mindspring.com) left irc: "http://www.mindspring.com/~timrue/  -- 3 S.E.A.S - Virtual Interaction Configuration (VIC)"
+<siesel> quit XFree 4.1 working again 
+siesel (jan@dial-213-168-72-116.netcologne.de) left irc: "XFree 4.1 working again"
+siesel (jan@dial-213-168-72-116.netcologne.de) joined #gnuenterprise.
+<dneighbo> ra3vat im not sure
+<dneighbo> i have had needs for both ways
+<dneighbo> i was thinking some attrib at page or datasource level to indicate desired result
+<ariel_> can someone add it_IT to common/translations please :)
+drochaid (~drochaid@pc2-kirk1-2-cust175.ren.cable.ntl.com) left irc: "Do not meddle in the affairs of dragons, because you are crunchy and taste good with ketchup."
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+jbailey (~jbailey@atlas.fundserv.com) joined #gnuenterprise.
+jbailey (~jbailey@atlas.fundserv.com) left irc: "Client Exiting"
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+<siesel> hi Daniel
+ToyMan (~stuq@c5300-1-ip98.albany.thebiz.net) joined #gnuenterprise.
+<chillywilly> hi jan
+<chillywilly> siesel: looked at the crap I committed...I need to work on it some more tonight
+<chillywilly> that was done in the couple of hours I could squeeze in this weekend
+<siesel> :)
+<chillywilly> nothing much really...just a small start
+<chillywilly> but I should be able to spend a few hours on it tonight :)
+<siesel> but not bad, I've added some code too, so if you have finished the parser you can test it with gtestcvs 4 4
+Action: chillywilly looks at cvs commits list
+<chillywilly> cool
+<chillywilly> so i can test the parser with your script now? groovy
+<chillywilly> oh, I forgot to commit something
+Action: chillywilly worked on that too...that's probably what took most of my time trying to figure out what an idl union is exactly
+<siesel> hmm, seems like I'm too tired to understand unions today.
+klog (~locked@modemcable145.226-201-24.mtl.mc.videotron.ca) joined #gnuenterprise.
+<klog> hey
+<klog> who logs on irc?
+<chillywilly> who logs it?
+<chillywilly> where are the logs?
+<klog> this channel
+<chillywilly> what do you mean?
+<chillywilly> our bot logs it on ash.gnuenterprise.org
+<klog> http://www.gnuenterprise.org/irc-logs/gnue-public.log.02Apr2002
+<chillywilly> gnuebot does it
+<klog> can i ask for something to be removed?
+<siesel> i will look at that and especialy some _featuretest parts (change data store/cache/load structures) tomorow
+<klog> important
+<klog> very important
+<jcater> klog: what?
+<siesel> night
+siesel (jan@dial-213-168-72-116.netcologne.de) left irc: "Real programmers code it into the client"
+klog (~locked@modemcable145.226-201-24.mtl.mc.videotron.ca) left irc: 
+jcater (~jason@65.105.10.202) left irc: "home"
+reinhard (~rm@62.47.247.52) left irc: "All things being equal, fat people use more soap"
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+ariel_ (~ariel@ppp-217-133-241-47.dialup.tiscali.it) left irc: "Uscita dal client"
+yogurt2unge (~charlie@modem117-adsl.capfed2.sinectis.com.ar) left irc: "Client Exiting"
+Action: dneighbo wonders if jccater plans on comeing back some day
+<chillywilly> ?
+<chillywilly> patience my son
+SachaS_away (~Sacha@dialup-196-163.wasp.net.au) joined #gnuenterprise.
+SachaS_away (~Sacha@dialup-196-163.wasp.net.au) left #gnuenterprise ("Client Exiting").
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+debUgo- (~i@cr209886072.cable.net.co) left irc: "adiosito"
+dneighbo (~dneighbo@tmp-200253.flinthills.com) left irc: "home"
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+rdean (~rdean@chcgil2-ar2-4-64-030-076.chcgil2.dsl-verizon.net) joined #gnuenterprise.
+rdean (~rdean@chcgil2-ar2-4-64-030-076.chcgil2.dsl-verizon.net) left irc: Remote closed the connection
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<dneighbo> hmmm i guess jcater hasnt unpacked the home computers just yet
+<ajmitch> hi dneighbo
+<chillywilly> he's moved now eh?
+<dneighbo> i think so 
+<dneighbo> i think he moved this weekend
+<chillywilly> ok
+SachaS (SachaS@hons-5.cs.curtin.edu.au) joined #gnuenterprise.
+<SachaS> morning ajmitch
+ToyMan (~stuq@c5300-1-ip98.albany.thebiz.net) left irc: "Client Exiting"
+<ajmitch> hi
+<chillywilly> hmmm, why does the damn status dock always fuck up?
+<chillywilly> pisses me off
+Action: chillywilly blames xmms-status-dock istead
+<chillywilly> hi SachaS
+<dneighbo> gkrellm-xmms
+<chillywilly> wassat?
+<chillywilly> what is gkrellm anyway?
+<chillywilly> cool gkrellm looks interesting
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+<SachaS> chillywilly what is gkrellm ?
+<chillywilly> GNU Krell Monitors
+<chillywilly> tons of system monitors
+<chillywilly> they all dock into this thing
+<chillywilly> pretty cool, imho
+<chillywilly> eve has, volume, xmms, etc. plugins
+<chillywilly> sysmload, network load, mailcheck plugin
+<chillywilly> er, cup load
+<chillywilly> cpu
+<chillywilly> blah
+<chillywilly> if you get the gnome plugin you can make it sticky and not show up in the taskbar, etc.
+Action: chillywilly just found a new fav app
+<chillywilly> thanks dneighbo :)
+<SachaS> ta chillywilly
+<chillywilly> the mailcheck beats the pants off the gnome mailcheck applet
+<chillywilly> I can now monitor all my local filtered mailboxes
+<chillywilly> in addition to the system spool
+Action: ajmitch couldn't
+<chillywilly> well...it says it can I am just taking its word for it ;P
+<ajmitch> i've got too many
+<chillywilly> oh
+<chillywilly> well I try to keep my mailing list activity to the minimum
+<chillywilly> mostly to only projects in which I have or want to contribute to
+<chillywilly> oh, it is themable too ;)
+Action: chillywilly goess off looking for some cool themes
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) left #gnuenterprise ("Client Exiting").
+jhs (~jhs@cs6668105-78.austin.rr.com) left irc: Read error: 110 (Connection timed out)
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: "sleep"
+fitzix (~fitzix@108.140.252.64.snet.net) joined #gnuenterprise.
+<dneighbo> dang missed chilly, but basically gkrellm replaces everything i use gnome panels for
+<dneighbo> so gkrellm + fluxbox is a solution at 1/3 the weight of gnome :)
+Action: dneighbo is away: diamondbacks game
+fitzix (~fitzix@108.140.252.64.snet.net) left irc: "Client Exiting"
+Action: SachaS gone for lunch
+Nick change: SachaS -> SachaS_lunch
+SachaS_lunch (SachaS@hons-5.cs.curtin.edu.au) left #gnuenterprise.
+rdean (~rdean@4.64.30.76) joined #gnuenterprise.
+jhs (~jhs@cs6668105-78.austin.rr.com) joined #gnuenterprise.
+rdean (~rdean@4.64.30.76) left irc: "Client Exiting"
+--- Tue Jul 16 2002

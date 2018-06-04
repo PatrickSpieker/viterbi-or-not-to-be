@@ -1,0 +1,1032 @@
+<Chipaca> hi!
+<Chipaca> Ummm
+<ajmitch> problems?
+<Chipaca> yeap
+<Chipaca> :-/
+<ajmitch> who's to blame? :)
+<Chipaca> "You've got your bar in my foo! And you've got your foo on my bar!  Two great reams that ream well together!"
+<Chipaca> _pgsql
+<ajmitch> heh
+<Chipaca> cute error message
+<Chipaca> any ideas?
+<ajmitch> nope, it tells me approximately nothing :)
+<Chipaca> same here
+<Chipaca> it's in __singleQuery
+<Chipaca> I'm trying to massage it into being more helpful
+<Chipaca> but I thought I'd check in here first; I can't be the first guy to come accross this
+<ajmitch> hmm
+<ajmitch> jcater was around 20min ago
+<ajmitch> so some exception was thrown but it's unspecified what
+<ajmitch> GDebug.printMesg(1,"**** %s" % sys.exc_info()[1]) could be changed to print the traceback as well?
+<Chipaca> the error is "no results to fetch" 
+<ajmitch> hmm
+<ajmitch> this is in the trigger extensions class
+Action: chillywilly is away: zzzZZZ
+<Chipaca> yes
+<derek> jcater: / nickr: i finally sent files upstream to pysablot guy and asked him to apply and make new tarball hopefully he complies and you are able to make official debs real soon now (tm)
+<Chipaca> derek: hi
+<derek> hello
+dsmith (dsmith@oh-strongsvillecadent1-1c-20.clvhoh.adelphia.net) left irc: Remote closed the connection
+<jcater> that would be cool
+<derek> woo hoo cleaned out my tickets
+<derek> what an accomplisment
+<ajmitch> i see todd boyle is still posting on the list :)
+Action: jcater opens up dcl to pile them on derek
+<derek> now only have to start into those pesky workordrs :(
+<derek> most of them in the top of my list are assignments for papo crew :)
+<derek> if ajmitch could get me access to assignments on fencepost those likely are mostly closed :)
+<ajmitch> derek: sure, shouldn't be hard
+<ajmitch> jbailey is one of the main shell accounts people tho
+<ajmitch> he can deal with troublesome users like you ;)
+<Chipaca> derek: is that good news?
+<ajmitch> derek: are you willing to login with ssh?
+<ajmitch> there's 2 options for access - ssh 2 key, or kerberos password :)
+Action: ajmitch  guesses derek fell asleep at the keyboard or otherwise departed
+Action: Chipaca grins
+<Chipaca> ok, I'm off
+<Chipaca> It's probably just python 2.2 and gnue hating each others guts, or something
+<Chipaca> :)
+Action: Chipaca waves
+Chipaca (~john@ADSL-200-59-86-175.cordoba.sinectis.com.ar) left irc: "changing universes"
+<jcater> oh, I didn't realize he was asking a question
+<jcater> if he's getting that message, then he's calling a virtual function that should be over-ridden by a subclass
+Action: jcater fears they are messing around with GDataObject internals that they shouldn't be
+<jcater> kind of like me and electricity :)
+Action: jcater holds out some pizza
+<jcater> maybe that'll get his attention
+<jcater> derek?
+<derek> was tucking my wife in
+<derek> smelled pizza and returned
+<derek> ajmitch: im cool with ssh
+<derek> before i used ssh and a password (not kerberos)
+<derek> but key is find
+<derek> er fine
+<derek> just tell me what i must do
+<ajmitch> send me ssh v2 public key
+<derek> how
+<derek> assume i have never used ssh 
+<ajmitch> whihc should be ~/.ssh/id_rsa.pub or ~/.ssh/id_dsa.pub
+<derek> and tell me what you want
+<derek> ok
+<ajmitch> would be good if you could gpg-sign the mail :)
+<derek> i can pgp sign
+<derek> but dont know how to pgp encrypt it
+<ajmitch> that's about it, i upload the key to the right place, then you can login
+<ajmitch> just sign
+<derek> you email addy
+<derek> is?
+<ajmitch> ajmitch@gnu.org
+<ajmitch> your pgp key is signed?
+<derek> um dont think so
+<derek> i wasnt that smart
+<ajmitch> heh
+<derek> i was lucky to generate the darn thing
+<derek> and get the email client to use it
+<jcater> derek: it's easy to do
+<ajmitch> you should really get someone to sign your gpg key
+<jcater> print out the key so you have a hard copy
+<derek> i still dont know how to make it work on OTHER pc's
+<derek> and i dont know how to register it
+<ajmitch> cos that's how we know that your key belongs to you
+<ajmitch> ah
+<jcater> then try to "sign" those strings of characters on a large sheet of paper
+<jcater> use a good ballpoint pen, as you don't wanna run out of ink early on
+<derek> roflmao
+<ajmitch> heheh
+<derek> ajmitch: i sent you the ssh key pgp signed
+<ajmitch> jcater's not far off - you should print out your key fingerprint, upload your key to a keyserver, and get someone to sign it (this is covered in the GPG docs)
+<ajmitch> because by itself, a pgp key is useless
+<ajmitch> derek: are you using gpg?
+<ajmitch> if so, then type 'gpg --keyserver the.earth.li --send-keys F417FFCF'
+<ajmitch> which will broadcast your public key to the world
+<derek> im using gpg
+<derek> dneighbo@latitude:~/.ssh$ gpg --keyserver the.earth.li --send-keys F417FFCF
+<ajmitch> ok, i got the key
+<derek> gpg: sending BofA account XXXXXXXXX0632 to ajmitch@gnu.org
+<derek> gpg: transfer successful
+<derek> dneighbo@latitude:~/.ssh$ 
+<derek> wtf?
+<ajmitch> huh?
+<derek> j/k
+<derek> dneighbo@latitude:~/.ssh$ gpg --keyserver the.earth.li --send-keys F417FFCF
+<derek> gpg: success sending to `the.earth.li' (status=200)
+<derek> dneighbo@latitude:~/.ssh$ 
+<ajmitch> ok, now try 'ssh fencepost.gnu.org'
+<ajmitch> hehe, i see rudy asking on s-h about the gnue subproject submissions ;)
+<jcater> ajmitch: tell him it's ok
+<ajmitch> am doing so
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) joined #gnuenterprise.
+<ajmitch> rudy said you had to resubmit, which means using the URL provided - this is because once they have been declined for whatever reason, the system is designed for you to have to resubmit :)
+<jcater> I did resubmit
+<jcater> do I need to resubmit a third time?
+<ajmitch> dunno
+<jcater> btw, tell the hackers that's a crappy system
+<jcater> no history information?
+<jcater> bah
+<jcater> I'd be fired
+<jcater> :)
+<derek> jcater: i told their boss for you
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+<ajmitch> it is a crappy system
+<ajmitch> it's derived from sourceforge
+<jcater> do they need a gnue screen to it?
+<jcater> well
+<jcater> my opinion on that.....
+<jcater> they call themselves savannah-hackers
+<jcater> so hack it to be better
+<jcater> otherwise
+<jcater> call yourselves
+<jcater> savannah-moderators
+<jcater> :)=
+<derek> ajmitch: redeemed them
+<derek> as he restored my account in under 10 minutes
+<derek> this is how it SHOULD be
+<jcater> oh, yeah
+<jcater> as of tonight
+<jcater> thanks to jamest
+<jcater> reports supports triggers
+<jcater> 0.1.0, here we come!
+Action: jcater isn't gonna guarantee just *how* well they are supported, but the basics are there
+<psu> rock
+<ajmitch> excellent!
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) left irc: Read error: 60 (Operation timed out)
+<jcater> oh, and I've started on a pivot table/cross tabulation example in report's samples/ directory
+<jcater> per the mailing list thread
+<derek> stud
+<jcater> I have a couple of bugs to get out
+<ajmitch> ok, i mailed savannah-hackers to let them know my thoughts on GNUe
+<jcater> ajmitch: is this a good thing? :)
+<jcater> what are they saying?
+<psu> uh oh
+<ra3vat_> hi all
+<ajmitch> jcater: well they're probably away, won't get a reply for a little while
+<jcater> never mind... I found the web archives
+<jcater> I'll read for myself :)
+<ajmitch> mathieu just said he declines them, which imho is bloody stupid
+<ra3vat_> what is the cause of cvs [checkout aborted]: reading gnue/appserver/grpc/GEAS.grpc: Too many levels of symbolic links
+<ra3vat_> it was doscussed earlier
+<jcater> I have no idea what that's from
+<jcater> I removed that file from my directory when it happened to me
+<derek> holy moses
+<jcater> and updated again
+<derek> we have a ton of assignments
+<ajmitch> probably some problem on subversions (the server)
+<derek> i think we are half the copyright file for FSF :)
+<jcater> but I have no idea what's causing it
+<ajmitch> derek & i also got that error
+Action: ajmitch has no access to subversions at this time
+<jcater> wtf
+<jcater> I'm going to hold my calm from reading the archives
+<jcater> thanks for the word of support ajmitch
+<derek> jan said he knew the issue
+<derek> and fixed it
+<ajmitch> ok
+<derek> but maybe he just said he knew problem
+<derek> not that he fixed
+<derek> ra3vat_: certainly deleting the file and reupdating will fix the issue for you
+<ra3vat_> trying now
+<ra3vat_> it is a broken link with that name in there
+<ajmitch> ra3vat_: yup
+<psu> ok, I give up 
+<psu> what's gnuebot's log URL
+<derek> better than giving down
+<jcater> http://irc-logs.gnue.org/log/old/
+<jcater> iirc
+<psu> ack
+<psu> I was doing /irc-logs/old
+<derek> psu: i assigned a new ticket to you from btami about adding a link
+Action: derek wonders why psu is giving up
+<derek> ah
+<derek> why using gnuebot?
+<psu> cause bb was AWOL much of yestereday
+<psu> jcater jhad to give him a kcik in the bot ;-)
+<ajmitch> derek: did you submit a support request about that cvs prob?
+<ajmitch> jamest said he has access to fix gnue cvs issues
+Action: derek has to work early in the morning i should head to bed
+<derek> ajmitch: yeah
+<derek> you know what the frelling response was
+<derek> dont do cvs update -Pd
+<ajmitch> ok, night derek
+<derek> jsut do cvs update
+<derek> grrrr
+<jcater> gack
+<ajmitch> stupid :)
+<jcater> I guess I should too
+<jcater> gack
+<jcater> I was just rereading the RentFree rejection
+<derek> =============
+<derek> > This seems ugly.
+<derek> > 
+<derek> > dneighbo@latitude:~/cvs/gnue$ cvs -z3 $GNUECVS update -Pd
+<derek> > cvs [update aborted]: reading appserver/grpc/GEAS.grpc: Too many levels
+<derek> > of symbolic links
+<derek> > dneighbo@latitude:~/cvs/gnue$ 
+<derek> > 
+<derek> > I can checkout out the tree new, but not update it.  Any ideas as to
+<derek> > cause or how to fix?
+<derek> Can you try with the basic syntax
+<derek>  cvs update 
+<derek> ?
+<derek> -============
+<ajmitch> i wonder if he actually looked at the repository?
+<jcater> dude asked me to prove I was part of the GNU project already.  WTF is up with that? They asked me if I wanted to be a part of the GNU project on the registration screen, not IF I already was?!?!?
+<derek> ==========
+<derek> There was no upgrade path in setup-cvs.py for the symbolic link 
+<derek> "~/gnue/shared/grpc -> CVSDIR/appserver/grpc" to 
+<derek> "~/gnue/shared/grpc/GEAS.grpc -> CVSDIR/appserver/grpc/GEAS.grpc" change. 
+<derek> "GEAS.grpc" was replaced by a symbolic link pointing to itself and causing
+<derek> that CVS problem stated below.
+<ra3vat_> now it works, thanks all
+<derek> The actual CVS version of setup-cvs.py now provides both an upgrade path AND
+<derek> removes the recursive symbolic link "GEAS.grpc".
+<derek> =============
+<derek> is jan's response
+Action: ajmitch thinks he should really try & get on the savannah team :)
+<jcater> ajmitch: did you catch that?
+<jcater> Also you stated that you are part of the GNU project.  Can you give me 
+<jcater> any pointers as were I can find that you are actually part of the GNU 
+<jcater> project already.
+<ajmitch> jcater: yeah
+<jcater> what does that mean?
+<jcater> I am so confused
+<ajmitch> jcater: he's new at this :)
+<jcater> ok
+<jcater> so I should just sit back and wait?
+<ajmitch> he doesn't have access to fencepost to check, and didn't know where to check
+<ajmitch> yeah, i think so, for now
+<jcater> btw
+<ajmitch> you resubmitted again, i told them that GNUe subprojects should be considered part of GNUe (as if my opinion matters ;)
+<jcater> (and this is for derek too if he's still here)
+<jcater> when he says to label it as GPL'd
+<jcater> I have a COPYING file
+<jcater> however
+<jcater> All the "code" is really GFD files
+<jcater> is it going to come back to bite me that there's not copyright headers
+<ajmitch> yeah, i thought that would be the case
+<jcater> in the GFD files?
+<ajmitch> i don't know how that would work
+<jcater> or is the COPYING file enough
+<jcater> thing is, the GFD files are automatically generated
+<ajmitch> the COPYING file states that you should have headers in each source
+<jcater> so keeping a header in there will be a biotch
+<ajmitch> by designer?
+<jcater> yeah
+<ajmitch> suck
+<jcater> I guess I'll just wait and see if he considered a GFD file to be a "Code" file
+<ajmitch> perhaps go the nasty way & have a license tag for forms
+<jcater> if I have to, I will
+<jcater> but maybe he won't know what a gfd file is
+<jcater> and will assume it's not code :)
+<psu> jcater: I would argue it's the same as a config file ;-)
+<jcater> we can all hope, right?
+<ajmitch> so that designer can generate copyright header in xml comments
+<jcater> psu: I would too
+<psu> for the purposes of this discussion
+<jcater> except I don't want to argue with them
+<jcater> as that'll take forever :)
+<jcater> I'm trying to be preemptive here
+<ajmitch> cc: RMS
+<psu> "can;t see any headers in /etc/emacs"
+<ajmitch> want me to watch this & try & hhelp out>?
+<jcater> ajmitch: absolutely :)
+<derek> ok want my opinion
+<jcater> derek: not really
+<derek> the gfds should have the copyright header
+<jcater> but I know I'll get it
+<jcater> :)
+<ajmitch> agreed
+<derek> its not MANDATORY 
+<derek> the COPYING file is enough
+<ajmitch> oh dear, i'm agreeing with derek :)
+<derek> but it is better to have in GFDs
+<derek> we SHOULD
+<jcater> I think I'll add it manually
+<derek> in designer allow a 'preferences'
+<jcater> just until they approve it
+<derek> that lets you put in custom headers
+<jcater> derek: I think once I get "projects" working in Designer
+<derek> and wehn you make gfd's you can choose from those
+<jcater> this will be the appropriate place for that
+<derek> and it will auto place them
+<derek> which is GREAT for two reasons
+<derek> a. you dont have to manually fight designer
+<derek> b. it will add headers so you dont forget :)
+Action: derek is VERY guilty of b
+<jcater> as on the "project" config screen, you could say "place xxxx copyright header in all G?D files"
+<derek> jcater: exactly
+<ajmitch> useful :)
+<jcater> I'm afraid to have it as a system-wide preference
+<jcater> as I work on all kinds of projects w/gnue
+<jcater> public, gpl'd projects
+<jcater> internal projects
+<jcater> goat-luvin projects
+<jcater> oh, wait.... that's not designer
+<ajmitch> internal projects certainly don't need to be GPL
+<derek> jcater: i would do a 'profiles' thing
+<ajmitch> as copyright only matters when you want to distribute :)
+<derek> and then be able to set it by project
+<jcater> yeah
+<jcater> initially, it'll probably be simpler than that
+<jcater> but I do like that idea long term
+<derek> i.e. you could have a GPL profile, BSD, company foo etc
+<jcater> for example
+<jcater> I want all my GNUe-related examples
+paqan (~paqan@202.155.120.221) joined #gnuenterprise.
+<jcater> to be a modified GPL
+<jcater> i.e., full GPL rights
+<jcater> except for all users named Derek N*
+<ajmitch> lol
+<jcater> all Derek N*s are granted limited rights
+<jcater> they may use the software
+<jcater> but are forbidden from submitting bug reports
+<jcater> or at least no more than 12 a day
+<jcater> I better get to bed
+jcater (~jcater@24.165.223.104) left irc: "nite"
+<derek> wow i feel like i got a lot done, closed a lot of stuff in dcl whoo hoo
+Action: derek is away: bed
+<ajmitch> night derek
+<psu> nite derek
+Action: psu is now logging in to dcl to add some more tickets
+<ajmitch> hehe
+<psu> seriously
+<psu> but they're all for me ;-)
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) joined #gnuenterprise.
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise ("bbl").
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) left irc: Read error: 54 (Connection reset by peer)
+ariel (~ariel@ppp-217-133-244-245.dialup.tiscali.it) joined #gnuenterprise.
+ariel (~ariel@ppp-217-133-244-245.dialup.tiscali.it) left irc: Killed (NickServ (Nickname Enforcement))
+ariel (~ariel@ppp-217-133-244-245.dialup.tiscali.it) joined #gnuenterprise.
+ariel (~ariel@ppp-217-133-244-245.dialup.tiscali.it) left irc: Killed (NickServ (Nickname Enforcement))
+ariel_ (~ariel@ppp-217-133-244-245.dialup.tiscali.it) joined #gnuenterprise.
+Action: chillywilly is back (gone 05:57:15)
+Action: chillywilly is away: work
+dsmith (dsmith@oh-strongsvillecadent1-1c-20.clvhoh.adelphia.net) joined #gnuenterprise.
+ariel_ (~ariel@ppp-217-133-244-245.dialup.tiscali.it) left irc: Read error: 60 (Operation timed out)
+ariel_ (~ariel@ppp-217-133-240-36.dialup.tiscali.it) joined #gnuenterprise.
+ToyMan (~stuq@smtp.dstoys.com) joined #gnuenterprise.
+dsmith (dsmith@oh-strongsvillecadent1-1c-20.clvhoh.adelphia.net) left irc: Remote closed the connection
+queseto (~queseto@213-96-177-39.uc.nombres.ttd.es) joined #gnuenterprise.
+queseto (~queseto@213-96-177-39.uc.nombres.ttd.es) left irc: "Aplicación Saliendo"
+ariel_ (~ariel@ppp-217-133-240-36.dialup.tiscali.it) left irc: Read error: 60 (Operation timed out)
+ariel_ (~ariel@ppp-217-133-244-188.dialup.tiscali.it) joined #gnuenterprise.
+queseto (~queseto@213-96-177-39.uc.nombres.ttd.es) joined #gnuenterprise.
+queseto (~queseto@213-96-177-39.uc.nombres.ttd.es) left irc: "Aplicación Saliendo"
+revDeke (www-data@alt1.libertydistribution.com) joined #gnuenterprise.
+<ra3vat_> <revDeke> on some p0rn sites you would pay EXTRA for the stuff GNUe gives ya for free
+<ra3vat_> <nickr> revDeke: thats why Ilove you guys
+<ra3vat_> revDeke: seems nickr is not alone http://www.slbs.net/boobies.php?text=GNUe
+<ra3vat_> :)
+Chipaca (~john@ADSL-200-59-86-17.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<Chipaca> hi all again
+<Chipaca> I'm having trouble with turning a trigger that works into a function (that doesn't work)
+<Chipaca> I mean, I'm having no problem at all turning a trigger that works into a function that doesn't work
+<Chipaca> but I'd really like the function to work, too
+<Chipaca> all I'm doing is, inside the trigger, defining the function and then calling it
+<Chipaca> I.e. I turned a;b;c into def foo(): a;b;c  foo()
+<Chipaca> and it stopped working :(
+<Chipaca> specifically,
+<Chipaca>         productBlock.processRollback()
+<Chipaca>         if productResultBlock.getRecordCount() > 0 and not productResultBlock.getCurrentRecord().isEmpty():
+<Chipaca>           productBlock.initQuery()
+<Chipaca>           productBlock.productIdEntry = ("%s" % productResultBlock.productIdREntry)
+<Chipaca>           productBlock.processQuery()
+<Chipaca> works
+<Chipaca> but
+<Chipaca>       def constrain(block_from, field_from, block_to, field_to):
+<Chipaca>         block_to.processRollback()
+<Chipaca>         if block_from.getRecordCount() > 0 and not block_from.getCurrentRecord().isEmpty():
+<Chipaca>           block_to.initQuery()
+<Chipaca>           field_to = ("%s" % field_from)
+<Chipaca>           block_to.processQuery()
+<Chipaca>       constrain(productResultBlock, productResultBlock.productIdREntry,
+<Chipaca>                 productBlock, productBlock.productIdEntry )
+dsmith (~dsmith@208.40.56.34) joined #gnuenterprise.
+<Chipaca> doesn't
+<Chipaca> hi dsmith
+<Chipaca> maybe it's lack of sleep, I don't get it
+<Chipaca> FYI, I'm splitting the triggers into functions in a separate library because we're using the same old triggers again and again and again and
+<Chipaca> :)
+jamest (~jamest@leibniz.math.ksu.edu) joined #gnuenterprise.
+<Chipaca> jamest: hi
+<jamest> howdy
+<Chipaca> jamest: could you tail the logs? (or do you do it as a matter of fact?)
+<jamest> if I can remember where they are located I can :)
+<jamest> hang on
+Action: Chipaca hangs on for dear life
+<jamest> you're trying to make a *.py file that extends forms w/ some functions right?
+<Chipaca> yeah
+<Chipaca> that works
+<Chipaca> (or seems to)
+<jamest> have you tried using our import libraries instead to store the trigger?
+<Chipaca> no
+<jamest> .gfd files support trigger libraries 
+<Chipaca> but this is really really defining the function in the trigger
+<Chipaca> excellent!
+<jamest> would that give you what you require ?
+<Chipaca> it'd make it much easier
+<Chipaca> but I don't think it'd make this fn work
+<Chipaca> gah, dunno
+<Chipaca> :(
+<Chipaca> having no idea why it doesn't work, when another function that does basically the same thing works fine
+<Chipaca> excuse the long paste:
+<Chipaca> def search(block, search_entry, result_entry):
+<Chipaca>   block.processRollback()
+<Chipaca>   block.initQuery()
+<Chipaca>   result_entry = str(search_entry)+'%'
+<Chipaca>   block.processQuery()
+<Chipaca> that one works
+<Chipaca> in a .py even
+<Chipaca> the other one doesn't even work inside the same trigger
+<Chipaca> and it has me completely puzzled
+<dsmith> Chipaca: Greetings!
+<Chipaca> I don't _think_ it's a duhism
+StyXman (~mdione@ADSL-200-59-86-17.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<jamest> hmmmmm
+Action: Chipaca smiles. "hmmmm" is good.
+<jamest> I can look into this in a little bit
+<Chipaca> ok
+<jamest> can you mail me sample files ?
+<jamest> as it'll be an hour or two
+<Chipaca> yeah
+<jamest> they expect me to work here...go figure :)
+<Chipaca> although this is still against the gnue-hacked-by-us
+<jamest> ah
+<jamest> did this work then just stop working?
+<Chipaca> nope
+<Chipaca> I just tried it
+<jamest> as I did lots of trigger crap last night
+<Chipaca> we are still a few weeks behind
+<Chipaca> right, StyXman ?
+Action: Chipaca just pulls the cvs from wherever he's told :)
+<jamest> we need to get things cleaned up here I know
+<StyXman> excuse me, you were sayin...?
+<Chipaca> how far behind gnue cvs are we?
+<StyXman> uh, don't remember, but I saw a lot of activity after I updated...
+<StyXman> lemme guess...
+<jamest> ?
+Action: Chipaca didn't get it either
+heikoV (~sdkl98158@D5763F14.kabel.telenet.be) joined #gnuenterprise.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+Action: Chipaca starts to worry
+<StyXman> ah, it's from 10/21
+Action: dsmith is away: Don't yell rahul
+<Chipaca> StyXman: et tu, brutus
+<Chipaca> StyXman: you mean 2002 10 21 :)
+<StyXman> yeap. those guys talk in esrever anytime they pronounce times
+<Chipaca> StyXman: I parsed you! wow!
+<StyXman> (I guess noone will parse that)
+<StyXman> :)))
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+<Chipaca> reinhard: hi
+<Chipaca> jcater: hi!
+<reinhard> hello all
+<reinhard> we had no internet connection in frankfurt
+<reinhard> i will sum up the results of our talks shortly and post to gnue-dev@gnu.org
+<Chipaca> great
+<Chipaca> jcater, reinhard, could you look in the logs of about half an hour ago and see if you have any quick answer to my query?
+<Chipaca> if not jamest has already said he'll look in to it, but maybe you know something
+<Chipaca> :)
+<revDeke> well good and bad news re no windows at home
+<revDeke> good news no windows
+<revDeke> bad news dont think my digital video recorder works under linux
+<revDeke> good news it doesnt work under win2000 either ;)
+<Chipaca> revDeke: what is it?
+<revDeke> bad news wife wont be happy
+<revDeke> good news i found a patch for win2000
+<revDeke> JVC DVL505
+<revDeke> it takes digital still pictures as well as digital video
+<revDeke> i woudl be happy just to get the pictures to work
+<revDeke> DV would just be icing on cake
+<Chipaca> what interface?
+<revDeke> serial
+<revDeke> firewire is available for me as well to do DV
+<Chipaca> hmm
+zhouzhen (~zhouzhen@210.83.96.115) joined #gnuenterprise.
+<Chipaca> the firewire thing should work
+<Chipaca> I mean most of the other ones do :)
+<Chipaca> http://linux1394.sourceforge.net/hcl.php
+Action: reinhard is still busy unpacking his case :)
+Action: Chipaca didn't know reinhard was a nomad lawyer
+Action: Chipaca 's jokes _can_ get worse
+<revDeke> hmmm chillywilly interesting
+<revDeke> er Chipaca not chillywilly 
+<revDeke> but i dont know if i can get the photos via firewire
+<revDeke> plus i dont think my stupid pc supports firewire
+Action: revDeke also doesnt have a firewire cable
+<revDeke> though if dv worked over firewire i would invest
+<jcater> Chipaca: I don't understand the problem
+<revDeke> as then i could go straight from DV to VCD !!!!!
+<revDeke> which woudl kick SERIOUS rumpus
+<jcater> revDeke: if you wanna fedex me the DV to test with for about a month
+<jcater> say, until after christmas
+<jcater> I will get it working for you
+<jcater> ;)
+<Chipaca> jcater: I have a trigger that works, I rewrite it as a function def/function call within the same trigger, and it stops working
+<jcater> stops working in what way?
+<jcater> raises an exception
+<Chipaca> jcater: no
+<jcater> or just silently doesn't do anything
+<Chipaca> jcater: silently doesn't do anything
+<Chipaca> I mean
+<Chipaca> if you look at the function, the assignment that should condition the query, doesn't
+<Chipaca> the query brings the whole caboodle
+<revDeke> chipaca if debian supports teh 1394 module
+<revDeke> this might be easy
+<revDeke> and will owe you big time
+Action: revDeke might turn into a VCD maniac
+ariel_ (~ariel@ppp-217-133-244-188.dialup.tiscali.it) left irc: Read error: 60 (Operation timed out)
+dsmith (~dsmith@208.40.56.34) left irc: "later.."
+<Chipaca> revDeke: apt-cache show dvgrab
+<revDeke> jcater i would consider it if we werent going to Vail for xmas
+<revDeke> already they have a record snow base because of last nights snowfall
+<revDeke> yummy
+<StyXman> revDeke: well, sid does... dunno woody or sarge.
+<StyXman> (suppor 1394 stuff)
+<StyXman> but that's another channel subject (e.g., #debian...)
+ariel_ (~ariel@ppp-217-133-245-132.dialup.tiscali.it) joined #gnuenterprise.
+<revDeke> cool
+<revDeke> i will have to try to pickup a card (1394)
+<revDeke> and get it installed and working
+<revDeke> if i can confirm everything is in sid i likely will give it a whirl
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: Read error: 54 (Connection reset by peer)
+drochaid_ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+ariel_ (~ariel@ppp-217-133-245-132.dialup.tiscali.it) left irc: "Uscita dal client"
+Nick change: drochaid_ -> drochaid
+ToyMan (~stuq@smtp.dstoys.com) left irc: ": I'm off to make more toys..."
+zhouzhen (~zhouzhen@210.83.96.115) left irc: "Client Exiting"
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: Read error: 54 (Connection reset by peer)
+drochaid_ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+<nickr> revDeke: any response to your message?
+Nick change: drochaid_ -> drochaid
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: Read error: 54 (Connection reset by peer)
+drochaid_ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+Nick change: drochaid_ -> drochaid
+<revDeke> nickr: not yet
+<nickr> revDeke: okay.
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: Read error: 54 (Connection reset by peer)
+drochaid_ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+StyXman (~mdione@ADSL-200-59-86-17.cordoba.sinectis.com.ar) left irc: "ircII EPIC4-1.1.7 -- Are we there yet?"
+stbain (~stuart@216.12.37.168) joined #gnuenterprise.
+drochaid_ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: Read error: 54 (Connection reset by peer)
+drochaid__ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+dsmith (~dsmith@208.40.56.34) joined #gnuenterprise.
+drochaid_ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+drochaid__ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: Read error: 54 (Connection reset by peer)
+drochaid_ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: Read error: 54 (Connection reset by peer)
+drochaid__ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+Nick change: drochaid__ -> drochaid
+drochaid (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: Read error: 54 (Connection reset by peer)
+drochaid_ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+drochaid_ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: Read error: 54 (Connection reset by peer)
+drochaid__ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+drochaid__ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: Read error: 54 (Connection reset by peer)
+drochaid_ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+<revDeke> drochaid_: having connectivity issues there or what?
+drochaid_ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: Read error: 54 (Connection reset by peer)
+drochaid__ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+<drochaid__> revDeke: err, yeah :-/
+ToyMan (~stuq@smtp.dstoys.com) joined #gnuenterprise.
+stbain (~stuart@216.12.37.168) left #gnuenterprise ("Client Exiting").
+dsmith (~dsmith@208.40.56.34) left irc: "later.."
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) left irc: Read error: 104 (Connection reset by peer)
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+<ajmitch> morning
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+<psu> evening
+<jamest> afternoon
+<jcater> morning
+<psu> and that, ladies and gents, is the wonderful 24/7 world of #gnuenterprise ;-)
+<revDeke> psu i have email to forward you 
+<revDeke> re fsf website issues
+<revDeke> let me dig it up
+<ajmitch> hey revDeke
+<jcater> lemme guess
+<revDeke> sent to you
+<jcater> "What issues?"
+<jcater> :)
+<ajmitch> looks like the savannah lists are quiet...
+<revDeke> something like that
+<jcater> ajmitch: just you wait
+<jcater> mwahaha
+Action: ajmitch runs & hides
+<jcater> ajmitch: you got a sec?
+<ajmitch> yep
+<ajmitch> got 10 min before i gotta run out
+<jcater> literally a sec, eh?
+<jcater> you have a howto laying around on generating and publishing a gpg key?
+<ajmitch> just the FAQ on the gpg page (www.gnupg.org)
+<ajmitch> gpg --gen-key
+Action: jcater is reading now
+<ajmitch> the HOWTO on the page probably is better
+<ajmitch> ok, see y'all later
+<jcater> I guess I should have this thing expire?
+<revDeke> i didnt
+<revDeke> afraid i would forget how to make a new one :)
+<psu> revDeke: I will do a reply tonight
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise.
+Chipaca (~john@ADSL-200-59-86-17.cordoba.sinectis.com.ar) left irc: "ircII EPIC4-1.0.1 -- Are we there yet?"
+Kai1 (~Kai@adsl-065-082-219-002.sip.ags.bellsouth.net) joined #gnuenterprise.
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+<Kai1> anyone here that knows if gnue has support for kardia apps?
+<jcater> hmmm
+<jcater> since I have no clue what kardia apps are
+<jcater> that's hard to say
+Action: Kai1 remembers asking you last time
+<psu> Kai1: not directly, but since we integrate w/everything
+<psu> I'm sure we could hook something up
+<jcater> what is kardia?
+<psu> Could you give us the "elevator pitch" for kardia?
+<Kai1> i saw on yall's irc logs where a few of yall were talking about it
+<Kai1> xml definition of a database-driven application interperted by whoever wants to
+Chipaca (~john@ADSL-200-59-86-17.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<Chipaca> hi all again
+Yurik_ (~yrashk@as5300.kharkov.ukrtel.net) joined #gnuenterprise.
+dsmith (~dsmith@208.40.56.34) joined #gnuenterprise.
+<Yurik_> dsmith: hi
+<dsmith> Howdy howdy
+<Chipaca> are there any docs on the writing of form libraries?
+<jcater> form libraries?
+drochaid__ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) left irc: Read error: 54 (Connection reset by peer)
+drochaid_ (~drochaid@pc2-kirk1-3-cust16.renf.cable.ntl.com) joined #gnuenterprise.
+<Chipaca> I *think* that's what jamest said
+<Chipaca> as in instead of writing a foo.py and importing it, writing something else and dunno
+<Chipaca> he didn't say much :)
+<psu> well, jamest is the "strong silent one" on #gnuenterprise
+<psu> well, as silent as any of us ever are, anyways
+ToyMan (~stuq@smtp.dstoys.com) left irc: ": I'm off to make more toys..."
+<Chipaca> :)
+<Chipaca> but what I understood was that there was a general way of adding functionality to forms without having to import the library in every trigger, for example
+<Chipaca> maybe I understood too much
+<jcater> Chipaca: you can globally import files once
+<jcater> on an On-Startup trigger
+<jcater> then it's available to every trigger in the form
+<jcater> <trigger type="On-Startup">
+<Chipaca> heh
+<jcater>   global mymodule
+<jcater>   import mymodule
+<jcater> </trigger>
+<jcater> just an fyi
+<jcater> works for variables too
+Action: Chipaca is sure that wasn't there last time he checked
+<jcater> it's in cvs
+<Chipaca> ah
+<jcater> it's documented in the dev guide
+<Chipaca> was it there a bit after .3?
+<jcater> no
+<jcater> it's relatively new
+<Chipaca> ah, ok
+<Chipaca> I'm afraid I'm still working against a .3 :(
+<Chipaca> pending marcos' work
+<Chipaca> that should be ready early next week, though :)
+<jcater> ## On-Startup [Form]
+<jcater> ##
+<jcater> # We want to give our other triggers
+<jcater> # access to these three objects. 
+<jcater> global math, myfunc, DEBUG
+<jcater> # We will use the math module a lot 
+Kai1 (~Kai@adsl-065-082-219-002.sip.ags.bellsouth.net) left #gnuenterprise ("Client Excited").
+<jcater> # in our other triggers
+<jcater> import math
+<jcater> # A handy function
+<jcater> def myfunc(n1,n2): 
+<jcater>   return n1+n2
+<jcater> # Are we in DEBUG mode? 
+<jcater> # Enquiring triggers want to know... 
+<jcater> DEBUG = 1
+<jcater> # This is an example of a non-global name.
+<jcater> # Only our On-Startup trigger sees this. 
+<jcater> test = 2
+<jcater> sigh
+<jcater> kai1 never did tell us anything about kardia
+<jcater> and I don't recall it ever coming up as the name doesn't sound familiar
+<Chipaca> kardia?
+<jcater> do you know what kardia is?
+<Chipaca> nopwe
+<jcater> then that makes at least 3 of us :)
+<revDeke> kailil leaves before i can ever answer him
+<revDeke> sigh
+<Chipaca> maybe you have a bit of context?
+<jcater> revDeke: what is kardia?
+<Chipaca> whee! I've got an On-Startup there in GFTrigger.py!
+<Chipaca> marcos'been doing his stuff :)
+<revDeke> kardia best i remember is basically gnue forms 
+<revDeke> only javascript based
+<revDeke> i.e. xml form files 
+<revDeke> intepreted by java script
+<revDeke> not quite as strong data binding 
+<revDeke> myoder used to pitch it here a lot
+<revDeke> he had demos setup and stuff
+<Chipaca> mmm, nice, gfcvs segfault
+Action: Chipaca shouldn't pull cvs in the middle of an upgrade
+Yurik_ (~yrashk@as5300.kharkov.ukrtel.net) left irc: "÷ÙÛÅÌ ÉÚ XChat"
+<jamest> Chipaca: an on-startup in GFTrigger.py?
+<Chipaca> yeap
+<jamest> um
+<jamest> GFTrigger.py died last nite in the cvs tree
+<jamest> all trigger code is in common now
+<Chipaca> marcos has been pulling us in sync with you guys, I didn't know hw was putting it in our work cvs :)
+<Chipaca> ok, so we're behind, but less so
+<jamest> lol
+<jamest> :)
+<Chipaca> In fact this gfcvs segfault is just after some of his changes went in
+<Chipaca> and tuesday we have a presentation to make
+<Chipaca> se we'll have to send Tony and Vito over to StyXman's house to "talk" to him
+<Chipaca> hmm, or maybe it's these 6 oopsen
+<Chipaca> oopsen are *bad*
+<Chipaca> better reboot :(
+Chipaca (~john@ADSL-200-59-86-17.cordoba.sinectis.com.ar) left irc: "crap"
+Chipaca (~john@ADSL-200-59-86-17.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<Chipaca> stupid 3¢ box
+Chipaca (~john@ADSL-200-59-86-17.cordoba.sinectis.com.ar) left irc: "ircII EPIC4-1.0.1 -- Are we there yet?"
+<psu> wc gnue20021102_53.xml
+<psu>    2185    16000   110771
+<jcater> cat gnue20021102_53.xml
+<psu> wc gnue20011103_1.xml
+<psu>    328    1739   13705
+<psu> so the 1st anniversary issue has more words than issue 1 had bytes...
+<jcater> wow
+<jcater> good job
+<jcater> pretty soon, you might have to learn to delegate :)
+<psu> and that's after I've cut all the off-topic goat refereneces
+<jamest> no goats?
+<psu> jcater: group authorship is a distinct possibility
+<jamest> no goats?!?!
+<revDeke> what kind of party is that
+<revDeke> no goats?
+<psu> jamest: just one goat. He was on-topic
+<jcater> psu: I volunteer...
+<jcater> ... chillywilly
+<jamest> a gnue w/o goats is like a day w/o sunshine
+<jcater> or a donut without flazing
+<jcater> s/fl/gl
+<psu> Actually, some KC work might be a good way for non-coders to get involved
+<psu> without having to dig into the deeper recesses of the dcoumentation 
+<psu> or the website 
+<psu> (our other two big non-coding TODOs)
+<psu> Main problem is how I "tweak" the mechanisms of group-authoring a KC
+<psu> to fit IRC
+<psu> as the way the other lists work is that people claim "threads" via a central mailing list once they're finished
+<psu> IRC != threads
+<psu> but I have some ideas...
+<esands> Hmm
+<esands> Its a bit unstructured for that. Structured documentation is particularly important people new to an area.
+revDeke (www-data@alt1.libertydistribution.com) left #gnuenterprise.
+dsmith (~dsmith@208.40.56.34) left irc: "later.."
+Action: chillywilly is back (gone 09:57:09)
+<chillywilly> sorry dewd I'd rather be hacking ;)
+<chillywilly> no KC for me
+<esands> Ugh, sorry lagging a bit here, miss read you.  You want to find some other psu-types to help you with KC.  
+esands (~nic@mdr1-port10.jetstart.maxnet.co.nz) left irc: "brb"
+<chillywilly> no offense but I don't consider myself to be the psu type ;)
+esands (~nic@mdr1-port10.jetstart.maxnet.co.nz) joined #gnuenterprise.
+<esands> anyone here familair with how multi-currency GLs deal with things internally?  Given that tax reporting requirements mean you have to report in a single currency. 
+<jcater> chillywilly: you mean, "useful" ???
+<chillywilly> jcater: sorry, but I have other pressing projects that must usurp gnue hacking...at least we have siesel for now ;)
+<chillywilly> hi my name is chillywilly and it has been 2 weeks since my last cvs commit... ;)
+<chillywilly> er, 3
+<chillywilly> I suck
+<chillywilly> it's like UA
+<chillywilly> useless ppl anonymous
+<chillywilly> plus I haven't achieved that guru status like you ;)
+<jcater> guru?
+<chillywilly> I can only read the code of gurus for now and continue on the path to enlightenment
+<chillywilly> yes like you sir
+<jcater> who in their right mind considers me a guru?
+<chillywilly> you are a mad guru
+<chillywilly> well you're damn prodctive :)
+<chillywilly> to say the least
+<psu> chillywilly: I would definantly not want people to divert coding time to write KCs
+<psu> as that rather misses the point
+<psu> esands: multi-curr GLs
+<psu> I have been known to dabble
+<psu> plz fire away
+<psu> ?
+Action: jcater intintly listens
+<chillywilly> well psu from what I have seen you're not shabby with the SQL ;)
+<psu> SQL is like python - baby code designed to make jcater's power users 
+<psu> feel like cool dood h4x0rz
+<jcater> http://www.bockhold.com/rob/album01/abb
+<jcater> ^--- my crew
+<jcater> Brian, me, and Rob
+<jamest> now guess which is the mighty ....damn
+slpl (~a@adsl-143-221.barak.net.il) joined #gnuenterprise.
+<jamest> he gave it away
+<chillywilly> I was going to guess the guy in the middle was jcater
+<psu> esands: basic rule of thumb on multi-curr is 
+<psu> you decide on a base currency
+<psu> then 
+<psu> wherever you have an "amount" field normally
+<chillywilly> anyway, I am going to a hockey game tonight ;) I should shower cause I feel grimy
+<jcater> shower for a hockey game?
+<jcater> that's just wrong
+<psu> you have 3 - base amount, foreign amount, and foreign currency
+<chillywilly> jcater: well I'm not playing ;)
+Action: psu doesn't know if this is just telling esands things he knows
+<chillywilly> just going to watch the local IHL team
+<chillywilly> brb
+<psu> foreign currency AP & AR are the real funsters
+Action: chillywilly is away: Hitting the crack pipe.
+<psu> as you have to hack gain/loss on settlement of open transactions.
+<psu> e.g. raise AR invoice for USD 100 ( = GBP 64)
+<psu> eventually you get paid USD 100, but by then it is GBP 63
+<psu> so you have to write off the missing GBP 1 as a forex loss
+<nickr> ugh
+<nickr> international transactions must be teh sux
+Action: psu rarely had to deal with for curr as he worked mainly in or with public sector
+<psu> nickr: it's a bit like perl - keep your head and keep it simple and you're ok
+<nickr> see, if we had One World Currency we wouldn't have this problem
+<jcater> yes
+<jcater> I agree
+<psu> loose your head and do funky stuff and you're in trouble
+<jcater> I vote on donuts
+<nickr> and no more war with One World Government
+<jcater> "How much for the car?"
+<nickr> Ewig Blumenkraft!
+<jcater> "12,000 donuts"
+<nickr> yes
+<psu> nickr: well, we're trying for one Euro currency, is that a start?
+<nickr> then you really could bet dollars to donuts
+<jcater> true dat
+<jcater> of course
+<jcater> currency that can spoil
+<jcater> might make saving interesting :)
+<nickr> time critical currency
+<nickr> spend it or loose it!
+<nickr> fuel the fires of endless consumerism
+<psu> it's like the rationale for investing in wine (the liquid stuff, not linux)
+<psu> if your investment goes down the tubes financially, 
+<psu> at least you can still drink it
+<nickr> indeed
+<jcater> talk about negative appreciation
+<psu> whereas gold all you can do is look at it
+<nickr> I read someweher about somebody proposing a money that decays like that, 'anti-interest'
+<nickr> In order to prevent money hording
+<nickr> hoarding
+<psu> nickr: just invest with the banks in Switz
+<psu> they charge interest rather than pay it
+<jcater> anti-interest?
+<jcater> why bother
+<jcater> just invest in today's stock market
+<psu> the price you pay for a numbered secret account
+<nickr> yea
+Action: jcater is anxious for the KC 53
+<jcater> as I wanna know how a goat pic plays into it
+<jcater> :)
+<jcater> psu: that could be a good source of extra income
+<jcater> host "KC Pre-view parties"
+<psu> not going to save it for Sun am?
+Action: jcater will be out of town 
+<jcater> more than likely
+<psu> Actually, I could burn a few Archive CDs 
+<psu> "GNUe KC - the first year"
+<psu> "Yours to keep and trasure forever"
+<psu> sell 'em for $5 + postage for GNUe funds
+Action: psu could make at least ooh $4.99 that way
+<jcater> for an extra $10
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) left irc: "Reality is for people that lack imagination"
+<jcater> get a month-by-month copy of the cvs tree
+<psu> Or we could do a kareoke music CD
+<jcater> yeah
+Action: jcater is thinking
+<jcater> Pretty Fly (For a GNUe Guy)
+<jcater> sung to the tune of Offspring's version :)
+<drochaid_> LMFAO
+Nick change: drochaid_ -> drochaid
+<psu> "Money (That's not what I want)"
+<drochaid> psu: I've been missing from the KC for too long now .. could you make up a line or two for me please? :)
+<jamest> jcater: would you sing it dressed up like in the pick?
+<jamest> s/pick/pic
+<jamest> that'd be worth $10
+<psu> "The best things in life are free..."
+<psu> is that $10 for him to do it, or $10 for him not to?
+<psu> anyhow
+<psu> bed calls
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise.
+Action: drochaid takes that as a "no" :'(
+ToyMan (~stuq@glvv-dsl2-229.citlink.net) joined #gnuenterprise.
+<jamest> :)
+jamest (~jamest@leibniz.math.ksu.edu) left #gnuenterprise.
+heikoV (~sdkl98158@D5763F14.kabel.telenet.be) left #gnuenterprise.
+<ajmitch> afternoon all!
+Action: derek is back (gone 16:16:43)
+<derek> hi ajmitch
+<ajmitch> wb derek sir
+<nickr> derek: no more rev eh
+<derek> not at home
+<jcater> yeah
+<jcater> at home, laury is the big kahuna
+<jcater> laurie
+<derek> you can call her the 'big' kahuna, i like my teeth i will just call her boss
+<ajmitch> dang, jcater got access to savannah? :)
+<jcater> ajmitch: I told you it'd liven up :)
+<derek> probablyh even root ;)
+<ajmitch> woohoo!
+<ajmitch> jamest already has access, he said :)
+<derek> jamest or jcater?
+<ajmitch> i only have root access to the rest of the show, not savannah
+<ajmitch> jamest
+<derek> yeah but he has been making love to users 
+<derek> too busy to play savannah admin on tv
+<ajmitch> ah
+<ajmitch> poor fellow
+<ajmitch> so you'll be able to see that appserver symlink thing, if it's still there
+<jcater> appserver symlink?
+<jcater> ah
+<jcater> that thing
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "home"
+<ajmitch> http://linuxtoday.com/news_story.php3?ltsn=2002-11-01-017-26-OS-BZ-SW
+<derek> ajmitch: yeah we debated this alot
+<derek> i registered and not only are source not available niether are binaries
+<ajmitch> wow
+<ajmitch> didn't realise it was that one you were talking about
+<ajmitch> pretty funny for something promoted as 'open source'
+<ajmitch> let me guess, customers can get source but not distribute it?
+jamest (~jamest@adsl-208-191-39-241.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+<ajmitch> hello jamest
+<jamest> hi
+<drochaid> you talking about the openmfg thingy?
+<ajmitch> yup
+<drochaid> hmm
+<drochaid> I had a look at that a couple of days ago
+<drochaid> looked a bit dodgy to me
+<drochaid> I was wondering how they can withold source if it's built with opensource components
+<drochaid> maybe I just misunderstood what they were talking about
+<derek> yes and no
+<derek> depends on licensing
+<derek> and at this point they arent DISTRIBUTING anything so its a moot point
+<derek> i.e. i attempted to get a binary even
+<drochaid> hmm
+<derek> going to sales contact and the whole nine yards
+<derek> and no binaries
+<derek> at least last week
+<drochaid> so their claims that source and binary available to partners and clients are false at the mo?
+<ajmitch> probably not
+<drochaid> I was talking to one of them via email a couple of days ago
+<ajmitch> if you buy their software, you can probably get source
+<drochaid> heh, not quite how it was put to me
+<derek> what did they say?
+<derek> i probably deleted the email
+<derek> if you read logs from last week or so
+<derek> you will see me laughing at the output
+<drochaid> not exact wording, but from my POV as a potential partner, source would be available for me to alter for clients as required
+<derek> of their 'request demo'
+<derek> drochaid: all i can say is these guys are BAD news
+<derek> or appear to be
+<derek> i.e. they are like lindows and the rest
+<derek> trying to 'cash' in
+<drochaid> like I said above, looked dodgy to me
+<derek> otherwise why the games?
+<drochaid> I decided I didn't want my business name associated with them just now
+<derek> at this point i tried to solict a sale as a CUSTOMER and i was told
+<derek> 'sorry we dont have anything to give you right now'
+<ajmitch> guess we have to try & get GNUe out there :)
+<drochaid> :o
+<derek> we will
+<derek> its rock and rolling right now
+<derek> i think savannah situation is almost cleared up
+<derek> woot!
+<ajmitch> yay
+<derek> and i can check in my product stuff
+<ajmitch> that's great news
+<ajmitch> from thursday, i'm finished with uni until late feb
+Action: drochaid recently pointed out [during a Q&A session at a local tech meeting] that the proprietary "revolutionary" software a couple of PhD students were demoing looked rather like a poor subset of GNUenterprise >:)
+<derek> contact stuff is shoring up a bit and we have a few folks willing to use it asap
+<ajmitch> so no doubt i'll be trying to work more on GNUe stuff
+<derek> someone who very eloquently captured my view of gnue
+<derek> but never delivered too much beyond a demo was ricoh
+<ajmitch> how's that?
+Action: drochaid wishes he had more time to play with GNUe :'(
+<drochaid> I've barely been able to touch it in the last 4 or 5 months
+<derek> i think the product was call PIA
+<ajmitch> i have a love for python so i think i'll try & get some useful stuff done in GNUe soon :)
+<derek> hmm seems they have removed their good papers about why ricoh pia
+<derek> at one time they had great docs
+jcater (~jcater@cpe-024-165-223-104.midsouth.rr.com) joined #gnuenterprise.
+<jcater> oops
+Nick change: jcater -> jcDinner
+Mr_You (~car@gso56-184-113.triad.rr.com) left irc: Read error: 104 (Connection reset by peer)
+Mr_You (~car@gso56-184-113.triad.rr.com) joined #gnuenterprise.
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) got netsplit.
+grib (~grib@grib.customer.jump.net) got netsplit.
+sfb- (mattr@chew.exelus.net) got netsplit.
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) got netsplit.
+gnuebot (~eggdrop@65.101.4.211) got netsplit.
+ajmitch (~me@wlg1-port47.jetstart.maxnet.co.nz) got netsplit.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) got netsplit.
+Nick change: jcDinner -> jcater
+gnuebot (~eggdrop@65.101.4.211) returned to #gnuenterprise.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) returned to #gnuenterprise.
+ajmitch (~me@wlg1-port47.jetstart.maxnet.co.nz) returned to #gnuenterprise.
+sfb- (mattr@chew.exelus.net) returned to #gnuenterprise.
+grib (~grib@grib.customer.jump.net) returned to #gnuenterprise.
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) returned to #gnuenterprise.
+mdean (~mdean@mkc-65-28-72-76.kc.rr.com) returned to #gnuenterprise.
+#gnuenterprise: mode change '+o gnuebot' by calvino.freenode.net
+zhouzhen (~zhouzhen@210.83.94.61) joined #gnuenterprise.
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) joined #gnuenterprise.
+Yurik (~yrashk@as5300.kharkov.ukrtel.net) left irc: Read error: 110 (Connection timed out)
+dres (~dres@mail.lewismoss.org) left irc: "see ya"
+Action: derek scampers off to bed
+Action: derek is away: going to bed early wuss
+--- Sat Nov  2 2002

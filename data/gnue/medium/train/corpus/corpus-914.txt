@@ -1,0 +1,229 @@
+jamest (~jamest@adsl-65-64-190-68.dsl.tpkaks.swbell.net) left irc: "Client exiting"
+botsie (~botsie@202.88.170.105) left irc: Read error: 104 (Connection reset by peer)
+reinhard (~reinhard@M1259P028.adsl.highway.telekom.at) joined #gnuenterprise.
+dimas (~dimas@195.218.177.46) joined #gnuenterprise.
+botsie (~botsie@202.88.170.105) joined #gnuenterprise.
+Nick change: botsie -> botsie|lunch
+btami (~tamas@ip102-205.ktv.tiszanet.hu) joined #gnuenterprise.
+sub_pop_culture (~link@129.210.184.56) joined #gnuenterprise.
+Nick change: botsie|lunch -> botsie
+<btami> hi botsie, any success?
+<botsie> yes -- it worked fine
+<btami> ok
+<botsie> why did the case make a difference?
+<btami> dunno
+<botsie> :)
+<botsie> thx -- I would never have thought of that
+<btami> i'v just generated the same form with designer wizard, and compared gfd
+<botsie> oh ... ok
+<botsie> how do you run the wizard?
+<botsie> I didn't see a option for that in the Designer
+<btami> File, New, fromWizard
+Nick change: sub_pop_culture -> sub_gone_culture
+<botsie> ok
+Action: botsie is attempting to get it running under Linux
+botsie (~botsie@202.88.170.105) left irc: Remote closed the connection
+botsie (~botsie@202.88.170.105) joined #gnuenterprise.
+<botsie> hi, it's me clueless newbie again
+<botsie> trying to install GNUE-Common under RH8
+<botsie> ran setup.py install
+<botsie> got the following error:
+<botsie> distutils.errors.DistutilsPlatformError: invalid Python installation: unable to open /usr/lib/python2.2/config/Makefile (No such file or directory)
+<botsie> am I missing a dependency or something?
+botsie (~botsie@202.88.170.105) got netsplit.
+dimas (~dimas@195.218.177.46) got netsplit.
+dimas (~dimas@195.218.177.46) got lost in the net-split.
+botsie (~botsie@202.88.170.105) got lost in the net-split.
+dimas (~dimas@195.218.177.46) joined #gnuenterprise.
+botsie (~botsie@202.88.170.105) joined #gnuenterprise.
+Sacha (~Sacha@dialup-196-67.wasp.net.au) joined #gnuenterprise.
+btami (~tamas@ip102-205.ktv.tiszanet.hu) left irc: 
+botsie (~botsie@202.88.170.105) left irc: Read error: 110 (Connection timed out)
+lupo_ (~lupo@pD9E684ED.dip.t-dialin.net) left irc: Read error: 60 (Operation timed out)
+lupo_ (~lupo@p5085F1DD.dip.t-dialin.net) joined #gnuenterprise.
+ToyMan (~stuq@smtp.dstoys.com) joined #gnuenterprise.
+lxf (~trillian@202.73.120.115) joined #gnuenterprise.
+botsie (~botsie@202.88.170.105) joined #gnuenterprise.
+wtg (~merlinx@ppp816.qld.padsl.internode.on.net) joined #gnuenterprise.
+jamest (~jamest@gw.math.ksu.edu) joined #gnuenterprise.
+reinhard (~reinhard@M1259P028.adsl.highway.telekom.at) left irc: "This sentence no verb"
+reinhard (~reinhard@M1259P028.adsl.highway.telekom.at) joined #gnuenterprise.
+botsie (~botsie@202.88.170.105) left irc: "Client Exiting"
+dsmith (~dsmith@mail.elms.k12.oh.us) joined #gnuenterprise.
+chillywilly_ (~danielb@CPE-24-167-199-51.wi.rr.com) joined #gnuenterprise.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+chillywilly (~danielb@CPE-24-167-199-51.wi.rr.com) left irc: Killed (NickServ (Ghost: chillywilly_!~danielb@CPE-24-167-199-51.wi.rr.com))
+Nick change: chillywilly_ -> chillywilly
+dsmith (~dsmith@mail.elms.k12.oh.us) left irc: "later.."
+andrey (~andrey@adsl-212-59-23-69.takas.lt) joined #gnuenterprise.
+<andrey> hi
+<andrey> i'm trying gnue and i've got a problem with gnue-designer 0.5:
+<andrey> I can't see property labels in property editor
+<andrey> is it a known problem?
+<andrey> is there any workarounds?
+<jcater> it is a weird problem we are having with wx
+<jcater> the graphical toolkit we use
+<andrey> i've got wx2.4
+<jcater> we are changing the way we do the property editor in the next release (0.5.1) to rectify the situation
+<andrey> ok, is the fix available in cvs?
+<jcater> I'm actually working on that as we speak
+<jcater> so, no
+<jcater> sorry :(
+<jcater> probably will be tonight though
+<andrey> ok...
+<andrey> anyway, is this problem depends on wx version?
+<jcater> no
+<jcater> at least, as far as I can tell
+<andrey> so everybody cannot see those labels?
+<andrey> i mean is there any conditions, when labels are shown?
+<jcater> I've only had that issue with large fonts
+<jcater> with certain themes
+<jcater> it looks fine on my work machine
+<jcater> but unreadable at home
+<andrey> i see... thanks for clarification..
+<andrey> jcater: and which theme do you use at work?
+<jcater> I use the default gtk theme at both places
+<jcater> (I'm a KDE person :)
+<jcater> but for some reason, GTK is using larger fonts at home
+<andrey> well, it seems this problem has nothing to do with themes...
+<andrey> i see no labels with default theme
+<andrey> and default font...
+<jcater> any chance you could do a screenshot, just to make sure we're talking about the same thing?
+Action: jcater is trying to get all these oddball bugs fixed for 0.5.1
+<andrey> ok
+<andrey> check out: http://micro.lt/~andrey/files/gnue-designer.png
+<andrey> the similar thing was with gnue-designer 4.1
+dimas (~dimas@195.218.177.46) left irc: Read error: 54 (Connection reset by peer)
+<jcater> oh, weird
+<jcater> you literally can't see the labels
+<jcater> on mine, the labels were cut off
+<jcater> so you could only read half of them
+<andrey> yep..:(
+<andrey> I also get warnings when starting gnue-designer:
+<andrey> Warning: No event tied to File|New|Form
+<andrey> Warning: No event tied to File|Save
+<andrey> Warning: No event tied to Edit|Insert|Label
+<andrey> Warning: No event tied to Edit|Insert|Unbound Entry
+<andrey> Warning: No event tied to Edit|Insert|Drop Down Entry
+<andrey> Warning: No event tied to Edit|Insert|Button
+<andrey> Warning: No event tied to Edit|Insert|Box
+<andrey> but they are no problem actually
+<jcater> yeah
+<jcater> those can be ignored
+<jcater> the warning has been removed in cvs 
+<jcater> and were harmless all along
+lxf (~trillian@202.73.120.115) left irc: "Trillian (http://www.ceruleanstudios.com)"
+Sacha (~Sacha@dialup-196-67.wasp.net.au) left irc: Read error: 60 (Operation timed out)
+<andrey> ok, bye, gotta go... feel free to contact me: andrey@micro.lt if you'll have any questions...
+andrey (~andrey@adsl-212-59-23-69.takas.lt) left irc: "Client exiting"
+<lupo_> jcater: did you make any substantial changes in designer in the past 2 weeks that require a re-installation of cvs? (userspace)
+<lupo_> there is some issue with line 100 of designer/src/base/ToolPanel.py
+<lupo_> on starting designer, python refuses to take "border=2" as an argument; is this new in wx 2.4?
+<jamest> jcater is working heavy on designer at the moment
+<lupo_> i know
+<lupo_> it would just be nice if he fixed that small bug so i can run designer without modifying my files
+<lupo_> and if i'm right, this bug would mean that designer wouldn't run on woody
+lxf (~knoppix@202.73.120.115) joined #gnuenterprise.
+<jcater> border="2"
+<jcater> what's that?
+<jcater> oh
+<jcater> a wx error
+lxf (~knoppix@202.73.120.115) left irc: Remote closed the connection
+jbailey (~jbailey@atlas.fundserv.com) joined #gnuenterprise.
+reinhard (~reinhard@M1259P028.adsl.highway.telekom.at) left irc: "People will believe your argument much better if you tell them that Benjamin Franklin said it"
+Nick change: sub_gone_culture -> sub_pop_culture
+Nick change: sub_pop_culture -> sub_gone_culture
+Nick change: sub_gone_culture -> sub_pop_culture
+kevb (~kev@adsl-65-42-92-44.dsl.chcgil.ameritech.net) joined #gnuenterprise.
+kevb (~kev@adsl-65-42-92-44.dsl.chcgil.ameritech.net) left #gnuenterprise.
+jbailey (~jbailey@atlas.fundserv.com) left #gnuenterprise ("Client exiting").
+chillywilly (~danielb@CPE-24-167-199-51.wi.rr.com) left irc: "Free Your Enterprise! - http://www.gnuenterprise.org"
+dsmith (uyf1kdiojr@oh-strongsvillecadent1-1d-165.clvhoh.adelphia.net) joined #gnuenterprise.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) got netsplit.
+sub_pop_culture (~link@129.210.184.56) got netsplit.
+ra3vat (~ds@ics.elcom.ru) got netsplit.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) returned to #gnuenterprise.
+sub_pop_culture (~link@129.210.184.56) returned to #gnuenterprise.
+ra3vat (~ds@ics.elcom.ru) returned to #gnuenterprise.
+ToyMan (~stuq@smtp.dstoys.com) left irc: "Client Exiting"
+<Vee2d2> hmm...
+chillywilly (~danielb@CPE-65-31-171-97.wi.rr.com) joined #gnuenterprise.
+Action: Vee2d2 wants to test his fax by sending someone something they can fax back to him.. 
+<Vee2d2> re cw
+<jcater> Vee2d2: 901-763-3688
+<chillywilly> hi
+<jcater> hey chilly
+<Vee2d2> dialing
+<Vee2d2> May 28 15:59:33.58: [12917]: SEND FAILED: JOB 42 DEST 1901-763-3688 ERR No answer (T.30 T1 timeout)
+<jcater> hmm
+<Vee2d2> hmm.. this isnt a good test either.. 
+Action: Vee2d2 makes a new fax
+<chillywilly> doh
+<chillywilly> what are you using Vee2d2?
+<chillywilly> a fax machine?
+<Vee2d2> well.. the problem, I'm sure, is with my scanner settings. My test fax was made from openoffice.. so I printed it and scanned it.. that'll be a better test.. =)
+<chillywilly> ok
+<Vee2d2> did that go through, jcater?
+<Vee2d2> Your facsimile job to 1901-763-3688 was not sent because:
+<Vee2d2>     RSPREC error/got DCN
+<jcater> I got the fax
+<jcater> did you have a colored background?
+<jcater> as the background is dithered
+<jcater> in a consistent pattern
+<Vee2d2> nah
+<Vee2d2> interesting..
+<jcater> faxing back....
+<jcater> sigh
+<jcater> give me a few
+<jcater> someone beat me to the machine
+<Vee2d2> np
+Action: Vee2d2 continues to think about chicken quesadillas
+<jcater> sent
+<Vee2d2> hmm.. maybe I just need to clean my scanner.. =)
+chillywilly (~danielb@CPE-65-31-171-97.wi.rr.com) left irc: Read error: 54 (Connection reset by peer)
+chillywilly (~danielb@CPE-65-31-171-97.wi.rr.com) joined #gnuenterprise.
+chillywilly (~danielb@CPE-65-31-171-97.wi.rr.com) left irc: Read error: 104 (Connection reset by peer)
+jamest (~jamest@gw.math.ksu.edu) left irc: "Client exiting"
+<jcater> designer cvs is broken until I get home
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "home"
+jcater (~jcater@cpe-066-061-083-220.midsouth.rr.com) joined #gnuenterprise.
+ToyMan (~stuq@170-215-239-195.bras01.mdl.ny.frontiernet.net) joined #gnuenterprise.
+Sacha (~Sacha@dialup-196-166.wasp.net.au) joined #gnuenterprise.
+revDeke (www-data@209.234.155.8) joined #gnuenterprise.
+<revDeke> "<jcater> designer cvs is broken until I get home", this should go on the classic GNUe quote list 
+<jcater>  ?
+<jcater> btw, I am breaking wxPython 2.2 support in Designer (not Forms, just Designer)
+<jcater> as I'm having to do too many workarounds for bugs/shortcomings in 2.2
+<jcater> however, I'm also backporting wxPython 2.4 to woody
+<jcater> which will be available on www.gnuenterprise.org shortly
+<jcater> The preceding messages was a service of the GNUe Notification Network
+<jcater> s/was/were
+rdean (~rdean@c-66-177-158-116.se.client2.attbi.com) joined #gnuenterprise.
+ToyMan (~stuq@170-215-239-195.bras01.mdl.ny.frontiernet.net) left irc: "Client Exiting"
+<revDeke> GGNN
+<revDeke> Global GNUe Notification Network er GGENN
+<revDeke> i laughed at that until i get home
+<revDeke> as when wife calls with 'broken stuff'
+<revDeke> i say "it will have to stay broken till i get home"
+<jcater> lol
+<jcater> I have to tell the wife the same thing
+<jcater> "Honey, I need you to look at <something>"
+<jcater> "And what do you want me to do about it when I'm at work?!?!?!?"
+<revDeke> so now can you see my humor in you saying "designer is broken until i get home"
+revDeke (www-data@209.234.155.8) left irc: "CGI:IRC 0.5 (EOF)"
+<jcater> for all our debian woody users
+<jcater> deb http://www.gnuenterprise.org/debian/ woody main
+<jcater> is hopefully a good backport of wxPython 2.4
+<jcater> (apt-get install libwxgtk2.4-python)
+<jcater> I'll test more tomorrow at work
+dsmith (uyf1kdiojr@oh-strongsvillecadent1-1d-165.clvhoh.adelphia.net) left irc: "later.."
+chillywilly (~danielb@CPE-24-167-199-51.wi.rr.com) joined #gnuenterprise.
+fixe (~fixe@dsl017-020-123.chi1.dsl.speakeasy.net) left irc: "because I feel like it"
+Sacha (~Sacha@dialup-196-166.wasp.net.au) left #gnuenterprise ("Client exiting").
+rdean (~rdean@c-66-177-158-116.se.client2.attbi.com) left irc: "Client exiting"
+Sacha (~Sacha@dialup-196-166.wasp.net.au) joined #gnuenterprise.
+mdean (~mike@CPE-65-28-72-76.kc.rr.com) joined #gnuenterprise.
+<chillywilly> mdean: hi
+botsie (~botsie@202.88.170.105) joined #gnuenterprise.
+botsie (~botsie@202.88.170.105) left irc: Remote closed the connection
+--- Thu May 29 2003

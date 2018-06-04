@@ -1,0 +1,91 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.06Nov2002" enddate="05 Nov 2002 23:00:00 -0800" startdate="05 Nov 2002 23:00:00 -0800" subject="[IRC] 06 Nov 2002" title="Adding a CSV 'database' driver for Integrator">
+
+<topic>Common</topic>
+<topic>Integrator</topic>
+
+<p>Jan Ischebeck (siesel) asked <quote who="Jan Ischebeck">does 
+anyone of you have an urgent need for integrator?</quote> 
+Jason Cater (jcater) said <quote who="Jason Cater">relatively 
+so</quote> - he had <quote who="Jason Cater">already started on
+it - I think my latest stuff is in cvs</quote>. He added 
+<quote who="Jason Cater">one of the biggest things I'll need to 
+do next (That I haven't even started on) is a CSV / Flatfile 
+dbdriver - even a simplistic one - as my plans for integrator 
+are primarily mapping from source datasources to destination 
+datasources</quote>. He explained <quote who="Jason Cater">this 
+isn't actually to run apps against - I need to be able to load 
+CVS files into my database and dump them from my database</quote>.
+He <quote who="Jason Cater">certainly wouldn't plan on running 
+forms against a CSV file, although it would be possible I 
+suppose.... :)</quote> Andrew Mitchell (ajmitch) said 
+<quote who="Andrew Mitchell">i can try &amp; start on one 
+tomorrow if you'd like, not sure how you'd declare field names 
+&amp; stuff like that tho - as it would be useful for me as 
+well</quote>. Jason said <quote who="Jason Cater">that's part 
+of my hangup - I'm wondering about having a child node of 
+datasource</quote>, where the flat file defintion would be 
+included as part of the datasource definition - 
+<quote who="Jason Cater">but am not sure the best 
+approach</quote>. Andrew suggested 
+<quote who="Andrew Mitchell">for something quick &amp; dirty, 
+just name them 'column1' or 'field2', etc - would allow for 
+conversion</quote>. Jan said <quote who="Jan Ischebeck">if 
+the flatfile dbdriver is just used for loading csv into 
+integrator, why should we define special names for the 
+fields - wouldn't a "field_1", "field_2" etc. be 
+enought?</quote> Jason said <quote who="Jason Cater">I 
+don't think it will necessarily be 1 way - but that's fine 
+too - field_1 would work both ways</quote>. Andrew said 
+<quote who="Andrew Mitchell">some CSV files may have 
+headers iirc</quote>. Jason said <quote who="Jason Cater">most 
+loading software I see have a "skipFirstRow" option</quote>. 
+Andrew said <quote who="Andrew Mitchell">yep - that first row 
+may contain field names if you're lucky</quote>. Jan 
+<quote who="Jan Ischebeck">would like to put all that stuff 
+(skipFirstRow, delimiter....) into the connection.conf 
+file</quote>. Both Jason and Andrew were keen on this. 
+Jan said <quote who="Jan Ischebeck">what about writing? Should 
+read+write access be supported. (that would mean to rewrite 
+the file after a COMMIT)</quote>. Jason said 
+<quote who="Jason Cater">I can see two options 1. 
+skipFirstRow=0|1 or 2. useHeadersAsFields or soemthing 
+like that - (they don't have to be exclusive)</quote> -
+<quote who="Jason Cater">actually, skiprows shouldn't be 
+boolean - it should be an integer - as I've gotten some funky 
+stuff frm vendors before - esp. when they aren't using a 
+real application but are instead doing in a spreadsheet and 
+saving as csv</quote>. Jan suggested 
+<quote who="Jan Ischebeck">what about 
+"firstRow=skip|fieldnames|data"</quote> - Jason added 
+<quote who="Jason Cater">and default to "data" ?</quote></p>
+
+<p>Jan noted <quote who="Jan Ischebeck">IMHO the Integrator 
+Proposal speaks of converting data from a datasource into 
+XML, move it into a RULE ENGINE and export the XML into a 
+datasource again. the RULE ENGINE is quite similar to a 
+XSLT tranformation for me. So I would like to add a module, 
+which does kind of XSLT transformations, but is written in 
+python, to common.</quote> Jeff Bailey (jbailey) asked 
+<quote who="Jeff Bailey">What's wrong with regular XSLT?
+Use an XSLT namespace.... Like, if it's presenting as XML, 
+you could just use &lt;xsl:*&gt; tags to embed commands 
+in.</quote> Jan said <quote who="Jan Ischebeck">I would 
+just like to fake XML to the RULE ENGINE, because I don't 
+think that it is good to convert huge database tables to 
+XML just for fun.</quote> Jason said 
+<quote who="Jason Cater">reports is a rule engine</quote>.
+Jan asked <quote who="Jan Ischebeck">so you would recommend 
+to take code from reports to write integrator?</quote>
+Jeff suggested, rather than re-use code from reports, 
+Jan should <quote who="Jan Ischebeck">move code into common 
+and use in both reports and</quote> integrator.</p>
+
+<p>Later, Derek Neighbors (derek) said 
+<quote who="Derek Neighbors">i personally wouldnt make it as 
+complex as is talked about (well to a degree) - as i think 
+there is a difference between 'integrator' and 'csv 
+driver'</quote>.</p>
+
+</section>
+
+

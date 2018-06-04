@@ -1,0 +1,32 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.21Jun2002" enddate="20 Jun 2002 23:00:00 -0800" startdate="20 Jun 2002 23:00:00 -0800" subject="[IRC] 21 Jun 2002" title="Checkboxes and button triggers in Forms">
+
+<topic>Forms</topic>
+
+<p>John Lenton (Chipaca) noted that there were problems with checkboxes - 
+<quote who="John Lenton">basically if you're just using them for displaying 
+data from the db they'll work, but they don't modify the data</quote>. 
+Chad Walstrom (^chewie) confirmed this, <quote who="Chad Walstrom">using 
+BOOLEAN type in a PostgreSQL table</quote>. John said he was 
+<quote who="John Lenton">using char(1)</quote>, but was getting the same 
+issue.</p>
+
+<p>Using a button instead of a checkbox, John reported <quote who="John Lenton">the 
+trigger to the button is called *twice* - how can I stop that happening?</quote> 
+Chad suggested <quote who="Chad Walstrom">scold it vehemently</quote>. John 
+discovered that <quote who="John Lenton">I'm getting it once for click, and once 
+for unclick :/ - and I can't just assume that is the case, because it the user 
+clicks on the button and then moves the mouse off, I get the click but not the 
+unclick</quote>. Reinhard M&#252;ller (reinhard) said that best practice was to tie 
+the trigger to the unclick event - <quote who="Reinhard M&#252;ller">if the user clicks 
+the button and moves away from it nothing should happen</quote> - 
+<quote who="Reinhard M&#252;ller">the trigger should be fired if and only if the butten 
+receives an unclick after it has received a click and there was no other unclick in 
+between</quote>. John agreed, but noted <quote who="John Lenton">two different 
+events are snagging the trigger: wxMouseEvent, and wxCommandEvent</quote>. He 
+went <quote who="John Lenton">to look for the wxMouseEvent thing to kill it with 
+extreme prejudice</quote> and reported <quote who="John Lenton">ROTFL, that fixed 
+it</quote>. He felt <quote who="John Lenton">there must be a way (at least in wx) 
+to say 'I've handled this, don't propagate it any further'</quote>.</p>
+
+</section>
+

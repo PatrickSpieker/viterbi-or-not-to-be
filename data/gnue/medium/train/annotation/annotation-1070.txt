@@ -1,0 +1,75 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.05May2002" enddate="05 May 2002 23:00:00 -0800" startdate="04 May 2002 23:00:00 -0800" subject="[IRC] 05 May 2002" title="Changes to GNUe Common for the Application Server">
+
+<topic>Application Server</topic>
+<topic>Common</topic>
+
+<p>Jan Ischebeck (siesel) asked <quote who="Jan Ischebeck">does 
+anybody knows if database fields with spaces or special 
+characters are supported?</quote>. Peter Sullivan (psu) remembered 
+<kcref startdate="06 Jan 2002 12:20:05 -0800" title="Old and new parser for GNUe Class Definitions" />, 
+saying <quote who="Peter Sullivan">GEAS will use double 
+underscores in places</quote>. Daniel Baumann (chillywilly) 
+said <quote who="Daniel Baumann">I don't think GEAS is totally 
+defined...I see nowhere where a object-relational mapping is 
+specified (yet) ;)</quote> Jan said <quote who="Jan Ischebeck">it 
+would be great to have a definition soon.. I would like to test how  
+common/dbdrivers and appserver can be connected.</quote></p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.06May2002">
+The next day</a>, Jan said he had <quote who="Jan Ischebeck">made 
+some changes to setup-cvs.py</quote> and asked for comments. he 
+said there <quote who="Jan Ischebeck">is still one problem with the 
+gtestcvs command now. You have to be into common/src/commdrivers/_test 
+to test the rpc server. So if it doesn't work, you know why.</quote>
+He also noted <quote who="Jan Ischebeck">dbdriver/popy introspection 
+support is broken. I have a "bit" dirty fix, and am not shure if i 
+should commit it</quote>, as <quote who="Jan Ischebeck">my patch is 
+dirty, because I patch it in the _pqsql directory and not in the popy 
+code itself.</quote>. James Thompson (jamest_) said 
+<quote who="James Thompson">what we've typically done is copy the 
+non-std function from _pqsql into the driver and patch there</quote>. 
+Jan said this could be done, <quote who="Jan Ischebeck">I've just 
+been too lasy.</quote>. He confirmed <quote who="Jan Ischebeck">server.py 
+is fixed. now the whole test case should work.</quote> 
+<quote who="Jan Ischebeck">GTest.py outputs a menu and you can choose 
+which testcase you like to run (f.e. donut rpc test client, test 
+server, geasRpcClient, or the appserver/test</quote>.</p>  
+
+<p>Jan also asked <quote who="Jan Ischebeck">about quoting of table 
+and row identifiers? To my knowledge this is not  done at the moment.</quote>
+James said <quote who="James Thompson">we probably should</quote>. Jan 
+said he like to include spaces in table and field names for improved
+readability. James wondered <quote who="James Thompson">if all db's 
+support that? - mysql&lt;cough&gt;</quote>. Jan said he would expect 
+<quote who="Jan Ischebeck">that every db use a different quoteing style. 
+so there should be a function "quote_identifier" in GDataobjects which 
+can be overwritten by the drivers code</quote>. James suggested putting 
+it <quote who="James Thompson">in _dbsig</quote>.</p>
+
+<p>Later, Reinhard M&#252;ller (reinhard) reported 
+<quote who="Reinhard M&#252;ller">appserver basic data access works
+(read only)</quote>. He had had to make some changes to 
+Jan's code - <quote who="Reinhard M&#252;ller">the interface of 
+geasSession has changed - should be no biggie to fix it 
+again. If i can help you please let me know - 
+however RPC doesn't work here (missing packages) so it'd be 
+cool if you could fix it :)</quote>.</p>
+
+<p>On coding standards, he asked for confirmation that 
+<quote who="Reinhard M&#252;ller">most of our objects have the 
+same name as the module?</quote> - <quote who="Reinhard M&#252;ller">this 
+is because we have a source file per class, right?</quote> Jason 
+Cater (jcater) said <quote who="Jason Cater">not necessarily - 
+but there was enough code for Datasources to justify their own 
+module. We don't have strict rules governing what's in a module - 
+other than neither of us like 1000+ line files</quote>. 
+He explained <quote who="Jason Cater">a module is either - 
+1) a directory with an __init__.py file or 2) a .py file</quote>. 
+Reinhard noted that <quote who="Reinhard M&#252;ller">and 1) consists 
+of a lot of 2)'s ?</quote>. He concluded 
+<quote who="Reinhard M&#252;ller">i think after a week of python 
+programming i start to understand the basic concepts of the 
+language ;)</quote>.</p>
+
+</section>
+

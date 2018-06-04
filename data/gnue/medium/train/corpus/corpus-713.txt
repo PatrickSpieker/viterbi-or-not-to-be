@@ -1,0 +1,1235 @@
+<dtm> i just got a 101MB core file from openoffice.
+<dtm> due to me closing all open documents
+dres_ (~dres@4.18.171.42) joined #gnuenterprise.
+dres (dres@4.18.171.42) left irc: Read error: 104 (Connection reset by peer)
+chillywilly (danielb@d77.as6.nwbl0.wi.voyager.net) left irc: 
+reinhard (~rm@N809P002.adsl.highway.telekom.at) joined #gnuenterprise.
+ra3vat (ds@ics.elcom.ru) joined #gnuenterprise.
+ra3vat (ds@ics.elcom.ru) left irc: Client Quit
+ra3vat (ds@ics.elcom.ru) joined #gnuenterprise.
+derek (derek@cpe-24-221-112-50.az.sprintbbd.net) left irc: Read error: 110 (Connection timed out)
+ra3vat (ds@ics.elcom.ru) left irc: "Client Exiting"
+ra3vat (ds@ics.elcom.ru) joined #gnuenterprise.
+nickr (nick@e-172-IP28.empnet.net) left irc: Read error: 110 (Connection timed out)
+nickr (~nick@e-172-IP28.empnet.net) joined #gnuenterprise.
+Isomer (dahoose@210-86-56-176.jetstart.xtra.co.nz) left irc: "Client Exiting"
+alexey (alex@strel.techkran.vladimir.ru) left irc: "[x]chat"
+alexey (alex@techkran.vladimir.ru) joined #gnuenterprise.
+<reinhard> cls
+<reinhard> oops
+reinhard (rm@N809P002.adsl.highway.telekom.at) left irc: "Friends may come and go, but enemies accumulate"
+ToyMan (~stuq@c5300-3-ip126.albany.thebiz.net) joined #gnuenterprise.
+jamest_ (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+dsmith (~dsmith@cherry7.comerica.com) joined #gnuenterprise.
+chillywilly (~danielb@d185.as13.nwbl0.wi.voyager.net) joined #gnuenterprise.
+<chillywilly> anyone home?
+<dsmith> Good Morning chillywilly!
+<chillywilly> hi
+<chillywilly> ah well I 'll be back later
+<chillywilly> cya
+<dsmith> later...
+Action: chillywilly goes to work
+chillywilly (danielb@d185.as13.nwbl0.wi.voyager.net) left irc: Client Quit
+alexey (alex@techkran.vladimir.ru) left irc: "[x]chat"
+dsmith (dsmith@cherry7.comerica.com) left irc: "later.."
+dsmith (firewall-u@cherry7.comerica.com) joined #gnuenterprise.
+derek (~derek@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<jamest_> morning 
+<derek> hello
+<derek> running off now
+<derek> ta ta
+Nick change: derek -> dnWork
+alexey (~alexey@195.151.214.34) joined #gnuenterprise.
+alexey (alexey@195.151.214.34) left irc: "Client Exiting"
+dsmith (firewall-u@cherry7.comerica.com) left irc: Remote closed the connection
+dneighbo (~dneighbo@tech-200078.flinthills.com) joined #gnuenterprise.
+<dneighbo> jamest jamest_ did you and jcater get to talk menus?
+<dneighbo> and if so was it logged?
+<jamest_> um
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<jamest_> not really
+<jamest_> we both got busy
+<jamest_> morning jcater
+<jcater> morning
+<jamest_> i switched navigator to spawn forms instead of system call them
+<jamest_> that way it doesn't block while a form is running
+<jamest_> but I have not commited it 
+<jamest_> i wantted to make sure you didn't have a reason for using system 
+<jamest_> also was wondering if you'd looked into having it add to windows start menu
+<jamest_> oooo
+<jamest_> and the -u web doesn't seem to work, was it completed
+Action: jamest_ is playing with navigator in case you can't tell
+<dneighbo> > Has anyone made a techonlogy compare paper between
+<dneighbo> > SapDB and other Databases ? especially  we are interested 
+<dneighbo> > here in a compare against Oracle.
+<dneighbo> A comparison SAP DB <--> Oracle (SQL) was prepared, will now be put
+<dneighbo> into a nice english html-form and be available in March.
+<dneighbo>  
+<dneighbo> Elke
+<dneighbo> SAP Labs Berlin
+<dneighbo> for you jcater ;)
+<dneighbo> jamest_ -u web used to work
+<dneighbo> i.e. well it 'kind' of worked
+<jamest_> well
+<dneighbo> didnt segfault out but wasnt fully functional
+<dneighbo> iirc
+<jamest_> it only pulls up first menu list
+<dneighbo> ok thats what it was doing for me too :)
+<jamest_> then gives a can't find url 
+<jamest_> on any click
+<jamest_> also
+<jamest_> it's borked on windows
+<jamest_> :)
+<dneighbo> didnt try on windows, but i will take your word :)\
+<jamest_> but so is forms in general
+<jamest_> really, really borked
+<jamest_> try running it sometime 
+<jcater> jamest_: re the navigator spawning a new instance: that was my plan all along, I just didn't have time to  do it (the spawn was a quick hack)
+<jamest_> ok
+<jamest_> then i'll commit it
+<jamest_> in a bit
+<jcater> btw, re the -u web interface
+<jcater> wxPython isn't playing nice
+<jcater> I'm trying to trap the click, but apparently there's a bug in wx
+<jcater> I sent an email to wxPython
+<jcater> and the response was "you are doing it wrong, I'm sure... look at the examples"
+<jcater> it's one friggin line!!!!
+<jcater> how can I get one line wrong that was copied from the examples
+<jcater> sigh
+Action: jcater digresses
+<jamest_> :)
+Action: dneighbo thinks masta gonna have to go over there and thump them wx boys
+<dneighbo> no one but no one tells our AI that he is 'computing' incorrectly
+reinhard (~rm@62.47.45.2) joined #gnuenterprise.
+<dneighbo> jcater / jamest_ (kde users): have you all used kivio? (or whatever visio klone kde kreated?
+Action: dneighbo saw some screen shots and it looked decent, but wondered the functionality
+<jcater> I have it installed, but have not actually used it
+<dneighbo> dia is nice but you cant to PROFESSIONAL stuff with it
+<dneighbo> read you cant make things 'purdy' for management
+<jcater> dneighbo: you looked at the poll results?
+Action: jcater is surprised how many ppl use MySQL for business data
+<jcater> and how many "others" there are
+<dneighbo> jcater: i really suspect most people consider dynamic db driven web applications as 'business apps'
+<dneighbo> thus the mysql numbers
+<jcater> I wondered the same thing
+<dneighbo> btw: most linux folks IN MY HUMBLE OPINION dont have lots of business experience 
+<dneighbo> and so mysql is to me like access
+<dneighbo> a good 'starter' db
+<jcater> poor souls
+<dneighbo> and lots of folks doing first business consulting etc
+<dneighbo> pick it up cause its easy and the BIG feature sell is its xplatform
+<dneighbo> natively
+<dneighbo> not through cygwin
+<dneighbo> the other number im kind of suprised
+<dneighbo> as i think we have all the BIG ones listed
+<dneighbo> wow looking at numbers
+<dneighbo> im impressed to see 11 oracle
+Action: jcater wonders how many don't know what the backend db is (so are thinking SQL Ledger and not Postgres)
+<dneighbo> not suprised that oracle has market share mind you
+<jcater> (just using SQL Ledger as an example)
+<dneighbo> suprised that Oracle (highly expensive) users are looking at free software ERP
+<dneighbo> i.e. like you :)
+<jcater> it shouldn't be that surprising, really
+<dneighbo> er what i mean is i think we see an IT trent
+<dneighbo> er trend
+<dneighbo> shops are sick of paying high dollar levies to be treated like crap
+<dneighbo> so the higher the price tag and more shit you are treated more likely you are to come in search of FS
+<jcater> well, it's no secret that IT budgets have been slashed, yet the technological needs have not shrunken at all
+<dneighbo> i dont know how oracle treats its customers
+<dneighbo> but i know it is expensive :)
+<jcater> <Oracle Salesman> "but expensive is relative"
+<jcater> <Oracle Salesman> "it's about value"
+<dneighbo> rofl
+<dneighbo> <deke2os> "im game, if you throw in some lube to make it a little easier to 'take'"
+<dneighbo> ya right
+<dneighbo> btw : did we ever make a branch so we can patch pg issues on windows/odbc/db2
+<dneighbo> and make a 0.1.3 or whatever release?
+<jcater> it trips me out the consultants who we bring in who think the products they supply should be supplied at a cost relative to the about of money we save over the long run
+<jcater> instead of how much the product is actually worth
+<dneighbo> yeah dont think it would be justice if every product was priced this way
+<dneighbo> toilet paper for example
+<dneighbo> i mean w/o it, lets face it you would be buying a lot more underwear (assuming you are into personal hygeine)
+<jcater> that's typically the type of argument we get
+<dneighbo> say underwear is 2.00 a pair and now you have to buy like 40 pair a year instead of 2 pair
+<dneighbo> thats a saving of what 78 dollars
+<dneighbo> if you go throw a roll of tp a week
+<dneighbo> thats 52 rolls
+<jcater> so, we will charge you regular price for the toilet paper, but the holder is gonna cost $140
+<jcater> so, that's a ROI of 18 months
+<dneighbo> so that so you should be paying like 2 bucks a roll
+<dneighbo> instead of the .33 cents a roll you pay now (assuming you can get 4 rolls for 1.00 on sale)
+<jcater> plus, let's not forget that our toulet paper holder is not a perfect product... expect to replace it every three years
+<jcater> however, if you sign by March 1
+<jcater> we will include replacement in your Support Contract
+<dneighbo> yes toilet paper is bad example as its really not REUSABLE
+<dneighbo> the prime example woudl be a tooth brush
+<jcater> hehe
+<dneighbo> instead of 1.00 for a brush that lasts a year
+<dneighbo> you pay 200 for a toothbrush
+<jcater> we should get PSU to write up a "toothbrush consultant" example
+<dneighbo> as brushing your teeth saves on average 2 cavities a year
+<jcater> to illustrate our point :)
+<dneighbo> and cavities cost 800 to fill
+<dneighbo> so 200 for a brush that saves you 1600 is an INCREDIBLE deal
+<dneighbo> then the 500 for the toothpaste contract
+<dneighbo> thats where the REAL value is
+<dneighbo> i mean for 700 you will have your money back in less than 6 mos
+<dneighbo> how incredible is that?
+<dneighbo> what is funny is anyone reading this would probably die laughing
+<dneighbo> but this is common thing in IT industry
+<jcater> but it's SOOOO true
+<jcater> what I love
+<jcater> is their toothbrushes
+<jcater> require their own special "holder"
+<jcater> custom installed, of course
+<dneighbo> hmm that is a VAR thing
+<dneighbo> the vendor just makes sure his toothpaste is incompatiable with other vendors brushes
+<dneighbo> so you are locked into that toothpaste contract
+<dneighbo> or forced to buy a new brush
+<jcater> you can't reuse your existing holders ("I know the slots are the same size; but ours it calibrated especially for our toothbrushes.  Also, who's to say your holder can withstand the extra load")
+<dneighbo> yeah crest's holders just dont 'scale' well
+<jcater> ooooo
+<dneighbo> i mean a family of 5 or 6 and your screwed
+<jcater> let's not forget "user training"
+<dneighbo> and floss
+<dneighbo> thats high performance dental care
+<dneighbo> you pay top dollar for floss
+<jcater> yes
+<jcater> and one member of the family will need to be flown to our "flossing seminar"
+<dneighbo> rofl
+<dneighbo> this wouldnt be so funny
+<jcater> BUT it's in Miami this year
+<dneighbo> if it werent a comparable analogy to it industry
+<jcater> so what member wouldn't mind going to Miami
+<dneighbo> jcater: this month i went to dentist
+<dneighbo> and for only 4,500 i can get crest 'reach' toothbrush certified
+<dneighbo> with that cert i am like 80% less likely to have ginvitis which is a huge value
+<dneighbo> peridontial disease is SO costly 
+<dneighbo> i can hardly wait
+<dneighbo> of course the joke here is that 
+<dneighbo> the toothbrush vendor regularly is able to sell brush, paste and floss to folks with dentures :)
+<jcater> :)
+<jcater> of course, the vendor has a 20% stake in the Denture company
+<jcater> "to spread his risk"
+Action: dneighbo thinks that perhaps i should make a small list of things that are 'cheap' but highly useful
+<dneighbo> then see if they have some 'money saving' value like the toothbrush
+<jcater> "If VARs sold Toothbrushes..."
+<dneighbo> then write up a little mini 
+<dneighbo> "what if the rest of the world operated like a software company..."
+<dneighbo> we ahvent even relaly touched on the 'monoply' implications here :)
+<dneighbo> just on the no value ones :)
+<jcater> yip
+<dneighbo> btw: i do quote and word of the day
+<dneighbo> the quote today.... (so fitting)
+<dneighbo> "As long as people will accept crap, it will be financially profitable to dispense it." -- Dick Cavett
+<dneighbo> read people wouldnt buy a 200 dollar tooth brush and a 500 toothpaste contract
+<dneighbo> they will buy millions of dollars in software license fees
+<dneighbo> though i think slowly people are stopping the trend
+<dneighbo> whether it be because of reduced budgets or waking up and smelling the coffee 
+reinhard (rm@62.47.45.2) left irc: "The more often you run over a dead cat, the flatter it gets"
+ToyMan_ (~stuq@c5300-3-ip126.albany.thebiz.net) joined #gnuenterprise.
+Action: jcater is away: lunch
+<dneighbo> hi ToyMan_
+<dneighbo> i think the wife is mandating computer fixage at home
+<dneighbo> so i might get budget approval to get new case to get machien working again
+<ToyMan_> hey dneighbo
+jbailey (~jbailey@HSE-Toronto-ppp317575.sympatico.ca) joined #gnuenterprise.
+<ToyMan_> sounds good, get that computer working ;)
+<dtm> dneighbo: hi
+zwiskle (~zwiskle@194-208-138-086.TELE.NET) joined #gnuenterprise.
+ToyMan (stuq@c5300-3-ip126.albany.thebiz.net) left irc: Read error: 110 (Connection timed out)
+dsmith (firewall-u@cherry7.comerica.com) joined #gnuenterprise.
+vegas (Linux@as10-183.qualitynet.net) joined #gnuenterprise.
+Action: jcater is back (gone 01:05:08)
+<dsmith> wb jcarter!
+jbailey (jbailey@HSE-Toronto-ppp317575.sympatico.ca) left irc: "Client Exiting"
+<dneighbo> 5 dermits for 5 minute over lunch jcater 
+<dneighbo> er demerits
+<jcater> sigh
+<jcater> don't go there
+Action: jcater is pissed w/work today
+<dneighbo> well then you should have taken 10 minutes extra
+vegas (Linux@as10-183.qualitynet.net) left irc: Read error: 110 (Connection timed out)
+<dtm> dneighbo: looks like geeks4christ.net is down eh?
+<dtm> hey i should register geeks4chris.net.  my mom's name is Chris  ;>
+<dtm> "no for the last time we're not geeks4christ.net!  that's Derek Neighbors over there!!!"
+<dneighbo> um i think i dont htink i had geeks4christ.net
+<dneighbo> try .org or .com
+ra3vat (ds@ics.elcom.ru) left irc: "Client Exiting"
+chillywilly (~danielb@d143.as0.nwbl0.wi.voyager.net) joined #gnuenterprise.
+moi_je (~eva@195.144.36.220) joined #gnuenterprise.
+<moi_je> hi everybody
+<moi_je> I try to start gfdesigner. It brings only Missing GNUe config fileDB000:. What can i do?
+<dneighbo> go to where the sample.gnue.conf file is
+<dneighbo> and do
+<chillywilly> take the sample gnue.conf file ans chage it to your liking
+<dneighbo> cp sample.gnue.conf gnue.conf
+<dneighbo> chillywilly there should be no chagnes to gnue.conf
+<dneighbo> it should pretty much work out of box
+<chillywilly> my bad
+<dneighbo> i.e. just copy the sample
+<chillywilly> connections.conf
+<chillywilly> hey, anyone know how to read from the parallel port in dos?
+<dneighbo> chillywilly : you can customize gnue.conf but not recommended unless you know what you are doing or have a need you want addressed specifically :)
+<dneighbo> yeah install linux
+<chillywilly> fewl
+<chillywilly> this is a work machine
+<chillywilly> I want to crack the software so we don't have to use the stupid dongle that you have to put on the parallel port
+<chillywilly> I think they have the db username and password in the dongle
+<chillywilly> they use watcom sql engine
+<moi_je> dneighbo: I seem to have already both files connections.conf and gnue.conf
+<chillywilly> are there python drivers for that/.
+Vooch (~d@adsl-63-164-29.bna.bellsouth.net) joined #gnuenterprise.
+<moi_je> OK. I found the problem. The file .conf was not at the right place. So finally I could start gfdesigner
+<moi_je> thank you for helping me
+Isomer (dahoose@210-86-56-176.jetstart.xtra.co.nz) joined #gnuenterprise.
+<moi_je> Youhou. I could start my first form ;-)
+<jamest_> :)
+<jamest_> moi_je: sorry for not responding
+<jamest_> you running ok now?
+<moi_je> jamest_:i was just able to start the first sample with gfclient. Nothing special. Now i am fighting to start a complex example
+<jamest_> ok
+<moi_je> to use gfclient with postgresql how can i specify the driver?
+<jamest_> in your connections.conf
+<jamest_> you define your database types
+<jamest_> with names inside the []
+<jamest_> [foo]
+<jamest_> for instance
+<jamest_> then in the gfd file you have datasource lines
+<jamest_> part of which read database="foo"
+<jamest_> or
+<jamest_> you can embed <database> tags inside the gfd
+<jamest_> file itself
+<jamest_> i don't recall the <database> tag format exactly
+<jamest_> but it's in the forms tech_ref file in the doc directory
+<moi_je> jamest_: i found the connections.conf file and there is as provider pypgsql. Maybe the problem is there. Do you know what should be written as provider?
+<moi_je> ok i check the tech_ref file
+MartinG (~martin@wrasse.demon.co.uk) joined #gnuenterprise.
+MartinG (~martin@wrasse.demon.co.uk) left #gnuenterprise ("Client Exiting").
+<jamest_> l8r
+jamest_ (~jamest@hobbes.math.ksu.edu) left #gnuenterprise.
+cnrd-away (conrad@dial-ctb023.webone.com.au) got netsplit.
+cnrd-away (~conrad@dial-ctb023.webone.com.au) got lost in the net-split.
+cnrd-away (~conrad@dial-ctb023.webone.com.au) joined #gnuenterprise.
+dneighbo (dneighbo@tech-200078.flinthills.com) left irc: "My damn controlling terminal disappeared!"
+Vooch (~d@adsl-63-164-29.bna.bellsouth.net) left #gnuenterprise.
+<chillywilly> do we have drivers for sql anywhere?
+<jcater> ?
+Action: chillywilly just figured out watcom sql is now sql anywhere
+<chillywilly> after sybase bought them
+<chillywilly> http://www.dbmsmag.com/9606d08.html
+<jcater> we have sybase drivers
+zwiskle (~zwiskle@194-208-138-086.TELE.NET) left #gnuenterprise.
+<chillywilly> hrrrm
+<jcater> not sure the differences in their difference sql servers
+<chillywilly> well this app that I have on our work laptop uses watcom sql v. 4.0
+<chillywilly> there's a dll that is the odmc driver
+<chillywilly> I tried to use the little command line utility to connect but I don't know what username and password it accepts ;)
+<chillywilly> from dos
+<chillywilly> I was playing with it from dos
+<chillywilly> s/odmc/odbc
+<chillywilly> cool
+<chillywilly> http://www.nativedb.com/product.htm
+<chillywilly> Supported Sybase editions
+<chillywilly> <http://www.nativedb.com/images/bullet1.gif> Watcom SQL 3.2
+<chillywilly> <http://www.nativedb.com/images/bullet1.gif> Watcom SQL 4
+<chillywilly> <http://www.nativedb.com/images/bullet1.gif> SQL Anywhere 5
+<chillywilly> <http://www.nativedb.com/images/bullet1.gif> Adaptive Server Anywhere 6
+<chillywilly> <http://www.nativedb.com/images/bullet1.gif> Adaptive Server Anywhere 7
+<chillywilly> this may work
+<chillywilly> does the sybase driver support SQL Anywhere?
+<chillywilly> hrrrm
+<chillywilly> isn't this their main db server?
+<jcater> um
+<jcater> Sybase ASE (Adaptive Server Enterprise)
+Action: jcater thinks that's just a name change, though
+<chillywilly> ok
+<jcater> as they still call the "design" software "SQL Anywhere Studio"
+<chillywilly> well watcom turned into sql anywhere
+<jcater> http://www.sybase.com/products/databaseservers
+<chillywilly> uhuh
+<chillywilly> but I dunno how I can get the username and password that the inspection software uses to connect to the db
+<jcater> dunno
+<chillywilly> I cna start up the engine using one of the other command line tools
+<chillywilly> but when I use the little sql client it braks at me
+<chillywilly> er, barks
+<chillywilly> btw, I was looking at some code in common and was wondering what GObj is exactly?
+<chillywilly> just a generic GNUe object?
+<jcater> just a generic object 
+<chillywilly> ok
+<jcater> that can be expressed as XML
+<chillywilly> uhuh
+<chillywilly> would it be cool if geas could store GObjs?
+<jcater> um
+<jcater> not sure
+<jcater> hmm
+<jcater> well, cool, yeah
+<jcater> but not sure of usefulness
+<chillywilly> well from what I can tell all that's really in there is triggers and the xml output/input ability
+<chillywilly> what derives from GObj?
+<jcater> there's a few other convenience functions in there
+<jcater> but that's basically what it's for
+<jcater> um
+<jcater> GFForm
+<jcater> GFBlock
+<jcater> GFEntry
+<jcater> GFBox
+<jcater> ...
+<chillywilly> ok
+<chillywilly> would it be useful if all business objects on the app serverwere GObjs?
+<jcater> hmm
+<jcater> you are giving me a headache :)
+<jcater> I haven't given that much thought
+<chillywilly> or if you could transparently get persistence of GObjs
+<chillywilly> ;P
+<jcater> well, the only persistance I see us needing is storing the objects in their corresponding XML file
+<chillywilly> why does GObj remind me so much of GObject in the new glib?
+<jcater> so the point of GObj is already to provide transparent persistence via xml
+<jcater> I suppose
+<jcater> :)
+<chillywilly> ok, you see that 4suite server?
+<chillywilly> they store everything as xml docs
+<chillywilly> provide a bunch of protocols
+<chillywilly> and do distributed transactions
+<chillywilly> it looked cool
+<jcater> ok
+<chillywilly> not that I am saying that we should borrow it, just stating it was interesting ;)
+<chillywilly> http://4suite.org
+<chillywilly> it's a python thing
+<chillywilly> so, does having GObjs witht he ability to output xml help you generate forms? Is that how you use it?
+<jcater> basically, yeah
+<jcater> I've seen 4suite, but am very hesitant when it comes to 
+<jcater> basing our products off of someone else's
+<chillywilly> yes
+<chillywilly> I agree
+<chillywilly> just stating that it might contain some nice ideas
+<chillywilly> design ideas anyway
+<chillywilly> I wouldn't really want to use someone else's app server
+<chillywilly> plus it wouldn't be any fun ;)
+<chillywilly> maybe I should concentrate on an ODMG python binding to store any type of python object
+<chillywilly> I dunno
+<chillywilly> anyway, GObj just kinda caught my eye
+<chillywilly> think about it, lemme know if anything smacks you upside the head ;)
+Action: jcater nervously looks for approaching trout
+<chillywilly> hehe
+<chillywilly> no trout here dude
+Action: stbain slaps jcater around a bit with a shrubbery!!
+CTCP SOUND: shrub.wav from stbain (stbain!GunAndGiz@ip68-10-44-170.rn.hr.cox.net) to #gnuenterprise
+<stbain> there... no trout
+<stbain> ;)
+Action: chillywilly trout slaps stbain
+<chillywilly> I meant no trout for jcater right now
+<chillywilly> anyone else is fair game
+<chillywilly> why do ppl do ctcp sound?
+<chillywilly> that's a mirc thing nbig time....even worse than my trout parody
+<chillywilly> stbain: you mirc luser you!
+<chillywilly> ;P
+<dsmith> Well, back to the ranch
+<jcater> dsmith: happy galluping
+<chillywilly> l8r
+dsmith (firewall-u@cherry7.comerica.com) left irc: "later.."
+<stbain> hehe
+<stbain> actually, now the mIRC has multi-server support, it's pretty nice
+<stbain> I had KvIRC accepting CTCP sound requests pretty good 
+<stbain> until my HDD went kaboom
+chillywilly (danielb@d143.as0.nwbl0.wi.voyager.net) left irc: 
+jcater (jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "Client Exiting"
+moi_je (~eva@195.144.36.220) left #gnuenterprise.
+neilt (~neilt@dhcp64-134-54-181.chan.dca.wayport.net) joined #gnuenterprise.
+#gnuenterprise: mode change '+o neilt' by ChanServ!ChanServ@services.
+jcater (~jason@24.92.70.39) joined #gnuenterprise.
+<jamest> he's back
+<jamest> ta-da!
+<jcater> in black!
+<jamest> whoops, forgot my pants
+<jamest> just a sec......
+<jamest> he's back!
+<jamest> um
+<jamest> navigator
+<jamest> how official is it?
+Action: jamest wants to make win setup.exe of it
+<jcater> um
+<jcater> what do you mean?
+<jcater> how official?
+<jamest> i mean is it still just a toy 
+<jamest> in people eyes
+jbailey (~jbailey@HSE-Toronto-ppp317575.sympatico.ca) joined #gnuenterprise.
+<jcater> well, in derek's, I think so
+<jamest> we've never released it IIRC
+<jcater> but I think it's quite useful
+<jamest> but jamest like
+<jamest> it's very usefull
+Action: jcater wonders if he shouldn't add a "tree-style" interface first
+<jamest> hmmm
+<jcater> as far as I'm concerned, it's pretty damn official
+<jamest> i don't have time tonight
+<jcater> just maybe lacking a few desired interface methods
+<jamest> but you might be able to rip the event handler (unused) in forms UIwxpython
+<jcater> but, hell, so is forms :)
+<jamest> to possibly grab those events you're missing in UIwxweb
+<jamest> ah hell
+<jamest> i'll try it
+<jamest> deadlines shmedlines
+<jcater> I can work on nav if ya'd like
+<jcater> not a problem
+<jamest> doesn't matter
+<jamest> i wanna get windows support polished up tonight in there
+<jamest> and maybe figure out wtf is going on with forms in win32
+<jcater> ok
+<jamest> the UI is corrupt and it won't save
+<jcater> I don't think that'll interfere too much
+<jcater> eeew
+<jcater> it's derek's fault, you know
+<jamest> yeah, i know
+<jamest> we need to get chilly a 50lb trout and have me keep derek away from our code
+<jamest> when he gets to close he gets his deridic radiation all over it and makes it have bugs 
+<jamest> s/me/him
+rdean (rdean@chcgil2-ar2-053-033.chcgil2.dsl.gtei.net) joined #gnuenterprise.
+neilt (neilt@dhcp64-134-54-181.chan.dca.wayport.net) left irc: 
+jan (jan@dial-194-8-196-20.netcologne.de) joined #gnuenterprise.
+<jan> Hi!
+<stbain> hello
+<jamest> hey jan
+<jamest> saw you've been working on block support some :)
+<jan> hi jamest. 
+<jan> yep. but the biggest problem, i've spared up ;) for later:  master-detail relationship 
+<jamest> man
+<jamest> i wish you could interface to our python stuff
+<jan> now DB writing is working.
+<jamest> as you'd almost be done by now :)
+<jamest> i haven't seen a php/python bridge though :(
+<jan> (but just for postgres. I like OIDs)
+<jan> We could do it by SOAP. There are a lot of good implementations out there.
+<jamest> that might be less time for you
+<jamest> maybe?
+Action: jamest doesn't know what's involved
+<jan> I'm not shure how to write the python part, but if there would be a gnue-common webservice, possibly with a similar interface like GEAS....
+<jamest> sigh
+Action: jan is dreaming... (he has no idea about the gnue-common gnue-forms interface.
+<jamest> there was work done on gnue-rpc
+<jamest> but it's halted as our AI has more pressing issues :)
+<jan> AI? 
+<jamest> jcater
+<jamest> he's an AI
+<jamest> which depending on the moment means either artificial intelligence
+<jamest> or Alldoughnut Ingester
+<jamest> he's the worlds only 100% functoinal krispy kreme powered processing unit
+<jan> lofl lofl
+rdean (rdean@chcgil2-ar2-053-033.chcgil2.dsl.gtei.net) left irc: Read error: 110 (Connection timed out)
+<jamest> jan: did you get that paperwork taken care of?
+<jan> I've send the mail, but haven't got any answer yet. (neither email, nor paper)
+<jan> jcater: whats about the status of the rpc commdriver? And how can I test it?
+<jcater> well
+<jcater> it's currently broken, so won't be of much use
+<jcater> the real issue is that gcommon is a library, not necessarily a service
+<jcater> so I'm not sure how that would work
+<jcater> it's as easy to do XML-RPC in Python as in PHP, though
+<jcater> I do know that
+<jcater> (both are fairly easy to do)
+<jan> I like easy stuff. :)
+<jcater> real issue is the persistence factor
+<jan> I haven't seen much of the gnue-common code, but for me the most important part is the db abstraction layer.
+<jcater> yeah
+<jcater> it's pretty cool
+<jcater> hmm
+<jcater> now that would be worth creating a "service" for
+Action: jcater is thinking...
+<jamest> run!
+Action: jamest dives for cover
+<jan> help! my donughts are away!!!
+<jan> persistence is no very big problem. the php client is saving all cached data at the end of a call and restores it at the begin of a call. not nice. not fast, but working.
+<jamest> jan
+<jamest> while you're here
+<jan> yep!
+<jamest> something that i was thinking about adding to forms
+<jamest> was the ability to say that forms pages are steps
+<jamest> so that I could rapidly design a web form that is one or more steps
+<jamest> then on the last page a commit is done
+<jamest> as personally I _hate_ making html forms 
+<jan> Ok, thats a possibility. Whats about a "WIZARD" attribut in the <form..> tag?
+<jamest> hmmmmm
+<jamest> i really haven't giving this a lot of thought
+<jamest> just a wishlist item that didn't seem remotely close to be available
+<jamest> but at the rate youre going..... :)
+<jamest> i'm not sure how the normal client would deal with this type of form
+<jamest> or if it's even a good fit in the gfd
+<jamest> others may want to comment on it first 
+<jamest> as I think it's been my dirty little secrete desire
+<jan> no problem. I also don't like to change the DTD.
+<jan> But it would be great ;)
+<jamest> secret even
+<jamest> um
+<jamest> i hate to say this
+<jamest> but I don't think the DTD is stable yet
+<jamest> we're only at 0.1.1 release 
+<jan> Just thinking of the database demo page. ... its so slow that it hurts. Even on my local computer.
+<jamest> where is the overhead?
+<jan> Browsing in a list like that is not good.
+<jamest> btw - www.gnuenterprise.org is not that much machine
+<jamest> it's a celeron 350 w/ 96MBof ramm
+<jamest> dude, you need our db driver system
+<jamest> it pulls things in small chunks
+<jamest> assuming that it's not good cause it loads it all
+<jan> Every time php parses the xml file and load session data. Not improved for speed at the moment.
+<jamest> ouch
+<jamest> that would be a beastie
+<jamest> we've even talked about storing pre-parsed object trees to reduce gfclients startup time
+<jan> But if i switch on the APC cache (i.e. PHP don't have to parse 2000 lines of code) its getting relatively fast.
+<jan> If the basic features are in, i will try to store a little bit more of info into the session cache to let php do the parsing just once a session.
+<jamest> ?
+<jan> APC caches the preparsed PHP code. PHP don't have to parse the php file every time it is called. Good stuff. But nothing if you change the code every 5 minutes.
+<jamest> :)
+<jan> jamest: thinking about wizard mode: every page needs back and forth buttons and the last one needs the commit button. After commiting it will jump to the first page again.
+<jan> What are the python macros for jumping to the next/prev page?
+<jamest> the UI system sends a IIRC requestNEXTBLOCK
+<jamest> or requestPREVBLOCK
+<jamest> the system then checks to see location of next block in relation to the page
+<jcater> jamest: is this "wizard" you are thinking about specifically for a HTML form?
+<jamest> i see it usefull in 2 places
+<jamest>   html forms are #1
+<jamest>   #2 is where I may want the user to fill out trouble ticket of some sort
+<jamest>     running a local copy of forms
+<jamest>   say you want your reps to always ask the same things in a specific order
+<jamest>   or fill out a trouble ticket
+<jamest> starting at step 1 and ending at step 4
+<jcater> well
+<jcater> if we had multipage blocks
+<jamest> and you don't want them dealing w/ all the "confusing" parts of a forms app
+<jcater> this would be easy to do using existing "pages" concepts
+<jamest> just a fill in this, fill in this, fill in this, finish or cancel
+<jamest> yes
+<jan> A "wizard" form is great for HTML, but if it didn't work with the standart client. This wouldn't be good. Whats about using the normal pages and some triggers to implement it?
+<jamest> i just wanted the pages to become treated as steps
+<jamest> jan
+<jamest> right now forms are of type="tabbed" iirc
+<jcater> well, multipage blocks would do that automatically :)
+<jamest> which makes the pages become notebook tabs
+<jamest> so a type="stepthru"
+<jcater> without a new step type
+<jan> most demo forms have multiple pages, but are missing the tapped attribut.
+<jamest> it's not missing
+<jamest> it's an option
+<jamest> do you want to just see a page count
+<jamest> or do you want tabs with named pages
+<jamest> jcater but multipage blocks wouldn't hide all the extras
+<jcater> hide what extras?
+<jamest> query, print, next/prev foo, jump to record
+<jamest> what I was talkign about was a mode that displayed the 1st page
+<jamest> and gave a next, back, cancel
+<jamest> button
+<jan> Thats what i want to say. If you want to use a special type="stepthru" , you have to change the toolbar.
+<jamest> and that is all
+<jamest> they fill in first page hit next
+<jamest> they fill in second page hit next
+<jan> 7+---------+---------+------+
+<jan> | tabbed  | string  | none |
+<jan> +---------+---------+------+
+<jan> tabbed has no default!
+<jamest> they fill in 3rd page where the next is replaced with Finish as it's the last page of the form
+<jamest> press finish
+<jamest> and the commit is done
+<jan> Or the tech_ref has to be updated.
+<jamest> this is so I can replace crappy mailto forms 
+<jamest> with gfd forms :) on my website
+<jamest> lemme find one
+<jcater> I get what you're saying
+<jcater> I'm just saying multipage blocks are probably a prerequisite
+<jamest> ok
+<jamest> sigh
+<jamest> mre work
+<jcater> and if you had multipage blocks, you could easily simulate such a system without a special tag
+<jcater> (even if you did in fact want the special type)
+<jan> Pardon, but whats so great about multipage blocks? Is that not the same, as if they all use the same datasource?
+Action: jcater is not so sure that multiple blocks can use the same datasource
+<jamest> well, i need multipage fields more than multipage blocks
+<jan> Ok, there is the cursor problem, but why don't use a trigger to set the cursor.
+<jamest> but that goes against the grain of form's current design
+<jamest> you can fake multipage fields w/ non-bound fields and triggers
+<jamest> but it can get fugly
+<jan> So the contact.gfd in the CVS don't work. The datasource of all blocks of contact.gfd is "forms".
+Action: jcater needs a good, stiff drink and some donut holes
+<jamest> you know
+Action: jamest is trying to do that think thing
+<jamest> we don't really need multipage anything
+<jcater> jan: contact?
+<jamest> just a clone="" attribute
+<jcater> eek
+Action: jcater runs
+<jan> jcater?
+<jcater> I'm not sure which sample you are referring to
+<jamest> I'm describing an old oracle sql*forms feature that was 1/2 baked
+<jamest> maybe that scared him away
+<jamest> jcater has sql*forms scars too
+<jcater> jamest: really????
+<jcater> I've never seen a cloned field
+<jan> "/forms/samples/contact.gfd
+<jamest> it couldn't do cloning perfectly
+Action: jcater has read the Oracle Forms tech reference forwards and backwards
+<jamest> but you could setup a read only field
+<jamest> that held the value of a different field
+<jcater> using triggers?
+<jamest> kinda like the default thing but it would accept block.field as it's value
+<jamest> no
+<jamest> this didn't require triggers
+<jamest> but was brain dead
+Action: jamest only used it a few times
+<jcater> jan: ah
+<jamest> always fell back to triggers as it worked better
+<jcater> jan: technically that form needs to be rewritten
+<jamest> ooooo
+<jcater> as it's a dataless form, but defined a dataless datasource
+<jan> aah. 
+<jcater> which isn't necessary
+<jcater> blocks don't have to be bound
+<jcater> but I'm guessing when this one was written, they did need to be bound
+<jamest> any complicated samples using triggers will be dead too
+<jamest> except for a few
+<jan> why should two blocks share on datasource?
+<jan> "/should/shouln't/s
+<jamest> internals
+<jcater> yeah
+<jamest> our datasources implement master/detail
+<jan> i think there is no "datasources" directory
+<jamest> so they have a concept of current record
+<jan> ok, i come back to the thing after implementing master/detail
+<jamest> no datasources dir
+<jcater> master/detail is very tricky
+<jcater> so beware
+<jan> is the current record stored in the datasource?
+<jamest> that's our generic interface to the system
+<jcater> it's cause jamest and I countless sleepless night
+<jamest> yes
+<jamest> and a link to all it's detail recordsets
+<jamest> so that I can cruse thru a master/detail set of data
+<jamest> changing masters and children at will
+Action: jan is thinking about implementing master/detail when SOAP, orbit and some other bindings are running :)
+<jamest> then commit the whole mess
+<jamest> she's a beastie
+<jamest> but damn if it don't rock
+Action: jcater is still giddy about our master/detail setup
+<jamest> you sure that isn't quezy?
+<jcater> I don't know of another forms implementation that can do master/detail like GNUe can
+<jcater> jamest: both
+<jcater> definitely both
+Action: jan is using dictionary (quezy)
+<jamest> it's probably misspelled
+<jamest> like everything I type
+<jamest> it means feeling ill
+<jamest> in your stomach
+<jan> oh, "queasy", yep. thinking about implementing master detail makes me feel queasy
+<jan> ;)
+<jan> ok, but why don't use a MVC architecture. 
+Action: jcater tries to hold his dinner down
+<jan> A block is just a view on the datasource
+<jamest> um
+<jamest> that was more like how the old system was going to work
+<jcater> actually, we kinda do
+<jcater> in a twisted kind of way
+Action: jamest doesn't recall if I'd actually ended up implementing it that way
+<jamest> it's a fusion of old design and new
+<jamest> and it's offspring walk a bit funny, and have only 4 toes
+<jan> like it is allways. (look at GEAS)  ;)
+Action: jcater chokes on his food
+<jamest> :)
+<jamest> poor jcater
+<jcater> nothing like getting a donut hole stuck in your throught while cracking up laughing
+Action: jan hopes jcater isn't feeling too queasy.
+Action: jan is looking at the code
+<jan> ok, forget my idea.  GFdatasource is pretty empty to be a MVC model.
+<jamest> oooo
+<jamest> GFDatasource is a wrapper
+<jamest> it's part of that old new mergering thing
+Action: jan is hidding away
+<jamest> go to common/src
+<jamest> GDataSource
+<jamest> GDataObjects
+<jamest> and the entire dbdrivers/* dir structure
+<jamest> oooooo
+<jan> ok, i confess. I forgot the heritage of GFDatasource
+<jamest> make sure you don't have a family history of mental illness
+<jan> but nevertheless GFBlock is caring for too much to make it a simple view.
+<jan> nop.  no metal illness just mental sickness. i'm preparing myself to do a master/detail.... mini implementation.
+<jamest> ewwwww
+<jamest> masochist
+<jamest> :)
+<jan> Oh, great ive implemented a master detail implementation in one single block. 
+<jan> Ok, thats enough master detail for tonight.
+<jan> :)
+<jamest> lol
+<jan> jamest: have a look at the demo3 of the php client. I made a pre alpha version of a wizard.
+<jamest> thats what I'm after
+<jcater> url?
+<jamest> ooooo
+<jamest> www.gnuenterprise.org/~jan/gfc.php
+<jamest> i set him up an account so we can always show this stuff off :)
+<jamest> in fact
+<jcater> cool
+<jamest> I've put that url into a few mails 
+<jamest> one to the mysql mailing list
+<jamest> and one to that prof. from the univ of australia(?)
+<jamest> <cough>no pressure jan<cough>
+Action: jan 's hands a bibbering...
+<jamest> bibbering
+<jamest> ?
+<jan> .  /a/are/s
+<jan> bibbering=zittern=fa dou 
+<jan> ok?
+<jamest> yip
+<jamest> shaking i assume
+Action: jan put the dict away
+<jamest> is that form taking data?
+<jamest> i can't seem to type on it
+<jamest> if this works......
+Action: jamest will do a happy dance
+<jamest> i have to hand code html forms today
+<jamest> with this puppy
+<jamest> a form could be built in designer in seconds
+<jamest> that is input only from the web
+<jan> yeah. only thing is form cannot send mail to you... , or is there a dbdriver/mailto ?    ;)
+<jamest> lol
+<jamest> no
+<jamest> but
+<jamest> the trigger system in forms core could do it
+<jcater> conceptually, it wouldn't be a problem to have a "write-only" database driver that actually sends an email :)
+<jamest> hell
+<jcater> our dbdriver system is quite flexible
+<jamest> at this point a db backend trigger would do the trick for me
+<jamest> the time this would save 
+<jcater> :)
+<jcater> for me too
+<jamest> jan
+<jamest> um
+<jamest> no pressure
+<jamest> but how close would you say this is to, um
+<jamest> production ready ?
+<jamest> :)
+<jamest> <cough>no pressure <cough>
+<jan> eh. eh. 
+<jamest> seriously
+<jan> there should be done some bug squaching i think
+stbain (GunAndGiz@ip68-10-44-170.rn.hr.cox.net) left irc: "www.gunandgiz.com"
+<jan> and if you don't need the master detail stuff at once .....
+<jamest> nope
+<jamest> i don't 
+<jan> ... no RPC, SOAP, orbit,.... just postgres.....
+<jamest> with this type of setup today
+<jamest> i could get a list of fields from my user
+<jamest> create a simple transactions_foo table 
+<jamest> run designer
+<jamest> get the base form
+<jamest> then adjust the layout in real time with the user
+<jamest> and we'd be done
+<jamest> not to mention
+<jamest> that the normal forms client would still currently treat this as a normal form
+<jamest> so they could use _exact_ same def file to look at the data
+<jan> yep. just the code is a little bit different. 
+<jamest> lol i just realized something
+<jan> speaking of two forms using one db f.e. 
+<jamest> I'm not wearing socks
+<jamest> they must have rocked right out of here
+<jamest> still got shoes on though
+<jamest> crafty little buggers those socks
+Action: jan is wondering about jamest. thought only Al bundy is allways missing his socks.
+<jamest> :)
+<jamest> well
+<jamest> i have both hands on the keyboard 
+<jamest> instead of one in my pants
+<jamest> so I'm ok
+<jamest> i think
+Action: jcater hopes so
+<jan> :)
+<jcater> I know this wizard stuff is exciting to ya jamest
+<jcater> but please keep your hands on the keyboard
+<jamest> um, sure, yeah, ok
+<jamest> you bet
+Action: jamest makes sure he still doesn't have a webcam
+<jcater> rofl
+<jamest> yip, nothing going on here
+<jamest> hey jan....tell me again about the new wizard support?
+<jamest> j/k
+<jan> just open the demo3 again. (some changes :) )
+<jamest> hmmm
+<jamest> toolbar is back
+<jamest> can't type
+<jamest> lower arrow doesn't work
+<jamest> i wonder if konq is causing this
+<jcater> probably
+<jcater> I had issues w/konq and his first form
+<jcater> but mozilla seemed to work
+<jamest> cd
+<jan> yep, i just use mozilla, because i don't want to download the whole kde stuff.
+<jcater> dude
+<jcater> it's peaceful in here
+<jcater> chilly must be sick
+<jcater> :)
+<jan> jamest: do you want to test php-form email dbdriver?
+<jamest> sure
+<jan> ok, i will put your email into it!  ;)
+<jamest> fine w/ me
+<jcater> jan: that's goatluvin@gnue.org
+<jcater> in case you didn't know his email
+<jcater> :)
+<jan> oh, i uploaded an jamest@gx version.
+<jan> ok, it should be ready now. 
+<jan> jamest: take care for your mailbox
+<jamest> jcater: typo
+<jamest> goatluvd@gnue.org
+<jcater> ah
+<jamest> remember
+<jcater> do it every timer
+<jamest> i'm not a willing participant
+<jcater> sure
+<jcater> <snicker>
+<jan> uups. havent changed mail address. 
+<jamest> :)
+<jamest> actually 
+<jamest> jamest@gnuenterprise.org would be best
+<jan> now it should be ok
+<jamest> wow
+<jamest> my mozilla is 0.8.1
+<jan> 8.1 should not be very stable.
+<jan> got mail? :)
+<jamest> he says as it crashes 
+<jan> the mail format is a bit weard. 
+<jamest> um
+<jamest> i got it
+<jamest> even this would be handy
+<jamest> however
+<jamest> we really need to be carefull
+<jamest> and figure out how to wrap this into common and reference forms as well
+<jamest> this stuff is so cool i want it now though :(
+<jamest> btw jan
+<jan> you just need a cached form i.e. a form without datasources and a commit handler who flushes the cache into a mail.
+<jamest> how did you get the form layout down so well?
+<jamest> lol
+<jamest> so basically we could have this today in forms as well
+<jamest> via our pre-commit trigger at the form level
+<jan> yep. So easy.
+<jamest> i never thought of that
+<jamest> dude
+<jamest> we need to get php and python playing together
+<jamest> as if we could link your stuff into common and forms core
+<jan> Ok, tomorow night i will test your triggers to send mails.
+<jamest> i don't think i'd ever have socks again
+<jan> yep would be great.
+<jamest> this is too cool
+<jamest> i wonder....
+<jamest> jcater: you here?
+<jcater> wonder no more!
+<jcater> yes I am
+<jamest> wasn't there a zope/php adaptor somewhere?
+<jcater> yip
+<jcater> http://www.zope.org/Members/Ioan/PHPObject
+<jcater> I haven't used it and don't know exactly what it's doing
+<jamest> i wonder if it'd short circuit the connection to gnue-common and php
+<jan> yes. great stuff. Main routine is: x=os.system("php "+file1+" > "+file2)
+<jamest> is it ?
+<jan> ***sniff **** nobody cares for a good php python connection *** sniff****
+<jamest> i do
+<jamest> very much so
+<jan> yes. it is.....* sniff**
+<jamest> man
+<jamest> that's pretty weak
+<jamest> os.system
+<jamest> lol
+<jcater> roflmao
+<jcater> oh well
+<jcater> I said I'd never actually used it
+<jan> I was so happy to hear about that thing, but after downloading just 6166 bytes i got a strange feeling about it.
+<jamest> lol
+<jcater> um
+<jan> I think the only good binding is to connect php java and python altogether. By using Enterprise J Beans the persistenz problem is allmost solved.....
+<jcater> ok
+Action: jcater is thinking out loud here
+<jcater> but if we don't mind restricting this to apache for the near future
+<jcater> we might want to look at mod_python or mod_snake
+<jcater> http://www.onlamp.com/pub/a/apache/2000/11/08/wrangler.html
+<jan> jamest: should i leave the php form pointing on you email?
+<jamest> thats fine with me
+<jamest> as long as you like
+<jan> ok. So you allways know when I m testing...
+<jan> = ca. 2000 mail per hour ;)
+<jamest> :)
+<jamest> echo "jamest: jan" >> /etc/aliases
+<jcater> Mod_python is an Apache module that embeds the Python interpreter within the server. With mod_python you can write web-based applications in Python that will run many times faster than traditional CGI and will have access to advanced features such as ability to retain database connections and other data between hits and access to Apache internals. 
+<jamest> ooooo
+<jan> Even if java is the best direct binding, i didn't like the sound of it. I would prefer RPC or SOAP.
+<jamest> and gfclient is a python module
+<jamest> so if we can get it to work w/ jan's stuff
+<jamest> we are there
+<jan> great deal. because mod_php and mod_python can can use internal redirects....
+Maniac (~User@h24-82-132-209.wp.shawcable.net) joined #gnuenterprise.
+<jan> jamest: ok, just 5 mail per hour ;)
+<jamest> :)
+jbailey (jbailey@HSE-Toronto-ppp317575.sympatico.ca) left irc: "Client Exiting"
+Action: jan is doing: apt-get install libapache-mod-python
+<jcater> ooooooo
+<jcater> and he's a debian fellow too
+<jcater> can we keep him?
+<jamest> well
+<jamest> only if you feed him
+<jan> where are the donuts?
+<jamest> lol
+<jcater> <with a garbled voice>Donuts, what donuts?
+<jan> <with chaming voice> My donuts. The ones you want to send me. 
+<jcater> http://206.155.209.18
+<jan> great, but where is the donut with an "europe" sign below it?
+<jcater> http://www.everythingchange.com/menu.htm
+<jcater> dudes!
+<jcater> I'm in heaven
+<jcater> http://www.krispykreme.com/relationship/outsideemail.asp
+<jamest> that's just not right
+<jamest> there isn't a KK around here
+<jamest> so I don't know how good they could be
+<jcater> oooooo
+<jamest> but
+<jcater> jcater business idea!
+<jamest> an mailing list for krispy kreme activities in your area
+Maniac (User@h24-82-132-209.wp.shawcable.net) left irc: "Client Exiting"
+<jamest> um
+<jamest> on that demo
+<jamest> is the toolbar supposed to have returned?
+<jan> yep. But you can tell me what do you think is better.
+<jan> I will implement it. ( tomorow )
+<jamest> ok
+<jan> I should have a look on the navigator stuff. Does it defines which buttons should be shown and which not?
+<jamest> forms can't do that yet
+<jamest> we're working on it
+<jan> do you have an idea how to code it? Should it be defined in the gfd file? An special entity <option type=toolbar> <button prev on> button commit off.....
+<jamest> there is the start of a proposal on this in common/doc/Menus.txt
+<jamest> a small amount of code is in cvs
+Action: jan is having a look
+<jamest> and some i haven't checked in
+<jan> ok, i will use it to generate a simple menu structure. but should the <MENU....> entities be in the gfd or in the gpd file?
+<jamest> lol
+<jamest> that's subject to debate
+<jamest> i originally put them in the gfd file
+<jamest> i still think they belong there in some cases
+<jan> And. If there are gpd files, why dont use sub transactions for the gfds and transaction for a process in the gpd. Voila Wizard functionally for beginners.
+<jamest> um
+Action: jamest is pretty tired
+<jan> Ok. lets handel it like the row attribut in the block and the entry tag. 
+<jamest> but are you talking about transactions in the workflow?
+<jamest> so that a group of actions roll out at once
+<jamest> ?
+<jan> yep. me too.. ok, we will talk about that later.
+<jan> good nite.  eeh. good morning.
+<jamest> :)
+<jan> CU
+<jamest> l8r
+Action: jan is dreaming about gnue-forms 1.0
+<jcater> sounds like a nightmare to me
+jan (jan@dial-194-8-196-20.netcologne.de) left #gnuenterprise.
+<dnWork> sigh looks like i missed a lot
+Nick change: dnWork -> derek
+<derek> no one home?
+<jamest> home
+<jcater> howdy
+<derek> wow two criminals same time
+<jamest> no bother to read the logs
+<derek> er i mean good people are here
+<derek> dont bother?
+<jamest> we blamed everything on you
+<derek> that good huh
+<jcater> yeah
+<jcater> btw, how dare you cause the enron collapse
+<derek> rofl
+<derek> looks like more phpForms talk
+<derek> which ires me to no end, but hey i suppose it has to happen at some point
+<jamest> trying to merge into core
+cnrd-away (conrad@dial-ctb023.webone.com.au) got netsplit.
+Action: derek cringes
+cnrd-away (~conrad@dial-ctb023.webone.com.au) returned to #gnuenterprise.
+<jamest> so that the python forms core and common can be used
+<derek> im not real fond of changing forms so that it works with 'php'
+<jcater> eh?
+Action: jcater doesn't recall that being discussed
+<derek> btw: there is still lots of room in navigator
+<derek> but i consider it both useful and official
+<derek> btw: jamest you say you've seen jan has been playing with blocks
+<derek> where are you seeing this?
+<derek> as i dont see commits?
+<jamest> he doesn't have cvs commit
+<jamest> his web client supports blocks
+<derek> then how are you seeing what he is changing?
+<jcater> he isn't changing our codebase
+<derek> also WHY php?
+<jamest> because 
+<jamest> 1) it's what he knows
+<derek> i mean from the log it sounds like he is reimplementing all of common
+<jamest> 2) he's willing to work on it
+<derek> which seems silly
+<jamest> 3) he's open to merging into the python code
+<derek> in the same amount of time he could probably learn one of the python embeded deals
+<jamest> if you read the logs he's installing mod_python tonight
+<derek> read my thing isnt: php sucks dont use it
+<derek> my thing is: 75% of the crap is reusable if you use something in python :)
+<jamest> um
+<jamest> that was what we were talking about
+<jamest> ways to reuse what we have
+<jamest> he's downloading mod_python
+<jamest> i don't see the problem
+<jamest> as he's willing to work with us
+<jamest> and he doesn't want to reimplement everything
+<jamest> at least that's the impression I'm gettig from him
+<jamest> the cool thing is
+<jamest> if this works 
+<jamest> someone will be able to take the lessons learned
+<jamest> and write a UIhtml.py for the main system
+<jamest> but until someone has time to work on it
+<jamest> and I'm pretty sure i don't
+<jamest> nothing would be getting done
+<jamest> what was demo'd tonight was nothing short of breathtaking
+<jamest> i have forms in html that took forever to create
+<jamest> as it sits today
+<derek> nevermind dont have time to argue my points
+<jamest> i got a mail from a gfd form running on his client
+<derek> huh?
+<jamest> his client saves data
+<jamest> as part of our discussoin
+<jamest> he whipped up a forms to email interface
+<jamest> this thing as it sits today 
+<derek> im not saying its bad
+<jamest> partially implemented blows away every html forms package I've seen
+<jamest> as I can create my forms in designer now
+<derek> im saying better if used common
+<derek> personally i suppose i dont really care as for most part i think web as client licks bag :)
+<jamest> i do to
+<derek> and with ssh tunneling, i get better performance and more functionality
+<jamest> however for single form input
+<jamest> i still need that
+<derek> but some people like this type of thing so its good
+alexey (alex@techkran.vladimir.ru) joined #gnuenterprise.
+<jamest> no, this does more
+<jamest> his client is a forms client
+<derek> yes, who said it wasnt?
+<jamest> but I'd suggested it may be nice to make a form of type stepthru
+<jamest> like we have tabbed
+<derek> it has uses
+<jamest> yes
+<jamest> ive got a few forms at work
+<jamest> that took my student days to layout
+<jamest> designer could do it in minutes
+<derek> i guess im just not overtly running around excited as jade and i had functionality surpassing this pre our gnue days
+<derek> all in php and a bit faster
+<derek> just we quickly came to conculsion web apps suck :)
+<derek> for some stuff best thing since sliced bread for real apps, sucky :)
+<derek> i.e. we have a full featured time and attendence piece all in php
+<derek> it does well
+<derek> but i cant imagine supply chain in it
+<jamest> i'm not talking about putting everything in it
+<jamest> i wouldn't have as many hours in forms if i was wanting pure web interface
+alexey (alex@techkran.vladimir.ru) left irc: Client Quit
+alexey (alex@ns.techkran.vladimir.ru) joined #gnuenterprise.
+<dtm> somebody here has administrated Staroffice before in a multiuser environment, right/
+<dtm> ?
+<jamest> yes
+<derek> a competitor
+<derek> http://www.accelio.com/
+<jcater> sigh
+<jcater> konq does not like that site
+<derek> yikes that site is marketing hell
+<derek> lots of babble about greatness with a link
+<derek> that basically just rewords prior page buzzwords
+<jcater> that's not a Free competitor, though
+<jcater> right?
+<derek> no
+<derek> but i see it as market share we have to gain
+<derek> i.e. 
+<derek> oracle forms
+<derek> jet forms
+<derek> and 
+<derek> similar prop products
+<derek> are who we can target to 'replace'
+<jcater> yes
+<derek> so its nice to 'understand' how they work
+<derek> so we can 'compare' ourselves to them when people ask
+<derek> i use prop product X but i dont want to upgrade anymore, can gnue help me?
+<jamest> i didn't think jetforms was close to us
+<jamest> i thought it was about electronic paper forms
+Action: jcater has yet to see what the fsck jetforms is
+<derek> it is, to a large degree
+<derek> BUT i think gnue will do that
+<jcater> I've seen nothing but marketing so far
+<jamest> where a form was an instance of a paper form
+<jamest> with a digital signature
+<derek> i.e. if we make 'capture' product that is a normal gnue form
+<derek> but then make reporter do 'mail' merge type 'presentation'
+<derek> which we already have a base for
+<derek> we could probably compete in the market
+<derek> jcater did you find a fix to that unicode issue?
+Action: derek is debating on compiling older python as its kind of pain in ass to resave forms :)
+<jcater> um
+<jcater> I'm not entirely sure we can work around it
+<jcater> I would highly recommend downgrading to 2.1.2
+<derek> yeah
+<jcater> I've used 2.1.1 for quite some time
+<derek> its just a toss up, i hate to put ANY more time into this machine
+<jcater> and 2.1.2 fixed some bugs I've never come across :)
+<derek> as i desperately want to wipe it
+<jcater> well
+<jcater> what's the holdup?
+<derek> i dont have any other machine
+<derek> and i cant be w/o a machine (read i dont trust things going 'smoothly'
+<derek> the original plan was to get debian all solid on my desktop pc
+<derek> and get all functionality working there
+<derek> so not using laptop anymore
+<derek> then know its safe to toast laptop and put debian on it
+<derek> i was about 3 applications short of things on desktop pc
+<derek> when the mother board went south
+<derek> hell i even had gnucash 1.6 working on it :)O
+Action: derek scared them all off
+<derek> i want to write a gnue app
+<derek> what shoudl i write?
+<derek> that has a chance of being used but isnt so complex that it wont see fruit for years?
+Linux (under@as10-91.qualitynet.net) joined #gnuenterprise.
+<derek> Linux: careful if chilly comes around he will bug you to change your nick
+<derek> to gnu/linux ;)
+<Linux> <derek> whay this my Nick Old
+Linux (under@as10-91.qualitynet.net) left irc: "Leaving"
+chillywilly (~danielb@d19.as28.nwbl0.wi.voyager.net) joined #gnuenterprise.
+<chillywilly> sup dawgs
+Action: chillywilly compiles kernel 2.5.4 ;)
+<jcater> yo
+<jcater> I installed that pre-emptive patch this morning
+<jcater> seems to work well
+<jcater> X seems to respond better
+<chillywilly> I couldn't get my kernel to compile
+<chillywilly> ;I was having issues with sgi's cvs
+<chillywilly> I think
+<chillywilly> notice any improvement?
+<jcater> yeah
+<chillywilly> cool
+<jcater> responsiveness is better
+<jamest> l8r
+<jcater> nite
+<chillywilly> nice
+jamest (jamest@fh-dialup-201091.flinthills.com) left irc: "[x]chat"
+<chillywilly> now I have to get it working
+<jcater> um
+<jcater> I thougth I read on their patch
+<jcater> that it's included in main tree as of 2.5.4
+<chillywilly> 2.5.4 has the preemption stuff
+<chillywilly> yep
+<chillywilly> but does it have xfs
+<chillywilly> I need that
+<jcater> dunno
+Action: chillywilly has to check that out
+<chillywilly> actually I could try and clean up the sgi tree and reapply those patches
+<chillywilly> but I said, eh what the hell lets go for 2.5.x
+<chillywilly> live dangerously or something ;)
+<chillywilly> no xfs in 2.5.x though :(
+<chillywilly> they need to get their act together so they can get into the main tree
+<jcater> yeah
+<jcater> as reiser and ext3 are already there
+<jcater> they better get on the ball if
+<jcater> they want mainstream support
+<chillywilly> well, what I heard is that they do not interface correctly with the kernel but have some hacks in there
+<chillywilly> they don't use the VFS layer
+<jcater> I was hoping the patch would help w/my disk access + X issues
+<jcater> it helped a teenie bit
+<chillywilly> did it?
+<chillywilly> ok
+<jcater> I'm still confused about that
+<jcater> I had a K6/400 Mhz + my current hard drive
+--- Thu Feb 14 2002

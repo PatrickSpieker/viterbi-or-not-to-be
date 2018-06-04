@@ -1,0 +1,1238 @@
+meow- (~meow@212.199.197.123) left irc: Read error: 104 (Connection reset by peer)
+meow- (~meow@212.199.197.221) joined #gnuenterprise.
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+Gedanken (~schatten@dv101s49.lawrence.ks.us) joined #gnuenterprise.
+dres_ (~dres@mail.lewismoss.org) joined #gnuenterprise.
+dres (~dres@mail.lewismoss.org) left irc: Read error: 104 (Connection reset by peer)
+<psu> heh
+<psu> thought Derek would be up
+<psu> for the match
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise.
+Gedanken (~schatten@dv101s49.lawrence.ks.us) left irc: Remote closed the connection
+robbie (~I@dg-5-p32.winshop.com.au) left irc: Read error: 113 (No route to host)
+<dneighbo> damn where is psu
+<dneighbo> USA kicking ass!!!!!!
+<dneighbo> early goal 
+<dneighbo> and just blocked a penalty kick!!!!!
+Action: dneighbo is not going to be able to sleep tonight :)
+Nick change: Grantbow -> Beutelgeuse
+Nick change: Beutelgeuse -> Grantbow
+ariel_ (~ariel@ppp-217-133-245-161.dialup.tiscali.it) joined #gnuenterprise.
+alexey_ (~Alexey@195.151.214.33) left irc: "[x]chat"
+pattieja (~pattieja@sc2-24.217.184.48.charter-stl.com) left irc: Read error: 113 (No route to host)
+<dneighbo> grrr 
+Action: dneighbo hates bruce arena, butthead tried to sit on a goal in hopes it would hatch
+<dneighbo> at least we got one point :(
+<dneighbo> as we were definitely out played
+<dneighbo> nightie night
+mgedmin (~mg@bit.codeworks.lt) joined #gnuenterprise.
+Action: dneighbo is away: bed
+<dneighbo> hi mgedmin
+<mgedmin> hi
+<dneighbo> you work for m?
+<mgedmin> yes
+<dneighbo> you guys get things installed?
+<mgedmin> what kinds of things?
+<dneighbo> GNUe
+<mgedmin> we built debs for gnue common, forms and designer 0.3
+<dneighbo> cool
+<dneighbo> i think 3 other people were working on them as well
+Action: dneighbo didnt know that was something you all were looking at 
+<dneighbo> if you post them and source others can help polish up
+<mgedmin> i should probably put the changes we made somewhere
+<mgedmin> one moment
+<dneighbo> and we can give them to our debian maintainer so you can see them in sid(unstable)
+<dneighbo> its late here 1:34 i was just getting ready to go to bed, but noticed the .lt domain
+<dneighbo> did you have any questions before i run off?
+<mgedmin> actually, yes
+<mgedmin> I wonder if someone's working on problems with PostgreSQL numeric types
+<dneighbo> what is the problem
+<mgedmin> (SQL errors like "operator = not defined for numeric and double")
+<mgedmin> (when trying to update a record containing a numeric field)
+<dneighbo> do you have a sample form?
+<mgedmin> I think I saw a message somewhere in the mailing list archives (can't remember exactly)
+<dneighbo> and what postgres driver are you using
+<mgedmin> psycopg
+<mgedmin> actually the form you sent m as an example has this problem as well
+Action: dneighbo always hates that half the time its our fault and half the time its bum db driver :)
+<mgedmin> what postgres driver were you using?
+<dneighbo> psycopg
+<dneighbo> can you tell me what field in the form i sent you has the problem?
+<mgedmin> if you try to update a field in the employee table, postgres complains
+<mgedmin> Unable to identify an operator '=' for
+<mgedmin> types 'numeric' and 'double precision'
+<dneighbo> ok in the form i sent m?
+<mgedmin> basically postgres wants explicit typecasts in statements like
+<mgedmin> UPDATE employee SET foo=bar WHERE numericfield=123.4::numeric
+<mgedmin> we also found that using
+<mgedmin> UPDATE employee SET foo=bar WHERE numericfield='123.4'
+<mgedmin> works too, but I'm not sure that's portable enough across databases
+<dneighbo> you have lost me now
+<mgedmin> okay
+<dneighbo> please we must start at the problem, not what we think the answer is
+<mgedmin> I run gnue-forms codeworks.gfd
+<mgedmin> select a department that has employees
+<mgedmin> change the title field
+<mgedmin> click  "save all"
+<mgedmin> and I get an error message at that point
+<mgedmin> postgresql 7.2, psycopg 1.0.8
+<dneighbo> ok give me like three minutes
+<dneighbo> to update cvs and create the sample db and such 
+<dneighbo> and i will get you an answer
+<dneighbo> ok error is recreated here
+<dneighbo> are you using cvs?
+<dneighbo> or the official release?
+Action: dneighbo thinks someone has introduced a bug in cvs OR the pyscopg driver in sid has been changed
+<dneighbo> as when i ran this form before sending to m this problem didnt exist
+Action: dneighbo is investigating
+<dneighbo> btw: it appears the problem is AND department='1'
+<dneighbo> i.e. department on the employee table should not have '' around its value
+<mgedmin> hm
+<mgedmin> currently I'm looking at the error message produced by 0.3.0
+<mgedmin> but afair the same happened with cvs version on saturday
+<mgedmin> the error message here reads
+<mgedmin> ERROR: Unable to identify an operator '=' for types 'numeric' and 'double precision'\n  You will have to retype this query using an epxlicit cast
+<mgedmin> Retrying the same SQL in psql results in the same error
+<mgedmin> using
+<dneighbo> correct same error i get
+<dneighbo> but look at the query
+<dneighbo> the last part will say
+<dneighbo> AND department='somenumber'
+<mgedmin> yes
+<dneighbo> if you take that query and remove the '' around somenumber afer deptarment= i bet the query works
+<dneighbo> in postgres
+<mgedmin> don't think so
+<mgedmin> quite the opposite
+<dneighbo> it appeasrs someone has foobared the driver
+<mgedmin> if we add '' around salary it starts working
+<mgedmin> i'll doublecheck in a second
+<mgedmin> yep, salary='400.4' works
+<mgedmin> salary=400.4::numeric(9,3) works too
+<mgedmin> plain salary=400.4 doesn't
+<dneighbo> hmmm
+<dneighbo> something has changed here
+<mgedmin> it's a PostgreSQL issue I think
+Action: dneighbo cant get to work box from here but im 1000% positive this worked when i sent m the form
+<dneighbo> and that was with our 0.3.0 release
+<mgedmin> yes
+Action: dneighbo has old postgres box here you have a minute
+<dneighbo> i can try on it
+<mgedmin> I've got all day
+<mgedmin> it's morning here ;)
+<dneighbo> its morning here too, EARLY morning :)
+Action: dneighbo impatiently waits for laptop to boot
+derek (~derek@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<derek> hahah now there is two of me
+#gnuenterprise: mode change '+o derek' by ChanServ!ChanServ@services.
+btami (~tamas@ip102-205.ktv.tiszanet.hu) joined #gnuenterprise.
+<mgedmin> I'm looking at a PostgreSQL book atm
+<btami> hello
+Action: derek is waiting for cvs to update on the laptop
+<derek> hi btami
+<btami> hi derek
+<mgedmin> hello
+<mgedmin> looks like PostgreSQL wants a typecast when it sees a numeric type in the WHERE part
+<derek> grrrr
+<derek> i get this on older box too
+<derek> cvs
+<derek> i swear this worked at the office
+Action: derek goes to look at something
+<mgedmin> it works fine when you try to add new records
+<mgedmin> it fails when you try to update them
+<mgedmin> or perform a query (no error messages, but no results either in that case)
+<derek> maybe i didnt try to update one
+<derek> i coudl swear i changed a salary though to test
+<mgedmin> we found a workaround
+<mgedmin> in DBSIG_DataObject._toSqlString
+<mgedmin> replacing
+<mgedmin>       elif type(value) == types.FloatType:
+<mgedmin>         return str(value)
+<mgedmin> with
+<mgedmin>       elif type(value) == types.FloatType:
+<mgedmin>         return "'%s'" % str(value)
+<mgedmin> seems to help
+<derek> thats where im looking now :)
+<derek> BUT
+<derek> how does that affect otehr db's
+<mgedmin> I don't like that though
+<derek> i.e. if it chokes other db's it needs to be in the postgres driver
+<derek> and not DBSIG
+<mgedmin> the Correct(TM) way according to PostgreSQL would be to return "'%s'::numeric(foo,bar)", where foo/bar depend on the schema
+<mgedmin> oops
+<mgedmin> s/'%s'::/%s::/
+<mgedmin> although using just ::numeric seems to work fine too
+<mgedmin> (for numeric fields -- didn't test with floats etc)
+<mgedmin>  
+<mgedmin> basically we do not need a solution right now, I just wanted to check if this problem was known
+<derek> please submit this as a bug to common-support@gnuenterprise.org go ahead and attach your 'patch' (although its not good long term solution) and cc: info@gnue.org
+<derek> i.e. this was not known problem
+<mgedmin> okay
+<derek> we should be able to produce a patch in the morning (your afternoon)
+<mgedmin> I still don't feel comfortable with GNUe (ie don't know all the correct places to report problems etc)
+<derek> i.e. official patch
+<derek> worse case we put in the return "'%s'" until we can find a more elegant answer
+<derek> btw: here is what broke it
+<derek> http://subversions.gnu.org/cgi-bin/cvsweb/gnue/common/src/dbdrivers/_dbsig/DBdriver.py.diff?r1=1.48&r2=1.49&f=h
+<derek>    elif type(value) == types.FloatType:           return str(value) was added 10 days ago
+<derek> my box at work has cvs from more than 10 days probably not the 0.3.0 release so i bet it was working there
+Action: derek really was starting to think i was nuts
+<derek> it looks like jason was trying to fix an integer problem
+<derek> i wonder if there is a types.IntType
+<derek> or something
+Action: derek wonders if you change salary to INT
+<derek> if you have the same issue
+<mgedmin> i want to experiment a bit with ints and floats before submitting a bug report
+<derek> ok
+<derek> ints work fine
+<derek> change salary from numeric to int
+<derek> in the .sql file
+<derek> and rerun it and form works fine
+<derek> so jcater hit an int and it blew up so he removed quotes
+<derek> which fried the float
+<derek> er numeric type
+<derek> so need to find docs to see about types.XXXX
+<mgedmin> there should be IntType and also LongType IIRC
+<derek> to see if way we can isolate better to int instead of all number types
+<mgedmin> BTW PostgreSQL accepts queries like "salary <> 100" but barfs on "salary <> 100.0"
+<derek> yeah
+<derek> i think it has to do with the .
+Yurik (~yrashk@gw.telcos.net.ua) joined #gnuenterprise.
+<derek> mgedmin: there are a few things happening here that i can see that are issues
+<derek> best to address in the morning
+<derek> example: when i turn the db field to int
+<derek> the form appends a .0 to it
+<derek> that causes issue
+<derek> which i think is really the problem
+<derek> i.e. jcater introduced a patch that says 'fixes integers'
+<derek> i assume he had to do thsi because he was using forms type 'number' 
+<derek> and it was appending the .0
+<derek> which was hosing up integers
+<derek> or somethign
+<mgedmin> multiply that by # of different DBMSes, and different data types...
+<mgedmin> yep this doesn't look like a trivial problem
+<derek> i dont think its too bad really
+<derek> i think its the UI entry widget that is causing the issue honestly
+<mgedmin> the value has to be used in an SQL statement somewhere
+<derek> mgedmin: let me explain what im seeing
+<derek> in the form the entry is defined number
+<derek> so regardless of if the db is int or float
+<derek> its appending a .0 (if no decimal is defined)
+<derek> the type(value)
+<derek> isnt checking the DB field type
+<derek> its checking the string contents
+<mgedmin> OTOH the choice between 1.5, '1.5', 1.5::numeric depends on the DB/schema, not on UI
+<derek> so that field will ALWAYS be float regardless of whether its int or not
+<derek> we need to fix that
+<derek> because if we fix that its a trivial problem
+<derek> as you can if if type(value) == type.IntType or such do X
+<derek> the way we have this implemented you simply put the most COMMON instance in dbsig
+<derek> and anyone who isnt 'standard' you override in their driver
+<derek> so i dont think the different db's doing different ways is that big a deal
+<derek> its getting a way to define what the hell you actually are getting that has to be done :)
+<derek> i hope that made sense
+Action: derek really needs to go to bed its 03:00 and i have to be to work by 09:00
+<derek> i will be back around then if you are still around send issue to email addresses i mentioned
+<derek> and tell them to reference irc log as well
+<derek> see you in the morning
+Action: derek is away: sleep
+<mgedmin> see you
+<mgedmin> sorry for keeping you up
+alga (~alga@bit.codeworks.lt) joined #gnuenterprise.
+<alga> morning
+<alga> ;-)
+<alga> I've a conceptual problem
+<alga> we're trying to do XP 
+<alga> that involves unit testing and functional testing of all the code written
+<alga> the question is:  how do we test forms?
+<alga> what to test in them?
+meow-_ (~meow@212.199.198.11) joined #gnuenterprise.
+<btami> hi alga
+<btami> i think this is not a trivial task
+<alga> yep
+<btami> so try ask jcater/jamest later
+<alga> OK
+Nick change: meow-_ -> Luminion
+Luminion (~meow@212.199.198.11) left irc: Client Quit
+<btami> i think unit testing require exact developer docs 
+<btami> and this is not ready yet :)
+meow- (~meow@212.199.197.221) left irc: Read error: 110 (Connection timed out)
+<alga> we're ok with becoming gnue developers...
+<alga> i've an impression, you have to be a gnue developer in order to do anything really useful with gnue
+<btami> agree, but notice GNUe has only ver 0.3
+<ra3vat> hello all
+<mgedmin> hi
+<mgedmin> if someone is interested in Debian packages of GNUe common/forms/designer 0.3.0, I've made diffs available at http://www.codeworks.lt/~mg/gnue/
+<ra3vat> btami: but as I know tests in XP defined not upon developer's doc they should be defined on all steps of improving the code
+<ra3vat> and the questions more how to use test packages (like pyunit?) with forms 
+<btami> sorry, but i don't know to much about these 
+<btami> just reading diveintopython yet
+<esands> nickr and jbailey are the main guys working on the debs at the moment,  
+<esands> they are doing some things to try and make the install mechanism more generic
+<alga> ra3vat: pyunit is easily deployed, the problem is how to programmatically call/control the forms
+<alga> we had an idea to write a special UI driver for that purpose, but later we dropped that
+<alga> after all, we can always use the API the UI drivers use themselves
+<mgedmin> actually, we with alga are still trying to decide what does it mean to 'test a form'
+<mgedmin> ;)
+<ra3vat> alga: ok, not tried it myself yet
+<ra3vat> mgedmin: after testing some internals it should also simulate user interaction, is not it?
+<ra3vat> mgedmin: do you also do a pair programming?
+<mgedmin> yes
+Action: mgedmin is away: lunchtime
+Action: btami is away: lunch
+<alga> pair programming is the fun part :-)
+<ra3vat> alga: really? glad to hear that. Is it 100% mandatory thing for XP?
+btami (~tamas@ip102-205.ktv.tiszanet.hu) left irc: Remote closed the connection
+Yurik (~yrashk@gw.telcos.net.ua) left irc: Read error: 104 (Connection reset by peer)
+Yurik (~yrashk@gw.telcos.net.ua) joined #gnuenterprise.
+<alga> ra3vat: it is
+ToyMan (~stuq@65.167.123.51) joined #gnuenterprise.
+Action: mgedmin is back (gone 01:29:28)
+btami (~tamas@ip102-205.ktv.tiszanet.hu) joined #gnuenterprise.
+btami (~tamas@ip102-205.ktv.tiszanet.hu) left irc: "Client Exiting"
+siesel (jan@dial-213-168-95-86.netcologne.de) joined #gnuenterprise.
+<siesel> hello
+<mgedmin> hi
+SachaS (~Sacha@dialup-196-110.wasp.net.au) joined #gnuenterprise.
+Action: Yurik is away: left
+neilt (~neilt@66.95.5.110) joined #gnuenterprise.
+#gnuenterprise: mode change '+o neilt' by ChanServ!ChanServ@services.
+mgedmin (~mg@bit.codeworks.lt) left irc: "Client Exiting"
+mgedmin (mg@bit.codeworks.lt) joined #gnuenterprise.
+siesel (jan@dial-213-168-95-86.netcologne.de) left irc: "http://www.blackened.com/blackened/"
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+Arturas (arturas@bit.codeworks.lt) joined #gnuenterprise.
+<Arturas> Hello
+<mgedmin> hi
+<ra3vat> hello
+Gedanken (~schatten@typhon.eecs.ku.edu) joined #gnuenterprise.
+<derek> does XP mean XP (like windows or cross platform or extreme programming)?
+<derek> re: other items, one should be able to do useful things with gnue w/o being a GNUe developer
+<derek> BUT
+<derek> i think they need to be a developer of some level to do something
+<derek> i.e. they shouldnt have to be a GNUe tool developer, but they should have application development experience
+<derek> re: testing
+<derek> currently i have like 3 forms i use to 'test' things
+<derek> as i find forms that 'break' things
+<derek> i try to shovel them into my 'test' suite
+<derek> i want to look at unit tester
+<derek> that will test functions of GNUe w/o actually running forms
+<derek> at some point we will need to build or find a free test suite to automate testing
+<derek> at this point its burden of effort issue
+<derek> i.e. not enough man hours
+<ra3vat> extreme programming i think
+<derek> as more people start to bring GNUe into production the more important test suite will come
+<alga> true
+<derek> has jcater come in yet?
+<alga> derek, does it pay to test if the form can be loaded at all?
+<alga> i mean, do forms often break on load?
+<dneighbo> um yes an no
+<dneighbo> as stated before a release i generally run about 5 or 10 different forms
+<ra3vat> automate tests are what XP starts from 
+<dneighbo> one is just simple no data form, with complex trigger
+<jcater> dneighbo / dere: here
+<dneighbo> jcater: can you read log
+<dneighbo> re: db problem
+<jcater> somewhat at least
+<jcater> yeah, read it
+<jcater> jamest just identified it
+<jcater> it really p*sses me off that PostgreSQL 7.x can't handle implicit numeric conversions
+<jcater> I mean, that's just down right backwards
+<dneighbo> jcater: NO KIDDING
+<Gedanken> erhm?
+<jcater> something I'd expect from MySQL or something
+<dneighbo> i about died when mgedmin
+<Gedanken> What do you mean by implicit numeric conversions?
+<alga> Gedanken: 1 > 2.0 breaks it
+<alga> different types
+Action: jcater *somewhat* understands int to double breaking it
+<dneighbo> jcater: i started a patch, but i think the entry is causing issues as it makes the value FLOAT no matter what
+<jcater> but one floating point to another floating point?
+<Gedanken> alga: interesting, I have never experienced that
+<jcater> dneighbo: yes, python "floats" are used for all our internal number storage
+<dneighbo> other wise you could just use the type(value) == type.FloatType
+<dneighbo> trick
+<mgedmin> BTW I filed a bug report -- see ticket #54
+<jcater> mgedmin: yeah, that was forwarded to me
+<dneighbo> well let me rephrase that, postgres is the broken one here :)
+<jcater> we originally had it always as strings
+<jcater> i.e., "1.0"
+<alga> Gedanken: no it doesn't
+<Gedanken> no it doesn't what?
+<alga> Gedanken: redev=> select 1 < 2.0;
+<jcater> but that broke some databases
+<alga> it works
+<Gedanken> ah
+<Gedanken> So what does break now?
+<mgedmin> select 1::numeric < 2.0; breaks
+<mgedmin> in realistic situations, "select foo from bar where baz = 1.0;" breaks when baz is of type numeric
+<Gedanken> something about that bothers me and I think it is more of the SQL then anything
+<Gedanken> At any rate, adding an operator shouldn't be too hard
+<jcater> well, 
+<jcater> adding an operator *may* not be too hard'
+<jcater> it we have to do full-on introspection at form load time, that 
+<jcater> could be a big performance hit
+<Gedanken> I am talking about adding an operator to postgresql
+<jcater> oh
+Action: mgedmin too would like to hear something from postgresql side -- what is the purpose of this 'feature'
+<Gedanken> the postgresql guys are pretty responsive, but Tom can be a dick some times
+Action: dneighbo hopes this is a postgres bug, but doubts it
+<dneighbo> as i have postgres 6.5.x here and it does same thing
+<jcater> frankly, my opinion of PostgreSQL just took a dive southwards
+<jcater> as any "reason" they can provide is a technical one that *should* be hidden from SQL users
+Action: jcater is sure there is a "reason" behind it
+<dneighbo> to me it makes NO sense either
+<mgedmin> BTW, AFAICU forms currently perform the updates by constructing an SQL statement and listing *all* fields in WHERE clause.  Is there a way to use only the primary key instead?
+<jcater> yeah, that's something we need to look at
+<jcater> if updating a queried record (and not inserting a new record and then updating it in same session), then the 
+<jcater> database's "row id" is used
+<jcater> IF the database supports such a thing
+<jcater> (I know Oracle's does)
+aditya_gilra (~aditya@61.0.108.254) joined #gnuenterprise.
+<dneighbo> now what database wouldnt havve an oid?
+<dneighbo> or uid?
+<jcater> well
+<dneighbo> ;)
+<jcater> PostgreSQL 7.2
+<dneighbo> ?
+<dneighbo> it used to have oid?
+<jcater> from 7.2 and beyond, oid's are optional
+<dneighbo> you saying they removed that
+<jcater> they made it optional
+<dneighbo> sigh
+<jcater> there's no guarantee any more
+<dneighbo> guess people do stupid things to 'compete'
+<Gedanken> nah, it is perfectly resonable
+<jcater> there's a slight performance improvement, iirc
+<Gedanken> not all tables need OIDS ..
+<jcater> BUT
+<jcater> err, nevermind
+<jcater> I won't go there
+<Gedanken> OID wrap around anyone?
+<jcater> ?
+<dneighbo> i guess i cant think of a good reason to not have an OID
+<Gedanken> the issue was that OIDs could wrap around and thus not be unique
+<dneighbo> true every table might not need one
+<dneighbo> BUT
+<Gedanken> which kinda invalidates that whole OID thing
+<dneighbo> thast like saying i might not ever need a spare tire so why bog my car down with the extra weight
+<Gedanken> of course this was for databases of a really really large size, but ... it exists
+<derek> so we have a fix in the works for htis
+<derek> if so what ? (me is curious) to the approach
+<Gedanken> I could see why a implicit conversion between type numeric and type float doesn't exist
+<Gedanken> er ... non-implicit
+<aditya_gilra> God Remembrance
+<aditya_gilra> Soory to interrrupt
+<derek> well way i look at it, it doesnt matter much
+<Gedanken> the numeric type is quite a bit different then float ... too much just to allow transient coversions
+<derek> postgres is a db people will be using, we need to support their quirks whether we agree or disagree with them
+<aditya_gilra> from India
+<aditya_gilra> we're developing a production system
+<aditya_gilra> few queries
+<aditya_gilra> can i ask?
+<jcater> Gedanken: my only issue with that is other major databases do it implicitly
+<jcater> aditya_gilra: sure
+<jcater> Gedanken: BECAUSE it's a technical detail that the average user of SQL shouldn't be concerned with
+<jcater> but it's a moot argument
+<Gedanken> jcater: I can understand that, but I would to see their definition of the SQL types
+<jcater> because the PostgreSQL has already decided to implement it that way :(
+<jcater> so we must support it :(
+<aditya_gilra> we're trying to change the list of values in a dropdown entry from a trigger
+<Gedanken> jcater: well yes at this point in time you have two options: 1) work around it using implicit casts or 2) write the operators and submit it for inclusion to the postgresql team
+<aditya_gilra> we're able to update a datasource from a trigger 
+<aditya_gilra> the block attached to that datasource updates itself
+<aditya_gilra> BUT, a dropdown entry attached to a datasource does not update itself if
+<aditya_gilra> we change the datasource via trigger eg. form.dtsAUTHOR_COMBO.createResultSet({"author_en":"Swamiji"})
+<derek> aditya_gilra: correct, this is known issue
+Action: derek needs to file a bug for it (i might have already)
+<derek> oh wait you might be having different issue than what im thining
+<derek> thinking
+<derek> jcater: what if we made forms more descriptive?
+<derek> i.e. what if instead of 'numeric' for type cast we had
+<derek> 'float' (or double or whatever you want to label it)
+<derek> and
+<derek> 'integer'
+<derek> instead of just numeric?
+<jcater> derek: I was trying ****really**** hard to avoid that
+<jcater> as it goes into support issues I didn't want to deal with
+<aditya_gilra> here's a small sample of the form I'm having problems with
+<derek> jcater: im not saying i like it
+<derek> but only way im seeing it other than is db introspection
+<aditya_gilra>     <block datasource="dtsbook" name="blkBOOK">
+<aditya_gilra>       <entry field="new_code" name="inpNewCode" width="10" x="20" y="1"/>
+<aditya_gilra>       <entry field="old_code" name="inpOldCode" width="10" x="20" y="2">
+<aditya_gilra>         <trigger type="Pre-FocusOut">
+<aditya_gilra>           print "Ram"
+<aditya_gilra>           resultSet = form.dtsAUTHOR_COMBO.createResultSet({"author_en":"Swamiji"})
+<aditya_gilra>           blkBOOK.inpAuthorTupleId = 1
+<aditya_gilra>           print "Krishna"
+<aditya_gilra>         </trigger>
+<aditya_gilra>       </entry>
+<aditya_gilra>       <entry field="title_hi" name="inpTitleHi" width="10" x="20" y="3"/>
+<aditya_gilra>       <entry field="title_en" name="inpTitleEn" width="10" x="20" y="4"/>
+<aditya_gilra>       <entry field="author_tuple_id" foreign_key="dtsAUTHOR_COMBO.tuple_id"
+<aditya_gilra>                foreign_key_description="author_en" name="inpAuthorTupleId" style="dropdown" width="10" x="20" y="5"/>
+<aditya_gilra>       <entry field="description_hi" name="inpDescriptionHi" width="10" x="20"
+<aditya_gilra>              y="6"/>
+<aditya_gilra>       <entry field="description_en" name="inpDescriptionEn" width="10" x="20"
+<aditya_gilra>              y="7"/>
+<aditya_gilra>       <entry field="language_tuple_id"
+<aditya_gilra>              foreign_key="dtsLANGUAGE_COMBO.tuple_id" foreign_key_description="language_en"
+<aditya_gilra>              name="inpLanguageTupleId" style="dropdown" width="10" x="20" y="8"/>
+<aditya_gilra>     </block>
+<derek> we dont have i18n working in forms yet do we?
+<derek> Arturas ?
+<derek> not in the .gfd part only in the tool right?
+<aditya_gilra> Please note the trigger in entry inpOldCode
+<aditya_gilra> It updates the form.dtsAUTHOR_COMBO datasource using a conditional
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: "Client Exiting"
+<aditya_gilra> Now note the dropdown entry inpAuthorTupleId which uses the datasource we updated in the trigger namely dtsAUTHOR_COMBO
+<aditya_gilra> However, the list in the dropdown entry doesn't get updated.
+<derek> you didnt call any method to do so
+<aditya_gilra> But if we have a block using the same datasource, it gets updated automatically
+<derek> well thats because the block code is calling the event to refresh
+Action: derek hasnt looked at this in a while, but i think you could instead do things via the block methods
+<derek> instead of datasource methods
+<aditya_gilra> Looking at the code, it seems to be registering itself with GFDataSource
+<derek> and then the refreshing etc is called automagically
+<derek> or if you call datasource directly then you have to call block refresh methods
+<aditya_gilra> Block registers with GFDataSource but dropdown entry doesn't register
+Action: derek still isnt a fan of block
+<Arturas> derek: sorry for delay; no modifications on the way forms work with data
+<Arturas> in i18n field
+<derek> but as we are starting to move forward with some other things i think i might see some value 
+<aditya_gilra> Basically we wan't a way to refresh the list in a dropdown
+SachaS (~Sacha@dialup-196-110.wasp.net.au) left irc: Connection timed out
+<derek> you say we....
+<derek> is there a mouse in your pocket ;) (sorry my mothers old expression)
+<aditya_gilra> Can you tell us how to do it?
+<derek> aditya_gilra: well currently part of the issue is this isnt supported even if you do NOT use triggers
+<derek> i.e. the dropdowns get loaded at start time only
+<derek> it is a problem for others as well, we have started to discuss best way to handle
+<derek> as we dont want them updating all the time as that could be a large penalty hit
+<derek> er s/penalty/performance penalty
+<aditya_gilra> We're  able to update the recordset of a datasource and the block connected to it
+<aditya_gilra> automatically updates because it's registered as a listener with GFDataSource
+<aditya_gilra> But dropdown does not register as a listener with GFDataSource even though it is attached to
+<derek> aditya_gilra: im talking contents of dropdown
+<aditya_gilra> a datasource.
+<derek> correct
+<derek> this is known 'bug' / 'feature request'
+<aditya_gilra> Maybe you caould tell us how to hack it to do the same?
+<derek> it was designed to act this way and now we know it needs to be different
+<aditya_gilra> could
+<derek> just the executive decision hasnt been made on how to make the change
+<derek> i.e. we dont want to change it so it ALWAYS updates
+<derek> as for most forms dropdowns are static 
+<derek> i.e. other things on the forms arent updating them
+<derek> so to have them requery all the time would be bad performance
+<aditya_gilra> two of us here - hence 'we'
+<derek> my suggestion was at the entry level (or datasource level) to add an attribute called refresh
+<derek> and if refresh is true then you refresh otherwise you dont
+<derek> others had idea of menu option to do it
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+<derek> i dont remember if a way was decided
+<derek> jamest was tackling the issue and he isnt in yet this morning
+<derek> jcater: have you any opinino on the matter
+Action: derek must run to work
+<aditya_gilra> there doesn't seem to be anyway to do it in the present code
+<derek> er drive to work
+<Arturas> hm, another short question - in docs is written that <block> can have master, detail attributes; however, as i try to run form with such blocks and attributes, i get error:
+<Arturas>  gnue.common.GParser.MarkupError: Error processing <block> tag [I do not recognize the "detail" attribute
+<derek> aditya_gilra: i believe you are correct
+<derek> Arturas: i think that stuff got moved to datasource
+<Arturas> old docs?
+<derek> yes i think so
+<Arturas> thank you
+yogurt2unge (~charlie@modem117-adsl.capfed2.sinectis.com.ar) joined #gnuenterprise.
+Action: derek hasnt tried to put detail/master in the block for some time so i cant say for certain
+<derek> but that would be my gut reaction
+<aditya_gilra> About i18n - we've made a few minor changes and forms works for Hindi in the data fields
+Action: derek is away: work
+<aditya_gilra> We've (two of us here, no mouse) also made a pygtk2 forms client
+<aditya_gilra> gtk2 has good i18n support
+<aditya_gilra> once the pygtk2 client is a bit more stable, we'll send it in
+<aditya_gilra> A second query
+<aditya_gilra> how to specify conditions either in the  datasource tag OR
+<aditya_gilra> in a trigger
+<aditya_gilra> I looked at a file called GFConditions.py but it seems a bit complicated
+<aditya_gilra> Any documentation on conditions
+dres_ (~dres@mail.lewismoss.org) left irc: Connection reset by peer
+dres__ (~dres@mail.lewismoss.org) joined #gnuenterprise.
+<aditya_gilra> ??
+bigbrother joined #gnuenterprise.
+[11:27] Last message repeated 1 time(s).
+[11:28] Last message repeated 1 time(s).
+#gnuenterprise: mode change '+n ' by card.openprojects.net
+bigbrother joined #gnuenterprise.
+dres__ (~dres@mail.lewismoss.org) joined #gnuenterprise.
+alexey_ (~alexey@195.151.214.34) left irc: Client Quit
+ra3vat (ds@ics.elcom.ru) joined #gnuenterprise.
+bigbrother joined #gnuenterprise.
+gnuebot (eggdrop@mail.libertydistribution.com) joined #gnuenterprise.
+ra3vat (ds@ics.elcom.ru) joined #gnuenterprise.
+dneighbo (~dneighbo@tmp-200253.flinthills.com) joined #gnuenterprise.
+mumpf (seb@modem-123.blue-mandarin.dialup.pol.co.uk) joined #gnuenterprise.
+<mumpf> anyone at home
+mumpf (seb@modem-123.blue-mandarin.dialup.pol.co.uk) left #gnuenterprise.
+<dneighbo> we lost everyone i wanted to talk to those guys about pygtk
+Chipaca (~john@modem117-adsl.capfed2.sinectis.com.ar) joined #gnuenterprise.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<nickr> hrm, I find it odd that theres no XML standard for Material Handling
+<Chipaca> what aspect of material handling?
+<nickr> theres this crazy data format called MHsomething
+<nickr> it suprises me that as such there is no way to encode it as XML instead
+<nickr> well until I wrote such a way
+#gnuenterprise: mode change '+o gnuebot' by ChanServ!ChanServ@services.
+#gnuenterprise: mode change '+t ' by gnuebot!eggdrop@mail.libertydistribution.com
+Gedanken (~schatten@typhon.eecs.ku.edu) joined #gnuenterprise.
+ToyMan (~stuq@65.167.123.51) joined #gnuenterprise.
+StyXman (~mdione@modem117-adsl.capfed2.sinectis.com.ar) joined #gnuenterprise.
+<StyXman> he-ello.
+dsmith (~dsmith@216.29.133.85) joined #gnuenterprise.
+yogurt2unge (~charlie@modem117-adsl.capfed2.sinectis.com.ar) joined #gnuenterprise.
+<Chipaca> I wonder where aprono is?
+Action: Chipaca wonders where siesel is, too
+<Chipaca> anyone here feel like giving me a hand with phpforms
+<Chipaca> ?
+Grantbow (~grantbow@12-233-20-180.client.attbi.com) joined #gnuenterprise.
+<StyXman> any uidriver guru here?
+Action: dneighbo claps wildly
+<StyXman> dneighbo: why?
+<dneighbo> Chipaca asked for a hand
+<StyXman> uh, he's not right here now.
+<nickr> hah hah
+<dneighbo> hey nickr 
+<dneighbo> you live
+Action: dneighbo was getting worried about you
+siesel (jan@dial-213-168-95-94.netcologne.de) joined #gnuenterprise.
+<siesel> Chipaca: here
+<siesel> hi all
+<Chipaca> siesel: hi
+aprono (~aprono@modem117-adsl.capfed2.sinectis.com.ar) joined #gnuenterprise.
+<Chipaca> siesel: you mentioned the other day that you could give me a hand with phpforms?
+<siesel> I will try
+<Chipaca> siesel: good enough for me :)
+<dneighbo> siesel doesnt know much about phpforms
+<Chipaca> dneighbo: that makes three of us
+jamest (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+<dneighbo> rofl
+<siesel> hi jamest
+Action: dneighbo digs in his box of tricks for those ankle chains
+<jamest> sigh
+<dneighbo> hmmm im only finding stockades
+<dneighbo> to hard to code like that 
+Action: dneighbo keeps digging
+<siesel> Chipaca: you've tried phpforms
+<siesel> ?
+<dneighbo> hmm seems i have a few 5 day old loafs of Chipaca
+<dneighbo> jamest if you try to escape im pelting you with them
+<Chipaca> siesel: I tried to try phpforms
+<Chipaca> siesel: actually, I started to try to try to try phpforms
+<jamest> :)
+<dneighbo> siesel since jamest is here.....
+<dneighbo> you have an account on ash?
+<siesel> yes.
+<dneighbo> if so can you setup an instance of php forms there?
+<StyXman> jamest: hi
+<dneighbo> i would like to set up a sample
+<dneighbo> of a few forms and from our webpage allow people to bang on it
+<siesel> there is one already, just abit old version.
+<StyXman> jamest: I'm planning the grid thing.
+<StyXman> jamest: I want you advice
+<siesel> i will updated it :)
+<dneighbo> cool then if you can email derek@gnue.org on how to use it or where a sample is etc that i can build from that woudl be great
+<StyXman> jamest: you still breathin', man?
+<jamest> barely
+<dneighbo> StyXman you trying to say i have his collar too tight?
+<jamest> i just logged in so people would know I'm alive
+<dneighbo> jamest were you briefed on teh postgres issue?
+<dneighbo> and if so you have any response to handle?
+<StyXman> jamest: ah, ok. then I'll try some hacks and then report anything I made work here, someday.
+<jamest> postgres issue?
+<jamest> no
+<jamest> and I don't think i'm behind on mail
+<jamest> (for once)
+<jcater> jamest: basically,   ERROR:  Unable to identify an operator '=' for types 'double precision' and 'numeric'
+<jcater> typecasting issues :(
+<jamest> :(((
+<jcater> see, I thought "psql" mean "Postgres + SQL"
+<jcater> now I'm seeing that it means "Piece of Sh*t Query Language"
+<jcater> as what other SQL implementation would require you to explicitly identify two numeric types to compare them
+<Chipaca> jcater: psql doesn't, afaik
+<jcater> Chipaca?
+<jcater> that's the issue
+<Chipaca> jcater: unless you're doing something way below sql
+<jcater> no, dude
+<Chipaca> jcater: let me check
+<jcater> we are doing "select ... where mynumericfield = 1.0"
+<jcater> it treats 1.0 as a double precision
+<jcater> and mynumericfield as numeric
+<jcater> and gives you that error
+<Chipaca> drat!
+Action: Chipaca hates it when he's wrong
+<jcater> Chipaca: you don't know how much I WISH you were right
+<jcater> :)
+<dneighbo> believe me at about 7am my time you had about 6 people wishing you were right
+<Chipaca> jcater: but it works with 'select * from thing where n>1'
+<dneighbo> yeah thats what is so darn evil
+<StyXman> jcater: can I ask you a question related to scrollbar?
+<jcater> um
+Action: jcater doesn't know too terribly much about scrollbar
+<jcater> don't use them
+Action: Chipaca looks at 'select * from test where cast(a as real) > 1.0;' and shudders
+<jcater> gah!
+<StyXman> jcater: no, scrolbars are empty, AFAIK. I want to know what you want from it.
+<jcater> I'm not sure
+<StyXman> I mean, what you intendit to do. I want to do a simple grid. but a much better grid.
+Action: Chipaca looks at 'select * from test where a > cast(1.0 as numeric);' and shudders some more
+<jcater> I haven't thought about them in a while
+<jcater> they'd have to be bound to a block somehow
+<StyXman> I'm looking wx's scrollbars for some info, but I don't know what should I do with it
+<StyXman> jcater: yes, I'm thinking in a kind of block, that could have any amount and kind of entry's
+<StyXman> you then say whow much rows want to sse at once, and the block should pass that info to its childre, i.e., the entry's
+<StyXman> brb. nature calls
+<dneighbo> that was jamest original intent iirc
+<dneighbo> was to allow scrollbar to bind to block
+<dneighbo> so when you did entry row="10"
+<dneighbo> and did a scroll bar of 10
+<dneighbo> it would act pretty much how a normal scroll bar does
+<siesel> Chipaca: you can try out the database demo of phpforms at http://www.gnuenterprise.org/~jan/phpforms/gnue-forms.php?c=demo2 if you want. But the database less mode still has some issues. I will look over it again.
+<StyXman> I'm back. jcater, you thought of something?
+<jcater> StyXman: you see dneighbo's comments?
+<dneighbo> siesel its ok, real mean dont do databaseless forms
+<StyXman> I want them functional today, and I intend to hack what's needed.
+<dneighbo> s/mean/men
+<jcater> other than that, I don't know what else you need
+<jamest> scrollbars where meant to tie to block as dneighbo said
+Action: dneighbo pinches self?
+<jamest> and simply do the next/prev records to make the blocks look nice
+<jamest> er
+<jamest> sorry
+<dneighbo> did jamest and jcater both agree with me ?
+<jamest> dneighbo doesn't know what he's talking about
+<jamest> it's all tha AZ crack, just ignore him
+<StyXman> well, I think then bound to blocks that will have entry's inside (as children).
+<jamest> feel better now dneighbo?
+<dneighbo> much
+<StyXman> the block is who says how much rows will be shown.
+<jcater> StyXman: yes
+<StyXman> ok, now. where to start? I'm rather lost here. gimme just a hint, and I'll explore it.
+<StyXman> again
+<jamest> hmmmm
+<StyXman> I'm looking wx's scrollbars for some info, but I don't know what should I do with it
+<jamest> they are completely empty
+<StyXman> yes
+<jamest> nothing there to see really
+<jcater> unfortunately, I really don't have time to think about scrollbars today 
+<jcater> :(
+<StyXman> not in uidrivers or GF.
+<StyXman> ack. then I'll try something from wx's info.
+<jamest> my quick and dirty scrollbars were going to do
+<jamest>   look at the block/datasource to get record count and based upon the rows (visible) set the size of the scroller
+<jamest>   then set the up/down of the scroolbar to only really do a next/prev record event
+<StyXman> jamest: yes, but GF is still too empty. should I start adding 'standar' behaviour?
+<jamest>   after each next/prev event have the scrollbar look at the top visible record and adjust the scroller position to be about right 
+<StyXman> ok, keep saying ideas. I'll start to see.
+<jamest> sure
+<jamest> as there is no std behaviour yet :)
+<jamest> so it's a clean slate to work with
+<StyXman> ok, I'll hack a little and comment about progress.
+<jamest> just make sure dneighbo doesn't like it and you'll be good to go
+<jamest> whoops, i shouldn't have publicly admitted to jcater and my design philosophies
+<dneighbo> StyXman i will make it easy for you
+<dneighbo> i really hate the idea of a scrollbar
+<dneighbo> i dont think we should have one
+<dneighbo> even if it has minimal functionality its bad bad bad
+<jcater> boing!
+<dneighbo> no you cant go wrong
+<StyXman> dneighbo: I think users are very uesd to them.
+<dneighbo> er now
+<dneighbo> StyXman im teasing
+<StyXman> used
+Action: StyXman is translating....
+<dneighbo> as the joke is if i agree to it, it must be a bad idea so dont do it
+<dneighbo> so im using reverse psychology :)
+<jcater> gives new meaning to: RPN
+<jcater> reverse psychology notation
+<StyXman> but how much reverse it hould be? how much time should I reverse? I'm confused...
+Action: StyXman grins
+<dneighbo> i think where they come from its called
+<dneighbo> muy loco gringo
+<dneighbo> or somethign
+<StyXman> tai chalao
+<StyXman> (you're chalado, like you smoked something but not tobacco)
+Action: StyXman grins again
+<dneighbo> hmmm stoned/
+<dneighbo> chalado == stoned
+Action: dneighbo coudl like this
+<dneighbo> no longer are we stuck with 'i must be on crack' to express oneself
+<dneighbo> instead you could say
+<dneighbo> man im muy chalado today
+<StyXman> stoned, yes, but not the same semantic.
+<StyXman> tai pirado.
+<StyXman> tai del tomate
+<StyXman> and so on...
+<dneighbo> btw: did i tell you guys i started lobbying more poor local goverment?
+<Chipaca> StyXman: go hack
+Action: Chipaca grins evily
+<dneighbo> and got very interesting response
+<StyXman> warinig: that's basic cordobanian.
+<dneighbo> they gave me some break downs on the 'discount rates'
+<dneighbo> but this is classic
+<dneighbo> they must decide by july 31st or m$ penalizes them
+<dneighbo> BUT
+<dneighbo> m$ still to this day hasnt told them what an agreement for the OS will cost
+<dneighbo> only office
+<dneighbo> Under the State Bid program the costs for the service contracts are as follows;  both require a minimum of a two (2) year
+<dneighbo> contract, with an annual payment.  Under Microsofts definition only the newest version of a release is considerred current.  In
+<dneighbo> the future (After July 31st) if an enterprise is not under a software maintenance plan there is no upgrade price and all
+<dneighbo> software will be purchased as a full system. The below cost are on a per machine basis. 
+<dneighbo> Microsoft Office
+<dneighbo>  *  Upgrade Advantage -  for non current systems      $ 231.00        for two years (This goes away, after July 31st) 
+<dneighbo>  *  Software Assurance - for current systems            $  85.29         per year with a two year minimum contract
+<dneighbo> Operating Systems
+<dneighbo>  *  This is the price were waiting for as it is still moving,  it looks like about 1/2 of the above cost for the office product
+<dneighbo>     or hopefully a little less, this only needs to be done on machines we plan on keeping in service and that need OS upgrades
+<dneighbo>     allot of notebooks etc. will not need to be upgraded.
+<dneighbo>  *  The main concern here will be the OS for Servers
+<dneighbo> now how messed is that
+<dneighbo> UPGRADE or DIE 
+<dneighbo> ok whats it cost?
+<dneighbo> i dont know.
+<dneighbo> typical m$
+<jamest> i was talking to wife about this some this weekend
+<jamest> i'd love to see free software people do volunteer work to setup things like
+<jamest> ltsp w/ openoffice and a killer main system
+<dneighbo> we are doing that at schools here now
+<jamest> at schools/govs etc
+<dneighbo> with our LUG or trying
+<dneighbo> i actually know the mayor on name basis 
+<dneighbo> so i might approach him
+<jamest> as i know here small dept can't afford to do free
+<jamest> as they have noone to support it :)
+<dneighbo> jamest: KSU doing Enterprise AGreement?
+<dneighbo> if so do you have 'numbers'
+<dneighbo> i.e. can you tell me what they are telling you an office
+<StyXman> GF things are pretty plain. all the logic are in uidriver's?
+<dneighbo> 'upgrade advantage' and 'software assurance' will cost
+<dneighbo> as if its radically different i would be interested
+<dneighbo> as supposedly one of teh selling points of this crap was m$ wasnt doing 'volume' discounts anymore
+<jamest> n oidea
+<StyXman> jamest: that answer goes for me?
+<jamest> no idea to derek
+<jamest> the UI drivers should be brain dead w/ all the logic in the GF*
+<Gedanken> We have something interesting going on at KU ... the department pays a set amount and we have access to all Microsoft productivity products with unlimited license for use for academia ... not infrastructure
+Action: jamest hates to see things like that :(
+<jamest> i know why they do it and it works well
+Grantbow (~grantbow@12-233-20-180.client.attbi.com) got netsplit.
+<jamest> the student then expects office at their workplace after school
+<jamest> one of the people here was amazed that the student was like $125 a copy
+<Gedanken> Well, it doesn't really matter for us ... we use both windows and *nix in this department no matter what the agreement
+<jamest> but it was 400+ for non students :)
+<jamest> yeah
+<jamest> I'm slowly getting my users to OpenOffice
+<jamest> our accountant was OpenOffice exclusively
+<jamest> s/was/uses
+<jamest> on windows even
+<jamest> :)
+<Gedanken> hmmm ... how are the MS and wordperfect filters on it?
+<jamest> wordperfect i don't know
+<jamest> office is pretty good
+<jamest> I've got one odd document (in russian) that's giving me fits right now
+<jamest> course I'm running OO on a linux system for the person trying to use that document
+<jamest> and I'm having font/formatting issues
+<Gedanken> well, the international versions of the office documents do have some unique properties
+<Gedanken> I ran into trouble with the Excel format ... was using a perl module to parse excel files ... the guy who wrote it lives in Japan and it found something in the U.S. versions that it didn't like
+<jamest> my biggest gripe with open office is RAM usage
+<jamest> it's a beast
+<jamest> absolutely nuts about RAM
+yogurt2unge (~charlie@modem117-adsl.capfed2.sinectis.com.ar) left irc: "Client Exiting"
+Grantbow (~grantbow@12-233-20-180.client.attbi.com) got lost in the net-split.
+<Gedanken> and it sure doesn't have to be that way
+Grantbow (~grantbow@12-233-20-180.client.attbi.com) joined #gnuenterprise.
+dsmith (~dsmith@216.29.133.85) left irc: Read error: 110 (Connection timed out)
+Grantbow (~grantbow@12-233-20-180.client.attbi.com) left irc: Read error: 113 (No route to host)
+<jamest> yeah
+<jamest> i like the OO format
+<jcater> hmm
+<jcater> I need opinions
+<jamest> i unzipped one and it was lovely xml text
+<jcater> if you had to choose between RedHat SuSe for a production server, which would you do?
+<jamest> no that dress doesn't make you look fat
+<jamest> (and turn off the webcam...please)
+<jcater> jamest: but, but, but
+<jcater> that's not what you said when I was trying the thongs out
+<jamest> argh!
+<jamest> :)
+<jcater> if you had to choose between RedHat or SuSe for a production server, which would you do?
+<jamest> My only experience with SuSe was in SF
+<jamest> before I got debian to play nice on those IBms
+<jamest> IIRC that was SuSe
+<jamest> but I can tell you why I quit using RH
+<jcater> well, 
+Action: jcater quit using RedHat too :(
+<jamest>   crappy QA - RH6.something shipped with par printer support broken
+<jamest>   the RPM system
+<jamest> don't recall what suse used
+<jamest> IIRC it had some purdy graphical thingy to config/install/maintain system
+<siesel> suse use RPM too
+<siesel> :(
+Action: jcater will probably go SuSE
+<jamest> ew
+<jamest> you poor bastard
+<jcater> SIGH
+<jcater> I'm torn
+<jcater> as I hated RedHat
+<jamest> but you know it :)
+<jcater> BUT
+<jcater> 1. I know it
+<jcater> 2. It'll be on a Dell PowerEdge 6400 (4 proc smp)
+<jcater> 3. Dell ships out RedHat on these things
+Action: jamest is too jeallous to talk about this anyjmore
+<jcater>   so you'd think RedHat is more likely to support the obscure RAID/etc controllers on the machine
+<jcater> BUT
+<jcater> Oracle develops on SuSE
+<jcater> and SuSE is their preferred Linux 
+<jamest> rofl
+<jamest> just like solaris x86 eh?
+Action: jamest runs
+<jcater> don't go there, dude
+<Gedanken> jcater: I predict Oracle will change to RedHat soon ... you did see the announcement between them, RH, and IBM right?
+<jcater> Gedanken: I did not see that
+Action: jcater tries to avoid Oracle news
+<jcater> :)
+<Gedanken> hehe
+<Gedanken> probably safe that way
+<jcater> if I could find Oracle 7 binaries for Linux
+<jcater> I'd downgrade to that 
+<jcater> and say to hell with this upgrade cycle
+<Gedanken> uhm, that is just ... wrong
+<jcater> well
+<Gedanken> (and exploitable)
+siesel (jan@dial-213-168-95-94.netcologne.de) left irc: "later"
+ToyMan (~stuq@65.167.123.51) left irc: "Client Exiting"
+<jcater> well, the upgrade from 7.x to 8i broke all my apps
+<jcater> we still haven't fully recovered
+<jcater> and that's been 2 years
+<dtm> jcater: why'd you "upgrade" then :)
+<jamest> I'm sure oracle end of lifed his arse
+<jcater> well
+<jcater> basically, yes
+<jcater> :(
+<jcater> plus we had 7.x under SCO
+<jcater> which also went the way of the dinosaur
+<jcater> and we had to upgrade our capacity
+<jcater> because of some acquisitions
+<jcater> it's a touchy subject, to say the least
+<dtm> jcater: istr this subject :)
+<jcater> istr?
+aprono (~aprono@modem117-adsl.capfed2.sinectis.com.ar) got netsplit.
+Gedanken (~schatten@typhon.eecs.ku.edu) got netsplit.
+Chipaca (~john@modem117-adsl.capfed2.sinectis.com.ar) got netsplit.
+Gedanken (~schatten@typhon.eecs.ku.edu) returned to #gnuenterprise.
+Chipaca (~john@modem117-adsl.capfed2.sinectis.com.ar) returned to #gnuenterprise.
+aprono (~aprono@modem117-adsl.capfed2.sinectis.com.ar) returned to #gnuenterprise.
+Chipaca (~john@modem117-adsl.capfed2.sinectis.com.ar) left irc: "ircII EPIC4-1.0.1 -- Are we there yet?"
+<dneighbo> ok can i have an opinion
+<dneighbo> PLEASE dont go SuSE
+<dneighbo> they are entering into the United Linux thing
+<dneighbo> and honestly it just looks shady
+<dneighbo> i cant say they ahve done anything wrong yet
+<dneighbo> but i would hate to see a good free software user like yourself support htem (monetarily now)
+<dneighbo> and then really regret it later
+<dneighbo> remember already SuSE doesnt offer binaries/ISO's and such to people
+<dneighbo> i cant say i like redhat
+<dneighbo> but i think it will be no better nor no worse than suse
+<dneighbo> dell/redhat combo is probably pretty good for support combo
+<dneighbo> thats my .02 USD ;)
+<dneighbo> jamest you here?
+<jcater> ok
+<jcater> I'll buy that
+<jcater> (figuratively, that is)
+Gedanken (~schatten@typhon.eecs.ku.edu) left irc: "Client Exiting"
+mgedmin (~mg@adsl-212-59-30-243.takas.lt) joined #gnuenterprise.
+<jamest> l8r
+jamest (~jamest@hobbes.math.ksu.edu) left #gnuenterprise.
+pattieja (~pattieja@sc2-24.217.184.48.charter-stl.com) joined #gnuenterprise.
+siesel (jan@dial-194-8-195-231.netcologne.de) joined #gnuenterprise.
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+<psu> hi all
+<psu> dneighbo: I was going to e-mail you about the match this morning
+<psu> ask if you still agreed that penalties were stupid
+<StyXman> hi psu
+<psu> as they were automatic goal, never saved ;-)
+<psu> hi StyXman
+<StyXman> psu: what happened this morning?
+<psu> USA saved a penalty vs S Korea
+<StyXman> I don't see all the matches...
+<psu> after dneighbo had been dissing penalties in this channel
+<StyXman> oh, I see. they made it to the second round, right?
+<psu> I hear it on radio on way to work
+<StyXman> weel, here we are sleeping.
+<StyXman> brb
+StyXman (~mdione@modem117-adsl.capfed2.sinectis.com.ar) left #gnuenterprise.
+<psu> anyway, bedtime for me now
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise.
+<dneighbo> damn missed him again
+<dneighbo> i still hate penalty kicks
+<dneighbo> but dont think i didnt almost wake up the whole house when i was running around screaming like nuts at that save
+siesel (jan@dial-194-8-195-231.netcologne.de) left irc: Read error: 113 (No route to host)
+siesel (jan@dial-213-168-96-117.netcologne.de) joined #gnuenterprise.
+chillywilly (~danielb@mke-65-29-142-117.wi.rr.com) joined #gnuenterprise.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: Remote closed the connection
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<jcater> fscking mozilla
+<jcater> crashed my X server
+<chillywilly> hi
+<chillywilly> sounds like fun :)
+<dneighbo> you sure that you didnt get some jamest cvs checkin loving on gnuef ;)
+<chillywilly> I had something weird randomly take mine down the other day, but i am not sure what caused it
+<dneighbo> rat poison?
+<chillywilly> sometimes you try to hard to be funny
+<chillywilly> s/to/too
+crazymike (~crazymike@mke-65-31-133-230.wi.rr.com) joined #gnuenterprise.
+<siesel> hi chillywilly: I've added some part out of our talk about RPC to GComm.sgml, can you have a look over it, when youÄve time?
+<chillywilly> sure, thanks
+<chillywilly> where is that file at now a days? gnue/common/doc ?
+aprono (~aprono@modem117-adsl.capfed2.sinectis.com.ar) left irc: "Client Exiting"
+<siesel> docbook/Proposals/GComm/
+<chillywilly> ok, same place as always
+<siesel> the changes are in docbook/Proposals/GComm/chapters/codeinsight.sgml
+Action: chillywilly is pissed because they are now upgrading his online banking software and you will loose all history
+<chillywilly> grrrr
+<chillywilly> why do banks have such hacks for software?
+<jcater> because all the really good programmers do free software
+<chillywilly> hell it should import all my past history since I ever had an account
+<jcater> <cough>
+<chillywilly> whatever
+<nickr> because banks don't consider online banking really important to their core business
+Action: chillywilly beats jcater senseless with a 30lb lake trout
+<jcater> why?
+<jcater> dude
+<jcater> seek help
+<chillywilly> because it is fun :)
+Action: jcater points chillywilly to the edge of a cliff
+<jcater> help is right down there
+Action: chillywilly points jc to donut-bitch anonymous
+<siesel> jcater, btw. who had the idea for adding gConfig to the global namespace, you, or jamest?
+Action: siesel hates GConfig not allowing to startup forms and reports in navigator using the same way :(
+<chillywilly> siesel: you sgml has butt loads of errors
+<chillywilly> s/you/your
+<siesel> :)
+<dneighbo> um its chillywilly 's fault
+<dneighbo> that bozo did it
+<dneighbo> btw: jcater i loved the 'all the good developers write free software line' it was a beauty
+<chillywilly> dneighbo: nah, I think it is da masta's curse
+<chillywilly> he looked at it funny
+<chillywilly> it doesn't like thise title tags in your itemized list siesel
+<siesel> why. Its absolute standart conformant. 
+<chillywilly> I don't think it's allowed there
+<chillywilly> otherwise it wouldn't complain
+<chillywilly> do you get these errors/warnings:
+<chillywilly> Working on: /home/danielb/src/cvs/gnue/docbook/Proposals/GComm/gcomm.sgml
+<chillywilly> jade:/home/danielb/src/cvs/gnue/docbook/Proposals/GComm/chapters/introduction.sgml:173:6:E: document type does not allow element "TITLE" here; missing one of "ABSTRACT", "AUTHORBLURB", "MSGSET", "CALLOUTLIST", "ITEMIZEDLIST", "ORDEREDLIST", "SEGMENTEDLIST", "VARIABLELIST", "CAUTION", "IMPORTANT", "NOTE", "TIP", "WARNING", "FORMALPARA", "BLOCKQUOTE", "EQUATION", "EXAMPLE", "FIGURE", "TABLE", "PROCEDURE", "SIDEBAR", "QANDASET" start-t
+<chillywilly> hrrrm
+<chillywilly> I'll see if I can resolve this
+<siesel> cw: I get the same warning, but if you look in Docbook, a definite guide, you will see its standart conformant :)
+<chillywilly> I don't see title being a child of listitem
+Action: chillywilly has the guide open
+<chillywilly> one thing for sure
+<chillywilly> it generates fugly html
+^chewie (~chewie@flemingi.dsl.visi.com) joined #gnuenterprise.
+<^chewie> hallo
+<chillywilly> hiya
+ToyMan_home (CaryKittne@c5300-1-ip14.albany.thebiz.net) joined #gnuenterprise.
+<^chewie> Well, I've been trying to figure out where the heck to start with GNUe ;-)
+<^chewie> there's a real strength in the simple one-to-one relationship between forms and database
+<jcater> siesel: gConfig is being reworked at the moment
+<jcater> so don't do too much to it
+<chillywilly> why not just make them sub sections?
+<chillywilly> 1.5 Design Considerations
+<chillywilly> 1.5.1 Reusability
+<chillywilly> ....
+<chillywilly> like that
+<^chewie> but I can't seem to wrap my mind around the "master:detail" record idea and how it's supposed to be articulated in the .gfd
+Action: siesel hides his head in shame (listitem have no title :( )
+<^chewie> is there any definititive docs on how gfd's are laid out, their syntax, etc?
+<chillywilly> or
+<siesel> cw: would be ok.
+<chillywilly> ok
+<^chewie> I have this wonderfully normalized database, but can't seem to step through this little wizard to create a working form
+<^chewie> so, I'm trying to find a point of entry to understand what's going on, any tips
+<chillywilly> mater-detail is just like any 1 to 1 database relation, IIRC
+<chillywilly> but I don't jnow how to make forms to cooperate with it ;)
+<chillywilly> you'll have to ask jcater or dneighbo
+<^chewie> hmm
+<chillywilly> siesel: are you going yo change it or should I?
+<chillywilly> btw, thanks for all the docs :)
+<siesel> jcater: strike, I've outwitted GConf !!!! 
+<siesel> cw: change what? the actual cvs version is error free ;)
+<chillywilly> er?
+<chillywilly> change those to be subsections
+<chillywilly> instead of a itemized list with broke ass title tags in it ;)
+<siesel> cw: please cvs update :)
+<chillywilly> oh, ok
+Action: chillywilly just spell cheak it too :-/
+<chillywilly> checked
+<chillywilly> ah well
+<siesel> hmmmm, hmmmm, hmmmm, siesel ducks 
+<chillywilly> weee, conflicts
+<chillywilly> cool
+<siesel> conflicts?
+<chillywilly> from fixing spelling
+<chillywilly> I just deleted that file and redid th spell check and committed the fixes
+<chillywilly> well pulled your file
+<chillywilly> then spell checked it
+Action: chillywilly reads the doc
+<^chewie> ls
+mgedmin (~mg@adsl-212-59-30-243.takas.lt) left irc: "[x]chat"
+<chillywilly> command not found
+<^chewie> cw: ;-)
+dsmith (dsmith@oh-strongsvillecadent1-1aa-222.clvhoh.adelphia.net) joined #gnuenterprise.
+^chewie (~chewie@flemingi.dsl.visi.com) left irc: "ircII EPIC4-1.1.2 -- Are we there yet?"
+<siesel> what about one single navigator file which contain entries for all sample in forms/samples and reports/samples  with descriptions?
+<siesel> just to make the first step for gnue newcomers a bit easier :)
+SachaS (~Sacha@dialup-196-201.wasp.net.au) joined #gnuenterprise.
+<dneighbo> siesel i can look at doing that if you like
+<siesel> great. :)
+<chillywilly> hey how are GObjs parsed?
+<chillywilly> like what is the structure of the object?
+<chillywilly> a tree like thing?
+<chillywilly> <tag>
+<chillywilly>   <subtag>
+ToyMan_home (CaryKittne@c5300-1-ip14.albany.thebiz.net) left irc: Read error: 104 (Connection reset by peer)
+<siesel> I've commited a foobulations.gpd some minutes ago, technical correct, but with a very poor grammar. Could be a start ... 
+<siesel> cw: yes. access to child elements per _children to the parent element per _parent
+<siesel> one object per xml elements, sub element -> children, attributs -> attributs, i.e. <tag name="itsme"> -> class tag, def name=itsme
+<dneighbo> siesel im thinking of a single .gpd per sample dir
+<dneighbo> then a .gpd at the root
+<dneighbo> actually you know what i want to discuss this better
+<dneighbo> for debs we have to pull samples away from the rest
+<dneighbo> im thinking we need to do something similar to wx
+<dneighbo> and have samples be separate tarball etc
+<dneighbo> sep deb/rpm yada yada yada
+<siesel> do you think we should seperate them in the cvs too?
+<siesel>  s/the//
+<dneighbo> probably
+<dneighbo> i would love to see our docs
+<dneighbo> and our www
+<dneighbo> be separate cvs modules altogether
+<dneighbo> but thats another discussion :)
+<dneighbo> basically eventually i would like to see each tool be separate module as well
+<dneighbo> as i forsee at some point
+<dneighbo> giving person A access to say gnue-common cvs but perhaps not gnue-reports cvs
+<dneighbo> especially if we go to something like what the linux kernel does
+<dneighbo> where things go through a single maintain
+<dneighbo> btw: dont expect anything like this for sometime, this is down the road thinking
+chillywilly (~danielb@mke-65-29-142-117.wi.rr.com) left irc: Read error: 104 (Connection reset by peer)
+<siesel> yes, this will be more and more important during gnue becoming bigger
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "home"
+<siesel> btw. the idea to put a single gpd in each sample dir is great. Although I still donÄt know how to include one xml file into another.
+chillywilly (~danielb@mke-65-29-142-117.wi.rr.com) joined #gnuenterprise.
+<siesel> wb cw
+<chillywilly> dude, my server froze again like it did last weekend
+<siesel> which kernel version?
+<chillywilly> hmmmm
+<chillywilly> 2.4.18
+<chillywilly> w/ preemption patch
+<chillywilly> lock breaking for that too
+<chillywilly> tcpdump gives me a parse error
+<chillywilly> bah
+Action: siesel likes 2.4.18 ;). Have never run so instable computers
+<chillywilly> oh duh
+<chillywilly> what's the deal wtih 2.4.18?
+<siesel> I don't know, but my computer don't likes it. And a Mac G4 don't like it too.
+<chillywilly> hmmmm
+<chillywilly> this looks wacky
+<chillywilly> Jun 10 19:10:03 frell kernel: RAMDISK: Loading 2268 blocks [1 disk] into ram disk... |^H/^H-^H\^H|^H/^H-^H\^H|^H/^H-^H\^H|^H/^H-^H\^H|^H/^H-^H\^H|^H/^H-^H\^H|^H/^H-^H\^H|^H/^H-^H\^H|^H/^H-^H\^H|^H/^H-^H\^H|^H/^H-^H\^H|^H/^H-^H\^H|^H/^H-^H\^H|^H/^H-^H\^H|^H/^H-^H\^H|^H/^H-^H\^H|^H/^H-^H\^H|^H/^H-^H\^H|^H/^H-^H\^H|^H/^H-^H\^H|^H/^H-^H\^H|^H/^H-^H\^H|^H/^H-^H\^H|^H/^H-^H\^H|^H/^H-^H\^H|^H/^H-^H\^H|^H/^H-^H\^H|^H/^H-^H\^H|^H/^H-^H\^H|^H
+<chillywilly> \^H|^H/^H-^H\^H|^H/^H-^H\^H|^H/^H-^H\^H|^H/^H-^H\^H|^H/^H-^H\^H|^H/^Hdone.
+<siesel> cool. Seems that your termcap /console is not set up right
+<siesel> ok, I have to go. Tomorow I have to do HEAPs of work! night
+siesel (jan@dial-213-168-96-117.netcologne.de) left irc: "Real programmers code it into the client"
+<chillywilly> heh
+jcater (~jason@cpe-024-165-193-024.midsouth.rr.com) joined #gnuenterprise.
+<jcater> yes, xchat, I am now talking in #gnuenterprise
+<jcater> you are always so nice to tell me that whenever I log it
+<jcater> s/it/in
+<dneighbo> well it read locale us_TN and figured you might need to be reminded ;)
+<chillywilly> hehe
+<jcater> sigh
+<dneighbo> yes bad humor i know
+<jcater> now if I could just train xchat to remind me to go to bed
+<chillywilly> I'l remind yo
+<chillywilly> isn't it your ned time jcater?
+<chillywilly> go to bed
+<chillywilly> er, bed
+<jcater> chillywilly: you may think you're funny
+<jcater> but in reality
+<jcater> you're not
+<chillywilly> i think you hace me mistaken with donut boy
+<chillywilly> have
+<chillywilly> anyway...
+<chillywilly> you know there's this saying: if you can't stand the heat, get out of the kitchen
+<jcater> ya
+<jcater> is your girl cooking or something?
+<jcater> :)
+<chillywilly> yea, we're "cookin'" all right...is that what you TN people call it?
+<jcater> yeah, I heard about her and Mike
+<jcater> seems he rather enjoys her "cooking"
+<chillywilly> perhaps you're the one who wants to "cook" with mike
+<jcater> a three-some with her?
+<jcater> hmm
+<jcater> well, I've never thought about it
+<chillywilly> you know you are crossing the line a bit
+<jcater> hehe
+Action: jcater will stop
+<chillywilly> it's ok to poke fun at me, but when you drag my family into I will have to kick some ass
+<jcater> oooooo
+<jcater> now if we could get you to channel this energy into GNUe programming
+<jcater> hmm, then I'd have to aggrivate you every night
+<jcater> anyone know how to convert avi files to video cd format?
+<jcater> using readily available debian tools?
+<chillywilly> mv *.avi /dev/null
+<jcater> ah
+<jcater> cool
+Action: jcater will try that
+<jcater> well
+<jcater> that got pretty good compression rates
+<chillywilly> I bet it did
+<chillywilly> performance was good to I take it?
+<chillywilly> s/to/too
+<chillywilly> perhaps you can use gstreamer
+dsmith (dsmith@oh-strongsvillecadent1-1aa-222.clvhoh.adelphia.net) left irc: "later.."
+chillywilly (~danielb@mke-65-29-142-117.wi.rr.com) left irc: "Philosophers and plow men each must know his part to sow a new mentality closer to the heart..."
+danielb (~danielb@mke-65-29-142-117.wi.rr.com) joined #gnuenterprise.
+danielb (~danielb@mke-65-29-142-117.wi.rr.com) left irc: Read error: 104 (Connection reset by peer)
+danielb (~danielb@mke-65-29-142-117.wi.rr.com) joined #gnuenterprise.
+danielb (~danielb@mke-65-29-142-117.wi.rr.com) left irc: Client Quit
+danielb (~danielb@mke-65-29-142-117.wi.rr.com) joined #gnuenterprise.
+Action: jcater is away: that means I'm not here
+danielb (~danielb@mke-65-29-142-117.wi.rr.com) left irc: Client Quit
+danielb (~danielb@mke-65-29-142-117.wi.rr.com) joined #gnuenterprise.
+danielb (~danielb@mke-65-29-142-117.wi.rr.com) left irc: Client Quit
+chillywilly (~danielb@mke-65-29-142-117.wi.rr.com) joined #gnuenterprise.
+OxD00FD00F (~miaow@203.62.157.109) joined #gnuenterprise.
+chillywilly (~danielb@mke-65-29-142-117.wi.rr.com) left irc: "Client Exiting"
+chillywilly (~danielb@mke-65-29-142-117.wi.rr.com) joined #gnuenterprise.
+chillywilly (~danielb@mke-65-29-142-117.wi.rr.com) left irc: Client Quit
+chillywilly (~danielb@mke-65-29-142-117.wi.rr.com) joined #gnuenterprise.
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) left #gnuenterprise ("Client Exiting").
+<jcater> rofl
+<jcater> I go to netflix.com
+<jcater> and it redirects me to
+<jcater> http://www.netflix.com/entryTrap.html
+<jcater> what a name for a home page!!!
+<chillywilly> so original even
+<chillywilly> ah the TNs are so easily amused
+Action: chillywilly runs
+chillywilly (~danielb@mke-65-29-142-117.wi.rr.com) left irc: "Client Exiting"
+crazymike (~crazymike@mke-65-31-133-230.wi.rr.com) left irc: 
+MicahY ([ZGlJnmWnT@12-225-21-62.client.attbi.com) joined #gnuenterprise.
+dsmith (dsmith@oh-strongsvillecadent1-1aa-222.clvhoh.adelphia.net) joined #gnuenterprise.
+MicahY ([ZGlJnmWnT@12-225-21-62.client.attbi.com) left irc: "[x]chat"
+alexey_ (~Alexey@techkran.vladimir.ru) joined #gnuenterprise.
+SachaS (~Sacha@dialup-196-201.wasp.net.au) left irc: Read error: 110 (Connection timed out)
+derek (~derek@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+dneighbo_ (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+--- Tue Jun 11 2002

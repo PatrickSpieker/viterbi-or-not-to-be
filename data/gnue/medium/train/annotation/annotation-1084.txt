@@ -1,0 +1,44 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.08May2002" enddate="07 May 2002 23:00:00 -0800" startdate="07 May 2002 23:00:00 -0800" subject="[IRC] 08 May 2002" title="Password security for Application Server">
+
+<topic>Application Server</topic>
+
+<p>Reinhard M&#252;ller (reinhard) noted that <quote who="Reinhard M&#252;ller">for 
+the appserver test program you have to set up pgsql so that 
+your unix username is known to postgres and you need no password 
+for your username</quote> as of time of writing. Andrew Mitchell 
+(ajmitch) suggested that it should 
+<quote who="Andrew Mitchell">pick it up from gnue.conf?
+or is it connections.conf that it should be in</quote>? Reinhard 
+was <quote who="Reinhard M&#252;ller">not sure if that is a good idea</quote>.
+He said <quote who="Reinhard M&#252;ller">we actually need to decide what 
+user the appserver will use to connect to the database</quote>. 
+When a user logged into the Application Server, 
+<quote who="Reinhard M&#252;ller">should the appserver log into the db</quote> 
+using that user's username, or a generic login such as 
+<quote who="Reinhard M&#252;ller">geas</quote>?</p>
+
+<p>Andrew asked <quote who="Andrew Mitchell">so where should 
+the password be stored? the appserver will need to be able to access 
+it to connect</quote>. Reinhard noted it was one of the principles 
+of the <quote who="Reinhard M&#252;ller">3-tier setup</quote> that 
+<quote who="Reinhard M&#252;ller">security must be handeled by appserver 
+not by database</quote>. This meant that the Application Server 
+"user" on the database needed <quote who="Reinhard M&#252;ller">a very 
+secret password</quote>. Andrew jokingly suggested 
+<quote who="Andrew Mitchell">i know! we can build in an "override" 
+password so it can be used in the movies! :)</quote> 
+Reinhard suggested <quote who="Reinhard M&#252;ller">i see only one 
+chance - store the password in a file where only the user "gnue" 
+has read access - and start the appserver with suid flag</quote>. 
+Andrew said <quote who="Andrew Mitchell">that may work - but how 
+do we start the appserver with suid flag since it's a python 
+app?</quote> Reinhard said it might be necessary to 
+<quote who="Reinhard M&#252;ller">write a "wrapper" binary?</quote> - 
+<quote who="Reinhard M&#252;ller">one that exec's appserver.py and dies 
+immediately (so it doesn't use resources all the time)</quote>. 
+However, he wondered if the <quote who="Reinhard M&#252;ller">file 
+with the password in it</quote> should be referenced from 
+<quote who="Reinhard M&#252;ller">connections.conf</quote>.</p>
+
+</section>
+

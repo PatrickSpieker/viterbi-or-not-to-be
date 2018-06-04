@@ -1,0 +1,48 @@
+<section archive="http://mail.gnu.org/pipermail/gnue/2002-February/002929.html" enddate="01 Feb 2002 00:00:00 -0800" posts="2" startdate="01 Feb 2002 12:44:28 -0800" subject="PostgreSQL login bug?" title="Problem with PostgreSQL driver in GNUe Forms 0.1.1">
+<topic>Forms</topic>
+
+
+<mention>Calum Morrell</mention>
+
+<p>Scott Lamb reported <quote who="Scott Lamb">Logging into to 
+PostgreSQL from GNUe Designer 0.1.1 on win32 does not work
+well for me.</quote> It was using his Windows login to try to 
+log into the database server, instead of the database user 
+name he had given it. Derek Neighbors reported 
+<quote who="Derek Neighbors">It is fixed in CVS. You can grab a 
+snapshot from <a href="http://www.gnuenterprise.org/downloads/">
+http://www.gnuenterprise.org/downloads/</a>. I believe we plan 
+on releasing a 0.1.2 soon because of this very bug.</quote></p>
+
+<p>Later, <a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.01Feb2002">
+on IRC</a>, Derek Neighbors (derek) asked <quote who="Derek Neighbors">
+slamb: you get things working?</quote>
+Scott (slamb) confirmed <quote who="Scott Lamb">yeah, it logs in fine now with 
+the 29 Jan 2002 snapshot :)</quote>. James Thompson (jamest) 
+confessed <quote who="James Thompson">we can't blame the pypgsql 
+driver as derek stated - it was my bug in our pypgsql interface
+</quote>. He added that there was still a bug with editing properties -
+<quote who="James Thompson">if you have a scrollbar on the property 
+editor then you can't edit anything</quote> He said 
+<quote who="James Thompson">i was under the impression this was a 
+wxwin bug - but I noticed on Fri that the wxpython demo doesn't suffer 
+from this - i hope to look at it in the very near future</quote>.</p>
+
+<p>Scott asked <quote who="Scott Lamb">how are those win32 builds made, 
+anyway?</quote>. James said <quote who="James Thompson"> you do a 
+complete install of all dependencies on windows - add pypgsql, mysql, 
+and pywin - then run it thru mcmillian installer version 4.x - then 
+use inno to package it up</quote>.</p>
+
+<p>Later, Scott reported <quote who="Scott Lamb">
+made new form, querying doesn't show anything. It adds new stuff fine, 
+though.</quote> It turned out that the keyboard shortcuts for 
+enter/execute query (f8/f9) were still working but <quote who="Scott Lamb">
+the menu entries just don't do anything.</quote>. James and Calum 
+Morrell (drochaid) said they hadn't noticed this before because 
+they always used the keyboard shortcuts. James said 
+<quote who="James Thompson">i imagine that the event system changed 
+and the menu/toolbar entries didn't</quote>.</p>
+
+</section>
+

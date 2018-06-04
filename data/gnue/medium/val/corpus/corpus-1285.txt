@@ -1,0 +1,350 @@
+rdean (~rdean@12-221-228-94.client.insightBB.com) left irc: "Client Exiting"
+Action: Vee2d2 passes some espresso down
+<chillywilly> yo
+<Vee2d2> good stuff isnt it? =)
+<chillywilly> er...well I have pepsi, but no espresso
+<chillywilly> :-/
+chillywilly (danielb@mke-24-167-199-83.wi.rr.com) left irc: "Free Your Enterprise! - http://www.gnuenterprise.org"
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise.
+<Vee2d2> howdy psu
+<Vee2d2> heh.. 
+Action: Vee2d2 rewires his eyes
+<Mr_You> hi
+<Vee2d2> morning Mr_You
+<Mr_You> just poppin in, gotta run
+beecher (~bukovansk@ppp345.ostrava.worldonline.cz) joined #gnuenterprise.
+<ra3vat> hi beecher
+<beecher> ra3vat> hi...
+<ra3vat> any gnue related questions?
+<beecher> At this time noone...
+<ra3vat> ok, feel free to ask at any time :)
+btami (~btami@3e70d73c.dialin.enternet.hu) joined #gnuenterprise.
+<btami> hi all
+<ra3vat> hi btami
+<btami> hi ra3vat
+<ra3vat> i was playing with reports
+<ra3vat> how would you like to set output encoding for reports?
+<ra3vat> i was only able to change .xsl to get text report in koi8
+<btami> today only sitecustomize.py or site.py is working
+reinhard (~reinhard@M692P020.adsl.highway.telekom.at) joined #gnuenterprise.
+<btami> it needs more work with formFontEncoding (or textEncoding in [common])
+<btami> for reports/designer
+<ra3vat> but output encoding may be different for reports and for different filters
+<ra3vat> by default it outputs all in UTF-8
+<btami> for html 
+<ra3vat> i had also for text
+<btami> with xslt?
+<ra3vat> i changed one .xsl that is linked from gnue/shared/filters
+<ra3vat> f.e. text.xsl adding <xsl:output method="text" indent="no" encoding="koi8-r"/>
+<ra3vat> it is how sablotron faq says
+<ra3vat> will try to test report again with site.py/ascii 
+<btami> without correct setdefaultencoding() reports will fail with non ascii data 
+<btami> in some destwrite() call
+<btami> dest.write(...)
+<btami> it needs some .encode(encoding) like in forms
+<ra3vat> ok, then it is separate problem/questions with what i was saying 
+<ra3vat> how to specify output encoding for particular report
+<btami> yes
+<btami> maybe we want not only 1 textEncoding in [common]
+<btami> if forms and reports encodins are different
+<btami> what is your case ?
+<ra3vat> i do not know yet how/where  to use that setting to change output encoding, the only way i found was via .xsl
+alex_k (~alex@195.54.196.227) joined #gnuenterprise.
+<ra3vat> it is configurable enough as i can put modified .xsl and add entry for it in /etc/report-filters.conf
+<btami> but what encodings are your requirements for forms/reports ?
+<btami> form me 1 encoding is enough for all
+<btami> s/form/for
+<btami> i mean one textEncoding in [common] will be good for me
+<ra3vat> my requirement is i should be able to specify encoding in user space and at run time
+<ra3vat> encoding may be different for text and html output
+<ra3vat> with .xsl i'm able to do that now but may be there is better way?
+<ra3vat> grcvs -D file -d tmp --filter text_koi8 ..
+<btami> i see
+<ra3vat> i can use different filters for different needs
+<btami> i'm not sure how .xsl will be supported in standard reports
+<btami> as they need more complicated .xsl
+<btami> we have to ask core guys
+dickie (~bukovansk@ppp159.ostrava.worldonline.cz) joined #gnuenterprise.
+<btami> but maybe a new comand line param for encoding will be the right direction
+<ra3vat> what do you mean by more complicated .xsl?
+<btami> please look at report-notes.txt in reports/doc
+<ra3vat> ok
+<btami> that is jcater's area for standard tags
+dickie (~bukovansk@ppp159.ostrava.worldonline.cz) left irc: 
+<btami> that will be more complicated to proces with xslt than SimpleTabulation
+<btami> IMO
+beecher (~bukovansk@ppp345.ostrava.worldonline.cz) left irc: Read error: 60 (Operation timed out)
+<btami> btw. i'v got errors several times from your Postfix
+<btami> when i'v tried to send GBaseApp.py
+<btami> <ds@ics.elcom.ru>: can't create user output file. Command output: procmail:
+<btami>     Error while writing to "/var/spool/mail/ds"
+<ra3vat> oh, may be solved already, thanks
+<btami> may i try to send again?
+<ra3vat> yes, please
+<btami> ok
+<btami> have to go, bye
+btami (~btami@3e70d73c.dialin.enternet.hu) left irc: 
+dneighbo_ (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: Read error: 110 (Connection timed out)
+kid (~kid@p5084594E.dip.t-dialin.net) joined #gnuenterprise.
+<ra3vat> hi kid
+<kid> hello @ everybody
+<ra3vat> how is the flood?
+<kid> gone away
+<ra3vat> uh
+<kid> but big mud party yesterday
+<kid> about 100 cm water in cellar
+<kid> our street was in german tv last days
+<kid> but now it's over
+<kid> and not that bad
+<kid> just old stuff destroyed in cellar
+<ra3vat> it was shown in news here as well
+<kid> you remember the towns?
+<ra3vat> no
+<kid> the good thing was: after we finished work our landlord - who helped the whole session - ordered some pizza
+<kid> and then we had some party with some bottles of red wine
+<ra3vat> ok :)
+<kid> beeing a child of the 60's this reminded me of the days when we had society-feeling in this nowadays cold country
+<kid> so this was worth the price - at least with that little damage that we had
+<ra3vat> you think east-germany was good society-feeling country?
+<ra3vat> why is that changed so much for west part from that time?
+<kid> i'm from west-germany - but from what i hear east-germany-ppl claim to have this
+<kid> even if i cant't believe
+<kid> i wouldn't have that feeling if i couldn't trust my neightbour
+<kid> in 70's and 80's we still could affort something like social capitalism
+<kid> but now when everything is about money<
+<kid> and fear for loss of money and wealth things changed
+<kid> but i think this is not that easy
+<kid> problem is also with generation of my kids
+<kid> they never learned to be part of a society but are mostly in the ego and hedonistic lifestyle
+<kid> so same result for all generations - but induced by different causes
+<ra3vat> it would be interesting for me to read more about what changed in west germany from 80 on that topic
+<kid> i don't know of any books describing this 
+<ra3vat> as i do not believe as what was in east-germany (and in whole russia) is good enough
+<ra3vat> and do not want it to come back
+<kid> so i'm confirmed in my thoughts from reading different articles and talking w/ other ppl
+<kid> but this should not be complain, just stating of facts; (at least currently) this is still complaining on high level compared for example with your country's history
+<kid> the question is always: in which direction this will head
+<ra3vat> but we were doing worse that in east-germany and then jumped so far in opposite direction
+<kid> and as it was always in germany: w/ >80 mio ppl on that little room i think that we are not very tolerant towards major problems
+<kid> maybe currently just everyone is to pessimistic
+<kid> and instead we will reach a future that where in my childhoods SF-books about year 2000, just we few years dealy
+<kid> delay
+ra3vat (~ds@ics.elcom.ru) left irc: Remote closed the connection
+<reinhard> hello kid
+<kid> hello reinhard
+<kid> i'm still on searching for new alternatives to spoil up my mind
+<reinhard> since you have talked so much about your childhood
+<kid> different gui's, different OS's
+<reinhard> may i ask how old you are?
+<kid> 37
+<reinhard> wow
+<kid> somewhere between outgrown adult and a wise man
+<reinhard> :-)
+<reinhard> so you could hear the beatles playing live :-)
+<kid> no, at least i don't remember exactly
+<kid> for me music started w/ queen and deep purple
+ra3vat_ (~ds@ics.elcom.ru) joined #gnuenterprise.
+<reinhard> ah cool
+<kid> yes, and still is
+<kid> what is the eldest age in the team?
+<reinhard> not sure
+<reinhard> jamest, jcater and derek are a lot younger
+<reinhard> chillywilly is quite young, too
+Action: ra3vat_ is from ancient 65
+<reinhard> (all around 20 - 25 or so)
+<reinhard> no stop
+<reinhard> i think jamest is already around 30
+<kid> funny, i thougt that erp-software merely attracted the older guys
+<kid> i started my interest for this with >30
+<reinhard> we have some ppl like louis and stan klein who are >50 IIRC
+<reinhard> but they don't show up here that often
+<reinhard> more in mailing list
+<reinhard> i'm 32 but i do business software for >10 years now
+<kid> i started with process control stuff
+<kid> this makes you very defensive
+<kid> so you must have started this in uinversity?
+<reinhard> no
+<reinhard> i wasn't in university
+<kid> directly started in company?
+<reinhard> i don't have more than "abitur"
+<reinhard> yes
+<kid> matura in austria - if i remember correctly
+<reinhard> yeah! right!
+<kid> i had worked with many austrian guys in former company
+<reinhard> it's called "matura" but IIRC I wasn't quite mature then :)
+<kid> yes, but also we cant afford to go to school until >30
+<kid> and before only few are mature
+<kid> this is a german company where both founders and business managers are austrian
+<reinhard> oh
+<kid> and also good part of the staff
+<reinhard> yes we export know-how ;-)
+<kid> they split from siemens
+<kid> as sap split from ibm
+<reinhard> what's the name of that company?
+<kid> http://www.proleit.de/d/main/welcome.htm
+<kid> i was not employed there but had some complicated kind of cooperation
+<reinhard> well
+<reinhard> i'm off now to meet SachaS in real life
+<reinhard> l8r all
+Nick change: reinhard -> rm-away
+<kid> this text is still about 50% from my feather: http://www.proleit.de/d/products/products_ipl_ProdLogistics.htm
+<kid> cu
+Action: ra3vat_ is going to reboot now
+<kid> good luck
+ra3vat_ (~ds@ics.elcom.ru) left irc: "Client Exiting"
+ra3vat (~ds@ics.elcom.ru) joined #gnuenterprise.
+rdean (~rdean@12-221-228-94.client.insightBB.com) joined #gnuenterprise.
+Action: drochaid is back (gone 10:18:05)
+<ra3vat> feasgar math drochaid
+<drochaid> feasgar math, ciamar a tha thu an-diugh?
+Action: ra3vat runs
+<drochaid> LOL
+<ra3vat> :)
+alex_k (~alex@195.54.196.227) left irc: "Client Exiting"
+<kid> cu
+kid (~kid@p5084594E.dip.t-dialin.net) left irc: "cu @ll"
+rm-away (~reinhard@M692P020.adsl.highway.telekom.at) left irc: "Wouldn't it be wonderful if real life supported Control-Z?"
+xetrex (~chatzilla@dsl-kpogw5ed2.dial.inet.fi) joined #gnuenterprise.
+dneighbo_ (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: "Client Exiting"
+xetrex (~chatzilla@dsl-kpogw5ed2.dial.inet.fi) left irc: "ChatZilla 0.8.7 in Beonex Communicator"
+jamest (~jamest@adsl-65-71-168-128.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+StyXman (~mdione@ADSL-200-59-86-138.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<StyXman> hi guys :(
+<ra3vat> hello StyXman
+<ra3vat> why :( ?
+<StyXman> it's sunday, and I'm working...
+<StyXman> luckily, tomorrow starts my holidays :)
+<StyXman> but it's :( till then :)
+<ra3vat> wish you to be :) asap
+<ra3vat> :)
+V_laptop (~vin@c66.169.136.41.ftwrth.tx.charter.com) left irc: Read error: 113 (No route to host)
+V_laptop (~vin@c66.169.136.41.ftwrth.tx.charter.com) joined #gnuenterprise.
+reinhard (~reinhard@M692P020.adsl.highway.telekom.at) joined #gnuenterprise.
+Vee (~vin@c66.169.136.41.ftwrth.tx.charter.com) joined #gnuenterprise.
+V_laptop (~vin@c66.169.136.41.ftwrth.tx.charter.com) left irc: Read error: 54 (Connection reset by peer)
+<StyXman> are there input masks/show masks?
+<ra3vat> reinhard: http://www.opensource.org/halloween/halloween8.php
+<StyXman> or better, how do I use <entry>'s {format,input,display}mask attrs?
+<ra3vat> last i asked they were not worked
+<StyXman> ra3vat: I'm starting to aks myself if esr is not making up all those memos :)
+<ra3vat> i do not know, we were talking around Ghandi quote with reinhard, thats why i gave that link to him  
+<ra3vat> StyXman: it is bad if esr made up the Gandhi quote as well :)
+<StyXman> ok. gone. 
+<StyXman> by ra3vat 
+StyXman (~mdione@ADSL-200-59-86-138.cordoba.sinectis.com.ar) left irc: "see you tomorrow"
+Vee (~vin@c66.169.136.41.ftwrth.tx.charter.com) left irc: Read error: 113 (No route to host)
+Isomer (dahoose@port-219-88-246-238.jet.net.nz) left irc: "Client Exiting"
+Isomer (dahoose@port-219-88-246-238.jet.net.nz) joined #gnuenterprise.
+HydraIRC (~jmason@dyn-dsl-140.mm.com) joined #gnuenterprise.
+HydraIRC (~jmason@dyn-dsl-140.mm.com) left #gnuenterprise.
+mason (~jmason@dyn-dsl-140.mm.com) joined #gnuenterprise.
+mason (~jmason@dyn-dsl-140.mm.com) left irc: "QUIT : OMFG, this IRC Client ownz! HydraIRC, v0.336 (2/January/2003) -> http://fly.to/hydrairc <-"
+<jcater> cool
+<jcater> looks like wx 2.4.0 was released Dec 22
+<jcater> they did a poor job of announcing it :-/
+<jcater> but wxPython hasn't been updated yet :(
+<jcater> btami: if you read backlogs:  I seriously doubt I will be able to use XSL for the new reports format
+<ra3vat> is there something important for us?
+<jcater> ra3vat: we've had to put a lot of workarounds in our code
+<jcater> for shortcomings in wx 2.2
+<jcater> 2.4 is the stabilization of 2.3
+<jcater> (they do the 'odd == development; even == stable' release thing)
+<jcater> ra3vat: to give you an idea... when I complain about stuff in 2.2
+<jcater> I get the typical response
+<jcater> "it works in 2.3+... you need to upgrade"
+<jcater> but I've hated to require a development branch (2.3.x)
+<jcater> so we just putz around w/2.2 shortcomings
+<jcater> btami: I'm 99% sure the new reports "standard" markup will look more like your direct driver than the xsl driver
+<ra3vat> then it's a good thing
+<ra3vat> what is btami's direct driver?
+<jcater> he reimplemented the text.xsl, html.xsl, etc
+<jcater> to work in python
+<jcater> not requiring the XSLT stuff
+<jcater> it's in cvs, but wasn't in 0.1.0
+Action: jcater is away: errands
+rdean (~rdean@12-221-228-94.client.insightBB.com) left irc: Remote closed the connection
+chillywilly (~danielb@mke-24-167-199-83.wi.rr.com) joined #gnuenterprise.
+rdean (~rdean@12-221-228-94.client.insightBB.com) joined #gnuenterprise.
+rdean (~rdean@12-221-228-94.client.insightBB.com) left irc: Client Quit
+rdean (~rdean@12-221-228-94.client.insightBB.com) joined #gnuenterprise.
+siesel (jan@xdsl-213-168-111-121.netcologne.de) joined #gnuenterprise.
+<siesel> hi all
+<ra3vat> hello siesel
+reinhard (~reinhard@M692P020.adsl.highway.telekom.at) left irc: Read error: 60 (Operation timed out)
+siesel (jan@xdsl-213-168-111-121.netcologne.de) left irc: "Client Exiting"
+tam (blah@user-1094.bbd08tcl.dsl.pol.co.uk) joined #gnuenterprise.
+Action: tam smacks drochaid
+<tam> :P
+Mr_You (rouzer@209-166-213-2.walrus.com) left irc: Read error: 60 (Operation timed out)
+tam0 (blah@user-1094.bbd08tcl.dsl.pol.co.uk) joined #gnuenterprise.
+rdean (~rdean@12-221-228-94.client.insightBB.com) left irc: Read error: 110 (Connection timed out)
+Action: drochaid drops a large concrete block on tam and tam0
+Action: drochaid jumps up and down on him just to make sure
+rdean (~rdean@12-221-228-94.client.insightBB.com) joined #gnuenterprise.
+<tam0> ahh your soo re-assuring drochaid
+<drochaid> I try
+<jcater> reinhard: fyi we are 25-30, not 20-25 :)
+<drochaid> jcater: meet tam0 .. feel free to hit him :)
+Action: jcater looks for his shop hammer
+Action: drochaid goes back to working on TMGweb
+<tam0> jcater: hey, it's ok... drochaid doesn't really get bullied IRL, but will on wednesday :P
+<drochaid> I still don't know if I'll be able to make it tam0
+tam (blah@user-1094.bbd08tcl.dsl.pol.co.uk) left irc: Read error: 110 (Connection timed out)
+<tam0> :/
+Action: chillywilly is 25
+Action: tam0 is 18
+Action: drochaid is in pain
+<drochaid> sorry, that didn't flow .. 
+<drochaid> I'll try again
+Action: drochaid is 27
+Action: Vee2d2 will be 32 in a few weeks
+<chillywilly> say hi to r2d2 for me ok?
+<drochaid> TMGweb is LIIIIIIIVE
+<chillywilly> wtf is that?
+<drochaid> new group site
+<drochaid> I'm only happy because I'm sleep and food starved right now :)
+<chillywilly> group site?
+<drochaid> http://www.morrell-group.com/
+<chillywilly> I'd really like to get LET off the ground
+<drochaid> LET?
+<chillywilly> Liberty Enterprise Technologies (aka my business)
+<drochaid> ahhh
+<drochaid> what's holding you up?
+<chillywilly> hmmm, myself I guess
+<drochaid> go for it then
+<drochaid> get as much advice as you can, build a good business plan ... and just do it
+<chillywilly> right...
+<drochaid> I know it's nowhere near that easy, but the bigest hurdle is convincing yourself ... get past that and you've got a good chance :)
+<tam0> i agree 
+<tam0> big time
+<drochaid> wow, not often you agree with me :o
+<drochaid> then again, not often chillywilly agrees with me .. still waiting to see if he does ;)
+<chillywilly> sure, but I do have some things that I would like to square away first...that's what's really holding me back
+<chillywilly> various projects that need finishing
+<chillywilly> I agree with you, it's all a metter of doing it
+<chillywilly> er, matter
+<drochaid> while you're working on these other projects .. are you planning for launching LET?
+<chillywilly> yea, I suppose I can multi-task ;)
+<drochaid> tis a good idea to, I spent 11 months planning the launch of TMC for last March
+<chillywilly> hey I at least started some things...a buddy has sent me some documents like a format for a business plan and I took some notes on some things he said I should look into ans I do know where my resources lie, we have a real good local chamber of commerce, etc.
+<drochaid> so if you can get a lot of that out the way while you're doing other tasks, it could seriously shorten your time to going live WHEN you finally do so :)
+<chillywilly> yea :)
+<drochaid> cool, use your chambers and every other resource you possibly can
+<drochaid> I take the opinion that ANY advice is valuable, even if I end up not using it
+rdean (~rdean@12-221-228-94.client.insightBB.com) left irc: "Client Exiting"
+<chillywilly> true dat
+<chillywilly> especially when you're trying to figure out how to do something ;)
+<drochaid> yep
+dsmith (dsmith@oh-strongsvillecadent1-1c-203.clvhoh.adelphia.net) joined #gnuenterprise.
+SteveOU (~SteveB@ip-129-15-209-86.kraettli.ou.edu) joined #gnuenterprise.
+Mr_You (rouzer@209-166-213-2.walrus.com) joined #gnuenterprise.
+jbailey (~jbailey@65.48.140.35) joined #gnuenterprise.
+SteveOU (~SteveB@ip-129-15-209-86.kraettli.ou.edu) left irc: "Client Exiting"
+jbailey (~jbailey@65.48.140.35) left irc: "Client Exiting"
+Action: drochaid is away: no ere
+jamest (~jamest@adsl-65-71-168-128.dsl.tpkaks.swbell.net) left irc: "[x]chat"
+dsmith (dsmith@oh-strongsvillecadent1-1c-203.clvhoh.adelphia.net) left irc: "later.."
+Remosi (dahoose@port-210-54-58-225.jet.net.nz) joined #gnuenterprise.
+Isomer (dahoose@port-219-88-246-238.jet.net.nz) left irc: Read error: 60 (Operation timed out)
+--- Mon Jan  6 2003

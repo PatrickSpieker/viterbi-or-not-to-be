@@ -1,0 +1,30 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.16Oct2002" enddate="15 Oct 2002 23:00:00 -0800" startdate="15 Oct 2002 23:00:00 -0800" subject="[IRC] 16 Oct 2002" title="setPrefetch bug with database driver for Application Server fixed">
+
+<topic>Common</topic>
+<topic>Application Server</topic>
+
+<p>Matt Rice (ratmice^) reported a problem <quote who="Matt Rice">trying
+to use the appserver</quote> - the DBDriver.py was generating an 
+error <quote who="Matt Rice">'int' object has no attribute 
+'setPrefetch'</quote>. Daniel Baumann (chillywilly) said 
+<quote who="Daniel Baumann">hmmm - I don't see why a geasList would 
+not contain setPrefetch</quote>. Andrew Mitchell (ajmitch) noticed 
+<quote who="Andrew Mitchell">it says it's an int rather than a list
+- i've had stupid issues before with non-GNUe stuff where a list 
+would appear as an int - and the int was the list length</quote>. 
+Daniel confirmed <quote who="Daniel Baumann">fieldlist is a python 
+list</quote> but <quote who="Daniel Baumann">it is not apparent to 
+me what the issue is</quote>. He suggested 
+<quote who="Daniel Baumann">why don't you add print self._list 
+before the setPrefetch line - if it prints a number then that's 
+b0rked</quote> - <quote who="Daniel Baumann">it should be a geasList 
+from what I can tell</quote>. Matt pasted several debugging messages 
+he generated, and Daniel said <quote who="Daniel Baumann">I know 
+what it is now - in the createList method it returns None</quote>. 
+He applied a quick fix, saying <quote who="Daniel Baumann">afict the 
+"auth" check should succeed and we should get a real geasList object 
+and not None - it's just a stub that does nothing but returns 
+1</quote>.</p>
+
+</section>
+

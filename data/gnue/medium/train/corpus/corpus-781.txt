@@ -1,0 +1,426 @@
+reinhard (~reinhard@M1271P030.adsl.highway.telekom.at) joined #gnuenterprise.
+psu (psu@81.98.44.32) joined #gnuenterprise.
+anilp (~tell_anil@202.144.91.253) joined #gnuenterprise.
+anilp (~tell_anil@202.144.91.253) left #gnuenterprise.
+btami (~tamas@ip102-205.ktv.tiszanet.hu) joined #gnuenterprise.
+psu (psu@81.98.44.32) left irc: Read error: 110 (Connection timed out)
+fixe (~fixe@dsl093-081-253.chi2.dsl.speakeasy.net) left irc: "Client exiting"
+Arturas (arturas@bit.codeworks.lt) joined #gnuenterprise.
+<Arturas> Hello
+<siesel> Hi Arturas
+<Arturas> hi Jan :)
+Action: Arturas is away: lunch
+Action: Arturas is back (gone 00:56:50)
+lekma (~lekma@node1142c.a2000.nl) joined #gnuenterprise.
+siesel (jan@xdsl-213-168-108-153.netcologne.de) left irc: Read error: 104 (Connection reset by peer)
+lekma (~lekma@node1142c.a2000.nl) left #gnuenterprise.
+siesel (jan@xdsl-213-196-193-254.netcologne.de) joined #gnuenterprise.
+<Arturas> siesel: welcome back :)
+lekma (~lekma@node1142c.a2000.nl) joined #gnuenterprise.
+<lekma> hi guys
+<lekma> anybody here?
+<Arturas> hi
+<Arturas> yes, anybody sometimes is somewhere here :)
+<lekma> i was wondering if there are win32 binaries of the pre-release available...
+<Arturas> you need especially pre-release?
+<btami> hi all
+<lekma> yep i would like to test gnue-sb
+<btami> pre-releases are old
+<Arturas> btami: hi Bajusz :)
+<btami> hi Arturas!
+<lekma> i mean the last pre-release 0.4.99
+<lekma> of forms
+lupo (~lupo@pD95428AE.dip.t-dialin.net) joined #gnuenterprise.
+<btami> lekma: try CVS instead
+<btami> tons of stuff changed/fixed
+<lekma> ok... then is there anywhere a clear list of dependancies
+<lekma> i only have a gentoo linux at hand
+<lupo> what's a good cvs client? the command line output of CVS is too long for me to keep track of changes
+<btami> wxpython, egenix-mx and some db drivers needed
+<Arturas> lupo: i once used tkcvs and liked it
+<Arturas> once := long long time ago :)
+<lupo> lekma: python2.1 or greater, wxWindows with python bindings 2.2 or greater, egenix-mx in a halfway recent version and db drivers for python, such as psycopg for postgres
+<btami> lupo: i'm using gcvs on woody
+<lekma> btami: what about PySablot and/or sablotron
+<lekma> ?
+<lupo> lekma: afaik only needed for the GSD tool and reports
+<lupo> if you don't need any of these two, you won't need them
+<btami> gnue-sb has no reports yet
+<lupo> btami: oh. i didn't know that this was about gnue-sb
+<lekma> yep but a lot of gsd's
+<lekma> :)
+Nick change: lekma -> lekma-afk
+ToyMan (~stuq@smtp.dstoys.com) joined #gnuenterprise.
+<btami> lekma: i'm not sure the status of xml2sql util 
+<lupo> btami: i've written some of the xml2sql doc :)
+<lupo> btami: it works just as expected and documented
+<btami> as i know there is a new schema/scripter.py
+<btami> without xslt
+<btami> but i never tried
+Nick change: lekma-afk -> lekma
+<lupo> btami: where exactly is that?
+<btami> common/src/schema/scripter
+<lekma> lupo: xml2sql doesn't work good for mysql (i.e. a lot of UNHANDELD TYPE are generated)
+<lupo> btami: yes indeed
+<lupo> btami: xml2sql is no longer status quo, first because of its xslt proc dependency and second because at a certain level xslt makes things harder than coding the stuff
+<lupo> btami: so, in the future the schema/scripter/* stuff will be used
+<btami> lupo: i think scripter needs more processors (now postgresql, oracle exist)
+Stoke_ (~stoker@ppp158.tc-1.roc-pt.ny.localnet.com) left irc: Read error: 60 (Operation timed out)
+<lupo> btami: yes. i'd like to do that, but i only work with postgres, so i can't help much. anyway, it looks quite easy to add new processors.
+Nick change: lekma -> lekma-afk
+<lupo> whereas i don't like the word "processor", as it's commonly used for either hardware things or data processors in a narrow sense. i'd rather call this adapters.
+<lupo> whatever :)
+<lupo> uh
+<lupo> there are some commits to the forms curses UI stuff
+<lupo> whoho
+<lupo> doesn't work here, damnit
+<lupo> well, at least the wx ui works
+<lupo> fine
+<lupo> thanks to whoever did that
+<btami> have to go home, bye
+btami (~tamas@ip102-205.ktv.tiszanet.hu) left irc: 
+Stoke (~stoker@ppp329.tc-2.roc-pt.ny.localnet.com) joined #gnuenterprise.
+dsmith (dsmith@oh-strongsvillecadent1-1c-181.clvhoh.adelphia.net) left irc: "later.."
+lupo_ (~lupo@pD95428AE.dip.t-dialin.net) joined #gnuenterprise.
+lupo (~lupo@pD95428AE.dip.t-dialin.net) left irc: Read error: 113 (No route to host)
+jamest (~jamest@leibniz.math.ksu.edu) joined #gnuenterprise.
+<lupo_> hi jamest
+<jamest> hello
+<siesel> hi jamest
+<siesel> it seems that the datasource extension isn't working anymore 
+<siesel> do you have any idea how to fix it?
+<jamest> ?
+Stoke_ (~stoker@ppp326.tc-2.roc-pt.ny.localnet.com) joined #gnuenterprise.
+<siesel> :)
+<siesel> it was possible to access special db function through an extension attribute
+<siesel> f.e. MyDs.extensions.getSequence("MySequence")
+<siesel> where MyDs is the name of the <datasource>
+<jamest> ah
+Stoke (~stoker@ppp329.tc-2.roc-pt.ny.localnet.com) left irc: Read error: 54 (Connection reset by peer)
+<jamest> datasources are trigger enabled now
+<siesel> it has been moved from GFDatasource.py to GDataSource.py and it seems that it didn't worked anymore since then
+<siesel> ok, so how can I reveal the extension attribute to the trigger namespace?
+<jamest> so if you need a special function on a datasource you need to look at 
+<jamest> common/src/datasources/GDataSource.py
+<jamest> look for the TriggerSupport section
+<jamest> er 
+<jamest>     # trigger support
+<siesel> I did. And it wouldn't be a problem to define a function getExtensions in __triggerFunctions
+<jamest> yes, that should replace the old method
+Stoke_ (~stoker@ppp326.tc-2.roc-pt.ny.localnet.com) left irc: Connection reset by peer
+<jamest> well
+<jamest> self._triggerFunctions
+<jamest> er
+<jamest> sorry I misread your line
+<siesel> or a property in self._triggerProperties
+Stoke (~stoker@ppp592.tc-1.roc-pt.ny.localnet.com) joined #gnuenterprise.
+<siesel> but then it would mean to change the syntax from MyDs.extension to MyDs.__properties__.extension or MyDs.getExtensions()
+<jamest> properties are not really entended for functions
+<jamest> however now that I think about it
+<jamest> you really dont' want to do that
+<siesel> no. I want to leave it as it was.
+<jamest> there is a 
+<jamest> autofillBySequence
+<jamest> trigger functoin that used to be on <entry> widgets
+<jamest> it looks like it got moved to <field>
+<jamest> i think this may be what you're after
+lekma-afk (~lekma@node1142c.a2000.nl) left #gnuenterprise.
+<siesel> hmm, I just took that seqence stuff as an example.
+<siesel> I just need access to the extensions object, to do f.e. a MyDs.extension.ldapsearch
+<jamest> does it even exist anymore?
+<jamest> i was thinking the extension thing was a hack at the db driver level
+<siesel> it exists, but is not exported to trigger namespace anymore.
+<siesel> If its only purpose was to provide a hack at db driver level, then it shouldn't be exported to trigger name space and I can't use it.
+<siesel> But if extension would really mean extension of normal db driver functionality, then it should be accessible through the trigger name space, because this would be the only way to access db driver specific features
+<jamest> true
+<siesel> if it would be accessible through trigger namespace it would also be possible to remove some db driver specific features (like "call" for appserver) from GDataObjects/GDataSource
+<jamest> i'm trying to remember how I did __properties__
+<jamest> I don't think a dict base property will work
+<jamest> as IIRC you do a set/get method for each property you define
+<siesel> you did properties with get/set functions
+<jamest> and extensions was a dict wasn't it?
+<siesel> extensions is an object
+Action: jamest has 0 time to look into this code at the moment (time crunch)
+<siesel> so it would be possible to convert it into an GObj and make it a child of GDataSource
+<jamest> that may be a solution
+<siesel> the only drawback is that DBdrivers has to import GObj
+<jamest> almost everything has to do that now anyway
+<jamest> if possible I'd hold off and run this past jcater as well
+<jamest> but I don't see an issue with this myself
+<siesel> ok.
+<jamest> this being reactivating extensions
+<siesel> IMHO it would make sense, especially because we now have driver/*/Extension subdirs
+<jamest> that's odd, maybe jcaters done some other method of getting to them then
+<jamest> as I thought they were completely dead
+<jamest> if he put the effort into an Extension subdir that implies that they are now
+<jamest> er
+<jamest> not
+dsmith (~dsmith@borg.altus.cc) joined #gnuenterprise.
+<siesel> there are still used, f.e. that autofillbySequence is calling datasource.extension.getSequence
+<siesel> its just not possible to access new functions in that extensions. i.e. extensions are kind of STATIC
+Action: siesel will have another look at the code, to check how difficult/easy parent/child relationship between extension GObj and GDataSoure objects would be
+<jamest> ah
+<jamest> then I think this would be fairly easy to expose
+<siesel> I hope its just a "if isinstance(extension,GObj): self.addChild(extension)"
+<jamest> i think it may be easier than that
+<jamest> we'd need to think about it a bit
+<jamest> but the _properties_ code might be extended to export an object directly into the trigger namespace for an object
+<chillywilly> morning
+<jamest> kind of a reserved word for a specific object
+<jamest> IIRC the only reason I did __properties__ was to avoid collision with field names
+<jamest> it should be trival to add a flag to a property definition that would shove the name into the namespace minus the __properties__
+<siesel> what about something like self.__triggerProperties = { "extension": {"get":self.getMe,"set":self.setMe,"direct":1}}
+<jamest> that would be more flexible than hard coding a special exception in for extensions
+<jamest> yes, something like that
+<jamest> however we will be creating namespace collision issues
+<jamest> with field/block names
+<jamest> unless we made that _extensions
+<jamest> and a basic rule that said never use field/block names that start with _
+<siesel> can you access the fields of a datasource directly through the datasource?
+<jamest> i would think so but I don't recall
+<siesel> I think for the namespace issue it doesn't matter if we add the extension functionalty by transforming it into a gobj child object, or passing it to the trigger through an property.
+<jamest> implementation would probably be easier via the property extension
+<jamest> but my namespace concern is a seperate issue
+<siesel> that is just a question of additional functionality /overhead (for the GObj way)
+<jamest> I don't care to pollute the trigger namespace with too many reserved words
+<jamest> as I could see datasource.field being handy in a trigger
+<siesel> yes. it would really be.
+<siesel> especial for fields which are not defined elsewhere 
+<jamest> and I don't want to risk having too many field names that can't be used in a datasource.foo becasue foo is reserved by forms
+LJHAPHQ (pwnz-24128@203.103.26.24.cfl.rr.com) joined #gnuenterprise.
+LJHAPHQ (pwnz-24128@203.103.26.24.cfl.rr.com) left #gnuenterprise.
+<siesel> I aggree.
+<siesel> MyDs._extensions looks horrible, but its better than a poluted namespace
+<lupo_> foo is reserved by forms?
+<siesel> gnue reserved word list: "foo", "bar", "goat" ...
+<siesel> ;)
+<jamest> don't forget "fsck", "argh!", "whimper"
+<jamest> no foo was just an example
+<jamest> IIRC __properties__ is the only thing taken so far
+<siesel> so what about making extensions a "direct property" and export "direct properties" by adding a "_" into the normal objects namespace
+<siesel> extensions could then be access by two ways: MyDs.__properties__.extensions and MyDs._extensions
+<jamest> there's an idea
+<jamest> this sounds reasonable to me
+<siesel> good. 
+<siesel> Then I hope that Jason joins us soon, because I want to try it :)
+Action: jamest sits a platter of steaming hot donuts in front of the monitor
+<jamest> here cater, cater, cater
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<jamest> did /. mention the major samba security hole from the 14th
+<jcater>  /. only announces important stuff
+<jcater> like
+<jamest> as I see they plastered the iss issue (looks like the donuts finally worked siesel) on the front page but I don't recall seeing
+<jcater> A Photorealistic CGI TV Series Coming Real Soon Now
+<jamest> "Run Samba?  Got root?"
+<jamest> jcater: if you could read todays logs and comment
+<jamest> the conversation started about 50 or so lines ago when I logged in
+<jcater> what I ***really*** wanted to do w/the extensions
+<jcater> (and btw I didn't realize they were broken; oops :)
+<jcater> if you have a connection called "gnue"
+<jcater> I'd like a gnue object in the trigger namespace
+<jcater> that exposed the extensions
+<jcater> so if you had
+<jcater> <datasource connection="gnue" name="MyDTS" table="....">
+<jcater> in a trigger
+<jcater> you wouldn't have to do 
+<jcater> MyDTS.extensions.getSequence()
+<jcater> but could go
+<jcater> gnue.getSequence()
+Action: jcater hasn't finished the backlog, so this may not be what the question was about
+<jamest> extensions is the issue
+Arturas (arturas@bit.codeworks.lt) left irc: "Client Exiting"
+<havoc> well, I don't think I'll be going through Canada on my vacation
+<chillywilly> you were planning to?
+Action: chillywilly doesn't see how Canada is on the way to Boston
+<havoc> chillywilly: I occasionally get bored, and take different routes
+lupo (~lupo@p5085F209.dip.t-dialin.net) joined #gnuenterprise.
+<havoc> but the last thing I want to do is sacrifice two days of my 7 day vacation trying to cross the border
+<chillywilly> HEH
+<chillywilly> true dat
+<havoc> I *know* how long it can take normally, and during heightened security
+<havoc> PITA
+<havoc> of course we'll be vacationing in a terrorist first-strike city :(
+<havoc> (Boston)
+<havoc> oh well
+<havoc> unless they attack my bar, we should be safe ;)
+<lupo> what important points can be attacked in Boston, besides FSF?
+<havoc> heh, who knows
+<havoc> it's just a high population density area
+<jamest> are those canadians causing trouble again?
+ninja (~rossg@203.146.54.221) joined #gnuenterprise.
+<jamest> :)
+<havoc> jamest: scroll back a bit
+lupo_ (~lupo@pD95428AE.dip.t-dialin.net) left irc: Read error: 60 (Operation timed out)
+<havoc> I just don't want to waste precious vacation time sitting at the border twice
+<havoc> where bueracracy and security collide
+<lupo> havoc: i expect future terrorist attacks to target non-spectacular places, such as shopping malls
+<lupo> to spread real fear of death among civilists
+<havoc> who knows?
+<lupo> just expecting the worst
+<lupo> to have a good feeling when it's better than "worst"
+<lupo> :)
+nevola (~xxx@217-125-129-135.uc.nombres.ttd.es) joined #gnuenterprise.
+<siesel> Jason, if I got your point right, then you would like to have an extension/connection object, which can be accessed at global scope through the connection name and also through the name extension below a datasource
+<siesel> it would be easy to solve this by making that  extension/connection object a GObj and a child of GDataSource
+lupo (~lupo@p5085F209.dip.t-dialin.net) left irc: "using sirc version 2.211+KSIRC/1.1"
+ToyMan (~stuq@smtp.dstoys.com) left irc: "Client Exiting"
+nevola (~xxx@217-125-129-135.uc.nombres.ttd.es) left irc: 
+Stoke_ (~stoker@ppp171.tc-22.roc-pt.ny.localnet.com) joined #gnuenterprise.
+Stoke (~stoker@ppp592.tc-1.roc-pt.ny.localnet.com) left irc: Read error: 113 (No route to host)
+jamest (~jamest@leibniz.math.ksu.edu) left #gnuenterprise.
+ninja (~rossg@203.146.54.221) left irc: Read error: 113 (No route to host)
+psu (psu@81.98.44.32) joined #gnuenterprise.
+<psu> hi all
+jcater_ (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: Read error: 54 (Connection reset by peer)
+<Vee2d2> heya psu, wb jcater+tail
+<psu> yo Vee2d2
+Nick change: jcater_ -> jcater
+<jcater> howdy
+pattieja (~pattieja@sc2-24.217.177.39.charter-stl.com) left irc: "[x]chat"
+Action: psu is watching the iraq debate from House of Commons on TV
+kreiszner (kreiszner@ppp008.alx.la.xspedius.net) joined #gnuenterprise.
+jamest (~jamest@adsl-64-216-111-42.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+psu (psu@81.98.44.32) left irc: Read error: 104 (Connection reset by peer)
+revDeke (www-data@alt1.libertydistribution.com) joined #gnuenterprise.
+<revDeke> jcater: you get my donut screen saver suprise ;)
+<jcater> yeah
+<jcater> haven't had a chance to look at it
+<jcater> it was zip file
+<jcater> so I assumed it's windows?
+<revDeke> large .bmp file
+<jcater> ah
+<revDeke> zipped to not 'clog email'
+<revDeke> the others were links to download the 'real' thing
+reinhard_ (~reinhard@M1271P030.adsl.highway.telekom.at) joined #gnuenterprise.
+jbailey (~jbailey@atlas.fundserv.com) joined #gnuenterprise.
+reinhard (~reinhard@M1271P030.adsl.highway.telekom.at) left irc: Read error: 111 (Connection refused)
+<revDeke> bbl
+revDeke (www-data@alt1.libertydistribution.com) left irc: "CGI:IRC 0.5 (EOF)"
+Nick change: reinhard_ -> reinhard
+<siesel> jcater, jamest: I've added "extensions" to the triggerProperties of GDataSource, to make it accessible for now. If you have no objections, I would like to commit it.
+<jcater> this restores the old functionality?
+<jcater> mydts.extensions.whatever() ?
+<siesel> no. to restore the old functionality the trigger code has to be changed
+<jcater> so how does this work?
+<siesel> mydts.__properties__.extensions.whatever()
+<jcater> ok
+<jcater> I suppose that works until we have time to reimplement properly
+<jcater> so I say, commit it
+<siesel> done
+<siesel> btw. there is a problem with enabled/disenabled icons in cvs-forms. If I modify some entries, the next record/prev record get disabled
+<siesel> can you give me a hint where to look for that stuff? Its getting on my nervers to allways have to use "go to record X" to be able to switch to the next record after some modification
+<reinhard> night all
+reinhard (~reinhard@M1271P030.adsl.highway.telekom.at) left irc: "War doesn't solve problems. War creates problems."
+kreiszner (kreiszner@ppp008.alx.la.xspedius.net) left irc: "Client exiting"
+bitsko (~ken@msp-65-30-234-116.mn.rr.com) joined #gnuenterprise.
+<bitsko> anyone know if there are any companies far enough along using GNUe that they'd be looking to hire GNUe developers?  how many core+tier developers currently work for solid GNUe users?
+havoc (~havoc@mke-65-31-168-36.wi.rr.com) left irc: Read error: 54 (Connection reset by peer)
+havoc (~havoc@mke-65-31-168-36.wi.rr.com) joined #gnuenterprise.
+revDeke (www-data@alt1.libertydistribution.com) joined #gnuenterprise.
+<revDeke> bitsko: the answer is yes
+<revDeke> about a year ago i was hired to work on gnue full time for a health spa
+<revDeke> they had trouble garning capital to sustain their estimated growth rate, and shrunk back to two clubs (and thus didnt need an advanced membership system)
+<revDeke> there are several companies interested in GNUe solutions where they might 'hire a consultant' or 'temp' gnue developer
+<revDeke> we have at least two foreign countries that employee gnue developers
+<revDeke> as to number of developers
+<revDeke> there is a core team of about 5 that distribute, coding, documentation, relase, management etc
+<revDeke> but there is a large second tier contributor level of probably about 20
+<revDeke> that use and sumbit patches on a less frequent basis
+<bitsko> thx.  I ask because I'm with a small group that's looking to build up some.  we do py and free software very well, but in particular we're a solid team that delivers (think XP at its best).  GNUe seems like a really good technology to move into and help support.
+<revDeke> i think in the small/medium business market you will find lots
+<revDeke> i.e. people wont ask for GNUe by name
+<jbailey> revDeke: Where do those of us who hang out and offer abuse go?
+<jbailey> Or do I get my own special category?
+<bitsko> exactly, but they may be looking for solutions
+<revDeke> but they will ask for solutions that pretty much are easy to provide with gnue
+<revDeke> bitsko: how did you happen to hear about gnue?
+<revDeke> we are always curious
+<revDeke> jbailey: we learned a long time ago, dont torture the packaging folks
+<revDeke> so you go in the "grand debian packaging poobah" category
+<bitsko> revDeke: I've been following it for about a year or so, mostly thru Kernel Cousins
+<bitsko> haven't had a chance to dip a toe in yet
+<revDeke> you have something to do with casbah project once upon a time?
+<bitsko> yup, that's me
+Action: revDeke was thinking i remembered name from scarab (sp)
+<revDeke> when looking for scarab and python somehow got me back to casbah on google
+<bitsko> heh
+Action: revDeke never saw casbah but recalls looking at scarab for something what seems like many moons ago
+<bitsko> scarab and casbah predated my reading XP.  we would have had a real project going if we'd done YAGNI and TDD
+<revDeke> casbah from what i am reading looks almost like a 'web centric' implementation of gnue
+Action: revDeke thinks i ran into scarab when we were debating rpc protocols in gnue
+<revDeke> and decided upon gnue-rpc (a generic rpc wrapper)
+<revDeke> well let us know if you have any questions generally someone is around about 24/7
+<bitsko> I think about 70% of what we had intended with Casbah was realized in Zope.  the two bigs things that would have been different were language-friendly from the beginning and more distributed
+<revDeke> if no one appears to answer gently lay a box of glazed donuts on the proverbial irc table and jcater should show up within the hour ;)
+<bitsko> :)
+<jbailey> He's picky about which doughnuts, though.
+<revDeke> i said 'glazed'
+Action: revDeke thinks we dont consider the vegan things you keep talking about as 'donuts'
+Action: jbailey larts revDeke
+<jbailey> Bah!
+<jbailey> ;P
+fixe (~fixe@dsl093-081-253.chi2.dsl.speakeasy.net) joined #gnuenterprise.
+<revDeke> bbl
+revDeke (www-data@alt1.libertydistribution.com) left #gnuenterprise.
+dsmith (~dsmith@borg.altus.cc) left irc: "later.."
+ToyMan (~stuq@170-215-206-157.glv.frontiernet.net) joined #gnuenterprise.
+bitsko (~ken@msp-65-30-234-116.mn.rr.com) left irc: "Client Exiting"
+jbailey (~jbailey@atlas.fundserv.com) left irc: "Client Exiting"
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "home"
+jcater (~jason@cpe-066-061-083-220.midsouth.rr.com) joined #gnuenterprise.
+siesel (jan@xdsl-213-196-193-254.netcologne.de) left irc: Read error: 110 (Connection timed out)
+suny (~zll_sy@210.83.202.175) joined #gnuenterprise.
+Action: derek is away: I'm busy
+Action: derek is back (gone 00:00:00)
+<derek> hmm guess i wasnt gone
+<jcater> w00t
+<wtg> are there any characters that cant be used in a linux filename or can they all be used by escaping them ?
+dsmith (dsmith@oh-strongsvillecadent1-1c-181.clvhoh.adelphia.net) joined #gnuenterprise.
+<jcater> I think you can use practically any character by escaping
+<jcater> though that's a bitch to maintain
+<wtg> but it's not considered poor form to have a file named q&a.file ?
+<jcater> I use '&' in file names
+<jcater> occasionally
+<wtg> =))
+<wtg> ok ... then it fine by me too 
+Nick change: dsmith -> dpsm
+<wtg> thanks jcater
+Nick change: dpsm -> dsmith
+chillywilly (danielb@mke-24-167-199-83.wi.rr.com) left irc: "Lost terminal"
+IsoosI (dahoose@port-219-88-247-96.jet.net.nz) joined #gnuenterprise.
+ToyMan (~stuq@170-215-206-157.glv.frontiernet.net) left irc: "Client Exiting"
+Remosi (dahoose@port-219-88-246-23.jet.net.nz) left irc: Read error: 60 (Operation timed out)
+johannes_ (~johannes@M1250P007.adsl.highway.telekom.at) joined #gnuenterprise.
+chillywilly (danielb@mke-24-167-199-83.wi.rr.com) joined #gnuenterprise.
+johannes (~johannes@M691P030.adsl.highway.telekom.at) left irc: Read error: 110 (Connection timed out)
+havoc_ (~havoc@mke-65-31-168-36.wi.rr.com) joined #gnuenterprise.
+havoc (~havoc@mke-65-31-168-36.wi.rr.com) left irc: Read error: 104 (Connection reset by peer)
+havoc_ (~havoc@mke-65-31-168-36.wi.rr.com) got netsplit.
+chillywilly (danielb@mke-24-167-199-83.wi.rr.com) got netsplit.
+chillywilly (danielb@mke-24-167-199-83.wi.rr.com) returned to #gnuenterprise.
+havoc_ (~havoc@mke-65-31-168-36.wi.rr.com) got lost in the net-split.
+havoc_ (~havoc@mke-65-31-168-36.wi.rr.com) joined #gnuenterprise.
+Remosi (dahoose@port-219-88-247-235.jet.net.nz) joined #gnuenterprise.
+Nick change: SachaS -> SachaUni
+Nick change: SachaUni -> SachaS
+IsoosI (dahoose@port-219-88-247-96.jet.net.nz) left irc: Read error: 113 (No route to host)
+IsoosI (dahoose@port-210-54-58-37.jet.net.nz) joined #gnuenterprise.
+Remosi (dahoose@port-219-88-247-235.jet.net.nz) left irc: Read error: 60 (Operation timed out)
+<Vee2d2>  	Accounting & ERP Software Consultant  	Icode, Inc.  	$0 - $250K
+<jcater> does one get to pick which end of that range one's at?
+Action: jcater would hate to be at the $5 mark :)
+<Vee2d2> heh
+<Vee2d2> 100% commision
+<Vee2d2> I've never been or known anyone who has been such a consultant so I'm not sure what sort of percentage of the sale is generally commision
+<Vee2d2> they are one of the few commercial offerings to have screenshots and stuff about their product on thier web page though.. 
+<chillywilly> who?
+chillywilly (danielb@mke-24-167-199-83.wi.rr.com) left irc: "reboot into kde"
+<jcater> reboot into kde?
+<jcater> gack
+<Vee2d2> silly chilly
+chillywilly (danielb@mke-24-167-199-83.wi.rr.com) joined #gnuenterprise.
+<Vee2d2> so how's the books, jcater?
+<jcater> swell
+jamest (~jamest@adsl-64-216-111-42.dsl.tpkaks.swbell.net) left #gnuenterprise.
+--- Wed Mar 19 2003

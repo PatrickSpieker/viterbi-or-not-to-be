@@ -1,0 +1,59 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.17Nov2002" enddate="16 Nov 2002 16:00:00 -0800" startdate="16 Nov 2002 16:00:00 -0800" subject="[IRC] 17 Nov 2002" title="Auto sequences for primary keys in GNUe with mySQL">
+
+<topic>Common</topic>
+
+<p>Andrew Mitchell (ajmitch) said he was trying to get a 
+form to work - <quote who="Andrew Mitchell">like automagically 
+inserting sequence numbers for master/detail</quote>. 
+James Thompson (jamest) said <quote who="James Thompson">that 
+should be in the docs as a recipe IIRC</quote>. Andrew noted 
+<quote who="Andrew Mitchell">mysql's auto_increment doesn't 
+work for master/detail, nor is it friendly :)</quote>. James 
+suggested <quote who="James Thompson">i think if you implenet 
+sequenceNumber in the mysql driver then you'd have them - i 
+_think_</quote>. Andrew said <quote who="Andrew Mitchell">all 
+i want is for the primary key (id) to be set for each record 
+:) - and the value being set to be visible to the detail 
+portion</quote>. James said <quote who="James Thompson">that's 
+automatic on a commit in common - however getting the initial 
+value from the db isn't IIRC - if you do the assignment on the 
+database side then you have issues IIRC</quote>. He suggested 
+<quote who="James Thompson">a db side trigger or a default 
+value set to a function</quote>. Andrew pointed out 
+<quote who="Andrew Mitchell">triggers? what's that? this is 
+mysql i'm using :)</quote> James asked how the primary keys 
+were being generated. Andrew said 
+<quote who="Andrew Mitchell">at the moment, i have the primary 
+key field set to auto_increment in the db - which sucks</quote>.
+James said <quote who="James Thompson">hey! auto_increement == 
+db side trigger! see, it's more advance than i give it 
+credit</quote>. Jason Cater (jcater) asked 
+<quote who="Jason Cater">do you know the name of the sequence 
+it created?</quote> Andrew did not think that sequences had 
+names that could be referenced in mySQL. Jason went 
+<quote who="Jason Cater">googling for the answer</quote>.</p>
+
+<p>Daniel Baumann (chillywilly) said <quote who="Daniel Baumann">the 
+lesson here kiddies - mysql sucks ass</quote>. Andrew said he did 
+not have much choice as he was <quote who="Andrew Mitchell">developing 
+something for systems already with mysql</quote>. Daniel suggested 
+using the GNUe Schema Definition (.gsd) format to migrate to another 
+database.</p>
+
+<p>Andrew suggested that it <quote who="Andrew Mitchell">would probably 
+be easier for me to get the current id value, increment it, and save it 
+back</quote> - this would work with even simpler databases like sqlite 
+and gadfly. James said the only sensible solution might be to get the 
+GNUe triggers to handle assigning the primary keys - 
+<quote who="James Thompson">create a table gnue_seed</quote>. Jason 
+suggested <quote who="Jason Cater">that, or  select max(id)+1 from 
+table;</quote> James added <quote who="James Thompson">then make the 
+getSequence in the db driver read the seed via a select for update, 
+update it, then have it print to the debug log "compensating for the 
+lack of a sane database"</quote>. Andrew commented that he 
+<quote who="Andrew Mitchell">would have thought this would be a 
+2-minute thing with mysql, at most</quote>.</p>
+
+</section>
+
+

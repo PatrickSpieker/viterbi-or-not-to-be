@@ -1,0 +1,71 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.24May2002" enddate="23 May 2002 23:00:00 -0800" startdate="23 May 2002 23:00:00 -0800" subject="[IRC] 24 May 2002" title="Adding new widgets to GNUe Forms">
+
+<topic>Forms</topic>
+
+<p>Marcos Dione (StyXman) said he had added <quote who="Marcos Dione">a 
+new widget. I modify GFParser. I modify UIdriver. what's next? I mean, 
+*how* do I say that this new GFj uses UIj as visual 
+representation?</quote>
+Later, he suggested <quote who="Marcos Dione">could it be the WIDGETS 
+hash @ the end of UIdriver? says it's for designer...</quote> 
+Jason Cater (jcater) arrived and said 
+<quote who="Jason Cater">UIwxpython</quote>. Marcos felt 
+<quote who="Marcos Dione">it's incredible how a word, a simple word, 
+can change you whole mood.</quote> Jason said 
+<quote who="Jason Cater">dare I ask what you've added?</quote> 
+Marcos said it was just an icon he had taken 
+<quote who="Marcos Dione">off the maintoolbar</quote> 
+as <quote who="Marcos Dione">we think it may be confusing to inexpert 
+users.</quote></p>
+
+<p>John Lenton (Chipaca) asked <quote who="John Lenton">btw, 
+is there any reason the widgets all require x and y attribs?</quote> 
+Jason Cater (jcater) said this was for positioning. John asked 
+<quote who="John Lenton">can't that be done automatically?</quote>. 
+Jason agreed,but said <quote who="Jason Cater">we have better / more 
+important stuff to do than layout management</quote> as of time of 
+writing <quote who="Jason Cater">and we get the most bang for the buck 
+w/ x,y</quote> in the meantime.</p>
+
+<p>Marcos explained in detail the changes he had made to support 
+his new widget. Jason said there was nothing obvious he had missed. 
+Marcos said he was getting an error, which he pasted. John 
+felt it was a parser problem, but Marcos was not so sure 
+- <quote who="Marcos Dione">if it would be a parsing problem, it 
+should die saying so.</quote> He pasted some more information 
+in the #flood channel.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.28May2002">
+Some days later</a>, Marcos asked <quote who="Marcos Dione">if I 
+develop a new widget, what exactly should I do in 
+forms/uidrivers/_base/UIdriver.py?</quote> Derek said that 
+<quote who="Derek Neighbors">if its a widget that will be fully 
+supported by GNUe long haul it would go same place as others</quote>. 
+If it was an 'unofficial' widget as discuseed in 
+<kcref subject="[IRC] 21 May 2002" title="Multi-platform GNUe Applications" />,
+<quote who="Derek Neighbors">i think it will be handled 
+differently</quote>.</p>
+
+<p>Marcos said he was <quote who="Marcos Dione">trying to 
+understand a  GFUserInterfaceBase - it has the _formToUI and 
+_formToUIWidget hashes, along with widgetConstructorFunction.
+The latter seems what I need, but I'm not sure.</quote>
+James Thompson (jamest) explained <quote who="James Thompson">_formToUI 
+is the form tag to UIfoo mapping - _formToUIWidget is the mapping to the 
+numerous widgets that can be created by a single UIfoo instance</quote>. 
+Marcos said he was almost there. James went on to explain 
+<quote who="James Thompson">right now the entire ui system is created 
+from the gfobject tree built by the parser</quote>. However, 
+<quote who="James Thompson">this sounds different though</quote>. He 
+suggested <quote who="James Thompson">i'd think you could easily add 
+a another phased init stage in the form itself</quote> but quickly 
+changed his mind. Marcos said he could not work out why the container 
+for his new widget <quote who="Marcos Dione">is a wxPanel...</quote>
+He explained <quote who="Marcos Dione">_createWindow is called with a 
+container param. the one passed to my _cW is a wxPanel. should be a 
+sxForm, I gues...</quote> James said <quote who="James Thompson">IIRC 
+the wxForm contains a pannel...i think this is some kind of 
+wx'ism</quote> but he was not sure.</p>
+
+</section>
+

@@ -1,0 +1,102 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.14Nov2002" enddate="15 Nov 2002 16:00:00 -0800" startdate="13 Nov 2002 16:00:00 -0800" subject="[IRC] 14 Nov 2002" title="i18n in GNUe">
+
+<topic>Forms</topic>
+<topic>Reports</topic>
+<topic>Common</topic>
+
+<mention>Arturas Kriukovas</mention>
+
+<p>Further to 
+<kcref subject="[IRC] 13 Nov 2002" title="i18n issues with Reports" />, 
+Bajusz Tam&#225;s said <quote who="Bajusz Tam&#225;s">i have a dilemma - 
+1. use sitecuspomize.py for setdefaultencoding() - 2. use 
+encoding in every place where it needed - i myself used 1. 
+before ,and i was happy - but today i remowed my sitecustomize.py
+to test for release and got errors from several places</quote>. 
+James Thompson (jamest) asked <quote who="James Thompson">are you 
+saying we need a way to modify sitecustomize.py during 
+setup?</quote> Bajusz was not sure, as Arturas Kriukovas (Arturas) 
+has raised concerns about how this would affect other python 
+applications on the same machine. Jason Cater (jcater) said 
+<quote who="Jason Cater">in production environments, we will 
+probably have a "custom" python install in which it wouldn't make 
+a difference. I don't know what else to do though - without changing 
+all file open() commands to a codec.open(file, encoding='unicode') - 
+which will suck</quote>. James did not 
+<quote who="James Thompson">think a small alteration to the file 
+(prompted for of course) is that big an issue</quote>. Bajusz
+said <quote who="Bajusz Tam&#225;s">if we can use our sitecustomize.py 
+with setdefaultencoding() - then no need for many 
+*.encode(encoding) - and python do the rest. The remaining problem, 
+how an install process gets the correct encoding - maybe a popup 
+like in a debian install</quote>? James said 
+<quote who="James Thompson">i think it'd have to be - as this is 
+different from the locale setting isn't it?</quote> Bajusz said 
+yes - his own locale was hu_HU (for Hungarian/Hungary) but his 
+<quote who="Bajusz Tam&#225;s">encoding in python is iso8859-2 or 
+cp1250</quote> - <quote who="Bajusz Tam&#225;s">python can grab 
+encoding from XP/2000 and from LC_ALL in *nix</quote>. Jason 
+asked if this was the default behaviour. Bajusz said that this 
+was his custom install - <quote who="Bajusz Tam&#225;s">no 
+sitecustomize.py exist per default</quote>. Jason felt 
+<quote who="Jason Cater">I really hate that you can't change 
+encoding in your app - that is a really bizarre design decision 
+for python to make :(</quote>.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.16Nov2002">
+Two days later</a>,
+James Thompson (jamest) asked how well GNUe was working in 
+Microsoft Windows for Bajusz. Bajusz said that he had not 
+<quote who="Bajusz Tam&#225;s">put site.py/sitecustomize.py into</quote> 
+the McMillan packages (used to create stand-alone *.exe files for 
+python applications in Microsoft Windows - 
+<quote who="Bajusz Tam&#225;s">so i tend to use encodings thing 
+:(</quote>. Forms and Designer themselves were reasonably stable, 
+but there were a significant number of 
+<quote who="Bajusz Tam&#225;s">event issues</quote> which he had raised 
+as <quote who="Bajusz Tam&#225;s">collected win32 bugs in DCL :)</quote>. 
+He had also <quote who="Bajusz Tam&#225;s">failed with making forms/reports 
+with simple wizard if i used non ascii title - when i want to save 
+them</quote>. James said he needed to move the formFontEncoding 
+code from Forms into Common. Jason Cater (jcater) asked 
+<quote who="Jason Cater">what outside of forms will use it?</quote>
+James asked <quote who="James Thompson">wasn't designer going to 
+support all languages in its menus/dialgos?</quote>.</p>
+
+<p>Bajusz reported <quote who="Bajusz Tam&#225;s">huh, finally i 
+reproduced my error :)</quote> in Reports. It appeared to be 
+treating the %s paramter literally as an invalid XML tag, rather 
+than replacing it with the value of the paramter - this was 
+<quote who="Bajusz Tam&#225;s">without sitecustomize.py</quote>. 
+James was surprised <quote who="James Thompson">it's really 
+putting the %s in there?</quote> Jason suggested putting a 
+print statement in to print some relevant variable values. 
+Bajusz said that the debugging print statement itself then 
+errored out - <quote who="Bajusz Tam&#225;s">UnicodeError: ASCII 
+encoding error: ordinal not in range(128) - python always 
+wants to convert unicode strings into ascii</quote>. This 
+was not normally a problem <quote who="Bajusz Tam&#225;s">cose 
+python is clever - but it allways uses unicode in XML</quote>. 
+Bajusz realised that Arturas' patch to Reports was not 
+ideal, as it used FontEncoding code originally meant for 
+Forms - <quote who="Bajusz Tam&#225;s">but as jamest said, a simple 
+fontEncoding in [common] is a solution</quote>. Jason felt that 
+<quote who="Jason Cater">fileEncoding? or textEncoding</quote>
+would be a better name, as fonts per se were not the issue. 
+James asked <quote who="James Thompson">did we ever get a 
+global section working in config file?</quote> to be able to 
+set options like this for all the tools - 
+<quote who="James Thompson">/me thinks he worked on a [default] 
+section</quote>. Bajusz wondered what <quote who="Bajusz Tam&#225;s">if 
+someone wants to use different lang for forms and for 
+reports</quote>.</p>
+
+<p>Dmitry said he had <quote who="Dmitry Sorokin">a mail from 
+python gettext author</quote>. He had recommended using ugettext, 
+which would always return a Unicode object, or several other
+complicated-looking alternatives. Dmitry would forward this to 
+the mailing list.</p>
+
+</section>
+
+

@@ -1,0 +1,686 @@
+[00:07] Last message repeated 1 time(s).
+<dtm> chillywilly: so you've budgeted that your woman costs you less than $6000/yr eh?
+reinhard (~rm@N816P023.adsl.highway.telekom.at) joined #gnuenterprise.
+<ajmitch> hi reinhard
+<reinhard> hi ajmitch
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+SachaS (~sacha@dialup-196-214.wasp.net.au) left irc: Read error: 110 (Connection timed out)
+SachaS (~sacha@dialup-196-55.wasp.net.au) joined #gnuenterprise.
+alexey_ (~alexey@195.151.214.34) left irc: "Client Exiting"
+ra3vat (ds@ics.elcom.ru) joined #gnuenterprise.
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+dsmith (~dsmith@p181.usnyc5.stsn.com) left irc: "later.."
+alexey_ (~alexey@195.151.214.34) left irc: Read error: 113 (No route to host)
+Nick change: SachaS -> SachaS_away
+chillywilly (~danielb@mke-65-29-142-117.wi.rr.com) left irc: "Philosophers and plow men, each must know his part, to sow a new mentality closer to the heart..."
+jamest (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+SachaS_away (~sacha@dialup-196-55.wasp.net.au) left irc: Read error: 110 (Connection timed out)
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+drochaid (~drochaid@pc2-kirk2-0-cust175.ren.cable.ntl.com) left irc: "Client Exiting"
+<jamest> bbiab
+jamest (~jamest@hobbes.math.ksu.edu) left irc: "[x]chat"
+smoke (~smoke@huurders.geodelft.nl) joined #gnuenterprise.
+<smoke> hello
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) left irc: "Client Exiting"
+jamest (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+<ajmitch> hi jamest
+<jamest> hi
+^chewie (~chewie@flemingi.dsl.visi.com) joined #gnuenterprise.
+alexey_ (~alexey@195.151.214.34) left irc: "Client Exiting"
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<ajmitch> morning jcater
+<jcater> morning
+<reinhard> morning all
+<reinhard> did you see the patch jens sent against some obsolete geasv1 documentation?
+<reinhard> IMHO it's *** urgent that the old obsolete docs are removed from our web page
+<ajmitch> yes
+<jcater> I have no issues with that
+<jcater> or at least write a sed script to add a header to each "THIS IS OBSOLETE DOCUMENTATION"
+<jcater> or something
+SachaS_away (~sacha@dialup-196-129.wasp.net.au) joined #gnuenterprise.
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: "Client Exiting"
+SachaS_away (~sacha@dialup-196-129.wasp.net.au) left #gnuenterprise ("Client Exiting").
+Arturas (~arturas@gsk.vtu.lt) joined #gnuenterprise.
+<Arturas> Hello :)
+ICJ (foobar@p5087096B.dip.t-dialin.net) joined #gnuenterprise.
+<ICJ> Hi!
+<ICJ> Read the docu patches I sent to gnue-dev?
+<ICJ> anyone?
+<ICJ> Huhu?
+yogurt2unge (~charlie@200.59.78.26) joined #gnuenterprise.
+<yogurt2unge> Hello people
+<yogurt2unge> I have a problem running a new download GNUE
+<reinhard> ICJ: are you jens müller?
+<yogurt2unge> I read a few time ago something about "ImportError: No module named mx.DateTime" error
+<ICJ> yes
+<ICJ> I am
+<yogurt2unge> Arturas: yes
+<yogurt2unge> Arturas: TKS, I'll probe it
+<yogurt2unge> Arturas: TKS again
+gontran (~gontran@ip68-3-244-71.ph.ph.cox.net) joined #gnuenterprise.
+<gontran> buenas dias
+<yogurt2unge> gontran: in spanish is "buenos dias"
+<gontran> yogurt2unge: yer so rite
+<gontran> :)
+<reinhard> ICJ i saw it
+<reinhard> ICJ I'm highly sorry to tell you that this doc is outdated and obsolete
+<reinhard> because it was aimed at GEAS v1
+<reinhard> however we appreciate your effort anyway
+<reinhard> our docs suck real hard :(
+<reinhard> bbl
+Nick change: reinhard -> rm-away
+<yogurt2unge> gontran: :))
+<yogurt2unge> Arturas: under debian are python-egenix-* modules TKS again
+<ICJ> oops ...
+<ICJ> Could you put that on the first page?
+<jamest> ICJ: yes, that came up in here today
+<jamest> sorry about that
+<ICJ> and could you move it to the /docbook/old directory?
+<Arturas> bye :)
+Arturas (~arturas@gsk.vtu.lt) left irc: "ircII/tkirc"
+^chewie (~chewie@flemingi.dsl.visi.com) left irc: "ircII EPIC4-1.1.2 -- Are we there yet?"
+^chewie (~chewie@flemingi.dsl.visi.com) joined #gnuenterprise.
+dneighbo (~dneighbo@tmp-200253.flinthills.com) joined #gnuenterprise.
+lsa (m@TK212017072163.wu-wien.teleweb.at) joined #gnuenterprise.
+ICJ (foobar@p5087096B.dip.t-dialin.net) left irc: Read error: 110 (Connection timed out)
+Nick change: rm-away -> reinhard
+<reinhard> hello lsa
+<reinhard> any questions we can answer for you?
+Action: reinhard saw the ".at" in the signon line
+<lsa> hallo reinhard
+<lsa> nice to see another .at
+<nickr> la de dee
+<lsa> no questions except for whether you know a reference project realised in a gnuenterprise suite
+<reinhard> dneighbo, jcater and jamest use GNUe Forms, Reports and Designer
+<reinhard> in production
+<reinhard> for projects they are involved in
+<lsa> i see
+<reinhard> GNU Enterprise as a whole (read: the end application - finance, supply chain etc) only exists on paper by now
+<lsa> what/who the hell are dneighbo, jcater and jamest ?
+<reinhard> from what i hear forms/reports/designer can be used fairly well as a m$ access replacement
+<jamest> pathetic losers from the US
+<reinhard> they are all here as we speak :)
+<lsa> :-)
+<reinhard> dneighbo and jamest are real persons
+<jamest> they look, smell, and act kinda funny most the times
+<reinhard> jcater is a coding anderoid
+<jamest> powered by donuts
+<jamest> he rocks
+<lsa> we have been assigned a smaller contract to migrate from a m$ access application and we thought about gnuenterprise as well
+<^chewie> I'm not here at all
+<reinhard> cool
+Action: ^chewie grins
+<lsa> but the project had to be web-based and gnuenterprise did not provide this interface
+<reinhard> ah
+<lsa> so we chose phpgroupware and coding has begun
+<^chewie> lsa: we chose zope instead
+<lsa> aha
+<^chewie> lsa: now, a zope product to gnu enterprise would be pretty cool
+<^chewie> ;-)
+<jamest> ^chewie: yip
+<^chewie> IMHO, PHP is good for quick hacks
+<lsa> we didn't like zope because it provides a really thick layer and a stripped-down python
+<lsa> (non-standard python) we saw many complaining about the language
+<lsa> we dont like big-n-fat apps
+<lsa> gets you very much exposed to problems in the middleware
+<^chewie> lsa: hmmm...  Not sure I agree with your assessment of zope yet
+<^chewie> lsa: but I'll keep an open mind
+<^chewie> ;-)
+Action: lsa thanks chewie for his opennes
+<dneighbo> interesting
+<dneighbo> gnue right now is PRIME for replacing access applicatinos
+<dneighbo> er applications
+<dneighbo> i.e. i think that would be the #1 use as it sits today
+<^chewie> the one feature I like most about zope is the templating as opposed to embedded markup
+<dneighbo> the 'need web' is interesting
+<dneighbo> will your application be GPL?
+<^chewie> dneighbo: true, but we don't want to push out libraries w/each client
+<^chewie> think thin client as a requirement
+<^chewie> super-thin
+<lsa> how would you migrate from a damn m$ access apps?
+<dneighbo> um yeah mozilla or i.e. are thin
+<lsa> dneighbo: of course GPL
+<dneighbo> super thin
+<^chewie> lynx is thin
+<^chewie> w3m is thin
+<dneighbo> if you are making people use lynx for a production application i pity your users
+<dneighbo> :)
+<^chewie> I pity them anyway
+<dneighbo> btw: the correct answer is mozilla,i.e. might be thick thin clients
+<dneighbo> BUT in our case they are already on the machine
+<lsa> many of the users come with their own crap OS
+<lsa> with a broken browser.
+<^chewie> I never bring focus to a particular HTML rendurer
+<lsa> why haven't you pushed the html interface of gnue?
+<lsa> (as first interface)
+<^chewie> the fact that there are many different HTML rendurers for many different platforms with MOSTLY the same output gives us a LOT of flexibility
+<^chewie> they do
+<^chewie> but they're experimental
+<^chewie> I think there's a PHPForms out there, right?
+<lsa> dunno
+<dneighbo> there is phpclient in cvs now (iirc)
+<dneighbo> also a webware one (though it might not be in cvs)
+Action: ^chewie nods
+<dneighbo> the main reason we dont/havent pushed it
+<^chewie> not familiar w/webware
+<dneighbo> is most of our core things webapplications suck
+<dneighbo> we fully want gnue to support them
+<dneighbo> but we are 'excited' to be coding them :)
+<^chewie> they do, but there is a reason for even 'sucky' front ends, such as pushing out portions of software to a web
+<dneighbo> an example would be jcater's situation
+<dneighbo> 40 nodes using LTSP
+<dneighbo> shared gfd's
+<dneighbo> shared gnue setup
+Action: ^chewie nods
+<lsa> gfd?
+<dneighbo> why bother complicating stuff with a shitty browser :)
+<dneighbo> gnue forms definition
+<lsa> aha
+<dneighbo> its what gets read by the forms engine to create a gui
+<^chewie> the largest reason why client/server apps suck on web browsers is because there is no true MVC model
+<^chewie> the protocol doesn't really allow it
+<dneighbo> people get too caught up with 'web' model imho
+<dneighbo> if you at cvs i think jcater recently checked in 'static' version stuff for gnue
+<jamest> yeah! a shitty forms client is so much better!
+<dneighbo> so an admin's life is cake to keep clients up to date
+<^chewie> heh
+<dneighbo> jamest: roflmao
+<gontran> <phm>heterogenous os environs demand a web-based solution
+Action: jamest is working in forms code today :)
+<lsa> dneighbo: sure, but how to provide the interface to people we cannot change the OS&browser of?
+<dneighbo> gontran : um thats bull shit :)
+<dneighbo> gnue runs on same platforms as browsers :)
+<gontran> I'm trying to get it out of my head
+<^chewie> more software to push out
+<dneighbo> lsa: i dont think gnue cant run on any O/S that there is a browser for
+<gontran> dneighbo: yer rite, it's mostly hype
+<dneighbo> ^chewie : i just said jcater checking in STATIC ability for gnue
+<^chewie> ;-)
+<dneighbo> so its 'shared' install
+<dneighbo> iirc
+<lsa> but then i have to tell 200+ users out there in the country to install a damn client they wont manage it ever
+<dneighbo> the only time i see web app having a real advantage
+<dneighbo> is if you have LOTS of clients you are not in any control of
+<gontran> create a nice installer?
+<dneighbo> i.e. CLASSIC web applications
+Action: lsa fully agrees with <dneighbo>
+<dneighbo> lsa: i just said that is only place where there is advantage of web app is a true disparate system
+<dneighbo> BUT
+<dneighbo> i dont many companies wanting inventory, financials etc shared by the masses of the internet
+<dneighbo> most of those applications are behind firewalls and on VPNs where the stuff is controlled (imho)
+<^chewie> s/internet/Intranet/
+<dneighbo> so when i say i shudder at web accounting
+<dneighbo> i see no ADVANTAGE to web
+<dneighbo> yet i see a very real disadvantage in ease of use
+<dneighbo> a. the widgets are not conduvice to high volume entry/validation
+<dneighbo> b. statelessness sucks :)
+<dneighbo> that said its EXTREMELY important for gnue to have a webclient :)
+<gontran> heh
+Action: lsa agrees
+<^chewie> brb
+<reinhard> bbl
+Action: reinhard is away: shower
+<lsa> what about java applet clients (i dont like java too much)
+<jamest> java!
+<jamest> argh!
+Action: jamest grabs his mallet
+<lsa> how are you going to realise the web client?
+<jamest> server side for now
+<lsa> what's on the clients side?
+<jamest> the browser only
+<lsa> plain html, dynamic html, javascript, ...?
+<dneighbo> yip
+<dneighbo> like normal web application
+<dneighbo> btw: an applet is not a web application
+<dneighbo> as you have to download .java files to your computer
+<lsa> right
+<dneighbo> so your argument of 'distribution' to lots of users over the world is then lost
+<dneighbo> as every time you upgrade they will have to redownload applet etc.... (iirc)
+Chipaca (~john@modem26-adsl.capfed2.sinectis.com.ar) joined #gnuenterprise.
+<dneighbo> wassup Chipaca 
+<lsa> they dont mind to download an app as long it cant go wrong (the download)
+<dneighbo> er
+<dneighbo> hola amigo
+<dneighbo> lsa: have you used java :) i dont think going right is in its vocabularly :)
+<Chipaca> hi all
+<dneighbo> with geas i think we can have something similar to applets
+<dneighbo> you download (via good installer) the client
+Action: lsa cites himself: "(i dont like java too much)"
+<dneighbo> and have it point back to a GEAS server
+<Chipaca> dneighbo: nothing much -- finishing touches on the ERD
+<dneighbo> and you are off to the races
+<dneighbo> cool
+StyXman (~mdione@modem26-adsl.capfed2.sinectis.com.ar) joined #gnuenterprise.
+Action: lsa doesnt even have java installed with his favourite browser...
+<StyXman> yogurt2unge: Chipaca: hi.
+joev (~joev@208.17.30.242) left irc: Read error: 104 (Connection reset by peer)
+<Chipaca> StyXman: hey there
+<yogurt2unge> StyXman: Helo
+Action: lsa will have a closer look at gnuenterprise... won't however stop coding in phpgw for the time being... will consider gnue next contract
+<lsa> thx guys
+<lsa> bye
+lsa (m@TK212017072163.wu-wien.teleweb.at) left #gnuenterprise.
+<^chewie> rehi
+dneighbo (~dneighbo@tmp-200253.flinthills.com) left irc: "BitchX-1.0c18 -- just do it."
+Nick change: gontran -> gont_avay
+dneighbo (~dneighbo@tmp-200253.flinthills.com) joined #gnuenterprise.
+<dneighbo> anyone here using fluxbox or blackbox or have in the past?
+<^chewie> yep. blackbox is nice
+<dneighbo> nevermind i got it to work
+StyXman (~mdione@modem26-adsl.capfed2.sinectis.com.ar) left irc: Read error: 104 (Connection reset by peer)
+<dneighbo> couldnt figure out how to group windows
+<dneighbo> for tabbing
+Action: dneighbo really likes this feature, i think it will make it gnue designer really nice :)
+dneighbo (~dneighbo@tmp-200253.flinthills.com) left irc: "BitchX-1.0c18 -- just do it."
+dneighbo (~dneighbo@tmp-200253.flinthills.com) joined #gnuenterprise.
+<dneighbo> http://gnuenterprise.org/~dneighbo/screenshots/
+<dneighbo> some yummy tab setup in fluxbox for designer
+<jcater> ooo
+<jcater> neato
+<jcater> what's that?
+<dneighbo> basically you can 'tab' windows
+<dneighbo> in fluxbox (and i assume other window managers)
+<dneighbo> which is nice for thigns like gimp
+<dneighbo> and designer
+Gaelle (~re@pD954B833.dip.t-dialin.net) joined #gnuenterprise.
+<jamest> dneighbo: think you can make the wxPython code emulate that?
+<jamest> :)
+<dneighbo> as i can open object inspector and property inspector and tab them
+<dneighbo> jamest: i wish (its doable but probably utter hell)
+<^chewie> ah, I see what you did
+<Chipaca> dneighbo: that's from pwm, right?
+<dneighbo> yes and no
+<dneighbo> its fluxbox
+<dneighbo> BUT they stole it from pwm
+Action: reinhard is back (gone 01:31:35)
+<dneighbo> reinhard thats one heck of a shower
+<reinhard> um finished the shower a long time ago
+<reinhard> but when i came back wife had captured my pc
+<reinhard> :)
+Ford_ (~re@p5085AB2B.dip.t-dialin.net) left irc: Read error: 110 (Connection timed out)
+ToyMan (~stuq@65.167.123.51) left irc: "Client Exiting"
+chillywilly (~danielb@mke-65-29-142-117.wi.rr.com) joined #gnuenterprise.
+<nickr> what, no red?
+<chillywilly> sup folks
+yogurt2unge (~charlie@200.59.78.26) left irc: "Client Exiting"
+yogurt2unge (~charlie@modem26-adsl.capfed2.sinectis.com.ar) joined #gnuenterprise.
+<^chewie> hmm...
+<^chewie> I notice that the debian/control file for forms lists the package as python-gnue-forms
+<^chewie> the existing package is called gnue-forms (woody)
+<^chewie> yet doing apt-get source gnue-forms reveals no debian/. specific files
+<^chewie> do you know what the "real" name of the package should be?
+<^chewie> I realize that the python naming practice in debian seems to be "python-<something>".
+<^chewie> however, since the gnue apps all relate to eachother, I don't see anything wrong w/just leaving it as "gnue-forms" w/the assumption that it's a python app.
+<dneighbo> nickr yes i use red :)
+<dneighbo> just the red has tabs that are hard to see
+<dneighbo> for the screenshot i changed to a cleaner theme
+<dneighbo> its gnue-
+<dneighbo> not python-gnue-*
+<dneighbo> our debians are being restructured
+Action: dneighbo glances at nickr 
+<dneighbo> for now the debs are broked :)
+<^chewie> yeah, I see that ;-)
+Action: ^chewie tried to use them and failed miserably. ;-)
+reinhard (~rm@N816P023.adsl.highway.telekom.at) left irc: "When all else fails, read the instructions"
+<dneighbo> gont_avay you rally avay?
+<jamest> dneighbo: you running forms right now?
+<jamest> from cvs?
+<dneighbo> yeah but not current cvs
+neilt (~neilt@66-61-51-107.wo4.cox.rr.com) joined #gnuenterprise.
+#gnuenterprise: mode change '+o neilt' by ChanServ!ChanServ@services.
+<dneighbo> cvs from 03/07
+<dneighbo> at home i have current cvs
+<dneighbo> brb
+dneighbo (~dneighbo@tmp-200253.flinthills.com) left irc: "[BX] Reserve your copy of BitchX-1.0c18 for the Sony Playstation today!"
+<neilt> hello all
+Chipaca (~john@modem26-adsl.capfed2.sinectis.com.ar) left #gnuenterprise.
+yogurt2unge (~charlie@modem26-adsl.capfed2.sinectis.com.ar) left #gnuenterprise.
+gont_avay (~gontran@ip68-3-244-71.ph.ph.cox.net) left irc: Read error: 104 (Connection reset by peer)
+<chillywilly> hiya neilt
+<jamest> l8r
+jamest (~jamest@hobbes.math.ksu.edu) left #gnuenterprise.
+<neilt> hows it hanging
+<chillywilly> a little to the left
+<chillywilly> :P
+dneighbo (~dneighbo@tmp-200253.flinthills.com) joined #gnuenterprise.
+<chillywilly> wb dneighbo
+<dneighbo> hi and bye
+<dneighbo> brb
+dneighbo (~dneighbo@tmp-200253.flinthills.com) left irc: Client Quit
+dneighbo (~dneighbo@tmp-200253.flinthills.com) joined #gnuenterprise.
+<dneighbo> ok back for real now
+<ajmitch> morning all
+<chillywilly> sup niggie
+<chillywilly> s
+<chillywilly> ;)
+neilt (~neilt@66-61-51-107.wo4.cox.rr.com) left irc: Read error: 110 (Connection timed out)
+ToyMan (~stuq@c5300-4-ip196.albany.thebiz.net) joined #gnuenterprise.
+<^chewie> later!
+^chewie (~chewie@flemingi.dsl.visi.com) left #gnuenterprise.
+<jcater> gah!
+<jcater> spamassassin just marked an email from my wife as spam
+<jcater> hehe
+<jcater> that's so cool
+<dneighbo> roflmao
+<dneighbo> spam = Spouse Possible Acutely Mad
+<dneighbo> spamassain is just looking out for you
+<chillywilly> did she send html mail?
+<jcater> she used [ /me blushes ] hotmail
+<jcater> and forgot a subject line
+Ford_ (~re@pD954BB78.dip.t-dialin.net) joined #gnuenterprise.
+<jcater> SPAM: Hit! (1.5 points)  BODY: Asks you to click below
+<jcater> SPAM: Hit! (1.8 points)  BODY: Tells you to click on a URL
+<jcater> SPAM: Hit! (2.4 points)  Subject: is empty or missing
+<Ford_> good morning
+<chillywilly> hehe
+<chillywilly> sup Ford_
+<dneighbo> guter tag
+Gaelle (~re@pD954B833.dip.t-dialin.net) left irc: Read error: 110 (Connection timed out)
+<Ford_> I heard some rumour which make me ill at ease
+<dneighbo> what rumor?
+<dneighbo> Ich werde wie ein Pferd gehangen.
+<dneighbo> is no rumore its true
+Action: chillywilly is away: food
+<nickr> ques?
+<dneighbo> Vous m'avez entendu.
+<Ford_> Microsoft might overtake another software vendor who sell ERP systems... damn Microsoft
+<dneighbo> and it will be as successful as say
+<dneighbo> 'greatplains'
+<dneighbo> ;)
+<Ford_> what is great plains ?
+<dneighbo> ERP owned by m$
+<Ford_> I see...
+<dneighbo> http://www.greatplains.com/
+<Ford_> the problem is that we just came into touch with that vendor ... and we also wanted to throw away all microsoft products. we did a lot the last days... installed openoffice everywhere and such... and now microsoft is maybe about to buy the vendor of the ERP system we wanted to buy
+<Ford_> that wouldn't be nice... and this rumour of course slows down any decisions that can be taken
+<Ford_> if only gnuenterprise would be finished yet... damn.. :-P
+<jcater> Ford_: what ERP were y'all considering, just out of curiosity
+<dneighbo> http://mikes.harderp.com
+<jcater> rofl
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "home"
+ToyMan (~stuq@c5300-4-ip196.albany.thebiz.net) left irc: "Client Exiting"
+<chillywilly> hehe
+Action: chillywilly is away: hitting the crack pipe
+Action: chillywilly is back (gone 00:00:02)
+<chillywilly> guess we need to get our shit together
+<dtm> Ford_: i congratulate you on your efforts so far
+<dtm> Ford_: what area do you live in?
+<chillywilly> hey did you knwo thwey want to regulate the internet with the FCC?
+<dneighbo> doesnt suprise me much
+<chillywilly> teySorry, but this is really late notice.  Tomorrow is the last
+<chillywilly> day for comments on the FCC's proposal to call the Internet
+<chillywilly> an "information service" for the entrenched broadband
+<chillywilly> interests.  Ostensibly, this decision is being made in
+<chillywilly> preference over classifying broadband internet as a
+<chillywilly> "communications medium," which would place it under
+<chillywilly> regulations like those phone companies are subject to.  It
+<chillywilly> is therefore being characterized as a decision for
+<chillywilly> deregulation versus regulation.
+<chillywilly> Anybody who can, PLEASE send in a note saying this is not a
+<chillywilly> question of whether regulation or deregulation is better
+<chillywilly> policy (this is just a smokescreen) -- it's a question of
+<chillywilly> the nature of the online medium:  Is it a "content" delivery
+<chillywilly> system, or a communications medium characterized by its
+<chillywilly> fundamental two-way protocols, one which brings profound new
+<chillywilly> capabilities to all citizens?
+<chillywilly> *Please* send even just a short note to the FCC at
+<chillywilly> ecfs@fcc.gov.
+<chillywilly> If you know any other constituencies that would want to put
+<chillywilly> a word in on this, please let them know.
+<dtm> chillywilly: dont worry; we here at FCC will take good care of the Internet for ya's
+<chillywilly> hehe :)
+<chillywilly> if only that was the case
+<chillywilly> I trust you infinitely more then I trust the gov't
+<chillywilly> :)
+<chillywilly> ah, I should go take the trash out
+<chillywilly> and get back to hacking my parallel i/o streams
+<chillywilly> [19:05:34] <-- Black^Ruby has quit ("Queef on my face")
+<chillywilly> lol
+<dneighbo> nickr they fixed themes.org
+<dneighbo> now it uses freshmeat engine
+jcater (~jason@HubA-mcr-24-165-193-24.midsouth.rr.com) joined #gnuenterprise.
+Nick change: jcater -> jcFood
+jamest (~jamest@fh-dialup-201015.flinthills.com) joined #gnuenterprise.
+<jamest> cvs down?
+<jamest> nevermind
+<jamest> just very, very slow to respond
+<chillywilly> hi
+<jamest> howdy
+Action: jamest gets to GNUe!
+<chillywilly> fancy meeting you here
+Action: dneighbo gets to home
+dneighbo (~dneighbo@tmp-200253.flinthills.com) left irc: "BitchX-1.0c18: just when you thought it couldn't get any better"
+jamest (~jamest@fh-dialup-201015.flinthills.com) left irc: "[x]chat"
+Nick change: jcFood -> jcater
+dsmith (dsmith@oh-strongsville5b-143.clvhoh.adelphia.net) joined #gnuenterprise.
+Action: chillywilly is away: caffiene
+Action: chillywilly is back (gone 00:13:18)
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+dsmith (dsmith@oh-strongsville5b-143.clvhoh.adelphia.net) left irc: Remote closed the connection
+<chillywilly> hey dneighbo
+<dneighbo> hi chillywilly
+<dneighbo> i hate tv
+Action: dneighbo started to watch diamondbacks then got up and took video games back to blockbuster
+<dneighbo> went to say night to wife before coming in the office and CSI was on and i got sucked in
+<chillywilly> heh
+<chillywilly> :P
+<jcater> hey all
+Action: jcater found another reason to love KDE in my remote office
+<jcater> http://www.tjansen.de/krfb/
+<dneighbo> um free donuts?
+<jcater> hehe
+<jcater> that's gonna be my new tagline
+<jcater> instead of "Free as in beer? or free as in speech?"
+Action: jcater will have
+<jcater> "Free as in Donuts? or Free as in Donut Recipes?"
+<dneighbo> rofl
+<dneighbo> um how does this help you
+<jcater> dude
+<dneighbo> as you dont want them all sharing the same desktop right?
+<jcater> running VNC servers on my remote Win32 machines
+<jcater> has saved me hours^Wdays in support
+<chillywilly> it helps you amdin them as you can connection and manipulate their desktop
+<dneighbo> yes
+<chillywilly> remotely
+Action: jcater takes control of the user's desktop
+<jcater> "well, no, you *didn't* select that option. 
+<jcater> You need to click *here* <jcater remotely moves their mouse to the correct
+<jcater> position>"
+<dneighbo> * jcater found another reason to love KDE in my remote office
+<dneighbo> i mis read this
+<chillywilly> misread even
+<jcater> all the VNC server's for Unix I've seen start up a whole new X session
+<jcater> which certainly has been useful for me too
+<dneighbo> i was thinking you were saying you liked this because it helped 'performance' re: our earlier discussion
+<jcater> ah
+<jcater> lol
+<jcater> no
+<jcater> management
+<jcater> my users can't leave well enough alone
+<dneighbo> and im thinking how the hell do 40 people share the same desktop and be productive :)
+<jcater> and have customized the hell out of kde
+<jcater> one of our customer service reps keeps calling
+<jcater> "My computer is broken"
+<dneighbo> but as support tool it makes PERFECT sense
+<jcater> my guys: Um, no it can't be... you use the EXACT same computer as the other 39 ppl
+<jcater> girl: But, it doesn't work right
+<jcater> two days later...
+<dneighbo> btw: fluxbox has full 'kde tray' support iirc
+<jcater> girl: Um, I found out that if I log in under someone else's name, it works fine
+<dneighbo> so you could run this right in fluxbox in the 'slit'
+<dneighbo> and yes 'slit' is what they really call it
+<jcater> my guys: Well, DUH! you can't leave well enough alone!
+Action: dneighbo still trips on the 'just put it in your slit' references
+<jcater> sigh
+Action: jcater has horrible, horrible flashbacks to "American Pie" and the band chick
+<dneighbo> this one summer at band camp....
+<dneighbo> ok time to get down to bidness
+<chillywilly> sheeeeeit
+<dneighbo> jcater you able to do any real time bug squashing
+<jcater> um
+<dneighbo> (although i think i ran issues by you and they are more 'jamest' arena)
+Action: jcater isn't feeling well and took 3 Tylenol PMs 20 minutes ago
+<jcater> so not sure how long I'm here
+<jcater> probably not much longer
+<dneighbo> grab a lemonade and sit right down, you are at optimal working power :)
+Action: dneighbo cant get that glass bottle through the internet, and they call this 'broadband'. ha.
+<jcater> http://www.software.hp.com/blade-servers/debian_img.htm
+<dneighbo> kick butt
+<dneighbo> having perens there tends to do that :)
+gontran (~gontran@ip68-3-244-71.ph.ph.cox.net) joined #gnuenterprise.
+derek (~derek@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<chillywilly> hi derek
+<jcater> If God had intended for man to go
+<jcater> about naked, we would have been
+<jcater> born that way.
+<chillywilly> hehe
+Action: derek is currently listening to : 14-15=( A-ha - Take on Me 15| 3:46 )15=14-
+Action: derek slaps gnuebot with a smelly old crappie
+Action: derek slaps Yurik with a smelly old crappie
+Action: derek slaps ra3vat with a smelly old crappie
+Action: derek slaps smoke with a smelly old crappie
+Action: derek slaps nickr with a smelly old crappie
+Action: derek slaps Mr_You with a smelly old crappie
+Action: derek slaps jcater with a smelly old crappie
+Action: derek slaps Isomer with a smelly old crappie
+Action: gontran listening to Lighthouse_roots_version
+Action: derek slaps gontran with a smelly old crappie
+Action: derek slaps Ford_ with a smelly old crappie
+Action: derek slaps dtm with a smelly old crappie
+Action: derek slaps dres with a smelly old crappie
+Action: derek slaps dotgnu-sage with a smelly old crappie
+Action: derek slaps dneighbo with a smelly old crappie
+Action: derek slaps derek with a smelly old crappie
+Action: derek slaps chillywilly with a smelly old crappie
+Action: derek slaps bigbrother with a smelly old crappie
+Action: derek slaps ajmitch with a smelly old crappie
+<derek> muhahaha
+Action: jcater slaps derek with a dunce cap
+Action: derek is currently listening to : 14-15=( Duran Duran - Girls On Film 15| 3:30 )15=14-
+<gontran> can I light it?
+<derek> gack
+<derek> the 80s playlist got rotated in
+<derek> im not in an 80s mode
+<derek> bbl
+derek (~derek@cpe-24-221-112-50.az.sprintbbd.net) left irc: Client Quit
+<jcater> ok
+<jcater> that was interesting
+<chillywilly> freak
+<dneighbo> that is me
+Action: gontran sniffs his face, wrinkles nose
+<dneighbo> trying to remember what 'toys' i have for xchat created
+<dneighbo> so i can get them moved to this box
+<jcater> ah
+<dneighbo> my new laptop memory arrived today and wireless card should be here soon too
+<jcater> well scp or nfs might be a better transfer method than IRC
+<chillywilly> you wrote a python script to slap ppl with a crappie?
+<dneighbo> need to get all things moved onto this desktop
+<dneighbo> chillywilly: what did you want me to use? perl?
+<chillywilly> hell no
+Action: jcater needs to make bigbrother slap chillywilly again :)
+<chillywilly> are you mental?
+<jcater> that was so cool
+<chillywilly> *sigh*
+<dneighbo> so i can wipe my laptop and put shinny new debian 3.0 with ext3 on it :) in a few weeks
+<chillywilly> so easily amused
+<jcater> well, I am reading debianplanet and slashdot
+<jcater> so, yes I am
+<gontran> debian zealots
+<jcater> no doubt
+<dneighbo> um we prefer the term bigots
+<dneighbo> its our southern heritage and all
+<dneighbo> so that's 'debian bigots'
+<gontran> riiight. y'all er debian bigots
+<dneighbo> plus you call us db's and we dont confused
+<dneighbo> wives: db (short for dumb bastard)
+<gontran> hmm. was thinking mf's
+<dneighbo> gontran: db (short for debian bigot)
+<dneighbo> we just simply answer 'yes dear'
+<dneighbo> to either
+<gontran> dneighbo: mf (short for moth...)
+<gontran> :)
+<dneighbo> mf = more freedom?
+<gontran> YES
+Action: gontran listengin to 3 joints per day
+<dneighbo> or in my case as jcater and jamest tell me and we tell our dog
+<dneighbo> mf = make friends
+<gontran> doag
+<dneighbo> if you are 'listening' to a joint, can you share?
+<dneighbo> its been long time since i have be rolf (rolling on laughing floor)
+Action: gontran shuffles round files looking for scp
+<dneighbo> hey stupid sysadmin question
+<dneighbo> what rights/groups need be a directory for apache to play nicely?
+<gontran> next time I have a listen I will
+<gontran> simply a+r 
+<gontran> but better apache member of private group with g+r
+<gontran> right?
+<gontran> heh, wives: dumb bastard
+<dneighbo> ?
+<dneighbo> hmm
+<gontran> relapse
+<dneighbo> have a+r i think (isnt that same as 776)
+<jcater> dneighbo: well, avoid mixing with Commanches
+<gontran> fex
+<jcater> and I think apache's will play nicely
+<gontran> fancy modes
+Action: gontran shuffles around bookcase
+<chillywilly> apache runs as www-data
+<dneighbo> grr piss moan
+<dneighbo> setting to chmod 777 lets me it but not the files
+Action: dneighbo hates setting up crap
+<chillywilly> boohoo
+<gontran> ooh ooh ooh me me me
+<dtm> dneighbo: are you a project or personnel manager at work?
+<dneighbo> neither
+<gontran> wtf are the perms on the dir now?
+<dneighbo> 777
+<dneighbo> but i found the problme i think
+<gontran> and it can't read the files ... oh
+<chillywilly> you read the article about the new Star Wars movie coting the economy $300 million?
+<chillywilly> costing
+<gontran> showing digitally in peoria arizona
+<chillywilly> because people will be calling in sick
+<chillywilly> to go see it
+<jcater> chillywilly: yeah... but the REAL question is... what does bathroom breaks cost the US economy?
+<chillywilly> or lunch breaks for that matter
+<chillywilly> or better yet
+<jcater> true
+<chillywilly> county maintenance guys
+Action: gontran steps back from potential political engagement
+<chillywilly> those guys are utterly fucking useless
+<chillywilly> :)
+Action: chillywilly can just imagine how hard dneighbo works being a county guy and all ;)
+<jcater> I need a Mike's
+<jcater> I also need KDE 3.0
+<chillywilly> btw, we're doing the waukesha county buildings right now ;)
+Action: jcater slaps the debian maintainers around some
+<chillywilly> can't you get it from kdcy?
+<chillywilly> or whatever that site it
+<chillywilly> s/it/is
+Action: jcater will wait for official ones
+<chillywilly> bah
+<jcater> those don't install in the proper places
+<dneighbo> rock
+<jcater> they install in /opt/kde
+<chillywilly> who cares
+<chillywilly> easier to switch then
+<gontran> I'M running kde3 from source <smirk>
+<chillywilly> kde is the devil
+<jcater> gontran: I did that for too long
+<gontran> chillywilly: so right
+<gontran> jcarter: me too, then I switched to gentoo
+<jcater> quickly grew out of that as # machines/users increased
+<chillywilly> hehe, carter
+<gontran> ah
+<jcater> I was a FreeBSD guy before debian
+<gontran> so right
+<chillywilly> hey jeff carter how's the family?
+<jcater> so I can relate to the love of ports :)
+Action: jcater smacks chillywilly around
+<dneighbo> gontran: a+r or 776 no worky
+<chillywilly> dneighbo: slap yourself
+<gontran> dneighbo: that's crazy!  
+--- Fri May  3 2002
+<dneighbo> dur
+--- Fri May  3 2002

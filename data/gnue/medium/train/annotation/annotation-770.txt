@@ -1,0 +1,40 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.14Jul2002" enddate="14 Jul 2002 23:00:00 -0800" startdate="13 Jul 2002 23:00:00 -0800" subject="[IRC] 14 Jul 2002" title="Automatically generating IDL files">
+
+<topic>Common</topic>
+<topic>Application Server</topic>
+
+<p>Perry Lorier (Remosi) reprised his 
+<quote who="Perry Lorier">amazing .so-&gt;idl idea</quote>, as previously 
+discussed in 
+<kcref subject="[IRC] 28 Jun 2002" title="Using .grpc files to support remote procedures in different languagues" />.
+<quote who="Perry Lorier">You know how nm can tell you all the symbols in 
+a .so (or .o for that matter) right? and how "stabs" can tell you the type 
+of a symbol if it was compiled with -g, or, alternatively, c++filt will tell 
+you if it was compiled using gcc, right? :)</quote> Daniel Baumann 
+(chillywilly) said he had <quote who="Daniel Baumann">never used that 
+before</quote> - he asked <quote who="Daniel Baumann">is c++filt 
+apt-gettable?</quote> Perry said <quote who="Perry Lorier">it's in 
+binutils</quote>. <quote who="Perry Lorier">givin that type information you 
+should be able to write an idl file (for gnurpc for instance)</quote>.
+He recognised that <quote who="Perry Lorier">you need to of course figure 
+out which symbols are actually defined in the .so/.a/.o that you're linking - 
+but it could be a really easy way to automatically load, say, openssl into 
+python. You could take the openssl.so file generate some idl for it, then use 
+gnurpc to use openssl as if it was a python module without having to spend 
+ages defining all the normal glue logic. If you did it right python could 
+catch the import function and do all of that automatically - so you could 
+have a .so (eg openssl.so) and then just go "import openssl" in python and 
+have it do all the work for you ;)</quote>. Andrew Mitchell (ajmitch) felt
+this <quote who="Andrew Mitchell">also may open up licensing holes :)</quote>
+Perry agreed - <quote who="Perry Lorier">but so does allowing multiple .c 
+files in a gcc invocation :)</quote>.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.15Jul2002">
+The next day</a> Perry said he had <quote who="Perry Lorier">been 
+experimenting with my idea</quote>. It <quote who="Perry Lorier">needs 
+some hand hacking at the moment - and I'm only doing c&lt;-&gt;c and no 
+RPC inbetween - but proof-of-concept is functional :)</quote>.</p>
+
+</section>
+
+

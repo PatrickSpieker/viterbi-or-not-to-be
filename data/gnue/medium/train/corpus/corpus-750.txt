@@ -1,0 +1,182 @@
+*** jcater has left #gnuenterprise
+*** holycow has joined #gnuenterprise
+*** holycow has left #gnuenterprise
+*** reinhard has joined #gnuenterprise
+<reinhard> good morning all
+*** johannesV has joined #gnuenterprise
+<johannesV> good morning
+*** krizz has joined #gnuenterprise
+<johannesV> if we have a master-/detail-datasource. and there's a block bound to both sources. now jumping to a given master-record moves the record-pointer of both, the master and it's first detail-record. but it also fires the focus-triggers on the master record. shouldn't that also fire the focus-triggers for the detail-record/block ?
+<johannesV> and if not (because the trigger is only fired for the current block of the form), why doesn't we fire the same focus triggers for 'normal' record-movement, but only on jumping to specific records ?
+*** btami has joined #gnuenterprise
+<reinhard> I have actually no idea what block level focus triggers would be used for
+<johannesV> bbl
+<btami> good morning
+*** kilo has joined #gnuenterprise
+<kilo> good morning
+*** k-man_ has joined #gnuenterprise
+*** k-man has quit IRC
+*** yure has joined #gnuenterprise
+*** krizz has quit IRC
+*** g_geeko has joined #gnuenterprise
+*** btami has quit IRC
+<reinhard> bbl
+*** reinhard has quit IRC
+*** dimas__ has joined #gnuenterprise
+*** btami has joined #gnuenterprise
+*** jamest has joined #gnuenterprise
+*** yure has quit IRC
+*** kilo has left #gnuenterprise
+*** dimas_ has quit IRC
+*** jcater has joined #gnuenterprise
+*** reinhard has joined #gnuenterprise
+*** reinhar1 has joined #gnuenterprise
+*** reinhar1 has quit IRC
+*** reinhard has quit IRC
+*** reinhard has joined #gnuenterprise
+<reinhard> any ghostscript wizards here?
+*** sacha has quit IRC
+<reinhard> after upgrading to etch ghostscript refuses to work with truetype fonts
+<reinhard> and I thought I ask in the world's #1 debian support channel ;-)
+<jamest> lol
+<jamest> after an endorsement like I hope someone has an answer, i know I dont
+<jamest> like that
+*** CirrusImage has joined #gnuenterprise
+<johannesV> ha, jamest's here ...
+<johannesV> :)
+<johannesV> jamest, do you know why for what we do have that block-level focus-triggers ?
+<johannesV> s/why for/for/
+<jamest> iirc they provide a higher level trigger than per entry level
+<jamest> so you could define a trigger that validates that fields x,y,z match a specific combo of values
+<jamest> and block navigation if they did now
+<jamest> now
+<jamest> er, not
+<jamest> iow, they fire on any focus change in that block
+<reinhard> jamest: so this trigger should also be called when the focus stays in the block and you navigate to next record?
+<jamest> that was how I recall it was supposed to work
+<reinhard> (as a side note, I would not consider it a good idea to limit focus navigation in such a way)
+<reinhard> but ok, that answers the question
+<jamest> it was matching a feature in Oracle SQL*Forms
+<jamest> IIRC
+<jamest> as how sql forms did something
+<jamest> again, iirc
+<jamest> if you tried to switch focus from an entry
+<jamest> entry -> pre-focus out fires
+<jamest> form -> pre focus out fires
+<jamest> er, damn
+<jamest> entry -> pre-focus out fires
+<jamest> block -> pre-focus out fires
+<jamest> form -> pre focus out fires
+<jamest> form -> pre-focus in fires
+<jamest> block -> etc
+<jamest> entgry -> etc
+<jamest> though I'd suggest we verify that with jcater as I haven't had access to SQL*forms since the mid 90s
+<reinhard> but block triggers would only fire if focus is moved from block a to block b, right?
+<jamest> that's not how I remember it
+<jamest> they fire for anything in them
+<jamest> but seeing as how I couldn't tell you what I ate for dinner on friday
+<reinhard> lol
+<jamest> i have reason to doubt I recall the behaviour of SQL*forms from back when Oracle 6 was new
+*** johannesV_ has joined #gnuenterprise
+*** johannesV_ has quit IRC
+*** johannesV_ has joined #gnuenterprise
+*** johannesV has quit IRC
+<jcater> yeah
+<jcater> that's a good recap
+<johannesV_> ok, haven't noticed that i've been disconnected
+<johannesV_> jamest, thanks for the explanation  ...
+<reinhard> regarding pep8
+<reinhard> I think if we really all would adhere to it, we (johannes and me) would follow it, too
+<jcater> I'm forcing myself to use it internally
+<reinhard> so please just say if we are going that way or not
+<reinhard> bbl
+<jcater> I vote for yes
+<jcater> jamest: ?
+<jcater> this is (somewhat) unrelated... but I notice common's technote recommends adding an svn propset:keywords Id to all .py files
+<jcater> is this worth adding at the svn hook level?
+<jcater> any new .py files added to svn get the property set automatically?
+<jamest> isn't it already that way?
+<jcater> no
+<jcater> it's not working, if so
+<jamest> odd
+<jamest> maybe that was internally
+<jamest> i swore that was a repository level config option I set somewhere recently
+*** derek has quit IRC
+<jamest> i'm ok with pep8 and with making exceptions if needed
+<jcater> fwiw, I switched designer from _() to u_()
+<jcater> runs fine for me
+<jcater> but buyer beware
+<jamest> so would we do pure pep8?
+<jamest> i'm ok with whatever
+<reinhard> I'd say then we'd do a soft move to pep8
+<reinhard> i.e. use it for all new code
+<reinhard> and reformat accordingly to pep8 as we change code
+<reinhard> but not actively break things
+<reinhard> or just reformat for the sake of reformatting
+<reinhard> ok?
+<jamest> sure
+<jamest> and would we try to use pylint as well?
+<jcater> "reformat for the sake of reformatting" --> but if we're already in that code, then reformat if we have time?
+<reinhard> jcater: right
+<reinhard> I mean
+<jcater> makes sense to me
+<reinhard> as johannesV_ goes through gf* anyway, he would reformat
+<reinhard> but I wouldn't for example just reformat all datasources code again
+<reinhard> until there will be the next batch of changes there anyway
+<jamest> sounds good to be
+<jamest> me
+<jcater> sounds good to be you?
+<jamest> well, sure
+<jcater>  /msg reinhard ... he sure if full of himself
+<jcater> *is
+<jamest> all the user requests, lack of time, male pattern baldness setting in
+<jamest> who wouldn't want that
+*** g_geeko has quit IRC
+*** derek has joined #gnuenterprise
+*** dimas__ has quit IRC
+*** dimas has joined #gnuenterprise
+*** dimas has quit IRC
+*** dimas_ has joined #gnuenterprise
+*** btami has quit IRC
+*** yure has joined #gnuenterprise
+*** johannesV_ has quit IRC
+*** krizz_ has joined #gnuenterprise
+*** CirrusImage has quit IRC
+*** jamest has quit IRC
+*** krizz_ has quit IRC
+<SachaS> D
+<jcater> Q
+*** kilo has joined #gnuenterprise
+*** yure has quit IRC
+<reinhard> btw
+<reinhard> can anybody answer the questions on gnue@gnu.org and gnue-dev@gnu.org?
+<reinhard> seems like there's somebody having issues with designer under windows
+<jcater> I responded
+<jcater> looks like he has provider=kinterbasdb in his connections.conf
+<jcater> I think he meant provider=interbase
+<reinhard> doh
+<reinhard> I could have seen that, too
+<kilo> erm and if gnue@gnu.org works then why dont commit mails work?
+<jcater> I was just noticing that
+<reinhard> good night all
+*** reinhard has quit IRC
+*** kilo has quit IRC
+*** docelic has joined #gnuenterprise
+<docelic> wow wow wow
+<docelic> slow it down people !:)
+<jcater> sorry
+<docelic> Hehe it's okay, Im kidding
+<jcater> um, the commit lists are working again everyone :)
+<docelic> better seeing the work being done than not :)
+<jcater> wow, 105 commits in 12 days
+*** derek has quit IRC
+*** jcater has quit IRC
+*** jcater has joined #gnuenterprise
+*** jcater_ has joined #gnuenterprise
+*** jcater has quit IRC
+*** jcater_ is now known as jcater
+*** jcater_ has joined #gnuenterprise
+*** chillywilly has quit IRC
+*** sacha has joined #gnuenterprise
+*** jcater has left #gnuenterprise
+<k-man_> can anyone recommend a web based CRM that is gpled?

@@ -1,0 +1,57 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.19Dec2001" enddate="19 Dec 2001 00:00:00 -0800" startdate="19 Dec 2001 00:00:00 -0800" subject="[IRC] 19 Dec 2001" title="Database drivers for python and C">
+
+<topic>Common</topic>
+
+<p>James Thompson (jamest) said that he wanted 
+<quote who="James Thompson">to attempt to graft the common dbdriver 
+system into geas</quote> instead of the high level API it was using.
+He would need a <quote who="James Thompson">good set of docs on 
+embedding python</quote>. Reinhard M&#252;ller (reinhard) volunteered to
+<quote who="Reinhard M&#252;ller">do the geas side if you want</quote>
+James asked <quote who="James Thompson">so if I make a common c lib 
+interface we can graft that in to geas</quote>? Reinhard said 
+<quote who="Reinhard M&#252;ller">my understanding is you have to write a 
+c wrapper around the python lib</quote>. James said that was one way, 
+but also <quote who="James Thompson">the C api can manipulate the 
+objects directly</quote> so you did not need a wrapper library.
+He added <quote who="James Thompson">my hope is that if I can graft 
+this in we'll gain a few things - GConditional support, about 15 more 
+interfaces geas can use :)</quote>. He should be able to do start this 
+over the next two weeks. Reinhard said <quote who="Reinhard M&#252;ller">
+we should agree on the interface as soon as you know it's doable -
+before you start real implementation</quote>. </p>
+
+<p>He asked whether <quote who="Reinhard M&#252;ller">the new dbdriver (shall 
+we call it gedi?) system</quote>was intended to just support python, 
+or C as well. James said <quote who="James Thompson">most the db 
+drivers in python i believe are written in C with a python interface
+</quote> anyway. Derek Neighbors (dneighbo) said you could 
+<quote who="Derek Neighbors">do everything in C</quote>, but this was 
+probably only worth it if speed was a concern. He didn't see 
+dependancies as an issue - <quote who="Derek Neighbors">i see as we 
+mature we will build stable snapshots of ALL dependencies and post on 
+our site and bundle with our installer</quote>. This didn't rule out 
+the possibility of a non-python driver, <quote who="Derek Neighbors">
+but it means really rewritting common in C</quote>.</p>
+
+<p>Reinhard asked what version of python the 
+<quote who="Reinhard M&#252;ller">common dbdriver system</quote> would 
+require. James said GNUe was standardising on python 2.x - 
+<quote who="James Thompson">the loss of 1.5.2 support was a deliberate 
+move on our part</quote>. Reinhard said this meant that if he wanted 
+to re-use the drivers on another project <quote who="Reinhard M&#252;ller">
+because i get 15 db's supported automagically</quote> this would create
+a dependancy on python. But <quote who="Reinhard M&#252;ller">as soon as 
+we have the c api we have at least the theoretical option to recode 
+common in c and be compatible</quote>. James agreed, but said 
+<quote who="James Thompson">I don't see much need unless performance 
+suffers</quote>, as even Windows could suport python now.
+Reinhard asked where the <quote who="Reinhard M&#252;ller">api of the 
+dbdriver system</quote> was documented. James said 
+<quote who="James Thompson">DataObjects.txt - well it's called 
+GDataObjects in the code</quote>. Reinhard said he would read it and 
+comment.</p>
+
+</section>
+
+

@@ -1,0 +1,54 @@
+<section archive="http://mail.gnu.org/pipermail/gnue-dev/2002-March/000041.html" enddate="13 Mar 2002 09:52:47 -0800" posts="5" startdate="11 Mar 2002 13:34:37 -0800" subject="[Gnue-dev] First draft for an API of the GNU Enterprise Application Server" title="GNUe Application Server API">
+<topic>Application Server</topic>
+
+
+<p>Reinhard M&#252;ller announced <quote who="Reinhard M&#252;ller">a first draft of
+the API is <a href="http://www.gnuenterprise.org/~reinhard/api">available</a></quote>, 
+and asked for comments.</p>
+
+<p>Daniel Baumann said <quote who="Daniel Baumann">
+I don't really see much of a difference between your 'session' object
+and what exists already in the current geas as a 'connection'
+object. In fact I thought we might build a more pluggable
+authentication framework ans implement 'permissions' stuff in an RBAC
+way.</quote>. Reinhard agreed, but said 
+<quote who="Reinhard M&#252;ller">I guess this is <cite>internal</cite> to the Appserver,
+while the interface I was trying to describe is the interface the
+Appserver shows against Forms or Reports.</quote> Daniel said 
+<quote who="Daniel Baumann">your session object does make a bit more sense now. I do have a
+rough idea how things will work and I will attain a better one once I
+look at how client programs use the ODMG interfaces</quote>.</p>
+
+<p>Daniel also suggested <quote who="Daniel Baumann">
+For Transaction objects I would use the current transaction.idl as that
+interface is exactly the on from the ODMG standard and it includes more
+than just commit() and rollback().</quote>. Reinhard said he would look 
+at Daniel's notes on this.</p>
+
+<p>Daniel also noted that <quote who="Daniel Baumann">
+ODMG defines various collections (set, bag, list,
+dictionary) which may not be immediately apparent to their usefulness
+in regards to business objects, however I have now come to find out
+they are extremely useful in doing OQL queries</quote>, adding 
+<quote who="Daniel Baumann">I think these collections need to be
+implemented.</quote> Reinhard said he wasn't sure whether all of 
+these were needed - where functionality was needed, it should be 
+provided <quote who="Reinhard M&#252;ller">
+according to existing standards, but I'm not sure if it
+makes sense to implement functionality that will not be used, just
+because there is a standard for it.</quote> However, 
+<quote who="Reinhard M&#252;ller">the Forms and Reports team will have to 
+decide if they find it useful to be able to request sets, bags or 
+dictionaries of objects from the Appserver.</quote> Daniel agreed, 
+noting that <quote who="Daniel Baumann">there will be an OQL interface 
+and an Introspection interface.</quote> Reinhard said he wasn't sure - 
+<quote who="Reinhard M&#252;ller">Instead of the OQL interface, we could 
+use the query tree system from common that forms uses internally now. 
+This could be the better way than to let Forms translate the query 
+from tree to OQL and let the Appserver translate OQL back to query tree :)</quote> 
+On introspection, he had considered <quote who="Reinhard M&#252;ller">
+the idea of allowing introspection by pseudo business objects</quote>. 
+This was similar in concept to the way that relational databases did it.</p>
+
+</section>
+

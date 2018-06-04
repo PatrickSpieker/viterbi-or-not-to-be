@@ -1,0 +1,113 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.03Nov2002" enddate="02 Nov 2002 23:00:00 -0800" startdate="02 Nov 2002 23:00:00 -0800" subject="[IRC] 03 Nov 2002" title="Application Server development">
+
+<topic>Application Server</topic>
+<topic>Designer</topic>
+
+<p>Neil Tiffin (neilt) said he wanted <quote who="Neil Tiffin">to 
+build business objects - and as long as we have a agreed aproach that 
+works</quote>,  he was <quote who="Neil Tiffin">happy to see the work 
+progressing</quote> - . Reinhard noted <quote who="Reinhard M&#252;ller">we 
+have finally agreed on storing the class definitions in the database - or 
+to be more precise in "system business objects"</quote>. 
+Daniel Baumann (chillywilly) noted <quote who="Daniel Baumann">well I 
+have a parser commited for ODL that uses PLY in case no one noticed, 
+but I need to make it parse into something like perhaps an AST</quote>. 
+Reinhard confirmed this had been discussed, 
+<quote who="Reinhard M&#252;ller">as well as about comparable things that 
+only exist more or less as an idea - and we agreed that it is a good 
+thing to have parsers for other formats - that can read "external" 
+defined objects and "merge" that into the "main" repository as a 
+separate command line tool</quote>. Neil felt 
+<quote who="Neil Tiffin">the back end for storing business objects
+should be plugable just in case we want to change it</quote>. 
+Reinhard agreed - <quote who="Reinhard M&#252;ller">that's why made it a 
+separate "module"</quote>.</p>
+
+<p>Daniel said <quote who="Daniel Baumann">I figured using an xml 
+markup as an exchange format between designer and appserver would be 
+nice too - since designer probably wants xml</quote>. He pointed out 
+that <quote who="Daniel Baumann">it is supposed to be our IDE isn't 
+it? jcater made it so you could write plugins</quote>. Reinhard 
+suggested <quote who="Reinhard M&#252;ller">we could even have some 
+"normal" form that accesses these metaobjects</quote>.</p>
+
+<p>Neil asked <quote who="Neil Tiffin">can business objects be 
+aggregates of other business objects?</quote> - for example,
+<quote who="Neil Tiffin">so the GUI can just request the sale 
+order and get all the header and items on the sales order</quote>
+at once. Reinhard suggested this might not be a good idea, as 
+<quote who="Reinhard M&#252;ller">the sales order might have 1000 
+items on it - and the gui doesn't want to load all 1000 at 
+once</quote>. Neil said he was used to business objects 
+corresponding with a form - <quote who="Neil Tiffin">this 
+business object can be a real object or a proxy object for 
+several real business objects - but this means that some of the 
+complexity of the GUI is moved to the business object</quote>. 
+Reinhard felt <quote who="Reinhard M&#252;ller">that the appserver 
+shouldn't deal with visualisation of data</quote> - 
+<quote who="Reinhard M&#252;ller">if we define those "form-bound" 
+business objects - we move parts of the form definitions into 
+appserver</quote>. Neil agreed about visualisation, but said 
+<quote who="Neil Tiffin">if we dont</quote> have compound 
+business objects <quote who="Neil Tiffin">we move linking all 
+of the data to the form</quote> - if links 
+<quote who="Neil Tiffin">also have to be defined by the form 
+so the work to maintain it will be double</quote>. 
+<quote who="Neil Tiffin">The forms or appserver will be fragile 
+to breaking if one is changed but not the other</quote>.</p>
+
+<p>Reinhard felt <quote who="Reinhard M&#252;ller">we will always 
+have this issue as long as form definitions (XML) and object 
+definitions (database) are maintained seperately - 
+that a form definition doesn't match the underlying 
+object</quote>. Neil said that compound business objects 
+should actually help with this, as the compound object could 
+be changed to pick up a property from a different child 
+business object, but still present it as the same field to 
+the form. Reinhard understood this, but did not see 
+<quote who="Reinhard M&#252;ller">how this could 
+work with 1:n instead of 1:1</quote>. Neil admitted 
+<quote who="Neil Tiffin">thats is the downside - 
+in that you hide the relationships in the proxy objects 
+and the forms just deal with data - but the upside is that i 
+can add a complex stored procedures to retreive data into and
+object and the form does not need to know the relationship - 
+only that it should display the data</quote>. Reinhard asked 
+<quote who="Reinhard M&#252;ller">but the form has to know that it's 
+master detail doesn't it?</quote> Otherwise 
+<quote who="Reinhard M&#252;ller">how does the form know that it can 
+insert a new item into the order?</quote> Neil said 
+<quote who="Neil Tiffin">the list is either read only or read 
+write - if the list is added to then the business object 
+maintains referrential integrity when it updates the db</quote>.</p>
+ 
+<p>Reinhard asked <quote who="Reinhard M&#252;ller">how does the form 
+know that i can add another item to the order - but i can not 
+add another customer? well i can _change_ the customer</quote>. 
+Daniel Baumann (chillywilly) said <quote who="Daniel Baumann">it 
+shouldn't display stuff to add a customer then ;) - or the gui 
+should be 'disabled' - forms has read-only widgets</quote>. 
+Reinhard suggested <quote who="Reinhard M&#252;ller">what you are 
+talking about means that we have some "array" type of 
+property</quote>. Daniel said <quote who="Daniel Baumann">which 
+in ODL would be a ref to a collection ;) - cause relationships 
+and attributes are the object "properties"</quote>.</p>
+
+<p>Neil emphasised that these were just his initial thoughts 
+<quote who="Neil Tiffin">and i dont want to get in the way of 
+progress</quote>. Reinhard agreed - one of the themes of the 
+meeting had been to reduce discussion in future and implement 
+possible solutions - <quote who="Reinhard M&#252;ller">look where 
+we will have the _real_ problems - and improve that</quote>. 
+He felt that the discussion he and Jan had had about 
+the AppServer API in 
+<kcref archive="http://mail.gnu.org/pipermail/gnue-dev/2002-October/000293.html" subject="[Gnue-dev] Appserver Interface Issues" /> 
+was a good example of this - <quote who="Reinhard M&#252;ller">with 
+jforms siesel found out we have to change it to make performance 
+better - so we changed it - but if we hadn't done that prototype 
+implementation - we would never ever have seen the real 
+problem</quote>.</p>
+
+</section>
+
+

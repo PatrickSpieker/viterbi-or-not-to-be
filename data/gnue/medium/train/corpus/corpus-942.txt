@@ -1,0 +1,131 @@
+[00:12] Last message repeated 1 time(s).
+Bill_H (~chatzilla@ga-cmng-cuda2-c3a-a-143.cmngga.adelphia.net) joined #gnuenterprise.
+<Bill_H> Test
+<Bill_H> bill_h: test
+<dneighbo> hi Bill_H
+<Bill_H> Hi Derek
+<Bill_H> I see you are still keeping things together
+<ajmitch> hi
+<dneighbo> we are making progress yes
+<Bill_H> What has been the biggest challenge? Moving the bytes around or the subject matter for the modules (G/L, HR, etc.)
+<dneighbo> biggest challenge lack of time
+<dneighbo> and people willing to write applications
+<ajmitch> time for me to learn designer fast
+Action: ajmitch wants to throw an basic app together within a couple of weeks at most :)
+<ajmitch> btw, there's no gadfly dbdriver, is there?
+<Bill_H> Yes, I know what you mean.
+Bill_H (~chatzilla@ga-cmng-cuda2-c3a-a-143.cmngga.adelphia.net) left irc: Read error: 104 (Connection reset by peer)
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+alexey_ (~alexey@195.151.214.34) left irc: "Client Exiting"
+reinhard (~rm@M698P020.adsl.highway.telekom.at) joined #gnuenterprise.
+<ajmitch> hey reinhard
+<reinhard> hey ajmitch
+Action: ajmitch wrote a gadfly DB driver, having trouble with it tho :)
+SachaS_ (~Sacha@dialup-196-240.wasp.net.au) joined #gnuenterprise.
+SachaS (~Sacha@dialup-196-44.wasp.net.au) left irc: Read error: 110 (Connection timed out)
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+jbailey (jbailey@CPE014260028338.cpe.net.cable.rogers.com) left irc: "Client Exiting"
+<ajmitch> ok, gadfly driver sorta work now
+<SachaS_> ajmitch you were working on it the whole day?
+<ajmitch> nope, was working on other stuff
+<ajmitch> just came back to it, made one change, and it partially works
+<derek> yummy
+SachaS_ (~Sacha@dialup-196-240.wasp.net.au) left irc: Read error: 113 (No route to host)
+ToyMan (~stuq@c5300-2-ip47.albany.thebiz.net) joined #gnuenterprise.
+<derek> sup ToyMan
+kemitix (~chatzilla@kemitix.demon.co.uk) joined #gnuenterprise.
+<derek> hi kemitix
+<kemitix> hi derek, I'm just having a look at the download pages for GNUe, havn't read *too* much of the docs yet.
+<dneighbo> well consider irc the 'quick start' guide :)
+<dneighbo> kemitix: where abouts in the uk are you?
+<kemitix> thanks.  Just tried to grab geas-0.0.6 and got a 404 error
+<kemitix> I'm in fife, scotland
+<dneighbo> you dont want geas
+<dneighbo> its dead
+<dneighbo> its replaced by appserver
+<kemitix> Am I even on the right site?  Can only find geas.  I'm on http://www.gnuenterprise.org/download.php
+<kemitix> Ok I've found GNUe-AppServer-0.0.1.tar.gz Is this right?  Did the version number wind back after geas?
+<ToyMan> hey derek
+kemitix (~chatzilla@kemitix.demon.co.uk) left irc: Remote closed the connection
+<dneighbo> ToyMan: i cant get on that machine :(
+alexey_ (~alexey@195.151.214.34) joined #gnuenterprise.
+<ToyMan> which machine?
+<ToyMan> the firewall?
+<ToyMan> or the db serv?
+<ToyMan> or the win xp box?
+<derek> xp box
+kemitix (~chatzilla@kemitix.demon.co.uk) joined #gnuenterprise.
+<dneighbo> you are on right site
+<dneighbo> and GNUe-AppServer-0.0.1.tar.gz is right file
+<kemitix> thanks, I've downloaded it and the others in that area (forms, etc...) Now to try installing...
+alexey_ (~alexey@195.151.214.34) left irc: Read error: 113 (No route to host)
+kemitix (~chatzilla@kemitix.demon.co.uk) left irc: Read error: 104 (Connection reset by peer)
+kemitix (~chatzilla@kemitix.demon.co.uk) joined #gnuenterprise.
+kemitix (~chatzilla@kemitix.demon.co.uk) left irc: Remote closed the connection
+sledge_ (~sledge@B2da0.pppool.de) joined #gnuenterprise.
+kemitix (~chatzilla@kemitix.demon.co.uk) joined #gnuenterprise.
+<reinhard> kemitix: yes appserver-0.0.1 is the current version
+<kemitix> reinhard, got appserver-0.0.1 and the rest - now I just have to wait on postgres downloading
+fitzix (~fitzix@122.128.252.64.snet.net) joined #gnuenterprise.
+sledge_ (~sledge@B2da0.pppool.de) left irc: "using sirc version 2.211+KSIRC/981227-pre0.9"
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: Remote closed the connection
+rdean (~rdean@chcgil2-ar2-4-64-030-076.chcgil2.dsl-verizon.net) joined #gnuenterprise.
+<kemitix> I've followed the INSTALL file for GNUe-Common and AppServer.  Do I need to actually create a database in postgres or do I just go into installing Forms next?
+rdean (~rdean@chcgil2-ar2-4-64-030-076.chcgil2.dsl-verizon.net) left irc: "Client Exiting"
+<reinhard> kemitix: you need to create a database in postgres
+<kemitix> just 'createdb' or do I need to create a gnue user first?  (Couldn't find this in the docs - I could be blind though)
+<reinhard> well that depends on what you are going to do next
+dneighbo (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<reinhard> IIRC most of the sample programs for appserver rely on the postgres user name to be identical to $LOGNAME
+<reinhard> and having no password in postgres
+<kemitix> got postgres user with no passwd
+<dneighbo> um probably relies on trust authentication
+<reinhard> ok so you should create the db
+<kemitix> okay, done that
+<reinhard> um
+<reinhard> sorry
+<reinhard> to create the db you could use samples/setup-pgsql.sh from the appserver directory
+<reinhard> then actually the appserver test programs should work
+<reinhard> bbl
+Nick change: reinhard -> rm-away
+fitzix (~fitzix@122.128.252.64.snet.net) left irc: "Client Exiting"
+sledge_ (~sledge@B92b4.pppool.de) joined #gnuenterprise.
+<sledge_> jcater?
+sledge_ (~sledge@B92b4.pppool.de) left irc: "using sirc version 2.211+KSIRC/981227-pre0.9"
+<dneighbo> sigh, sourceforge releases are PAINFUL
+<jcater> so, you are wanting to move GNUe to SF then?
+<jcater> :>
+<derek> god no
+<derek> its been over an hour
+<derek> trying to release dcl release
+<derek> and its all been WAITING for sourceforge slowness
+<derek> whew i think most the major stuff updated............
+<derek> wife is going to kill me that a it wasted half a day
+<derek> and the last touch, a release to freshmeat
+<derek> my work is done here... see you all later :)
+Action: derek is away: family
+^chewie (~chewie@flemingi.dsl.visi.com) joined #gnuenterprise.
+^chewie (~chewie@flemingi.dsl.visi.com) left irc: "leaving"
+rm-away (~rm@M698P020.adsl.highway.telekom.at) left irc: "The more often you run over a dead cat, the flatter it gets"
+kemitix (~chatzilla@kemitix.demon.co.uk) left #gnuenterprise.
+<ra3vat> jcater: you here?
+<ajmitch> hi all
+<ra3vat> ajmitch: hello
+<ajmitch> derek: should move dcl to savannah :)
+SachaS_ (~Sacha@dialup-196-240.wasp.net.au) joined #gnuenterprise.
+<ajmitch> hi SachaS_
+<SachaS_> good morning ajmitch. how are you?
+<ajmitch> ok
+<SachaS_> will code today?
+<ajmitch> probably
+Action: ajmitch kicks gadfly db driver
+ToyMan (~stuq@c5300-2-ip47.albany.thebiz.net) left irc: "Client Exiting"
+fajun (james@61.154.11.117) joined #gnuenterprise.
+fajun (james@61.154.11.117) left irc: 
+SachaS_ (~Sacha@dialup-196-240.wasp.net.au) left irc: Read error: 110 (Connection timed out)
+rdean (~rdean@chcgil2-ar2-4-64-030-076.chcgil2.dsl-verizon.net) joined #gnuenterprise.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+<ajmitch> hi chillywilly
+<chillywilly> hehe, hi
+rdean (~rdean@chcgil2-ar2-4-64-030-076.chcgil2.dsl-verizon.net) left irc: "Client Exiting"
+--- Sun Jul  7 2002

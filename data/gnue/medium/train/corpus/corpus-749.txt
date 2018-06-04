@@ -1,0 +1,665 @@
+*** btami has joined #gnuenterprise
+<btami> good morning
+*** kilo has joined #gnuenterprise
+*** reinhard has joined #gnuenterprise
+<reinhard> good morning all
+<kilo> good morning
+*** johannesV has joined #gnuenterprise
+<johannesV> good morning
+*** yure has joined #gnuenterprise
+*** yure has quit IRC
+*** derek_ has joined #gnuenterprise
+*** derek has quit IRC
+*** lekma has joined #gnuenterprise
+<lekma> hello all
+<lekma> i need some help to understand dates
+<johannesV> ?
+*** reinhard has quit IRC
+<johannesV> what kind of help do you need ?
+<lekma> i have some strange things going on between db and ui
+<lekma> as i understood the way it works
+<lekma> user ---[LOCALETIME]--> rpc client ---[UTC]--> rpc server ---[?]--> database
+<lekma> user <--[LOCALETIME]--- rpc client <--[UTC]--- rpc server <--[?]--- database
+<lekma> so i'd like to know if i'm correct
+*** reinhard has joined #gnuenterprise
+<lekma> and what is the timezone between db and appserver
+<lekma> if there is one
+<lekma> and if i'm wrong how can i solve the following pb:
+<lekma> user in germany other user in japan
+<lekma> records they create must be in correct order in db
+<lekma> am i clear?
+* lekma should go to sleep instead of coding all day and night
+<reinhard> lekma: there is no timezone handling currently
+<reinhard> so appserver just takes time values like you give it
+<reinhard> so if you use gnue_createdate etc it's all in the timezone appserver is running in
+<reinhard> if you pass datetime values in a store(), appserver takes what you give without any conversion
+<lekma> ah ok
+<lekma> that would be a feature request then?
+<johannesV> well, actuall python's datetime.datetime has no 'native' timezone either
+<johannesV> instead one would have to implement timezone-support if needed
+<johannesV> as there is just kind of an api (base-class tzinfo)
+<johannesV> at least that is for python2.3
+*** jamest has joined #gnuenterprise
+*** btami has quit IRC
+*** kilo has left #gnuenterprise
+<reinhard> I am not sure I understand what feature you would exactly want
+<reinhard> converting times values to UTC before storing in the db might not be what most users would expect
+<lekma> if you convert them back to locale before displaying
+<lekma> i don't see wher is the pb
+<reinhard> still somebody searching in the db directly via sql might be surprised to find "wrong" values
+<reinhard> also there might be some problems with searching
+<reinhard> hmmm.....
+<reinhard> actually
+<lekma> well my pb is with sorting dates
+<reinhard> if *anybody* did the conversion to UTC and back
+<jamest> there is some value is having tables accessable with sql
+<reinhard> then it would have to be the client, anyway, IMHO
+<jamest> for those quick and dirty things where you don't really want to write an application to access appserver to get the right data
+<jamest> i would imagine anyway
+<jamest> and if I was accessing my tables via something like zope then wouldn't i have to deal with the time conversion as well?
+<lekma> if i don't ensure coherence between dates stored in db, sorting means nothing
+<jamest> you're crossing timezones?
+<reinhard> jamest: you run into troubles as soon as your users are in different time zones anyway, no matter what you do
+<jamest> reinhard:  yes, i realize that
+<lekma> not right now, but that's something that could happen
+<jamest> but I think timestamp storage is somehting the app developer should determine
+<reinhard> I tend to agree here
+<reinhard> I could for example imagine gnue-forms having a parameter "store all time values in UTC"
+<lekma> could i pass a timezone string in xmlrpc?
+<lekma> i mean will it be acceptable for appserver
+<lekma> ?
+<reinhard> and then forms would convert all time values before sending to db
+<reinhard> lekma: that's a good question
+<lekma> cause postgres seem to behave correctly
+<lekma> if i give a timezone info
+<reinhard> postgres knows datetime values with or without timezone IIRC
+<lekma> and stores it internally in UTC, which solves the pb
+<johannesV> there is a xmlrpc.Date structure used for transporting dates ... but i cant remember wether it's capable of timezones right now
+<reinhard> I can try to find it in the XMLRPC definition
+<lekma> i was reading GDateTime.py
+<lekma> but i must admit that i' a little bit lost
+<reinhard> from the xmlrpc spec
+<reinhard> What timezone should be assumed for the dateTime.iso8601 type? UTC? localtime?   Don't assume a timezone. It should be specified by the server in its documentation what assumptions it makes about timezones.
+<reinhard> so it looks like you can't pass a timezone there by definition
+<reinhard> and that we can define, for example, that all dates must be the timezone which appserver runs in
+<lekma> well the sepec says iso8601
+<reinhard> or whatever
+<lekma> and iso8601 do support timezones
+<lekma> i'd say that if not defined we should stick with UTC
+<lekma> and the client would be responsible to convert it
+<reinhard> Date values The time value is "naive time", and does not include a timezone. You can either use a fixed timezone in your application (such as UTC), or ship the timezone offset as a separate value.
+<lekma> or server localtime but then the server would be responsible to send its timezone
+<reinhard> from http://effbot.org/zone/xmlrpc-errata.htm
+<reinhard> lekma: I agree 100% that timezone handling is a missing feature in appserver
+<reinhard> which would have to be implemented by either documenting something, or some changes in appserver itself, or (most probably) both
+<lekma> :)
+<reinhard> I think it would make most sense to make the client responsible to send only UTC time values to the server
+<lekma> that's fine for me
+<reinhard> but then appserver would have to convert all automatically set times to UTC, too
+<reinhard> like gnue_createdate etc
+<reinhard> which currently is in appserver's local time
+<reinhard> zone
+<lekma> ja
+<reinhard> and I figure there's a whole bunch of other problems we might run into if we look closer, for example the fact that the date part of a datetime value can change when you convert timezones
+<lekma> that is the starting point of my pb
+<lekma> cause now i send only UTC and assumed UTC was back
+<lekma> but then i saw differences betwen days when playing different localetime
+<lekma> so here we are
+<reinhard> so changing your client to convert values to UTC before sending to appserver, and convert back to local time when receiving values, would do the trick for now?
+<lekma> that's what it does now
+<lekma> my pb is if i look to db using another client i get differences
+<lekma> cause i assumed there was some kind of conversion between db and appserver to utc
+<reinhard> ah
+<reinhard> so your problem is the time zone difference betweeen appserver and the db?
+<lekma> for example i will get different result if i look up dates insinde a procedure
+<reinhard> not between client and appserver?
+<lekma> or if i use a client that converts to and from UTC
+<lekma> well
+<lekma> if we say the client is responsible to convert, i got no pb now
+<reinhard> ok
+<reinhard> would you agree that it makes sense to define it that way?
+<lekma> from the client pov
+<lekma> but i'll still have pbs if i lookup dates in procedures
+<jamest> lekma: what db do you use?
+<lekma> yes
+<lekma> jamest: postgres
+<lekma> cause then the server won't convert to UTC
+<jamest> i thought in postgresql if you created the field as timestamp with timezone it defaulted to storing in utc
+<reinhard> lekma: the dates you get in procedures are already UTC, aren't they?
+<lekma> nope, even if they are stored in UTC by pg, they are converted to server local zone
+<lekma> when requested
+<lekma> there are two possible solutions, i think:
+<lekma> we can say all dates and times are converted by appserver to UTC
+<lekma> before sending to db or client
+<lekma> then everything is fine except that if you use direct access you will have diff
+<lekma> or we could provide a way to specify tz if needed for a field
+<lekma> they are converted to server local zone <-- change that to "if you provide a tz"
+<lekma> wow too fast
+<lekma> if you provide a tz pg will store dates in UTC, otherwise it stores what it gets
+<lekma> jamest: that's right, but we don't have yet a "datetimetz" datatype in appserver
+<lekma> :)
+<jamest> ah
+<reinhard> I think this really needs more thinking
+<reinhard> also regarding different backends and how *they* are able to handle timezones
+*** krizz_ has joined #gnuenterprise
+*** siesel has joined #gnuenterprise
+<lekma> got to run
+<lekma> bye
+*** lekma has quit IRC
+<siesel> hi
+<reinhard> hi siesel
+<reinhard> talking of timezones
+<reinhard> lekma goes, siesel comes :)
+<krizz_> hello
+<siesel> seems like i drove lekma away ;)
+<siesel> hi reinhard, krizz
+<krizz_> can i generate the pot file from a svn checkout?
+<siesel> Currently I would prefer we would be back in the middle age ...
+<krizz_> and if not what language file is the most updated?
+<siesel> I mean, when the earth was a plate, and there were no time zones, ...
+<krizz_> siesel, and women couldn't vote :)
+<jamest> siesel: and only 2 times day, night
+<siesel> rolf
+<reinhard> krizz_: you can
+<reinhard> in po directory
+<siesel> that would 've been cool, I just don't know where to hack on then ;)
+<reinhard> make gnue-common.pot
+<reinhard> (or whatever)
+<reinhard> siesel: you know that's why the roman empire died
+<reinhard> in roman numbers, there is no concept of 0
+<reinhard> so they couldn't indicate success for their C programs
+<siesel> lol
+<jamest> lol
+<jamest> savages!
+<reinhard> krizz_: does that mean greek translations for gnue coming up?
+<reinhard> (that would be great)
+<siesel> btw. krizz, does mysql works fine for you now?
+<krizz_> oh yes
+<krizz_> the problem had to do with the UI
+<krizz_> in wx didn't work
+<krizz_> in wx26 worked partly
+<krizz_> gtk perfect
+<krizz_> tried in windows and ubuntu.. but i got confused at the end, so i'm not sure the behaviour in each case
+<siesel> great, so the second mysql patch didn't break your setup. Cool.
+<krizz_> no it didn't... :)
+<krizz_> reinhard, i think greek for gnue-common and gnue-forms will come really soon
+<reinhard> krizz_: you might wanto to wait a little for forms
+<krizz_> although i'm not sure if any greek will bother using them (atleast in gnue-common)
+<reinhard> because it's undergoing a partial rewrite
+<krizz_> error messages are not really helpful when in greek :)
+<reinhard> krizz_: gnue-common contains a lot of general error messages etc that are presented to the end user
+<reinhard> some of them are :)
+<krizz_> so i'll just give a try in common?
+<krizz_> and wait for forms
+*** johannesV has quit IRC
+*** johannesV has joined #gnuenterprise
+*** jcater has joined #gnuenterprise
+<krizz_> can i ask another thing?
+<krizz_> in forms when you click Clear Form, is it ok that all buttons get disabled except from Delete?
+<jcater> sounds like a bug to me
+<krizz_> what the correct behavour should be?
+<jcater> wait... when you clear the form
+<jcater> does it bring up an empty form?
+<krizz_> yes it does
+<jcater> or does it clear out changes made to the current record and show the current record again
+<jcater> ?
+<krizz_> it brings up an empty form
+<jcater> I would think delete should be disabled on an empty form with no changes
+*** siesel has quit IRC
+*** lekma has joined #gnuenterprise
+<lekma> back
+<lekma> siesel!!!
+<lekma> come back
+<jamest> Kinda like clark kent and superman, or peter parker and spiderman
+<jamest> hmmmmmm
+<lekma> :)
+<krizz_> i just updated my svn. so that's the case
+<krizz_> I press to insert a new record
+<krizz_> i type something and the i press clear form
+<krizz_> the form clears and only delete,jump to, search and print are enabled
+<krizz_> mysql4.1, gtk
+<lekma> well siesel, if you read this: there's an undocumented date function that might help you for date displaying, see https://bugzilla.mozilla.org/show_bug.cgi?id=291494\
+<lekma> and i'm working on converting my code completely back to javascript std objectes so that you may use it in your ff extension
+<lekma> and it can one day be ported to other browsers
+<krizz_> >><reinhard> make gnue-common.pot
+<krizz_> reinhard,  this doesn't do anything ... No rule to make
+<krizz_> i'm trying to make an empty .pot file (like the one in stable release) so i can start translating with the most recent file from svn
+<reinhard> krizz_: yes, that's because I talked nonsense
+<reinhard> the command is
+<reinhard> make update-po
+*** yure has joined #gnuenterprise
+<krizz_> :)
+<krizz_> yeah!!! That should do the trick!
+<reinhard> bbl
+*** reinhard has quit IRC
+*** derek_ has quit IRC
+*** sacha_ has quit IRC
+*** derek has joined #gnuenterprise
+*** klasstek has joined #gnuenterprise
+*** krizz_ has quit IRC
+<lekma> johannesV: you around?
+<lekma> what is the theoric max of a number(2)?
+<lekma> 100, is it?
+<johannesV> i'd say 99
+<johannesV> no
+<johannesV> actually it depends a bit on the backend-driver
+<johannesV> (Behavior)
+<johannesV> since it determines what to create for a number having two digits
+<lekma> cause when i run sample.gcd address_children is a number(2)
+<lekma> but the db max is 32768
+<johannesV> look into DBSIG2.Behavior.number ()
+<johannesV> yeah
+<johannesV> for a postgres that is a smallint
+<lekma> it's not really coherent with the others
+<johannesV> (up to 4 digits it gets a smallint)
+<lekma> like number(4,1)
+<johannesV> not every backend supports the same types
+<johannesV> brb
+<johannesV> ok
+<johannesV> what do you mean with coherent ?
+<johannesV> you mean appserver should actually check for the range defined ?
+<johannesV> or should readgcd (or readgsd in fact) create a check-constraint depending on the length/scale defined ?
+<lekma> well can't it create a numeric(2) in pg?
+<lekma> that at least would be what is expected?
+<johannesV> you mean instead of mapping to the predefined types ?
+<lekma> hmm, i don't really apprehend all the consequences but it seems logical...
+<lekma> or maybe is there another way to ensure that data didn't go over max or below min
+<johannesV> actually it isn't very hard to do (for postgres) although this would make all numbers (even integers of small size) numeric values. (using up more space and having a slower performance)
+<johannesV> see http://www.postgresql.org/docs/7.4/interactive/datatype.html#DATATYPE-NUMERIC
+<johannesV> (as an example)
+<johannesV> actually one could use a check-constraint, bot not all backends support such constraints
+<johannesV> so there should still be a possibility to have integers instead of floats, shouldn't it ? e.g.  for autoincrements or foreign-keys or just other sequences ...
+*** reinhard has joined #gnuenterprise
+<reinhard> lekma: you still here?
+<johannesV> btw, where are all the commit mails ?
+<johannesV> ok, i'm off for today ... have a nice evening ...
+*** johannesV has quit IRC
+<reinhard> for the logs
+<reinhard> I've documented today's discussion about timezones as a wishlist item for appserver in roundup, I understand that there's no immediate need to solve this now
+<reinhard> http://www.gnuenterprise.org/roundup/gnue/issue94
+<reinhard> also documented the request for appserver checking number(2) to be not higher than 99 instead of depending on the backend: http://www.gnuenterprise.org/roundup/gnue/issue95
+*** jamest has left #gnuenterprise
+<reinhard> damn, I'm confused
+<reinhard> since when does "print" in python encode strings to the current locale??
+<reinhard> last time I looked print tried to encode to 'ascii' no matter what local you ran
+<reinhard> hmmm... it didn't work in 2.1
+*** sjc has joined #gnuenterprise
+<jcater> so, the TODO list is in roundup now
+<jcater> is that right?
+<reinhard> yes
+<reinhard> at least for those tools that used ROADMAP.in
+<jcater> okay
+<reinhard> there was one tool that had its own non-ROADMAP TODO file
+<reinhard> can't remember which that was
+<reinhard> but I didn't touch that as I wasn't sure how current it is anyway
+<reinhard> ah
+<reinhard> both navigator and reports
+<jcater> ah
+<jcater> both are likely invalid now
+<reinhard> yeah
+<reinhard> like from reports TODO
+<reinhard>  * DOCUMENTATION!!!!!!
+<reinhard> I wouldn't believe you still seriously consider that
+<reinhard> ;-)
+<jcater> lol
+<jcater> so
+*** jamest has joined #gnuenterprise
+<jcater> what is the difference between feature and wishlist?
+<reinhard> so far I have handled it like
+<reinhard> feature = already decided that we will do it, probably in next version or so
+<derek> jcater: its context of submitter ;)
+<reinhard> wishlist = not yet working on it
+<derek> feature == something submittor requests and plans on adding
+<derek> wishlist == somethign submittor requests and hopes someone else will add
+<reinhard> FWIW, I can agree with many stuff
+<reinhard> it was just an idea how to use
+<jcater> I don't care
+<reinhard> feature == you can count on it
+<jcater> I was just wanting to be consistent
+<reinhard> wish == noted so maybe we'll get back to it
+<reinhard> I moved everything from ROADMAP to wish
+<reinhard> except those things we are really working on
+<jcater> now, you should define "working on" :)
+<reinhard> lol
+<reinhard> will be in next release
+*** krizz_ has joined #gnuenterprise
+<jcater> reinhard: dumb question
+<jcater> how do I show all "gnue-designer" issues?
+<jcater> topic = gnue-designer
+<reinhard> that's easy
+<jcater> searching for "gnue-designer" only shows issues where "gnue-designer" shows up in the description
+<reinhard> click on (edit) right to "Your Queries"
+<reinhard> set all queries to "include"
+<reinhard> and then you can click on the predfined "gnue-designer" query
+<reinhard> :)
+<jcater> cool
+<jcater> because the Your Queries box was empty
+<jcater> it wasn't registering with me that it was even there :)
+<jcater> does it support having all new issues assigned to a specific topic to default to being assigned to a particular person?
+<reinhard> erm.... would have to look that up
+<jcater> not important....
+<reinhard> can you create a new issue in www and assign that to me? :)
+<reinhard> well
+<reinhard> problem might be that you can assign an issue to more than one topic
+<jcater> true
+<reinhard> (while we have more or less silently agreed to not do this)
+<jamest> it topics are on a list though right?
+<jamest> s/it/the
+<reinhard> right
+<jamest> iirc there is a config option to flip that to a dropdown
+<reinhard> might be good to do that
+<reinhard> if you find that option :-)
+<jamest> i can look tonight
+<jamest> if I remember :)
+<jcater> what is a Superseder
+<jcater> ?
+<reinhard> something you must fix befor you can fix this
+<reinhard> (is my understanding)
+<jcater> oh
+<jcater> hmm
+<jcater> so, if a bug is a duplicate of another one
+<jcater> what is the proper way to handle it?
+<jcater> I'm not seeing a "Duplicate of" or "Not a bug" option
+<jcater> just "Resolved" with a note?
+<reinhard> we might want to introduce that
+<reinhard> the administrator can introduce new status at will, AFAICT
+<jcater> ah
+<reinhard> like we could also rename "feature" to "feature in next release" to make things clearer
+<reinhard> internally it's all handled with numbers
+<jcater> or at least "planned feature"
+<jcater> then again....
+<jcater> is there a way to make some of the statuses only be assignable by certain people?
+<jcater> i.e., I don't need derek going in and putting in Planned Features into gnue-designer :)
+<reinhard> also, I would like to see "resolved in SVN" vs. "released"
+<jcater> only wishlist items
+<reinhard> there might be a way to not let "normal" users assign a priority at all
+<reinhard> then you look through all designer issues and assign priorities
+* jcater is going to try to make it a habit to look at roundup
+<reinhard> the email gateway might help with that :)
+* jamest notes jcater didn't say he'd take action on the things he sees in roundup
+<reinhard> jamest: for the time being
+<reinhard> do you remember the admin password for roundup?
+<jcater> jamest: as long as I have "reassign to:" I'll actively use it too
+<reinhard> I think you should be able to give administrator role for example to jcater and me
+<jcater> reinhard: I have mixed feelings about not letting normal users assign any initial status
+<jcater> as it would be nice to let them distinguish between "bug" and "wishlist"
+<jcater> but then again, if the choice is only between them being able to pick any status, or no status at all
+<jcater> I think I'd lean towards the latter
+<reinhard> I have no idea what choices we have
+<jcater> why not?
+<jcater> you have nothing better to do, right?
+<reinhard> roundup is so highly customizable that I don't even know what you *can* customize
+<reinhard> but given the fact that it's written in python, I guess you can do pretty much :-)
+<reinhard> and I am seriously planning to play around with it a bit
+<jamest> reinhard: it should be on a sheet at home
+<jamest> but off top of head no
+<reinhard> so it might even show results if you document your wishes :)
+<reinhard> jamest: ok, nevermind
+<jamest> give me a sec and I'll short it out :)
+<jamest> ok, you should be admin now
+<reinhard> jamest: thanks
+<reinhard> yes, I'm admin now
+<reinhard> already renamed "feature" to "planned feature"
+<jamest> how about "bug" to "derek's mistake"
+<reinhard> lol
+*** krizz_ has quit IRC
+<jamest> reinhard: are you editing roundup atm?
+<reinhard> yes
+<reinhard> already fixed the traceback again :)
+<jamest> lol
+<reinhard> trying to change topics from a list into a dropdown
+<jamest> i went to save a change to the topics
+<jamest> and it told be the file had changed on disk :)
+<reinhard> oh
+<reinhard> what did you change?
+<k-man_> what is roundup?
+<jamest> reinhard: i was going to change the topics section
+<jcater> our bug/feature/issue tracking system
+<jamest> had changed it
+<k-man_> oh
+<jcater> http://www.gnuenterprise.org/roundup/gnue
+<k-man_> ok
+<jamest> but vi aborted the save as you beat me to it
+<jcater> we just switched to it
+<k-man_> thanks
+<reinhard> you can overwrite it, my change didn't show the desired effecct
+<k-man_> oh
+<k-man_> ok
+<jamest> mine didn't work either
+<reinhard> maybe we tried the same thing ;-)
+<jamest> not quite
+<jamest> i thought in the python context menu(height=1) flipped it to dropdown
+<reinhard> issue = IssueClass(db, "issue",
+<reinhard>                 assignedto=Link("user"),
+<reinhard>                 topic=Multilink("keyword"),
+<reinhard>                 priority=Link("priority"),
+<reinhard>                 status=Link("status"))
+<reinhard> I think it's the Link vs. Multilink
+<jamest> wait
+<jamest> are you changing anything?
+<reinhard> no
+<jamest> as I screwed up my edit
+<reinhard> I think changing that would break the db
+<jamest> i'm positive you don't have to do that
+<jamest> as I'm pretty sure I had to change one of these when I initially installed it
+<reinhard> currently there is a issue_topic table in the db that cross references both tables
+<jamest> actually , it might have been topic field to topic menu though :(
+*** gaupe has quit IRC
+<jamest> oh the irony
+<jamest> go to roundups web site
+<jamest> and click on reporting bugs
+<reinhard> we might want to create a new class "package"
+<reinhard> instead of using the topic for packages
+<reinhard> but I think before I play more, I would want to read the docs
+<reinhard> jamest: just to make sure: the roundup database is included in the backup?
+<jamest> um
+<jamest> i'll have to look
+<jamest> fwiw: you cannot change MultiLInk to Link
+<jamest> it would frag the db
+<jamest> that was the change I made from the original
+<jamest> topics by default is a text field
+<jcater> wait....
+<jcater> so all of us are gnue'n during the day
+<jcater> at the same time
+<jcater> gack!
+<reinhard> I think we could add a new Link "package" and reuse "Topic" for things like "security", "user interface", "performance"...
+<jamest> gack
+<jcater> or in the case of common, the individual components, like datasources, ui, etc?
+<jamest> the postgresql install on ash is only in live filesystem backups
+<jcater> (or designer --> forms, reports, schema editor, etc)
+<reinhard> that would be subpackage
+<jcater> do we have subpackage?
+<reinhard> as the list of available selections would be dependent on the package
+<reinhard> I don't know if that is possible
+<reinhard> currently I achieve the same result with starting the description with [datasources]
+<jcater> ah, I was using (..) in designer
+* jcater will change
+<jamest> we're backed up no
+<jamest> w
+<reinhard> jamest: great
+<reinhard> :)
+<jamest> well, at least once
+<jamest> no script in place till tonight
+<jamest> reinhard: i have a questoin
+<jamest> why
+<jamest> foo ( bar, baby )
+<jamest> instead of
+<jamest> foo( bar, baby )
+<reinhard> you mean our coding style?
+<jamest> yeah
+<reinhard> it's actually foo (bar, baby)
+<jcater> I'm personally finding that very distracting...
+<jcater> what was the reasoning?
+*** nickr has joined #gnuenterprise
+<jamest> i've started pushing all my code thru pylint at work
+<jamest> and trying to follow most of pep8
+<reinhard> a) I'm used to this since ages, long before I even started to write python
+<jamest> but i'd not seen that layout before
+<reinhard> b) it's official gnu style
+<reinhard> c) I think that foo(bar, baby) is unbalanced in a way that bar <-> baby distance is much bigger than foo <-> bar distance
+<reinhard> it looks like the first parameter is glued to the function name, and following parameters are running away
+<reinhard> re pep8 I'm also not sure I would like 4 space indents
+<reinhard> I would probably have tried to follow the existing style if there *had* been a consistent existing style
+<jcater> ?
+<reinhard> but in old code there is foo(x), foo (x) and foo( x ) all mixed up
+<jcater> I think there was an overall consistency, with a few exceptions that needed cleaning
+<reinhard> hmmm
+<reinhard> consistency would mean not only
+<reinhard> x = foo(y)
+<reinhard> but also
+<reinhard> def foo(y)
+<reinhard> and
+<reinhard> class foo(bar):
+<reinhard> right?
+<jamest> the 4 space thing I dont do
+<jamest> i set my pylint to 2
+<jamest> but thinking about that some last night I can see advantages to 4
+<jamest> not that'd i'd promote it
+<jamest> and honestly I can get used to foo ()
+<jamest> it just throws me for a bit atm
+<jcater> it is a pet peave of mine... I'm not doing it in gnue code, but in any code I use in my projects, I go through and anally fix any of those :)
+<jcater> but I will adjust to whatever the gnue standard is, if need be
+<reinhard> seriously
+<jcater> I was just curious why this style was adopted, which isn't seen in python much
+<reinhard> (pending discussion with johannes)
+* jcater forgot it was a gnu standard of old
+<jcater> personally, I wouldn't mind seeing us go 100% PEP8
+<jcater> 4 spaces and all... though that would take a lot of getting used to
+<reinhard> I might consider to value pep8 as a "official python standard" higher than gnu standard and my own taste
+<jcater> simply from the standpoint that we could point new developers to it
+<jcater> and say, that is what we want
+<jamest> the reason I'd think about 4 spaces
+<jamest> is it makes the indention levels very, very, very, um, very clear
+<reinhard> I didn't find pep8 saying anything about continuation lines
+<jamest> and pylint has already broke me on the habit of making 100 char long lines
+<jcater> reinhard: it says limit code lines to 79 chars
+<jcater> and multi-line comments to 72
+<jcater> iirc
+<jamest> i swore it was 80
+<reinhard> oh
+<jamest> module naming for us is wack iirc
+<reinhard> pep8 tells to indent continuation lines "appropriately"
+<jamest> as they want short lowercase names
+<reinhard> jamest: I already did that for new modules actually
+<reinhard> errors.py
+<reinhard> i18n.py
+<reinhard> plugins.py
+<jamest> the forms module names bug me now
+<jamest> if we did follow pep8 then pylint would make verification pretty easy
+<jcater> hmm
+<jcater> speaking of PEPs
+<jamest> though it requires some customization to cope w/ globals like gDebug
+<jcater> have you guys seen http://www.python.org/dev/peps/pep-0328/ ?
+<jcater> that will affect us a lot
+<reinhard> Function names should be lowercase, with words separated by underscores       as necessary to improve readability.
+<jamest> that one is another i've ignored so far :)
+<jamest> but i'd switch if needed
+<jamest> btw, i'd be happy to adjust to foo (z) and such and 2 spaces and such
+<jamest> and make a custom pylint config file we could put in common
+<jamest> before commit your code should if at all possible
+<jcater> I would switch, but wouldn't call it "happily" :)
+<jamest>   pylint at 9.0 or aboce
+<jamest>   pass all existing unit tests (temporary breakages should be noted in TODOs in the unit test file)
+<jamest> as I can say both unit tests and pylint have caught lots of bugs for me since I started using them religously
+<reinhard> again provided that johannes can agree
+<reinhard> I would be ok with aiming at a slow move towards pep8
+<reinhard> i.e. using new function/class/module name rules for names we create new or would change anyway
+<reinhard> and fixing indentation/whitespace use for the code we go through anyway
+<reinhard> but I would not break compatibility for the sake of pep8
+<reinhard> like renaming all modules and classes in common
+<jamest> cripes from ...foo import bar is going to be fugly
+<jcater> jamest: and pep8 actively discourages that syntax
+<jcater> even though it is in python 2.5
+<reinhard> yes, that one is recommended to not use even before it is released
+<reinhard> yes, what jcater said :)
+<jcater> I'm not going to like that change
+<jcater> I don't understand what's wrong with "import foo" first looking in the current directory, like it always has
+<jcater> but alas, it's not my decision :)
+<jcater> I guess I better get in the habit of not using that syntax any more
+<jamest> well, i didn't intend to start a style debate
+<jamest> i was just curious
+<jcater> let's talk docs now!
+* jcater hides
+<jamest> reinhard: you come in from the left and flush him out, and I'll thwap him
+<k-man_> so is there any gnue applications that are ready for use in a commercial environment?
+<k-man_> or would I have to customise them somewhat?
+<jamest> k-man_: there isn't a "GL" app or anything like that
+<k-man_> but is there anything?
+<k-man_> report distribution?
+<k-man_> crm?
+<k-man_> or are the tools still in development?
+<jamest> i'm not positive about the states of those things
+<jamest> there have been  a few starts
+<k-man_> oh, ok
+<jamest> and I'd say most the developer tools (reports, forms, appserver, etc) are good enough to use to build them
+<jamest> after all most my systems are built with them :)
+<jamest> i have to run
+<k-man_> ok
+<k-man_> ttyl
+<k-man_> ok, so i installed the gnue runtime environment
+<k-man_> when i run gnue-designer, it just crashes giving me the error
+<k-man_> :
+<k-man_> 'scuse the paste
+<k-man_> Traceback (most recent call last):
+<k-man_>   File "gnue-designer", line 30, in ?
+<k-man_> ImportError: No module named gnue.designer
+<k-man_> Traceback (most recent call last):
+<k-man_>   File "gnue-designer", line 30, in ?
+<k-man_> ImportError: No module named gnue.designer
+<k-man_> Traceback (most recent call last):
+<k-man_>   File "gnue-designer", line 30, in ?
+<k-man_> ImportError: No module named gnue.designer
+<k-man_> Traceback (most recent call last):
+<k-man_>   File "gnue-designer", line 30, in ?
+<k-man_> ImportError: No module named gnue.designer
+*** jamest has quit IRC
+<k-man_> any ideas?
+<reinhard> did you install gnue-common?
+<k-man_> um...
+<k-man_> don't think so
+<k-man_> let me check
+<k-man_> no... and there appears to be no windows installer for gnue common
+<k-man_> on the download site that is
+<reinhard> look at the prerelease page please
+<reinhard> final release isn't finished yet
+<jcater> k-man_: you running the .exe for windows?
+<k-man_> the installers... yes
+<k-man_> oh
+<k-man_> ok
+<jcater> did you find it?
+<reinhard> jcater: you use the Label and Description parts of the XMLelements tree in designer, don't you?
+<jcater> yes
+<jcater> well
+<jcater> Label: is for designer mainly
+<k-man_> yes
+<k-man_> just about to download it
+<jcater> Description: is for the auto-creation of documentation
+<jcater> (but designer does display description as a tooltip, iirc)
+<jcater> so treat description as what you'd want the documentation to say
+<reinhard> my question is a different one
+<jcater> ah
+<reinhard> would designer be capable of handling those fields being unicode strings?
+<jcater> I'm perfectly fine with you making them unicode
+<jcater> and if designer breaks, it's just a bug
+<jcater> but I *think* it will currently anyway
+<reinhard> ok
+<reinhard> as I noticed most of those strings are not marked for translation
+<reinhard> and it would clearly make sense to translate them
+<jcater> yeah
+<reinhard> however that would involve making them unicode
+<reinhard> so I figured I'll ask
+<reinhard> so I'll change it and we can test then how designer behaves
+<reinhard> but I'll do that tomorrow, it's again 1 a.m. here :(
+<reinhard> good night all
+*** reinhard has quit IRC
+*** sjc has quit IRC
+*** jamest has joined #gnuenterprise
+*** klasstek has quit IRC
+*** klasstek has joined #gnuenterprise
+*** derek has quit IRC
+*** derek has joined #gnuenterprise
+*** klasstek has quit IRC
+*** jamest has quit IRC
+*** derek has joined #gnuenterprise
+*** sacha has joined #gnuenterprise
+<lekma> morning all

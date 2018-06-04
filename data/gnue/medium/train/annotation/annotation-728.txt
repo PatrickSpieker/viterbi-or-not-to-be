@@ -1,0 +1,88 @@
+<section archive="http://mail.gnu.org/pipermail/gnue-dev/2002-October/000295.html" enddate="27 Oct 2002 11:30:10 -0800" posts="4" startdate="26 Oct 2002 09:21:36 -0800" subject="[Gnue-dev] Issues trying to learn how to use GNUe tools" title="Designer usability and architecture">
+
+<topic>Designer</topic>
+
+<p>Stan Klein reported several issues trying to learn how to use the 
+GNUe Tools, including <quote who="Stan Klein">The only way I have been 
+able to get Designer to work is using the wizard.</quote> Trying to 
+place widgets directly or via the menus did not seem to work. He had 
+read both the documentation and parts of the source code to resolve 
+some of his problems, but was not much further forward. 
+<quote who="Stan Klein">If someone can help me with understanding 
+these issues, I will try to find the time to help improve the relevant 
+documentation.</quote>.</p>
+
+<p>Robert Jenkins said that Designer <quote who="Robert Jenkins">seems 
+to have a lot of capabilities that are not obvious, but also a few 
+missing functions (or at least I can't find ways of making some 
+things work).</quote> He said <quote who="Robert Jenkins">If you 
+click a button on the toolbar, you then need to click &amp; drag on
+the form to set the location and size of the widget. 
+It seems that you can directly drag widgets about after placement,
+either individually or in groups, but not re-size by dragging so far.
+Some things such as blocks don't seem to be visible, but exist and have
+properties. Others such as dropdowns don't seem to work yet. 
+The only way I've found of editing some items is to select 'object
+navigator' from the Tools menu, then double-click an item in that to get
+it's properties. The object navigator gives a tree view of the complete
+form structure with all items on it, &amp; is an excellent 
+feature!</quote></p>
+
+<p>Stan tried dragging in both 0.4.0 and CVS versions of GNUe, and 
+reported that this <quote who="Stan Klein">worked most of the time in 
+both versions.</quote> He had been able to get a dialog box to set 
+up a static datasource, <quote who="Stan Klein">but it didn't create 
+it properly in the gfd file.</quote> <quote who="Stan Klein">I also 
+tried dragging widgets to move them.  I found that the moving was
+very inexact</quote> - it was easier to use <quote who="Stan Klein">the 
+controls at the bottom of the Designer window.</quote> 
+He had also tried the object navigator and 
+properties window, but these seemed to be read-only at the moment. 
+He noted <quote who="Stan Klein">One other thing I noticed is that 
+the Designer dialogues all look similar to the wizard dialogues 
+based on the templates.  If this is true, it might provide a means 
+for spreading some of the gruntwork in Designer development.</quote></p>
+
+<p>Jason Cater advised that Static datasources were <quote who="Jason Cater">very, 
+very new. They work in CVS, but did not work in 0.4.0. The Combo Box 
+wizard that was in 0.4.0 incorrectly had that as an option... that was 
+an oversight on my part.</quote> <quote who="Jason Cater">Now that static 
+datasources are a reality, I need to go back and enable this in the 
+wizard, and properly code it to create them.</quote>  
+He agreed that the "dragging" of widgets was not ideal - 
+<quote who="Jason Cater">This is one of those "I wish wx would do ...." 
+situations. This was the best  we could get wx to do up until now and 
+we thought it better than nothing.</quote> However, 
+<quote who="Jason Cater">the WX team has frozen the 2.3 development 
+branch in anticipation of a 2.4 stable release within the next few 
+weeks.</quote> GNUe was currently using the 2.2, the last stable 
+release. <quote who="Jason Cater">we will give the major distros a little 
+time to upgrade their packages, then we will switch to their 2.4 API.  
+There are quite a few additions/improvements that will help us 
+tremendously.</quote></p>
+
+<p>Jason also explained that the similarity between the Designer 
+dialogs and the wizards was <quote who="Jason Cater">not by chance.  
+The major change in Designer that bumped it up to 0.4.0 was the move 
+to a plug-in architecture.</quote> Even the basic dialogs were now 
+implemented as plug-ins. <quote who="Jason Cater">The beauty of this 
+system is very little about the internals of Designer is needed to 
+write plugins, so practically anyone who understands forms
+and basic Python programming can do one.</quote> They could 
+even replace existing dialogs/wizards with their own, without 
+<quote who="Jason Cater">modifying any of Designer's source 
+code.</quote> However, <quote who="Jason Cater">Since this was the 
+first release under the new plugin system, we still need quite a few 
+important plugins. Notably missing are AddButton, AddCheckbox, 
+etc.</quote> Plug-ins were not very well documented yet, 
+but <quote who="Jason Cater">There are some technotes in 
+designer/doc/technotes/</quote> He concluded 
+<quote who="Jason Cater">All in all, the 0.4.0 release of Designer 
+was a stepping stone from being a "hack" to being an all-purpose 
+design tool for GNUe.  Consider 0.4.0 to be "puberty" for Designer.  
+Obviously it has a lot of polishing ahead of it, but I think we 
+have the "core" exactly where we need it to move forward.</quote></p>
+
+</section>
+
+

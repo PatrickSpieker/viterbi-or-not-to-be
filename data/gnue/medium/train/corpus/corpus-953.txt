@@ -1,0 +1,781 @@
+Action: derek dials 1-800-4Donuts
+<derek> hmmm seems like the MS branch closes at sunset
+<derek> Vee2d2: you have 5 lu tables
+<derek> i was going to make 6
+<derek> my question is do you really have your sku as
+<derek> C.14.4.20.1
+<derek> or is it represented as
+<derek> C144201
+<derek> do you see a need for a 'free' form as well
+<Vee2d2> yea, it's really delimited. that way I didnt literally lock myself into 2 digits per segment as I designed it to be. 
+<derek> well lets start with what you need and we will adjust form there
+<derek> hmmm
+<derek> im thinking that the delimiter will be really evil for invoicing and such
+<derek> i.e. i dont see delimiters for much of anything
+<derek> on invoices and such i encounter
+<derek> maybe i just seem them as - instead of .
+<Vee2d2> and since I've opted to make my cross references mfg.model <-> ref, there's a much more likely need for that segment to be 3 digits
+<Vee2d2> ahh, will the choice of delimiter I'm not married to.. 
+<Vee2d2> s/will/well
+Action: derek is just waffling here
+<derek> goes back to not starting out too complex
+<derek> as now it seems like this will need to be a choice
+<derek> 'delimiter' or no delimiter
+<derek> im planning on making the categories be 6 character varchar 
+<Vee2d2> just as padding will need to be, I aggree
+<derek> so if you want to use 1 digit or 6 you can
+<derek> and somewhere will need to add a 'pad' routine :)
+<derek> ok for now
+<derek> im giong to make the fields big enough
+<derek> but will plan on delimiting (not doing optoin not to)
+<derek> and NOT padding
+<derek> i figure those can be 'second pass' type items :)
+<Vee2d2> suits me. =)
+<derek> im getting lost in the email now
+<derek> im with everythign until we get to 
+<derek> The crossref table maps mfg.model <--> our-reference section
+<derek> im somewhat lost from that point on
+<Vee2d2> Ok 
+<derek> are you trying to build in some filter mechanism here?
+<derek> very generically im thinking
+<derek> six category tables 
+<derek> with a segment and a desc (As well as id)
+<derek> then you have your item
+<derek> and it has 
+<derek> id
+<derek> cat1 cat2 cat3 cat4 cat5 cat6
+<derek> which holds the segments
+Action: derek suspects will 'build' the number form the segments as well and store it in a field
+<derek> even though it could be calculated (for flexibility) later on i imagine some folks will want free form ability
+<derek> its the cross reference table here that is throughing me for a loop
+<derek> i think i get what your driving at just not sure how to make it generic
+<derek> did i lose you?
+<Vee2d2> yea, I can see this as being specific to my needs. but I need to have a way to correlate my #'s to my vendor's #'s.. each vendor has their own system but the one thing that remains true is the mfg's #. So I rely on that. 
+<derek> let me see if i can clarify what you are trying to do
+<derek> basically take manufacturer and manufacturer number
+<derek> and condense it to a smaller number
+<Vee2d2> yes
+<derek> to include as a part of your sku
+<Vee2d2> exactly
+<derek> ok here is what im thinking
+<derek> family
+<derek> manufacturer
+<derek> mfg model
+<derek> are probably going to be universal
+<derek> that is people will probably want to 'group' product types
+<derek> and everyone's product is manufactured by someone (even if its yourself)
+<derek> this way we can create a xref table
+<derek> as if all tables are generic we dont want to make 6 xref tables
+<derek> actually i guess family could still be generic
+johannes (~johannes@M697P006.adsl.highway.telekom.at) left irc: Read error: 104 (Connection reset by peer)
+<derek> so what if i make
+johannes (~johannes@M697P006.adsl.highway.telekom.at) joined #gnuenterprise.
+<derek> manufacturer table and mfg model number (which is really an Xref table)
+<derek> then 4 generic 'category' tables
+<derek> will this work for you?
+<Vee2d2> I'm trying to digest it
+<derek> of course manufacturer table should be more than
+<derek> id
+<derek> segment
+<derek> desc
+<derek> but i want to get something usable quick
+<derek> and doing full contact tables for manufacturer at this point makes me shudder a bit
+<derek> are your manufacturers and vendors one in the same
+<Vee2d2> no
+<Vee2d2> not at all.. 
+<derek> and do you know if in manufacturing they usually are?
+<derek> ok
+<derek> so manufacturer would be 'nike'
+<Vee2d2> I might be able to source a mfg's goods through multiple vendors, and in fact that is the problem
+<derek> even though you buy from 'sport shirt world'
+InsanitY (~insanity@213.51.196.60) left irc: Read error: 60 (Operation timed out)
+<derek> i.e. sport shirt world is your vendor
+<Vee2d2> right
+<derek> so having 'manufacturer' information beyond product details likely isnt too important
+<derek> i.e you dont have contacts at nike and dont deal 'directly' with them
+InsanitY (insanity@co58147-a.olden1.ov.home.nl) joined #gnuenterprise.
+<Vee2d2> well.. I could, but that's not important to me.. I would set them up as a vendor and treat them as such if I did
+Action: derek is just trying to guage if that manufacturer table needs to at this point me more complicated than a mfg name
+<derek> i suppose for now it need not be and if it becomes important we fix it :)
+Action: derek has to keep telling self
+<derek> something is better than nothing, dont over engineer thats what gnue 'proper' will be for ;)
+<Vee2d2> =)
+<derek> ok going to start implementing this
+<derek> watch out :)
+Action: Vee2d2 buckles up
+jcater (~jason@66.61.83.220) left irc: "nite"
+<derek> grrr my tunes no worky
+<derek> gnome pisses me off sometimes
+<derek> ok a lot of times now that they insist on m$ like gconf and oaf/bonobo CRAP!
+<jamest> l8r
+jamest (~jamest@adsl-64-216-111-42.dsl.tpkaks.swbell.net) left irc: "[x]chat"
+<derek> ok think almost ready for fairly big commit
+<derek> ok committed some goodies... time to find out if that commit list really works
+<derek> yummy 
+<derek> look at that it WORKED!
+<derek> time to attack the forms
+<Vee2d2> yay
+reinhard (~reinhard@M689P021.adsl.highway.telekom.at) joined #gnuenterprise.
+dsmith (dsmith@oh-strongsvillecadent1-1c-203.clvhoh.adelphia.net) left irc: Read error: 60 (Operation timed out)
+<derek> Vee2d2: ok i think most of the lu_* forms are updated
+<derek> excpet for lu_item_mfg_model.gfd
+<derek> they probably lack polish and havent been fully tested but they connect to the tables and have all the fields :)
+<derek> getting late but with some luck i think i can get lu_item_mfg_model.gfd pushed out and possibly update item_maint.gfd to reflect all the new tables
+<Vee2d2> I'll give 'em a lookee in a bit
+<derek> you have some 'testing' time tonight :)
+<derek> or you running off to bed pretty soon
+<Vee2d2> fairly soon.. 
+<derek> btw: there is
+<derek> item_mfg
+<derek> item_mfg_model
+<derek> which were your sku_mfg and sku_xref
+<derek> then there are 
+<derek> item_group item_type item_category item_class
+<derek> which are the four 'generics'
+<derek> category is slightly different as a generic as it has a 'parent' attribute
+<derek> so you could have nested categories
+<derek> for reporting purposes
+<derek> the other tables might have use for that as well, but its in category only cause it already existed there :)
+<derek> you realize documenting this stuff will be more of bitch than writing it :)
+<Vee2d2> =)
+btami (~tamas@ip102-205.ktv.tiszanet.hu) joined #gnuenterprise.
+<derek> ok item_mfg_model_maint.gfd checked in
+<derek> fwiw 0.4.3 designer is littered with buglets
+<derek> as to what it writes to form definitions
+<derek> i think only form in item section left to edit is item_maintenance
+Action: derek needs to go to bed
+<derek> have to kill routing to login to work
+<derek> bbl
+<Vee2d2> ok, night
+btami (~tamas@ip102-205.ktv.tiszanet.hu) left irc: 
+<derek> sigh
+<derek> cant get into work
+<derek> kppp is busted in sid
+<derek> grrrr
+<derek> now im screwed stayed up too late and will have to travel to the office tomorrow
+<derek> grrrrrrrrrrrrrrrr
+<derek> what is url to get status on packages in sid?
+<Vee2d2> http://www.debian.org/distrib/packages has a search form on the bottom of the page
+Action: Vee2d2 keels over and rolls his way to bed
+<Vee2d2> thanx derek
+<Vee2d2> =)
+ra3vat (~ds@ics.elcom.ru) left irc: Read error: 60 (Operation timed out)
+ra3vat (~ds@ics.elcom.ru) joined #gnuenterprise.
+btami (~tamas@ip102-205.ktv.tiszanet.hu) joined #gnuenterprise.
+ninja (rossg@p13-sniHS3.S.loxinfo.net.th) joined #gnuenterprise.
+rossg_ (rossg@p15-sniHS1.S.loxinfo.net.th) joined #gnuenterprise.
+ninja (rossg@p13-sniHS3.S.loxinfo.net.th) left irc: Read error: 54 (Connection reset by peer)
+btami (~tamas@ip102-205.ktv.tiszanet.hu) left irc: 
+reinhard (~reinhard@M689P021.adsl.highway.telekom.at) left irc: "War doesn't solve problems. War creates problems."
+Arturas (~arturas@gsk.vtu.lt) joined #gnuenterprise.
+<Arturas> Hello
+ToyMan (~stuq@smtp.dstoys.com) joined #gnuenterprise.
+jamest (~jamest@leibniz.math.ksu.edu) joined #gnuenterprise.
+SachaS_ (~Sacha@dialup-196-176.wasp.net.au) joined #gnuenterprise.
+SachaS (~Sacha@dialup-196-164.wasp.net.au) left irc: Read error: 110 (Connection timed out)
+Nick change: SachaS_ -> SachaS
+dsmith (~dsmith@borg.altus.cc) joined #gnuenterprise.
+<jamest> ooops
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<chillywilly> hi
+<jcater> werd
+<chillywilly> gawd it's too early to be awake
+<jamest> i forgot to check in my forms changes last night
+<chillywilly> ;P
+<Brian> too early to be awake its 15:00 here - I finish work in 30 mins
+<jamest> yeah, 3PM is too early for chillywilly
+<chillywilly> bah
+<chillywilly> I sleep til about 12:30 no later
+<chillywilly> give me some credit
+<Brian> lol
+<chillywilly> and I have an excuse
+<chillywilly> last night caroline made me take her to see Bon Jovi
+<chillywilly> ;)
+<Brian> hmmm now that sounds like punishment
+reinhard (~reinhard@M689P021.adsl.highway.telekom.at) joined #gnuenterprise.
+<chillywilly> it's not too bad
+<chillywilly> Richie Sambora can play some mean guitar
+<chillywilly> hey reinhard 
+<reinhard> hi
+<jcater> heya reinhard
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: Read error: 110 (Connection timed out)
+<chillywilly> what's a good way to get a "stable" checkout of gnue?
+<chillywilly> cvs co -r gnue-tools-0-4-0 gnue ?
+<jamest> no that easy
+<chillywilly> or pull head and downgrade various modules?
+<jamest> for name in forms,reports,common do
+<chillywilly> cd forms; cvs update -r forms-0-4-3-release...etc.
+<jamest>   cd $name; cvs update -Pdr $name-0-4-1-branch
+<jamest> done
+<chillywilly> what about
+<chillywilly> pre-jamestui-muckup?
+<chillywilly> is that "newer"
+<jamest> that's 0.5.0 with some changes to the event system in prep for the ui muckup
+<chillywilly> so no good eh?
+<jamest> so I'd call it untested
+<jamest> well, it worked just not well tested
+<chillywilly> ok
+<chillywilly> what about designer?
+<chillywilly> is HEAD broke there?
+<jamest> head is screwed
+<chillywilly> http://www.cnn.com/2003/ALLPOLITICS/02/27/bush.poll/index.html
+<jamest> you seriously don't want to go there unless you plan on working on the code
+<chillywilly> no I don't
+<chillywilly> ;)
+<jamest> i consider it a major accomplishment
+<chillywilly> anyway, same branhc name then?
+<chillywilly> branch
+<jamest> after over 1 year of trying I was finally able to cause major designer breakage
+<jamest> ususally that damn thing just worked no matter what I did to forms
+<chillywilly> yea, but you did it backasswards ;)_
+<chillywilly> you changed the forms format
+<chillywilly> that's the easy way ;)
+<jamest> no, no designer supported that
+<chillywilly> so should I add designer to the list of modules for that branch?
+<chillywilly> is there a way to check out a module under a different name in cvs or can I just mv it? I don't recall...and I am being derek-like today ;P
+Brian (~henderson@dial81-131-56-33.in-addr.btopenworld.com) left irc: 
+<jcater> designer fully supports the new forms format
+<jcater> it segfaults on the new uidriver model
+<jcater> (just fyi)
+<jcater> well, fully supports if you ignore the new embedded dialog support 
+<chillywilly> well I am not that brave to upgrade yet
+<chillywilly> I can use old forms format and change later when 0.5.0 is released
+<jamest> yes
+<jamest> in forms util dir there is a converter
+<chillywilly> yea, I've seen that, thanks
+<Vee2d2> heh.. that's pretty funny about the openoffice.org mirrors getting poked by the bsa
+<chillywilly> reports doesn't have a reports-0-4-1-branch tag
+<chillywilly> it has
+<chillywilly> gnue-tools-0-4-0
+<chillywilly> and 0-1-0 tag
+<chillywilly> Vee2d2: hmmm?
+<Vee2d2> chillywilly: re /. article this morning
+<chillywilly> Vee2d2: I think it is customary to provide a url
+Action: chillywilly thwaps Vee2d2 with a trout
+<havoc> Vee2d2: yeah, pretty funny :)
+<havoc> chillywilly: http://distribution.openoffice.org/servlets/ReadMsg?msgId=581265&listName=dev
+Action: Vee2d2 eats trout for breakfast
+<chillywilly> HEH, I'd like to kick the BSA ppl in the nuts
+<Vee2d2> I can appreciate their 'Grace Period' form letters they send out.. they provide real good leverage to get alternative solutions into places that otherwise wouldnt be so open to the idea of using anything but M$ products.. 
+<chillywilly> yea, havoc there posted something to LUG thanking the BSA for helping him get more cutomers to switch to Free software ;)
+<chillywilly> they're doing their part ;)
+<chillywilly> yay BSA!
+<dsmith> heh
+<havoc> chillywilly: yup, the BSA directly accounts for at least 10% of my gross revenue :)
+<chillywilly> woohoo! ;P
+<dsmith> chillywilly: What's BSA Again?  I keep thinking Boy Scouts of America
+<jcater> Business Screwers of America
+<chillywilly> Bastard Sadistic A**holes
+<havoc> I always forward all news of the BSA's, M$'s and others' scare tactics to my clients
+<havoc> and to potential clients
+<chillywilly> I dunno what it officially stands for something software allaince?
+<havoc> to show them just what they can avoid through the use of open source
+<chillywilly> alliance even
+<havoc> business software alliance
+<chillywilly> thnx
+<dsmith> Ah. Double think name.
+<chillywilly> doe does whatever-0-4-1-branch contain the lastest released stuff like 0.4.3 code?
+<chillywilly> s/doe/so/
+<dsmith> Should be MSM. Micro$oft Software Monopoly
+<chillywilly> oh I got my federal return back already
+<chillywilly> yaay
+<Vee2d2> this filing is going to be the most complicated one yet.. and I need to file an ammendment to last years. Hopefully what I get back from the ammendment will wash out what I end up oweing.. 
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<derek> anyone here with routing experience?
+<chillywilly> playing with a CISCO?
+<jcater> derek: yes
+<jcater> a bran muffin a day works wonders
+<chillywilly> HEH
+Action: chillywilly is in a bidding war right now on ebay
+<chillywilly> for a new laptop chassis
+<derek> chillywilly: actually i cant get ppp and eth to play nice together
+<derek> i can have one or the other
+<derek> but not both
+<derek> if i do a route del default
+<derek> and connect to ppp
+<derek> i can get to ppp hosts but not net
+<derek> if i bring up ethernet card after ppp connect
+<derek> i can get to net but not ppp
+<chillywilly> oh
+<chillywilly> you wan to route eth out through ppp?
+<derek> um
+Action: pattieja is back (gone 14:36:35)
+<derek> i would like to have both up
+<derek> internet traffic goes to eth
+<derek> and address xxx.xxx.x.x go through ppp
+<chillywilly> ok
+<chillywilly> route add -net xxx.xxx.xxx.xxx netmask 255.255.255.0 dev ethx
+<chillywilly> or maybe change dev to gw
+<chillywilly> but then you have to setup a statuc gw route for it
+<chillywilly> static*
+<derek> hmmm
+<derek> bbiab
+<chillywilly> I can't find an example on how to add a gateway route
+<dsmith> chillywilly: route add default gw <ipaddress>
+<dsmith> chillywilly: I think
+<chillywilly> that's for the default
+<chillywilly> but what he wants to do is add a gateway for ppp and let say internet use the defaukt
+<dsmith> Oh, a static route?
+<chillywilly> yea
+<chillywilly> you add a static rout for whatever he weants to route out ppp
+<chillywilly> then setup a certain subnet to go out that route
+<Arturas> bye
+Arturas (~arturas@gsk.vtu.lt) left irc: "Bye :)"
+<dsmith> route add -net <ipnet> netmask <mask> gw <ipofgateway>
+<chillywilly> yea that's what I said
+<chillywilly> but you need a route for the gateway itself
+<chillywilly> like for my default I have
+<chillywilly> default         gandalf.liberty 0.0.0.0         UG    0      0        0 eth0
+<chillywilly> erm
+<chillywilly> or
+<dsmith> chillywilly: You mean the subnet route for the nic?
+<chillywilly> 0.0.0.0         192.168.1.1     0.0.0.0         UG    0      0        0 eth0
+<chillywilly> he wats certain traffic to go out eth0 and other traffic to go out ppp
+<chillywilly> I think
+<chillywilly> based on IP address
+<chillywilly> does that make sense?
+<chillywilly> route add ppp-gw gw <IP> ?
+<chillywilly> then
+<chillywilly> route add -net <ip> netmask <netmask> gw ppp-gw
+revDeke (~laurie@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<chillywilly> wb
+<revDeke> join #dcl
+<chillywilly> already there
+<revDeke> oops
+<revDeke> sorry have everything 'automated' on laptop
+<revDeke> not used to manually doing things :)
+<chillywilly> how exactly do you want this to work?
+<revDeke> i gave up for right now
+<revDeke> have to get work done
+<revDeke> cant play with it
+<revDeke> but if you know what you are doing with route
+<revDeke> i will bug you another time as i need to solve it :0
+<chillywilly> ok
+<revDeke> for now just using wife's pc for net
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: Read error: 110 (Connection timed out)
+<chillywilly> why do you have a ppp interface?
+<chillywilly> DSL?
+<chillywilly> man I wonder how much this guys wants for this laptop chassis I just upped my bid to $46.00 and still haven't met his reserve price
+<chillywilly> it's just the bottom half of the laptop with a mobo
+<chillywilly> no CPU
+<chillywilly> no nothin else
+<revDeke> hmm
+<revDeke> chillywilly: i have to 'dial' into work vpn
+<revDeke> because i havent spent time trying to vpn client to work
+<revDeke> i.e. two ways to get on work network
+<revDeke> dial into their 'modem bank' directly and treat them like an ISP (what i do)
+<revDeke> or
+<revDeke> use vpn software over your own internet connection (i dont do)
+<chillywilly> I see
+Action: revDeke hasnt had time to dink with finding a suitable vpn client on linux and fighting with them for config details
+<chillywilly> you can't use a vpn client?
+<chillywilly> oh
+<revDeke> partially cause my broadband why 10Mbps down is like 19.2kbps up
+<revDeke> i.e. slower than a modem
+<revDeke> so likely i wouldnt get all that much performance boost 
+<chillywilly> :-/
+<revDeke> i will probably 'try' a client soon though
+<revDeke> and if i get it working
+<chillywilly> well 19.2k is better than the phone line
+<revDeke> switch to cable modem (256kbps up)
+<revDeke> chillywilly: i get my big K and little k mixed up
+<revDeke> when i say 19.2 i mean slwoer than a phone like
+<chillywilly> oh
+<chillywilly> 'bits'
+<revDeke> phone does 33.6 at least if not 56
+<chillywilly> right
+<chillywilly> you didn't mix it up
+<chillywilly> I did
+<chillywilly> you typed little k
+<revDeke> man mozilla's (galeon's) fonts are nice
+<revDeke> i.e. whatever i upgraded on their font side
+<revDeke> looks slick as snot
+<revDeke> i dont know if i can tolerate ANYTHING on windows anymore
+<revDeke> used to be at work i could tolerate exploder
+<chillywilly> hehe, exploder
+<revDeke> but no tab browsing and ugly fonts now makes even it unbearable
+Action: revDeke needs to find windows free work :)
+<revDeke> though im greatful for the work i do have
+<chillywilly> are you working from home today?
+<chillywilly> erm
+<chillywilly> don't answer that ;)
+<chillywilly> omfg
+<chillywilly> this is what is at the top oif a dice.com search agent email
+<chillywilly> =============SPONSORED ADVERTISEMENT============== 
+<chillywilly>  
+<chillywilly>  Bust Your Boss!
+<chillywilly>  
+<chillywilly>  Is your current or former employer using pirated software
+<chillywilly> in their office? Hit'em where it really hurts - report their
+<chillywilly> illegal software use today. 
+<chillywilly>  
+<chillywilly>  Click to visit www.bsa.org
+<chillywilly>  
+<chillywilly> that is just shitty
+<revDeke> yeah from hom
+<revDeke> e
+<revDeke> why the bsa is great
+<revDeke> seriously
+<revDeke> i wish they woudl bust EVERYONE who 'bootlegs' software
+<revDeke> because the more they put the vice on the copyright infringers 
+<revDeke> the more they will flock to gnu/linux and free software
+<chillywilly> yea they harm more than help now a days
+<chillywilly> harm their own "cause"
+<revDeke> btw: i think their tactics are vile and evil
+<revDeke> BUT
+<revDeke> when you sign your life away in a EULA, you get what you deserve i suppose ;)
+<chillywilly> encouragin ppl to stan each other in the back is horrible
+<chillywilly> stab*
+<chillywilly> whereas Free software encourages you to share and be nice to ppl :) This point alone is enough for me
+<chillywilly> ok, well today is supposed to be my "recording" day
+<chillywilly> I am gonna record some tracks for a song
+<Vee2d2> I think it will be interesting to see what comes of a suit I read about recently where a woman is sueing several large sw companies because she did not have the opportunity to read the eula before opening the product(s) she purchased, then after seeing the eula and not agreeing to it, she attempting to return the sw but the store wouldnt take it back because it had been opened. 
+<chillywilly> yea, that should be interesting
+rossg_ (rossg@p15-sniHS1.S.loxinfo.net.th) left irc: Remote closed the connection
+dsmith (~dsmith@borg.altus.cc) left irc: "later.."
+fixe (~fixe@dsl093-081-253.chi2.dsl.speakeasy.net) left irc: "Client Exiting"
+<chillywilly> hmm, this blows because my digitech needs repair or something as it pops and hisses at me
+dsmith (~dsmith@borg.altus.cc) joined #gnuenterprise.
+<chillywilly> dsmith: you are assimilated
+<dsmith> !!
+<dsmith> Ahh borg
+<chillywilly> you're quick man ;)
+<chillywilly> don't let anyone else accuse you of the contrary
+Action: dsmith chuckles
+<chillywilly> mmmm, steak
+<chillywilly> my symbiote is gone! :'(
+<chillywilly> that's my SG1 impression
+revDeke (~laurie@cpe-24-221-112-50.az.sprintbbd.net) left irc: "Client Exiting"
+<dsmith> chillywilly: btw: "What's the interface like?" look: http://www.sun.com/hardware/serverappliances/qube3/demo.html
+dsmith (~dsmith@borg.altus.cc) left irc: "later.."
+reinhard (~reinhard@M689P021.adsl.highway.telekom.at) left irc: "There is no war against terrorism. War is always against people."
+dsmith (~dsmith@borg.altus.cc) joined #gnuenterprise.
+<chillywilly> wb dsmith 
+<dsmith> chillywilly: thanks
+<chillywilly> I am surprised ppl did not think of the little black box server with a web interface before
+<chillywilly> erm, I supposed you could do the same thing with webmin?
+Action: chillywilly wouldn't know
+<dsmith> chillywilly: They have been around a while.  We've used them for years.
+<dsmith> chillywilly: webmin is nowhere near as nice as the cobalt gui
+<dsmith> chillywilly: The big bosy make similar things.  They are call "Network Attached Storage".
+<dsmith> s/bosy/boys/
+<dsmith> s/call/called/
+<chillywilly> anyone should be able to do the same as the cobalt server...I can't imagine it would be that hard
+<chillywilly> and it would be best as Free software
+<chillywilly> hey guys I am reading this by Norbert: http://freestrategy.info/
+<dsmith> chillywilly: It's actually running RedHat 6.2 . But the gui is not free. :(
+<chillywilly> (Norbert Bollow of the DotGNU project)
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+jbailey (~jbailey@atlas.fundserv.com) joined #gnuenterprise.
+<derek> jcater: what you using for pos at bookstore?
+<jcater> a LanePOS+GNUe mutation
+<jbailey> Piece of Shit?
+<chillywilly> no, that's PoS not POS
+<derek> well thats questionable
+<derek> most of the free POS are PoS as well
+<derek> the +GNUe mutation suggests to me that jcater picked the least of the worst
+<derek> er best of the worst
+<jbailey> Hey - I noticed that the windows port has a gnue front end to the connections.conf file - Is that available on Unix systems?
+<chillywilly> it's a db driver, IIRC
+<chillywilly> a db driver to edit config files
+<chillywilly> should work everywhere
+<chillywilly> erm, well that form uses that driver
+<derek> huh
+<derek> i thought we had a .gfd to edit them
+<derek> which worked on any platform gnue worked on?
+<chillywilly> right that's what I just said
+<chillywilly> inh a round-about way
+<derek> where has aj the mitch been lately?
+<derek> chillywilly: you got a minute
+<derek> maybe jbailey can help too
+<derek> here is current "route"
+<derek> Kernel IP routing table
+<derek> Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+<derek> 192.168.0.0     *               255.255.255.0   U     0      0        0 eth0
+<derek> default         192.168.0.1     0.0.0.0         UG    0      0        0 eth0
+<derek> latitude:/home/dneighbo/cvs/gnue-sb/item/forms# 
+<derek> if i dialup pppd
+<derek> net and ppp dont work
+<derek> if i do a route del default
+<derek> then dial up ppp
+<derek> ppp works
+<derek> but net doesnt
+<chillywilly> right
+<derek> i can then do a dhclient and net will start working again, but ppp wont
+<chillywilly> cause they bioth want to be the default route
+<derek> doing a route del default will make ppp work again
+<chillywilly> you need to add a static route for ppp
+Action: derek needs to know how to make net be the default
+<chillywilly> like so
+<chillywilly> route add ppp-gw gw <IP>
+<chillywilly> then
+<derek> and ppp only take traffic requests for 156.x.x.x or whatever
+Action: derek notes this is a REAL bitch cause we have uber security
+<derek> where i have a hand held device that assigns me a password
+<chillywilly> route add -net <IP> netmask <netmask> gw <IP>
+<dsmith> Dosn't ppp automaticlaly add a defualt route?
+<derek> if i fail authentication with it, its a 30 minute process to get it reset by the home office
+<derek> dsmith: yes it does
+Action: dsmith remembers somehting like that
+<chillywilly> right and so does the dhcp client
+<dsmith> You can only have *one* default route.
+<chillywilly> thus they don't want to wokr together
+<chillywilly> work*
+<chillywilly> in ppp there's an options file
+<chillywilly> I think you can tell it to not add a default route
+<dsmith> It's the route when you have no other route to that ip.
+<chillywilly> then you can add a static route for ppp and then have whatever subnet use that route
+<chillywilly> default is used last if there's no other way...but you can turn it off I think in /etc/ppp/options file
+<dsmith> Yeah, dont have ppp add a defualt route, and add a static route in one of the hook scripts.
+Action: derek doesnt want to break something that is working
+<derek> i.e. if you cant say 'do this exactly'
+<derek> im leary to do it
+<derek> as while it sucks having to switch at least i can
+<derek> if i break it im screwed
+<derek> as i wont be able to get into work :)
+<dsmith> From pppd man page:
+<dsmith>        defaultroute
+<dsmith>               Add a default route to the system routing tables, using the peer
+<dsmith>               as the gateway, when IPCP negotiation is successfully completed.
+<dsmith>               This  entry  is removed when the PPP connection is broken.  This
+<dsmith>               option is privileged if the nodefaultroute option has been spec-
+<derek> best i can remember if i have ethernet up
+<dsmith>               ified.
+<derek> and run kppp it doesnt add a default
+<chillywilly> what is the network info?
+<derek> if i kill default route
+<derek> before starting kppp it does
+<derek> also note i have a gateway in this mix
+<chillywilly> add nodefaultroute
+<derek> as evidenced by the route i pasted to you
+<chillywilly> to the options file
+<derek> chillywilly: i do everything via kppp
+<chillywilly> this shoudl NOT breaknaything except ppp
+<derek> so im not sure i can
+<chillywilly> which cna be fixed
+<derek> btw: i tried not using kppp and pppd sucks weenie
+<chillywilly> by removeing it
+<chillywilly> pon/poff
+<chillywilly> should work
+<chillywilly> you're doing PPPoE right?
+<derek> i have no idea
+<derek> i open kppp
+<chillywilly> PPP over ethernet
+<derek> and click connect
+<derek> no im DIALING out
+<chillywilly> over existing connection?
+<chillywilly> oh, ok
+<chillywilly> stilll go into /etc/ppp and add nodefaultroute to the options file
+V_laptop (~vin@c66.169.136.41.ts46v-07.otn-c1.ftwrth.tx.charter.com) left irc: Read error: 60 (Operation timed out)
+<chillywilly> or, use kppp and tell it not o add a default route
+<chillywilly> s/o/to
+<chillywilly> (this reslly shouldn't hurt and you can change it back easily)
+<dsmith> In
+<dsmith>        most cases the defaultroute and/or proxyarp options are sufficient  for
+<dsmith>        this,  but  in  some  cases  further  intervention  is  required.   The
+<dsmith>        /etc/ppp/ip-up script can be used for this.
+<chillywilly> yes dsmith I used the script dirs for all my dyanmic IP hacks back in da day
+<chillywilly> ;)
+<dsmith> I used to have the ip-up script ftp a generated web page of the just-connected ip address.
+<chillywilly> me too
+<derek> too much chatter
+<derek> so just add
+<derek> nodefaultroute
+<chillywilly> make ppp not add a default route
+<derek> to /etc/ppp/options
+<derek> then try to connect?
+<dsmith> yep
+<chillywilly> yea
+<dsmith> And add the static route in /etc/ppp/ip-up (and remove it in /etc/ppp/ip-down)
+<derek> grrr
+<derek> i already started to connect
+<chillywilly> can't you disconnect after it's done?
+<derek> hopefully this doesnt butcher stuff too 
+Action: dsmith yanks derek's modem from the wall
+<derek> The pppd daemon died unexpectedly!
+<derek> Exit status: 2
+<derek> See 'man pppd' for an explanation of the error codes or take a look at the kppp FAQ on http://devel-home.kde.org/~kppp/index.html
+<derek> sigh
+<chillywilly> ?!?
+<derek> no i will likely have to go through the 30 minute phone hell to have my activcard reset
+Action: derek knew i shouldnt have dorked with it
+Action: dsmith plugs the modem back in
+<derek> Feb 28 15:29:46 latitude pppd[14124]: defaultroute option is disabled
+<derek> from the log
+<chillywilly> right :)
+<chillywilly> but you did nto sucessfully authenticate?
+<dsmith> Sounds good.
+<dsmith> derek: Don't give up. It's not really that hard.
+dsmith (~dsmith@borg.altus.cc) left irc: "later.."
+<chillywilly> dsmith: he's cursed so he ALWAYS expects the worst
+<derek> ok i think i see what might have happened
+<derek> there is option in kppp
+<derek> i removed in options file
+<derek> which disabled it
+<chillywilly> right
+<chillywilly> I was gonna say I think you can do it in the gui
+<derek> and then the client probably passed parameter to execute it
+<derek> which confused it
+<chillywilly> lemme install kppp once
+<derek> dsmith: only reason i get irrated is it takes 30 minutes to reset active card after every failure :(
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "Client Exiting"
+<chillywilly> he bailed on us
+<chillywilly> or got dropped
+<chillywilly> derek: they're pretty paranoid eh?
+<derek> Feb 28 15:36:07 latitude pppd[14177]: pppd 2.4.1 started by root, uid 0
+<derek> Feb 28 15:36:07 latitude pppd[14177]: Using interface ppp0
+<derek> Feb 28 15:36:07 latitude pppd[14177]: Connect: ppp0 <--> /dev/ttyS4
+<derek> Feb 28 15:36:16 latitude pppd[14177]: Remote message: Password validation failure
+<derek> Feb 28 15:36:16 latitude pppd[14177]: PAP authentication failed
+<derek> Feb 28 15:36:16 latitude pppd[14177]: Connection terminated.
+<derek> Feb 28 15:36:16 latitude pppd[14177]: Exit.
+<derek> grr
+<derek> have to reset this bitch
+Action: derek gets wildly irrated
+<chillywilly> that is so lame man
+<chillywilly> why did it fail?
+<chillywilly> hmmm, I already have kppp installed
+Action: chillywilly fires it up
+<chillywilly> heh, it crashes or something
+<chillywilly> oh I can only run it as root
+<derek> ok
+<derek> password reset
+Action: derek is amazed it didnt take 30 minutes
+<derek> i told them
+<derek> i run linux, i dont have error messages you understand reset the fscking thing
+<derek> went much quicker :)
+<chillywilly> HEH
+<derek> Kernel IP routing table
+<derek> Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+<derek> 156.42.5.251    *               255.255.255.255 UH    0      0        0 ppp0
+<derek> 192.168.0.0     *               255.255.255.0   U     0      0        0 eth0
+<derek> default         192.168.0.1     0.0.0.0         UG    0      0        0 eth0
+<derek> latitude:/home/dneighbo# 
+<derek> is current route
+<derek> and i can be on net
+<chillywilly> cool
+<chillywilly> alright
+<chillywilly> try
+<derek> latitude:/home/dneighbo# ping 156.42.88.94
+<derek> PING 156.42.88.94 (156.42.88.94): 56 data bytes
+<derek> fails
+<chillywilly> cause there's no route
+<derek> 156.42.x.x shoudl be accessible to that ppp connection
+<chillywilly> one sec here...
+<chillywilly> I have to go drain it
+<chillywilly> ;P
+<derek> no dropping kids off at the pool
+<derek> just strain the noodle and hurry back
+<jbailey>  /topic Featuring masturbation advice from derek and chillywilly in #gnue today.
+<chillywilly> back
+<chillywilly> what does ifconfig ppp0 show?
+<derek> latitude:/home/dneighbo# ifconfig ppp0
+<derek> ppp0      Link encap:Point-to-Point Protocol  
+<derek>           inet addr:172.22.5.10  P-t-P:156.42.5.251  Mask:255.255.255.255
+<derek>           UP POINTOPOINT RUNNING NOARP MULTICAST  MTU:1500  Metric:1
+<derek>           RX packets:4 errors:2 dropped:0 overruns:0 frame:0
+<derek>           TX packets:4 errors:0 dropped:0 overruns:0 carrier:0
+<derek>           collisions:0 txqueuelen:3 
+<derek>           RX bytes:84 (84.0 b)  TX bytes:87 (87.0 b)
+<derek> latitude:/home/dneighbo# 
+<chillywilly> ah
+<chillywilly> so 156.xxx is the peer IP?
+<chillywilly> try
+<derek> yeah
+<derek> and 156.88.x.x is the brick of ips i need to be able to access
+<havoc> chillywilly: so you know no perl at all huh?
+<derek> i.e. i attach to few machines with 156.88.x.x
+<chillywilly> route add ppp-gw gw 156.42.5.251
+<chillywilly> havoc: no but I am sure I could leanr it if I wanted to ;)
+<chillywilly> j/k
+<chillywilly> I could prolly pick it up
+<havoc> chillywilly: I have two projects that are overdue (and unstarted)
+<derek> latitude:/home/dneighbo# route add ppp-gw gw 156.42.5.251
+<derek> ppp-gw: Unknown host
+<derek> latitude:/home/dneighbo# 
+<chillywilly> hmmmm
+Action: derek suspsects your syntax is bad
+<derek> as it was thinking ppp-gw is a computer?
+<chillywilly> yea
+<chillywilly> prolly IP
+<derek> but how will it know when to use that?
+Action: derek doesnt understand kernel routing at all
+<chillywilly> well I need to get this right here....
+<derek> but i would suspect there needs to be something
+<chillywilly> it'll see the IP header and say throw it out this interface
+<derek> that tells it for this ip (or range of ips) go this way
+<derek> otherwise use the default
+<chillywilly> yes
+<chillywilly> firts it needs another GW entry
+<chillywilly> for your peer
+<chillywilly> then
+<chillywilly> nased on you IP on your end of the ppp
+<chillywilly> based*
+<chillywilly> you say go out that gateway
+<chillywilly> basically
+<chillywilly> just have to get the syntax correct
+<chillywilly> well try this once
+<derek> well noah picked up fone give me a minute
+<chillywilly> route add -net 172.22.5.0 netmask 255.255.255.0 dev ppp0
+<derek> that looks wrong but ok
+<derek> latitude:/home/dneighbo# route
+<derek> Kernel IP routing table
+<derek> Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+<derek> 156.42.5.251    *               255.255.255.255 UH    0      0        0 ppp0
+<derek> 172.22.5.0      *               255.255.255.0   U     0      0        0 ppp0
+<derek> 192.168.0.0     *               255.255.255.0   U     0      0        0 eth0
+<derek> default         192.168.0.1     0.0.0.0         UG    0      0        0 eth0
+<derek> latitude:/home/dneighbo# 
+<derek> still no worky
+<derek> latitude:/home/dneighbo# traceroute 156.42.88.94
+<derek> traceroute to 156.42.88.94 (156.42.88.94), 30 hops max, 38 byte packets
+<derek>  1  192.168.0.1 (192.168.0.1)  0.444 ms  3.514 ms  3.215 ms
+<derek>  2  10.252.68.1 (10.252.68.1)  213.315 ms  60.483 ms  45.120 ms
+<derek>  3  southmtnrt01.az.sprintbbd.net (24.221.37.1)  189.448 ms  114.612 ms  211.926 ms
+<derek> it still trying to go out sprint
+<derek> i suppose i need an entry that looks like:
+<chillywilly> can you see me?
+chillywilly (danielb@mke-24-167-199-83.wi.rr.com) left irc: "leaving"
+<derek> 156.42.88.0    156.42.5.251               255.255.255.255 UH    0      0        0 ppp0
+chillywilly (danielb@mke-24-167-199-83.wi.rr.com) joined #gnuenterprise.
+<derek> i suppose i need an entry that looks like:
+<derek> 156.42.88.0    156.42.5.251               255.255.255.255 UH    0      0        0 ppp0
+<derek> i could kill internet and login
+<derek> and get what it writes for a gw that works
+<derek> then come back to internet and tell you ;)
+<derek> actually its getting late i need to get back on to work computer have concert to go to 
+<derek> bbl
+jamest (~jamest@leibniz.math.ksu.edu) left irc: "[x]chat"
+V_laptop (~vin@c66.169.136.41.ts46v-07.otn-c1.ftwrth.tx.charter.com) joined #gnuenterprise.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: Read error: 110 (Connection timed out)
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<chillywilly> sorry dewd
+<chillywilly> I was typing in a different channel
+<chillywilly> ;P
+<chillywilly> this works
+<chillywilly> route add 0.0.0.0 gw <IP> ppp0
+<chillywilly> substitute your peer IP
+<chillywilly> then
+jbailey (~jbailey@atlas.fundserv.com) left irc: "Client Exiting"
+<chillywilly> back
+jamest (~jamest@adsl-64-216-111-42.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+jcater (~jason@cpe-066-061-083-220.midsouth.rr.com) joined #gnuenterprise.
+Action: jamest is away: I'm busy
+dsmith (dsmith@oh-strongsvillecadent1-1c-203.clvhoh.adelphia.net) joined #gnuenterprise.
+sub_gone_culture (~link@129.210.184.56) left irc: "Client exiting"
+ToyMan (~stuq@smtp.dstoys.com) left irc: "Client Exiting"
+<SachaS> anyone thought of porting JBoss to GNUe using python? oh maybe jboss application server is not what gnue needs as application server .....
+chillywilly (danielb@mke-24-167-199-83.wi.rr.com) left irc: "leaving"
+<SachaS> JBoss is licenced under LGPL
+jamest_ (~jamest@adsl-64-216-111-42.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+jamest_ (~jamest@adsl-64-216-111-42.dsl.tpkaks.swbell.net) left irc: Client Quit
+Action: jamest is back (gone 03:03:58)
+ra3vat (~ds@ics.elcom.ru) left irc: Read error: 104 (Connection reset by peer)
+SachaS (~Sacha@dialup-196-176.wasp.net.au) got netsplit.
+SachaS (~Sacha@dialup-196-176.wasp.net.au) returned to #gnuenterprise.
+ra3vat (~ds@ics.elcom.ru) joined #gnuenterprise.
+jamest (~jamest@adsl-64-216-111-42.dsl.tpkaks.swbell.net) left irc: "[x]chat"
+chillywilly (danielb@mke-24-167-199-83.wi.rr.com) joined #gnuenterprise.
+<Vee2d2> evenening, chillywilly
+ninja (rossg@r89-sniHS1.S.loxinfo.net.th) joined #gnuenterprise.
+--- Sat Mar  1 2003

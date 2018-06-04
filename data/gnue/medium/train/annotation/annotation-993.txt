@@ -1,0 +1,125 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.14Nov2002" enddate="14 Nov 2002 16:00:00 -0800" startdate="13 Nov 2002 16:00:00 -0800" subject="[IRC] 14 Nov 2002" title="Alternatives to wxPython toolkit with GNUe on Microsoft Windows">
+
+<topic>Forms</topic>
+<topic>Designer</topic>
+<topic>Common</topic>
+
+<mention>Keith</mention>
+
+<p>James Thompson (jamest) warned that <quote who="James Thompson">our 
+win32 support in GNUe Forms via wxPython has issues, we're 
+writting a win32 API ui driver during the next release cycle 
+because we can't get what we need from wx - it works, but it's a 
+bit odd</quote>. Bill Gribble (grib) asked 
+<quote who="Bill Gribble">so is wx not quite the x-platform 
+miracle it was thought to be?</quote> James said 
+<quote who="James Thompson">i think it's the underlying widget 
+set for the platform - on X we can get ahold of certain events, 
+in windows those events never make it to the wx level</quote>. 
+Bill asked <quote who="Bill Gribble">is gtk on win32 too far 
+from usability?</quote> James said he had not had time to 
+investigate this properly yet - <quote who="James Thompson">but 
+my understanding is that the gtk2 client is missing some features 
+but is moving along nicely</quote> - 
+<quote who="James Thompson">we're getting lots of win32 patches 
+it seems and gtk2 patches so it may work better than I 
+think</quote>.</p>
+
+<p>Later, Derek Neighbors (derek) said 
+<quote who="Derek Neighbors">i think wx is pretty good xplatform 
+if you have limited resources (i.e. better than anything else) - 
+however its not perfect. I think it has done us well... i.e. quick 
+xplatform to get people interested and get us supported with little 
+effort - now that we have a bigger base i think it will be nice to 
+see naitve, win32, gtk, qt</quote>. James said he had added a 
+native win32api Forms UI to the feature plan. Derek said 
+<quote who="Derek Neighbors">yeah i noticed :) - i think its a good 
+change</quote> - <quote who="Derek Neighbors">i think you are sick 
+for being eager to write one, but its a good thing(tm) ;)</quote>. 
+James said he <quote who="James Thompson">wanted to rework the gfd 
+format to seperate layout from logic - btami asked for a feature 
+that would be easy once seperated - so i spoke w/ jcater about it. 
+We decided that the forms documentation wouldn't be that good if we 
+changed the file format right after we release the docs :)</quote>
+He was also <quote who="James Thompson">writting a GNUe Common usage 
+guide that shows you how to write non-gnue apps with common - should 
+make it into 0.4.1</quote>.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.15Nov2002">
+The next day</a>, Keith Jagrs (KeithJagrs) asked what the plans were 
+to circumvent the problems with wx under Mircrosoft Windows. 
+James said <quote who="James Thompson">i know works being done on 
+gtk2 driver which works under windows.....however what I believe you 
+will see in the next major upgrade is a UIdriver based upon win32all - 
+my understanding it that is exposes the win32 api directly which will 
+make for a painfull coding experience but should result in us getting 
+exactly what we require. I have not looked into this really closely 
+yet though (my last copy of the win api book covers the "new" api in 
+win 3.1) :)</quote> There were no plans to drop wx in favour of GTK2. 
+He explained that the UI (user interface) drivers were abstracted 
+from the main Forms code - there were already uidrivers for curses, 
+gtk2 and wx - a win32 UIdriver.py could be slotted in the same way. 
+<quote who="James Thompson">the idea is we don't want coders to have 
+to learn the internals of forms to add a driver - well, not all the 
+internals - they just have to provide code to deal with the events 
+that are passed into a driver</quote>. Much of GNUe was designed 
+to be pluggable in this way - <quote who="James Thompson">our database 
+drivers work the same way</quote> and <quote who="James Thompson">designer 
+also has plug-in system to extend it's capabilities</quote>.</p>
+
+<p>Keith asked <quote who="Keith Jagrs">can curses work on DOS ?</quote> 
+Jason said he had <quote who="Jason Cater">looked at curses + DOS - 
+went into "python" on a win32 machine - and did "import curses" - and 
+it didn't work</quote>. James was not <quote who="James Thompson">too 
+worried about text on windows though - personally, i saw the curses 
+thing as usefull for someone running text terminals</quote>. Keith 
+noted that <quote who="Keith Jagrs">there are some companies working 
+with accounting software that runs on DOS</quote>. James agreed -
+<quote who="James Thompson">i know text apps are used alot in the real 
+world - i myself don't think gui == good by default - however i think a 
+dos text client would be a huge investment in time. Now if a person 
+could find a python module for manipulating text then it would be 
+possible - but doing from scratch would be painful</quote>. Jason 
+understood <quote who="Jason Cater">you can get curses libraries 
+for win32/dos machines - so you'd probabl;y be able to custom compile 
+a python binary - I don't have the time to invest in that route but I 
+imagine it's doable</quote>. James noted 
+<quote who="James Thompson">ooooo, if we can get a python binary that 
+does that then our existing packaging will just work</quote>.</p>
+
+<p>James acknowledged <quote who="James Thompson">that win32 support 
+is a big issue - that combined with the desire to work on layout caused 
+us to adjust our 
+<a href="http://www.gnuenterprise.org/feature-plans/forms.html">feature 
+plans</a></quote>. Jason agreed <quote who="Jason Cater">I think a win32 
+client will come along very quickly once its started</quote>. In the 
+meantime, James suggested <quote who="James Thompson">setup a cheap arse 
+"server" running the curses client</quote> accessing this via telnet 
+<quote who="James Thompson">w/ putty on the win boxes. It may sound 
+sick but when I go places I spend time looking at their 
+computer interfaces (at stores, companies, etc) - i always ask myself 
+"can forms do that?"</quote> - he saw similar set-ups to this a lot - 
+<quote who="James Thompson">which always strikes me as funny - to spend 
+XX dollars on a windows license to run as a glorified vt320</quote>.</p>
+
+<p>Later, James tracked down a 
+<a href="http://newcenturycomputers.net/projects/wconio.html">web
+reference</a> to a text-based client - <quote who="James Thompson">it's 
+not curses but at quick glance it looks like it would provide enough 
+features to make such a driver possible</quote>. Derek Neighbors 
+(revDeke) <quote who="Derek Neighbors">shudders at wincurses - 
+i think your idea of vt100 putty connections to GNUe Server would be 
+more effective :)</quote> Jason noted <quote who="Jason Cater">that 
+looks so close to the underlying curses driver that I bet it could 
+be grafted in - so the "widget set" we have created to go over 
+curses could also be used over wcon</quote>. He was not sure how it 
+worked however - was it really a DOS screen, or a Win32 console?
+James felt <quote who="James Thompson">anyone running pure dos solution 
+would probably be more open to other setups - unless legacy app forced 
+them into it</quote>. Jason agreed - <quote who="Jason Cater">if they 
+are in a dos setup we talk them into putting in an ltsp server - 
+and make the dos machines LTSP "telnet" clients :)</quote>.</p>
+
+</section>
+
+

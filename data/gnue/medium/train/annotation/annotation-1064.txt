@@ -1,0 +1,50 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.03May2002" enddate="02 May 2002 23:00:00 -0800" startdate="02 May 2002 23:00:00 -0800" subject="[IRC] 03 May 2002" title="Bug in Designer set-up">
+
+<topic>Designer</topic>
+
+<p>Marcos Dione (StyXman) reported a bug running 
+GNUe Designer - <quote who="Marcos Dione">NameError: 
+global name '_' is not defined</quote>. He wondered 
+if this was because <quote who="Marcos Dione">it can't 
+find the messages for gettext</quote>. He was 
+installing CVS in his own directory, not as root. Jason Cater 
+(jcater) wasn't having the same problem, but 
+<quote who="Jason Cater">I bet he has a locale setting
+whereas I don't - so mine is falling back to the dummy 
+_</quote>. He asked <quote who="Jason Cater">did you run 
+./setup-cvs.py - or the individual ./setup.py scripts in 
+each tool?</quote>. Marcos said he had 
+<quote who="Marcos Dione">run setup-cvs.py, but it doesn't 
+install designer.</quote>. Jason said it should. Looking 
+at the source, he spotted <quote who="Jason Cater">a bug 
+in setup-cvs.py</quote>, which he fixed and then asked 
+<quote who="Jason Cater">Anyone running CVS copy of tools:
+Please update your CVS checkout, do a rm -f ~/gnue/translations,
+and then rerun setup-cvs.py</quote>. He said
+<quote who="Jason Cater">StyXman: btw, this may not solve 
+your problem - but then again it may :)</quote>. Marcos 
+said that Designer was generating a warning 
+<quote who="Marcos Dione">
+'Unable to load locale information falling back to dummy 
+_()' - but it loaded..</quote>. Jason explained 
+<quote who="Jason Cater">I didn't actually change anything 
+in there -  but the way it was - each time you ran 
+./setup-cvs.py, it would create another level of "translations"
+i.e., after 4 runs you'd have 
+translations/translations/translations/translations/</quote>.</p>
+
+<p>Marcos asked <quote who="Marcos Dione">what's _() used 
+for?</quote>. Arturas Kriukovas (Arturas) explained 
+<quote who="Arturas Kriukovas">when you have string in English
+it shows, that this string has translations</quote>. 
+Marcos asked <quote who="Marcos Dione">from Desugner.py, 
+I realize that it can handle several instances. I think 
+an instance is like the representation and handler of a 
+form?</quote> Jason explained <quote who="Jason Cater">well,
+technically, it's an instance of a designer object - with 
+FormsInstances being the only currently implemented type - 
+but we'll also have report instances, biz rules instances, 
+etc</quote>.</p>
+
+</section>
+

@@ -1,0 +1,98 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.05Nov2002" enddate="05 Nov 2002 23:00:00 -0800" startdate="04 Nov 2002 23:00:00 -0800" subject="[IRC] 05 Nov 2002" title="Debian packages into sid (unstable) distribution">
+
+<p>Jeff Bailey (jbailey) started to re-build the Debian packages for 
+GNUe, so that he could get them into sid (the Debian unstable 
+distribution. Derek Neighbors (derek) asked 
+<quote who="Derek Neighbors">can you commit them to cvs</quote>? 
+Jeff suggested some possible changes to the CVS structure to make 
+this easier - <quote who="Jeff Bailey">The way I do the packaging is 
+that the upstream source is just a tarball sitting in the deb.  
+That way upgrades are mostly just replacing the tarball.
+I will cheerfully keep that in cvs if you'd like - that would be easy 
+enough - but I'd make a new toplevel "packaging/debian/PACKAGENAME/" 
+probably...</quote> Jason wondered if his original Debian packages 
+should have been marked as for woody (as of time of writing, the 
+Debian stable distribution), <quote who="Jason Cater">as they rely 
+on python 2.1 stuff</quote>. Jeff found and Jason fixed various 
+bugs and other oddities in CVS (such as image files that had the 
+executable flag set). Jeff explained <quote who="Jeff Bailey">I'm 
+taking a tarball of the CVS tree and stuffing it into my packaging.
+Which is mostly jcaters packaging.</quote> Jason said 
+<quote who="Jason Cater">I actually thought you weren't supposed 
+to package against a cvs tree directly - that's why I worked from 
+the source tarball</quote> of the 0.4.0 releases. Jeff said 
+<quote who="Jeff Bailey">It depends on the maintainer. I only 
+package against CVS when I'm friends with upstream.</quote>
+Andrew Mitchell (ajmitch) said it depended 
+<quote who="Andrew Mitchell">and what level of masochism they 
+like - i package from cvs for DotGNU stuff - because i am part of 
+upstream :)</quote>.</p>
+
+<p>Jeff finished packaging GNUe Common, and asked 
+<quote who="Jeff Bailey">Why did you call the package 
+gnue-forms-wxgtk instead of just gnue-forms?</quote> Andrew 
+said there were other Forms clients available, including 
+php. Jason added <quote who="Jason Cater">there's also a 
+gnue-forms-curses and a gnue-forms-gtk2</quote> which they 
+would probably look to do Debian packages for once they were 
+a bit more mature. <quote who="Jason Cater">there probably 
+should be a gnue-forms-base or such - as a good chunk of the 
+code is the same</quote>. James Thompson (jamest) agreed - 
+<quote who="James Thompson">then driver .debs</quote> for 
+each seperate User Interface (UI).</p>
+
+<p>Jeff could not find the man files for Forms in CVS. Jason 
+explained <quote who="Jason Cater">that's created dynamically
+when we package up a tarball</quote>, but could also be 
+generated on demand with the --generate-man-page flag. 
+James noted that the man pages were not 
+<quote who="James Thompson">100% complete</quote>. 
+Jeff said <quote who="Jeff Bailey">Even if they're partially 
+complete that's fine. The GNU project doesn't support man pages, 
+right? =) So having a partial one, and a note to look at the 
+texinfo documentation is usually fine.</quote> Jason said 
+<quote who="Jason Cater">as soon as I learn texinfo we'll hve 
+a --generate-texinfo-page :)</quote> flag as well.</p>
+
+<p>Testing the packages, Jason noted 
+<quote who="Jason Cater">it runs - but my intro.gfd shows no 
+labels - but running against my latest cvs copy, they do 
+show.</quote> <quote who="Jason Cater">I don't see how this 
+could have *anything* to do with debs - but its odd</quote>. 
+Andrew Mitchell (ajmitch) said <quote who="Andrew Mitchell">don't 
+try apt-get install gnue-forms gnue-designer - unless you want 
+the 0.1.1 version :)</quote> - 
+<quote who="Andrew Mitchell">does gnue-forms-wxgtk replace 
+gnue-forms?</quote> Jeff said <quote who="Jeff Bailey">replace,
+conflicts, yes.</quote>. Andrew said 
+<quote who="Andrew Mitchell">gnue-appserver had best replace 
+geas</quote>. Jeff asked <quote who="Jeff Bailey">Is there any 
+value in doing appserver yet, or should it wait?</quote> If 
+the only reason was to replace the old GEAS (GNUe Application 
+Server) package, he could <quote who="Jeff Bailey">just file a 
+bug and have it removed.</quote></p>
+
+<p>Later, he announced <quote who="Jeff Bailey">gnue-common, 
+gnue-forms, and gnue-designer were all ACCEPTED into 
+Debian as of about 30 minutes ago.  They'll be in sid tommorow.
+The geas update will probably wait until next week.</quote></p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.06Nov2002">
+The next day</a>, Jeff asked <quote who="Jeff Bailey">Does 
+appserver actually do anything yet?</quote> Reinhard M&#252;ller
+(reinhard) said <quote who="Reinhard M&#252;ller">it passes all 
+data requests through to the database - and has a very very 
+basic function for calling methods</quote>. Jeff said 
+<quote who="Jeff Bailey">Okay, cool.  I just want to make sure 
+if I go throught he effort of packaging it that it's not a 
+waste of time.</quote> Reinhard said <quote who="Jeff Bailey">not 
+sure about that - it does nothing "useful" now - it's more like 
+an empty box that can be filled afterwards - the only reason i 
+see it would make sense to package it is for "marketing" 
+reasons</quote>. Jeff agreed - <quote who="Jeff Bailey">I'm not 
+so concerned about the usefulness.  I just want it to somewhat 
+work as advertised.</quote></p>
+
+</section>
+
+

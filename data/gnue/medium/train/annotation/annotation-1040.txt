@@ -1,0 +1,185 @@
+<section archive="http://irc-logs.gnue.org/log/old/gnue-public.log.26May02" enddate="25 May 2002 23:00:00 -0800" startdate="25 May 2002 23:00:00 -0800" subject="[IRC] 26 May 2002" title="Application Server 0.0.1 release planning">
+
+<topic>Application Server</topic>
+<topic>Common</topic>
+
+<p>Reinhard M&#252;ller (reinhard) asked <quote who="Reinhard M&#252;ller">is
+there something special about variables in python that begin with _?
+or is it just a matter of style to name "private" variables with _xxx?
+(from my understanding python doesn't have the concept of "public"
+and "private" members in objects)</quote>. Jan Ischebeck
+(siesel) said <quote who="Jan Ischebeck">if I remeber right _xxx
+is the a style to name "private" methods. There is an other kind of
+pseudo "private" methods called __xxx (without __ at the end like
+python buildin methods like __getattr__) - what I know for shure is
+that some gnue code is depending on the _xxx convention to
+distiguish private and public methods, like GNURPC is just exporting
+methods without one "_" at the beginning and GTrigger (if I remember
+right) uses a similar thing too.</quote> Reinhard said he thought
+<quote who="Reinhard M&#252;ller">it is a good thing anyway IMHO -
+i just wanted to know if it's a syntactical thing or "just style"</quote>.</p>
+
+<p>He also asked <quote who="Reinhard M&#252;ller">when are python
+objects destroyed?</quote> Perry Lorier (Isomer) suggested
+<quote who="Perry Lorier">when their refcount hits 0 I presume</quote>.
+Jan added <quote who="Jan Ischebeck">and the garbage collector is
+aactive</quote>. Reinhard suggested that <quote who="Reinhard M&#252;ller">we
+need some code to close the db connection for a geasList instance
+sometime - when we have the list of active geasList instances all
+geasList instances remain referenced as long as the session is
+active?</quote> Jan confirmed this. Reinhard said he was just
+<quote who="Reinhard M&#252;ller">trying to do sort(brain);</quote>
+Jan suggested <quote who="Jan Ischebeck">don't use bubblesort use
+quicksort. ;)</quote></p>
+
+<p>Reinhard suggested that <quote who="Reinhard M&#252;ller">when
+the form is closed then the session is destroyed</quote>. Jan said 
+<quote who="Jan Ischebeck">for forms it is no problem, but</quote> 
+Designer might create more open connections, and 
+<quote who="Jan Ischebeck">if you use designer a longer time it 
+will create heaps of old geasList objects.</quote>. Reinhard 
+suggested that Jan should <quote who="Reinhard M&#252;ller">take the 
+glory ;)</quote> and commit the changes to CVS. He asked 
+for clarification about Designer using multiple connections. 
+Jan said that <quote who="Jan Ischebeck">If you use Postgres as 
+DBdriver there will be only one connect per programm start</quote>
+but this might not be the case with some of the less functional 
+drivers.</p>
+
+<p>Jan said that the biggest problem he could see with GNUe 
+Application server was implementing GConditions - 
+<quote who="Jan Ischebeck">I thought of adding a "without 
+GConditions" to the v 0.0.1 entry in the ROADMAP.</quote> 
+Reinhard asked <quote who="Reinhard M&#252;ller">does appserver work 
+with released common? or would we have to do a common prerelease 
+at the same time?</quote> Jan said <quote who="Jan Ischebeck">appserver 
+needs the "dbdriver/appserver" from today. but it should work with 2-3 
+weeks old GNURPC.</quote> Reinhard said the last release of GNU-RPC 
+(GNUe Common) was significantly older than that, and a new release of 
+the two-tier tools was imminent. Reinhard said 
+<quote who="Reinhard M&#252;ller">i don't think we will release appserver 
+0.0.1 together with the new forms release</quote>, but Jan said that 
+depended on how soon the next Forms release turned out to be. 
+Reinhard said that, for Application Server, 
+<quote who="Reinhard M&#252;ller">i think we should release what we have 
+as 0.0.1 - maybe add a little testing before - but then we would have 
+to talk to jamest/jcater to do a common release at the same time</quote>. 
+Jan said <quote who="Jan Ischebeck">I just thought it would be good to 
+have a already released common to use. i.e. we just would add some wrapper 
+code to the new appserver 0.1 to be compatible with the ugly dbdriver/appserver 
+implementation of the already 4 month released gnue-common</quote>. 
+Reinhard was <quote who="Reinhard M&#252;ller">not sure if i like that idea - 
+what about helping jamest/jcater to get current common out of the door as
+say 0.1.90?</quote>. Jan liked this - <quote who="Jan Ischebeck">possibly its 
+more clean to release a new common at the time of releasing appserver 
+0.1</quote>. Reinhard said this might allow a co-ordinated release of 
+<quote who="Reinhard M&#252;ller">common 0.2.0, forms 0.2.0, reports 0.2.0 and 
+appserver 0.1.0</quote>, either all at once or planned over a few days, 
+in the same way that the Gnome project released.</p>
+
+<p>Reinhard said he would <quote who="Reinhard M&#252;ller">do some 
+testing for appserver - and update the docs (fwics the api has changed 
+slightly)</quote>. He added <quote who="Reinhard M&#252;ller">from what i 
+hear the release of common isn't delayed due to lack of function - but 
+rather lack of time - so if we help them in the release process we could 
+speed it up</quote>.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.26May2002">
+Later</a>, Daniel Baumann (chillywilly) said that <quote who="Daniel Baumann">for 
+a builtin-in method in python to destroy resources  (close db connection) I think 
+you can use __del__ - that method is called before the object is garbage 
+collected, afaik. Also, for private attributes starting with "__" is sorta 
+private in that they get mangled like self.__attribute is mangled to 
+self._Class__attribute - attributes 
+like _attribute are just a convention 
+that means hey don't use this directly....I sort of think of them as 
+"protected" attributes</quote>.</p>
+
+<p>Reinhard clarified that the first release would 
+<quote who="Reinhard M&#252;ller">have 
+no object description</quote>, but this would be added for future versions. Jan 
+did some work on the driver to link the Application Server to Forms. Reinhard 
+suggested some directory name changes to avoid confusion with the driver for the 
+old, depreciated, version of GNUe Application Server (GEAS). He had 
+<quote who="Reinhard M&#252;ller">tried to run the geas server and the geas client on 
+two different machines - where i found out that i can't do this because i don't 
+have 2 machines w/ python 2.x :(</quote>. Jan and Reinhard did a test together 
+using https:// over the internet. Reinhard remembered that
+<quote who="Reinhard M&#252;ller">iirc geasv1 took over a year until it worked with 
+forms this way</quote> and suggested setting <quote who="Reinhard M&#252;ller">up 
+a demo server</quote> for public access. Jan said this might be 
+<quote who="Jan Ischebeck">a 'little' security risk.</quote></p>
+
+<p>Jan asked <quote who="Jan Ischebeck">do you have any ideas how to send 
+conditions to the appserver?</quote>. He said <quote who="Jan Ischebeck">if I 
+understand it right the actual conditions which will passed to GDataObject are 
+some kind of object tree. Which would be a bit complicated to transfer over 
+RPC.</quote> He suggested that, since <quote who="Jan Ischebeck">GConditions are 
+single statements which are connected with "AND"s and "OR"s</quote> then 
+<quote who="Jan Ischebeck">why not transform this conditions in a standart 
+form (a^b^c)v(d^e^f) going this way we would just transfer a table instead of 
+an object tree (a AND (b AND (c OR d)))</quote>. He thought that, both in 
+principle and in practice this would not be a problem, because this was how 
+Forms worked - <quote who="Jan Ischebeck">We take this table and transform it
+back into a GConditions object tree.</quote> Reinhard said that there could be 
+peformance problems with complicated Boolean logic, but most business 
+applications 
+in practice tended to use fairly simple conditions. The other 
+approach to passing
+conditions to the Applications Server was to pass lists. 
+He explained <quote who="Reinhard M&#252;ller">my thinking was to make the 
+method to create a new instance of a class - not be a method of geasList - 
+but of geasSession. But now i see that it makes sense to put it into geasList
+when i think about how forms works</quote>. Jan said 
+<quote who="Jan Ischebeck">to be honest, I don't like to have it in 
+geasList too. but geasSession isn't good either.</quote> Reinhard 
+said it made sense <quote who="Reinhard M&#252;ller">because geasList is the 
+list of instances that can be scrolled through in the form</quote>.</p>
+
+<p>Jan suggested <quote who="Jan Ischebeck">I would like to have a 
+geasClass in between, which also holds the class definition and can create 
+new instances - it doesn't have to be a member of geasList, because every 
+new record in forms stores an pointer to the new created geasInstance,
+but I still would seperate the functions which are in geasList now into two 
+classes.</quote> Reinhard said he wanted to keep things simple. 
+Jan said <quote who="Jan Ischebeck">If I create a new list, just by 
+executing a query. then it really should be a new List and not the same 
+list populated with new values.</quote> Reinhard did not see why not. 
+Jan said <quote who="Jan Ischebeck">it is ok, if you have just one client 
+which access only one table at one time. I would prefer a geasClass which 
+could generate Iterators, or something like that.</quote> However, they 
+both agreed it was more a matter of personal taste/programming style.</p>
+
+<p>Reinhard did a <quote who="Reinhard M&#252;ller">todo 
+before 0.0.1</quote> list:</p>
+
+<quote who="Reinhard Mueller">
+<ul>
+<li>test, try to make appserver so stable that it doesn't traceback at all</li>
+<li>find out what the variables in __init__.py are for</li>
+<li>write a "setup.py"</li>
+<li>write an "INSTALL"</li>
+<li>release gnue-common [...]</li>
+<li>extend test.py to show more features</li>
+</ul>
+</quote>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.27May2002">
+The next day</a>, 
+Reinhard M&#252;ller (reinhard) reported <quote who="Reinhard M&#252;ller">good 
+progress :)</quote> on the GNUe Application Server re-write - 
+<quote who="Reinhard M&#252;ller">you can use appserver for remote data 
+access without methods - it simply passes through the data requests to 
+the database</quote>. He admitted <quote who="Reinhard M&#252;ller">doesn't 
+sound sooo great - but if we are honest then it's virtually as much as 
+you could do with geasv1 after 2 years of development :)</quote> 
+He said <quote who="Reinhard M&#252;ller">we want to do a 0.0.1 release before 
+we implement more stuff - we <cite>might</cite> implement conditions 
+before 0.0.1 - however we must wait for a gnue-common release with gnuRPC 
+before we can release appserver - because appserver depends on gnuRPC</quote>.
+He encourged people to <quote who="Reinhard M&#252;ller">simply test what we have
+and tell us about bugs :)</quote></p>
+
+</section>
+
+

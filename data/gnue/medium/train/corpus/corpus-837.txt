@@ -1,0 +1,1779 @@
+jcater (~jcater@cpe-024-165-223-104.midsouth.rr.com) left irc: "nite"
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+<SachaS> bye
+SachaS (~Sacha@ark.cs.curtin.edu.au) left #gnuenterprise ("Client Exiting").
+Isomer (dahoose@port-219-88-247-72.jet.net.nz) left irc: "Client Exiting"
+Isomer (dahoose@port-219-88-247-72.jet.net.nz) joined #gnuenterprise.
+SachaS (~Sacha@dialup-196-234.wasp.net.au) joined #gnuenterprise.
+paci (~paci@212.94.129.20) joined #gnuenterprise.
+SachaS_ (~Sacha@dialup-196-218.wasp.net.au) joined #gnuenterprise.
+SachaS (~Sacha@dialup-196-234.wasp.net.au) left irc: Read error: 113 (No route to host)
+ninja (~rossg@ip-195-149-26-55.nildram.co.uk) joined #gnuenterprise.
+ninja (~rossg@ip-195-149-26-55.nildram.co.uk) left irc: Remote closed the connection
+ninja (~rossg@ip-195-149-26-55.nildram.co.uk) joined #gnuenterprise.
+SachaS_ (~Sacha@dialup-196-218.wasp.net.au) left irc: Read error: 110 (Connection timed out)
+ariel_ (~ariel@ppp-217-133-245-249.dialup.tiscali.it) joined #gnuenterprise.
+SachaS_ (~Sacha@dialup-196-131.wasp.net.au) joined #gnuenterprise.
+<SachaS_> ajmitch: you are using debian unstable. are you happy how stable it is?
+christoph_ck (~Christoph@pd9043d71.dip.t-dialin.net) joined #gnuenterprise.
+<christoph_ck> what's gnuenterprise?
+christoph_ck (~Christoph@pd9043d71.dip.t-dialin.net) left #gnuenterprise.
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) left irc: "For each complex problem, there is a simple, understandable, obvious, and wrong solution"
+<ajmitch> evening all
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+btami (~tamas@ip102-205.ktv.tiszanet.hu) joined #gnuenterprise.
+<btami> hi all
+<btami> finally i uploaded a repackaged 0.4.0 for win32
+<btami> http://www.extra.hu/berado88
+dneighbo (www-data@alt1.libertydistribution.com) left irc: "CGI:IRC 0.5 (EOF)"
+jbailey (~jbailey@CPE014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+<ajmitch> mr bailey!
+<jbailey> Mr. Mitchell!
+<ajmitch> how are you?
+<jbailey> Good.  Tired.
+<jbailey> Busy weekend, and I'm still catching up.
+<jbailey> (I got sick again)
+<ajmitch> heh
+<ajmitch> dang
+<ajmitch> ok, g'night, by the time i get up J2 should be finished uploading ;)
+<jbailey> Excellent!
+<jbailey> Good sleeps, Andrew.
+btami (~tamas@ip102-205.ktv.tiszanet.hu) left irc: 
+SachaS_ (~Sacha@dialup-196-131.wasp.net.au) left irc: Read error: 104 (Connection reset by peer)
+jamest (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+StyXman (~mdione@ADSL-200-59-86-17.cordoba.sinectis.com.ar) joined #gnuenterprise.
+jbailey (~jbailey@CPE014260028338.cpe.net.cable.rogers.com) left irc: "Client Exiting"
+SachaS_ (~Sacha@dialup-196-2.wasp.net.au) joined #gnuenterprise.
+Arturas (~arturas@fmgs-03.vtu.lt) joined #gnuenterprise.
+<Arturas> Hello
+<ra3vat_> hello Arturas
+<Arturas> hi Dmitry
+<jamest> for the debian lovers that missed it last nite
+SachaS_ (~Sacha@dialup-196-2.wasp.net.au) left irc: Read error: 104 (Connection reset by peer)
+<jamest> deb http://www.gnuenterprise.org/debian woody main
+SachaS (~Sacha@dialup-196-2.wasp.net.au) joined #gnuenterprise.
+SachaS (~Sacha@dialup-196-2.wasp.net.au) left irc: Read error: 104 (Connection reset by peer)
+SachaS (~Sacha@dialup-196-2.wasp.net.au) joined #gnuenterprise.
+SachaS (~Sacha@dialup-196-2.wasp.net.au) left irc: Read error: 104 (Connection reset by peer)
+Action: derek is away: i owe. i owe. so its off to work i go.
+<StyXman> I found what was poking with multiple forms not closing
+<StyXman> the UIdriver is calling the wx mainloop twice.
+<StyXman> I'll send a patch asap
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+<StyXman> jcater: uh, I just fixed the problem with multiple forms.
+<StyXman> the UIdriver is calling the wx mainloop as times as forms are launched.
+<jcater> ah
+<jcater> ok
+<StyXman> so the first gets all the events and the rest just sit and wait for somethin to happen
+<jcater> what did you have to do to fix it?
+<StyXman> do I send tou a mail with the new GFwxApp?
+<jcater> yeah
+<jcater> that'd be excellent
+<StyXman> ok, going...
+<StyXman> jcater@gnue.org?
+<jcater> yes
+<StyXman> gone
+ninja (~rossg@ip-195-149-26-55.nildram.co.uk) left irc: Remote closed the connection
+Action: StyXman throws a party
+Arturas (~arturas@fmgs-03.vtu.lt) left irc: Read error: 110 (Connection timed out)
+lawrence (~lawrence@bsd01.necessity.org) joined #gnuenterprise.
+ariel_ (~ariel@ppp-217-133-245-249.dialup.tiscali.it) left irc: Read error: 110 (Connection timed out)
+StyXman (~mdione@ADSL-200-59-86-17.cordoba.sinectis.com.ar) left irc: "ircII EPIC4-1.1.7 -- Are we there yet?"
+ninja (~rossg@rossg.dial.nildram.co.uk) joined #gnuenterprise.
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) left irc: "Never wrestle with a pig. You both get dirty and the pig likes it"
+Arturas (~arturas@fmgs-03.vtu.lt) joined #gnuenterprise.
+halb (~Phil@246.comnet.speede.com) joined #gnuenterprise.
+Nick change: halb -> Inexistence
+Nick change: Inexistence -> gnu
+Nick change: gnu -> inexistence
+inexistence (~Phil@246.comnet.speede.com) left irc: Client Quit
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+Arturas (~arturas@fmgs-03.vtu.lt) left irc: Read error: 110 (Connection timed out)
+ratmice (matt@vespertine.pc.ashlandfiber.net) joined #gnuenterprise.
+siesel (jan@dial-213-168-89-97.netcologne.de) joined #gnuenterprise.
+<siesel> hi
+<siesel> Mr_You: you here?
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) left irc: Read error: 104 (Connection reset by peer)
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+ToyMan (~stuq@smtp.dstoys.com) left irc: "making toys"
+btami_ (~btami@3e70d72e.dialin.enternet.hu) joined #gnuenterprise.
+<btami_> hi all
+<siesel> hi btami
+<btami_> hi siesel
+<btami_> i'v uploaded a repackaged wn32 setup to http://www.extra.hu/berado88
+jamest (~jamest@hobbes.math.ksu.edu) left #gnuenterprise.
+<btami_> s/wn32/win32
+ninja (~rossg@rossg.dial.nildram.co.uk) left irc: Read error: 110 (Connection timed out)
+<btami_> siesel: btw. the connection.gfd doesn't works for me (on win32)
+<siesel> :(
+Action: siesel has an idea, why it doesn't work :)
+<btami_> it doesn't find connections.conf IIRC
+<siesel> you are using the installer version of gnue on win32, i.e. the connections.conf file is in /Programs/gnue ... instead of C:\PYTHON21\etc\
+<btami_> y
+<btami_> yes, it works if i use "setup.py install"  method
+<btami_> but doesn't with packaged setup
+<btami_> the placement.gfd fails too
+<btami_> with 'There are no navigable widgets in this form...'
+<siesel> yep. The only strange thing is, that it sometimes works ;)
+<btami_> maybe it depends from wx version
+<btami_> i remember it woked before for me too
+<btami_> but i installd a newer wxpython
+<ra3vat_> btami_: hi, does i18n (translated messages and menus) work with packaged install?
+<btami_> yes
+<btami_> and hi :)
+<siesel> btami: placement.gfd works on debian with wxwindows  2.3.3.2
+<siesel> having webpage which displays on which architecture which testcases ist working (or not) would be great
+<btami_> the dependencies page is waiting for voluteers too :)
+<btami_> siesel: btw how do you want to use the static datasources ?
+<btami_> a real example?
+<siesel> I would use it for something like the first part of the datasource/static example
+ariel_ (~ariel@ppp-217-133-243-154.dialup.tiscali.it) joined #gnuenterprise.
+<siesel> hi ariel_
+<btami_> gnight
+btami_ (~btami@3e70d72e.dialin.enternet.hu) left irc: 
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+<siesel> hi Daniel
+<chillywilly> hi jan
+<chillywilly> I dun wrote a parser that doesn't parse into anything ;)
+<chillywilly> did you notice that?
+<chillywilly> ;)
+<chillywilly> I was thinking making some kind of AST would be helpful
+<chillywilly> abstract syntax tree
+<chillywilly> or do you think one can avoid that step?
+Action: siesel hadn't the time to look at it :(
+<chillywilly> well look at it then ;)
+<chillywilly> sheesh ;)
+KeithJagrs (jorgre@63.74.24.9) joined #gnuenterprise.
+Action: siesel doesn't find any "RUNME" scripts ;)
+<KeithJagrs> hello
+<siesel> hi
+<KeithJagrs> hi siesel
+<ariel_> hi siesel, wait a minute, i have to put baby to sleep...
+<KeithJagrs> Hae you used Forms 0.4.0 on win 98?
+<siesel> hehe, siesels children are already full asleep :)
+<chillywilly> siesel: you have children?
+<KeithJagrs> my children haven't born yet
+<KeithJagrs> I have to find a suitable mother
+<KeithJagrs> and seduce her and then have babies
+<siesel> cw: two 
+<chillywilly> siesel: interesting
+<chillywilly> siesel: how old are you?
+Action: chillywilly has 1 child
+<siesel> 26
+<chillywilly> I thought you were yonger
+<chillywilly> younger even
+crazymike (~mike@mke-65-29-140-82.wi.rr.com) joined #gnuenterprise.
+<chillywilly> siesel: you are still going to college/university?
+<chillywilly> hey crazymike
+<KeithJagrs> ehem..
+<crazymike> hi
+<KeithJagrs> cough cough..
+Action: ariel_ is back
+<siesel> yep, but I hope to leave soon.
+<chillywilly> KeithJagrs: ?
+<siesel> KeithJagrs: designer+ navigator of 0.4.0 on win32 are not working.
+<KeithJagrs> hmm
+<KeithJagrs> I realise that
+<jcater> btami uploaded updates to http://www.extra.hu/berado88
+<KeithJagrs> forn win32?
+<chillywilly> siesel: you meant RUNME scripts in the parser?
+<jcater> I haven't had a chance to verify and copy to our main download directory yet though
+<jcater> KeithJagrs: yeah
+<KeithJagrs> good
+Action: chillywilly just caught that comment
+<chillywilly> siesel: my excse is that it was late and I needed to sleep ;)
+<chillywilly> excuse
+<siesel> could you just add same code to atest?
+<chillywilly> atest.py?
+<chillywilly> eventually
+<chillywilly> I don't have time right now
+<siesel> That would be better than having heaps of RUNME script ....
+<chillywilly> ummm
+<chillywilly> I thin each module should have a self test
+<siesel> that would be great.
+<KeithJagrs> http://www.extra.hu/berado88 is not working. Is there any info missing? port perhaps?
+<chillywilly> if __name__ == "__main__": type stuff...that just a good convention
+Action: siesel hopes to build the first pre-alpha version of js-forms-client tonight and more time for appserver then
+<chillywilly> you da man
+<ariel_> siesel: i noticed today from cvs that you added something related to '.gear' files, but there isn't any gear file in the whole cvs tree, what they are supposed to be?
+<chillywilly> one thing you have to realize I haven't had time to read much of your code in _featuretest
+<siesel> cw: doesn't matter, I hope that I can provide some design description, documentation etc. before the european gnue developer meeting
+<siesel> ariel_: an .gear file is a zip file containing gfd's gpd's grd's etc.
+<siesel> but you can directly access them.
+<siesel> to try it just use the Makefile in gnue/samples to create a samples.gear. Then you can use navigator to access the .gear file and its whole content.
+crazymike (~mike@mke-65-29-140-82.wi.rr.com) left irc: "BitchX-1.0c19 -- just do it."
+<ariel_> now i recall, but the name is misleading, since it conflicts (semantically) with gear one of the appserver modules
+<chillywilly> ?
+<chillywilly> there's no appserver module named gear
+<chillywilly> we have GEDI and GEMA
+<chillywilly> but no gear
+<ariel_> see rehinard's proposal in doc
+<ariel_> sorry, my fault i confused with GEOR
+<chillywilly> yea
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) left irc: "When all else fails, read the instructions"
+Action: ariel_ is going to sleep
+Nick change: ariel_ -> ArielZZZ
+<KeithJagrs> all the examples are for postgres?
+crazymike (~mike@mke-65-29-140-82.wi.rr.com) joined #gnuenterprise.
+<chillywilly> wb crazymike
+<chillywilly> how goes it?
+<lawrence> what is db2html used for in gnue? FreeBSD doesn't have db2html.
+<crazymike> chillywilly: it goes
+<crazymike> STRAIGHT TO HELL :)
+<chillywilly> gah
+<chillywilly> why?
+<chillywilly> get X running yet?
+<jcater> lawrence: it converts docbook to html format
+<jcater> it's not needed to run the actual programs
+<chillywilly> it's in docbook-utils on debian
+<crazymike> my screen is fscked
+<chillywilly> ?
+<chillywilly> crazymike: yea that tell me a LOT
+<chillywilly> s/tell/tells/
+<crazymike> the bottom of my screen is filled with an apt search that won't go away
+<crazymike> it won't redraw
+<lawrence> thanks jason. I am just installing gnue on FreeBSD
+<jcater> are you installing the latest releases (0.4.0) or from cvs?
+<chillywilly> crazymike: it's locked up?
+<lawrence> Yes
+<jcater> yes to which?
+<crazymike> no, not locked up
+<chillywilly> switch VTs
+<crazymike> i can type but can't see what i am typing
+<chillywilly> force it to redraw itself
+<crazymike> it is the same
+<chillywilly> it has that stupid FB console right?
+<lawrence> I just go the latest form pserver:anoncvs@subversions.gnu.org:/cvsroot/gnue co gnue
+<chillywilly> where it goes into that certain video mode
+KeithJagrs (jorgre@63.74.24.9) left irc: 
+<chillywilly> that must not work so great for you
+<jcater> ok, I was just making sure... the released versions shouldn't even know about db2html
+<chillywilly> crazymike: like how it's able to draw the littel goofy Linx penguin when it boots up
+<chillywilly> Linux even
+<crazymike> chillywilly: what are you talknig about?
+<chillywilly> the console uses the frame buffer device in like VGA mode or something
+<chillywilly> it mst not work so good
+<chillywilly> or you aren't useing those floppies?
+<chillywilly> every VT has the line on it?
+<crazymike> what floppies?
+<chillywilly> nevermind
+<crazymike> it is too hard to read this
+<crazymike> the screen keeps flipping and shit
+<chillywilly> reboot that shit
+<chillywilly> sigh, galeon crashed
+<crazymike> i am going to but I have to leave anyways
+<crazymike> later guys
+crazymike (~mike@mke-65-29-140-82.wi.rr.com) left irc: "BitchX: the fresh-maker!"
+<ajmitch> hello
+<chillywilly> hi
+<chillywilly> later
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: "Free Your Enterprise! - http://www.gnuenterprise.org"
+stbain (~stuart@216.12.37.168) joined #gnuenterprise.
+<ajmitch> hi stbain
+lawrence (~lawrence@bsd01.necessity.org) left irc: "I like core dumps"
+<stbain> greetz
+lawrence (~lawrence@bsd01.necessity.org) joined #gnuenterprise.
+lawrence (~lawrence@bsd01.necessity.org) left irc: Remote closed the connection
+lawrence (~lawrence@bsd01.necessity.org) joined #gnuenterprise.
+stbain (~stuart@216.12.37.168) left irc: "Client Exiting"
+ToyMan (~stuq@glvv-dsl2-27.citlink.net) joined #gnuenterprise.
+ToyMan (~stuq@glvv-dsl2-27.citlink.net) left irc: Remote closed the connection
+ToyMan (~stuq@glvv-dsl2-27.citlink.net) joined #gnuenterprise.
+ninja (~rossg@rossg.dial.nildram.co.uk) joined #gnuenterprise.
+Nick change: User_ -> Maniac
+<siesel> quit
+siesel (jan@dial-213-168-89-97.netcologne.de) left irc: "What's a script?"
+lawrence (~lawrence@bsd01.necessity.org) left irc: Read error: 110 (Connection timed out)
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "Client Exiting"
+ratmice (matt@vespertine.pc.ashlandfiber.net) left irc: "Leaving"
+crazymike (~mike@mke-65-29-140-82.wi.rr.com) joined #gnuenterprise.
+crazymike (~mike@mke-65-29-140-82.wi.rr.com) left irc: Client Quit
+sklein (~stan@1Cust28.tnt4.dca5.da.uu.net) joined #gnuenterprise.
+<sklein> anybody home?
+<ajmitch> yep
+<sklein> I tried to access the web page and got a not found error.  Know anything about it?
+<ajmitch> dunno, did you break it? :)
+<sklein> no but it might be broke, at least temporarily
+<ajmitch> dns server down, perhaps
+<sklein> of course it could be my system that's broke :)
+<sklein> I checked by trying to go somewhere else and I got there
+<ajmitch> it's not working for me
+<ajmitch> i can ping dns servers
+<sklein> well, I guess that discussing it here wil possibly alert someone that there is a problem
+<sklein> wil = will
+<sklein> there was discussion a few weeks (or months) ago about a multi-step server move  Maybe that is part of it
+<ajmitch> it's happened
+<sklein> then we are supposed to be at the stable server?
+<sklein> If so, I guess it is down
+<sklein> well, I need to get going.  Bye all.
+sklein (~stan@1Cust28.tnt4.dca5.da.uu.net) left irc: "Client Exiting"
+Action: derek is away: church
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: Remote closed the connection
+crazymike (~mike@mke-65-29-140-82.wi.rr.com) joined #gnuenterprise.
+<ajmitch> hello crazymike
+<crazymike> hello ajmitch 
+<crazymike> how are you?
+<ajmitch> are you looking for chillywilly again?
+<crazymike> i dunno
+<crazymike> yeah, I guess I am
+<crazymike> i am trying to get my shit working :)
+<ajmitch> he's run away to join the circus
+<crazymike> i wouldn't doubt it
+<ajmitch> what are you trying to get working?
+<crazymike> gnome
+<crazymike> i finally got it to start
+<crazymike> but I can't log in
+<crazymike> it just restarts gdm
+<ajmitch> can't log in?
+<ajmitch> ah, interesting
+<ajmitch> so you got gdm starting, but not gnome
+<crazymike> yes
+<ajmitch> what gnome are you using?
+<crazymike> when I try logging into gdm my screen goes black then comes back to gdm
+<crazymike> 1.4 i would assume
+<ajmitch> sounds about right
+<ajmitch> i presume the gnome-session is  not being started or is dying
+<crazymike> thanks
+<crazymike> now it works
+<ajmitch> hah
+<ajmitch> i didn't do a thing
+<crazymike> yeah you did
+<crazymike> i did "apt-get install gnome-session"
+<crazymike> now it works :)
+<ajmitch> oh :)
+<crazymike> i was starting from scratch, and don't know everything I need to install
+<crazymike> so I am figuring it out as I go
+<crazymike> last time chillywilly did it all, and I just sat there and tried to watch
+<crazymike> now I am learning as i get errors :)
+<ajmitch> apt-get install gnome
+<ajmitch> it depends on a lot of crap
+<ajmitch> i think that'd work :)
+<crazymike> i did that
+<ajmitch> oh?
+<crazymike> thats what i did, thats why I didn't know what was wrong
+<crazymike> i figured it would pull all that stuff
+jcater (~jcater@cpe-024-165-223-104.midsouth.rr.com) joined #gnuenterprise.
+<ajmitch> hi jcater
+<jcater> hello
+<crazymike> hi jcater 
+ToyMan (~stuq@glvv-dsl2-27.citlink.net) left irc: "making toys"
+<crazymike> can I ask you guys a question?
+<crazymike> do you guys hate that i come in here and have nothing to contribute, but look for help?
+<ajmitch> you mean like me?
+<crazymike> you don't "contribute"?
+<crazymike> don't you work on shit?
+<crazymike> and stuff
+<ajmitch> i just lurk & hassle everyone
+<crazymike> ok
+<crazymike> then I don't feel so bad :)
+jamest (~jamest@adsl-208-191-39-15.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+<ajmitch> hi jamest
+<ajmitch> dns down?
+<jamest> hwdy
+<jamest> huh?
+<ajmitch> can't resolve www.gnuenterprise.org
+<jamest> i just logged into it
+<ajmitch> hmm, i can now
+<ajmitch> oh well
+<jamest> musta been some bad nz mojo
+<ajmitch> nah
+<ajmitch> sklein came in to complain about it
+crazymike (~mike@mke-65-29-140-82.wi.rr.com) left irc: "[BX] This BitchX's for you"
+jamest (~jamest@adsl-208-191-39-15.dsl.tpkaks.swbell.net) left irc: Read error: 104 (Connection reset by peer)
+jamest (~jamest@adsl-65-64-191-161.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+KeithJagrs (trilluser@63.74.24.9) joined #gnuenterprise.
+KeithJagrs (trilluser@63.74.24.9) left irc: 
+SachaS (~Sacha@ark.cs.curtin.edu.au) joined #gnuenterprise.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+jamest (~jamest@adsl-65-64-191-161.dsl.tpkaks.swbell.net) left #gnuenterprise.
+SachaS (~Sacha@ark.cs.curtin.edu.au) left #gnuenterprise ("Client Exiting").
+pattieja (~pattieja@www.pcxperience.com) left irc: Read error: 104 (Connection reset by peer)
+pattieja (~pattieja@www.pcxperience.com) joined #gnuenterprise.
+KeithJagrs (jorgre@63.74.24.9) joined #gnuenterprise.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: "Free Your Enterprise! - http://www.gnuenterprise.org"
+dtm ([TarRdXyGH@ip66.promontory.sfo.interquest.net) left irc: Read error: 104 (Connection reset by peer)
+--- Thu Oct 10 2002
+dtm ([qX9dulTEH@ip66.promontory.sfo.interquest.net) joined #gnuenterprise.
+ArielZZZ (~ariel@ppp-217-133-243-154.dialup.tiscali.it) left irc: "Uscita dal client"
+KeithJagrs (jorgre@63.74.24.9) left irc: Read error: 104 (Connection reset by peer)
+SachaS (~Sacha@dialup-196-2.wasp.net.au) joined #gnuenterprise.
+SachaS_ (~Sacha@dialup-196-2.wasp.net.au) joined #gnuenterprise.
+SachaS (~Sacha@dialup-196-2.wasp.net.au) left irc: Read error: 104 (Connection reset by peer)
+SachaSS (~Sacha@dialup-196-116.wasp.net.au) joined #gnuenterprise.
+lawrence (~lawrence@bsd01.necessity.org) joined #gnuenterprise.
+lawrence (~lawrence@bsd01.necessity.org) left irc: Client Quit
+jcater (~jcater@cpe-024-165-223-104.midsouth.rr.com) left irc: 
+Nick change: SachaSS -> SachaS
+SachaS_ (~Sacha@dialup-196-2.wasp.net.au) left irc: Read error: 110 (Connection timed out)
+reinhard (~reinhard@m693p020.adsl.highway.telekom.at) joined #gnuenterprise.
+lawrence (~lawrence@bsd01.necessity.org) joined #gnuenterprise.
+<lawrence> msg gnuebot news
+btami (~tamas@ip102-205.ktv.tiszanet.hu) joined #gnuenterprise.
+<btami> good morning
+<lawrence> is it that early
+<btami> just here
+<lawrence> guess it is
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+SachaS (~Sacha@dialup-196-116.wasp.net.au) left irc: Read error: 104 (Connection reset by peer)
+SachaS (~Sacha@dialup-196-116.wasp.net.au) joined #gnuenterprise.
+SachaS (~Sacha@dialup-196-116.wasp.net.au) left irc: Read error: 104 (Connection reset by peer)
+SachaS (~Sacha@dialup-196-116.wasp.net.au) joined #gnuenterprise.
+ariel_ (~ariel@ppp-217-133-246-112.dialup.tiscali.it) joined #gnuenterprise.
+SachaS (~Sacha@dialup-196-116.wasp.net.au) left irc: Read error: 104 (Connection reset by peer)
+JohannesV (~jve@M702P025.adsl.highway.telekom.at) joined #gnuenterprise.
+mandor (~mandor@213.215.27.218) joined #gnuenterprise.
+<mandor> hi ?
+<ajmitch> hi
+<mandor> I'm looking for a multi-platform way to access to DB2 and Oracle Databases, maybe some guys here have some advice ?
+<btami> python ?
+<mandor> C/C++
+<btami> we use only python here :)
+<ariel_> mandor: try unixodbc
+<mandor> ariel_: I'm on the website, but the only oracle odbc driver I found was expensive :/
+<ariel_> mandor: try also freeodbc they have free drivers.
+<mandor> thx, I'm checking this
+<ariel_> it seems me (but i can mistake) that along with oracle8 personal edition distro there is also odbc driver 
+<mandor> ariel_: oracle has an odbc driver on its website, but it's windows-only
+<ariel_> mandor: if you don't have to deal with legacy databases why not considering to switch to more free (or better open source) db's?
+siesel (jan@dial-213-168-95-219.netcologne.de) joined #gnuenterprise.
+<siesel> hi all
+<mandor> I have to deal with oracle & db2 database (at least). I'm working on a tool which connects to a client's database (I'm not building new databases, just accessing existent ones)
+<ariel_> hi siesel
+<siesel> hi ariel_
+<ariel_> siesel: reinhard: for Frankfurt, there is any accomodation or do i nedd to provide by myself?
+<reinhard> you should provide for yourself
+<reinhard> it would be great if you could come
+<ariel_> i dunno, it depends mainly on work
+<reinhard> i would recommend staying in the InterCityHotel because that's where the meeting will be
+<reinhard> ok
+<ariel_> thx
+<ariel_> there is www address of the hotel?
+<reinhard> http://www.intercityhotel.de
+<ariel_> ok
+siesel (jan@dial-213-168-95-219.netcologne.de) left irc: "l8r"
+btami (~tamas@ip102-205.ktv.tiszanet.hu) left irc: 
+reinhard (~reinhard@m693p020.adsl.highway.telekom.at) left irc: Read error: 104 (Connection reset by peer)
+mandor (~mandor@213.215.27.218) left #gnuenterprise ("Client Exiting").
+perlhead (~fheinz@200.43.144.248) joined #gnuenterprise.
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+perlhead (~fheinz@200.43.144.248) left irc: "Client Exiting"
+jamest (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+ToyMan (~stuq@smtp.dstoys.com) joined #gnuenterprise.
+xetrex (~chatzilla@195.148.248.55) joined #gnuenterprise.
+Arturas (~arturas@fmgs-03.vtu.lt) joined #gnuenterprise.
+<Arturas> Hello
+<jamest> hello
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+ninja (~rossg@rossg.dial.nildram.co.uk) left irc: Read error: 110 (Connection timed out)
+siesel (jan@dial-213-168-92-18.netcologne.de) joined #gnuenterprise.
+<siesel> hi
+<siesel> Mr_You: you here?
+xetrex (~chatzilla@195.148.248.55) left irc: "ChatZilla 0.8.7 in Beonex Communicator"
+paci (~paci@212.94.129.20) left irc: "leaving"
+siesel (jan@dial-213-168-92-18.netcologne.de) left irc: Read error: 104 (Connection reset by peer)
+siesel (jan@dial-195-14-254-117.netcologne.de) joined #gnuenterprise.
+ariel_ (~ariel@ppp-217-133-246-112.dialup.tiscali.it) left irc: "Uscita dal client"
+Action: derek is away: work
+Arturas (~arturas@fmgs-03.vtu.lt) left irc: Read error: 110 (Connection timed out)
+KeithJagrs (jorgre@63.74.24.9) joined #gnuenterprise.
+lawrence (~lawrence@bsd01.necessity.org) left irc: "I like core dumps"
+<siesel> Mr_You: I hope you read the log :)
+<siesel> Mr_You: full working forms client (just for simple forms at the moment) (i.e. working parser+ browsing,editing,deleting data in appserver over xmlrpc) is ready to download from http://www.gnuenterprise.org/~jan/jsclient/gnue-forms.html
+siesel (jan@dial-195-14-254-117.netcologne.de) left irc: "later"
+ninja (~rossg@81.6.249.35) joined #gnuenterprise.
+KeithJagrs (jorgre@63.74.24.9) left irc: "later"
+Arturas (~arturas@fmgs-03.vtu.lt) joined #gnuenterprise.
+ninja (~rossg@81.6.249.35) left irc: Remote closed the connection
+ninja (~rossg@81.6.249.35) joined #gnuenterprise.
+yogurt2unge (~charlie@ADSL-200-59-86-17.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<yogurt2unge> hello
+<yogurt2unge> I have encoding problems with merge-rtf....
+<yogurt2unge> I can't use vocal with acent
+Arturas (~arturas@fmgs-03.vtu.lt) left irc: Read error: 110 (Connection timed out)
+<yogurt2unge> Ok, I'm right, I forgot the <?xml?> line
+Arturas (~arturas@fmgs-03.vtu.lt) joined #gnuenterprise.
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) left irc: "If you think there is good in everybody, you haven't met everybody"
+<Arturas> someone is looking here now??
+lupo (~lupo@B941d.pppool.de) joined #gnuenterprise.
+Action: Arturas is desperately searching for help
+<Arturas> hi lupo
+<lupo> hi Arturas
+<Arturas> lupo: do you know bash? (i can't understand one script)
+<lupo> quite a bit, i've done some systems administration
+<Arturas> cool :)
+<Arturas> if we have script
+<Arturas> --
+<Arturas>   cvsbase = """#!/bin/sh
+<Arturas>        if [ "z$GNUE_CONNECTIONS" = "z" ]
+<Arturas>         then
+<Arturas>          if [ -f %(CONFDIR)s/etc/connections.conf ]
+<Arturas>          then
+<Arturas>            GNUE_CONNECTIONS=%(CONFDIR)s/etc/connections.conf
+<Arturas>            export GNUE_CONNECTIONS
+<Arturas>          fi
+<Arturas>        fi
+<Arturas>        if [ "z$INSTALL_PREFIX" = "z" ]
+<Arturas>        then
+<Arturas>          INSTALL_PREFIX=%(CONFDIR)s
+<Arturas>          export INSTALL_PREFIX
+<Arturas>        fi
+<Arturas>        PYTHONPATH=%(BASEDIR)s:$PYTHONPATH; export PYTHONPATH
+<Arturas>        %(PYTHONBIN)s %(GNUEDIR)s/%%s "$@"
+<Arturas>     """ % globals()
+<Arturas> --
+<Arturas> as i understand in the beginning
+<Arturas> it checks for and defines environment variables
+<Arturas> but what does it do at the end???
+<Arturas> (it's from setup-cvs.py)
+<jcater> which part?
+<Arturas> middle
+<Arturas> about 350 lines
+<lupo> you mean PYTHONPATH=%(BASEDIR)s:$PYTHONPATH; export PYTHONPATH ?
+<jcater> err, I meant which part of what you pasted
+<Arturas> sorry
+<Arturas> yes
+<Arturas> 3 bottom lines
+<Arturas> not the last one :) that i understand :)
+<Arturas> --> %(PYTHONBIN)s %(GNUEDIR)s/%%s "$@"
+<jamest> PYTHONPATH=%(BASEDIR)s:$PYTHONPATH; export PYTHONPATH
+<jamest>  %(PYTHONBIN)s %(GNUEDIR)s/%s "$@"
+<jamest> those lines?
+<Arturas> yes
+<Arturas> we define and export python path and what do we do then?
+<jamest> run python
+<Arturas> i guess we execute something
+<jcater> yes
+<jcater> %(PYTHONBIN) would expand to /usr/bin/python2.1
+<jcater> (or such)
+<Arturas> and to what expands '%%s'?
+<jcater> %(GNUEDIR) would expand to something line cvs/gnue/
+<jamest> the gnue tool IIRC
+<jamest> like the forms client .py file
+<jcater> then %s would be whatever's passed to the method you are looking at
+<jcater> e.g., forms/GFClient.py
+<jamest> or ther reports client
+<Arturas> i think that %%s should have to expand into something more concrete
+<Arturas> i take it from setup-cvs.py
+<jcater> Arturas: it does
+<Arturas> and i guess neither
+<jcater> it's not expanded by bash
+<jcater> it's replaced by python
+<jamest> passes in via the  % globals()
+<Arturas> ok, but what's put instead the %%s?
+<jcater> def createCVS (scriptdir,script,py):
+<jcater>   script = "%s%s" % (script, SUFFIX)
+<jcater>   print "Creating %s" % os.path.join(scriptdir, script)
+<jcater>   file = open(os.path.join(scriptdir, script),'w')
+<jcater>   file.write(cvsbase % py)
+<jcater> ok, at this point
+<jcater> cvsbase has had all %(PYTHON*)s stuff expanded out
+<jcater> but the %s doesn't get expanded
+<jcater> until this last line I pasted
+<jcater> so it gets replaced with whatever's in "py"
+<Arturas> ah
+<Arturas> understood
+<Arturas> and what is $@ ?
+<jcater> that's a bash construct
+<jcater> basically that's passing all command line parameters unchanged to the python binary
+<jcater> so if I do
+<lupo> Arturas: a shortcut for $1 $2 $3 ... -> all parameters
+<jcater> gfcvs test 1 2 3
+<jcater> it ends up calling:  python2.1 /path/to/GFClient.py test 1 2 3
+<Arturas> aha
+<Arturas> understood :)
+<Arturas> thank you :)
+<jamest> Arturas: you're trying to make this work under windows?
+<Arturas> tried...
+<Arturas> now i'm thinking how to kick windows
+<Arturas> :)
+<Arturas> i was hoping to commit today
+<Arturas> now i need a bit more thinking
+btami_ (~btami@195.228.11.87) joined #gnuenterprise.
+<jamest> that's going to be a bugger
+<btami_> hi
+Nick change: btami_ -> btami
+<jamest> as windows .bat files don't rate as a poor dumb cousin to a unix shell
+<jamest> :)
+<Arturas> hi btami
+<Arturas> jamest: what is bugger?
+<btami> hi Arturas
+<Arturas> (cheeseburger ?)
+<Arturas> ah
+<Arturas> hm
+<Arturas> jamest
+<Arturas> hrrr
+<Arturas> bugger
+Action: Arturas is out of words
+<Arturas> :)
+<btami> bugger is something like asshole ?
+<lupo> i can assure you that gnue _needs_ to run on windows
+<jcater> there's a difference betewen gnue needing to run on windows
+<jcater> and our cvs development handy-dandy tool needing to run there
+<jcater> not that I mind Arturas trying to get it to work there
+<Arturas> btami:
+<Arturas> bugger
+<Arturas>        n : someone who engages in anal copulation (especially a male
+<Arturas>            who engages in anal copulation with another male) [syn: {sodomite},
+<Arturas>             {sodomist}, {sod}]
+<Arturas> --
+<btami> :)
+<Arturas> i'm trying to get setup-cvs to run on windows, because it would be a lot easier to check gnue there
+<Arturas> how it runs and etc.
+<btami> why not just setup.py install for all tools?
+<jamest> the def I was implying
+<jamest> 3 : a small or annoying thing <put down my keys and now I can't find the buggers> 
+<lupo> bugger = something like "pain in the ass"?
+<jamest> yes
+<jamest> it will be a pain in the ass
+<Arturas> Debians' dict didn't offer me 3rd explaining (perhaps it knew the theme was windows :)
+<lupo> lol
+<btami> jcater: please put "gnue.common.events" into common.setup.py
+<btami> btw :)
+<jcater> btami: ok
+<jamest> :)
+<jamest> i got the def from www.m-w.com
+<jcater> if anyone's interested
+<jcater> http://www.gnuenterprise.org/~jcater/curses-login.png
+<Arturas> fine :) :)
+<Arturas> incredible :)
+<btami> is there any chance to run GNUe on a good old DOS box ?
+<jcater> btami: committed
+<btami> thanks
+<jcater> btami: depends on whether python2.1 and the database driver will compile
+<jcater> but it's certainly possible
+<jcater> not something I'm going to chase after
+<jcater> but certainly possible :)
+<btami> ok
+yogurt2unge (~charlie@ADSL-200-59-86-17.cordoba.sinectis.com.ar) left irc: "Client Exiting"
+Action: Arturas going to sleep :)
+<Arturas> bye
+Arturas (~arturas@fmgs-03.vtu.lt) left irc: 
+ninja (~rossg@81.6.249.35) left irc: Read error: 110 (Connection timed out)
+lupo (~lupo@B941d.pppool.de) left irc: "using sirc version 2.211+KSIRC/1.1"
+StyXman (~mdione@ADSL-200-59-86-17.cordoba.sinectis.com.ar) joined #gnuenterprise.
+<StyXman> hi all
+<StyXman> jcater: just to know, what's that cursing thing in common about?
+<jcater> cursing == GNUe's curses widget toolset
+<StyXman> curses as in ncurses?
+<jamest> yes
+<jamest> it's the highly modified code originally based upon nstti
+<StyXman> and why in common?
+<jcater> because it's common to our code
+<jamest> there isn't a curses library out there at the moment that does what we require or that is maintained
+<jamest> we had this on seperate cvs server out of main code base but that made it harder to get fixes into it
+<StyXman> ah, ok.
+ratmice (matt@vespertine.pc.ashlandfiber.net) joined #gnuenterprise.
+ariel_ (~ariel@ppp-217-133-247-125.dialup.tiscali.it) joined #gnuenterprise.
+btami (~btami@195.228.11.87) left irc: Read error: 113 (No route to host)
+<ariel_> i need some help with debian
+<ariel_> i did succesfully apt-get install for
+<ariel_> gnue-common
+<ariel_> gnue-forms
+<ariel_> gnue-designer
+<ariel_> but i can't do for
+<ariel_> gnue-reports
+<jcater> we have only packaged the more mature tools at this point (the 3 you mentioned)
+<jcater> we don't have debs of gnue-reports, gnue-appserver, or gnue-navigator at the moment
+<jcater> :(
+<ariel_> thx
+<ariel_> jcater: this is not related to our, but i alsso cannot install cervisia
+<jcater> I'm not familiar with cervisia
+<ariel_> gui frontend to cvs
+<ariel_> based on kde
+<ariel_> it gave me some conflicts with kdelibs3
+<ariel_> but now i'm trying again and it seems to work
+<ariel_> may be they have resolved the conflict
+<jcater> cool
+<ariel_> no i still get the same problem:
+<ariel_> cervisia depends on kdelibs3
+<ariel_> kdelibs3 depends on kdelibs3-bin
+<jcater> are you currently running kde 3.0.x?
+<ariel_> kdelibs3-bin tryes to overwrite a file belonging also to kdelibs-data
+<ariel_> no i run  gnome2
+<ariel_> can i try apt-get remove kdelib-data? (it seems me unwise)
+<jcater> I don't know
+<ariel_> there is some way to inform the people at debian?
+<nickr> haha
+Action: ariel_ , the poor debian newbie, thinks nickr is a bit sarcastic
+<nickr> hehe
+ariel_ (~ariel@ppp-217-133-247-125.dialup.tiscali.it) left irc: "Client Exiting"
+ToyMan (~stuq@smtp.dstoys.com) left irc: "making toys"
+<nickr> hoohoo
+ariel_ (~ariel@ppp-217-133-247-125.dialup.tiscali.it) joined #gnuenterprise.
+<ariel_> jcater: a jump on #debian and.. resolved
+<jcater> cool
+<jcater> sorry I couldn;t help much
+<Mr_You> hello
+<ariel_> dpkg -i --force-overwrote
+<nickr> #debian actually helped you?
+<nickr> incredible.
+<ariel_> dpkg -i --force-overwrite
+<nickr> Its like an X-Files episode
+<Mr_You> http://www.vitalit.com/software/bofhd/
+Action: ariel_ is away: (ronf)
+<jamest> nickr: or twilight zone
+<nickr> indeed
+<nickr> dee dee deedee
+<jamest> musta been some space/time dimensional rift
+<nickr> the black whole at the center of a donut.
+Action: Mr_You laughs at himself.
+<Mr_You> I put it up or sell this morning and an ad hour+half ago, 31 views so far
+<Mr_You> http://www.webhostingtalk.com/showthread.php?s=&threadid=80241
+<Mr_You> for those not familiar its sort of an experiment to see how little GPL code can generate income ;-)
+<Mr_You> comments are appreciated :-)
+<nickr> maybe you should note that 'unencumbered source is included' with the purchase
+<nickr> or rather
+<nickr> GPL encumbered
+<Mr_You> yeah I was just about to type that up and I couldn't think of a good line.
+<Mr_You> it was late last night ;-)  I'll add something to purchase page.
+<Mr_You> well both pages
+<nickr> yea
+<Mr_You> GPL licensed source code included!
+<Mr_You> hows that?
+<nickr> needs more bangs
+<Mr_You> hehe
+<Mr_You> I added one just for you mentioning it.
+<nickr> hehe
+<nickr> what? no giant, shiny, graphical bang?
+<Mr_You> updated
+<Mr_You> gotta get my cert updated :-(
+<Mr_You> gotta run
+<Mr_You> bblm
+<Mr_You> will save msgs if anyone pops in
+Action: Mr_You &
+ninja (~rossg@rossg.dial.nildram.co.uk) joined #gnuenterprise.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: Client Quit
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+ToyMan (~stuq@glvv-dsl2-27.citlink.net) joined #gnuenterprise.
+StyXman (~mdione@ADSL-200-59-86-17.cordoba.sinectis.com.ar) left irc: "ircII EPIC4-1.1.7 -- Are we there yet?"
+jamest (~jamest@hobbes.math.ksu.edu) left #gnuenterprise.
+siesel (jan@dial-213-168-97-172.netcologne.de) joined #gnuenterprise.
+<siesel> hi
+<chillywilly> yo
+siesel (jan@dial-213-168-97-172.netcologne.de) left irc: "night"
+KeithJagrs (trilluser@63.74.24.9) joined #gnuenterprise.
+<KeithJagrs> hello
+<chillywilly> hallo
+<KeithJagrs> hello cw
+<KeithJagrs> where are you located?
+<chillywilly> on planet earth ;)
+<KeithJagrs> cool
+<chillywilly> need me to be a little more specific?
+<KeithJagrs> well, yes
+<chillywilly> heheh
+<chillywilly> WI, USA
+<KeithJagrs> WI?
+<KeithJagrs> hmm
+<KeithJagrs> is that wayoming?
+<KeithJagrs> (spell?)
+<KeithJagrs> west indiana?
+<KeithJagrs> heheh
+<KeithJagrs> hmm
+<jcater> Cheese!
+<KeithJagrs> Wild Illinois?
+<jcater> Beer!
+<chillywilly> KeithJagrs: hell no
+<KeithJagrs> I'll be back
+<chillywilly> Wisconsin
+Action: jcater gave two hints :)
+<KeithJagrs> aaah
+<chillywilly> jcater: a winning combination ;)
+<KeithJagrs> cool
+Nick change: KeithJagrs -> KeithK_away
+Action: chillywilly is no FIB ;)
+<chillywilly> damn flat landers
+<chillywilly> WI si IL's playground ;)
+<chillywilly> s/si/is/
+<chillywilly> and da bears suck
+<chillywilly> Favre put the smack down on 'em last Monday night
+<ajmitch> greetings
+<chillywilly> and saltations
+<chillywilly> salutations
+<chillywilly> freakin kbd
+<Mr_You> re
+<Mr_You> bbl
+KeithK_away (trilluser@63.74.24.9) left irc: Connection timed out
+SachaS (~Sacha@ark.cs.curtin.edu.au) joined #gnuenterprise.
+crazymike (~crazymike@mke-65-29-140-82.wi.rr.com) joined #gnuenterprise.
+<crazymike> ?
+stuq_ (~stuq@glvv-dsl2-27.citlink.net) joined #gnuenterprise.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "home"
+ToyMan (~stuq@glvv-dsl2-27.citlink.net) left irc: Read error: 110 (Connection timed out)
+Nick change: stuq_ -> ToyMan
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) left irc: "Client Exiting"
+KeithJagrs (trilluser@63.74.24.9) joined #gnuenterprise.
+derek (~dneighbo@filter.sequoia.net) joined #gnuenterprise.
+<KeithJagrs> hello again
+<derek> hello
+<chillywilly> derek: hey
+<KeithJagrs> are there plans for gnue to serve workflow?
+<KeithJagrs> hmmm
+rdean (~rdean@chcgil2-ar2-4-64-099-144.chcgil2.dsl-verizon.net) joined #gnuenterprise.
+<derek> yes
+rdean (~rdean@chcgil2-ar2-4-64-099-144.chcgil2.dsl-verizon.net) left irc: Client Quit
+<derek> things not much listed but we plan on 
+<derek> workflow
+<derek> groupware
+<derek> knowledge management
+<KeithJagrs> great!
+jcater (~jcater@cpe-024-165-223-104.midsouth.rr.com) joined #gnuenterprise.
+<KeithJagrs> what about using openflow
+<KeithJagrs> or another ongoing project
+<derek> we are ALL FOR REUSING
+<derek> or merging with things
+<derek> example we are working with axisgw and phpgw on groupware stuff
+<derek> we just dont want to spread too thin
+<derek> and why we havent jumped into these areas yet
+<KeithJagrs> thats good
+<derek> hoping a project will show up
+<KeithJagrs> agree
+Action: derek is examing gnukose for FSF currently for knowledge management
+<ajmitch> hi
+<derek> hopefully it will be something that can become part of GNU as well as GNUE
+<KeithJagrs> sounds very interesting
+<KeithJagrs> ajmitch: hi
+<KeithJagrs> never heard of gnukose
+crazymike (~crazymike@mke-65-29-140-82.wi.rr.com) left irc: "Client Exiting"
+<dtm> derek: hey i have the line on something for ya too
+<derek> ok
+Action: dtm hax0rs lex
+<dtm> derek: the university lex attended (lex from axisgw team) developed a knowledge management system that they want us to take up, so they can get support off their backs
+<derek> im evaluating gnukose for FSF
+<derek> will university make theirs gpl?
+<derek> if so i can evaluate as well
+<dtm> analyzing...
+<dtm> its web site mentions public domain.  we'll see...
+crazymike (~crazymike@mke-65-29-140-82.wi.rr.com) joined #gnuenterprise.
+<dtm> it talks about the Library at Alexandria and the Library of Congress, so you know it's leet
+<dtm> it's called Phronesis, Grek for "wisdom"
+<dtm> s/Grek/Greek/
+<dtm> http://translate.google.com/translate?hl=en&sl=es&u=http://www.mty.itesm.mx/die/ddre/transferencia/Transferencia45/eli-03.htm&prev=/search%3Fq%3Dphronesis%2Bmonterrey%26hl%3Den%26lr%3D%26ie%3DUTF-8%26sa%3DG
+<dtm> i'm pretty sure that's it
+<dtm> it's definately Mexican
+<dtm> hey, tell GNU to use the Google Appliance!  ;)  haha
+<chillywilly> wb crazymike
+<dtm> running on a Netapp!
+<dtm> crazymike: werd
+<dtm> chillywilly: sup
+<crazymike> thank you
+<crazymike> it is good to be back
+<chillywilly> dtm: sup g
+<chillywilly> crazymike: your running 2.4.19?
+<crazymike> yep
+<dtm> derek: must a GNU project be under GPL/LGPL?  what about GPL compatible according to www.gnu.org?
+<crazymike> chillywilly: I shole am
+<chillywilly> did eth1 come up by itself this time?
+<crazymike> no
+<crazymike> it is eth0
+<crazymike> thats why
+<ajmitch> hi chillywilly, crazymike
+<chillywilly> HEH
+<crazymike> i had to switch it
+<crazymike> hi ajmitch
+<ajmitch> dtm: afaik 'sophia' is greek for wisdom ;)
+<dtm> ajmitch: interesting
+<chillywilly> yep
+<dtm> those silly Greeks!
+<chillywilly> philosophy
+Action: dtm watched "Yanni: Tribute" last night
+<chillywilly> comes from 2 wors
+<chillywilly> one is sophia
+<dtm> 31337
+<chillywilly> the other is somehting else and it mena study
+<chillywilly> means
+<chillywilly> philosophy is the study of wisdom
+<chillywilly> hey I did learn me something afterall ;)
+<chillywilly> philo is study, iirc
+<chillywilly> sophia is wisdom
+<dtm> how appropriate
+<chillywilly> something like that
+<chillywilly> my bad
+<chillywilly> philosphy is the love of wisdom
+<chillywilly> not study
+<dtm> You tried.
+<dtm> That's what counts.
+<dtm> chillywilly: must a GNU project be under GPL/LGPL?  what about GPL compatible according to www.gnu.org?
+<chillywilly> not sure
+<KeithJagrs> derek:
+<chillywilly> philo == love, sophia == wisdom...there that's the ticket ;)
+<KeithJagrs> I am inthe gnukose site
+<KeithJagrs> have you discarded zope or plone, etc?
+<jcater> what's the topic of conversation?
+<chillywilly> this is cool
+<chillywilly> Based upon what has been described above, our working definition of philosophy will look something like the following:
+<chillywilly> PHILOSOPHY = "A critical examination of reality characterized by rational inquiry that aims at the Truth for the sake of attaining wisdom."
+<chillywilly> man I wish I could've taken philosophy of religion...that would've been a fun course
+<jcater> lots of reading
+<ajmitch> doubtful
+<jcater> lots and lots of reading
+Action: jcater knows :)
+<ajmitch> at a secular university, they generally attack religion :)
+<chillywilly> ajmitch: why?
+<chillywilly> ajmitch: bah, not my philosophy proff he was awesome
+<ajmitch> chillywilly: because that's what a lot of universities are like :)
+Action: chillywilly took jst about every philosphy course at MSOE except philosophy of religion
+<chillywilly> it didn't fit my schedule the last quarter
+<chillywilly> conflicted with some stupid class I had to take
+<ajmitch> from what i know, at the uni i'm at they use philosophy to 'prove' that all faith is a load of ****
+Action: jcater thinks that really depends on the professors
+<derek> zope is not workflow
+<chillywilly> ajmitch: isn't that sorta retarded for a uni named after a saint?
+<derek> dtm: no a gnu project need not be under the GPL or LGPL but generally its HIGHLY preferred
+<ajmitch> chillywilly: uhh, university of otago is not :)
+<chillywilly> oh yea that's the dorm you're in
+<ajmitch> yup
+<chillywilly> my bad
+<chillywilly> ajmitch: yea, this is the normal plato-worshipping philosopher's take that faith is crap ;)
+<chillywilly> my proff was a little more open minded then that ;)
+<chillywilly> you know what I find funny is how these philosophers then go and start their own gnostic religion anyway ;)
+<chillywilly> go figure :)
+<dtm> derek: but it must be GPL compatible, right/
+<dtm> ajmitch: by "faith", do you mean "belief in God"?
+<KeithJagrs>  <derek> zope is not workflow
+<KeithJagrs> i know 
+<KeithJagrs> but is CMS
+<KeithJagrs> and on top of it is plone and openflow
+<ajmitch> dtm: belief in any higher power :)
+<dtm> oic
+Action: chillywilly meant God
+<ajmitch> chillywilly: yes, but they go beyond that here :)
+<chillywilly> of course ;)
+ninja (~rossg@rossg.dial.nildram.co.uk) left irc: Read error: 113 (No route to host)
+crazymike (~crazymike@mke-65-29-140-82.wi.rr.com) left irc: "Client Exiting"
+KeithJagrs (trilluser@63.74.24.9) left #gnuenterprise.
+derek (~dneighbo@filter.sequoia.net) left irc: "Client Exiting"
+ToyMan (~stuq@glvv-dsl2-27.citlink.net) left irc: "making toys"
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: "Free Your Enterprise! - http://www.gnuenterprise.org"
+--- Fri Oct 11 2002
+ariel_ (~ariel@ppp-217-133-247-125.dialup.tiscali.it) left irc: "Client Exiting"
+jamest_ (~jamest@adsl-65-64-191-161.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+jamest_ (~jamest@adsl-65-64-191-161.dsl.tpkaks.swbell.net) left #gnuenterprise.
+jcater (~jcater@cpe-024-165-223-104.midsouth.rr.com) left irc: "nite"
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+<ajmitch> hey psu
+<psu> hi
+<psu> well, linux expor uk was interesting
+<psu> smaller than I expected (40-50 stands) but still interesting
+<psu> good mix of 
+<ajmitch> GNUe stand?
+<psu> a) the big boys (Sun, Oracle, IBM) come to explain their linux strategy
+<psu> b) small to medium size IT firms based around GNU/Linux
+<psu> c) the "dot-orgs"
+<psu> ajmitch: not this year, maybe next
+<ajmitch> ok
+<ajmitch> next year, when GNUe is taking the world by storm...
+<psu> I got the organisers' details & will contact them once 
+<psu> they re-awake from winter hibernation ;-)
+<ajmitch> ok
+<psu> My main purchase was the double-sided Debian DVD which I bought direct from the Debian stand
+<ajmitch> ooh nice
+<psu> along with a fetching Debian t-shirt
+<ajmitch> wish i had a DVD drive :)
+<ajmitch> i'll have the tshirt tho, want my postal address? ;)
+<psu> T-shirt is extra large to fit me ;-)
+<ajmitch> hehe
+<ajmitch> would be about right for me then :)
+<psu> Having had to do at least 20 disc swaps to resolve all the circular depends 
+<psu> when going potato -> woody,
+<ajmitch> ouch
+<psu> suddenly a single DVD install looks quite attractive
+<psu> ;-)
+<psu> Of course, it's worth remembering *why* Debian bitch-slaps you about depends in the first place
+<psu> it really is for your own good
+<ajmitch> yeah
+<psu> but does make for a longer install
+<ajmitch> i haven't used a cd since my first install :)
+btami (~tamas@ip102-205.ktv.tiszanet.hu) joined #gnuenterprise.
+Action: psu was prepared to have to go thru' all 7 CDs, but not to keep going back to earlier ones
+<btami> morning
+<psu> ajmitch: well, as a dial-up user, physical media of some sort is preferred
+<psu> hi btami
+<btami> hi psu
+<ajmitch> psu: i'm not using much more than dialup
+<psu> good work on the windows .exes ;-)
+<btami> :)
+<psu> also seen at linux expo : www.jalia.com
+<psu> if you were trying to design something to be the ant-GNUe, 
+<ajmitch> huh?
+<psu> s/ant/anti-
+<psu> this would be it 
+<psu> a) non-free
+<psu> b) Java
+<ajmitch> ooh, eeeeevil
+<psu> c) postgres only
+Action: ajmitch grabs a bucket & throws up
+<ajmitch> hey at least it's not mysql-only ;)
+<psu> actually, I'm *assuming* it's non-free - website's not clear
+<ajmitch> it is
+<psu> but talks about an "evaluation version", which would be an oxymoron for free as in speech
+<ajmitch> "You are allowed to make one copy of the Program for back-up purposes provided you clearly label the back-up copy. Any other copies of the Program, whether as a whole or in part, made without the prior written consent of Jalia, are unlawful and in breach of this Agreement;"
+<ajmitch> click on the 'jalia license' button on the page :)
+<psu> hmm
+<psu> guess we'll have to keep working on acclite, then ;-)
+psu (psu@manorcon.demon.co.uk) left #gnuenterprise ("time for work...").
+JohannesV (~jve@M702P025.adsl.highway.telekom.at) left irc: "Client Exiting"
+SachaS (~Sacha@ark.cs.curtin.edu.au) left #gnuenterprise ("Client Exiting").
+ratmice (matt@vespertine.pc.ashlandfiber.net) got netsplit.
+pattieja (~pattieja@www.pcxperience.com) got netsplit.
+Mr_You (~car@gso88-217-049.triad.rr.com) got netsplit.
+dres (~dres@mail.lewismoss.org) got netsplit.
+asdfasdf (~asdfasdf@adsl-66.218.46.51.dslextreme.com) got netsplit.
+Isomer (dahoose@port-219-88-247-72.jet.net.nz) got netsplit.
+ratmice (matt@vespertine.pc.ashlandfiber.net) returned to #gnuenterprise.
+pattieja (~pattieja@www.pcxperience.com) returned to #gnuenterprise.
+Isomer (dahoose@port-219-88-247-72.jet.net.nz) returned to #gnuenterprise.
+dres (~dres@mail.lewismoss.org) returned to #gnuenterprise.
+asdfasdf (~asdfasdf@adsl-66.218.46.51.dslextreme.com) returned to #gnuenterprise.
+Mr_You (~car@gso88-217-049.triad.rr.com) returned to #gnuenterprise.
+ninja (~rossg@ip-195-149-26-1.nildram.co.uk) joined #gnuenterprise.
+btami (~tamas@ip102-205.ktv.tiszanet.hu) left irc: 
+ninja (~rossg@ip-195-149-26-1.nildram.co.uk) got netsplit.
+sfb- (mattr@chew.exelus.net) got netsplit.
+nickr (~panphage@e-64-35-146-236.empnet.net) got netsplit.
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) got netsplit.
+ninja (~rossg@ip-195-149-26-1.nildram.co.uk) returned to #gnuenterprise.
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) returned to #gnuenterprise.
+nickr (~panphage@e-64-35-146-236.empnet.net) returned to #gnuenterprise.
+sfb- (mattr@chew.exelus.net) returned to #gnuenterprise.
+siesel (jan@dial-213-168-72-77.netcologne.de) joined #gnuenterprise.
+ToyMan (~stuq@smtp.dstoys.com) joined #gnuenterprise.
+siesel_ (jan@dial-213-168-96-82.netcologne.de) joined #gnuenterprise.
+siesel (jan@dial-213-168-72-77.netcologne.de) left irc: Read error: 110 (Connection timed out)
+ToyMan (~stuq@smtp.dstoys.com) got netsplit.
+Isomer (dahoose@port-219-88-247-72.jet.net.nz) got netsplit.
+siesel_ (jan@dial-213-168-96-82.netcologne.de) got netsplit.
+Mr_You (~car@gso88-217-049.triad.rr.com) got netsplit.
+ratmice (matt@vespertine.pc.ashlandfiber.net) got netsplit.
+dres (~dres@mail.lewismoss.org) got netsplit.
+asdfasdf (~asdfasdf@adsl-66.218.46.51.dslextreme.com) got netsplit.
+pattieja (~pattieja@www.pcxperience.com) got netsplit.
+siesel_ (jan@dial-213-168-96-82.netcologne.de) returned to #gnuenterprise.
+ToyMan (~stuq@smtp.dstoys.com) returned to #gnuenterprise.
+ratmice (matt@vespertine.pc.ashlandfiber.net) returned to #gnuenterprise.
+pattieja (~pattieja@www.pcxperience.com) returned to #gnuenterprise.
+Isomer (dahoose@port-219-88-247-72.jet.net.nz) returned to #gnuenterprise.
+dres (~dres@mail.lewismoss.org) returned to #gnuenterprise.
+asdfasdf (~asdfasdf@adsl-66.218.46.51.dslextreme.com) returned to #gnuenterprise.
+Mr_You (~car@gso88-217-049.triad.rr.com) returned to #gnuenterprise.
+Mr_You (~car@gso88-217-049.triad.rr.com) got netsplit.
+dres (~dres@mail.lewismoss.org) got netsplit.
+ratmice (matt@vespertine.pc.ashlandfiber.net) got netsplit.
+siesel_ (jan@dial-213-168-96-82.netcologne.de) got netsplit.
+asdfasdf (~asdfasdf@adsl-66.218.46.51.dslextreme.com) got netsplit.
+pattieja (~pattieja@www.pcxperience.com) got netsplit.
+Isomer (dahoose@port-219-88-247-72.jet.net.nz) got netsplit.
+ToyMan (~stuq@smtp.dstoys.com) got netsplit.
+sfb- (mattr@chew.exelus.net) got netsplit.
+ninja (~rossg@ip-195-149-26-1.nildram.co.uk) got netsplit.
+nickr (~panphage@e-64-35-146-236.empnet.net) got netsplit.
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) got netsplit.
+dtm ([qX9dulTEH@ip66.promontory.sfo.interquest.net) got netsplit.
+dtm ([qX9dulTEH@ip66.promontory.sfo.interquest.net) returned to #gnuenterprise.
+ninja (~rossg@ip-195-149-26-1.nildram.co.uk) returned to #gnuenterprise.
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) returned to #gnuenterprise.
+nickr (~panphage@e-64-35-146-236.empnet.net) returned to #gnuenterprise.
+sfb- (mattr@chew.exelus.net) returned to #gnuenterprise.
+siesel_ (jan@dial-213-168-96-82.netcologne.de) returned to #gnuenterprise.
+ToyMan (~stuq@smtp.dstoys.com) returned to #gnuenterprise.
+ratmice (matt@vespertine.pc.ashlandfiber.net) returned to #gnuenterprise.
+pattieja (~pattieja@www.pcxperience.com) returned to #gnuenterprise.
+Isomer (dahoose@port-219-88-247-72.jet.net.nz) returned to #gnuenterprise.
+dres (~dres@mail.lewismoss.org) returned to #gnuenterprise.
+asdfasdf (~asdfasdf@adsl-66.218.46.51.dslextreme.com) returned to #gnuenterprise.
+Mr_You (~car@gso88-217-049.triad.rr.com) returned to #gnuenterprise.
+dtm ([qX9dulTEH@ip66.promontory.sfo.interquest.net) got netsplit.
+dtm ([qX9dulTEH@ip66.promontory.sfo.interquest.net) returned to #gnuenterprise.
+ninja (~rossg@ip-195-149-26-1.nildram.co.uk) got netsplit.
+sfb- (mattr@chew.exelus.net) got netsplit.
+nickr (~panphage@e-64-35-146-236.empnet.net) got netsplit.
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) got netsplit.
+ninja (~rossg@ip-195-149-26-1.nildram.co.uk) returned to #gnuenterprise.
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) returned to #gnuenterprise.
+nickr (~panphage@e-64-35-146-236.empnet.net) returned to #gnuenterprise.
+sfb- (mattr@chew.exelus.net) returned to #gnuenterprise.
+Maniac (~User@h24-82-132-209.wp.shawcable.net) left irc: Read error: 104 (Connection reset by peer)
+Maniac (~User@h24-82-132-209.wp.shawcable.net) joined #gnuenterprise.
+jamest_ (~jamest@hobbes.math.ksu.edu) joined #gnuenterprise.
+Nick change: jamest_ -> jamest
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) joined #gnuenterprise.
+siesel_ (jan@dial-213-168-96-82.netcologne.de) left irc: Read error: 104 (Connection reset by peer)
+Bill_H (~chatzilla@ga-cmng-cuda2-c3b-64.cmngga.adelphia.net) joined #gnuenterprise.
+laurie (~laurie@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<jcater> this one's for chillywilly:
+<jcater> re the philosophers in public university discussion
+<jcater> *****************************************************************
+<jcater> Philosophy consists very largely of one philosopher arguing that 
+<jcater> all other philosophers are jackasses.  He usually proves it, and 
+<jcater> I should add that he also usually proves that he is one himself.
+<jcater>                                                  - H.L. Mencken
+<jcater> *****************************************************************
+<laurie> roflmao
+<laurie> im gonna pee my self
+<laurie> thats hilarious
+laurie (~laurie@cpe-24-221-112-50.az.sprintbbd.net) left irc: "Client Exiting"
+ninja (~rossg@ip-195-149-26-1.nildram.co.uk) left irc: Remote closed the connection
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+siesel (jan@dial-195-14-235-17.netcologne.de) joined #gnuenterprise.
+<siesel> hi
+<siesel> jcater: the nstti driver doesn't work. Seems like an UIapp module/file is missing.
+<jcater> I wouldn't mess w/that right now
+<jcater> I have so much stuff outstanding
+Action: jcater is working on it at the moment
+<jcater>  http://www.gnuenterprise.org/~jcater/curses-intro.png
+Action: siesel is just curious, but will wait till the next commit to do some testing :)
+<jcater> it's no where near production ready :)
+<jcater> although at the rate I'm going, it could be at the end of the day
+Action: siesel would be happy to say that of the jsclient too :(
+<jamest> jsclient?
+<siesel> gnue forms written in javascript (i.e. mozilla)
+<siesel> simple forms are working allready, but that just means a maximum of 10% of the work
+<siesel> to do.
+<siesel> http://www.gnuenterprise.org/~jan/jsclient/gnue-forms.html
+Bill_H (~chatzilla@ga-cmng-cuda2-c3b-64.cmngga.adelphia.net) left irc: Remote closed the connection
+KeithJagrs (jorgre@63.74.24.9) joined #gnuenterprise.
+dres (~dres@mail.lewismoss.org) left irc: Remote closed the connection
+ninja (~rossg@ppp46-232.dial.nildram.co.uk) joined #gnuenterprise.
+dres (~dres@mail.lewismoss.org) joined #gnuenterprise.
+ninja (~rossg@ppp46-232.dial.nildram.co.uk) left irc: "Client Exiting"
+ninja (~rossg@195.112.17.56) joined #gnuenterprise.
+<nickr> man,
+<nickr> dom is like 3000lb of death
+<nickr> why is it so obfuscated?
+siesel (jan@dial-195-14-235-17.netcologne.de) left irc: "later"
+KeithJagrs (jorgre@63.74.24.9) left irc: Read error: 104 (Connection reset by peer)
+KeithJagrs (trilluser@63.74.24.9) joined #gnuenterprise.
+KeithJagrs (trilluser@63.74.24.9) left irc: "later"
+Action: nickr rants
+<jamest> that makes it complex, which is l33t
+<jcater> which is why you should use DOM instead of SAX
+Action: jcater snickers
+zoyd (~zoyd@203.199.133.142) joined #gnuenterprise.
+<zoyd> hi.
+<zoyd> does gnue-forms now do gtk2 natively, i.e. not through wxGTK ?
+<jcater> we had a gtk2 driver given to us
+<jcater> that has been put into cvs
+<jcater> (it is native)
+<jcater> I'm honestly not sure how feature complete it is
+<jcater> compared to the wxgtk driver
+<jcater> but I think it's pretty far along
+<jcater> but I haven't had the opportunity to test it, so I can't say whether "far along" means "usable" or not
+<zoyd> so i guess this is the first time something other than wx* has gone in for gui forms ?
+<jcater> we almost have a curses version too
+<jcater> but we do consider the "wx" to be the "reference" implementation right now
+<jcater> simply because it gave us the most bang for the buck
+<jcater> in the near future, we'd like to see a native QT version
+<zoyd> hmm.
+<jcater> and a native Win32 version
+ninja (~rossg@195.112.17.56) left irc: Read error: 104 (Connection reset by peer)
+<zoyd> another question about Reports. how does it work with dot matrix printers.
+<zoyd> is it resourceful on the rybon ?
+<jcater> well
+<jcater> the reports package is not nearly far along as the forms package
+<jcater> it's only at 0.0.2
+<zoyd> or does it consume it like those win32 report programs.
+<jcater> so it isn't spitting out reports for production use yet
+<jcater> it would not consume as much
+<jcater> as one of my requirements is that it talk to the printer natively
+<jcater> i.e., send actual text
+<jcater> not pictures of the pages
+Action: jcater thinks the windows programs use truetype fonts, etc, then render graphics to send to the printers
+<jcater> that has its place of course
+<jcater> and you could do that if you wanted
+<jcater> but that's just doing injustice to dot-matrix printers :)
+<jamest> i would think it'd be as hard on the printer as you'd like
+<jamest> as you could have your own output filter
+<jamest> what little I've gotten into it i would think you could do dump text w/o too much issue
+<zoyd> ok. I think fast printouts through something like GNUe is the key. that rhymed ;)
+<zoyd> jamest: cool :)
+<jamest> zoyd: reports is pretty cool
+<jamest> thanks to jcater's mad coding skills he hacked a fax spammer filter up for me
+<jamest> so we could send reports to various schools
+<jamest> 1 year ago this required a student worker to hand fax 500 reports 
+<jamest> i can't believe the poor s.o.b. didn't go mental on us :)
+<zoyd> hehe
+Action: zoyd searches for that page mentioning which parts are production level and which are not
+<zoyd> I had tried GNUe about a year ago. It must've been changed quite a bit since, isn't it ?
+<jamest> depends :)
+<jamest> yes it's changed quite a bit
+<jamest> but it's in spurts
+<zoyd> so, is gnue used to create production systems already ?
+<jamest> yes and no
+<jamest> i use it here in production
+<jamest> for small projects
+<jamest> we've got interfaces to a few other pre-existing systems that make some things easier
+<jamest> but there is no pure GNUe system
+<nickr> I still like dom better than sax, but its annoying how appearently complex it is.
+siesel (jan@dial-194-8-196-252.netcologne.de) joined #gnuenterprise.
+<zoyd> thanks guys for answering my questions. i'll try the new release as soon as i find some time on my hand.
+zoyd (~zoyd@203.199.133.142) left irc: "I like core dumps"
+siesel (jan@dial-194-8-196-252.netcologne.de) left irc: "Real IRC clients know "to" is a preposition, not an adverb"
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) left irc: "Don't believe in miracles -- rely on them"
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+ToyMan (~stuq@smtp.dstoys.com) left irc: "making toys"
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) got netsplit.
+sfb- (mattr@chew.exelus.net) got netsplit.
+nickr (~panphage@e-64-35-146-236.empnet.net) got netsplit.
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) got netsplit.
+dtm ([qX9dulTEH@ip66.promontory.sfo.interquest.net) got netsplit.
+Maniac (~User@h24-82-132-209.wp.shawcable.net) got netsplit.
+Mr_You (~car@gso88-217-049.triad.rr.com) got netsplit.
+ratmice (matt@vespertine.pc.ashlandfiber.net) got netsplit.
+asdfasdf (~asdfasdf@adsl-66.218.46.51.dslextreme.com) got netsplit.
+pattieja (~pattieja@www.pcxperience.com) got netsplit.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) got netsplit.
+jamest (~jamest@hobbes.math.ksu.edu) got netsplit.
+Isomer (dahoose@port-219-88-247-72.jet.net.nz) got netsplit.
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) returned to #gnuenterprise.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) returned to #gnuenterprise.
+jamest (~jamest@hobbes.math.ksu.edu) returned to #gnuenterprise.
+Maniac (~User@h24-82-132-209.wp.shawcable.net) returned to #gnuenterprise.
+sfb- (mattr@chew.exelus.net) returned to #gnuenterprise.
+nickr (~panphage@e-64-35-146-236.empnet.net) returned to #gnuenterprise.
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) returned to #gnuenterprise.
+dtm ([qX9dulTEH@ip66.promontory.sfo.interquest.net) returned to #gnuenterprise.
+Mr_You (~car@gso88-217-049.triad.rr.com) returned to #gnuenterprise.
+asdfasdf (~asdfasdf@adsl-66.218.46.51.dslextreme.com) returned to #gnuenterprise.
+Isomer (dahoose@port-219-88-247-72.jet.net.nz) returned to #gnuenterprise.
+pattieja (~pattieja@www.pcxperience.com) returned to #gnuenterprise.
+ratmice (matt@vespertine.pc.ashlandfiber.net) returned to #gnuenterprise.
+ToyMan (~stuq@glvv-dsl2-27.citlink.net) joined #gnuenterprise.
+<ratmice> hmm, anyone using appserver from windows? 
+<jamest> not i
+<jcater> nor i
+<ratmice> i have appserver running on a linux box, trying to use it with windows forms seems to hang the windows forms client...
+<ratmice> has something to do with the connections.cof
+<ratmice> changing though it works directly talking to the database
+jamest (~jamest@hobbes.math.ksu.edu) left #gnuenterprise.
+siesel (jan@dial-195-14-254-214.netcologne.de) joined #gnuenterprise.
+<siesel> ratmice: I've read in the log that you had problems to use appserver (on linux) from forms (on windows), right?
+<siesel> which rpc adapter did you use?
+<ratmice> xmlrpc
+<siesel> the xmlrpc client should work on windows, although the pw_xmlrpc one is possibly a bit more stable
+<siesel> you said that forms was hanging. Did it directly hangs or does it connected to appserver before?
+<siesel> You could see that from the appservers output (gacvs/gnue-appserver -Z)
+<ratmice> well, the gnue-forms executable launches and then exits
+<ratmice> i don't even get the auth form
+<siesel> ok, that seems to be a problem with the installation of xmlrpc on windows.
+<siesel> did you use the installer version or the zip files?
+<ratmice> installer
+<siesel> possibly xmlrpc isn't included in the installer  version
+<ratmice> thanks
+<siesel> thank you :)
+<siesel> jcater: you here?
+jamest (~jamest@adsl-65-64-191-161.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+jcater (~jason@w202.z065105010.mem-tn.dsl.cnc.net) left irc: "home"
+ratmice (matt@vespertine.pc.ashlandfiber.net) left irc: "Leaving"
+crazymike (~mike@mke-65-29-140-82.wi.rr.com) joined #gnuenterprise.
+<crazymike> sup ya'll?
+<crazymike> :)
+<ajmitch> RUN!!
+<crazymike> why do you say that?
+Action: ajmitch whimpers & hides
+<crazymike> why don't you like me ajmitch?
+<crazymike> :(
+<ajmitch> who said that?
+<crazymike> you...
+<crazymike> you always make fun of me and talk shit
+<crazymike> it makes me sad
+<ajmitch> i never do
+<crazymike> man, I hate school
+<ajmitch> what i say is pretty standard for this channel :)
+jcater (~jcater@cpe-024-165-223-104.midsouth.rr.com) joined #gnuenterprise.
+<ajmitch> especially when chillywilly is around ;)
+<ajmitch> it's jcater!!
+<crazymike> i am sitting in a shitty winblows class
+<crazymike> i have to take it
+<ajmitch> lucky you
+<crazymike> and it is gay
+<crazymike> windows 2000 administration
+<ajmitch> umm WHY?
+<crazymike> what a waste of time
+<crazymike> it is required
+<ajmitch> required for what?
+<crazymike> isn't there only one way to administer it? re-install?
+<crazymike> for my networking degree
+<ajmitch> ah
+<crazymike> so, whats new ajmitch 
+<ajmitch> very little
+<ajmitch> haven't even played with GNUe tools lately
+<ajmitch> jcater: you been a busy boy lately!
+<ddttmm> crazymike: but it's the most accessible OS for all the students!  *all* they need is a $1000 product license apiece, right?
+<ddttmm> or is it down to more like $500 these days
+<ddttmm> for the server stuff
+<ddttmm> and then voila!  you've got a server *anyone* can understand!
+<ajmitch> ddttmm: depends if it's a compulsory part of fees ;)
+siesel (jan@dial-195-14-254-214.netcologne.de) left irc: Read error: 110 (Connection timed out)
+<crazymike> lol
+<crazymike> it is quality stuff man
+<crazymike> :)
+<ajmitch> students are getting reamed
+<ddttmm> heheh oh yeah, "we've changed the class from Network Administration 101 to Windows Network Administration 101.  in a related note, we're raising the price of tuition from $30 to $1030."
+<crazymike> my professor and I were arguing linux vs windows
+<crazymike> lol
+<ddttmm> crazymike: oh BOY
+<crazymike> he was about to start yelling, he must be a windows fanatic
+<ddttmm> hey in the college of architecture at KSU when i was at KSU, they had a mandatory purchase of a LAPTOP and AUTOCAD for everyone just for being enrolled
+<crazymike> it was funny
+<ddttmm> so that's like $8000+ on top of everything
+<ajmitch> ouch
+<crazymike> yeah, there are a few schools around here like that
+<ddttmm> this was in like 1997, buying autocad-capable laptops.
+<crazymike> not the autocad
+<crazymike> but the laptops
+<ajmitch> here we have to use redhat in the labs! the horror! :)
+<crazymike> ajmitch: lol
+<ddttmm> crazymike: yelling?!
+<ddttmm> crazymike: seriously how much does the softwre cost
+<ajmitch> and we have to pay the uni $5NZ for a cd if we want a copy!!
+<crazymike> he wasn't actually yelling, but he was about to
+<ddttmm> ajmitch: hehe
+<ddttmm> crazymike: so you say "I'M RIGHT, YOU'RE WRONG BYE!" and ran away?
+<crazymike> pretty much
+<ajmitch> or we can download it from a uni server & burn it if we have blanks :)
+<ddttmm> oic
+<ddttmm> ajmitch: leet
+<crazymike> he was like "but if windows breaks at least you have a throat to choke"
+<ajmitch> iirc one of the admins is setting up a local debian mirror as well
+<crazymike> i was like "WHEN windows breaks"
+<ajmitch> heh
+<ddttmm> what the fuck?!
+<ajmitch> the only thing you can do when windows breaks is take out your frustration
+<ajmitch> soon if things break you'll have to pay MS for fixes ;)
+<crazymike> pretty much
+<ddttmm> what kind of psychopath admin would *want* to call someone else up when their software breaks?  as opposed to being able to fix it themselves?
+<ddttmm> or to subcontract anyone to fix it
+<crazymike> ddttmm: yeah thats what i was saying
+<ddttmm> for what sick mind would that even be an option?
+<ajmitch> someone who likes shifting blame!
+<ddttmm> what does a sysadmin do, if not that?
+<ddttmm> (fix it, not shift blame, i mean ;)
+<ddttmm> tee hee
+<crazymike> i was like "you can sit on the phone and wait for hours, or you can jump on IRC and get a fix in minutes" :)
+<ddttmm> crazymike: well either that or rtfm or read the source or buy a support contract from the 283702709153205 linux companies
+<ddttmm> crazymike: is he daft?
+<ddttmm> or what
+<ddttmm> is he teachable?  :)
+<ajmitch> not many sysadmins would jump on IRC
+<ddttmm> doesn't sound good
+<crazymike> i think he is a part-time professor, and full-time at McDonalds
+<jcater> ajmitch: yeah
+<ddttmm> crazymike: hahahahaha
+<jcater> been quite busy
+<jcater> 0.5.0 is almost ready :)
+<crazymike> ddttmm: he is a bit loopy
+<ddttmm> i once had a substitute high school teacher who was 40+ yrs old, lived with his mom, and was a fulltime stockboy at Sears
+<ddttmm> crazymike: great.
+<crazymike> ddttmm: LOL
+<ddttmm> crazymike: yeah they brought him in when the normal teacher got put in the hospital that morning or whatever ;>
+<crazymike> my unix professor was great
+<ddttmm> like when the principle can't step in
+<ddttmm> or the school nurse ;)
+<crazymike> ddttmm: they went to Sears and got him?
+<ddttmm> crazymike: well just be sure and have well formed responses to your professor buddy
+<ddttmm> crazymike: talk about open standards so you can pick the best tool for the job, and say that all software has paid support and contracts no matter what form the source code license comes in
+<crazymike> it was just before class, he is up there making a fool of himself right now
+<ajmitch> which means that slashdot is a bad resource for facts, ok?
+<ddttmm> crazymike: flat out evangelism doesn't work on people lik ehtat
+<crazymike> ajmitch: lol
+<crazymike> oh, there is no evangelism from me
+<ddttmm> ajmitch: if you filter it wrong, yes :)   you must have a bulletproof mental slashdot filter!
+<crazymike> i could care less what he thinks
+<ddttmm> crazymike: well even normal talk doesn't work usually
+<ajmitch> ddttmm: slashdot sometimes has a rare gem or two
+<ddttmm> crazymike: it's all about the TCO reports, the paid support, the open standards, and the low cost of R&D
+<ddttmm> ajmitch: yes and depending on the topic, there may be all gems
+<ajmitch> ddttmm is THE master at advocacy!
+<ddttmm> i'd say half of slashdot is amazing
+<ddttmm> i search it for everything
+<ajmitch> ddttmm: fool's gold, perhaps ;)
+<ddttmm> it's one of my top resources, but certainly far from the only one.  i go there for esoteric tribal knowledge basically.
+<ddttmm> but that's only coz i know how to read it
+<ddttmm> otherwise it would do far more harm than god
+<ddttmm> good
+<crazymike> i'll be back late
+<crazymike> r
+<crazymike> have fun guys
+crazymike (~mike@mke-65-29-140-82.wi.rr.com) left irc: "[BX] For a good time, call 1-900-4BitchX"
+crazymike (~mike@mke-65-29-140-82.wi.rr.com) joined #gnuenterprise.
+<ajmitch> wecolme back
+<crazymike> ajmitch: thanks
+<crazymike> it is good to be back
+<ajmitch> even if i cannot spell
+<crazymike> i missed all of you guys dearly
+<ajmitch> i'm sure
+<crazymike> i did
+<crazymike> :)
+<ajmitch> planning to hack on GNUe today?
+<crazymike> why yes I am
+<crazymike> i would love nothing more
+<ajmitch> cool
+<ajmitch> appserver needs some work still
+<crazymike> I'll take care of it
+<crazymike> :)
+<crazymike> yeah right, I don't know shit about programing
+<ajmitch> it's not too hard to learn :)
+<ajmitch> if you want to learn, i can show you some docs :)
+<crazymike> i can't read
+<crazymike> and that is a problem
+<ajmitch> if you cannot read, how are you using irc?
+<crazymike> i can read simple text
+<crazymike> i can't read books and shit, even long paragraphs are hard for me
+<crazymike> I think I have add
+<crazymike> ADD
+<ddttmm> hmmm
+Action: ddttmm drills holes in crazymike's head to relieve the pressure
+<ddttmm> there.
+<crazymike> how is that going to help me?
+Action: ajmitch thinks this is a good start: http://www.andamooka.org/reader.pl?section=thinkpython
+putra-langit (27e9d2551f@202.155.87.74) joined #gnuenterprise.
+<ajmitch> hello
+<putra-langit> hello
+stocks (~stocks@bsd01.necessity.org) joined #gnuenterprise.
+dres_ (~dres@mail.lewismoss.org) joined #gnuenterprise.
+dres (~dres@mail.lewismoss.org) left irc: Read error: 104 (Connection reset by peer)
+putra-langit (27e9d2551f@202.155.87.74) left irc: Read error: 104 (Connection reset by peer)
+stocks (~stocks@bsd01.necessity.org) left irc: "I like core dumps"
+crazymike (~mike@mke-65-29-140-82.wi.rr.com) left irc: "[BX] Wouldn't it be great if the dog could walk itself?"
+<chillywilly> hmm, I missed crazymike
+<chillywilly> oh well I have to be off
+<chillywilly> no more rading the Lord of the Rings
+<chillywilly> reading even
+Action: chillywilly is almost done with FOTR
+<chillywilly> bye
+Action: chillywilly wonders if Gandalf is really dead
+<chillywilly> l8r
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: "Free Your Enterprise! - http://www.gnuenterprise.org"
+crazymike (~mike@mke-65-29-140-82.wi.rr.com) joined #gnuenterprise.
+crazymike (~mike@mke-65-29-140-82.wi.rr.com) left irc: Client Quit
+User_ (~User@h24-82-132-209.wp.shawcable.net) joined #gnuenterprise.
+Maniac (~User@h24-82-132-209.wp.shawcable.net) left irc: Connection reset by peer
+dyfet (~dyfet@dsl-65-188-113-57.telocity.com) joined #gnuenterprise.
+<dyfet> is derek around?
+<ddttmm> derek has not spoken today afiak
+<ddttmm> afaik
+<dyfet> ah, i heard he was crushed when he heard the news...
+<ddttmm> which news
+<dyfet> The nobel committee passed him up again this year :)
+<ddttmm> the news that a garbage truck had been dropped on him and was scheduled for impact in 3 seconds?
+<ddttmm> oh
+<dyfet> its okay, they passed me up too :)
+<ddttmm> these crazy people and their priorities
+<ddttmm> this says VOLUMES about the state of society
+Nick change: User_ -> Maniac
+dyfet (~dyfet@dsl-65-188-113-57.telocity.com) left irc: "Client Exiting"
+crazymike (~crazymike@mke-65-29-140-82.wi.rr.com) joined #gnuenterprise.
+ToyMan (~stuq@glvv-dsl2-27.citlink.net) left irc: "making toys"
+crazymike (~crazymike@mke-65-29-140-82.wi.rr.com) left irc: "Client Exiting"
+<jcater> anyone here played w/neighborhood wireless before?
+<jamest> nope
+<ajmitch> hi hi
+<ajmitch> not yet
+<ajmitch> was at a local wireless group meeting the other night :)
+<jcater> I just measured the distance between our house and our bookstore
+<jcater> it's between 0.2 and 0.3 miles
+<ajmitch> planning for an eventual city-wide MAN
+<jcater> which is closer than I realized
+<ajmitch> jcater: you can get up to 25 miles with directional point-point
+<jcater> there is one row of trees between us
+<ajmitch> so 0.3 is no problem if there's no obstructions
+<ajmitch> hmm
+<jcater> (and residential houses)
+<jcater> we have a 2 story though
+<ajmitch> trees can be worse in winter
+<jcater> it's a single line of trees
+<ajmitch> when they get wet
+<jcater> not like a forest
+<ajmitch> right
+<ajmitch> go to max signal strength at both ends, good cards, good directional antennae, and test
+<jcater> you have any links to recommended equipment?
+<ajmitch> just a min...
+Action: jcater figures with the cost of broadband
+<jcater> it wouldn't take me long to recover the costs
+<jcater> of doing a one-time wireless to my house
+<ajmitch> www.personaltelco.net/index.cgi/CategoryHardware
+<jcater> vs having broadband in 2 places
+<ajmitch> apparantly cisco cards are good
+<jcater> ouch
+<ajmitch> prism2 chipsets work well with GNU/Linux, in HostAP mode
+<jcater> I'm sure that name shoots the price up
+<ajmitch> yeah
+<Mr_You> 25 miles for what?
+<ajmitch> http://seattlewireless.net/?HardwareComparison
+<ajmitch> Mr_You: 802.11b 
+<Mr_You> ahh ok
+Action: jcater thought it was closer to 2.5 miles
+<jcater> I guess I'm out of touch :)
+<ajmitch> nope
+<Mr_You> 25 miles could be askin for trouble ;-)
+<ajmitch> had adam shand, top personaltelco person, talking at the LUG the other night
+<ajmitch> he's an ex-dunedin person, so it was quite good :)
+<ajmitch> #wireless on freenode is also good
+<ajmitch> ah, the seattle wireless page looks good
+<Mr_You> I can't see 25 miles realistic unless 2Ghz phones aren't sold/used in your area ;-)
+Isomer (dahoose@port-219-88-247-72.jet.net.nz) left irc: Remote closed the connection
+<ajmitch> Mr_You: it was on the edge of portland on a clear day, iirc :)
+<Mr_You> multiple points?
+<ajmitch> point-point
+<ajmitch> one of which was on the back of a truck :)
+<Mr_You> two points only, spanning 25  miles?
+<ajmitch> yup
+<Mr_You> if a 25 mile 802.11b signal lasted more than a year, I'd be satisfied.
+<Mr_You> but the FCC might shut it down
+<ajmitch> it was a one-off thing
+<Mr_You> ok, yeah I don't see it as a realistic setup.
+<Mr_You> maybe possible, but not realistic.
+<Mr_You> better off with multiple access points, bridging one another.
+<ajmitch> yup
+<Mr_You> my orinoco/lucent card works fine with linux.
+<ajmitch> yup
+<ajmitch> i think prism2 chipsets are the only ones capable of HostAP
+<Mr_You> the latest wincrap driver is trash tho
+<Mr_You> HostAP?
+<ajmitch> yeah, running a linux box as an AP
+<Mr_You> hmm
+jbailey (~jbailey@65.48.140.35) joined #gnuenterprise.
+<ajmitch> yo jbailey
+<jbailey> Hyea Andrew
+<Mr_You> that is builtin to the driver?
+<ajmitch> Mr_You: it's an option
+<ajmitch> http://personaltelco.net/index.cgi/HostApMode
+<Mr_You> in the driver only?
+<ajmitch> afaik, yes
+<ajmitch> i don't have the hardware
+<ajmitch> it's dependant on the card
+<Mr_You> hmm.. well.. is ad-hoc/computer-to-computer the same as being a NAP?
+<ajmitch> don't think so
+<Mr_You> my wincrap orinoco driver has ad-hoc capability
+<Mr_You> wait a minute
+<ajmitch> right, i think most of them do
+<Mr_You> I would agree with you, but the Apple Airports use the same card as this orinoco
+<ajmitch> adhoc mode isn't hostAP mode, there's a difference in protocol
+<ajmitch> Mr_You: hmm, read the personaltelco.net wiki & tell me what you think :)
+<Mr_You> ok, maybe some other time ;-)
+<ajmitch> it'd be nice to use them, but you'd have to hack your own firmware
+<ajmitch> which is why only the prism2 work in hostAP mode currently :)
+<Mr_You> who makes prism2?
+<ajmitch> intersil makes the chipsets
+<ajmitch> lots & lots of card manufacturers use them
+<Mr_You> one day, I'd like to use this laptop as a satelitte broadband connection.. so I could hook it up ad-hoc or up to the airport.
+<ajmitch> http://personaltelco.net/index.cgi/Prism2Card
+<ajmitch> that'd be nice
+<Mr_You> unfortunately itwould require a Wincrap gateway <-> satelite
+<ajmitch> ugh
+<ajmitch> hack time! ;)
+<Mr_You> well I'm sure someone is out there working on a direcway satellite driver
+<Mr_You> I think someone has, but its for commercial apps
+<ajmitch> yeah, no free drivers :(
+jamest (~jamest@adsl-65-64-191-161.dsl.tpkaks.swbell.net) left #gnuenterprise.
+jbailey (~jbailey@65.48.140.35) left #gnuenterprise ("Client Exiting").
+<ddttmm> http://developer.apple.com/techpubs/macosx/Networking/WebServices/1_intro_folder/XML_RPC_vs._SOAP.html
+--- Sat Oct 12 2002
+Isomer (dahoose@port-219-88-247-72.jet.net.nz) joined #gnuenterprise.
+<ajmitch> hi Isomer
+<Isomer> G'evenin'
+dres_ (~dres@mail.lewismoss.org) left irc: Remote closed the connection
+dres_ (~dres@mail.lewismoss.org) joined #gnuenterprise.
+laurie (~laurie@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+psu (psu@manorcon.demon.co.uk) joined #gnuenterprise.
+<ddttmm> subversions can be used for standard document control, right?  revisoining all file formats and file sizes?
+<psu> I would guess it's like CVS - fully functional with text files and the like (e.g. html)
+<psu> where it can do diff/patch magic
+<ddttmm> cvs isn't entirely binary-safe though, right?
+<psu> but still usable for binary files such as Open Office as well
+<psu> ISTR that the only problems with CVS & binaries are if you have a mix of 
+<psu> Win32 and *nix clients
+<ddttmm> i wonder if OO.o's files would be easier to revision as pure xml rather than xml.gz
+<psu> as CVS tries to be "too clever" and 
+<psu> adjust for ^Ms in binary files as well unless you tell it not to.
+<psu> ddttmm: undoubtedly, but I'm not aware of any way of making it 
+<ddttmm> mmmmm
+<psu> save as pure XML
+<psu> If so, please tell me, as I have a project I want to use OOo and CVS together on
+<ddttmm> similarly, psu's irc client is optimizing for ^M by inserting carriage returns in totally random portions of sentences!
+<psu> "share and enjoy"
+<ddttmm> i dunno but i'd imagine you could simple gunzip them, huh?
+<psu> yes, but I really want to be able to work in XML native - otherwise I have to 
+<psu> a) do CVS check out
+<psu> b) re-gzip the files
+<psu> c) work on them
+<ddttmm> well i just wonder if you can insert gzip/gunzip transparently in your cvs process
+<psu> d) re-ungzip the files
+<psu> e) check them in
+<ddttmm> like in a single script that does ci/co
+<psu> I could probably bash together a simple script
+<psu> just wondering if anyone has already done something I could re-use
+<psu> Also, I have yet to look at what revision tracking OOo has inside itself anyway
+<ddttmm> you should check openoffice.org and the associated mailing lists huh
+<psu> yeah, I know 
+<psu> I just have this bad habit of using #gnuenterprise as my personal wiki/helpdesk 
+<ddttmm> h0h0
+ninja (~rossg@ip-195-149-26-1.nildram.co.uk) joined #gnuenterprise.
+psu (psu@manorcon.demon.co.uk) left irc: Read error: 104 (Connection reset by peer)
+laurie (~laurie@cpe-24-221-112-50.az.sprintbbd.net) got netsplit.
+Isomer (dahoose@port-219-88-247-72.jet.net.nz) got netsplit.
+Maniac (~User@h24-82-132-209.wp.shawcable.net) got netsplit.
+sfb- (mattr@chew.exelus.net) got netsplit.
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) got netsplit.
+nickr (~panphage@e-64-35-146-236.empnet.net) got netsplit.
+jcater (~jcater@cpe-024-165-223-104.midsouth.rr.com) got netsplit.
+laurie (~laurie@cpe-24-221-112-50.az.sprintbbd.net) returned to #gnuenterprise.
+Isomer (dahoose@port-219-88-247-72.jet.net.nz) returned to #gnuenterprise.
+Maniac (~User@h24-82-132-209.wp.shawcable.net) returned to #gnuenterprise.
+fixe (~adam@dsl081-147-022.chi1.dsl.speakeasy.net) returned to #gnuenterprise.
+nickr (~panphage@e-64-35-146-236.empnet.net) returned to #gnuenterprise.
+sfb- (mattr@chew.exelus.net) returned to #gnuenterprise.
+dtm ([qX9dulTEH@ip66.promontory.sfo.interquest.net) got netsplit.
+dres_ (~dres@mail.lewismoss.org) got netsplit.
+Mr_You (~car@gso88-217-049.triad.rr.com) got netsplit.
+asdfasdf (~asdfasdf@adsl-66.218.46.51.dslextreme.com) got netsplit.
+pattieja (~pattieja@www.pcxperience.com) got netsplit.
+dres_ (~dres@mail.lewismoss.org) returned to #gnuenterprise.
+dtm ([qX9dulTEH@ip66.promontory.sfo.interquest.net) returned to #gnuenterprise.
+Mr_You (~car@gso88-217-049.triad.rr.com) returned to #gnuenterprise.
+asdfasdf (~asdfasdf@adsl-66.218.46.51.dslextreme.com) returned to #gnuenterprise.
+pattieja (~pattieja@www.pcxperience.com) returned to #gnuenterprise.
+jcater (~jcater@cpe-024-165-223-104.midsouth.rr.com) got lost in the net-split.
+dtm ([qX9dulTEH@ip66.promontory.sfo.interquest.net) left irc: Remote closed the connection
+dtm ([YdUiiN5Ft@ip66.promontory.sfo.interquest.net) joined #gnuenterprise.
+ToyMan (~stuq@glvv-dsl2-27.citlink.net) joined #gnuenterprise.
+jbailey (~jbailey@65.48.140.35) joined #gnuenterprise.
+sklein (~stan@1Cust249.tnt15.dca5.da.uu.net) joined #gnuenterprise.
+sklein (~stan@1Cust249.tnt15.dca5.da.uu.net) left irc: Client Quit
+rossg_ (~rossg@ip-195-149-26-169.nildram.co.uk) joined #gnuenterprise.
+ninja (~rossg@ip-195-149-26-1.nildram.co.uk) left irc: Read error: 110 (Connection timed out)
+rdean (~rdean@chcgil2-ar2-4-64-097-181.chcgil2.dsl-verizon.net) joined #gnuenterprise.
+jcater (~jcater@cpe-024-165-223-104.midsouth.rr.com) joined #gnuenterprise.
+rossg_ (~rossg@ip-195-149-26-169.nildram.co.uk) left irc: Remote closed the connection
+crazymike (~mike@mke-65-29-140-82.wi.rr.com) joined #gnuenterprise.
+btami_ (~btami@195.228.11.157) joined #gnuenterprise.
+rdean (~rdean@chcgil2-ar2-4-64-097-181.chcgil2.dsl-verizon.net) left irc: Read error: 104 (Connection reset by peer)
+crazymike (~mike@mke-65-29-140-82.wi.rr.com) left irc: Connection reset by peer
+<btami_> hi all
+<btami_> has anyone tried to download anyting from http://www.extra.hu/berado88 ?
+<btami_> Robert Jenkins got only errors
+<jcater> btami_: I haven't been able to get them... it always times out on the webpage for me :(
+<btami_> it works from here, so i don't know...
+stbain (~stuart@216.12.37.168) joined #gnuenterprise.
+<stbain> greetz
+<btami_> jcater: the keymapping of FirstRecord and LastRecord in GFKeyMapper.py and the menu text doesn't match
+<btami_> in GFKeyMapper: ctrl, in menu: shift
+<jcater> ah, ok
+Nick change: jcater -> jcOutOTown
+<btami_> bye
+btami_ (~btami@195.228.11.157) left irc: 
+rdean (~rdean@chcgil2-ar2-4-64-103-181.chcgil2.dsl-verizon.net) joined #gnuenterprise.
+jamest (~jamest@adsl-65-64-191-161.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) joined #gnuenterprise.
+ninja (~rossg@rosstest.dial.nildram.co.uk) joined #gnuenterprise.
+reinhard (~reinhard@M693P020.adsl.highway.telekom.at) left irc: "It is easiest to suggest solutions when you know nothing about the problem"
+ninja (~rossg@rosstest.dial.nildram.co.uk) left irc: Read error: 104 (Connection reset by peer)
+ninja (~rossg@rosstest.dial.nildram.co.uk) joined #gnuenterprise.
+Heppcat (~jjhepp@68.65.51.238) joined #gnuenterprise.
+<Heppcat> can anyone give me a hand getting gnue-designer to work in XP?
+stbain (~stuart@216.12.37.168) left irc: "Client Exiting"
+KeithJagrs (jorgre@63.74.24.9) joined #gnuenterprise.
+jbailey (~jbailey@65.48.140.35) left #gnuenterprise ("Client Exiting").
+Heppcat (~jjhepp@68.65.51.238) left #gnuenterprise.
+laurie (~laurie@cpe-24-221-112-50.az.sprintbbd.net) left irc: Remote closed the connection
+<KeithJagrs> Hello
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) joined #gnuenterprise.
+<KeithJagrs> what are the current  both propietrary and GPL apps that GNUe aims to rival?
+<KeithJagrs> Great Plains, for instance?
+<KeithJagrs> If there's any. I mean for Small to Medium Business
+<KeithJagrs> Discarding SAP, PeopleSoft and the alikes
+<derek> currently forms is almost feature complete to Oracle SQL*Forms product
+<derek> can replace Access (for applications *not query building*)
+<derek> reporter has no equals that i can tell (reportlabs (free software) might be the closest)
+<derek> but even BIG vendors like crystal reports and business objects dont really have a 'server' with caching and transformation like we do
+<KeithJagrs> I see
+<derek> designer is similar to filemaker pro, delphi, powerbuilder or visual basic (only specific for business applications)
+<derek> app server would be similar to any app server on the market only with additional features
+<derek> that woudl be 'tool' comparisions
+<KeithJagrs> aha
+<derek> dcl is similar to MANY free software applications like request tracker and such
+<derek> as similar to commercial applications like support magic or the likes
+<derek> acclite would be similar to netledger, sql*ledger etc
+<derek> the backend stuff is like nothing comparable in free software world that i know of and only the BIG end has it in the proprietary end
+<derek> by backend i mean shipping automation, warehouse management, order management etc etc etc
+<KeithJagrs> uh huh
+<KeithJagrs> great
+<KeithJagrs> So you have a well defined roadmap
+<KeithJagrs> hmmm. This is maybe a silly question. But which modules would you use to run a call center'?
+<KeithJagrs> For inbound calls
+<derek> no we dont
+<derek> have a well defined roadmap it is next on the list
+<KeithJagrs> oh. I see
+<derek> after the 0.4.0 release
+<KeithJagrs> well you seem so sure of the mid and long term goals
+<derek> well having in head and having official roadmap are two different things
+<derek> most of the core team has an idea of what the road map is
+<derek> just some finer points arent ironed out and none of it is official down digitally for others to review
+Action: derek is away: softball
+Suit (~SFH@zeilers.demon.nl) joined #gnuenterprise.
+<Suit> hello all, if I where to install the gnue packages in /opt/gnue would I get myself in a big trouble or is it just a case of changing setup.cfg and site.cfg?
+<Suit> s/where/were
+KeithJagrs (jorgre@63.74.24.9) left irc: "later"
+Suit (~SFH@zeilers.demon.nl) left irc: "Client Exiting"
+KeithJagrs (jorgre@63.74.24.9) joined #gnuenterprise.
+ToyMan (~stuq@glvv-dsl2-27.citlink.net) left irc: "making toys"
+ToyMan (~stuq@glvv-dsl2-27.citlink.net) joined #gnuenterprise.
+lex (~alex@dup-200-64-175-251.prodigy.net.mx) joined #gnuenterprise.
+lex (~alex@dup-200-64-175-251.prodigy.net.mx) left irc: "Client Exiting"
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) joined #gnuenterprise.
+Action: chillywilly peers in
+Action: ajmitch peers at chillywilly
+<chillywilly> hi ajmitch
+Action: ajmitch hello chilly-san
+jamest (~jamest@adsl-65-64-191-161.dsl.tpkaks.swbell.net) left irc: "[x]chat"
+ToyMan (~stuq@glvv-dsl2-27.citlink.net) left irc: "making toys"
+Bill_H (~chatzilla@ga-cmng-cuda2-c3b-64.cmngga.adelphia.net) joined #gnuenterprise.
+Bill_H (~chatzilla@ga-cmng-cuda2-c3b-64.cmngga.adelphia.net) left irc: Remote closed the connection
+chamilto (~chamilto@ga-cmng-cuda2-c3b-64.cmngga.adelphia.net) joined #gnuenterprise.
+Nick change: chamilto -> Bill_H
+jamest (~jamest@adsl-65-64-191-161.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+stbain (~stuart@216.12.37.168) joined #gnuenterprise.
+<derek> hi jamest stbain
+<ajmitch> derek!
+<KeithJagrs> ;)
+<derek> hi ajmitch
+Action: derek is back (gone 05:33:31)
+<KeithJagrs> hello 
+<KeithJagrs> do you play softball?
+<chillywilly> hi derek
+<derek> KeithJagrs: yip
+<KeithJagrs> cool
+<derek> 2 for 2 (1 walk) game 1
+<derek> 2 for 3 (1 walk) game 2
+<KeithJagrs> ;)
+<derek> 6 runs scored :)
+<derek> only 2 rbi's though i think
+<derek> the one out i got, i was really safe just bad call by umpire
+<KeithJagrs> heh
+<derek> third game i was only 2 for 3
+<derek> er 2 for 4
+<jamest> hi
+<derek> but that was A league
+<derek> wassup jamest
+<KeithJagrs> a league?
+<jamest> remodeling as usual
+<KeithJagrs> I just made a pizza myself ! 
+<KeithJagrs> my first one
+<KeithJagrs> starting from scratch
+<KeithJagrs> from flour
+<KeithJagrs> better than any pizza hut's stuff
+<KeithJagrs> or dominos
+<derek> jamest: we have been on 'decorating' kicks, thank heavens no remodels
+chillywilly (danielb@mke-24-167-202-50.wi.rr.com) left irc: "Free Your Enterprise! - http://www.gnuenterprise.org"
+Mr_You (~car@gso88-217-049.triad.rr.com) left irc: Read error: 104 (Connection reset by peer)
+Mr_You (~car@gso88-217-049.triad.rr.com) joined #gnuenterprise.
+<KeithJagrs> question: 
+<KeithJagrs> while working with gnue, you don't have to deal with tkinter of wxpython, do you?
+<ajmitch> wxpython? we use that all the time :)
+<KeithJagrs> :)
+<KeithJagrs> hehe
+<KeithJagrs> I mean ,  a gnue user
+<KeithJagrs> if he wants to customize something
+<KeithJagrs> That's what designer and forms are for..
+<KeithJagrs> Isn't that so?
+--- Sun Oct 13 2002

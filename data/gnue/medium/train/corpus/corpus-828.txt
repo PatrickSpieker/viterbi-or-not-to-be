@@ -1,0 +1,243 @@
+<jamest> switching to the popy driver fixed my problems
+<jamest> however I've not run gnue-sb
+<jamest> this was on internal apps
+<frayed> hmm...  I was actually going to borrow the table layout for a custom app.
+<jamest> the issue I saw was the databse would store time with what I assume was microseconds
+<jamest> 25-APRIL-2003 12:00:00.12345
+<jamest> and when using psycopg i'd pull from the db
+<jamest> 25-APRIL-2003 12:00:00
+<frayed> ERROR:  Type "datetime" does not exist
+<jamest> gnue-sb is using datatime?
+<frayed> looks like it.
+<jamest> i'm 99% sure postgresql pulled datetime in the 7.3 release
+<jamest> i know it burned people
+<jamest> but it was a depreciated feature
+<frayed> what'd they replace it with?  Or rather, was are we supposed to use instead?
+<jamest> "To ensure an upgrade path from versions of PostgreSQL earlier than 7.0,
+<jamest> we recognize datetime (equivalent to timestamp) and timespan (equivalent
+<jamest> to interval). These types are now restricted to having an implicit
+<jamest> translation to timestamp and interval, and support for these will be
+<jamest> removed in the next release of PostgreSQL (likely named 7.3)."
+<jamest> -- http://www.postgresql.org/idocs/index.php?datatype-datetime.html
+<jamest> i pulled that from google
+<frayed> heh, I had just gotten to the page in the manual on postgres's site.  :)
+<frayed> I'll do a search and replace with timestamp in the SQL file.  ;)
+<jamest> sigh, i have to go to work and abuse a machine that decided to quit allowing logins
+<jamest> nite everyone
+<frayed> have fun
+jamest (~jamest@adsl-65-71-169-178.dsl.tpkaks.swbell.net) left #gnuenterprise ("Client exiting").
+frayed (~dfancella@12-230-185-238.client.attbi.com) left #gnuenterprise.
+jamest (~jamest@hilbert.math.ksu.edu) joined #gnuenterprise.
+<jamest> i can go home again
+<jamest> yppie
+<jamest> nite
+jamest (~jamest@hilbert.math.ksu.edu) left irc: "[x]chat"
+jbailey (~jbailey@CPE0060082df811-CM014260028338.cpe.net.cable.rogers.com) left irc: "poof"
+btami (~tamas@ip102-205.ktv.tiszanet.hu) joined #gnuenterprise.
+fil_c (~ukpgc@public1-cosh3-3-cust111.cosh.broadband.ntl.com) left irc: Remote closed the connection
+btami (~tamas@ip102-205.ktv.tiszanet.hu) left irc: 
+Nick change: steveb -> stevebZ
+arashb (~ab@217.66.192.182) joined #gnuenterprise.
+arashb (~ab@217.66.192.182) left irc: "using sirc version 2.211+KSIRC/1.2.4"
+wtg (~merlinx@ppp572.qld.padsl.internode.on.net) left irc: "You ain't got debian you ain't got shit!"
+wtg (~merlinx@ppp662.qld.padsl.internode.on.net) joined #gnuenterprise.
+ToyMan (~stuq@170-215-246-80.bras01.mdl.ny.frontiernet.net) joined #gnuenterprise.
+jbailey (~jbailey@CPE0060082df811-CM014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+<derek> befoer you all go ballistic on gnue-sb and datatime read the history PLEASE
+<derek> a. 7.3 still isnt in woody (iirc)
+<derek> b. gnue-sb tables (many of them) came from contact stuff that is 2.5 years old
+Action: derek could just as easily laugh you out of the building that you are using 7.3 for production
+<derek> you bleeding edge whipper snappers :)
+jamest (~jamest@adsl-65-71-169-178.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+jbailey (~jbailey@CPE0060082df811-CM014260028338.cpe.net.cable.rogers.com) left irc: "Client exiting"
+jbailey (~jbailey@CPE0060082df811-CM014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+<Vee2d2> heya heya heya
+ruben_dig (~a11776@81.84.10.103) joined #gnuenterprise.
+<jamest> sigh, i hate computers
+<jamest> jbailey: where we at on the .debs for sid?
+<jbailey> jamest: I need to work with you to eliminate the noise that the debs make when they're being installed.
+<jamest> ok, so I need to just install the ones for sid and see what happens?
+<jbailey> They're not uploaded yet.
+<jcater> morning all
+<jbailey> If you instlal the ones from that sources.list, that's them, though.
+<jamest> oh mr. cater
+<jamest> here cater, cater, cater
+<jamest> jbailey: what sources.list
+Action: jcater points to the topic
+<jamest> like I ever read that 
+<jamest> :)
+<jamest> we need to announce the release btw
+<jamest> i mean it's one thing to take 6 months on a release
+<jamest> but it's kinda sad when we take another month to announce it
+<jamest> :)
+Action: jcater thwaps jamest
+<jamest> think i could just take your email and push it up on the site
+<jcater> yeah
+<jamest> but that's not why i was looking for you
+<jamest> that image thing i'm working on
+<jamest> i need to pull incoming fax images that are not assigned to a customer
+<jamest> putting this on the datasource
+<jamest>     <conditions>
+<jamest>       <null>
+<jamest>         <cfield name="id"/>
+<jamest>       </null>
+<jamest>     </conditions>
+<jamest> works but then I can't go into query mode, type in an id, and get results
+<jcater> right
+<jamest> as the conditions rightfully filter that out
+<jamest> i don't want to change that behaviour as I use it to make several forms look like they're pulling from different tables though they are not
+<jamest> i'm wondering if we have a way, via a on-startup trigger to do this query
+<jamest> but I don't know how i'd pass in the NULL as part of the masks
+<jamest> datasources dont have a problem with this but the forms client doesn't "do" null
+<jcater> well
+<jcater> I could think of some hackerish ways to do it
+Action: jcater doesn't know a good way to do it though
+<jamest> i really don't want to hack in a custom constructed conditions tree
+<jamest> i really hate to break this into 2 exact same forms
+<jcater>     <conditions>
+<jcater>       <or>
+<jcater>         <eq>
+<jcater>           <cparam name="catchNull>
+<jcater>           <cconst value="N">
+<jcater>         </eq>
+<jcater>         <null>
+<jcater>           <cfield name="id"/>
+<jcater>         </null>
+<jcater>       </or>
+<jcater>     </conditions>
+<jcater> then after the first query, you could change the parameter 'catchNull' 
+<jcater> that's first thing off top of my head
+<jcater> I don't consider it "good form" though
+<jamest> hell, that's worth implementing just as a sample :)
+<jamest> as it's evil and something I'd not have thought about
+Action: jamest associates the parameters dict w/ dialogs not the master form
+<jcater> lol
+<jcater> that's funny
+<jcater> 'cause parameters were never meant for dialogs
+<jcater> though they've become a nice fit
+<jamest> how do I use the parameters at the main form level
+<jcater> iirc there's a form-level setParameter
+<jamest> do I need to set catchNull 
+<jamest> there is, but I mean wrt to initialization
+<jcater> I think you have to add a <parameters> section
+<jcater> that defines the parameter
+<jcater> if so, there you can set a "default"
+<jamest> this in the guide
+<jamest> ?
+<jcater> beats me
+<jcater> ask the fewl doing the guide
+<jcater> oh, wait....
+<jcater> beats me
+Action: jamest thwaps jcater
+jamest (~jamest@adsl-65-71-169-178.dsl.tpkaks.swbell.net) got netsplit.
+wtg (~merlinx@ppp662.qld.padsl.internode.on.net) got netsplit.
+fixe (~fixe@dsl017-020-123.chi1.dsl.speakeasy.net) got netsplit.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) got netsplit.
+jamest (~jamest@adsl-65-71-169-178.dsl.tpkaks.swbell.net) returned to #gnuenterprise.
+wtg (~merlinx@ppp662.qld.padsl.internode.on.net) returned to #gnuenterprise.
+fixe (~fixe@dsl017-020-123.chi1.dsl.speakeasy.net) returned to #gnuenterprise.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) returned to #gnuenterprise.
+jamest (~jamest@adsl-65-71-169-178.dsl.tpkaks.swbell.net) left irc: Remote closed the connection
+jamest (~jamest@adsl-65-71-169-178.dsl.tpkaks.swbell.net) joined #gnuenterprise.
+jamest (~jamest@adsl-65-71-169-178.dsl.tpkaks.swbell.net) got netsplit.
+wtg (~merlinx@ppp662.qld.padsl.internode.on.net) got netsplit.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) got netsplit.
+fixe (~fixe@dsl017-020-123.chi1.dsl.speakeasy.net) got netsplit.
+jamest (~jamest@adsl-65-71-169-178.dsl.tpkaks.swbell.net) returned to #gnuenterprise.
+wtg (~merlinx@ppp662.qld.padsl.internode.on.net) returned to #gnuenterprise.
+fixe (~fixe@dsl017-020-123.chi1.dsl.speakeasy.net) returned to #gnuenterprise.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) returned to #gnuenterprise.
+wtg (~merlinx@ppp662.qld.padsl.internode.on.net) got netsplit.
+jamest (~jamest@adsl-65-71-169-178.dsl.tpkaks.swbell.net) got netsplit.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) got netsplit.
+fixe (~fixe@dsl017-020-123.chi1.dsl.speakeasy.net) got netsplit.
+jamest (~jamest@adsl-65-71-169-178.dsl.tpkaks.swbell.net) returned to #gnuenterprise.
+wtg (~merlinx@ppp662.qld.padsl.internode.on.net) returned to #gnuenterprise.
+fixe (~fixe@dsl017-020-123.chi1.dsl.speakeasy.net) returned to #gnuenterprise.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) returned to #gnuenterprise.
+wtg (~merlinx@ppp662.qld.padsl.internode.on.net) got netsplit.
+jamest (~jamest@adsl-65-71-169-178.dsl.tpkaks.swbell.net) got netsplit.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) got netsplit.
+fixe (~fixe@dsl017-020-123.chi1.dsl.speakeasy.net) got netsplit.
+fixe (~fixe@dsl017-020-123.chi1.dsl.speakeasy.net) returned to #gnuenterprise.
+wtg (~merlinx@ppp662.qld.padsl.internode.on.net) returned to #gnuenterprise.
+jamest (~jamest@adsl-65-71-169-178.dsl.tpkaks.swbell.net) returned to #gnuenterprise.
+derek (~dneighbo@cpe-24-221-112-50.az.sprintbbd.net) returned to #gnuenterprise.
+yodermk (~micahyode@12-225-17-225.client.attbi.com) left irc: "[x]chat"
+ruben_dig (~a11776@81.84.10.103) left #gnuenterprise ("Client exiting").
+dsmith (dsmith@oh-strongsvillecadent1-1d-224.clvhoh.adelphia.net) joined #gnuenterprise.
+jbailey (~jbailey@CPE0060082df811-CM014260028338.cpe.net.cable.rogers.com) left irc: "Client exiting"
+lupo (~lupo@p5085F385.dip.t-dialin.net) left irc: Read error: 110 (Connection timed out)
+lupo (~lupo@p5085FE05.dip.t-dialin.net) joined #gnuenterprise.
+jbailey (~jbailey@CPE0060082df811-CM014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+jbailey (~jbailey@CPE0060082df811-CM014260028338.cpe.net.cable.rogers.com) left irc: Client Quit
+chillywilly (~danielb@CPE-24-167-199-51.wi.rr.com) left irc: Read error: 60 (Operation timed out)
+dsmith (dsmith@oh-strongsvillecadent1-1d-224.clvhoh.adelphia.net) left irc: "later.."
+jbailey (~jbailey@CPE0060082df811-CM014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+ToyMan (~stuq@170-215-246-80.bras01.mdl.ny.frontiernet.net) left irc: Read error: 110 (Connection timed out)
+jbailey (~jbailey@CPE0060082df811-CM014260028338.cpe.net.cable.rogers.com) left irc: "Client exiting"
+<lupo> hi ho there
+btami (~btami@3e70d72c.dialin.enternet.hu) joined #gnuenterprise.
+<btami> hi all
+<btami> the native win32 form client is functional now
+<btami> so feel free to try and report bugs
+<jamest> cool!
+<btami> it misses picture support yet
+<jamest> :)
+<jamest> that was a last minute addition 
+<btami> and some other "little" things
+<btami> like tooltips
+<btami> but it has better dropdown and tabbed pages support than wx (on win32)
+<jamest> execellent
+<jamest> i'll have to try it out
+<btami> ok :)
+<btami> 'gnight all
+btami (~btami@3e70d72c.dialin.enternet.hu) left irc: 
+<jcater> cool
+<jamest> yip
+<jamest> i smell a 0.5.1 release RSN
+<jamest> or maybe I just smell jcater
+Action: jamest inhales deeply
+jbailey (~jbailey@CPE0060082df811-CM014260028338.cpe.net.cable.rogers.com) joined #gnuenterprise.
+<jamest> nope, that 0.5.1 I smell
+<lupo> hi
+<lupo> what?
+<jamest> btami's fully functional win32 driver == new release IMHO
+<jamest> at least for forms 
+fixe (~fixe@dsl017-020-123.chi1.dsl.speakeasy.net) left irc: "because I feel like it"
+<jcater> yip
+<jcater> works for me
+jbailey (~jbailey@CPE0060082df811-CM014260028338.cpe.net.cable.rogers.com) left #gnuenterprise ("Client exiting").
+Action: jcater needs to fix those few outstanding bugs in designer first though
+<jamest> well
+<jamest> put down that donut and kode
+<jamest> or finish it I guess
+<jcater> hmm
+<jcater> maybe we can do forms 0.5.1 without designer
+<jamest> sure we can
+Action: jamest didn't mean to come between a cater and it's donut
+<jcater> actually we were just discussing dinner :)
+<lupo> riiiight ...
+<derek> bugs?
+<derek> there are bugs in this crap?
+Action: derek huffs off overly disappointed that the grand delusion has now been dissolved :(
+<jamest> poor derek
+Action: Vee2d2 gets ready to take the kids out for some ice cream.. 
+<Vee2d2> everyone have their flavor picked out?
+SachaS (~SachaS@dialup-196-138.wasp.net.au) joined #gnuenterprise.
+<jamest> i want chocolate
+chillywilly (~danielb@CPE-24-167-199-51.wi.rr.com) joined #gnuenterprise.
+mdean (~mike@CPE-65-28-72-76.kc.rr.com) joined #gnuenterprise.
+<chillywilly> ello mdean
+<mdean> halo
+<chillywilly> fancy meetin' you here ;)
+<mdean> yeah - what are the chances!
+<chillywilly> remote at best ;)
+<jcater> I like banana
+<chillywilly> that's nice to know
+<chillywilly> banana prolly likes you too ;)
+Action: jcater thwaps chillywilly
+chillywilly (~danielb@CPE-24-167-199-51.wi.rr.com) left irc: Read error: 104 (Connection reset by peer)
+jamest (~jamest@adsl-65-71-169-178.dsl.tpkaks.swbell.net) left #gnuenterprise ("Client exiting").
+chillywilly (~danielb@CPE-24-167-199-51.wi.rr.com) joined #gnuenterprise.
+--- Sun Apr 27 2003

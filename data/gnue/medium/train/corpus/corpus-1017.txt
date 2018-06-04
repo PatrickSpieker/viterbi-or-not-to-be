@@ -1,0 +1,612 @@
+*** SachaS has joined #gnuenterprise
+*** reinhard has joined #gnuenterprise
+<reinhard> good morning all
+*** rajiv_ has quit IRC
+*** derek has quit IRC
+*** SachaS has quit IRC
+*** SachaS has joined #gnuenterprise
+<SachaS> <SachaS> hi reinhard
+<SachaS> <SachaS> i have the open source ebXML messaging system running on my laptop
+<SachaS> <SachaS> there is a add on to it which scanns a directory. so gnue could write an outgoing business document to a directory and the add on will pick it up and create an ebXML message and send it to the ebXML messaging system which then sends the ebXML message including the business document to a trading partner
+<SachaS> <SachaS> same for an incoming business document
+<SachaS> <SachaS> the ebXML messaging system receives it (and sends maybe a signed acknowlegement if that was agreed) ... and forards the business document to the add on which then in return can forward the business document to gnue either also through a directory or some ... gnue import or gnue webservice or some other gnue glue
+<SachaS> good night
+<SachaS> bye
+*** SachaS has quit IRC
+*** btami has joined #gnuenterprise
+<btami> good morning
+*** johannesV has joined #gnuenterprise
+<johannesV> good morning
+*** johannesV_ has joined #gnuenterprise
+*** johannesV has quit IRC
+*** kilo has joined #gnuenterprise
+<kilo> good morning
+*** dimas_ has quit IRC
+*** lekma has joined #gnuenterprise
+<lekma> good morning
+<lekma> reinhard: the file RpcDoc.py in gnue.common.rpc.drivers.xmlrpc, is it still used/needed by xmlrpc?
+<reinhard> needed: no, AFAICT
+<reinhard> I think it is a tool to create an interface description, but I don't know how it works, and have never used it
+<reinhard> actually I don't even know whether it is still functional or not
+<lekma> ok, thx
+<lekma> reinhard: do you have 5 minutes to spare?
+<reinhard> yes
+<lekma> after benchmarking a little bit the appserver, i got some ugly results
+<lekma> 4min for a simple request on 185k records
+<lekma> 47 secs were spent in appserver
+<lekma> the rest in xmlrpc
+<reinhard> including or not including fetch?
+<reinhard> erh
+<reinhard> spent in xmlrpc?
+<lekma> well that was a fetch
+<lekma> reaues, count fetch
+<lekma> request, count, fetch
+<lekma> yep building the response
+<lekma> the direct request with psycopg
+<reinhard> yuck
+<reinhard> the server side xmlrpc code?
+<lekma> is 1,something second
+<lekma> well part of it is serverside, the other part is decoding client side
+<reinhard> have you tried pyro?
+<reinhard> erh
+<reinhard> you don't have python on client side, right?
+<lekma> so there is 2 pbs, i tried to address one, and i need your help to finish
+<reinhard> ok
+<lekma> i tried pyro, but i couldn't make it work, i'm talking only python, server/client
+<lekma> no javascript involved in my tests
+<reinhard> ok
+<lekma> the first pb is the 47s spent in appserver for a simple from bla select bla
+<lekma> when the driver spend only 1s
+<lekma> but the pb i tried to address is the second one
+<lekma> the rpc
+<lekma> i searched for an alternative to xmlrpc
+<reinhard> ok
+<lekma> there are few
+<lekma> i finally found a spec for a binary rpc protocol, that was partly implemented in python
+<lekma> it's called hessian, url: http://caucho.com/hessian/
+<lekma> it seemed to be faster on paper
+<lekma> so i re implemented it in python
+<lekma> and i built a python server, all based on xmlrpclib and SimpleXMLRPC Server
+<lekma> to keep the api
+<lekma> results are: the encoding part is slightly slower than xmlrpc
+<lekma> the decoding is way faster than xmlrpc
+<lekma> so on the overall hessian is faster
+<lekma> small test to simulate the same request show only 1min40 sec for a 4min xmlrpcrequest
+<reinhard> I really would wonder where all that performance gets lost
+<lekma> parsing xml
+<reinhard> that would mean you still loose 1 minute for a 1,something sec query in the rpc layer
+<lekma> so now i'm trying to get a server and client adapter to work
+<reinhard> i.e. wile xmlrpc adds an overhead of 20000%
+<lekma> to really compare both protocols, before submitting
+<reinhard> and hessian adds an overhead of 6000%
+<reinhard> which both are disgusting numbers :(
+<lekma> i do agree
+<lekma> just fyi, i asked friends to make the same kind of request on very well known erp
+<reinhard> and?
+<lekma> and for example, a sap requests returns 1 min 45 sec. for 516.390 records and display two fields.
+<lekma> Second try:
+<lekma> 1 min 35 sec.
+<lekma> the db is in munic(de)
+<lekma> the sap server is in hildersheim(de)
+<lekma> the client is in breda (nl)
+<lekma> the link between the client and sap is a 64k line
+<lekma> so we're not in good shape performance wise
+<reinhard> indeed
+<lekma> even if the sap db and server used for this request are some kind of monstruous machine
+<reinhard> that's not the point
+<lekma> serving the worldwide production of a big german company
+<johannesV_> hm
+<johannesV_> these are horrible numbers ...
+<reinhard> the simple fact that appserver itself (without the rpc protocol) adds 4000 % overhead is not nice
+<reinhard> ha!
+<johannesV_> reinhard, right
+<reinhard> I knew that johannesV_ couldn't stay quiet in this discussion ;-)
+<johannesV_> i think i'd like to dig into that ...
+<johannesV_> right
+<lekma> this is on an average server, on local network
+<johannesV_> lekma, what about your test-data
+<johannesV_> is it generated or real-life data ?
+<lekma> only a string(2)
+<johannesV_> lekma, can you post your benchmarks ?
+<johannesV_> i mean the code used to perform it
+<lekma> wait guys, before i do that i need to finish hessian integration and test again
+<johannesV_> so i can do the same tests
+<reinhard> what strikes me odd is that I think we did performance tests and they were acceptable
+<johannesV_> well, that hessian stuff is one thing ... appserver is the other one
+<johannesV_> reinhard, maybe the number of records was to low then
+<lekma> ok wait i'll try to send you files in a minute
+<johannesV_> lekma, don't hurry ... :)
+<lekma> the pb is the gsdgen thing that takes forever for 185000 records
+<lekma> if i send you csv files and a script to put it in db is it ok?
+<johannesV_> lekma, yes that's ok
+<johannesV_> gsd has shown to be not very well suited for large files
+<reinhard> lekma: FWIW, we've noticed too that gsdgen takes forever
+<reinhard> and, apart from that, reading it in with gnue-schema also takes forever
+<johannesV_> it's not the gsdgen only, it is gsd at all
+<johannesV_> right
+<lekma> johannesV_: sould i resend?
+<johannesV_> lekma, 01003_* is not working
+<johannesV_> the other files are ok
+<johannesV_> ok, thanks ... all files here
+<lekma> you should have them all now
+<lekma> so what i need to finnish my puzzle is the little bit of magic that makes: gnue-appserver --rpctype blah working
+<lekma> s/finnish/finish
+<lekma> apart from adding the driver in common what should i do?
+<johannesV_> you might need to add the rpctype to geasRpcServer.py
+<johannesV_> if your rpctype is called "foorpc" then you have to add it to gnue.common.rpc.drivers
+<johannesV_> and there must be a module implementing a class called "ServerAdapter"
+* johannesV_ populating backend from csv file
+<johannesV_> ok, this looks like it needs some time ...
+<johannesV_> why haven't you read the csv-file once, put it into an array and then reused it for insertion ?
+<lekma> hmmm...
+<lekma> well that's why you're the one doing gnue!! :)
+<johannesV_> :)
+<johannesV_> well, actually this doesn't really matter ... moving the commit out of the loop gains much more
+<johannesV_> ok, i'm off for lunch now ... but i can find some time in the afternoon i'll do some base-tests ... i think I'll use profile module ...
+<lekma> i need help with sockets
+<lekma> if i do server.system.listMethods()
+<lekma> everything is fine
+<lekma> but if i do server.open(), i get httplib.ResponseNotReady client side and DB000:   File "/usr/lib/gnue/python/gnue/common/rpc/drivers/hessian/ServerAdapter.py", line 379, in close_request
+<lekma> DB000:     self.serverAdapter._clearClientObjects (request.getpeername ())
+<lekma> DB000:   File "<string>", line 1, in getpeername
+<lekma> DB000: error: (107, 'Transport endpoint is not connected') server side
+<johannesV_> hm, i haven't checked sockets recently ...
+<johannesV_> but i got an interesting result with your benchmark
+<johannesV_> johannes@chicago:~/prj/gnue/benchmarks$ python 00000_test_psycopg.py
+<johannesV_> 0:00:01.558194
+<johannesV_> johannes@chicago:~/prj/gnue/benchmarks$ python 00000_test_xmlrpc.py
+<johannesV_> 0:17:48.472561
+<johannesV_> that's quite shocking ...
+<kilo> ewwwww
+<lekma> 17 mins
+<lekma> wow your server is even slower than mine or what
+<johannesV_> i've got the database on server a, and appserver on server b as well as the client (server b)
+<lekma> obviously you postgresql server is slower than mine cause :
+<lekma> python 00000_test_psycopg.py
+<lekma> 0:00:00.005379
+<lekma> the 1 sec i was refering was with another connection, sorry
+<lekma> which is even worse anyway
+<johannesV_> what about this:
+<johannesV_> johannes@chicago:~/prj/gnue/benchmarks$ gcvs other.py -c appserver
+<johannesV_> R= 185000
+<johannesV_> 0:00:01.433922
+<johannesV_> using the language-interface ...
+<johannesV_> :) j/k ... that is only the session.find() ... (doing the default-cache-size fetch only)
+<johannesV_> i've added a ObjectList iteration now ...
+<lekma> shoul correspond to the 47 secs i was referring to modulo server/network performance
+<lekma> just to compare:
+<lekma> python 00000_test_xmlrpc.py
+<lekma> 0:04:36.839102
+<lekma> you should buy yourself faster computers :)
+<johannesV_> well, my client is a 3ghz machine with 1gb ram
+<johannesV_> and the db-server is a 750mhz cpu with 512 mb ram
+<johannesV_> the network is 100mbit
+<johannesV_> maybe i should start a new instance of appserver after populating the backend ...
+<lekma> oh yes something i forgot: the xmlrpc request eats 500mb of memory on the appserver
+<lekma> which is a lot
+<lekma> so the 17 minutes may partly come from this particular point
+<reinhard> I think the first step to optimize would be to find out which parts of the time fall on the request, the count, and the fetch
+<johannesV_> ah, easy that is ...
+<johannesV_> johannes@chicago:~/prj/gnue/benchmarks$ python 00000_test_xmlrpc.py
+<johannesV_> List: 0:00:01.223186
+<johannesV_> Count: 0:00:01.225652
+<lekma> the fetch is the killer
+<lekma> yes
+<lekma> in fact the for loop in fetch is the killer
+<lekma> i did get to this point, when i started to look for rpc alternatives
+<lekma> cause gnue code and me we're not really friends :)
+<reinhard> did you test whether anything changes if you fetch bigger chunks
+<reinhard> ?
+<lekma> nope
+*** btami has quit IRC
+<johannesV_> appserver is eating mor than 500mb memory and takes about 30% of the cpu-time
+<johannesV_> ok, that's definitley way to much ...
+<johannesV_> (at least for my machine ...)
+<lekma> apart from the rpc driver perf pbs, i believe there is space for improvement in what i call the pre rpc stage (typeconv for example) and in the way appserver request the db
+<reinhard> I don't think it's the way appserver requests the db
+<reinhard> because that happens in "request"
+<lekma> rpc driver wise, encoding can't really be faster (exept if you use cPickle/marshal modules, whic you shouldn't do)
+<reinhard> not in fetch (AFAICT)
+<lekma> the instance__getValue doesn't request db?
+<reinhard> no
+<reinhard> it should get the data from the cache in data.py
+<lekma> and if data is not in cache?
+<reinhard> data is in cache if it was included in the request
+<reinhard> the case that data is not in cache can only happen on load
+<reinhard> not on fetch
+<reinhard> but still
+<reinhard> it might be a good idea to check postgresql logs to see if the sql statements against the db are those that we would expect
+<reinhard> acually finding out that a bug somewhere causes a new sql statement to be issued for every record would be an easy eplanation of the bad performance, and should be fixable
+<reinhard> but i fear it's not that easy...
+<reinhard> johannesV_: another idea might be to do the same performance test on top of the data.py layer
+<reinhard> that's the nice thing about appserver's code stack - we can test on datasources, data.py, geasSession and xmlrpc layers
+<reinhard> and see which layer add what amount of overhead
+<johannesV_> there is only one sql statement generated
+<johannesV_> i'm about to create a hotshot-environment for appserver
+<reinhard> what is a hotshot-environment?
+<johannesV_> :)
+<johannesV_> 10.9 hotshot -- High performance logging profiler
+<johannesV_> see python.doc/org
+<reinhard> oh ah
+<reinhard> you remember that you also did a samples/testing/benchmark dir in appserver some time ago?
+<johannesV_> yes i know
+<lekma> bbl
+*** dimas_ has joined #gnuenterprise
+<johannesV_> wow, a profile for the fetch() call only has about 6mb :)
+*** jamest has joined #gnuenterprise
+<lekma> back
+<johannesV_> ok, I've got some first results
+<johannesV_> having a backend with 18500 records
+<johannesV_> the xmlrpc-stuff takes about 10 seconds
+<johannesV_> (overall)
+<johannesV_> one second is used for checktype
+<johannesV_> another second is used withing EventControler.dispatchEvent
+<johannesV_> 0.7 seconds are used in data.read and data.write takes another 0.7
+<reinhard> speaking of which total time?
+<johannesV_> yes
+<johannesV_> for that calls only
+<johannesV_> that is about 30% of the total time
+<reinhard> I mean what is the total time ?
+<lekma> 10secs
+<johannesV_> 10.042
+<reinhard> ah sorry i misunderstood
+<lekma> are u sure ther's xmlrpc in these 10secs?
+<johannesV_> ah, i've to mention, that these results are derived from the fetch-call only
+<lekma> ah, ok
+<reinhard> erm, so this is a different test as the one that used 17 min?
+<johannesV_> yea
+<johannesV_> i don't want to spend 17minutes per test :(
+<lekma> that seems coherent with my results
+<johannesV_> i was curious where the time is being used within the fetch
+<lekma> 47 secs spents in fetch for 185k records
+<reinhard> oh, I didn't see you reduced the number of records by factor 10
+<reinhard> can you find out whether this is a specific call to checktype?
+<reinhard> we might consider doing "assert checktype" in performance critical loops
+<lekma> where are the 6 missing seconds spent?
+<reinhard> actually
+<reinhard> did you consider testing the difference with an optimized run?
+<lekma> reinhard: what is an optimized run?
+<reinhard> python -o ...
+<reinhard> (IIRC)
+<reinhard> then python compiles the code with an optimizer and removes all asserts
+<lekma> i'll try that
+<johannesV_> it performs in the same overall time
+<johannesV_> (the xmlrpc-script takes 21 seconds)
+<lekma> how can i pass -o to the gnue-appserver script?
+<johannesV_> add it in bin/gacvs
+<johannesV_> python2.x -OO ...
+<johannesV_> checktype is called 425500 times for 18500 records
+<lekma> johannesV_:  where are the 6 missing seconds spent?
+<johannesV_> in about 40 other calls ...
+<johannesV_> ranging from 0.043 seconds up to 0.5 seconds
+<johannesV_> i'd say most of the time is in data.py
+<johannesV_> 4.3 seconds are spent in data.py
+<johannesV_> 1.33 in ResultSet.py
+<reinhard> so appearantly data.py adds quite a share of the overhead
+<johannesV_> looking at the cumulative times it appears that data.__nextBackendRecord takes 5.5 seconds of the 10
+<reinhard> that's at least a starting point
+<johannesV_> well, there's a lot of stuff happening from within there
+<reinhard> AFAICS it only does resultSet.[first|next]Record
+<reinhard> and then a __buildRecords
+<reinhard> is __buildRecords using most of the time obviously?
+<johannesV_> no. much more ... all that rubbish with merging with cache, checking for ordering and the like
+<johannesV_> 2.302 is for __buildRecords
+<lekma> the -OO trick doesn't seem to be really helpful, 1 sec gain on a 20 sec run (xmlrpc included)
+<johannesV_> lekma, that's the way it looks here too
+*** kilo has left #gnuenterprise
+<reinhard> 2.302 for _buildRecords is cumulative? (i mean including everything called from within there)?
+<johannesV_> yes
+<reinhard> where are the other 3 seconds?
+<johannesV_>  2.865    0.000 ResultSet.py:397(nextRecord)
+<reinhard> ah
+<reinhard> ok
+<reinhard> I misinterpreted johannesV_: 1.33 in ResultSet.py
+<reinhard> so that was non-cumulative?
+<johannesV_> right
+<johannesV_> that was the timeing per call
+<johannesV_> it's quite tricky to read all that numbers from the Stats class
+<johannesV_> :)
+<reinhard> I think we might really try to optimize bottom up
+<reinhard> i.e. first look that we can make ResultSet/Connection as fast as possible
+<reinhard> then try to remove overhead from data.py
+<reinhard> etc
+<johannesV_> ok, in ResultSet.py we have 1.486 in __cacheNextRecord() and 1.212 in __move
+<johannesV_> so that is 2.69 out of that 2.865
+<reinhard> 1.212 in _move sounds like way too much
+<reinhard> given that IIRC this function doesn't do any useful in our context here
+<johannesV_> could be the __sync only ...
+<johannesV_> 1.087 in __sync
+<johannesV_> ui
+<johannesV_> isEmpty 0.058, _acitvate 0.052 and 1.071 for EventControler.dispatchEvent(dsMoved)
+<reinhard> ok, so that's the next candidate :)
+<reinhard> there should be (AFAICT) no event handler attached to this event at all
+<johannesV_> 0.2 seconds for creating an Event instance
+<johannesV_> and 0.822 seconds for RecordSet.py __dispatchEvent
+<johannesV_> hmm
+<johannesV_> not sure
+<johannesV_> who is listening to dsCursorMoved
+<reinhard> usually the user interface is listening
+<reinhard> I don't think anybody should listen in appserver
+<johannesV_> hmm
+<johannesV_> GDataSource always creates an EventControler instance
+<johannesV_> but i has to
+<johannesV_> that's ok
+<reinhard> yes
+<reinhard> but there should be no listeners
+<reinhard> so the dispatchEvent should actually do nothing (more or less)
+<johannesV_> yeah, should be that way
+<johannesV_> but where do that 1.072 seconds go then (in dispatchEvent)
+*** btami has joined #gnuenterprise
+<reinhard> can you read that from the profile?
+<johannesV_> yes
+<johannesV_> i've got 1.072 seconds in EventController.py dispatchEvent
+<johannesV_> and another 0.822 in RecordSet.py __dispatchEvent
+<reinhard> can you break that down to the lines?
+<johannesV_> which lines ?
+<johannesV_>  37000    0.861    0.000    1.071    0.000 EventController.py:114(dispatchEvent)
+<reinhard> from EventController.py dispatchEvent
+<johannesV_> 18500    0.213    0.000    0.822    0.000 RecordSet.py:751(__dispatchEvent)
+<reinhard> ah
+<reinhard> ok
+<johannesV_> maybe i can find out something about the callee
+<reinhard> what do those numbers mean?
+<johannesV_> of these funcs
+<johannesV_>  ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+<reinhard> so if dispatchEvent is a function with 10 lines, you can't find out how time is distributed in these lines?
+<johannesV_> not really
+<johannesV_> i can look at which functions are called within dispatchEvent and then look for their timings
+<johannesV_> >>> st.print_callees('dispatchEvent')
+<johannesV_>    Ordered by: cumulative time
+<johannesV_>    List reduced from 45 to 2 due to restriction <'dispatchEvent'>
+<johannesV_> Function                               called...
+<johannesV_> EventController.py:114(dispatchEvent)   Event.py:58(__init__)(37000)    0.210
+<johannesV_> RecordSet.py:751(__dispatchEvent)       EventController.py:114(dispatchEvent)(18500)    1.071
+<reinhard> so this looks like the time really is spent *within* dispatchEvent, not in a subfunction?
+<reinhard> you could, just for testing, cut the dispatchEvent into 3 or 4 pieces to get more detailed data
+<lekma> on the rpc side:
+<lekma> repr(value) length == 600000
+<lekma> marshal encode 0.17 seconds 7000005 bytes
+<lekma> marshal decode 0.14 seconds
+<lekma> pickle encode 4.72 seconds 5300075 bytes
+<lekma> pickle decode 2.18 seconds
+<lekma> cPickle encode 0.53 seconds 5300075 bytes
+<lekma> cPickle decode 0.43 seconds
+<lekma> without the long, boolean, and unicode. New data length is represented: 500000
+<lekma> marshal encode 0.17 seconds 5200005 bytes
+<lekma> marshal decode 0.09 seconds
+<lekma> pickle encode 4.0 seconds 2550061 bytes
+<lekma> pickle decode 1.54 seconds
+<lekma> cPickle encode 0.32 seconds 2550061 bytes
+<lekma> cPickle decode 0.16 seconds
+<lekma> xmlrpclib encode 3.28 seconds 26500019 bytes
+<lekma> xmlrpclib decode 22.0 seconds
+<lekma> hessianrpclib encode 4.37 seconds 4350004 bytes
+<lekma> hessianrpclib decode 6.81 seconds
+<lekma> various encode/decode test
+<lekma> the xmlrpclib runs are with sgmlop wich is supposed to be faster than expat
+*** jcater has joined #gnuenterprise
+*** jamest has quit IRC
+*** ramingo has joined #gnuenterprise
+*** ramingo has left #gnuenterprise
+*** jamest has joined #gnuenterprise
+*** btami has quit IRC
+<lekma> anybody with sockets experience?
+*** johannesV_ has quit IRC
+*** johannesV_ has joined #gnuenterprise
+<jcater> what kind of experience?
+<jcater> I've had to do a few sockets clients in python
+<lekma> well that was to help me solve a curious pb but i found where my error was in the meantime, thx
+*** derek has joined #gnuenterprise
+*** klasstek has joined #gnuenterprise
+*** johannesV_ has quit IRC
+*** lekma has quit IRC
+*** sjc has joined #gnuenterprise
+*** jamest has left #gnuenterprise
+*** jamest has joined #gnuenterprise
+*** jamest has quit IRC
+*** jamest has joined #gnuenterprise
+*** kilo has joined #gnuenterprise
+<reinhard> good night all
+*** reinhard has quit IRC
+*** kilo has quit IRC
+*** klasstek has quit IRC
+*** jamest has quit IRC
+*** derek has quit IRC
+*** derek has joined #gnuenterprise
+*** sjc has quit IRC
+*** lekma has joined #gnuenterprise
+<lekma> good morning
+*** kilo has joined #gnuenterprise
+*** reinhard has joined #gnuenterprise
+<kilo> good morning
+<reinhard> good morning all
+*** johannesV has joined #gnuenterprise
+<johannesV> good morning
+<lekma> reinhard: u around?
+<lekma> on the rpc front, my hessian impl seems to be now faster than xmlrpc in decoding and encoding (after a bit of tuning on unicode)
+<lekma> xmlrpclib encode 3.4 seconds 21050081 bytes
+<lekma> xmlrpclib decode 20.91 seconds
+<lekma> hessianrpclib encode 1.94 seconds 4700006 bytes
+<lekma> hessianrpclib decode 4.84 seconds
+<lekma> and it generates smaler messages which is good for network
+<lekma> so i hope you can have a look at it when i'm finished putting it in gnue
+<reinhard> that's excellent
+<reinhard> can you write some comment about the external dependencies into the code? is there a debian package?
+<lekma> ther's no external deps
+<lekma> no deb package
+<lekma> ther's no python package either, i don't remember how to generate them
+<reinhard> ah, so it is completely self contained?
+<reinhard> even better!
+<lekma> yes
+<reinhard> oh
+<reinhard> 5 years ago douglas adam died
+<reinhard> please a minute of silence in this channel
+<reinhard> thanks
+<reinhard> and of course his name is adam_s_ :)
+<johannesV> right
+<johannesV> but we knew who you've meant
+<lekma> 42
+<lekma> johannesV: can i rip off mx.DateTime from typeconv?
+<lekma> all dates should be datetime now, right?
+<johannesV> hm, i'm not sure ...
+<johannesV> is there any need for it being removed ?
+<lekma> is the mx.DateTime string you pass to xmlrpc the same as iso8601?
+<johannesV> mx.DateTime isn't really conform to iso8601 (especially with fractal seconds)
+<lekma> well forget it, it just seemed odd, but it works...
+<reinhard> we can't rely that everything is datetime now
+<reinhard> it depends on what the dbsig2 driver delivers
+<reinhard> hmmm
+<reinhard> no actually it doesn't, as geasInstance will convert it in between
+<lekma> but for appserver all is datetime, right?
+<reinhard> yes
+<reinhard> I don't exactly know what forms delivers from a date entry
+<lekma> at least according to the last release annoucement
+<lekma> ok, thx
+<reinhard> we just convert mx.DateTime to what we want to maintain sorta compatibility
+<johannesV> reinhard, it is mx.
+*** ramingo has joined #gnuenterprise
+*** ramingo has quit IRC
+*** ramingo has joined #gnuenterprise
+*** ramingo has left #gnuenterprise
+*** btami has joined #gnuenterprise
+*** chillywilly has quit IRC
+*** chillywilly has joined #gnuenterprise
+*** chillywilly has quit IRC
+*** btami has quit IRC
+*** chillywilly has joined #gnuenterprise
+*** jamest has joined #gnuenterprise
+*** kilo has left #gnuenterprise
+*** btami has joined #gnuenterprise
+*** klasstek has joined #gnuenterprise
+*** derek has quit IRC
+*** derek has joined #gnuenterprise
+*** johannesV has quit IRC
+*** johannesV has joined #gnuenterprise
+*** lekma has quit IRC
+*** derek has quit IRC
+*** btami has quit IRC
+*** johannesV has quit IRC
+<reinhard> good night all
+*** reinhard has quit IRC
+*** jamest has quit IRC
+*** klasstek has quit IRC
+*** jcater has quit IRC
+*** jcater has joined #gnuenterprise
+*** jcater has left #gnuenterprise
+*** reinhard has joined #gnuenterprise
+*** johannesV has joined #gnuenterprise
+<johannesV> good morning
+<reinhard> good morning all
+*** btami has joined #gnuenterprise
+<btami> good morning
+*** SachaS has joined #gnuenterprise
+*** johannesV_ has joined #gnuenterprise
+*** johannesV has quit IRC
+*** kilo has joined #gnuenterprise
+*** lekma has joined #gnuenterprise
+<lekma> good morning
+<kilo> good morning
+<lekma> johannesV_: do you have some time to spare for me?
+*** SachaS has quit IRC
+<johannesV_> lekma, sorry ... i'm quite busy atm
+<lekma> ok, np
+<johannesV_> maybe i can play with profiling appserver during the weekend
+*** btami has quit IRC
+<reinhard> hmmm
+<reinhard> before: 6.4 seconds
+<reinhard> after: 0.7 seconds
+<reinhard> does this sound like an useful optimization?
+<kilo> make it 0.6 :)
+<lekma> what opti is that?
+<lekma> make it 0.5 :)
+<reinhard> on level of datasources
+<reinhard> I introduced a way to skip off the whole overhead of ResultSet and RecordSet in cases where you don't need it
+<lekma> when do you need it? calc props?
+<reinhard> no
+<reinhard> you *never* need it for appserver, you only need it for forms
+<lekma> woot
+<lekma> \o/
+<reinhard> but as using the same datasources library for forms and appserver, it had a lot of overhead that was only for forms
+<reinhard> like tracking dirty records, caching, etc
+<reinhard> which is anyway done in appserver itself (and not used from this library)
+<reinhard> for jcater and the logs: this might also be interesting for reports, as AFAICT reports should also be able to work without that overhead
+<reinhard> as a side effect, it should also greatly reduce the memory footprint
+<kilo> wow wow wow
+<reinhard> lekma: before you fall into rejoicing
+<kilo> i hope you have no other programmes for the weekend :)
+<reinhard> this is only a part of the performance loss in appserver
+<reinhard> hmmm.... for reports, the missing master/detail ability might be a problem...
+<reinhard> too funny
+<reinhard> just testing the performance of direct dbsig2 data access
+<reinhard> for 100000 records
+<reinhard> pygresql: 26 seconds
+<reinhard> pypgsql: 28 seconds
+<reinhard> psycopg: 0.8 seconds
+<lekma> impressive
+<reinhard> psycopg rocks my socks
+*** kilo has left #gnuenterprise
+<reinhard> gnue-common high performance access on psycopg: 6.3 seconds
+<reinhard> so common adds even less overhead than pygresql now :)
+<lekma> high performance access == a way to skip off the whole overhead of ResultSet and RecordSet ?
+<reinhard> yes
+<reinhard> not the whole overhead, but the whole *unneeded* overhead :)
+<reinhard> johannesV_: if you want, you can try to change data.py to make use of the new ResultSet.raw() function
+<reinhard> otherwise I will try to do it this evening
+<reinhard> so you and lekma can test overall performance hit
+<reinhard> off to garden work now
+<lekma> i can test tomorrow
+*** btami has joined #gnuenterprise
+*** derek_ has joined #gnuenterprise
+*** jcater has joined #gnuenterprise
+*** dimas__ has joined #gnuenterprise
+*** dimas__ has quit IRC
+*** reinhard has left #gnuenterprise
+*** reinhard has joined #gnuenterprise
+*** lekma has quit IRC
+*** klasstek has joined #gnuenterprise
+*** johannesV_ has quit IRC
+*** johannesV_ has joined #gnuenterprise
+<johannesV_> reinhard, if you can do that change to data.py i'm ok with it ... as it seems i'll have not very much time to do so the next days ...
+<reinhard> ok
+<reinhard> am already at it
+<reinhard> nice
+<reinhard> on data.py level
+<reinhard> before = 22 seconds, after = 13 seconds
+<reinhard> down at 9 seconds now
+*** psu has joined #gnuenterprise
+<reinhard> python profiling is full of surprises
+<reinhard> changing a single "foo = '%s-%s' % (bar, baz)" into "foo = bar + '-' + baz" increased overall appserver performance by  > 5%
+<nickr> I noticed some interesting stuff like that
+<nickr> Like string appending is way faster than multiple file writes
+<nickr> maybe thats just on windows though.
+*** psu has quit IRC
+<johannesV_> hm, that's strange ... as it was documented somewhere, that "%(foo)s" % {'foo': 'somevalue'} is faster than 'foo' + 'bar'
+<johannesV_> and more readable
+<johannesV_> reinhard, have you tested that with timeit.py too ?
+<reinhard> I will test again
+<reinhard> as my change also invoved getting rid of an implicit string to unicode conversion
+<johannesV_> yeah
+<johannesV_> but i think that changing __has() and the like gains much more :)
+<johannesV_> as i also read about using try: except KeyError: to improve dictionary-checks
+<johannesV_> where the big point is catching the KeyError only :)
+<johannesV_> if that would be omitted (so catching everything) would slow down things dramatically
+<johannesV_> as you've said before, profiling is full of surprises :)
+<johannesV_> but the improvements you've done so fare are great  ... the benchmark took 21 seconds before, and 8 seconds after the change of data.py
+<johannesV_> ok, i'm off for today ..
+*** johannesV_ has quit IRC
+*** btami has quit IRC
+*** sjc has joined #gnuenterprise
+*** jcater has left #gnuenterprise
+*** kilo has joined #gnuenterprise
+*** lupo__ has joined #gnuenterprise
+*** kilo has left #gnuenterprise
+*** klasstek has quit IRC
+*** lupo__ has quit IRC
+<reinhard> good night all
+*** reinhard has quit IRC
+*** sjc has quit IRC
+*** SachaS has joined #gnuenterprise
+*** SachaS has quit IRC
+*** SachaS has joined #gnuenterprise
+*** dsmith has joined #gnuenterprise
+<dsmith> Howdy gnue dudes

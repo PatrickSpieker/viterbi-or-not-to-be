@@ -1,0 +1,70 @@
+<section archive="http://www.gnuenterprise.org/irc-logs/gnue-public.log.05Jan2002" enddate="06 Jan 2002 00:00:00 -0800" startdate="05 Jan 2002 00:00:00 -0800" subject="[IRC] 5th Jan 2002" title="Two passes in GNUe Class Defintions parser">
+<topic>Application Server</topic>
+
+
+<p>Daniel Baumann (chillywilly) said GNUe Application Server (GEAS) 
+<quote who="Daniel Baumann">should use multiple buffers to do includes 
+for the parser - then you only need one pass</quote> to parse a GNUe 
+Class Definition (.gcd). He posted part of the current GEAS code - 
+<quote who="Daniel Baumann">kind of a depth-first algorithm - jsut keep
+following the includes</quote>. However, this meant it had to use two 
+passes. He said he would <quote who="Daniel Baumann">fix it to use 
+something similar</quote>, giving some alternative, shorter, code in
+flex. He commented <quote who="Daniel Baumann">hmmm, I am liking this 
+flex guy already ;P</quote>.</p>
+
+<p><a href="http://www.gnuenterprise.org/irc-logs/gnue-public.log.06Jan2002">
+The next day</a>, Daniel wondered <quote who="Daniel Baumann">
+why does reinhard count lines himself instead of using the yylineno 
+option?</quote>. Later, Reinhard M&#252;ller (reinhard) explained that, 
+according to the flex documentation, it was 
+<quote who="Reinhard M&#252;ller">an undocumented feature of Lex that does 
+not appear in Flex or POSIX.</quote></p>
+
+<p>Daniel had also asked <quote who="Daniel Baumann">
+I don;t get why he would define his own alphanum, etc. either when 
+there's [:alphanum:], etc. classes that you can use</quote>. 
+Later, Reinhard explained <quote who="Reinhard M&#252;ller">
+it wasn't documented in my copy of the flex manual</quote> and in 
+any case, <quote who="Reinhard M&#252;ller">i'm not sure if non-gnu lex 
+does have this feature too</quote>. He would be keen to change it 
+<quote who="Reinhard M&#252;ller">if you can give me a pointer whether 
+std lex understands [:alphanum:] or not</quote>. He admitted 
+<quote who="Reinhard M&#252;ller">i have a lex incompatibility somewhere 
+anyway</quote>, as the parser would not work on Solaris lex. The 
+person with the problem had just installed flex (GNU lex) instead, 
+as that was quicker than trying to trace the error.</p>
+
+<p>Earlier, Daniel said he had <quote who="Daniel Baumann">
+got through reading the flex manual</quote>and referred to 
+<quote who="Daniel Baumann">the part about multiple inputs streams 
+and their little example about how you could process includes in a 
+depth first fashion</quote>. He wondered if GEAS could use this to 
+<quote who="Daniel Baumann">save a whole 2nd pass from having to 
+happen</quote> at all. Reinhard M&#252;ller (reinhard) said 
+<quote who="Reinhard M&#252;ller">we will not need includes at all - 
+even if some gcd depend on others</quote> He explained 
+<quote who="Reinhard M&#252;ller">some magic code in depend.c will decide 
+in which order the gcd files should be processed</quote>. This was the 
+reason for the two passes - <quote who="Reinhard M&#252;ller">first pass: 
+register which symbols are defined in which file - then: find an order 
+in which the files can be processed so that every symbol is defined 
+before it is used - second pass: do the real parsing of the files, in 
+the needed order</quote>. Daniel said <quote who="Daniel Baumann">
+that seems to make things harder</quote> to code. Reinhard agreed, but 
+said it would make writing .gcd files easier. All of the gcds would 
+need recompiling every time anything changed in any case - 
+<quote who="Reinhard M&#252;ller">for example you could delete an object 
+from a gcd file - and other gcd files could reference that object - 
+so those other gcd files would become syntactically wrong - which you 
+wouldn't know if you didn't process all of them</quote>. It was 
+important to make .gcd files maintainable by non-programmers, if only 
+for <quote who="Reinhard M&#252;ller">minor changes like adding a field to 
+a class or so</quote>. Daniel said that includes were part of the Object 
+Definition Language (ODL) that GNUe wanted to use. Reinhard hadn't seen 
+the specification, <quote who="Reinhard M&#252;ller">but i would say if we 
+can be compilant to odl except that we have less constraints then it 
+would be better than to be die-hard odl compilant</quote>.</p>
+
+</section>
+

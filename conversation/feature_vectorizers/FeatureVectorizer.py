@@ -181,7 +181,7 @@ class FeatureVectorizer:
         return sentence_index / len(chunk)
 
     def thread_sentence_position(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence, thread_sentence_index):
-        return thread_sentence_index / len(self.collapse_threads(thread))
+        return 0 #thread_sentence_index / len(self.collapse_threads(thread))
 
     def title_similarity(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence, thread_sentence_index):
         return 0

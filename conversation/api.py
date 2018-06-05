@@ -77,7 +77,7 @@ def api():
     postprocessor = Postprocessor()
     processed_predictions_list = postprocessor.postprocess(features, predictions_list)
 
-    response_data = {
+   response_data = {
         'predictions': processed_predictions_list,
         'formatted': formatted,
         'features': feature_values

@@ -15,6 +15,9 @@ export default class MainInterface extends Component {
         this.state = {
             chatMessages: [],
             predictions: [],
+            features: {},
+            selectedFeatures: ['centroid_coherence', 'author_frequency'],
+            selectedOrder: ['centroid_coherence', 'author_frequency'],
             summary: [],
             loading: false
         }
@@ -22,6 +25,7 @@ export default class MainInterface extends Component {
         this.sendMessage = this.sendMessage.bind(this);
         this.refreshSummary = this.refreshSummary.bind(this);
         this.closeSummary = this.closeSummary.bind(this);
+        this.toggleFeature = this.toggleFeature.bind(this);
     }
 
     componentDidMount() {
@@ -48,6 +52,48 @@ export default class MainInterface extends Component {
             };
             this.props.db.collection(this.props.room).add(message);
         }
+    }
+
+    toggleFeature(feature) {
+        let newFeatures = this.state.selectedFeatures.slice();
+        let newOrder = this.state.selectedOrder.slice();
+
+        // Check if the feature to be toggled currently exists. If so,
+        // delete it from both lists.
+        if (this.state.selectedFeatures.includes(feature)) {
+            let featureIndex = this.state.selectedFeatures.indexOf(feature);
+            newFeatures.splice(featureIndex, 1);
+
+            let orderIndex = this.state.selectedOrder.indexOf(feature);
+            newOrder.splice(orderIndex, 1);
+        }
+
+        // If the feature isn't already selected, and there are fewer
+        // than three features, simply add it.
+        else if (this.state.selectedFeatures.length < 3) {
+            newFeatures.push(feature);
+            newOrder.push(feature);
+        }
+
+        // If the feature isn't already selected and there are three
+        // features, replace the least recently selected one.
+        else {
+            let leastRecent = this.state.selectedOrder[0];
+            let featureIndex = this.state.selectedFeatures.indexOf(leastRecent);
+
+            newFeatures[featureIndex] = feature;
+            newOrder = newOrder.slice(1);
+            newOrder.push(feature);
+        }
+
+        if (newFeatures.length > 2 && newFeatures[2] === null) {
+            console.log('sausage directory');
+        }
+
+        this.setState({
+            selectedFeatures: newFeatures,
+            selectedOrder: newOrder
+        });
     }
 
     closeSummary() {
@@ -93,6 +139,7 @@ export default class MainInterface extends Component {
             console.log(responseJson);
 
             let formattedLines = responseJson.formatted;
+            let features = responseJson.features;
             let predictions = responseJson.predictions;
             let sortedPredictions = responseJson.predictions.slice(0);
 
@@ -114,7 +161,8 @@ export default class MainInterface extends Component {
             this.setState({
                 loading: false,
                 summary: summaryLines,
-                predictions: predictions
+                predictions: predictions,
+                features: features
             });
         }).catch((error) => {
             toast.error('Could not connect to summarization API!');
@@ -159,10 +207,20 @@ export default class MainInterface extends Component {
                         <h1>{this.props.room}</h1>
                         {actionButton}
                     </div>
-                    <ChatInterface chatMessages={this.state.chatMessages} predictions={this.state.predictions} sendMessage={this.sendMessage} />
+                    <ChatInterface 
+                        chatMessages={this.state.chatMessages}
+                        predictions={this.state.predictions}
+                        features={this.state.features}
+                        selectedFeatures={this.state.selectedFeatures}
+                        sendMessage={this.sendMessage} />
                 </div>
                 <div id="summary-container" className={this.state.summary.length === 0 ? 'closed' : 'open'}>
-                    <SummaryInterface summary={this.state.summary} predictions={this.state.predictions} />
+                    <SummaryInterface
+                        summary={this.state.summary}
+                        predictions={this.state.predictions} 
+                        features={this.state.features}
+                        selectedFeatures={this.state.selectedFeatures}
+                        toggleFeature={this.toggleFeature} />
                 </div>
             </div>
         );

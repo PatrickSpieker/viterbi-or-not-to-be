@@ -31,17 +31,23 @@ export default class ChatInterface extends Component {
         let messageLog = [];
 
         let chatMessages = this.props.chatMessages.filter((message) => {
-            return !message.hasOwnProperty('action');
+            return !message.hasOwnProperty('action') && message.message.trim() !== '';
         });
+
+        let range = {}
+        let min = {}
+        for (let feature of Object.keys(this.props.features)) {
+            min[feature] = Math.min.apply(Math, this.props.features[feature]);
+            range[feature] = Math.max.apply(Math, this.props.features[feature]) - min[feature];
+        }
 
         if (chatMessages.length > 0) {
             let message = chatMessages[0];
             let lastAuthor = message.author;
 
+            let self = (message.author === this.props.author) ? ('self') : ('other')
             messageLog.push(
-                (message.author === this.props.author) ?
-                (<li className="self label" key={message.key + '_new_author'}>{message.author}</li>) :
-                (<li className="other label" key={message.key + '_new_author'}>{message.author}</li>)
+                <li className={self + ' label'} key={message.key + '_new_author'}>{message.author}</li>
             )
 
             for (let i = 0; i < chatMessages.length; i++) {
@@ -51,18 +57,33 @@ export default class ChatInterface extends Component {
 
                 if (message.author !== lastAuthor) {
                     // New author, needs to have name printed
+                    self = (message.author === this.props.author) ? ('self') : ('other')
                     messageLog.push(
-                        (message.author === this.props.author) ?
-                        (<li className="self label" key={message.key + '_new_author'}>{message.author}</li>) :
-                        (<li className="other label" key={message.key + '_new_author'}>{message.author}</li>)
+                        <li className={self + ' label'} key={message.key + '_new_author'}>{message.author}</li>
                     )
                     lastAuthor = message.author;
                 }
 
+                self = (message.author === this.props.author) ? ('self') : ('other')
+                let statistics = [];
+
+                if (this.props.predictions.length !== 0) {
+                    for (let feature of this.props.selectedFeatures) {
+                        console.log('dog ! pup !');
+                        console.log(feature);
+                        console.log(this.props.selectedFeatures);
+                        let featureValue = this.props.features[feature][i];
+                        let height = ((featureValue - min[feature]) / range[feature] * 1.75);
+                        let bar = (<div className="feature-graph" style={{height: height + 'rem'}}></div>);
+                        statistics.push(bar);
+                    }
+                }
+
                 messageLog.push(
-                    (message.author === this.props.author) ?
-                    (<li className="self message" key={message.key} style={background}>{message.message}</li>) :
-                    (<li className="other message" key={message.key} style={background}>{message.message}</li>)
+                    <li className={self + ' message'} key={message.key}>
+                        <p className="message-content" style={background}>{message.message}</p>
+                        <div className="message-features">{statistics}</div>
+                    </li>
                 )
             }
         }

@@ -69,9 +69,14 @@ def api():
     all_authors = flatten(flatten(preprocessed['authors']))
     formatted = generate_formatted(all_sentences, all_authors)
 
+    feature_values = {}
+    for feature_index, feature in enumerate(ChatFeatureVectorizer.FEATURES):
+        feature_values[feature] = list(features[:,feature_index])
+
     response_data = {
         'predictions': predictions_list,
-        'formatted': formatted
+        'formatted': formatted,
+        'features': feature_values
     }
 
     return json.dumps(response_data)

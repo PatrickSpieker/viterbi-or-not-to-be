@@ -12,7 +12,8 @@ class ChatPreprocessor:
             'data': [],
             'labels': [],
             'names': [],
-            'authors': []
+            'authors': [],
+            'flat_authors': []
         }
 
         username = re.compile('^<(.*)> (.*)$')
@@ -23,6 +24,7 @@ class ChatPreprocessor:
             new_thread_text = []
             new_thread_labels = []
             new_thread_authors = []
+            new_thread_flat_authors = []
 
             # Variables used to store current state of chunk division algorithm
             # at any point
@@ -56,6 +58,9 @@ class ChatPreprocessor:
                             new_thread_text.append(new_chunk_text)
                             new_thread_labels.append(new_chunk_labels)
                             new_thread_authors.append(current_username)
+                            for i in range(len(new_chunk_text)):
+                                new_thread_flat_authors.append(current_username)
+
                             new_chunk_text = []
                             new_chunk_labels = []
                             current_username = sentence_match.group(1)
@@ -71,10 +76,13 @@ class ChatPreprocessor:
             new_thread_text.append(new_chunk_text)
             new_thread_labels.append(new_chunk_labels)
             new_thread_authors.append(current_username)
+            for i in range(len(new_chunk_text)):
+                new_thread_flat_authors.append(current_username)
 
             # The chunks for this thread have been computed
             result['data'].append(new_thread_text)
             result['labels'].append(new_thread_labels)
             result['authors'].append(new_thread_authors)
+            result['flat_authors'].append(new_thread_flat_authors)
         
         return result

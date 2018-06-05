@@ -66,6 +66,7 @@ def api():
     predictions_list = list(predictions.tolist())
 
     all_sentences = flatten(flatten(preprocessed['data']))
+    all_authors = flatten(preprocessed['flat_authors'])
     formatted = generate_formatted(all_sentences, all_authors)
 
     feature_values = {}

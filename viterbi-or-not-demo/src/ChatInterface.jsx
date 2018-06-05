@@ -68,10 +68,8 @@ export default class ChatInterface extends Component {
                 let statistics = [];
 
                 if (this.props.predictions.length !== 0) {
+                    console.log(this.props.selectedFeatures);
                     for (let feature of this.props.selectedFeatures) {
-                        console.log('dog ! pup !');
-                        console.log(feature);
-                        console.log(this.props.selectedFeatures);
                         let featureValue = this.props.features[feature][i];
                         let height = ((featureValue - min[feature]) / range[feature] * 1.75);
                         let bar = (<div className="feature-graph" style={{height: height + 'rem'}}></div>);

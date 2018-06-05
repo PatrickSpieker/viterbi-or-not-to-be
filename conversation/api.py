@@ -75,10 +75,10 @@ def api():
         feature_values[feature] = list(features[:,feature_index])
 
     postprocessor = Postprocessor()
-    postprocessed_predictions_list = postprocessor.postprocess(feature_values, predictions_list)
+    processed_predictions_list = postprocessor.postprocess(features, predictions_list)
 
     response_data = {
-        'predictions': postprocessed_predictions_list,
+        'predictions': processed_predictions_list,
         'formatted': formatted,
         'features': feature_values
     }

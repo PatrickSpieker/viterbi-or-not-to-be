@@ -12,6 +12,7 @@ def change_tense(word):
         'i': 'they',
         'i\'m': 'they\'re',
         'i\'ve': 'they\'ve',
+        'i\'d': 'they\'d',
         'am': 'are',
         'me': 'them',
         'my': 'their',

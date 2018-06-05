@@ -116,8 +116,8 @@ export default class MainInterface extends Component {
         });
 
         // Send fetch request
-        // fetch('http://viterb.me/api', {
-        fetch('http://127.0.0.1:5000/api', {
+        fetch('http://viterb.me/api', {
+        // fetch('http://127.0.0.1:5000/api', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',

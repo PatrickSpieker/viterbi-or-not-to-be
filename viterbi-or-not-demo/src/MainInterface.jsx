@@ -6,7 +6,7 @@ import SummaryInterface from './SummaryInterface';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
-const COMPRESS = 0.45;
+const COMPRESS = 0.4;
 
 export default class MainInterface extends Component {
     constructor(props) {
@@ -16,8 +16,8 @@ export default class MainInterface extends Component {
             chatMessages: [],
             predictions: [],
             features: {},
-            selectedFeatures: ['centroid_coherence', 'author_frequency'],
-            selectedOrder: ['centroid_coherence', 'author_frequency'],
+            selectedFeatures: [],
+            selectedOrder: [],
             summary: [],
             loading: false
         }
@@ -86,10 +86,6 @@ export default class MainInterface extends Component {
             newOrder.push(feature);
         }
 
-        if (newFeatures.length > 2 && newFeatures[2] === null) {
-            console.log('sausage directory');
-        }
-
         this.setState({
             selectedFeatures: newFeatures,
             selectedOrder: newOrder
@@ -152,15 +148,18 @@ export default class MainInterface extends Component {
             console.log('Choosing threshold of ' + thresholdPrediction + ' to get a compression ratio of ' + COMPRESS);
 
             let summaryLines = [];
+            let summaryMap = [];
             for (let i = 0; i < predictions.length; i++) {
                 if (predictions[i] >= thresholdPrediction) {
                     summaryLines.push(formattedLines[i]);
+                    summaryMap.push(i);
                 }
             }
 
             this.setState({
                 loading: false,
                 summary: summaryLines,
+                summaryMap: summaryMap,
                 predictions: predictions,
                 features: features
             });
@@ -217,6 +216,7 @@ export default class MainInterface extends Component {
                 <div id="summary-container" className={this.state.summary.length === 0 ? 'closed' : 'open'}>
                     <SummaryInterface
                         summary={this.state.summary}
+                        summaryMap={this.state.summaryMap}
                         predictions={this.state.predictions} 
                         features={this.state.features}
                         selectedFeatures={this.state.selectedFeatures}

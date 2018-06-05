@@ -18,20 +18,22 @@ export default class SummaryInterface extends Component {
         let summaryOptions = [];
         let selectedClasses = ['first', 'second', 'third', 'fourth'];
         for (let feature of Object.keys(this.props.features)) {
-            if (this.props.selectedFeatures.includes(feature)) {
-                summaryOptions.push(
-                    <button id={'feature-selector-' + feature} className={'feature-selector ' + selectedClasses[this.props.selectedFeatures.indexOf(feature)]} key={feature} value={feature} type="button" onClick={this.handleFeatureChange}>
-                        <i className="material-icons">check_box</i>
-                        {feature}
-                    </button>
-                );
-            } else {
-                summaryOptions.push(
-                    <button id={'feature-selector-' + feature} className={'feature-selector'} key={feature} value={feature} type="button" onClick={this.handleFeatureChange}>
-                        <i className="material-icons">check_box_outline_blank</i>
-                        {feature}
-                    </button>
-                )
+            if (this.props.features[feature].some(x => x !== 0)) {
+                if (this.props.selectedFeatures.includes(feature)) {
+                    summaryOptions.push(
+                        <button id={'feature-selector-' + feature} className={'feature-selector ' + selectedClasses[this.props.selectedFeatures.indexOf(feature)]} key={feature} value={feature} type="button" onClick={this.handleFeatureChange}>
+                            <i className="material-icons">check_box</i>
+                            {feature}
+                        </button>
+                    );
+                } else {
+                    summaryOptions.push(
+                        <button id={'feature-selector-' + feature} className={'feature-selector'} key={feature} value={feature} type="button" onClick={this.handleFeatureChange}>
+                            <i className="material-icons">check_box_outline_blank</i>
+                            {feature}
+                        </button>
+                    );
+                }
             }
         }
 
@@ -40,9 +42,12 @@ export default class SummaryInterface extends Component {
             // let background = {backgroundColor: 'rgba(5, 168, 170, ' + this.props.predictions[i] + ')'};
             let message = this.props.summary[i];
 
+            let originalIndex = this.props.summaryMap[i];
+            console.log('original index ' + originalIndex);
+            let newTopic = this.props.features['topic_position'][originalIndex] === 0 ? 'topic-start' : '';
             messageLog.push(
-                <li key={message.key} /*style={background}*/>{message}</li>
-            )
+                <li key={message.key} className={newTopic} /*style={background}*/>{message}</li>
+            );
         }
 
         return (

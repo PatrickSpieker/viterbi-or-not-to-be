@@ -211,10 +211,6 @@ def test_model(model, val_data, sentence_features, step, threshold):
     predicted_annotations = model.predict(sentence_features)
     sentences = flatten(collapsed_threads)
 
-    # Postprocessing to include additional important sentences
-    postprocessor = Postprocessor()
-    predicted_annotations = postprocessor.postprocess(sentence_features, predicted_annotations)
-
     sentence = 0
     for thread_index, thread in enumerate(collapsed_threads):
         thread_summary = []

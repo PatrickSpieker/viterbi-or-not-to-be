@@ -4,6 +4,7 @@ from flask_cors import CORS
 
 from preprocessors.EmailPreprocessor import EmailPreprocessor
 from preprocessors.ChatPreprocessor import ChatPreprocessor
+from postprocessors.Postprocessor import Postprocessor
 from feature_vectorizers.EmailFeatureVectorizer import \
     EmailFeatureVectorizer
 from feature_vectorizers.ChatFeatureVectorizer import \
@@ -73,8 +74,11 @@ def api():
     for feature_index, feature in enumerate(ChatFeatureVectorizer.FEATURES):
         feature_values[feature] = list(features[:,feature_index])
 
+    postprocessor = Postprocessor()
+    postprocessed_predictions_list = postprocessor.postprocess(feature_values, predictions_list)
+
     response_data = {
-        'predictions': predictions_list,
+        'predictions': postprocessed_predictions_list,
         'formatted': formatted,
         'features': feature_values
     }

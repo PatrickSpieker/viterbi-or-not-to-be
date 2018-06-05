@@ -44,7 +44,6 @@ def generate_formatted(sentences, authors):
         formatted_sentence = authors[sentence_index].strip() + ' said ' + processed.strip()
         formatted_result.append(formatted_sentence)
 
-    print('coconut')
     print(formatted_result)
     return formatted_result
 

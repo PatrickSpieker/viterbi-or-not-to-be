@@ -31,5 +31,8 @@ class ChatFeatureVectorizer(FeatureVectorizer):
         # return sentence_bleu(title, sentence)
 
     def topic_position(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence, thread_sentence_index):
-        return 0
-        # return self.TOPIC_DIVISIONS[thread_index][thread_sentence_index]
+        #return 0
+        try:
+            return self.TOPIC_DIVISIONS[thread_index][thread_sentence_index]
+        except IndexError:
+            return 1

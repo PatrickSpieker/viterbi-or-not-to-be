@@ -12,6 +12,7 @@ def change_tense(word):
         'i': 'they',
         'i\'m': 'they\'re',
         'i\'ve': 'they\'ve',
+        'i\'d': 'they\'d',
         'am': 'are',
         'me': 'them',
         'my': 'their',
@@ -44,7 +45,6 @@ def generate_formatted(sentences, authors):
         formatted_sentence = authors[sentence_index].strip() + ' said ' + processed.strip()
         formatted_result.append(formatted_sentence)
 
-    print('coconut')
     print(formatted_result)
     return formatted_result
 

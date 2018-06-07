@@ -203,7 +203,7 @@ class FeatureVectorizer:
         return self.SENT_SPECIAL_COUNTS[thread_index][sentence_index] / self.THREAD_SPECIAL_COUNTS[thread_index] if self.THREAD_SPECIAL_COUNTS[thread_index] != 0 else 0
 
     def is_question(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence, thread_sentence_index):
-        return 1 if sentence.endswith('?') else 0
+        return 1 if '?' in sentence else 0
 
     def sentiment_score(self, input, thread_index, thread, chunk_index, chunk, sentence_index, sentence, thread_sentence_index):
         tag_set = {'NN', 'NNS', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ', 'JJ', 'JJR', 'JJS', 'RB', 'RBR', 'RBS'}

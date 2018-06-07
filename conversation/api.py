@@ -19,7 +19,7 @@ import json
 app = Flask(__name__)
 CORS(app)
 
-MODEL = 'saved_models/snack_pack.pickle'
+MODEL = 'saved_models/active_demo.pickle'
 with open(MODEL, 'rb') as model_file:
     model = pickle.load(model_file)
 preprocessor = ChatPreprocessor()
@@ -77,7 +77,7 @@ def api():
     postprocessor = Postprocessor()
     processed_predictions_list = postprocessor.postprocess(features, predictions_list)
 
-   response_data = {
+    response_data = {
         'predictions': processed_predictions_list,
         'formatted': formatted,
         'features': feature_values

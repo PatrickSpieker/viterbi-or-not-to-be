@@ -86,10 +86,9 @@ export default class RoomSelector extends Component {
                             <div className="room-selector-section">
                                 <h2 className="form-label">Or Start From an Example</h2>
                                 <div className="room-selector-options">
-                                    <input className="room-selector-button" type="button" value="Dog Walking" onClick={this.handleCopyRoom} />
-                                    <input className="room-selector-button" type="button" value="We Broke the Fridge!" onClick={this.handleCopyRoom} />
-                                    <input className="room-selector-button" type="button" value="Working on NLP" onClick={this.handleCopyRoom} />
                                     <input className="room-selector-button" type="button" value="Mysteries of Coding" onClick={this.handleCopyRoom} />
+                                    <input className="room-selector-button" type="button" value="Dog Walking" onClick={this.handleCopyRoom} />
+                                    <input className="room-selector-button" type="button" value="Natural Language About NLP" onClick={this.handleCopyRoom} />
                                 </div>
                             </div>
                         </div>

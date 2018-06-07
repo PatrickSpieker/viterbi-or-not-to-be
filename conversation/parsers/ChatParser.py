@@ -114,12 +114,12 @@ class ChatParser:
             filename = output_dir + 'thread{}_reference1.txt'.format(anno_index)
             with open(filename, 'w') as output_file:
                 for p in root.findall('p'):
-                    p_str = ET.tostring(p).decode("utf-8")
-                    p_str = re.sub('<p>', '', p_str)
+                    original_str = ET.tostring(p).decode("utf-8")
+                    p_str = re.sub('<p>', '', original_str)
                     p_str = re.sub('</p>', '', p_str)
-                    p_str = re.sub(r'^<quote(.*)>$', '', p_str)
+                    p_str = re.sub('<quote(.*?)>', '', p_str)
                     p_str = re.sub('</quote>', '', p_str)
-                    p_str = re.sub(r'^<a(.*)>$', '', p_str)
+                    p_str = re.sub('<a(.*?)>', '', p_str)
                     p_str = re.sub('</a>', '', p_str)
                     output_file.write(p_str) #.replace('\n', ''))
                     #for q in p.findall('quote'):

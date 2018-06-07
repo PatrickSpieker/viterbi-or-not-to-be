@@ -42,7 +42,7 @@ def generate_formatted(sentences, authors):
             else:
                 processed += change_tense(token) + ' '
         
-        formatted_sentence = authors[sentence_index].strip() + ' said ' + processed.strip()
+        formatted_sentence = authors[sentence_index].strip() + ' said "' + sentence + '"'
         formatted_result.append(formatted_sentence)
 
     print(formatted_result)

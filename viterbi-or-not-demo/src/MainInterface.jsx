@@ -18,14 +18,18 @@ export default class MainInterface extends Component {
             features: {},
             selectedFeatures: [],
             selectedOrder: [],
+            formattedLines: [],
             summary: [],
-            loading: false
+            loading: false,
+            threshold: 0.4
         }
 
         this.sendMessage = this.sendMessage.bind(this);
         this.refreshSummary = this.refreshSummary.bind(this);
         this.closeSummary = this.closeSummary.bind(this);
         this.toggleFeature = this.toggleFeature.bind(this);
+        this.adjustThreshold = this.adjustThreshold.bind(this);
+        this.computeSummaries = this.computeSummaries.bind(this);
     }
 
     componentDidMount() {
@@ -52,6 +56,13 @@ export default class MainInterface extends Component {
             };
             this.props.db.collection(this.props.room).add(message);
         }
+    }
+
+    adjustThreshold(value) {
+        this.setState({
+            threshold: value
+        });
+        this.computeSummaries();
     }
 
     toggleFeature(feature) {
@@ -137,38 +148,47 @@ export default class MainInterface extends Component {
             let formattedLines = responseJson.formatted;
             let features = responseJson.features;
             let predictions = responseJson.predictions;
-            let sortedPredictions = responseJson.predictions.slice(0);
-
-            sortedPredictions.sort();
-
-            // For the summary, retain the top COMPRESS % of sentences
-            let preservedIndex = Math.round(sortedPredictions.length * (1 - COMPRESS));
-            let thresholdPrediction = sortedPredictions[preservedIndex];
-
-            console.log('Choosing threshold of ' + thresholdPrediction + ' to get a compression ratio of ' + COMPRESS);
-
-            let summaryLines = [];
-            let summaryMap = [];
-            for (let i = 0; i < predictions.length; i++) {
-                if (predictions[i] >= thresholdPrediction) {
-                    summaryLines.push(formattedLines[i]);
-                    summaryMap.push(i);
-                }
-            }
 
             this.setState({
                 loading: false,
-                summary: summaryLines,
-                summaryMap: summaryMap,
+                formattedLines: formattedLines,
                 predictions: predictions,
                 features: features
             });
+
+            this.computeSummaries();
+
         }).catch((error) => {
             toast.error('Could not connect to summarization API!');
             console.log(error);
             this.setState({
                 loading: false
             });
+        });
+    }
+
+    computeSummaries() {
+        let sortedPredictions = this.state.predictions.slice(0);
+        sortedPredictions.sort();
+        // For the summary, retain the top threshold % of sentences
+        let preservedIndex = Math.round(sortedPredictions.length * (1 - this.state.threshold));
+        let thresholdPrediction = sortedPredictions[preservedIndex];
+
+        console.log('Choosing threshold of ' + thresholdPrediction + ' to get a compression ratio of ' + COMPRESS);
+
+        let summaryLines = [];
+        let summaryMap = [];
+
+        for (let i = 0; i < this.state.predictions.length; i++) {
+            if (this.state.predictions[i] >= thresholdPrediction) {
+                summaryLines.push(this.state.formattedLines[i]);
+                summaryMap.push(i);
+            }
+        }
+
+        this.setState({
+            summary: summaryLines,
+            summaryMap: summaryMap
         });
     }
 
@@ -220,7 +240,9 @@ export default class MainInterface extends Component {
                         predictions={this.state.predictions} 
                         features={this.state.features}
                         selectedFeatures={this.state.selectedFeatures}
-                        toggleFeature={this.toggleFeature} />
+                        toggleFeature={this.toggleFeature}
+                        threshold={this.state.threshold}
+                        adjustThreshold={this.adjustThreshold} />
                 </div>
             </div>
         );

@@ -1,4 +1,8 @@
 import React, {Component} from 'react';
+import Slider, { createSliderWithTooltip } from 'rc-slider';
+import 'rc-slider/assets/index.css';
+
+const SliderWithTooltip = createSliderWithTooltip(Slider);
 
 export default class SummaryInterface extends Component {
     constructor(props) {
@@ -52,7 +56,19 @@ export default class SummaryInterface extends Component {
 
         return (
             <div id="summary-interface">
+                <h3>FEATURES TO VISUALIZE</h3>
                 <div id="feature-options">{summaryOptions}</div>
+                <h3>COMPRESSION RATIO</h3>
+                <div id="slider">
+                    <SliderWithTooltip
+                        min={0.05}
+                        max={0.95}
+                        step={0.05}
+                        value={this.props.threshold}
+                        onChange={this.props.adjustThreshold}
+                    />
+                </div>
+                <h3>SUMMARY</h3>
                 <div id="summary-listing-container">
                     <ul id="summary-listing">{messageLog}</ul>
                 </div>

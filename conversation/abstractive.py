@@ -42,7 +42,10 @@ def generate_formatted(sentences, authors):
             else:
                 processed += change_tense(token) + ' '
         
-        formatted_sentence = authors[sentence_index].strip() + ' said "' + sentence + '"'
+        if len(sentence) > 0 and sentence[-1] == '?':
+            formatted_sentence = authors[sentence_index].strip() + ' asked "' + sentence + '"'
+        else:
+            formatted_sentence = authors[sentence_index].strip() + ' said "' + sentence + '"'
         formatted_result.append(formatted_sentence)
 
     print(formatted_result)

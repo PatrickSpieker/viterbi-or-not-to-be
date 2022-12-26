@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import Slider, { createSliderWithTooltip } from 'rc-slider';
+import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
-const SliderWithTooltip = createSliderWithTooltip(Slider);
+const SliderWithTooltip = Slider.createSliderWithTooltip(Slider.Slider);
 
 export default class SummaryInterface extends Component {
     constructor(props) {

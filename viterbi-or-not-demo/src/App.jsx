@@ -4,10 +4,9 @@ import RoomSelector from './RoomSelector';
 import MainInterface from './MainInterface';
 import Admin from './Admin';
 
-import firebase from 'firebase/app';
-import 'firebase/firestore';
-
-import { getConfig } from './environment.js';
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import { getFirebaseConfig } from './environment.js';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
@@ -15,11 +14,9 @@ import 'react-toastify/dist/ReactToastify.min.css';
 export default class App extends Component {
     constructor(props) {
         super(props);
-
         let config = getConfig();
-        firebase.initializeApp(config);
+        const db = initializeApp(config);
 
-        const db = firebase.firestore();
         db.settings({
             timestampsInSnapshots: true
         });
